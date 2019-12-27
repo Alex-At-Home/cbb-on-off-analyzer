@@ -5,7 +5,7 @@ import _ from "lodash";
 import queryString from "query-string";
 
 // Utils
-import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
 
 /** Url routing utils */
 export class UrlRouting {
@@ -13,9 +13,10 @@ export class UrlRouting {
   static readonly noSuffix = "";
   static readonly savedLineupSuffix = "_lineup";
   static readonly savedGameSuffix = "_game";
+  static readonly savedTeamReportSuffix = "_report";
   /** List of all the keys that can be saved */
   static readonly savedKeySuffices = [
-    UrlRouting.savedLineupSuffix, UrlRouting.savedGameSuffix
+    UrlRouting.savedLineupSuffix, UrlRouting.savedGameSuffix, UrlRouting.savedTeamReportSuffix
   ];
 
   /** If any of these change then copy between saved (and reset the others) */
@@ -46,6 +47,12 @@ export class UrlRouting {
     return `/LineupAnalyzer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
       [UrlRouting.savedGameSuffix]: gameParams
+    })}`;
+  }
+  /** The URL to use to view the "Team Report" page */
+  static getTeamReportUrl(params: TeamReportFilterParams) {
+    return `/TeamReport?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params
     })}`;
   }
 

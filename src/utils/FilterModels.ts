@@ -2,6 +2,7 @@
 export class ParamPrefixes {
   static readonly game = "game-";
   static readonly lineup = "lineup-";
+  static readonly report = "report-";
 }
 
 /** Params for game filtering */
@@ -15,7 +16,7 @@ export type GameFilterParams = {
   baseQuery?: string,
   minRank?: string,
   maxRank?: string
-}
+};
 
 /** Params for lineup filtering */
 export type LineupFilterParams = {
@@ -29,13 +30,27 @@ export type LineupFilterParams = {
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string
-}
+};
+
+export type TeamReportFilterParams = {
+  year?: string,
+  team?: string,
+  gender?: string,
+  baseQuery?: string,
+  players?: Array<string>,
+  minRank?: string,
+  maxRank?: string,
+  // For sorting in the generated table:
+  sortBy?: string
+};
 
 export class ParamDefaults {
   // Lineup
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";
   static readonly defaultLineupSortBy = "desc:off_poss";
+  // Report
+  static readonly defaultTeamReportSortBy = "desc:off_poss";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";

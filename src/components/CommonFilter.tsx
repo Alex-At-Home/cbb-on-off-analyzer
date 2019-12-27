@@ -247,6 +247,8 @@ const CommonFilter: CommonFilterI = ({
       })
     }
   }
+
+  /** Load the designated example */
   function onSeeExample() {
     if (tablePrefix == ParamPrefixes.game) {
       if (gender == "Women") {

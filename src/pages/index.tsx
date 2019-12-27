@@ -131,7 +131,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard title="Lineup Comparison">
-        <RosterCompareTable rosterCompareStats={rosterCompareStats}/>
+        <RosterCompareTable gameFilterParams={gameFilterParams} rosterCompareStats={rosterCompareStats}/>
       </GenericCollapsibleCard>
     </Row>
     <Row>

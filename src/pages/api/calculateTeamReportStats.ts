@@ -4,8 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 // Application imports
-import { teamStatsQuery } from "../../utils/es-queries/teamStatsQueryTemplate";
-import { rosterCompareQuery } from "../../utils/es-queries/rosterCompareQueryTemplate";
+import { teamReportQueryTemplate } from "../../utils/es-queries/teamReportQueryTemplate";
 import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
@@ -29,6 +28,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
   const maybeCacheJson = ServerRequestCache.decacheResponse(url.query, queryPrefix, currentJsonEpoch, isDebug);
 
+  /**/console.log("????");
+  /**/console.log(JSON.stringify(maybeCacheJson, null, 3));
+
   if (maybeCacheJson) {
     res.status(200).json(maybeCacheJson);
   } else {
@@ -48,9 +50,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const body = [
         JSON.stringify({ index: index }),
-        JSON.stringify(teamStatsQuery(params, efficiency, lookup)),
-        JSON.stringify({ index: index }),
-        JSON.stringify(rosterCompareQuery(params, efficiency, lookup))
+        JSON.stringify(teamReportQueryTemplate(params, efficiency, lookup))
       ].join('\n') + "\n";
 
       try {
@@ -62,7 +62,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const esFetchJson = await esFetch.json();
 
-        //console.log(JSON.stringify(esFetchJson, null, 3));
+        /**/console.log(JSON.stringify(esFetchJson, null, 3));
         //console.log(esFetch.status);
         const jsonToUse = esFetch.ok ?
           esFetchJson :

@@ -3,22 +3,27 @@ import React, { useState } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
+import Link from 'next/link';
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
+import queryString from "query-string";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 
 // Util imports
-import { CbbColors } from "../utils/CbbColors"
+import { CbbColors } from "../utils/CbbColors";
+import { GameFilterParams } from "../utils/FilterModels";
+import { UrlRouting } from "../utils/UrlRouting";
 
 export type RosterCompareModel = {
   on: any,
@@ -27,10 +32,11 @@ export type RosterCompareModel = {
   error_code?: string
 }
 type Props = {
+  gameFilterParams: GameFilterParams
   rosterCompareStats: RosterCompareModel
 }
 
-const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}) => {
+const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, rosterCompareStats}) => {
 
   const tableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", ""),
@@ -56,6 +62,22 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
       (Object.keys(rosterCompareStats.baseline).length == 0);
   }
 
+  const onOffReportLink = (tableName: string) => {
+    const paramObj = {
+      team: gameFilterParams.team,
+      year: gameFilterParams.year,
+      gender: gameFilterParams.gender,
+      baseQuery: gameFilterParams.baseQuery,
+      players: (tableData(tableName) || []).map((rec: any) => rec.title),
+      minRank: gameFilterParams.minRank,
+      maxRank: gameFilterParams.maxRank
+    }
+    const paramStr = queryString.stringify(paramObj);
+    return <Link href={UrlRouting.getTeamReportUrl(paramObj)}>
+      <a>(report)</a>
+    </Link>;
+  };
+
   return <LoadingOverlay
     active={needToLoadQuery()}
     text={rosterCompareStats.error_code ?
@@ -66,26 +88,26 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
     <Row>
         <Col>
           <Card className="w-100">
-          <Card.Body>
-          <Card.Title>'On' Roster</Card.Title>
-          <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
-          </Card.Body>
+            <Card.Body>
+              <Card.Title>'On' Roster   {onOffReportLink("on")}</Card.Title>
+              <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
+            </Card.Body>
           </Card>
         </Col>
         <Col>
           <Card className="w-100">
-          <Card.Body>
-          <Card.Title>'Off' Roster</Card.Title>
-          <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
-          </Card.Body>
+            <Card.Body>
+              <Card.Title>'Off' Roster   {onOffReportLink("off")}</Card.Title>
+              <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
+            </Card.Body>
           </Card>
         </Col>
         <Col>
           <Card className="w-100">
-          <Card.Body>
-          <Card.Title>'Baseline' Roster</Card.Title>
-          <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
-          </Card.Body>
+            <Card.Body>
+              <Card.Title>'Baseline' Roster   {onOffReportLink("baseline")}</Card.Title>
+              <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
+            </Card.Body>
           </Card>
         </Col>
       </Row>
