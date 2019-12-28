@@ -10,7 +10,7 @@ export const teamReportQueryTemplate = function(params: any, publicEfficiency: a
      },
      "size": 0,
      "aggregations": {
-        "tri_filter": {
+        "roster_filter": {
            "aggregations": commonLineupAggregations(publicEfficiency, lookup),
            "filters": commonIndividualQuery(params)
         }

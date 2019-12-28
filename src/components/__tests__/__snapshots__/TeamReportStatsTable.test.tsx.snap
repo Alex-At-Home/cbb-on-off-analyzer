@@ -1,0 +1,1235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <LoadingOverlay
+    active={false}
+    text="Press 'Submit' to view results"
+  >
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="sortBy"
+            >
+              Sort By
+            </InputGroupText>
+          </InputGroupPrepend>
+          <StateManager
+            className="w-75"
+            defaultInputValue=""
+            defaultMenuIsOpen={false}
+            defaultValue={null}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "P/100 (Descending / Offensive)",
+                  "value": "desc:off_ppp",
+                },
+                Object {
+                  "label": "P/100 (Ascending / Offensive)",
+                  "value": "asc:off_ppp",
+                },
+                Object {
+                  "label": "P/100 (Descending / Defensive)",
+                  "value": "desc:def_ppp",
+                },
+                Object {
+                  "label": "P/100 (Ascending / Defensive)",
+                  "value": "asc:def_ppp",
+                },
+                Object {
+                  "label": "P/100 (Descending / Off-Def Delta)",
+                  "value": "desc:diff_ppp",
+                },
+                Object {
+                  "label": "P/100 (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Descending / Offensive)",
+                  "value": "desc:off_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Ascending / Offensive)",
+                  "value": "asc:off_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Descending / Defensive)",
+                  "value": "desc:def_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Ascending / Defensive)",
+                  "value": "asc:def_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Descending / Off-Def Delta)",
+                  "value": "desc:diff_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_adj_ppp",
+                },
+                Object {
+                  "label": "eFG% (Descending / Offensive)",
+                  "value": "desc:off_efg",
+                },
+                Object {
+                  "label": "eFG% (Ascending / Offensive)",
+                  "value": "asc:off_efg",
+                },
+                Object {
+                  "label": "eFG% (Descending / Defensive)",
+                  "value": "desc:def_efg",
+                },
+                Object {
+                  "label": "eFG% (Ascending / Defensive)",
+                  "value": "asc:def_efg",
+                },
+                Object {
+                  "label": "eFG% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_efg",
+                },
+                Object {
+                  "label": "eFG% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_efg",
+                },
+                Object {
+                  "label": "TO% (Descending / Offensive)",
+                  "value": "desc:off_to",
+                },
+                Object {
+                  "label": "TO% (Ascending / Offensive)",
+                  "value": "asc:off_to",
+                },
+                Object {
+                  "label": "TO% (Descending / Defensive)",
+                  "value": "desc:def_to",
+                },
+                Object {
+                  "label": "TO% (Ascending / Defensive)",
+                  "value": "asc:def_to",
+                },
+                Object {
+                  "label": "TO% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_to",
+                },
+                Object {
+                  "label": "TO% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_to",
+                },
+                Object {
+                  "label": "ORB% (Descending / Offensive)",
+                  "value": "desc:off_orb",
+                },
+                Object {
+                  "label": "ORB% (Ascending / Offensive)",
+                  "value": "asc:off_orb",
+                },
+                Object {
+                  "label": "ORB% (Descending / Defensive)",
+                  "value": "desc:def_orb",
+                },
+                Object {
+                  "label": "ORB% (Ascending / Defensive)",
+                  "value": "asc:def_orb",
+                },
+                Object {
+                  "label": "ORB% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_orb",
+                },
+                Object {
+                  "label": "ORB% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_orb",
+                },
+                Object {
+                  "label": "FTR (Descending / Offensive)",
+                  "value": "desc:off_ftr",
+                },
+                Object {
+                  "label": "FTR (Ascending / Offensive)",
+                  "value": "asc:off_ftr",
+                },
+                Object {
+                  "label": "FTR (Descending / Defensive)",
+                  "value": "desc:def_ftr",
+                },
+                Object {
+                  "label": "FTR (Ascending / Defensive)",
+                  "value": "asc:def_ftr",
+                },
+                Object {
+                  "label": "FTR (Descending / Off-Def Delta)",
+                  "value": "desc:diff_ftr",
+                },
+                Object {
+                  "label": "FTR (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_ftr",
+                },
+                Object {
+                  "label": "3PR (Descending / Offensive)",
+                  "value": "desc:off_3pr",
+                },
+                Object {
+                  "label": "3PR (Ascending / Offensive)",
+                  "value": "asc:off_3pr",
+                },
+                Object {
+                  "label": "3PR (Descending / Defensive)",
+                  "value": "desc:def_3pr",
+                },
+                Object {
+                  "label": "3PR (Ascending / Defensive)",
+                  "value": "asc:def_3pr",
+                },
+                Object {
+                  "label": "3PR (Descending / Off-Def Delta)",
+                  "value": "desc:diff_3pr",
+                },
+                Object {
+                  "label": "3PR (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_3pr",
+                },
+                Object {
+                  "label": "2PR mid (Descending / Offensive)",
+                  "value": "desc:off_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Ascending / Offensive)",
+                  "value": "asc:off_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Descending / Defensive)",
+                  "value": "desc:def_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Ascending / Defensive)",
+                  "value": "asc:def_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2pmidr",
+                },
+                Object {
+                  "label": "2PR rim (Descending / Offensive)",
+                  "value": "desc:off_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Ascending / Offensive)",
+                  "value": "asc:off_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Descending / Defensive)",
+                  "value": "desc:def_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Ascending / Defensive)",
+                  "value": "asc:def_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2primr",
+                },
+                Object {
+                  "label": "3P% (Descending / Offensive)",
+                  "value": "desc:off_3p",
+                },
+                Object {
+                  "label": "3P% (Ascending / Offensive)",
+                  "value": "asc:off_3p",
+                },
+                Object {
+                  "label": "3P% (Descending / Defensive)",
+                  "value": "desc:def_3p",
+                },
+                Object {
+                  "label": "3P% (Ascending / Defensive)",
+                  "value": "asc:def_3p",
+                },
+                Object {
+                  "label": "3P% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_3p",
+                },
+                Object {
+                  "label": "3P% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_3p",
+                },
+                Object {
+                  "label": "2P% (Descending / Offensive)",
+                  "value": "desc:off_2p",
+                },
+                Object {
+                  "label": "2P% (Ascending / Offensive)",
+                  "value": "asc:off_2p",
+                },
+                Object {
+                  "label": "2P% (Descending / Defensive)",
+                  "value": "desc:def_2p",
+                },
+                Object {
+                  "label": "2P% (Ascending / Defensive)",
+                  "value": "asc:def_2p",
+                },
+                Object {
+                  "label": "2P% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2p",
+                },
+                Object {
+                  "label": "2P% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2p",
+                },
+                Object {
+                  "label": "2P% mid (Descending / Offensive)",
+                  "value": "desc:off_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Ascending / Offensive)",
+                  "value": "asc:off_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Descending / Defensive)",
+                  "value": "desc:def_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Ascending / Defensive)",
+                  "value": "asc:def_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2pmid",
+                },
+                Object {
+                  "label": "2P% rim (Descending / Offensive)",
+                  "value": "desc:off_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Ascending / Offensive)",
+                  "value": "asc:off_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Descending / Defensive)",
+                  "value": "desc:def_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Ascending / Defensive)",
+                  "value": "asc:def_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2prim",
+                },
+                Object {
+                  "label": "Poss (Descending / Offensive)",
+                  "value": "desc:off_poss",
+                },
+                Object {
+                  "label": "Poss (Ascending / Offensive)",
+                  "value": "asc:off_poss",
+                },
+                Object {
+                  "label": "Poss (Descending / Defensive)",
+                  "value": "desc:def_poss",
+                },
+                Object {
+                  "label": "Poss (Ascending / Defensive)",
+                  "value": "asc:def_poss",
+                },
+                Object {
+                  "label": "Poss (Descending / Off-Def Delta)",
+                  "value": "desc:diff_poss",
+                },
+                Object {
+                  "label": "Poss (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_poss",
+                },
+                Object {
+                  "label": "SoS (Descending / Offensive)",
+                  "value": "desc:off_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Ascending / Offensive)",
+                  "value": "asc:off_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Descending / Defensive)",
+                  "value": "desc:def_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Ascending / Defensive)",
+                  "value": "asc:def_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Descending / Off-Def Delta)",
+                  "value": "desc:diff_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_adj_opp",
+                },
+              ]
+            }
+            value={
+              Object {
+                "label": "Poss (Descending / Offensive)",
+                "value": "desc:off_poss",
+              }
+            }
+          />
+        </InputGroup>
+      </FormGroup>
+    </FormRow>
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col>
+        <GenericTable
+          tableCopyId="teamReportStatsTable"
+          tableData={
+            Array [
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.47192716236722304,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.3798449612403101,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3483348334833483,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.6029411764705882,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.2448244824482448,
+                  },
+                  "def_3p": Object {
+                    "value": 0.32079646017699115,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.40684068406840684,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.67318255250403,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 92.9754381449448,
+                  },
+                  "def_efg": Object {
+                    "value": 0.4756975697569757,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.28352835283528355,
+                  },
+                  "def_orb": Object {
+                    "value": 0.23809523809523808,
+                  },
+                  "def_poss": Object {
+                    "value": 1221,
+                  },
+                  "def_ppp": Object {
+                    "value": 105.32350532350533,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.10647010647010648,
+                  },
+                  "doc_count": 372,
+                  "key": "'ON' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.4778625954198473,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4086687306501548,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.30791229742612014,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5451807228915663,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.31649189704480457,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3629441624365482,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.3755958055290753,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 113.28099918099919,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 110.51692200662933,
+                  },
+                  "off_efg": Object {
+                    "value": 0.5028598665395615,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.323164918970448,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3223787167449139,
+                  },
+                  "off_poss": Object {
+                    "value": 1238,
+                  },
+                  "off_ppp": Object {
+                    "value": 105.73505654281098,
+                  },
+                  "off_title": "'ON' Ayala, Eric",
+                  "off_to": Object {
+                    "value": 0.19224555735056542,
+                  },
+                  "points_allowed": Object {
+                    "value": 1286,
+                  },
+                  "points_scored": Object {
+                    "value": 1309,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 387,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 147,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 272,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 164,
+                  },
+                  "total_def_fga": Object {
+                    "value": 1111,
+                  },
+                  "total_def_fta": Object {
+                    "value": 315,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 323,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 132,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 332,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 181,
+                  },
+                  "total_off_fga": Object {
+                    "value": 1049,
+                  },
+                  "total_off_fta": Object {
+                    "value": 339,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.47192716236722304,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.3798449612403101,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3483348334833483,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.6029411764705882,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.2448244824482448,
+                  },
+                  "def_3p": Object {
+                    "value": 0.32079646017699115,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.40684068406840684,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.67318255250403,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 92.9754381449448,
+                  },
+                  "def_efg": Object {
+                    "value": 0.4756975697569757,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.28352835283528355,
+                  },
+                  "def_orb": Object {
+                    "value": 0.23809523809523808,
+                  },
+                  "def_poss": Object {
+                    "value": 1221,
+                  },
+                  "def_ppp": Object {
+                    "value": 105.32350532350533,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.10647010647010648,
+                  },
+                  "doc_count": 372,
+                  "key": "'ON' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.4778625954198473,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4086687306501548,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.30791229742612014,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5451807228915663,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.31649189704480457,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3629441624365482,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.3755958055290753,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 113.28099918099919,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 110.51692200662933,
+                  },
+                  "off_efg": Object {
+                    "value": 0.5028598665395615,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.323164918970448,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3223787167449139,
+                  },
+                  "off_poss": Object {
+                    "value": 1238,
+                  },
+                  "off_ppp": Object {
+                    "value": 105.73505654281098,
+                  },
+                  "off_title": "'ON' Ayala, Eric",
+                  "off_to": Object {
+                    "value": 0.19224555735056542,
+                  },
+                  "points_allowed": Object {
+                    "value": 1286,
+                  },
+                  "points_scored": Object {
+                    "value": 1309,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 387,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 147,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 272,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 164,
+                  },
+                  "total_def_fga": Object {
+                    "value": 1111,
+                  },
+                  "total_def_fta": Object {
+                    "value": 315,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 323,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 132,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 332,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 181,
+                  },
+                  "total_off_fga": Object {
+                    "value": 1049,
+                  },
+                  "total_off_fta": Object {
+                    "value": 339,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.40160642570281124,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.34459459459459457,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3645320197044335,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.48514851485148514,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.24876847290640394,
+                  },
+                  "def_3p": Object {
+                    "value": 0.3184713375796178,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.3866995073891626,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.92641083521445,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 85.22266375554388,
+                  },
+                  "def_efg": Object {
+                    "value": 0.43103448275862066,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.29064039408866993,
+                  },
+                  "def_orb": Object {
+                    "value": 0.2733812949640288,
+                  },
+                  "def_poss": Object {
+                    "value": 456,
+                  },
+                  "def_ppp": Object {
+                    "value": 95.6140350877193,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.16666666666666666,
+                  },
+                  "doc_count": 168,
+                  "key": "'OFF' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.512396694214876,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4146341463414634,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.3228346456692913,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6134453781512605,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3123359580052493,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3237410071942446,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.3648293963254593,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 112.19320175438597,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 109.18828861476771,
+                  },
+                  "off_efg": Object {
+                    "value": 0.5026246719160105,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.29658792650918636,
+                  },
+                  "off_orb": Object {
+                    "value": 0.33482142857142855,
+                  },
+                  "off_poss": Object {
+                    "value": 443,
+                  },
+                  "off_ppp": Object {
+                    "value": 104.74040632054177,
+                  },
+                  "off_title": "'OFF' Ayala, Eric",
+                  "off_to": Object {
+                    "value": 0.20993227990970656,
+                  },
+                  "points_allowed": Object {
+                    "value": 436,
+                  },
+                  "points_scored": Object {
+                    "value": 464,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 148,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 51,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 101,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 49,
+                  },
+                  "total_def_fga": Object {
+                    "value": 406,
+                  },
+                  "total_def_fta": Object {
+                    "value": 118,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 123,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 51,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 119,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 73,
+                  },
+                  "total_off_fga": Object {
+                    "value": 381,
+                  },
+                  "total_off_fta": Object {
+                    "value": 113,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.40160642570281124,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.34459459459459457,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3645320197044335,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.48514851485148514,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.24876847290640394,
+                  },
+                  "def_3p": Object {
+                    "value": 0.3184713375796178,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.3866995073891626,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.92641083521445,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 85.22266375554388,
+                  },
+                  "def_efg": Object {
+                    "value": 0.43103448275862066,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.29064039408866993,
+                  },
+                  "def_orb": Object {
+                    "value": 0.2733812949640288,
+                  },
+                  "def_poss": Object {
+                    "value": 456,
+                  },
+                  "def_ppp": Object {
+                    "value": 95.6140350877193,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.16666666666666666,
+                  },
+                  "doc_count": 168,
+                  "key": "'OFF' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.512396694214876,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4146341463414634,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.3228346456692913,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6134453781512605,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3123359580052493,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3237410071942446,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.3648293963254593,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 112.19320175438597,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 109.18828861476771,
+                  },
+                  "off_efg": Object {
+                    "value": 0.5026246719160105,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.29658792650918636,
+                  },
+                  "off_orb": Object {
+                    "value": 0.33482142857142855,
+                  },
+                  "off_poss": Object {
+                    "value": 443,
+                  },
+                  "off_ppp": Object {
+                    "value": 104.74040632054177,
+                  },
+                  "off_title": "'OFF' Ayala, Eric",
+                  "off_to": Object {
+                    "value": 0.20993227990970656,
+                  },
+                  "points_allowed": Object {
+                    "value": 436,
+                  },
+                  "points_scored": Object {
+                    "value": 464,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 148,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 51,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 101,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 49,
+                  },
+                  "total_def_fga": Object {
+                    "value": 406,
+                  },
+                  "total_def_fta": Object {
+                    "value": 118,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 123,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 51,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 119,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 73,
+                  },
+                  "total_off_fga": Object {
+                    "value": 381,
+                  },
+                  "total_off_fta": Object {
+                    "value": 113,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "2p": GenericTableColProps {
+                "className": "",
+                "colName": "2P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "2pmid": GenericTableColProps {
+                "className": "",
+                "colName": "2P% mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (mid range)",
+                "widthUnits": 2,
+              },
+              "2pmidr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of mid range 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "2prim": GenericTableColProps {
+                "className": "",
+                "colName": "2P% rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (layup/dunk/etc)",
+                "widthUnits": 2,
+              },
+              "2primr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "3 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "3pr": GenericTableColProps {
+                "className": "",
+                "colName": "3PR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of 3 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "adj_opp": GenericTableColProps {
+                "className": "",
+                "colName": "SoS",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
+                "widthUnits": 2,
+              },
+              "adj_ppp": GenericTableColProps {
+                "className": "",
+                "colName": "Adj P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Approximate schedule-adjusted Points per 100 possessions",
+                "widthUnits": 2,
+              },
+              "efg": GenericTableColProps {
+                "className": "",
+                "colName": "eFG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) for selected lineups",
+                "widthUnits": 2,
+              },
+              "ftr": GenericTableColProps {
+                "className": "",
+                "colName": "FTR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Free throw rate for selected lineups",
+                "widthUnits": 2,
+              },
+              "orb": GenericTableColProps {
+                "className": "",
+                "colName": "ORB%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Offensive rebounding % for selected lineups",
+                "widthUnits": 2,
+              },
+              "poss": GenericTableColProps {
+                "className": "",
+                "colName": "Poss",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Total number of possessions for selected lineups",
+                "widthUnits": 2,
+              },
+              "ppp": GenericTableColProps {
+                "className": "",
+                "colName": "P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Points per 100 possessions",
+                "widthUnits": 2,
+              },
+              "sep0": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep4": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "title": GenericTableColProps {
+                "className": "small",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 8,
+              },
+              "to": GenericTableColProps {
+                "className": "",
+                "colName": "TO%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Turnover % for selected lineups",
+                "widthUnits": 2,
+              },
+            }
+          }
+        />
+      </Col>
+    </ForwardRef>
+  </LoadingOverlay>
+</Container>
+`;

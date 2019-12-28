@@ -68,7 +68,9 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
       year: gameFilterParams.year,
       gender: gameFilterParams.gender,
       baseQuery: gameFilterParams.baseQuery,
-      players: (tableData(tableName) || []).map((rec: any) => rec.title),
+      players: (tableData(tableName) || []).map(
+          (rec: any) => rec?.dataObj?.title
+        ).filter((name: string) => name),
       minRank: gameFilterParams.minRank,
       maxRank: gameFilterParams.maxRank
     }
@@ -76,6 +78,9 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
     return <Link href={UrlRouting.getTeamReportUrl(paramObj)}>
       <a>(report)</a>
     </Link>;
+
+    //TODO: on press, inject "{}" into the cache entry (remove players, implied by baseQuery etc)
+    // this then needs to get interpreted as "cache miss but means actually perform query"
   };
 
   return <LoadingOverlay

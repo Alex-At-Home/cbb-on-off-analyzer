@@ -15,6 +15,9 @@ import { preloadedData } from '../utils/internal-data/preloadedData';
 /** Wraps local storage and handles compression of the fields, clearing out if space is needed etc */
 export class ClientRequestCache {
 
+  /** Always cache miss if in debug AND disable client cache (this flag) requested */
+  static readonly debugDisableClientCache = true;
+
   /** If true, then shows either cached or new version of this - for building preloadedData */
   static readonly debugShowB64Encoded = false;
 
@@ -27,7 +30,6 @@ export class ClientRequestCache {
     removeItem: function(key: string) {},
     key: function(index: number) { return ""; }
   } : window.localStorage;
-
 
   /** Check if a global refresh has occurred for this gender/year pairing */
   static refreshEpoch(
@@ -61,6 +63,11 @@ export class ClientRequestCache {
   static decacheResponse(
     key: string, prefix: string, epochKey: number | undefined, isDebug: boolean = false
   ): Record<string, any> | null {
+
+    // Always cache miss if in debug AND disable client cache requested
+    if (isDebug && ClientRequestCache.debugDisableClientCache) {
+      return null;
+    }
 
     const cacheStr = (ls as any).get(prefix + key);
     if (!cacheStr) {

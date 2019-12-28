@@ -60,6 +60,7 @@ interface Props<PARAMS> {
   buildParamsFromState: (inHandleResponse: Boolean) => PARAMS;
   childHandleResponse: (json: any, wasError: Boolean) => void;
   childSubmitRequest: (paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) => void;
+  majorParamsDisabled?: boolean;
 }
 
 /** Type workaround per https://stackoverflow.com/questions/51459971/type-of-generic-stateless-component-react-or-extending-generic-function-interfa */
@@ -68,7 +69,8 @@ type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
 const CommonFilter: CommonFilterI = ({
     children,
     startingState, onChangeState, onChangeCommonState,
-    tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest
+    tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest,
+    majorParamsDisabled
 }) => {
 
   // Data model
@@ -371,6 +373,7 @@ const CommonFilter: CommonFilterI = ({
     <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
+          isDisabled={majorParamsDisabled}
           value={ stringToOption(gender) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
             (r) => r.gender
@@ -383,6 +386,7 @@ const CommonFilter: CommonFilterI = ({
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
+          isDisabled={majorParamsDisabled}
           value={ stringToOption(year) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
             (r) => r.year
@@ -396,6 +400,7 @@ const CommonFilter: CommonFilterI = ({
       <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
       <Col xs={12} sm={12} md={6} lg={6}>
         <Select
+          isDisabled={majorParamsDisabled}
           components = { maybeMenuList() }
           isClearable={true}
           styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}

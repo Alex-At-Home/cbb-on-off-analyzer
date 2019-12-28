@@ -90,6 +90,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Lineup Comparison"
     >
       <RosterCompareTable
+        gameFilterParams={Object {}}
         rosterCompareStats={
           Object {
             "baseline": Object {},

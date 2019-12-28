@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      xs={8}
+    >
+      <h3>
+        CBB Lineup Analysis Tool 
+        <span
+          className="badge badge-pill badge-info"
+        >
+          BETA!
+        </span>
+      </h3>
+    </Col>
+    <Col
+      xs={1}
+    >
+      <span
+        className="float-right"
+      >
+        <a
+          href="https://hoop-explorer.blogspot.com"
+          target="_new"
+        >
+          Blog
+        </a>
+      </span>
+    </Col>
+    <Col>
+      <span
+        className="float-right"
+      >
+        <Link
+          href="#"
+        >
+          <a>
+            Back to On/Off Analysis
+          </a>
+        </Link>
+      </span>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      summary="On/Off Report: 2019/20  (M): query:'' (filter:'', sort:desc:off_poss)"
+      title="Team Report Filter"
+    >
+      <TeamReportFilter
+        onChangeState={[Function]}
+        onStats={[Function]}
+        startingState={Object {}}
+      />
+    </GenericCollapsibleCard>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      title="Team Analysis"
+    >
+      <TeamReportStatsTable
+        onChangeState={[Function]}
+        startingState={Object {}}
+        teamReport={Object {}}
+      />
+    </GenericCollapsibleCard>
+  </ForwardRef>
+  <Footer
+    server="server"
+  />
+</Container>
+`;

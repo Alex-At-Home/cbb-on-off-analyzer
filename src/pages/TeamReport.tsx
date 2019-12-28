@@ -102,7 +102,7 @@ const TeamReportPage: NextPage<{}> = () => {
     <Row>
       <GenericCollapsibleCard
         title="Team Report Filter"
-        summary={HistoryManager.lineupFilterSummary({})}
+        summary={HistoryManager.teamReportFilterSummary(teamReportFilterParams)}
       >
         <TeamReportFilter
           onStats={injectStats}

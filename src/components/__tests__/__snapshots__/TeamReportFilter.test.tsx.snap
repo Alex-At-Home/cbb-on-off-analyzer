@@ -1,14 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LineupFilter LineupFilter - should create snapshot 1`] = `
+exports[`TeamReportFilter TeamReportFilter - should create snapshot 1`] = `
 <CommonFilter
   buildParamsFromState={[Function]}
   childHandleResponse={[Function]}
   childSubmitRequest={[Function]}
+  majorParamsDisabled={true}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
   startingState={Object {}}
-  tablePrefix="lineup-"
+  tablePrefix="report-"
 >
   <FormGroup
     as={
@@ -32,6 +33,7 @@ exports[`LineupFilter LineupFilter - should create snapshot 1`] = `
       sm="8"
     >
       <FormControl
+        disabled={true}
         onChange={[Function]}
         onKeyUp={[Function]}
         placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"

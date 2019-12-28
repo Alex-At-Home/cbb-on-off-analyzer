@@ -8,7 +8,7 @@ import ls from 'local-storage';
 import LZUTF8 from 'lzutf8';
 import queryString from "query-string";
 
-import { ParamPrefixes, GameFilterParams, LineupFilterParams, ParamDefaults } from "../utils/FilterModels";
+import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from "../utils/FilterModels";
 
 /** Wraps the local storage based cache of recent requests */
 export class HistoryManager {
@@ -100,6 +100,14 @@ export class HistoryManager {
       `min-poss:${p.minPoss || ParamDefaults.defaultLineupMinPos}, ` +
       `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}`;
     return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${lineupQuery} (${otherParams})`;
+  }
+
+  /** Returns a summary string for the game filter */
+  static teamReportFilterSummary(p: TeamReportFilterParams) {
+    const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
+    const otherParams = `filter:'', ` +
+      `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}`;
+    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery} (${otherParams})`;
   }
 }
 /** (handy util) */

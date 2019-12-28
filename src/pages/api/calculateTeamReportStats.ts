@@ -28,9 +28,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
   const maybeCacheJson = ServerRequestCache.decacheResponse(url.query, queryPrefix, currentJsonEpoch, isDebug);
 
-  /**/console.log("????");
-  /**/console.log(JSON.stringify(maybeCacheJson, null, 3));
-
   if (maybeCacheJson) {
     res.status(200).json(maybeCacheJson);
   } else {
@@ -62,7 +59,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const esFetchJson = await esFetch.json();
 
-        /**/console.log(JSON.stringify(esFetchJson, null, 3));
+        //console.log(JSON.stringify(esFetchJson, null, 3));
         //console.log(esFetch.status);
         const jsonToUse = esFetch.ok ?
           esFetchJson :

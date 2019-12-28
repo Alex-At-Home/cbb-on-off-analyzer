@@ -1,6 +1,6 @@
 
 import { HistoryManager } from "../HistoryManager"
-import { GameFilterParams, LineupFilterParams } from "../utils/FilterModels";
+import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 
 describe("HistoryManager", () => {
   test("HistoryManager - getHistory/addParamsToHistory", () => {
@@ -53,6 +53,24 @@ describe("HistoryManager", () => {
     };
     expect(HistoryManager.filterSummary("lineup-", lineup2)).toBe(
       `Lineups: 2018/19 team2 (W): query:'test ""' (max:11, min-poss:10, sort:test-sort)`
+    );
+  });
+  test("HistoryManager - teamReportFilterSummary", () => {
+    const report1: TeamReportFilterParams = {
+    };
+    expect(HistoryManager.teamReportFilterSummary(report1)).toBe(
+      `On/Off Report: 2019/20  (M): query:'' (filter:'', sort:desc:off_poss)`
+    );
+    const report2: TeamReportFilterParams = {
+      team: "team3",
+      year: "2018/19", gender: "Women",
+      baseQuery: "test ''",
+      minRank: "10", maxRank: "370",
+      sortBy: "test-sort",
+      players: [ "ignore1", "ignore2" ]
+    };
+    expect(HistoryManager.teamReportFilterSummary(report2)).toBe(
+      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (filter:'', sort:test-sort)`
     );
   });
 });

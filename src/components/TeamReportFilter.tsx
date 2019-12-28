@@ -76,9 +76,18 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     const jsons = json?.responses || [];
     const onOffJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
-      players: _.chain(onOffJson?.aggregations?.lineups?.buckets).toPairs().map((p) => {
-        return { key: p[0], ...p[1] };
-      }).value(),
+      players: _.chain(players).map((player) => {
+        const resultMap = onOffJson?.aggregations?.roster_filter?.buckets || {};
+        const normName = player.replace(/"/g, "'");
+        const onName = `'ON' ${normName}`;
+        const offName = `'OFF' ${normName}`;
+        const addKey = (name: string) => {
+          const temp = resultMap[name];
+          return temp ? { key: name, ...temp } : null;
+        };
+        return { on: addKey(onName), off: addKey(offName) };
+      }).filter((res: any) => res.on && res.off).value()
+      ,
       error_code: wasError ? (onOffJson?.status || json?.status) : undefined,
       avgOff: efficiencyAverages[`${commonParams.gender}_${commonParams.year}`]
     });
@@ -101,6 +110,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       childSubmitRequest={onSubmit}
+      majorParamsDisabled={true}
     >
       <Form.Group as={Row}>
         <Form.Label column sm="2">Baseline Query</Form.Label>

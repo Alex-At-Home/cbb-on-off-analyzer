@@ -6,8 +6,8 @@ import { commonIndividualQuery } from '../commonIndividualQuery'
 describe("commonIndividualQuery", () => {
   test("commonIndividualQuery", () => {
     const team = [ "P One", "P 'Two'", 'P "Three"' ];
-    const params1 = {};
-    const params2 = { baseQuery: "test" };
+    const params1 = { players: team, };
+    const params2 = { players: team, baseQuery: "test" };
 
     const expRes = (base: string) => { return {
       filters: {
@@ -19,7 +19,7 @@ describe("commonIndividualQuery", () => {
         "'OFF' P 'Three'": { "query_string": { "query": `NOT players.id:(("P 'Three'") AND (${base}))` } },
       }
     }};
-    expect(commonIndividualQuery(team, params1)).toEqual(expRes('*'));
-    expect(commonIndividualQuery(team, params2)).toEqual(expRes('test'));
+    expect(commonIndividualQuery(params1)).toEqual(expRes('*'));
+    expect(commonIndividualQuery(params2)).toEqual(expRes('test'));
   });
 });

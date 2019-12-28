@@ -119,15 +119,21 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
   //TODO: port LineupStats to using _.chain also
   const players = teamReport?.players || [];
   const tableData = _.chain(players).map((player) => {
-      const adjOffDef = calcAdjEff(player);
-      return { ...player, ...adjOffDef };
-    }).sortBy(
-      [ sorter(sortBy) ]
+      const adjOffDefOn = calcAdjEff(player.on);
+      const adjOffDefOff = calcAdjEff(player.off);
+      return { on: { ...player.on, ...adjOffDefOn }, off: { ...player.off, ...adjOffDefOff } };
+    }
+    //TODO
+  // ).sortBy(
+  //     [ sorter(sortBy) ]
     ).flatMap((player) => {
-      const stats = { off_title: player.key, def_title: "", ...player };
+      const statsOn = { off_title: player.on.key, def_title: "", ...player.on };
+      const statsOff = { off_title: player.off.key, def_title: "", ...player.off };
       return [
-        GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
-        GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
+        GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
+        GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
+        GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
+        GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
         GenericTableOps.buildRowSeparator()
       ];
     }).value();
