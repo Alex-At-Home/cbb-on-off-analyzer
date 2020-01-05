@@ -15,7 +15,7 @@ export const commonIndividualQuery = function(params: any) {
         ,
         [ `'OFF' ${normPlayer}`, {
           "query_string": {
-            "query": `NOT players.id:(("${normPlayer}") AND (${params.baseQuery || "*"}))`
+            "query": `players.id:(NOT ("${normPlayer}") AND (${params.baseQuery || "*"}))`
           }
         }]
       ];

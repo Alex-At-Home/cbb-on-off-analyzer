@@ -32,375 +32,1106 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
             defaultInputValue=""
             defaultMenuIsOpen={false}
             defaultValue={null}
+            formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
               Array [
                 Object {
-                  "label": "P/100 (Descending / Offensive)",
-                  "value": "desc:off_ppp",
-                },
-                Object {
-                  "label": "P/100 (Ascending / Offensive)",
-                  "value": "asc:off_ppp",
-                },
-                Object {
-                  "label": "P/100 (Descending / Defensive)",
-                  "value": "desc:def_ppp",
-                },
-                Object {
-                  "label": "P/100 (Ascending / Defensive)",
-                  "value": "asc:def_ppp",
-                },
-                Object {
-                  "label": "P/100 (Descending / Off-Def Delta)",
-                  "value": "desc:diff_ppp",
-                },
-                Object {
-                  "label": "P/100 (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Descending / Offensive)",
-                  "value": "desc:off_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Ascending / Offensive)",
-                  "value": "asc:off_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Descending / Defensive)",
-                  "value": "desc:def_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Ascending / Defensive)",
-                  "value": "asc:def_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Descending / Off-Def Delta)",
-                  "value": "desc:diff_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_adj_ppp",
-                },
-                Object {
-                  "label": "eFG% (Descending / Offensive)",
-                  "value": "desc:off_efg",
-                },
-                Object {
-                  "label": "eFG% (Ascending / Offensive)",
-                  "value": "asc:off_efg",
-                },
-                Object {
-                  "label": "eFG% (Descending / Defensive)",
-                  "value": "desc:def_efg",
-                },
-                Object {
-                  "label": "eFG% (Ascending / Defensive)",
-                  "value": "asc:def_efg",
-                },
-                Object {
-                  "label": "eFG% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_efg",
-                },
-                Object {
-                  "label": "eFG% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_efg",
-                },
-                Object {
-                  "label": "TO% (Descending / Offensive)",
-                  "value": "desc:off_to",
-                },
-                Object {
-                  "label": "TO% (Ascending / Offensive)",
-                  "value": "asc:off_to",
-                },
-                Object {
-                  "label": "TO% (Descending / Defensive)",
-                  "value": "desc:def_to",
-                },
-                Object {
-                  "label": "TO% (Ascending / Defensive)",
-                  "value": "asc:def_to",
-                },
-                Object {
-                  "label": "TO% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_to",
-                },
-                Object {
-                  "label": "TO% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_to",
-                },
-                Object {
-                  "label": "ORB% (Descending / Offensive)",
-                  "value": "desc:off_orb",
-                },
-                Object {
-                  "label": "ORB% (Ascending / Offensive)",
-                  "value": "asc:off_orb",
-                },
-                Object {
-                  "label": "ORB% (Descending / Defensive)",
-                  "value": "desc:def_orb",
-                },
-                Object {
-                  "label": "ORB% (Ascending / Defensive)",
-                  "value": "asc:def_orb",
-                },
-                Object {
-                  "label": "ORB% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_orb",
-                },
-                Object {
-                  "label": "ORB% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_orb",
-                },
-                Object {
-                  "label": "FTR (Descending / Offensive)",
-                  "value": "desc:off_ftr",
-                },
-                Object {
-                  "label": "FTR (Ascending / Offensive)",
-                  "value": "asc:off_ftr",
-                },
-                Object {
-                  "label": "FTR (Descending / Defensive)",
-                  "value": "desc:def_ftr",
-                },
-                Object {
-                  "label": "FTR (Ascending / Defensive)",
-                  "value": "asc:def_ftr",
-                },
-                Object {
-                  "label": "FTR (Descending / Off-Def Delta)",
-                  "value": "desc:diff_ftr",
-                },
-                Object {
-                  "label": "FTR (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_ftr",
-                },
-                Object {
-                  "label": "3PR (Descending / Offensive)",
-                  "value": "desc:off_3pr",
-                },
-                Object {
-                  "label": "3PR (Ascending / Offensive)",
-                  "value": "asc:off_3pr",
-                },
-                Object {
-                  "label": "3PR (Descending / Defensive)",
-                  "value": "desc:def_3pr",
-                },
-                Object {
-                  "label": "3PR (Ascending / Defensive)",
-                  "value": "asc:def_3pr",
-                },
-                Object {
-                  "label": "3PR (Descending / Off-Def Delta)",
-                  "value": "desc:diff_3pr",
-                },
-                Object {
-                  "label": "3PR (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_3pr",
-                },
-                Object {
-                  "label": "2PR mid (Descending / Offensive)",
-                  "value": "desc:off_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Ascending / Offensive)",
-                  "value": "asc:off_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Descending / Defensive)",
-                  "value": "desc:def_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Ascending / Defensive)",
-                  "value": "asc:def_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2pmidr",
-                },
-                Object {
-                  "label": "2PR rim (Descending / Offensive)",
-                  "value": "desc:off_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Ascending / Offensive)",
-                  "value": "asc:off_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Descending / Defensive)",
-                  "value": "desc:def_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Ascending / Defensive)",
-                  "value": "asc:def_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2primr",
-                },
-                Object {
-                  "label": "3P% (Descending / Offensive)",
-                  "value": "desc:off_3p",
-                },
-                Object {
-                  "label": "3P% (Ascending / Offensive)",
-                  "value": "asc:off_3p",
-                },
-                Object {
-                  "label": "3P% (Descending / Defensive)",
-                  "value": "desc:def_3p",
-                },
-                Object {
-                  "label": "3P% (Ascending / Defensive)",
-                  "value": "asc:def_3p",
-                },
-                Object {
-                  "label": "3P% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_3p",
-                },
-                Object {
-                  "label": "3P% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_3p",
-                },
-                Object {
-                  "label": "2P% (Descending / Offensive)",
-                  "value": "desc:off_2p",
-                },
-                Object {
-                  "label": "2P% (Ascending / Offensive)",
-                  "value": "asc:off_2p",
-                },
-                Object {
-                  "label": "2P% (Descending / Defensive)",
-                  "value": "desc:def_2p",
-                },
-                Object {
-                  "label": "2P% (Ascending / Defensive)",
-                  "value": "asc:def_2p",
-                },
-                Object {
-                  "label": "2P% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2p",
-                },
-                Object {
-                  "label": "2P% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2p",
-                },
-                Object {
-                  "label": "2P% mid (Descending / Offensive)",
-                  "value": "desc:off_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Ascending / Offensive)",
-                  "value": "asc:off_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Descending / Defensive)",
-                  "value": "desc:def_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Ascending / Defensive)",
-                  "value": "asc:def_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2pmid",
-                },
-                Object {
-                  "label": "2P% rim (Descending / Offensive)",
-                  "value": "desc:off_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Ascending / Offensive)",
-                  "value": "asc:off_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Descending / Defensive)",
-                  "value": "desc:def_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Ascending / Defensive)",
-                  "value": "asc:def_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2prim",
-                },
-                Object {
-                  "label": "Poss (Descending / Offensive)",
-                  "value": "desc:off_poss",
-                },
-                Object {
-                  "label": "Poss (Ascending / Offensive)",
-                  "value": "asc:off_poss",
-                },
-                Object {
-                  "label": "Poss (Descending / Defensive)",
-                  "value": "desc:def_poss",
-                },
-                Object {
-                  "label": "Poss (Ascending / Defensive)",
-                  "value": "asc:def_poss",
-                },
-                Object {
-                  "label": "Poss (Descending / Off-Def Delta)",
-                  "value": "desc:diff_poss",
-                },
-                Object {
-                  "label": "Poss (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_poss",
-                },
-                Object {
-                  "label": "SoS (Descending / Offensive)",
-                  "value": "desc:off_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Ascending / Offensive)",
-                  "value": "asc:off_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Descending / Defensive)",
-                  "value": "desc:def_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Ascending / Defensive)",
-                  "value": "asc:def_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Descending / Off-Def Delta)",
-                  "value": "desc:diff_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_adj_opp",
+                  "label": "Most useful",
+                  "options": Array [
+                    Object {
+                      "label": "'ON' Poss (Desc. / Offensive)",
+                      "value": "desc:off_poss:on",
+                    },
+                    Object {
+                      "label": "'OFF' Poss (Desc. / Offensive)",
+                      "value": "desc:off_poss:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Adj P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' Adj P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' Adj P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Adj P/100 (Desc. / Offensive)",
+                      "value": "desc:off_adj_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Adj P/100 (Asc. / Defensive)",
+                      "value": "asc:def_adj_ppp:delta",
+                    },
+                  ],
+                },
+                Object {
+                  "label": "Other",
+                  "options": Array [
+                    Object {
+                      "label": "'ON' P/100 (Desc. / Offensive)",
+                      "value": "desc:off_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' P/100 (Desc. / Offensive)",
+                      "value": "desc:off_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' P/100 (Desc. / Offensive)",
+                      "value": "desc:off_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' P/100 (Asc. / Offensive)",
+                      "value": "asc:off_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' P/100 (Asc. / Offensive)",
+                      "value": "asc:off_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' P/100 (Asc. / Offensive)",
+                      "value": "asc:off_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' P/100 (Desc. / Defensive)",
+                      "value": "desc:def_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' P/100 (Desc. / Defensive)",
+                      "value": "desc:def_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' P/100 (Desc. / Defensive)",
+                      "value": "desc:def_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' P/100 (Asc. / Defensive)",
+                      "value": "asc:def_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' P/100 (Asc. / Defensive)",
+                      "value": "asc:def_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' P/100 (Asc. / Defensive)",
+                      "value": "asc:def_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' Adj P/100 (Desc. / Offensive)",
+                      "value": "desc:off_adj_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' Adj P/100 (Desc. / Offensive)",
+                      "value": "desc:off_adj_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON' Adj P/100 (Asc. / Offensive)",
+                      "value": "asc:off_adj_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' Adj P/100 (Asc. / Offensive)",
+                      "value": "asc:off_adj_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Adj P/100 (Asc. / Offensive)",
+                      "value": "asc:off_adj_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' Adj P/100 (Desc. / Defensive)",
+                      "value": "desc:def_adj_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' Adj P/100 (Desc. / Defensive)",
+                      "value": "desc:def_adj_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Adj P/100 (Desc. / Defensive)",
+                      "value": "desc:def_adj_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' Adj P/100 (Asc. / Defensive)",
+                      "value": "asc:def_adj_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' Adj P/100 (Asc. / Defensive)",
+                      "value": "asc:def_adj_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON' Adj P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_ppp:on",
+                    },
+                    Object {
+                      "label": "'OFF' Adj P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_ppp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Adj P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_ppp:delta",
+                    },
+                    Object {
+                      "label": "'ON' eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg:on",
+                    },
+                    Object {
+                      "label": "'OFF' eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg:delta",
+                    },
+                    Object {
+                      "label": "'ON' eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg:on",
+                    },
+                    Object {
+                      "label": "'OFF' eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg:delta",
+                    },
+                    Object {
+                      "label": "'ON' eFG% (Desc. / Defensive)",
+                      "value": "desc:def_efg:on",
+                    },
+                    Object {
+                      "label": "'OFF' eFG% (Desc. / Defensive)",
+                      "value": "desc:def_efg:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' eFG% (Desc. / Defensive)",
+                      "value": "desc:def_efg:delta",
+                    },
+                    Object {
+                      "label": "'ON' eFG% (Asc. / Defensive)",
+                      "value": "asc:def_efg:on",
+                    },
+                    Object {
+                      "label": "'OFF' eFG% (Asc. / Defensive)",
+                      "value": "asc:def_efg:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' eFG% (Asc. / Defensive)",
+                      "value": "asc:def_efg:delta",
+                    },
+                    Object {
+                      "label": "'ON' eFG% (Desc. / Off-Def)",
+                      "value": "desc:diff_efg:on",
+                    },
+                    Object {
+                      "label": "'OFF' eFG% (Desc. / Off-Def)",
+                      "value": "desc:diff_efg:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' eFG% (Desc. / Off-Def)",
+                      "value": "desc:diff_efg:delta",
+                    },
+                    Object {
+                      "label": "'ON' eFG% (Asc. / Off-Def)",
+                      "value": "asc:diff_efg:on",
+                    },
+                    Object {
+                      "label": "'OFF' eFG% (Asc. / Off-Def)",
+                      "value": "asc:diff_efg:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' eFG% (Asc. / Off-Def)",
+                      "value": "asc:diff_efg:delta",
+                    },
+                    Object {
+                      "label": "'ON' TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:on",
+                    },
+                    Object {
+                      "label": "'OFF' TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:delta",
+                    },
+                    Object {
+                      "label": "'ON' TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:on",
+                    },
+                    Object {
+                      "label": "'OFF' TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:delta",
+                    },
+                    Object {
+                      "label": "'ON' TO% (Desc. / Defensive)",
+                      "value": "desc:def_to:on",
+                    },
+                    Object {
+                      "label": "'OFF' TO% (Desc. / Defensive)",
+                      "value": "desc:def_to:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' TO% (Desc. / Defensive)",
+                      "value": "desc:def_to:delta",
+                    },
+                    Object {
+                      "label": "'ON' TO% (Asc. / Defensive)",
+                      "value": "asc:def_to:on",
+                    },
+                    Object {
+                      "label": "'OFF' TO% (Asc. / Defensive)",
+                      "value": "asc:def_to:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' TO% (Asc. / Defensive)",
+                      "value": "asc:def_to:delta",
+                    },
+                    Object {
+                      "label": "'ON' TO% (Desc. / Off-Def)",
+                      "value": "desc:diff_to:on",
+                    },
+                    Object {
+                      "label": "'OFF' TO% (Desc. / Off-Def)",
+                      "value": "desc:diff_to:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' TO% (Desc. / Off-Def)",
+                      "value": "desc:diff_to:delta",
+                    },
+                    Object {
+                      "label": "'ON' TO% (Asc. / Off-Def)",
+                      "value": "asc:diff_to:on",
+                    },
+                    Object {
+                      "label": "'OFF' TO% (Asc. / Off-Def)",
+                      "value": "asc:diff_to:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' TO% (Asc. / Off-Def)",
+                      "value": "asc:diff_to:delta",
+                    },
+                    Object {
+                      "label": "'ON' ORB% (Desc. / Offensive)",
+                      "value": "desc:off_orb:on",
+                    },
+                    Object {
+                      "label": "'OFF' ORB% (Desc. / Offensive)",
+                      "value": "desc:off_orb:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' ORB% (Desc. / Offensive)",
+                      "value": "desc:off_orb:delta",
+                    },
+                    Object {
+                      "label": "'ON' ORB% (Asc. / Offensive)",
+                      "value": "asc:off_orb:on",
+                    },
+                    Object {
+                      "label": "'OFF' ORB% (Asc. / Offensive)",
+                      "value": "asc:off_orb:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' ORB% (Asc. / Offensive)",
+                      "value": "asc:off_orb:delta",
+                    },
+                    Object {
+                      "label": "'ON' ORB% (Desc. / Defensive)",
+                      "value": "desc:def_orb:on",
+                    },
+                    Object {
+                      "label": "'OFF' ORB% (Desc. / Defensive)",
+                      "value": "desc:def_orb:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' ORB% (Desc. / Defensive)",
+                      "value": "desc:def_orb:delta",
+                    },
+                    Object {
+                      "label": "'ON' ORB% (Asc. / Defensive)",
+                      "value": "asc:def_orb:on",
+                    },
+                    Object {
+                      "label": "'OFF' ORB% (Asc. / Defensive)",
+                      "value": "asc:def_orb:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' ORB% (Asc. / Defensive)",
+                      "value": "asc:def_orb:delta",
+                    },
+                    Object {
+                      "label": "'ON' ORB% (Desc. / Off-Def)",
+                      "value": "desc:diff_orb:on",
+                    },
+                    Object {
+                      "label": "'OFF' ORB% (Desc. / Off-Def)",
+                      "value": "desc:diff_orb:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' ORB% (Desc. / Off-Def)",
+                      "value": "desc:diff_orb:delta",
+                    },
+                    Object {
+                      "label": "'ON' ORB% (Asc. / Off-Def)",
+                      "value": "asc:diff_orb:on",
+                    },
+                    Object {
+                      "label": "'OFF' ORB% (Asc. / Off-Def)",
+                      "value": "asc:diff_orb:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' ORB% (Asc. / Off-Def)",
+                      "value": "asc:diff_orb:delta",
+                    },
+                    Object {
+                      "label": "'ON' FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:on",
+                    },
+                    Object {
+                      "label": "'OFF' FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:delta",
+                    },
+                    Object {
+                      "label": "'ON' FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:on",
+                    },
+                    Object {
+                      "label": "'OFF' FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:delta",
+                    },
+                    Object {
+                      "label": "'ON' FTR (Desc. / Defensive)",
+                      "value": "desc:def_ftr:on",
+                    },
+                    Object {
+                      "label": "'OFF' FTR (Desc. / Defensive)",
+                      "value": "desc:def_ftr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' FTR (Desc. / Defensive)",
+                      "value": "desc:def_ftr:delta",
+                    },
+                    Object {
+                      "label": "'ON' FTR (Asc. / Defensive)",
+                      "value": "asc:def_ftr:on",
+                    },
+                    Object {
+                      "label": "'OFF' FTR (Asc. / Defensive)",
+                      "value": "asc:def_ftr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' FTR (Asc. / Defensive)",
+                      "value": "asc:def_ftr:delta",
+                    },
+                    Object {
+                      "label": "'ON' FTR (Desc. / Off-Def)",
+                      "value": "desc:diff_ftr:on",
+                    },
+                    Object {
+                      "label": "'OFF' FTR (Desc. / Off-Def)",
+                      "value": "desc:diff_ftr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' FTR (Desc. / Off-Def)",
+                      "value": "desc:diff_ftr:delta",
+                    },
+                    Object {
+                      "label": "'ON' FTR (Asc. / Off-Def)",
+                      "value": "asc:diff_ftr:on",
+                    },
+                    Object {
+                      "label": "'OFF' FTR (Asc. / Off-Def)",
+                      "value": "asc:diff_ftr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' FTR (Asc. / Off-Def)",
+                      "value": "asc:diff_ftr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3PR (Desc. / Defensive)",
+                      "value": "desc:def_3pr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3PR (Desc. / Defensive)",
+                      "value": "desc:def_3pr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3PR (Desc. / Defensive)",
+                      "value": "desc:def_3pr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3PR (Asc. / Defensive)",
+                      "value": "asc:def_3pr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3PR (Asc. / Defensive)",
+                      "value": "asc:def_3pr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3PR (Asc. / Defensive)",
+                      "value": "asc:def_3pr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3PR (Desc. / Off-Def)",
+                      "value": "desc:diff_3pr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3PR (Desc. / Off-Def)",
+                      "value": "desc:diff_3pr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3PR (Desc. / Off-Def)",
+                      "value": "desc:diff_3pr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3PR (Asc. / Off-Def)",
+                      "value": "asc:diff_3pr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3PR (Asc. / Off-Def)",
+                      "value": "asc:diff_3pr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3PR (Asc. / Off-Def)",
+                      "value": "asc:diff_3pr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmidr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmidr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmidr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmidr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmidr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmidr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmidr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmidr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR rim (Desc. / Defensive)",
+                      "value": "desc:def_2primr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR rim (Desc. / Defensive)",
+                      "value": "desc:def_2primr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR rim (Desc. / Defensive)",
+                      "value": "desc:def_2primr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR rim (Asc. / Defensive)",
+                      "value": "asc:def_2primr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR rim (Asc. / Defensive)",
+                      "value": "asc:def_2primr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR rim (Asc. / Defensive)",
+                      "value": "asc:def_2primr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2primr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2primr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2primr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2PR rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2primr:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2PR rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2primr:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2PR rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2primr:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3P% (Desc. / Defensive)",
+                      "value": "desc:def_3p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3P% (Desc. / Defensive)",
+                      "value": "desc:def_3p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3P% (Desc. / Defensive)",
+                      "value": "desc:def_3p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3P% (Asc. / Defensive)",
+                      "value": "asc:def_3p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3P% (Asc. / Defensive)",
+                      "value": "asc:def_3p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3P% (Asc. / Defensive)",
+                      "value": "asc:def_3p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3P% (Desc. / Off-Def)",
+                      "value": "desc:diff_3p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3P% (Desc. / Off-Def)",
+                      "value": "desc:diff_3p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3P% (Desc. / Off-Def)",
+                      "value": "desc:diff_3p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 3P% (Asc. / Off-Def)",
+                      "value": "asc:diff_3p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 3P% (Asc. / Off-Def)",
+                      "value": "asc:diff_3p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 3P% (Asc. / Off-Def)",
+                      "value": "asc:diff_3p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% (Desc. / Defensive)",
+                      "value": "desc:def_2p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% (Desc. / Defensive)",
+                      "value": "desc:def_2p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% (Desc. / Defensive)",
+                      "value": "desc:def_2p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% (Asc. / Defensive)",
+                      "value": "asc:def_2p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% (Asc. / Defensive)",
+                      "value": "asc:def_2p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% (Asc. / Defensive)",
+                      "value": "asc:def_2p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% (Desc. / Off-Def)",
+                      "value": "desc:diff_2p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% (Desc. / Off-Def)",
+                      "value": "desc:diff_2p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% (Desc. / Off-Def)",
+                      "value": "desc:diff_2p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% (Asc. / Off-Def)",
+                      "value": "asc:diff_2p:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% (Asc. / Off-Def)",
+                      "value": "asc:diff_2p:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% (Asc. / Off-Def)",
+                      "value": "asc:diff_2p:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmid:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmid:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmid:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmid:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmid:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmid:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmid:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmid:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmid:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmid:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmid:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmid:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% rim (Desc. / Defensive)",
+                      "value": "desc:def_2prim:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% rim (Desc. / Defensive)",
+                      "value": "desc:def_2prim:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% rim (Desc. / Defensive)",
+                      "value": "desc:def_2prim:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% rim (Asc. / Defensive)",
+                      "value": "asc:def_2prim:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% rim (Asc. / Defensive)",
+                      "value": "asc:def_2prim:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% rim (Asc. / Defensive)",
+                      "value": "asc:def_2prim:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2prim:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2prim:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2prim:delta",
+                    },
+                    Object {
+                      "label": "'ON' 2P% rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2prim:on",
+                    },
+                    Object {
+                      "label": "'OFF' 2P% rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2prim:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' 2P% rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2prim:delta",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Poss (Desc. / Offensive)",
+                      "value": "desc:off_poss:delta",
+                    },
+                    Object {
+                      "label": "'ON' Poss (Asc. / Offensive)",
+                      "value": "asc:off_poss:on",
+                    },
+                    Object {
+                      "label": "'OFF' Poss (Asc. / Offensive)",
+                      "value": "asc:off_poss:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Poss (Asc. / Offensive)",
+                      "value": "asc:off_poss:delta",
+                    },
+                    Object {
+                      "label": "'ON' Poss (Desc. / Defensive)",
+                      "value": "desc:def_poss:on",
+                    },
+                    Object {
+                      "label": "'OFF' Poss (Desc. / Defensive)",
+                      "value": "desc:def_poss:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Poss (Desc. / Defensive)",
+                      "value": "desc:def_poss:delta",
+                    },
+                    Object {
+                      "label": "'ON' Poss (Asc. / Defensive)",
+                      "value": "asc:def_poss:on",
+                    },
+                    Object {
+                      "label": "'OFF' Poss (Asc. / Defensive)",
+                      "value": "asc:def_poss:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Poss (Asc. / Defensive)",
+                      "value": "asc:def_poss:delta",
+                    },
+                    Object {
+                      "label": "'ON' Poss (Desc. / Off-Def)",
+                      "value": "desc:diff_poss:on",
+                    },
+                    Object {
+                      "label": "'OFF' Poss (Desc. / Off-Def)",
+                      "value": "desc:diff_poss:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Poss (Desc. / Off-Def)",
+                      "value": "desc:diff_poss:delta",
+                    },
+                    Object {
+                      "label": "'ON' Poss (Asc. / Off-Def)",
+                      "value": "asc:diff_poss:on",
+                    },
+                    Object {
+                      "label": "'OFF' Poss (Asc. / Off-Def)",
+                      "value": "asc:diff_poss:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' Poss (Asc. / Off-Def)",
+                      "value": "asc:diff_poss:delta",
+                    },
+                    Object {
+                      "label": "'ON' SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'OFF' SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp:delta",
+                    },
+                    Object {
+                      "label": "'ON' SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'OFF' SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp:delta",
+                    },
+                    Object {
+                      "label": "'ON' SoS (Desc. / Defensive)",
+                      "value": "desc:def_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'OFF' SoS (Desc. / Defensive)",
+                      "value": "desc:def_adj_opp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' SoS (Desc. / Defensive)",
+                      "value": "desc:def_adj_opp:delta",
+                    },
+                    Object {
+                      "label": "'ON' SoS (Asc. / Defensive)",
+                      "value": "asc:def_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'OFF' SoS (Asc. / Defensive)",
+                      "value": "asc:def_adj_opp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' SoS (Asc. / Defensive)",
+                      "value": "asc:def_adj_opp:delta",
+                    },
+                    Object {
+                      "label": "'ON' SoS (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'OFF' SoS (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_opp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' SoS (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_opp:delta",
+                    },
+                    Object {
+                      "label": "'ON' SoS (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'OFF' SoS (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_opp:off",
+                    },
+                    Object {
+                      "label": "'ON'-'OFF' SoS (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_opp:delta",
+                    },
+                  ],
                 },
               ]
             }
             value={
               Object {
-                "label": "Poss (Descending / Offensive)",
-                "value": "desc:off_poss",
+                "label": "'ON' Poss (Desc. / Offensive)",
+                "value": "desc:off_poss:on",
               }
             }
           />
@@ -508,7 +1239,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                   "off_ppp": Object {
                     "value": 105.73505654281098,
                   },
-                  "off_title": "'ON' Ayala, Eric",
+                  "off_title": "'ON' Ayala, Eric
+Adj: [17.5]-[24.0]=[-6.4]",
                   "off_to": Object {
                     "value": 0.19224555735056542,
                   },
@@ -651,7 +1383,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                   "off_ppp": Object {
                     "value": 105.73505654281098,
                   },
-                  "off_title": "'ON' Ayala, Eric",
+                  "off_title": "'ON' Ayala, Eric
+Adj: [17.5]-[24.0]=[-6.4]",
                   "off_to": Object {
                     "value": 0.19224555735056542,
                   },
@@ -794,7 +1527,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                   "off_ppp": Object {
                     "value": 104.74040632054177,
                   },
-                  "off_title": "'OFF' Ayala, Eric",
+                  "off_title": "'OFF' Ayala, Eric
+Poss: [74]% v [26]%",
                   "off_to": Object {
                     "value": 0.20993227990970656,
                   },
@@ -937,7 +1671,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                   "off_ppp": Object {
                     "value": 104.74040632054177,
                   },
-                  "off_title": "'OFF' Ayala, Eric",
+                  "off_title": "'OFF' Ayala, Eric
+Poss: [74]% v [26]%",
                   "off_to": Object {
                     "value": 0.20993227990970656,
                   },

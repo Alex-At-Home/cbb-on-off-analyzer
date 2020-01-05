@@ -43,13 +43,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
   // 1] State
 
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
+  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
+
+  const filterFragments =
+    filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
+  const filterFragmentsPve =
+    filterFragments.filter(fragment => fragment[0] != '-');
+  const filterFragmentsNve =
+    filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
   useEffect(() => {
     const newState = _.merge(startingState, {
-      sortBy: sortBy
+      sortBy: sortBy,
+      filter: filterStr
     });
     onChangeState(newState);
-  }, [ sortBy ]);
+  }, [ sortBy, filterStr ]);
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -97,8 +106,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
     };
   };
 
-  //TODO
-  const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
+  /** Handles the various sorting combos */
+  const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
     const sortComps = sortStr.split(":"); //asc/desc
     const dir = (sortComps[0] == "desc") ? -1 : 1;
     const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
@@ -108,27 +117,54 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
         case "diff": //(off-def)
           return (player["off_" + fieldName]?.value || 0.0)
                 - (player["def_" + fieldName]?.value || 0.0);
-        default: return player[sortComps[1]].value; //(off or def)
+        default:
+          return player[sortComps[1]]?.value; //(off or def)
       }
     };
-    return (player: any) => {
-      return dir*(field(player) || 0);
+    const onOrOff = (playerSet: any) => {
+      switch(sortComps[2]) {
+        case "on": return [ playerSet.on ];
+        case "off": return [ playerSet.off ];
+        case "delta": return [ playerSet.on, playerSet.off ];
+        default: return [ 0 ];
+      }
+    };
+    return (playerSet: any) => {
+      const playerFields = onOrOff(playerSet || {}).map(player => field(player) || 0);
+      if (playerFields.length > 1) {
+        return dir*(playerFields[0] - playerFields[1]); //(delta case above)
+      } else {
+        return dir*playerFields[0];
+      }
     };
   };
 
-  //TODO: port LineupStats to using _.chain also
   const players = teamReport?.players || [];
   const tableData = _.chain(players).map((player) => {
       const adjOffDefOn = calcAdjEff(player.on);
       const adjOffDefOff = calcAdjEff(player.off);
       return { on: { ...player.on, ...adjOffDefOn }, off: { ...player.off, ...adjOffDefOff } };
-    }
-    //TODO
-  // ).sortBy(
-  //     [ sorter(sortBy) ]
+    } ).filter((player) => {
+        const strToTest = player.on.key.substring(5);
+        return(
+          (filterFragmentsPve.length == 0) ||
+            (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
+          &&
+          ((filterFragmentsNve.length == 0) ||
+            (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
+          ;
+    }).sortBy(
+       [ sorter(sortBy) ]
     ).flatMap((player) => {
-      const statsOn = { off_title: player.on.key, def_title: "", ...player.on };
-      const statsOff = { off_title: player.off.key, def_title: "", ...player.off };
+      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
+      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+      const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
+      const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
+      const onPoss = 100.0*player.on.off_poss.value/totalPoss;
+      const offPoss = 100.0*player.off.off_poss.value/totalPoss;
+      const offSuffix = `\nPoss: [${onPoss.toFixed(0)}]% v [${offPoss.toFixed(0)}]%`;
+      const statsOn = { off_title: player.on.key + onSuffix, def_title: "", ...player.on };
+      const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
       return [
         GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
         GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
@@ -146,25 +182,60 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
       .map(keycol => {
         return [
           ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
-        ].map(combo => {
+        ].flatMap(sort_offDef => {
+            return ["on", "off", "delta"].map(onOff => {
+              return [ ...sort_offDef, onOff ];
+            }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
+        }).map(combo => {
+          const onOrOff = (s: string) => { switch(s) {
+            case "on": return "'ON'";
+            case "off": return "'OFF'";
+            case "delta": return "'ON'-'OFF'";
+          }}
           const ascOrDesc = (s: string) => { switch(s) {
-            case "asc": return "Ascending";
-            case "desc": return "Descending";
+            case "asc": return "Asc.";
+            case "desc": return "Desc.";
           }}
           const offOrDef = (s: string) => { switch(s) {
             case "off": return "Offensive";
             case "def": return "Defensive";
-            case "diff": return "Off-Def Delta";
+            case "diff": return "Off-Def";
           }}
           return {
-            label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
-            value: `${combo[0]}:${combo[1]}_${keycol[0]}`
+            label: `${onOrOff(combo[2])} ${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
+            value: `${combo[0]}:${combo[1]}_${keycol[0]}:${combo[2]}`
           };
         });
       })
   );
   const sortOptionsByValue = _.fromPairs(
     sortOptions.map(opt => [opt.value, opt])
+  );
+  /** Put these options at the front */
+  const mostUsefulSubset = [
+    "desc:off_poss:on", "desc:off_poss:off",
+    "desc:diff_adj_ppp:delta",
+    "desc:diff_adj_ppp:on",
+    "desc:diff_adj_ppp:off",
+    "desc:off_adj_ppp:delta",
+    "asc:def_adj_ppp:delta",
+  ];
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
+    }
+  ];
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
   );
 
   // 3] Utils
@@ -204,15 +275,30 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
         <Form.Group as={Col} sm="6">
           <InputGroup>
             <InputGroup.Prepend>
+              <InputGroup.Text id="filter">Filter</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(ev: any) => {
+                setFilterStr(ev.target.value);
+              }}
+              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
+              value={filterStr}
+            />
+          </InputGroup>
+        </Form.Group>
+        <Form.Group as={Col} sm="6">
+          <InputGroup>
+            <InputGroup.Prepend>
               <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
             </InputGroup.Prepend>
             <Select
               className="w-75"
               value={ stringToOption(sortBy) }
-              options={ sortOptions }
+              options={ groupedOptions }
               onChange={(option) => { if ((option as any)?.value)
                 setSortBy((option as any)?.value);
               }}
+              formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
         </Form.Group>

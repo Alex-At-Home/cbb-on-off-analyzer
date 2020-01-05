@@ -63,11 +63,16 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
   }
 
   const onOffReportLink = (tableName: string) => {
+    const getQuery = () => { switch(tableName) {
+      case "on": return gameFilterParams.onQuery;
+      case "off": return gameFilterParams.offQuery;
+      default: return gameFilterParams.baseQuery;
+    }};
     const paramObj = {
       team: gameFilterParams.team,
       year: gameFilterParams.year,
       gender: gameFilterParams.gender,
-      baseQuery: gameFilterParams.baseQuery,
+      baseQuery: getQuery(),
       players: (tableData(tableName) || []).map(
           (rec: any) => rec?.dataObj?.title
         ).filter((name: string) => name),

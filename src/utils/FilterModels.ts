@@ -41,7 +41,9 @@ export type TeamReportFilterParams = {
   minRank?: string,
   maxRank?: string,
   // For sorting in the generated table:
-  sortBy?: string
+  sortBy?: string,
+  // Filtering:
+  filter?: string
 };
 
 export class ParamDefaults {
@@ -50,7 +52,8 @@ export class ParamDefaults {
   static readonly defaultLineupMaxTableSize = "50";
   static readonly defaultLineupSortBy = "desc:off_poss";
   // Report
-  static readonly defaultTeamReportSortBy = "desc:off_poss";
+  static readonly defaultTeamReportSortBy = "desc:off_poss:on";
+  static readonly defaultTeamReportFilter = "";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";

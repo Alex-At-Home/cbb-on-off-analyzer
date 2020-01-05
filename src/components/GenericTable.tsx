@@ -192,8 +192,13 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         const className = colProp.className;
 
         return (rowSpan > 0) ?
-          <td className={className} rowSpan={rowSpan} key={"" + index} style={style}>{val}</td> :
-          (null);
+            <td
+              className={className}
+              rowSpan={rowSpan}
+              key={"" + index} style={style}
+            >{val.split('\n').map((l, index2) => <div key={"" + `${index}_${index2}`}>{l}</div>)}</td>
+          :
+            (null);
     });
   }
   function renderTableRows() {

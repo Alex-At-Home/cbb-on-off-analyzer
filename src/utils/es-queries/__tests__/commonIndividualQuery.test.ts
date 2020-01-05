@@ -12,11 +12,11 @@ describe("commonIndividualQuery", () => {
     const expRes = (base: string) => { return {
       filters: {
         "'ON' P One": { "query_string": { "query": `players.id:(("P One") AND (${base}))` } },
-        "'OFF' P One": { "query_string": { "query": `NOT players.id:(("P One") AND (${base}))` } },
+        "'OFF' P One": { "query_string": { "query": `players.id:(NOT ("P One") AND (${base}))` } },
         "'ON' P 'Two'": { "query_string": { "query": `players.id:(("P 'Two'") AND (${base}))` } },
-        "'OFF' P 'Two'": { "query_string": { "query": `NOT players.id:(("P 'Two'") AND (${base}))` } },
+        "'OFF' P 'Two'": { "query_string": { "query": `players.id:(NOT ("P 'Two'") AND (${base}))` } },
         "'ON' P 'Three'": { "query_string": { "query": `players.id:(("P 'Three'") AND (${base}))` } },
-        "'OFF' P 'Three'": { "query_string": { "query": `NOT players.id:(("P 'Three'") AND (${base}))` } },
+        "'OFF' P 'Three'": { "query_string": { "query": `players.id:(NOT ("P 'Three'") AND (${base}))` } },
       }
     }};
     expect(commonIndividualQuery(params1)).toEqual(expRes('*'));

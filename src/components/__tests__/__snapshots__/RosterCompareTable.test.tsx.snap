@@ -122,7 +122,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Cowan, Anthony
+                  <div>
+                    Cowan, Anthony
+                  </div>
                 </td>
                 <td
                   className=""
@@ -136,7 +138,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -150,7 +154,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  100.0
+                  <div>
+                    100.0
+                  </div>
                 </td>
                 <td
                   className=""
@@ -164,7 +170,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  798
+                  <div>
+                    798
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -180,7 +188,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Wiggins, Aaron
+                  <div>
+                    Wiggins, Aaron
+                  </div>
                 </td>
                 <td
                   className=""
@@ -194,7 +204,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -208,7 +220,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  100.0
+                  <div>
+                    100.0
+                  </div>
                 </td>
                 <td
                   className=""
@@ -222,7 +236,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  798
+                  <div>
+                    798
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -238,7 +254,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Fernando, Bruno
+                  <div>
+                    Fernando, Bruno
+                  </div>
                 </td>
                 <td
                   className=""
@@ -252,7 +270,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -266,7 +286,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  69.7
+                  <div>
+                    69.7
+                  </div>
                 </td>
                 <td
                   className=""
@@ -280,7 +302,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  556
+                  <div>
+                    556
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -296,7 +320,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Smith, Jalen
+                  <div>
+                    Smith, Jalen
+                  </div>
                 </td>
                 <td
                   className=""
@@ -310,7 +336,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -324,7 +352,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  53.3
+                  <div>
+                    53.3
+                  </div>
                 </td>
                 <td
                   className=""
@@ -338,7 +368,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  425
+                  <div>
+                    425
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -354,7 +386,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Ayala, Eric
+                  <div>
+                    Ayala, Eric
+                  </div>
                 </td>
                 <td
                   className=""
@@ -368,7 +402,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -382,7 +418,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  50.4
+                  <div>
+                    50.4
+                  </div>
                 </td>
                 <td
                   className=""
@@ -396,7 +434,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  402
+                  <div>
+                    402
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -412,7 +452,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Morsell, Darryl
+                  <div>
+                    Morsell, Darryl
+                  </div>
                 </td>
                 <td
                   className=""
@@ -426,7 +468,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -440,7 +484,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  44.1
+                  <div>
+                    44.1
+                  </div>
                 </td>
                 <td
                   className=""
@@ -454,7 +500,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  352
+                  <div>
+                    352
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -470,7 +518,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Lindo Jr., Ricky
+                  <div>
+                    Lindo Jr., Ricky
+                  </div>
                 </td>
                 <td
                   className=""
@@ -484,7 +534,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -498,7 +550,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  37.0
+                  <div>
+                    37.0
+                  </div>
                 </td>
                 <td
                   className=""
@@ -512,7 +566,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  295
+                  <div>
+                    295
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -528,7 +584,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Smith Jr., Serrel
+                  <div>
+                    Smith Jr., Serrel
+                  </div>
                 </td>
                 <td
                   className=""
@@ -542,7 +600,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -556,7 +616,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  34.3
+                  <div>
+                    34.3
+                  </div>
                 </td>
                 <td
                   className=""
@@ -570,7 +632,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  274
+                  <div>
+                    274
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -586,7 +650,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Bender, Ivan
+                  <div>
+                    Bender, Ivan
+                  </div>
                 </td>
                 <td
                   className=""
@@ -600,7 +666,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -614,7 +682,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  6.8
+                  <div>
+                    6.8
+                  </div>
                 </td>
                 <td
                   className=""
@@ -628,7 +698,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  54
+                  <div>
+                    54
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -644,7 +716,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Tomaic, Joshua
+                  <div>
+                    Tomaic, Joshua
+                  </div>
                 </td>
                 <td
                   className=""
@@ -658,7 +732,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -672,7 +748,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  4.5
+                  <div>
+                    4.5
+                  </div>
                 </td>
                 <td
                   className=""
@@ -686,7 +764,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  36
+                  <div>
+                    36
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -811,7 +891,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Cowan, Anthony
+                  <div>
+                    Cowan, Anthony
+                  </div>
                 </td>
                 <td
                   className=""
@@ -825,7 +907,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -839,7 +923,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  100.0
+                  <div>
+                    100.0
+                  </div>
                 </td>
                 <td
                   className=""
@@ -853,7 +939,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  724
+                  <div>
+                    724
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -869,7 +957,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Morsell, Darryl
+                  <div>
+                    Morsell, Darryl
+                  </div>
                 </td>
                 <td
                   className=""
@@ -883,7 +973,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -897,7 +989,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  98.1
+                  <div>
+                    98.1
+                  </div>
                 </td>
                 <td
                   className=""
@@ -911,7 +1005,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  710
+                  <div>
+                    710
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -927,7 +1023,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Ayala, Eric
+                  <div>
+                    Ayala, Eric
+                  </div>
                 </td>
                 <td
                   className=""
@@ -941,7 +1039,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -955,7 +1055,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  91.7
+                  <div>
+                    91.7
+                  </div>
                 </td>
                 <td
                   className=""
@@ -969,7 +1071,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  664
+                  <div>
+                    664
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -985,7 +1089,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Fernando, Bruno
+                  <div>
+                    Fernando, Bruno
+                  </div>
                 </td>
                 <td
                   className=""
@@ -999,7 +1105,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1013,7 +1121,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  88.5
+                  <div>
+                    88.5
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1027,7 +1137,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  641
+                  <div>
+                    641
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1043,7 +1155,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Smith, Jalen
+                  <div>
+                    Smith, Jalen
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1057,7 +1171,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1071,7 +1187,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  82.6
+                  <div>
+                    82.6
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1085,7 +1203,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  598
+                  <div>
+                    598
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1101,7 +1221,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Lindo Jr., Ricky
+                  <div>
+                    Lindo Jr., Ricky
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1115,7 +1237,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1129,7 +1253,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  18.2
+                  <div>
+                    18.2
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1143,7 +1269,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  132
+                  <div>
+                    132
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1159,7 +1287,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Smith Jr., Serrel
+                  <div>
+                    Smith Jr., Serrel
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1173,7 +1303,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1187,7 +1319,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  15.6
+                  <div>
+                    15.6
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1201,7 +1335,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  113
+                  <div>
+                    113
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1217,7 +1353,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Bender, Ivan
+                  <div>
+                    Bender, Ivan
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1231,7 +1369,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1245,7 +1385,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  3.7
+                  <div>
+                    3.7
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1259,7 +1401,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  27
+                  <div>
+                    27
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1275,7 +1419,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Tomaic, Joshua
+                  <div>
+                    Tomaic, Joshua
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1289,7 +1435,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1303,7 +1451,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  1.5
+                  <div>
+                    1.5
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1317,7 +1467,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  11
+                  <div>
+                    11
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -1442,7 +1594,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Cowan, Anthony
+                  <div>
+                    Cowan, Anthony
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1456,7 +1610,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1470,7 +1626,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  100.0
+                  <div>
+                    100.0
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1484,7 +1642,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  1522
+                  <div>
+                    1522
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1500,7 +1660,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Fernando, Bruno
+                  <div>
+                    Fernando, Bruno
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1514,7 +1676,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1528,7 +1692,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  78.6
+                  <div>
+                    78.6
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1542,7 +1708,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  1197
+                  <div>
+                    1197
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1558,7 +1726,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Ayala, Eric
+                  <div>
+                    Ayala, Eric
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1572,7 +1742,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1586,7 +1758,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  70.0
+                  <div>
+                    70.0
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1600,7 +1774,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  1066
+                  <div>
+                    1066
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1616,7 +1792,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Morsell, Darryl
+                  <div>
+                    Morsell, Darryl
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1630,7 +1808,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1644,7 +1824,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  69.8
+                  <div>
+                    69.8
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1658,7 +1840,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  1062
+                  <div>
+                    1062
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1674,7 +1858,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Smith, Jalen
+                  <div>
+                    Smith, Jalen
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1688,7 +1874,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1702,7 +1890,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  67.2
+                  <div>
+                    67.2
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1716,7 +1906,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  1023
+                  <div>
+                    1023
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1732,7 +1924,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Wiggins, Aaron
+                  <div>
+                    Wiggins, Aaron
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1746,7 +1940,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1760,7 +1956,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  52.4
+                  <div>
+                    52.4
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1774,7 +1972,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  798
+                  <div>
+                    798
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1790,7 +1990,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Lindo Jr., Ricky
+                  <div>
+                    Lindo Jr., Ricky
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1804,7 +2006,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1818,7 +2022,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  28.1
+                  <div>
+                    28.1
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1832,7 +2038,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  427
+                  <div>
+                    427
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1848,7 +2056,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Smith Jr., Serrel
+                  <div>
+                    Smith Jr., Serrel
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1862,7 +2072,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1876,7 +2088,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  25.4
+                  <div>
+                    25.4
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1890,7 +2104,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  387
+                  <div>
+                    387
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1906,7 +2122,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Bender, Ivan
+                  <div>
+                    Bender, Ivan
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1920,7 +2138,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1934,7 +2154,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  5.3
+                  <div>
+                    5.3
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1948,7 +2170,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  81
+                  <div>
+                    81
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -1964,7 +2188,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  Tomaic, Joshua
+                  <div>
+                    Tomaic, Joshua
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1978,7 +2204,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  
+                  <div>
+                    
+                  </div>
                 </td>
                 <td
                   className=""
@@ -1992,7 +2220,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  3.1
+                  <div>
+                    3.1
+                  </div>
                 </td>
                 <td
                   className=""
@@ -2006,7 +2236,9 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  47
+                  <div>
+                    47
+                  </div>
                 </td>
               </tr>
             </tbody>

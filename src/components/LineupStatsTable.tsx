@@ -111,7 +111,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         case "diff": //(off-def)
           return (lineup["off_" + fieldName]?.value || 0.0)
                 - (lineup["def_" + fieldName]?.value || 0.0);
-        default: return lineup[sortComps[1]].value; //(off or def)
+        default: return lineup[sortComps[1]]?.value; //(off or def)
       }
     };
     return (lineup: any) => {
@@ -120,8 +120,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   };
 
   const lineups = lineupStats?.lineups || [];
-  const tableData = _.flatMap(_.take(_.sortBy(lineups
-    .filter((lineup) => {
+  const tableData = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
@@ -129,16 +128,19 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     }).map((lineup) => {
       const adjOffDef = calcAdjEff(lineup);
       return { ...lineup, ...adjOffDef };
-    }), [ sorter(sortBy) ]), parseInt(maxTableSize)
-  ).map((lineup) => {
-    const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
-    const stats = { off_title: title, def_title: "", ...lineup };
-    return [
-      GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
-      GenericTableOps.buildRowSeparator()
-    ];
-  }));
+    } ).sortBy(
+       [ sorter(sortBy) ]
+    ).take(
+      parseInt(maxTableSize)
+    ).flatMap((lineup) => {
+      const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
+      const stats = { off_title: title, def_title: "", ...lineup };
+      return [
+        GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
+        GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
+        GenericTableOps.buildRowSeparator()
+      ];
+    }).value();
 
   // 3.2] Sorting utils
 
@@ -150,13 +152,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
           ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
         ].map(combo => {
           const ascOrDesc = (s: string) => { switch(s) {
-            case "asc": return "Ascending";
-            case "desc": return "Descending";
+            case "asc": return "Asc.";
+            case "desc": return "Desc.";
           }}
           const offOrDef = (s: string) => { switch(s) {
             case "off": return "Offensive";
             case "def": return "Defensive";
-            case "diff": return "Off-Def Delta";
+            case "diff": return "Off-Def";
           }}
           return {
             label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
@@ -167,6 +169,30 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   );
   const sortOptionsByValue = _.fromPairs(
     sortOptions.map(opt => [opt.value, opt])
+  );
+  /** Put these options at the front */
+  const mostUsefulSubset = [
+    "desc:off_poss",
+    "desc:diff_adj_ppp",
+    "desc:off_adj_ppp",
+    "asc:def_adj_ppp",
+  ];
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
+    }
+  ];
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
   );
 
   // 3] Utils
@@ -243,10 +269,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
             <Select
               className="w-75"
               value={ stringToOption(sortBy) }
-              options={ sortOptions }
+              options={ groupedOptions }
               onChange={(option) => { if ((option as any)?.value)
                 setSortBy((option as any)?.value);
               }}
+              formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
         </Form.Group>
