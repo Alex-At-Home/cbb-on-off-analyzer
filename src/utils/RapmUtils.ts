@@ -46,6 +46,8 @@ export type RapmProcessingInputs = {
   solnMatrix: any | null,
   ridgeLambda: number,
   prevAttempts: Array<any> //TODO make this list of diag objects typed
+/**/,
+  effLambda: any
 };
 
 /** Wrapper for some math to calculate RAPM and its various artefacts */
@@ -64,7 +66,7 @@ export class RapmUtils {
     avgEfficiency: number
     ,
     removalPct: number = 0.10,
-    unbiasWeight: number = 2.0,
+    unbiasWeight: number = 0.0, //TODO
   ): RapmPlayerContext {
     // The static threshold for removing players
     // (who do more harm than good)
@@ -230,7 +232,7 @@ export class RapmUtils {
     playerWeightMatrix: any,
     ridgeLambda: number,
     ctx: RapmPlayerContext
-  ) {
+  ): [ any, any ] { //(returns the pseudo-inverse, and also one of the factors we re-use)
     //https://en.wikipedia.org/wiki/Tikhonov_regularization
     const playerWeightMatrixT = transpose(playerWeightMatrix)
     const bottom = add(
@@ -238,9 +240,9 @@ export class RapmUtils {
       multiply(ridgeLambda, identity(ctx.numPlayers))
     );
     const bottomInv = inv(bottom);
-    return multiply(
+    return [ multiply(
       bottomInv, playerWeightMatrixT
-    );
+    ), bottomInv ];
   }
 
   /** Applies the regression matrix to the outputs */
@@ -250,6 +252,22 @@ export class RapmUtils {
   ) {
     const out = transpose(matrix(playerOutputs));
     return transpose(multiply(regressionMatrix, out)).valueOf();
+  }
+
+  static slowCalcRapmWithPrior(
+    regressionMatrix: any,
+    regressionFactorMatrix: any,
+    ridgeLambda: number,
+    playerOutputs: Array<number>,
+    prior: Array<number>
+  ) {
+    //MRR: http://www.utgjiu.ro/math/sma/v04/p08.pdf
+    const out1 = transpose(matrix(playerOutputs));
+    const part1 = transpose(multiply(regressionMatrix, out1)).valueOf();
+    const out2 = transpose(matrix(prior.map((v) => v*ridgeLambda)));
+    const part2 = transpose(multiply(regressionFactorMatrix, out2)).valueOf();
+
+    return part1.map((v: number, i: number) => v + part2[i]);
   }
 
   /** Injects the RAPM predicted diffs into player.rapm */
@@ -283,6 +301,11 @@ export class RapmUtils {
         }
         const onOffField = _.chain(["off", "def"]).map((offOrDef: "off" | "def") => {
           const field = `${offOrDef}_${partialField}`;
+/**/
+if (partialField == "adj_ppp") {
+  const results = rapmInput[offOrDef].effLambda;
+  return [ field, results ];
+}
           const results: number[] = RapmUtils.calculateRapm(
             rapmInput[offOrDef].solnMatrix, vals[offOrDef]
           );
@@ -313,7 +336,7 @@ export class RapmUtils {
     offWeights: any, defWeights: any,
     ctx: RapmPlayerContext
   ) {
-    const debugMode = false;
+    const debugMode = true;
     const generateTestCases = false;
 
     const weights = {
@@ -336,7 +359,16 @@ export class RapmUtils {
 
     // TODO: use SVD to build a single expensive matrix that can then be minimally modified
     // for each lambda (u,d,v) = svd; ridgeInv = v*f(d)*uT where (d) = diag(dii*dii/(lambda  + dii*dii))
-    // Thttps://en.wikipedia.org/wiki/Tikhonov_regularization#Relation_to_singular-value_decomposition_and_Wiener_filter
+    // https://en.wikipedia.org/wiki/Tikhonov_regularization#Relation_to_singular-value_decomposition_and_Wiener_filter
+
+    // Thoughts:
+    // 1) Using the prior to ensure the average is right seems to work better than doing the prior
+    // properly + can see the exact amount used (eg 23%) when we stop iterating
+    // 2) Prior calculation ... using the "r:on-off" and the adjusted defense seems extreme
+    //    sidenote ... regressing all the stats the same seems dubious, would be interesting
+    //    to see what the SD was and applying a regression factor that depended on that
+    //    eg 3P%, mid-range% would be most affected? (counterpoint is 3P really any worse than say ORB or TO)
+
 
     // SVD
     // See https://en.wikipedia.org/wiki/Tikhonov_regularization#Determination_of_the_Tikhonov_factor
@@ -369,7 +401,8 @@ export class RapmUtils {
         def: buildUsageVector("def") as number[]
       };
     })();
-
+/**/
+console.log(ctx.colToPlayer);
     if (debugMode) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
@@ -380,21 +413,47 @@ export class RapmUtils {
       def: defAdjPoss
     };
 
-    const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3 ];
+//TODO: added 0/0.25 for illustration
+    const lambdaRange = [ 0, 0.25,
+      0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3 ];
     const testResults = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") =>
       _.transform(lambdaRange, (acc, lambda) => {
+
+        /**/
+        const weighter = (offOrDef == "off") ?
+        [ 0, 0, 0, 0, 0, 0, 0, 0 ] :
+//        [ -2.01, -3.19, -1.10, -6.68, -0.64, -2.86, -2.06, -1.5  ];
+        [ -2.92,	-2.58,	-2.42,	-3.46,	-2.28,	-2.88,	-2.00, -2.00 ];
+        const priors = (offOrDef == "off") ?
+          pctByPlayer[offOrDef].map((ignore: number) => 0.2*actualEff[offOrDef]) :
+//  [ -2.01, -3.19, -6.68, -1.10, -0.64, -2.86, -2.06, -1.5  ] :
+//          [ -2.92,	-2.58,	-2.42,	-3.46,	-2.28,	-2.88,	-2.00, -2.00 ]
+          [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+          ;
+        if (debugMode) console.log(`(${offOrDef}) Priors = [${priors.map((p: number) => p.toFixed(2))}]`);
+
         const notFirstStep = lambda > lambdaRange[0];
         if (!acc.foundLambda) {
           const ridgeLambda = lambda*avgEigenVal; //(scale lambda according to the scale of the weight matrix)
 
           if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda);
 
-          const solver = RapmUtils.slowRegression(weights[offOrDef], ridgeLambda, ctx);
-          const results: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+          const [ solver, solverFactor ] = RapmUtils.slowRegression(weights[offOrDef], ridgeLambda, ctx);
+/**/
+//          const results: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+          const results: number[] = RapmUtils.slowCalcRapmWithPrior(
+            solver, solverFactor, ridgeLambda,
+            adjPoss[offOrDef], priors
+          );
           const combinedAdjEff = _.sum(_.zip(pctByPlayer[offOrDef], results).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
-          const adjEffErr = Math.abs(combinedAdjEff - actualEff[offOrDef]);
+          const adjEffErrTmp = combinedAdjEff - actualEff[offOrDef];
+          results.forEach((v, i) => results[i] = results[i] - (weighter[i]/actualEff[offOrDef])*adjEffErrTmp);
+/**/
+const adjEffErr = 0.0;
+console.log("WEIGHT = " + adjEffErrTmp/actualEff[offOrDef]);
+//          Math.abs(combinedAdjEff - actualEff[offOrDef]);
 
           const [ meanDiff, maxDiff ] = (() => {
             if (notFirstStep) { //ie 2nd+ time onwards, so we can check diffs
@@ -432,15 +491,20 @@ export class RapmUtils {
           if (debugMode) console.log("sdRapm: " + sdRapm.map((p: number) => p.toFixed(3)));
 
           // Completion criteria:
+          const maxEffError = 1.05;
+/**/ //also tried with 0.05 ... that looks a bit too smooth?
+          const rapmChangeThreshold =  0.105;
           acc.output.ridgeLambda = ridgeLambda;
           acc.output.solnMatrix = solver;
-          if ((adjEffErr >= 1.05) && notFirstStep) {
+/**/
+acc.output.effLambda = results;
+          if ((adjEffErr >= maxEffError) && notFirstStep) {
             if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
             acc.foundLambda = true;
             // Roll back to previous
             acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
             acc.output.ridgeLambda = acc.lastAttempt.ridgeLambda;
-          } else if ((meanDiff >= 0) && (meanDiff < 0.105)) {
+          } else if ((meanDiff >= 0) && (meanDiff < rapmChangeThreshold)) {
             if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
             acc.foundLambda = true;
           } else {
@@ -462,6 +526,8 @@ export class RapmUtils {
           ridgeLambda: -1,
           solnMatrix: null,
           prevAttempts: [] as Array<Record<string, any>>
+          /**/,
+          effLambda: []
         } as RapmProcessingInputs,
 
         // These are throwaway
