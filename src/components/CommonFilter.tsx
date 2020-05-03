@@ -55,6 +55,10 @@ import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
+// workers
+// @ts-ignore
+import CacheResponseWorker from "./CacheResponse.worker";
+
 interface Props<PARAMS> {
   startingState: PARAMS;
   onChangeState: (newParams: PARAMS) => void;
@@ -112,6 +116,18 @@ const CommonFilter: CommonFilterI = ({
       _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
     )
   );
+
+  // Launch a worker for caching responses asynchronously
+
+  const [ cacheResponseWorker, setCacheResponseWorker ] = useState(
+    undefined
+  );
+  useEffect(() => {
+    if (!cacheResponseWorker) {
+      const tmpCacheResponseWorker = new CacheResponseWorker();
+      setCacheResponseWorker(tmpCacheResponseWorker);
+    }
+  });
 
   // Automatically update child state when any current param is changed:
   // (Note this doesn't trigger a change to the URL unless submit is pressed)
@@ -299,14 +315,19 @@ const CommonFilter: CommonFilterI = ({
           // Cache result locally:
           if (isDebug) {
             console.log(`CACHE_KEY=[${tablePrefix}${newParamsStr}]`);
-            console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+            /**/
+            // console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
           }
           if (response.ok && !isResponseError(json)) { //(never cache errors)
-            ClientRequestCache.cacheResponse(
-              newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
-            );
+            if (cacheResponseWorker) {
+              ((cacheResponseWorker || {}) as any).postMessage({cacheKey: newParamsStr});
+            }
+/**/
+            // ClientRequestCache.cacheResponse(
+            //   newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
+            // );
           } else if (isDebug) {
-            console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)            
+            console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)
           }
           handleResponse(json);
         })
