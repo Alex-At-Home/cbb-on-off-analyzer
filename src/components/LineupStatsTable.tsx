@@ -22,9 +22,10 @@ import Select, { components} from "react-select"
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
-import { LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { LineupFilterParams, ParamDefaults, getCommonFilterParams } from '../utils/FilterModels';
 
 // Util imports
+import { UrlRouting } from "../utils/UrlRouting"
 import { CbbColors } from "../utils/CbbColors"
 import { CommonTableDefs } from "../utils/CommonTableDefs"
 
@@ -97,6 +98,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     };
   };
 
+/**/
+  const commonParams = getCommonFilterParams(startingState);
+
   const lineups = lineupStats?.lineups || [];
   const tableData = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
@@ -122,8 +126,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     ).take(
       parseInt(maxTableSize)
     ).flatMap((lineup) => {
-      const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
-      const stats = { off_title: title, def_title: "", ...lineup };
+      const title = lineup.key.lineup_id.replace(/_/g, " / "); //TODO: merge the lines
+
+      const params = { ...commonParams, team: lineup.key.team_id };
+      const teamReportParms = { ...params, incRapm: true, incRepOnOff: true, filter: lineup.key.lineup_id.replace(/_/g, ",") };
+
+      const stats = { off_title: <b><a target="_blank" href={"https://hoop-explorer.com/" + UrlRouting.getTeamReportUrl(teamReportParms)}>{title}</a></b>,
+        def_title: "",
+        off_team: <b><a target="_blank" href={"https://hoop-explorer.com/" + UrlRouting.getGameUrl(params, {})}>{lineup.key.team_id}</a></b>,
+        def_type: "", off_type: "Off", def_type: "Def", ...lineup };
       return [
         GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
         GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),

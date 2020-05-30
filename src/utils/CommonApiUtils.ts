@@ -113,8 +113,9 @@ export class CommonApiUtils {
       if (team == null) {
         onTeamNotFound(resHandle);
       } else {
-        const index = (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
-                        (team.year || params.year || "xxxx").substring(0, 4) + (useTestIndices ? "_ltest" : "");
+        const index = "*2019,-player*,-*women*";
+        // (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
+        //                 (team.year || params.year || "xxxx").substring(0, 4) + (useTestIndices ? "_ltest" : "");
 
         //(women is the suffix for index, so only need to add for men)
         const genderPrefix = (gender == "Women" ? "" : (`${gender}_` || "")).toLowerCase();
@@ -127,9 +128,39 @@ export class CommonApiUtils {
           const startTimeMs = new Date().getTime();
           const [ esFetchOk, esFetchStatus, esFetchJson ] = await makeRequest(body);
 
+/**/
+const after1 =              {
+                 "lineup_id": "ClTrapp_CuScott_JoNewman_TeMack_TrJemison",
+                 "team_id": "Clemson"
+              };
+              params.after = after1;
+              const body1 = getBody(
+                index, genderPrefix, params, currentJsonEpoch, efficiency, lookup, avgEfficiency
+              );
+              const [ esFetchOk1, esFetchStatus1, esFetchJson1 ] = await makeRequest(body1);
+
+const after2 =              {
+                "lineup_id": "SoYoung_TeLewis_TrJackson_TyHaliburton_ZiGriffin",
+                "team_id": "Iowa St."
+             };
+             params.after = after2;
+             const body2 = getBody(
+               index, genderPrefix, params, currentJsonEpoch, efficiency, lookup, avgEfficiency
+             );
+             const [ esFetchOk2, esFetchStatus2, esFetchJson2 ] = await makeRequest(body2);
+
+esFetchJson.responses[0].aggregations.lineups.buckets =
+  (esFetchJson?.responses?.[0]?.aggregations?.lineups?.buckets || []).concat(
+    esFetchJson1?.responses?.[0]?.aggregations?.lineups?.buckets || []
+  ).concat(
+    esFetchJson2?.responses?.[0]?.aggregations?.lineups?.buckets || []
+  );
+
+
           // Debug logs:
           //console.log(JSON.stringify(esFetchJson, null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
+          //console.log(JSON.stringify(esFetchJson?.responses?.[0]?.aggregations?.lineups?.after_key, null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));
           //console.log(esFetch.status);
 

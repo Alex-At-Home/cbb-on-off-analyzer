@@ -67,11 +67,12 @@ export const commonTeamQuery = function(
         "should": params.filterGarbage ? garbageTimeFilter : [], //(has OR components so should not must)
         "minimum_should_match": params.filterGarbage ? 1 : 0,
         "must": _.flatten([
+          /*
           [{
             "term": {
               "team.team.keyword": `${params.team}`
             }
-          }],
+          }],*/
           //TODO: don't need to run this unless min/max range is specified or conf/non-conf/high-major is requested
           [{
             "script": {

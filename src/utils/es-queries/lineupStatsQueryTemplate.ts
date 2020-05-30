@@ -26,17 +26,44 @@ export const lineupStatsQuery = function(
                   }
                 }
              },
+             "filter_by_poss": {
+               "bucket_selector": {
+                 "buckets_path": {
+                   "poss": "off_poss"
+                 },
+                 "script": "params.poss > 100"
+               }
+             },
+             "get_margin": {
+               "bucket_script": {
+                 "buckets_path": {
+                   "off": "off_adj_ppp",
+                   "def": "def_adj_ppp",
+                 },
+                 "script": "params.off - params.def"
+               }
+             },
              "sort_by_poss": {
                 "bucket_sort": {
                   "sort": [
-                     {"off_poss": {"order": "desc"}},
+                     {"get_margin": {"order": "desc"}},
+//                      {"off_adj_ppp": {"order": "desc"}},
+//                    {"def_adj_ppp": {"order": "asc"}},
                   ]
                 }
              }
            },
-           "terms": {
-             "field": "lineup_id.keyword",
-             "size": 1000
+           "composite": {
+             "size": 10000,
+             "after": params.after,
+             "sources": [
+               { "lineup_id": { "terms": {
+                 "field": "lineup_id.keyword"
+               } } },
+               { "team_id": { "terms": {
+                 "field": "team.team.keyword",
+               } } }
+             ]
            }
         }
      },

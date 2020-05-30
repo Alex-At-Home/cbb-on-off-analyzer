@@ -121,7 +121,9 @@ export class CommonTableDefs {
   // LINEUP:
 
   static readonly lineupTable = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small"),
+    "title": GenericTableOps.addTitle("Lineup", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+    "team": GenericTableOps.addTitle("Team", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+    "type": GenericTableOps.addTitle("Type", "", GenericTableOps.defaultRowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
