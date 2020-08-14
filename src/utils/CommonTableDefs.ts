@@ -28,6 +28,16 @@ export class CommonTableDefs {
     };
   }
 
+  private static singleLinePicker(offScale: (val: number) => string) {
+    return (val: any, valMeta: string) => {
+      if ("off" == valMeta) {
+        return CommonTableDefs.picker(offScale, offScale);
+      } else {
+        return CbbColors.background;
+      }
+    };
+  }
+
   private static rowSpanCalculator(cellMeta: string) {
     switch(cellMeta) {
       case "off": return 2;
@@ -91,11 +101,6 @@ export class CommonTableDefs {
     "def_orb": [ "DR%", "Defensive rebounding % in selected lineups" ],
   } as Record<string, any>;
 
-  /** If the field is HTML formats it separately, else treats as a % */
-  private static percentOrHtmlFormatter = (val: any) => {
-    return val?.hasOwnProperty("value") ? GenericTableOps.percentFormatter(val) : GenericTableOps.htmlFormatter(val);
-  }
-
   /** All stats that could possibly be used in the roster stats table */
   static onOffIndividualTableAllFields = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?
@@ -107,7 +112,7 @@ export class CommonTableDefs {
     "usage": GenericTableOps.addDataCol(
       expandedView ? "Usg Pos" : "Usg",
       expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups",
-      CbbColors.offOnlyPicker(...CbbColors.usg), CommonTableDefs.percentOrHtmlFormatter), //TODO needs to be steeper
+      CbbColors.offOnlyPicker(...CbbColors.usg), GenericTableOps.percentOrHtmlFormatter), //TODO needs to be steeper
     "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
@@ -126,9 +131,15 @@ export class CommonTableDefs {
       expandedView ? "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups" : "Free throw rate in selected lineups",
       CbbColors.picker(...CbbColors.p_ftr)),
     "sep2": GenericTableOps.addColSeparator(),
-    "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
-    "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
-    "2primr": GenericTableOps.addPctCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
+    "3pr": GenericTableOps.addDataCol(
+      "3PR", "Percentage of 3 pointers taken against all field goals (assisted% below)",
+      CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
+    "2pmidr": GenericTableOps.addDataCol(
+      "2PR mid", "Percentage of mid range 2 pointers taken against all field goals (assisted% below)",
+      CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
+    "2primr": GenericTableOps.addDataCol(
+      "2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals (assisted% below)",
+      CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
     "sep3": GenericTableOps.addColSeparator(),
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", CbbColors.picker(...CbbColors.fg3P)),
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CbbColors.picker(...CbbColors.fg2P)),

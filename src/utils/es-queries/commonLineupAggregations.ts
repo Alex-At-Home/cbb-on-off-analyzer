@@ -65,7 +65,8 @@ const commonShotAggs = function(
 ) {
   return {
     ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.attempts`, `${shotType}_attempts`),
-    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.made`, `${shotType}_made`)
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.made`, `${shotType}_made`),
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.ast`, `${shotType}_ast`),
   };
 }
 
@@ -77,8 +78,8 @@ const commonAverageAggs = function(
     [`${dstPrefix}_${name}`]: {
        "bucket_script": {
           "buckets_path": {
-             "my_var2": `total_${dstPrefix}_${bottom}`,
-             "my_var1": `total_${dstPrefix}_${top}`
+            "my_var1": `total_${dstPrefix}_${top}`,
+            "my_var2": `total_${dstPrefix}_${bottom}`
           },
           "script": `(params.my_var1 > 0) ? ${factor}*params.my_var1 / params.my_var2 : 0`
        }
@@ -88,7 +89,23 @@ const commonAverageAggs = function(
 
 /** shotType is 2p, 3p, 2prim, 2pmid */
 const commonAverageShotAggs = function(dstPrefix: "off" | "def", shotType: string) {
-  return commonAverageAggs(dstPrefix, shotType, `${shotType}_made`, `${shotType}_attempts`);
+  return {
+    ...commonAverageAggs(dstPrefix, shotType, `${shotType}_made`, `${shotType}_attempts`),
+    ...commonAverageAggs(dstPrefix, `${shotType}_ast`, `${shotType}_ast`, `${shotType}_made`)
+  }
+}
+
+const commonAssistInfo = function(dstPrefix: "off" | "def", shotType: string) {
+  return {
+    [`total_${dstPrefix}_ast_${shotType}`]: {
+      "sum": {
+         "field": `ast_${shotType}.total`
+      }
+    },
+    ...commonAverageAggs(
+      dstPrefix, `ast_${shotType}`, `ast_${shotType}`, `assist`
+    )
+  }
 }
 
 /////////////////////////////////////////////////////////////
@@ -137,6 +154,11 @@ export const commonAggregations = function(
     ...commonAverageShotAggs(dstPrefix, "2pmid"),
     ...commonAverageAggs(dstPrefix, "ft", "ftm", "fta"),
     ...commonAverageAggs(dstPrefix, "ftr", "fta", "fga"),
+    // Assist %s (includes totals for ast_)
+    ...commonAverageAggs(dstPrefix, "assist", "assist", "fgm"),
+    ...commonAssistInfo(dstPrefix, "2prim"),
+    ...commonAssistInfo(dstPrefix, "2pmid"),
+    ...commonAssistInfo(dstPrefix, "3p"),
     // Per Possession stats
     ...commonAverageAggs(dstPrefix, "ppp", "pts", "poss", 100.0),
     ...commonAverageAggs(dstPrefix, "to", "to", "poss"),
@@ -154,16 +176,6 @@ export const commonAggregations = function(
       }
     },
     // Finally, tricky numbers:
-    // Assist:
-    [`${dstPrefix}_assist`]: { //assists ... team_assists / fgm
-      "bucket_script": {
-        "buckets_path": {
-          "ast": `total_${dstPrefix}_assist`,
-          "fgm": `total_${dstPrefix}_fgm`
-        },
-        "script": "params.fgm > 0 ? 1.0*params.ast/params.fgm : 0.0"
-      }
-    },
     // ORB:
     [`${dstPrefix}_orb`]: {
       "bucket_script": {

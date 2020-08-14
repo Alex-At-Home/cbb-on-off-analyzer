@@ -94,6 +94,13 @@ export class GenericTableOps {
         ((val.value as number)*100.0).toFixed(0) //(remove the .0 in the 100% case)
       : ((val.value as number)*100.0).toFixed(1); //(no % it's too ugly)
   }
+  static readonly percentOrHtmlFormatter = (val: any) => {
+    if (React.isValidElement(val)) {
+      return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else {
+      return GenericTableOps.percentFormatter(val);
+    }
+  }
   static readonly pointsFormatter = (val: any) => (val.value as number).toFixed(1);
   static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;

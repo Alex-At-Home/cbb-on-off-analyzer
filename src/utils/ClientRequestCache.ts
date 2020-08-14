@@ -17,7 +17,7 @@ import { ParamPrefixes } from "../utils/FilterModels";
 export class ClientRequestCache {
 
   /** Always cache miss if in debug AND disable client cache (this flag) requested */
-  static readonly debugDisableClientCache = false;
+  static readonly debugDisableClientCache = true;
 
   /** If true, then shows either cached or new version of this - for building preloadedData */
   static readonly debugShowB64Encoded = false;

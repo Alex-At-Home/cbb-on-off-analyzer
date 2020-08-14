@@ -33,10 +33,13 @@ export class CbbColors {
   }
 
   static readonly malformedDataColor = "#ccCCcc";
+  static readonly background = "#ffFFff";
 
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);
   private static readonly greenToRed = chroma.scale(["green", "#ffFFff", "red"]);
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
+
+  public static readonly alwaysWhite = (val: number) => CbbColors.background;
 
   // Pts/100
   private static readonly pp100Domain = [ 80, 100, 120 ];
@@ -125,12 +128,14 @@ export class CbbColors {
   public static readonly p_oReb: CbbColorTuple = [ CbbColors.p_off_OR, CbbColors.p_def_OR ];
   public static readonly p_dReb: CbbColorTuple = [ CbbColors.p_def_OR, CbbColors.p_def_OR ];
   // Personal FTR / FC/50
-  public static readonly p_def_FTR = (val: number) => "#ffFFff";
-  public static readonly p_ftr: CbbColorTuple = [ CbbColors.off_FTR, CbbColors.p_def_FTR ];
+  public static readonly p_ftr: CbbColorTuple = [ CbbColors.off_FTR, CbbColors.alwaysWhite ];
   // Personal TO / STL
   private static readonly stlDomain = [ 0.0, 0.02, 0.05 ];
   public static readonly p_def_TO = (val: number) => CbbColors.blueToOrange.domain(CbbColors.stlDomain)(val).toString();
   public static readonly p_tOver: CbbColorTuple = [ CbbColors.off_TO, CbbColors.p_def_TO ];
+
+  // Personal FG rates
+  public static readonly p_fgr: CbbColorTuple = [ CbbColors.fgr_offDef, CbbColors.alwaysWhite ];
 
   // Personal Rim / Blk
   private static readonly blkDomain = [ -0.10, 0.0, 0.10 ];

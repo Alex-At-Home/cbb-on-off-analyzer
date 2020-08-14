@@ -374,6 +374,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // Ratings:
 
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
+
+        // Put assist %s as the row underneath shot types:
+        stat.def_2primr = <small><i>{(100*(stat.off_2prim_ast?.value || 0)).toFixed(0)}%</i></small>;
+        stat.def_2pmidr = <small><i>{(100*(stat.off_2pmid_ast?.value || 0)).toFixed(0)}%</i></small>;
+        stat.def_3pr = <small><i>{(100*(stat.off_3p_ast?.value || 0)).toFixed(0)}%</i></small>;
+
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields);
