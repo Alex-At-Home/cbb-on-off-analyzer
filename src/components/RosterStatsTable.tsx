@@ -1,6 +1,5 @@
 // React imports:
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native'
 
 // Next imports:
 import { NextPage } from 'next';
