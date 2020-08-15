@@ -132,13 +132,13 @@ export class CommonTableDefs {
       CbbColors.picker(...CbbColors.p_ftr)),
     "sep2": GenericTableOps.addColSeparator(),
     "3pr": GenericTableOps.addDataCol(
-      "3PR", "Percentage of 3 pointers taken against all field goals (assisted% below)",
+      "3PR", `Percentage of 3 pointers taken against all field goals${expandedView ? " (assisted% below)" : ""}`,
       CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
     "2pmidr": GenericTableOps.addDataCol(
-      "2PR mid", "Percentage of mid range 2 pointers taken against all field goals (assisted% below)",
+      "2PR mid", `Percentage of mid range 2 pointers taken against all field goals${expandedView ? " (assisted% below)" : ""}`,
       CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
     "2primr": GenericTableOps.addDataCol(
-      "2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals (assisted% below)",
+      "2PR rim", `Percentage of layup/dunk/etc 2 pointers taken against all field goals${expandedView ? " (assisted% below)" : ""}`,
       CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
     "sep3": GenericTableOps.addColSeparator(),
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", CbbColors.picker(...CbbColors.fg3P)),

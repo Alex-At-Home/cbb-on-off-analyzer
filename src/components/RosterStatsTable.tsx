@@ -613,7 +613,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       <span>{data.label}</span>
     </div>
   );
-
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
