@@ -85,6 +85,13 @@ export class CommonTableDefs {
 
   // ON/OFF - INDIVIDUAL
 
+  /** Utility to put a faint colored backing to text */
+  static readonly getTextShadow = (stat: any, colorMapper: (val: number) => string) => {
+    return {
+      textShadow: `0px 0px 10px ${colorMapper(stat?.value || 0)}`
+    };
+  };
+
   /** Map of fields to descriptions, TODO: start usng this in the tables below */
   static individualDescriptions = {
     "off_assist": [ "A%", "Assist % for player in selected lineups" ],
@@ -133,13 +140,13 @@ export class CommonTableDefs {
     "sep2": GenericTableOps.addColSeparator(),
     "3pr": GenericTableOps.addDataCol(
       "3PR", `Percentage of 3 pointers taken against all field goals${expandedView ? " (assisted% below)" : ""}`,
-      CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
+      CbbColors.offOnlyPicker(...CbbColors.fgr), GenericTableOps.percentOrHtmlFormatter),
     "2pmidr": GenericTableOps.addDataCol(
       "2PR mid", `Percentage of mid range 2 pointers taken against all field goals${expandedView ? " (assisted% below)" : ""}`,
-      CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
+      CbbColors.offOnlyPicker(...CbbColors.fgr), GenericTableOps.percentOrHtmlFormatter),
     "2primr": GenericTableOps.addDataCol(
       "2PR rim", `Percentage of layup/dunk/etc 2 pointers taken against all field goals${expandedView ? " (assisted% below)" : ""}`,
-      CbbColors.offOnlyPicker(...CbbColors.p_fgr), GenericTableOps.percentOrHtmlFormatter),
+      CbbColors.offOnlyPicker(...CbbColors.fgr), GenericTableOps.percentOrHtmlFormatter),
     "sep3": GenericTableOps.addColSeparator(),
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", CbbColors.picker(...CbbColors.fg3P)),
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CbbColors.picker(...CbbColors.fg2P)),

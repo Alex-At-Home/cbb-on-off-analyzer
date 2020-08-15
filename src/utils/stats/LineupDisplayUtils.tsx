@@ -11,6 +11,7 @@ import _ from "lodash";
 // Util imports
 import { CbbColors } from "../CbbColors";
 
+import { CommonTableDefs } from "../CommonTableDefs";
 import "./LineupDisplayUtils.css";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
@@ -140,6 +141,57 @@ export class LineupDisplayUtils {
       {buildBadges(playerInfo)}</span>
       {finalPlayer ? null : <span style={{opacity: 0}}> ; </span> }
     </span>;
+  }
+
+  /** Inject various assist info into the table cell inputs */
+  static injectAssistInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean) {
+    if (playerView) {
+      // Put assist %s as the row underneath shot types:
+      const buildInfoRow = (stat: any) =>
+        <small style={CommonTableDefs.getTextShadow(stat, CbbColors.fgr_offDef)}>
+          <i>{(100*(stat?.value || 0)).toFixed(0)}%</i>
+        </small>;
+      stat.def_2primr = buildInfoRow(stat.off_2prim_ast);
+      stat.def_2pmidr = buildInfoRow(stat.off_2pmid_ast);
+      stat.def_3pr = buildInfoRow(stat.off_3p_ast);
+    }
+    if (stat.off_assist) {
+      const rimPct = (100*(stat.off_ast_rim?.value || 0)).toFixed(0);
+      const midPct = (100*(stat.off_ast_mid?.value || 0)).toFixed(0);
+      const threePct = (100*(stat.off_ast_3p?.value || 0)).toFixed(0);
+      stat.off_assist.extraInfo = <span>
+        Assist breakdown:
+        <li>{rimPct}% at the rim</li>
+        <li>{midPct}% for mid-range</li>
+        <li>{threePct}% for 3P</li>
+      </span>;
+    }
+
+    // Handle adding and removing of extra info:
+    if (expandedView) {
+      if (stat.off_2primr) {
+        delete stat.off_2primr.extraInfo;
+      }
+      if (stat.off_2pmidr) {
+        delete stat.off_2pmidr.extraInfo;
+      }
+      if (stat.off_3pr) {
+        delete stat.off_3pr.extraInfo;
+      }
+    } else {
+      const buildText = (stat: any) => {
+        return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
+      }
+      if (stat.off_2primr) {
+        stat.off_2primr.extraInfo = <span>{buildText(stat.off_2prim_ast)}</span>;
+      }
+      if (stat.off_2pmidr) {
+        stat.off_2pmidr.extraInfo = <span>{buildText(stat.off_2pmid_ast)}</span>;
+      }
+      if (stat.off_3pr) {
+        stat.off_3pr.extraInfo = <span>{buildText(stat.off_3p_ast)}</span>;
+      }
+    }
   }
 
 }

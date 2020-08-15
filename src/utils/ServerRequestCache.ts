@@ -16,7 +16,7 @@ export class ServerRequestCache {
   private static readonly logPeriodMs = 10*1000; //(Every 10s)
 
   /** Always cache miss if in debug AND disable server cache (this flag) requested */
-  static readonly debugDisableServerCache = false;
+  static readonly debugDisableServerCache = true;
 
   // Some debug vars
   private static cacheLastLogged = new Date();

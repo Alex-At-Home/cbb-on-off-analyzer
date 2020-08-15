@@ -134,9 +134,6 @@ export class CbbColors {
   public static readonly p_def_TO = (val: number) => CbbColors.blueToOrange.domain(CbbColors.stlDomain)(val).toString();
   public static readonly p_tOver: CbbColorTuple = [ CbbColors.off_TO, CbbColors.p_def_TO ];
 
-  // Personal FG rates
-  public static readonly p_fgr: CbbColorTuple = [ CbbColors.fgr_offDef, CbbColors.alwaysWhite ];
-
   // Personal Rim / Blk
   private static readonly blkDomain = [ -0.10, 0.0, 0.10 ];
   public static readonly p_def_2P_rim = (val: number) => CbbColors.blueToOrange.domain(CbbColors.blkDomain)(val).toString();

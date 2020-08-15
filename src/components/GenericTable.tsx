@@ -7,6 +7,8 @@ import { NextPage } from 'next';
 // Lodash:
 import _ from "lodash";
 
+import "./GenericTable.css";
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
@@ -236,11 +238,33 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         //(the isNil handles separators)
         const val = _.isNil(tmpVal) ? "" : valBuilder(tmpVal) || "";
 
-        const overrideTooltip = tmpVal?.override ?
+        const hasTooltip = (cellVal: any) => {
+          return cellVal?.override || cellVal?.extraInfo;
+        }
+        const cellTooltip = hasTooltip(tmpVal) ?
           <Tooltip id={`tooltip_${index}_${key}`}>
-            Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
-            {tmpVal?.override}
+            {tmpVal?.override ? <span>
+              Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
+              {tmpVal?.override}
+            </span> : null}
+            {tmpVal?.extraInfo && tmpVal?.override ? <br/> : null}
+            {tmpVal?.extraInfo ? <span>
+                {tmpVal?.extraInfo}
+            </span> : null}
           </Tooltip> : null;
+
+        const addTooltipIndicator = (viewVal: val, cellVal: any) => {
+          const addOverrideIndicator = (viewVal: val) => {
+            return cellVal?.override ? <u>{viewVal}</u> : viewVal;
+          };
+          const addExtraInfoIndicator = (viewVal: val) => {
+            return cellVal?.extraInfo ?
+              <div>{viewVal}<small><sup className="infoBadge"></sup></small></div> : viewVal;
+          };
+          return addExtraInfoIndicator(
+            addOverrideIndicator(viewVal)
+          );
+        };
 
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
@@ -250,11 +274,14 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
               className={className}
               rowSpan={rowSpan}
               key={"" + index} style={style}
-            >{tmpVal?.override ?
-              <OverlayTrigger placement="auto" overlay={overrideTooltip}><u>{val}</u></OverlayTrigger>
-              : (_.isString(val) ?
-              val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
-              //(if not string must be element)
+            >{hasTooltip(tmpVal) ?
+              <OverlayTrigger placement="auto" overlay={cellTooltip}>
+                {addTooltipIndicator(val, tmpVal)}
+              </OverlayTrigger>
+              :
+              (_.isString(val) ?
+                val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
+                //(if not string must be element)
               val)}
             </td>
           :

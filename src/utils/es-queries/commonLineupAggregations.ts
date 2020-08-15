@@ -95,11 +95,11 @@ const commonAverageShotAggs = function(dstPrefix: "off" | "def", shotType: strin
   }
 }
 
-const commonAssistInfo = function(dstPrefix: "off" | "def", shotType: string) {
+const commonAssistInfo = function(srcPrefix: string, dstPrefix: "off" | "def", shotType: string) {
   return {
     [`total_${dstPrefix}_ast_${shotType}`]: {
       "sum": {
-         "field": `ast_${shotType}.total`
+         "field": `${srcPrefix}.ast_${shotType}.counts.total`
       }
     },
     ...commonAverageAggs(
@@ -156,9 +156,9 @@ export const commonAggregations = function(
     ...commonAverageAggs(dstPrefix, "ftr", "fta", "fga"),
     // Assist %s (includes totals for ast_)
     ...commonAverageAggs(dstPrefix, "assist", "assist", "fgm"),
-    ...commonAssistInfo(dstPrefix, "2prim"),
-    ...commonAssistInfo(dstPrefix, "2pmid"),
-    ...commonAssistInfo(dstPrefix, "3p"),
+    ...commonAssistInfo(srcPrefix, dstPrefix, "rim"),
+    ...commonAssistInfo(srcPrefix, dstPrefix, "mid"),
+    ...commonAssistInfo(srcPrefix, dstPrefix, "3p"),
     // Per Possession stats
     ...commonAverageAggs(dstPrefix, "ppp", "pts", "poss", 100.0),
     ...commonAverageAggs(dstPrefix, "to", "to", "poss"),

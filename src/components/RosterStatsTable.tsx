@@ -46,6 +46,7 @@ import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
 
 export type RosterStatsModel = {
   on?: Array<any>,
@@ -376,16 +377,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
 
-        // Put assist %s as the row underneath shot types:
-        stat.def_2primr = <small style={{
-          textShadow: `0px 0px 10px ${CbbColors.fgr_offDef(stat.off_2prim_ast?.value || 0)}`
-        }}><i>{(100*(stat.off_2prim_ast?.value || 0)).toFixed(0)}%</i></small>;
-        stat.def_2pmidr = <small style={{
-          textShadow: `0px 0px 10px ${CbbColors.fgr_offDef(stat.off_2pmid_ast?.value || 0)}`
-        }}><i>{(100*(stat.off_2pmid_ast?.value || 0)).toFixed(0)}%</i></small>;
-        stat.def_3pr = <small style={{
-          textShadow: `0px 0px 10px ${CbbColors.fgr_offDef(stat.off_3p_ast?.value || 0)}`
-        }}><i>{(100*(stat.off_3p_ast?.value || 0)).toFixed(0)}%</i></small>;
+        //TODO: put all this in a generic method
+        LineupDisplayUtils.injectAssistInfo(stat, expandedView, true);
 
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
