@@ -63,7 +63,7 @@ const colorPicker = (val: any, valMeta: string) => {
     case "off_drb": return CbbColors.p_def_OR(num);
     case "def_to": return CbbColors.p_def_TO(num);
     case "def_2prim": return CbbColors.p_def_2P_rim(num);
-    case "def_ftr": return CbbColors.p_def_FTR(num);
+    case "def_ftr": return CbbColors.alwaysWhite(num);
     default: return undefined;
   }
 };

@@ -372,13 +372,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         })();
         // Set or unset derived stats:
         OverrideUtils.updateDerivedStats(stat, adjustmentReason);
+        stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
+        LineupDisplayUtils.injectAssistInfo(stat, expandedView, true);
 
         // Ratings:
-
-        stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
-
-        //TODO: put all this in a generic method
-        LineupDisplayUtils.injectAssistInfo(stat, expandedView, true);
 
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag

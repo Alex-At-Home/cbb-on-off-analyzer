@@ -253,11 +253,11 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
             </span> : null}
           </Tooltip> : null;
 
-        const addTooltipIndicator = (viewVal: val, cellVal: any) => {
-          const addOverrideIndicator = (viewVal: val) => {
+        const addTooltipIndicator = (viewVal: any, cellVal: any) => {
+          const addOverrideIndicator = (viewVal: any) => {
             return cellVal?.override ? <u>{viewVal}</u> : viewVal;
           };
-          const addExtraInfoIndicator = (viewVal: val) => {
+          const addExtraInfoIndicator = (viewVal: any) => {
             return cellVal?.extraInfo ?
               <div>{viewVal}<small><sup className="infoBadge"></sup></small></div> : viewVal;
           };
