@@ -48,6 +48,7 @@ import { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
+import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -369,6 +370,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
 
     const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
+      LineupDisplayUtils.injectAssistInfo(player.on, false, false); //(inject assist numbers)
+      LineupDisplayUtils.injectAssistInfo(player.off, false, false); //(inject assist numbers)
+
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix =
         <span>Adj: [<b>{onMargin.toFixed(1)}</b>]-[<b>{offMargin.toFixed(1)}</b>]=[<b>{(onMargin - offMargin).toFixed(1)}</b>]</span>;

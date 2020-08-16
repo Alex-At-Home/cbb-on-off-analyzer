@@ -618,18 +618,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
                     "value": 0.575,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
                     "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4177215189873418,
                   },
                   "def_adj_opp": Object {
@@ -639,6 +648,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 85.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -669,18 +693,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
                     "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
                     "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.38922155688622756,
                   },
                   "off_adj_opp": Object {
@@ -690,6 +723,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 116.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -1402,18 +1450,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
                     "value": 0.575,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
                     "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4177215189873418,
                   },
                   "def_adj_opp": Object {
@@ -1423,6 +1480,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 85.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -1453,18 +1525,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
                     "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
                     "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.38922155688622756,
                   },
                   "off_adj_opp": Object {
@@ -1474,6 +1555,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 116.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -2189,18 +2285,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
                     "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
                     "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_adj_opp": Object {
@@ -2210,6 +2315,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.47,
                   },
                   "def_efg": Object {
@@ -2240,18 +2360,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
                     "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
                     "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3563218390804598,
                   },
                   "off_adj_opp": Object {
@@ -2261,6 +2390,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 96.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.53,
                   },
                   "off_efg": Object {
@@ -2973,18 +3117,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
                     "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
                     "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_adj_opp": Object {
@@ -2994,6 +3147,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.47,
                   },
                   "def_efg": Object {
@@ -3024,18 +3192,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
                     "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
                     "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3563218390804598,
                   },
                   "off_adj_opp": Object {
@@ -3045,6 +3222,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 96.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.53,
                   },
                   "off_efg": Object {
@@ -3760,18 +3952,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.46236559139784944,
                   },
                   "def_adj_opp": Object {
@@ -3781,6 +3982,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -3811,18 +4027,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.4,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
                     "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
                     "value": 0.375,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4166666666666667,
                   },
                   "off_adj_opp": Object {
@@ -3832,6 +4057,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 114.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -4544,18 +4784,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.46236559139784944,
                   },
                   "def_adj_opp": Object {
@@ -4565,6 +4814,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -4595,18 +4859,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 0.4,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
                     "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
                     "value": 0.375,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4166666666666667,
                   },
                   "off_adj_opp": Object {
@@ -4616,6 +4889,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "value": 114.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -6205,12 +6493,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
                     "value": 0.575,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
@@ -6219,6 +6513,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4177215189873418,
                   },
                   "def_adj_opp": Object {
@@ -6230,6 +6527,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 85.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -6264,12 +6576,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
                     "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
@@ -6278,6 +6596,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.38922155688622756,
                   },
                   "off_adj_opp": Object {
@@ -6289,6 +6610,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 116.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -6523,12 +6859,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
                     "value": 0.575,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
@@ -6537,6 +6879,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4177215189873418,
                   },
                   "def_adj_opp": Object {
@@ -6548,6 +6893,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 85.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -6582,12 +6942,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
                     "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
@@ -6596,6 +6962,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.38922155688622756,
                   },
                   "off_adj_opp": Object {
@@ -6607,6 +6976,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 116.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -6918,12 +7302,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
                     "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
@@ -6932,6 +7322,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_adj_opp": Object {
@@ -6943,6 +7336,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.47,
                   },
                   "def_efg": Object {
@@ -6977,12 +7385,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
                     "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
@@ -6991,6 +7405,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3563218390804598,
                   },
                   "off_adj_opp": Object {
@@ -7002,6 +7419,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 96.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.53,
                   },
                   "off_efg": Object {
@@ -7236,12 +7668,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
                     "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
@@ -7250,6 +7688,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_adj_opp": Object {
@@ -7261,6 +7702,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.47,
                   },
                   "def_efg": Object {
@@ -7295,12 +7751,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
                     "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
@@ -7309,6 +7771,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3563218390804598,
                   },
                   "off_adj_opp": Object {
@@ -7320,6 +7785,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 96.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.53,
                   },
                   "off_efg": Object {
@@ -7631,12 +8111,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
@@ -7645,6 +8131,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.46236559139784944,
                   },
                   "def_adj_opp": Object {
@@ -7656,6 +8145,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -7690,12 +8194,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.4,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
                     "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
@@ -7704,6 +8214,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.375,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4166666666666667,
                   },
                   "off_adj_opp": Object {
@@ -7715,6 +8228,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 114.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -7949,12 +8477,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
@@ -7963,6 +8497,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.46236559139784944,
                   },
                   "def_adj_opp": Object {
@@ -7974,6 +8511,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -8008,12 +8560,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.4,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
                     "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
@@ -8022,6 +8580,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.375,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4166666666666667,
                   },
                   "off_adj_opp": Object {
@@ -8033,6 +8594,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 114.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -9218,18 +9794,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
                     "value": 0.575,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
                     "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4177215189873418,
                   },
                   "def_adj_opp": Object {
@@ -9239,6 +9824,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 85.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -9269,18 +9869,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
                     "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
                     "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.38922155688622756,
                   },
                   "off_adj_opp": Object {
@@ -9290,6 +9899,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 116.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -10016,18 +10640,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
                     "value": 0.575,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
                     "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4177215189873418,
                   },
                   "def_adj_opp": Object {
@@ -10037,6 +10670,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 85.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -10067,18 +10715,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
                     "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
                     "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.38922155688622756,
                   },
                   "off_adj_opp": Object {
@@ -10088,6 +10745,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 116.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -10817,18 +11489,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
                     "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
                     "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_adj_opp": Object {
@@ -10838,6 +11519,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.47,
                   },
                   "def_efg": Object {
@@ -10868,18 +11564,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
                     "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
                     "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3563218390804598,
                   },
                   "off_adj_opp": Object {
@@ -10889,6 +11594,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 96.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.53,
                   },
                   "off_efg": Object {
@@ -11615,18 +12335,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
                     "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
                     "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3176470588235294,
                   },
                   "def_adj_opp": Object {
@@ -11636,6 +12365,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.47,
                   },
                   "def_efg": Object {
@@ -11666,18 +12410,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
                     "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
                     "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3563218390804598,
                   },
                   "off_adj_opp": Object {
@@ -11687,6 +12440,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 96.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.53,
                   },
                   "off_efg": Object {
@@ -12416,18 +13184,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.46236559139784944,
                   },
                   "def_adj_opp": Object {
@@ -12437,6 +13214,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -12467,18 +13259,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.4,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
                     "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
                     "value": 0.375,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4166666666666667,
                   },
                   "off_adj_opp": Object {
@@ -12488,6 +13289,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 114.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {
@@ -13214,18 +14030,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
                   },
                   "def_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.46236559139784944,
                   },
                   "def_adj_opp": Object {
@@ -13235,6 +14060,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 75.47619047619048,
                   },
                   "def_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.48,
                   },
                   "def_efg": Object {
@@ -13265,18 +14105,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 0.4,
                   },
                   "off_2pmidr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
                     "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
                     "value": 0.375,
                   },
                   "off_3pr": Object {
+                    "extraInfo": <span>
+                      0% assisted
+                    </span>,
                     "value": 0.4166666666666667,
                   },
                   "off_adj_opp": Object {
@@ -13286,6 +14135,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "value": 114.22448979591837,
                   },
                   "off_assist": Object {
+                    "extraInfo": <span>
+                      Assist breakdown:
+                      <li>
+                        0
+                        % at the rim
+                      </li>
+                      <li>
+                        0
+                        % for mid-range
+                      </li>
+                      <li>
+                        0
+                        % for 3P
+                      </li>
+                    </span>,
                     "value": 0.52,
                   },
                   "off_efg": Object {

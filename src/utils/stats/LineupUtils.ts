@@ -174,6 +174,7 @@ export class LineupUtils {
     return {
       poss: usePoss,
       orb: 0.4*usePoss, //(eg 50% of fga are missed)
+      ast: 0.2*usePoss, //(50% of FGM, 50% of FGA)
       fga: 0.8*usePoss //(eg 20% end in TOs/FTs)
     }
   };
@@ -203,6 +204,17 @@ export class LineupUtils {
       off_orb: offRegress.orb + (obj.total_off_orb?.value || defaultVal) + (obj.total_def_drb?.value || defaultVal),
       def_orb: defRegress.orb + (obj.total_def_orb?.value || defaultVal) + (obj.total_off_drb?.value || defaultVal)
     };
+    // Assists:
+    const offAst = offRegress.ast + obj.total_off_assist?.value || defaultVal;
+    const defAst = defRegress.ast + obj.total_def_assist?.value || defaultVal;
+    const ast_totals = {
+      off_ast_3p: offAst,
+      off_ast_mid: offAst,
+      off_ast_rim: offAst,
+      def_ast_3p: defAst,
+      def_ast_mid: defAst,
+      def_ast_rim: defAst,
+    };
     // everything else
     const fga_totals = {
       off: offRegress.fga + obj.total_off_fga?.value || defaultVal,
@@ -211,6 +223,7 @@ export class LineupUtils {
     return {
       ppp_totals: ppp_totals,
       orb_totals: orb_totals,
+      ast_totals: ast_totals,
       fga_totals: fga_totals,
       regress: {
         off: offRegress,
@@ -219,10 +232,14 @@ export class LineupUtils {
     };
   }
 
-  /** For all the various shot type %s, get the corresponding total to use as a weight */
+  /** For all the various shot and assist type %s, get the corresponding total to use as a weight */
   private static getShotTypeField(key: string): string | undefined {
-    const matchInfo = /^(off|def)_([23][a-z]*[^r]+)$/.exec(key); //ie % only, not rates
-    return matchInfo ? `total_${matchInfo[1]}_${matchInfo[2]}_attempts` : undefined;
+    const matchInfo = /^(off|def)_([23][a-z]*[^_r]+)(_ast)?$/.exec(key); //ie % only, not rates
+    return matchInfo ?
+      (matchInfo[3] ?
+        `total_${matchInfo[1]}_${matchInfo[2]}_made` : //(assists)
+        `total_${matchInfo[1]}_${matchInfo[2]}_attempts` //(shots)
+      ) : undefined;
   }
 
   /** Combines the per-lineup objects into a mutable aggregator */
@@ -256,6 +273,9 @@ export class LineupUtils {
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
           mutableAcc[key].value += val*(weights.orb_totals as any)[key];
+          //(no luck adjustment currently)
+        } else if (weights.ast_totals.hasOwnProperty(key)) {
+          mutableAcc[key].value += val*(weights.ast_totals as any)[key];
           //(no luck adjustment currently)
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           mutableAcc[key].value += val;
@@ -309,6 +329,9 @@ export class LineupUtils {
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.orb_totals as any)[key];
+          // (no luck adjustment for these stats)
+        } else if (weights.ast_totals.hasOwnProperty(key)) {
+          mutableAcc[key].value = 1.0*val/(weights.ast_totals as any)[key];
           // (no luck adjustment for these stats)
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           //(nothing to do)

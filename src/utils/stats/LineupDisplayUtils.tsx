@@ -155,16 +155,20 @@ export class LineupDisplayUtils {
       stat.def_2pmidr = buildInfoRow(stat.off_2pmid_ast);
       stat.def_3pr = buildInfoRow(stat.off_3p_ast);
     }
-    if (stat.off_assist) {
-      const rimPct = (100*(stat.off_ast_rim?.value || 0)).toFixed(0);
-      const midPct = (100*(stat.off_ast_mid?.value || 0)).toFixed(0);
-      const threePct = (100*(stat.off_ast_3p?.value || 0)).toFixed(0);
-      stat.off_assist.extraInfo = <span>
+    const assistBuilder = (stat: any, offDef: "off" | "def") => {
+      const rimPct = (100*(stat[`${offDef}_ast_rim`]?.value || 0)).toFixed(0);
+      const midPct = (100*(stat[`${offDef}_ast_mid`]?.value || 0)).toFixed(0);
+      const threePct = (100*(stat[`${offDef}_ast_3p`]?.value || 0)).toFixed(0);
+      return <span>
         Assist breakdown:
         <li>{rimPct}% at the rim</li>
         <li>{midPct}% for mid-range</li>
         <li>{threePct}% for 3P</li>
       </span>;
+
+    }
+    if (stat.off_assist) {
+      stat.off_assist.extraInfo = assistBuilder(stat, "off");
     }
 
     // Handle adding and removing of extra info:
@@ -190,6 +194,20 @@ export class LineupDisplayUtils {
       }
       if (stat.off_3pr) {
         stat.off_3pr.extraInfo = <span>{buildText(stat.off_3p_ast)}</span>;
+      }
+      if (!playerView) { // team/lineup views have both offense and defense
+        if (stat.def_assist) {
+          stat.def_assist.extraInfo = assistBuilder(stat, "def");
+        }
+        if (stat.def_2primr) {
+          stat.def_2primr.extraInfo = <span>{buildText(stat.def_2prim_ast)}</span>;
+        }
+        if (stat.def_2pmidr) {
+          stat.def_2pmidr.extraInfo = <span>{buildText(stat.def_2pmid_ast)}</span>;
+        }
+        if (stat.def_3pr) {
+          stat.def_3pr.extraInfo = <span>{buildText(stat.def_3p_ast)}</span>;
+        }
       }
     }
   }
