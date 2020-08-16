@@ -267,11 +267,111 @@ export const samplePlayerQueryRequest =           {
                               "field": "player_stats.drb.total"
                            }
                         },
+                        // Assists
+                        "total_off_ast_3p": {
+                          "sum": {
+                             "field": "player_stats.ast_3p.counts.total"
+                          }
+                        },
+                        "total_off_ast_mid": {
+                          "sum": {
+                             "field": "player_stats.ast_mid.counts.total"
+                          }
+                        },
+                        "total_off_ast_rim": {
+                          "sum": {
+                             "field": "player_stats.ast_rim.counts.total"
+                          }
+                        },
+                        "total_off_2p_ast": {
+                          "sum": {
+                             "field": "player_stats.fg_2p.ast.total"
+                          }
+                        },
+                        "total_off_3p_ast": {
+                          "sum": {
+                             "field": "player_stats.fg_3p.ast.total"
+                          }
+                        },
+                        "total_off_2pmid_ast": {
+                          "sum": {
+                             "field": "player_stats.fg_mid.ast.total"
+                          }
+                        },
+                        "total_off_2prim_ast": {
+                          "sum": {
+                             "field": "player_stats.fg_rim.ast.total"
+                          }
+                        },
+                        "off_ast_3p": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_ast_3p",
+                                "my_var2": "total_off_assist"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        "off_ast_mid": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_ast_mid",
+                                "my_var2": "total_off_assist"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        "off_ast_rim": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_ast_rim",
+                                "my_var2": "total_off_assist"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        "off_3p_ast": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_3p_ast",
+                                "my_var2": "total_off_3p_made"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        "off_2p_ast": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_2p_ast",
+                                "my_var2": "total_off_2p_made"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        "off_2pmid_ast": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_2pmid_ast",
+                                "my_var2": "total_off_2pmid_made"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        "off_2prim_ast": {
+                           "bucket_script": {
+                              "buckets_path": {
+                                "my_var1": "total_off_2prim_ast",
+                                "my_var2": "total_off_2prim_made"
+                              },
+                              "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                           }
+                        },
+                        //(end assists)
                         "off_2p": {
                            "bucket_script": {
                               "buckets_path": {
-                                 "my_var2": "total_off_2p_attempts",
-                                 "my_var1": "total_off_2p_made"
+                                "my_var1": "total_off_2p_made",
+                                "my_var2": "total_off_2p_attempts"
                               },
                               "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
                            }
