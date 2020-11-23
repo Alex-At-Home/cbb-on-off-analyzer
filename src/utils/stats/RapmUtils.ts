@@ -678,27 +678,31 @@ export class RapmUtils {
           const adjNonAbsEffErr = combinedAdjEff - actualEff[offOrDef];
           const adjEffErr = Math.abs(adjNonAbsEffErr);
 
-          if (debugMode) console.log(ctx.colToPlayer);
-          if (debugMode) console.log("rapm[PREPRE]: " + resultsPrePrePrior.map((p: number) => p.toFixed(3)));
-          if (debugMode) console.log("rapm[PRE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
-          if (debugMode) console.log("rapm[POST]: " + results.map((p: number) => p.toFixed(3)));
-          if (debugMode) console.log(
-            `combinedRapm[PRE] = [${combinedAdjEffPrePrior.toFixed(1)}] vs actualEff = [${actualEff[offOrDef].toFixed(1)}] ... ` +
-            `Err[PRE] = [${adjEffErrPrePrior.toFixed(1)}] Err[POST] = [${adjNonAbsEffErr.toFixed(1)}]`
-          );
+          if (debugMode) { // Debug mode only (primary info)
+            console.log(ctx.colToPlayer);
+            console.log("rapm[PREPRE]: " + resultsPrePrePrior.map((p: number) => p.toFixed(3)));
+            console.log("rapm[PRE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
+            console.log("rapm[POST]: " + results.map((p: number) => p.toFixed(3)));
+            console.log(
+              `combinedRapm[PRE] = [${combinedAdjEffPrePrior.toFixed(1)}] vs actualEff = [${actualEff[offOrDef].toFixed(1)}] ... ` +
+              `Err[PRE] = [${adjEffErrPrePrior.toFixed(1)}] Err[POST] = [${adjNonAbsEffErr.toFixed(1)}]`
+            );
+          }
 
-          const residuals = RapmUtils.calculatePredictedOut(weights[offOrDef], results, ctx);
-          const errSq = RapmUtils.calculateResidualError(adjPoss[offOrDef], residuals, ctx);
-          const dofInv = 1.0/(ctx.numLineups - ctx.numPlayers); //(degrees of freedom)
+          if (debugMode) { // Debug mode only (secondary info)
+            const residuals = RapmUtils.calculatePredictedOut(weights[offOrDef], results, ctx);
+            const errSq = RapmUtils.calculateResidualError(adjPoss[offOrDef], residuals, ctx);
+            const dofInv = 1.0/(ctx.numLineups - ctx.numPlayers); //(degrees of freedom)
 
-          //if (debugMode) console.log(`RSS = [${offErrSq.toFixed(1)}] + [${defErrSq.toFixed(1)}]`);
-          if (debugMode) console.log(`MSS = [${(errSq*dofInv).toFixed(1)}]`);
+            //console.log(`RSS = [${offErrSq.toFixed(1)}] + [${defErrSq.toFixed(1)}]`);
+            console.log(`MSS = [${(errSq*dofInv).toFixed(1)}]`);
 
-          const paramErrs = RapmUtils.calcSlowPseudoInverse(weights[offOrDef], ridgeLambda, ctx);
+            const paramErrs = RapmUtils.calcSlowPseudoInverse(weights[offOrDef], ridgeLambda, ctx);
 
-          // https://arxiv.org/pdf/1509.09169.pdf
-          const sdRapm = paramErrs.map((p: number) => Math.sqrt(Math.sqrt(p)*errSq*dofInv));
-          if (debugMode) console.log("sdRapm: " + sdRapm.map((p: number) => p.toFixed(3)));
+            // https://arxiv.org/pdf/1509.09169.pdf
+            const sdRapm = paramErrs.map((p: number) => Math.sqrt(Math.sqrt(p)*errSq*dofInv));
+            console.log("sdRapm: " + sdRapm.map((p: number) => p.toFixed(3)));
+          }
 
           // Completion criteria:
           if (!acc.foundLambda) {

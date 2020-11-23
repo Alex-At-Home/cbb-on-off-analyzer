@@ -82,7 +82,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         </ul>
       </li>
     </ul>;
-    
+
     const adaptiveWeight = ctx.priorInfo.strongWeight >= 0 ? ctx.priorInfo.strongWeight : maybeAdaptiveWeight;
     const rapmPriorOverrideInfo = ctx.priorInfo.strongWeight >= 0 ?
       <span> (hand-overwritten to <b>{(adaptiveWeight).toFixed(2)}</b>)</span> : null;
@@ -102,6 +102,36 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const totalPrior = offPriorContrib - defPriorContrib;
     const totalRawRapm = offUnbiasRapm - defUnbiasRapm;
 
+    //TODO: play around with player RAPM 
+    const offMatrixInputs = rapmInfo.offInputs.solnMatrix.valueOf()[col];
+    const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
+      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, ctx.priorInfo.adaptiveCorrelWeights, false
+    );
+    const rapmDiag = offMatrixInputs.map((p, n) => { return {
+      lineupId: n,
+      lineupVal: offAdjPoss[n]!,
+      matrixVal: p,
+      contrib: p*offAdjPoss[n]!
+    }; });
+    const goodOnLineups = _.chain(rapmDiag).filter(d => d.matrixVal > 0 && d.contrib > 0).sortBy([d => -1*d.contrib]).value();
+    const badOnLineups = _.chain(rapmDiag).filter(d => d.matrixVal > 0 && d.contrib < 0).sortBy([d => d.contrib]).value();
+    const goodOffLineups = _.chain(rapmDiag).filter(d => d.matrixVal < 0 && d.contrib > 0).sortBy([d => -1*d.contrib]).value();
+    const badOffLineups = _.chain(rapmDiag).filter(d => d.matrixVal < 0 && d.contrib < 0).sortBy([d => d.contrib]).value();
+    const goodOnTotal = _.chain(goodOnLineups).sumBy(d => d.contrib).value().toFixed(2);
+    const goodOnOther = _.chain(goodOnLineups).drop(5).sumBy(d => d.contrib).value().toFixed(2);
+    const badOnTotal = _.chain(badOnLineups).sumBy(d => d.contrib).value().toFixed(2);
+    const badOnOther = _.chain(badOnLineups).drop(5).sumBy(d => d.contrib).value().toFixed(2);
+    const goodOffTotal = _.chain(goodOffLineups).sumBy(d => d.contrib).value().toFixed(2);
+    const goodOffOther = _.chain(goodOffLineups).drop(5).sumBy(d => d.contrib).value().toFixed(2);
+    const badOffTotal = _.chain(badOffLineups).sumBy(d => d.contrib).value().toFixed(2);
+    const badOffOther = _.chain(badOffLineups).drop(5).sumBy(d => d.contrib).value().toFixed(2);
+    const test = <span>
+      Good On: {_.take(goodOnLineups, 5).map(d => d.contrib.toFixed(2)).join(" ; ")} Other=[{goodOnOther}, {goodOnLineups.length - 5}] Total=[{goodOnTotal}]<br/>
+      Bad On: {_.take(badOnLineups, 5).map(d => d.contrib.toFixed(2)).join(" ; ")} Other=[{badOnOther}, {badOnLineups.length - 5}] Total=[{badOnTotal}]<br/>
+      Good Off: {_.take(goodOffLineups, 5).map(d => d.contrib.toFixed(2)).join(" ; ")} Other=[{goodOffOther}, {goodOffLineups.length - 5}] Total=[{goodOffTotal}]<br/>
+      Bad Off: {_.take(badOffLineups, 5).map(d => d.contrib.toFixed(2)).join(" ; ")} Other=[{badOffOther}, {badOffLineups.length - 5}] Total=[{badOffTotal}]<br/>
+    </span>;
+
     return <span>
         <b>RAPM diagnostics for [{player.playerId}]:</b> adj_off=[<b>{rapmOff.toFixed(2)}</b>], adj_def=[<b>{rapmDef.toFixed(2)}</b>] =
         <ul>
@@ -110,6 +140,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
           <li>&nbsp;+ POST RAPM adjustment: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {detailedInfoPost}
         </ul>
+        {test}<br/>
         (<b>More player diagnostics to come...</b>)<br/>(<a href="#" onClick={(event) => { event.preventDefault(); gotoGlobalDiags() }}>Scroll to global RAPM diagnostics</a>)
       </span>;
     }
