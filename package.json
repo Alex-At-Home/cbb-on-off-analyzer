@@ -38,7 +38,7 @@
     "clipboard": "^2.0.6",
     "fetch-retry-ts": "^1.1.23",
     "isomorphic-unfetch": "^3.0.0",
-    "jquery": "^1.12.4",
+    "jquery": "^3.5.0",
     "js-base64": "^2.6.4",
     "local-storage": "^2.0.0",
     "lodash": "^4.17.20",
