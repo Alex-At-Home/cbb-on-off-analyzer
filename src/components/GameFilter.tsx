@@ -40,6 +40,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
+    showLineups: startShowLineups,
     //(common visualization fields across all tables)
     //(manual overrides)
     manual: startManual,
@@ -112,6 +113,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           autoOffQuery: autoOffQuery,
           teamDiffs: startTeamDiffs,
           showTeamPlayTypes: startShowTeamPlayTypes,
+          showLineups: startShowLineups,
           // Common luck stats across all tables:
           //(manual overrides)
           manual: startManual,
@@ -145,7 +147,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
     // (ie and just ignore the on-off portion)
 
-    const [ baseQuery, maybeAdvBaseQuery ] = startCalcRapm ?
+    const alsoPullLineups = (startCalcRapm || startShowLineups);
+
+    const [ baseQuery, maybeAdvBaseQuery ] = alsoPullLineups ?
       QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];
 
     // RAPM calculations:
@@ -155,7 +159,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
       return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
     };
-    const lineupRequests = startCalcRapm ? [ QueryUtils.cleanseQuery({
+    const lineupRequests = alsoPullLineups ? [ QueryUtils.cleanseQuery({
       ...commonParams
     }) ].concat((onQuery != "") ? [ QueryUtils.cleanseQuery({
         ...commonParams,

@@ -7,6 +7,8 @@ import { absolutePositionFixes, relativePositionFixes, RelativePositionFixRule }
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
+type PositionInfo = { player: Record<String, any>, num_poss: number };
+
 /** Positional analysis module */
 export class PositionUtils {
 
@@ -343,6 +345,23 @@ export class PositionUtils {
     } else { // This team/season has no overrides
       return results; // (return unchanged)
     }
+  }
+
+  /** Builds the list of where players play based on their lineup */
+  static getPositionalInfo(
+    lineups: Record<string, any>[],
+    playersById: Record<string, any>,
+    teamSeason: string
+  ): PositionInfo[][] {
+    return _.transform(lineups, (lineup, acc) => {
+
+    }, [
+        [] as PositionInfo[],
+        [] as PositionInfo[],
+        [] as PositionInfo[],
+        [] as PositionInfo[],
+        [] as PositionInfo[],
+      ]);
   }
 
   /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */

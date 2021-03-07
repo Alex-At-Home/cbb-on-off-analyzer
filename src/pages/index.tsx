@@ -111,6 +111,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
       (rawParams.teamDiffs == false) ? [ 'teamDiffs' ] : [],
       (rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes) ? [ 'showTeamPlayTypes' ] : [],
+      (rawParams.showLineups == ParamDefaults.defaultTeamShowLineups) ? [ 'showLineups' ] : [],
       // RosterStatsTable
       (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
@@ -127,6 +128,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
+        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+      }
+      if (params.showLineups != gameFilterParamsRef.current?.showLineups) {
         setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       // Because changing the params in one table merges that table's params with the last set

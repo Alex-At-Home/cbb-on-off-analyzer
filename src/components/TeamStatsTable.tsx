@@ -80,6 +80,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
 
+  const [ showLineups, setShowLineups ] = useState(_.isNil(gameFilterParams.showLineups) ?
+    ParamDefaults.defaultTeamShowLineups : gameFilterParams.showLineups
+  );
+
   const [ showDiffs, setShowDiffs ] = useState(_.isNil(gameFilterParams.teamDiffs) ?
     false : gameFilterParams.teamDiffs
   );
@@ -109,9 +113,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
+      showLineups: showLineups
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes, showLineups ]);
 
   // 2] Data View
 
@@ -345,6 +350,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   toggled: showPlayTypes,
                   onClick: () => setShowPlayTypes(!showPlayTypes)
                 },
+                {
+                  label: "Lineups",
+                  tooltip: showLineups ? "Hide lineup information" : "Show lineup information",
+                  toggled: showLineups,
+                  onClick: () => setShowLineups(!showLineups)
+                },
               ]}/>
             </Col>
           </Form.Row>
@@ -366,6 +377,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               text="Show Play Style Breakdowns"
               truthVal={showPlayTypes}
               onSelect={() => setShowPlayTypes(!showPlayTypes)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Lineup Information"
+              truthVal={showLineups}
+              onSelect={() => setShowLineups(!showLineups)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
