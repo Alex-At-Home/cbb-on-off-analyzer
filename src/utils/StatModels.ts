@@ -50,6 +50,10 @@ export type OnOffBaselineGlobalEnum = "on" | "off" | "baseline" | "global";
 
 // Invidual
 
+export type AssistStatistics = {
+  value: Record<PlayerCode, any>
+};
+
 /** Non statistical metadata relating to individuals */
 export type IndivMetadata = {
   /** eg 'Ayala, Eric' - Id and Key are considered equivalent here  - this field is required */
@@ -71,19 +75,19 @@ export type IndivMetadata = {
   roster?: RosterEntry,
 
   /** Gets abused to display roster info (height) in the table */
-  def_efg?: React.ReactNode,
+  def_efg?: React.ReactNode | Statistic,
 
   /** Gets abused to display roster info (year/class) in the table */
-  def_assist?: React.ReactNode,
+  def_assist?: React.ReactNode | Statistic,
 
   /** Gets abused to display positional information in the table */
-  def_usage?: React.ReactNode,
+  def_usage?: React.ReactNode | Statistic,
 
   /** These can be elements to show spinner while loading */
-  off_adj_rapm?: React.ReactNode,
-  def_adj_rapm?: React.ReactNode,
-  off_adj_rapm_prod?: React.ReactNode,
-  def_adj_rapm_prod?: React.ReactNode,
+  off_adj_rapm?: React.ReactNode | Statistic,
+  def_adj_rapm?: React.ReactNode | Statistic,
+  off_adj_rapm_prod?: React.ReactNode | Statistic,
+  def_adj_rapm_prod?: React.ReactNode | Statistic,
 
   // Implementation detail for roster stats table:
   onOffKey?: "On" | "Off" | "Baseline" | "Global",
@@ -92,6 +96,11 @@ export type IndivMetadata = {
   conf?: string,
   team?: string,
   year?: string,
+
+  // Assist info:
+  off_ast_3p_source?: AssistStatistics,
+  off_ast_rim_source?: AssistStatistics,
+  off_ast_mid_source?: AssistStatistics,  
 };
 
 /** Derived stats we add to the individual's stat set */

@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { LineupUtils } from "../LineupUtils";
 import { LuckUtils } from "../LuckUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
+import { LineupStatSet } from "../../StatModels";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 //import { LineupStatsModel } from '../../../components/LineupStatsTable';
 
@@ -23,7 +24,7 @@ describe("LineupUtils", () => {
 
   const lineupReport = {
     lineups: (
-        sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets || []
+        (sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets || []) as LineupStatSet[]
       ).map(insertOldValues)
     ,
     avgOff: 100.0,

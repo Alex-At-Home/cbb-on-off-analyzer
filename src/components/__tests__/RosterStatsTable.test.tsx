@@ -1,12 +1,13 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
-import RosterStatsTable from '../RosterStatsTable';
+import RosterStatsTable, { RosterStatsModel } from '../RosterStatsTable';
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
 import { GameFilterParams } from "../utils/FilterModels";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import _ from "lodash";
+import { StatModels, LineupStatSet, IndivStatSet, TeamStatSet } from "../../utils/StatModels";
 
 describe("RosterStatsTable", () => {
 
@@ -22,12 +23,12 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: false}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}
@@ -43,12 +44,12 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: true}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}
@@ -64,12 +65,12 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}
@@ -85,12 +86,12 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: true}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}
@@ -106,13 +107,13 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
 
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{onOffLuck: true, showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true }}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}
@@ -128,7 +129,7 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
 
     const wrapper = shallow(
     <RosterStatsTable
@@ -139,7 +140,7 @@ describe("RosterStatsTable", () => {
         showPlayerManual: true
        }}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}
@@ -155,7 +156,7 @@ describe("RosterStatsTable", () => {
       baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
-    };
+    } as unknown as RosterStatsModel;
 
     const wrapper = shallow(
     <RosterStatsTable
@@ -167,7 +168,7 @@ describe("RosterStatsTable", () => {
         showPlayerManual: true
        }}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()},
         rosterStats: testData,
         lineupStats: []
       }}

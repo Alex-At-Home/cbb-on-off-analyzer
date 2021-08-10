@@ -7,14 +7,15 @@ import { OnOffReportDiagUtils } from '../../../utils/tables/OnOffReportDiagUtils
 import { CommonFilterParams } from "../../../utils/FilterModels";
 import { LineupUtils } from "../../../utils/stats/LineupUtils";
 import { LineupStatsModel } from '../../LineupStatsTable';
-import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse"
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
+import { StatModels, LineupStatSet, IndivStatSet, TeamStatSet } from "../../../../utils/StatModels";
 
 import RepOnOffDiagView from "../RepOnOffDiagView";
 
 describe("RepOnOffDiagView", () => {
 
   const lineupReport = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[],
     avgEff: 100.0,
     error_code: "test"
   };

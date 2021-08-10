@@ -1,6 +1,7 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import LineupStatsTable from '../LineupStatsTable';
+import { TeamStatsModel } from '../TeamStatsTable';
 import { LineupFilterParams } from "../utils/FilterModels";
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
@@ -9,6 +10,7 @@ import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsRe
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import _ from "lodash";
+import { StatModels, LineupStatSet, IndivStatSet, TeamStatSet } from "../../utils/StatModels";
 
 describe("LineupStatsTable", () => {
 
@@ -20,15 +22,20 @@ describe("LineupStatsTable", () => {
 
   test("LineupStatsTable - should create snapshot (no individual data)", () => {
     const testData = {
-      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
       <LineupStatsTable
         startingState={{}}
         dataEvent={{
-          teamStats: { on:{}, off: {}, baseline: {}, global: {}, onOffMode: true },
-          rosterStats: {},
+          teamStats: {
+            on: StatModels.emptyTeam(), off: StatModels.emptyTeam(),
+            baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true
+          },
+          rosterStats: {
+            on: [], off: [], baseline: [], global: []
+          },
           lineupStats: testData
         }}
         onChangeState={dummyChangeStateCallback}
@@ -38,15 +45,16 @@ describe("LineupStatsTable", () => {
   });
   test("LineupStatsTable - should create snapshot (with individual data)", () => {
     const testData = {
-      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
-      { global: {}, onOffMode: true }
-    );
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets,
+      { global: StatModels.emptyTeam(), onOffMode: true }
+    ) as TeamStatsModel;
     const playerData = {
-      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
+      on: [], off: [],
+      baseline: (samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets as unknown) as IndivStatSet[],
+      global: (samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets as unknown) as IndivStatSet[]
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
@@ -64,15 +72,16 @@ describe("LineupStatsTable", () => {
   });
   test("LineupStatsTable - should create snapshot (with individual data - plain, luck, luck diags)", () => {
     const testData = {
-      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
-      { global: {}, onOffMode: true }
-    );
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets,
+      { global: StatModels.emptyTeam(), onOffMode: true }
+    ) as TeamStatsModel;
     const playerData = {
-      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
+      on: [], off: [],
+      baseline: (samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets as unknown) as IndivStatSet[],
+      global: (samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets as unknown) as IndivStatSet[]
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
@@ -90,15 +99,16 @@ describe("LineupStatsTable", () => {
   });
   test("LineupStatsTable - should create snapshot (with individual data, aggregated by PG)", () => {
     const testData = {
-      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
-      { global: {}, onOffMode: true, aggByPos: "PG", showTotal: true }
-    );
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets,
+      { global: StatModels.emptyTeam(), onOffMode: true, aggByPos: "PG", showTotal: true }
+    ) as TeamStatsModel;
     const playerData = {
-      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
+      on: [], off: [],
+      baseline: (samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets as unknown) as IndivStatSet[],
+      global: (samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets as unknown) as IndivStatSet[]
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(

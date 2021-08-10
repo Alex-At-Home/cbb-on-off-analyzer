@@ -3,14 +3,14 @@ import _ from 'lodash';
 
 import { RapmUtils, RapmPlayerContext, RapmPreProcDiagnostics } from "../RapmUtils";
 import { LuckUtils } from "../LuckUtils";
-import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../StatModels";
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../../StatModels";
 // @ts-ignore
 import { apply, transpose, matrix, zeros } from 'mathjs'
 
 // For creating test data:
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
-import { LineupUtils } from "../LineupUtils";
+import { PlayerOnOffStats, LineupUtils } from "../LineupUtils";
 
 // Some handy data:
 
@@ -27,13 +27,13 @@ export const semiRealRapmResults = {
 
   testContext: {"unbiasWeight":2,"removalPct":0.1,
     removedPlayers: {
-      "Mitchell, Makhel":[0.210, 0.01, {}],
-      "Tomaic, Joshua":[0.149, 0.02, {}],
-      "Marial, Chol":[0.0208,0.0208, {}],
-      "Mona, Reese":[0.042,0.042, {}],
-      "Hart, Hakim":[0.237,0.0237, {}],
-      "Mitchell, Makhi":[0.264, 0.0264, {}]
-    } as Record<string, [number, number, Record<string, any>]>,
+      "Mitchell, Makhel":[0.210, 0.01, StatModels.emptyIndiv()],
+      "Tomaic, Joshua":[0.149, 0.02, StatModels.emptyIndiv()],
+      "Marial, Chol":[0.0208,0.0208, StatModels.emptyIndiv()],
+      "Mona, Reese":[0.042,0.042, StatModels.emptyIndiv()],
+      "Hart, Hakim":[0.237,0.0237, StatModels.emptyIndiv()],
+      "Mitchell, Makhi":[0.264, 0.0264, StatModels.emptyIndiv()]
+    } as Record<string, [number, number, IndivStatSet]>,
     "playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349,
     priorInfo:{
       strongWeight: 0.5,
@@ -81,7 +81,7 @@ describe("RapmUtils", () => {
   ).map((p, ii) => {
     return { ...p,
       off_adj_rtg: { value: 5.0 - 0.5*ii }, def_adj_rtg: { value: -5.0 + ii*0.5 }
-    } as IndivStatSet;
+    } as unknown as IndivStatSet;
   }).keyBy("key").value();
 
   test("RapmUtils - buildPlayerContext", () => {
@@ -237,7 +237,9 @@ describe("RapmUtils", () => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
       // Check that removed players are handled
-      const players = [ { playerId: "Mitchell, Makhel" } as Record<string, any> ].concat(onOffReport.players || []);
+      const players = [
+        { playerId: "Mitchell, Makhel", playerCode: "MaMitchell",  teammates: {}, on: StatModels.emptyLineup(), off: StatModels.emptyLineup() }
+      ].concat(onOffReport.players || []) as PlayerOnOffStats[];
       if (luckAdjusted) {  //(needs to be run in normal mode first)
         RapmUtils.injectRapmIntoPlayers(
           players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,

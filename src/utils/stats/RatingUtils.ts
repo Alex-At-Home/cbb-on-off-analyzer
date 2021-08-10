@@ -2,6 +2,7 @@
 // Utils:
 import _ from 'lodash'
 import { OverrideUtils } from "./OverrideUtils";
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../StatModels";
 
 /** All the info needed to explain the ORtg calculation, see "buildORtgDiag" */
 export type ORtgDiagnostics = {
@@ -226,7 +227,7 @@ export class RatingUtils {
   // Manual override calcs:
 
   /** Builds the overrides to the raw fields based on stat overrides */
-  static buildOffOverrides(statSet: Record<string, any>) {
+  static buildOffOverrides(statSet: IndivStatSet) {
     const threePTries = statSet?.total_off_3p_attempts?.value || 0;
     const twoPTries = statSet?.total_off_2p_attempts?.value || 0;
     const freeThrowTries = statSet?.total_off_fta?.value || 0;
@@ -275,7 +276,7 @@ export class RatingUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(
-    statSet: Record<string, any>, rosterStatsByCode: Record<string, any>,
+    statSet: IndivStatSet, rosterStatsByCode: Record<PlayerCode, IndivStatSet>,
     avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
   ): [
     { value: number } | undefined, { value: number } | undefined,
@@ -577,7 +578,7 @@ export class RatingUtils {
   }
 
   /** Builds the overrides to the raw fields based on stat overrides */
-  private static buildDefOverrides(statSet: Record<string, any>) {
+  private static buildDefOverrides(statSet: IndivStatSet) {
     const threePTries = (statSet?.oppo_total_def_3p_attempts?.value || 0);
     const extra3PMakes = OverrideUtils.diff(statSet.oppo_def_3p)*threePTries;
 
@@ -589,7 +590,7 @@ export class RatingUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildDRtg(
-    statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
+    statSet: IndivStatSet, avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
   ): [ { value: number } | undefined, { value: number } | undefined,
       { value: number } | undefined, { value: number } | undefined, //< if overrridden these are the raw vals
       DRtgDiagnostics | undefined ] {
@@ -769,7 +770,7 @@ export class RatingUtils {
 
   /** Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account)*/
   static buildOnBallDefenseAdjustmentsPhase1(
-    player: Record<string, any>, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
+    player: IndivStatSet, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
   ): OnBallDefenseDiags {
 
     // The basic idea is:
@@ -876,7 +877,7 @@ export class RatingUtils {
   }
 
   /** (MUTATES) Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account) */
-  static injectOnBallDefenseAdjustmentsPhase2(players: Record<string, any>[]) {
+  static injectOnBallDefenseAdjustmentsPhase2(players: Array<IndivStatSet>) {
 
     // Calc the % of possessions over which I'm calculating the weighted means
     const adjustedPossPct = 0.2*_.reduce(players, (acc, stat) => {
@@ -942,23 +943,23 @@ export class RatingUtils {
 
         if (stat.def_rtg) {
           stat.def_rtg.value = onBallDiags.dRtg;
-          stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.dRtg.toFixed(1)}]`;
+          stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg?.dRtg?.toFixed(1)}]`;
         }
         if (stat.def_adj_rtg) {
           stat.def_adj_rtg.value = Adj_DRtgPlus;
-          stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.adjDRtgPlus.toFixed(1)}]`;
+          stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg?.adjDRtgPlus?.toFixed(1)}]`;
         }
         if (stat.def_adj_prod) {
           stat.def_adj_prod.value = Adj_DRtgPlus*(stat.def_team_poss_pct.value || 0);
 
-          const defAdjProd = stat.diag_def_rtg.adjDRtgPlus*(stat.def_team_poss_pct.value || 0);
+          const defAdjProd = (stat.diag_def_rtg?.adjDRtgPlus ||  0)*(stat.def_team_poss_pct?.value || 0);
           stat.def_adj_prod.extraInfo = `Using on-ball defense stats - classic value would be [${defAdjProd.toFixed(1)}]`;
         }
-        if (!_.isNil(stat.def_adj_rapm?.value)) {
-          stat.def_adj_rapm.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
+        if (stat.def_adj_rapm && !_.isNil((stat.def_adj_rapm as Statistic)?.value)) {
+          (stat.def_adj_rapm as Statistic).extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
         }
-        if (!_.isNil(stat.def_adj_rapm_prod?.value)) {
-          stat.def_adj_rapm_prod.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
+        if (stat.def_adj_rapm_prod && !_.isNil((stat.def_adj_rapm_prod as Statistic)?.value)) {
+          (stat.def_adj_rapm_prod as Statistic).extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
         }
       }
     });

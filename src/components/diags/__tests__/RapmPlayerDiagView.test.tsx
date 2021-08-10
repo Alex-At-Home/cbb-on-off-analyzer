@@ -7,11 +7,12 @@ import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStat
 import { LineupUtils } from "../../../utils/stats/LineupUtils";
 import { RapmUtils } from "../../../utils/stats/RapmUtils";
 import { semiRealRapmResults } from "../../../utils/stats/__tests__/RapmUtils.test";
+import { StatModels, LineupStatSet, IndivStatSet, TeamStatSet } from "../../../../utils/StatModels";
 
 describe("RapmPlayerDiagView", () => {
 
   const lineupReport = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[],
     avgEff: 100.0,
     error_code: "test"
   };
@@ -27,6 +28,7 @@ describe("RapmPlayerDiagView", () => {
       onOffReport.players || [], offResults, defResults, {}, semiRealRapmResults.testContext, undefined
     );
     const rapmInfo = {
+      enrichedPlayers: [],
       ctx: semiRealRapmResults.testContext,
       preProcDiags: RapmUtils.calcCollinearityDiag(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testContext
@@ -40,7 +42,7 @@ describe("RapmPlayerDiagView", () => {
     const component = renderer.create(<RapmPlayerDiagView
       globalRef={globalRapmDiagRef}
       rapmInfo={rapmInfo}
-      player={onOffReport.players?.[0] || {}}
+      player={onOffReport.players![0]!}
     />);
 
     const tree = component.toJSON();

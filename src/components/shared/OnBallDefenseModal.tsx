@@ -21,6 +21,7 @@ import Select, { components} from "react-select";
 import GenericTable, { GenericTableOps } from "../GenericTable";
 
 // Utils:
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, RosterEntry } from "../../utils/StatModels";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 import { OnBallDefenseModel, RatingUtils } from "../../utils/stats/RatingUtils";
@@ -29,7 +30,7 @@ import { OnBallDefenseModel, RatingUtils } from "../../utils/stats/RatingUtils";
 
 type Props = {
   show: boolean,
-  players: Record<string, any>[],
+  players: Array<IndivStatSet>,
   onHide: () => void,
   onSave: (onBallDefense: OnBallDefenseModel[]) => void,
   onBallDefense: OnBallDefenseModel[],
@@ -88,7 +89,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     const playerNumberToCol = playerNumberToColAndDups.unique;
     const dupColMatches = playerNumberToColAndDups.dups;
 
-    const getMatchingRosterId = (roster: Record<string, string>) => {
+    const getMatchingRosterId = (roster: RosterEntry) => {
       const rosterNumber = (roster?.number || "??")
       const rosterNumberNoZero = rosterNumber.replace(/0([0-9])/, "$1");
       const rosterId = "#" + rosterNumberNoZero;
@@ -135,8 +136,8 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     };
     const matchedPlayerStats = matchedPlayers.found.map(ii => {
       const player = players[ii]!;
-      const matchingRosterId = getMatchingRosterId(player.roster || {});
-      const row = playerNumberToCol[matchingRosterId || "??"] || [];
+      const matchingRosterId = getMatchingRosterId(player.roster || {}) || "??";
+      const row = playerNumberToCol[matchingRosterId] || [];
       const onBallDefense = parseRow(player.code || matchingRosterId, row);
       return onBallDefense;
     });
@@ -224,7 +225,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     //console.log(JSON.stringify(matchedPlayers) + " / " + colsNotMatched);
   };
 
-  const hasRapm = players[0]?.def_adj_rapm?.value;
+  const hasRapm = !_.isEmpty(players[0]?.def_adj_rapm);
 
   const tableLayout = _.omit({
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter),
@@ -258,6 +259,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     "reb_credit": GenericTableOps.addPtsCol("DRB Credit", "Stop credit%/100 possessions from rebounding", CbbColors.varPicker(CbbColors.alwaysWhite)),
     "sep3": GenericTableOps.addColSeparator(),
     "plays": GenericTableOps.addIntCol("Plays", "Number of targeted plays recorded (each possession can include multiple plays)", CbbColors.varPicker(CbbColors.alwaysWhite)),
+    "poss_pct": GenericTableOps.addPctCol("Poss%", "% of team plays where defender is on the court", CbbColors.varPicker(CbbColors.alwaysWhite)),
   }, hasRapm ? [] : ["delta_rapm"]);
 
   const unassignedData: Record<string, any> = onBallDefense[0] ? {
@@ -267,35 +269,39 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     score: { value: 0.01*(onBallDefense[0].uncatScorePct) },
     man_ppp: { value: onBallDefense[0].uncatPtsPerScPlay },
     plays: { value: onBallDefense[0].uncatPlays }
+    //(no poss_pct)
   } : {};
 
-  const tableData = _.chain(players).filter(p => p.diag_def_rtg?.onBallDiags && p.diag_def_rtg?.onBallDef).map(p => {
-    const diag = p.diag_def_rtg!;
-    const onBallDiag = diag.onBallDiags!;
-    const onBallStats = diag.onBallDef!;
-    return {
-      title: onBallStats.title,
-      classic_drtg: { value: diag.dRtg },
-      onball_drtg: { value: onBallDiag.dRtg },
-      classic_rtg: { value: diag.adjDRtgPlus },
-      onball_rtg: { value: onBallDiag.adjDRtgPlus },
-      delta: { value: diag.adjDRtgPlus - onBallDiag.adjDRtgPlus },
-      delta_rapm: { value: diag.adjDRtgPlus - (p.def_adj_rapm?.value || 0) },
-      abs_delta: Math.abs(diag.dRtg - onBallDiag.dRtg),
-      ppp: { value: onBallStats.pts / (onBallStats.plays || 1) },
-      target: { value: onBallDiag.targetedPct },
-      score: { value: 0.01*onBallStats.scorePct },
-      tov: { value: 0.01*onBallStats.tovPct },
-      man_ppp: { value: onBallDiag.playerPtsPerScore },
-      man_credit: { value: 100*onBallDiag.onBallStopCredit },
-      off_ppp: { value: onBallDiag.weightedPtsPerScore },
-      off_credit: { value: 100*onBallDiag.offBallStopCredit },
-      reb_credit: { value: 100*onBallDiag.comboRebCredit/(diag.oppoPtsPerScore || 1) },
-      plays: { value: onBallStats.plays }
-    } as Record<string, any>;
-  }).concat([ unassignedData ]).map(
-    o => GenericTableOps.buildDataRow(o, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-  ).value();
+  const tableData = _.chain(players)
+    .filter(p => !_.isNil(p.diag_def_rtg?.onBallDiags) && !_.isNil(p.diag_def_rtg?.onBallDef))
+    .map(p => {
+      const diag = p.diag_def_rtg!;
+      const onBallDiag = diag.onBallDiags!;
+      const onBallStats = diag.onBallDef!;
+      return {
+        title: onBallStats.title,
+        classic_drtg: { value: diag.dRtg },
+        onball_drtg: { value: onBallDiag.dRtg },
+        classic_rtg: { value: diag.adjDRtgPlus },
+        onball_rtg: { value: onBallDiag.adjDRtgPlus },
+        delta: { value: diag.adjDRtgPlus - onBallDiag.adjDRtgPlus },
+        delta_rapm: { value: diag.adjDRtgPlus - ((p.def_adj_rapm as Statistic)?.value || 0) },
+        abs_delta: Math.abs(diag.dRtg - onBallDiag.dRtg),
+        ppp: { value: onBallStats.pts / (onBallStats.plays || 1) },
+        target: { value: onBallDiag.targetedPct },
+        score: { value: 0.01*onBallStats.scorePct },
+        tov: { value: 0.01*onBallStats.tovPct },
+        man_ppp: { value: onBallDiag.playerPtsPerScore },
+        man_credit: { value: 100*onBallDiag.onBallStopCredit },
+        off_ppp: { value: onBallDiag.weightedPtsPerScore },
+        off_credit: { value: 100*onBallDiag.offBallStopCredit },
+        reb_credit: { value: 100*onBallDiag.comboRebCredit/(diag.oppoPtsPerScore || 1) },
+        plays: { value: onBallStats.plays },
+        poss_pct: p.def_team_poss_pct
+      } as Record<string, any>;
+    }).concat([ unassignedData ]).map(
+      o => GenericTableOps.buildDataRow(o, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    ).value();
 
   return <div><Modal size="xl" {...props}
     onEntered={() => {

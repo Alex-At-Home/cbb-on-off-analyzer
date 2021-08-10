@@ -1,12 +1,13 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import _ from 'lodash';
-import TeamStatsTable from '../TeamStatsTable';
+import TeamStatsTable, { TeamStatsModel } from '../TeamStatsTable';
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
 import { GameFilterParams } from '../../utils/FilterModels';
+import { StatModels, LineupStatSet, IndivStatSet, TeamStatSet } from "../../utils/StatModels";
 
 describe("TeamStatsTable", () => {
 
@@ -18,17 +19,17 @@ describe("TeamStatsTable", () => {
   const testData = _.assign(
     sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
     { global: {}, onOffMode: true }
-  );
-  const players = samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+  ) as TeamStatsModel;
+  const players = ((samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []) as unknown) as IndivStatSet[];
   const testRosterData = {
-    on: _.cloneDeep(players),
-    off: _.cloneDeep(players),
-    baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-    global: _.cloneDeep(players),
+    on: _.cloneDeep(players) as unknown as IndivStatSet[],
+    off: _.cloneDeep(players) as unknown as IndivStatSet[],
+    baseline: ((samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []) as unknown) as IndivStatSet[],
+    global: _.cloneDeep(players) as unknown as IndivStatSet[],
     error_code: undefined
   };
   const testLineupData = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
   }
 
 
@@ -37,7 +38,9 @@ describe("TeamStatsTable", () => {
       gameFilterParams={{}}
       dataEvent={{
         teamStats: testData,
-        rosterStats: {},
+        rosterStats: {
+          on: [], off: [], global: [], baseline: []
+        },
         lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
