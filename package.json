@@ -46,7 +46,7 @@
     "lru-cache": "^5.1.1",
     "lzutf8": "^0.5.6",
     "mathjs": "^6.6.5",
-    "next": "^9.5.3",
+    "next": "^11.1.1",
     "query-string": "^6.13.2",
     "react": "^16.13.1",
     "react-autocomplete-input": "^1.0.14",
