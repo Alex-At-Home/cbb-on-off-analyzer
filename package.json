@@ -43,7 +43,7 @@
     "js-base64": "^2.6.4",
     "linq": "^3.2.4",
     "local-storage": "^2.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "lodash.combinations": "^18.10.0",
     "lru-cache": "^5.1.1",
     "lzutf8": "^0.5.6",
