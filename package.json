@@ -42,7 +42,7 @@
     "fetch-retry-ts": "^1.1.23",
     "hosted-git-info": "^2.8.9",
     "isomorphic-unfetch": "^3.0.0",
-    "jquery": "^1.12.4",
+    "jquery": "^3.5.0",
     "js-base64": "^2.6.4",
     "linq": "^3.2.4",
     "local-storage": "^2.0.0",
