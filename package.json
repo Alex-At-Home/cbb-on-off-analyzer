@@ -63,7 +63,7 @@
     "react-ga": "^2.7.0",
     "react-loading-overlay": "^1.0.1",
     "react-select": "^3.1.0",
-    "recharts": "^2.1.12",
+    "recharts": "^2.1.14",
     "reshake": "^1.2.1",
     "ssri": "^6.0.2",
     "styled-components": "^4.4.1",
