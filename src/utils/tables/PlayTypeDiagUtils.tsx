@@ -758,15 +758,20 @@ export class PlayTypeDiagUtils {
   ) => {
     const filename =
       gameId.replace("@", "at").replaceAll(/[^a-zA-Z0-9]/g, "_") + ".csv";
+    const tooltip = (
+      <Tooltip id={filename}>Download the play-type data as CSV</Tooltip>
+    );
     return (
-      <CSVLink
-        filename={filename}
-        data={data}
-        asyncOnClick={true}
-        onClick={onClick}
-      >
-        {labelName}
-      </CSVLink>
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <CSVLink
+          filename={filename}
+          data={data}
+          asyncOnClick={true}
+          onClick={onClick}
+        >
+          {labelName}
+        </CSVLink>
+      </OverlayTrigger>
     );
   };
 }
