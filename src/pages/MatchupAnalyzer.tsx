@@ -338,28 +338,41 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
               <Col>
                 <div className="small">
                   {PlayTypeDiagUtils.buildLegend("LEGEND")}&nbsp;|&nbsp;
-                  {PlayTypeDiagUtils.buildCsvDownload("CSV", csvData, () => {
-                    const dataTeamA: object[] =
-                      PlayTypeDiagUtils.buildTeamStyleBreakdownData(
-                        matchupFilterParams.team || "Unknown",
-                        dataEvent.rosterStatsA,
-                        dataEvent.teamStatsA,
-                        avgEfficiency,
-                        divisionStatsCache,
-                        true
+                  {PlayTypeDiagUtils.buildCsvDownload(
+                    "CSV",
+                    `${matchupFilterParams.team || "Unknown"} ${
+                      matchupFilterParams.oppoTeam || ""
+                    }`,
+                    csvData,
+                    () => {
+                      const oppoAndDate = buildOppoFilter(
+                        matchupFilterParams.oppoTeam || ""
                       );
-                    const dataTeamB: object[] =
-                      PlayTypeDiagUtils.buildTeamStyleBreakdownData(
-                        buildOppoFilter(matchupFilterParams.oppoTeam || "")
-                          ?.team || "Unknown",
-                        dataEvent.rosterStatsB,
-                        dataEvent.teamStatsB,
-                        avgEfficiency,
-                        divisionStatsCache,
-                        true
-                      );
-                    setCsvData(dataTeamA.concat(dataTeamB));
-                  })}
+                      const dataTeamA: object[] =
+                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                          matchupFilterParams.team || "Unknown",
+                          true,
+                          matchupFilterParams.oppoTeam || "",
+                          dataEvent.rosterStatsA,
+                          dataEvent.teamStatsA,
+                          avgEfficiency,
+                          divisionStatsCache,
+                          true
+                        );
+                      const dataTeamB: object[] =
+                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                          matchupFilterParams.team || "Unknown",
+                          false,
+                          matchupFilterParams.oppoTeam || "",
+                          dataEvent.rosterStatsB,
+                          dataEvent.teamStatsB,
+                          avgEfficiency,
+                          divisionStatsCache,
+                          true
+                        );
+                      setCsvData(dataTeamA.concat(dataTeamB));
+                    }
+                  )}
                 </div>
               </Col>
             </Row>

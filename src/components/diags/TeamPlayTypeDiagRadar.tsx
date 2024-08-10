@@ -263,7 +263,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       ? GradeUtils.getPlayStyleStats(
           topLevelPlayTypeStyles,
           tierToUse,
-          sosAdjustment,
+          adjustForSos ? sosAdjustment : undefined,
           true
         )
       : undefined;

@@ -509,7 +509,9 @@ export class PlayTypeDiagUtils {
    * TODO: need to do a better job of deduplicating the code
    */
   static buildTeamStyleBreakdownData = (
-    title: string,
+    nameTeamA: string,
+    isTeamA: boolean,
+    menuItemTeamB: string,
     players: RosterStatsModel,
     teamStats: TeamStatsModel,
     avgEfficiency: number,
@@ -529,8 +531,10 @@ export class PlayTypeDiagUtils {
     const playersIn = players.baseline;
     const teamStatsIn = teamStats.baseline;
 
+    const gameInfo = PlayTypeDiagUtils.buildGameInfo(menuItemTeamB);
+
     // From here I've coped and pasted the data processing bits of TeamPlayTypeDiagRadar
-    //TODO: abstract them out
+    //TODO: dedup into shared modules
 
     const playCountToUse =
       singleGameMode && teamStats.baseline.off_poss
@@ -538,11 +542,10 @@ export class PlayTypeDiagUtils {
           (teamStats.baseline.total_off_orb?.value || 0)
         : undefined;
 
-    const sosAdjustment =
-      avgEfficiency /
-      ((defensiveOverride
-        ? teamStatsIn.off_adj_opp?.value
-        : teamStatsIn.def_adj_opp?.value) || avgEfficiency);
+    const oppoDefAdj = defensiveOverride
+      ? teamStatsIn.off_adj_opp?.value
+      : teamStatsIn.def_adj_opp?.value;
+    const sosAdjustment = avgEfficiency / (oppoDefAdj || avgEfficiency);
 
     const topLevelPlayTypeStyles =
       defensiveOverride ||
@@ -564,6 +567,15 @@ export class PlayTypeDiagUtils {
       ? GradeUtils.getPlayStyleStats(
           topLevelPlayTypeStyles,
           tierToUse,
+          undefined, //(SoS calc separately below)
+          true
+        )
+      : undefined;
+
+    const adjTopLevelPlayTypeStylesPctile = tierToUse
+      ? GradeUtils.getPlayStyleStats(
+          topLevelPlayTypeStyles,
+          tierToUse,
           sosAdjustment,
           true
         )
@@ -581,13 +593,31 @@ export class PlayTypeDiagUtils {
           const rawPct = rawVal?.possPct?.value || 0;
 
           return {
-            team: title,
-            playType: PlayTypeDiagUtils.getPlayTypeName(playType),
-            pct:
+            game_id: `${nameTeamA} ${menuItemTeamB}`,
+            team: isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
+            opponent: !isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
+            game_date: gameInfo?.dateStr || "Unknown",
+            team_score: isTeamA
+              ? gameInfo?.scoreTeamA || 0
+              : gameInfo?.scoreTeamB || 0,
+            opponent_score: !isTeamA
+              ? gameInfo?.scoreTeamA || 0
+              : gameInfo?.scoreTeamB || 0,
+            play_type: PlayTypeDiagUtils.getPlayTypeName(playType),
+            freq_per_100: rawPct * 100.0,
+            freq_percentile:
               rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
-            pts: Math.min(100, (stat.pts.value || 0) * 100),
-            rawPct,
-            rawPts: rawVal?.pts?.value || 0,
+            plays_per_game: rawPct * possFactor * 100.0,
+            efficiency: rawVal?.pts?.value || 0,
+            efficiency_percentile: Math.min(100, (stat.pts.value || 0) * 100),
+            adj_efficiency: (rawVal?.pts?.value || 0) * sosAdjustment,
+            adj_efficiency_percentile: Math.min(
+              100,
+              (adjTopLevelPlayTypeStylesPctile?.[playType as TopLevelPlayType]
+                ?.pts?.value || 0) * 100.0
+            ),
+            opponent_def_adj: (oppoDefAdj || 0.0) * 0.01, //(all eff are per play)
+            total_plays: playCountToUse || 100,
           };
         })
       : [];
@@ -697,17 +727,44 @@ export class PlayTypeDiagUtils {
     );
   };
 
+  /** Convert from the menu string into game info - TODO dedup with MatchupFilter */
+  static buildGameInfo = (
+    menuItemStr: string
+  ):
+    | { teamB: string; dateStr: string; scoreTeamA: number; scoreTeamB: number }
+    | undefined => {
+    const regex = /^(?:@|vs)? *(.*) [(]([^)]*)[)]: *[WL] *(\d+)-(\d+).*$/;
+    const regexResult = regex.exec(menuItemStr);
+    if (regexResult && regexResult.length >= 3) {
+      return {
+        teamB: regexResult[1],
+        dateStr: regexResult[2],
+        scoreTeamA: parseInt(regexResult[3]),
+        scoreTeamB: parseInt(regexResult[4]),
+      };
+    } else {
+      return undefined;
+    }
+  };
+
   /** Builds a slightly back CSV download link, onClick has to set a useState
    * variable which is passed into data (don't forget to include the useState in any useMemos!)
    */
   static buildCsvDownload = (
     labelName: string,
+    gameId: string,
     data: object[],
     onClick: () => void
   ) => {
-    //TODO filename
+    const filename =
+      gameId.replace("@", "at").replaceAll(/[^a-zA-Z0-9]/g, "_") + ".csv";
     return (
-      <CSVLink data={data} asyncOnClick={true} onClick={onClick}>
+      <CSVLink
+        filename={filename}
+        data={data}
+        asyncOnClick={true}
+        onClick={onClick}
+      >
         {labelName}
       </CSVLink>
     );
