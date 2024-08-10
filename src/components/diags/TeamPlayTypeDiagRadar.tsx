@@ -113,18 +113,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       teamStats
     );
 
-  const getPlayTypeName = (name: string) => {
-    if (name == "Put-Back") {
-      return "Rebound & Scramble";
-    } else if (name == "Backdoor Cut") {
-      return "Perimeter Cut";
-    } else if (name == "Post & Kick") {
-      return "Inside Out";
-    } else {
-      return name;
-    }
-  };
-
   const { tierToUse } = GradeTableUtils.buildTeamTierInfo(showGrades, {
     comboTier: grades?.Combo,
     highTier: grades?.High,
@@ -217,7 +205,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           }}
         >
           <p className="label pl-1 pr-1">
-            <b>{`${getPlayTypeName(data.playType)}`}</b>
+            <b>{`${PlayTypeDiagUtils.getPlayTypeName(data.playType)}`}</b>
           </p>
           <p className="desc pl-1 pr-1">
             {topLevelPlayTypeDescriptions[data.playType as TopLevelPlayType]}
@@ -292,7 +280,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           const rawPct = rawVal?.possPct?.value || 0;
 
           return {
-            name: getPlayTypeName(playType).replace("-", " - "),
+            name: PlayTypeDiagUtils.getPlayTypeName(playType).replace(
+              "-",
+              " - "
+            ),
             playType: playType,
             pct:
               rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),

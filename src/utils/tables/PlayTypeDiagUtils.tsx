@@ -9,6 +9,8 @@ import _ from "lodash";
 // Bootstrap imports:
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { CSVLink, CSVDownload } from "react-csv";
+
 // Utils
 import {
   PlayTypeUtils,
@@ -45,11 +47,12 @@ import {
   TeamStatSet,
   RosterEntry,
 } from "../StatModels";
-import { DivisionStatsCache } from "./GradeTableUtils";
+import { DivisionStatsCache, GradeTableUtils } from "./GradeTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { RosterStatsModel } from "../../components/RosterStatsTable";
 import { TeamStatsModel } from "../../components/TeamStatsTable";
 import { TopLevelPlayAnalysis } from "../stats/PlayTypeUtils";
+import { GradeUtils } from "../stats/GradeUtils";
 
 /** Encapsulates some of the logic used to build the diag visualiations in XxxPlayTypeDiags */
 export class PlayTypeDiagUtils {
@@ -501,6 +504,97 @@ export class PlayTypeDiagUtils {
     );
   };
 
+  /** Encapsulates the logic to build a play style table from either single game or season -
+   * like buildTeamStyleBreakdown but generates a JSON object instead of
+   * TODO: need to do a better job of deduplicating the code
+   */
+  static buildTeamStyleBreakdownData = (
+    title: string,
+    players: RosterStatsModel,
+    teamStats: TeamStatsModel,
+    avgEfficiency: number,
+    grades: DivisionStatsCache,
+    singleGameMode: boolean,
+    defensiveOverride?: TopLevelPlayAnalysis
+  ): Record<string, string | number>[] => {
+    const rosterInfo = teamStats.global.roster || {};
+
+    /** Largest sample of player stats, by player key - use for ORtg calcs */
+    const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+      players.global,
+      rosterInfo,
+      true //(injects positional info into the player stats, needed for play style analysis below)
+    );
+
+    const playersIn = players.baseline;
+    const teamStatsIn = teamStats.baseline;
+
+    // From here I've coped and pasted the data processing bits of TeamPlayTypeDiagRadar
+    //TODO: abstract them out
+
+    const playCountToUse =
+      singleGameMode && teamStats.baseline.off_poss
+        ? (teamStats.baseline.off_poss?.value || 0) +
+          (teamStats.baseline.total_off_orb?.value || 0)
+        : undefined;
+
+    const sosAdjustment =
+      avgEfficiency /
+      ((defensiveOverride
+        ? teamStatsIn.off_adj_opp?.value
+        : teamStatsIn.def_adj_opp?.value) || avgEfficiency);
+
+    const topLevelPlayTypeStyles =
+      defensiveOverride ||
+      PlayTypeUtils.buildTopLevelPlayStyles(
+        playersIn,
+        globalRosterStatsByCode,
+        teamStatsIn
+      );
+
+    const { tierToUse } = GradeTableUtils.buildTeamTierInfo("rank:Combo", {
+      comboTier: grades?.Combo,
+      highTier: grades?.High,
+      mediumTier: grades?.Medium,
+      lowTier: grades?.Low,
+    });
+    const possFactor = _.isNumber(playCountToUse) ? playCountToUse / 100 : 1.0;
+
+    const topLevelPlayTypeStylesPctile = tierToUse
+      ? GradeUtils.getPlayStyleStats(
+          topLevelPlayTypeStyles,
+          tierToUse,
+          sosAdjustment,
+          true
+        )
+      : undefined;
+
+    const data = topLevelPlayTypeStylesPctile
+      ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
+          const rawVal = (
+            topLevelPlayTypeStyles as Record<
+              string,
+              { possPct: Statistic; pts: Statistic }
+            >
+          )[playType];
+
+          const rawPct = rawVal?.possPct?.value || 0;
+
+          return {
+            team: title,
+            playType: PlayTypeDiagUtils.getPlayTypeName(playType),
+            pct:
+              rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
+            pts: Math.min(100, (stat.pts.value || 0) * 100),
+            rawPct,
+            rawPts: rawVal?.pts?.value || 0,
+          };
+        })
+      : [];
+
+    return data;
+  };
+
   /** Not totally sold on this presentation, but give some handy insight into what the graph means */
   static readonly buildLegendText = (
     <div>
@@ -574,6 +668,19 @@ export class PlayTypeDiagUtils {
     );
   };
 
+  /** Translates from the internal model to the one I'm exposing to users */
+  static getPlayTypeName = (name: string) => {
+    if (name == "Put-Back") {
+      return "Rebound & Scramble";
+    } else if (name == "Backdoor Cut") {
+      return "Perimeter Cut";
+    } else if (name == "Post & Kick") {
+      return "Inside Out";
+    } else {
+      return name;
+    }
+  };
+
   /** Presents the above text as a tooltip */
   static buildLegend = (legendLabelName: string) => {
     const tooltip = (
@@ -587,6 +694,22 @@ export class PlayTypeDiagUtils {
           <u>{legendLabelName}</u>
         </OverlayTrigger>
       </span>
+    );
+  };
+
+  /** Builds a slightly back CSV download link, onClick has to set a useState
+   * variable which is passed into data (don't forget to include the useState in any useMemos!)
+   */
+  static buildCsvDownload = (
+    labelName: string,
+    data: object[],
+    onClick: () => void
+  ) => {
+    //TODO filename
+    return (
+      <CSVLink data={data} asyncOnClick={true} onClick={onClick}>
+        {labelName}
+      </CSVLink>
     );
   };
 }

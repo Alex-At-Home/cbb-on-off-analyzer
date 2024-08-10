@@ -63,6 +63,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     }
   }); //(on any change to the DOM)
 
+  // CSV download
+
+  const [csvData, setCsvData] = useState<object[]>([]);
+
   // Team Stats interface
 
   const [gaInited, setGaInited] = useState(false);
@@ -333,7 +337,29 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
             <Row className="mt-0 mb-2">
               <Col>
                 <div className="small">
-                  {PlayTypeDiagUtils.buildLegend("LEGEND")}
+                  {PlayTypeDiagUtils.buildLegend("LEGEND")}&nbsp;|&nbsp;
+                  {PlayTypeDiagUtils.buildCsvDownload("CSV", csvData, () => {
+                    const dataTeamA: object[] =
+                      PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                        matchupFilterParams.team || "Unknown",
+                        dataEvent.rosterStatsA,
+                        dataEvent.teamStatsA,
+                        avgEfficiency,
+                        divisionStatsCache,
+                        true
+                      );
+                    const dataTeamB: object[] =
+                      PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                        buildOppoFilter(matchupFilterParams.oppoTeam || "")
+                          ?.team || "Unknown",
+                        dataEvent.rosterStatsB,
+                        dataEvent.teamStatsB,
+                        avgEfficiency,
+                        divisionStatsCache,
+                        true
+                      );
+                    setCsvData(dataTeamA.concat(dataTeamB));
+                  })}
                 </div>
               </Col>
             </Row>
@@ -388,7 +414,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, divisionStatsCache]);
+  }, [dataEvent, divisionStatsCache, csvData]);
 
   return (
     <Container>
