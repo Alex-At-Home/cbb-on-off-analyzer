@@ -695,7 +695,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         },
 
         luckConfig,
-        divisionStatsCache[team.year]
+        divisionStatsCache[team.year] || {}
       );
       return tableInfo;
     });
