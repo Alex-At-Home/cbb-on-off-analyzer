@@ -279,10 +279,11 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
             .flatten()
             .uniq()
             .value(),
-          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<
-            string,
-            Array<TransferModel>
-          >,
+          transfers: (transferMode
+            ? gender == "Men"
+              ? _.last(jsonsIn)
+              : { __NA__: [] }
+            : undefined) as Record<string, Array<TransferModel>>,
         });
       });
     } else {
