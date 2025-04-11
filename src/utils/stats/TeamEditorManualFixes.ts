@@ -1662,7 +1662,47 @@ export class TeamEditorManualFixes {
         const manualOverrides_Men_2025_26: Record<
           string,
           TeamEditorManualFixModel
-        > = {};
+        > = {
+          Duke: {
+            leftTeam: ["CoFlagg::", "KhMaluach::", "KoKnueppel::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Baylor: {
+            leftTeam: ["VjEdgecombe::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Georgia: {
+            leftTeam: ["AsNewell::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Texas: {
+            leftTeam: ["TrJohnson::"], //(NBA declaration not yet included in my automated feed)
+          },
+          "Michigan St.": {
+            leftTeam: ["JaRichardson::"], //(NBA declaration not yet included in my automated feed)
+          },
+          BYU: {
+            leftTeam: ["EgDemin::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Maryland: {
+            leftTeam: ["DeQueen::", "TaGapare::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Illinois: {
+            leftTeam: ["KaJakucionis::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Oklahoma: {
+            leftTeam: ["JeFears::"], //(NBA declaration not yet included in my automated feed)
+          },
+          UConn: {
+            leftTeam: ["LiMcNeeley::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Rutgers: {
+            leftTeam: ["DyHarper::", "AcBailey::"], //(NBA declaration not yet included in my automated feed)
+          },
+          "St. John's": {
+            leftTeam: ["RjLuis::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Oregon: {
+            leftTeam: ["NaBittle::"], //(NBA declaration not yet included in my automated feed)
+          },
+        };
 
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
           mutableToRet,
