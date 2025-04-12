@@ -12,7 +12,7 @@ export class DateUtils {
   //////////////////////////////////////
 
   /** Set this to true to show the off-season leaderboard as the site front page */
-  static readonly frontPageIsOffseasonLeaderboard: Boolean = false;
+  static readonly frontPageIsOffseasonLeaderboard: Boolean = true;
 
   /** During portal mania show the off-season leaderboard with extra in/out metrics */
   static readonly showOffseasonMetrics: Boolean = true;
@@ -39,9 +39,9 @@ export class DateUtils {
     "2023/24": false,
     "Men_2023/24": false,
     "Women_2023/24": false,
-    "2024/25": true,
-    "Men_2024/25": true,
-    "Women_2024/25": true,
+    "2024/25": false,
+    "Men_2024/25": false,
+    "Women_2024/25": false,
   };
 
   /** Up this once the portal gets active, even if it's before the season ends

@@ -1659,10 +1659,14 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2024/25") {
+        // (could try https://hoopshype.com/lists/2025-nba-draft-early-entries-whos-testing-the-waters/)
         const manualOverrides_Men_2025_26: Record<
           string,
           TeamEditorManualFixModel
         > = {
+          Arkansas: {
+            leftTeam: ["AdThiero::"], //(NBA declaration not yet included in my automated feed)
+          },
           Duke: {
             leftTeam: ["CoFlagg::", "KhMaluach::", "KoKnueppel::"], //(NBA declaration not yet included in my automated feed)
           },
@@ -1677,6 +1681,9 @@ export class TeamEditorManualFixes {
           },
           "Michigan St.": {
             leftTeam: ["JaRichardson::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Georgetown: {
+            leftTeam: ["ThSorber::"], //(NBA declaration not yet included in my automated feed)
           },
           BYU: {
             leftTeam: ["EgDemin::"], //(NBA declaration not yet included in my automated feed)
@@ -1698,6 +1705,9 @@ export class TeamEditorManualFixes {
           },
           "St. John's": {
             leftTeam: ["RjLuis::"], //(NBA declaration not yet included in my automated feed)
+          },
+          "Saint Joseph's": {
+            leftTeam: ["RaFleming::"], //(NBA declaration not yet included in my automated feed)
           },
           Oregon: {
             leftTeam: ["NaBittle::"], //(NBA declaration not yet included in my automated feed)
