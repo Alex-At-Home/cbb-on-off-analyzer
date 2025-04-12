@@ -14,7 +14,10 @@ export class DateUtils {
   /** Set this to true to show the off-season leaderboard as the site front page */
   static readonly frontPageIsOffseasonLeaderboard: Boolean = true;
 
-  /** During portal mania show the off-season leaderboard with extra in/out metrics */
+  /** During portal mania show the off-season leaderboard with extra in/out metrics
+   *
+   * TODO: don't forget to also update ConferenceInfo.latestConfChanges
+   */
   static readonly showOffseasonMetrics: Boolean = true;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */

@@ -248,6 +248,10 @@ const latestConfChanges_2024 = {
   "Kennesaw St.": "Conference USA", //(asun)
 };
 
+const latestConfChanges_2025 = {
+  //TODO
+};
+
 /** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in
  * off-season projects correct
  */
@@ -263,6 +267,13 @@ export const latestConfChanges = {
     ...latestConfChanges_2022,
     ...latestConfChanges_2023,
     ...latestConfChanges_2024,
+  },
+
+  "2025/26": {
+    ...latestConfChanges_2022,
+    ...latestConfChanges_2023,
+    ...latestConfChanges_2024,
+    ...latestConfChanges_2025,
   },
 } as Record<string, Record<string, string>>;
 

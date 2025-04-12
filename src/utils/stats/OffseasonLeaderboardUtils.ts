@@ -423,6 +423,7 @@ export class OffseasonLeaderboardUtils {
         const confLookupToUse =
           efficiencyInfo[`${gender}_${yearWithStats}`] ||
           efficiencyInfo[`${gender}_Latest`];
+
         const confStr =
           offseasonConfChanges[t] || confLookupToUse?.[0]?.[t]?.conf || "???";
 

@@ -1664,6 +1664,9 @@ export class TeamEditorManualFixes {
           string,
           TeamEditorManualFixModel
         > = {
+          Nebraska: {
+            superSeniorsReturning: new Set(["RiMast::"]),
+          },
           Arkansas: {
             leftTeam: ["AdThiero::"], //(NBA declaration not yet included in my automated feed)
           },
