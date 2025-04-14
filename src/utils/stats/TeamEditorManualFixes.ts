@@ -1712,6 +1712,9 @@ export class TeamEditorManualFixes {
           "Saint Joseph's": {
             leftTeam: ["RaFleming::"], //(NBA declaration not yet included in my automated feed)
           },
+          "South Carolina": {
+            leftTeam: ["CoMurray-bo::"], //(NBA declaration not yet included in my automated feed)
+          },
           Oregon: {
             leftTeam: ["NaBittle::"], //(NBA declaration not yet included in my automated feed)
           },
