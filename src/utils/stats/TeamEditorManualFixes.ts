@@ -1660,54 +1660,58 @@ export class TeamEditorManualFixes {
         return combinedOverrides;
       } else if (genderYear == "Men_2024/25") {
         // (could try https://hoopshype.com/lists/2025-nba-draft-early-entries-whos-testing-the-waters/)
+        // (and https://www.rookiescale.com/2025-early-entrant-tracker/)
         const manualOverrides_Men_2025_26: Record<
           string,
           TeamEditorManualFixModel
         > = {
-          Nebraska: {
-            superSeniorsReturning: new Set(["RiMast::"]),
+          Alabama: {
+            leftTeam: ["LaPhilon::"], //(NBA declaration not yet included in my automated feed)
           },
           Arkansas: {
-            leftTeam: ["AdThiero::"], //(NBA declaration not yet included in my automated feed)
-          },
-          Duke: {
-            leftTeam: ["CoFlagg::", "KhMaluach::", "KoKnueppel::"], //(NBA declaration not yet included in my automated feed)
+            leftTeam: ["AdThiero::", "BoFland::"], //(NBA declaration not yet included in my automated feed)
           },
           Baylor: {
             leftTeam: ["VjEdgecombe::"], //(NBA declaration not yet included in my automated feed)
           },
-          Georgia: {
-            leftTeam: ["AsNewell::"], //(NBA declaration not yet included in my automated feed)
+          BYU: {
+            leftTeam: ["EgDemin::"], //(NBA declaration not yet included in my automated feed)
           },
-          Texas: {
-            leftTeam: ["TrJohnson::"], //(NBA declaration not yet included in my automated feed)
+          Duke: {
+            leftTeam: ["CoFlagg::", "KhMaluach::", "KoKnueppel::"], //(NBA declaration not yet included in my automated feed)
           },
-          "Michigan St.": {
-            leftTeam: ["JaRichardson::"], //(NBA declaration not yet included in my automated feed)
+          Florida: {
+            leftTeam: ["AlCondon::"], //(NBA declaration not yet included in my automated feed)
           },
           Georgetown: {
             leftTeam: ["ThSorber::"], //(NBA declaration not yet included in my automated feed)
           },
-          BYU: {
-            leftTeam: ["EgDemin::"], //(NBA declaration not yet included in my automated feed)
-          },
-          Maryland: {
-            leftTeam: ["DeQueen::", "TaGapare::"], //(NBA declaration not yet included in my automated feed)
+          Georgia: {
+            leftTeam: ["AsNewell::"], //(NBA declaration not yet included in my automated feed)
           },
           Illinois: {
-            leftTeam: ["KaJakucionis::"], //(NBA declaration not yet included in my automated feed)
+            leftTeam: ["KaJakucionis::", "WiRiley::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Maryland: {
+            leftTeam: ["DeQueen::", "TaGapare::"], //(NBA declaration not yet included in my automated feed, and Gapare)
+          },
+          Michigan: {
+            leftTeam: ["DaWolf::"], //(NBA declaration not yet included in my automated feed)
+          },
+          "Michigan St.": {
+            leftTeam: ["JaRichardson::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Nebraska: {
+            superSeniorsReturning: new Set(["RiMast::"]),
           },
           Oklahoma: {
             leftTeam: ["JeFears::"], //(NBA declaration not yet included in my automated feed)
           },
-          UConn: {
-            leftTeam: ["LiMcNeeley::"], //(NBA declaration not yet included in my automated feed)
+          Oregon: {
+            leftTeam: ["NaBittle::"], //(NBA declaration not yet included in my automated feed)
           },
           Rutgers: {
             leftTeam: ["DyHarper::", "AcBailey::"], //(NBA declaration not yet included in my automated feed)
-          },
-          "St. John's": {
-            leftTeam: ["RjLuis::"], //(NBA declaration not yet included in my automated feed)
           },
           "Saint Joseph's": {
             leftTeam: ["RaFleming::"], //(NBA declaration not yet included in my automated feed)
@@ -1715,8 +1719,14 @@ export class TeamEditorManualFixes {
           "South Carolina": {
             leftTeam: ["CoMurray-bo::"], //(NBA declaration not yet included in my automated feed)
           },
-          Oregon: {
-            leftTeam: ["NaBittle::"], //(NBA declaration not yet included in my automated feed)
+          "St. John's": {
+            leftTeam: ["RjLuis::"], //(NBA declaration not yet included in my automated feed)
+          },
+          Texas: {
+            leftTeam: ["TrJohnson::"], //(NBA declaration not yet included in my automated feed)
+          },
+          UConn: {
+            leftTeam: ["LiMcNeeley::"], //(NBA declaration not yet included in my automated feed)
           },
         };
 
