@@ -3,6 +3,9 @@ import Head from "next/head";
 // Bootstrap imports:
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// Global styles
+import "../styles/globals.css";
+
 // Need this for FA to work with favicons
 import "@fortawesome/fontawesome-svg-core/styles.css";
 

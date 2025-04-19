@@ -35,6 +35,7 @@ import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -95,6 +96,10 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     },
   };
 
+  /** TODO experimentation, actually cue off showExpanded */
+  const isWideScreen = FeatureFlags.isActiveWindow(
+    FeatureFlags.expandedPlayerLeaderboard
+  );
   const [gaInited, setGaInited] = useState(false);
   const [dataEvent, setDataEvent] = useState(dataEventInit);
   const [dataSubEvent, setDataSubEvent] = useState({
@@ -358,7 +363,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     server != "localhost" ? `https://${server}` : "http://localhost:3000"
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
-    <Container>
+    <Container className={isWideScreen ? "wide_screen" : "medium_screen"}>
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />

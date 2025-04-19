@@ -293,6 +293,8 @@ export type PlayerLeaderboardParams = {
   geoCenterLat?: string;
   geoCenterLon?: string;
   geoZoom?: string;
+  // Expanded view
+  showExpanded?: boolean;
 };
 
 export type PlayerSeasonComparisonParams = {

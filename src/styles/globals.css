@@ -1,0 +1,61 @@
+/* Global styles */
+
+/* Ensure padding between 1400px and 1600px */
+@media (min-width: 1400px) and (max-width: 1600px) {
+   .container.wide_screen,
+   .container-lg.wide_screen,
+   .container-xl.wide_screen {
+   max-width: calc(100% - 40px); /* 20px padding each side */
+   }
+}
+/* Ensure padding between 1400px and 1600px */
+@media (min-width: 1400px) and (max-width: 1600px) {
+   .container.medium_screen,
+   .container-lg.medium_screen,
+   .container-xl.medium_screen {
+   max-width: calc(90% - 40px); /* 20px padding each side */
+   }
+}
+
+/* Increase container width on larger screens (above 1600px) */
+@media (min-width: 1601px) {
+   .container.wide_screen,
+   .container-lg.wide_screen,
+   .container-xl.wide_screen {
+   max-width: 1600px; /* Target width for xxl-like screens */
+   }
+}
+/* Increase container width on larger screens (above 1600px) */
+@media (min-width: 1601px) {
+   .container.medium_screen,
+   .container-lg.medium_screen,
+   .container-xl.medium_screen {
+   max-width: 1400px; /* Target width for xxl-like screens */
+   }
+}
+
+@media (min-width: 1800px) {
+   .container.wide_screen,
+   .container-lg.wide_screen,
+   .container-xl.wide_screen {
+   max-width: 1750px; /* Even wider for very large screens */
+   }
+}
+
+@media (min-width: 1800px) {
+   .container.medium_screen,
+   .container-lg.medium_screen,
+   .container-xl.medium_screen {
+   max-width: 1550px; /* Even wider for very large screens */
+   }
+}
+
+
+/* Ensure fluid containers always take full width if needed */
+.container-fluid {
+   width: 100%;
+   padding-right: 15px; /* Adjust default padding as needed */
+   padding-left: 15px;  /* Adjust default padding as needed */
+   margin-right: auto;
+   margin-left: auto;
+} 

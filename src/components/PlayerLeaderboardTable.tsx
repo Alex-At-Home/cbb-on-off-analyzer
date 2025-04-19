@@ -77,6 +77,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 // Geo:
 import dynamic from "next/dynamic";
 import { Badge } from "react-bootstrap";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -362,6 +363,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   const [isT100, setIsT100] = useState(startingState.t100 || false);
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
+
+  const [showExpanded, setShowExpanded] = useState(
+    _.isNil(startingState.showExpanded)
+      ? !FeatureFlags.isActiveWindow(FeatureFlags.expandedPlayerLeaderboard)
+      : startingState.showExpanded
+  );
 
   // Geo filtering
   const [geoBoundsChecker, setGeoBoundsChecker] = useState<
@@ -1697,12 +1704,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       table: (
         <GenericTable
           tableCopyId="playerLeaderboardTable"
-          tableFields={CommonTableDefs.onOffIndividualTable(
-            true,
-            possAsPct,
-            factorMins,
-            true
-          )}
+          tableFields={
+            showExpanded
+              ? CommonTableDefs.onOffIndividualTable(
+                  true,
+                  possAsPct,
+                  factorMins,
+                  true
+                )
+              : CommonTableDefs.singleRowPlayerLeaderboardOnOffStyle(
+                  factorMins,
+                  startingState.useRapm === false ? false : true,
+                  gender,
+                  year,
+                  isT100,
+                  isConfOnly
+                )
+          }
           tableData={maybeSubheaderRow.concat(tableData)}
           cellTooltipMode="none"
           extraInfoLookups={{
@@ -1987,7 +2005,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Container>
+    <Container
+      className={
+        "wide_screen" /* Only actually active if parent container also has this classname */
+      }
+    >
       <LoadingOverlay
         active={needToLoadQuery()}
         spinner

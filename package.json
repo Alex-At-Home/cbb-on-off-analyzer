@@ -4,7 +4,7 @@
   "description": "A simple SPA for rendering college basketball on/off analysis",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider' next",
     "build": "next build",
     "start": "next start",
     "test": "jest",

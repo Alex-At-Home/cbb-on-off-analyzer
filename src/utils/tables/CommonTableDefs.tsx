@@ -1,3 +1,7 @@
+// React imports:
+import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+
 // Component imports
 import GenericTable, {
   GenericTableOps,
@@ -6,6 +10,7 @@ import GenericTable, {
 
 // Util imports
 import { CbbColors } from "../CbbColors";
+import { TableDisplayUtils } from "./TableDisplayUtils"; // Import needed for tooltips/links if used
 
 // Lodash:
 import _ from "lodash";
@@ -494,6 +499,233 @@ export class CommonTableDefs {
             ], //(all RAPM)
       ])
     ) as Record<string, GenericTableColProps>;
+  };
+
+  /** Single row player leaderboard table with On/Off styling */
+  static readonly singleRowPlayerLeaderboardOnOffStyle = (
+    factorMins: boolean,
+    useRapm: boolean,
+    gender: string,
+    year: string,
+    isT100: boolean,
+    isConfOnly: boolean
+  ) => {
+    return {
+      // Player name column
+      title: GenericTableOps.addTitle(
+        "Player",
+        "Player name",
+        (_) => 1,
+        "left",
+        (val: any) => {
+          let elementToRender: React.ReactNode;
+          if (React.isValidElement(val)) {
+            elementToRender = val;
+          } else {
+            elementToRender = val?.toString() || "-";
+          }
+          // Wrap the element in a div with left alignment and no wrapping
+          return (
+            <div style={{ textAlign: "left", whiteSpace: "nowrap" }}>
+              {elementToRender}
+            </div>
+          );
+        }
+      ),
+      // Team column
+      team: {
+        ...GenericTableOps.addDataCol(
+          "Team",
+          "Team name",
+          GenericTableOps.defaultColorPicker,
+          (val: any) => {
+            if (React.isValidElement(val)) {
+              return val;
+            }
+            // Add nowrap styling
+            return (
+              <span style={{ whiteSpace: "nowrap" }}>
+                {val?.toString() || "-"}
+              </span>
+            );
+          }
+        ),
+        //colWidth: 20
+      },
+      // Position column
+      position: GenericTableOps.addDataCol(
+        "Pos",
+        "Player's position",
+        GenericTableOps.defaultColorPicker,
+        (val: any) => {
+          if (!val) return "-";
+
+          if (React.isValidElement(val)) {
+            return val;
+          }
+
+          const posString = String(val);
+          const posBreakdown = undefined;
+
+          return (
+            <OverlayTrigger
+              placement="auto"
+              overlay={TableDisplayUtils.buildPositionTooltip(
+                posString,
+                "season",
+                true,
+                posBreakdown
+              )}
+            >
+              <small>
+                <span style={{ whiteSpace: "nowrap" }}>{posString}</span>
+              </small>
+            </OverlayTrigger>
+          );
+        }
+      ),
+      sep0: GenericTableOps.addColSeparator(),
+      sep0_5: GenericTableOps.addColSeparator(),
+      // RAPM columns - Higher Off is better, Lower Def is better -> Red, Green
+      off_adj_rapm: GenericTableOps.addDataCol(
+        "Off",
+        useRapm
+          ? factorMins
+            ? "Offensive RAPM production (RAPM * mins%)"
+            : "Offensive RAPM"
+          : factorMins
+          ? "Offensive adjusted production (rating * mins%)"
+          : "Offensive adjusted rating",
+        CbbColors.picker(
+          CbbColors.diff10_p100_redGreen[1],
+          CbbColors.diff10_p100_redGreen[0]
+        ),
+        GenericTableOps.pointsOrHtmlFormatter
+      ),
+      def_adj_rapm: GenericTableOps.addDataCol(
+        "Def",
+        useRapm
+          ? factorMins
+            ? "Defensive RAPM production (RAPM * mins%)"
+            : "Defensive RAPM"
+          : factorMins
+          ? "Defensive adjusted production (rating * mins%)"
+          : "Defensive adjusted rating",
+        CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+        GenericTableOps.pointsOrHtmlFormatter
+      ),
+      net_rapm: GenericTableOps.addDataCol(
+        "Net",
+        useRapm
+          ? factorMins
+            ? "Net RAPM production (Off - Def)"
+            : "Net RAPM (Off - Def)"
+          : factorMins
+          ? "Net adjusted production (Off - Def)"
+          : "Net adjusted rating (Off - Def)",
+        CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+        GenericTableOps.pointsOrHtmlFormatter
+      ),
+      sep0_6: GenericTableOps.addColSeparator(),
+      // Shooting percentage columns - Higher is better -> Red, Green (use index [1] then [0])
+      off_efg: GenericTableOps.addDataCol(
+        "eFG%",
+        "Effective field goal% (3 pointers count 1.5x as much)",
+        CbbColors.picker(CbbColors.eFG[1], CbbColors.eFG[0]),
+        GenericTableOps.percentOrHtmlFormatter
+      ),
+      off_2p: GenericTableOps.addPctCol(
+        "2P%",
+        "2 point field goal percentage",
+        CbbColors.picker(CbbColors.fg2P[1], CbbColors.fg2P[0])
+      ),
+      off_3p: GenericTableOps.addPctCol(
+        "3P%",
+        "3 point field goal percentage",
+        CbbColors.picker(CbbColors.fg3P[1], CbbColors.fg3P[0])
+      ),
+      off_2pmid: GenericTableOps.addPctCol(
+        "Mid%",
+        "2 point field goal percentage (mid range)",
+        CbbColors.picker(CbbColors.fg2P_mid[1], CbbColors.fg2P_mid[0])
+      ),
+      off_2prim: GenericTableOps.addPctCol(
+        "Rim%",
+        "2 point field goal percentage (layup/dunk/etc)",
+        CbbColors.picker(CbbColors.fg2P_rim[1], CbbColors.fg2P_rim[0])
+      ),
+      sep2: GenericTableOps.addColSeparator(),
+      // Shooting rates columns - Neutral/Frequency -> Blue, Orange (use index [0] then [1] or custom)
+      off_3pr: GenericTableOps.addDataCol(
+        "3PR",
+        "Percentage of 3 pointers taken against all field goals",
+        CbbColors.picker(...CbbColors.fgr),
+        GenericTableOps.percentOrHtmlFormatter
+      ),
+      off_2pmidr: GenericTableOps.addDataCol(
+        "MidR",
+        "Percentage of mid range 2 pointers taken against all field goals",
+        CbbColors.picker(...CbbColors.fgr),
+        GenericTableOps.percentOrHtmlFormatter
+      ),
+      off_2primr: GenericTableOps.addDataCol(
+        "RimR",
+        "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
+        CbbColors.picker(...CbbColors.fgr),
+        GenericTableOps.percentOrHtmlFormatter
+      ),
+      off_ftr: GenericTableOps.addPctCol(
+        "FTR",
+        "Free Throw Rate (FTA/FGA)",
+        CbbColors.picker(...CbbColors.fgr)
+      ),
+      sep3: GenericTableOps.addColSeparator(),
+      // Other stats columns
+      off_usage: GenericTableOps.addDataCol(
+        "Usg",
+        "% of team possessions used in selected lineups",
+        CbbColors.picker(...CbbColors.usg),
+        GenericTableOps.percentOrHtmlFormatter
+      ),
+      off_assist: GenericTableOps.addDataCol(
+        "A%",
+        "Assist % for player in selected lineups",
+        CbbColors.picker(...CbbColors.p_ast),
+        GenericTableOps.percentOrHtmlFormatter
+      ),
+      off_to: GenericTableOps.addPctCol(
+        "TO%",
+        "Turnover % in selected lineups",
+        CbbColors.picker(CbbColors.p_tOver[1], CbbColors.p_tOver[0])
+      ),
+      // Rebounding columns - Higher is better -> Red, Green
+      off_orb: GenericTableOps.addPctCol(
+        "OR%",
+        "Offensive rebounding % in selected lineups",
+        CbbColors.picker(CbbColors.p_oReb[1], CbbColors.p_oReb[0])
+      ),
+      def_orb: GenericTableOps.addPctCol(
+        "DR%",
+        "Defensive rebounding % in selected lineups",
+        CbbColors.picker(CbbColors.p_dReb[1], CbbColors.p_dReb[0])
+      ),
+      def_stl: GenericTableOps.addPctCol(
+        "Stl%",
+        "Steal % in selected lineups",
+        CbbColors.picker(CbbColors.p_def_TO, CbbColors.p_def_TO)
+      ),
+      def_blk: GenericTableOps.addPctCol(
+        "Blk%",
+        "Block % in selected lineups",
+        CbbColors.picker(CbbColors.p_def_2P_rim, CbbColors.p_def_2P_rim)
+      ),
+      // Added Poss%
+      team_poss_pct: GenericTableOps.addPctCol(
+        "Poss%",
+        "% of team possessions player was on the floor for",
+        GenericTableOps.defaultColorPicker
+      ),
+    } as Record<string, GenericTableColProps>;
   };
 
   // LINEUP:
