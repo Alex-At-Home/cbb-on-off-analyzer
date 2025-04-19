@@ -1435,29 +1435,33 @@ export async function main() {
             return lineup;
           });
 
-          if (inNaturalTier || !injectAllRapmForNbaFolks) {
-            //(if building bigger table for sharing then discard duplicates)
-
-            switch (label) {
-              case "all":
-                savedLineups.push(...tableData);
+          switch (label) {
+            case "all":
+              //(Lineup table doesn't have a single view so we duplcate)
+              savedLineups.push(...tableData);
+              //(Originally we did the same for players but now we have a combo view, we can avoid the hassle)
+              if (inNaturalTier) {
                 savedPlayers.push(...enrichedAndFilteredPlayers);
                 savedLowVolumePlayers.push(
                   ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)
                 );
-                break;
-              case "conf":
-                savedConfOnlyLineups.push(...tableData);
+              }
+              break;
+            case "conf":
+              savedConfOnlyLineups.push(...tableData);
+              if (inNaturalTier) {
                 savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
-                break;
-              case "t100":
-                savedT100Lineups.push(...tableData);
+              }
+              break;
+            case "t100":
+              savedT100Lineups.push(...tableData);
+              if (inNaturalTier) {
                 savedT100Players.push(...enrichedAndFilteredPlayers);
-                break;
+              }
+              break;
 
-              default:
-                console.log(`WARNING unexpected label: ${label}`);
-            }
+            default:
+              console.log(`WARNING unexpected label: ${label}`);
           }
         }
       )

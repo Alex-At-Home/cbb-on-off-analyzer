@@ -21,7 +21,7 @@ export class DateUtils {
   static readonly showOffseasonMetrics: Boolean = true;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
-  static readonly inSeasonYear: string = "2024/25";
+  static readonly inSeasonYear: string = "2025/26";
 
   /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season (tbc: June 2023 offseason == 2022/23) */
   static readonly offseasonYear: string = "2024/25";
