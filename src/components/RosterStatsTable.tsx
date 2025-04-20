@@ -44,6 +44,7 @@ import OnBallDefenseModal from "./shared/OnBallDefenseModal";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView";
 import AsyncFormControl from "./shared/AsyncFormControl";
+import StickyRow from "./shared/StickyRow";
 
 // Util imports
 import {
@@ -1820,7 +1821,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       <span>{data.label}</span>
     </div>
   );
-  return (
+  return typeof window !== `undefined` || testMode ? ( //(don't render as SSR)
     <Container>
       <LoadingOverlay
         active={needToLoadQuery()}
@@ -1917,42 +1918,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             </InputGroup>
           </Form.Group>
         </Form.Row>
-        {
-          // Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens
-          // (except if sticky toggle turned off then always show the bottom one)
-          stickyQuickToggle ? (
-            <Form.Row
-              className="sticky-top pt-1 d-none d-md-flex"
-              style={{
-                position: "sticky",
-                top: "1em",
-                backgroundColor: "white",
-                opacity: "85%",
-                zIndex: 2,
-              }}
-            >
-              <Col sm="11">{quickToggleBar}</Col>
-              <Form.Group as={Col} sm="1" className="mb-0">
-                {optionsDropdown}
-              </Form.Group>
-            </Form.Row>
-          ) : (
-            <Form.Row className={`pt-1 d-none d-md-flex`}>
-              <Col sm="11">{quickToggleBar}</Col>
-              <Form.Group as={Col} sm="1" className="mb-0">
-                {optionsDropdown}
-              </Form.Group>
-            </Form.Row>
-          )
-        }
-        <Form.Row className={`pt-1 d-md-none`}>
+        <StickyRow className="pt-1" stickyEnabled={stickyQuickToggle}>
           <Col sm="11">{quickToggleBar}</Col>
           <Form.Group as={Col} sm="1" className="mb-0">
             {optionsDropdown}
           </Form.Group>
-        </Form.Row>
-        <div />
-        {/*(for some reason need this or the Row belong inherits the properties of the Row above!)*/}
+        </StickyRow>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
@@ -1965,7 +1936,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         </Row>
       </LoadingOverlay>
     </Container>
-  );
+  ) : null;
 };
 
 export default RosterStatsTable;

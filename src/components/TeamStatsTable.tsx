@@ -28,6 +28,7 @@ import LuckConfigModal from "./shared/LuckConfigModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import StickyRow from "./shared/StickyRow";
 
 // Util imports
 import { ShotStatsModel, TeamStatSet } from "../utils/StatModels";
@@ -77,6 +78,7 @@ type Props = {
     refBase: React.RefObject<HTMLTableRowElement>;
     refDiffs: React.RefObject<HTMLTableRowElement>;
   };
+  testMode?: boolean; //(if set, the initial processing occurs synchronously)
 };
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({
@@ -84,6 +86,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   dataEvent,
   onChangeState,
   navigationRefs,
+  testMode,
 }) => {
   const { teamStats, rosterStats, shotStats, lineupStats } = dataEvent;
   const server =
@@ -483,7 +486,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     </GenericTogglingMenu>
   );
 
-  return (
+  return typeof window !== `undefined` || testMode ? ( //(don't render as SSR)
     <Container>
       <LoadingOverlay
         active={needToLoadQuery()}
@@ -500,44 +503,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           luck={luckConfig}
           showHelp={showHelp}
         />
-        {
-          // Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens
-          // (except if sticky toggle turned off then always show the bottom one)
-          stickyQuickToggle ? (
-            <Form.Row
-              className="sticky-top pt-1 d-none d-md-flex"
-              style={{
-                position: "sticky",
-                top: "1em",
-                backgroundColor: "white",
-                opacity: "85%",
-                zIndex: 2,
-              }}
-            >
-              <Col sm="11">
-                <Form.Row>
-                  <Col>{quickToggleBar}</Col>
-                </Form.Row>
-              </Col>
-              <Form.Group as={Col} sm="1" className="mb-0">
-                {fullHelpDropdown}
-              </Form.Group>
-            </Form.Row>
-          ) : (
-            //(duplicate here + row below otherwise the rendered can get confused with assigning properties vs rows)
-            <Form.Row className={`pt-1 d-none d-md-flex`}>
-              <Col sm="11">
-                <Form.Row>
-                  <Col>{quickToggleBar}</Col>
-                </Form.Row>
-              </Col>
-              <Form.Group as={Col} sm="1" className="mb-0">
-                {fullHelpDropdown}
-              </Form.Group>
-            </Form.Row>
-          )
-        }
-        <Form.Row className={`pt-1 d-md-none`}>
+        <StickyRow className="pt-1" stickyEnabled={stickyQuickToggle}>
           <Col sm="11">
             <Form.Row>
               <Col>{quickToggleBar}</Col>
@@ -546,7 +512,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} sm="1" className="mb-0">
             {fullHelpDropdown}
           </Form.Group>
-        </Form.Row>
+        </StickyRow>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
@@ -559,7 +525,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         </Row>
       </LoadingOverlay>
     </Container>
-  );
+  ) : null;
 };
 
 export default TeamStatsTable;

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import RosterStatsTable from "../RosterStatsTable";
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
@@ -11,8 +15,26 @@ import fs from "fs";
 //@ts-nocheck
 import fetchMock from "isomorphic-unfetch";
 
+import { render, screen, waitFor } from "@testing-library/react";
+const ResizeObserver = (window as any).ResizeObserver;
+
 describe("RosterStatsTable", () => {
   const testYear = "2021/22";
+
+  beforeEach(() => {
+    delete (window as any).ResizeObserver;
+    (window as any).ResizeObserver = jest.fn().mockImplementation(() => ({
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    }));
+  });
+
+  afterEach(() => {
+    (window as any).ResizeObserver = ResizeObserver;
+    (fetchMock as any).restore();
+    (fetchMock as any).reset();
+  });
 
   const sampleData = JSON.parse(
     fs.readFileSync(
@@ -55,7 +77,9 @@ describe("RosterStatsTable", () => {
     )
   );
 
-  test("RosterStatsTable (baseline only, !expanded) - should create snapshot", () => {
+  // First test, we're experimenting with using the new RTL renderer
+
+  test("RosterStatsTable (baseline only, !expanded) - should create snapshot", async () => {
     const testData = {
       on: [],
       off: [],
@@ -68,8 +92,9 @@ describe("RosterStatsTable", () => {
       other: [],
       error_code: undefined,
     };
-    const wrapper = shallow(
+    const { container } = render(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{ showExpanded: false }}
         dataEvent={{
           teamStats: {
@@ -86,8 +111,15 @@ describe("RosterStatsTable", () => {
         onChangeState={(newParams: GameFilterParams) => {}}
       />
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    //expect(toJson(wrapper)).toMatchSnapshot();
+    // Use waitFor to wait for state updates or DOM changes
+    await waitFor(() => {
+      expect(container).toMatchSnapshot(); // This accesses the root DOM container
+    });
   });
+
+  // Subsequent tests - we go back to using the (deprecated) shallow renderer
+
   test("RosterStatsTable (baseline only, expanded) - should create snapshot", () => {
     const testData = {
       on: [],
@@ -103,6 +135,7 @@ describe("RosterStatsTable", () => {
     };
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{ showExpanded: true }}
         dataEvent={{
           teamStats: {
@@ -138,6 +171,7 @@ describe("RosterStatsTable", () => {
     };
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{ onQuery: "testQon", offQuery: `testQoff` }}
         dataEvent={{
           teamStats: {
@@ -173,6 +207,7 @@ describe("RosterStatsTable", () => {
     };
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{ showExpanded: true }}
         dataEvent={{
           teamStats: {
@@ -208,6 +243,7 @@ describe("RosterStatsTable", () => {
 
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{
           onOffLuck: true,
           showPlayerOnOffLuckDiags: true,
@@ -248,6 +284,7 @@ describe("RosterStatsTable", () => {
 
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{
           onOffLuck: false,
           showPlayerOnOffLuckDiags: true,
@@ -297,6 +334,7 @@ describe("RosterStatsTable", () => {
 
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{
           onOffLuck: true,
           showPlayerOnOffLuckDiags: true,
@@ -366,6 +404,7 @@ describe("RosterStatsTable", () => {
 
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{
           onOffLuck: false,
           showPlayerOnOffLuckDiags: false,
@@ -410,6 +449,7 @@ describe("RosterStatsTable", () => {
 
     const wrapper = shallow(
       <RosterStatsTable
+        testMode={true}
         gameFilterParams={{
           onOffLuck: false,
           showPlayerOnOffLuckDiags: false,

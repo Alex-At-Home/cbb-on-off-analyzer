@@ -78,6 +78,7 @@ describe("TeamStatsTable", () => {
   test("TeamStatsTable - should create snapshot", () => {
     const { container } = render(
       <TeamStatsTable
+        testMode={true}
         gameFilterParams={{}}
         dataEvent={{
           teamStats: testData,
@@ -132,6 +133,7 @@ describe("TeamStatsTable", () => {
 
     const { container } = render(
       <TeamStatsTable
+        testMode={true}
         gameFilterParams={{
           year: testYear,
           onOffLuck: true,
@@ -201,6 +203,7 @@ describe("TeamStatsTable", () => {
 
     const { container } = render(
       <TeamStatsTable
+        testMode={true}
         gameFilterParams={{
           year: testYear,
           showGrades: ParamDefaults.defaultEnabledGrade,
