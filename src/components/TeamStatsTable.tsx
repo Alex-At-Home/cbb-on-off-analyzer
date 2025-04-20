@@ -169,8 +169,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   /** Whether we are showing the luck config modal */
   const [showLuckConfig, setShowLuckConfig] = useState(false);
 
+  /** Whether to make the quick toggle bar stick (default: on) */
+  const [stickyQuickToggle, setStickyQuickToggle] = useState(
+    _.isNil(gameFilterParams.stickyQuickToggle)
+      ? true
+      : gameFilterParams.stickyQuickToggle
+  );
+
   useEffect(() => {
-    //(keep luck and grades up to date between the two views)
+    //(keep luck and grades and other shared params up to date between the two views)
     setAdjustForLuck(
       _.isNil(gameFilterParams.onOffLuck)
         ? ParamDefaults.defaultOnOffLuckAdjust
@@ -183,6 +190,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     );
     setShowGrades(
       _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
+    );
+    setStickyQuickToggle(
+      _.isNil(gameFilterParams.stickyQuickToggle)
+        ? true
+        : gameFilterParams.stickyQuickToggle
     );
   }, [gameFilterParams]);
 
@@ -227,6 +239,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showGrades: showGrades,
       teamShotCharts: showShotCharts,
       teamShotChartsShowZones: shotChartConfig?.buildZones,
+      stickyQuickToggle,
     };
     onChangeState(newState);
   }, [
@@ -241,6 +254,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     showGrades,
     showShotCharts,
     shotChartConfig,
+    stickyQuickToggle,
   ]);
 
   const tableInfo = TeamStatsTableUtils.buildRows(
@@ -448,9 +462,23 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       />
       <Dropdown.Divider />
       <GenericTogglingMenuItem
-        text="Show Luck Adjustment diagnostics"
+        text="Show Luck Adjustment Diagnostics"
         truthVal={showLuckAdjDiags}
         onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        className="d-none d-md-flex"
+        text="'Quick Select' Bar Is Sticky"
+        truthVal={stickyQuickToggle}
+        onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+      />
+      <GenericTogglingMenuItem
+        className="d-md-none"
+        disabled={true}
+        text="Sticky 'Quick Select' Bar Disabled"
+        truthVal={false}
+        onSelect={() => {}}
       />
     </GenericTogglingMenu>
   );
@@ -472,33 +500,50 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           luck={luckConfig}
           showHelp={showHelp}
         />
-        {/* Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens*/}
-        <Form.Row
-          className="sticky-top pt-1 d-none d-md-flex"
-          style={{
-            position: "sticky",
-            top: "1em",
-            backgroundColor: "white",
-            opacity: "85%",
-            zIndex: 2,
-          }}
-        >
+        {
+          // Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens
+          // (except if sticky toggle turned off then always show the bottom one)
+          stickyQuickToggle ? (
+            <Form.Row
+              className="sticky-top pt-1 d-none d-md-flex"
+              style={{
+                position: "sticky",
+                top: "1em",
+                backgroundColor: "white",
+                opacity: "85%",
+                zIndex: 2,
+              }}
+            >
+              <Col sm="11">
+                <Form.Row>
+                  <Col>{quickToggleBar}</Col>
+                </Form.Row>
+              </Col>
+              <Form.Group as={Col} sm="1" className="mb-0">
+                {fullHelpDropdown}
+              </Form.Group>
+            </Form.Row>
+          ) : (
+            //(duplicate here + row below otherwise the rendered can get confused with assigning properties vs rows)
+            <Form.Row className={`pt-1 d-none d-md-flex`}>
+              <Col sm="11">
+                <Form.Row>
+                  <Col>{quickToggleBar}</Col>
+                </Form.Row>
+              </Col>
+              <Form.Group as={Col} sm="1" className="mb-0">
+                {fullHelpDropdown}
+              </Form.Group>
+            </Form.Row>
+          )
+        }
+        <Form.Row className={`pt-1 d-md-none`}>
           <Col sm="11">
             <Form.Row>
               <Col>{quickToggleBar}</Col>
             </Form.Row>
           </Col>
-          <Form.Group as={Col} sm="1">
-            {fullHelpDropdown}
-          </Form.Group>
-        </Form.Row>
-        <Form.Row className="pt-1 d-md-none">
-          <Col sm="11">
-            <Form.Row>
-              <Col>{quickToggleBar}</Col>
-            </Form.Row>
-          </Col>
-          <Form.Group as={Col} sm="1">
+          <Form.Group as={Col} sm="1" className="mb-0">
             {fullHelpDropdown}
           </Form.Group>
         </Form.Row>

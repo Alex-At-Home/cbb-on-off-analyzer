@@ -243,6 +243,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     true as boolean
   ); //(always defaults to on)
 
+  /** Whether to make the quick toggle bar stick (default: on) */
+  const [stickyQuickToggle, setStickyQuickToggle] = useState(
+    _.isNil(gameFilterParams.stickyQuickToggle)
+      ? true
+      : gameFilterParams.stickyQuickToggle
+  );
+
   /** Which players to filter */
   const [filterStr, setFilterStr] = useState(
     _.isNil(gameFilterParams.filter)
@@ -363,6 +370,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
     );
     setManualOverrides(gameFilterParams.manual || []);
+
+    setStickyQuickToggle(
+      _.isNil(gameFilterParams.stickyQuickToggle)
+        ? true
+        : gameFilterParams.stickyQuickToggle
+    );
   }, [gameFilterParams]);
 
   useEffect(() => {
@@ -391,6 +404,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       showPlayerManual: showManualOverrides,
       showOnBallConfig: showOnBallConfig,
       showInfoSubHeader: showInfoSubHeader,
+      stickyQuickToggle,
     };
     onChangeState(newState);
   }, [
@@ -414,6 +428,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     showGrades,
     rapmPriorMode,
     rapmRegressMode,
+    stickyQuickToggle,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache
@@ -1621,6 +1636,180 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     />
   );
 
+  const optionsDropdown = (
+    <GenericTogglingMenu>
+      <GenericTogglingMenuItem
+        text="Show expanded statistics"
+        truthVal={expandedView}
+        onSelect={() => setExpandedView(!expandedView)}
+      />
+      <GenericTogglingMenuItem
+        text="Always show baseline statistics"
+        truthVal={alwaysShowBaseline}
+        onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            {possAsPct
+              ? "Show possessions as count"
+              : "Show possessions as % of team"}
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => setPossAsPct(!possAsPct)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text={<span>Factor minutes % into Adjusted Rating+</span>}
+        truthVal={factorMins}
+        onSelect={() => toggleFactorMins()}
+      />
+      <GenericTogglingMenuItem
+        text="Show Player Ranks/Percentiles"
+        truthVal={showGrades != ""}
+        onSelect={() =>
+          setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)
+        }
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            Calculate RAPM metric (
+            <span className="badge badge-pill badge-info">alpha!</span>, slow)
+          </span>
+        }
+        truthVal={calcRapm}
+        onSelect={() => setCalcRapm(!calcRapm)}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            Adjust for Luck{" "}
+            <span className="badge badge-pill badge-info">alpha!</span>
+          </span>
+        }
+        truthVal={adjustForLuck}
+        onSelect={() => setAdjustForLuck(!adjustForLuck)}
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            : undefined
+        }
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            Configure Manual Overrides...{" "}
+            <span className="badge badge-pill badge-info">alpha!</span>
+          </span>
+        }
+        truthVal={showManualOverrides}
+        onSelect={() => setShowManualOverrides(!showManualOverrides)}
+      />
+      <GenericTogglingMenuItem
+        text="Configure Luck Adjustments..."
+        truthVal={false}
+        onSelect={() => setShowLuckConfig(true)}
+      />
+      <GenericTogglingMenuItem
+        text="Configure Advanced Stats..."
+        truthVal={false}
+        onSelect={() => setShowTeamRosterStatsConfig(true)}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            Upload On-Ball Defense...{" "}
+            <span className="badge badge-pill badge-info">pre-alpha!</span>
+          </span>
+        }
+        truthVal={showOnBallConfig}
+        onSelect={() => setShowOnBallConfig(true)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            Show Play Style Breakdowns{" "}
+            <span className="badge badge-pill badge-info">alpha!</span>
+          </span>
+        }
+        truthVal={showPlayTypes}
+        onSelect={() => setShowPlayTypes(!showPlayTypes)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Off/Def Rating diagnostics"
+        truthVal={showDiagMode}
+        onSelect={() => setShowDiagMode(!showDiagMode)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Positional diagnostics"
+        truthVal={showPositionDiags}
+        onSelect={() => setShowPositionDiags(!showPositionDiags)}
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            : undefined
+        }
+      />
+      <GenericTogglingMenuItem
+        text="Show Luck Adjustment diagnostics"
+        truthVal={showLuckAdjDiags}
+        onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <a
+            target="_blank"
+            href={UrlRouting.getTeamReportUrl({
+              ...getCommonFilterParams(gameFilterParams),
+              filter: gameFilterParams.filter,
+              showOnOff: false,
+              showComps: false,
+              incRepOnOff: false,
+              incRapm: true,
+              rapmDiagMode: "team",
+              rapmPriorMode: rapmPriorMode.toString(),
+              rapmRegressMode: rapmRegressMode.toString(),
+              luck: luckConfig,
+              teamLuck: adjustForLuck,
+            })}
+          >
+            Show RAPM diagnostrics (new tab)
+          </a>
+        }
+        truthVal={false}
+        onSelect={() => false}
+      />
+      <GenericTogglingMenuItem
+        text={"Show extra info sub-header"}
+        truthVal={showInfoSubHeader}
+        onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
+      />
+      <GenericTogglingMenuItem
+        text={"Show repeating header every 10 rows"}
+        truthVal={showRepeatingHeader}
+        onSelect={() => setShowRepeatingHeader(!showRepeatingHeader)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        className="d-none d-md-flex"
+        text="'Quick Select' Bar Is Sticky"
+        truthVal={stickyQuickToggle}
+        onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+      />
+      <GenericTogglingMenuItem
+        className="d-md-none"
+        disabled={true}
+        text="Sticky 'Quick Select' Bar Disabled"
+        truthVal={false}
+        onSelect={() => {}}
+      />
+    </GenericTogglingMenu>
+  );
+
   /** The sub-header builder - Can show some handy context in between the header and data rows: */
   const maybeSubheaderRow = showInfoSubHeader
     ? RosterTableUtils.buildInformationalSubheader(calcRapm, expandedView)
@@ -1727,187 +1916,43 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="1">
-            <GenericTogglingMenu>
-              <GenericTogglingMenuItem
-                text="Show expanded statistics"
-                truthVal={expandedView}
-                onSelect={() => setExpandedView(!expandedView)}
-              />
-              <GenericTogglingMenuItem
-                text="Always show baseline statistics"
-                truthVal={alwaysShowBaseline}
-                onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
-              />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    {possAsPct
-                      ? "Show possessions as count"
-                      : "Show possessions as % of team"}
-                  </span>
-                }
-                truthVal={false}
-                onSelect={() => setPossAsPct(!possAsPct)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text={<span>Factor minutes % into Adjusted Rating+</span>}
-                truthVal={factorMins}
-                onSelect={() => toggleFactorMins()}
-              />
-              <GenericTogglingMenuItem
-                text="Show Player Ranks/Percentiles"
-                truthVal={showGrades != ""}
-                onSelect={() =>
-                  setShowGrades(
-                    showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                  )
-                }
-              />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    Calculate RAPM metric (
-                    <span className="badge badge-pill badge-info">alpha!</span>,
-                    slow)
-                  </span>
-                }
-                truthVal={calcRapm}
-                onSelect={() => setCalcRapm(!calcRapm)}
-              />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    Adjust for Luck{" "}
-                    <span className="badge badge-pill badge-info">alpha!</span>
-                  </span>
-                }
-                truthVal={adjustForLuck}
-                onSelect={() => setAdjustForLuck(!adjustForLuck)}
-                helpLink={
-                  showHelp
-                    ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-                    : undefined
-                }
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    Configure Manual Overrides...{" "}
-                    <span className="badge badge-pill badge-info">alpha!</span>
-                  </span>
-                }
-                truthVal={showManualOverrides}
-                onSelect={() => setShowManualOverrides(!showManualOverrides)}
-              />
-              <GenericTogglingMenuItem
-                text="Configure Luck Adjustments..."
-                truthVal={false}
-                onSelect={() => setShowLuckConfig(true)}
-              />
-              <GenericTogglingMenuItem
-                text="Configure Advanced Stats..."
-                truthVal={false}
-                onSelect={() => setShowTeamRosterStatsConfig(true)}
-              />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    Upload On-Ball Defense...{" "}
-                    <span className="badge badge-pill badge-info">
-                      pre-alpha!
-                    </span>
-                  </span>
-                }
-                truthVal={showOnBallConfig}
-                onSelect={() => setShowOnBallConfig(true)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    Show Play Style Breakdowns{" "}
-                    <span className="badge badge-pill badge-info">alpha!</span>
-                  </span>
-                }
-                truthVal={showPlayTypes}
-                onSelect={() => setShowPlayTypes(!showPlayTypes)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Off/Def Rating diagnostics"
-                truthVal={showDiagMode}
-                onSelect={() => setShowDiagMode(!showDiagMode)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Positional diagnostics"
-                truthVal={showPositionDiags}
-                onSelect={() => setShowPositionDiags(!showPositionDiags)}
-                helpLink={
-                  showHelp
-                    ? "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
-                    : undefined
-                }
-              />
-              <GenericTogglingMenuItem
-                text="Show Luck Adjustment diagnostics"
-                truthVal={showLuckAdjDiags}
-                onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
-              />
-              <GenericTogglingMenuItem
-                text={
-                  <a
-                    target="_blank"
-                    href={UrlRouting.getTeamReportUrl({
-                      ...getCommonFilterParams(gameFilterParams),
-                      filter: gameFilterParams.filter,
-                      showOnOff: false,
-                      showComps: false,
-                      incRepOnOff: false,
-                      incRapm: true,
-                      rapmDiagMode: "team",
-                      rapmPriorMode: rapmPriorMode.toString(),
-                      rapmRegressMode: rapmRegressMode.toString(),
-                      luck: luckConfig,
-                      teamLuck: adjustForLuck,
-                    })}
-                  >
-                    Show RAPM diagnostrics (new tab)
-                  </a>
-                }
-                truthVal={false}
-                onSelect={() => false}
-              />
-              <GenericTogglingMenuItem
-                text={"Show extra info sub-header"}
-                truthVal={showInfoSubHeader}
-                onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
-              />
-              <GenericTogglingMenuItem
-                text={"Show repeating header every 10 rows"}
-                truthVal={showRepeatingHeader}
-                onSelect={() => setShowRepeatingHeader(!showRepeatingHeader)}
-              />
-            </GenericTogglingMenu>
+        </Form.Row>
+        {
+          // Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens
+          // (except if sticky toggle turned off then always show the bottom one)
+          stickyQuickToggle ? (
+            <Form.Row
+              className="sticky-top pt-1 d-none d-md-flex"
+              style={{
+                position: "sticky",
+                top: "1em",
+                backgroundColor: "white",
+                opacity: "85%",
+                zIndex: 2,
+              }}
+            >
+              <Col sm="11">{quickToggleBar}</Col>
+              <Form.Group as={Col} sm="1" className="mb-0">
+                {optionsDropdown}
+              </Form.Group>
+            </Form.Row>
+          ) : (
+            <Form.Row className={`pt-1 d-none d-md-flex`}>
+              <Col sm="11">{quickToggleBar}</Col>
+              <Form.Group as={Col} sm="1" className="mb-0">
+                {optionsDropdown}
+              </Form.Group>
+            </Form.Row>
+          )
+        }
+        <Form.Row className={`pt-1 d-md-none`}>
+          <Col sm="11">{quickToggleBar}</Col>
+          <Form.Group as={Col} sm="1" className="mb-0">
+            {optionsDropdown}
           </Form.Group>
         </Form.Row>
-        {/* Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens*/}
-        <Form.Row
-          className="sticky-top pt-1 d-none d-md-flex"
-          style={{
-            position: "sticky",
-            top: "1em",
-            backgroundColor: "white",
-            opacity: "85%",
-            zIndex: 2,
-          }}
-        >
-          <Col sm="11">{quickToggleBar}</Col>
-        </Form.Row>
-        <Form.Row className="pt-1 d-md-none">
-          <Col sm="11">{quickToggleBar}</Col>
-        </Form.Row>
+        <div />
+        {/*(for some reason need this or the Row belong inherits the properties of the Row above!)*/}
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable

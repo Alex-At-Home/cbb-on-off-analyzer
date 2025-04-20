@@ -262,6 +262,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.showExpanded == ParamDefaults.defaultPlayerShowExpanded
           ? ["showExpanded"]
           : [],
+        rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
         rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode
           ? ["showDiag"]
           : [],

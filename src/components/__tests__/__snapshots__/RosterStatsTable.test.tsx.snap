@@ -5879,6 +5879,86 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -5886,6 +5966,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -6055,88 +6136,24 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -6208,7 +6225,203 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -10016,6 +10229,86 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -10023,6 +10316,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -10192,88 +10486,24 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -10345,7 +10575,203 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -13154,6 +13580,86 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -13161,6 +13667,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -13330,88 +13837,24 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show single row of player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -13483,7 +13926,203 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -19164,6 +19803,86 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -19171,6 +19890,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -19340,88 +20060,24 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show single row of player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -19493,7 +20149,203 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -27157,6 +28009,86 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -27164,6 +28096,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -27333,88 +28266,24 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -27486,7 +28355,203 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -35524,6 +36589,86 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -35531,6 +36676,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -35700,88 +36846,24 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show single row of player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -35853,7 +36935,203 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -47339,6 +48617,86 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -47346,6 +48704,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -47515,88 +48874,24 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Remove luck adjustments",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -47668,7 +48963,203 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=true&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -56355,6 +57846,94 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <Badge
+                      pill={false}
+                      variant="dark"
+                    >
+                      4
+                    </Badge>
+                  </small>
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -56362,6 +57941,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -56531,96 +58111,24 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Remove luck adjustments",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                   
-                  <small>
-                    <Badge
-                      pill={false}
-                      variant="dark"
-                    >
-                      4
-                    </Badge>
-                  </small>
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -56700,7 +58208,203 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=true&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}
@@ -68427,6 +70131,94 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
         </InputGroup>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <Badge
+                      pill={false}
+                      variant="dark"
+                    >
+                      1
+                    </Badge>
+                  </small>
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
       <FormGroup
         as={
           Object {
@@ -68434,6 +70226,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             "render": [Function],
           }
         }
+        className="mb-0"
         sm="1"
       >
         <GenericTogglingMenu>
@@ -68603,96 +70396,24 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             text="Show repeating header every 10 rows"
             truthVal={true}
           />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
         </GenericTogglingMenu>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1 d-none d-md-flex"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                   
-                  <small>
-                    <Badge
-                      pill={false}
-                      variant="dark"
-                    >
-                      1
-                    </Badge>
-                  </small>
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
     </FormRow>
     <FormRow
       className="pt-1 d-md-none"
@@ -68772,7 +70493,203 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           }
         />
       </Col>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show expanded statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Configure Manual Overrides...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense...
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show Play Style Breakdowns
+                 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Off/Def Rating diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+            onSelect={[Function]}
+            text="Show Positional diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
     </FormRow>
+    <div />
     <Row
       className="mt-2"
       noGutters={false}

@@ -117,7 +117,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
           </div>
         </div>
         <div
-          class="form-group col-sm-1"
+          class="mb-0 form-group col-sm-1"
         >
           <div
             class="dropup"
@@ -260,7 +260,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
           </div>
         </div>
         <div
-          class="form-group col-sm-1"
+          class="mb-0 form-group col-sm-1"
         >
           <div
             class="dropup"
@@ -2365,7 +2365,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
           </div>
         </div>
         <div
-          class="form-group col-sm-1"
+          class="mb-0 form-group col-sm-1"
         >
           <div
             class="dropup"
@@ -2508,7 +2508,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
           </div>
         </div>
         <div
-          class="form-group col-sm-1"
+          class="mb-0 form-group col-sm-1"
         >
           <div
             class="dropup"
@@ -10304,7 +10304,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
           </div>
         </div>
         <div
-          class="form-group col-sm-1"
+          class="mb-0 form-group col-sm-1"
         >
           <div
             class="dropup"
@@ -10447,7 +10447,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
           </div>
         </div>
         <div
-          class="form-group col-sm-1"
+          class="mb-0 form-group col-sm-1"
         >
           <div
             class="dropup"

@@ -129,6 +129,7 @@ export type GameFilterParams = {
   otherQueries?: QueryWithFilters[]; // In addition to A-on/B-off, allows for C+ queries
   autoOffQuery?: boolean;
   showGrades?: string;
+  stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
   // Team view
   teamDiffs?: boolean;
   showExtraInfo?: boolean;
@@ -251,6 +252,7 @@ export type TeamStatsExplorerParams = {
   luck?: LuckParams; //(missing iff default)
   maxTableSize?: string;
   secretQuery?: string; //(allows table view of all teams)
+  stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
 };
 
 export type OffseasonLeaderboardParams = {
@@ -293,8 +295,9 @@ export type PlayerLeaderboardParams = {
   geoCenterLat?: string;
   geoCenterLon?: string;
   geoZoom?: string;
-  // Expanded view
+  // Misc view controls
   showExpanded?: boolean;
+  stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
 };
 
 export type PlayerSeasonComparisonParams = {
