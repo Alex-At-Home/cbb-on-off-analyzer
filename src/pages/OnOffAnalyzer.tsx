@@ -42,6 +42,7 @@ import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { sk } from "date-fns/locale";
+import { screen } from "@testing-library/react";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -333,6 +334,13 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
+  // const indivCardSize = gameFilterParams.showExpanded
+  //   ? "medium_screen"
+  //   : "wide_screen";
+  // (For now just make everything medium screen)
+  const indivCardSize = "medium_screen";
+  const otherCardSize = "medium_screen";
+
   function maybeShowDocs() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
       return "https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html";
@@ -346,6 +354,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
+        screenSize={otherCardSize}
         title="Team Analysis"
         helpLink={maybeShowDocs()}
       >
@@ -370,6 +379,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
+        screenSize={otherCardSize}
         title="Individual Analysis"
         helpLink={maybeShowDocs()}
       >
@@ -383,7 +393,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   }, [dataEvent]);
 
   return (
-    <Container>
+    <Container className={indivCardSize}>
       <Row ref={topRef}>
         <Col xs={12} className="text-center">
           <h3>
@@ -398,6 +408,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       <Row>
         <GenericCollapsibleCard
           minimizeMargin={false}
+          screenSize={otherCardSize}
           title="Team and Game Filter"
           summary={HistoryManager.gameFilterSummary(gameFilterParams)}
         >
@@ -414,6 +425,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       <Row ref={indivAnalysisRef}>{rosterStatsTable}</Row>
       <Row ref={lineupComparisonRef}>
         <GenericCollapsibleCard
+          screenSize={otherCardSize}
           minimizeMargin={false}
           title="Lineup Comparison"
           helpLink={maybeShowDocs()}

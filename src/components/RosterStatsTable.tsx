@@ -1822,7 +1822,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     </div>
   );
   return typeof window !== `undefined` || testMode ? ( //(don't render as SSR)
-    <Container>
+    <Container fluid>
       <LoadingOverlay
         active={needToLoadQuery()}
         text={

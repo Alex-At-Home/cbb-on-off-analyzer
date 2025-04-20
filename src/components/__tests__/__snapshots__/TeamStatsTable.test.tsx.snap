@@ -3,7 +3,7 @@
 exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
 <div>
   <div
-    class="container"
+    class="container-fluid"
   >
     <div>
       <div
@@ -2251,7 +2251,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
 exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + diagnostics + grades shown 1`] = `
 <div>
   <div
-    class="container"
+    class="container-fluid"
   >
     <div>
       <div
@@ -10190,7 +10190,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
 exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional override + diagnostics + grades shown 1`] = `
 <div>
   <div
-    class="container"
+    class="container-fluid"
   >
     <div>
       <div

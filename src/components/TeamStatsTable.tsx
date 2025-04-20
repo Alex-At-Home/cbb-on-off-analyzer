@@ -487,7 +487,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   );
 
   return typeof window !== `undefined` || testMode ? ( //(don't render as SSR)
-    <Container>
+    <Container fluid>
       <LoadingOverlay
         active={needToLoadQuery()}
         text={

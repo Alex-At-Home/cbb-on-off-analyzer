@@ -13,6 +13,7 @@ import Container from "react-bootstrap/Container";
 type Props = {
   /** Much smaller margin => looks good for table-oriented displays */
   readonly minimizeMargin: boolean;
+  readonly screenSize?: "wide_screen" | "medium_screen";
   readonly title: string;
   readonly summary?: string;
   readonly helpLink?: string;
@@ -23,6 +24,7 @@ type Props = {
 const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   children,
   minimizeMargin,
+  screenSize,
   title,
   summary,
   helpLink,
@@ -82,7 +84,9 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
         </Card.Title>
         {showSummaryIfHidden()}
         <Collapse in={showTable}>
-          <Container style={containerStyle}>{children}</Container>
+          <Container className={`${screenSize || ""}`} style={containerStyle}>
+            {children}
+          </Container>
         </Collapse>
       </Card.Body>
     </Card>

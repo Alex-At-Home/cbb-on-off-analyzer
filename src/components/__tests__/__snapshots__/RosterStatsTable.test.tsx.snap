@@ -2,7 +2,7 @@
 
 exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -7590,7 +7590,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should create snapshot 1`] = `
 <div>
   <div
-    class="container"
+    class="container-fluid"
   >
     <div>
       <div />
@@ -8849,7 +8849,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
 
 exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -12289,7 +12289,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
 exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -19096,7 +19096,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
 exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -28245,7 +28245,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
 
 exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -39034,7 +39034,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
 exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -47771,7 +47771,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
 exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diags) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -60093,7 +60093,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
 exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showing, all the diags) - should create snapshot 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}

@@ -2,6 +2,7 @@
 
 exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
 <Container
+  className="medium_screen"
   fluid={false}
 >
   <Row
@@ -35,6 +36,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   >
     <GenericCollapsibleCard
       minimizeMargin={false}
+      screenSize="medium_screen"
       summary="On/Off: 2024/25  (M): on:'', auto-off, base:''"
       title="Team and Game Filter"
     >
@@ -78,6 +80,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       minimizeMargin={true}
+      screenSize="medium_screen"
       title="Team Analysis"
     >
       <TeamStatsTable
@@ -210,6 +213,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       minimizeMargin={true}
+      screenSize="medium_screen"
       title="Individual Analysis"
     >
       <RosterStatsTable
@@ -264,6 +268,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       minimizeMargin={false}
+      screenSize="medium_screen"
       title="Lineup Comparison"
     >
       <RosterCompareTable
