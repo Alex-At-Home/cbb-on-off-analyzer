@@ -2,7 +2,7 @@
 
 exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose baseline 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <Col
     xs={12}
@@ -881,7 +881,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
 
 exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose sample 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <Col
     xs={12}
@@ -1538,7 +1538,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
 
 exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <Col
     xs={12}
