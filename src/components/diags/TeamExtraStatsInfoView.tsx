@@ -518,45 +518,47 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       <b>Extra stats info for [{name}]</b>
       <br />
       <br />
-      <Container className="float-left">
-        <Row>Play type stats:</Row>
+      <Container fluid className="float-left">
         <Row>
-          <Col xs={8} sm={12} lg={8}>
+          <Col xs={8} sm={12} lg={8} xl={6}>
+            <p>Play type stats:</p>
             <GenericTable
               tableCopyId={`playTypeStats_${nameAsId}`}
               tableFields={playTypeTable}
               tableData={playTypeTableData}
             />
           </Col>
-        </Row>
-        <Row>More assist stats:</Row>
-        <Row>
-          <Col xs={8} sm={12} lg={8}>
-            <GenericTable
-              tableCopyId={`assistStats_${nameAsId}`}
-              tableFields={assistDetailsTable}
-              tableData={assistTableData}
-            />
+          <Col xs={8} sm={12} lg={8} xl={6}>
+            <Container fluid>
+              <Row>
+                <p>More assist stats:</p>
+                <GenericTable
+                  tableCopyId={`assistStats_${nameAsId}`}
+                  tableFields={assistDetailsTable}
+                  tableData={assistTableData}
+                />
+              </Row>
+              <Row>Misc other stats:</Row>
+              <Row>
+                <ul>
+                  <li>
+                    3P Defensive SoS: [
+                    <b
+                      style={CommonTableDefs.getTextShadow(
+                        { value: 0.01 * def_3p_SoS },
+                        CbbColors.def_3P
+                      )}
+                    >
+                      {def_3p_SoS.toFixed(1)}
+                    </b>
+                    ]%
+                    {def3pRankHtml}
+                  </li>
+                  <li>Raw tempo: {tempoHtml}</li>
+                </ul>
+              </Row>{" "}
+            </Container>
           </Col>
-        </Row>
-        <Row>Misc other stats:</Row>
-        <Row>
-          <ul>
-            <li>
-              3P Defensive SoS: [
-              <b
-                style={CommonTableDefs.getTextShadow(
-                  { value: 0.01 * def_3p_SoS },
-                  CbbColors.def_3P
-                )}
-              >
-                {def_3p_SoS.toFixed(1)}
-              </b>
-              ]%
-              {def3pRankHtml}
-            </li>
-            <li>Raw tempo: {tempoHtml}</li>
-          </ul>
         </Row>
       </Container>
     </span>

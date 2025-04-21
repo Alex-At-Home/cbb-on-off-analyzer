@@ -11,21 +11,20 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
   <br />
   <Container
     className="float-left"
-    fluid={false}
+    fluid={true}
   >
-    <Row
-      noGutters={false}
-    >
-      Play type stats:
-    </Row>
     <Row
       noGutters={false}
     >
       <Col
         lg={8}
         sm={12}
+        xl={6}
         xs={8}
       >
+        <p>
+          Play type stats:
+        </p>
         <GenericTable
           tableCopyId="playTypeStats_test"
           tableData={
@@ -404,249 +403,253 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           }
         />
       </Col>
-    </Row>
-    <Row
-      noGutters={false}
-    >
-      More assist stats:
-    </Row>
-    <Row
-      noGutters={false}
-    >
       <Col
         lg={8}
         sm={12}
+        xl={6}
         xs={8}
       >
-        <GenericTable
-          tableCopyId="assistStats_test"
-          tableData={
-            Array [
-              GenericTableSubHeaderRow {
-                "className": "text-center",
-                "cols": Array [
-                  "",
-                  <i>
-                    Assist distribution
-                  </i>,
-                  "",
-                  <i>
-                    % of these shots assisted
-                  </i>,
-                ],
-                "kind": "subheader-row",
-                "spans": Array [
-                  2,
-                  3,
-                  1,
-                  3,
-                ],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "off_3p_ast": Object {
-                    "value": 0.4938875305623472,
-                  },
-                  "off_ast_3p": Object {
-                    "value": 0.8487394957983193,
-                  },
-                  "off_ast_mid": Object {
-                    "value": 0.27450980392156865,
-                  },
-                  "off_ast_rim": Object {
-                    "value": 0.4430693069306931,
-                  },
-                  "off_mid_ast": Object {
-                    "value": 0.06845965770171149,
-                  },
-                  "off_rim_ast": Object {
-                    "value": 0.43765281173594134,
-                  },
-                  "off_title": "Offensive assist details",
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "def_3p_ast": Object {
-                    "value": 0.485,
-                  },
-                  "def_ast_3p": Object {
-                    "value": 0.8546255506607929,
-                  },
-                  "def_ast_mid": Object {
-                    "value": 0.3254437869822485,
-                  },
-                  "def_ast_rim": Object {
-                    "value": 0.4507462686567164,
-                  },
-                  "def_mid_ast": Object {
-                    "value": 0.1375,
-                  },
-                  "def_rim_ast": Object {
-                    "value": 0.3775,
-                  },
-                  "def_title": "Defensive assist details",
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-            ]
-          }
-          tableFields={
-            Object {
-              "3p_ast": GenericTableColProps {
-                "className": "",
-                "colName": "3P",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "% of assists for 3P",
-                "widthUnits": 2,
-              },
-              "ast_3p": GenericTableColProps {
-                "className": "",
-                "colName": "3P",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "% of assists for 3P",
-                "widthUnits": 2,
-              },
-              "ast_mid": GenericTableColProps {
-                "className": "",
-                "colName": "Mid",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "% of assists for mid-range 2P",
-                "widthUnits": 2,
-              },
-              "ast_rim": GenericTableColProps {
-                "className": "",
-                "colName": "Rim",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "% of assists for 2PAs at the rim",
-                "widthUnits": 2,
-              },
-              "mid_ast": GenericTableColProps {
-                "className": "",
-                "colName": "Mid",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "% of assists for mid-range 2P",
-                "widthUnits": 2,
-              },
-              "rim_ast": GenericTableColProps {
-                "className": "",
-                "colName": "Rim",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "% of assists for 2PAs at the rim",
-                "widthUnits": 2,
-              },
-              "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "title": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": true,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 8,
-              },
-            }
-          }
-        />
-      </Col>
-    </Row>
-    <Row
-      noGutters={false}
-    >
-      Misc other stats:
-    </Row>
-    <Row
-      noGutters={false}
-    >
-      <ul>
-        <li>
-          3P Defensive SoS: [
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-              }
-            }
+        <Container
+          fluid={true}
+        >
+          <Row
+            noGutters={false}
           >
-            33.0
-          </b>
-          ]%
-        </li>
-        <li>
-          Raw tempo: 
-          <span>
-            <b
-              style={
+            <p>
+              More assist stats:
+            </p>
+            <GenericTable
+              tableCopyId="assistStats_test"
+              tableData={
+                Array [
+                  GenericTableSubHeaderRow {
+                    "className": "text-center",
+                    "cols": Array [
+                      "",
+                      <i>
+                        Assist distribution
+                      </i>,
+                      "",
+                      <i>
+                        % of these shots assisted
+                      </i>,
+                    ],
+                    "kind": "subheader-row",
+                    "spans": Array [
+                      2,
+                      3,
+                      1,
+                      3,
+                    ],
+                  },
+                  GenericTableDataRow {
+                    "cellMetaFn": [Function],
+                    "colSpanOverride": undefined,
+                    "dataObj": Object {
+                      "off_3p_ast": Object {
+                        "value": 0.4938875305623472,
+                      },
+                      "off_ast_3p": Object {
+                        "value": 0.8487394957983193,
+                      },
+                      "off_ast_mid": Object {
+                        "value": 0.27450980392156865,
+                      },
+                      "off_ast_rim": Object {
+                        "value": 0.4430693069306931,
+                      },
+                      "off_mid_ast": Object {
+                        "value": 0.06845965770171149,
+                      },
+                      "off_rim_ast": Object {
+                        "value": 0.43765281173594134,
+                      },
+                      "off_title": "Offensive assist details",
+                    },
+                    "kind": "data-row",
+                    "prefixFn": [Function],
+                    "tableFieldsOverride": undefined,
+                  },
+                  GenericTableDataRow {
+                    "cellMetaFn": [Function],
+                    "colSpanOverride": undefined,
+                    "dataObj": Object {
+                      "def_3p_ast": Object {
+                        "value": 0.485,
+                      },
+                      "def_ast_3p": Object {
+                        "value": 0.8546255506607929,
+                      },
+                      "def_ast_mid": Object {
+                        "value": 0.3254437869822485,
+                      },
+                      "def_ast_rim": Object {
+                        "value": 0.4507462686567164,
+                      },
+                      "def_mid_ast": Object {
+                        "value": 0.1375,
+                      },
+                      "def_rim_ast": Object {
+                        "value": 0.3775,
+                      },
+                      "def_title": "Defensive assist details",
+                    },
+                    "kind": "data-row",
+                    "prefixFn": [Function],
+                    "tableFieldsOverride": undefined,
+                  },
+                ]
+              }
+              tableFields={
                 Object {
-                  "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
+                  "3p_ast": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "% of assists for 3P",
+                    "widthUnits": 2,
+                  },
+                  "ast_3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "% of assists for 3P",
+                    "widthUnits": 2,
+                  },
+                  "ast_mid": GenericTableColProps {
+                    "className": "",
+                    "colName": "Mid",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "% of assists for mid-range 2P",
+                    "widthUnits": 2,
+                  },
+                  "ast_rim": GenericTableColProps {
+                    "className": "",
+                    "colName": "Rim",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "% of assists for 2PAs at the rim",
+                    "widthUnits": 2,
+                  },
+                  "mid_ast": GenericTableColProps {
+                    "className": "",
+                    "colName": "Mid",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "% of assists for mid-range 2P",
+                    "widthUnits": 2,
+                  },
+                  "rim_ast": GenericTableColProps {
+                    "className": "",
+                    "colName": "Rim",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "% of assists for 2PAs at the rim",
+                    "widthUnits": 2,
+                  },
+                  "sep1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 8,
+                  },
                 }
               }
-            >
-              [
-              83.2
-              ]
-            </b>
-             
-            poss/g
-          </span>
-        </li>
-      </ul>
+            />
+          </Row>
+          <Row
+            noGutters={false}
+          >
+            Misc other stats:
+          </Row>
+          <Row
+            noGutters={false}
+          >
+            <ul>
+              <li>
+                3P Defensive SoS: [
+                <b
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
+                    }
+                  }
+                >
+                  33.0
+                </b>
+                ]%
+              </li>
+              <li>
+                Raw tempo: 
+                <span>
+                  <b
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
+                      }
+                    }
+                  >
+                    [
+                    83.2
+                    ]
+                  </b>
+                   
+                  poss/g
+                </span>
+              </li>
+            </ul>
+          </Row>
+           
+        </Container>
+      </Col>
     </Row>
   </Container>
 </span>
