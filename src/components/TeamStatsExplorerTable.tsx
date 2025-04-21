@@ -977,7 +977,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     </InputGroup>
   );
   return (
-    <Container>
+    <Container className="medium_screen">
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
           <Select
