@@ -5883,6 +5883,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -10898,6 +10899,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -16846,6 +16848,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -24777,6 +24780,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -33082,6 +33086,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -44835,6 +44840,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -53789,6 +53795,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"
@@ -65791,6 +65798,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
     <StickyRow
       className="pt-1"
       stickyEnabled={true}
+      topOffset="1em"
     >
       <Col
         sm="11"

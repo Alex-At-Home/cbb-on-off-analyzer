@@ -503,7 +503,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           luck={luckConfig}
           showHelp={showHelp}
         />
-        <StickyRow className="pt-1" stickyEnabled={stickyQuickToggle}>
+        <StickyRow
+          className="pt-1"
+          stickyEnabled={stickyQuickToggle}
+          topOffset="1em"
+        >
           <Col sm="11">
             <Form.Row>
               <Col>{quickToggleBar}</Col>

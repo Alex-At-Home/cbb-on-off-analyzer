@@ -13,6 +13,7 @@ import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
 // Additional components:
 // @ts-ignore
@@ -90,6 +91,7 @@ import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from "./shared/AsyncFormControl";
 import { LuckUtils } from "../utils/stats/LuckUtils";
+import StickyRow from "./shared/StickyRow";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -156,6 +158,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [playStyleConfig, setPlayStyleConfig] = useState(
     startingState.playStyleConfig ||
       ParamDefaults.defaultTeamExplorerPlayStyleConfig
+  );
+
+  /** Whether to make the quick toggle bar stick (default: on) */
+  const [stickyQuickToggle, setStickyQuickToggle] = useState(
+    _.isNil(startingState.stickyQuickToggle)
+      ? true
+      : startingState.stickyQuickToggle
   );
 
   // Basic filter:
@@ -322,6 +331,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       confOnly: isConfOnly,
       showAdvancedFilter,
       secretQuery,
+      stickyQuickToggle,
     });
   }, [
     confs,
@@ -339,6 +349,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     isConfOnly,
     showAdvancedFilter,
     secretQuery,
+    stickyQuickToggle,
   ]);
 
   /** Set this to be true on expensive operations */
@@ -957,6 +968,105 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     />
   );
 
+  const fullHelpDropdown = (
+    <GenericTogglingMenu>
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            <FontAwesomeIcon icon={faClipboard} />
+            {"  "}Export all teams to CSV
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => {
+          friendlyChange(() => {
+            navigator.clipboard.writeText(buildExportStr(false));
+            setLoadingOverride(false);
+          }, true);
+        }}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            <FontAwesomeIcon icon={faDownload} />
+            {"  "}Export all teams to CSV
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => {
+          friendlyChange(() => {
+            const blob = new Blob([buildExportStr(false)], {
+              type: "text/plain",
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "all_team_explorer_stats.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            setLoadingOverride(false);
+          }, true);
+        }}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            <FontAwesomeIcon icon={faClipboard} />
+            {"  "}Export filtered teams to CSV
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => {
+          friendlyChange(() => {
+            navigator.clipboard.writeText(buildExportStr(true));
+            setLoadingOverride(false);
+          }, true);
+        }}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            <FontAwesomeIcon icon={faDownload} />
+            {"  "}Export filtered teams to CSV
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => {
+          friendlyChange(() => {
+            const blob = new Blob([buildExportStr(true)], {
+              type: "text/plain",
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "filtered_team_explorer_stats.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            setLoadingOverride(false);
+          }, true);
+        }}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        className="d-none d-md-flex"
+        text="'Quick Select' Bar Is Sticky"
+        truthVal={stickyQuickToggle}
+        onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+      />
+      <GenericTogglingMenuItem
+        className="d-md-none"
+        disabled={true}
+        text="Sticky 'Quick Select' Bar Disabled"
+        truthVal={false}
+        onSelect={() => {}}
+      />
+    </GenericTogglingMenu>
+  );
+
   const maxTeamsInput = (
     <InputGroup>
       <InputGroup.Prepend>
@@ -1026,90 +1136,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         </Col>
         <Col lg={2} className="mt-1">
           {getCopyLinkButton()}
-        </Col>
-        <Col lg={1} className="mt-1">
-          <GenericTogglingMenu>
-            <GenericTogglingMenuItem
-              text={
-                <span>
-                  <FontAwesomeIcon icon={faClipboard} />
-                  {"  "}Export all teams to CSV
-                </span>
-              }
-              truthVal={false}
-              onSelect={() => {
-                friendlyChange(() => {
-                  navigator.clipboard.writeText(buildExportStr(false));
-                  setLoadingOverride(false);
-                }, true);
-              }}
-            />
-            <GenericTogglingMenuItem
-              text={
-                <span>
-                  <FontAwesomeIcon icon={faDownload} />
-                  {"  "}Export all teams to CSV
-                </span>
-              }
-              truthVal={false}
-              onSelect={() => {
-                friendlyChange(() => {
-                  const blob = new Blob([buildExportStr(false)], {
-                    type: "text/plain",
-                  });
-                  const url = URL.createObjectURL(blob);
-                  const link = document.createElement("a");
-                  link.href = url;
-                  link.download = "all_team_explorer_stats.csv";
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                  URL.revokeObjectURL(url);
-                  setLoadingOverride(false);
-                }, true);
-              }}
-            />
-            <GenericTogglingMenuItem
-              text={
-                <span>
-                  <FontAwesomeIcon icon={faClipboard} />
-                  {"  "}Export filtered teams to CSV
-                </span>
-              }
-              truthVal={false}
-              onSelect={() => {
-                friendlyChange(() => {
-                  navigator.clipboard.writeText(buildExportStr(true));
-                  setLoadingOverride(false);
-                }, true);
-              }}
-            />
-            <GenericTogglingMenuItem
-              text={
-                <span>
-                  <FontAwesomeIcon icon={faDownload} />
-                  {"  "}Export filtered teams to CSV
-                </span>
-              }
-              truthVal={false}
-              onSelect={() => {
-                friendlyChange(() => {
-                  const blob = new Blob([buildExportStr(true)], {
-                    type: "text/plain",
-                  });
-                  const url = URL.createObjectURL(blob);
-                  const link = document.createElement("a");
-                  link.href = url;
-                  link.download = "filtered_team_explorer_stats.csv";
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                  URL.revokeObjectURL(url);
-                  setLoadingOverride(false);
-                }, true);
-              }}
-            />{" "}
-          </GenericTogglingMenu>
         </Col>
       </Form.Group>
       <Row>
@@ -1208,30 +1234,17 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           </Form.Group>
         </Row>
       ) : null}
-      <Row
-        className="sticky-top d-none d-md-flex"
-        style={{
-          position: "sticky",
-          backgroundColor: "white",
-          opacity: "85%",
-          zIndex: 2,
-        }}
-      >
-        <Col xs={12} sm={12} md={8} lg={8} className="pt-1 mb-1">
+      <StickyRow stickyEnabled={stickyQuickToggle} className="pt-1 pb-1">
+        <Col xs={12} sm={12} md={8} lg={8} className="pt-1 pb-1">
           {quickToggleBar}
         </Col>
-        <Form.Group as={Col} lg="3">
+        <Form.Group as={Col} sm={8} lg={3} className="mb-1">
           {maxTeamsInput}
         </Form.Group>
-      </Row>
-      <Row className="d-md-none">
-        <Col xs={12} sm={12} md={8} lg={8} className="pt-1 mb-1">
-          {quickToggleBar}
+        <Col sm={1} lg={1}>
+          {fullHelpDropdown}
         </Col>
-        <Form.Group as={Col} lg="3">
-          {maxTeamsInput}
-        </Form.Group>
-      </Row>
+      </StickyRow>
       <Row>
         <Col>
           <LoadingOverlay

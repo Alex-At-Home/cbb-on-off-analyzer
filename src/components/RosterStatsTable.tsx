@@ -1918,7 +1918,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             </InputGroup>
           </Form.Group>
         </Form.Row>
-        <StickyRow className="pt-1" stickyEnabled={stickyQuickToggle}>
+        <StickyRow
+          className="pt-1"
+          stickyEnabled={stickyQuickToggle}
+          topOffset="1em"
+        >
           <Col sm="11">{quickToggleBar}</Col>
           <Form.Group as={Col} sm="1" className="mb-0">
             {optionsDropdown}
