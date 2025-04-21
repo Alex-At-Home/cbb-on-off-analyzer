@@ -2058,7 +2058,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </Col>
             <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-            <Col xs={12} sm={12} md={6} lg={6}>
+            <Col xs={11} sm={11} md={6} lg={6}>
               <ConferenceSelector
                 emptyLabel={`All ${
                   !_.isEmpty(transferInfoSplit[0]) ? "Transfers" : "Teams"
@@ -2080,7 +2080,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 }}
               />
             </Col>
-            <Col lg={1} className="mt-1">
+            <Col xs={1} className="mt-1">
               {getCopyLinkButton()}
             </Col>
           </Form.Group>
@@ -2134,7 +2134,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </Col>
         </Form.Row>
         <Form.Row>
-          <Form.Group as={Col} sm="3">
+          <Form.Group as={Col} xs={3} sm={3}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="maxPlayers">Max Players</InputGroup.Text>
@@ -2150,7 +2150,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="6">
+          <Form.Group as={Col} xs={6} sm={6}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
@@ -2172,8 +2172,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="1" className="mt-2">
+          <Form.Group as={Col} xs={2} sm={2} className="mt-2">
             <Form.Check
+              className="float-right"
               type="switch"
               id="linq"
               checked={showAdvancedFilter || advancedFilterStr.length > 0}
@@ -2193,7 +2194,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               label={linqEnableText}
             />
           </Form.Group>
-          <Form.Group as={Col} sm="1">
+          <Form.Group as={Col} xs={1} sm={1} className="pt-1">
             <Dropdown alignRight style={{ maxHeight: "2.4rem" }}>
               <Dropdown.Toggle variant="outline-secondary">
                 <OverlayTrigger
@@ -2220,7 +2221,155 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               </Dropdown.Menu>
             </Dropdown>
           </Form.Group>
-          <Form.Group as={Col} sm="1">
+        </Form.Row>
+        {showAdvancedFilter || advancedFilterStr.length > 0 ? (
+          <Form.Row>
+            <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
+              <LinqExpressionBuilder
+                prompt="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
+                value={advancedFilterStr}
+                error={advancedFilterError}
+                autocomplete={
+                  AdvancedFilterUtils.playerLboardWithTeamStatsAutocomplete
+                }
+                richTextReplacements={playerLeaderboardRichTextReplacements}
+                callback={(newVal: string) =>
+                  friendlyChange(() => setAdvancedFilterStr(newVal), true)
+                }
+                showHelp={showHelp}
+              />
+            </Col>
+          </Form.Row>
+        ) : null}
+        <div></div>
+        {/*(for some reason this div is needed to avoid the Row classnames getting confused - related to SSR?)*/}
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={7}>
+            <ToggleButtonGroup
+              items={(
+                [
+                  {
+                    label: "Luck",
+                    tooltip: "Statistics always adjusted for luck",
+                    toggled: true,
+                    onClick: () => {},
+                  },
+                ]
+                  .concat(
+                    dataEvent.syntheticData
+                      ? []
+                      : [
+                          {
+                            label: "T100",
+                            tooltip:
+                              "Leaderboard of players vs T100 opposition",
+                            toggled: isT100,
+                            onClick: () =>
+                              friendlyChange(() => {
+                                setIsT100(!isT100);
+                                setIsConfOnly(false);
+                              }, true),
+                          },
+                          {
+                            label: "Conf",
+                            tooltip:
+                              "Leaderboard of players vs conference opposition",
+                            toggled: isConfOnly,
+                            onClick: () =>
+                              friendlyChange(() => {
+                                setIsT100(false);
+                                setIsConfOnly(!isConfOnly);
+                              }, true),
+                          },
+                        ]
+                  )
+                  .concat([
+                    {
+                      label: "Poss%",
+                      tooltip: possAsPct
+                        ? "Show possessions as count"
+                        : "Show possessions as percentage",
+                      toggled: possAsPct,
+                      onClick: () =>
+                        friendlyChange(() => setPossAsPct(!possAsPct), true),
+                    },
+                    {
+                      label: "* Mins%",
+                      tooltip:
+                        "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+                      toggled: factorMins,
+                      onClick: () =>
+                        friendlyChange(() => toggleFactorMins(), true),
+                    },
+                    {
+                      label: "Grades",
+                      tooltip: showGrades
+                        ? "Hide player ranks/percentiles"
+                        : "Show player ranks/percentiles",
+                      toggled: showGrades != "",
+                      onClick: () =>
+                        friendlyChange(
+                          () =>
+                            setShowGrades(
+                              showGrades
+                                ? ""
+                                : ParamDefaults.defaultEnabledGrade
+                            ),
+                          true
+                        ),
+                    },
+                    {
+                      label: "RAPM",
+                      tooltip: "Use RAPM (vs Adj Rtg) when displaying rankings",
+                      toggled: useRapm,
+                      onClick: () =>
+                        friendlyChange(() => toggleUseRapm(), true),
+                    },
+                    {
+                      label: "+ Info",
+                      tooltip: showInfoSubHeader
+                        ? "Hide extra info sub-header"
+                        : "Show extra info sub-header",
+                      toggled: showInfoSubHeader,
+                      onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
+                    },
+                  ]) as Array<any>
+              ).concat(
+                showHelp
+                  ? [
+                      //TODO: what to show here?
+                      // {
+                      //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
+                      //   tooltip: "Open a page that explains some of the elements of this table",
+                      //   toggled: false,
+                      //   onClick: () => {}
+                      // }
+                    ]
+                  : []
+              )}
+            />
+          </Col>
+          <Col xs={11} sm={11} md={11} lg={4} className="pt-1">
+            {!_.isEmpty(transferInfoSplit[0]) &&
+            !_.isEmpty(dataEvent.transfers) ? (
+              <div className="float-right">
+                <small>
+                  (Available transfers:{" "}
+                  <b>{_.size(dataEvent?.transfers || {})}</b>
+                  {numFilteredStr})
+                </small>
+              </div>
+            ) : (
+              <div className="float-right">
+                <small>
+                  (Qualifying players in tier:{" "}
+                  <b>{dataEvent?.players?.length || 0}</b>
+                  {numFilteredStr})
+                </small>
+              </div>
+            )}
+          </Col>
+          <Form.Group as={Col} xs={1} sm={1}>
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
                 text={<i className="text-secondary">Adjust for Luck</i>}
@@ -2371,157 +2520,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     setLoadingOverride(false);
                   }, true);
                 }}
-              />{" "}
+              />
             </GenericTogglingMenu>
           </Form.Group>
-        </Form.Row>
-        {showAdvancedFilter || advancedFilterStr.length > 0 ? (
-          <Form.Row>
-            <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
-              <LinqExpressionBuilder
-                prompt="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
-                value={advancedFilterStr}
-                error={advancedFilterError}
-                autocomplete={
-                  AdvancedFilterUtils.playerLboardWithTeamStatsAutocomplete
-                }
-                richTextReplacements={playerLeaderboardRichTextReplacements}
-                callback={(newVal: string) =>
-                  friendlyChange(() => setAdvancedFilterStr(newVal), true)
-                }
-                showHelp={showHelp}
-              />
-            </Col>
-          </Form.Row>
-        ) : null}
-        <div></div>
-        {/*(for some reason this div is needed to avoid the Row classnames getting confused)*/}
-        <Row>
-          <Col xs={12} sm={12} md={12} lg={8}>
-            <ToggleButtonGroup
-              items={(
-                [
-                  {
-                    label: "Luck",
-                    tooltip: "Statistics always adjusted for luck",
-                    toggled: true,
-                    onClick: () => {},
-                  },
-                ]
-                  .concat(
-                    dataEvent.syntheticData
-                      ? []
-                      : [
-                          {
-                            label: "T100",
-                            tooltip:
-                              "Leaderboard of players vs T100 opposition",
-                            toggled: isT100,
-                            onClick: () =>
-                              friendlyChange(() => {
-                                setIsT100(!isT100);
-                                setIsConfOnly(false);
-                              }, true),
-                          },
-                          {
-                            label: "Conf",
-                            tooltip:
-                              "Leaderboard of players vs conference opposition",
-                            toggled: isConfOnly,
-                            onClick: () =>
-                              friendlyChange(() => {
-                                setIsT100(false);
-                                setIsConfOnly(!isConfOnly);
-                              }, true),
-                          },
-                        ]
-                  )
-                  .concat([
-                    {
-                      label: "Poss%",
-                      tooltip: possAsPct
-                        ? "Show possessions as count"
-                        : "Show possessions as percentage",
-                      toggled: possAsPct,
-                      onClick: () =>
-                        friendlyChange(() => setPossAsPct(!possAsPct), true),
-                    },
-                    {
-                      label: "* Mins%",
-                      tooltip:
-                        "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-                      toggled: factorMins,
-                      onClick: () =>
-                        friendlyChange(() => toggleFactorMins(), true),
-                    },
-                    {
-                      label: "Grades",
-                      tooltip: showGrades
-                        ? "Hide player ranks/percentiles"
-                        : "Show player ranks/percentiles",
-                      toggled: showGrades != "",
-                      onClick: () =>
-                        friendlyChange(
-                          () =>
-                            setShowGrades(
-                              showGrades
-                                ? ""
-                                : ParamDefaults.defaultEnabledGrade
-                            ),
-                          true
-                        ),
-                    },
-                    {
-                      label: "RAPM",
-                      tooltip: "Use RAPM (vs Adj Rtg) when displaying rankings",
-                      toggled: useRapm,
-                      onClick: () =>
-                        friendlyChange(() => toggleUseRapm(), true),
-                    },
-                    {
-                      label: "+ Info",
-                      tooltip: showInfoSubHeader
-                        ? "Hide extra info sub-header"
-                        : "Show extra info sub-header",
-                      toggled: showInfoSubHeader,
-                      onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
-                    },
-                  ]) as Array<any>
-              ).concat(
-                showHelp
-                  ? [
-                      //TODO: what to show here?
-                      // {
-                      //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
-                      //   tooltip: "Open a page that explains some of the elements of this table",
-                      //   toggled: false,
-                      //   onClick: () => {}
-                      // }
-                    ]
-                  : []
-              )}
-            />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={4}>
-            {!_.isEmpty(transferInfoSplit[0]) &&
-            !_.isEmpty(dataEvent.transfers) ? (
-              <div className="float-right">
-                <small>
-                  (Available transfers:{" "}
-                  <b>{_.size(dataEvent?.transfers || {})}</b>
-                  {numFilteredStr})
-                </small>
-              </div>
-            ) : (
-              <div className="float-right">
-                <small>
-                  (Qualifying players in tier:{" "}
-                  <b>{dataEvent?.players?.length || 0}</b>
-                  {numFilteredStr})
-                </small>
-              </div>
-            )}
-          </Col>
         </Row>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
