@@ -164,7 +164,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
   );
 
   return (
-    <Container>
+    <Container fluid>
       <Col xs={12}>
         <GenericTable
           responsive={false}

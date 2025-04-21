@@ -4870,7 +4870,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <span>
                       <div
-                        class="container"
+                        class="container-fluid"
                       >
                         <div
                           class="col-12"
@@ -7412,7 +7412,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <span>
                       <div
-                        class="container"
+                        class="container-fluid"
                       >
                         <div
                           class="col-12"
@@ -9954,7 +9954,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <span>
                       <div
-                        class="container"
+                        class="container-fluid"
                       >
                         <div
                           class="col-12"
