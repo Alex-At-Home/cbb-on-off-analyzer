@@ -6119,6 +6119,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -6128,9 +6131,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -11135,6 +11135,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -11144,9 +11147,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -17084,6 +17084,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -17093,9 +17096,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -25016,6 +25016,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -25025,9 +25028,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -33322,6 +33322,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -33331,9 +33334,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -45076,6 +45076,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -45085,9 +45088,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -54039,6 +54039,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -54048,9 +54051,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
@@ -66042,6 +66042,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show extra info sub-header"
@@ -66051,9 +66054,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text="Show repeating header every 10 rows"
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
           />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"

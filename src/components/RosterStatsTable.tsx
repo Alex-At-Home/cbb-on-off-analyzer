@@ -1784,6 +1784,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         truthVal={false}
         onSelect={() => false}
       />
+      <Dropdown.Divider />
       <GenericTogglingMenuItem
         text={"Show extra info sub-header"}
         truthVal={showInfoSubHeader}
@@ -1794,7 +1795,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         truthVal={showRepeatingHeader}
         onSelect={() => setShowRepeatingHeader(!showRepeatingHeader)}
       />
-      <Dropdown.Divider />
       <GenericTogglingMenuItem
         className="d-none d-md-flex"
         text="'Quick Select' Bar Is Sticky"

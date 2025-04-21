@@ -151,6 +151,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         rawParams.showGrades == "" ? ["showGrades"] : [],
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+        rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
 
         rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos
           ? ["minPoss"]

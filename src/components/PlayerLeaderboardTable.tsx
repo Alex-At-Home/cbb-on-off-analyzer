@@ -78,6 +78,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import dynamic from "next/dynamic";
 import { Badge } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import StickyRow from "./shared/StickyRow";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -97,6 +98,7 @@ type Props = {
   onChangeState: (newParams: PlayerLeaderboardParams) => void;
   teamEditorMode?: (p: IndivStatSet) => void;
   geoMode?: boolean; //(if true display a map and have some basic filtering)
+  testMode?: boolean;
 };
 
 // Some static methods
@@ -251,6 +253,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   onChangeState,
   teamEditorMode,
   geoMode,
+  testMode,
 }) => {
   const server =
     typeof window === `undefined` //(ensures SSR code still compiles)
@@ -308,6 +311,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
     true as boolean
   ); //(always defaults to on)
+
+  /** Whether to make the quick toggle bar stick (default: on) */
+  const [stickyQuickToggle, setStickyQuickToggle] = useState(
+    _.isNil(startingState.stickyQuickToggle)
+      ? true
+      : startingState.stickyQuickToggle
+  );
 
   /** Show the number of possessions as a % of total team count */
   const [factorMins, setFactorMins] = useState(
@@ -556,6 +566,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       geoCenterLat: geoCenterInfo?.lat?.toString(),
       geoCenterLon: geoCenterInfo?.lon?.toString(),
       geoZoom: geoCenterInfo?.zoom?.toString(),
+      stickyQuickToggle,
     };
     onChangeState(newState);
   }, [
@@ -577,6 +588,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     genderUnreliable,
     tier,
     geoCenterInfo,
+    stickyQuickToggle,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -2005,11 +2017,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Container
-      className={
-        "wide_screen" /* Only actually active if parent container also has this classname */
-      }
-    >
+    <Container fluid>
       <LoadingOverlay
         active={needToLoadQuery()}
         spinner
@@ -2243,8 +2251,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         ) : null}
         <div></div>
         {/*(for some reason this div is needed to avoid the Row classnames getting confused - related to SSR?)*/}
-        <Row>
-          <Col xs={12} sm={12} md={12} lg={7}>
+        <StickyRow stickyEnabled={stickyQuickToggle}>
+          <Col xs={12} sm={12} md={12} lg={7} className="pt-1">
             <ToggleButtonGroup
               items={(
                 [
@@ -2369,7 +2377,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               </div>
             )}
           </Col>
-          <Form.Group as={Col} xs={1} sm={1}>
+          <Form.Group as={Col} xs={1} sm={1} className="mb-1">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
                 text={<i className="text-secondary">Adjust for Luck</i>}
@@ -2423,21 +2431,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 truthVal={false}
                 onSelect={() =>
                   friendlyChange(() => setPossAsPct(!possAsPct), true)
-                }
-              />
-              <GenericTogglingMenuItem
-                text={"Show extra info sub-header"}
-                truthVal={showInfoSubHeader}
-                onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
-              />
-              <GenericTogglingMenuItem
-                text={"Show repeating header every 10 rows"}
-                truthVal={showRepeatingHeader}
-                onSelect={() =>
-                  friendlyChange(
-                    () => setShowRepeatingHeader(!showRepeatingHeader),
-                    true
-                  )
                 }
               />
               <Dropdown.Divider />
@@ -2521,9 +2514,38 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   }, true);
                 }}
               />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text={"Show extra info sub-header"}
+                truthVal={showInfoSubHeader}
+                onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
+              />
+              <GenericTogglingMenuItem
+                text={"Show repeating header every 10 rows"}
+                truthVal={showRepeatingHeader}
+                onSelect={() =>
+                  friendlyChange(
+                    () => setShowRepeatingHeader(!showRepeatingHeader),
+                    true
+                  )
+                }
+              />
+              <GenericTogglingMenuItem
+                className="d-none d-md-flex"
+                text="'Quick Select' Bar Is Sticky"
+                truthVal={stickyQuickToggle}
+                onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+              />
+              <GenericTogglingMenuItem
+                className="d-md-none"
+                disabled={true}
+                text="Sticky 'Quick Select' Bar Disabled"
+                truthVal={false}
+                onSelect={() => {}}
+              />
             </GenericTogglingMenu>
           </Form.Group>
-        </Row>
+        </StickyRow>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             {geoMode ? (
