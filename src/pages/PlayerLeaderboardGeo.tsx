@@ -315,7 +315,7 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
     server != "localhost" ? `https://${server}` : "http://localhost:3000"
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
-    <Container>
+    <Container className="medium_screen">
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />
