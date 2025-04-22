@@ -244,6 +244,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
+        screenSize="medium_screen"
         title="Lineup Analysis"
         helpLink={maybeShowDocs()}
       >
@@ -257,7 +258,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   }, [dataEvent]);
 
   return (
-    <Container>
+    <Container className="medium_screen">
       <Row>
         <Col xs={12} className="text-center">
           <h3>
@@ -275,6 +276,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       <Row>
         <GenericCollapsibleCard
           minimizeMargin={false}
+          screenSize="medium_screen"
           title="Team and Game Filter"
           summary={HistoryManager.lineupFilterSummary(lineupFilterParams)}
         >

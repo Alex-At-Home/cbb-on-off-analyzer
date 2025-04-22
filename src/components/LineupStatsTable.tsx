@@ -1006,7 +1006,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Container>
+    <Container fluid>
       <LoadingOverlay
         active={needToLoadQuery()}
         text={
@@ -1025,7 +1025,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           showHelp={showHelp}
         />
         <Form.Row>
-          <Form.Group as={Col} sm="8">
+          <Form.Group as={Col} xs={10}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="filter">Filter</InputGroup.Text>
@@ -1040,8 +1040,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Col sm="3" />
-          <Form.Group as={Col} sm="1">
+          <Form.Group as={Col} xs={1} className="pl-4">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
                 text="Decorate Lineups"
@@ -1124,7 +1123,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group as={Col} sm="3">
+          <Form.Group as={Col} xs={3}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
@@ -1140,7 +1139,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="3">
+          <Form.Group as={Col} xs={3}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="minPossessions">
@@ -1158,7 +1157,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="6">
+          <Form.Group as={Col} xs={6}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
@@ -1414,7 +1413,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         </Form.Row>
         {aggregateByPos == "On-Off" && !_.isEmpty(rosterStats.global) ? (
           <Form.Group as={Row} className="mt-3">
-            <Form.Group as={Col} xs="10">
+            <Form.Group as={Col} xs={10}>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text id="onOff">

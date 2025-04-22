@@ -2,7 +2,7 @@
 
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individual data) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -27,7 +27,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -45,9 +45,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -55,7 +52,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -131,7 +129,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -157,7 +155,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -183,7 +181,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -3890,7 +3888,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -3915,7 +3913,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -3933,9 +3931,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -3943,7 +3938,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -4019,7 +4015,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -4045,7 +4041,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -4071,7 +4067,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -7268,7 +7264,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (with individual data - plain) ... raw pts mode 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -7293,7 +7289,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -7311,9 +7307,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -7321,7 +7314,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -7397,7 +7391,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -7423,7 +7417,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -7449,7 +7443,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -10364,7 +10358,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (with individual data - plain, luck, luck diags) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -10389,7 +10383,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -10407,9 +10401,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -10417,7 +10408,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -10493,7 +10485,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -10519,7 +10511,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -10545,7 +10537,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13481,7 +13473,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (with individual data) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -13506,7 +13498,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13524,9 +13516,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -13534,7 +13523,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -13610,7 +13600,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13636,7 +13626,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13662,7 +13652,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -17453,7 +17443,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (with individual data, aggregated by PG) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -17478,7 +17468,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -17496,9 +17486,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -17506,7 +17493,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -17582,7 +17570,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -17608,7 +17596,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -17634,7 +17622,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>

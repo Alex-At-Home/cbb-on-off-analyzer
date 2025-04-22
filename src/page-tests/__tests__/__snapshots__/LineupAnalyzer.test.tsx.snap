@@ -2,6 +2,7 @@
 
 exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
 <Container
+  className="medium_screen"
   fluid={false}
 >
   <Row
@@ -35,6 +36,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
   >
     <GenericCollapsibleCard
       minimizeMargin={false}
+      screenSize="medium_screen"
       summary="Lineups: 2024/25  (M): query:'' (max:50, min-poss:5)"
       title="Team and Game Filter"
     >
@@ -53,6 +55,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
       minimizeMargin={true}
+      screenSize="medium_screen"
       title="Lineup Analysis"
     >
       <LineupStatsTable
