@@ -2,6 +2,7 @@
 
 exports[`LineupLeaderboardPage LineupLeaderboardPage - should create snapshot 1`] = `
 <Container
+  className="medium_screen"
   fluid={false}
 >
   <Row
@@ -12,7 +13,8 @@ exports[`LineupLeaderboardPage LineupLeaderboardPage - should create snapshot 1`
       xs={12}
     >
       <h3>
-        CBB Lineup Leaderboard 
+        CBB Lineup Leaderboard
+         
         <span
           className="badge badge-pill badge-info"
         >

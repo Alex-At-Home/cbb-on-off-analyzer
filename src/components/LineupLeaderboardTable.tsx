@@ -756,7 +756,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     : dataEvent?.confs || [];
 
   return (
-    <Container>
+    <Container fluid>
       <LoadingOverlay
         active={needToLoadQuery()}
         spinner
@@ -786,7 +786,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-          <Col xs={12} sm={12} md={6} lg={6}>
+          <Col xs={11} sm={11} md={6} lg={6}>
             <Select
               isClearable={true}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
@@ -817,10 +817,12 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               }}
             />
           </Col>
-          <Col className="mt-1">{getCopyLinkButton()}</Col>
+          <Col className="mt-1" xs={1}>
+            {getCopyLinkButton()}
+          </Col>
         </Form.Group>
         <Form.Row>
-          <Form.Group as={Col} sm="8">
+          <Form.Group as={Col} xs={10}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="filter">Filter</InputGroup.Text>
@@ -835,8 +837,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Col sm="3" />
-          <Form.Group as={Col} sm="1">
+          <Form.Group as={Col} xs={1} className="pl-4">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
                 text={<i className="text-secondary">Adjust for Luck</i>}
@@ -868,7 +869,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group as={Col} sm="3">
+          <Form.Group as={Col} xs={3}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
@@ -884,7 +885,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="3">
+          <Form.Group as={Col} xs={3}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="minPossessions">
@@ -902,7 +903,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} sm="6">
+          <Form.Group as={Col} xs={6}>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>

@@ -2,7 +2,7 @@
 
 exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot (luck diags disabled) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -119,8 +119,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       <Col
         lg={6}
         md={6}
-        sm={12}
-        xs={12}
+        sm={11}
+        xs={11}
       >
         <StateManager
           components={
@@ -197,6 +197,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="mt-1"
+        xs={1}
       >
         <OverlayTrigger
           overlay={
@@ -269,7 +270,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -287,9 +288,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -297,7 +295,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -336,7 +335,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -362,7 +361,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -388,7 +387,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13552,7 +13551,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
 exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot (luck diags disabled, multi year) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -13669,8 +13668,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       <Col
         lg={6}
         md={6}
-        sm={12}
-        xs={12}
+        sm={11}
+        xs={11}
       >
         <StateManager
           components={
@@ -13747,6 +13746,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="mt-1"
+        xs={1}
       >
         <OverlayTrigger
           overlay={
@@ -13819,7 +13819,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13837,9 +13837,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -13847,7 +13844,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -13886,7 +13884,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13912,7 +13910,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -13938,7 +13936,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -33426,7 +33424,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
 exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot (luck diags enabled) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <LoadingOverlay
     active={false}
@@ -33543,8 +33541,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       <Col
         lg={6}
         md={6}
-        sm={12}
-        xs={12}
+        sm={11}
+        xs={11}
       >
         <StateManager
           components={
@@ -33621,6 +33619,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="mt-1"
+        xs={1}
       >
         <OverlayTrigger
           overlay={
@@ -33693,7 +33692,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="8"
+        xs={10}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -33711,9 +33710,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="3"
-      />
       <FormGroup
         as={
           Object {
@@ -33721,7 +33717,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="1"
+        className="pl-4"
+        xs={1}
       >
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
@@ -33760,7 +33757,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -33786,7 +33783,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="3"
+        xs={3}
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -33812,7 +33809,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             "render": [Function],
           }
         }
-        sm="6"
+        xs={6}
       >
         <InputGroup>
           <InputGroupPrepend>
