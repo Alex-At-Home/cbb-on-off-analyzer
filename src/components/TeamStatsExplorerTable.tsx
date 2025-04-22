@@ -1119,7 +1119,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-        <Col xs={12} sm={12} md={5} lg={5} style={{ zIndex: 10 }}>
+        <Col xs={11} sm={11} md={5} lg={5} style={{ zIndex: 10 }}>
           <ConferenceSelector
             emptyLabel={
               year < DateUtils.yearFromWhichAllMenD1Imported
@@ -1134,7 +1134,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             }
           />
         </Col>
-        <Col lg={2} className="mt-1">
+        <Col xs={1} lg={2} className="mt-1">
           {getCopyLinkButton()}
         </Col>
       </Form.Group>
@@ -1169,7 +1169,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             </div>
           </InputGroup>
         </Col>
-        <Form.Group as={Col} xs={12} sm={12} md={4} lg={4}>
+        <Form.Group as={Col} xs={8} sm={10} md={4} lg={4}>
           <Select
             styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
             value={sortByOptions[sortBy]}
@@ -1183,7 +1183,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             }}
           />
         </Form.Group>
-        <Form.Group as={Col} sm="1" className="mt-2">
+        <Form.Group as={Col} xs={1} className="mt-2">
           <Form.Check
             type="switch"
             id="linq"
@@ -1238,10 +1238,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         <Col xs={12} sm={12} md={8} lg={8} className="pt-1 pb-1">
           {quickToggleBar}
         </Col>
-        <Form.Group as={Col} sm={8} lg={3} className="mb-1">
+        <Form.Group as={Col} xs={8} lg={3} className="mb-1">
           {maxTeamsInput}
         </Form.Group>
-        <Col sm={1} lg={1}>
+        <Col xs={1} sm={1} lg={1}>
           {fullHelpDropdown}
         </Col>
       </StickyRow>
