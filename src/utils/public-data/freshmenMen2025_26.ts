@@ -510,6 +510,7 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-3",
       r: -62,
     },
+    "Fru, Sananda": { pos: "PF/C", pr: "5*", c: "SaFru", h: "6-11", r: -60 },
   },
   Kansas: {
     "Peterson, Darryn": {
