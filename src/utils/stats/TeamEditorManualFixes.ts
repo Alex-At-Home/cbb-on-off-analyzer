@@ -1692,6 +1692,9 @@ export class TeamEditorManualFixes {
           Illinois: {
             leftTeam: ["KaJakucionis::", "WiRiley::"], //(NBA declaration not yet included in my automated feed)
           },
+          Louisville: {
+            superSeniorsReturning: new Set(["J'Hadley::"]),
+          },
           Maryland: {
             leftTeam: ["DeQueen::", "TaGapare::"], //(NBA declaration not yet included in my automated feed, and Gapare)
           },
