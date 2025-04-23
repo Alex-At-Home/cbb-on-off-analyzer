@@ -473,6 +473,14 @@ export const freshmenMen2025_26: Record<string, any> = {
     },
   },
   Illinois: {
+    "Petrovic, Mihailo": {
+      pos: "PG",
+      pr: "5*",
+      c: "MiPetrovic",
+      h: "6-3",
+      r: -50,
+    },
+
     "Lee, Brandon": {
       pos: "WG",
       pr: "3.5*/T150ish",
