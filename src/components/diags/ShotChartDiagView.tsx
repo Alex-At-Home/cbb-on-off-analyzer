@@ -24,149 +24,11 @@ import Tooltip from "react-bootstrap/Tooltip";
 
 import * as d3 from "d3";
 import { hexbin } from "d3-hexbin";
-import { ShotStats } from "../../utils/StatModels";
+import { ShotStats, HexZone, HexData } from "../../utils/StatModels";
 import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 import { ParamDefaults } from "../../utils/FilterModels";
 import { absolutePositionFixes } from "../../utils/stats/PositionalManualFixes";
-
-interface HexData {
-  key: string;
-  frequency: number;
-  intensity: number;
-  x: number;
-  y: number;
-  tooltip: string;
-}
-
-interface HexZone {
-  minDist: number;
-  maxDist: number;
-  distCenter?: number; //(if not specified then take average)
-  minAngle: number;
-  maxAngle: number;
-  angleOffset: number;
-  frequency: number;
-  intensity: number;
-  total_freq?: number;
-  shots?: any[]; //(for debugging)
-}
-
-/** 0 is vertical axis pointing up, when averaging angle make >= 90 and <= 270 */
-const buildStartingZones = (): HexZone[] => {
-  return [
-    // Under the basket (1x)
-    {
-      minDist: 0,
-      maxDist: 5,
-      distCenter: 0,
-      minAngle: 0,
-      maxAngle: 360,
-      angleOffset: 90,
-      frequency: 0,
-      intensity: 0,
-    },
-    // Close to the basket (2x)
-    {
-      minDist: 5,
-      maxDist: 10,
-      minAngle: 0,
-      maxAngle: 90,
-      angleOffset: 70,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 5,
-      maxDist: 10,
-      minAngle: 90,
-      maxAngle: 180,
-      angleOffset: 110,
-      frequency: 0,
-      intensity: 0,
-    },
-
-    // 3P (5x)
-    // (do these before mid-range so we can match on corner 3s first)
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 0,
-      maxAngle: 12,
-      distCenter: 23,
-      angleOffset: 45,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 12,
-      maxAngle: 65,
-      angleOffset: 70,
-      distCenter: 24,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 65,
-      maxAngle: 115,
-      distCenter: 24,
-      angleOffset: 90,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 115,
-      maxAngle: 168,
-      angleOffset: 110,
-      distCenter: 24,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 168,
-      maxAngle: 180,
-      distCenter: 23,
-      angleOffset: 135,
-      frequency: 0,
-      intensity: 0,
-    },
-    // Mid-range (3x)
-    {
-      minDist: 10,
-      maxDist: 21,
-      minAngle: 0,
-      maxAngle: 45,
-      angleOffset: 50,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 10,
-      maxDist: 21,
-      minAngle: 45,
-      maxAngle: 135,
-      angleOffset: 90,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 10,
-      maxDist: 21,
-      minAngle: 135,
-      maxAngle: 180,
-      angleOffset: 130,
-      frequency: 0,
-      intensity: 0,
-    },
-  ];
-};
+import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 
 const MIN_Y = -5;
 const MAX_Y = 35;
@@ -705,125 +567,6 @@ const HexMap: React.FC<HexMapProps> = ({
   return <svg ref={svgRef} width={width} height={height}></svg>;
 };
 
-///////////////////// Top Level Logic
-
-/** Finds the zone in which this shot resides */
-const findHexZone = (x: number, y: number, zones: HexZone[]) => {
-  const dist = Math.sqrt(x * x + y * y);
-  const angle1 = 180 - (Math.atan2(x, y) * 180) / Math.PI; //(inverted because of how the zones are oriented)
-  const angle2 = angle1 > 270 ? angle1 - 360 : angle1; //left side: 90->270, right side: -90->90
-  const angle = Math.min(180, Math.max(0, angle2));
-  const zone = _.find(zones, (zone) => {
-    return (
-      dist >= zone.minDist &&
-      dist <= zone.maxDist &&
-      angle >= zone.minAngle &&
-      angle <= zone.maxAngle
-    );
-  });
-
-  //DEBUG
-  //   if (!zone) {
-  //     console.log(
-  //       `No zone found for ${x}, ${y} -> ${dist.toFixed(1)} ${angle.toFixed(1)}`
-  //     );
-  //   }
-  return zone;
-};
-
-/** Used to build the internal-data set */
-const buildAverageZones = (
-  diffSet: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>,
-  logInfo?: string
-) => {
-  const mutableZones = buildStartingZones();
-  _.forEach(diffSet, (diff, hexKey) => {
-    const zone = findHexZone(diff.loc[0]!, diff.loc[1]!, mutableZones);
-    if (zone) {
-      zone.frequency += diff.avg_freq;
-      zone.intensity += diff.avg_ppp * diff.avg_freq;
-    } else {
-      if (logInfo)
-        console.log(`[${logInfo}] No zone found for ${hexKey}`, diff);
-    }
-  });
-  _.forEach(mutableZones, (zone) => {
-    zone.intensity /= zone.frequency;
-  });
-  if (logInfo)
-    console.log(
-      `export const ShotChartZones_${logInfo}_2024 = ${JSON.stringify(
-        mutableZones,
-        null,
-        3
-      )}`
-    );
-
-  return mutableZones;
-};
-
-/** Converts from the ES aggregation format into all the info we need to display the hex data */
-const shotStatsToHexData = (
-  stats: ShotStats,
-  diffSet?: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>
-): { data: HexData[]; zones: HexZone[] } => {
-  const total_freq = stats?.doc_count || 1;
-
-  const mutableZones = buildStartingZones();
-
-  return {
-    zones: mutableZones,
-    data: (stats?.shot_chart?.buckets || [])
-      .map((shotInfo) => {
-        const hexKey = shotInfo.key || "";
-        const x = shotInfo.center.location.x;
-        const y = shotInfo.center.location.y;
-        const frequency = shotInfo.doc_count;
-        const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
-
-        const mutableZone = findHexZone(x, y, mutableZones);
-        if (mutableZone) {
-          mutableZone.frequency += shotInfo.doc_count;
-          mutableZone.intensity += shotInfo.total_pts.value;
-          mutableZone.total_freq = total_freq;
-
-          // DEBUG
-          //  if (mutableZone.shots) {
-          //    mutableZone.shots.push(shotInfo);
-          //  } else {
-          //    mutableZone.shots = [shotInfo];
-          //  }
-        }
-
-        const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
-          return {
-            diffFreq: diff?.avg_freq || 0,
-            diffPpp: diff?.avg_ppp || (_.isNil(diffSet) ? 0.0 : 1.0), //(whether the key is missing or we're not diffing at all)
-          };
-        });
-
-        const angle = _.thru((Math.atan2(x, y) * 180) / Math.PI, (atan2) =>
-          atan2 < 0 ? atan2 + 360 : atan2
-        );
-
-        return {
-          key: hexKey,
-          x,
-          y,
-          intensity: intensity - diffPpp,
-          frequency: 100 * (frequency / total_freq),
-          tooltip: `[${frequency}] shots, [${(
-            100 *
-            (frequency / total_freq)
-          ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
-            50 * intensity
-          ).toFixed(1)}]%`,
-        };
-      })
-      .filter((h) => h.x <= 35),
-  };
-};
-
 ///////////////////// UI element + control
 
 /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
@@ -1004,11 +747,11 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           ?.labelOverrides
       : labelOverrides) || labelOverrides;
 
-  const { data: offData, zones: offZones } = shotStatsToHexData(
+  const { data: offData, zones: offZones } = ShotChartUtils.shotStatsToHexData(
     selectedOff,
     diffDataSet
   );
-  const { data: defData, zones: defZones } = shotStatsToHexData(
+  const { data: defData, zones: defZones } = ShotChartUtils.shotStatsToHexData(
     selectedDef,
     diffDataSet
   );

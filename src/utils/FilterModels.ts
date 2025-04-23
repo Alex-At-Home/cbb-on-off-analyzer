@@ -12,6 +12,7 @@ export class ParamPrefixes {
   static readonly player = "player-";
   static readonly gameInfo = "gameInfo-";
   static readonly shots = "shots-";
+  static readonly playerShots = "playerShots-";
   static readonly team = "team-"; //(only used for HeaderBar)
   static readonly defensiveInfo = "defensiveInfo-"; //(only used for HeaderBar)
   static readonly allTeamInfo = "allTeamInfo-"; //(only used for HeaderBar)
@@ -167,6 +168,8 @@ export type GameFilterParams = {
   // Shot chart params:
   teamShotCharts?: boolean;
   teamShotChartsShowZones?: boolean;
+  playerShotCharts?: boolean;
+  playerShotChartsShowZones?: boolean;
 };
 
 /** Params for lineup filtering */
@@ -298,6 +301,9 @@ export type PlayerLeaderboardParams = {
   // Misc view controls
   showExpanded?: boolean;
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
+  // Shot charts:
+  shotCharts?: boolean;
+  shotChartsShowZones?: boolean;
 };
 
 export type PlayerSeasonComparisonParams = {

@@ -419,6 +419,32 @@ export type LineupStintInfo = {
 
 //////////////////////////////////////
 
+// Shot Charts
+
+export interface HexZone {
+  minDist: number;
+  maxDist: number;
+  distCenter?: number; //(if not specified then take average)
+  minAngle: number;
+  maxAngle: number;
+  angleOffset: number;
+  frequency: number;
+  intensity: number;
+  total_freq?: number;
+  shots?: any[]; //(for debugging)
+}
+
+export interface HexData {
+  key: string;
+  frequency: number;
+  intensity: number;
+  x: number;
+  y: number;
+  tooltip: string;
+}
+
+//////////////////////////////////////
+
 /** Useful constants */
 export class StatModels {
   static emptyIndiv: () => IndivStatSet = () => {
