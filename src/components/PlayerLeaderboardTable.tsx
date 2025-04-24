@@ -2274,7 +2274,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         <div></div>
         {/*(for some reason this div is needed to avoid the Row classnames getting confused - related to SSR?)*/}
         <StickyRow stickyEnabled={stickyQuickToggle}>
-          <Col xs={12} sm={12} md={12} lg={7} className="pt-1">
+          <Col xs={12} sm={12} md={12} lg={8} className="pt-1">
             <ToggleButtonGroup
               items={(
                 [
@@ -2427,7 +2427,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               )}
             />
           </Col>
-          <Col xs={11} sm={11} md={11} lg={4} className="pt-1">
+          <Col xs={11} sm={11} md={11} lg={3} className="pt-1">
             {!_.isEmpty(transferInfoSplit[0]) &&
             !_.isEmpty(dataEvent.transfers) ? (
               <div className="float-right">
