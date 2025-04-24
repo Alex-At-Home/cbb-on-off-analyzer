@@ -79,6 +79,7 @@ import dynamic from "next/dynamic";
 import { Badge } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import StickyRow from "./shared/StickyRow";
+import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -336,6 +337,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     _.isNil(startingState.showGrades) ? "" : startingState.showGrades
   );
 
+  /** Show simplified player shot chart */
+  const [showPlayerShots, setShowPlayerShots] = useState(
+    _.isNil(startingState.shotCharts) ? false : startingState.shotCharts
+  );
+
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
   const [geoLoadingOverride, setGeoLoadingOverride] = useState(false);
@@ -567,6 +573,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       geoCenterLon: geoCenterInfo?.lon?.toString(),
       geoZoom: geoCenterInfo?.zoom?.toString(),
       stickyQuickToggle,
+      shotCharts: showPlayerShots,
     };
     onChangeState(newState);
   }, [
@@ -589,6 +596,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     tier,
     geoCenterInfo,
     stickyQuickToggle,
+    showPlayerShots,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -1681,6 +1689,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   leaderboardMode: true,
                 })
               : [],
+            showPlayerShots &&
+            playerIndex < 50 &&
+            (player.year || year >= DateUtils.firstYearWithShotChartData) &&
+            player.shotInfo
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <ShotZoneChartDiagView
+                      gender={gender as "Men" | "Women"}
+                      off={player.shotInfo}
+                    />,
+                    "small"
+                  ),
+                ]
+              : [],
           ]);
     };
     const tableData = _.take(players, parseInt(maxTableSize)).flatMap(
@@ -2262,6 +2284,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     toggled: true,
                     onClick: () => {},
                   },
+                  {
+                    label: "RAPM",
+                    tooltip: "Use RAPM (vs Adj Rtg) when displaying rankings",
+                    toggled: useRapm,
+                    onClick: () => friendlyChange(() => toggleUseRapm(), true),
+                  },
+                  {
+                    label: "| ",
+                    tooltip: "",
+                    toggled: true,
+                    onClick: () => {},
+                    isLabelOnly: true,
+                  },
                 ]
                   .concat(
                     dataEvent.syntheticData
@@ -2289,6 +2324,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                                 setIsConfOnly(!isConfOnly);
                               }, true),
                           },
+                          {
+                            label: "| ",
+                            tooltip: "",
+                            toggled: true,
+                            onClick: () => {},
+                            isLabelOnly: true,
+                          },
                         ]
                   )
                   .concat([
@@ -2310,6 +2352,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                         friendlyChange(() => toggleFactorMins(), true),
                     },
                     {
+                      label: "| ",
+                      tooltip: "",
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                    },
+                    {
                       label: "Grades",
                       tooltip: showGrades
                         ? "Hide player ranks/percentiles"
@@ -2326,12 +2375,33 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                           true
                         ),
                     },
+                  ])
+                  .concat(
+                    (year >= DateUtils.firstYearWithShotChartData ||
+                      year == "All") &&
+                      !dataEvent.syntheticData
+                      ? [
+                          {
+                            label: "Shots",
+                            tooltip:
+                              "Show simple shot zones for first 50 players in table",
+                            toggled: showPlayerShots,
+                            onClick: () =>
+                              friendlyChange(
+                                () => setShowPlayerShots(!showPlayerShots),
+                                true
+                              ),
+                          },
+                        ]
+                      : []
+                  )
+                  .concat([
                     {
-                      label: "RAPM",
-                      tooltip: "Use RAPM (vs Adj Rtg) when displaying rankings",
-                      toggled: useRapm,
-                      onClick: () =>
-                        friendlyChange(() => toggleUseRapm(), true),
+                      label: "| ",
+                      tooltip: "",
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
                     },
                     {
                       label: "+ Info",

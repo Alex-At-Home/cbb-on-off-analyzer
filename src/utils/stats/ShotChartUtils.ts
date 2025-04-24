@@ -17,6 +17,22 @@ export class ShotChartUtils {
     };
   };
 
+  /** Inflates the compressed info into a set of hex zones ready to display */
+  static decompressHexZones = (comp: CompressedHexZone): HexZone[] => {
+    const mutableZones = ShotChartUtils.buildStartingZones();
+    _.forEach(comp.info, (zone) => {
+      const index = zone[0];
+      const frequency = zone[1];
+      const intensity = zone[2];
+      if (index >= 0 && index < mutableZones.length) {
+        mutableZones[index].frequency = frequency;
+        mutableZones[index].intensity = intensity;
+        mutableZones[index].total_freq = comp.total_freq;
+      }
+    });
+    return mutableZones;
+  };
+
   /** Converts from the ES aggregation format into all the info we need to display the hex data */
   static shotStatsToHexData = (
     stats: ShotStats,

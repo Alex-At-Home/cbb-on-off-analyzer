@@ -303,7 +303,6 @@ export type PlayerLeaderboardParams = {
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
   // Shot charts:
   shotCharts?: boolean;
-  shotChartsShowZones?: boolean;
 };
 
 export type PlayerSeasonComparisonParams = {
