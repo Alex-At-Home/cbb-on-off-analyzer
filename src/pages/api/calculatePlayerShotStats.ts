@@ -41,7 +41,10 @@ function marshallRequest(
   return body;
 }
 
-async function calculateShotStats(req: NextApiRequest, res: NextApiResponse) {
+async function calculatePlayerShotStats(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const url = require("url").parse(req.url);
 
   await CommonApiUtils.handleRequest(
@@ -51,4 +54,4 @@ async function calculateShotStats(req: NextApiRequest, res: NextApiResponse) {
     marshallRequest
   );
 }
-export default calculateShotStats;
+export default calculatePlayerShotStats;

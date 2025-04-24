@@ -283,6 +283,35 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 //////////////////////////////////////
 
+// Shot Charts
+
+export interface HexZone {
+  minDist: number;
+  maxDist: number;
+  distCenter?: number; //(if not specified then take average)
+  minAngle: number;
+  maxAngle: number;
+  angleOffset: number;
+  frequency: number;
+  intensity: number;
+  total_freq?: number;
+  shots?: any[]; //(for debugging)
+}
+
+export interface CompressedHexZone {
+  total_freq: number;
+  info: [number, number, number][]; //(index, frequency, intensity)
+}
+
+export interface HexData {
+  key: string;
+  frequency: number;
+  intensity: number;
+  x: number;
+  y: number;
+  tooltip: string;
+}
+
 export type ShotStats = {
   doc_count?: number;
   shot_chart?: {
@@ -416,32 +445,6 @@ export type LineupStintInfo = {
   team_stats: LineupStintTeamStats;
   opponent_stats: LineupStintTeamStats;
 };
-
-//////////////////////////////////////
-
-// Shot Charts
-
-export interface HexZone {
-  minDist: number;
-  maxDist: number;
-  distCenter?: number; //(if not specified then take average)
-  minAngle: number;
-  maxAngle: number;
-  angleOffset: number;
-  frequency: number;
-  intensity: number;
-  total_freq?: number;
-  shots?: any[]; //(for debugging)
-}
-
-export interface HexData {
-  key: string;
-  frequency: number;
-  intensity: number;
-  x: number;
-  y: number;
-  tooltip: string;
-}
 
 //////////////////////////////////////
 

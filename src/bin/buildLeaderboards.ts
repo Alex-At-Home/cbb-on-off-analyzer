@@ -28,12 +28,14 @@ import {
   PureStatSet,
   IndivPosInfo,
   RosterEntry,
+  CompressedHexZone,
 } from "../utils/StatModels";
 
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
 import calculateOnOffStats from "../pages/api/calculateOnOffStats";
 import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
+import calculatePlayerShotStats from "../pages/api/calculatePlayerShotStats";
 import { CommonApiUtils } from "../utils/CommonApiUtils";
 
 // Pre processing
@@ -70,6 +72,7 @@ import {
   TopLevelPlayAnalysis,
 } from "../utils/stats/PlayTypeUtils";
 import calculateTeamDefenseStats from "../pages/api/calculateTeamDefenseStats";
+import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -513,8 +516,11 @@ export async function main() {
           const lineupResponse = new MutableAsyncResponse();
           const teamResponse = new MutableAsyncResponse();
           const playerResponse = new MutableAsyncResponse();
+          const playerShotChartsResponse = new MutableAsyncResponse();
           const teamDefenseResponse = new MutableAsyncResponse();
 
+          const isCalculatingShotCharts =
+            inYear >= DateUtils.firstYearWithShotChartData;
           const isCalculatingTeamDefense =
             teamDefenseEnabled &&
             inNaturalTier &&
@@ -540,18 +546,31 @@ export async function main() {
                 } as unknown as NextApiRequest,
                 playerResponse as unknown as NextApiResponse
               ),
-            ].concat(
-              isCalculatingTeamDefense
-                ? [
-                    calculateTeamDefenseStats(
-                      {
-                        url: `https://hoop-explorer.com/?${requestParams}`,
-                      } as unknown as NextApiRequest,
-                      teamDefenseResponse as unknown as NextApiResponse
-                    ),
-                  ]
-                : []
-            )
+            ]
+              .concat(
+                isCalculatingShotCharts
+                  ? [
+                      calculatePlayerShotStats(
+                        {
+                          url: `https://hoop-explorer.com/?${requestParams}`,
+                        } as unknown as NextApiRequest,
+                        playerShotChartsResponse as unknown as NextApiResponse
+                      ),
+                    ]
+                  : []
+              )
+              .concat(
+                isCalculatingTeamDefense
+                  ? [
+                      calculateTeamDefenseStats(
+                        {
+                          url: `https://hoop-explorer.com/?${requestParams}`,
+                        } as unknown as NextApiRequest,
+                        teamDefenseResponse as unknown as NextApiResponse
+                      ),
+                    ]
+                  : []
+              )
           );
 
           // Also we're going to try fetching the roster
@@ -627,6 +646,19 @@ export async function main() {
           const rosterBaseline =
             playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
               ?.baseline?.player?.buckets || [];
+
+          const rosterShotChartMap = _.chain(
+            playerShotChartsResponse.getJsonResponse().aggregations?.tri_filter
+              ?.buckets?.baseline?.player?.buckets || []
+          )
+            .map((playerShotChartInfo) => [
+              playerShotChartInfo.key || "???",
+              ShotChartUtils.compressHexZones(
+                ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones
+              ),
+            ])
+            .fromPairs()
+            .value();
 
           const rosterGlobalButActuallyBaseline = rosterBaseline;
           // playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
@@ -1034,6 +1066,7 @@ export async function main() {
           // Merge ratings and position, and filter based on offensive possessions played
           const enrichAndFilter = (
             playerMap: Record<string, IndivStatSet>,
+            shotChartMap: Record<string, CompressedHexZone[]>,
             cutdownLowVolume: boolean
           ) =>
             _.toPairs(playerMap)
@@ -1152,6 +1185,7 @@ export async function main() {
                   conf: conference,
                   team: team,
                   year: teamYear,
+                  shotInfo: shotChartMap[kv[0]],
                   posFreqs,
                   ...((cutdownLowVolume
                     ? lowVolumeStripPlayerInfo(kv[1])
@@ -1193,11 +1227,12 @@ export async function main() {
 
           const enrichedAndFilteredPlayers = enrichAndFilter(
             baselinePlayerInfo,
+            rosterShotChartMap,
             false
           );
           // In "all" mode (ie for predictions) we keep a list of players with fewer minutes but who are still noteworthy
           const cutdownEnrichedPlayers =
-            label == "all" ? enrichAndFilter(baselinePlayerInfo, true) : [];
+            label == "all" ? enrichAndFilter(baselinePlayerInfo, {}, true) : [];
 
           const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
             sortedLineups,

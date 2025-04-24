@@ -1,10 +1,21 @@
 // Lodash:
 import _ from "lodash";
-import { ShotStats, HexZone, HexData } from "../StatModels";
+import { ShotStats, HexZone, CompressedHexZone, HexData } from "../StatModels";
 
 /** Wrapper for WAB and related utils */
 export class ShotChartUtils {
   ///////////////////// Top Level Logic
+
+  /** Creates a smaller JSON object to show player stats in the leaderboard */
+  static compressHexZones = (zones: HexZone[]): CompressedHexZone => {
+    return {
+      total_freq: _.head(zones)?.total_freq || 0,
+      info: _.map(
+        zones.filter((z) => z.frequency > 0),
+        (zone, index) => [index, zone.frequency, zone.intensity]
+      ),
+    };
+  };
 
   /** Converts from the ES aggregation format into all the info we need to display the hex data */
   static shotStatsToHexData = (
