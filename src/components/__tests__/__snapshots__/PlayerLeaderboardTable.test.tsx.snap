@@ -1049,7 +1049,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         className="pt-1"
-        lg={7}
+        lg={8}
         md={12}
         sm={12}
         xs={12}
@@ -1064,6 +1064,19 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Statistics always adjusted for luck",
               },
               Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "T100",
                 "onClick": [Function],
                 "toggled": false,
@@ -1074,6 +1087,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "Poss%",
@@ -1088,16 +1108,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
-                "label": "RAPM",
+                "isLabelOnly": true,
+                "label": "| ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+                "tooltip": "",
               },
               Object {
                 "label": "+ Info",
@@ -1111,7 +1139,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="pt-1"
-        lg={4}
+        lg={3}
         md={11}
         sm={11}
         xs={11}
@@ -9017,7 +9045,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         className="pt-1"
-        lg={7}
+        lg={8}
         md={12}
         sm={12}
         xs={12}
@@ -9032,6 +9060,19 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Statistics always adjusted for luck",
               },
               Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "T100",
                 "onClick": [Function],
                 "toggled": false,
@@ -9042,6 +9083,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "Poss%",
@@ -9056,16 +9104,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
-                "label": "RAPM",
+                "isLabelOnly": true,
+                "label": "| ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+                "tooltip": "",
               },
               Object {
                 "label": "+ Info",
@@ -9079,7 +9135,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="pt-1"
-        lg={4}
+        lg={3}
         md={11}
         sm={11}
         xs={11}
@@ -16989,7 +17045,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         className="pt-1"
-        lg={7}
+        lg={8}
         md={12}
         sm={12}
         xs={12}
@@ -17004,6 +17060,19 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Statistics always adjusted for luck",
               },
               Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "T100",
                 "onClick": [Function],
                 "toggled": false,
@@ -17014,6 +17083,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "Poss%",
@@ -17028,16 +17104,30 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
-                "label": "RAPM",
+                "label": "Shots",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+                "tooltip": "Show simple shot zones for first 50 players in table",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "+ Info",
@@ -17051,7 +17141,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="pt-1"
-        lg={4}
+        lg={3}
         md={11}
         sm={11}
         xs={11}
@@ -28161,7 +28251,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         className="pt-1"
-        lg={7}
+        lg={8}
         md={12}
         sm={12}
         xs={12}
@@ -28176,6 +28266,19 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Statistics always adjusted for luck",
               },
               Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "T100",
                 "onClick": [Function],
                 "toggled": false,
@@ -28186,6 +28289,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "Poss%",
@@ -28200,16 +28310,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
-                "label": "RAPM",
+                "isLabelOnly": true,
+                "label": "| ",
                 "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "+ Info",
@@ -28223,7 +28341,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="pt-1"
-        lg={4}
+        lg={3}
         md={11}
         sm={11}
         xs={11}
@@ -36081,7 +36199,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         className="pt-1"
-        lg={7}
+        lg={8}
         md={12}
         sm={12}
         xs={12}
@@ -36096,6 +36214,19 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Statistics always adjusted for luck",
               },
               Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "T100",
                 "onClick": [Function],
                 "toggled": false,
@@ -36106,6 +36237,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "Poss%",
@@ -36120,16 +36258,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Hide player ranks/percentiles",
               },
               Object {
-                "label": "RAPM",
+                "isLabelOnly": true,
+                "label": "| ",
                 "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "+ Info",
@@ -36143,7 +36289,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="pt-1"
-        lg={4}
+        lg={3}
         md={11}
         sm={11}
         xs={11}
@@ -37858,7 +38004,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         className="pt-1"
-        lg={7}
+        lg={8}
         md={12}
         sm={12}
         xs={12}
@@ -37873,6 +38019,19 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Statistics always adjusted for luck",
               },
               Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "T100",
                 "onClick": [Function],
                 "toggled": false,
@@ -37883,6 +38042,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "Poss%",
@@ -37897,16 +38063,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "| ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
-                "label": "RAPM",
+                "isLabelOnly": true,
+                "label": "| ",
                 "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+                "toggled": true,
+                "tooltip": "",
               },
               Object {
                 "label": "+ Info",
@@ -37920,7 +38094,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         className="pt-1"
-        lg={4}
+        lg={3}
         md={11}
         sm={11}
         xs={11}

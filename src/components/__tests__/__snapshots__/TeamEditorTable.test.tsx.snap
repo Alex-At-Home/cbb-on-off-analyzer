@@ -2607,26 +2607,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Freshmen%2C%20Random%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Freshmen, Random
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Freshmen, Random
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -3941,26 +3924,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -9403,26 +9369,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -15154,26 +15103,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -20249,26 +20181,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Freshmen%2C%20Random%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Freshmen, Random
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Freshmen, Random
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -21782,26 +21697,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -28230,26 +28128,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -35254,26 +35135,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -40955,26 +40819,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       6-9
                        / 
                     </i>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Reese%2C%20Julian%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Reese, Julian
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Reese, Julian
+                    </span>
                   </span>,
                   "usage": undefined,
                 },
@@ -44127,26 +43974,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="lboard_undefined"
-                          placement="right"
-                        >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/PlayerLeaderboard?filter=Freshmen%2C%20Random%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
-                        target="_blank"
-                      >
-                        <b>
-                          Freshmen, Random
-                        </b>
-                      </a>
-                    </OverlayTrigger>
+                    <span>
+                      Freshmen, Random
+                    </span>
                   </span>,
                   "usage": undefined,
                 },

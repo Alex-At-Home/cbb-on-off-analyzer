@@ -249,6 +249,7 @@ Array [
         0,
       ],
       "roster": undefined,
+      "shotInfo": undefined,
       "team": "Maryland",
       "total_off_2p_attempts": Object {
         "value": 182,
@@ -516,6 +517,7 @@ Array [
         "pos": "G",
         "year_class": "Jr",
       },
+      "shotInfo": undefined,
       "team": "Maryland",
       "total_off_2p_attempts": Object {
         "value": 133,
@@ -785,6 +787,7 @@ Array [
         0,
       ],
       "roster": undefined,
+      "shotInfo": undefined,
       "team": "Maryland",
       "total_off_2p_attempts": Object {
         "value": 182,

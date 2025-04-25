@@ -780,10 +780,26 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         sortBy: "desc:year",
         showInfoSubHeader: true,
       };
+      const lowVolumePrevSeason =
+        !triple.manualProfile &&
+        triple?.orig &&
+        (triple?.orig?.off_team_poss_pct?.value || 0) < 0.25;
+      const lowVolumeSeasonBefore =
+        triple?.prevYear &&
+        (triple?.prevYear?.off_team_poss_pct?.value || 0) < 0.25;
       const playerLboardTooltip = (
         <Tooltip id={`lboard_${triple.orig.code}`}>
           Open new tab showing all the player's seasons, in the multi-year
           version of the leaderboard
+          {lowVolumePrevSeason || lowVolumeSeasonBefore ? (
+            <p>
+              <br />
+              WARNING: this player may not have played qualifying minutes to
+              appear in the leaderboard for one+ of their seasons. You can see
+              their individual stats by selecting "History" and clicking on a
+              previous season.
+            </p>
+          ) : null}
         </Tooltip>
       );
       const name = triple.orig.key;
@@ -792,15 +808,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ) : (
         name
       );
-      const playerLink = (
+      const playerLink = !triple.manualProfile ? (
         <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
           <a
             target="_blank"
             href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}
           >
-            <b>{maybeTransferName}</b>
+            <b>
+              {maybeTransferName}
+              {lowVolumePrevSeason ? <sup> !</sup> : null}
+            </b>
           </a>
         </OverlayTrigger>
+      ) : (
+        <span>{maybeTransferName}</span>
       );
 
       // (In "in-season mode" always put added players in the adjusted column)
@@ -833,6 +854,22 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           : 1.0;
 
       const injectTransferOverlay = (text: String, season: IndivStatSet) => {
+        const teamParams = {
+          team: season.team,
+          gender: gender,
+          year: season.year,
+          minRank: "0",
+          maxRank: "400",
+          factorMins: factorMins,
+          possAsPct: true,
+          showExpanded: true,
+          calcRapm: true,
+          showGrades: "rank:D1",
+          showTeamPlayTypes: false,
+          showRoster: false,
+          showExtraInfo: false,
+          filter: `${season.key};`,
+        };
         if (season.team != team) {
           return (
             <OverlayTrigger
@@ -841,17 +878,38 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 <Tooltip id={`transfer_${season.year}`}>
                   Playing at {season.team}{" "}
                   {season.conf ? `(${season.conf})` : ""}
+                  <br />
+                  Click to view their individual stats in the Team Analysis
+                  Page.
                 </Tooltip>
               }
             >
               <span>
-                {text}
+                <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+                  {text}
+                </a>
                 <sup>*</sup>
               </span>
             </OverlayTrigger>
           );
         } else {
-          return <span>{text}</span>;
+          return (
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip id={`nontransfer_${season.year}`}>
+                  Click to view their individual stats in the Team Analysis
+                  Page.
+                </Tooltip>
+              }
+            >
+              <span>
+                <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+                  {text}
+                </a>
+              </span>
+            </OverlayTrigger>
+          );
         }
       };
       const prevSeasonEl =
