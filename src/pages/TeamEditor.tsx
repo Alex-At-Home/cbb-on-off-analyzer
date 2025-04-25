@@ -140,6 +140,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         //These aren't plumbed in:
         !rawParams.t100 ? ["t100"] : [], //(TODO these 2 don't work)
         !rawParams.confOnly ? ["confOnly"] : [],
+        !rawParams.shotCharts ? ["shotCharts"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]
@@ -152,6 +153,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
           : [],
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+        rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
 
         rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos
           ? ["minPoss"]

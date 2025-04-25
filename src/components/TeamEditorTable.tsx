@@ -808,7 +808,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ) : (
         name
       );
-      const playerLink = !triple.manualProfile ? (
+
+      const showLinks =
+        !triple.manualProfile ||
+        ((!offSeasonMode || evalMode) && triple.actualResults);
+      const playerLink = showLinks ? (
         <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
           <a
             target="_blank"
