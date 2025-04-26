@@ -107,6 +107,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -148,6 +154,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -184,6 +196,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -219,6 +237,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -260,6 +284,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -310,6 +340,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -379,6 +415,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -424,6 +466,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />
@@ -468,6 +516,12 @@ describe("RosterStatsTable", () => {
           },
           rosterStats: testData,
           lineupStats: [],
+          playerShotStats: {
+            on: {},
+            off: {},
+            baseline: {},
+            other: [],
+          },
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
       />

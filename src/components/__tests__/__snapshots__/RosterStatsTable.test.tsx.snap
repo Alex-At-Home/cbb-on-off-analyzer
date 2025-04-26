@@ -5943,6 +5943,12 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "tooltip": "Show play style breakdowns",
               },
               Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -7815,6 +7821,17 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                   class="btn btn-outline-secondary btn-sm"
                   type="button"
                 >
+                  Shots
+                </button>
+              </div>
+                
+            </span>
+            <span>
+              <div>
+                <button
+                  class="btn btn-outline-secondary btn-sm"
+                  type="button"
+                >
                   + Info
                 </button>
               </div>
@@ -7954,6 +7971,17 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                   type="button"
                 >
                   Style
+                </button>
+              </div>
+                
+            </span>
+            <span>
+              <div>
+                <button
+                  class="btn btn-outline-secondary btn-sm"
+                  type="button"
+                >
+                  Shots
                 </button>
               </div>
                 
@@ -10957,6 +10985,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
               },
               Object {
                 "label": "+ Info",
@@ -16906,6 +16940,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
               },
               Object {
                 "label": "+ Info",
@@ -24838,6 +24878,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
               },
               Object {
                 "label": "+ Info",
@@ -33144,6 +33190,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
               },
               Object {
                 "label": "+ Info",
@@ -44900,6 +44952,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "tooltip": "Show play style breakdowns",
               },
               Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -53861,6 +53919,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Hide play style breakdowns",
+              },
+              Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
               },
               Object {
                 "label": "+ Info",
@@ -65864,6 +65928,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "Shots",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show shot charts",
               },
               Object {
                 "label": "+ Info",

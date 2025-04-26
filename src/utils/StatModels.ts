@@ -341,6 +341,16 @@ export type ShotStatsModel = {
   error_code?: string;
 };
 
+export type PlayerShotStatsModel = {
+  on: Record<PlayerId, ShotStats>;
+  off: Record<PlayerId, ShotStats>;
+  other: Record<PlayerId, ShotStats>[];
+  baseline: Record<PlayerId, ShotStats>;
+} & {
+  onOffMode?: boolean;
+  error_code?: string;
+};
+
 //////////////////////////////////////
 
 /** For team leaderboard info */

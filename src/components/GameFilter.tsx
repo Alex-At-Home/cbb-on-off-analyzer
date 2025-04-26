@@ -39,7 +39,12 @@ import {
 import LineupQueryAutoSuggestText from "./shared/LineupQueryAutoSuggestText";
 
 // Utils
-import { ShotStatsModel, StatModels } from "../utils/StatModels";
+import {
+  ShotStatsModel,
+  StatModels,
+  PlayerId,
+  PlayerShotStatsModel,
+} from "../utils/StatModels";
 import {
   QueryUtils,
   CommonFilterCustomDate,
@@ -67,7 +72,8 @@ type Props = {
     rosterCompareStats: RosterCompareModel,
     rosterStats: RosterStatsModel,
     shotStats: ShotStatsModel,
-    lineupStats: LineupStatsModel[]
+    lineupStats: LineupStatsModel[],
+    playerShotStats: PlayerShotStatsModel
   ) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
@@ -115,6 +121,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     showPosDiag: startShowPosDiag,
     showPlayerPlayTypes: startShowPlayerPlayTypes,
     showInfoSubHeader: startShowInfoSubHeader,
+    playerShotCharts: startPlayerShotCharts,
     //these fields affect the query
     autoOffQuery: startAutoOffQuery,
     onQuery: startOnQuery,
@@ -423,6 +430,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           showPosDiag: startShowPosDiag,
           showPlayerPlayTypes: startShowPlayerPlayTypes,
           showInfoSubHeader: startShowInfoSubHeader,
+          playerShotCharts: startPlayerShotCharts,
         })
       : {
           ...commonParams,
@@ -553,6 +561,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
             : []
         )
         .concat(
+          startPlayerShotCharts
+            ? [
+                {
+                  tag: "playerShots",
+                  context: ParamPrefixes.playerShots as ParamPrefixesType,
+                  paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
+                },
+              ]
+            : []
+        )
+        .concat(
           makeGlobalRequest
             ? [
                 {
@@ -591,6 +610,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const rosterStatsJson = jsonResps?.["players"]?.responses?.[0] || {};
 
     const shotChartStatsJson = jsonResps?.["shots"]?.responses?.[0] || {};
+    const playerShotChartStatsJson =
+      jsonResps?.["playerShots"]?.responses?.[0] || {};
 
     const globalRosterStatsJson =
       jsonResps?.["globalPlayers"]?.responses?.[0] ||
@@ -629,6 +650,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
           }
         : StatModels.emptyLineup();
     }) as LineupStatsModel[];
+
+    const playerShotChartBuilder = (buckets: any[]) => {
+      return _.chain(buckets)
+        .map((playerShotChartInfo: any) => [
+          playerShotChartInfo.key || "???",
+          playerShotChartInfo || { doc_count: 0, shot_chart: { buckets: [] } },
+        ])
+        .fromPairs()
+        .value();
+    };
 
     onStats(
       {
@@ -718,7 +749,28 @@ const GameFilter: React.FunctionComponent<Props> = ({
             ?.off_def?.buckets?.def,
         },
       },
-      lineupResponses
+      lineupResponses,
+      {
+        on: playerShotChartBuilder(
+          playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.on?.player
+            ?.buckets || []
+        ),
+        off: playerShotChartBuilder(
+          playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.off
+            ?.player?.buckets || []
+        ),
+        baseline: playerShotChartBuilder(
+          playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.baseline
+            ?.player?.buckets || []
+        ),
+        other: _.range(0, numOthers).map((i) => {
+          return playerShotChartBuilder(
+            playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.[
+              `other_${i}`
+            ]?.player?.buckets || []
+          );
+        }),
+      }
     );
   }
 

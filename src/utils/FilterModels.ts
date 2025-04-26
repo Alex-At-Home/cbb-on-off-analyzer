@@ -24,6 +24,7 @@ export type ParamPrefixesType =
   | "report-"
   | "roster-"
   | "player-"
+  | "playerShots-"
   | "gameInfo-"
   | "shots-"
   | "defensiveInfo-"

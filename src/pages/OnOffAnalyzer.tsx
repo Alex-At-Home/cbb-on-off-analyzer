@@ -36,7 +36,11 @@ import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
 
 // Utils:
-import { StatModels, ShotStatsModel } from "../utils/StatModels";
+import {
+  StatModels,
+  ShotStatsModel,
+  PlayerShotStatsModel,
+} from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
@@ -152,6 +156,12 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       baseline: { off: {}, def: {} },
     } as ShotStatsModel,
     lineupStats: [] as LineupStatsModel[],
+    playerShotStats: {
+      on: {},
+      off: {},
+      baseline: {},
+      other: [],
+    } as PlayerShotStatsModel,
   });
   const [rosterCompareStats, setRosterCompareStats] = useState({
     on: {},
@@ -164,9 +174,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     rosterCompareStats: RosterCompareModel,
     rosterStats: RosterStatsModel,
     shotStats: ShotStatsModel,
-    lineupStats: LineupStatsModel[]
+    lineupStats: LineupStatsModel[],
+    playerShotStats: PlayerShotStatsModel
   ) => {
-    setDataEvent({ teamStats, rosterStats, shotStats, lineupStats });
+    setDataEvent({
+      teamStats,
+      rosterStats,
+      shotStats,
+      lineupStats,
+      playerShotStats,
+    });
     setRosterCompareStats(rosterCompareStats);
   };
 
@@ -314,6 +331,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       }
       if (
         params.teamShotCharts != gameFilterParamsRef.current?.teamShotCharts
+      ) {
+        setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+      }
+      if (
+        params.playerShotCharts != gameFilterParamsRef.current?.playerShotCharts
       ) {
         setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }

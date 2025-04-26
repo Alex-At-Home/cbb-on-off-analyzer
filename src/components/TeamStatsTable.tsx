@@ -397,7 +397,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           ? [
               {
                 label: "Shots",
-                tooltip: showGameInfo ? "Hide shot chart" : "Show shot charts",
+                tooltip: showShotCharts
+                  ? "Hide shot chart"
+                  : "Show shot charts",
                 toggled: showShotCharts,
                 onClick: () => setShowShotCharts(!showShotCharts),
               },

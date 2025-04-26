@@ -61,6 +61,8 @@ import {
   RosterStatsByCode,
   OnOffBaselineGlobalOtherEnum,
   OnOffBaselineOtherEnum,
+  PlayerShotStatsModel,
+  ShotStats,
 } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -98,6 +100,11 @@ import TeamRosterStatsConfigModal, {
   TeamRosterStatsConfig,
 } from "./shared/TeamRosterStatsConfigModal";
 import { UrlRouting } from "../utils/UrlRouting";
+import { DateUtils } from "../utils/DateUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { UserChartOpts } from "./diags/ShotChartDiagView";
+import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
+import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -116,6 +123,7 @@ type Props = {
     teamStats: TeamStatsModel;
     rosterStats: RosterStatsModel;
     lineupStats: LineupStatsModel[];
+    playerShotStats: PlayerShotStatsModel;
   };
   onChangeState: (newParams: GameFilterParams) => void;
   testMode?: boolean; //(if set, the initial processing occurs synchronously)
@@ -151,6 +159,19 @@ const getTeamStats = (
   }
 };
 
+/** Get the right shot chart stats for on/off/etc  */
+const getPlayerShotChartStats = (
+  key: OnOffBaselineOtherEnum,
+  shotChartModel: PlayerShotStatsModel,
+  otherIndex?: number
+): Record<PlayerId, ShotStats> => {
+  if (key == "other") {
+    return shotChartModel.other?.[otherIndex || 0] || {};
+  } else {
+    return shotChartModel[key] || {};
+  }
+};
+
 ////////
 
 // The main component (currently contains lots of static logic that should be moved to RosterStatsTableUtils)
@@ -182,6 +203,21 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
+  );
+
+  /** Shot chart config */
+  const [showShotCharts, setShowShotCharts] = useState<boolean>(
+    _.isNil(gameFilterParams.playerShotCharts)
+      ? false
+      : gameFilterParams.playerShotCharts
+  );
+  // Shot charts:
+  const [shotChartConfig, setShotChartConfig] = useState<
+    UserChartOpts | undefined
+  >(
+    _.isNil(gameFilterParams.playerShotChartsShowZones)
+      ? undefined
+      : { buildZones: gameFilterParams.playerShotChartsShowZones }
   );
 
   /** Splits out offensive and defensive metrics into separate rows */
@@ -396,6 +432,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       // Luck:
       luck: luckConfig,
       calcRapm: calcRapm,
+      playerShotCharts: showShotCharts,
+      playerShotChartsShowZones: shotChartConfig?.buildZones,
       rapmPriorMode: rapmPriorMode.toString(),
       rapmRegressMode: rapmRegressMode.toString(),
       factorMins: factorMins,
@@ -430,6 +468,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     rapmPriorMode,
     rapmRegressMode,
     stickyQuickToggle,
+    showShotCharts,
+    shotChartConfig,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache
@@ -1169,6 +1209,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         (showPlayTypes ||
           showPositionDiags ||
           showLuckAdjDiags ||
+          showShotCharts ||
           showDiagMode);
 
       // First line could be on/off/baseline
@@ -1348,6 +1389,29 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           otherQueryIndex
                         )}
                         showHelp={showHelp}
+                      />,
+                      "small"
+                    ),
+                  ]
+                : [],
+
+              showShotCharts
+                ? [
+                    //TODO: use full short view here
+                    GenericTableOps.buildTextRow(
+                      <ShotZoneChartDiagView
+                        gender={
+                          (commonParams.gender || "Men") as "Men" | "Women"
+                        }
+                        off={ShotChartUtils.compressHexZones(
+                          ShotChartUtils.shotStatsToHexData(
+                            getPlayerShotChartStats(
+                              queryKey,
+                              dataEvent.playerShotStats,
+                              otherQueryIndex
+                            )[player?.key || "???"] || {}
+                          ).zones
+                        )}
                       />,
                       "small"
                     ),
@@ -1625,15 +1689,33 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           toggled: showPlayTypes,
           onClick: () => setShowPlayTypes(!showPlayTypes),
         },
-        {
-          label: "+ Info",
-          tooltip: showInfoSubHeader
-            ? "Hide extra info sub-header"
-            : "Show extra info sub-header (not currently saved like other options)",
-          toggled: showInfoSubHeader,
-          onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
-        },
-      ]}
+      ]
+        .concat(
+          FeatureFlags.isActiveWindow(FeatureFlags.shotCharts) &&
+            (gameFilterParams.year || DateUtils.mostRecentYearWithData) >=
+              DateUtils.firstYearWithShotChartData
+            ? [
+                {
+                  label: "Shots",
+                  tooltip: showShotCharts
+                    ? "Hide shot chart"
+                    : "Show shot charts",
+                  toggled: showShotCharts,
+                  onClick: () => setShowShotCharts(!showShotCharts),
+                },
+              ]
+            : []
+        )
+        .concat([
+          {
+            label: "+ Info",
+            tooltip: showInfoSubHeader
+              ? "Hide extra info sub-header"
+              : "Show extra info sub-header (not currently saved like other options)",
+            toggled: showInfoSubHeader,
+            onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
+          },
+        ])}
     />
   );
 

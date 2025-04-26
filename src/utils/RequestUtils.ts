@@ -233,6 +233,8 @@ export class RequestUtils {
         return `/api/getRoster?${paramStr}`;
       case ParamPrefixes.player:
         return `/api/calculateOnOffPlayerStats?${paramStr}`;
+      case ParamPrefixes.playerShots:
+        return `/api/calculatePlayerShotStats?${paramStr}`;
       case ParamPrefixes.gameInfo:
         return `/api/getGameInfo?${paramStr}`;
       case ParamPrefixes.defensiveInfo:
