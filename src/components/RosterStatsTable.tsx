@@ -1243,7 +1243,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       }
 
       const shotChartQuickSwitchOptions = (
-        player: IndivStatSet,
+        player: IndivStatSet | undefined,
         queryKey: OnOffBaselineOtherEnum,
         otherQueryIndex: number
       ) =>
