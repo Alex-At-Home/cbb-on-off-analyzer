@@ -13,7 +13,11 @@ import { ShotChartZones_Men_2024 } from "../../utils/internal-data/ShotChartZone
 import { ShotChartZones_Women_2024 } from "../../utils/internal-data/ShotChartZones_Women_2024";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
+import {
+  faClock,
+  faArrowAltCircleRight,
+  faWindowClose,
+} from "@fortawesome/free-regular-svg-icons";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
@@ -28,10 +32,14 @@ import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 
 ///////////////////// UI element + control
 
+const quickSwichDelim = ":|:";
+
 /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
 const buildQuickSwitchOptions = (
   title: string,
+  hasDefensiveData: boolean,
   quickSwitch: string | undefined,
+  quickSwitchExtra: string | undefined,
   quickSwitchOptions: { title?: string }[] | undefined,
   updateQuickSwitch: (
     newSetting: string | undefined,
@@ -64,6 +72,29 @@ const buildQuickSwitchOptions = (
       Sets off a 4s timer switching between the default breakdown and this one
     </Tooltip>
   );
+  const rightArrowTooltip = (
+    <Tooltip id="rightArrowTooltip">
+      Shows this data set to the right for comparison purposes
+    </Tooltip>
+  );
+  const cancelRightArrowTooltip = (
+    <Tooltip id="rightArrowTooltip">Hides the comparison to the right</Tooltip>
+  );
+  const rightArrowBuilder = (t: string | undefined) => {
+    if (quickSwitchExtra == "extra" && t == quickSwitch) {
+      return (
+        <OverlayTrigger placement="auto" overlay={cancelRightArrowTooltip}>
+          <FontAwesomeIcon icon={faWindowClose} />
+        </OverlayTrigger>
+      );
+    } else {
+      return (
+        <OverlayTrigger placement="auto" overlay={rightArrowTooltip}>
+          <FontAwesomeIcon icon={faArrowAltCircleRight} />
+        </OverlayTrigger>
+      );
+    }
+  };
   const quickSwitchBuilder = _.map(
     quickSwitchTimer
       ? [{ title: `Cancel 4s timer` }]
@@ -78,7 +109,10 @@ const buildQuickSwitchOptions = (
           onClick={(e) => {
             e.preventDefault();
             if (!quickSwitchTimer) {
-              updateQuickSwitch(quickSwitch == t ? undefined : t, false); //(ie toggle)
+              updateQuickSwitch(
+                quickSwitch == t && !quickSwitchExtra ? undefined : t,
+                false
+              ); //(ie toggle)
             } else {
               quickSwitchTimerLogic(undefined);
             }
@@ -103,15 +137,35 @@ const buildQuickSwitchOptions = (
             </a>
           </span>
         )}
+        {hasDefensiveData || quickSwitchTimer ? undefined : (
+          <span>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                updateQuickSwitch(
+                  quickSwitch == t && quickSwitchExtra == "extra"
+                    ? undefined
+                    : `${t}${quickSwichDelim}extra`,
+                  false
+                ); //(ie toggle)
+              }}
+            >
+              {rightArrowBuilder(t)}
+              &nbsp;
+            </a>
+          </span>
+        )}
         ]&nbsp;
       </span>
     );
   });
 
+  const quickswitchOverride = quickSwitchExtra ? undefined : quickSwitch;
   return (
     <div>
       <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
-        <b>Shot Chart Analysis: [{quickSwitch || title}]</b>
+        <b>Shot Chart Analysis: [{quickswitchOverride || title}]</b>
       </span>
       {_.isEmpty(quickSwitchOptions) ? null : (
         <span style={{ whiteSpace: "nowrap" }}>
@@ -185,26 +239,65 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   //   ShotChartUtils.buildAverageZones(diffDataSet || {}, "Men");
   //   ShotChartUtils.buildAverageZones(diffDataSet || {}, "Women");
 
-  const selectedOff =
-    (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.off
-      : off) || off;
-  const selectedDef =
-    (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.def
-      : def) || def;
+  const quickSwitchBase = quickSwitch
+    ? quickSwitch.split(quickSwichDelim)[0]
+    : undefined;
+  const quickSwitchExtra = quickSwitch
+    ? quickSwitch.split(quickSwichDelim)[1]
+    : undefined;
 
-  const selOffDefOverrides =
-    (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
-          ?.offDefOverrides
-      : offDefOverrides) || offDefOverrides;
+  const { selectedOff, selectedDef, selOffDefOverrides, selLabelOverrides } =
+    _.thru(quickSwitchExtra, (__) => {
+      if (quickSwitchExtra == "extra") {
+        return {
+          selectedOff: off,
+          selectedDef:
+            (quickSwitch
+              ? _.find(
+                  quickSwitchOptions || [],
+                  (opt) => opt.title == quickSwitchBase
+                )?.off
+              : def) || def,
 
-  const selLabelOverrides =
-    (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
-          ?.labelOverrides
-      : labelOverrides) || labelOverrides;
+          selOffDefOverrides: [false, false],
+          selLabelOverrides: [
+            labelOverrides?.[0] || "Offense:",
+            `Compare vs: [${quickSwitchBase}]`,
+          ],
+        };
+      } else {
+        return {
+          selectedOff:
+            (quickSwitch
+              ? _.find(
+                  quickSwitchOptions || [],
+                  (opt) => opt.title == quickSwitchBase
+                )?.off
+              : off) || off,
+          selectedDef:
+            (quickSwitch
+              ? _.find(
+                  quickSwitchOptions || [],
+                  (opt) => opt.title == quickSwitchBase
+                )?.def
+              : def) || def,
+          selOffDefOverrides:
+            (quickSwitch
+              ? _.find(
+                  quickSwitchOptions || [],
+                  (opt) => opt.title == quickSwitchBase
+                )?.offDefOverrides
+              : offDefOverrides) || offDefOverrides,
+          selLabelOverrides:
+            (quickSwitch
+              ? _.find(
+                  quickSwitchOptions || [],
+                  (opt) => opt.title == quickSwitchBase
+                )?.labelOverrides
+              : labelOverrides) || labelOverrides,
+        };
+      }
+    });
 
   const { data: offData, zones: offZones } = ShotChartUtils.shotStatsToHexData(
     selectedOff,
@@ -218,6 +311,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const leftIndex = invertLeftRight ? 1 : 0;
   const rightIndex = invertLeftRight ? 0 : 1;
 
+  const hasDefensiveData = (def?.doc_count || 0) > 0;
+
   return off?.doc_count || def?.doc_count ? (
     <Container>
       {title ? (
@@ -225,7 +320,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           <Col xs={12}>
             {buildQuickSwitchOptions(
               title,
-              quickSwitch,
+              hasDefensiveData,
+              quickSwitchBase,
+              quickSwitchExtra,
               quickSwitchOptions?.filter(
                 //(remove any options that don't have data)
                 (opt) => opt.off?.doc_count || opt.def?.doc_count

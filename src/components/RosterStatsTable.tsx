@@ -1242,6 +1242,68 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         currentRowCount = currentRowCount + currentRowInc;
       }
 
+      const shotChartQuickSwitchOptions = (
+        player: IndivStatSet,
+        queryKey: OnOffBaselineOtherEnum,
+        otherQueryIndex: number
+      ) =>
+        [
+          {
+            title: "'Base' set",
+            key: "baseline",
+            off:
+              getPlayerShotChartStats("baseline", dataEvent.playerShotStats, 0)[
+                player?.key || "???"
+              ] || {},
+            def: {},
+            gender: gameFilterParams.gender as "Men" | "Women",
+          },
+          {
+            title: "'A' set",
+            key: "on",
+            off:
+              getPlayerShotChartStats("on", dataEvent.playerShotStats, 0)[
+                player?.key || "???"
+              ] || {},
+            def: {},
+            gender: gameFilterParams.gender as "Men" | "Women",
+          },
+          {
+            title: "'B' set",
+            key: "off",
+            off:
+              getPlayerShotChartStats("off", dataEvent.playerShotStats, 0)[
+                player?.key || "???"
+              ] || {},
+            def: {},
+            gender: gameFilterParams.gender as "Men" | "Women",
+          },
+        ]
+          .concat(
+            (teamStats.other || []).map((opt, idx) => {
+              return {
+                title: `'${String.fromCharCode(67 + idx)}' set`,
+                key: `other${idx}`,
+                off:
+                  getPlayerShotChartStats(
+                    "other",
+                    dataEvent.playerShotStats,
+                    idx
+                  )[player?.key || "???"] || {},
+                def: {},
+                gender: gameFilterParams.gender as "Men" | "Women",
+              };
+            })
+          )
+          .filter((opt) => (opt.off?.doc_count || 0) > 0)
+          .filter(
+            (opt) =>
+              !(
+                (queryKey == "other" && opt.key == `other${otherQueryIndex}`) ||
+                queryKey == opt.key
+              )
+          );
+
       const buildRowSet = (
         p: OnOffPlayerStatSet,
         queryKey: OnOffBaselineOtherEnum,
@@ -1399,10 +1461,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     GenericTableOps.buildTextRow(
                       <ShotChartDiagView
-                        title={`${player?.key || "???"} | ${onOffBaseToPhrase(
+                        title={`'${onOffBaseToPhrase(
                           queryKey,
                           otherQueryIndex
-                        )} set`}
+                        )}' set`}
                         off={
                           getPlayerShotChartStats(
                             queryKey,
@@ -1412,7 +1474,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         }
                         def={{}}
                         gender={gameFilterParams.gender as "Men" | "Women"}
-                        quickSwitchOptions={[]}
+                        quickSwitchOptions={shotChartQuickSwitchOptions(
+                          player,
+                          queryKey,
+                          otherQueryIndex
+                        )}
                         chartOpts={shotChartConfig}
                         onChangeChartOpts={(newOpts: any) => {
                           setShotChartConfig(newOpts);

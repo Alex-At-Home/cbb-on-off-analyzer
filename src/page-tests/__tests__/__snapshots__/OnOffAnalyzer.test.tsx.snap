@@ -87,6 +87,12 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         dataEvent={
           Object {
             "lineupStats": Array [],
+            "playerShotStats": Object {
+              "baseline": Object {},
+              "off": Object {},
+              "on": Object {},
+              "other": Array [],
+            },
             "rosterStats": Object {
               "baseline": Array [],
               "global": Array [],
@@ -220,6 +226,12 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         dataEvent={
           Object {
             "lineupStats": Array [],
+            "playerShotStats": Object {
+              "baseline": Object {},
+              "off": Object {},
+              "on": Object {},
+              "other": Array [],
+            },
             "rosterStats": Object {
               "baseline": Array [],
               "global": Array [],
