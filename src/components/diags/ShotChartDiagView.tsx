@@ -278,35 +278,37 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           </Container>
         </Col>
         <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
-          <Container>
-            <Row>
-              <Col xs={12} className="text-center">
-                {selLabelOverrides ? (
-                  <b>{selLabelOverrides[rightIndex]}</b>
-                ) : (
-                  <b>Defense:</b>
-                )}
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                <HexMap
-                  data={invertLeftRight ? offData : defData}
-                  zones={invertLeftRight ? offZones : defZones}
-                  d1Zones={d1Zones}
-                  isDef={
-                    selOffDefOverrides
-                      ? selOffDefOverrides[rightIndex]
-                      : invertLeftRight != true
-                  }
-                  diffDataSet={diffDataSet}
-                  width={HEX_WIDTH}
-                  height={HEX_HEIGHT}
-                  buildZones={buildZones}
-                />
-              </Col>
-            </Row>
-          </Container>
+          {defData.length > 0 ? (
+            <Container>
+              <Row>
+                <Col xs={12} className="text-center">
+                  {selLabelOverrides ? (
+                    <b>{selLabelOverrides[rightIndex]}</b>
+                  ) : (
+                    <b>Defense:</b>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12}>
+                  <HexMap
+                    data={invertLeftRight ? offData : defData}
+                    zones={invertLeftRight ? offZones : defZones}
+                    d1Zones={d1Zones}
+                    isDef={
+                      selOffDefOverrides
+                        ? selOffDefOverrides[rightIndex]
+                        : invertLeftRight != true
+                    }
+                    diffDataSet={diffDataSet}
+                    width={HEX_WIDTH}
+                    height={HEX_HEIGHT}
+                    buildZones={buildZones}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          ) : null}
         </Col>
       </Row>
       <Row>

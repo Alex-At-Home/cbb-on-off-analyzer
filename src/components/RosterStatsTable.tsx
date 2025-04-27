@@ -102,7 +102,7 @@ import TeamRosterStatsConfigModal, {
 import { UrlRouting } from "../utils/UrlRouting";
 import { DateUtils } from "../utils/DateUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
-import { UserChartOpts } from "./diags/ShotChartDiagView";
+import ShotChartDiagView, { UserChartOpts } from "./diags/ShotChartDiagView";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 
@@ -1399,19 +1399,25 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     //TODO: use full short view here
                     GenericTableOps.buildTextRow(
-                      <ShotZoneChartDiagView
-                        gender={
-                          (commonParams.gender || "Men") as "Men" | "Women"
+                      <ShotChartDiagView
+                        title={`${player?.key || "???"} | ${onOffBaseToPhrase(
+                          queryKey,
+                          otherQueryIndex
+                        )} set`}
+                        off={
+                          getPlayerShotChartStats(
+                            queryKey,
+                            dataEvent.playerShotStats,
+                            otherQueryIndex
+                          )[player?.key || "???"] || {}
                         }
-                        off={ShotChartUtils.compressHexZones(
-                          ShotChartUtils.shotStatsToHexData(
-                            getPlayerShotChartStats(
-                              queryKey,
-                              dataEvent.playerShotStats,
-                              otherQueryIndex
-                            )[player?.key || "???"] || {}
-                          ).zones
-                        )}
+                        def={{}}
+                        gender={gameFilterParams.gender as "Men" | "Women"}
+                        quickSwitchOptions={[]}
+                        chartOpts={shotChartConfig}
+                        onChangeChartOpts={(newOpts: any) => {
+                          setShotChartConfig(newOpts);
+                        }}
                       />,
                       "small"
                     ),
