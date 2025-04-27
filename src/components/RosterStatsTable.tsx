@@ -1397,7 +1397,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
               showShotCharts
                 ? [
-                    //TODO: use full short view here
                     GenericTableOps.buildTextRow(
                       <ShotChartDiagView
                         title={`${player?.key || "???"} | ${onOffBaseToPhrase(
@@ -1697,9 +1696,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         },
       ]
         .concat(
-          FeatureFlags.isActiveWindow(FeatureFlags.shotCharts) &&
-            (gameFilterParams.year || DateUtils.mostRecentYearWithData) >=
-              DateUtils.firstYearWithShotChartData
+          (gameFilterParams.year || DateUtils.mostRecentYearWithData) >=
+            DateUtils.firstYearWithShotChartData
             ? [
                 {
                   label: "Shots",

@@ -564,6 +564,13 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       calcRapm: true,
       showExpanded: true,
     };
+    const playerShotChartSettings: GameFilterParams = {
+      showRoster: true,
+      calcRapm: true,
+      showExpanded: true,
+      teamShotCharts: true,
+      playerShotCharts: true,
+    };
     return (
       <Dropdown>
         <Dropdown.Toggle
@@ -605,6 +612,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Roster Analysis Last",
               lastGameTooltip,
               getLastGameUrl(teamAnalysisSettings),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item>
+            {buildNavItem(
+              "Player Shot Charts",
+              shotChartsTooltip,
+              getBaseGameUrl(playerShotChartSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>

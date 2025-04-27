@@ -25,9 +25,6 @@ export class FeatureFlags {
   /** For player editor in roster table - allows messing with shot selection metrics */
   static readonly advancedPlayerEditor = true;
 
-  /** For work in progress on short charts (currently: player shot charts) */
-  static readonly shotCharts = true;
-
-  /** For work in progress on short charts (currently: player shot charts) */
+  /** For work in progress on player leaderboard (want to have single line view) */
   static readonly expandedPlayerLeaderboard = false;
 }
