@@ -2187,6 +2187,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               </InputGroup.Prepend>
               <Select
                 className="w-75"
+                styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={sortStringToOption(sortBy)}
                 options={groupedOptions}
                 onChange={(option: any) => {
