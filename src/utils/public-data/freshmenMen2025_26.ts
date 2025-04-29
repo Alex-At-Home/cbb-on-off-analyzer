@@ -447,13 +447,6 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: -52,
     },
     "Moreno, Malachi": { pos: "C", pr: "5*", c: "MaMoreno", h: "6-11", r: -94 },
-    "Lewis, Acaden": {
-      pos: "PG",
-      pr: "4*/T40ish",
-      c: "AcLewis",
-      h: "6-2",
-      r: 72,
-    },
   },
   "Notre Dame": {
     "Haralson, Jalen": {
@@ -576,7 +569,6 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-5",
       r: -18,
     },
-    "Adams, Darius": { pos: "CG", pr: "5*", c: "DaAdams", h: "6-5", r: -62 },
     "Reibe, Eric": { pos: "C", pr: "5*", c: "ErReibe", h: "7-0", r: -100 },
   },
   Pittsburgh: {
@@ -638,5 +630,15 @@ export const freshmenMen2025_26: Record<string, any> = {
   "Michigan St.": {
     "Scott, Jordan": { pos: "WF", pr: "4*", c: "JoScott", h: "6-7", r: 75 },
     "Ward, Cam": { pos: "S-PF", pr: "4*", c: "CaWard", h: "6-7", r: 65 },
+  },
+  __SAVED__: {
+    "Adams, Darius": { pos: "CG", pr: "5*", c: "DaAdams", h: "6-5", r: -62 },
+    "Lewis, Acaden": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "AcLewis",
+      h: "6-2",
+      r: 72,
+    },
   },
 };
