@@ -170,6 +170,9 @@ export const freshmenMen2025_26: Record<string, any> = {
   Marquette: {
     "James, Nigel": { pos: "PG", pr: "4*", c: "NiJames", h: "6-0", r: -68 },
   },
+  Maryland: {
+    "Adams, Darius": { pos: "CG", pr: "5*", c: "DaAdams", h: "6-5", r: -62 },
+  },
   "Southern California": {
     "Arenas, Alijah": {
       pos: "WG",
@@ -632,7 +635,6 @@ export const freshmenMen2025_26: Record<string, any> = {
     "Ward, Cam": { pos: "S-PF", pr: "4*", c: "CaWard", h: "6-7", r: 65 },
   },
   __SAVED__: {
-    "Adams, Darius": { pos: "CG", pr: "5*", c: "DaAdams", h: "6-5", r: -62 },
     "Lewis, Acaden": {
       pos: "PG",
       pr: "4*/T40ish",
