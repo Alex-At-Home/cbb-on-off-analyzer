@@ -355,6 +355,15 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: 88,
     },
   },
+  Villanova: {
+    "Lewis, Acaden": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "AcLewis",
+      h: "6-2",
+      r: 72,
+    },
+  },
   Syracuse: {
     "White Jr., Sadiq": {
       pos: "S-PF",
@@ -634,13 +643,5 @@ export const freshmenMen2025_26: Record<string, any> = {
     "Scott, Jordan": { pos: "WF", pr: "4*", c: "JoScott", h: "6-7", r: 75 },
     "Ward, Cam": { pos: "S-PF", pr: "4*", c: "CaWard", h: "6-7", r: 65 },
   },
-  __SAVED__: {
-    "Lewis, Acaden": {
-      pos: "PG",
-      pr: "4*/T40ish",
-      c: "AcLewis",
-      h: "6-2",
-      r: 72,
-    },
-  },
+  __SAVED__: {},
 };
