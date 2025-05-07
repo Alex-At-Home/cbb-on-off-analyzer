@@ -1680,6 +1680,9 @@ export class TeamEditorManualFixes {
           Oregon: {
             leftTeam: ["NaBittle::"], //(is a senior?)
           },
+          UIC: {
+            leftTeam: ["SaCiani"], //(is a senior?)
+          },
         };
 
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
