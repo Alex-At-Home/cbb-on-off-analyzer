@@ -248,8 +248,31 @@ const latestConfChanges_2024 = {
   "Kennesaw St.": "Conference USA", //(asun)
 };
 
+//https://en.wikipedia.org/wiki/2021–2026_NCAA_conference_realignment#2025
 const latestConfChanges_2025 = {
-  //TODO
+  //Conference USA
+  Delaware: "Conference USA", //(caa)
+  "Missouri St.": "Conference USA", //(mvc)
+
+  // MAC
+  Massachusetts: "Mid American Conference", //(a10)
+};
+
+//https://en.wikipedia.org/wiki/2021–2026_NCAA_conference_realignment#2026
+const latestConfChanges_2026 = {
+  //PAC-12
+  "Boise St.": "Pac 12 Conference", //(mwc)
+  "Colorado St.": "Pac 12 Conference", //(mwc)
+  "Fresno St.": "Pac 12 Conference", //(mwc)
+  "San Diego St.": "Pac 12 Conference", //(mwc)
+  "Utah St.": "Pac 12 Conference", //(mwc)
+
+  // Horizon
+  "Northern Ill.": "Horizon League", //(mac)
+
+  //MWC
+  UTEP: "Mountain West Conference", //(cusa)
+  Hawaii: "Mountain West Conference", //(bigwest)
 };
 
 /** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in

@@ -1668,11 +1668,17 @@ export class TeamEditorManualFixes {
           Duke: {
             leftTeam: ["KhMaluach::"], //(hasn't declared yet but expected to?)
           },
+          "Illinois St.": {
+            leftTeam: ["CaBoser::"], //(MVC fixes)
+          },
           Louisville: {
             superSeniorsReturning: new Set(["J'Hadley::"]),
           },
           Maryland: {
             leftTeam: ["TaGapare::"], //(missing from transfers)
+          },
+          "Murray St.": {
+            leftTeam: ["JuMorgan::"], //(MVC fixes)
           },
           Nebraska: {
             superSeniorsReturning: new Set(["RiMast::"]),
@@ -1680,8 +1686,11 @@ export class TeamEditorManualFixes {
           Oregon: {
             leftTeam: ["NaBittle::"], //(is a senior?)
           },
+          "Southern Ill.": {
+            leftTeam: ["AlDibber::"], //(MVC fixes)
+          },
           UIC: {
-            leftTeam: ["SaCiani"], //(is a senior?)
+            leftTeam: ["SaCiani::"], //(MVC fixes)
           },
         };
 
