@@ -214,6 +214,13 @@ export const freshmenMen2025_26: Record<string, any> = {
   Tennessee: {
     "Evans, Amari": { pos: "WG", pr: "4*", c: "AmEvans", h: "6-5", r: 15 },
     "Brown, DeWayne": { pos: "C", pr: "4*", c: "DeBrown", h: "6-8", r: -94 },
+    "Ament, Nate": {
+      pos: "S-PF",
+      pr: "5*/Lotto",
+      c: "NaAment",
+      h: "6-10",
+      r: -12,
+    },
   },
   Houston: {
     "Cenac Jr., Chris": {
@@ -272,6 +279,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-6",
       r: 58,
     },
+    "Curtis, Fridrik Leo": {
+      pos: "C",
+      pr: "3.5*/T150ish",
+      c: "LeoCurtis",
+      h: "7-0",
+      r: 90,
+    },
   },
   Cincinnati: {
     "Abaev, Shon": { pos: "WF", pr: "5*", c: "ShAbaev", h: "6-7", r: -78 },
@@ -314,6 +328,12 @@ export const freshmenMen2025_26: Record<string, any> = {
   },
   Virginia: {
     "Mallory, Chance": { pos: "PG", pr: "4*", c: "ChMallory", h: "5-9", r: 74 },
+  },
+  VCU: {
+    "Lewis, Nyk": { pos: "PG", pr: "4*", c: "NyLewis", h: "6-1", r: 99 },
+  },
+  Lafayette: {
+    "Lewis, Joshua": { pos: "WG", pr: "4*", c: "JoLewis", h: "6-7", r: 99 },
   },
   LSU: {
     "Reece, Jalen": { pos: "PG", pr: "4*", c: "JaReece", h: "6-0", r: 5 },
@@ -573,6 +593,15 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: -46,
     },
   },
+  "St. John's (NY)": {
+    "Odih, Kelvin": {
+      pos: "WG",
+      pr: "4*",
+      c: "KeOdih",
+      h: "6-4",
+      r: 37,
+    },
+  },
   UConn: {
     "Mullins, Braylon": {
       pos: "WG",
@@ -590,6 +619,15 @@ export const freshmenMen2025_26: Record<string, any> = {
       c: "OmWitherspoo",
       h: "6-4",
       r: 90,
+    },
+  },
+  "Miami (FL)": {
+    "Henderson, Shelton": {
+      pos: "WG",
+      pr: "5*",
+      c: "ShHenderson",
+      h: "6-7",
+      r: -78,
     },
   },
   "Penn St.": {
