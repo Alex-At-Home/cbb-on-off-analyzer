@@ -1668,6 +1668,9 @@ export class TeamEditorManualFixes {
           Duke: {
             leftTeam: ["KhMaluach::"], //(hasn't declared yet but expected to?)
           },
+          Drake: {
+            leftTeam: ["MiMascari::", "IsJackson::", "DaAbreu::"], //(MVC fixes)
+          },
           "Illinois St.": {
             leftTeam: ["CaBoser::"], //(MVC fixes)
           },
