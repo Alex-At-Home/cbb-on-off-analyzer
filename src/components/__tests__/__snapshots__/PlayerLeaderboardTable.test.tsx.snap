@@ -846,6 +846,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 },
               ]
             }
+            styles={
+              Object {
+                "menu": [Function],
+              }
+            }
             value={
               Object {
                 "label": "RAPM (Desc. / Off-Def)",
@@ -8841,6 +8846,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -16841,6 +16851,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -28048,6 +28063,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 },
               ]
             }
+            styles={
+              Object {
+                "menu": [Function],
+              }
+            }
             value={
               Object {
                 "label": "Adj+ Prod (Desc. / Offensive)",
@@ -35996,6 +36016,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 },
               ]
             }
+            styles={
+              Object {
+                "menu": [Function],
+              }
+            }
             value={
               Object {
                 "label": "Adj+ Rtg (Desc. / Offensive)",
@@ -37800,6 +37825,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {

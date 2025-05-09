@@ -415,13 +415,6 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-8",
       r: -56,
     },
-    "Henderson, Shelton": {
-      pos: "WG",
-      pr: "5*",
-      c: "ShHenderson",
-      h: "6-6",
-      r: -60,
-    },
     "Boozer, Cayden": { pos: "PG", pr: "5*", c: "CaBoozer", h: "6-4", r: -60 },
   },
   Stanford: {
@@ -626,8 +619,8 @@ export const freshmenMen2025_26: Record<string, any> = {
       pos: "WG",
       pr: "5*",
       c: "ShHenderson",
-      h: "6-7",
-      r: -78,
+      h: "6-6",
+      r: -60,
     },
   },
   "Penn St.": {

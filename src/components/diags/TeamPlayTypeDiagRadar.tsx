@@ -315,8 +315,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             : undefined
         }
         <Container>
-          <Row>
-            <Col>
+          <Row className="text-center">
+            <Col xs={10}>
               {PlayTypeDiagUtils.buildAdjustedVsRawControls(
                 sosAdjustment,
                 adjustForSos,
