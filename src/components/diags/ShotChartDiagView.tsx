@@ -74,13 +74,16 @@ const buildQuickSwitchOptions = (
   );
   const rightArrowTooltip = (
     <Tooltip id="rightArrowTooltip">
-      Shows this data set to the right for comparison purposes
+      Shows a side-by-side comparison between the two data sets
     </Tooltip>
   );
   const cancelRightArrowTooltip = (
-    <Tooltip id="rightArrowTooltip">Hides the comparison to the right</Tooltip>
+    <Tooltip id="rightArrowTooltip">Hides the side-by-side comparison</Tooltip>
   );
-  const rightArrowBuilder = (t: string | undefined) => {
+  const rightOrDownArrowBuilder = (
+    t: string | undefined,
+    singleRow: boolean
+  ) => {
     if (quickSwitchExtra == "extra" && t == quickSwitch) {
       return (
         <OverlayTrigger placement="auto" overlay={cancelRightArrowTooltip}>
@@ -137,7 +140,7 @@ const buildQuickSwitchOptions = (
             </a>
           </span>
         )}
-        {hasDefensiveData || quickSwitchTimer ? undefined : (
+        {quickSwitchTimer ? undefined : (
           <span>
             <a
               href="#"
@@ -151,7 +154,7 @@ const buildQuickSwitchOptions = (
                 ); //(ie toggle)
               }}
             >
-              {rightArrowBuilder(t)}
+              {rightOrDownArrowBuilder(t, !hasDefensiveData)}
               &nbsp;
             </a>
           </span>
@@ -242,62 +245,127 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const quickSwitchBase = quickSwitch
     ? quickSwitch.split(quickSwichDelim)[0]
     : undefined;
-  const quickSwitchExtra = quickSwitch
-    ? quickSwitch.split(quickSwichDelim)[1]
-    : undefined;
+  const quickSwitchExtra: "extra" | undefined = (
+    quickSwitch ? quickSwitch.split(quickSwichDelim)[1] : undefined
+  ) as "extra" | undefined;
 
-  const { selectedOff, selectedDef, selOffDefOverrides, selLabelOverrides } =
-    _.thru(quickSwitchExtra, (__) => {
-      if (quickSwitchExtra == "extra") {
-        return {
-          selectedOff: off,
-          selectedDef:
-            (quickSwitch
-              ? _.find(
-                  quickSwitchOptions || [],
-                  (opt) => opt.title == quickSwitchBase
-                )?.off
-              : def) || def,
+  const hasDefensiveData = (def?.doc_count || 0) > 0;
 
-          selOffDefOverrides: [false, false],
-          selLabelOverrides: [
-            labelOverrides?.[0] || "Offense:",
-            `Compare vs: [${quickSwitchBase}]`,
-          ],
-        };
-      } else {
-        return {
-          selectedOff:
-            (quickSwitch
-              ? _.find(
-                  quickSwitchOptions || [],
-                  (opt) => opt.title == quickSwitchBase
-                )?.off
-              : off) || off,
-          selectedDef:
-            (quickSwitch
-              ? _.find(
-                  quickSwitchOptions || [],
-                  (opt) => opt.title == quickSwitchBase
-                )?.def
-              : def) || def,
-          selOffDefOverrides:
-            (quickSwitch
-              ? _.find(
-                  quickSwitchOptions || [],
-                  (opt) => opt.title == quickSwitchBase
-                )?.offDefOverrides
-              : offDefOverrides) || offDefOverrides,
-          selLabelOverrides:
-            (quickSwitch
-              ? _.find(
-                  quickSwitchOptions || [],
-                  (opt) => opt.title == quickSwitchBase
-                )?.labelOverrides
-              : labelOverrides) || labelOverrides,
-        };
-      }
-    });
+  const {
+    selectedOff,
+    selectedDef,
+    extraRowOff,
+    extraRowDef,
+    extraRowLabelOverrides,
+    extraRowOffDefOverrides,
+    selOffDefOverrides,
+    selLabelOverrides,
+  } = _.thru(quickSwitchExtra, (__) => {
+    if (quickSwitchExtra == "extra" && hasDefensiveData) {
+      const selOffDefOverrides = (quickSwitch
+        ? _.find(
+            quickSwitchOptions || [],
+            (opt) => opt.title == quickSwitchBase
+          )?.offDefOverrides
+        : offDefOverrides) ||
+        offDefOverrides || [false, true];
+
+      const selLabelOverrides =
+        (quickSwitch
+          ? _.find(
+              quickSwitchOptions || [],
+              (opt) => opt.title == quickSwitchBase
+            )?.labelOverrides
+          : labelOverrides) ||
+        labelOverrides ||
+        [];
+
+      return {
+        selectedOff: off,
+        selectedDef:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
+            : off) || off,
+        extraRowOff: def,
+        extraRowDef:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.def
+            : def) || def,
+        selLabelOverrides: [
+          labelOverrides?.[0] || "Offense:",
+          `Compare vs: [${(
+            selLabelOverrides?.[0] ||
+            quickSwitchBase ||
+            ""
+          ).replace(":", "")}]`,
+        ],
+        extraRowLabelOverrides: [
+          labelOverrides?.[1] || "Defense:",
+          `Compare vs: [${(
+            selLabelOverrides?.[1] ||
+            quickSwitchBase ||
+            ""
+          ).replace(":", "")}]`,
+        ],
+        selOffDefOverrides: [selOffDefOverrides[0], selOffDefOverrides[0]],
+        extraRowOffDefOverrides: [selOffDefOverrides[1], selOffDefOverrides[1]],
+      };
+    } else if (quickSwitchExtra == "extra") {
+      return {
+        selectedOff: off,
+        selectedDef:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
+            : off) || off,
+
+        selOffDefOverrides: [false, false],
+        selLabelOverrides: [
+          labelOverrides?.[0] || "Offense:",
+          `Compare vs: [${quickSwitchBase}]`,
+        ],
+      };
+    } else {
+      return {
+        selectedOff:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
+            : off) || off,
+        selectedDef:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.def
+            : def) || def,
+        selOffDefOverrides:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.offDefOverrides
+            : offDefOverrides) || offDefOverrides,
+        selLabelOverrides:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.labelOverrides
+            : labelOverrides) || labelOverrides,
+      };
+    }
+  });
 
   const { data: offData, zones: offZones } = ShotChartUtils.shotStatsToHexData(
     selectedOff,
@@ -307,11 +375,15 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
     selectedDef,
     diffDataSet
   );
+  const { data: extraRowOffData, zones: extraRowOffZones } = extraRowOff
+    ? ShotChartUtils.shotStatsToHexData(extraRowOff, diffDataSet)
+    : { data: [], zones: [] };
+  const { data: extraRowDefData, zones: extraRowDefZones } = extraRowDef
+    ? ShotChartUtils.shotStatsToHexData(extraRowDef, diffDataSet)
+    : { data: [], zones: [] };
 
   const leftIndex = invertLeftRight ? 1 : 0;
   const rightIndex = invertLeftRight ? 0 : 1;
-
-  const hasDefensiveData = (def?.doc_count || 0) > 0;
 
   return off?.doc_count || def?.doc_count ? (
     <Container>
@@ -408,6 +480,78 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           ) : null}
         </Col>
       </Row>
+      {extraRowOff ? (
+        <Row className="pt-3">
+          <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
+            <Container>
+              <Row>
+                <Col xs={12} className="text-center">
+                  {extraRowLabelOverrides ? (
+                    <b>{extraRowLabelOverrides[leftIndex]}</b>
+                  ) : (
+                    <b>Offense:</b>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12}>
+                  <HexMap
+                    data={invertLeftRight ? extraRowDefData : extraRowOffData}
+                    zones={
+                      invertLeftRight ? extraRowDefZones : extraRowOffZones
+                    }
+                    d1Zones={d1Zones}
+                    isDef={
+                      extraRowOffDefOverrides
+                        ? extraRowOffDefOverrides[leftIndex]
+                        : false
+                    }
+                    diffDataSet={diffDataSet}
+                    width={HEX_WIDTH}
+                    height={HEX_HEIGHT}
+                    buildZones={buildZones}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+          <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
+            {defData.length > 0 ? (
+              <Container>
+                <Row>
+                  <Col xs={12} className="text-center">
+                    {extraRowLabelOverrides ? (
+                      <b>{extraRowLabelOverrides[rightIndex]}</b>
+                    ) : (
+                      <b>Defense:</b>
+                    )}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <HexMap
+                      data={invertLeftRight ? extraRowOffData : extraRowDefData}
+                      zones={
+                        invertLeftRight ? extraRowOffZones : extraRowDefZones
+                      }
+                      d1Zones={d1Zones}
+                      isDef={
+                        extraRowOffDefOverrides
+                          ? extraRowOffDefOverrides[rightIndex]
+                          : invertLeftRight != true
+                      }
+                      diffDataSet={diffDataSet}
+                      width={HEX_WIDTH}
+                      height={HEX_HEIGHT}
+                      buildZones={buildZones}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            ) : null}
+          </Col>
+        </Row>
+      ) : undefined}
       <Row>
         <Col xs={12} className="small text-center pt-1">
           {buildZones ? (
