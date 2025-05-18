@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
 import _ from "lodash";
 
@@ -98,6 +98,31 @@ const buildQuickSwitchOptions = (
       );
     }
   };
+  const diffViewTooltip = (
+    <Tooltip id="diffViewTooltip">
+      Shows a differential view of the two data sets
+    </Tooltip>
+  );
+  const cancelDiffViewTooltip = (
+    <Tooltip id="diffViewTooltip">
+      Cancels the differential view of the two data sets
+    </Tooltip>
+  );
+  const diffViewBuilder = (t: string | undefined, singleRow: boolean) => {
+    if (quickSwitchExtra == "diff" && t == quickSwitch) {
+      return (
+        <OverlayTrigger placement="auto" overlay={cancelDiffViewTooltip}>
+          <FontAwesomeIcon icon={faWindowClose} />
+        </OverlayTrigger>
+      );
+    } else {
+      return (
+        <OverlayTrigger placement="auto" overlay={diffViewTooltip}>
+          <span className="large-text">&Delta;</span>
+        </OverlayTrigger>
+      );
+    }
+  };
   const quickSwitchBuilder = _.map(
     quickSwitchTimer
       ? [{ title: `Cancel 4s timer` }]
@@ -141,23 +166,42 @@ const buildQuickSwitchOptions = (
           </span>
         )}
         {quickSwitchTimer ? undefined : (
-          <span>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                updateQuickSwitch(
-                  quickSwitch == t && quickSwitchExtra == "extra"
-                    ? undefined
-                    : `${t}${quickSwichDelim}extra`,
-                  false
-                ); //(ie toggle)
-              }}
-            >
-              {rightOrDownArrowBuilder(t, !hasDefensiveData)}
-              &nbsp;
-            </a>
-          </span>
+          <Fragment>
+            <span>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  updateQuickSwitch(
+                    quickSwitch == t && quickSwitchExtra == "extra"
+                      ? undefined
+                      : `${t}${quickSwichDelim}extra`,
+                    false
+                  ); //(ie toggle)
+                }}
+              >
+                {rightOrDownArrowBuilder(t, !hasDefensiveData)}
+                &nbsp;
+              </a>
+            </span>
+            <span>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  updateQuickSwitch(
+                    quickSwitch == t && quickSwitchExtra == "diff"
+                      ? undefined
+                      : `${t}${quickSwichDelim}diff`,
+                    false
+                  ); //(ie toggle)
+                }}
+              >
+                {diffViewBuilder(t, !hasDefensiveData)}
+                &nbsp;
+              </a>
+            </span>
+          </Fragment>
         )}
         ]&nbsp;
       </span>
@@ -245,9 +289,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const quickSwitchBase = quickSwitch
     ? quickSwitch.split(quickSwichDelim)[0]
     : undefined;
-  const quickSwitchExtra: "extra" | undefined = (
+  const quickSwitchExtra: "extra" | "diff" | undefined = (
     quickSwitch ? quickSwitch.split(quickSwichDelim)[1] : undefined
-  ) as "extra" | undefined;
+  ) as "extra" | "diff" | undefined;
 
   const hasDefensiveData = (def?.doc_count || 0) > 0;
 
@@ -333,6 +377,27 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           `Compare vs: [${quickSwitchBase}]`,
         ],
       };
+    } else if (quickSwitchExtra == "diff") {
+      return {
+        selectedOff: off,
+        selectedDef: def,
+        extraRowOff:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
+            : off) || off,
+        extraRowDef:
+          (quickSwitch
+            ? _.find(
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.def
+            : def) || def,
+        selOffDefOverrides: offDefOverrides,
+        selLabelOverrides: labelOverrides,
+      };
     } else {
       return {
         selectedOff:
@@ -367,13 +432,23 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
     }
   });
 
-  const { data: offData, zones: offZones } = ShotChartUtils.shotStatsToHexData(
+  const {
+    data: offData,
+    zones: offZones,
+    splitZones: splitOffZones,
+  } = ShotChartUtils.shotStatsToHexData(
     selectedOff,
-    diffDataSet
+    diffDataSet,
+    quickSwitchExtra == "diff" ? extraRowOff : undefined
   );
-  const { data: defData, zones: defZones } = ShotChartUtils.shotStatsToHexData(
+  const {
+    data: defData,
+    zones: defZones,
+    splitZones: splitDefZones,
+  } = ShotChartUtils.shotStatsToHexData(
     selectedDef,
-    diffDataSet
+    diffDataSet,
+    quickSwitchExtra == "diff" ? extraRowDef : undefined
   );
   const { data: extraRowOffData, zones: extraRowOffZones } = extraRowOff
     ? ShotChartUtils.shotStatsToHexData(extraRowOff, diffDataSet)
@@ -434,6 +509,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   data={invertLeftRight ? defData : offData}
                   zones={invertLeftRight ? defZones : offZones}
                   d1Zones={d1Zones}
+                  splitZones={invertLeftRight ? splitDefZones : splitOffZones}
                   isDef={
                     selOffDefOverrides ? selOffDefOverrides[leftIndex] : false
                   }
@@ -464,6 +540,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                     data={invertLeftRight ? offData : defData}
                     zones={invertLeftRight ? offZones : defZones}
                     d1Zones={d1Zones}
+                    splitZones={invertLeftRight ? splitOffZones : splitDefZones}
                     isDef={
                       selOffDefOverrides
                         ? selOffDefOverrides[rightIndex]
@@ -480,7 +557,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           ) : null}
         </Col>
       </Row>
-      {extraRowOff ? (
+      {quickSwitchExtra != "diff" && extraRowOff ? (
         <Row className="pt-3">
           <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
             <Container>

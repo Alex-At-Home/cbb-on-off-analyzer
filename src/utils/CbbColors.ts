@@ -332,7 +332,7 @@ export class CbbColors {
   private static readonly diff10DomainBlueOrange = [-0.1, 0, 0.1];
   public static readonly diff10_blueOrange_offDef = (val: number) =>
     CbbColors.blueToOrange
-      .domain(CbbColors.diff10DomainRedGreen)(val)
+      .domain(CbbColors.diff10DomainBlueOrange)(val)
       .toString();
   public static readonly diff10_blueOrange: CbbColorTuple = [
     CbbColors.diff10_blueOrange_offDef,

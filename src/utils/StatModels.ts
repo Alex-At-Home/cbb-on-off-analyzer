@@ -76,10 +76,12 @@ export type PlayerCode = string;
 /** (eg "Ayala, Eric") */
 export type PlayerId = string;
 
-export type PlayerCodeId = { code: PlayerCode; id: PlayerId };
+export type PlayerCodeId = { code: PlayerCode; id: PlayerId; ncaa_id?: string };
 
 export type RosterEntry = {
   player_code_id?: PlayerCodeId;
+  /** In leaderboard data - NCAA id */
+  ncaa_id?: string;
   height_in?: number;
   /** Listed jersey number */
   number?: string;

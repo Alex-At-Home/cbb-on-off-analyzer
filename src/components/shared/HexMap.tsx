@@ -1,7 +1,7 @@
 // React imports:
 import React, { useRef, useEffect } from "react";
 
-import _ from "lodash";
+import _, { split } from "lodash";
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";
@@ -25,7 +25,9 @@ interface HexMapProps {
   isDef?: boolean;
   showZones?: boolean;
   zones?: HexZone[];
+  splitZones?: HexZone[];
   d1Zones?: HexZone[];
+  /** diffDataSet are the d1 averages for each hex key */
   diffDataSet?: Record<
     string,
     { avg_freq: number; avg_ppp: number; loc: number[] }
@@ -39,6 +41,7 @@ const HexMap: React.FC<HexMapProps> = ({
   isDef,
   diffDataSet,
   zones,
+  splitZones,
   d1Zones,
   buildZones,
 }) => {
@@ -204,7 +207,8 @@ const HexMap: React.FC<HexMapProps> = ({
     phase: number,
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
     zones: HexZone[],
-    d1Zones: HexZone[]
+    d1Zones: HexZone[],
+    splitZones?: HexZone[]
   ) => {
     const numZones = d1Zones.length;
     (zones || []).forEach((__, zoneIndex) => {
@@ -212,11 +216,17 @@ const HexMap: React.FC<HexMapProps> = ({
       // and the overlap looks right
       const zone = zones[numZones - zoneIndex - 1]!;
       const d1Zone = d1Zones?.[numZones - zoneIndex - 1] || zone;
+      const splitZone = splitZones
+        ? splitZones[numZones - zoneIndex - 1]
+        : undefined;
 
       const minAngle = zone.minAngle == 0 ? -90 : zone.minAngle;
       const maxAngle = zone.maxAngle == 180 ? 270 : zone.maxAngle;
 
-      const freqDelt = d1Zone
+      const freqDelt = splitZone
+        ? zone.frequency / (zone.total_freq || 1) -
+          splitZone.frequency / (splitZone.total_freq || 1)
+        : d1Zone
         ? zone.frequency / (zone.total_freq || 1) - d1Zone.frequency
         : 0;
 
@@ -300,7 +310,8 @@ const HexMap: React.FC<HexMapProps> = ({
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
     zones: HexZone[],
     d1Zones: HexZone[],
-    tooltip: d3.Selection<HTMLDivElement, unknown, HTMLElement, any>
+    tooltip: d3.Selection<HTMLDivElement, unknown, HTMLElement, any>,
+    splitZones?: HexZone[]
   ) => {
     const cbbColorScale = isDef
       ? CbbColors.diff_def_eFgShotChart
@@ -314,6 +325,7 @@ const HexMap: React.FC<HexMapProps> = ({
       const angle = (zone.angleOffset * Math.PI) / 90;
 
       const d1Zone = d1Zones?.[zoneIndex];
+      const splitZone = splitZones ? splitZones[zoneIndex] : undefined;
 
       const { cx, cy } = {
         cx: xScale(0) + widthScale(distToUse * Math.sin(angle)),
@@ -321,15 +333,31 @@ const HexMap: React.FC<HexMapProps> = ({
       };
 
       const ppp = zone.intensity / (zone.frequency || 1);
+      const compPpp = splitZone
+        ? splitZone.intensity / (splitZone.frequency || 1)
+        : d1Zone
+        ? d1Zone.intensity
+        : ppp;
 
-      const tooltipHandler = () => {
-        const zoneTooltip = `[${zone.frequency}] shots, [${(
+      const maybeSplitText = splitZone
+        ? `${ppp > compPpp ? "+" : ""}${((ppp - compPpp) * 50).toFixed(0)}%`
+        : undefined;
+
+      const toolTipTextBuilder = (zoneToUse: HexZone) => {
+        const zoneTooltip = `[${zoneToUse.frequency}] shots, [${(
           100 *
-          (zone.frequency / (zone.total_freq || 1))
-        ).toFixed(1)}]% of total, [${zone.intensity}]pts, eFG=[${(
-          (50 * zone.intensity) /
-          (zone.frequency || 1)
+          (zoneToUse.frequency / (zoneToUse.total_freq || 1))
+        ).toFixed(1)}]% of total, [${zoneToUse.intensity}]pts, eFG=[${(
+          (50 * zoneToUse.intensity) /
+          (zoneToUse.frequency || 1)
         ).toFixed(1)}]%`;
+        return zoneTooltip;
+      };
+      const tooltipHandler = () => {
+        const zoneTooltip = toolTipTextBuilder(zone);
+        const splitZoneTooltip = splitZone
+          ? `SPLITS: ${toolTipTextBuilder(splitZone)}`
+          : undefined;
 
         const d1Tooltip = d1Zone
           ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
@@ -339,7 +367,11 @@ const HexMap: React.FC<HexMapProps> = ({
 
         tooltip
           .style("opacity", 1)
-          .html(`<span>${zoneTooltip}<br/><br/>${d1Tooltip}</span>`);
+          .html(
+            `<span>${zoneTooltip}<br/>${
+              splitZoneTooltip ? `<br/>${splitZoneTooltip}<br/>` : ""
+            }<br/>${d1Tooltip}</span>`
+          );
       };
 
       svg
@@ -351,8 +383,10 @@ const HexMap: React.FC<HexMapProps> = ({
         .style("stroke-width", "1px")
         .style(
           "fill",
-          d1Zone && zone.frequency > 0
-            ? cbbColorScale((ppp - d1Zone.intensity) * 0.5)
+          (d1Zone || splitZone) &&
+            zone.frequency > 0 &&
+            (!splitZone || splitZone.frequency > 0)
+            ? cbbColorScale((ppp - compPpp) * 0.5)
             : "none"
         )
         .style("opacity", phase == 0 ? 0.8 : 0.5)
@@ -376,7 +410,11 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
         .style("fill", "black")
-        .text(zone.frequency > 0 ? `${(ppp * 50).toFixed(0)}%` : "-")
+        .text(
+          zone.frequency > 0 && (!splitZone || splitZone.frequency > 0)
+            ? maybeSplitText || `${(ppp * 50).toFixed(0)}%`
+            : "-"
+        )
         .on("mouseover", (event, d) => {
           tooltipHandler();
         })
@@ -469,7 +507,7 @@ const HexMap: React.FC<HexMapProps> = ({
 
     injectCourtLines(svg, 0);
     if (buildZones) {
-      injectZoneAreas(0, svg, zones || [], d1Zones || []);
+      injectZoneAreas(0, svg, zones || [], d1Zones || [], splitZones);
     }
 
     svg
@@ -492,7 +530,8 @@ const HexMap: React.FC<HexMapProps> = ({
       })
       .attr("opacity", (d) => {
         const hexData = dataMap.get(d[0]);
-        return hexData ? opacityScale(hexData.frequency) : 1;
+        const splitFactor = splitZones ? 0.5 : 1.0; //(just a visual indication of the diff)
+        return hexData ? splitFactor * opacityScale(hexData.frequency) : 1;
       })
       .on("mouseover", (event, d) => {
         const hexData = dataMap.get(d[0]);
@@ -533,12 +572,12 @@ const HexMap: React.FC<HexMapProps> = ({
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       .attr("fill", "none")
       .attr("stroke", "#000")
-      .attr("stroke-width", 0.5);
+      .attr("stroke-width", splitZones ? 0.25 : 0.5);
 
     injectCourtLines(svg, 1);
 
     if (buildZones) {
-      injectZoneInfo(0, svg, zones || [], d1Zones || [], tooltip);
+      injectZoneInfo(0, svg, zones || [], d1Zones || [], tooltip, splitZones);
     }
 
     return () => {

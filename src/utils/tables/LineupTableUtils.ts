@@ -270,6 +270,7 @@ export class LineupTableUtils {
             posClass: pos,
             roster: rosterMeta
               ? {
+                  ncaa_id: rosterMeta.player_code_id?.ncaa_id,
                   number: rosterMeta.number,
                   height: rosterMeta.height,
                   year_class: rosterMeta.year_class,

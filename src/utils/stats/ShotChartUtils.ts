@@ -33,68 +33,79 @@ export class ShotChartUtils {
     return mutableZones;
   };
 
-  /** Converts from the ES aggregation format into all the info we need to display the hex data */
+  /** Converts from the ES aggregation format into all the info we need to display the hex data
+   * diffSet are the D1 averages across all hex keys (confusing name)
+   * splitStats is the full set of stats for the alternative sample for this player
+   */
   static shotStatsToHexData = (
     stats: ShotStats,
     diffSet?: Record<
       string,
       { avg_freq: number; avg_ppp: number; loc: number[] }
-    >
-  ): { data: HexData[]; zones: HexZone[] } => {
+    >,
+    splitStats?: ShotStats
+  ): { data: HexData[]; zones: HexZone[]; splitZones?: HexZone[] } => {
     const total_freq = stats?.doc_count || 1;
 
     const mutableZones = ShotChartUtils.buildStartingZones();
 
+    const data = (stats?.shot_chart?.buckets || [])
+      .map((shotInfo) => {
+        const hexKey = shotInfo.key || "";
+        const x = shotInfo.center.location.x;
+        const y = shotInfo.center.location.y;
+        const frequency = shotInfo.doc_count;
+        const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
+
+        const mutableZone = ShotChartUtils.findHexZone(x, y, mutableZones);
+        if (mutableZone) {
+          mutableZone.frequency += shotInfo.doc_count;
+          mutableZone.intensity += shotInfo.total_pts.value;
+          mutableZone.total_freq = total_freq;
+
+          // DEBUG
+          //  if (mutableZone.shots) {
+          //    mutableZone.shots.push(shotInfo);
+          //  } else {
+          //    mutableZone.shots = [shotInfo];
+          //  }
+        }
+
+        const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
+          //(currently only using the diffPpp, diffFreq is problematic to display on the chart)
+          return {
+            diffFreq: diff?.avg_freq || 0,
+            diffPpp: diff?.avg_ppp || (_.isNil(diffSet) ? 0.0 : 1.0), //(whether the key is missing or we're not diffing at all)
+          };
+        });
+
+        // (ended up not using this, but keep it here in case it's useful for debug/diags)
+        // const angle = _.thru((Math.atan2(x, y) * 180) / Math.PI, (atan2) =>
+        //   atan2 < 0 ? atan2 + 360 : atan2
+        // );
+
+        return {
+          key: hexKey,
+          x,
+          y,
+          intensity: intensity - diffPpp,
+          frequency: 100 * (frequency / total_freq),
+          tooltip: `[${frequency}] shots, [${(
+            100 *
+            (frequency / total_freq)
+          ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
+            50 * intensity
+          ).toFixed(1)}]%`,
+        };
+      })
+      .filter((h) => h.x <= 35);
+
     return {
       zones: mutableZones,
-      data: (stats?.shot_chart?.buckets || [])
-        .map((shotInfo) => {
-          const hexKey = shotInfo.key || "";
-          const x = shotInfo.center.location.x;
-          const y = shotInfo.center.location.y;
-          const frequency = shotInfo.doc_count;
-          const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
-
-          const mutableZone = ShotChartUtils.findHexZone(x, y, mutableZones);
-          if (mutableZone) {
-            mutableZone.frequency += shotInfo.doc_count;
-            mutableZone.intensity += shotInfo.total_pts.value;
-            mutableZone.total_freq = total_freq;
-
-            // DEBUG
-            //  if (mutableZone.shots) {
-            //    mutableZone.shots.push(shotInfo);
-            //  } else {
-            //    mutableZone.shots = [shotInfo];
-            //  }
-          }
-
-          const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
-            return {
-              diffFreq: diff?.avg_freq || 0,
-              diffPpp: diff?.avg_ppp || (_.isNil(diffSet) ? 0.0 : 1.0), //(whether the key is missing or we're not diffing at all)
-            };
-          });
-
-          const angle = _.thru((Math.atan2(x, y) * 180) / Math.PI, (atan2) =>
-            atan2 < 0 ? atan2 + 360 : atan2
-          );
-
-          return {
-            key: hexKey,
-            x,
-            y,
-            intensity: intensity - diffPpp,
-            frequency: 100 * (frequency / total_freq),
-            tooltip: `[${frequency}] shots, [${(
-              100 *
-              (frequency / total_freq)
-            ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
-              50 * intensity
-            ).toFixed(1)}]%`,
-          };
-        })
-        .filter((h) => h.x <= 35),
+      data,
+      splitZones: splitStats
+        ? ShotChartUtils.shotStatsToHexData(splitStats).zones
+        : undefined,
     };
   };
 
