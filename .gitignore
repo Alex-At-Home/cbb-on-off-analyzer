@@ -16,6 +16,7 @@ transfers_2025.json
 #(rename this every year)
 public/leaderboards/lineups/*2025*
 leaderboardDebug/*
+enrichedPlayers/*
 
 .vercel
 .metals

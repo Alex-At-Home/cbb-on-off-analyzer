@@ -5,6 +5,9 @@
 // npm run build_leaderboards -- --year=<<eg 2021/22>> --tier=<<High|Low|Medium|Combo>> --gender=<<Men|Women>
 //
 // (Combo tier just combines the division stats from the other 3 tiers idempotently to buikd a combined stats file - no DB queries)
+// Other command line options:
+// --enrich-rosters: if included then rosters are enriched with positional info
+// --extra-data: if included then adds extra sub-objects (rapm / on / off)
 
 // NOTE: test code is under src/__tests__
 
@@ -126,7 +129,7 @@ export const setTestModeOn = () => {
 var ignoreRapm = false;
 
 //TODO: we're not using this right now so avoid changing the (GH managed) roster files
-// until we do
+// until we do (unless manually overridden)
 /** Don't overwrite rosters in test mode */
 var ignoreRosterEnrichment = true;
 
@@ -197,6 +200,16 @@ if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
 }
 const testMode = commandLine.length == 0;
 
+if (_.find(commandLine, (p) => _.startsWith(p, "--enrich-rosters"))) {
+  ignoreRosterEnrichment = false;
+  console.log("Enriching rosters with positional info due to manual override");
+}
+
+/** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
+const injectExtraDataForNbaFolks = _.find(commandLine, (p) =>
+  _.startsWith(p, "--extra-data")
+);
+
 const inTier = (
   _.find(commandLine, (p) => _.startsWith(p, "--tier=")) ||
   `--tier=${ParamDefaults.defaultTier}`
@@ -241,6 +254,8 @@ if (testTeamFilter) {
 
 const rootFilePath = isDebugMode
   ? "./leaderboardDebug"
+  : injectExtraDataForNbaFolks
+  ? "./enrichedPlayers"
   : "./public/leaderboards/lineups";
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
@@ -256,9 +271,6 @@ const approxEndofRegSeason =
 /** For completed years, filter based on possessions */
 const averagePossInCompletedYear =
   inYear == DateUtils.covidSeason ? 1000 : 1600; //(reduce min allowed for Covid year)
-
-/** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
-const injectAllRapmForNbaFolks = false;
 
 /** Handy filename util */
 const getTeamFilename = (team: string) => {
@@ -1180,7 +1192,14 @@ export async function main() {
                     }
                   });
                 }
+                const playerInfo = kv[1];
                 return {
+                  /** _id used for indexing purposes, will mostly use NCAA id */
+                  _id: `${inGender}_${inYear.substring(0, 4)}_${
+                    rosterInfoJson?.player_code_id?.ncaa_id ||
+                    playerInfo.code ||
+                    kv[0]
+                  }`,
                   key: kv[0],
                   conf: conference,
                   team: team,
@@ -1188,8 +1207,8 @@ export async function main() {
                   shotInfo: shotChartMap[kv[0]],
                   posFreqs,
                   ...((cutdownLowVolume
-                    ? lowVolumeStripPlayerInfo(kv[1])
-                    : _.chain(kv[1])
+                    ? lowVolumeStripPlayerInfo(playerInfo)
+                    : _.chain(playerInfo)
                         .toPairs()
                         .filter(
                           (
@@ -1280,14 +1299,28 @@ export async function main() {
                   enrichedAndFilteredPlayersMap[rapmP.playerId]
                 );
 
-                if (injectAllRapmForNbaFolks && !cutdownMode) {
-                  player.rapm = rapmP.rapm;
+                if (injectExtraDataForNbaFolks && !cutdownMode) {
+                  player.rapm = _.omit(rapmP.rapm, [
+                    "key",
+                    "off_sep2-1",
+                    "off_sep2-2",
+                    "def_sep2-1",
+                    "def_sep2-2",
+                  ]);
                   // Also let's create an on/off net inside "rapm" since someone asked for that
                   player.on = _.chain(rapmP.on)
                     .toPairs()
                     .filter(
                       ([key, val]) =>
                         _.startsWith(key, "off_") || _.startsWith(key, "def")
+                    )
+                    .filter(
+                      (
+                        [key, val] //(remove scramble and transition stats, which don't seem to be included)
+                      ) =>
+                        !_.includes(key, "f_scramble_") &&
+                        !_.includes(key, "f_trans_") &&
+                        !_.endsWith(key, "_luck_diags")
                     )
                     .fromPairs()
                     .value();
@@ -1296,6 +1329,14 @@ export async function main() {
                     .filter(
                       ([key, val]) =>
                         _.startsWith(key, "off_") || _.startsWith(key, "def")
+                    )
+                    .filter(
+                      (
+                        [key, val] //(remove scramble and transition stats, which don't seem to be included)
+                      ) =>
+                        !_.includes(key, "f_scramble_") &&
+                        !_.includes(key, "f_trans_") &&
+                        !_.endsWith(key, "_luck_diags")
                     )
                     .fromPairs()
                     .value();
