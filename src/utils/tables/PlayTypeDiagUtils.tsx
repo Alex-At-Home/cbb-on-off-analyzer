@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -18,7 +18,12 @@ import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
+import {
+  faClock,
+  faArrowAltCircleDown,
+  faWindowRestore,
+  faWindowClose,
+} from "@fortawesome/free-regular-svg-icons";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { CSVLink, CSVDownload } from "react-csv";
@@ -283,8 +288,69 @@ export class PlayTypeDiagUtils {
     quickSwitchOptions: { title?: string }[] | undefined,
     setQuickSwitch: React.Dispatch<React.SetStateAction<string | undefined>>,
     quickSwitchTimer: NodeJS.Timer | undefined,
-    setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void
+    setQuickSwitchTimer: (
+      newQuickSwitchTimer: NodeJS.Timer | undefined
+    ) => void,
+    quickSwitchExtra?: "extra" | "diff" | undefined,
+    quickSwitchExtraOptions?: ("extra" | "diff")[]
   ) => {
+    const quickSwichDelim = ":|:";
+    const timeTooltip = (
+      <Tooltip id="timerTooltip">
+        Sets off a 4s timer switching between the default breakdown and this one
+      </Tooltip>
+    );
+    const rightArrowTooltip = (
+      <Tooltip id="rightArrowTooltip">
+        Shows a top/bottom comparison between the two data sets
+      </Tooltip>
+    );
+    const cancelRightArrowTooltip = (
+      <Tooltip id="rightArrowTooltip">Hides the top/bottom comparison</Tooltip>
+    );
+    const rightOrDownArrowBuilder = (
+      t: string | undefined,
+      singleRow: boolean
+    ) => {
+      if (quickSwitchExtra == "extra" && t == quickSwitch) {
+        return (
+          <OverlayTrigger placement="auto" overlay={cancelRightArrowTooltip}>
+            <FontAwesomeIcon icon={faWindowClose} />
+          </OverlayTrigger>
+        );
+      } else {
+        return (
+          <OverlayTrigger placement="auto" overlay={rightArrowTooltip}>
+            <FontAwesomeIcon icon={faArrowAltCircleDown} />
+          </OverlayTrigger>
+        );
+      }
+    };
+    const diffViewTooltip = (
+      <Tooltip id="diffViewTooltip">
+        Shows a differential view of the two data sets
+      </Tooltip>
+    );
+    const cancelDiffViewTooltip = (
+      <Tooltip id="diffViewTooltip">
+        Cancels the differential view of the two data sets
+      </Tooltip>
+    );
+    const diffViewBuilder = (t: string | undefined, singleRow: boolean) => {
+      if (quickSwitchExtra == "diff" && t == quickSwitch) {
+        return (
+          <OverlayTrigger placement="auto" overlay={cancelDiffViewTooltip}>
+            <FontAwesomeIcon icon={faWindowClose} />
+          </OverlayTrigger>
+        );
+      } else {
+        return (
+          <OverlayTrigger placement="auto" overlay={diffViewTooltip}>
+            <FontAwesomeIcon icon={faWindowRestore} />
+          </OverlayTrigger>
+        );
+      }
+    };
     const quickSwitchTimerLogic = (newQuickSwitch: string | undefined) => {
       if (quickSwitchTimer) {
         clearInterval(quickSwitchTimer);
@@ -304,11 +370,6 @@ export class PlayTypeDiagUtils {
         setQuickSwitchTimer(undefined);
       }
     };
-    const timeTooltip = (
-      <Tooltip id="timerTooltip">
-        Sets off a 4s timer switching between the default breakdown and this one
-      </Tooltip>
-    );
     const quickSwitchBuilder = _.map(
       quickSwitchTimer
         ? [{ title: `Cancel 4s timer` }]
@@ -348,15 +409,63 @@ export class PlayTypeDiagUtils {
               </a>
             </span>
           )}
+          {quickSwitchTimer ? undefined : (
+            <Fragment>
+              {!_.includes(quickSwitchExtraOptions || [], "extra") ? null : (
+                <span>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (quickSwitchExtra === "extra" && t === quickSwitch) {
+                        setQuickSwitch(undefined);
+                      } else {
+                        setQuickSwitch(
+                          quickSwitch == `${t}${quickSwichDelim}extra`
+                            ? undefined
+                            : `${t}${quickSwichDelim}extra`
+                        );
+                      }
+                    }}
+                  >
+                    {rightOrDownArrowBuilder(t, true)}&nbsp;
+                  </a>
+                </span>
+              )}
+              {!_.includes(quickSwitchExtraOptions || [], "diff") ? null : (
+                <span>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (quickSwitchExtra === "diff" && t === quickSwitch) {
+                        setQuickSwitch(undefined);
+                      } else {
+                        setQuickSwitch(
+                          quickSwitch == `${t}${quickSwichDelim}diff`
+                            ? undefined
+                            : `${t}${quickSwichDelim}diff`
+                        );
+                      }
+                    }}
+                  >
+                    {diffViewBuilder(t, true)}&nbsp;
+                  </a>
+                </span>
+              )}
+            </Fragment>
+          )}
           ]&nbsp;
         </span>
       );
     });
-
     return (
       <div>
         <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
-          <b>Scoring Analysis: [{quickSwitch || title}]</b>
+          <b>
+            Scoring Analysis: [{quickSwitchExtra ? title : quickSwitch || title}
+            ]
+          </b>
         </span>
         {_.isEmpty(quickSwitchOptions) ? null : (
           <span style={{ whiteSpace: "nowrap" }}>
