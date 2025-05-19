@@ -396,7 +396,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
               )?.def
             : def) || def,
         selOffDefOverrides: offDefOverrides,
-        selLabelOverrides: labelOverrides,
+        selLabelOverrides: (labelOverrides || ["Offense:", "Defense:"]).map(
+          (l) => `(Delta: [${quickSwitchBase}]) ${l}`
+        ),
       };
     } else {
       return {
