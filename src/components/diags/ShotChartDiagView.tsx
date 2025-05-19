@@ -17,7 +17,9 @@ import {
   faClock,
   faArrowAltCircleRight,
   faWindowClose,
+  faWindowRestore,
 } from "@fortawesome/free-regular-svg-icons";
+
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
@@ -118,7 +120,7 @@ const buildQuickSwitchOptions = (
     } else {
       return (
         <OverlayTrigger placement="auto" overlay={diffViewTooltip}>
-          <span className="large-text">&Delta;</span>
+          <FontAwesomeIcon icon={faWindowRestore} />
         </OverlayTrigger>
       );
     }
