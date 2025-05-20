@@ -466,6 +466,11 @@ export async function main() {
 
     const inNaturalTier = naturalTier == inTier;
 
+    if (injectExtraDataForNbaFolks && !inNaturalTier) {
+      console.log(`Extra info mode: skipping [${team}] not in natural tier`);
+      return;
+    }
+
     if (!testMode) console.log(`Processing ${inGender} ${team} ${teamYear}`);
 
     const fullRequestModel = {
@@ -1075,6 +1080,16 @@ export async function main() {
               positionFromPlayerKey
             );
 
+          // Need these to break down play types a bit (in advance of doing it properly)
+          const extraTotalFieldsToKeep = injectExtraDataForNbaFolks
+            ? new Set([
+                "total_off_scramble_fga",
+                "total_off_scramble_to",
+                "total_off_trans_fga",
+                "total_off_trans_to",
+              ])
+            : new Set();
+
           // Merge ratings and position, and filter based on offensive possessions played
           const enrichAndFilter = (
             playerMap: Record<string, IndivStatSet>,
@@ -1193,13 +1208,16 @@ export async function main() {
                   });
                 }
                 const playerInfo = kv[1];
+
                 return {
                   /** _id used for indexing purposes, will mostly use NCAA id */
-                  _id: `${inGender}_${inYear.substring(0, 4)}_${
-                    rosterInfoJson?.player_code_id?.ncaa_id ||
-                    playerInfo.code ||
-                    kv[0]
-                  }`,
+                  _id: `${
+                    rosterInfoJson[player.code || ""]?.player_code_id
+                      ?.ncaa_id ||
+                    `${playerInfo.code || kv[0]}${
+                      playerInfo.team || ""
+                    }`.replace(/[^A-Z]/gi, "")
+                  }_${inGender}_${inYear.substring(0, 4)}_${label}`,
                   key: kv[0],
                   conf: conference,
                   team: team,
@@ -1230,7 +1248,8 @@ export async function main() {
                               !_.startsWith(t2[0], "oppo_") &&
                               !(
                                 _.startsWith(t2[0], "total_") &&
-                                !GradeUtils.playerTotalsToKeep.has(t2[0])
+                                !GradeUtils.playerTotalsToKeep.has(t2[0]) &&
+                                !extraTotalFieldsToKeep.has(t2[0])
                               ) &&
                               !_.endsWith(t2[0], "_target") &&
                               !_.endsWith(t2[0], "_source") &&
