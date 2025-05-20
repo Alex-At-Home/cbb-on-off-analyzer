@@ -4,7 +4,7 @@ import _ from "lodash";
 import GameInfoDiagView from "../../components/diags/GameInfoDiagView";
 import LuckAdjDiagView from "../../components/diags/LuckAdjDiagView";
 import TeamExtraStatsInfoView from "../../components/diags/TeamExtraStatsInfoView";
-import TeamPlayTypeDiagView from "../../components/diags/TeamPlayTypeDiagView";
+import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
 import TeamRosterDiagView from "../../components/diags/TeamRosterDiagView";
 import ShotChartDiagView, {
   UserChartOpts,
@@ -43,7 +43,7 @@ import { GradeTableUtils, DivisionStatsCache } from "./GradeTableUtils";
 import { LineupTableUtils } from "./LineupTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { TableDisplayUtils } from "./TableDisplayUtils";
-import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
+import TeamPlayTypeTabbedView from "../../components/shared/TeamPlayTypeTabbedView";
 
 // Data model
 
@@ -717,7 +717,7 @@ export class TeamStatsTableUtils {
                     //TODO: this is a bit of a hack, plus also needs to handle defence
                     teamStatsByCombinedQuery(queryKey, otherQueryIndex).style
                   ) ? (
-                    <TeamPlayTypeDiagView
+                    <TeamPlayTypeTabbedView
                       title={displayKey}
                       players={getRosterStats(
                         queryKey,

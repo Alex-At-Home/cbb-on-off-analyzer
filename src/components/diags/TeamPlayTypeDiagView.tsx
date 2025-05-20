@@ -30,11 +30,11 @@ import {
   StatModels,
   TeamStatSet,
 } from "../../utils/StatModels";
-import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
 import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
 
 type Props = {
   title: string;
+  tableType?: "scoring" | "usage";
   players: Array<IndivStatSet>;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
@@ -46,6 +46,7 @@ type Props = {
 };
 const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   title,
+  tableType,
   players: playersIn,
   rosterStatsByCode,
   teamStats: teamStatsIn,
@@ -55,7 +56,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   grades,
   showHelp,
 }) => {
-  const [csvData, setCsvData] = useState<object[]>([]);
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
@@ -70,10 +70,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
           ?.teamStats
       : teamStatsIn) || StatModels.emptyTeam();
-
-  const [tableType, setTableType] = useState<"scoring" | "usage" | "breakdown">(
-    "breakdown"
-  );
 
   return React.useMemo(() => {
     const [reorderedPosVsPosAssistNetwork, maybeExtraNetwork] = _.thru(
@@ -279,48 +275,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       }
     };
 
-    const scoringToggle = maybeBold(
-      "scoring",
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          setTableType("scoring");
-        }}
-      >
-        Scoring
-      </a>
-    );
-    const usageToggle = maybeBold(
-      "usage",
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          setTableType("usage");
-        }}
-      >
-        Usage
-      </a>
-    );
-
-    const breakdownToggle = maybeBold(
-      "breakdown",
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          setTableType("breakdown");
-        }}
-      >
-        Play Types
-      </a>
-    );
-
     return (
       <span>
         {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
-        <br />
         {title
           ? PlayTypeDiagUtils.buildQuickSwitchOptions(
               title,
@@ -331,77 +288,21 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
               setQuickSwitchTimer
             )
           : undefined}
-        <span>
-          ({scoringToggle} // {usageToggle} // {breakdownToggle}){" "}
-          {tableType == "breakdown"
-            ? PlayTypeDiagUtils.buildLegend("[LEGEND]")
-            : null}
-          {tableType == "breakdown" && grades ? <span> | </span> : null}
-          {tableType == "breakdown" && grades
-            ? PlayTypeDiagUtils.buildCsvDownload(
-                "[CSV]",
-                `play_types_${title}`,
-                csvData,
-                () => {
-                  const playStyleData: object[] =
-                    PlayTypeDiagUtils.buildTeamStyleBreakdownData(
-                      title,
-                      true,
-                      "",
-                      {
-                        on: [],
-                        off: [],
-                        other: [],
-                        baseline: players,
-                        global: [],
-                      },
-                      {
-                        on: StatModels.emptyTeam(),
-                        off: StatModels.emptyTeam(),
-                        other: [],
-                        baseline: teamStats,
-                        global: StatModels.emptyTeam(),
-                      },
-                      avgEfficiency,
-                      grades,
-                      false,
-                      undefined,
-                      rosterStatsByCode
-                    );
-                  setCsvData(playStyleData);
-                }
-              )
-            : null}
-        </span>
-        <br />
-        {tableType == "breakdown" ? (
-          <TeamPlayTypeDiagRadar
-            players={players}
-            rosterStatsByCode={rosterStatsByCode}
-            teamStats={teamStats}
-            avgEfficiency={avgEfficiency}
-            showGrades={showGrades}
-            grades={grades}
-            showHelp={showHelp}
-            quickSwitchOverride={quickSwitch}
-          />
-        ) : (
-          <Container>
-            <Col xs={10}>
-              <GenericTable
-                responsive={false}
-                tableCopyId="teamAssistNetworks"
-                tableFields={PlayTypeDiagUtils.rawAssistTableFields(
-                  false,
-                  true,
-                  tableType,
-                  tableType == "usage"
-                )}
-                tableData={rawAssistTableData}
-              />
-            </Col>
-          </Container>
-        )}
+        <Container className="mt-2">
+          <Col xs={10}>
+            <GenericTable
+              responsive={false}
+              tableCopyId="teamAssistNetworks"
+              tableFields={PlayTypeDiagUtils.rawAssistTableFields(
+                false,
+                true,
+                tableType || "usage",
+                tableType == "usage"
+              )}
+              tableData={rawAssistTableData}
+            />
+          </Col>
+        </Container>
       </span>
     );
   }, [
@@ -412,7 +313,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
     teamStats,
     quickSwitch,
     quickSwitchTimer,
-    csvData,
   ]);
 };
 export default TeamPlayTypeDiagView;

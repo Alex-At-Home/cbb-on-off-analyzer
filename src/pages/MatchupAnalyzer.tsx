@@ -387,48 +387,6 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       >
         {dataEvent.teamStatsA.baseline.off_poss?.value ? (
           <Container>
-            <Row className="mt-0 mb-2">
-              <Col>
-                <div className="small">
-                  {PlayTypeDiagUtils.buildLegend("LEGEND")}&nbsp;|&nbsp;
-                  {PlayTypeDiagUtils.buildCsvDownload(
-                    "CSV",
-                    `${matchupFilterParams.team || "Unknown"} ${
-                      matchupFilterParams.oppoTeam || ""
-                    }`,
-                    csvData,
-                    () => {
-                      const oppoAndDate = buildOppoFilter(
-                        matchupFilterParams.oppoTeam || ""
-                      );
-                      const dataTeamA: object[] =
-                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
-                          matchupFilterParams.team || "Unknown",
-                          true,
-                          matchupFilterParams.oppoTeam || "",
-                          dataEvent.rosterStatsA,
-                          dataEvent.teamStatsA,
-                          avgEfficiency,
-                          divisionStatsCache,
-                          true
-                        );
-                      const dataTeamB: object[] =
-                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
-                          matchupFilterParams.team || "Unknown",
-                          false,
-                          matchupFilterParams.oppoTeam || "",
-                          dataEvent.rosterStatsB,
-                          dataEvent.teamStatsB,
-                          avgEfficiency,
-                          divisionStatsCache,
-                          true
-                        );
-                      setCsvData(dataTeamA.concat(dataTeamB));
-                    }
-                  )}{" "}
-                </div>
-              </Col>
-            </Row>
             <Row>
               <Col xs={12}>
                 {_.isEmpty(divisionStatsCache) ? (

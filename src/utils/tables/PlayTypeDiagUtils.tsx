@@ -462,10 +462,7 @@ export class PlayTypeDiagUtils {
     return (
       <div>
         <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
-          <b>
-            Scoring Analysis: [{quickSwitchExtra ? title : quickSwitch || title}
-            ]
-          </b>
+          <b>Analysis: [{quickSwitchExtra ? title : quickSwitch || title}]</b>
         </span>
         {_.isEmpty(quickSwitchOptions) ? null : (
           <span style={{ whiteSpace: "nowrap" }}>

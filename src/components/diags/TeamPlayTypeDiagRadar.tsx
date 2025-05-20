@@ -51,7 +51,7 @@ import {
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 
 export type Props = {
-  title?: string;
+  title: string;
   players: Array<IndivStatSet>;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
@@ -83,6 +83,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const [adjustForSos, setAdjustForSos] = useState<boolean>(
     !(startWithRaw || false)
   );
+
+  const [csvData, setCsvData] = useState<object[]>([]);
 
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
@@ -452,68 +454,119 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   /** Shows the JSON at the bottom if enabled */
   const debugView = false;
 
-  return (
-    <span>
-      {title
-        ? PlayTypeDiagUtils.buildQuickSwitchOptions(
-            title,
-            quickSwitchBase,
-            quickSwitchOptions,
-            setQuickSwitch,
-            quickSwitchTimer,
-            setQuickSwitchTimer,
-            quickSwitchExtra,
-            ["extra"]
-          )
-        : undefined}
-      <Container>
-        <Row className="text-center">
-          <Col xs={10}>
-            {PlayTypeDiagUtils.buildAdjustedVsRawControls(
-              mainSosAdjustment,
-              adjustForSos,
-              setAdjustForSos
-            )}
-          </Col>
-        </Row>
-        {renderBarChartRow(
-          topData,
-          topPctile,
-          topDefOverride,
-          topSosAdjustment,
-          topTitle,
-          topCellPrefix
+  return React.useMemo(
+    () => (
+      <span>
+        {PlayTypeDiagUtils.buildQuickSwitchOptions(
+          title,
+          quickSwitchBase,
+          quickSwitchOptions,
+          setQuickSwitch,
+          quickSwitchTimer,
+          setQuickSwitchTimer,
+          quickSwitchExtra,
+          ["extra"]
         )}
-        {showBottom
-          ? renderBarChartRow(
-              extraData,
-              extraTopLevelPlayTypeStylesPctile,
-              extraDefOverride,
-              extraSosAdjustment ?? 1.0,
-              `Compare vs [${quickSwitchBase}]`,
-              "cell-extra-"
-            )
-          : null}
-        {debugView ? (
-          <Row>
-            <Col xs={10}>
-              {_.toPairs(mainTopLevelPlayTypeStylesPctile || {}).map((o) => (
-                <span>
-                  {JSON.stringify(o, tidyNumbers)}
-                  <br />
-                </span>
-              ))}
-              {_.toPairs(mainTopLevelPlayTypeStyles || {}).map((o) => (
-                <span>
-                  {JSON.stringify(o, tidyNumbers)}
-                  <br />
-                </span>
-              ))}
+        <Container className="mt-2">
+          <Row className="text-center">
+            <Col xs={6} lg={2}>
+              {PlayTypeDiagUtils.buildLegend("[LEGEND]")}
+              {grades ? (
+                <>
+                  <span> | </span>
+                  {PlayTypeDiagUtils.buildCsvDownload(
+                    "[CSV]",
+                    `play_types_${title}`,
+                    csvData,
+                    () => {
+                      const playStyleData: object[] =
+                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                          title,
+                          true,
+                          "",
+                          {
+                            on: [],
+                            off: [],
+                            other: [],
+                            baseline: playersIn,
+                            global: [],
+                          },
+                          {
+                            on: StatModels.emptyTeam(),
+                            off: StatModels.emptyTeam(),
+                            other: [],
+                            baseline: teamStatsIn,
+                            global: StatModels.emptyTeam(),
+                          },
+                          avgEfficiency,
+                          grades,
+                          false,
+                          undefined,
+                          rosterStatsByCode
+                        );
+                      setCsvData(playStyleData);
+                    }
+                  )}
+                </>
+              ) : undefined}
+            </Col>
+            <Col xs={6} lg={7}>
+              {PlayTypeDiagUtils.buildAdjustedVsRawControls(
+                mainSosAdjustment,
+                adjustForSos,
+                setAdjustForSos
+              )}
             </Col>
           </Row>
-        ) : undefined}
-      </Container>
-    </span>
+          {renderBarChartRow(
+            topData,
+            topPctile,
+            topDefOverride,
+            topSosAdjustment,
+            topTitle,
+            topCellPrefix
+          )}
+          {showBottom
+            ? renderBarChartRow(
+                extraData,
+                extraTopLevelPlayTypeStylesPctile,
+                extraDefOverride,
+                extraSosAdjustment ?? 1.0,
+                `Compare vs [${quickSwitchBase}]`,
+                "cell-extra-"
+              )
+            : null}
+          {debugView ? (
+            <Row>
+              <Col xs={10}>
+                {_.toPairs(mainTopLevelPlayTypeStylesPctile || {}).map((o) => (
+                  <span>
+                    {JSON.stringify(o, tidyNumbers)}
+                    <br />
+                  </span>
+                ))}
+                {_.toPairs(mainTopLevelPlayTypeStyles || {}).map((o) => (
+                  <span>
+                    {JSON.stringify(o, tidyNumbers)}
+                    <br />
+                  </span>
+                ))}
+              </Col>
+            </Row>
+          ) : undefined}
+        </Container>
+      </span>
+    ),
+    [
+      playersIn,
+      grades,
+      showGrades,
+      teamStatsIn,
+      quickSwitch,
+      quickSwitchTimer,
+      csvData,
+      adjustForSos,
+    ]
   );
 };
 export default TeamPlayTypeDiagRadar;
