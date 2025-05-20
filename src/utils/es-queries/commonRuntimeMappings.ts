@@ -71,7 +71,15 @@ export const commonRuntimeMappings = function (
                 }
                 def oppo_conf = oppo["conf"];
                 def in_conf = params.conf.equals(oppo_conf);
-                def margin_rank = oppo["stats.adj_margin.rank"] ?: 0;
+                def hca = 0;
+                if (doc["location_type.keyword"].size() > 0) {
+                  if (doc["location_type.keyword"].value == "Neutral") {
+                    hca = 25;
+                  } else if (doc["location_type.keyword"].value == "Away") {
+                    hca = 50;
+                  }
+                }
+                def margin_rank = Math.max(1, (oppo["stats.adj_margin.rank"] ?: 0) - hca);
 
                 def _3p = oppo["stats.off._3p_pct.value"] ?: 0.0;
                 _3p = (_3p * 10).longValue() & 1023;
@@ -84,7 +92,7 @@ export const commonRuntimeMappings = function (
 
                 long returnVal = 0L | (vs_high_major << 0)
                   | ((in_conf ? 1 : 0) << 1)
-                  | ((margin_rank & 511) << 2)
+                  | ((margin_rank.longValue() & 511) << 2)
                   | (_3p.longValue() << 11)
                   | (adj_off.longValue() << 21)
                   | (adj_def.longValue() << 32)
