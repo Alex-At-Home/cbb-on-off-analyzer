@@ -24,6 +24,11 @@ function marshallRequest(
   const yearStr = (params.year || ParamDefaults.defaultYear).substring(0, 4);
   const isGenderWomen = (params.gender || "Men") == "Women";
 
+  if (params.baseQuery?.includes("filter_garbage_time")) {
+    params.baseQuery = params.baseQuery.replace("filter_garbage_time", "");
+    params.filterGarbage = true;
+  }
+
   const body =
     [
       JSON.stringify({
