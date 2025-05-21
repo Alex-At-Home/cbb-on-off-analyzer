@@ -40,7 +40,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const cacheId =
           process.env.NEXT_PUBLIC_VERCEL_URL || "default_cache_control";
         const resp = await fetch(
-          `https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/team_details_${urlInFix}${maybePosInfix}all_${parsed.gender}_${parsed.year}_${parsed.tier}.json.gz?cacheId=${cacheId}`,
+          `https://storage.googleapis.com/${
+            process.env.LEADERBOARD_BUCKET
+          }/team_details_${urlInFix}${maybePosInfix}${parsed.oppo || "all"}_${
+            parsed.gender
+          }_${parsed.year}_${parsed.tier}.json.gz?cacheId=${cacheId}`,
           {
             method: "get",
           }

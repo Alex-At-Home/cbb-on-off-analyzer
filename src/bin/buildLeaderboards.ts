@@ -149,6 +149,8 @@ export const savedLowVolumePlayers = [] as Array<any>;
 /** Exported for test only */
 export const teamInfo = [] as Array<TeamInfo>;
 export const detailedTeamInfo = [] as Array<any>;
+export const detailedTeamInfoT100 = [] as Array<any>;
+export const detailedTeamInfoConfOnly = [] as Array<any>;
 var bubbleOffenseInfo: number[] = [];
 var bubbleDefenseInfo: number[] = [];
 var eliteOffenseInfo: number[] = [];
@@ -754,8 +756,9 @@ export async function main() {
             }
           }
 
-          // Team info, for "Build your own T25"
-          if ("all" == label && completedEfficiencyInfo?.[team]) {
+          // Team info, for "Build your own T25" and Team Stats Explorer
+          // (Do this for all labels, but only do grades / T25 if "all")
+          if (completedEfficiencyInfo?.[team]) {
             const teamAdjOff =
               completedEfficiencyInfo?.[team]?.["stats.adj_off.value"] || 0.0;
             const teamAdjDef =
@@ -791,12 +794,15 @@ export async function main() {
             );
 
             // Build all the samples ready for percentiles:
-            GradeUtils.buildAndInjectTeamDivisionStats(
-              teamBaseline,
-              extraFields,
-              mutableDivisionStats,
-              inNaturalTier
-            );
+            // (only do this for full season stats)
+            if ("all" == label) {
+              GradeUtils.buildAndInjectTeamDivisionStats(
+                teamBaseline,
+                extraFields,
+                mutableDivisionStats,
+                inNaturalTier
+              );
+            }
 
             // And yet more derived stats!
             const topLevelPlayTypeStyles =
@@ -851,12 +857,15 @@ export async function main() {
                     .value()
                 : undefined;
 
-            GradeUtils.buildAndInjectPlayStyleStats(
-              topLevelPlayTypeStylesAdj,
-              topLevelDefensePlayTypeStylesAdj,
-              mutableDivisionStats,
-              inNaturalTier
-            );
+            // (only do this for full season stats)
+            if ("all" == label) {
+              GradeUtils.buildAndInjectPlayStyleStats(
+                topLevelPlayTypeStylesAdj,
+                topLevelDefensePlayTypeStylesAdj,
+                mutableDivisionStats,
+                inNaturalTier
+              );
+            }
 
             // Apply luck so we have both lucky and non-luck versions
             const teamBaselineWithLuck = _.cloneDeep(teamBaseline);
@@ -868,35 +877,40 @@ export async function main() {
             LuckUtils.injectLuck(teamBaselineWithLuck, undefined, defLuckInfo);
             //(currently injectTeamDerivedStats does not support luck)
 
-            teamStatInfo.push({
-              team_name: fullRequestModel.team,
-              gender: fullRequestModel.gender,
-              year: fullRequestModel.year,
-              conf: conference,
+            // TODO: not actually sure what this is used for ..
+            // can I replace it with detailedTeamStats?
+            // (only do this for full season stats)
+            if ("all" == label) {
+              teamStatInfo.push({
+                team_name: fullRequestModel.team,
+                gender: fullRequestModel.gender,
+                year: fullRequestModel.year,
+                conf: conference,
 
-              stats: {
-                // Subset of baseline team stats
-                ..._.pick(
-                  teamBaselineWithLuck,
-                  _.flatMap(["off", "def"], (prefix) => {
-                    const fields = [
-                      "adj_ppp",
-                      "ppp",
-                      "to",
-                      "3p",
-                      "2p",
-                      "3pr",
-                      "ftr",
-                      "sos",
-                    ];
-                    return fields.map((field) => `${prefix}_${field}`);
-                  }).concat(["tempo"])
-                ),
+                stats: {
+                  // Subset of baseline team stats
+                  ..._.pick(
+                    teamBaselineWithLuck,
+                    _.flatMap(["off", "def"], (prefix) => {
+                      const fields = [
+                        "adj_ppp",
+                        "ppp",
+                        "to",
+                        "3p",
+                        "2p",
+                        "3pr",
+                        "ftr",
+                        "sos",
+                      ];
+                      return fields.map((field) => `${prefix}_${field}`);
+                    }).concat(["tempo"])
+                  ),
 
-                // Derived stats
-                ...extraFields,
-              },
-            });
+                  // Derived stats
+                  ...extraFields,
+                },
+              });
+            }
 
             const oppoInfo = _.chain(teamBaseline.game_info?.buckets || [])
               .flatMap((l) => l?.game_info?.buckets || [])
@@ -975,7 +989,7 @@ export async function main() {
 
             if (inNaturalTier) {
               //(only store detailed stats for each team once, regardless of tier overlaps)
-              detailedTeamInfo.push({
+              const detailedTeamElement = {
                 team_name: fullRequestModel.team,
                 gender: fullRequestModel.gender,
                 year: fullRequestModel.year,
@@ -986,22 +1000,37 @@ export async function main() {
                 style: topLevelPlayTypeStyles,
                 def_style: topLevelDefensePlayTypeStyles,
                 game_info: undefined, //(unset game_info, it's already covered more efficiently via oppoInfo)
+              };
+              switch (label) {
+                case "conf":
+                  detailedTeamInfoConfOnly.push(detailedTeamElement);
+                  break;
+                case "t100":
+                  detailedTeamInfoT100.push(detailedTeamElement);
+                  break;
+                default:
+                  detailedTeamInfo.push(detailedTeamElement);
+                  break;
+              }
+            }
+            // "T25 / bubble" leaderboard
+            // (only do this for full season stats)
+            if ("all" == label) {
+              teamInfo.push({
+                team_name: fullRequestModel.team,
+                gender: fullRequestModel.gender,
+                year: fullRequestModel.year,
+                conf: conference,
+                adj_off: teamAdjOff,
+                adj_def: teamAdjDef,
+                adj_off_calc: teamCalcAdjEffOff,
+                adj_def_calc: teamCalcAdjEffDef,
+                adj_off_calc_30d: teamCalcAdjEffOffRecent,
+                adj_def_calc_30d: teamCalcAdjEffDefRecent,
+
+                opponents: oppoInfo,
               });
             }
-            teamInfo.push({
-              team_name: fullRequestModel.team,
-              gender: fullRequestModel.gender,
-              year: fullRequestModel.year,
-              conf: conference,
-              adj_off: teamAdjOff,
-              adj_def: teamAdjDef,
-              adj_off_calc: teamCalcAdjEffOff,
-              adj_def_calc: teamCalcAdjEffDef,
-              adj_off_calc_30d: teamCalcAdjEffOffRecent,
-              adj_def_calc_30d: teamCalcAdjEffDefRecent,
-
-              opponents: oppoInfo,
-            });
           }
 
           // Read in on-ball defense if it exists
@@ -1916,11 +1945,16 @@ if (!testMode) {
 
       var savedCastoffs = [] as IndivStatSet[];
 
-      const outputCases: Array<[string, Array<any>, Array<any>]> = [
-        ["all", savedLineups, savedPlayers],
-        ["lowvol", [], savedLowVolumePlayers],
-        ["conf", savedConfOnlyLineups, savedConfOnlyPlayers],
-        ["t100", savedT100Lineups, savedT100Players],
+      const outputCases: Array<[string, Array<any>, Array<any>, Array<any>]> = [
+        ["all", savedLineups, savedPlayers, detailedTeamInfo],
+        ["lowvol", [], savedLowVolumePlayers, []],
+        [
+          "conf",
+          savedConfOnlyLineups,
+          savedConfOnlyPlayers,
+          detailedTeamInfoConfOnly,
+        ],
+        ["t100", savedT100Lineups, savedT100Players, detailedTeamInfoT100],
       ];
 
       await Promise.all(
@@ -2014,7 +2048,7 @@ if (!testMode) {
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
 
           const detailedTeamWritePromise =
-            "all" == kv[0] && detailedTeamInfo.length > 0
+            kv[3].length > 0
               ? fs.writeFile(
                   `${detailedTeamFilename}`,
                   JSON.stringify(
@@ -2027,7 +2061,7 @@ if (!testMode) {
                       bubbleOffense: bubbleOffenseInfo,
                       bubbleDefense: bubbleDefenseInfo,
 
-                      teams: detailedTeamInfo,
+                      teams: kv[3],
                     },
                     reduceNumberSize
                   )

@@ -206,6 +206,7 @@ export class LeaderboardUtils {
   /** Get a single year (but multiple tiers) of detailed team stats
    */
   static getMultiYearTeamDetails(
+    oppo: "all" | "t100" | "conf",
     gender: string,
     fullYear: string,
     tier: string,
@@ -233,7 +234,7 @@ export class LeaderboardUtils {
       yearsAndTiers.map(([inYear, inTier]) => {
         const subYear = inYear.substring(0, 4);
         return fetch(
-          LeaderboardUtils.getTeamDetailsUrl(gender, subYear, inTier)
+          LeaderboardUtils.getTeamDetailsUrl(oppo, gender, subYear, inTier)
         ).then((response: fetch.IsomorphicResponse) => {
           return response.ok
             ? response.json().then((j: any) => {
@@ -317,16 +318,17 @@ export class LeaderboardUtils {
 
   /** Fetch the requested team stats either from GCS or static storage */
   static readonly getTeamDetailsUrl = (
+    oppo: "all" | "t100" | "conf",
     gender: string,
     subYear: string,
     inTier: string
   ) => {
     if (DateUtils.inSeasonYear.startsWith(subYear)) {
       // Access from dynamic storage
-      return `/api/getTeamDetails?gender=${gender}&year=${subYear}&tier=${inTier}`;
+      return `/api/getTeamDetails?oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
     } else {
       //archived
-      return `/leaderboards/lineups/team_details_all_${gender}_${subYear}_${inTier}.json`;
+      return `/leaderboards/lineups/team_details_${oppo}_${gender}_${subYear}_${inTier}.json`;
     }
   };
 }

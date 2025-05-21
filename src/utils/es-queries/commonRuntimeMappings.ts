@@ -57,9 +57,10 @@ export const commonRuntimeMappings = function (
         script: {
           source: `
             if (!params.kp_info.isEmpty()) {
-              def kp_name = params.pbp_to_kp[doc[params.field_name].value];
+              def raw_name = doc[params.field_name].value;
+              def kp_name = params.pbp_to_kp[raw_name];
               if (kp_name == null) {
-                 kp_name = doc[params.field_name].value;
+                 kp_name = raw_name;
               } else {
                  kp_name = kp_name.pbp_kp_team;
               }
@@ -70,7 +71,21 @@ export const commonRuntimeMappings = function (
                   vs_high_major = 0;
                 }
                 def oppo_conf = oppo["conf"];
-                def in_conf = params.conf.equals(oppo_conf);
+                def team_conf = params.conf;
+                if (team_conf == "*") {      
+                  def raw_team_name = doc["team.team.keyword"].value; 
+                  def team_kp_name = params.pbp_to_kp[raw_team_name];
+                  if (team_kp_name == null) {
+                    team_kp_name = raw_team_name;
+                  } else {
+                    team_kp_name = team_kp_name.pbp_kp_team;
+                  }
+                  def team_kp = params.kp_info[team_kp_name];
+                  if (team_kp != null) {
+                    team_conf = team_kp["conf"];
+                  }
+                }
+                def in_conf = team_conf.equals(oppo_conf);
                 def hca = 0;
                 if (doc["location_type.keyword"].size() > 0) {
                   if (doc["location_type.keyword"].value == "Neutral") {
@@ -109,11 +124,13 @@ export const commonRuntimeMappings = function (
               : "opponent.team.keyword",
             kp_info: publicEfficiency, //(if empty then the query auto-returns true)
             conf:
-              QueryUtils.getConference(
-                params.team || "",
-                publicEfficiency,
-                lookup
-              ) || "",
+              params.team == "*"
+                ? "*"
+                : QueryUtils.getConference(
+                    params.team || "",
+                    publicEfficiency,
+                    lookup
+                  ) || "",
           },
         },
       },

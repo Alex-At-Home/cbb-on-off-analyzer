@@ -141,11 +141,13 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
     if (paramObj.secretQuery) {
       const reqObj = {
         year: fullYear,
-        team: "Maryland", //(this just needs to point to any valid team)
+        team: "Maryland", //(this just needs to point to any valid team for hacky reasons, it gets converted to "*" in the API call)
         gender,
         minRank: 0,
-        maxRank: 400,
-        baseQuery: paramObj.secretQuery,
+        maxRank: paramObj.t100 ? 100 : 400,
+        baseQuery: paramObj.confOnly
+          ? `(${paramObj.secretQuery}) AND in_conf:true`
+          : paramObj.secretQuery,
       };
       fetch(`/api/calculateAllTeamStats?${QueryUtils.stringify(reqObj)}`).then(
         (response: fetch.IsomorphicResponse) => {
@@ -175,6 +177,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
       setCurrGender(gender);
 
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamDetails(
+        paramObj.t100 ? "t100" : paramObj.confOnly ? "conf" : "all",
         gender,
         fullYear, //(can be All)
         "All",

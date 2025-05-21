@@ -55,30 +55,18 @@ function marshallRequest(
   // Debug logs:
   // console.log(
   //   JSON.stringify(
-  //     teamDefenseStatsQuery(
-  //       params,
+  //     allTeamStatsQuery(
+  //       {
+  //         ...params,
+  //         team: "*",
+  //       },
   //       currentJsonEpoch,
   //       efficiency,
   //       lookup,
   //       avgEfficiency,
   //       CommonApiUtils.getHca(params as CommonFilterParams)
   //     ),
-  //     CommonApiUtils.efficiencyReplacer(),
-  //     3
-  //   )
-  // );
-  // console.log(
-  //   JSON.stringify(
-  //     teamDefensePlayerStatsQuery(
-  //       params,
-  //       currentJsonEpoch,
-  //       efficiency,
-  //       lookup,
-  //       avgEfficiency,
-  //       CommonApiUtils.getHca(params as CommonFilterParams)
-  //     ),
-  //     CommonApiUtils.efficiencyReplacer(),
-  //     3
+  //     CommonApiUtils.efficiencyReplacer()
   //   )
   // );
 

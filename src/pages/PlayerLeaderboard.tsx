@@ -242,6 +242,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       const teamStatsPromise =
         needsTeamStats && year != "All"
           ? LeaderboardUtils.getMultiYearTeamDetails(
+              "all", //(too restrictive to force team queries to be the same as player filter)
               gender,
               fullYear,
               tier,
@@ -317,6 +318,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         );
         const teamStatsPromise = needsTeamStats
           ? LeaderboardUtils.getMultiYearTeamDetails(
+              "all", //(too restrictive to force team queries to be the same as player filter)
               gender,
               fullYear,
               tier,
