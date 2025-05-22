@@ -1284,7 +1284,7 @@ export class TeamEditorUtils {
             !triple.prevYear ||
             transferYearOverride ||
             isTransferThisYear ||
-            triple.prevYear.roster?.year_class != "Sr" ||
+            triple.prevYear?.roster?.year_class != "Sr" ||
             superSeniorsReturning?.has(triple.key)
             //(manual override trumps that though - not the blanket includeSuperSeniors though. Or if adding players obv)
           );

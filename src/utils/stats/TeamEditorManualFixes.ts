@@ -1596,22 +1596,6 @@ export class TeamEditorManualFixes {
               "JoBamisile::",
               "MaShulga::",
             ]),
-            ...TeamEditorManualFixes.buildOverrides({
-              "": {
-                // Missing players:
-                //(for some reason - double transfer? - he doesn't appear, need to track this down
-                // but in the meantime, this will do)
-                "Clark, Jack": {
-                  pos: "WG",
-                  pr: "4*",
-                  c: "JaClark",
-                  h: "6-8",
-                  r: 90,
-                  o: 0.5,
-                  d: 0.5,
-                },
-              },
-            })[""],
           },
           Vermont: {
             leftTeam: ["JaYoung:UCF:"], //(late transfer not included in my transfer source)
