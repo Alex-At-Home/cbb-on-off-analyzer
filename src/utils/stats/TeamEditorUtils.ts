@@ -1272,10 +1272,18 @@ export class TeamEditorUtils {
         .filter((triple) => {
           // Filter out players who were already super seniors, if in offSeasonMode (else this is descriptive)
 
+          // If someone has transferred in this year then they can't have aged out even if my approx
+          // year/class calcs think they have!
+          const isTransferThisYear =
+            triple.orig.team != team &&
+            triple.orig.year == year &&
+            !triple.key.includes("::"); //(team name might have changed - this should filter out this case)
+
           return (
             !offSeasonMode ||
             !triple.prevYear ||
             transferYearOverride ||
+            isTransferThisYear ||
             triple.prevYear.roster?.year_class != "Sr" ||
             superSeniorsReturning?.has(triple.key)
             //(manual override trumps that though - not the blanket includeSuperSeniors though. Or if adding players obv)
