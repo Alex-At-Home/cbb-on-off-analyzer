@@ -80,6 +80,7 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   } as LineupLeaderboardStatsModel);
   const [currYear, setCurrYear] = useState("");
   const [currGender, setCurrGender] = useState("");
+  const [currTier, setCurrTier] = useState("");
 
   // Game filter
 
@@ -150,33 +151,52 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     const year = fullYear.substring(0, 4);
     const tier = paramObj.tier || ParamDefaults.defaultTier;
 
-    if (year == "All") {
-      //TODO: tidy this up
-      setDataEvent(dataEventInit);
+    if (
+      !dataEvent[dataSubEventKey]?.lineups?.length ||
+      currYear != fullYear ||
+      currTier != tier ||
+      currGender != gender
+    ) {
+      const oldCurrYear = currYear;
+      const oldCurrGender = currGender;
+      setCurrYear(fullYear);
+      setCurrGender(gender);
+      setCurrTier(tier);
+      setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
 
-      const years = DateUtils.lboardYearListWithExtra;
+      const tiers = tier == "All" ? ["High", "Medium", "Low"] : [tier];
+      const years = year == "All" ? DateUtils.lboardYearListWithExtra : [year];
+      const yearTiers = _.flatMap(years, (year) => {
+        return tiers.map((tier) => {
+          return [year, tier];
+        });
+      });
       const fetchAll = Promise.all(
-        years
-          .map((tmpYear) => tmpYear.substring(0, 4))
-          .map((subYear) => {
-            return fetch(
-              LeaderboardUtils.getLineupUrl(
-                dataSubEventKey,
-                gender,
-                subYear,
-                tier
-              )
-            ).then((response: fetch.IsomorphicResponse) => {
-              return response.ok
-                ? response.json()
-                : Promise.resolve({ error: "No data available" });
-            });
-          })
+        yearTiers.map(([yearToUse, tierToUse]) => {
+          return fetch(
+            LeaderboardUtils.getLineupUrl(
+              dataSubEventKey,
+              gender,
+              yearToUse.substring(0, 4),
+              tierToUse
+            )
+          ).then((response: fetch.IsomorphicResponse) => {
+            return response.ok
+              ? response.json()
+              : Promise.resolve({ error: "No data available" });
+          });
+        })
       );
       fetchAll.then((jsons: any[]) => {
-        setDataSubEvent({
+        const subEvent = {
           lineups: _.chain(jsons)
-            .map((d) => d.lineups || [])
+            .map(
+              (d, di) =>
+                (d.lineups || []).map((l: any, li: number) => {
+                  l.tier = tiers[di % 4] || "High";
+                  return l;
+                }) || []
+            )
             .flatten()
             .value(),
           confs: _.chain(jsons)
@@ -184,39 +204,16 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
             .flatten()
             .uniq()
             .value(),
-          lastUpdated: 0, //TODO use max?
+          lastUpdated: _.maxBy(jsons, (j) => j.lastUpdated || 0),
+        };
+        setDataEvent({
+          ...(oldCurrYear != year || year == "All" ? dataEventInit : dataEvent),
+          [dataSubEventKey]: subEvent,
         });
+        setDataSubEvent(subEvent);
       });
-    } else {
-      if (
-        !dataEvent[dataSubEventKey]?.lineups?.length ||
-        currYear != fullYear ||
-        currGender != gender
-      ) {
-        const oldCurrYear = currYear;
-        const oldCurrGender = currGender;
-        setCurrYear(fullYear);
-        setCurrGender(gender);
-        setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(
-          LeaderboardUtils.getLineupUrl(dataSubEventKey, gender, year, tier)
-        ).then((response: fetch.IsomorphicResponse) => {
-          return (
-            response.ok
-              ? response.json()
-              : Promise.resolve({ error: "No data available" })
-          ).then((json: any) => {
-            //(if year has changed then clear saved data events)
-            setDataEvent({
-              ...(oldCurrYear != year ? dataEventInit : dataEvent),
-              [dataSubEventKey]: json,
-            });
-            setDataSubEvent(json);
-          });
-        });
-      } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
-        setDataSubEvent(dataEvent[dataSubEventKey]);
-      }
+    } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
+      setDataSubEvent(dataEvent[dataSubEventKey]);
     }
   }, [lineupLeaderboardParams]);
 

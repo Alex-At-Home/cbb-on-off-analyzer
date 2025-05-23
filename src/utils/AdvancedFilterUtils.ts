@@ -25,6 +25,179 @@ export class AdvancedFilterUtils {
 
   static readonly operatorsSet = new Set<string>(AdvancedFilterUtils.operators);
 
+  static readonly lineupMetadata = [
+    // Basic metadata:
+    "team_name",
+    "conf",
+    "year",
+
+    // Advanced metadata:
+    "off_poss",
+    "def_poss",
+    "duration_mins",
+    "team_stats.off_adj_ppp", //(actually team_off_adj_ppp)
+    "team_stats.def_adj_ppp", //(actually team_def_adj_ppp)
+  ];
+
+  static readonly lineupPlayerStats = [
+    // Metadata:
+    "key",
+    "height_in",
+    "year_class",
+    "code",
+    "ncaa_id",
+    "posClass",
+    // Stats:
+    "off_rtg",
+    "off_usage",
+    "def_orb",
+    "off_adj_rtg",
+    "def_adj_rtg",
+    "off_3pr",
+    "off_ftr",
+    "off_assist",
+  ];
+
+  static readonly lineupStats = [
+    // Efficiency:
+    "off_adj_ppp",
+    "def_adj_ppp",
+    "off_ppp",
+    "def_ppp",
+    //TODO: add these when you get a moment
+    // "raw_net",
+    // "adj_net",
+    "def_3p_opp",
+    "off_adj_opp",
+    "def_adj_opp",
+
+    // Four factors
+    "off_efg",
+    "off_to",
+    "off_ftr",
+    "off_orb",
+    "def_efg",
+    "def_to",
+    "def_ftr",
+    "def_orb",
+
+    // Shot creation
+    "off_assist",
+    "off_ast_rim",
+    "off_ast_mid",
+    "off_ast_threep",
+    "off_twoprimr",
+    "off_twopmidr",
+    "off_threepr",
+    "def_assist",
+    "def_ast_rim",
+    "def_ast_mid",
+    "def_ast_threep",
+    "def_twoprimr",
+    "def_twopmidr",
+    "def_threepr",
+
+    // Shot-making
+    "off_threep",
+    "off_twop",
+    "off_twopmid",
+    "off_twoprim",
+    "off_ft",
+    "off_threep_ast",
+    "off_twop_ast",
+    "off_twopmid_ast",
+    "off_twoprim_ast",
+    "def_threep",
+    "def_twop",
+    "def_twopmid",
+    "def_twoprim",
+    "def_ft",
+    "def_threep_ast",
+    "def_twop_ast",
+    "def_twopmid_ast",
+    "def_twoprim_ast",
+
+    // Scramble:
+    //TODO add some thing back here
+    //"off_scramble_pct",
+    "off_scramble_ppp",
+    //"off_scramble_delta_ppp",
+    //"off_scramble_per_orb",
+    "off_scramble_efg",
+    "off_scramble_twop",
+    "off_scramble_twop_ast",
+    "off_scramble_threep",
+    "off_scramble_threep_ast",
+    "off_scramble_twoprim",
+    "off_scramble_twoprim_ast",
+    "off_scramble_twopmid",
+    "off_scramble_twopmid_ast",
+    "off_scramble_ft",
+    "off_scramble_ftr",
+    "off_scramble_twoprimr",
+    "off_scramble_twopmidr",
+    "off_scramble_threepr",
+    "off_scramble_assist",
+    //"def_scramble_pct",
+    "def_scramble_ppp",
+    //"def_scramble_delta_ppp",
+    //"def_scramble_per_orb",
+    "def_scramble_efg",
+    "def_scramble_twop",
+    "def_scramble_twop_ast",
+    "def_scramble_threep",
+    "def_scramble_threep_ast",
+    "def_scramble_twoprim",
+    "def_scramble_twoprim_ast",
+    "def_scramble_twopmid",
+    "def_scramble_twopmid_ast",
+    "def_scramble_ft",
+    "def_scramble_ftr",
+    "def_scramble_twoprimr",
+    "def_scramble_twopmidr",
+    "def_scramble_threepr",
+    "def_scramble_assist",
+
+    // Transition:
+    //TODO add some thing back here
+    //"off_trans_pct",
+    "off_trans_ppp",
+    //"off_trans_delta_ppp",
+    "off_trans_efg",
+    "off_trans_twop",
+    "off_trans_twop_ast",
+    "off_trans_threep",
+    "off_trans_threep_ast",
+    "off_trans_twoprim",
+    "off_trans_twoprim_ast",
+    "off_trans_twopmid",
+    "off_trans_twopmid_ast",
+    "off_trans_ft",
+    "off_trans_ftr",
+    "off_trans_twoprimr",
+    "off_trans_twopmidr",
+    "off_trans_threepr",
+    "off_trans_assist",
+    //"def_trans_pct",
+    "def_trans_ppp",
+    //"def_trans_delta_ppp",
+    "def_trans_efg",
+    "def_trans_twop",
+    "def_trans_twop_ast",
+    "def_trans_threep",
+    "def_trans_threep_ast",
+    "def_trans_twoprim",
+    "def_trans_twoprim_ast",
+    "def_trans_twopmid",
+    "def_trans_twopmid_ast",
+    "def_trans_ft",
+    "def_trans_ftr",
+    "def_trans_twoprimr",
+    "def_trans_twopmidr",
+    "def_trans_threepr",
+    "def_trans_assist",
+  ];
+
   static readonly teamExplorerMetadata = [
     // Basic metadata:
     "team_name",
@@ -608,6 +781,37 @@ export class AdvancedFilterUtils {
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
   }
 
+  /** Converts lineup leaderboard autocomplete terms to ugly object formats */
+  static lineupFixObjectFormat(s: string) {
+    return s
+      .replace(/(^| |[(!])(key|team_name|conf_nick|conf|year)/g, "$1$.p.$2")
+      .replace(
+        /((team_stats[.]|player_stats\[[0-5]\][.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
+        (
+          substr: string,
+          ignoredCaptureGroup: string,
+          maybeTeamStats: string | undefined
+        ) => {
+          return maybeTeamStats
+            ? `$.p.${
+                maybeTeamStats.startsWith("team") ? "team_" : maybeTeamStats
+              }${AdvancedFilterUtils.teamFixObjectFormat(
+                substr.substring(maybeTeamStats.length)
+              ).substring(4)}` //(replace $.p. with team stats prefix)
+            : `$.p.${substr}?.value`;
+        }
+      )
+      .replace(
+        /(player_stats\[[0-5]\])[.](key|height_in|year_class|code|ncaa_id|posClass)/g,
+        "$.p.$1.$2"
+      )
+      .replace(/duration_mins/g, "$.p.duration_mins?.value")
+      .replace(/adj_net/g, "$.p.off_net?.value")
+      .replace(/raw_net/g, "$.p.off_raw_net?.value")
+      .replace(/((?:off|def)_(?:scramble|trans))_pct/g, "$1")
+      .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
+      .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
+  }
   /** A second phase of transforms to make rank_ and pctile_ terms point to the right place */
   static gradeConvert(s: string) {
     return (
@@ -682,6 +886,19 @@ export class AdvancedFilterUtils {
         AdvancedFilterUtils.removeAscDesc,
         _.trim,
       ])(s, multiYear);
+
+  /** The Linq to data model pipeline for player expressions */
+  static readonly tidyLineupClauses: (s: string) => string = (s: string) =>
+    _.flow([
+      AdvancedFilterUtils.fixBoolOps,
+      AdvancedFilterUtils.avoidAssigmentOperator,
+      AdvancedFilterUtils.fieldReplacements,
+      AdvancedFilterUtils.lineupFixObjectFormat,
+      AdvancedFilterUtils.convertPercentages,
+      AdvancedFilterUtils.normHeightInQuotes,
+      AdvancedFilterUtils.removeAscDesc,
+      _.trim,
+    ])(s, false);
 
   /** The Linq to data model pipeline for team explorer expressions */
   static readonly tidyTeamExplorerClauses: (
@@ -777,6 +994,21 @@ export class AdvancedFilterUtils {
       AdvancedFilterUtils.tidyTeamExplorerClauses,
       AdvancedFilterUtils.buildTeamExplorerRows(filterStr, divStats)
     );
+  }
+
+  /** A common accessor for both Linq filter/sort and CSV building */
+  private static buildLineupRows(
+    filterStr: string,
+    teamDivStats: (year: string) => DivisionStatistics | undefined
+  ): (p: any, index: number) => any {
+    return (p: any, index: number) => {
+      p.style_def = p.def_style; // (ugly, need def_style to not collide with other def_* fields)
+      const retVal: any = {
+        p,
+      };
+
+      return retVal;
+    };
   }
 
   /** A common accessor for both Linq filter/sort and CSV building */
@@ -949,6 +1181,23 @@ export class AdvancedFilterUtils {
         teamDivStats,
         multiYear
       )
+    );
+  }
+
+  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
+  static applyLineupFilter(
+    inData: any[],
+    filterStr: string,
+    teamDivStats: (year: string) => DivisionStatistics | undefined,
+    extraParams: Record<string, string> = {}
+  ): [any[], string | undefined] {
+    return AdvancedFilterUtils.applyFilter(
+      inData,
+      filterStr,
+      extraParams,
+      false,
+      AdvancedFilterUtils.tidyPlayerClauses,
+      AdvancedFilterUtils.buildLineupRows(filterStr, teamDivStats)
     );
   }
 
@@ -1181,6 +1430,65 @@ export class AdvancedFilterUtils {
       false
     );
     const enumData = Enumerable.from(inData.map(rowBuilder));
+    const results = enumData
+      .select(expressionString as unknown as TypeScriptWorkaround2)
+      .toArray() as string[];
+
+    return [
+      headerFields.join(","),
+      results.map((r) => r.substring(1, r.length - 1)),
+    ];
+  };
+
+  /** Lineup leaderboard CSV logic */
+  static generateLineupLeaderboardCsv = (
+    filterStr: string,
+    inData: any[],
+    teamDivStats?: (year: string) => DivisionStatistics | undefined
+  ): [string, string[]] => {
+    const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
+    const headerFieldsPhase1 = _.concat(
+      AdvancedFilterUtils.lineupMetadata,
+      AdvancedFilterUtils.lineupStats
+    ).concat(
+      _.flatMap(posGroups, (__, posIndex) =>
+        AdvancedFilterUtils.lineupPlayerStats.map(
+          (p) => `player_stats[${posIndex}].${p}`
+        )
+      )
+    );
+    const headerFields = headerFieldsPhase1.concat(
+      // If the user includes team stats then we'll append these at the end:
+      // (currently don't support this for "prev_" fields)
+      filterStr.match(
+        new RegExp(
+          `(?:rank_|pctile_)?team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`,
+          "g"
+        )
+      ) || []
+    );
+
+    const rawExpressionString = headerFields.join(" , ");
+    const expressionString = AdvancedFilterUtils.tidyLineupClauses(
+      `JSON.stringify([ ${rawExpressionString} ])`
+    );
+
+    //DEBUG
+    //console.log(`expressionString: ${expressionString}`);
+
+    const teamDivStatsWithFallback = teamDivStats || ((y: string) => undefined);
+    const rowBuilder = AdvancedFilterUtils.buildLineupRows(
+      rawExpressionString,
+      teamDivStatsWithFallback
+    );
+    const enumData = Enumerable.from(inData.map(rowBuilder));
+
+    //DEBUG
+    // const results = [] as string[];
+    // console.log(`HEADERS = [${headerFields.join(",")}]`);
+    // console.log(`KEYS = [${_.keys(inData?.[0])}]`);
+    // console.log(`KEYS = [${_.keys(inData?.[0]?.player_stats)}]`);
+
     const results = enumData
       .select(expressionString as unknown as TypeScriptWorkaround2)
       .toArray() as string[];

@@ -122,77 +122,39 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={11}
         xs={11}
       >
-        <StateManager
-          components={
+        <ConferenceSelector
+          confMap={
             Object {
-              "MultiValueContainer": [Function],
+              "American Athletic Conference": Array [],
+              "Atlantic 10 Conference": Array [],
+              "Atlantic Coast Conference": Array [],
+              "Big 12 Conference": Array [],
+              "Big East Conference": Array [],
+              "Big Ten Conference": Array [],
+              "Mountain West Conference": Array [],
+              "Pac 12 Conference": Array [],
+              "Southeastern Conference": Array [],
+              "West Coast Conference": Array [],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          filterOption={[Function]}
-          isClearable={true}
-          isMulti={true}
-          onChange={[Function]}
-          options={
+          confStr=""
+          confs={
             Array [
-              Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
-              },
-              Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
-              },
+              "Big Ten Conference",
+              "Southeastern Conference",
+              "Pac 12 Conference",
+              "West Coast Conference",
+              "Big 12 Conference",
+              "Atlantic Coast Conference",
+              "Big East Conference",
+              "American Athletic Conference",
+              "Atlantic 10 Conference",
+              "Mountain West Conference",
             ]
           }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "All Teams in High Tier",
-            }
-          }
+          emptyLabel="All Teams in High Tier"
+          onChangeConf={[Function]}
+          tier="High"
         />
       </Col>
       <Col
@@ -313,11 +275,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -932,7 +889,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           className="float-right"
         >
           <small>
-            (Qualifying lineups in tier:
+            (Qualifying lineups 
+            in tier 
+            :
              
             <b>
               10
@@ -1213,10 +1172,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #1
@@ -1832,10 +1790,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #1
@@ -2454,10 +2411,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #3
@@ -3063,10 +3019,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #3
@@ -3675,10 +3630,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #2
@@ -4284,10 +4238,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #2
@@ -4896,10 +4849,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #9
@@ -5505,10 +5457,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #9
@@ -6117,10 +6068,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -6723,10 +6673,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -7343,10 +7292,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  6
-                                                </big>
+                                                #
+                                                
+                                                6
                                               </b>
                                                (
                                               #40
@@ -7958,10 +7906,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  6
-                                                </big>
+                                                #
+                                                
+                                                6
                                               </b>
                                                (
                                               #40
@@ -8580,10 +8527,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  7
-                                                </big>
+                                                #
+                                                
+                                                7
                                               </b>
                                                (
                                               #13
@@ -9196,10 +9142,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  7
-                                                </big>
+                                                #
+                                                
+                                                7
                                               </b>
                                                (
                                               #13
@@ -9815,10 +9760,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  8
-                                                </big>
+                                                #
+                                                
+                                                8
                                               </b>
                                                (
                                               #15
@@ -10446,10 +10390,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  8
-                                                </big>
+                                                #
+                                                
+                                                8
                                               </b>
                                                (
                                               #15
@@ -11080,10 +11023,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  9
-                                                </big>
+                                                #
+                                                
+                                                9
                                               </b>
                                                (
                                               #41
@@ -11691,10 +11633,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  9
-                                                </big>
+                                                #
+                                                
+                                                9
                                               </b>
                                                (
                                               #41
@@ -12305,10 +12246,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  10
-                                                </big>
+                                                #
+                                                
+                                                10
                                               </b>
                                                (
                                               #5
@@ -12914,10 +12854,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  10
-                                                </big>
+                                                #
+                                                
+                                                10
                                               </b>
                                                (
                                               #5
@@ -13671,77 +13610,39 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={11}
         xs={11}
       >
-        <StateManager
-          components={
+        <ConferenceSelector
+          confMap={
             Object {
-              "MultiValueContainer": [Function],
+              "American Athletic Conference": Array [],
+              "Atlantic 10 Conference": Array [],
+              "Atlantic Coast Conference": Array [],
+              "Big 12 Conference": Array [],
+              "Big East Conference": Array [],
+              "Big Ten Conference": Array [],
+              "Mountain West Conference": Array [],
+              "Pac 12 Conference": Array [],
+              "Southeastern Conference": Array [],
+              "West Coast Conference": Array [],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          filterOption={[Function]}
-          isClearable={true}
-          isMulti={true}
-          onChange={[Function]}
-          options={
+          confStr=""
+          confs={
             Array [
-              Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
-              },
-              Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
-              },
+              "Big Ten Conference",
+              "Southeastern Conference",
+              "Pac 12 Conference",
+              "West Coast Conference",
+              "Big 12 Conference",
+              "Atlantic Coast Conference",
+              "Big East Conference",
+              "American Athletic Conference",
+              "Atlantic 10 Conference",
+              "Mountain West Conference",
             ]
           }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "All Teams in High Tier",
-            }
-          }
+          emptyLabel="All Teams in High Tier"
+          onChangeConf={[Function]}
+          tier="High"
         />
       </Col>
       <Col
@@ -13862,11 +13763,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -14481,7 +14377,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           className="float-right"
         >
           <small>
-            (Qualifying lineups in tier:
+            (Qualifying lineups 
+            in tier 
+            :
              
             <b>
               15
@@ -14771,10 +14669,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #1
@@ -15399,10 +15296,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #1
@@ -16030,10 +15926,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #3
@@ -16652,10 +16547,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #3
@@ -17277,10 +17171,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #3
@@ -17895,10 +17788,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #3
@@ -18516,10 +18408,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #20
@@ -19131,10 +19022,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #20
@@ -19749,10 +19639,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #2
@@ -20367,10 +20256,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #2
@@ -21003,10 +20891,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #9
@@ -21621,10 +21508,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #9
@@ -22242,10 +22128,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -22857,10 +22742,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -23475,10 +23359,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #9
@@ -24100,10 +23983,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #9
@@ -24728,10 +24610,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #12
@@ -25349,10 +25230,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #12
@@ -27221,10 +27101,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -27849,10 +27728,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -33544,77 +33422,39 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={11}
         xs={11}
       >
-        <StateManager
-          components={
+        <ConferenceSelector
+          confMap={
             Object {
-              "MultiValueContainer": [Function],
+              "American Athletic Conference": Array [],
+              "Atlantic 10 Conference": Array [],
+              "Atlantic Coast Conference": Array [],
+              "Big 12 Conference": Array [],
+              "Big East Conference": Array [],
+              "Big Ten Conference": Array [],
+              "Mountain West Conference": Array [],
+              "Pac 12 Conference": Array [],
+              "Southeastern Conference": Array [],
+              "West Coast Conference": Array [],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          filterOption={[Function]}
-          isClearable={true}
-          isMulti={true}
-          onChange={[Function]}
-          options={
+          confStr=""
+          confs={
             Array [
-              Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
-              },
-              Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
-              },
+              "Big Ten Conference",
+              "Southeastern Conference",
+              "Pac 12 Conference",
+              "West Coast Conference",
+              "Big 12 Conference",
+              "Atlantic Coast Conference",
+              "Big East Conference",
+              "American Athletic Conference",
+              "Atlantic 10 Conference",
+              "Mountain West Conference",
             ]
           }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "All Teams in High Tier",
-            }
-          }
+          emptyLabel="All Teams in High Tier"
+          onChangeConf={[Function]}
+          tier="High"
         />
       </Col>
       <Col
@@ -33735,11 +33575,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={true}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -34354,7 +34189,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           className="float-right"
         >
           <small>
-            (Qualifying lineups in tier:
+            (Qualifying lineups 
+            in tier 
+            :
              
             <b>
               10
@@ -34635,10 +34472,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #1
@@ -35254,10 +35090,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  1
-                                                </big>
+                                                #
+                                                
+                                                1
                                               </b>
                                                (
                                               #1
@@ -35911,10 +35746,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #3
@@ -36520,10 +36354,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  2
-                                                </big>
+                                                #
+                                                
+                                                2
                                               </b>
                                                (
                                               #3
@@ -37167,10 +37000,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #2
@@ -37776,10 +37608,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  3
-                                                </big>
+                                                #
+                                                
+                                                3
                                               </b>
                                                (
                                               #2
@@ -38423,10 +38254,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #9
@@ -39032,10 +38862,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  4
-                                                </big>
+                                                #
+                                                
+                                                4
                                               </b>
                                                (
                                               #9
@@ -39679,10 +39508,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -40285,10 +40113,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  5
-                                                </big>
+                                                #
+                                                
+                                                5
                                               </b>
                                                (
                                               #4
@@ -40925,10 +40752,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  6
-                                                </big>
+                                                #
+                                                
+                                                6
                                               </b>
                                                (
                                               #40
@@ -41540,10 +41366,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  6
-                                                </big>
+                                                #
+                                                
+                                                6
                                               </b>
                                                (
                                               #40
@@ -42197,10 +42022,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  7
-                                                </big>
+                                                #
+                                                
+                                                7
                                               </b>
                                                (
                                               #13
@@ -42813,10 +42637,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  7
-                                                </big>
+                                                #
+                                                
+                                                7
                                               </b>
                                                (
                                               #13
@@ -43467,10 +43290,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  8
-                                                </big>
+                                                #
+                                                
+                                                8
                                               </b>
                                                (
                                               #15
@@ -44098,10 +43920,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  8
-                                                </big>
+                                                #
+                                                
+                                                8
                                               </b>
                                                (
                                               #15
@@ -44767,10 +44588,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  9
-                                                </big>
+                                                #
+                                                
+                                                9
                                               </b>
                                                (
                                               #41
@@ -45378,10 +45198,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  9
-                                                </big>
+                                                #
+                                                
+                                                9
                                               </b>
                                                (
                                               #41
@@ -46027,10 +45846,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  10
-                                                </big>
+                                                #
+                                                
+                                                10
                                               </b>
                                                (
                                               #5
@@ -46636,10 +46454,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                           <small>
                                             <span>
                                               <b>
-                                                <big>
-                                                  #
-                                                  10
-                                                </big>
+                                                #
+                                                
+                                                10
                                               </b>
                                                (
                                               #5

@@ -43,7 +43,7 @@ export class LineupTableUtils {
       : _.toPairs(
           (lineup.player_info || {}) as Record<PlayerId, IndivStatSet>
         ).map((kv) => {
-          return { code: kv[1].code, id: kv[0] };
+          return { code: kv[1].code as string, id: kv[0] };
         }); //(leaderboard mode)
   }
 

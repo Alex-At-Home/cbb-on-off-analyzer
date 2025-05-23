@@ -213,6 +213,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
     if (year == "All" || tier == "All" || transferModeUrlParam) {
       //TODO: why aren't I checking before re-fetching all the info here?
+      //TODO: oh I think it's because I wanted to avoid caching all years for the sub-key - see LineupLeaderboard for how I fixed that
       //(note the transferModeUrlParam means we use this slightly less efficient construct with single tier transfers)
 
       //TODO: tidy this up

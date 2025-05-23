@@ -238,7 +238,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -468,8 +468,8 @@ export async function main() {
 
     const inNaturalTier = naturalTier == inTier;
 
-    if (injectExtraDataForNbaFolks && !inNaturalTier) {
-      console.log(`Extra info mode: skipping [${team}] not in natural tier`);
+    if (!inNaturalTier) {
+      console.log(`For all modes: now skipping [${team}] not in natural tier`);
       return;
     }
 
@@ -1514,9 +1514,12 @@ export async function main() {
               .toPairs()
               .filter((kv) => {
                 return (
-                  !_.startsWith(kv[0], "total_") || //(need to keep scramble and transition counts for now, used in the interim play category tooltips)
-                  _.endsWith(kv[0], "_poss") ||
-                  _.endsWith(kv[0], "_ppp")
+                  !_.startsWith(kv[0], "shot_info") &&
+                  !_.startsWith(kv[0], "off_luck_diags") &&
+                  !_.startsWith(kv[0], "def_luck_diags") &&
+                  (!_.startsWith(kv[0], "total_") || //(need to keep scramble and transition counts for now, used in the interim play category tooltips)
+                    _.endsWith(kv[0], "_poss") ||
+                    _.endsWith(kv[0], "_ppp"))
                 );
               })
               .fromPairs()
@@ -1525,11 +1528,18 @@ export async function main() {
             lineup.conf = conference;
             lineup.team = team;
             lineup.year = teamYear;
+            lineup.team_off_adj_ppp = teamBaseline.off_adj_ppp || {
+              value: 100,
+            };
+            lineup.team_def_adj_ppp = teamBaseline.def_adj_ppp || {
+              value: 100,
+            };
             // Add minimal player info:
             const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
             lineup.player_info = _.fromPairs(
               codesAndIds.map((cid) => {
-                const playerSubset = _.pick(baselinePlayerInfo[cid.id] || {}, [
+                const fullPlayer = baselinePlayerInfo[cid.id] || {};
+                const playerSubset = _.pick(fullPlayer, [
                   //These are the fields required for lineup display enrichment
                   "off_rtg",
                   "off_usage",
@@ -1540,7 +1550,11 @@ export async function main() {
                   "off_3pr",
                   "off_ftr",
                   "off_assist",
-                ]);
+                ]) as any;
+                playerSubset.height_in = fullPlayer.roster?.height_in;
+                playerSubset.year_class = fullPlayer.roster?.year_class;
+                playerSubset.ncaa_id =
+                  fullPlayer.roster?.player_code_id?.ncaa_id;
                 return [
                   cid.id,
                   {
@@ -1727,27 +1741,69 @@ export function completeLineupLeaderboard(
   leaderboard: any[],
   topLineupSize: number
 ) {
-  // Take T300 by possessions
+  const bareMinPoss = 40;
+  // Take top lineups by possessions
   const topByPoss = _.chain(leaderboard)
+    .filter((lineup) => (lineup.off_poss?.value || 0) >= bareMinPoss) // (bare min possessions)
     .sortBy((lineup) => -1 * (lineup.off_poss?.value || 0))
     .take(topLineupSize)
     .value();
 
-  _.sortBy(
-    topByPoss,
-    (lineup) => -1 * (lineup.off_adj_ppp?.value || 0)
-  ).forEach((lineup, index) => {
-    lineup[`off_adj_ppp_rank`] = index + 1;
-  });
-  _.sortBy(topByPoss, (lineup) => lineup.def_adj_ppp?.value || 0).forEach(
+  const regression_min_poss = 50;
+  const regression_max_min_poss = 200; //(at 250 we're using the exact value)
+  const avg_eff = 100;
+  const extra_regression_poss = 150; //(below this we assume the lineup was worse than team average)
+  const extra_regression_max = 10;
+  const off_regress = (lineup: any) => {
+    const poss = lineup.off_poss?.value || 0;
+    const off_adj_ppp = lineup.off_adj_ppp?.value || avg_eff;
+    const regression =
+      (1 - Math.min(poss, extra_regression_poss) / extra_regression_poss) *
+      extra_regression_max;
+    const team_off_adj_ppp =
+      (lineup.team_off_adj_ppp?.value || avg_eff) - regression; //slight regression because it's a low vol
+    const factor =
+      Math.min(
+        Math.max(poss - regression_min_poss, 0),
+        regression_max_min_poss
+      ) / regression_max_min_poss;
+
+    //DIAG
+    // console.log(
+    //   `Off regress for [${lineup.key}] ${off_adj_ppp} : ${poss} = ${
+    //     factor * off_adj_ppp + (1 - factor) * team_off_adj_ppp
+    //   } (${team_off_adj_ppp})`
+    // );
+
+    return factor * off_adj_ppp + (1 - factor) * team_off_adj_ppp;
+  };
+  const def_regress = (lineup: any) => {
+    const poss = lineup.def_poss?.value || 0;
+    const def_adj_ppp = lineup.def_adj_ppp?.value || avg_eff;
+    const regression = (1 - Math.min(poss, 150) / 150) * 10;
+    const team_def_adj_ppp =
+      (lineup.team_def_adj_ppp?.value || avg_eff) + regression; //slight regression because it's a low vol
+    const factor =
+      Math.min(
+        Math.max(poss - regression_min_poss, 0),
+        regression_max_min_poss
+      ) / regression_max_min_poss;
+    return factor * def_adj_ppp + (1 - factor) * team_def_adj_ppp;
+  };
+
+  _.sortBy(topByPoss, (lineup) => -1 * off_regress(lineup)).forEach(
+    (lineup, index) => {
+      lineup[`off_adj_ppp_rank`] = index + 1;
+    }
+  );
+  _.sortBy(topByPoss, (lineup) => def_regress(lineup)).forEach(
     (lineup, index) => {
       lineup[`def_adj_ppp_rank`] = index + 1;
     }
   );
   const rankedLineups = _.sortBy(
     topByPoss,
-    (lineup) =>
-      (lineup.def_adj_ppp?.value || 0) - (lineup.off_adj_ppp?.value || 0)
+    (lineup) => def_regress(lineup) - off_regress(lineup)
   ).map((lineup, index) => {
     lineup[`adj_margin_rank`] = index + 1;
     return lineup;
@@ -1938,7 +1994,7 @@ if (!testMode) {
       });
   } else {
     main().then(async (dummy) => {
-      const topLineupSize = onlyHasTopConferences ? 300 : 400;
+      const topLineupSize = onlyHasTopConferences ? 300 : 750;
       const topPlayersSize = 1500; //(at 1500 essentially just means the 10mpg is only qualifier)
 
       console.log("Processing Complete!");

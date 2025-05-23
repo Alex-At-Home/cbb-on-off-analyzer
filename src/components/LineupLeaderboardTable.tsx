@@ -25,7 +25,11 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 //@ts-ignore
 import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLink,
+  faClipboard,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
 // Component imports
@@ -67,6 +71,9 @@ import {
 
 import { DateUtils } from "../utils/DateUtils";
 import { LineupStatSet, IndivPosInfo } from "../utils/StatModels";
+import ConferenceSelector from "./shared/ConferenceSelector";
+import { line } from "d3";
+import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>;
@@ -248,6 +255,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     const newState = {
       ...startingState,
       conf: confs,
+      tier: tier,
       gender: gender,
       year: year,
       t100: isT100,
@@ -272,6 +280,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     isConfOnly,
     lineupFilters,
     confs,
+    tier,
     year,
     gender,
   ]);
@@ -368,7 +377,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       LineupTableUtils.buildFilteredLineups(
         confDataEventLineups,
         filterStr,
-        year != "All" && sortBy == ParamDefaults.defaultLineupLboardSortBy
+        year != "All" &&
+          tier != "All" &&
+          sortBy == ParamDefaults.defaultLineupLboardSortBy
           ? undefined
           : sortBy,
         minPoss,
@@ -456,13 +467,16 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           [Adj Defensive Efficiency]
         </Tooltip>
       );
+
+      const shortTier = ((lineup.tier as String) || "").substring(0, 1);
       const marginRank =
         sortBy == "desc:diff_adj_ppp" ? (
           <b>
-            <big>#{lineup.adj_margin_rank}</big>
+            #{shortTier}
+            {lineup.adj_margin_rank}
           </b>
         ) : (
-          `#${lineup.adj_margin_rank}`
+          `${shortTier}#${lineup.adj_margin_rank}`
         );
       const offRank =
         sortBy == "desc:off_adj_ppp" ? (
@@ -623,6 +637,66 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       <span>{data.label}</span>
     </div>
   );
+
+  // 3.3] Export Utils
+
+  /** Export teams to string */
+  const buildExportStr = (filtered: boolean): string => {
+    //TODO: need to support filter
+
+    const { lineupsPhase1, isFiltered } = {
+      lineupsPhase1: [],
+      isFiltered: false,
+    };
+    // phase1Processing(
+    //   dataEvent?.players || [],
+    //   filtered
+    // );
+    const [lineups, ignoreDroppedLineups] =
+      LineupTableUtils.buildFilteredLineups(
+        (dataEvent?.lineups || []) as unknown as LineupStatSet[],
+        "", //(filterStr)
+        year != "All" &&
+          tier != "All" &&
+          sortBy == ParamDefaults.defaultLineupLboardSortBy
+          ? undefined
+          : sortBy,
+        "0", //minPoss
+        "100000", //maxTableSize - ie "all of them"
+        undefined,
+        undefined //<-calc from lineup
+      );
+
+    // Enrich with sorted player info
+    lineups.forEach((lineup) => {
+      const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${lineup.year}`;
+      const perLineupBaselinePlayerMap = lineup.player_info || {};
+      const positionFromPlayerKey = lineup.player_info || {};
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      const sortedCodesAndIds = PositionUtils.orderLineup(
+        codesAndIds,
+        positionFromPlayerKey,
+        teamSeasonLookup
+      );
+      //(for export)
+      (lineup as any).player_stats = codesAndIds.map(
+        (codeId) => (lineup.player_info || {})[codeId.id] || {}
+      );
+      (lineup as any).team_name = lineup.team;
+      lineup.off_team_poss = lineup.off_poss;
+      lineup.def_team_poss = lineup.def_poss;
+    });
+
+    const [header, dataRows] = AdvancedFilterUtils.generateLineupLeaderboardCsv(
+      "",
+      lineups,
+      (
+        year: string //(we only use this to inject team stats explicitly mentioned so ignore whether grades are enabled)
+      ) => undefined
+    );
+
+    return [header].concat(dataRows).join("\n");
+  };
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
@@ -787,33 +861,24 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
           <Col xs={11} sm={11} md={6} lg={6}>
-            <Select
-              isClearable={true}
-              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-              isMulti
-              components={{ MultiValueContainer: ConferenceValueContainer }}
-              value={getCurrentConfsOrPlaceholder()}
-              options={(tier == "High" ? ["Power 6 Conferences"] : [])
-                .concat(_.sortBy(confsWithTeams))
-                .map((r) => stringToOption(r))}
-              filterOption={createFilter({
-                ignoreCase: true,
-                ignoreAccents: true,
-                matchFrom: "any",
-                trim: true,
-                stringify: (option: any) =>
-                  `${option.value} ${ConferenceToNickname[option.value]}`,
-              })}
-              onChange={(optionsIn: any) => {
-                const options = optionsIn as Array<any>;
-                const selection = (options || []).map((option) =>
-                  ((option as any)?.value || "").replace(/ *\[.*\]/, "")
-                );
-                const confStr = selection
-                  .filter((t: string) => t != "")
-                  .map((c: string) => ConferenceToNickname[c] || c)
-                  .join(",");
-                friendlyChange(() => setConfs(confStr), confs != confStr);
+            <ConferenceSelector
+              emptyLabel={`All Teams in ${tier} Tier${
+                tier == "All" ? "s" : ""
+              }`}
+              confStr={confs}
+              tier={tier}
+              confMap={dataEvent?.confMap}
+              confs={dataEvent?.confs}
+              onChangeConf={(confStr) => {
+                if (confStr.indexOf("Tier") >= 0) {
+                  const newTier = confStr.split(" ")[0];
+                  friendlyChange(() => {
+                    setTier(newTier);
+                    setConfs("");
+                  }, confs != "" || tier != newTier);
+                } else {
+                  friendlyChange(() => setConfs(confStr), confs != confStr);
+                }
               }}
             />
           </Col>
@@ -850,11 +915,63 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 }
               />
               <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Show Luck Adjustment diagnostics"
-                truthVal={showLuckAdjDiags}
-                onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
-              />
+              {
+                // Users should click to the details link to get things like this
+                // <GenericTogglingMenuItem
+                //   text="Show Luck Adjustment diagnostics"
+                //   truthVal={showLuckAdjDiags}
+                //   onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+                // />
+              }
+              {
+                //TODO: add filtered download
+              }
+              {year != "All" &&
+              year >= DateUtils.firstYearWithImprovedLineupLboards ? (
+                <>
+                  <GenericTogglingMenuItem
+                    text={
+                      <span>
+                        <FontAwesomeIcon icon={faClipboard} />
+                        {"  "}Export all lineups to CSV
+                      </span>
+                    }
+                    truthVal={false}
+                    onSelect={() => {
+                      friendlyChange(() => {
+                        navigator.clipboard.writeText(buildExportStr(false));
+                        setLoadingOverride(false);
+                      }, true);
+                    }}
+                  />
+                  <GenericTogglingMenuItem
+                    text={
+                      <span>
+                        <FontAwesomeIcon icon={faDownload} />
+                        {"  "}Export all lineups to CSV
+                      </span>
+                    }
+                    truthVal={false}
+                    onSelect={() => {
+                      friendlyChange(() => {
+                        const blob = new Blob([buildExportStr(false)], {
+                          type: "text/plain",
+                        });
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        link.href = url;
+                        link.download = "all_player_stats.csv";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                        setLoadingOverride(false);
+                      }, true);
+                    }}
+                  />
+                  <Dropdown.Divider />
+                </>
+              ) : null}
               <GenericTogglingMenuItem
                 text={"Show repeating header every 10 rows"}
                 truthVal={showRepeatingHeader}
@@ -1048,7 +1165,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           <Col xs={12} sm={12} md={12} lg={4}>
             <div className="float-right">
               <small>
-                (Qualifying lineups in tier:{" "}
+                (Qualifying lineups {tier == "All" ? "" : "in tier "}:{" "}
                 <b>{dataEvent?.lineups?.length || 0}</b>)
               </small>
             </div>

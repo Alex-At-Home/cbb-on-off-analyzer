@@ -85,7 +85,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         };
 
   // Lineup Leaderboard
-  function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low") {
+  function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low" | "All") {
     return UrlRouting.getLineupLeaderboardUrl(
       getCommonLboardFilterParams(
         commonWithCorrectedYearLboard,
@@ -237,7 +237,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     }
     return "";
   };
-  const lineupLeaderboardTooltip = (tier: "High" | "Medium" | "Low") => {
+  const lineupLeaderboardTooltip = (
+    tier: "High" | "Medium" | "Low" | "All"
+  ) => {
     return (
       <Tooltip id={"lineupLeaderboardTooltip" + tier}>
         Go to the (luck adjusted) Lineup T400 Leaderboard page (
@@ -744,30 +746,44 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item>
-            {buildNavItem(
-              "Leaderboard - 'high' tier",
-              lineupLeaderboardTooltip("High"),
-              getLineupLeaderboardUrl("High"),
-              `${ParamPrefixes.lineup}_leaderboard`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Leaderboard - 'medium' tier",
-              lineupLeaderboardTooltip("Medium"),
-              getLineupLeaderboardUrl("Medium"),
-              `${ParamPrefixes.lineup}_leaderboard`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Leaderboard - 'low' tier",
-              lineupLeaderboardTooltip("Low"),
-              getLineupLeaderboardUrl("Low"),
-              `${ParamPrefixes.lineup}_leaderboard`
-            )}
-          </Dropdown.Item>{" "}
+          {!common.year ||
+          common.year >= DateUtils.firstYearWithImprovedLineupLboards ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Leaderboard",
+                lineupLeaderboardTooltip("All"),
+                getLineupLeaderboardUrl("All"),
+                `${ParamPrefixes.lineup}_leaderboard`
+              )}
+            </Dropdown.Item>
+          ) : (
+            <>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Leaderboard - 'high' tier",
+                  lineupLeaderboardTooltip("High"),
+                  getLineupLeaderboardUrl("High"),
+                  `${ParamPrefixes.lineup}_leaderboard`
+                )}
+              </Dropdown.Item>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Leaderboard - 'medium' tier",
+                  lineupLeaderboardTooltip("Medium"),
+                  getLineupLeaderboardUrl("Medium"),
+                  `${ParamPrefixes.lineup}_leaderboard`
+                )}
+              </Dropdown.Item>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Leaderboard - 'low' tier",
+                  lineupLeaderboardTooltip("Low"),
+                  getLineupLeaderboardUrl("Low"),
+                  `${ParamPrefixes.lineup}_leaderboard`
+                )}
+              </Dropdown.Item>
+            </>
+          )}
         </Dropdown.Menu>
       </Dropdown>
     );

@@ -98,6 +98,9 @@ export class DateUtils {
   /** Don't have player geo before here */
   static readonly firstYearWithRosterGeoData: string = "2023/24";
 
+  /** Can't export lineups before here */
+  static readonly firstYearWithImprovedLineupLboards: string = "2023/24";
+
   // These are old years in which the normal rules don't apply:
 
   /** The final year in which a player/lineup/team might coem from the "Extra" bucket */
