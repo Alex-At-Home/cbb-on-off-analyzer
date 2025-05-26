@@ -271,7 +271,8 @@ export class GradeUtils {
     mutableDivisionStats: DivisionStatistics,
     inNaturalTier: boolean,
     fields: Array<string> | undefined = undefined,
-    criteriaMult: number = 1.0
+    criteriaMult: number = 1.0,
+    accessor?: (dataSet: PureStatSet, field: string) => number | undefined
   ) => {
     const possPct = playerStats.off_team_poss_pct?.value || 0;
 
@@ -285,7 +286,9 @@ export class GradeUtils {
         //^(this will be inaccurate for fields with additional criteria but it's only used for display anyway)
       }
       const updateForField = (field: string, dataSet: PureStatSet) => {
-        const maybeStat = dataSet[field]?.value;
+        const maybeStat = accessor
+          ? accessor(dataSet, field)
+          : dataSet[field]?.value;
         if (!_.isNil(maybeStat)) {
           if (!mutableDivisionStats.tier_samples[field]) {
             mutableDivisionStats.tier_samples[field] = [];
@@ -301,27 +304,32 @@ export class GradeUtils {
         }
       };
       const manualFieldSet = _.isNil(fields) ? new Set([]) : new Set(fields);
-      const fieldChain = _.chain(GradeUtils.playerFields)
-        .toPairs()
-        .filter((kv) => {
-          return _.isNil(fields) ? true : manualFieldSet.has(kv[0]);
-        })
-        .flatMap((kv) => {
-          const key = kv[0];
-          const value = kv[1];
-          if (!value) {
-            return [key];
-          } else {
-            // Check if the qualifying criteria are met for each field
-            return GradeUtils.meetsExtraCriterion(
-              playerStats,
-              value,
-              criteriaMult
+      const fieldChain = (
+        accessor && fields //(derived fields, bypass any manual criteria for inclusion)
+          ? _.chain(fields).map(
+              (k) => [k, undefined] as [string, QualifyingCriterion | undefined]
             )
-              ? [key]
-              : [];
-          }
-        });
+          : _.chain(GradeUtils.playerFields)
+              .toPairs()
+              .filter((kv) => {
+                return _.isNil(fields) ? true : manualFieldSet.has(kv[0]);
+              })
+      ).flatMap((kv) => {
+        const key = kv[0];
+        const value = kv[1];
+        if (!value) {
+          return [key];
+        } else {
+          // Check if the qualifying criteria are met for each field
+          return GradeUtils.meetsExtraCriterion(
+            playerStats,
+            value,
+            criteriaMult
+          )
+            ? [key]
+            : [];
+        }
+      });
       fieldChain.forEach((f) => updateForField(f, playerStats)).value();
     }
   };
@@ -729,7 +737,8 @@ export class GradeUtils {
     fieldList: string[],
     fieldsToInvert: Record<string, boolean>,
     supportRank: boolean,
-    buildLutMissCache: boolean = false
+    buildLutMissCache: boolean = false,
+    accessor?: (dataSet: PureStatSet, field: string) => number | undefined
   ): PureStatSet => {
     const format = (f: string, s: Statistic | undefined) => {
       const isDef = f.startsWith("def_");
@@ -751,7 +760,9 @@ export class GradeUtils {
     };
     return _.chain(fieldList)
       .map((key) => {
-        const playerVal = statSet[key]?.value;
+        const playerVal = accessor
+          ? accessor(statSet, key)
+          : statSet[key]?.value;
         return [
           key,
           playerVal && _.isFinite(playerVal)

@@ -40,6 +40,7 @@ import calculateOnOffStats from "../pages/api/calculateOnOffStats";
 import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
 import calculatePlayerShotStats from "../pages/api/calculatePlayerShotStats";
 import { CommonApiUtils } from "../utils/CommonApiUtils";
+import { BatchEfficiencyUtils } from "../utils/batch/BatchEfficiencyUtils";
 
 // Pre processing
 import { RequestUtils } from "../utils/RequestUtils";
@@ -238,7 +239,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -298,33 +299,25 @@ const teamListChain =
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
-  const globalGenderYearKey = `${inGender}_${inYear}`;
-  const lookupForQuery = ncaaToEfficiencyLookup[globalGenderYearKey];
-  var fallbackConfMapInfo: any = undefined;
-  if (!_.isUndefined(lookupForQuery)) {
-    console.log("Getting dynamic efficiency info (needed for conference map)");
-    //(also will cache it for subsequent requests)
-    const efficiencyYear = (parseInt(inYear.substring(0, 4)) + 1).toString(); //(+1 from the input year)
-    fallbackConfMapInfo = await CommonApiUtils.buildCurrentEfficiency(
-      globalGenderYearKey,
-      efficiencyYear,
-      inGender,
-      lookupForQuery
-    );
-  }
-  const completedEfficiencyInfo =
-    efficiencyInfo?.[globalGenderYearKey]?.[0] || fallbackConfMapInfo;
+  // Step 1: Retrieve lookup tables from various external sources
 
-  const rankInfo = _.chain(completedEfficiencyInfo || {})
-    .values()
-    .orderBy(["stats.adj_margin.rank"], ["asc"])
-    .value();
-  const bubbleRankInfo = _.chain(rankInfo).drop(40).take(10).value();
-  const eliteRankInfo = _.chain(rankInfo).drop(10).take(5).value();
-  bubbleOffenseInfo = bubbleRankInfo.map((o) => o["stats.adj_off.value"] || 0);
-  bubbleDefenseInfo = bubbleRankInfo.map((o) => o["stats.adj_def.value"] || 0);
-  eliteOffenseInfo = eliteRankInfo.map((o) => o["stats.adj_off.value"] || 0);
-  eliteDefenseInfo = eliteRankInfo.map((o) => o["stats.adj_def.value"] || 0);
+  // Step 1.1: Load the efficiency info for the year
+
+  const {
+    completedEfficiencyInfo,
+    bubbleOffenseInfo: bubbleOffenseInfoTmp,
+    bubbleDefenseInfo: bubbleDefenseInfoTmp,
+    eliteOffenseInfo: eliteOffenseInfoTmp,
+    eliteDefenseInfo: eliteDefenseInfoTmp,
+  } = await BatchEfficiencyUtils.buildMiscEfficiencyInfo(inGender, inYear);
+
+  // (these are copied over vars for test export purposes)
+  bubbleOffenseInfo = bubbleOffenseInfoTmp;
+  bubbleDefenseInfo = bubbleDefenseInfoTmp;
+  eliteOffenseInfo = eliteOffenseInfoTmp;
+  eliteDefenseInfo = eliteDefenseInfoTmp;
+
+  // Step 1.2: If roster geo information exists them load that up
 
   /** If roster geo information exists them load that up */
   if (
@@ -590,6 +583,33 @@ export async function main() {
                     ]
                   : []
               )
+          );
+
+          // In NBA mode we're going to grab the player percentiles from the previous run
+
+          const playerGradesJson: DivisionStatistics | undefined = await _.thru(
+            injectExtraDataForNbaFolks,
+            (__) => {
+              if (injectExtraDataForNbaFolks && label == "all") {
+                //(currently only build these %iles for all)
+                const divisionStatsComboPathname = `${rootFilePath}/stats_players_${label}_${inGender}_${inYear.substring(
+                  0,
+                  4
+                )}_Combo.json`;
+
+                return fs
+                  .readFile(divisionStatsComboPathname)
+                  .then((s: any) => JSON.parse(s) as DivisionStatistics)
+                  .catch((err: any) => {
+                    console.log(
+                      `WARNING: Couldn't load player grades [${inGender}][${teamYear}][${label}]: [${err}]`
+                    );
+                    return undefined;
+                  });
+              } else {
+                return undefined;
+              }
+            }
           );
 
           // Also we're going to try fetching the roster
@@ -1421,20 +1441,66 @@ export async function main() {
                     override: rapmP.rapm?.def_adj_ppp?.override,
                     extraInfo: player.def_adj_prod?.extraInfo, //(on-ball defense context, def_adj_rtg is a prior for RAPM)
                   };
-                  const rapmFields = _.flatMap(
+                  const simpleRapmFieldsToGrade = _.flatMap(
                     ["adj_rapm", "adj_rapm_prod"],
                     (k) => [`off_${k}`, `def_${k}`]
                   );
-                  const otherRapmFields = [
+                  const derivedRapmFieldsToGrade = [
                     "off_adj_rapm_margin",
                     "off_adj_rapm_prod_margin",
                   ];
+
+                  //(for advanced NBA stats)
+                  const onOffFieldsToGrade = _.chain(["on_", "off_", "diff_"])
+                    .flatMap((prefix) => {
+                      return [`${prefix}off_`, `${prefix}def_`];
+                    })
+                    .flatMap((prefix) => {
+                      return [
+                        "ppp", //(TODO: surely this a list somewhere, it's the "base table set of stats")
+                        "adj_ppp",
+                        "efg",
+                        "assist",
+                        "to",
+                        "orb",
+                        "ftr",
+                        "3p",
+                        "3pr",
+                        "2pmidr",
+                        "2pmid",
+                        "2primr",
+                        "2prim",
+                      ].map((k) => `${prefix}${k}`);
+                    })
+                    .value();
+
+                  //(for advanced NBA stats)
+                  const onOffStatAccessor = (dataSet: any, field: string) => {
+                    if (field.startsWith("on_")) {
+                      return dataSet.on?.[`${field.substring(3)}`]?.value;
+                    } else if (field.startsWith("off_")) {
+                      return dataSet.off?.[`${field.substring(4)}`]?.value;
+                    } else if (field.startsWith("diff_")) {
+                      const valOn =
+                        dataSet.on?.[`${field.substring(5)}`]?.value;
+                      const valOff =
+                        dataSet.off?.[`${field.substring(5)}`]?.value;
+                      if (!_.isNil(valOn) && !_.isNil(valOff)) {
+                        return valOn - valOff;
+                      } else {
+                        return undefined;
+                      }
+                    } else {
+                      return dataSet[field]?.value;
+                    }
+                  };
+
                   if ("all" == label) {
                     GradeUtils.buildAndInjectPlayerDivisionStats(
                       player,
                       mutablePlayerDivisionStats,
                       inNaturalTier,
-                      rapmFields
+                      simpleRapmFieldsToGrade
                     );
                     const otherRapmValues = {
                       off_team_poss_pct: {
@@ -1455,8 +1521,110 @@ export async function main() {
                       otherRapmValues,
                       mutablePlayerDivisionStats,
                       inNaturalTier,
-                      otherRapmFields
+                      derivedRapmFieldsToGrade
                     );
+
+                    // When creating extra data for NBA folks, add on/off percentiles
+                    if (injectExtraDataForNbaFolks) {
+                      GradeUtils.buildAndInjectPlayerDivisionStats(
+                        player,
+                        mutablePlayerDivisionStats,
+                        inNaturalTier,
+                        onOffFieldsToGrade,
+                        1.0,
+                        onOffStatAccessor
+                      );
+
+                      // Also in "extra NBA mode" we'll add player percentiles if they exist:
+                      if (playerGradesJson) {
+                        const nbaPercentiles =
+                          GradeUtils.buildPlayerPercentiles(
+                            playerGradesJson,
+                            player,
+                            simpleRapmFieldsToGrade,
+                            false //(percentile not rank)
+                          );
+                        const nbaPercentilesExtraRapm =
+                          GradeUtils.buildPlayerPercentiles(
+                            playerGradesJson,
+                            otherRapmValues,
+                            derivedRapmFieldsToGrade,
+                            false //(percentile not rank)
+                          );
+                        const nbaPercentilesOnOff = GradeUtils.buildPercentiles(
+                          playerGradesJson,
+                          player,
+                          onOffFieldsToGrade,
+                          _.chain(onOffFieldsToGrade)
+                            .filter((field) => field.includes("def_"))
+                            .map((field) => [field, true])
+                            .fromPairs()
+                            .value(),
+                          false,
+                          false,
+                          onOffStatAccessor
+                        );
+                        _.chain(nbaPercentiles)
+                          .toPairs()
+                          .concat(_.toPairs(nbaPercentilesExtraRapm))
+                          .concat(_.toPairs(nbaPercentilesOnOff))
+                          .forEach((kv) => {
+                            const field = kv[0];
+                            const statVal = kv[1];
+                            if (field.startsWith("on_")) {
+                              const subField = field.substring(3);
+                              if (
+                                player.on?.[subField] &&
+                                !_.isNil(statVal?.value)
+                              ) {
+                                player.on[subField].pctile = statVal.value;
+                              }
+                            } else if (
+                              field.startsWith("off_off_") ||
+                              field.startsWith("off_def_")
+                            ) {
+                              const subField = field.substring(4);
+                              if (
+                                player.off?.[subField] &&
+                                !_.isNil(statVal?.value)
+                              ) {
+                                player.off[subField].pctile = statVal.value;
+                              }
+                            } else if (field.startsWith("diff_")) {
+                              const subField = field.substring(5);
+                              if (
+                                player.on?.[subField] &&
+                                !_.isNil(statVal?.value)
+                              ) {
+                                player.on[subField].diff_pctile = statVal.value;
+                              }
+                            } else if (field == "off_adj_rapm_margin") {
+                              const placeholderField = "off_adj_rapm";
+                              if (
+                                player[placeholderField] &&
+                                !_.isNil(statVal?.value)
+                              ) {
+                                player[placeholderField].diff_pctile =
+                                  kv[1].value;
+                              }
+                            } else {
+                              if (player[field] && !_.isNil(statVal?.value)) {
+                                player[field].pctile = statVal.value;
+                              }
+                            }
+                          })
+                          .value();
+
+                        //TODO: more complex on/off fields
+
+                        //DEBUG:
+                        // console.log(
+                        //   `[${player.key}]: [${JSON.stringify(
+                        //     nbaPercentilesOnOff
+                        //   )}]`
+                        // );
+                      }
+                    }
 
                     // Again, per position grouping:
                     (
@@ -1469,13 +1637,13 @@ export async function main() {
                           player,
                           mutablePosGroupDivStats,
                           inNaturalTier,
-                          rapmFields
+                          simpleRapmFieldsToGrade
                         );
                         GradeUtils.buildAndInjectPlayerDivisionStats(
                           otherRapmValues,
                           mutablePosGroupDivStats,
                           inNaturalTier,
-                          otherRapmFields
+                          derivedRapmFieldsToGrade
                         );
                       }
                     });
