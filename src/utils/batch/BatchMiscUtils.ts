@@ -3,8 +3,28 @@ import { RequestUtils } from "../RequestUtils";
 import { promises as fs } from "fs";
 import { DateUtils } from "../DateUtils";
 import { IndivStatSet } from "../StatModels";
+import {
+  AvailableTeams,
+  AvailableTeamMeta,
+} from "../internal-data/AvailableTeams";
+import {
+  effectivelyHighMajor,
+  excludeFromMidMajor,
+} from "../public-data/ConferenceInfo";
+
+type TeamInfo = {
+  teams: AvailableTeamMeta[];
+  incompleteConfs: Set<string>;
+};
 
 export class BatchMiscUtils {
+  /** Older years only have a high tier (+ misc_conf for non "high major conf" teams of interest) */
+  static readonly onlyHasTopConferences = (
+    inGender: string,
+    inYear: string
+  ): boolean =>
+    inGender != "Men" || inYear < DateUtils.yearFromWhichAllMenD1Imported;
+
   /** Handy filename util */
   static readonly getTeamFilename = (team: string) => {
     return RequestUtils.fixLocalhostRosterUrl(team, false);
@@ -54,5 +74,96 @@ export class BatchMiscUtils {
       )}] teams`
     );
     return allPlayerStatsCacheByTeam;
+  };
+
+  /** Provides a list of teams for the year / gender */
+  static readonly getBaseTeamList = (
+    inYear: string,
+    inGender: string,
+    testTeamFilter?: Set<string> | undefined
+  ): _.CollectionChain<AvailableTeamMeta> => {
+    const teamListChain =
+      inYear == "Extra"
+        ? _.chain(AvailableTeams.extraTeamsBase)
+        : _.chain(AvailableTeams.byName).values().flatten();
+
+    const teams = teamListChain
+      .filter(
+        (team) => testTeamFilter == undefined || testTeamFilter.has(team.team)
+      )
+      .filter((team) => {
+        return (
+          !team.use_team && //(these are teams that have changed names - under their "not valid that year" name)
+          team.gender == inGender &&
+          (inYear == "Extra" || team.year == inYear)
+        );
+      });
+
+    return teams;
+  };
+
+  /** Provides a list of teams for which to peform batch actions */
+  static readonly getTeamListToProcess = (
+    inYear: string,
+    inGender: string,
+    inTier: string,
+    completedEfficiencyInfo: Record<string, any>,
+    testTeamFilter: Set<string> | undefined
+  ): TeamInfo => {
+    const mutableIncompleteConfs = new Set() as Set<string>;
+
+    const teams = BatchMiscUtils.getBaseTeamList(
+      inYear,
+      inGender,
+      testTeamFilter
+    )
+      .filter((team) => {
+        const conference =
+          completedEfficiencyInfo?.[team.team]?.conf || "Unknown";
+        const rank =
+          completedEfficiencyInfo?.[team.team]?.["stats.adj_margin.rank"] ||
+          400;
+        // For years with lots of conferences, split into tiers:
+        if (BatchMiscUtils.onlyHasTopConferences(inGender, inYear)) {
+          return true;
+        } else {
+          const isSupported = () => {
+            // Note that this method has to be consistent with naturalTier defintion below
+            if (inTier == "High") {
+              return (
+                team.category == "high" ||
+                rank <= 150 ||
+                effectivelyHighMajor.has(team.team)
+              );
+            } else if (inTier == "Medium") {
+              return (
+                team.category != "high" &&
+                team.category != "low" &&
+                rank < 275 &&
+                !excludeFromMidMajor.has(team.team)
+              );
+            } else if (inTier == "Low") {
+              return (
+                team.category == "low" ||
+                team.category == "midlow" ||
+                (team.category != "high" && rank > 250)
+              );
+            } else {
+              throw `Tier not supported: ${inTier}`;
+            }
+          };
+          const toInclude = isSupported();
+          if (!toInclude) {
+            mutableIncompleteConfs.add(conference);
+          }
+          return toInclude;
+        }
+      })
+      .value();
+
+    return {
+      teams,
+      incompleteConfs: mutableIncompleteConfs,
+    };
   };
 }

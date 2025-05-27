@@ -232,6 +232,7 @@ const inYear = (
 ).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
+//TODO: move to BatchMiscUtils
 const onlyHasTopConferences =
   inGender != "Men" || inYear < DateUtils.yearFromWhichAllMenD1Imported;
 
@@ -277,28 +278,19 @@ const approxEndofRegSeason =
 const averagePossInCompletedYear =
   inYear == DateUtils.covidSeason ? 1000 : 1600; //(reduce min allowed for Covid year)
 
-/** Handy filename util - TODO move to BatchMiscUtils */
-const getTeamFilename = (team: string) => {
-  return RequestUtils.fixLocalhostRosterUrl(team, false);
-};
 /** Handy filename util - roster */
 const getRosterFilename = (team: string, teamYear: string) => {
   return `./public/rosters/${inGender}_${(teamYear || "").substring(
     0,
     4
-  )}/${getTeamFilename(team)}.json`;
+  )}/${BatchMiscUtils.getTeamFilename(team)}.json`;
 };
 /** TODO: move to BatchOnBallDefenseUtils */
 const getOnBallDefenseFilename = (team: string, teamYear: string) => {
   return `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(
     teamYear || ""
-  ).substring(0, 4)}/${getTeamFilename(team)}.txt`;
+  ).substring(0, 4)}/${BatchMiscUtils.getTeamFilename(team)}.txt`;
 };
-
-const teamListChain =
-  inYear == "Extra"
-    ? _.chain(AvailableTeams.extraTeamsBase)
-    : _.chain(AvailableTeams.byName).values().flatten();
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
@@ -322,14 +314,13 @@ export async function main() {
 
   // Step 1.2: If roster geo information exists them load that up
 
-  /** If roster geo information exists them load that up */
   const { rosterGeoMap: rosterGeoMapTmp } =
     await BatchGeoUtils.buildRosterGeoInfo(inYear);
 
   // (these are copied over vars for test export purposes)
   rosterGeoMap = rosterGeoMapTmp;
 
-  /** For defensive purposes we grab a cache of the set of players */
+  // For defensive purposes we grab a cache of the set of players
 
   const teamDefenseEnabled = true; //(keep this flag for a bit in case we need to pull the feature)
 
@@ -339,65 +330,18 @@ export async function main() {
           inYear,
           inGender,
           "all",
-          "./public/leaderboards/lineups"
+          "./public/leaderboards/lineups" //(always use the production leaderboard for this, not debug/extended)
         )
       : {};
 
   /** If any teams aren't in the conf then add them here for error reporting */
-  const mutableIncompleteConfs = new Set() as Set<string>;
-  const teams = teamListChain
-    .filter(
-      (team) => testTeamFilter == undefined || testTeamFilter.has(team.team)
-    )
-    .filter((team) => {
-      return (
-        !team.use_team && //(these are teams that have changed names - under their "not valid that year" name)
-        team.gender == inGender &&
-        (inYear == "Extra" || team.year == inYear)
-      );
-    })
-    .filter((team) => {
-      const conference =
-        completedEfficiencyInfo?.[team.team]?.conf || "Unknown";
-      const rank =
-        completedEfficiencyInfo?.[team.team]?.["stats.adj_margin.rank"] || 400;
-      // For years with lots of conferences, split into tiers:
-      if (onlyHasTopConferences) {
-        return true;
-      } else {
-        const isSupported = () => {
-          // Note that this method has to be consistent with naturalTier defintion below
-          if (inTier == "High") {
-            return (
-              team.category == "high" ||
-              rank <= 150 ||
-              effectivelyHighMajor.has(team.team)
-            );
-          } else if (inTier == "Medium") {
-            return (
-              team.category != "high" &&
-              team.category != "low" &&
-              rank < 275 &&
-              !excludeFromMidMajor.has(team.team)
-            );
-          } else if (inTier == "Low") {
-            return (
-              team.category == "low" ||
-              team.category == "midlow" ||
-              (team.category != "high" && rank > 250)
-            );
-          } else {
-            throw `Tier not supported: ${inTier}`;
-          }
-        };
-        const toInclude = isSupported();
-        if (!toInclude) {
-          mutableIncompleteConfs.add(conference);
-        }
-        return toInclude;
-      }
-    })
-    .value();
+  const { teams, incompleteConfs } = BatchMiscUtils.getTeamListToProcess(
+    inYear,
+    inGender,
+    inTier,
+    completedEfficiencyInfo,
+    testTeamFilter
+  );
 
   //Test code:
   //console.log("Number of teams = " + teams.length);
@@ -468,7 +412,7 @@ export async function main() {
       };
       return candidate1.length == 1 ? t.substring(0, 3) : addU(candidate1);
     };
-    mutableConferenceMap[conference] = mutableIncompleteConfs.has(conference)
+    mutableConferenceMap[conference] = incompleteConfs.has(conference)
       ? (mutableConferenceMap[conference] || []).concat([buildTeamAbbr(team)])
       : [];
 
@@ -2082,17 +2026,7 @@ if (!testMode) {
     console.log(
       `(Checking roster and maybe [${checkOnBall}] on-ball filenames)`
     );
-    teamListChain
-      .filter(
-        (team) => testTeamFilter == undefined || testTeamFilter.has(team.team)
-      )
-      .filter((team) => {
-        return (
-          team.gender == inGender &&
-          (inYear == "Extra" || team.year == inYear) &&
-          !team.use_team //(these are teams that have changed names - under their "not valid that year" name)
-        );
-      })
+    BatchMiscUtils.getBaseTeamList(inYear, inGender, testTeamFilter)
       .forEach(async (team: AvailableTeamMeta, index: number) => {
         if (inTier == "Combo") {
           // For info check roster and on-ball defense:
