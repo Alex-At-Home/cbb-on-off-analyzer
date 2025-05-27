@@ -77,6 +77,8 @@ import {
 } from "../utils/stats/PlayTypeUtils";
 import calculateTeamDefenseStats from "../pages/api/calculateTeamDefenseStats";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
+import { BatchGeoUtils } from "../utils/batch/BatchGeoUtils";
+import { BatchMiscUtils } from "../utils/batch/BatchMiscUtils";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -275,7 +277,7 @@ const approxEndofRegSeason =
 const averagePossInCompletedYear =
   inYear == DateUtils.covidSeason ? 1000 : 1600; //(reduce min allowed for Covid year)
 
-/** Handy filename util */
+/** Handy filename util - TODO move to BatchMiscUtils */
 const getTeamFilename = (team: string) => {
   return RequestUtils.fixLocalhostRosterUrl(team, false);
 };
@@ -286,6 +288,7 @@ const getRosterFilename = (team: string, teamYear: string) => {
     4
   )}/${getTeamFilename(team)}.json`;
 };
+/** TODO: move to BatchOnBallDefenseUtils */
 const getOnBallDefenseFilename = (team: string, teamYear: string) => {
   return `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(
     teamYear || ""
@@ -320,63 +323,25 @@ export async function main() {
   // Step 1.2: If roster geo information exists them load that up
 
   /** If roster geo information exists them load that up */
-  if (
-    inYear.startsWith("2") && //(eg not "Extra")
-    inYear >= DateUtils.firstYearWithRosterGeoData
-  ) {
-    console.log("Loading roster geo data...");
-    rosterGeoMap = await fs
-      .readFile(`./public/rosters/geo/roster_geos.json`)
-      .then((s: any) => JSON.parse(s))
-      .catch((err: any) => {
-        console.log(`Couldn't load roster geo data: [${err}]`);
-        return {};
-      });
-    console.log(`Loaded [${_.size(rosterGeoMap)}] geo entries`);
-  }
+  const { rosterGeoMap: rosterGeoMapTmp } =
+    await BatchGeoUtils.buildRosterGeoInfo(inYear);
+
+  // (these are copied over vars for test export purposes)
+  rosterGeoMap = rosterGeoMapTmp;
 
   /** For defensive purposes we grab a cache of the set of players */
 
   const teamDefenseEnabled = true; //(keep this flag for a bit in case we need to pull the feature)
-  var varAllPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> = {};
-  if (teamDefenseEnabled) {
-    console.log(`Fetching player leaderboard for [${inGender}] [${inYear}]`);
-    const tiersForThisYear =
-      inYear < DateUtils.yearFromWhichAllMenD1Imported
-        ? ["High"]
-        : ["High", "Medium", "Low"];
-    const playerJsons = await Promise.all(
-      tiersForThisYear.map((tier) => {
-        const subYear = inYear.substring(0, 4);
-        return fs
-          .readFile(
-            `./public/leaderboards/lineups/players_all_${inGender}_${subYear}_${tier}.json`
-          )
-          .then((s: any) => JSON.parse(s))
-          .catch((err: any) => {
-            console.log(
-              `Couldn't load player data [${inGender}[${subYear}][${tier}]]: [${err}]`
-            );
-            return {};
-          });
-      })
-    );
-    var numPlayers = 0;
-    varAllPlayerStatsCacheByTeam = _.chain(playerJsons)
-      .flatMap((response, tierIndex) => {
-        const players = (response?.players || []) as Array<IndivStatSet>;
-        numPlayers += players.length; //(just for diagnostics)
-        return players;
-      })
-      .groupBy((p) => p.team)
-      .value();
 
-    console.log(
-      `Cached [${numPlayers}] players in [${_.size(
-        varAllPlayerStatsCacheByTeam
-      )}] teams`
-    );
-  }
+  const allPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> =
+    teamDefenseEnabled
+      ? await BatchMiscUtils.loadPlayersFromLeaderboard(
+          inYear,
+          inGender,
+          "all",
+          "./public/leaderboards/lineups"
+        )
+      : {};
 
   /** If any teams aren't in the conf then add them here for error reporting */
   const mutableIncompleteConfs = new Set() as Set<string>;
@@ -536,7 +501,7 @@ export async function main() {
           const isCalculatingTeamDefense =
             teamDefenseEnabled &&
             inNaturalTier &&
-            !_.isEmpty(varAllPlayerStatsCacheByTeam);
+            !_.isEmpty(allPlayerStatsCacheByTeam);
 
           await Promise.all(
             [
@@ -854,7 +819,7 @@ export async function main() {
                       teamDefenseResponse.getJsonResponse(0),
                       teamDefenseResponse.getJsonResponse(1),
                     ]),
-                    varAllPlayerStatsCacheByTeam
+                    allPlayerStatsCacheByTeam
                   )
                 ) //(adj_pts gets injected by buildTeamDefenseBreakdown but not buildTopLevelPlayStyles)
                   .mapValues((stat) => _.omit(stat, "adj_pts"))

@@ -15,7 +15,7 @@ type EfficiencyInfo = {
 /** Utils for building - things related to KenPom efficiency */
 export class BatchEfficiencyUtils {
   /** Retrieve the per team efficiency info plus some derived stats */
-  static buildMiscEfficiencyInfo = async (
+  static readonly buildMiscEfficiencyInfo = async (
     inGender: string,
     inYear: string
   ): Promise<EfficiencyInfo> => {
