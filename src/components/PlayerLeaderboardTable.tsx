@@ -1846,6 +1846,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     dataEvent,
     geoBoundsChecker,
     geoCenterInfo,
+    showPlayerShots,
   ]);
 
   // 3.2] Sorting utils
