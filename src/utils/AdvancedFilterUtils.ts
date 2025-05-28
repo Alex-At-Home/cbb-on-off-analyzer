@@ -712,7 +712,7 @@ export class AdvancedFilterUtils {
       .replace(/((?:off|def)_[a-z_]+_rank)[?][.]value/g, "$1") //(off|def_..._rank is just a number not a Statistic)
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
-      .replace(/player_(name|code)/g, "$.player_$1")
+      .replace(/player_(name|code)/g, '$.player_$1.replace(/"/g, "\'")')
       .replace(
         /(^| |[(!*+/-]|prev_)(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
         "$1$.p.$2"
@@ -784,7 +784,8 @@ export class AdvancedFilterUtils {
   /** Converts lineup leaderboard autocomplete terms to ugly object formats */
   static lineupFixObjectFormat(s: string) {
     return s
-      .replace(/(^| |[(!])(key|team_name|conf_nick|conf|year)/g, "$1$.p.$2")
+      .replace(/(^| |[(!])(key)/g, '$1$.p.$2.replace(/"/g, "\'")')
+      .replace(/(^| |[(!])(team_name|conf_nick|conf|year)/g, "$1$.p.$2")
       .replace(
         /((team_stats[.]|player_stats\[[0-5]\][.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
         (
@@ -802,7 +803,11 @@ export class AdvancedFilterUtils {
         }
       )
       .replace(
-        /(player_stats\[[0-5]\])[.](key|height_in|year_class|code|ncaa_id|posClass)/g,
+        /(player_stats\[[0-5]\])[.](key|code)/g,
+        '$.p.$1.$2.replace(/"/g, "\'")'
+      )
+      .replace(
+        /(player_stats\[[0-5]\])[.](height_in|year_class|ncaa_id|posClass)/g,
         "$.p.$1.$2"
       )
       .replace(/duration_mins/g, "$.p.duration_mins?.value")
