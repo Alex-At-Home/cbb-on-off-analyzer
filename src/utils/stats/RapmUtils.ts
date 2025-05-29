@@ -279,6 +279,9 @@ export class RapmUtils {
       noWeakPrior: noWeakPrior,
       useRecursiveWeakPrior: priorMode < -2.5,
       playersWeak: colToPlayer.map((player) => {
+        // NOTE this is only applied for the current stat set below
+        // addding additional stats to the weak prior does nothing
+
         const stats = playersBaseline[player] || {};
         if (stats) {
           // Build alternative rating using usage differently, on which to fallback
@@ -302,13 +305,17 @@ export class RapmUtils {
           const offUsage = getVal(stats.off_usage);
           return {
             off_adj_ppp: getVal(stats.off_adj_rtg) + offBasis,
+            // THESE PRIORS ARE FAIRLY ARBITARY, they are "directionally correct" and otherwise
+            // all the components are very low and not much visual use (and you shouldn't use them for anything else)
             // 4 factors:
             off_efg: getVal(stats.off_efg) * offUsage,
             off_to: getVal(stats.off_to) * offUsage,
+            def_to: getVal(stats.def_to) + 0.5 * getVal(stats.def_2prim), //(aliases for STL and BLK)
             off_orb: getVal(stats.off_orb),
             off_ftr: getVal(stats.off_ftr) * offUsage,
             def_orb: -0.2 * getVal(stats.def_orb),
-            //(no defensive priors for 4 factors, though could use some steal / foul estimates)
+            def_ftr: getVal(stats.def_ftr), //(5 fouls (==0.05) / 50 -> ~0.1 inscrease in FTR), 50% discount
+            //(no defensive priors for 4 factors, apart from a hacky DTO using stl/blk, even hackier FTR based one)
             // peripherals:
             off_assist: getVal(stats.off_assist) * offUsage,
             off_3pr: getVal(stats.off_3pr) * offUsage,
