@@ -93,6 +93,7 @@ export class TeamReportTableUtils {
             tempTeamReport.players || [],
             enrichedLineups,
             playerInfo,
+            statsAverages,
             avgEfficiency,
             valueKey, //<- with or without luck adjustment, only applies to priors
             rapmConfig || defaultRapmConfig

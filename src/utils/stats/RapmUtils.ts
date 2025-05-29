@@ -235,6 +235,7 @@ export class RapmUtils {
   /** Builds priors for all the supported fields for all players */
   static buildPriors(
     playersBaseline: Record<PlayerId, IndivStatSet>,
+    statsAverages: PureStatSet,
     avgEfficiency: number,
     colToPlayer: Array<string>,
     priorMode: number, //(-1 for adaptive mode, -2 for no prior)
@@ -272,6 +273,35 @@ export class RapmUtils {
     const offBasis = noWeakPrior ? 0 : getPriorBasis("off");
     const defBasis = noWeakPrior ? 0 : getPriorBasis("def");
 
+    /** For component priors, lets us combine player stats and D1 averages */
+    const withAvgOrUndef = (
+      field: string,
+      stats: IndivStatSet,
+      fn: (avg: number, player: number) => number,
+      avgWeight: number = 1.0
+    ): number | undefined => {
+      const avg = getVal(statsAverages[field]);
+      const player = getVal(stats?.[field]);
+      if (_.isNil(statsAverages[field]) || _.isNil(stats?.[field])) {
+        return undefined;
+      } else {
+        return fn(avg * avgWeight, player);
+      }
+    };
+    const defaultPrior = (
+      field: string,
+      stats: IndivStatSet,
+      usage: number,
+      avgWeight: number = 1.0
+    ): number | undefined => {
+      return withAvgOrUndef(
+        field,
+        stats,
+        (avg, player) => (player - avg) * usage,
+        avgWeight
+      );
+    };
+
     const returnVal = {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
       strongWeight: noWeakPrior ? 0 : priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
@@ -303,33 +333,54 @@ export class RapmUtils {
         const stats = playersBaseline[player] || {};
         if (stats) {
           const offUsage = getVal(stats.off_usage);
+          const rawEfg = defaultPrior("off_efg", stats, offUsage);
           return {
             off_adj_ppp: getVal(stats.off_adj_rtg) + offBasis,
-            // THESE PRIORS ARE FAIRLY ARBITARY, they are "directionally correct" and otherwise
+            // THESE PRIORS ARE VERY ARBITARY, they are "directionally correct" and otherwise
             // all the components are very low and not much visual use (and you shouldn't use them for anything else)
             // 4 factors:
-            off_efg: getVal(stats.off_efg) * offUsage,
-            off_to: getVal(stats.off_to) * offUsage,
-            def_to: getVal(stats.def_to) + 0.5 * getVal(stats.def_2prim), //(aliases for STL and BLK)
-            off_orb: getVal(stats.off_orb),
-            off_ftr: getVal(stats.off_ftr) * offUsage,
-            def_orb: -0.2 * getVal(stats.def_orb),
-            def_ftr: getVal(stats.def_ftr), //(5 fouls (==0.05) / 50 -> ~0.1 inscrease in FTR), 50% discount
+            off_efg: rawEfg
+              ? rawEfg + Math.max(0.0, getVal(stats.off_assist) - 0.15) * 0.08
+              : undefined, //(+0.8% over average for being an above average passer)
+            off_to: defaultPrior("off_to", stats, offUsage),
+            def_to: getVal(stats.def_to) - 0.01, //(arbitrary chosen average steal rate)
+            off_orb: defaultPrior("off_orb", stats, 0.25, 0.2), //(semi arbitrary weights to avoid this prior being too strong)
+            off_ftr: defaultPrior("off_ftr", stats, 0.5 * offUsage),
+            def_orb: defaultPrior("def_orb", stats, -0.2, 0.25),
+            def_ftr: (getVal(stats.def_ftr) - 0.025) * 2.0, //(eg 5 fouls (==0.05) / 50 -> ~0.1 inscrease in FTR)
             //(no defensive priors for 4 factors, apart from a hacky DTO using stl/blk, even hackier FTR based one)
             // peripherals:
-            off_assist: getVal(stats.off_assist) * offUsage,
-            off_3pr: getVal(stats.off_3pr) * offUsage,
-            off_2pmidr: getVal(stats.off_2pmidr) * offUsage,
-            off_2primr: getVal(stats.off_2primr) * offUsage,
+            off_assist: defaultPrior("off_assist", stats, offUsage, 0.2),
+            off_3pr: defaultPrior(
+              "off_3pr",
+              stats,
+              offUsage,
+              0.5 * (1.0 - getVal(stats.off_2prim)) //(rim attackers aren't expected to take as many 3s)
+            ),
+            off_2pmidr: defaultPrior("off_2pmidr", stats, offUsage),
+            off_2primr: defaultPrior("off_2primr", stats, offUsage),
             //(no defensive priors for shot/assist rates)
             // shot making
-            off_3p: getVal(stats.off_3p) * offUsage * getVal(stats.off_3pr),
-            off_2p:
-              getVal(stats.off_2p) * offUsage * (1 - getVal(stats.off_3pr)),
-            off_2pmid:
-              getVal(stats.off_2pmid) * offUsage * getVal(stats.off_2pmidr),
-            off_2prim:
-              getVal(stats.off_2prim) * offUsage * getVal(stats.off_2primr),
+            off_3p: defaultPrior(
+              "off_3p",
+              stats,
+              offUsage * getVal(stats.off_3pr)
+            ),
+            off_2p: defaultPrior(
+              "off_2p",
+              stats,
+              offUsage * (1.0 - getVal(stats.off_3pr))
+            ),
+            off_2pmid: defaultPrior(
+              "off_2pmid",
+              stats,
+              offUsage * getVal(stats.off_2pmid)
+            ),
+            off_2prim: defaultPrior(
+              "off_2prim",
+              stats,
+              offUsage * getVal(stats.off_2prim)
+            ),
             //(no defensive priors for shot making)
           } as Record<string, number>;
         } else return {} as Record<string, number>;
@@ -366,6 +417,7 @@ export class RapmUtils {
     players: Array<PlayerOnOffStats>,
     lineups: Array<LineupStatSet>,
     playersBaseline: Record<PlayerId, IndivStatSet>, //(used for building priors - most general info)
+    statsAverages: PureStatSet,
     avgEfficiency: number,
     aggValueKey: ValueKey = "value", //(allows use of luck adjusted parameters, note applies to prior calcs only)
     config: RapmConfig = defaultRapmConfig
@@ -459,6 +511,7 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0,
       priorInfo: RapmUtils.buildPriors(
         playersBaseline,
+        statsAverages,
         avgEfficiency,
         sortedPlayers,
         config.priorMode,
