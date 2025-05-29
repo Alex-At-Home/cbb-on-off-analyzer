@@ -30,3 +30,9 @@ export const averageStatsInfo: Record<string, PureStatSet> = {
   "Women_2020/21": publicStatsAveragesWomen2020_21,
   "Women_2021/22": publicStatsAveragesWomen2021_22,
 };
+
+/** Because I keep forgetting to update it */
+export const defaultAverageStatsInfo: Record<string, PureStatSet> = {
+  Men: publicStatsAveragesMen2021_22,
+  Women: publicStatsAveragesWomen2021_22,
+};

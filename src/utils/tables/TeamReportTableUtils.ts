@@ -21,7 +21,10 @@ import {
   RapmConfig,
 } from "../stats/RapmUtils";
 import { LineupUtils } from "../stats/LineupUtils";
-import { averageStatsInfo } from "../internal-data/averageStatsInfo";
+import {
+  averageStatsInfo,
+  defaultAverageStatsInfo,
+} from "../internal-data/averageStatsInfo";
 import { DateUtils } from "../DateUtils";
 
 /** Object marshalling logic for roster tables */
@@ -71,7 +74,10 @@ export class TeamReportTableUtils {
     const ignoreLineupLuckKey = adjustForLuck ? "old_value" : "value";
 
     /** Makes the non-efficiency stats be baselined against D1 (or high major for earlier years) stats, not their team */
-    const statsAverages = averageStatsInfo[genderYearLookup] || {};
+    const statsAverages =
+      averageStatsInfo[genderYearLookup] ||
+      defaultAverageStatsInfo[genderYearLookup.split("_")[0]] ||
+      {};
 
     // Has to be in this order, else injectRapmIntoPlayers doesn't work properly
     const results = (["value", "old_value"] as Array<"value" | "old_value">)

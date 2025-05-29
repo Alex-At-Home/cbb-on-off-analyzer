@@ -299,8 +299,34 @@ export class RapmUtils {
       playersStrong: colToPlayer.map((player) => {
         const stats = playersBaseline[player] || {};
         if (stats) {
+          const offUsage = getVal(stats.off_usage);
           return {
             off_adj_ppp: getVal(stats.off_adj_rtg) + offBasis,
+            // 4 factors:
+            off_efg: getVal(stats.off_efg) * offUsage,
+            off_to: getVal(stats.off_to) * offUsage,
+            off_orb: getVal(stats.off_orb),
+            off_ftr: getVal(stats.off_ftr) * offUsage,
+            def_efg: getVal(stats.def_efg) * 0.2,
+            def_to: getVal(stats.def_to) * 0.2,
+            def_orb: -0.2 * getVal(stats.def_orb),
+            def_ftr: getVal(stats.def_ftr) * 0.2,
+            // peripherals:
+            off_assist: getVal(stats.off_assist) * offUsage,
+            def_assist: getVal(stats.off_assist) * 0.2,
+            off_3pr: getVal(stats.off_3pr) * offUsage,
+            off_2pmidr: getVal(stats.off_2pmidr) * offUsage,
+            off_2primr: getVal(stats.off_2primr) * offUsage,
+            //(no defensive priors for shot rates)
+            // shot making
+            off_3p: getVal(stats.off_3p) * offUsage * getVal(stats.off_3pr),
+            off_2p:
+              getVal(stats.off_2p) * offUsage * (1 - getVal(stats.off_3pr)),
+            off_2pmid:
+              getVal(stats.off_2pmid) * offUsage * getVal(stats.off_2pmidr),
+            off_2prim:
+              getVal(stats.off_2prim) * offUsage * getVal(stats.off_2primr),
+            //(no defensive priors for shot making)
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
