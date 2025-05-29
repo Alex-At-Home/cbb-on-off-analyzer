@@ -307,17 +307,14 @@ export class RapmUtils {
             off_to: getVal(stats.off_to) * offUsage,
             off_orb: getVal(stats.off_orb),
             off_ftr: getVal(stats.off_ftr) * offUsage,
-            def_efg: getVal(stats.def_efg) * 0.2,
-            def_to: getVal(stats.def_to) * 0.2,
             def_orb: -0.2 * getVal(stats.def_orb),
-            def_ftr: getVal(stats.def_ftr) * 0.2,
+            //(no defensive priors for 4 factors, though could use some steal / foul estimates)
             // peripherals:
             off_assist: getVal(stats.off_assist) * offUsage,
-            def_assist: getVal(stats.off_assist) * 0.2,
             off_3pr: getVal(stats.off_3pr) * offUsage,
             off_2pmidr: getVal(stats.off_2pmidr) * offUsage,
             off_2primr: getVal(stats.off_2primr) * offUsage,
-            //(no defensive priors for shot rates)
+            //(no defensive priors for shot/assist rates)
             // shot making
             off_3p: getVal(stats.off_3p) * offUsage * getVal(stats.off_3pr),
             off_2p:
