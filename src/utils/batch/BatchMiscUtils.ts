@@ -18,6 +18,22 @@ type TeamInfo = {
 };
 
 export class BatchMiscUtils {
+  /** Handy util for reducing  */
+  static readonly reduceNumberSize = (k: string, v: any) => {
+    if (_.isNumber(v)) {
+      const rawNumStr = "" + v;
+      const numStr = v.toFixed(4);
+      if (numStr.length >= rawNumStr.length) {
+        //made it worse
+        return v;
+      } else {
+        return parseFloat(numStr);
+      }
+    } else {
+      return v;
+    }
+  };
+
   /** Older years only have a high tier (+ misc_conf for non "high major conf" teams of interest) */
   static readonly onlyHasTopConferences = (
     inGender: string,

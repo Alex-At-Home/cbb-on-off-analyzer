@@ -79,27 +79,13 @@ import calculateTeamDefenseStats from "../pages/api/calculateTeamDefenseStats";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 import { BatchGeoUtils } from "../utils/batch/BatchGeoUtils";
 import { BatchMiscUtils } from "../utils/batch/BatchMiscUtils";
+import { BatchGradeUtils } from "../utils/batch/BatchGradeUtils";
+import { root } from "cheerio";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
 const sleep = (milliseconds: number) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
-
-/** Handy util for reducing  */
-const reduceNumberSize = (k: string, v: any) => {
-  if (_.isNumber(v)) {
-    const rawNumStr = "" + v;
-    const numStr = v.toFixed(4);
-    if (numStr.length >= rawNumStr.length) {
-      //made it worse
-      return v;
-    } else {
-      return parseFloat(numStr);
-    }
-  } else {
-    return v;
-  }
 };
 
 export class MutableAsyncResponse {
@@ -1888,137 +1874,6 @@ export function completeLineupLeaderboard(
   return rankedLineups;
 }
 
-/** If all 3 exist, combines stats for High/Medium/Low tiers */
-export async function combineDivisionStatsFiles(player: Boolean = false) {
-  const playerInfix = player ? "players_" : "";
-  const tiers = ["High", "Medium", "Low"];
-  const posGroups = [""].concat(
-    player ? PositionUtils.positionGroupings.map((g) => `pos${g}_`) : []
-  );
-
-  const allPosGroupsComplete = posGroups.map(async (posInfix) => {
-    const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(
-      (tier) => {
-        const divisionStatsInFilename = `${rootFilePath}/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
-          0,
-          4
-        )}_${tier}.json`;
-        const statsPromise: Promise<[String, DivisionStatistics[]]> = fs
-          .readFile(divisionStatsInFilename)
-          .then((buffer) => {
-            return [
-              tier,
-              [JSON.parse(buffer.toString()) as DivisionStatistics],
-            ] as [string, DivisionStatistics[]];
-          })
-          .catch((err) => [tier, [] as DivisionStatistics[]]);
-        return statsPromise;
-      }
-    );
-    const resolvedFilesAwait = await Promise.all(filesToCombine);
-    const resolvedFiles: Record<string, DivisionStatistics> = _.chain(
-      resolvedFilesAwait
-    )
-      .filter((kv) => kv[1].length > 0 && !_.isEmpty(kv[1][0]!.dedup_samples)) //(if hot has dedup_samples - makes this method idempotent-ish)
-      .fromPairs()
-      .mapValues((array) => array[0]!)
-      .value();
-
-    const combineDivisionStats = (toCombine: DivisionStatistics[]) => {
-      const allKeys = _.chain(toCombine)
-        .flatMap((stats) => _.keys(stats.dedup_samples))
-        .value();
-      const combinedSamples = _.transform(
-        allKeys,
-        (acc, key) => {
-          acc[key] = _.flatMap(
-            toCombine,
-            (stat) => stat.dedup_samples[key] || []
-          ); //(gets re-sorted below)
-        },
-        {} as Record<string, Array<number>>
-      );
-
-      // Build LUT from presorted samples
-      return player
-        ? GradeUtils.buildAndInjectPlayerDivisionStatsLUT({
-            tier_sample_size: _.sumBy(
-              toCombine,
-              (stats) => stats.dedup_sample_size
-            ),
-            tier_samples: combinedSamples,
-            tier_lut: {},
-            dedup_sample_size: 0,
-            dedup_samples: {},
-          })
-        : GradeUtils.buildAndInjectTeamDivisionStatsLUT({
-            tier_sample_size: _.sumBy(
-              toCombine,
-              (stats) => stats.dedup_sample_size
-            ),
-            tier_samples: combinedSamples,
-            tier_lut: {},
-            dedup_sample_size: 0,
-            dedup_samples: {},
-          });
-    };
-
-    const divisionStatsComboFilename = `${rootFilePath}/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
-      0,
-      4
-    )}_Combo.json`;
-    const combinedFilesPromise =
-      _.keys(resolvedFiles).length == 3
-        ? fs.writeFile(
-            divisionStatsComboFilename,
-            JSON.stringify(
-              combineDivisionStats(_.values(resolvedFiles)),
-              reduceNumberSize
-            )
-          )
-        : Promise.resolve();
-
-    await combinedFilesPromise; //(so we'll error out if this step fails - otherwise could lose dedup_samples before using them)
-
-    console.log(
-      `Completed combining stats for [${_.keys(
-        resolvedFiles
-      )}] files (player=${player}), now need to tidy up component files`
-    );
-
-    const filesToOutput = _.map(resolvedFiles, (stats, tier) => {
-      const divisionStatsOutFilename = `${rootFilePath}/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
-        0,
-        4
-      )}_${tier}.json`;
-      // Remove the dedup_samples since it's now been calculated
-      return fs.writeFile(
-        divisionStatsOutFilename,
-        JSON.stringify({ ...stats, dedup_samples: {} }, reduceNumberSize)
-      );
-    });
-
-    const filesToOutputComplete = Promise.all(filesToOutput);
-    await filesToOutputComplete;
-
-    console.log(
-      `Completed combining stats and tidying up component stats in [${_.size(
-        filesToOutput
-      )}] files (player=${player})`
-    );
-
-    return filesToOutputComplete;
-  });
-
-  await Promise.all(allPosGroupsComplete);
-
-  console.log(
-    `Completed combining stats and tidying up component stats in [${_.size(
-      allPosGroupsComplete
-    )}] position group(s) (player=${player})`
-  );
-}
-
 if (!testMode) {
   if (inTier == "Combo") {
     // Check files:
@@ -2047,9 +1902,19 @@ if (!testMode) {
 
     // Now actual processing:
     console.log(`(Combining different tiers' stats)`);
-    combineDivisionStatsFiles(false)
+    BatchGradeUtils.combineDivisionStatsFiles(
+      inGender,
+      inYear,
+      rootFilePath,
+      false
+    )
       .then(async (dummy) => {
-        return combineDivisionStatsFiles(true); //(team==false then players==true)
+        return BatchGradeUtils.combineDivisionStatsFiles(
+          inGender,
+          inYear,
+          rootFilePath,
+          true //(team==false then players==true)
+        );
       })
       .then(async (dummy) => {
         console.log("File creation Complete!");
@@ -2082,10 +1947,10 @@ if (!testMode) {
 
       await Promise.all(
         _.flatMap(outputCases, (kv) => {
-          const label = kv[0];
+          const [label, lineupsToWrite, playersToWrite, teamsToWrite] = kv;
           const sortedLineups = completeLineupLeaderboard(
             label,
-            kv[1],
+            lineupsToWrite,
             topLineupSize
           );
           const sortedLineupsStr = JSON.stringify(
@@ -2095,15 +1960,15 @@ if (!testMode) {
               confs: _.keys(mutableConferenceMap),
               lineups: sortedLineups,
             },
-            reduceNumberSize
+            BatchMiscUtils.reduceNumberSize
           );
 
-          const playersToWrite = kv[2].concat(
+          const playersToWriteMaybePlusLowVol = playersToWrite.concat(
             label == "lowvol" ? savedCastoffs : []
           );
           const [players, castOffs] = completePlayerLeaderboard(
             label,
-            playersToWrite,
+            playersToWriteMaybePlusLowVol,
             topPlayersSize
           );
           if (label == "all") savedCastoffs = castOffs;
@@ -2115,39 +1980,42 @@ if (!testMode) {
               confs: _.keys(mutableConferenceMap),
               players: players,
             },
-            reduceNumberSize
+            BatchMiscUtils.reduceNumberSize
           );
 
           // Write to file
           console.log(
-            `${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`
+            `${label} lineup count: [${sortedLineups.length}] ([${lineupsToWrite.length}])`
           );
-          console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
-          const lineupFilename = `${rootFilePath}/lineups_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+          console.log(`${label} lineup length: [${sortedLineupsStr.length}]`);
+          const lineupFilename = `${rootFilePath}/lineups_${label}_${inGender}_${inYear.substring(
+            0,
+            4
+          )}_${inTier}.json`;
           const lineupsWritePromise = _.isEmpty(sortedLineups)
             ? Promise.resolve()
             : fs.writeFile(`${lineupFilename}`, sortedLineupsStr);
           console.log(
-            `${kv[0]} player count: [${players.length}] ([${kv[2].length}])`
+            `${label} player count: [${players.length}] ([${playersToWrite.length}])`
           );
-          console.log(`${kv[0]} player length: [${playersStr.length}]`);
-          const playersFilename = `${rootFilePath}/players_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+          console.log(`${label} player length: [${playersStr.length}]`);
+          const playersFilename = `${rootFilePath}/players_${label}_${inGender}_${inYear.substring(
+            0,
+            4
+          )}_${inTier}.json`;
           const playersWritePromise = fs.writeFile(
             `${playersFilename}`,
             playersStr
           );
 
-          const teamFilename = `${rootFilePath}/teams_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-          console.log(`${kv[0]} team count: ${teamInfo.length}`);
+          const teamFilename = `${rootFilePath}/teams_${label}_${inGender}_${inYear.substring(
+            0,
+            4
+          )}_${inTier}.json`;
+          console.log(`${label} team count: ${teamInfo.length}`);
 
           const teamWritePromise =
-            "all" == kv[0] && teamInfo.length > 0
+            "all" == label && teamInfo.length > 0
               ? fs.writeFile(
                   `${teamFilename}`,
                   JSON.stringify(
@@ -2161,17 +2029,18 @@ if (!testMode) {
 
                       teams: teamInfo,
                     },
-                    reduceNumberSize
+                    BatchMiscUtils.reduceNumberSize
                   )
                 )
               : Promise.resolve();
 
-          const detailedTeamFilename = `${rootFilePath}/team_details_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+          const detailedTeamFilename = `${rootFilePath}/team_details_${label}_${inGender}_${inYear.substring(
+            0,
+            4
+          )}_${inTier}.json`;
 
           const detailedTeamWritePromise =
-            kv[3].length > 0
+            teamsToWrite.length > 0
               ? fs.writeFile(
                   `${detailedTeamFilename}`,
                   JSON.stringify(
@@ -2184,20 +2053,21 @@ if (!testMode) {
                       bubbleOffense: bubbleOffenseInfo,
                       bubbleDefense: bubbleDefenseInfo,
 
-                      teams: kv[3],
+                      teams: teamsToWrite,
                     },
-                    reduceNumberSize
+                    BatchMiscUtils.reduceNumberSize
                   )
                 )
               : Promise.resolve();
 
-          const teamStatFilename = `${rootFilePath}/team_stats_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-          console.log(`${kv[0]} team stats count: ${teamStatInfo.length}`);
+          const teamStatFilename = `${rootFilePath}/team_stats_${label}_${inGender}_${inYear.substring(
+            0,
+            4
+          )}_${inTier}.json`;
+          console.log(`${label} team stats count: ${teamStatInfo.length}`);
 
           const teamWriteStatPromise =
-            "all" == kv[0] && teamInfo.length > 0
+            "all" == label && teamInfo.length > 0
               ? fs.writeFile(
                   `${teamStatFilename}`,
                   JSON.stringify(
@@ -2208,77 +2078,28 @@ if (!testMode) {
 
                       teams: teamStatInfo,
                     },
-                    reduceNumberSize
+                    BatchMiscUtils.reduceNumberSize
                   )
                 )
               : Promise.resolve();
 
           // Division stats
-          const writeDivisionStats = "all" == kv[0];
+          const writeDivisionStats = "all" == label;
 
-          // Team division stats:
-          if (writeDivisionStats) {
-            GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
-          }
-          const divisionStatsFilename = `${rootFilePath}/stats_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-          const divisionStatsWritePromise = writeDivisionStats
-            ? fs.writeFile(
-                divisionStatsFilename,
-                JSON.stringify(mutableDivisionStats, reduceNumberSize)
+          const divisionStatsPromises = writeDivisionStats
+            ? BatchGradeUtils.createTierGradeFiles(
+                inGender,
+                inYear,
+                inTier,
+                label,
+                rootFilePath,
+                mutableDivisionStats,
+                mutablePlayerDivisionStats,
+                mutablePlayerDivisionStats_byPosGroup
               )
-            : Promise.resolve();
+            : [Promise.resolve()];
 
-          // Player division stats:
-          if (writeDivisionStats) {
-            GradeUtils.buildAndInjectPlayerDivisionStatsLUT(
-              mutablePlayerDivisionStats
-            );
-            PositionUtils.positionGroupings.forEach((posGroup) => {
-              const mutablePosGroupDivStats =
-                mutablePlayerDivisionStats_byPosGroup[posGroup];
-              if (mutablePosGroupDivStats) {
-                GradeUtils.buildAndInjectPlayerDivisionStatsLUT(
-                  mutablePosGroupDivStats
-                );
-              }
-            });
-          }
-          const playerDivisionStatsFilename = `${rootFilePath}/stats_players_${
-            kv[0]
-          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-          const playerDivisionStatsWritePromise = writeDivisionStats
-            ? fs.writeFile(
-                playerDivisionStatsFilename,
-                JSON.stringify(mutablePlayerDivisionStats, reduceNumberSize)
-              )
-            : Promise.resolve();
-
-          const posGroupPromises = writeDivisionStats
-            ? PositionUtils.positionGroupings.map((posGroup) => {
-                const mutablePosGroupDivStats =
-                  mutablePlayerDivisionStats_byPosGroup[posGroup];
-                if (mutablePosGroupDivStats) {
-                  const playerDivisionStatsFilename = `${rootFilePath}/stats_players_pos${posGroup}_${
-                    kv[0]
-                  }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-                  return fs.writeFile(
-                    playerDivisionStatsFilename,
-                    JSON.stringify(mutablePosGroupDivStats, reduceNumberSize)
-                  );
-                } else {
-                  return Promise.resolve();
-                }
-              })
-            : [];
-
-          if (writeDivisionStats) {
-            console.log(
-              `Writing division stats: teams:[${mutableDivisionStats.tier_sample_size}]/dedup=[${mutableDivisionStats.dedup_sample_size}] ` +
-                `players:[${mutablePlayerDivisionStats.tier_sample_size}]/dedup=[${mutablePlayerDivisionStats.dedup_sample_size}]`
-            );
-          }
+          // Wait for all reads to be complete:
 
           return [
             lineupsWritePromise,
@@ -2286,9 +2107,7 @@ if (!testMode) {
             teamWritePromise,
             detailedTeamWritePromise,
             teamWriteStatPromise,
-            divisionStatsWritePromise,
-            playerDivisionStatsWritePromise,
-          ].concat(posGroupPromises);
+          ].concat(divisionStatsPromises);
 
           //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
           // zlib.gzip(sortedLineupsStr, (_, result) => {
