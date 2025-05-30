@@ -99,7 +99,7 @@ export class DateUtils {
   static readonly firstYearWithRosterGeoData: string = "2023/24";
 
   /** Can't export lineups before here */
-  static readonly firstYearWithImprovedLineupLboards: string = "2023/24";
+  static readonly firstYearWithImprovedLineupLboards: string = "2018/19";
 
   // These are old years in which the normal rules don't apply:
 
