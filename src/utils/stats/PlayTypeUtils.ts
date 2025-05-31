@@ -382,12 +382,6 @@ export class PlayTypeUtils {
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet
   ): TopLevelPlayAnalysis {
-    //TOOD: issues here
-    // Currenty I'm counting makes, so the % is low but the ppp are all 3s
-    // Need to average eFG maybe? And the invent an assist number
-    // Alternatively always calc all players and then divvy up missed shots depending on assist rate
-    // (Then also how do we do freq? Maybe just sum up the possessions and then divide across)
-
     const posVsPosAssistNetworkPoss =
       PlayTypeUtils.buildCategorizedAssistNetworks(
         "playsPct",
@@ -859,6 +853,36 @@ export class PlayTypeUtils {
       .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
       .value();
 
+    /** For assisted shots, estimate efficiency given some passes result in missed shots */
+    const buildAdjustedAssistStat = (
+      statName: string,
+      stat: Statistic,
+      assistInfo: TargetAssistInfo
+    ): Statistic => {
+      const efgKey = _.endsWith(statName, "_ast")
+        ? statName.replace("_ast", "_efg")
+        : undefined;
+      if (efgKey && (assistInfo as PureStatSet)[efgKey]) {
+        const efgValue = (assistInfo as PureStatSet)[efgKey].value || 1;
+        const rawStat = stat.value || 0;
+
+        //TODO: 1] eFG should be higher because these are adjusted plays (or do I already adjust for that somewhere?)
+        //TODO: 2] don't have eFG for transition or scrambles so numbers will be off
+
+        const adjustedStat =
+          playStyleType == "playsPct" ? rawStat / efgValue : rawStat;
+
+        return {
+          ...stat,
+          value: adjustedStat,
+          //(DIAG)
+          //efg: efgValue,
+        } as any as Statistic;
+      } else {
+        return stat;
+      }
+    };
+
     const flattenedNetworkTarget = _.chain(assistNetwork)
       .toPairs()
       .flatMap((kv, ix) => {
@@ -885,12 +909,34 @@ export class PlayTypeUtils {
             //       );
             //     });
             // }
-            return _.keys(a)
-              .filter((ka) => _.startsWith(ka, "target_"))
-              .map((ka) => ({
-                key: `${posTitle}_${i}_${ka}`,
-                stat: (a as PureStatSet)[ka],
-              }));
+            return (
+              _.keys(a)
+                .filter((ka) => _.startsWith(ka, "target_"))
+                // Diagnostics:
+                // .map((ka) => {
+                //   if (players.length == 1 && players[0].code == "JaGillespie") {
+                //     //console.log(`assistInfo: [${i}]: [${JSON.stringify(a)}]`);
+                //     console.log(
+                //       `DST [${playStyleType}] key [${posTitle}_${i}_${ka}] stat [${JSON.stringify(
+                //         buildAdjustedAssistStat(
+                //           ka,
+                //           (a as PureStatSet)[ka],
+                //           a as TargetAssistInfo
+                //         )
+                //       )}]`
+                //     );
+                //   }
+                //   return ka;
+                // })
+                .map((ka) => ({
+                  key: `${posTitle}_${i}_${ka}`,
+                  stat: buildAdjustedAssistStat(
+                    ka,
+                    (a as PureStatSet)[ka],
+                    a as TargetAssistInfo
+                  ),
+                }))
+            );
           });
       })
       //(type weirdness here, extraInfo temporarily is an array of strings)
@@ -918,6 +964,10 @@ export class PlayTypeUtils {
       switch (playType) {
         case "Backdoor Cut":
           return "Hits Cutter";
+        case "Pick & Pop":
+          return "PnR Passer";
+        case "Post-Up":
+          return "PnR Passer";
         case "Big Cut & Roll":
           return "PnR Passer";
         default:
@@ -981,6 +1031,11 @@ export class PlayTypeUtils {
 
     // Uncategorized turnovers:
     if (playStyleType == "playsPct") {
+      //TODO: wait hang on ... am I added the TOs for every player here? (Oh I guess it's OK because I'm diving by teamPossessions
+      // .. still shouldn't you get more penalized the more minutes you play? or in fact the higher your usage?
+      //TODO .. where do _categorized_ TOs go?
+      //TODO: should I not aportion the % of
+
       //TODO: (ideally we'd pass this in to ensure it's the same demon as everything else)
       const teamPossessions =
         (teamStats.total_off_fga?.value || 0) +
@@ -992,6 +1047,12 @@ export class PlayTypeUtils {
           players as IndivStatSet[],
           teamStats as TeamStatSet
         );
+
+      /**/
+      // console.log(
+      //   `TOs: ${uncatHalfCourtTos} / ${uncatScrambleTos} / ${uncatTransTos}`
+      // );
+      //eg: TOs: 206 / 26 / 65
 
       topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
       topLevelPlayTypeAnalysis["Put-Back"] +=
