@@ -1,7 +1,7 @@
 // Utils:
 import _ from "lodash";
-import { PureStatSet } from "../StatModels";
 import {
+  PureStatSet,
   PlayerCode,
   IndivStatSet,
   TeamStatSet,
@@ -105,23 +105,24 @@ export type TopLevelIndivPlayType =
   | "Hits Cutter"
   | "PnR Passer";
 
-export type TopLevelPlayAnalysis = Record<
-  TopLevelPlayType,
-  {
-    possPct: Statistic;
-    pts: Statistic;
-    adj_pts?: Statistic;
-  }
->;
+type PlayTypeStat = {
+  possPct: Statistic;
+  pts: Statistic;
+  adj_pts?: Statistic;
+};
+
+export type TopLevelPlayAnalysis = Record<TopLevelPlayType, PlayTypeStat>;
 
 export type TopLevelIndivPlayAnalysis = Record<
   TopLevelIndivPlayType,
-  {
-    possPct: Statistic;
-    pts: Statistic;
-    adj_pts?: Statistic;
-  }
+  PlayTypeStat
 >;
+
+export type IndivPlayTypeInfo = {
+  player: IndivStatSet;
+  playType: TopLevelIndivPlayType;
+  playStats: PlayTypeStat;
+};
 
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
@@ -387,7 +388,7 @@ export class PlayTypeUtils {
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet,
     useTeamPossessions: boolean = false
-  ): TopLevelPlayAnalysis {
+  ): TopLevelIndivPlayAnalysis {
     const posVsPosAssistNetworkPoss =
       PlayTypeUtils.buildCategorizedAssistNetworks(
         "playsPct",
@@ -1819,6 +1820,56 @@ export class PlayTypeUtils {
   //////////////////////////////////////////////////////////////
 
   // Some utils
+
+  static fetchTopIndivPlayTypes(
+    playTypes: Set<TopLevelPlayType>,
+    RosterStatsByCode: RosterStatsByCode,
+    indivPlayTypes: Record<PlayerCode, TopLevelIndivPlayAnalysis>
+  ): Array<IndivPlayTypeInfo> {
+    return _.chain(indivPlayTypes)
+      .flatMap((playTypeAnalysis, code) => {
+        const indivStats = RosterStatsByCode[code];
+
+        //TODO: there's a bug issue here which is that I've "smushed" a bunch of play types together in a way
+        // I can't easily reverse, eg "Perimeter Sniper" ca come from Attack & Kick / Post-Up
+
+        if (indivStats) {
+          return _.flatMap(Array.from(playTypes), (playType) => {
+            const maybeBuildIndivPlayType = (
+              indivPlayType: TopLevelIndivPlayType,
+              isDerived: boolean
+            ) => {
+              return (!isDerived || indivPlayType != playType) &&
+                playTypeAnalysis[indivPlayType]
+                ? [
+                    {
+                      player: indivStats,
+                      playType: indivPlayType,
+                      playStats: playTypeAnalysis[indivPlayType],
+                    },
+                  ].filter((pt) => (pt?.playStats?.possPct?.value || 0) >= 0.01)
+                : [];
+            };
+
+            return maybeBuildIndivPlayType(playType, false).concat(
+              maybeBuildIndivPlayType(
+                PlayTypeUtils.teamToIndivSrcPlayTypeMapping(playType),
+                true
+              ).concat(
+                maybeBuildIndivPlayType(
+                  PlayTypeUtils.teamToIndivTargetPlayTypeMapping(playType),
+                  true
+                )
+              )
+            );
+          });
+        } else {
+          return [];
+        }
+      })
+      .sortBy((pt) => -(pt.playStats?.possPct?.value || 0))
+      .value();
+  }
 
   /** Convert from getTeamDefense response to the team defense that we process */
   static parseTeamDefenseResponse(

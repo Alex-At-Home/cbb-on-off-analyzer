@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 // Utils
 import {
   PlayTypeUtils,
+  TopLevelIndivPlayAnalysis,
   TopLevelPlayAnalysis,
   TopLevelPlayType,
 } from "../../utils/stats/PlayTypeUtils";
@@ -29,6 +30,7 @@ import {
   TeamStatSet,
   RosterStatsByCode,
   StatModels,
+  PlayerCode,
 } from "../../utils/StatModels";
 
 import {
@@ -51,6 +53,7 @@ import {
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 import { main } from "../../bin/buildLeaderboards";
+import { ro } from "date-fns/locale";
 
 export type Props = {
   title: string;
@@ -86,9 +89,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     !(startWithRaw || false)
   );
 
-  const [selectedPlayTypes, setSelectedPlayTypes] = useState<Set<string>>(
-    new Set()
-  );
+  const [selectedPlayTypes, setSelectedPlayTypes] = useState<
+    Set<TopLevelPlayType>
+  >(new Set());
   const [multiMode, setMultiMode] = useState<boolean>(false);
   const [csvData, setCsvData] = useState<object[]>([]);
 
@@ -127,7 +130,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     FeatureFlags.betterStyleAnalysis
   );
 
-  const playerTopLevelPlayTypeStyles = doPlayerTopLevelPlayTypeStyles
+  const playerTopLevelPlayTypeStyles:
+    | Record<PlayerCode, TopLevelIndivPlayAnalysis>
+    | undefined = doPlayerTopLevelPlayTypeStyles
     ? _.chain(mainPlayers)
         .map((p) => {
           return [
@@ -483,7 +488,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                   <CustomLabelledWidthBar
                     {...props}
                     playType={props.payload.playType}
-                    onClick={(playType: string) => {
+                    onClick={(playType: TopLevelPlayType) => {
                       if (doPlayerTopLevelPlayTypeStyles) {
                         if (multiMode) {
                           const newSelectedPlayTypes = new Set(
@@ -633,36 +638,58 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 "cell-extra-"
               )
             : null}
-          {selectedPlayTypes.size > 0 && (
-            <Row className="mt-3">
-              <Col xs={10}>
-                <div className="p-3 bg-white border">
-                  <strong>Selected:</strong>{" "}
-                  {Array.from(selectedPlayTypes).map((playType, index) => (
-                    <span key={playType}>
-                      {index > 0 ? ", " : ""}
-                      {PlayTypeDiagUtils.getPlayTypeName(playType)}
-                    </span>
-                  ))}
-                  &nbsp;(
-                  <a
-                    href=""
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (multiMode) {
-                        setSelectedPlayTypes(new Set());
-                        setMultiMode(false);
-                      } else {
-                        setMultiMode(true);
-                      }
-                    }}
-                  >
-                    {multiMode ? "clear" : "multi-mode"}
-                  </a>
-                  )
-                </div>
-              </Col>
-            </Row>
+          {playerTopLevelPlayTypeStyles && selectedPlayTypes.size > 0 && (
+            <>
+              <Row className="mt-1">
+                <Col xs={10}>
+                  <div className="p-3 bg-white border">
+                    <strong>Selected:</strong>{" "}
+                    {Array.from(selectedPlayTypes).map((playType, index) => (
+                      <span key={playType}>
+                        {index > 0 ? ", " : ""}
+                        {PlayTypeDiagUtils.getPlayTypeName(playType)}
+                      </span>
+                    ))}
+                    &nbsp;(
+                    <a
+                      href=""
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (multiMode) {
+                          setSelectedPlayTypes(new Set());
+                          setMultiMode(false);
+                        } else {
+                          setMultiMode(true);
+                        }
+                      }}
+                    >
+                      {multiMode ? "clear" : "multi-mode"}
+                    </a>
+                    )
+                    <br />
+                    <br />
+                    {PlayTypeUtils.fetchTopIndivPlayTypes(
+                      selectedPlayTypes,
+                      rosterStatsByCode,
+                      playerTopLevelPlayTypeStyles
+                    ).map((pt) => {
+                      return (
+                        <>
+                          <span>
+                            [{pt.player.key}] | [{pt.playType}] | [
+                            {(100 * (pt.playStats.possPct?.value || 0)).toFixed(
+                              1
+                            )}
+                            %] , [{(pt.playStats.pts?.value || 0).toFixed(3)}]
+                          </span>
+                          <br />
+                        </>
+                      );
+                    })}
+                  </div>
+                </Col>
+              </Row>
+            </>
           )}
           {debugView ? (
             <Row>
