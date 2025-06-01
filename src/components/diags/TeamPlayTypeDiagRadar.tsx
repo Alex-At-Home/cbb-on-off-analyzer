@@ -325,9 +325,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         {/* Draw background rectangle for selection highlight if selected */}
         {isSelected && (
           <rect
-            x={x - 2}
+            x={x - 7}
             y={20} /* Start from the top of the chart */
-            width={width + 4}
+            width={width + 14}
             height={
               y + height - 20
             } /* Extend all the way to the bottom (x-axis) */
@@ -686,6 +686,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                         </>
                       );
                     })}
+                    <br />
+                    <span>
+                      <i>
+                        (Stats include passes and exclude unassigned TOs, so
+                        will not add up to 100% of plays)
+                      </i>
+                    </span>
                   </div>
                 </Col>
               </Row>

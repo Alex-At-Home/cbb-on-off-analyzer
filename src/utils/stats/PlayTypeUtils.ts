@@ -102,8 +102,12 @@ export type TopLevelPlayType =
 export type TopLevelIndivPlayType =
   | TopLevelPlayType
   | "Perimeter Sniper"
+  | "Perimeter Sniper (Post-Up)"
+  | "Perimeter Sniper (Rim Attack)"
   | "Hits Cutter"
-  | "PnR Passer";
+  | "PnR Passer"
+  | "PnR Passer (Pick & Pop)"
+  | "PnR Passer (Big Cut & Roll)";
 
 type PlayTypeStat = {
   possPct: Statistic;
@@ -136,6 +140,28 @@ export class PlayTypeUtils {
     "Hits Cutter",
     "Backdoor Cut",
     "PnR Passer",
+    "Big Cut & Roll",
+    "Post-Up",
+    "Post & Kick",
+    "Pick & Pop",
+    "High-Low",
+    "Put-Back",
+    "Transition",
+  ]; //(no Misc - we don't render)
+
+  static extendedTopLevelIndivPlayTypes: TopLevelIndivPlayType[] = [
+    "Rim Attack",
+    "Attack & Kick",
+    "Perimeter Sniper",
+    "Perimeter Sniper (Post-Up)",
+    "Perimeter Sniper (Rim Attack)",
+    "Dribble Jumper",
+    "Mid-Range",
+    "Hits Cutter",
+    "Backdoor Cut",
+    "PnR Passer",
+    "PnR Passer (Pick & Pop)",
+    "PnR Passer (Big Cut & Roll)",
     "Big Cut & Roll",
     "Post-Up",
     "Post & Kick",
@@ -205,7 +231,8 @@ export class PlayTypeUtils {
     players: Array<IndivStatSet>,
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet,
-    useTeamPossessions: boolean = false
+    useTeamPossessions: boolean = false,
+    playerBreakdownMode: boolean = false
   ): Record<string, CategorizedAssistNetwork> {
     //(^ the key is "bh", "wing", "big")
     const isActuallyIndivMode = players.length == 1;
@@ -246,7 +273,8 @@ export class PlayTypeUtils {
       filteredPlayers,
       rosterStatsByCode,
       teamStats,
-      teamPossessionsToUse
+      teamPossessionsToUse,
+      playerBreakdownMode
     );
 
     // This gets us to:
@@ -387,7 +415,7 @@ export class PlayTypeUtils {
     player: IndivStatSet,
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet,
-    useTeamPossessions: boolean = false
+    teamBreakdownMode: boolean = false
   ): TopLevelIndivPlayAnalysis {
     const posVsPosAssistNetworkPoss =
       PlayTypeUtils.buildCategorizedAssistNetworks(
@@ -396,7 +424,8 @@ export class PlayTypeUtils {
         [player],
         rosterStatsByCode,
         teamStats,
-        useTeamPossessions
+        teamBreakdownMode,
+        true
       );
 
     const topLevelPlayTypeAnalysisPoss =
@@ -404,8 +433,10 @@ export class PlayTypeUtils {
         "playsPct",
         posVsPosAssistNetworkPoss,
         [player],
-        teamStats
+        teamStats,
+        teamBreakdownMode
       );
+
     const posVsPosAssistNetworkPts =
       PlayTypeUtils.buildCategorizedAssistNetworks(
         "pointsPer100",
@@ -413,17 +444,23 @@ export class PlayTypeUtils {
         [player],
         rosterStatsByCode,
         teamStats,
-        useTeamPossessions
+        teamBreakdownMode,
+        true
       );
     const topLevelPlayTypeAnalysisPts =
       PlayTypeUtils.aggregateToIndivTopLevelPlayStyles(
         "pointsPer100",
         posVsPosAssistNetworkPts,
         [player],
-        teamStats
+        teamStats,
+        teamBreakdownMode
       );
 
-    return _.chain(PlayTypeUtils.topLevelIndivPlayTypes)
+    return _.chain(
+      teamBreakdownMode
+        ? PlayTypeUtils.extendedTopLevelIndivPlayTypes
+        : PlayTypeUtils.topLevelIndivPlayTypes
+    )
       .map((type) => {
         const poss = topLevelPlayTypeAnalysisPoss[type] || 0;
         const pts = topLevelPlayTypeAnalysisPts[type] || 0;
@@ -611,7 +648,8 @@ export class PlayTypeUtils {
     filteredPlayers: Array<IndivStatSet>,
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet,
-    teamPossessionsToUse: number | undefined
+    teamPossessionsToUse: number | undefined,
+    playerBreakdownMode: boolean = false
   ): Record<PlayerCode, PosCategoryAssistNetwork> {
     const teamTotalAssists = teamStats.total_off_assist?.value || 0;
     //(use team total assists for consistency with individual chart)
@@ -641,7 +679,9 @@ export class PlayTypeUtils {
             p,
             player,
             playerStyle.totalPlaysMade,
-            playerStyle.totalAssists,
+            playerBreakdownMode
+              ? playerStyle.totalPlaysMade
+              : playerStyle.totalAssists,
             rosterStatsByCode
           );
           return { code: p, ...info };
@@ -819,7 +859,10 @@ export class PlayTypeUtils {
       { assists: TargetAssistInfo[]; other: SourceAssistInfo[] }
     >,
     players: Array<IndivStatSet>,
-    teamStats: TeamStatSet
+    teamStats: TeamStatSet,
+    extendedPlayType: boolean = false, //(for team breakdown into players need a more granular set of play types)
+    doubleCountPasses: boolean = true //(if false then weights passes by 0.25 /assisted shots by 0.75)
+    //TODO: wire this up
   ): Record<TopLevelIndivPlayType, number> {
     const playTypesLookup = PlayTypeUtils.buildPlayTypesLookup();
 
@@ -965,9 +1008,13 @@ export class PlayTypeUtils {
 
         _.toPairs(playTypesCombo).forEach((kv) => {
           const playType = PlayTypeUtils.teamToIndivSrcPlayTypeMapping(
-            kv[0] as TopLevelPlayType
+            kv[0] as TopLevelPlayType,
+            extendedPlayType
           );
-          const weight = kv[1];
+          const weight =
+            playStyleType == "playsPct" && !doubleCountPasses
+              ? 0.75 * kv[1]
+              : kv[1];
 
           // Diagnostics:
           // if (playStyleType == "playsPct") {
@@ -993,9 +1040,13 @@ export class PlayTypeUtils {
 
         _.toPairs(playTypesCombo).forEach((kv) => {
           const playType = PlayTypeUtils.teamToIndivTargetPlayTypeMapping(
-            kv[0] as TopLevelPlayType
+            kv[0] as TopLevelPlayType,
+            extendedPlayType
           );
-          const weight = kv[1];
+          const weight =
+            playStyleType == "playsPct" && !doubleCountPasses
+              ? 0.25 * kv[1]
+              : kv[1];
 
           // Diagnostics:
           // if (playStyleType == "playsPct") {
@@ -1821,52 +1872,68 @@ export class PlayTypeUtils {
 
   // Some utils
 
+  /** Lists all individual contributions to the top level team play style */
   static fetchTopIndivPlayTypes(
     playTypes: Set<TopLevelPlayType>,
     RosterStatsByCode: RosterStatsByCode,
     indivPlayTypes: Record<PlayerCode, TopLevelIndivPlayAnalysis>
   ): Array<IndivPlayTypeInfo> {
     return _.chain(indivPlayTypes)
-      .flatMap((playTypeAnalysis, code) => {
-        const indivStats = RosterStatsByCode[code];
-
-        //TODO: there's a bug issue here which is that I've "smushed" a bunch of play types together in a way
-        // I can't easily reverse, eg "Perimeter Sniper" ca come from Attack & Kick / Post-Up
+      .flatMap((playTypeAnalysis, playerCode) => {
+        const indivStats = RosterStatsByCode[playerCode];
 
         if (indivStats) {
-          return _.flatMap(Array.from(playTypes), (playType) => {
-            const maybeBuildIndivPlayType = (
-              indivPlayType: TopLevelIndivPlayType,
-              isDerived: boolean
-            ) => {
-              return (!isDerived || indivPlayType != playType) &&
-                playTypeAnalysis[indivPlayType]
-                ? [
-                    {
+          const playTypeAggs = _.transform(
+            Array.from(playTypes),
+            (acc, playType) => {
+              PlayTypeUtils.teamToIndivPlayTypes(playType).forEach(
+                (indivPlayType) => {
+                  const indivPlayTypeRadical =
+                    PlayTypeUtils.truncateExtendedIndivPlayType(indivPlayType);
+                  if (!acc[indivPlayTypeRadical]) {
+                    acc[indivPlayTypeRadical] = {
+                      playType: indivPlayTypeRadical,
                       player: indivStats,
-                      playType: indivPlayType,
-                      playStats: playTypeAnalysis[indivPlayType],
-                    },
-                  ].filter((pt) => (pt?.playStats?.possPct?.value || 0) >= 0.01)
-                : [];
-            };
+                      playStats: {
+                        possPct: { value: 0 },
+                        pts: { value: 0 },
+                      },
+                    };
+                  }
+                  const playStats = playTypeAnalysis[indivPlayType];
+                  if (playStats) {
+                    const currWeight =
+                      acc[indivPlayTypeRadical]!.playStats.possPct.value!;
+                    const newWeight = playStats.possPct?.value || 0;
+                    const totalWeightInv = 1.0 / (currWeight + newWeight);
+                    if (newWeight > 0) {
+                      acc[indivPlayTypeRadical]!.playStats.pts.value! =
+                        totalWeightInv *
+                          currWeight *
+                          acc[indivPlayTypeRadical]!.playStats.pts.value! +
+                        totalWeightInv *
+                          newWeight *
+                          (playStats.pts?.value || 0);
+                      acc[indivPlayTypeRadical]!.playStats.possPct.value! +=
+                        newWeight;
+                    }
+                  }
+                }
+              );
+            },
+            {} as Record<TopLevelIndivPlayType, IndivPlayTypeInfo>
+          );
 
-            return maybeBuildIndivPlayType(playType, false).concat(
-              maybeBuildIndivPlayType(
-                PlayTypeUtils.teamToIndivSrcPlayTypeMapping(playType),
-                true
-              ).concat(
-                maybeBuildIndivPlayType(
-                  PlayTypeUtils.teamToIndivTargetPlayTypeMapping(playType),
-                  true
-                )
-              )
-            );
-          });
+          return _.values(playTypeAggs).filter(
+            (pt) => (pt?.playStats?.possPct?.value || 0) >= 0.004
+          );
         } else {
           return [];
         }
       })
+      .filter(
+        (pt, ii) => ii < 10 || (pt?.playStats?.possPct?.value || 0) >= 0.01
+      )
       .sortBy((pt) => -(pt.playStats?.possPct?.value || 0))
       .value();
   }
@@ -2262,32 +2329,77 @@ export class PlayTypeUtils {
       .value() as Record<string, Record<TopLevelPlayType, number>>;
   });
 
-  static teamToIndivSrcPlayTypeMapping = (
-    playType: TopLevelPlayType
+  private static teamToIndivSrcPlayTypeMapping = (
+    playType: TopLevelPlayType,
+    extendedPlayType: boolean = false
   ): TopLevelIndivPlayType => {
     switch (playType) {
       case "Attack & Kick":
-        return "Perimeter Sniper";
+        return extendedPlayType
+          ? "Perimeter Sniper (Rim Attack)"
+          : "Perimeter Sniper";
       case "Post & Kick":
-        return "Perimeter Sniper";
+        return extendedPlayType
+          ? "Perimeter Sniper (Post-Up)"
+          : "Perimeter Sniper";
       default:
         return playType;
     }
   };
-  static teamToIndivTargetPlayTypeMapping = (
-    playType: TopLevelPlayType
+  private static teamToIndivTargetPlayTypeMapping = (
+    playType: TopLevelPlayType,
+    extendedPlayType: boolean = false
   ): TopLevelIndivPlayType => {
     switch (playType) {
       case "Backdoor Cut":
         return "Hits Cutter";
       case "Pick & Pop":
-        return "PnR Passer";
-      case "Post-Up":
-        return "PnR Passer";
+        return extendedPlayType ? "PnR Passer (Pick & Pop)" : "PnR Passer";
       case "Big Cut & Roll":
-        return "PnR Passer";
+        return extendedPlayType ? "PnR Passer (Big Cut & Roll)" : "PnR Passer";
+      // case "Post-Up":
+      // (this is some old code, it's not currently possible to get a post-up pass, I count these as PnR)
+      //   return "PnR Passer";
       default:
         return playType;
+    }
+  };
+
+  private static truncateExtendedIndivPlayType = (
+    extendedPlayType: TopLevelIndivPlayType
+  ): TopLevelIndivPlayType => {
+    switch (extendedPlayType) {
+      case "Perimeter Sniper (Rim Attack)":
+        return "Perimeter Sniper";
+      case "Perimeter Sniper (Post-Up)":
+        return "Perimeter Sniper";
+      case "PnR Passer (Pick & Pop)":
+        return "PnR Passer";
+      case "PnR Passer (Big Cut & Roll)":
+        return "PnR Passer";
+      default:
+        return extendedPlayType;
+    }
+  };
+
+  private static teamToIndivPlayTypes = (
+    playType: TopLevelPlayType
+  ): TopLevelIndivPlayType[] => {
+    switch (playType) {
+      case "Attack & Kick":
+        return ["Perimeter Sniper (Rim Attack)", playType];
+      case "Post & Kick":
+        return ["Perimeter Sniper (Post-Up)", playType];
+      case "Backdoor Cut":
+        return ["Hits Cutter", playType];
+      case "Backdoor Cut":
+        return ["Hits Cutter", playType];
+      case "Pick & Pop":
+        return ["PnR Passer (Pick & Pop)", playType];
+      case "Big Cut & Roll":
+        return ["PnR Passer (Big Cut & Roll)", playType];
+      default:
+        return [playType];
     }
   };
 
