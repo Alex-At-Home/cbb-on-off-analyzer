@@ -49,6 +49,8 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
+import { FeatureFlags } from "../../utils/stats/FeatureFlags";
+import { main } from "../../bin/buildLeaderboards";
 
 export type Props = {
   title: string;
@@ -84,6 +86,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     !(startWithRaw || false)
   );
 
+  const [selectedPlayTypes, setSelectedPlayTypes] = useState<Set<string>>(
+    new Set()
+  );
+  const [multiMode, setMultiMode] = useState<boolean>(false);
   const [csvData, setCsvData] = useState<object[]>([]);
 
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
@@ -116,6 +122,28 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       rosterStatsByCode,
       mainTeamStats
     );
+
+  const doPlayerTopLevelPlayTypeStyles = FeatureFlags.isActiveWindow(
+    FeatureFlags.betterStyleAnalysis
+  );
+
+  const playerTopLevelPlayTypeStyles = doPlayerTopLevelPlayTypeStyles
+    ? _.chain(mainPlayers)
+        .map((p) => {
+          return [
+            p.code,
+            PlayTypeUtils.buildTopLevelIndivPlayStyles(
+              p,
+              rosterStatsByCode,
+              mainTeamStats,
+              true
+            ),
+          ];
+        })
+        .fromPairs()
+        .value()
+    : undefined;
+
   const { tierToUse: mainTierToUse } = GradeTableUtils.buildTeamTierInfo(
     showGrades,
     {
@@ -217,7 +245,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   }
 
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
-    const { x, y, payload } = props;
+    const { x, y, payload, index, data } = props;
+    // Check if this play type is selected
+    const playType = data?.[index]?.playType;
+    const isSelected = playType && selectedPlayTypes.has(playType);
+
     return (
       <Text
         x={x}
@@ -233,7 +265,19 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   };
 
   const CustomLabelledWidthBar = (props: any) => {
-    const { fill, x, y, width, height, rawPct, rawPts, pct, pts } = props;
+    const {
+      fill,
+      x,
+      y,
+      width,
+      height,
+      rawPct,
+      rawPts,
+      pct,
+      pts,
+      playType,
+      onClick,
+    } = props;
 
     // Bar:
 
@@ -259,8 +303,35 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
 
+    // Check if this play type is currently selected
+    const isSelected = selectedPlayTypes.has(playType);
+
+    // Handle click event
+    const handleClick = () => {
+      if (doPlayerTopLevelPlayTypeStyles) {
+        if (onClick && playType) {
+          onClick(playType);
+        }
+      }
+    };
+
     return (
-      <g>
+      <g onClick={handleClick} style={{ cursor: "pointer" }}>
+        {/* Draw background rectangle for selection highlight if selected */}
+        {isSelected && (
+          <rect
+            x={x - 2}
+            y={20} /* Start from the top of the chart */
+            width={width + 4}
+            height={
+              y + height - 20
+            } /* Extend all the way to the bottom (x-axis) */
+            fill="#aaaaaa"
+            rx={2}
+            ry={2}
+            opacity={0.5}
+          />
+        )}
         <text
           x={x + width / 2}
           y={y - textHeight + 3}
@@ -408,7 +479,33 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <Bar
                 dataKey="pct"
                 fill="#8884d8"
-                shape={<CustomLabelledWidthBar />}
+                shape={(props: any) => (
+                  <CustomLabelledWidthBar
+                    {...props}
+                    playType={props.payload.playType}
+                    onClick={(playType: string) => {
+                      if (doPlayerTopLevelPlayTypeStyles) {
+                        if (multiMode) {
+                          const newSelectedPlayTypes = new Set(
+                            selectedPlayTypes
+                          );
+                          if (newSelectedPlayTypes.has(playType)) {
+                            newSelectedPlayTypes.delete(playType);
+                          } else {
+                            newSelectedPlayTypes.add(playType);
+                          }
+                          setSelectedPlayTypes(newSelectedPlayTypes);
+                        } else {
+                          if (selectedPlayTypes.has(playType)) {
+                            setSelectedPlayTypes(new Set());
+                          } else {
+                            setSelectedPlayTypes(new Set([playType]));
+                          }
+                        }
+                      }
+                    }}
+                  />
+                )}
                 isAnimationActive={true}
               >
                 {data.map((p, index) => {
@@ -536,6 +633,37 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 "cell-extra-"
               )
             : null}
+          {selectedPlayTypes.size > 0 && (
+            <Row className="mt-3">
+              <Col xs={10}>
+                <div className="p-3 bg-white border">
+                  <strong>Selected:</strong>{" "}
+                  {Array.from(selectedPlayTypes).map((playType, index) => (
+                    <span key={playType}>
+                      {index > 0 ? ", " : ""}
+                      {PlayTypeDiagUtils.getPlayTypeName(playType)}
+                    </span>
+                  ))}
+                  &nbsp;(
+                  <a
+                    href=""
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (multiMode) {
+                        setSelectedPlayTypes(new Set());
+                        setMultiMode(false);
+                      } else {
+                        setMultiMode(true);
+                      }
+                    }}
+                  >
+                    {multiMode ? "clear" : "multi-mode"}
+                  </a>
+                  )
+                </div>
+              </Col>
+            </Row>
+          )}
           {debugView ? (
             <Row>
               <Col xs={10}>
@@ -566,6 +694,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       quickSwitchTimer,
       csvData,
       adjustForSos,
+      selectedPlayTypes,
+      multiMode,
     ]
   );
 };

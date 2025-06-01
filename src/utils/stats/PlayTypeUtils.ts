@@ -203,22 +203,25 @@ export class PlayTypeUtils {
     separateHalfCourt: boolean,
     players: Array<IndivStatSet>,
     rosterStatsByCode: RosterStatsByCode,
-    teamStats: TeamStatSet
+    teamStats: TeamStatSet,
+    useTeamPossessions: boolean = false
   ): Record<string, CategorizedAssistNetwork> {
     //(^ the key is "bh", "wing", "big")
     const isActuallyIndivMode = players.length == 1;
 
     //(use pure possessions and not + assists because the team is "closed" unlike one player)
-    const teamPossessions = isActuallyIndivMode
-      ? undefined
-      : (teamStats.total_off_fga?.value || 0) +
-        0.475 * (teamStats.total_off_fta?.value || 0) +
-        (teamStats.total_off_to?.value || 0);
+    const teamPossessions =
+      isActuallyIndivMode && !useTeamPossessions
+        ? undefined
+        : (teamStats.total_off_fga?.value || 0) +
+          0.475 * (teamStats.total_off_fta?.value || 0) +
+          (teamStats.total_off_to?.value || 0);
 
-    const teamScoringPossessions = isActuallyIndivMode
-      ? undefined
-      : (teamStats.total_off_fgm?.value || 0) +
-        0.475 * (teamStats.total_off_fta?.value || 0);
+    const teamScoringPossessions =
+      isActuallyIndivMode && !useTeamPossessions
+        ? undefined
+        : (teamStats.total_off_fgm?.value || 0) +
+          0.475 * (teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
     const filterCodes = undefined as Set<string> | undefined; // = new Set(["ErAyala", "AqSmart"])
@@ -376,11 +379,14 @@ export class PlayTypeUtils {
       .value() as TopLevelPlayAnalysis;
   }
 
-  /** Builds usage and efficiency numbers for the top level play styles */
+  /** Builds usage and efficiency numbers for the top level play styles
+   * (useTeamPossessions to see player play styles as a subset of a given team play)
+   */
   static buildTopLevelIndivPlayStyles(
     player: IndivStatSet,
     rosterStatsByCode: RosterStatsByCode,
-    teamStats: TeamStatSet
+    teamStats: TeamStatSet,
+    useTeamPossessions: boolean = false
   ): TopLevelPlayAnalysis {
     const posVsPosAssistNetworkPoss =
       PlayTypeUtils.buildCategorizedAssistNetworks(
@@ -388,7 +394,8 @@ export class PlayTypeUtils {
         true,
         [player],
         rosterStatsByCode,
-        teamStats
+        teamStats,
+        useTeamPossessions
       );
 
     const topLevelPlayTypeAnalysisPoss =
@@ -404,7 +411,8 @@ export class PlayTypeUtils {
         true,
         [player],
         rosterStatsByCode,
-        teamStats
+        teamStats,
+        useTeamPossessions
       );
     const topLevelPlayTypeAnalysisPts =
       PlayTypeUtils.aggregateToIndivTopLevelPlayStyles(
@@ -868,6 +876,7 @@ export class PlayTypeUtils {
 
         //TODO: 1] eFG should be higher because these are adjusted plays (or do I already adjust for that somewhere?)
         //TODO: 2] don't have eFG for transition or scrambles so numbers will be off
+        //         (in the sense that player A passes to player B who misses, player B gets blame but not A)
 
         const adjustedStat =
           playStyleType == "playsPct" ? rawStat / efgValue : rawStat;
@@ -946,35 +955,6 @@ export class PlayTypeUtils {
 
     // The larger set of indiv play types is mapped from the team set depending on target vs source
 
-    const teamToSrcPlayTypeMapping = (
-      playType: TopLevelPlayType
-    ): TopLevelIndivPlayType => {
-      switch (playType) {
-        case "Attack & Kick":
-          return "Perimeter Sniper";
-        case "Post & Kick":
-          return "Perimeter Sniper";
-        default:
-          return playType;
-      }
-    };
-    const teamToTargetPlayTypeMapping = (
-      playType: TopLevelPlayType
-    ): TopLevelIndivPlayType => {
-      switch (playType) {
-        case "Backdoor Cut":
-          return "Hits Cutter";
-        case "Pick & Pop":
-          return "PnR Passer";
-        case "Post-Up":
-          return "PnR Passer";
-        case "Big Cut & Roll":
-          return "PnR Passer";
-        default:
-          return playType;
-      }
-    };
-
     const topLevelPlayTypeAnalysisPhase1 = _.transform(
       flattenedNetworkSrc,
       (acc, usage, key) => {
@@ -983,7 +963,9 @@ export class PlayTypeUtils {
         // already distributed amongst the other play types)
 
         _.toPairs(playTypesCombo).forEach((kv) => {
-          const playType = teamToSrcPlayTypeMapping(kv[0] as TopLevelPlayType);
+          const playType = PlayTypeUtils.teamToIndivSrcPlayTypeMapping(
+            kv[0] as TopLevelPlayType
+          );
           const weight = kv[1];
 
           // Diagnostics:
@@ -1009,7 +991,7 @@ export class PlayTypeUtils {
         // already distributed amongst the other play types)
 
         _.toPairs(playTypesCombo).forEach((kv) => {
-          const playType = teamToTargetPlayTypeMapping(
+          const playType = PlayTypeUtils.teamToIndivTargetPlayTypeMapping(
             kv[0] as TopLevelPlayType
           );
           const weight = kv[1];
@@ -1029,38 +1011,14 @@ export class PlayTypeUtils {
       topLevelPlayTypeAnalysisPhase1 as Record<TopLevelIndivPlayType, number>
     );
 
-    // Uncategorized turnovers:
-    if (playStyleType == "playsPct") {
-      //TODO: wait hang on ... am I added the TOs for every player here? (Oh I guess it's OK because I'm diving by teamPossessions
-      // .. still shouldn't you get more penalized the more minutes you play? or in fact the higher your usage?
-      //TODO .. where do _categorized_ TOs go?
-      //TODO: should I not aportion the % of
+    // Unlike for team stats, we don't assign blame for uncategorized turnovers
+    // If the scorer wanted blame to be assigned, they just had to click a button :)
+    // (in the future could pre-calc this, weight by mins/usage/to% and add to unassisted.source_to for half court/
+    //  more or less duplcate team equivalent fot transition/scramble)
 
-      //TODO: (ideally we'd pass this in to ensure it's the same demon as everything else)
-      const teamPossessions =
-        (teamStats.total_off_fga?.value || 0) +
-          0.475 * (teamStats.total_off_fta?.value || 0) +
-          (teamStats.total_off_to?.value || 0) || 1;
-
-      const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
-        PlayTypeUtils.calcTeamHalfCourtTos(
-          players as IndivStatSet[],
-          teamStats as TeamStatSet
-        );
-
-      /**/
-      // console.log(
-      //   `TOs: ${uncatHalfCourtTos} / ${uncatScrambleTos} / ${uncatTransTos}`
-      // );
-      //eg: TOs: 206 / 26 / 65
-
-      topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
-      topLevelPlayTypeAnalysis["Put-Back"] +=
-        uncatScrambleTos / teamPossessions;
-      topLevelPlayTypeAnalysis["Transition"] += uncatTransTos / teamPossessions;
-    } else {
-      topLevelPlayTypeAnalysis["Misc"] = 0;
-    }
+    //TODO: finally need to normalize the frequencies because of all the approximations I've made?
+    //(or just leave it? the numbers won't add to 100 across players anyway because passes are double counted...)
+    //TODO: do I need to support "team-basis" frequencies to support the "click" on per team styles
 
     return topLevelPlayTypeAnalysis;
   }
@@ -2252,6 +2210,35 @@ export class PlayTypeUtils {
       .fromPairs()
       .value() as Record<string, Record<TopLevelPlayType, number>>;
   });
+
+  static teamToIndivSrcPlayTypeMapping = (
+    playType: TopLevelPlayType
+  ): TopLevelIndivPlayType => {
+    switch (playType) {
+      case "Attack & Kick":
+        return "Perimeter Sniper";
+      case "Post & Kick":
+        return "Perimeter Sniper";
+      default:
+        return playType;
+    }
+  };
+  static teamToIndivTargetPlayTypeMapping = (
+    playType: TopLevelPlayType
+  ): TopLevelIndivPlayType => {
+    switch (playType) {
+      case "Backdoor Cut":
+        return "Hits Cutter";
+      case "Pick & Pop":
+        return "PnR Passer";
+      case "Post-Up":
+        return "PnR Passer";
+      case "Big Cut & Roll":
+        return "PnR Passer";
+      default:
+        return playType;
+    }
+  };
 
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */
   private static playTypesByFamily: Record<
