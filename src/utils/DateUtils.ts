@@ -55,16 +55,16 @@ export class DateUtils {
   /** Use pre-season rankings instead of *ALSO* previous season's rankings - do once the pre-season ranks settle down (1st June?)
    * Actually for 23 offseason I'm going to experiment with using both the whole offseason, since it's interesting to
    * see the difference
+   * LEAVE THIS BLANK if usePreseasonAndLastSeason set and you want to show both
    */
-  static readonly hasPreseasonRankings: Record<string, boolean> = {
-    "Men_2022/23": true,
-    "Men_2023/24": false, //(see usePreseasonAndLastSeason)
-  };
+  static readonly hasPreseasonRankings: Record<string, boolean> = {};
 
   /** Start showing both pre-season and prev-season - do once the pre-season ranks start to settle down (1st May?) */
   static readonly usePreseasonAndLastSeason: Record<string, boolean> = {
+    "Men_2022/23": true,
     "Men_2023/24": true,
     "Men_2024/25": true,
+    "Men_2025/26": true,
   };
 
   /** The first year for which we had bulk date (ie not just hand-picked) */
