@@ -676,11 +676,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       return (
                         <>
                           <span>
-                            [{pt.player.key}] | [{pt.playType}] | [
-                            {(100 * (pt.playStats.possPct?.value || 0)).toFixed(
-                              1
-                            )}
-                            %] , [{(pt.playStats.pts?.value || 0).toFixed(3)}]
+                            [<b>{pt.player.key}</b>] | [<b>{pt.playType}</b>] |
+                            [
+                            <b>
+                              {(
+                                100 * (pt.playStats.possPct?.value || 0)
+                              ).toFixed(1)}
+                            </b>
+                            %] , [
+                            <b>{(pt.playStats.pts?.value || 0).toFixed(3)}</b>]
+                            pts/play
                           </span>
                           <br />
                         </>
