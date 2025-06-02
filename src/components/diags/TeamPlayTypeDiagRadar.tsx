@@ -808,8 +808,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     <div className="mt-2">{indivPlayTypeBreakdownTable}</div>
                     <span>
                       <i>
-                        (Stats include passes and exclude unassigned TOs, so
-                        will not add up to 100% of plays)
+                        (Passers and receive both get some "credit" for passing
+                        plays, so frequencies will not add up to 100%)
                       </i>
                     </span>
                   </div>

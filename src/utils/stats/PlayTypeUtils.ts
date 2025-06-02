@@ -226,6 +226,12 @@ export class PlayTypeUtils {
    * separateHalfCourt - if true will try to separate out half-court vs transition/scramble better
    * NOTE: this isn't really self contained yet because the logic to (very approximately) pull the scramble/transition
    * assist info out of the assist networks is in buildTopLevelPlayStyles
+   * useTeamPossessions - when calculating player play styles to see the player chart, we want to look at just that player's possessions
+   *                      when doing a breakdown across players of team play styles, we want to use the team possessions
+   * playerBreakdownMode - (this is probably == isActuallyIndivMode) ... it switches "target" %s to use player or team possessions
+   *                       instead of assists (which only makes sense for player scoring breakdown), I made it a separate flag
+   *                       just to make extra sure I didn't break any existing logic, but I'm pretty sure it's just
+   *                       isActuallyIndivMode && (playStyleType == playsPct|pctsPer100)
    */
   static buildCategorizedAssistNetworks(
     playStyleType: PlayStyleType,
@@ -254,7 +260,7 @@ export class PlayTypeUtils {
           0.475 * (teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
-    const filterCodes = undefined as Set<string> | undefined; // = new Set(["ErAyala", "AqSmart"])
+    const filterCodes = undefined as Set<string> | undefined; //new Set(["JaGillespie", "SeMiguel", "RoRice"]);
     const filteredPlayers = filterCodes
       ? players.filter((pl) => {
           const code = PlayTypeUtils.getCode(pl);
@@ -347,7 +353,8 @@ export class PlayTypeUtils {
             ix,
             copyOfAssistNetwork,
             reorderedPosVsPosAssistNetwork,
-            unassistedInfo
+            unassistedInfo,
+            playerBreakdownMode
           );
         })
         .value();
@@ -682,7 +689,7 @@ export class PlayTypeUtils {
             player,
             playerStyle.totalPlaysMade,
             playerBreakdownMode
-              ? playerStyle.totalPlaysMade
+              ? playerStyle.totalPlaysMade //(I think we want this for all cases except scoringPlaysPct in practice)
               : playerStyle.totalAssists,
             rosterStatsByCode
           );
@@ -920,12 +927,16 @@ export class PlayTypeUtils {
         const efgValue = (assistInfo as PureStatSet)[efgKey].value || 1;
         const rawStat = stat.value || 0;
 
+        const _3pMult = statName.includes("3p") ? 1.5 : 1.0; //(want FG% since we just care about the number of misses)
+
         //TODO: 1] eFG should be higher because these are adjusted plays (or do I already adjust for that somewhere?)
         //TODO: 2] don't have eFG for transition or scrambles so numbers will be off
         //         (in the sense that player A passes to player B who misses, player B gets blame but not A)
 
         const adjustedStat =
-          playStyleType == "playsPct" ? rawStat / efgValue : rawStat;
+          playStyleType == "playsPct"
+            ? (rawStat * _3pMult) / efgValue
+            : rawStat;
 
         return {
           ...stat,
@@ -1033,6 +1044,9 @@ export class PlayTypeUtils {
       {} as Record<TopLevelIndivPlayType, number>
     );
 
+    // (note the per-team breakdowns don't use this to avoid double counting passes, whereas for players (when summed
+    //  over all players) we _are_ double counting (note the flag that lets us very approximately undo this .. as yet
+    //  this isn't wired up)
     const topLevelPlayTypeAnalysis = _.transform(
       flattenedNetworkTarget,
       (acc, usage, key) => {
@@ -1072,7 +1086,6 @@ export class PlayTypeUtils {
 
     //TODO: finally need to normalize the frequencies because of all the approximations I've made?
     //(or just leave it? the numbers won't add to 100 across players anyway because passes are double counted...)
-    //TODO: do I need to support "team-basis" frequencies to support the "click" on per team styles
 
     return topLevelPlayTypeAnalysis;
   }
@@ -1929,7 +1942,7 @@ export class PlayTypeUtils {
           );
 
           return _.values(playTypeAggs).filter(
-            (pt) => (pt?.playStats?.possPct?.value || 0) >= 0.004
+            (pt) => (pt?.playStats?.possPct?.value || 0) >= 0.0005
           );
         } else {
           return [];
@@ -2151,8 +2164,12 @@ export class PlayTypeUtils {
       { assists: TargetAssistInfo[] }
     >,
     mutableHalfCourtAssistInfo: Record<string, { assists: TargetAssistInfo[] }>,
-    mutableUnassisted: SourceAssistInfo
+    mutableUnassisted: SourceAssistInfo,
+    playerBreakdownMode: boolean
   ) {
+    // If playerBreakdownMode is set then we send estimated TOs to me to target_)
+    // (otherwise they all go to source_ since that is the only set of fields used in team breakdowns)
+
     // We take the % of half-court turnovers for each position group
     // and apportion it out in the following ratios:
     // unassisted rim: highest weight
@@ -2236,6 +2253,9 @@ export class PlayTypeUtils {
         const mutMeToOtherPosAssists =
           mutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
 
+        //TODO: currently all assists are blamed on the unassisted/shooting play (source_), NONE
+        //      on the assisting play (target_)
+
         shotTypes.map((shotType) => {
           const isInside = shotType == "rim";
           const targetIsBigBoost = jpos == 2 ? 1.5 : 1; //(passes to bigs relatively more lkely to result in TOs)
@@ -2263,12 +2283,19 @@ export class PlayTypeUtils {
           const meToOtherAssistWeight =
             weights[isInside ? 2 : 3] *
             targetIsBigBoost *
-            ((meToOtherPosAssists as PureStatSet)[`source_${shotType}_ast`]
-              ?.value || 0);
+            ((meToOtherPosAssists as PureStatSet)[
+              playerBreakdownMode
+                ? `target_${shotType}_ast`
+                : `source_${shotType}_ast`
+            ]?.value || 0);
           if (phase == 0) totalWeight = totalWeight + meToOtherAssistWeight;
           if (phase == 1)
             adjStat(
-              (mutMeToOtherPosAssists as PureStatSet)[`source_${shotType}_ast`],
+              (mutMeToOtherPosAssists as PureStatSet)[
+                playerBreakdownMode
+                  ? `target_${shotType}_ast`
+                  : `source_${shotType}_ast`
+              ],
               (meToOtherAssistWeight * toPctToUse) / (totalWeight || 1)
             );
 
