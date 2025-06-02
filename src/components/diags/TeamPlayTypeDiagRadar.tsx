@@ -51,9 +51,47 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
-import { FeatureFlags } from "../../utils/stats/FeatureFlags";
-import { main } from "../../bin/buildLeaderboards";
-import { ro } from "date-fns/locale";
+
+const indivPlayTypeBreakdownFields = {
+  title: GenericTableOps.addTitle(
+    "",
+    "",
+    GenericTableOps.defaultRowSpanCalculator,
+    "",
+    GenericTableOps.htmlFormatter,
+    4
+  ),
+  pos: GenericTableOps.addDataCol(
+    "Pos",
+    "The positional role of the player",
+    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    GenericTableOps.htmlFormatter
+  ),
+  playType: GenericTableOps.addDataCol(
+    "Sub-Type",
+    "The sub-type of the selected play type(s)",
+    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    GenericTableOps.htmlFormatter
+  ),
+  sep2: GenericTableOps.addColSeparator(),
+  possPct: GenericTableOps.addPctCol(
+    "Play%",
+    "The % of team plays to which this player/play type corresponds",
+    CbbColors.varPicker(CbbColors.p_ast_breakdown)
+  ),
+  ppp: GenericTableOps.addDataCol(
+    "PPP",
+    "Points per play for this player/play type",
+    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    GenericTableOps.pointsFormatter2dp
+  ),
+  pts: GenericTableOps.addDataCol(
+    "Pts",
+    "The number of points per 100 team plays for this player/play type",
+    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    GenericTableOps.pointsFormatter2dp
+  ),
+};
 
 export type Props = {
   title: string;
@@ -126,29 +164,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       mainTeamStats
     );
 
-  const doPlayerTopLevelPlayTypeStyles = FeatureFlags.isActiveWindow(
-    FeatureFlags.betterStyleAnalysis
-  );
-
-  const playerTopLevelPlayTypeStyles:
-    | Record<PlayerCode, TopLevelIndivPlayAnalysis>
-    | undefined = doPlayerTopLevelPlayTypeStyles
-    ? _.chain(mainPlayers)
-        .map((p) => {
-          return [
-            p.code,
-            PlayTypeUtils.buildTopLevelIndivPlayStyles(
-              p,
-              rosterStatsByCode,
-              mainTeamStats,
-              true
-            ),
-          ];
-        })
-        .fromPairs()
-        .value()
-    : undefined;
-
   const { tierToUse: mainTierToUse } = GradeTableUtils.buildTeamTierInfo(
     showGrades,
     {
@@ -158,6 +173,79 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       lowTier: grades?.Low,
     }
   );
+
+  const supportPlayerBreakdown =
+    !startWithRaw && !defensiveOverrideIn && playersIn.length > 0;
+
+  const playerTopLevelPlayTypeStyles:
+    | Record<PlayerCode, TopLevelIndivPlayAnalysis>
+    | undefined =
+    selectedPlayTypes.size > 0 && supportPlayerBreakdown
+      ? _.chain(mainPlayers)
+          .map((p) => {
+            return [
+              p.code,
+              PlayTypeUtils.buildTopLevelIndivPlayStyles(
+                p,
+                rosterStatsByCode,
+                mainTeamStats,
+                true
+              ),
+            ];
+          })
+          .fromPairs()
+          .value()
+      : undefined;
+
+  const indivPlayTypeBreakdownTable =
+    mainTierToUse && playerTopLevelPlayTypeStyles ? (
+      <GenericTable
+        tableFields={indivPlayTypeBreakdownFields}
+        tableData={PlayTypeUtils.fetchTopIndivPlayTypes(
+          selectedPlayTypes,
+          rosterStatsByCode,
+          playerTopLevelPlayTypeStyles
+        ).map((pt) => {
+          return GenericTableOps.buildDataRow(
+            {
+              title: pt.player.key,
+              pos: rosterStatsByCode[pt.code]?.role || pt.player.role || "??",
+              playType: <i>{pt.playType}</i>,
+              possPct: pt.playStats.possPct,
+              ppp: pt.playStats.pts,
+              pts: {
+                value:
+                  (pt.playStats.pts?.value || 0) *
+                  (pt.playStats.possPct?.value || 0) *
+                  100,
+              },
+            },
+            GenericTableOps.defaultFormatter,
+            GenericTableOps.defaultCellMeta,
+            {
+              ppp: GenericTableOps.addDataCol(
+                "PPP",
+                "Points per play for this player/play type",
+                (val: any, valMeta: string) => {
+                  const pppAdj = adjustForSos ? mainSosAdjustment : 1.0;
+                  const maybePppPctile = GradeUtils.getPercentile(
+                    mainTierToUse,
+                    `${pt.teamPlayType}|${adjustForSos ? "Adj" : ""}Ppp`,
+                    (pt.playStats.pts?.value || 0) * pppAdj,
+                    false
+                  );
+                  return (
+                    CbbColors.off_pctile_qual(maybePppPctile?.value || 0) + "88" //(50% opacity)
+                  );
+                },
+                GenericTableOps.pointsFormatter2dp
+              ),
+            }
+          );
+        })}
+      />
+    ) : null;
+
   const mainTopLevelPlayTypeStylesPctile = mainTierToUse
     ? GradeUtils.getPlayStyleStats(
         mainTopLevelPlayTypeStyles,
@@ -313,10 +401,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     // Handle click event
     const handleClick = () => {
-      if (doPlayerTopLevelPlayTypeStyles) {
-        if (onClick && playType) {
-          onClick(playType);
-        }
+      if (onClick && playType) {
+        onClick(playType);
       }
     };
 
@@ -420,6 +506,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 offensive stats, a temporary limitation)
               </i>
             ) : undefined}
+            {supportPlayerBreakdown ? (
+              <>
+                <br />
+                <br />
+                Click on the bar to view the approx player breakdown
+              </>
+            ) : null}
           </p>
         </div>
       );
@@ -489,23 +582,19 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     {...props}
                     playType={props.payload.playType}
                     onClick={(playType: TopLevelPlayType) => {
-                      if (doPlayerTopLevelPlayTypeStyles) {
-                        if (multiMode) {
-                          const newSelectedPlayTypes = new Set(
-                            selectedPlayTypes
-                          );
-                          if (newSelectedPlayTypes.has(playType)) {
-                            newSelectedPlayTypes.delete(playType);
-                          } else {
-                            newSelectedPlayTypes.add(playType);
-                          }
-                          setSelectedPlayTypes(newSelectedPlayTypes);
+                      if (multiMode) {
+                        const newSelectedPlayTypes = new Set(selectedPlayTypes);
+                        if (newSelectedPlayTypes.has(playType)) {
+                          newSelectedPlayTypes.delete(playType);
                         } else {
-                          if (selectedPlayTypes.has(playType)) {
-                            setSelectedPlayTypes(new Set());
-                          } else {
-                            setSelectedPlayTypes(new Set([playType]));
-                          }
+                          newSelectedPlayTypes.add(playType);
+                        }
+                        setSelectedPlayTypes(newSelectedPlayTypes);
+                      } else {
+                        if (selectedPlayTypes.has(playType)) {
+                          setSelectedPlayTypes(new Set());
+                        } else {
+                          setSelectedPlayTypes(new Set([playType]));
                         }
                       }
                     }}
@@ -667,31 +756,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     </a>
                     )
                     <br />
-                    <br />
-                    {PlayTypeUtils.fetchTopIndivPlayTypes(
-                      selectedPlayTypes,
-                      rosterStatsByCode,
-                      playerTopLevelPlayTypeStyles
-                    ).map((pt) => {
-                      return (
-                        <>
-                          <span>
-                            [<b>{pt.player.key}</b>] | [<b>{pt.playType}</b>] |
-                            [
-                            <b>
-                              {(
-                                100 * (pt.playStats.possPct?.value || 0)
-                              ).toFixed(1)}
-                            </b>
-                            %] , [
-                            <b>{(pt.playStats.pts?.value || 0).toFixed(3)}</b>]
-                            pts/play
-                          </span>
-                          <br />
-                        </>
-                      );
-                    })}
-                    <br />
+                    <div className="mt-2">{indivPlayTypeBreakdownTable}</div>
                     <span>
                       <i>
                         (Stats include passes and exclude unassigned TOs, so

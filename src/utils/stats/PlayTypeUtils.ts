@@ -123,7 +123,9 @@ export type TopLevelIndivPlayAnalysis = Record<
 >;
 
 export type IndivPlayTypeInfo = {
+  code: PlayerCode;
   player: IndivStatSet;
+  teamPlayType: TopLevelPlayType;
   playType: TopLevelIndivPlayType;
   playStats: PlayTypeStat;
 };
@@ -1892,6 +1894,8 @@ export class PlayTypeUtils {
                     PlayTypeUtils.truncateExtendedIndivPlayType(indivPlayType);
                   if (!acc[indivPlayTypeRadical]) {
                     acc[indivPlayTypeRadical] = {
+                      code: playerCode,
+                      teamPlayType: playType,
                       playType: indivPlayTypeRadical,
                       player: indivStats,
                       playStats: {

@@ -203,6 +203,8 @@ export class GenericTableOps {
   };
   static readonly pointsFormatter = (val: any) =>
     (val.value as number).toFixed(1);
+  static readonly pointsFormatter2dp = (val: any) =>
+    (val.value as number).toFixed(2);
   static readonly pointsOrHtmlFormatter = (val: any) => {
     if (React.isValidElement(val)) {
       return GenericTableOps.htmlFormatter(val as React.ReactNode);
