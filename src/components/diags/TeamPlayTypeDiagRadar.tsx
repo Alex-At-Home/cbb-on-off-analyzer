@@ -51,8 +51,10 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
+import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 
-const indivPlayTypeBreakdownFields = {
+const indivPlayTypeBreakdownFields = (adjustForSos: boolean) => ({
   title: GenericTableOps.addTitle(
     "",
     "",
@@ -80,8 +82,10 @@ const indivPlayTypeBreakdownFields = {
     CbbColors.varPicker(CbbColors.p_ast_breakdown)
   ),
   ppp: GenericTableOps.addDataCol(
-    "PPP",
-    "Points per play for this player/play type",
+    adjustForSos ? "AdjPPP" : "PPP",
+    adjustForSos
+      ? "Adjusted points per play for this player/play type"
+      : "Points per play for this player/play type",
     CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
     GenericTableOps.pointsFormatter2dp
   ),
@@ -91,7 +95,7 @@ const indivPlayTypeBreakdownFields = {
     CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
     GenericTableOps.pointsFormatter2dp
   ),
-};
+});
 
 export type Props = {
   title: string;
@@ -200,7 +204,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const indivPlayTypeBreakdownTable =
     mainTierToUse && playerTopLevelPlayTypeStyles ? (
       <GenericTable
-        tableFields={indivPlayTypeBreakdownFields}
+        tableFields={indivPlayTypeBreakdownFields(adjustForSos)}
         tableData={PlayTypeUtils.fetchTopIndivPlayTypes(
           selectedPlayTypes,
           rosterStatsByCode,
@@ -212,7 +216,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               pos: rosterStatsByCode[pt.code]?.role || pt.player.role || "??",
               playType: <i>{pt.playType}</i>,
               possPct: pt.playStats.possPct,
-              ppp: pt.playStats.pts,
+              ppp: {
+                value:
+                  (pt.playStats.pts?.value || 0) *
+                  (adjustForSos ? mainSosAdjustment : 1.0),
+              },
               pts: {
                 value:
                   (pt.playStats.pts?.value || 0) *
@@ -707,6 +715,47 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 adjustForSos,
                 setAdjustForSos
               )}
+              {supportPlayerBreakdown ? (
+                <>
+                  &nbsp;|&nbsp;
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={(props: any) => (
+                      <Tooltip id="showHidePlayerDetails" {...props}>
+                        Shows / hides the individual play-type breakdown for all
+                        team plays.
+                        <br />
+                        <br />
+                        Click on individual bars to select / deselect specific
+                        team play types.
+                      </Tooltip>
+                    )}
+                  >
+                    <a
+                      href=""
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (selectedPlayTypes.size > 0) {
+                          setSelectedPlayTypes(new Set());
+                          setMultiMode(false);
+                        } else {
+                          setMultiMode(true);
+                          setSelectedPlayTypes(
+                            new Set(PlayTypeUtils.topLevelPlayTypes)
+                          );
+                        }
+                      }}
+                    >
+                      {selectedPlayTypes.size > 0 ? (
+                        "Hide Player Details"
+                      ) : (
+                        <b>Show Player Details</b>
+                      )}
+                      <sup>*</sup>
+                    </a>
+                  </OverlayTrigger>
+                </>
+              ) : null}
             </Col>
           </Row>
           {renderBarChartRow(
@@ -752,7 +801,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                         }
                       }}
                     >
-                      {multiMode ? "clear" : "multi-mode"}
+                      {multiMode ? "clear" : "multi-select"}
                     </a>
                     )
                     <br />

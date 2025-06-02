@@ -725,7 +725,10 @@ export class PlayTypeDiagUtils {
     adjusted: boolean,
     callback: (useAdjusted: boolean) => void
   ) => {
-    const maybeBold = (bold: boolean, r: React.ReactNode) => {
+    const maybeBold = (
+      bold: boolean,
+      r: React.ReactElement
+    ): React.ReactElement => {
       if (bold) return <b>{r}</b>;
       else return r;
     };
@@ -743,19 +746,28 @@ export class PlayTypeDiagUtils {
             Raw
           </a>
         )}{" "}
-        //{" "}
-        {maybeBold(
-          adjusted,
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              callback(!adjusted);
-            }}
-          >
-            Adjusted (SoS: x[{sos.toFixed(2)}])
-          </a>
-        )}
+        /{" "}
+        <OverlayTrigger
+          placement="auto"
+          overlay={(props: any) => (
+            <Tooltip id={`ajd${sos}`} {...props}>
+              Adjusted Pts/Play (SoS: x[{sos.toFixed(2)}])
+            </Tooltip>
+          )}
+        >
+          {maybeBold(
+            adjusted,
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                callback(!adjusted);
+              }}
+            >
+              Adj<sup>*</sup>
+            </a>
+          )}
+        </OverlayTrigger>
       </span>
     );
   };
