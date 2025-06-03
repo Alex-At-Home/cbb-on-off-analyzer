@@ -53,10 +53,14 @@ import {
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { faAdjust } from "@fortawesome/free-solid-svg-icons";
+import AsyncFormControl from "../shared/AsyncFormControl";
 
-const indivPlayTypeBreakdownFields = (adjustForSos: boolean) => ({
+const indivPlayTypeBreakdownFields = (
+  adjustForSos: boolean,
+  titleFilter: React.ReactNode
+) => ({
   title: GenericTableOps.addTitle(
-    "",
+    titleFilter,
     "",
     GenericTableOps.defaultRowSpanCalculator,
     "",
@@ -131,6 +135,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     !(startWithRaw || false)
   );
 
+  /** Which players to filter */
+  const [filterStr, setFilterStr] = useState("");
+
   const [selectedPlayTypes, setSelectedPlayTypes] = useState<
     Set<TopLevelPlayType>
   >(new Set());
@@ -201,56 +208,79 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           .value()
       : undefined;
 
+  const filterBox = (
+    <AsyncFormControl
+      size="sm"
+      startingVal={filterStr}
+      onChange={(t: string) => setFilterStr(t)}
+      timeout={500}
+      placeholder=", or ;-separated-list"
+    />
+  );
+
   const indivPlayTypeBreakdownTable =
     mainTierToUse && playerTopLevelPlayTypeStyles ? (
       <GenericTable
-        tableFields={indivPlayTypeBreakdownFields(adjustForSos)}
+        tableFields={indivPlayTypeBreakdownFields(adjustForSos, filterBox)}
         tableData={PlayTypeUtils.fetchTopIndivPlayTypes(
           selectedPlayTypes,
           rosterStatsByCode,
           playerTopLevelPlayTypeStyles
-        ).map((pt) => {
-          return GenericTableOps.buildDataRow(
-            {
-              title: pt.player.key,
-              pos: rosterStatsByCode[pt.code]?.role || pt.player.role || "??",
-              playType: <i>{pt.playType}</i>,
-              possPct: pt.playStats.possPct,
-              ppp: {
-                value:
-                  (pt.playStats.pts?.value || 0) *
-                  (adjustForSos ? mainSosAdjustment : 1.0),
-              },
-              pts: {
-                value:
-                  (pt.playStats.pts?.value || 0) *
-                  (pt.playStats.possPct?.value || 0) *
-                  100,
-              },
-            },
-            GenericTableOps.defaultFormatter,
-            GenericTableOps.defaultCellMeta,
-            {
-              ppp: GenericTableOps.addDataCol(
-                "PPP",
-                "Points per play for this player/play type",
-                (val: any, valMeta: string) => {
-                  const pppAdj = adjustForSos ? mainSosAdjustment : 1.0;
-                  const maybePppPctile = GradeUtils.getPercentile(
-                    mainTierToUse,
-                    `${pt.teamPlayType}|${adjustForSos ? "Adj" : ""}Ppp`,
-                    (pt.playStats.pts?.value || 0) * pppAdj,
-                    false
-                  );
-                  return (
-                    CbbColors.off_pctile_qual(maybePppPctile?.value || 0) + "88" //(50% opacity)
-                  );
+        )
+          .filter((pt) => {
+            if (!_.isEmpty(filterStr)) {
+              const frags = filterStr.includes(";")
+                ? filterStr.split(";")
+                : filterStr.split(",");
+              return _.find(
+                frags,
+                (f) => pt.player.key.includes(f) || pt.code.includes(f)
+              );
+            } else return true;
+          })
+          .map((pt) => {
+            return GenericTableOps.buildDataRow(
+              {
+                title: pt.player.key,
+                pos: rosterStatsByCode[pt.code]?.role || pt.player.role || "??",
+                playType: <i>{pt.playType}</i>,
+                possPct: pt.playStats.possPct,
+                ppp: {
+                  value:
+                    (pt.playStats.pts?.value || 0) *
+                    (adjustForSos ? mainSosAdjustment : 1.0),
                 },
-                GenericTableOps.pointsFormatter2dp
-              ),
-            }
-          );
-        })}
+                pts: {
+                  value:
+                    (pt.playStats.pts?.value || 0) *
+                    (pt.playStats.possPct?.value || 0) *
+                    100,
+                },
+              },
+              GenericTableOps.defaultFormatter,
+              GenericTableOps.defaultCellMeta,
+              {
+                ppp: GenericTableOps.addDataCol(
+                  "PPP",
+                  "Points per play for this player/play type",
+                  (val: any, valMeta: string) => {
+                    const pppAdj = adjustForSos ? mainSosAdjustment : 1.0;
+                    const maybePppPctile = GradeUtils.getPercentile(
+                      mainTierToUse,
+                      `${pt.teamPlayType}|${adjustForSos ? "Adj" : ""}Ppp`,
+                      (pt.playStats.pts?.value || 0) * pppAdj,
+                      false
+                    );
+                    return (
+                      CbbColors.off_pctile_qual(maybePppPctile?.value || 0) +
+                      "88" //(50% opacity)
+                    );
+                  },
+                  GenericTableOps.pointsFormatter2dp
+                ),
+              }
+            );
+          })}
       />
     ) : null;
 
@@ -849,6 +879,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       adjustForSos,
       selectedPlayTypes,
       multiMode,
+      filterStr,
     ]
   );
 };

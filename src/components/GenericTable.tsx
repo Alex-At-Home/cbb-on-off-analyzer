@@ -328,7 +328,7 @@ export class GenericTableOps {
     );
   }
   static addTitle(
-    colName: string,
+    colName: string | React.ReactNode,
     toolTip: string,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
     className: string = "",

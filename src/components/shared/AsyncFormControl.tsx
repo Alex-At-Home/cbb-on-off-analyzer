@@ -9,6 +9,9 @@ type Props = {
   timeout: number;
   placeholder?: string;
   allowExternalChange?: boolean; //(default(false), changing validate won't effect it, retained for legacy reasons - maybe make this forced later)
+  // Extra fields to pass in:
+  className?: string;
+  size?: "sm" | "lg";
 };
 
 /** More responsive form control - must set if validate is set then startingVal is locked else just starting */
