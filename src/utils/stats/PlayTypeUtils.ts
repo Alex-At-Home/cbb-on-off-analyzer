@@ -260,6 +260,9 @@ export class PlayTypeUtils {
           0.475 * (teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
+    // if (players.length > 1)
+    //   console.log(`${players.map((p) => `"${p.code}"`).join(",")}`);
+    //const filterCodes = new Set(["XXX"]);
     const filterCodes = undefined as Set<string> | undefined; //new Set(["JaGillespie", "SeMiguel", "RoRice"]);
     const filteredPlayers = filterCodes
       ? players.filter((pl) => {
@@ -281,8 +284,7 @@ export class PlayTypeUtils {
       filteredPlayers,
       rosterStatsByCode,
       teamStats,
-      teamPossessionsToUse,
-      playerBreakdownMode
+      teamPossessionsToUse
     );
 
     // This gets us to:
@@ -657,8 +659,7 @@ export class PlayTypeUtils {
     filteredPlayers: Array<IndivStatSet>,
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet,
-    teamPossessionsToUse: number | undefined,
-    playerBreakdownMode: boolean = false
+    teamPossessionsToUse: number | undefined
   ): Record<PlayerCode, PosCategoryAssistNetwork> {
     const teamTotalAssists = teamStats.total_off_assist?.value || 0;
     //(use team total assists for consistency with individual chart)
@@ -688,9 +689,9 @@ export class PlayTypeUtils {
             p,
             player,
             playerStyle.totalPlaysMade,
-            playerBreakdownMode
-              ? playerStyle.totalPlaysMade //(I think we want this for all cases except scoringPlaysPct in practice)
-              : playerStyle.totalAssists,
+            playStyleType == "scoringPlaysPct"
+              ? playerStyle.totalAssists //(in scoring mode we use total team assists - for others we use either team/player poss)
+              : playerStyle.totalPlaysMade,
             rosterStatsByCode
           );
           return { code: p, ...info };
@@ -929,9 +930,11 @@ export class PlayTypeUtils {
 
         const _3pMult = statName.includes("3p") ? 1.5 : 1.0; //(want FG% since we just care about the number of misses)
 
+        /**/
         //TODO: 1] eFG should be higher because these are adjusted plays (or do I already adjust for that somewhere?)
         //TODO: 2] don't have eFG for transition or scrambles so numbers will be off
         //         (in the sense that player A passes to player B who misses, player B gets blame but not A)
+        //TODO: 3] This is happened _after_ TOs are added so I'm double the TOs also
 
         const adjustedStat =
           playStyleType == "playsPct"
@@ -1367,6 +1370,12 @@ export class PlayTypeUtils {
               : null,
           ];
         })
+        .concat([
+          [
+            `target_ast`,
+            assists > 0 ? { value: assists / totalPlaysMade } : null,
+          ],
+        ])
         .concat(
           assistedOnly
             ? []
@@ -1374,10 +1383,6 @@ export class PlayTypeUtils {
                 [
                   `source_sf`,
                   ftInfo > 0 ? { value: ftInfo / totalPlaysMade } : null,
-                ],
-                [
-                  `target_ast`,
-                  assists > 0 ? { value: assists / totalPlaysMade } : null,
                 ],
               ]
         )
@@ -2102,25 +2107,36 @@ export class PlayTypeUtils {
     nonHalfCourtInfoTrans: SourceAssistInfo,
     nonHalfCourtInfoScramble: SourceAssistInfo
   ) {
-    _.map(shotTypes, (shotType) => {
-      // const nonHalfCourtInfoTrans = otherInfo[4];
-      // const nonHalfCourtInfoScramble = otherInfo[5];
+    // For target (assists - use for individual play type analysis) we don't have the shot types categorized
+    // for scrambles / transition (TODO I should consider that) so we'll just estimate it
+    const shotTypesPlusTarget = shotTypes.concat("target");
+    const keyBuilder = (shotType: string) =>
+      shotType == "target" ? "target_ast" : `source_${shotType}_ast`;
+    _.map(shotTypesPlusTarget, (shotType) => {
       const nonHalfCourtInfoTransPct =
-        (nonHalfCourtInfoTrans as PureStatSet)[`source_${shotType}_ast`]
-          ?.value || 0;
+        (nonHalfCourtInfoTrans as PureStatSet)[keyBuilder(shotType)]?.value ||
+        0;
       const nonHalfCourtInfoScramblePct =
-        (nonHalfCourtInfoScramble as PureStatSet)[`source_${shotType}_ast`]
+        (nonHalfCourtInfoScramble as PureStatSet)[keyBuilder(shotType)]
           ?.value || 0;
       const nonHalfCourtInfoPct =
         nonHalfCourtInfoTransPct + nonHalfCourtInfoScramblePct;
 
-      //console.log(`[*][${shotType}][${posTitle}] Need to distribute [${nonHalfCourtInfoPct.toFixed(4)}](=[${nonHalfCourtInfoTransPct.toFixed(4)}]+[${nonHalfCourtInfoScramblePct.toFixed(4)}]) to:`)
+      // console.log(
+      //   `[*][${shotType}] Need to distribute [${nonHalfCourtInfoPct.toFixed(
+      //     4
+      //   )}](=[${nonHalfCourtInfoTransPct.toFixed(
+      //     4
+      //   )}]+[${nonHalfCourtInfoScramblePct.toFixed(4)}]) to:`,
+      //   nonHalfCourtInfoTrans as PureStatSet,
+      //   nonHalfCourtInfoScramble as PureStatSet
+      // );
 
       const totalAssistedPct = _.chain(PosFamilyNames)
         .map((pos, ipos) => {
           //(use old_value when it exists since that is pre "missed shot adjustment")
           const stat = (mutableAssistInfo[ipos] as PureStatSet)?.[
-            `source_${shotType}_ast`
+            keyBuilder(shotType)
           ] || { value: 0, old_value: 0 };
           return _.isNumber(stat.old_value) ? stat.old_value : stat.value;
         })
@@ -2131,26 +2147,41 @@ export class PlayTypeUtils {
         (totalAssistedPct - Math.min(nonHalfCourtInfoPct, totalAssistedPct)) /
         (totalAssistedPct || 1);
 
-      //console.log(`[*][${shotType}][${posTitle}] Approximate half-court assisted by keeping [${reductionPct.toFixed(2)}]%`);
+      // console.log(
+      //   `[*][${shotType}] Approximate half-court assisted by keeping [${reductionPct.toFixed(
+      //     2
+      //   )}]%`
+      // );
 
       _.map(PosFamilyNames, (pos, ipos) => {
-        //console.log(`[${pos}][${shotType}][${posTitle}]: [${(assistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0).toFixed(4)}]`);
+        _.map(shotType == "target" ? shotTypes : [shotType], (subShotType) => {
+          const assistKey =
+            shotType == "target"
+              ? `target_${subShotType}_ast`
+              : keyBuilder(shotType);
+          const maybeShotTypeAst =
+            // (for mutableAssistInfo we _do_ have the target shot types, that's what we're trying to fix)
+            (mutableAssistInfo[ipos] as PureStatSet)?.[assistKey];
 
-        const maybeShotTypeAst = (mutableAssistInfo[ipos] as PureStatSet)?.[
-          `source_${shotType}_ast`
-        ];
-        if (_.isNumber(maybeShotTypeAst?.value)) {
-          const astValueToUse = _.isNumber(maybeShotTypeAst?.old_value)
-            ? maybeShotTypeAst?.old_value
-            : maybeShotTypeAst.value;
-          const adjustment = astValueToUse * (reductionPct - 1.0);
-          maybeShotTypeAst.value += adjustment;
-          if (_.isNumber(maybeShotTypeAst.old_value)) {
-            //(ideally we'd preserve "old_value" and then add this to the overrides list but
-            // it's too complicated so we'll just pretend this is the original value)
-            maybeShotTypeAst.old_value += adjustment;
+          // console.log(
+          //   `[${pos}][${shotType}][${pos}]: [${assistKey}][${(
+          //     maybeShotTypeAst?.value || 0
+          //   ).toFixed(4)}] (${_.keys(mutableAssistInfo[ipos])}))`
+          // );
+
+          if (_.isNumber(maybeShotTypeAst?.value)) {
+            const astValueToUse = _.isNumber(maybeShotTypeAst?.old_value)
+              ? maybeShotTypeAst?.old_value
+              : maybeShotTypeAst.value;
+            const adjustment = astValueToUse * (reductionPct - 1.0);
+            maybeShotTypeAst.value += adjustment;
+            if (_.isNumber(maybeShotTypeAst.old_value)) {
+              //(ideally we'd preserve "old_value" and then add this to the overrides list but
+              // it's too complicated so we'll just pretend this is the original value)
+              maybeShotTypeAst.old_value += adjustment;
+            }
           }
-        }
+        });
       });
     });
   }
@@ -2186,12 +2217,13 @@ export class PlayTypeUtils {
     const toPctToUse = mutableUnassisted.source_to?.value || 0;
 
     const adjStat = (stat: Statistic | undefined, adj: number) => {
+      const delta = 0.0006; //(avoid adding any diag for such small changes)
       if (stat) {
         // As a "handy spot in the code" (ugh) sets the override explanation
         // for any half court misses that have previously been adjusted
         if (!_.isNil(stat.old_value) && !stat.override) {
           const existingAdj = (stat.value || 0) - (stat.old_value || 0);
-          if (Math.abs(existingAdj) >= 0.0006) {
+          if (Math.abs(existingAdj) >= delta) {
             const existingAdjInfo = `Adjusted by [${(100 * existingAdj).toFixed(
               1
             )}] from uncategorized half-court misses, `;
@@ -2203,7 +2235,7 @@ export class PlayTypeUtils {
           stat.value = stat.value + adj;
         }
 
-        if (adj >= 0.0006) {
+        if (adj >= delta) {
           if (!stat.override) {
             stat.override = "";
           }
@@ -2234,7 +2266,7 @@ export class PlayTypeUtils {
           (unassistedWeight * toPctToUse) / (totalWeight || 1)
         );
 
-      // if (phase == 1)
+      // if (phase == 1 && toPctToUse > 0)
       //   console.log(
       //     `[${pos}][${posIndex}] (to%=[${toPctToUse.toFixed(
       //       3
@@ -2244,6 +2276,15 @@ export class PlayTypeUtils {
       //   );
 
       _.map(PosFamilyNames).map((otherPos, jpos) => {
+        //(eg if "I'm" a PG and "other" is a C, then:
+        // otherPosToMeAssists.source = C's assisted FGM from me (based on C's stats)
+        // otherPosToMeAssists.target = assists from C to me (based on C's stats)
+        // meToOtherPosAssists.source = my assisted FGM from C (based on my stats)
+        // meToOtherPosAssists.target = assists from me to C (based on my stats)
+        // In team mode, all parts of the matrix are filled in so it doesn't matter what you do
+        // (ie X.src should == Y.target) BUT you can only write to source, target isn't used (to avoid double counting)
+        // In player mode, only meToOtherPosAssists is available so need to handle src and target
+
         const otherPosToMeAssists =
           immutableHalfCourtAssistInfo[otherPos]!.assists[posIndex]!;
         const mutOtherPosToMeAssists =
@@ -2253,25 +2294,35 @@ export class PlayTypeUtils {
         const mutMeToOtherPosAssists =
           mutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
 
-        //TODO: currently all assists are blamed on the unassisted/shooting play (source_), NONE
-        //      on the assisting play (target_)
-
         shotTypes.map((shotType) => {
+          const readMyAssistedShots = (meToOtherPosAssists as PureStatSet)[
+            `source_${shotType}_ast`
+          ];
+          const readMyAssists = playerBreakdownMode
+            ? (meToOtherPosAssists as PureStatSet)[`target_${shotType}_ast`]
+            : (otherPosToMeAssists as PureStatSet)[`source_${shotType}_ast`];
+
+          const writeMyAssistedShots = (mutMeToOtherPosAssists as PureStatSet)[
+            `source_${shotType}_ast`
+          ];
+          const writeMyAssists = playerBreakdownMode
+            ? (mutMeToOtherPosAssists as PureStatSet)[`target_${shotType}_ast`]
+            : (mutOtherPosToMeAssists as PureStatSet)[`source_${shotType}_ast`];
+
           const isInside = shotType == "rim";
           const targetIsBigBoost = jpos == 2 ? 1.5 : 1; //(passes to bigs relatively more lkely to result in TOs)
           const otherToMeAssistWeight =
             weights[isInside ? 2 : 3] *
             targetIsBigBoost *
-            ((otherPosToMeAssists as PureStatSet)[`source_${shotType}_ast`]
-              ?.value || 0);
+            (readMyAssistedShots?.value || 0);
           if (phase == 0) totalWeight = totalWeight + otherToMeAssistWeight;
           if (phase == 1)
             adjStat(
-              (mutOtherPosToMeAssists as PureStatSet)[`source_${shotType}_ast`],
+              writeMyAssistedShots,
               (otherToMeAssistWeight * toPctToUse) / (totalWeight || 1)
             );
 
-          // if (phase == 1)
+          // if (phase == 1 && toPctToUse > 0)
           //   console.log(
           //     `[${pos}][${posIndex}][${jpos}] (to%=[${toPctToUse.toFixed(
           //       3
@@ -2283,23 +2334,15 @@ export class PlayTypeUtils {
           const meToOtherAssistWeight =
             weights[isInside ? 2 : 3] *
             targetIsBigBoost *
-            ((meToOtherPosAssists as PureStatSet)[
-              playerBreakdownMode
-                ? `target_${shotType}_ast`
-                : `source_${shotType}_ast`
-            ]?.value || 0);
+            (readMyAssists?.value || 0);
           if (phase == 0) totalWeight = totalWeight + meToOtherAssistWeight;
           if (phase == 1)
             adjStat(
-              (mutMeToOtherPosAssists as PureStatSet)[
-                playerBreakdownMode
-                  ? `target_${shotType}_ast`
-                  : `source_${shotType}_ast`
-              ],
+              writeMyAssists,
               (meToOtherAssistWeight * toPctToUse) / (totalWeight || 1)
             );
 
-          // if (phase == 1)
+          // if (phase == 1 && toPctToUse > 0)
           //   console.log(
           //     `[${pos}][${posIndex}][${jpos}] (to%=[${toPctToUse.toFixed(
           //       3
