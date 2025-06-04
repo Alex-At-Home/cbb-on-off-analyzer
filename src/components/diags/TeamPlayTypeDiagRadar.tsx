@@ -54,6 +54,7 @@ import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 import AsyncFormControl from "../shared/AsyncFormControl";
+import { UrlRouting } from "../../utils/UrlRouting";
 
 const indivPlayTypeBreakdownFields = (
   adjustForSos: boolean,
@@ -311,6 +312,21 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         };
       })
     : [];
+
+  const teamParams = {
+    team: (mainTeamStats as any)?.team_name || "??",
+    gender: "Men", //TODO: fix this
+    year: (mainTeamStats as any)?.year,
+    minRank: "0",
+    maxRank: "400",
+    //queryFilters: isConfOnly ? "Conf" : undefined,
+    showExpanded: true,
+    calcRapm: true,
+    showTeamPlayTypes: true,
+    showGrades: "rank:Combo",
+    showExtraInfo: false,
+    showRoster: true,
+  };
 
   // Compute the 'extra' (was 'base') chart data (from quickSwitchBase)
   let extraTopLevelPlayTypeStylesPctile: any = undefined;
@@ -781,6 +797,36 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       ) : (
                         <b>Show Player Details</b>
                       )}
+                      <sup>*</sup>
+                    </a>
+                  </OverlayTrigger>
+                </>
+              ) : null}
+              {!supportPlayerBreakdown &&
+              !defensiveOverrideIn &&
+              _.isEmpty(playersIn) ? (
+                <>
+                  &nbsp;|&nbsp;
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={(props: any) => (
+                      <Tooltip id="viewPlayerDetails" {...props}>
+                        The Team Stats Explorer Style view doesn't support
+                        players breakdowns...
+                        <br />
+                        <br />
+                        ...BUT just click on the hyperlink to open a new tab
+                        with the Team Analysis page with a style view that does
+                        support it. (Then click on the same hyperlink on that
+                        page or on any of the bar charts.)
+                      </Tooltip>
+                    )}
+                  >
+                    <a
+                      target="_blank"
+                      href={UrlRouting.getGameUrl(teamParams, {})}
+                    >
+                      <b>View Player Details</b>
                       <sup>*</sup>
                     </a>
                   </OverlayTrigger>
