@@ -467,6 +467,16 @@ export class PlayTypeUtils {
         teamBreakdownMode
       );
 
+    // Normalize poss to 100 because actually it's "userPossessions + passes"
+    // (but we'll keep the ppp based on the poss number)
+    const possNormalizationFactor = teamBreakdownMode
+      ? 1
+      : 1.0 /
+        _.sumBy(
+          PlayTypeUtils.topLevelIndivPlayTypes,
+          (type) => topLevelPlayTypeAnalysisPoss[type] || 0
+        );
+
     return _.chain(
       teamBreakdownMode
         ? PlayTypeUtils.extendedTopLevelIndivPlayTypes
@@ -479,7 +489,7 @@ export class PlayTypeUtils {
         return [
           type,
           {
-            possPct: { value: poss },
+            possPct: { value: poss * possNormalizationFactor },
             pts: { value: poss > 0 && pts > 0 ? pts / poss : 0 },
           },
         ];
@@ -710,6 +720,7 @@ export class PlayTypeUtils {
         const posCategoryAssistNetworkMaybeIncMisses =
           playerStyle.assistedMissAdjustments
             ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
+                playStyleType,
                 posCategoryAssistNetwork,
                 playerStyle.assistedMissAdjustments,
                 playerStyle.totalPlaysMade
@@ -915,7 +926,8 @@ export class PlayTypeUtils {
       .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
       .value();
 
-    /** For assisted shots, estimate efficiency given some passes result in missed shots */
+    /** For assisted shots, estimate efficiency given some passes result in missed shots:
+     * IMPORTANT see comments in here about why this exists */
     const buildAdjustedAssistStat = (
       statName: string,
       stat: Statistic,
@@ -930,11 +942,17 @@ export class PlayTypeUtils {
 
         const _3pMult = statName.includes("3p") ? 1.5 : 1.0; //(want FG% since we just care about the number of misses)
 
-        /**/
-        //TODO: 1] eFG should be higher because these are adjusted plays (or do I already adjust for that somewhere?)
-        //TODO: 2] don't have eFG for transition or scrambles so numbers will be off
+        //TODO: there are some inaccuracies here though they sort of cancel each other out
+        // 1] eFG should be higher because these are adjusted plays (or do I already adjust for that somewhere?)
+        // 2] don't have eFG for transition or scrambles so numbers will be off
         //         (in the sense that player A passes to player B who misses, player B gets blame but not A)
-        //TODO: 3] This is happened _after_ TOs are added so I'm double the TOs also
+        // 3] This is happened _after_ TOs are added so I'm double the TOs also
+        //         but on the other hand, we need to double count TOs since a pass to a player who fumble the pass
+        //         is a TO on the receiver, but should still count against the passer's PPP
+        //
+        //    There is some disabled code in adjustPosCategoryAssistNetworkWithMissInfo that applies this in the
+        //    "correct" place that might be worth revisiting once eFG is fixed, but for now this empirically provides
+        //    better results
 
         const adjustedStat =
           playStyleType == "playsPct"
@@ -1633,6 +1651,7 @@ export class PlayTypeUtils {
 
   /** Add in an estimate of "assisted misses" to each positional category */
   static adjustPosCategoryAssistNetworkWithMissInfo(
+    playStyleType: PlayStyleType,
     mutableUnadjusted: Array<ScoredTargetAssistInfo>,
     missAdjustments: Record<string, number>,
     denominator: number
@@ -1651,6 +1670,8 @@ export class PlayTypeUtils {
 
       mutableUnadjusted.forEach((assistInfo, index) => {
         if (assistInfo.info) {
+          // Source assists - used for "scorer" calcs in player mode and all calcs in team mode
+
           const stat: Statistic = _.thru(
             (assistInfo.info as Record<string, Statistic>)[`source_${key}_ast`],
             (testStat) => {
@@ -1678,6 +1699,35 @@ export class PlayTypeUtils {
               stat.old_value = stat.value; //(save original value)
             }
             stat.value += adjustment;
+          }
+        }
+
+        // Target assists - used for passer calcs in player mode:
+
+        /** This code is currently run in aggregateToIndivTopLevelPlayStyles.buildAdjustedAssists, for reasons
+         * explained in that function
+         */
+        const useTargetAssistApproxLaterOn = false;
+
+        if (useTargetAssistApproxLaterOn) {
+          const targetEfg = (assistInfo.info as Record<string, Statistic>)[
+            `target_${key}_efg`
+          ]?.value; //(note this should be increased because it's assisted eFGs - see useTargetAssistApproxLaterOn)
+          const targetAstToAdj = (assistInfo.info as Record<string, Statistic>)[
+            `target_${key}_ast`
+          ];
+          if (!_.isNil(targetEfg) && targetAstToAdj) {
+            const _3pMult = key == "3p" ? 1.5 : 1.0; //(want FG% since we just care about the number of misses)
+
+            const rawStat = targetAstToAdj?.value || 0;
+            const adjustedStat =
+              playStyleType == "playsPct"
+                ? (rawStat * _3pMult) / targetEfg
+                : rawStat;
+            if (_.isNil(targetAstToAdj.old_value)) {
+              targetAstToAdj.old_value = targetAstToAdj.value; //(save original value)
+            }
+            targetAstToAdj.value = adjustedStat;
           }
         }
       });
@@ -1892,15 +1942,30 @@ export class PlayTypeUtils {
 
   // Some utils
 
+  static fetchIndivPlayTypes(
+    playerCode: PlayerCode,
+    playTypes: Set<TopLevelPlayType>,
+    rosterStatsByCode: RosterStatsByCode,
+    indivPlayTypes: TopLevelIndivPlayAnalysis
+  ): Array<IndivPlayTypeInfo> {
+    return PlayTypeUtils.fetchTopIndivPlayTypes(
+      playTypes,
+      rosterStatsByCode,
+      { [playerCode]: indivPlayTypes },
+      true
+    );
+  }
+
   /** Lists all individual contributions to the top level team play style */
   static fetchTopIndivPlayTypes(
     playTypes: Set<TopLevelPlayType>,
-    RosterStatsByCode: RosterStatsByCode,
-    indivPlayTypes: Record<PlayerCode, TopLevelIndivPlayAnalysis>
+    rosterStatsByCode: RosterStatsByCode,
+    indivPlayTypes: Record<PlayerCode, TopLevelIndivPlayAnalysis>,
+    disableFilters: boolean = false
   ): Array<IndivPlayTypeInfo> {
     return _.chain(indivPlayTypes)
       .flatMap((playTypeAnalysis, playerCode) => {
-        const indivStats = RosterStatsByCode[playerCode];
+        const indivStats = rosterStatsByCode[playerCode];
 
         if (indivStats) {
           const playTypeAggs = _.transform(
@@ -1954,7 +2019,10 @@ export class PlayTypeUtils {
         }
       })
       .filter(
-        (pt, ii) => ii < 10 || (pt?.playStats?.possPct?.value || 0) >= 0.01
+        (pt, ii) =>
+          disableFilters ||
+          ii < 10 ||
+          (pt?.playStats?.possPct?.value || 0) >= 0.01
       )
       .sortBy((pt) => -(pt.playStats?.possPct?.value || 0))
       .value();
