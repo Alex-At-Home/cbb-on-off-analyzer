@@ -109,10 +109,11 @@ export type TopLevelIndivPlayType =
   | "PnR Passer (Pick & Pop)"
   | "PnR Passer (Big Cut & Roll)";
 
-type PlayTypeStat = {
+export type PlayTypeStat = {
   possPct: Statistic;
   pts: Statistic;
   adj_pts?: Statistic;
+  possPctUsg?: Statistic;
 };
 
 export type TopLevelPlayAnalysis = Record<TopLevelPlayType, PlayTypeStat>;
@@ -477,7 +478,7 @@ export class PlayTypeUtils {
           (type) => topLevelPlayTypeAnalysisPoss[type] || 0
         );
 
-    return _.chain(
+    const playerContextAnalysis = _.chain(
       teamBreakdownMode
         ? PlayTypeUtils.extendedTopLevelIndivPlayTypes
         : PlayTypeUtils.topLevelIndivPlayTypes
@@ -496,6 +497,37 @@ export class PlayTypeUtils {
       })
       .fromPairs()
       .value() as TopLevelIndivPlayAnalysis;
+
+    if (!teamBreakdownMode) {
+      // add possPctUsg to each play style
+      _.chain(
+        PlayTypeUtils.fetchIndivPlayTypes(
+          player.code || "??",
+          new Set(PlayTypeUtils.topLevelPlayTypes), //(spits out all the topLevelIndivPlayTypes aggregated together)
+          rosterStatsByCode,
+          PlayTypeUtils.buildTopLevelIndivPlayStyles(
+            player,
+            rosterStatsByCode,
+            teamStats,
+            true
+          )
+        )
+      )
+        .forEach((playTypeInfo) => {
+          // Convert from 100 team possessions to "100 possessions during which player is on the floor"
+          if (!_.isNil(playTypeInfo.playStats.possPct.value)) {
+            playTypeInfo.playStats.possPct.value /=
+              player.off_team_poss_pct?.value || 1;
+          }
+
+          const phase1Result = playerContextAnalysis[playTypeInfo.playType];
+          if (phase1Result) {
+            phase1Result.possPctUsg = playTypeInfo.playStats.possPct;
+          }
+        })
+        .value();
+    }
+    return playerContextAnalysis;
   }
 
   /** Builds an aggregated top level view of defense */

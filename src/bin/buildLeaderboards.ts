@@ -72,7 +72,10 @@ import { DateUtils } from "../utils/DateUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import {
+  PlayTypeStat,
   PlayTypeUtils,
+  TopLevelIndivPlayAnalysis,
+  TopLevelIndivPlayType,
   TopLevelPlayAnalysis,
 } from "../utils/stats/PlayTypeUtils";
 import calculateTeamDefenseStats from "../pages/api/calculateTeamDefenseStats";
@@ -228,7 +231,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -1090,6 +1093,59 @@ export async function main() {
                   (count) => count / (totalPositionedPoss || 1)
                 );
 
+                // For each player we're going to calculate two different play type analyzes:
+                // what % of their own possessions
+                // Their per 100 while on the floor
+                // And then we'll calculate %iles for each
+
+                const playerDefSos =
+                  player?.def_adj_opp?.value || avgEfficiency;
+                const playerPlayStyleBreakdowns = _.chain(
+                  PlayTypeUtils.buildTopLevelIndivPlayStyles(
+                    player,
+                    globalRosterStatsByCode,
+                    teamBaseline,
+                    false
+                  )
+                )
+                  .mapValues((stat) => {
+                    return {
+                      ...stat,
+                      adj_pts: {
+                        value:
+                          ((stat.pts?.value || 0) * avgEfficiency) /
+                          playerDefSos,
+                      },
+                    };
+                  })
+                  .value();
+
+                // And write to grade file:
+
+                if (label == "all") {
+                  GradeUtils.buildAndInjectIndivPlayStyleStats(
+                    playerPlayStyleBreakdowns,
+                    undefined, //(no defence currently)
+                    mutablePlayerDivisionStats,
+                    inNaturalTier
+                  );
+                  // Also per position grouping:
+                  (
+                    PositionUtils.positionsToGroup[posInfo.posClass] || []
+                  ).forEach((posGroup) => {
+                    const mutablePosGroupDivStats =
+                      mutablePlayerDivisionStats_byPosGroup[posGroup];
+                    if (mutablePosGroupDivStats) {
+                      GradeUtils.buildAndInjectIndivPlayStyleStats(
+                        playerPlayStyleBreakdowns,
+                        undefined, //(no defence currently)
+                        mutablePosGroupDivStats,
+                        inNaturalTier
+                      );
+                    }
+                  });
+                }
+
                 // Remove offensive luck apart from RAPM (everything else is normalized to data set)
                 [
                   "off_rtg",
@@ -1151,26 +1207,27 @@ export async function main() {
                     }
                   });
                 }
-                const playerInfo = kv[1];
 
                 return {
                   /** _id used for indexing purposes, will mostly use NCAA id */
                   _id: `${
                     rosterInfoJson[player.code || ""]?.player_code_id
                       ?.ncaa_id ||
-                    `${playerInfo.code || kv[0]}${
-                      playerInfo.team || ""
-                    }`.replace(/[^A-Z]/gi, "")
+                    `${player.code || kv[0]}${player.team || ""}`.replace(
+                      /[^A-Z]/gi,
+                      ""
+                    )
                   }_${inGender}_${inYear.substring(0, 4)}_${label}`,
                   key: kv[0],
                   conf: conference,
                   team: team,
                   year: teamYear,
                   shotInfo: shotChartMap[kv[0]],
+                  style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this
                   posFreqs,
                   ...((cutdownLowVolume
-                    ? lowVolumeStripPlayerInfo(playerInfo)
-                    : _.chain(playerInfo)
+                    ? lowVolumeStripPlayerInfo(player)
+                    : _.chain(player)
                         .toPairs()
                         .filter(
                           (

@@ -13,7 +13,11 @@ import {
   TeamStatSet,
   PureStatSet,
 } from "../StatModels";
-import { TopLevelPlayAnalysis } from "./PlayTypeUtils";
+import {
+  TopLevelIndivPlayAnalysis,
+  TopLevelIndivPlayType,
+  TopLevelPlayAnalysis,
+} from "./PlayTypeUtils";
 
 type QualifyingCriterion = [string, number];
 
@@ -332,6 +336,51 @@ export class GradeUtils {
       });
       fieldChain.forEach((f) => updateForField(f, playerStats)).value();
     }
+  };
+
+  /** Add play style stats to a team (division) stats collection */
+  static buildAndInjectIndivPlayStyleStats = (
+    playStyle: TopLevelIndivPlayAnalysis,
+    defensivePlayStyle: TopLevelIndivPlayAnalysis | undefined,
+    mutableDivisionStats: DivisionStatistics,
+    inNaturalTier: boolean
+  ) => {
+    _.forEach([playStyle, defensivePlayStyle], (tmpPlayStyle, isDef) => {
+      const defPrefix = isDef == 1 ? `Def` : "";
+      if (tmpPlayStyle) {
+        _.forEach(tmpPlayStyle, (playStyleInfo, playStyleType) => {
+          const updateForField = (
+            field: string,
+            stat: Statistic | undefined
+          ) => {
+            if (!_.isNil(stat?.value)) {
+              if (!mutableDivisionStats.tier_samples[field]) {
+                mutableDivisionStats.tier_samples[field] = [];
+              }
+              mutableDivisionStats.tier_samples[field]!.push(stat.value);
+
+              if (inNaturalTier) {
+                if (!mutableDivisionStats.dedup_samples[field]) {
+                  mutableDivisionStats.dedup_samples[field] = [];
+                }
+                mutableDivisionStats.dedup_samples[field]!.push(stat.value);
+              }
+            }
+          };
+          const possPctField = `${playStyleType}|${defPrefix}Pct`;
+          //(Usg field might not exist => treat as 0)
+          updateForField(possPctField, playStyleInfo.possPct);
+          const possPctUsgField = `${playStyleType}|${defPrefix}UsgPct`;
+          updateForField(possPctUsgField, playStyleInfo.possPctUsg);
+          const pppField = `${playStyleType}|${defPrefix}Ppp`;
+          updateForField(pppField, playStyleInfo.pts);
+          if (playStyleInfo.adj_pts) {
+            const adjPppField = `${playStyleType}|${defPrefix}AdjPpp`;
+            updateForField(adjPppField, playStyleInfo.adj_pts);
+          }
+        });
+      }
+    });
   };
 
   /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
