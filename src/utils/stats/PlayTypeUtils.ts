@@ -1704,30 +1704,32 @@ export class PlayTypeUtils {
 
         // Target assists - used for passer calcs in player mode:
 
-        /** This code is currently run in aggregateToIndivTopLevelPlayStyles.buildAdjustedAssists, for reasons
-         * explained in that function
-         */
-        const useTargetAssistApproxLaterOn = false;
+        if (playStyleType == "playsPct") {
+          /** This code is currently run in aggregateToIndivTopLevelPlayStyles.buildAdjustedAssists, for reasons
+           * explained in that function
+           */
+          const useTargetAssistApproxLaterOn = false;
 
-        if (useTargetAssistApproxLaterOn) {
-          const targetEfg = (assistInfo.info as Record<string, Statistic>)[
-            `target_${key}_efg`
-          ]?.value; //(note this should be increased because it's assisted eFGs - see useTargetAssistApproxLaterOn)
-          const targetAstToAdj = (assistInfo.info as Record<string, Statistic>)[
-            `target_${key}_ast`
-          ];
-          if (!_.isNil(targetEfg) && targetAstToAdj) {
-            const _3pMult = key == "3p" ? 1.5 : 1.0; //(want FG% since we just care about the number of misses)
+          if (useTargetAssistApproxLaterOn) {
+            const targetEfg = (assistInfo.info as Record<string, Statistic>)[
+              `target_${key}_efg`
+            ]?.value; //(note this should be increased because it's assisted eFGs - see useTargetAssistApproxLaterOn)
+            const targetAstToAdj = (
+              assistInfo.info as Record<string, Statistic>
+            )[`target_${key}_ast`];
+            if (!_.isNil(targetEfg) && targetAstToAdj) {
+              const _3pMult = key == "3p" ? 1.5 : 1.0; //(want FG% since we just care about the number of misses)
 
-            const rawStat = targetAstToAdj?.value || 0;
-            const adjustedStat =
-              playStyleType == "playsPct"
-                ? (rawStat * _3pMult) / targetEfg
-                : rawStat;
-            if (_.isNil(targetAstToAdj.old_value)) {
-              targetAstToAdj.old_value = targetAstToAdj.value; //(save original value)
+              const rawStat = targetAstToAdj?.value || 0;
+              const adjustedStat =
+                playStyleType == "playsPct"
+                  ? (rawStat * _3pMult) / targetEfg
+                  : rawStat;
+              if (_.isNil(targetAstToAdj.old_value)) {
+                targetAstToAdj.old_value = targetAstToAdj.value; //(save original value)
+              }
+              targetAstToAdj.value = adjustedStat;
             }
-            targetAstToAdj.value = adjustedStat;
           }
         }
       });
