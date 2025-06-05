@@ -353,7 +353,7 @@ export class GradeUtils {
             field: string,
             stat: Statistic | undefined
           ) => {
-            if (!_.isNil(stat?.value)) {
+            if (stat && !_.isNil(stat?.value)) {
               if (!mutableDivisionStats.tier_samples[field]) {
                 mutableDivisionStats.tier_samples[field] = [];
               }
