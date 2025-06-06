@@ -105,6 +105,7 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import ShotChartDiagView, { UserChartOpts } from "./diags/ShotChartDiagView";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
+import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -1437,21 +1438,40 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               showPlayTypes
                 ? [
                     GenericTableOps.buildTextRow(
-                      <PlayerPlayTypeDiagView
-                        player={
-                          {
-                            ...player,
-                            posClass: p.global?.posClass || "??",
-                          } as IndivStatSet
-                        }
-                        rosterStatsByCode={rosterStatsByCode.global}
-                        teamStats={getTeamStats(
-                          queryKey,
-                          teamStats,
-                          otherQueryIndex
-                        )}
-                        showHelp={showHelp}
-                      />,
+                      FeatureFlags.isActiveWindow(
+                        FeatureFlags.betterStyleAnalysis
+                      ) ? (
+                        <IndivPlayTypeDiagRadar
+                          title="Baseline"
+                          player={player}
+                          rosterStatsByCode={rosterStatsByCode.global}
+                          teamStats={getTeamStats(
+                            queryKey,
+                            teamStats,
+                            otherQueryIndex
+                          )}
+                          showGrades={showGrades}
+                          grades={divisionStatsCache}
+                          showHelp={showHelp}
+                          quickSwitchOverride={undefined}
+                        />
+                      ) : (
+                        <PlayerPlayTypeDiagView
+                          player={
+                            {
+                              ...player,
+                              posClass: p.global?.posClass || "??",
+                            } as IndivStatSet
+                          }
+                          rosterStatsByCode={rosterStatsByCode.global}
+                          teamStats={getTeamStats(
+                            queryKey,
+                            teamStats,
+                            otherQueryIndex
+                          )}
+                          showHelp={showHelp}
+                        />
+                      ),
                       "small"
                     ),
                   ]

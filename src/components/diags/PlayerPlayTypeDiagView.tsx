@@ -36,8 +36,6 @@ import {
   RosterStatsByCode,
   TeamStatSet,
 } from "../../utils/StatModels";
-import { FeatureFlags } from "../../utils/stats/FeatureFlags";
-import IndivPlayTypeDiagRadar from "./IndivPlayTypeDiagRadar";
 
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -66,29 +64,10 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
   showHelp,
   showDetailsOverride,
 }) => {
-  //TODO: hack for testing this, need to integrate it more sensibly
-  if (FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)) {
-    return (
-      <IndivPlayTypeDiagRadar
-        title="Baseline"
-        player={player}
-        rosterStatsByCode={rosterStatsByCode}
-        teamStats={teamStats}
-        showGrades="false"
-        showHelp={showHelp}
-        quickSwitchOverride={undefined}
-      />
-    );
-  }
-
   const [showPlayerBreakdown, setShowPlayerBreakdown] = useState(
     showDetailsOverride || false
   );
-  const [tableType, setTableType] = useState<"scoring" | "usage">(
-    FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)
-      ? "usage"
-      : "scoring"
-  );
+  const [tableType, setTableType] = useState<"scoring">("scoring");
 
   ////////////////////////////////////
 
@@ -296,6 +275,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
       return el;
     }
   };
+  //TODO: move these to top level like I did for indiv
   const scoringToggle = maybeBold(
     "scoring",
     <a
@@ -314,7 +294,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
       href="#"
       onClick={(event) => {
         event.preventDefault();
-        setTableType("usage");
+        setTableType("scoring");
       }}
     >
       Usage
@@ -330,11 +310,6 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
       </span>
       <br />
       <br />
-      {FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis) ? (
-        <span>
-          ({scoringToggle} // {usageToggle})
-        </span>
-      ) : null}
       <Container>
         <Col xs={10}>
           <GenericTable

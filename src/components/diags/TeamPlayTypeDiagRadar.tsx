@@ -189,6 +189,17 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const supportPlayerBreakdown =
     !startWithRaw && !defensiveOverrideIn && playersIn.length > 0;
 
+  // At some point calculate medians for display purposes
+  // if (grades && grades.Combo) {
+  //   console.log(
+  //     "RESULTS",
+  //     GradeUtils.getMedianPlayTypeValue(
+  //       PlayTypeUtils.topLevelPlayTypes,
+  //       grades.Combo
+  //     )
+  //   );
+  // }
+
   const playerTopLevelPlayTypeStyles:
     | Record<PlayerCode, TopLevelIndivPlayAnalysis>
     | undefined =

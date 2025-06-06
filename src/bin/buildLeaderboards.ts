@@ -231,7 +231,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -1080,6 +1080,17 @@ export async function main() {
                 const posInfo = positionFromPlayerKey[kv[0]] || {};
                 const player = kv[1];
 
+                // Apply different criteria depending on how far through the season we are
+                const offPoss = teamBaseline.off_poss?.value || 2000;
+                const criteriaMult =
+                  offPoss < 500
+                    ? 0.25
+                    : offPoss < 1000
+                    ? 0.5
+                    : offPoss < 1500
+                    ? 0.75
+                    : 1;
+
                 // Calculate the % of the time they spend at each position
                 const countsPerPos = rosterPositionalInfo.map(
                   (playersPerPos) => {
@@ -1100,6 +1111,7 @@ export async function main() {
 
                 const playerDefSos =
                   player?.def_adj_opp?.value || avgEfficiency;
+
                 const playerPlayStyleBreakdowns = _.chain(
                   PlayTypeUtils.buildTopLevelIndivPlayStyles(
                     player,
@@ -1123,8 +1135,36 @@ export async function main() {
                 // And write to grade file:
 
                 if (label == "all") {
+                  // (these stats have too few to grade)
+                  // TODO; move this into GradeUtils
+                  const playStyleBreakdownsTypesToIgnore = _.chain(
+                    playerPlayStyleBreakdowns
+                  )
+                    .flatMap((stat, val) => {
+                      const teamPossForStyle =
+                        (stat.possPctUsg?.value || 0) *
+                        (player.off_team_poss?.value || 0);
+                      return teamPossForStyle >= 10 * criteriaMult //(arbtirary number)
+                        ? []
+                        : ([val] as TopLevelIndivPlayType[]);
+                    })
+                    .value();
+
+                  // DIAG FOR OMITTING
+                  // console.log(
+                  //   `${player.code} [${
+                  //     player.off_team_poss?.value || 0
+                  //   }]: OMIT [${playStyleBreakdownsTypesToIgnore}] (${playStyleBreakdownsTypesToIgnore.map(
+                  //     (t) =>
+                  //       playerPlayStyleBreakdowns[t]?.possPctUsg?.value || -1
+                  //   )})`
+                  // );
+
                   GradeUtils.buildAndInjectIndivPlayStyleStats(
-                    playerPlayStyleBreakdowns,
+                    _.omit(
+                      playerPlayStyleBreakdowns,
+                      playStyleBreakdownsTypesToIgnore
+                    ) as TopLevelIndivPlayAnalysis,
                     undefined, //(no defence currently)
                     mutablePlayerDivisionStats,
                     inNaturalTier
@@ -1137,7 +1177,10 @@ export async function main() {
                       mutablePlayerDivisionStats_byPosGroup[posGroup];
                     if (mutablePosGroupDivStats) {
                       GradeUtils.buildAndInjectIndivPlayStyleStats(
-                        playerPlayStyleBreakdowns,
+                        _.omit(
+                          playerPlayStyleBreakdowns,
+                          playStyleBreakdownsTypesToIgnore
+                        ) as TopLevelIndivPlayAnalysis,
                         undefined, //(no defence currently)
                         mutablePosGroupDivStats,
                         inNaturalTier
@@ -1171,17 +1214,6 @@ export async function main() {
                   );
                 }
                 if ("all" == label) {
-                  // Apply different criteria depending on how far through the season we are
-                  const offPoss = teamBaseline.off_poss?.value || 2000;
-                  const criteriaMult =
-                    offPoss < 500
-                      ? 0.25
-                      : offPoss < 1000
-                      ? 0.5
-                      : offPoss < 1500
-                      ? 0.75
-                      : 1;
-
                   // Everything except RAPM (we do it here because we need total_*, which get removed below)
                   GradeUtils.buildAndInjectPlayerDivisionStats(
                     player,

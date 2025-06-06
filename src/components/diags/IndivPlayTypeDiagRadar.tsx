@@ -63,7 +63,7 @@ export type Props = {
   quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
 };
-const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
+const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
   player: playerIn,
   rosterStatsByCode,
@@ -76,6 +76,17 @@ const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   defensiveOverride,
   quickSwitchOverride,
 }) => {
+  // At some point calculate medians for display purposes
+  // if (grades && grades.Combo) {
+  //   console.log(
+  //     "RESULTS",
+  //     GradeUtils.getMedianIndivPlayTypeValue(
+  //       PlayTypeUtils.topLevelIndivPlayTypes,
+  //       grades.Combo
+  //     )
+  //   );
+  // }
+
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
@@ -101,7 +112,7 @@ const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   const getPlayTypeName = (name: string) => {
     if (name == "Put-Back") {
-      return "Rebound & Scramble";
+      return "Reb. & Scramble";
     } else if (name == "Backdoor Cut") {
       return "Perimeter Cut";
     } else if (name == "Post & Kick") {
@@ -122,14 +133,7 @@ const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
     const { x, y, payload } = props;
     return (
-      <Text
-        x={x}
-        y={y}
-        width={40}
-        textAnchor="middle"
-        verticalAnchor="start"
-        style={{ fontWeight: "bold" }}
-      >
+      <Text x={x} y={y} width={40} textAnchor="middle" verticalAnchor="start">
         {payload.value}
       </Text>
     );
@@ -246,7 +250,7 @@ const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   };
 
   /** Shows the JSON at the bottom if enabled */
-  const debugView = true;
+  const debugView = false;
 
   return React.useMemo(() => {
     const topLevelPlayTypeStylesPctile = tierToUse
@@ -392,7 +396,7 @@ const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     defensiveOverride,
   ]);
 };
-export default IndivTeamPlayTypeDiagRadar;
+export default IndivPlayTypeDiagRadar;
 
 /** Util for console log */
 const tidyNumbers = (k: string, v: any) => {

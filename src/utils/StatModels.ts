@@ -8,6 +8,15 @@ import {
 import { ORtgDiagnostics, DRtgDiagnostics } from "./stats/RatingUtils";
 import { RedBlackTree } from "@collectable/red-black-tree";
 
+export type DivisionStatisticsElement = {
+  isPct?: boolean; //(whether you need to *100 before applying .toFixed(0))
+  lutMult?: number; //(alternative to isPct, let's you specify *10, *100)
+  size: number; //(total number of samples in the LUT)
+  min: number; //(don't need max, if value missed LUT and is >max then %ile==100, else 1)
+  lut: Record<string, Array<number>>; //([0] of the entry is the offset)
+  spaces_between?: RedBlackTree.Instance<number, number>; //(if not in the LUT use an optimized binary chop)
+};
+
 export type DivisionStatistics = {
   /** The number of teams in the tier (includes teams in multiple tiers) */
   tier_sample_size: number;
@@ -17,17 +26,7 @@ export type DivisionStatistics = {
   tier_samples: Record<string, Array<number>>;
 
   /** Lets you do faster search of what percentile you are in by first looking up with .toFixed(0), or (100*).toFixed*/
-  tier_lut: Record<
-    string,
-    {
-      isPct?: boolean; //(whether you need to *100 before applying .toFixed(0))
-      lutMult?: number; //(alternative to isPct, let's you specify *10, *100)
-      size: number; //(total number of samples in the LUT)
-      min: number; //(don't need max, if value missed LUT and is >max then %ile==100, else 1)
-      lut: Record<string, Array<number>>; //([0] of the entry is the offset)
-      spaces_between?: RedBlackTree.Instance<number, number>; //(if not in the LUT use an optimized binary chop)
-    }
-  >;
+  tier_lut: Record<string, DivisionStatisticsElement>;
 
   compression_factor?: number; //(defaults to 1, else we compress tier_lut[field].lut[lookup] by this number)
 

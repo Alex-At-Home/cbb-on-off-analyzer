@@ -12,11 +12,13 @@ import {
   Statistic,
   TeamStatSet,
   PureStatSet,
+  DivisionStatisticsElement,
 } from "../StatModels";
 import {
   TopLevelIndivPlayAnalysis,
   TopLevelIndivPlayType,
   TopLevelPlayAnalysis,
+  TopLevelPlayType,
 } from "./PlayTypeUtils";
 
 type QualifyingCriterion = [string, number];
@@ -269,6 +271,46 @@ export class GradeUtils {
     });
   };
 
+  /** Handy util to get the Medians of each play type */
+  static getMedianPlayTypeValue = (
+    fieldList: TopLevelPlayType[],
+    divisionStats: DivisionStatistics
+  ): TopLevelIndivPlayAnalysis => {
+    return _.transform(
+      fieldList,
+      (acc, val) => {
+        const calcMedian = (suffix: string): number => {
+          const el = divisionStats.tier_lut[`${val}|${suffix}`];
+          if (el) {
+            const target = Math.floor(el.size / 2);
+            const maybeMedium = _.find(
+              el.lut,
+              (lutEl) =>
+                lutEl[0] < target && lutEl[0] + lutEl.length - 1 >= target
+            );
+            if (maybeMedium) {
+              const currStart = maybeMedium[0];
+              return maybeMedium[target - currStart];
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        };
+        const tierLutEl = divisionStats.tier_lut[`${val}|Pct`];
+        if (tierLutEl) {
+          acc[val] = {
+            pts: { value: calcMedian("Ppp") },
+            adj_pts: { value: calcMedian("AdjPpp") },
+            possPct: { value: calcMedian("Pct") },
+          };
+        }
+      },
+      {} as TopLevelIndivPlayAnalysis
+    );
+  };
+
   /** Add a team's stats to the divison stats collection  */
   static buildAndInjectPlayerDivisionStats = (
     playerStats: PureStatSet,
@@ -336,6 +378,47 @@ export class GradeUtils {
       });
       fieldChain.forEach((f) => updateForField(f, playerStats)).value();
     }
+  };
+
+  /** Handy util to get the Medians of each play type */
+  static getMedianIndivPlayTypeValue = (
+    fieldList: TopLevelIndivPlayType[],
+    divisionStats: DivisionStatistics
+  ): TopLevelIndivPlayAnalysis => {
+    return _.transform(
+      fieldList,
+      (acc, val) => {
+        const calcMedian = (suffix: string): number => {
+          const el = divisionStats.tier_lut[`${val}|${suffix}`];
+          if (el) {
+            const target = Math.floor(el.size / 2);
+            const maybeMedium = _.find(
+              el.lut,
+              (lutEl) =>
+                lutEl[0] < target && lutEl[0] + lutEl.length - 1 >= target
+            );
+            if (maybeMedium) {
+              const currStart = maybeMedium[0];
+              return maybeMedium[target - currStart]; //(at least 1)
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        };
+        const tierLutEl = divisionStats.tier_lut[`${val}|Pct`];
+        if (tierLutEl) {
+          acc[val] = {
+            pts: { value: calcMedian("Ppp") },
+            adj_pts: { value: calcMedian("AdjPpp") },
+            possPct: { value: calcMedian("Pct") },
+            possPctUsg: { value: calcMedian("UsgPct") },
+          };
+        }
+      },
+      {} as TopLevelIndivPlayAnalysis
+    );
   };
 
   /** Add play style stats to a team (division) stats collection */
