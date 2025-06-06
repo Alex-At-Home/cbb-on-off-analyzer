@@ -1435,7 +1435,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   ]
                 : [],
 
-              showPlayTypes
+              showPlayTypes && player
                 ? [
                     GenericTableOps.buildTextRow(
                       FeatureFlags.isActiveWindow(
