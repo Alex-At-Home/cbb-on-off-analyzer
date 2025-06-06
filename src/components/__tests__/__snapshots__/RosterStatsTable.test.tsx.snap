@@ -54749,7 +54749,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
-                "text": <PlayerPlayTypeDiagView
+                "text": <IndivPlayTypeTabbedView
+                  avgEfficiency={100}
+                  grades={Object {}}
                   player={
                     {
                       code: "AnCowan"
@@ -55018,16 +55020,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.3286082921113648,
                                           }
 
-                      posClass: Array [
-                                            0.8192008631785397,
-                                            0.17772995094195346,
-                                            0.0029450999520716564,
-                                            0.00012406749589029611,
-                                            1.8431544921504272e-8,
-                                          ]
-
                       role: "s-PG"}
                   }
+                  quickSwitchOptions={Array []}
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
@@ -55568,12 +55563,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         role: "s-PG"},
                     }
                   }
+                  showGrades=""
                   showHelp={true}
                   teamStats={
                     Object {
                       "doc_count": 0,
                     }
                   }
+                  title="On ('A')"
                 />,
               },
               GenericTableRepeatHeaderRow {
@@ -56194,7 +56191,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
-                "text": <PlayerPlayTypeDiagView
+                "text": <IndivPlayTypeTabbedView
+                  avgEfficiency={100}
+                  grades={Object {}}
                   player={
                     {
                       code: "AnCowan"
@@ -56463,16 +56462,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.32518545203588684,
                                           }
 
-                      posClass: Array [
-                                            0.8192008631785397,
-                                            0.17772995094195346,
-                                            0.0029450999520716564,
-                                            0.00012406749589029611,
-                                            1.8431544921504272e-8,
-                                          ]
-
                       role: "s-PG"}
                   }
+                  quickSwitchOptions={Array []}
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
@@ -57013,12 +57005,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         role: "s-PG"},
                     }
                   }
+                  showGrades=""
                   showHelp={true}
                   teamStats={
                     Object {
                       "doc_count": 0,
                     }
                   }
+                  title="Off ('B')"
                 />,
               },
               GenericTableSeparator {
@@ -57642,7 +57636,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
-                "text": <PlayerPlayTypeDiagView
+                "text": <IndivPlayTypeTabbedView
+                  avgEfficiency={100}
+                  grades={Object {}}
                   player={
                     {
                       code: "AaWiggins"
@@ -57911,16 +57907,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.3213520330419174,
                                           }
 
-                      posClass: Array [
-                                            0.01651455435277959,
-                                            0.3855794617628767,
-                                            0.4198359681421955,
-                                            0.17806397232151003,
-                                            0.000006043420638067578,
-                                          ]
-
                       role: "WG"}
                   }
+                  quickSwitchOptions={Array []}
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
@@ -58461,12 +58450,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         role: "s-PG"},
                     }
                   }
+                  showGrades=""
                   showHelp={true}
                   teamStats={
                     Object {
                       "doc_count": 0,
                     }
                   }
+                  title="On ('A')"
                 />,
               },
               GenericTableSeparator {
@@ -59078,7 +59069,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
-                "text": <PlayerPlayTypeDiagView
+                "text": <IndivPlayTypeTabbedView
+                  avgEfficiency={100}
+                  grades={Object {}}
                   player={
                     {
                       code: "ReMona"
@@ -59341,10 +59334,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.40541529411764704,
                                           }
 
-                      posClass: "??"
-
                       role: "G?"}
                   }
+                  quickSwitchOptions={Array []}
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
@@ -59885,12 +59877,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         role: "s-PG"},
                     }
                   }
+                  showGrades=""
                   showHelp={true}
                   teamStats={
                     Object {
                       "doc_count": 0,
                     }
                   }
+                  title="Off ('B')"
                 />,
               },
               GenericTableSeparator {

@@ -251,6 +251,7 @@ Array [
       ],
       "roster": undefined,
       "shotInfo": undefined,
+      "style": undefined,
       "team": "Maryland",
       "total_off_2p_attempts": Object {
         "value": 182,
@@ -521,6 +522,7 @@ Array [
         "year_class": "Jr",
       },
       "shotInfo": undefined,
+      "style": undefined,
       "team": "Maryland",
       "total_off_2p_attempts": Object {
         "value": 133,
@@ -792,6 +794,7 @@ Array [
       ],
       "roster": undefined,
       "shotInfo": undefined,
+      "style": undefined,
       "team": "Maryland",
       "total_off_2p_attempts": Object {
         "value": 182,
@@ -15610,6 +15613,126 @@ Object {
   "compression_factor": 3,
   "dedup_sample_size": 2,
   "dedup_samples": Object {
+    "Attack & Kick|AdjPpp": Array [
+      0.30700571132025767,
+    ],
+    "Attack & Kick|Pct": Array [
+      0.10704851052421052,
+    ],
+    "Attack & Kick|Ppp": Array [
+      0.2901890186078255,
+    ],
+    "Attack & Kick|UsgPct": Array [
+      0.0284792469393864,
+    ],
+    "Backdoor Cut|AdjPpp": Array [
+      1.35907138548711,
+    ],
+    "Backdoor Cut|Pct": Array [
+      0.023051563289105532,
+    ],
+    "Backdoor Cut|Ppp": Array [
+      1.2846262366795866,
+    ],
+    "Backdoor Cut|UsgPct": Array [
+      0.009654585007128364,
+    ],
+    "Dribble Jumper|AdjPpp": Array [
+      0.8643597670877363,
+    ],
+    "Dribble Jumper|Pct": Array [
+      0.04380319947001168,
+    ],
+    "Dribble Jumper|Ppp": Array [
+      0.8170131801672709,
+    ],
+    "Dribble Jumper|UsgPct": Array [
+      0.029441613401834748,
+    ],
+    "Hits Cutter|AdjPpp": Array [
+      0.1567022892166701,
+    ],
+    "Hits Cutter|Pct": Array [
+      0.0742260903389524,
+    ],
+    "Hits Cutter|Ppp": Array [
+      0.14811868914695528,
+    ],
+    "Hits Cutter|UsgPct": Array [
+      0.019747151508755827,
+    ],
+    "Mid-Range|AdjPpp": Array [
+      0.32625904347358253,
+    ],
+    "Mid-Range|Pct": Array [
+      0.054257916235614996,
+    ],
+    "Mid-Range|Ppp": Array [
+      0.30838772096576167,
+    ],
+    "Mid-Range|UsgPct": Array [
+      0.0195795515665207,
+    ],
+    "Perimeter Sniper|AdjPpp": Array [
+      0.9822872624343785,
+    ],
+    "Perimeter Sniper|Pct": Array [
+      0.05643485513269927,
+    ],
+    "Perimeter Sniper|Ppp": Array [
+      0.9300920839845185,
+    ],
+    "Perimeter Sniper|UsgPct": Array [
+      0.03793177684070753,
+    ],
+    "PnR Passer|AdjPpp": Array [
+      2.309139653882643,
+    ],
+    "PnR Passer|Pct": Array [
+      0.017538113667907078,
+    ],
+    "PnR Passer|Ppp": Array [
+      2.18265310800556,
+    ],
+    "PnR Passer|UsgPct": Array [
+      0.011787959981358332,
+    ],
+    "Put-Back|AdjPpp": Array [
+      1.015067756952344,
+    ],
+    "Put-Back|Pct": Array [
+      0.020841125522053295,
+    ],
+    "Put-Back|Ppp": Array [
+      0.9611307420494698,
+    ],
+    "Put-Back|UsgPct": Array [
+      0.014008026078083217,
+    ],
+    "Rim Attack|AdjPpp": Array [
+      0.7363582985137546,
+    ],
+    "Rim Attack|Pct": Array [
+      0.12080277227977634,
+    ],
+    "Rim Attack|Ppp": Array [
+      0.6972308922408587,
+    ],
+    "Rim Attack|UsgPct": Array [
+      0.04196108665906756,
+    ],
+    "Transition|AdjPpp": Array [
+      1.1449069971416383,
+    ],
+    "Transition|Pct": Array [
+      0.0809611062998956,
+    ],
+    "Transition|Ppp": Array [
+      1.084070796460177,
+    ],
+    "Transition|UsgPct": Array [
+      0.05125568907982692,
+    ],
     "def_2prim": Array [
       0.005065856129685917,
     ],
@@ -15690,6 +15813,486 @@ Object {
     ],
   },
   "tier_lut": Object {
+    "Attack & Kick|AdjPpp": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.30700571132025767,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.30700571132025767,
+      "size": 1,
+    },
+    "Attack & Kick|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "11": Array [
+          0,
+          0.10704851052421052,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.10704851052421052,
+      "size": 1,
+    },
+    "Attack & Kick|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "29": Array [
+          0,
+          0.2901890186078255,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.2901890186078255,
+      "size": 1,
+    },
+    "Attack & Kick|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "3": Array [
+          0,
+          0.0284792469393864,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.0284792469393864,
+      "size": 1,
+    },
+    "Backdoor Cut|AdjPpp": Object {
+      "isPct": false,
+      "lut": Object {
+        "1": Array [
+          0,
+          1.35907138548711,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 1.35907138548711,
+      "size": 1,
+    },
+    "Backdoor Cut|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.023051563289105532,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.023051563289105532,
+      "size": 1,
+    },
+    "Backdoor Cut|Ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "1": Array [
+          0,
+          1.2846262366795866,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 1.2846262366795866,
+      "size": 1,
+    },
+    "Backdoor Cut|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "1": Array [
+          0,
+          0.009654585007128364,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.009654585007128364,
+      "size": 1,
+    },
+    "Dribble Jumper|AdjPpp": Object {
+      "isPct": true,
+      "lut": Object {
+        "86": Array [
+          0,
+          0.8643597670877363,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.8643597670877363,
+      "size": 1,
+    },
+    "Dribble Jumper|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "4": Array [
+          0,
+          0.04380319947001168,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.04380319947001168,
+      "size": 1,
+    },
+    "Dribble Jumper|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "82": Array [
+          0,
+          0.8170131801672709,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.8170131801672709,
+      "size": 1,
+    },
+    "Dribble Jumper|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "3": Array [
+          0,
+          0.029441613401834748,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.029441613401834748,
+      "size": 1,
+    },
+    "Hits Cutter|AdjPpp": Object {
+      "isPct": true,
+      "lut": Object {
+        "16": Array [
+          0,
+          0.1567022892166701,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.1567022892166701,
+      "size": 1,
+    },
+    "Hits Cutter|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "7": Array [
+          0,
+          0.0742260903389524,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.0742260903389524,
+      "size": 1,
+    },
+    "Hits Cutter|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "15": Array [
+          0,
+          0.14811868914695528,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.14811868914695528,
+      "size": 1,
+    },
+    "Hits Cutter|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.019747151508755827,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.019747151508755827,
+      "size": 1,
+    },
+    "Mid-Range|AdjPpp": Object {
+      "isPct": true,
+      "lut": Object {
+        "33": Array [
+          0,
+          0.32625904347358253,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.32625904347358253,
+      "size": 1,
+    },
+    "Mid-Range|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "5": Array [
+          0,
+          0.054257916235614996,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.054257916235614996,
+      "size": 1,
+    },
+    "Mid-Range|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.30838772096576167,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.30838772096576167,
+      "size": 1,
+    },
+    "Mid-Range|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.0195795515665207,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.0195795515665207,
+      "size": 1,
+    },
+    "Perimeter Sniper|AdjPpp": Object {
+      "isPct": true,
+      "lut": Object {
+        "98": Array [
+          0,
+          0.9822872624343785,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.9822872624343785,
+      "size": 1,
+    },
+    "Perimeter Sniper|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "6": Array [
+          0,
+          0.05643485513269927,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.05643485513269927,
+      "size": 1,
+    },
+    "Perimeter Sniper|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "93": Array [
+          0,
+          0.9300920839845185,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.9300920839845185,
+      "size": 1,
+    },
+    "Perimeter Sniper|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "4": Array [
+          0,
+          0.03793177684070753,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.03793177684070753,
+      "size": 1,
+    },
+    "PnR Passer|AdjPpp": Object {
+      "isPct": false,
+      "lut": Object {
+        "2": Array [
+          0,
+          2.309139653882643,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 2.309139653882643,
+      "size": 1,
+    },
+    "PnR Passer|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.017538113667907078,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.017538113667907078,
+      "size": 1,
+    },
+    "PnR Passer|Ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "2": Array [
+          0,
+          2.18265310800556,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 2.18265310800556,
+      "size": 1,
+    },
+    "PnR Passer|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "1": Array [
+          0,
+          0.011787959981358332,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.011787959981358332,
+      "size": 1,
+    },
+    "Put-Back|AdjPpp": Object {
+      "isPct": false,
+      "lut": Object {
+        "1": Array [
+          0,
+          1.015067756952344,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 1.015067756952344,
+      "size": 1,
+    },
+    "Put-Back|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.020841125522053295,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.020841125522053295,
+      "size": 1,
+    },
+    "Put-Back|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "96": Array [
+          0,
+          0.9611307420494698,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.9611307420494698,
+      "size": 1,
+    },
+    "Put-Back|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "1": Array [
+          0,
+          0.014008026078083217,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.014008026078083217,
+      "size": 1,
+    },
+    "Rim Attack|AdjPpp": Object {
+      "isPct": true,
+      "lut": Object {
+        "74": Array [
+          0,
+          0.7363582985137546,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.7363582985137546,
+      "size": 1,
+    },
+    "Rim Attack|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "12": Array [
+          0,
+          0.12080277227977634,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.12080277227977634,
+      "size": 1,
+    },
+    "Rim Attack|Ppp": Object {
+      "isPct": true,
+      "lut": Object {
+        "70": Array [
+          0,
+          0.6972308922408587,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.6972308922408587,
+      "size": 1,
+    },
+    "Rim Attack|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "4": Array [
+          0,
+          0.04196108665906756,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.04196108665906756,
+      "size": 1,
+    },
+    "Transition|AdjPpp": Object {
+      "isPct": false,
+      "lut": Object {
+        "1": Array [
+          0,
+          1.1449069971416383,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 1.1449069971416383,
+      "size": 1,
+    },
+    "Transition|Pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "8": Array [
+          0,
+          0.0809611062998956,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.0809611062998956,
+      "size": 1,
+    },
+    "Transition|Ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "1": Array [
+          0,
+          1.084070796460177,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 1.084070796460177,
+      "size": 1,
+    },
+    "Transition|UsgPct": Object {
+      "isPct": true,
+      "lut": Object {
+        "5": Array [
+          0,
+          0.05125568907982692,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.05125568907982692,
+      "size": 1,
+    },
     "def_2prim": Object {
       "isPct": undefined,
       "lut": Object {

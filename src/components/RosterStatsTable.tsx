@@ -1306,9 +1306,58 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               )
           );
 
+      const indivPlayTypeQuickSwitchOptions = [
+        {
+          title: "Baseline",
+          player: getPlayerStats("baseline", p, 0)!,
+          rosterStatsByCode: rosterStatsByCode.global,
+          teamStats: getTeamStats("baseline", teamStats, 0),
+          showGrades: showGrades,
+          avgEfficiency,
+          showHelp,
+          quickSwitchOverride: undefined,
+        },
+        {
+          title: _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+          player: getPlayerStats("on", p, 0)!,
+          rosterStatsByCode: rosterStatsByCode.global,
+          teamStats: getTeamStats("on", teamStats, 0),
+          showGrades: showGrades,
+          avgEfficiency,
+          showHelp,
+          quickSwitchOverride: undefined,
+        },
+        {
+          title: _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+          player: getPlayerStats("off", p, 0)!,
+          rosterStatsByCode: rosterStatsByCode.global,
+          teamStats: getTeamStats("off", teamStats, 0),
+          showGrades: showGrades,
+          avgEfficiency,
+          showHelp,
+          quickSwitchOverride: undefined,
+        },
+      ]
+        .concat(
+          (teamStats.other || []).map((__, idx) => {
+            return {
+              title: `'${String.fromCharCode(67 + idx)}'`,
+              player: getPlayerStats("other", p, idx)!,
+              rosterStatsByCode: rosterStatsByCode.global,
+              teamStats: getTeamStats("other", teamStats, idx),
+              showGrades: showGrades,
+              avgEfficiency,
+              showHelp,
+              quickSwitchOverride: undefined,
+            };
+          })
+        )
+        .filter((opt) => opt.player && (opt.teamStats.doc_count || 0) > 0);
+
       const buildRowSet = (
         p: OnOffPlayerStatSet,
         queryKey: OnOffBaselineOtherEnum,
+        displayKey: string,
         otherQueryIndex: number,
         firstRowIsThisSet: boolean,
         tenthRowIsThisSet: boolean
@@ -1440,7 +1489,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     GenericTableOps.buildTextRow(
                       <IndivPlayTypeTabbedView
-                        title={queryKey}
+                        title={displayKey}
                         player={player}
                         rosterStatsByCode={rosterStatsByCode.global}
                         teamStats={getTeamStats(
@@ -1448,9 +1497,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           teamStats,
                           otherQueryIndex
                         )}
+                        avgEfficiency={avgEfficiency}
                         showGrades={showGrades}
                         grades={divisionStatsCache}
                         showHelp={showHelp}
+                        quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
+                          (opt) => opt.title != displayKey
+                        )}
                         quickSwitchOverride={undefined}
                       />,
                       "small"
@@ -1493,16 +1546,38 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       };
 
       return _.flatten([
-        buildRowSet(p, "on", 0, firstRowIsOn, tenthRowIsOn),
-        buildRowSet(p, "off", 0, firstRowIsOff, tenthRowIsOff),
+        buildRowSet(
+          p,
+          "on",
+          _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+          0,
+          firstRowIsOn,
+          tenthRowIsOn
+        ),
+        buildRowSet(
+          p,
+          "off",
+          _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+          0,
+          firstRowIsOff,
+          tenthRowIsOff
+        ),
         ...(rosterStats?.other || []).map((_, otherIdx) => {
-          return buildRowSet(p, "other", otherIdx, false, false);
+          return buildRowSet(
+            p,
+            "other",
+            `'${String.fromCharCode(67 + otherIdx)}'`,
+            otherIdx,
+            false,
+            false
+          );
         }),
         skipBaseline
           ? []
           : buildRowSet(
               p,
               "baseline",
+              "Baseline",
               0,
               firstRowIsBaseline,
               tenthRowIsBaseline

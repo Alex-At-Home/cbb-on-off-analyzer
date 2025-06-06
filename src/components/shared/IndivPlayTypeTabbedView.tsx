@@ -24,6 +24,7 @@ export type IndivPlayTypeDiagRadarProps = {
   player: IndivStatSet;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
+  avgEfficiency: number;
   quickSwitchOptions?: IndivPlayTypeDiagRadarProps[];
   showGrades: string;
   grades?: DivisionStatsCache;

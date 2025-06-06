@@ -747,16 +747,16 @@ export class PlayTypeDiagUtils {
           </a>
         )}{" "}
         /{" "}
-        <OverlayTrigger
-          placement="auto"
-          overlay={(props: any) => (
-            <Tooltip id={`ajd${sos}`} {...props}>
-              Adjusted Pts/Play (SoS: x[{sos.toFixed(2)}])
-            </Tooltip>
-          )}
-        >
-          {maybeBold(
-            adjusted,
+        {maybeBold(
+          adjusted,
+          <OverlayTrigger
+            placement="auto"
+            overlay={(props: any) => (
+              <Tooltip id={`ajd${sos}`} {...props}>
+                Adjusted Pts/Play (SoS: x[{sos.toFixed(2)}])
+              </Tooltip>
+            )}
+          >
             <a
               href="#"
               onClick={(e) => {
@@ -766,8 +766,8 @@ export class PlayTypeDiagUtils {
             >
               Adj<sup>*</sup>
             </a>
-          )}
-        </OverlayTrigger>
+          </OverlayTrigger>
+        )}
       </span>
     );
   };

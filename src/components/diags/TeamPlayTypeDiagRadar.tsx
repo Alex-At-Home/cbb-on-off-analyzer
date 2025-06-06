@@ -132,6 +132,17 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   quickSwitchOverride,
   startWithRaw,
 }) => {
+  // At some point calculate medians for display purposes
+  // if (grades && grades.Combo) {
+  //   console.log(
+  //     "RESULTS",
+  //     GradeUtils.getMedianPlayTypeValue(
+  //       PlayTypeUtils.topLevelPlayTypes,
+  //       grades.Combo
+  //     )
+  //   );
+  // }
+
   const [adjustForSos, setAdjustForSos] = useState<boolean>(
     !(startWithRaw || false)
   );
@@ -156,6 +167,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const quickSwitchExtra: "extra" | "diff" | undefined = (
     quickSwitch ? quickSwitch.split(quickSwichDelim)[1] : undefined
   ) as "extra" | "diff" | undefined;
+
+  //TODO: there's a buch of stuff that should get moved into the react.useMemo here
+  // (see IndivPlayTypeDiagRadar)
 
   // --- MAIN/BASE/EXTRA CHART DATA LOGIC ---
   // Compute the 'main' chart data (always from default props)
@@ -188,17 +202,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   const supportPlayerBreakdown =
     !startWithRaw && !defensiveOverrideIn && playersIn.length > 0;
-
-  // At some point calculate medians for display purposes
-  // if (grades && grades.Combo) {
-  //   console.log(
-  //     "RESULTS",
-  //     GradeUtils.getMedianPlayTypeValue(
-  //       PlayTypeUtils.topLevelPlayTypes,
-  //       grades.Combo
-  //     )
-  //   );
-  // }
 
   const playerTopLevelPlayTypeStyles:
     | Record<PlayerCode, TopLevelIndivPlayAnalysis>
@@ -422,6 +425,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     );
   };
 
+  //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomLabelledWidthBar = (props: any) => {
     const {
       fill,
@@ -515,6 +519,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     );
   };
 
+  //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomTooltip: React.FunctionComponent<any> = (props: any) => {
     const { active, payload, label } = props;
     if (active) {

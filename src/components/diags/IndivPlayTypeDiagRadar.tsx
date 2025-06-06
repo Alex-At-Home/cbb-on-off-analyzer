@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 // Utils
 import {
   PlayTypeUtils,
+  TopLevelIndivPlayType,
   TopLevelPlayAnalysis,
   TopLevelPlayType,
 } from "../../utils/stats/PlayTypeUtils";
@@ -55,6 +56,7 @@ export type Props = {
   player: IndivStatSet;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
+  avgEfficiency: number;
   quickSwitchOptions?: Props[];
   showGrades: string;
   grades?: DivisionStatsCache;
@@ -68,12 +70,13 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   player: playerIn,
   rosterStatsByCode,
   teamStats: teamStatsIn,
+  avgEfficiency,
   quickSwitchOptions,
   showGrades,
   grades,
   showHelp,
   playCountToUse,
-  defensiveOverride,
+  defensiveOverride: defensiveOverrideIn,
   quickSwitchOverride,
 }) => {
   // At some point calculate medians for display purposes
@@ -86,29 +89,32 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   //     )
   //   );
   // }
+  const [adjustForSos, setAdjustForSos] = useState<boolean>(true);
+
+  const [csvData, setCsvData] = useState<object[]>([]);
 
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
-  const player =
-    (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
-          ?.player
-      : playerIn) || playerIn;
-  const teamStats =
-    (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
-          ?.teamStats
-      : teamStatsIn) || StatModels.emptyTeam();
+  const quickSwichDelim = ":|:";
+  const quickSwitchBase = quickSwitch
+    ? quickSwitch.split(quickSwichDelim)[0]
+    : undefined;
+  const quickSwitchExtra: "extra" | "diff" | undefined = (
+    quickSwitch ? quickSwitch.split(quickSwichDelim)[1] : undefined
+  ) as "extra" | "diff" | undefined;
 
-  const topLevelPlayTypeStyles =
-    defensiveOverride ||
-    PlayTypeUtils.buildTopLevelIndivPlayStyles(
-      player,
-      rosterStatsByCode,
-      teamStats
-    );
+  // --- MAIN/BASE/EXTRA CHART DATA LOGIC ---
+  // Compute the 'main' chart data (always from default props)
+  const mainPlayer = playerIn;
+  const mainTeamStats = teamStatsIn;
+  const mainDefensiveOverride = defensiveOverrideIn;
+  const mainSosAdjustment =
+    avgEfficiency /
+    ((mainDefensiveOverride
+      ? mainPlayer.off_adj_opp?.value
+      : mainPlayer.def_adj_opp?.value) || avgEfficiency);
 
   const getPlayTypeName = (name: string) => {
     if (name == "Put-Back") {
@@ -122,12 +128,15 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     }
   };
 
-  const { tierToUse } = GradeTableUtils.buildTeamTierInfo(showGrades, {
-    comboTier: grades?.Combo,
-    highTier: grades?.High,
-    mediumTier: grades?.Medium,
-    lowTier: grades?.Low,
-  });
+  const { tierToUse: mainTierToUse } = GradeTableUtils.buildTeamTierInfo(
+    showGrades,
+    {
+      comboTier: grades?.Combo,
+      highTier: grades?.High,
+      mediumTier: grades?.Medium,
+      lowTier: grades?.Low,
+    }
+  );
   const possFactor = _.isNumber(playCountToUse) ? playCountToUse / 100 : 1.0;
 
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
@@ -139,6 +148,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     );
   };
 
+  //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomLabelledWidthBar = (props: any) => {
     const { fill, x, y, width, height, rawPct, rawPts, pct, pts } = props;
 
@@ -161,8 +171,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
+    const adjustment = adjustForSos ? mainSosAdjustment : 1.0;
     const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
-      (defensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100
+      (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
 
     return (
@@ -176,7 +187,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         >
           <tspan>{(100 * (rawPct || 0) * possFactor).toFixed(1)}x </tspan>
           {rawPct > 0 ? (
-            <tspan fill={rawColor}>{(rawPts || 0).toFixed(2)}</tspan>
+            <tspan fill={rawColor}>
+              {((rawPts || 0) * adjustment).toFixed(2)}
+            </tspan>
           ) : undefined}
         </text>
         <path
@@ -192,6 +205,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     );
   };
 
+  //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomTooltip: React.FunctionComponent<any> = (props: any) => {
     const { active, payload, label } = props;
     if (active) {
@@ -222,7 +236,10 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           <p className="desc pl-1 pr-1">
             Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play
             <br />
-            {defensiveOverride ? (
+            Adj Efficiency: [
+            <b>{(data.rawPts * mainSosAdjustment).toFixed(2)}</b>] pts/play
+            <br />
+            {mainDefensiveOverride ? (
               <span>
                 Efficiency Pctile: [<b>{(100 - data.pts).toFixed(1)}%</b>]
               </span>
@@ -233,9 +250,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             )}
             <br />
             (Average D1 play is approx [<b>0.89</b>] pts)
-            {defensiveOverride ? <br /> : undefined}
-            {defensiveOverride ? <br /> : undefined}
-            {defensiveOverride ? (
+            {mainDefensiveOverride ? <br /> : undefined}
+            {mainDefensiveOverride ? <br /> : undefined}
+            {mainDefensiveOverride ? (
               <i>
                 (NOTE: Pctiles shown are currently based on
                 <br />
@@ -249,23 +266,111 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     return null;
   };
 
+  // Helper to render a BarChart Row
+  const renderBarChartRow = (
+    data: any[],
+    pctile: any,
+    defOverride: any,
+    sosAdj: number,
+    rowTitle?: string,
+    cellKeyPrefix: string = "cell-"
+  ) =>
+    pctile ? (
+      <Row>
+        <Col xs={10}>
+          {rowTitle ? (
+            <div style={{ fontWeight: "bold", marginBottom: 4 }}>
+              {rowTitle}
+            </div>
+          ) : null}
+          <ResponsiveContainer minWidth={800} width="100%" height={400}>
+            <BarChart
+              height={400}
+              data={data}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 30,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="name"
+                interval={0}
+                tick={<CustomizedAxisTick />}
+              />
+              <YAxis
+                type="number"
+                domain={[0, 100]}
+                ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+              >
+                <Label
+                  angle={-90}
+                  value={`Frequency %ile in D1`}
+                  position="insideLeft"
+                  style={{ textAnchor: "middle", fontWeight: "bold" }}
+                />
+              </YAxis>
+              <RechartTooltip
+                content={<CustomTooltip />}
+                wrapperStyle={{
+                  background: "rgba(255, 255, 255, 0.9)",
+                  zIndex: 1000,
+                }}
+                allowEscapeViewBox={{ x: true, y: false }}
+              />
+              <Bar
+                dataKey="pct"
+                fill="#8884d8"
+                shape={<CustomLabelledWidthBar />}
+                isAnimationActive={true}
+              >
+                {data.map((p, index) => {
+                  return (
+                    <Cell
+                      key={`${cellKeyPrefix}${index}`}
+                      stroke="#000000"
+                      fill={(defOverride
+                        ? CbbColors.def_pctile_qual
+                        : CbbColors.off_pctile_qual)(
+                        p.pts * 0.01 * (adjustForSos ? sosAdj : 1.0)
+                      )}
+                    />
+                  );
+                })}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </Col>
+      </Row>
+    ) : undefined;
+
   /** Shows the JSON at the bottom if enabled */
   const debugView = false;
 
   return React.useMemo(() => {
-    const topLevelPlayTypeStylesPctile = tierToUse
+    const mainTopLevelPlayTypeStyles =
+      mainDefensiveOverride ||
+      PlayTypeUtils.buildTopLevelIndivPlayStyles(
+        mainPlayer,
+        rosterStatsByCode,
+        mainTeamStats
+      );
+
+    const mainTopLevelPlayTypeStylesPctile = mainTierToUse
       ? GradeUtils.getPlayStyleStats(
-          topLevelPlayTypeStyles,
-          tierToUse,
-          undefined,
+          mainTopLevelPlayTypeStyles,
+          mainTierToUse,
+          mainSosAdjustment,
           true
-        ) //TODO: use adj eff?
+        )
       : undefined;
 
-    const data = topLevelPlayTypeStylesPctile
-      ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
+    const mainData = mainTopLevelPlayTypeStylesPctile
+      ? _.map(mainTopLevelPlayTypeStylesPctile, (stat, playType) => {
           const rawVal = (
-            topLevelPlayTypeStyles as Record<
+            mainTopLevelPlayTypeStyles as Record<
               string,
               { possPct: Statistic; pts: Statistic }
             >
@@ -285,6 +390,92 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         })
       : [];
 
+    // Compute the 'extra' (was 'base') chart data (from quickSwitchBase)
+    let extraTopLevelPlayTypeStylesPctile: any = undefined;
+    let extraData: any[] = [];
+    let extraDefOverride: any = undefined;
+    let extraSosAdjustment: number | undefined = undefined;
+    if (quickSwitchBase && quickSwitchOptions) {
+      const extraOpt = _.find(
+        quickSwitchOptions,
+        (opt) => opt.title == quickSwitchBase
+      );
+      if (extraOpt) {
+        const extraTeamStats = extraOpt.teamStats || StatModels.emptyTeam();
+        const extraPlayer = extraOpt.player;
+        extraDefOverride = extraOpt.defensiveOverride;
+        extraSosAdjustment =
+          avgEfficiency /
+          ((extraDefOverride
+            ? extraPlayer.off_adj_opp?.value
+            : extraPlayer.def_adj_opp?.value) || avgEfficiency);
+        const extraTopLevelPlayTypeStyles =
+          extraDefOverride ||
+          (extraTeamStats.style as TopLevelPlayAnalysis) ||
+          PlayTypeUtils.buildTopLevelIndivPlayStyles(
+            extraPlayer,
+            rosterStatsByCode,
+            extraTeamStats
+          );
+        extraTopLevelPlayTypeStylesPctile = mainTierToUse
+          ? GradeUtils.getPlayStyleStats(
+              extraTopLevelPlayTypeStyles,
+              mainTierToUse,
+              extraSosAdjustment,
+              true
+            )
+          : undefined;
+        extraData = extraTopLevelPlayTypeStylesPctile
+          ? _.map(extraTopLevelPlayTypeStylesPctile, (stat, playType) => {
+              const rawVal = (
+                extraTopLevelPlayTypeStyles as Record<
+                  string,
+                  { possPct: Statistic; pts: Statistic }
+                >
+              )[playType];
+              const rawPct = rawVal?.possPct?.value || 0;
+              return {
+                name: PlayTypeDiagUtils.getPlayTypeName(playType).replace(
+                  "-",
+                  " - "
+                ),
+                playType: playType,
+                pct:
+                  rawPct == 0
+                    ? 0
+                    : Math.min(100, (stat.possPct.value || 0) * 100),
+                pts: Math.min(100, (stat.pts.value || 0) * 100),
+                rawPct,
+                rawPts: rawVal?.pts?.value || 0,
+              };
+            })
+          : [];
+      }
+    }
+
+    // --- TOP/BOTTOM CHART LOGIC ---
+    // Top chart: show mainData if !quickSwitchBase or quickSwitchExtra === 'extra', otherwise show extraData
+    const showMainOnTop = !quickSwitchBase || quickSwitchExtra === "extra";
+    const topData = showMainOnTop ? mainData : extraData;
+    const topPctile = showMainOnTop
+      ? mainTopLevelPlayTypeStylesPctile
+      : extraTopLevelPlayTypeStylesPctile;
+    const topDefOverride = showMainOnTop
+      ? mainDefensiveOverride
+      : extraDefOverride;
+    const topSosAdjustment = showMainOnTop
+      ? mainSosAdjustment
+      : extraSosAdjustment ?? 1.0;
+    const topTitle = undefined; // never show a title for the top chart
+    const topCellPrefix = showMainOnTop ? "cell-" : "cell-extra-";
+
+    // Bottom chart: only if quickSwitchExtra === 'extra', always show extraData
+    const showBottom =
+      quickSwitchExtra === "extra" && quickSwitchBase && quickSwitchOptions;
+
+    /**/
+    console.log(`???PLAYER ${quickSwitchExtra} ${quickSwitch}`);
+
     return (
       <span>
         {
@@ -292,88 +483,58 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           title
             ? PlayTypeDiagUtils.buildQuickSwitchOptions(
                 title,
-                quickSwitch,
+                quickSwitchBase,
                 quickSwitchOptions,
                 setQuickSwitch,
                 quickSwitchTimer,
-                setQuickSwitchTimer
+                setQuickSwitchTimer,
+                quickSwitchExtra,
+                ["extra"]
               )
             : undefined
         }
         <Container>
-          {topLevelPlayTypeStylesPctile ? (
-            <Row>
-              <Col xs={10}>
-                <ResponsiveContainer minWidth={800} width="100%" height={400}>
-                  <BarChart
-                    height={400}
-                    data={data}
-                    margin={{
-                      top: 20,
-                      right: 30,
-                      left: 20,
-                      bottom: 30,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="name"
-                      interval={0}
-                      tick={<CustomizedAxisTick />}
-                    />
-                    <YAxis
-                      type="number"
-                      domain={[0, 100]}
-                      ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-                    >
-                      <Label
-                        angle={-90}
-                        value={`Frequency %ile in D1`}
-                        position="insideLeft"
-                        style={{ textAnchor: "middle", fontWeight: "bold" }}
-                      />
-                    </YAxis>
-                    <RechartTooltip
-                      content={<CustomTooltip />}
-                      wrapperStyle={{
-                        background: "rgba(255, 255, 255, 0.9)",
-                        zIndex: 1000,
-                      }}
-                      allowEscapeViewBox={{ x: true, y: false }}
-                    />
-                    <Bar
-                      dataKey="pct"
-                      fill="#8884d8"
-                      shape={<CustomLabelledWidthBar />}
-                      isAnimationActive={true}
-                    >
-                      {data.map((p, index) => {
-                        return (
-                          <Cell
-                            key={`cell-${index}`}
-                            stroke="#000000"
-                            fill={(defensiveOverride
-                              ? CbbColors.def_pctile_qual
-                              : CbbColors.off_pctile_qual)(p.pts * 0.01)}
-                          />
-                        );
-                      })}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </Col>
-            </Row>
-          ) : undefined}
+          <Row className="text-center">
+            <Col xs={6} lg={2}>
+              {PlayTypeDiagUtils.buildLegend("[LEGEND]")}
+              {/* TODO: duplicate CSV feature from PlayTypeDiagUtils.buildCsvDownload / PlayTypeDiagUtils.buildTeamStyleBreakdownData */}
+            </Col>
+            <Col xs={6} lg={7}>
+              {PlayTypeDiagUtils.buildAdjustedVsRawControls(
+                mainSosAdjustment,
+                adjustForSos,
+                setAdjustForSos
+              )}
+            </Col>
+          </Row>
+          {renderBarChartRow(
+            topData,
+            topPctile,
+            topDefOverride,
+            topSosAdjustment,
+            topTitle,
+            topCellPrefix
+          )}
+          {showBottom
+            ? renderBarChartRow(
+                extraData,
+                extraTopLevelPlayTypeStylesPctile,
+                extraDefOverride,
+                extraSosAdjustment ?? 1.0,
+                `Compare vs [${quickSwitchBase}]`,
+                "cell-extra-"
+              )
+            : null}
           {debugView ? (
             <Row>
               <Col xs={10}>
-                {_.toPairs(topLevelPlayTypeStylesPctile || {}).map((o) => (
+                {_.toPairs(mainTopLevelPlayTypeStylesPctile || {}).map((o) => (
                   <span>
                     {JSON.stringify(o, tidyNumbers)}
                     <br />
                   </span>
                 ))}
-                {_.toPairs(topLevelPlayTypeStyles || {}).map((o) => (
+                {_.toPairs(mainTopLevelPlayTypeStyles || {}).map((o) => (
                   <span>
                     {JSON.stringify(o, tidyNumbers)}
                     <br />
@@ -386,14 +547,16 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       </span>
     );
   }, [
-    player,
+    playerIn,
     grades,
     showGrades,
-    teamStats,
+    teamStatsIn,
     quickSwitch,
     quickSwitchTimer,
     quickSwitchOverride,
-    defensiveOverride,
+    defensiveOverrideIn,
+    csvData,
+    adjustForSos,
   ]);
 };
 export default IndivPlayTypeDiagRadar;
@@ -412,79 +575,132 @@ const tidyNumbers = (k: string, v: any) => {
   }
 };
 
-const topLevelPlayTypeDescriptions: Record<TopLevelPlayType, React.ReactNode> =
-  {
-    "Rim Attack": (
-      <i>
-        Drives and slashes to the rim from the perimeter.
-        <br />
-        Includes pull-ups and floaters
-      </i>
-    ),
-    "Attack & Kick": (
-      <i>
-        Ball-handler passes to the perimeter for 3P,
-        <br />
-        usually after the defense collapses on a drive
-      </i>
-    ),
-    "Dribble Jumper": (
-      <i>
-        3P shots off the dribble, eg off ISOs
-        <br />
-        or defenders going under screens
-      </i>
-    ),
-    "Mid-Range": (
-      <i>
-        The offense finds space in the mid-range,
-        <br />
-        from backcourt/wing passes or sagging defenders
-      </i>
-    ),
-    "Backdoor Cut": (
-      <i>
-        A perimeter player cuts to the basket
-        <br />
-        eg via a backdoor cut
-      </i>
-    ),
-    "Big Cut & Roll": (
-      <i>
-        A frontcourt player cuts to the basket,
-        <br />
-        Usually after a screen, eg in PnR
-      </i>
-    ),
-    "Post-Up": (
-      <i>
-        A frontcourt player backs his defender
-        <br />
-        down to the rim
-      </i>
-    ),
-    "Post & Kick": (
-      <i>
-        A frontcourt player is doubled (usually),
-        <br />
-        but finds an open shooter on the perimeter or mid-range
-      </i>
-    ),
-    "Pick & Pop": (
-      <i>
-        An assisted 3P from a frontcourt player,
-        <br />
-        Sometimes after setting a screen
-      </i>
-    ),
-    "High-Low": <i>Two bigs connect for a shot at the rim</i>,
-    Transition: <i>Rim-to-rim, off turnovers, etc</i>,
-    "Put-Back": (
-      <i>
-        Shots taken directly off a rebound
-        <br />
-        (can include a kick-out for 3P)
-      </i>
-    ),
-    Misc: <i></i>,
-  };
+const topLevelPlayTypeDescriptions: Record<
+  TopLevelIndivPlayType, //(note the "extra types" like "Perimiter Sniper (Post-Up)" aren't currently used in practice
+  React.ReactNode
+> = {
+  "Rim Attack": (
+    <i>
+      Drives and slashes to the rim from the perimeter.
+      <br />
+      Includes pull-ups and floaters
+    </i>
+  ),
+  "Attack & Kick": (
+    <i>
+      Ball-handler passes to the perimeter for 3P,
+      <br />
+      usually after the defense collapses on a drive
+    </i>
+  ),
+  "Perimeter Sniper": (
+    <i>
+      A perimeter shot assisted by (typically) a driving guard
+      <br />
+      or a big posting out of a double team.
+    </i>
+  ),
+  "Perimeter Sniper (Post-Up)": (
+    <i>
+      A perimeter shot assisted by (typically) a driving guard
+      <br />
+      or a big posting out of a double team.
+    </i>
+  ),
+  "Perimeter Sniper (Rim Attack)": (
+    <i>
+      A perimeter shot assisted by (typically) a driving guard
+      <br />
+      or a big posting out of a double team.
+    </i>
+  ),
+  "Dribble Jumper": (
+    <i>
+      3P shots off the dribble, eg off ISOs
+      <br />
+      or defenders going under screens
+    </i>
+  ),
+  "Mid-Range": (
+    <i>
+      The offense finds space in the mid-range,
+      <br />
+      from backcourt/wing passes or sagging defenders
+    </i>
+  ),
+  "Hits Cutter": (
+    <i>
+      A pass to a cutting perimeter player
+      <br />
+      eg via a backdoor cut
+    </i>
+  ),
+  "Backdoor Cut": (
+    <i>
+      A perimeter player cuts to the basket
+      <br />
+      eg via a backdoor cut
+    </i>
+  ),
+  "PnR Passer": (
+    <i>
+      A pass to a frontcourt player cutting to the basket,
+      <br />
+      Usually after a screen, eg in PnR
+      <br />
+      (or spotting up after screening, eg Pick and Pop)
+    </i>
+  ),
+  "PnR Passer (Big Cut & Roll)": (
+    <i>
+      A pass to a frontcourt player cutting to the basket,
+      <br />
+      Usually after a screen, eg in PnR
+    </i>
+  ),
+  "PnR Passer (Pick & Pop)": (
+    <i>
+      A pass to a frontcourt player spotting up,
+      <br />
+      Usually after a screen, eg a PnP
+    </i>
+  ),
+  "Big Cut & Roll": (
+    <i>
+      A frontcourt player cuts to the basket,
+      <br />
+      Usually after a screen, eg in PnR
+    </i>
+  ),
+  "Post-Up": (
+    <i>
+      A frontcourt player backs his defender
+      <br />
+      down to the rim
+    </i>
+  ),
+  "Post & Kick": (
+    <i>
+      A frontcourt player is doubled (usually),
+      <br />
+      but finds an open shooter on the perimeter or mid-range
+    </i>
+  ),
+  "Pick & Pop": (
+    <i>
+      An assisted 3P from a frontcourt player,
+      <br />
+      Sometimes after setting a screen
+    </i>
+  ),
+  "High-Low": <i>Two bigs connect for a shot at the rim</i>,
+  Transition: <i>Rim-to-rim, off turnovers, etc</i>,
+  "Put-Back": (
+    <i>
+      Shots taken directly off a rebound
+      <br />
+      (can include a kick-out for 3P)
+    </i>
+  ),
+  Misc: <i></i>,
+};
