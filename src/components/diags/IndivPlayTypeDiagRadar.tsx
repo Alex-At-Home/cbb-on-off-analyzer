@@ -473,9 +473,6 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const showBottom =
       quickSwitchExtra === "extra" && quickSwitchBase && quickSwitchOptions;
 
-    /**/
-    console.log(`???PLAYER ${quickSwitchExtra} ${quickSwitch}`);
-
     return (
       <span>
         {
