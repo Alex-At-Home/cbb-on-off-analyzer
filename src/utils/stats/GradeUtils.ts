@@ -840,7 +840,7 @@ export class GradeUtils {
           const maybePossPctile = GradeUtils.getPercentile(
             divisionStats,
             possPctField,
-            playStyleInfo[freqKey]?.value,
+            playStyleInfo[freqKey]?.value || 0,
             buildLutMissCache
           );
           const maybePppPctile = GradeUtils.getPercentile(
