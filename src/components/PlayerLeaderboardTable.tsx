@@ -734,7 +734,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         }
       });
     }
-  }, [year, gender, showGrades]);
+  }, [year, gender, showGrades, showPlayerPlayTypes]);
 
   // 3] Utils
 
