@@ -807,21 +807,40 @@ export class GradeUtils {
     scheduleStrengthMult: number | undefined,
     buildLutMissCache: boolean = false
   ): TopLevelPlayAnalysis => {
+    return GradeUtils.getIndivPlayStyleStats(
+      playStyle,
+      divisionStats,
+      scheduleStrengthMult,
+      false, //(NA for team stats)
+      buildLutMissCache
+    );
+  };
+
+  /** Play style stats are most usefully consumed as percentiles - this builds the %iles */
+  static getIndivPlayStyleStats = (
+    playStyle: TopLevelPlayAnalysis,
+    divisionStats: DivisionStatistics,
+    scheduleStrengthMult: number | undefined,
+    teamPoss: boolean = false,
+    buildLutMissCache: boolean = false
+  ): TopLevelPlayAnalysis => {
     const adjPrefix = _.isNumber(scheduleStrengthMult) ? "Adj" : "";
+    const usgPrefix = teamPoss ? "Usg" : "";
     const pppAdj = scheduleStrengthMult || 1;
+    const freqKey = teamPoss ? "possPctUsg" : "possPct";
     return _.transform(
       playStyle,
       (acc, playStyleInfo, playStyleType) => {
-        const possPctField = `${playStyleType}|Pct`;
+        const possPctField = `${playStyleType}|${usgPrefix}Pct`;
         const pppField = `${playStyleType}|${adjPrefix}Ppp`;
         if (
-          !_.isNil(playStyleInfo.possPct.value) &&
+          !_.isNil(playStyleInfo[freqKey]?.value) &&
           !_.isNil(playStyleInfo.pts.value)
         ) {
           const maybePossPctile = GradeUtils.getPercentile(
             divisionStats,
             possPctField,
-            playStyleInfo.possPct.value,
+            playStyleInfo[freqKey]?.value,
             buildLutMissCache
           );
           const maybePppPctile = GradeUtils.getPercentile(
@@ -835,7 +854,17 @@ export class GradeUtils {
               possPct: maybePossPctile,
               pts: maybePppPctile,
             };
+          } else {
+            acc[playStyleType] = {
+              possPct: { value: 0 },
+              pts: { value: 0 },
+            };
           }
+        } else {
+          acc[playStyleType] = {
+            possPct: { value: 0 },
+            pts: { value: 0 },
+          };
         }
       },
       {} as Record<string, { possPct: Statistic; pts: Statistic }>

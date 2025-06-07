@@ -90,6 +90,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   //   );
   // }
   const [adjustForSos, setAdjustForSos] = useState<boolean>(true);
+  const [possFreqType, setPossFreqType] = useState<
+    "P%le" | "T%le" | "P%" | "T%"
+  >("P%le");
 
   const [csvData, setCsvData] = useState<object[]>([]);
 
@@ -157,8 +160,11 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     // We adjust width according to rawPct
     // It's 0.1 at 0, and 1.0 at 0.10+
 
+    const rawPctUsageFactor =
+      possFreqType == "T%le" || possFreqType == "T%" ? 3.0 : 1.0;
     const widthToUse =
-      width * (0.1 + 0.9 * Math.max(0, Math.min(1.0, 10 * rawPct)));
+      width *
+      (0.1 + 0.9 * Math.max(0, Math.min(1.0, 10 * rawPct * rawPctUsageFactor)));
     const xAdj = 0.5 * (width - widthToUse);
 
     // Text:
@@ -167,7 +173,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     // Outline .. starting from 10% we go from width 1 to 3 (at 25%+)
     const outlineWidth =
-      1 + Math.min(3, Math.max(0, (rawPct - 0.1) * (3 / 0.15)));
+      1 +
+      Math.min(3, Math.max(0, (rawPct * rawPctUsageFactor - 0.1) * (3 / 0.15)));
 
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
@@ -302,12 +309,24 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               />
               <YAxis
                 type="number"
-                domain={[0, 100]}
-                ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+                domain={
+                  possFreqType == "P%" || possFreqType == "T%"
+                    ? undefined
+                    : [0, 100]
+                }
+                ticks={
+                  possFreqType == "P%" || possFreqType == "T%"
+                    ? undefined
+                    : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+                }
               >
                 <Label
                   angle={-90}
-                  value={`Frequency %ile in D1`}
+                  value={
+                    possFreqType == "P%" || possFreqType == "T%"
+                      ? `Frequency %`
+                      : `Frequency %ile in D1`
+                  }
                   position="insideLeft"
                   style={{ textAnchor: "middle", fontWeight: "bold" }}
                 />
@@ -358,31 +377,45 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         mainTeamStats
       );
 
-    const mainTopLevelPlayTypeStylesPctile = mainTierToUse
-      ? GradeUtils.getPlayStyleStats(
-          mainTopLevelPlayTypeStyles,
-          mainTierToUse,
-          mainSosAdjustment,
-          true
-        )
-      : undefined;
+    const mainTopLevelPlayTypeStylesPctile =
+      possFreqType == "P%" || possFreqType == "T%"
+        ? mainTopLevelPlayTypeStyles
+        : mainTierToUse
+        ? GradeUtils.getIndivPlayStyleStats(
+            mainTopLevelPlayTypeStyles,
+            mainTierToUse,
+            mainSosAdjustment,
+            possFreqType == "T%le",
+            true
+          )
+        : undefined;
 
     const mainData = mainTopLevelPlayTypeStylesPctile
       ? _.map(mainTopLevelPlayTypeStylesPctile, (stat, playType) => {
           const rawVal = (
             mainTopLevelPlayTypeStyles as Record<
               string,
-              { possPct: Statistic; pts: Statistic }
+              { possPct: Statistic; pts: Statistic; possPctUsg: Statistic }
             >
           )[playType];
 
-          const rawPct = rawVal?.possPct?.value || 0;
+          const rawPct =
+            possFreqType == "T%le" || possFreqType == "T%"
+              ? rawVal?.possPctUsg?.value || 0
+              : rawVal?.possPct?.value || 0;
 
           return {
             name: getPlayTypeName(playType).replace("-", " - "),
             playType: playType,
             pct:
-              rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
+              rawPct == 0
+                ? 0
+                : Math.min(
+                    100,
+                    (possFreqType == "T%"
+                      ? stat.possPctUsg?.value || 0
+                      : stat.possPct.value || 0) * 100
+                  ),
             pts: Math.min(100, (stat.pts.value || 0) * 100),
             rawPct,
             rawPts: rawVal?.pts?.value || 0,
@@ -502,6 +535,11 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 adjustForSos,
                 setAdjustForSos
               )}
+              {" | "}
+              {PlayTypeDiagUtils.buildFrequencyType(
+                possFreqType,
+                setPossFreqType
+              )}
             </Col>
           </Row>
           {renderBarChartRow(
@@ -554,6 +592,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     defensiveOverrideIn,
     csvData,
     adjustForSos,
+    possFreqType,
   ]);
 };
 export default IndivPlayTypeDiagRadar;

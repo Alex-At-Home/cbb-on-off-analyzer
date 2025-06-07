@@ -764,7 +764,139 @@ export class PlayTypeDiagUtils {
                 callback(!adjusted);
               }}
             >
-              Adj<sup>*</sup>
+              Adj
+            </a>
+          </OverlayTrigger>
+        )}
+      </span>
+    );
+  };
+
+  /** Allows to switch bewteen raw, player/100 and team/100 */
+  static buildFrequencyType = (
+    curr: "P%le" | "T%le" | "P%" | "T%",
+    callback: (possType: "P%le" | "T%le" | "P%" | "T%") => void
+  ) => {
+    const maybeBold = (
+      bold: boolean,
+      r: React.ReactElement
+    ): React.ReactElement => {
+      if (bold) return <b>{r}</b>;
+      else return r;
+    };
+    return (
+      <span>
+        {maybeBold(
+          curr == "P%le",
+          <OverlayTrigger
+            placement="auto"
+            overlay={(props: any) => (
+              <Tooltip id={`ajdPlayerPctile`} {...props}>
+                Shows play frequency (per /100 <i>players</i> possessions, ie
+                ignoring their usage), as a percentile of the selected sample
+                (typically across all D1)
+                <br />
+                <br />
+                (Using %iles means similar looking bar charts can result in very
+                different frequencies across different play types - the bar
+                width gives and indication of this)
+              </Tooltip>
+            )}
+          >
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                callback("P%le");
+              }}
+            >
+              P%le
+            </a>
+          </OverlayTrigger>
+        )}{" "}
+        /{" "}
+        {maybeBold(
+          curr == "T%le",
+          <OverlayTrigger
+            placement="auto"
+            overlay={(props: any) => (
+              <Tooltip id={`ajdTeamPctile`} {...props}>
+                Shows play frequency (per /100 <i>team</i> possessions when{" "}
+                <b>player</b> is on the floor, ie taking their usage into
+                account), as a percentile of the selected sample (typically
+                across all D1).
+                <br />
+                <br />
+                (Using %iles means similar looking bar charts can result in very
+                different frequencies across different play types - the bar
+                width gives and indication of this)
+              </Tooltip>
+            )}
+          >
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                callback("T%le");
+              }}
+            >
+              T%le
+            </a>
+          </OverlayTrigger>
+        )}{" "}
+        /{" "}
+        {maybeBold(
+          curr == "P%",
+          <OverlayTrigger
+            placement="auto"
+            overlay={(props: any) => (
+              <Tooltip id={`ajdPlayerPct`} {...props}>
+                Shows play frequency (per /100 <i>team</i> possessions when{" "}
+                <b>player</b> is on the floor, ie taking their usage into
+                account) as a raw % (per 100 plays)
+                <br />
+                <br />
+                (Using raw % means lower frequency play types can be swamped by
+                the higher frequency ones)
+              </Tooltip>
+            )}
+          >
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                callback("P%");
+              }}
+            >
+              P%
+            </a>
+          </OverlayTrigger>
+        )}{" "}
+        /{" "}
+        {maybeBold(
+          curr == "T%",
+          <OverlayTrigger
+            placement="auto"
+            overlay={(props: any) => (
+              <Tooltip id={`ajdTeamPct`} {...props}>
+                Shows play frequency (per /100 <i>team</i> possessions when{" "}
+                <b>player</b> is on the floor, ie taking their usage into
+                account), as a raw % (per 100 plays)
+                <br />
+                <br />
+                (Using raw % means lower frequency play types can be swamped by
+                the higher frequency ones)
+              </Tooltip>
+            )}
+          >
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                callback("T%");
+              }}
+            >
+              T%
             </a>
           </OverlayTrigger>
         )}
