@@ -64,6 +64,7 @@ export type Props = {
   playCountToUse?: number;
   quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
+  compressedPlayTypeStats?: [number, number, number, number][];
 };
 const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -78,6 +79,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   playCountToUse,
   defensiveOverride: defensiveOverrideIn,
   quickSwitchOverride,
+  compressedPlayTypeStats,
 }) => {
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -369,13 +371,14 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const debugView = false;
 
   return React.useMemo(() => {
-    const mainTopLevelPlayTypeStyles =
-      mainDefensiveOverride ||
-      PlayTypeUtils.buildTopLevelIndivPlayStyles(
-        mainPlayer,
-        rosterStatsByCode,
-        mainTeamStats
-      );
+    const mainTopLevelPlayTypeStyles = compressedPlayTypeStats
+      ? PlayTypeUtils.decompressIndivPlayType(compressedPlayTypeStats)
+      : mainDefensiveOverride ||
+        PlayTypeUtils.buildTopLevelIndivPlayStyles(
+          mainPlayer,
+          rosterStatsByCode,
+          mainTeamStats
+        );
 
     const mainTopLevelPlayTypeStylesPctile =
       possFreqType == "P%" || possFreqType == "T%"

@@ -231,7 +231,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -1131,6 +1131,14 @@ export async function main() {
                     };
                   })
                   .value();
+
+                // Store either directly or in compressed format
+
+                (player as any).style = injectExtraDataForNbaFolks
+                  ? playerPlayStyleBreakdowns
+                  : PlayTypeUtils.compressIndivPlayType(
+                      playerPlayStyleBreakdowns
+                    );
 
                 // And write to grade file:
 

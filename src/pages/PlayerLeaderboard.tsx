@@ -151,6 +151,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         rawParams.showGrades == "" ? ["showGrades"] : [],
 
         !rawParams.shotCharts ? ["shotCharts"] : [],
+        !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],

@@ -818,12 +818,12 @@ export class GradeUtils {
 
   /** Play style stats are most usefully consumed as percentiles - this builds the %iles */
   static getIndivPlayStyleStats = (
-    playStyle: TopLevelPlayAnalysis,
+    playStyle: TopLevelPlayAnalysis | TopLevelIndivPlayAnalysis,
     divisionStats: DivisionStatistics,
     scheduleStrengthMult: number | undefined,
     teamPoss: boolean = false,
     buildLutMissCache: boolean = false
-  ): TopLevelPlayAnalysis => {
+  ): TopLevelIndivPlayAnalysis => {
     const adjPrefix = _.isNumber(scheduleStrengthMult) ? "Adj" : "";
     const usgPrefix = teamPoss ? "Usg" : "";
     const pppAdj = scheduleStrengthMult || 1;
@@ -868,7 +868,7 @@ export class GradeUtils {
         }
       },
       {} as Record<string, { possPct: Statistic; pts: Statistic }>
-    ) as TopLevelPlayAnalysis;
+    ) as TopLevelIndivPlayAnalysis;
   };
 
   /** Calculate the percentile of all fields within a stat set */

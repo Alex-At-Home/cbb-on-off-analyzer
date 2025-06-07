@@ -58,7 +58,7 @@ import { PlayerLeaderboardTracking } from "../utils/internal-data/LeaderboardTra
 
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
-import { IndivStatSet, Statistic } from "../utils/StatModels";
+import { IndivStatSet, Statistic, TeamStatSet } from "../utils/StatModels";
 import { TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import ConferenceSelector from "./shared/ConferenceSelector";
@@ -80,6 +80,7 @@ import { Badge } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import StickyRow from "./shared/StickyRow";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
+import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -342,6 +343,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     _.isNil(startingState.shotCharts) ? false : startingState.shotCharts
   );
 
+  /** Show simplified player play style breakdown */
+  const [showPlayerPlayTypes, setShowPlayerPlayTypes] = useState(
+    _.isNil(startingState.showPlayerPlayTypes)
+      ? false
+      : startingState.showPlayerPlayTypes
+  );
+
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
   const [geoLoadingOverride, setGeoLoadingOverride] = useState(false);
@@ -574,6 +582,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       geoZoom: geoCenterInfo?.zoom?.toString(),
       stickyQuickToggle,
       shotCharts: showPlayerShots,
+      showPlayerPlayTypes,
     };
     onChangeState(newState);
   }, [
@@ -597,6 +606,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     geoCenterInfo,
     stickyQuickToggle,
     showPlayerShots,
+    showPlayerPlayTypes,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -618,6 +628,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     if (
       showGrades ||
       transferPredictionMode ||
+      showPlayerPlayTypes ||
       advancedFilterStr.includes("rank_") ||
       advancedFilterStr.includes("pctile_")
     ) {
@@ -1703,6 +1714,29 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   ),
                 ]
               : [],
+            showPlayerPlayTypes && playerIndex < 50 && player.style
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <IndivPlayTypeDiagRadar
+                      title={player.key}
+                      player={player}
+                      rosterStatsByCode={{}}
+                      teamStats={{} as TeamStatSet}
+                      avgEfficiency={
+                        efficiencyAverages[`${gender}_${player.year}`] ||
+                        efficiencyAverages.fallback
+                      }
+                      quickSwitchOptions={[]}
+                      showGrades={showGrades}
+                      grades={divisionStatsCache[player.year || year]}
+                      showHelp={showHelp}
+                      quickSwitchOverride={undefined}
+                      compressedPlayTypeStats={player.style}
+                    />,
+                    "small"
+                  ),
+                ]
+              : [],
           ]);
     };
     const tableData = _.take(players, parseInt(maxTableSize)).flatMap(
@@ -2391,6 +2425,25 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                             onClick: () =>
                               friendlyChange(
                                 () => setShowPlayerShots(!showPlayerShots),
+                                true
+                              ),
+                          },
+                        ]
+                      : []
+                  )
+                  .concat(
+                    !dataEvent.syntheticData
+                      ? [
+                          {
+                            label: "Style",
+                            tooltip: showPlayerPlayTypes
+                              ? "Hide play style breakdowns"
+                              : "Show play style breakdowns",
+                            toggled: showPlayerPlayTypes,
+                            onClick: () =>
+                              friendlyChange(
+                                () =>
+                                  setShowPlayerPlayTypes(!showPlayerPlayTypes),
                                 true
                               ),
                           },

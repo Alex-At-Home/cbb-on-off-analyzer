@@ -83,6 +83,7 @@ const shotMap = { "3p": "3p", rim: "2prim", mid: "2pmid" } as Record<
 
 type PlayStyleType = "scoringPlaysPct" | "pointsPer100" | "playsPct";
 
+/** NOTE: CANNOT CHANGE THIS WITHOUT REBUILDING ALL THE PLAYER LEADERBOARDS */
 export type TopLevelPlayType =
   | "Rim Attack"
   | "Attack & Kick"
@@ -99,6 +100,7 @@ export type TopLevelPlayType =
   | "Misc";
 //(currently "Misc" is just team turnovers, used to get the sum back to 100%)
 
+/** NOTE: CANNOT CHANGE THIS WITHOUT REBUILDING ALL THE PLAYER LEADERBOARDS */
 export type TopLevelIndivPlayType =
   | TopLevelPlayType
   | "Perimeter Sniper"
@@ -133,7 +135,9 @@ export type IndivPlayTypeInfo = {
 
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
-  /** We don't cat the extra types to topLevelPlayTypes because we want this order */
+  /** We don't cat the extra types to topLevelPlayTypes because we want this order 
+   NOTE: CANNOT CHANGE THIS WITHOUT REBUILDING ALL THE PLAYER LEADERBOARDS
+  */
   static topLevelIndivPlayTypes: TopLevelIndivPlayType[] = [
     "Rim Attack",
     "Attack & Kick",
@@ -2490,6 +2494,61 @@ export class PlayTypeUtils {
   /////////////////////////////////////////////////////
 
   // Different ways of represening play types
+
+  static compressIndivPlayType = (
+    playTypeSet: TopLevelIndivPlayAnalysis
+  ): [number, number, number, number][] => {
+    return _.flatMap(
+      PlayTypeUtils.topLevelIndivPlayTypes,
+      (type, typeIndex) => {
+        const res = playTypeSet[type];
+        if (res && (res.possPct?.value || 0) > 0) {
+          return [
+            [
+              typeIndex,
+              res.pts?.value || 0,
+              res.possPct?.value || 0,
+              res.possPctUsg?.value || 0,
+            ],
+          ];
+        } else {
+          return [];
+        }
+      }
+    );
+  };
+
+  static decompressIndivPlayType = (
+    compPlayTypeStats: [number, number, number, number][]
+  ): TopLevelIndivPlayAnalysis => {
+    return _.transform(
+      compPlayTypeStats,
+      (acc, val) => {
+        const valIndex = val[0];
+        const playType = PlayTypeUtils.topLevelIndivPlayTypes[valIndex];
+        if (playType) {
+          acc[playType] = {
+            pts: { value: val[1] || 0 },
+            possPct: { value: val[2] || 0 },
+            possPctUsg: { value: val[3] || 0 },
+          };
+        }
+      },
+      _.chain(PlayTypeUtils.topLevelIndivPlayTypes)
+        .map((playType) => {
+          return [
+            playType,
+            {
+              pts: { value: 0 },
+              possPct: { value: 0 },
+              possPctUsg: { value: 0 },
+            },
+          ];
+        })
+        .fromPairs()
+        .value() as TopLevelIndivPlayAnalysis
+    );
+  };
 
   static buildPlayTypesLookup = _.memoize(() => {
     return _.chain(PlayTypeUtils.playTypesByFamily)
