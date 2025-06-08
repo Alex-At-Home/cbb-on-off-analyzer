@@ -699,10 +699,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           showGrades,
           showLuckAdjDiags: false, //(won't work without more data)
           showHelp,
+          //(playStyleConfigStr currently undefined)
         },
         {
           setShowGrades: (showGrades: string) => setShowGrades(showGrades),
           setShotChartConfig: (config: any) => {},
+          setPlayStyleConfigStr: (config: any) => {},
         },
 
         luckConfig,

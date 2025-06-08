@@ -258,6 +258,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes
           ? ["showTeamPlayTypes"]
           : [],
+        rawParams.teamPlayTypeConfig == ParamDefaults.defaultTeamPlayTypeConfig
+          ? ["teamPlayTypeConfig"]
+          : [],
         rawParams.showExtraInfo == false ? ["showExtraInfo"] : [],
         rawParams.showRoster == ParamDefaults.defaultTeamShowRoster
           ? ["showRoster"]
@@ -317,7 +320,69 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
       ])
     );
-    if (!_.isEqual(params, gameFilterParamsRef.current)) {
+
+    // These fields don't trigger a data change or a common param change
+    // between the various tables
+    const urlUpdateOnlyFields = [
+      // Team info:
+      "showExtraInfo",
+      "teamPlayTypeConfig",
+      "teamShotChartsShowZones",
+      "showOnOffLuckDiags",
+      "teamDiffs",
+      // Player info:
+      "filter",
+      "showDiags",
+      "showBase",
+      "showExpanded",
+      "possAsPct",
+      "factorMins",
+      "showPosDiag",
+      "playerShotChartsShowZones",
+      "showInfoSubHeader",
+    ];
+    const removeFieldsToIgnore = (obj: any) => {
+      return _.omit(obj, urlUpdateOnlyFields);
+    };
+    const checkUrlUpdateFields = (obj: any) => {
+      return _.pick(obj, urlUpdateOnlyFields);
+    };
+
+    // DIAGNOSTICS:
+    const isDebug = false;
+    if (isDebug) {
+      _.keys(removeFieldsToIgnore(params)).forEach((p) => {
+        const isEqual = _.isEqual(
+          { [p]: (params as any)[p] },
+          { [p]: (gameFilterParamsRef.current as any)[p] }
+        );
+        if (!isEqual)
+          console.log(
+            `params: ${p}: [${isEqual}] [${(params as any)[p]}] [${
+              (gameFilterParamsRef.current as any)[p]
+            }]`
+          );
+      });
+      _.keys(removeFieldsToIgnore(gameFilterParamsRef.current)).forEach((p) => {
+        const isEqual = _.isEqual(
+          { [p]: (params as any)[p] },
+          { [p]: (gameFilterParamsRef.current as any)[p] }
+        );
+        if (!isEqual)
+          console.log(
+            `gameFilterParamsRef: ${p}: [${isEqual}] [${(params as any)[p]}] [${
+              (gameFilterParamsRef.current as any)[p]
+            }]`
+          );
+      });
+    }
+
+    if (
+      !_.isEqual(
+        removeFieldsToIgnore(params),
+        removeFieldsToIgnore(gameFilterParamsRef.current)
+      )
+    ) {
       //(to avoid recursion)
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
@@ -346,6 +411,23 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       setDataEvent((d) => {
         return { ...d };
       }); //(leave data unchanged but fool the useMemo below)
+
+      const href = getRootUrl(params);
+      const as = href;
+      //TODO: this doesn't work if it's the same page (#91)
+      // (plus adding the _current_ query to the history is a bit counter-intuitive)
+      // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
+      // (need to figure out how to detect inter-page)
+      // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
+      Router.replace(href, as, { shallow: true });
+      setGameFilterParams(params); //(to ensure the new params are included in links)
+    } else if (
+      !_.isEqual(
+        checkUrlUpdateFields(params),
+        checkUrlUpdateFields(gameFilterParamsRef.current)
+      )
+    ) {
+      // In this case all I want to do is update the URL to save the params
 
       const href = getRootUrl(params);
       const as = href;

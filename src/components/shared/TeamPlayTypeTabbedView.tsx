@@ -37,6 +37,8 @@ export type TeamPlayTypeDiagRadarProps = {
   quickSwitchOverride: string | undefined;
   defensiveOverride?: any;
   startWithRaw?: boolean;
+  configStr?: string;
+  updateConfig?: (configStr: string) => void;
 };
 
 // Union type for the tabbed view
@@ -50,6 +52,8 @@ export type TeamPlayTypeTabbedViewProps = {
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
+  configStr?: string;
+  updateConfig?: (configStr: string) => void;
 };
 
 const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (

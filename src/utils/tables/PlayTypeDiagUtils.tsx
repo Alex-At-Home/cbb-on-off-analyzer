@@ -281,6 +281,8 @@ export class PlayTypeDiagUtils {
     };
   };
 
+  static readonly quickSwichDelim = ":|:";
+
   /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
   static buildQuickSwitchOptions = (
     title: string,
@@ -296,7 +298,6 @@ export class PlayTypeDiagUtils {
     quickSwitchExtra?: "extra" | "diff" | undefined,
     quickSwitchExtraOptions?: ("extra" | "diff")[]
   ) => {
-    const quickSwichDelim = ":|:";
     const timeTooltip = (
       <Tooltip id="timerTooltip">
         Sets off a 4s timer switching between the default breakdown and this one
@@ -423,9 +424,10 @@ export class PlayTypeDiagUtils {
                         setQuickSwitch((curr) => undefined);
                       } else {
                         setQuickSwitch((curr) =>
-                          quickSwitch == `${t}${quickSwichDelim}extra`
+                          quickSwitch ==
+                          `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`
                             ? undefined
-                            : `${t}${quickSwichDelim}extra`
+                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`
                         );
                       }
                     }}
@@ -444,9 +446,10 @@ export class PlayTypeDiagUtils {
                         setQuickSwitch((curr) => undefined);
                       } else {
                         setQuickSwitch((curr) =>
-                          quickSwitch == `${t}${quickSwichDelim}diff`
+                          quickSwitch ==
+                          `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`
                             ? undefined
-                            : `${t}${quickSwichDelim}diff`
+                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`
                         );
                       }
                     }}

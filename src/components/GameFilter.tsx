@@ -92,6 +92,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
+    teamPlayTypeConfig: startTeamPlayTypeConfig,
     showRoster: startShowRoster,
     showGameInfo: startShowGameInfo,
     showGrades: startShowGrades,
@@ -402,6 +403,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           autoOffQuery: autoOffQuery,
           teamDiffs: startTeamDiffs,
           showTeamPlayTypes: startShowTeamPlayTypes,
+          teamPlayTypeConfig: startTeamPlayTypeConfig,
           showRoster: startShowRoster,
           showGameInfo: startShowGameInfo,
           showGrades: startShowGrades,

@@ -74,11 +74,13 @@ export type TeamStatsReadOnlyState = {
   showGrades: string;
   showLuckAdjDiags: boolean;
   showHelp: boolean;
+  playStyleConfigStr?: string;
 };
 
 export type TeamStatsChangeState = {
   setShowGrades: (showGradesCfg: string) => void;
   setShotChartConfig: (opts: UserChartOpts) => void;
+  setPlayStyleConfigStr: (configStr: string) => void;
 };
 
 /** Get the right roster stats for on/off/etc  */
@@ -156,6 +158,7 @@ export class TeamStatsTableUtils {
       shotChartConfig,
       showLuckAdjDiags,
       showHelp,
+      playStyleConfigStr,
     } = readOnlyState;
 
     // Some handy strings
@@ -736,6 +739,8 @@ export class TeamStatsTableUtils {
                       showGrades={showGrades}
                       grades={divisionStatsCache}
                       showHelp={showHelp}
+                      configStr={playStyleConfigStr}
+                      updateConfig={persistNewState.setPlayStyleConfigStr}
                     />
                   ) : (
                     (!playTypeConfig || playTypeConfig.off

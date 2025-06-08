@@ -160,6 +160,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       : gameFilterParams.showTeamPlayTypes
   );
 
+  const [playTypeConfigStr, setPlayTypeConfigStr] = useState<string>(
+    _.isNil(gameFilterParams.teamPlayTypeConfig)
+      ? ParamDefaults.defaultTeamPlayTypeConfig
+      : gameFilterParams.teamPlayTypeConfig
+  );
+
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
     UserChartOpts | undefined
@@ -243,6 +249,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       teamShotCharts: showShotCharts,
       teamShotChartsShowZones: shotChartConfig?.buildZones,
       stickyQuickToggle,
+      teamPlayTypeConfig: playTypeConfigStr,
     };
     onChangeState(newState);
   }, [
@@ -258,6 +265,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     showShotCharts,
     shotChartConfig,
     stickyQuickToggle,
+    playTypeConfigStr,
   ]);
 
   const tableInfo = TeamStatsTableUtils.buildRows(
@@ -280,10 +288,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showGrades,
       showLuckAdjDiags,
       showHelp,
+      playStyleConfigStr: playTypeConfigStr,
     },
     {
       setShowGrades: (showGrades: string) => setShowGrades(showGrades),
       setShotChartConfig: (config: UserChartOpts) => setShotChartConfig(config),
+      setPlayStyleConfigStr: (configStr: string) =>
+        setPlayTypeConfigStr(configStr),
     },
 
     luckConfig,
@@ -308,20 +319,39 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       : [];
   };
 
-  const tableData = _.flatten([
-    buildRows(tableInfo.on, navigationRefs.refA, true),
-    buildRows(tableInfo.off, navigationRefs.refB, true),
-    (tableInfo.other || []).flatMap((other, idx) =>
-      other ? buildRows(other, navigationRefs.otherRefs[idx]!, true) : []
-    ),
-    buildRows(tableInfo.baseline, navigationRefs.refBase, false),
-    // Diffs if showing:
-    showDiffs ? [GenericTableOps.buildRowSeparator()] : [],
-    _.map(tableInfo.diffs, (row, idx) => {
-      if (idx == 0) row.navigationRef = navigationRefs.refDiffs;
-      return row;
-    }),
-  ]);
+  const tableData = React.useMemo(
+    () =>
+      _.flatten([
+        buildRows(tableInfo.on, navigationRefs.refA, true),
+        buildRows(tableInfo.off, navigationRefs.refB, true),
+        (tableInfo.other || []).flatMap((other, idx) =>
+          other ? buildRows(other, navigationRefs.otherRefs[idx]!, true) : []
+        ),
+        buildRows(tableInfo.baseline, navigationRefs.refBase, false),
+        // Diffs if showing:
+        showDiffs ? [GenericTableOps.buildRowSeparator()] : [],
+        _.map(tableInfo.diffs, (row, idx) => {
+          if (idx == 0) row.navigationRef = navigationRefs.refDiffs;
+          return row;
+        }),
+      ]),
+    [
+      dataEvent,
+      luckConfig,
+      adjustForLuck,
+      showLuckAdjDiags,
+      showDiffs,
+      showExtraInfo,
+      showPlayTypes,
+      showRoster,
+      showGameInfo,
+      showGrades,
+      showShotCharts,
+      shotChartConfig, //(do need to re-render on this since is applied to on/off/baseline shot charts)
+      stickyQuickToggle,
+      //(not playTypeConfigStr, we only surface that to set it as one of the URLs)
+    ]
+  );
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
