@@ -1126,6 +1126,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
                 "isLabelOnly": true,
                 "label": "| ",
                 "onClick": [Function],
@@ -9125,6 +9131,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
               },
               Object {
                 "isLabelOnly": true,
@@ -17136,6 +17148,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show simple shot zones for first 50 players in table",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
               },
               Object {
                 "isLabelOnly": true,
@@ -28343,6 +28361,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Show player ranks/percentiles",
               },
               Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
                 "isLabelOnly": true,
                 "label": "| ",
                 "onClick": [Function],
@@ -36296,6 +36320,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "Hide player ranks/percentiles",
               },
               Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
                 "isLabelOnly": true,
                 "label": "| ",
                 "onClick": [Function],
@@ -38104,6 +38134,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
               },
               Object {
                 "isLabelOnly": true,
