@@ -102,6 +102,71 @@ const indivPlayTypeBreakdownFields = (
   ),
 });
 
+////////////////
+
+// External Config:
+
+/** Has to be bwc with the format below forever */
+type TeamPlayTypeDiagRadarConfig = {
+  adjustForSos: boolean;
+  filterStr: string;
+  selectedPlayTypes: Set<TopLevelPlayType> | "all";
+  multiMode: boolean;
+  quickSwitch?: string;
+  //(can add extra params but never change the above)
+};
+const radarConfigToStr = (
+  config: TeamPlayTypeDiagRadarConfig,
+  startWithRaw: boolean
+): string => {
+  return [
+    startWithRaw //(default depends on this param)
+      ? config.adjustForSos
+        ? "sos"
+        : ""
+      : config.adjustForSos
+      ? ""
+      : "!sos",
+    config.filterStr || "",
+    config.selectedPlayTypes ||
+      (config.selectedPlayTypes == "all"
+        ? "all"
+        : _.values(config.selectedPlayTypes).join(",")),
+    config.multiMode ? "multi" : "",
+    config.quickSwitch || "",
+    //(can add extra params but never change the above)
+  ].join("||");
+};
+const configStrToConfig = (
+  configStr: string | undefined,
+  startWithRaw: boolean
+): TeamPlayTypeDiagRadarConfig => {
+  if (configStr) {
+    const arr = configStr.split("||");
+    return {
+      adjustForSos: !arr[0] ? !startWithRaw : arr[0] == "sos",
+      filterStr: arr[1] || "",
+      selectedPlayTypes:
+        arr[2] == "all"
+          ? "all"
+          : new Set((arr[2] || "").split(",") as TopLevelPlayType[]),
+      multiMode: arr[3] == "multi",
+      quickSwitch: arr[4],
+    };
+  } else {
+    return {
+      adjustForSos: !startWithRaw,
+      filterStr: "",
+      selectedPlayTypes: new Set(),
+      multiMode: false,
+    };
+  }
+};
+
+// ^ end external config
+
+///////////////////////////
+
 export type Props = {
   title: string;
   players: Array<IndivStatSet>;
@@ -116,6 +181,8 @@ export type Props = {
   quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
   startWithRaw?: boolean;
+  configStr?: string;
+  updateConfig?: (configStr: string) => void;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -131,6 +198,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   defensiveOverride: defensiveOverrideIn,
   quickSwitchOverride,
   startWithRaw,
+  configStr,
+  updateConfig,
 }) => {
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -143,20 +212,29 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   //   );
   // }
 
+  /** Translate from hacky string */
+  const incomingConfig = configStrToConfig(configStr, startWithRaw || false);
+
   const [adjustForSos, setAdjustForSos] = useState<boolean>(
-    !(startWithRaw || false)
+    incomingConfig.adjustForSos
   );
 
   /** Which players to filter */
-  const [filterStr, setFilterStr] = useState("");
+  const [filterStr, setFilterStr] = useState(incomingConfig.filterStr);
 
   const [selectedPlayTypes, setSelectedPlayTypes] = useState<
     Set<TopLevelPlayType>
-  >(new Set());
-  const [multiMode, setMultiMode] = useState<boolean>(false);
+  >(
+    incomingConfig.selectedPlayTypes == "all"
+      ? new Set(PlayTypeUtils.topLevelPlayTypes)
+      : incomingConfig.selectedPlayTypes
+  );
+  const [multiMode, setMultiMode] = useState<boolean>(incomingConfig.multiMode);
   const [csvData, setCsvData] = useState<object[]>([]);
 
-  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
+  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
+    incomingConfig.quickSwitch
+  );
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
@@ -227,7 +305,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     <AsyncFormControl
       size="sm"
       startingVal={filterStr}
-      onChange={(t: string) => setFilterStr(t)}
+      onChange={(t: string) => {
+        if (updateConfig)
+          updateConfig(
+            radarConfigToStr(
+              { ...incomingConfig, filterStr: t },
+              startWithRaw || false
+            )
+          );
+        setFilterStr(t);
+      }}
       timeout={500}
       placeholder=", or ;-separated-list"
     />
@@ -659,13 +746,34 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                         } else {
                           newSelectedPlayTypes.add(playType);
                         }
+                        if (updateConfig)
+                          updateConfig(
+                            radarConfigToStr(
+                              {
+                                ...incomingConfig,
+                                selectedPlayTypes: newSelectedPlayTypes,
+                              },
+                              startWithRaw || false
+                            )
+                          );
                         setSelectedPlayTypes(newSelectedPlayTypes);
                       } else {
-                        if (selectedPlayTypes.has(playType)) {
-                          setSelectedPlayTypes(new Set());
-                        } else {
-                          setSelectedPlayTypes(new Set([playType]));
-                        }
+                        const newSelectedPlayTypes: Set<TopLevelPlayType> =
+                          selectedPlayTypes.has(playType)
+                            ? new Set()
+                            : new Set([playType]);
+
+                        if (updateConfig)
+                          updateConfig(
+                            radarConfigToStr(
+                              {
+                                ...incomingConfig,
+                                selectedPlayTypes: newSelectedPlayTypes,
+                              },
+                              startWithRaw || false
+                            )
+                          );
+                        setSelectedPlayTypes(newSelectedPlayTypes);
                       }
                     }}
                   />
@@ -722,7 +830,24 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           title,
           quickSwitchBase,
           quickSwitchOptions,
-          setQuickSwitch,
+          (callback: (curr: string | undefined) => string | undefined) => {
+            setQuickSwitch((curr) => {
+              const newCurr = callback(curr);
+              if (updateConfig)
+                updateConfig(
+                  radarConfigToStr(
+                    {
+                      ...incomingConfig,
+                      quickSwitch: curr,
+                    },
+                    startWithRaw || false
+                  )
+                );
+
+              /**/
+              return newCurr;
+            });
+          },
           quickSwitchTimer,
           setQuickSwitchTimer,
           quickSwitchExtra,
@@ -775,7 +900,19 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {PlayTypeDiagUtils.buildAdjustedVsRawControls(
                 mainSosAdjustment,
                 adjustForSos,
-                setAdjustForSos
+                (useAdjustedSos: boolean) => {
+                  setAdjustForSos(useAdjustedSos);
+                  if (updateConfig)
+                    updateConfig(
+                      radarConfigToStr(
+                        {
+                          ...incomingConfig,
+                          adjustForSos: useAdjustedSos,
+                        },
+                        startWithRaw || false
+                      )
+                    );
+                }
               )}
               {supportPlayerBreakdown ? (
                 <>
@@ -800,11 +937,33 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                         if (selectedPlayTypes.size > 0) {
                           setSelectedPlayTypes(new Set());
                           setMultiMode(false);
+                          if (updateConfig)
+                            updateConfig(
+                              radarConfigToStr(
+                                {
+                                  ...incomingConfig,
+                                  selectedPlayTypes: new Set(),
+                                  multiMode: false,
+                                },
+                                startWithRaw || false
+                              )
+                            );
                         } else {
                           setMultiMode(true);
                           setSelectedPlayTypes(
                             new Set(PlayTypeUtils.topLevelPlayTypes)
                           );
+                          if (updateConfig)
+                            updateConfig(
+                              radarConfigToStr(
+                                {
+                                  ...incomingConfig,
+                                  selectedPlayTypes: new Set(),
+                                  multiMode: true,
+                                },
+                                startWithRaw || false
+                              )
+                            );
                         }
                       }}
                     >
@@ -888,8 +1047,29 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                         if (multiMode) {
                           setSelectedPlayTypes(new Set());
                           setMultiMode(false);
+                          if (updateConfig)
+                            updateConfig(
+                              radarConfigToStr(
+                                {
+                                  ...incomingConfig,
+                                  selectedPlayTypes: new Set(),
+                                  multiMode: false,
+                                },
+                                startWithRaw || false
+                              )
+                            );
                         } else {
                           setMultiMode(true);
+                          if (updateConfig)
+                            updateConfig(
+                              radarConfigToStr(
+                                {
+                                  ...incomingConfig,
+                                  multiMode: true,
+                                },
+                                startWithRaw || false
+                              )
+                            );
                         }
                       }}
                     >

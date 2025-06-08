@@ -286,7 +286,9 @@ export class PlayTypeDiagUtils {
     title: string,
     quickSwitch: string | undefined,
     quickSwitchOptions: { title?: string }[] | undefined,
-    setQuickSwitch: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setQuickSwitch: (
+      callback: (curr: string | undefined) => string | undefined
+    ) => void,
     quickSwitchTimer: NodeJS.Timer | undefined,
     setQuickSwitchTimer: (
       newQuickSwitchTimer: NodeJS.Timer | undefined
@@ -356,9 +358,9 @@ export class PlayTypeDiagUtils {
         clearInterval(quickSwitchTimer);
       }
       if (quickSwitch) {
-        setQuickSwitch(undefined);
+        setQuickSwitch((curr) => undefined);
       } else {
-        setQuickSwitch(newQuickSwitch);
+        setQuickSwitch((curr) => newQuickSwitch);
       }
       if (newQuickSwitch) {
         setQuickSwitchTimer(
@@ -384,7 +386,7 @@ export class PlayTypeDiagUtils {
             onClick={(e) => {
               e.preventDefault();
               if (!quickSwitchTimer) {
-                setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+                setQuickSwitch((curr) => (quickSwitch == t ? undefined : t)); //(ie toggle)
               } else {
                 quickSwitchTimerLogic(undefined);
               }
@@ -418,9 +420,9 @@ export class PlayTypeDiagUtils {
                     onClick={(e) => {
                       e.preventDefault();
                       if (quickSwitchExtra === "extra" && t === quickSwitch) {
-                        setQuickSwitch(undefined);
+                        setQuickSwitch((curr) => undefined);
                       } else {
-                        setQuickSwitch(
+                        setQuickSwitch((curr) =>
                           quickSwitch == `${t}${quickSwichDelim}extra`
                             ? undefined
                             : `${t}${quickSwichDelim}extra`
@@ -439,9 +441,9 @@ export class PlayTypeDiagUtils {
                     onClick={(e) => {
                       e.preventDefault();
                       if (quickSwitchExtra === "diff" && t === quickSwitch) {
-                        setQuickSwitch(undefined);
+                        setQuickSwitch((curr) => undefined);
                       } else {
-                        setQuickSwitch(
+                        setQuickSwitch((curr) =>
                           quickSwitch == `${t}${quickSwichDelim}diff`
                             ? undefined
                             : `${t}${quickSwichDelim}diff`
