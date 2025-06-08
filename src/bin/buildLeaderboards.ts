@@ -231,7 +231,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -1251,7 +1251,7 @@ export async function main() {
                 return {
                   /** _id used for indexing purposes, will mostly use NCAA id */
                   _id: `${
-                    rosterInfoJson[player.code || ""]?.player_code_id
+                    rosterInfoJson?.[player.code || ""]?.player_code_id
                       ?.ncaa_id ||
                     `${player.code || kv[0]}${player.team || ""}`.replace(
                       /[^A-Z]/gi,
