@@ -164,7 +164,11 @@ const configStrToConfig = (
       selectedPlayTypes:
         arr[2] == "all"
           ? "all"
-          : new Set((arr[2] || "").split(",") as TopLevelPlayType[]),
+          : new Set(
+              (arr[2] || "")
+                .split(",")
+                .filter((pt) => pt != "") as TopLevelPlayType[]
+            ),
       multiMode: arr[3] == "multi",
       quickSwitch: arr[4],
     };
