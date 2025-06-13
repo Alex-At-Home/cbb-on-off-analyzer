@@ -515,33 +515,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
-              "Analysis Base",
-              baseGameTooltip,
-              getBaseGameUrl(teamAnalysisSettings),
-              `${ParamPrefixes.game}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Analysis Last",
-              lastGameTooltip,
-              getLastGameUrl(teamAnalysisSettings),
-              `${ParamPrefixes.game}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>
-            {buildNavItem(
-              "Shot Charts",
-              shotChartsTooltip,
-              getBaseGameUrl(teamShotChartSettings),
-              `${ParamPrefixes.game}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>
-            {buildNavItem(
-              "On-Off Base",
+              "Team Analysis",
               baseGameTooltip,
               getBaseGameUrl(),
               `${ParamPrefixes.game}`
@@ -549,12 +523,30 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
-              "On-Off Last",
-              lastGameTooltip,
-              getLastGameUrl(),
+              "Advanced Team Analysis",
+              baseGameTooltip,
+              getBaseGameUrl(teamAnalysisSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item>
+            {buildNavItem(
+              "Team Shot Charts",
+              shotChartsTooltip,
+              getBaseGameUrl(teamShotChartSettings),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Team On-Off Report",
+              baseReportTooltip,
+              getBaseReportUrl(),
+              `${ParamPrefixes.report}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Divider />
         </Dropdown.Menu>
       </Dropdown>
     );
@@ -603,17 +595,17 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
-              "Roster Analysis Base",
+              "Roster Analysis",
               baseGameTooltip,
-              getBaseGameUrl(teamAnalysisSettings),
+              getBaseGameUrl(),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
-              "Roster Analysis Last",
-              lastGameTooltip,
-              getLastGameUrl(teamAnalysisSettings),
+              "Advanced Roster Analysis",
+              baseGameTooltip,
+              getBaseGameUrl(teamAnalysisSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
@@ -699,9 +691,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
-              "On-Off/Same-4/RAPM Report",
+              "Player On-Off/RAPM Report",
               baseReportTooltip,
-              getBaseReportUrl(),
+              getBaseReportUrl({ incRapm: true }),
               `${ParamPrefixes.report}`
             )}
           </Dropdown.Item>
@@ -731,17 +723,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
             {buildNavItem(
-              "Analysis Base",
+              "Lineup Analysis",
               baseLineupTooltip,
               getBaseLineupUrl(),
-              `${ParamPrefixes.lineup}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Analysis Last",
-              lastLineupTooltip,
-              getLastLineupUrl(),
               `${ParamPrefixes.lineup}`
             )}
           </Dropdown.Item>
