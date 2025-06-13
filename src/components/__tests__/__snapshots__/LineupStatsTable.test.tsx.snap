@@ -773,6 +773,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -855,6 +865,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -1246,6 +1270,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -1328,6 +1362,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -1722,6 +1770,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -1804,6 +1862,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -2195,6 +2267,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -2277,6 +2359,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -2671,6 +2767,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -2753,6 +2859,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -3144,6 +3264,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -3226,6 +3356,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -4684,6 +4828,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.3179190751445087,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.5471698113207547,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       41% assisted
@@ -4768,6 +4922,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.2
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      9.5
+                                      %
+                                    </span>,
+                                    "value": 0.17637271214642264,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -4902,6 +5070,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.3179190751445087,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.5471698113207547,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       41% assisted
@@ -4986,6 +5164,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.2
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      9.5
+                                      %
+                                    </span>,
+                                    "value": 0.17637271214642264,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -5098,6 +5290,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -5180,6 +5382,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -5571,6 +5787,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -5653,6 +5879,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -6047,6 +6287,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -6129,6 +6379,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -6520,6 +6784,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -6602,6 +6876,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -8035,6 +8323,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -8150,6 +8448,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -8376,6 +8688,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -8491,6 +8813,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -8720,6 +9056,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -8835,6 +9181,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -9061,6 +9421,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -9176,6 +9546,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -9405,6 +9789,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -9520,6 +9914,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -9746,6 +10154,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -9861,6 +10279,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -11129,6 +11561,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -11237,6 +11679,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -11458,6 +11914,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -11566,6 +12032,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -11825,6 +12305,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -11933,6 +12423,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -12154,6 +12658,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -12262,6 +12776,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -12521,6 +13049,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -12629,6 +13167,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -12850,6 +13402,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -12958,6 +13520,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -14244,6 +14820,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -14326,6 +14912,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -14731,6 +15331,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -14813,6 +15423,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -15221,6 +15845,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -15303,6 +15937,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -15708,6 +16356,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -15790,6 +16448,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -16198,6 +16870,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -16280,6 +16962,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -16685,6 +17381,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -16767,6 +17473,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -18214,6 +18934,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -18329,6 +19059,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -18767,6 +19511,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.2997032640949555,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      11.8
+                                      %
+                                    </span>,
+                                    "value": 0.5436893203883495,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       45% assisted
@@ -18882,6 +19636,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.0
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      7.2
+                                      %
+                                    </span>,
+                                    "value": 0.15206185567010308,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -19323,6 +20091,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -19438,6 +20216,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -19876,6 +20668,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.3516483516483517,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      10.8
+                                      %
+                                    </span>,
+                                    "value": 0.5535714285714286,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       35% assisted
@@ -19991,6 +20793,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      8.5
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      13.6
+                                      %
+                                    </span>,
+                                    "value": 0.22065727699530516,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -20432,6 +21248,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -20547,6 +21373,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -20985,6 +21825,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.24719101123595505,
                                   }
 
+                  def_2prim: Object {
+                                    "extraInfo": <span>
+                                      Block%:
+                                       
+                                      16.0
+                                      %
+                                    </span>,
+                                    "value": 0.5161290322580645,
+                                  }
+
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       47% assisted
@@ -21100,6 +21950,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_title: ""
+
+                  def_to: Object {
+                                    "extraInfo": <span>
+                                      Stl%: 
+                                      5.7
+                                      %
+                                      <br />
+                                      Non-Stl TO%:
+                                       
+                                      11.4
+                                      %
+                                    </span>,
+                                    "value": 0.17098445595854922,
+                                  }
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>

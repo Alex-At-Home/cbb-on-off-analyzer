@@ -1197,6 +1197,18 @@ export const sampleTeamDetails: Record<string, any> = {
       def_to: {
         value: 0.2005,
       },
+      def_stl: {
+        value: 0.1005,
+      },
+      def_to_nonstl: {
+        value: 0.1,
+      },
+      def_blk: {
+        value: 0.06,
+      },
+      def_stk: {
+        value: 0.1605,
+      },
       def_scramble_ppp: {
         value: 118.9146,
       },

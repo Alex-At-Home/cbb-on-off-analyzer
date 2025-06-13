@@ -204,6 +204,16 @@ export class CbbColors {
     CbbColors.off_OR,
     CbbColors.def_OR,
   ];
+  // ft
+  private static readonly ftDomain = [0.65, 0.75, 0.85];
+  public static readonly off_FT = (val: number) =>
+    CbbColors.redToGreen.domain(CbbColors.ftDomain)(val).toString();
+  public static readonly def_FT = (val: number) =>
+    CbbColors.greenToRed.domain(CbbColors.ftDomain)(val).toString();
+  public static readonly ft: CbbColorTuple = [
+    CbbColors.off_FT,
+    CbbColors.def_FT,
+  ];
   // ftr
   private static readonly ftrDomain = [0.2, 0.3, 0.4];
   public static readonly off_FTR = (val: number) =>

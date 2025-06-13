@@ -142,6 +142,7 @@ export class GradeUtils {
     "efg",
     "to",
     "orb",
+    "ft",
     "ftr",
     "assist",
     "3pr",
@@ -180,6 +181,12 @@ export class GradeUtils {
     "trans_3pr",
     "trans_3p",
     "trans_2p",
+
+    // Defensive only, but the code should handle that
+    "stl",
+    "to_nonstl", //(non-steal TO)
+    "blk",
+    "stk", //("stocks" = "blocks + steals")
 
     // Not in dataset but used here in extra dialog, so include for convenience (ignored if not present anyway)
     "3p_opp",

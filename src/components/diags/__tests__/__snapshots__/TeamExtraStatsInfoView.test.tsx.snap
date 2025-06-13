@@ -615,6 +615,68 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           >
             <ul>
               <li>
+                FT%: off=[
+                <b
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 15px #fff8f8,0px 0px 15px #fff8f8,0px 0px 15px #fff8f8",
+                    }
+                  }
+                >
+                  74.7
+                </b>
+                ]% def=[
+                <b
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b",
+                    }
+                  }
+                >
+                  69.8
+                </b>
+                ]%
+              </li>
+              <li>
+                Defensive Steal%: [
+                <b
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b",
+                    }
+                  }
+                >
+                  6.8
+                </b>
+                ]%
+              </li>
+              <li>
+                Defensive Non-Steal TO%: [
+                <b
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 15px #209020,0px 0px 15px #209020,0px 0px 15px #209020",
+                    }
+                  }
+                >
+                  10.6
+                </b>
+                ]%
+              </li>
+              <li>
+                Defensive Block%: [
+                <b
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                    }
+                  }
+                >
+                  11.8
+                </b>
+                ]%
+              </li>
+              <li>
                 3P Defensive SoS: [
                 <b
                   style={

@@ -642,6 +642,46 @@ export class TableDisplayUtils {
           ),
         };
       }
+      // Extra defensive info:
+      if (statSet.def_stl || statSet.total_off_stl) {
+        const mutableExtraStats = {} as PureStatSet;
+        if (statSet.total_off_stl) {
+          //(have raw numbers, recalculate)
+          DerivedStatsUtils.injectExtraDefensiveStats(
+            statSet,
+            mutableExtraStats
+          );
+        } else {
+          mutableExtraStats.def_stl = statSet.def_stl;
+          mutableExtraStats.def_blk = statSet.def_blk;
+          mutableExtraStats.def_to_nonstl = statSet.def_to_nonstl;
+        }
+
+        if (statSet.def_2prim && mutableExtraStats.def_blk) {
+          statSet.def_2prim.extraInfo = (
+            <span>
+              Block%:{" "}
+              {(100 * (mutableExtraStats.def_blk?.value || 0)).toFixed(1)}%
+            </span>
+          );
+        }
+        if (
+          statSet.def_to &&
+          mutableExtraStats.def_stl &&
+          mutableExtraStats.def_to_nonstl
+        ) {
+          statSet.def_to.extraInfo = (
+            <span>
+              Stl%: {(100 * (mutableExtraStats.def_stl?.value || 0)).toFixed(1)}
+              %
+              <br />
+              Non-Stl TO%:{" "}
+              {(100 * (mutableExtraStats.def_to_nonstl?.value || 0)).toFixed(1)}
+              %
+            </span>
+          );
+        }
+      }
     } else {
       if (statSet.off_team_poss) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142

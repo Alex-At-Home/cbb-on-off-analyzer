@@ -2,6 +2,9 @@
 
 exports[`DerivedStatsUtils DerivedStatsUtils.injectDerivedStats 1`] = `
 Object {
+  "def_blk": Object {
+    "value": 0.11827007943512798,
+  },
   "def_scramble": Object {
     "value": 0.08527071563674632,
   },
@@ -28,6 +31,15 @@ Object {
   },
   "def_scramble_to": Object {
     "value": 0.14088605894731104,
+  },
+  "def_stk": Object {
+    "value": 0.09325325211544962,
+  },
+  "def_stl": Object {
+    "value": 0.06823642479577126,
+  },
+  "def_to_nonstl": Object {
+    "value": 0.10619894281595386,
   },
   "def_trans": Object {
     "value": 0.19610764055742433,

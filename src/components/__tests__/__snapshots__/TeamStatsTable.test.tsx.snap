@@ -877,7 +877,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(206, 231, 206); vertical-align: middle;"
                   >
                     <div>
-                      17.1
+                      <div>
+                        17.1
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -1036,7 +1043,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(196, 226, 196); vertical-align: middle;"
                   >
                     <div>
-                      57.7
+                      <div>
+                        57.7
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -1462,7 +1476,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(153, 204, 153); vertical-align: middle;"
                   >
                     <div>
-                      18.4
+                      <div>
+                        18.4
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -1621,7 +1642,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(182, 219, 182); vertical-align: middle;"
                   >
                     <div>
-                      57.1
+                      <div>
+                        57.1
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -2047,7 +2075,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(194, 224, 194); vertical-align: middle;"
                   >
                     <div>
-                      17.4
+                      <div>
+                        17.4
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -2206,7 +2241,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(193, 224, 193); vertical-align: middle;"
                   >
                     <div>
-                      57.6
+                      <div>
+                        57.6
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -3145,7 +3187,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(206, 231, 206); vertical-align: middle;"
                   >
                     <div>
-                      17.1
+                      <div>
+                        17.1
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -3306,7 +3355,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(196, 226, 196); vertical-align: middle;"
                   >
                     <div>
-                      57.7
+                      <div>
+                        57.7
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -4831,6 +4887,48 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 >
                                   <ul>
                                     <li>
+                                      FT%: off=[
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #fafdfa,0px 0px 15px #fafdfa,0px 0px 15px #fafdfa;"
+                                      >
+                                        75.2
+                                      </b>
+                                      ]% def=[
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #66b366,0px 0px 15px #66b366,0px 0px 15px #66b366;"
+                                      >
+                                        69.0
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Steal%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #ffb2b2,0px 0px 15px #ffb2b2,0px 0px 15px #ffb2b2;"
+                                      >
+                                        7.1
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Non-Steal TO%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851;"
+                                      >
+                                        10.1
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Block%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
+                                      >
+                                        11.4
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
                                       3P Defensive SoS: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #fff7f7,0px 0px 15px #fff7f7,0px 0px 15px #fff7f7;"
@@ -5688,7 +5786,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(153, 204, 153); vertical-align: middle;"
                   >
                     <div>
-                      18.4
+                      <div>
+                        18.4
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -5849,7 +5954,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(182, 219, 182); vertical-align: middle;"
                   >
                     <div>
-                      57.1
+                      <div>
+                        57.1
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -7374,6 +7486,48 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 >
                                   <ul>
                                     <li>
+                                      FT%: off=[
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3;"
+                                      >
+                                        73.3
+                                      </b>
+                                      ]% def=[
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5;"
+                                      >
+                                        72.7
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Steal%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #ff4f4f,0px 0px 15px #ff4f4f,0px 0px 15px #ff4f4f;"
+                                      >
+                                        5.9
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Non-Steal TO%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
+                                      >
+                                        12.5
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Block%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
+                                      >
+                                        13.2
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
                                       3P Defensive SoS: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #e4f1e4,0px 0px 15px #e4f1e4,0px 0px 15px #e4f1e4;"
@@ -8231,7 +8385,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(194, 224, 194); vertical-align: middle;"
                   >
                     <div>
-                      17.4
+                      <div>
+                        17.4
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -8392,7 +8553,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(193, 224, 193); vertical-align: middle;"
                   >
                     <div>
-                      57.6
+                      <div>
+                        57.6
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -9917,6 +10085,48 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 >
                                   <ul>
                                     <li>
+                                      FT%: off=[
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #fff8f8,0px 0px 15px #fff8f8,0px 0px 15px #fff8f8;"
+                                      >
+                                        74.7
+                                      </b>
+                                      ]% def=[
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b;"
+                                      >
+                                        69.8
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Steal%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b;"
+                                      >
+                                        6.8
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Non-Steal TO%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #209020,0px 0px 15px #209020,0px 0px 15px #209020;"
+                                      >
+                                        10.6
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
+                                      Defensive Block%: [
+                                      <b
+                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
+                                      >
+                                        11.8
+                                      </b>
+                                      ]%
+                                    </li>
+                                    <li>
                                       3P Defensive SoS: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff;"
@@ -11067,7 +11277,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(206, 231, 206); vertical-align: middle;"
                   >
                     <div>
-                      17.1
+                      <div>
+                        17.1
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -11226,7 +11443,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(196, 226, 196); vertical-align: middle;"
                   >
                     <div>
-                      57.7
+                      <div>
+                        57.7
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -12330,7 +12554,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(153, 204, 153); vertical-align: middle;"
                   >
                     <div>
-                      18.4
+                      <div>
+                        18.4
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -12489,7 +12720,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(182, 219, 182); vertical-align: middle;"
                   >
                     <div>
-                      57.1
+                      <div>
+                        57.1
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -13607,7 +13845,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(194, 224, 194); vertical-align: middle;"
                   >
                     <div>
-                      17.4
+                      <div>
+                        17.4
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -13766,7 +14011,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(193, 224, 193); vertical-align: middle;"
                   >
                     <div>
-                      57.6
+                      <div>
+                        57.6
+                        <small>
+                          <sup
+                            class="infoBadge"
+                          />
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td

@@ -271,6 +271,12 @@ export class AdvancedFilterUtils {
     "def_twopmid_ast",
     "def_twoprim_ast",
 
+    // Extra defensive info
+    "def_stl",
+    "def_blk",
+    "def_to_nonstl",
+    "def_stk",
+
     // Scramble:
     "off_scramble_pct",
     "off_scramble_ppp",
@@ -669,14 +675,18 @@ export class AdvancedFilterUtils {
   }
   /** Use words for digits for autocomplete reasons - turn them back */
   static fieldReplacements(s: string) {
+    return s.replace(/twop/g, "2p").replace(/threep/g, "3p");
+  }
+
+  /** Use words for digits for autocomplete reasons - turn them back */
+  static playerSpecificFieldReplacements(s: string) {
     return s
-      .replace(/twop/g, "2p")
-      .replace(/threep/g, "3p")
       .replace(/def_blk/g, "def_2prim")
       .replace(/def_stl/g, "def_to")
       .replace(/def_fc/g, "def_ftr")
       .replace(/(off|def)_poss/g, "$1_team_poss");
   }
+
   /** Misc transforms to map nice auto-complete-y terms to the ugly objects (normal mode, eg player leaderboard) */
   static singleYearfixObjectFormat(s: string) {
     return s
@@ -880,6 +890,7 @@ export class AdvancedFilterUtils {
         AdvancedFilterUtils.fixBoolOps,
         AdvancedFilterUtils.avoidAssigmentOperator,
         AdvancedFilterUtils.fieldReplacements,
+        AdvancedFilterUtils.playerSpecificFieldReplacements,
         multiYear
           ? AdvancedFilterUtils.multiYearfixObjectFormat
           : AdvancedFilterUtils.singleYearfixObjectFormat,

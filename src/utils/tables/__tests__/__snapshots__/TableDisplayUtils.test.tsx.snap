@@ -555,6 +555,16 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.2997032640949555,
   }
 
+  def_2prim: Object {
+    "extraInfo": <span>
+      Block%:
+       
+      11.8
+      %
+    </span>,
+    "value": 0.5436893203883495,
+  }
+
   def_2primr: Object {
     "extraInfo": <span>
       45% assisted
@@ -618,6 +628,20 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
       </li>
     </span>,
     "value": 93.29896907216495,
+  }
+
+  def_to: Object {
+    "extraInfo": <span>
+      Stl%: 
+      8.0
+      %
+      <br />
+      Non-Stl TO%:
+       
+      7.2
+      %
+    </span>,
+    "value": 0.15206185567010308,
   }
 
   off_2pmidr: Object {
