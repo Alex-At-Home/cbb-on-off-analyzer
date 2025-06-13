@@ -65,6 +65,7 @@ export type Props = {
   quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
   compressedPlayTypeStats?: [number, number, number, number][];
+  navigationLinkOverride?: React.ReactElement;
 };
 const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -80,6 +81,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   defensiveOverride: defensiveOverrideIn,
   quickSwitchOverride,
   compressedPlayTypeStats,
+  navigationLinkOverride,
 }) => {
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -543,6 +545,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 possFreqType,
                 setPossFreqType
               )}
+              {navigationLinkOverride ? " | " : null}
+              {navigationLinkOverride}
             </Col>
           </Row>
           {renderBarChartRow(

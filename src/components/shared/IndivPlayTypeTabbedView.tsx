@@ -31,6 +31,7 @@ export type IndivPlayTypeDiagRadarProps = {
   showHelp: boolean;
   playCountToUse?: number;
   quickSwitchOverride: string | undefined;
+  navigationLinkOverride?: React.ReactElement;
 };
 
 // Union type for the tabbed view

@@ -1505,6 +1505,34 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           (opt) => opt.title != displayKey
                         )}
                         quickSwitchOverride={undefined}
+                        navigationLinkOverride={
+                          <OverlayTrigger
+                            placement="auto"
+                            overlay={
+                              <Tooltip id={`${player.code}styleTeamView`}>
+                                Open the Team view with the play style chart
+                                showing this player's actions in a team context
+                              </Tooltip>
+                            }
+                          >
+                            <a
+                              target="_blank"
+                              href={UrlRouting.getGameUrl(
+                                {
+                                  ...getCommonFilterParams(gameFilterParams),
+                                  onQuery: gameFilterParams.onQuery,
+                                  offQuery: gameFilterParams.offQuery,
+                                  autoOffQuery: gameFilterParams.autoOffQuery,
+                                  showTeamPlayTypes: true,
+                                  teamPlayTypeConfig: `||${player.code}||all||`,
+                                },
+                                {}
+                              )}
+                            >
+                              Team View<sup>*</sup>
+                            </a>
+                          </OverlayTrigger>
+                        }
                       />,
                       "small"
                     ),

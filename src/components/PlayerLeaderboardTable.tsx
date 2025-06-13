@@ -1732,6 +1732,31 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       showHelp={showHelp}
                       quickSwitchOverride={undefined}
                       compressedPlayTypeStats={player.style}
+                      navigationLinkOverride={
+                        <OverlayTrigger
+                          placement="auto"
+                          overlay={
+                            <Tooltip id={`${player.code}styleTeamView`}>
+                              Open the Team view with the play style chart
+                              showing this player's actions in a team context
+                            </Tooltip>
+                          }
+                        >
+                          <a
+                            target="_blank"
+                            href={UrlRouting.getGameUrl(
+                              {
+                                ...teamParams,
+                                showTeamPlayTypes: true,
+                                teamPlayTypeConfig: `||${player.code}||all||`,
+                              },
+                              {}
+                            )}
+                          >
+                            Team View<sup>*</sup>
+                          </a>
+                        </OverlayTrigger>
+                      }
                     />,
                     "small"
                   ),

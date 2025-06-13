@@ -54752,6 +54752,29 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
                   grades={Object {}}
+                  navigationLinkOverride={
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip
+                          id="AnCowanstyleTeamView"
+                          placement="right"
+                        >
+                          Open the Team view with the play style chart showing this player's actions in a team context
+                        </Tooltip>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAnCowan%7C%7Call%7C%7C&"
+                        target="_blank"
+                      >
+                        Team View
+                        <sup>
+                          *
+                        </sup>
+                      </a>
+                    </OverlayTrigger>
+                  }
                   player={
                     {
                       code: "AnCowan"
@@ -56194,6 +56217,29 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
                   grades={Object {}}
+                  navigationLinkOverride={
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip
+                          id="AnCowanstyleTeamView"
+                          placement="right"
+                        >
+                          Open the Team view with the play style chart showing this player's actions in a team context
+                        </Tooltip>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAnCowan%7C%7Call%7C%7C&"
+                        target="_blank"
+                      >
+                        Team View
+                        <sup>
+                          *
+                        </sup>
+                      </a>
+                    </OverlayTrigger>
+                  }
                   player={
                     {
                       code: "AnCowan"
@@ -57639,6 +57685,29 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
                   grades={Object {}}
+                  navigationLinkOverride={
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip
+                          id="AaWigginsstyleTeamView"
+                          placement="right"
+                        >
+                          Open the Team view with the play style chart showing this player's actions in a team context
+                        </Tooltip>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAaWiggins%7C%7Call%7C%7C&"
+                        target="_blank"
+                      >
+                        Team View
+                        <sup>
+                          *
+                        </sup>
+                      </a>
+                    </OverlayTrigger>
+                  }
                   player={
                     {
                       code: "AaWiggins"
@@ -59072,6 +59141,29 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
                   grades={Object {}}
+                  navigationLinkOverride={
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip
+                          id="ReMonastyleTeamView"
+                          placement="right"
+                        >
+                          Open the Team view with the play style chart showing this player's actions in a team context
+                        </Tooltip>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CReMona%7C%7Call%7C%7C&"
+                        target="_blank"
+                      >
+                        Team View
+                        <sup>
+                          *
+                        </sup>
+                      </a>
+                    </OverlayTrigger>
+                  }
                   player={
                     {
                       code: "ReMona"
