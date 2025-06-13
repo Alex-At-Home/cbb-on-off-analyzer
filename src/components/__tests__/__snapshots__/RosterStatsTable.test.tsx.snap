@@ -54765,7 +54765,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       placement="auto"
                     >
                       <a
-                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAnCowan%7C%7Call%7C%7C&"
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAnCowan%7C%7Call%7C%7Cmulti%7C%7C&"
                         target="_blank"
                       >
                         Team View
@@ -56230,7 +56230,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       placement="auto"
                     >
                       <a
-                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAnCowan%7C%7Call%7C%7C&"
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAnCowan%7C%7Call%7C%7Cmulti%7C%7C&"
                         target="_blank"
                       >
                         Team View
@@ -57698,7 +57698,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       placement="auto"
                     >
                       <a
-                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAaWiggins%7C%7Call%7C%7C&"
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CAaWiggins%7C%7Call%7C%7Cmulti%7C%7C&"
                         target="_blank"
                       >
                         Team View
@@ -59154,7 +59154,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       placement="auto"
                     >
                       <a
-                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CReMona%7C%7Call%7C%7C&"
+                        href="/OnOffAnalyzer?showTeamPlayTypes=true&teamPlayTypeConfig=%7C%7CReMona%7C%7Call%7C%7Cmulti%7C%7C&"
                         target="_blank"
                       >
                         Team View

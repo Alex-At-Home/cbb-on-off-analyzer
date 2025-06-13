@@ -1524,7 +1524,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                                   offQuery: gameFilterParams.offQuery,
                                   autoOffQuery: gameFilterParams.autoOffQuery,
                                   showTeamPlayTypes: true,
-                                  teamPlayTypeConfig: `||${player.code}||all||`,
+                                  teamPlayTypeConfig: `||${player.code}||all||multi||`,
                                 },
                                 {}
                               )}

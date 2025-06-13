@@ -44,6 +44,8 @@ import { LineupTableUtils } from "./LineupTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { TableDisplayUtils } from "./TableDisplayUtils";
 import TeamPlayTypeTabbedView from "../../components/shared/TeamPlayTypeTabbedView";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { UrlRouting } from "../UrlRouting";
 
 // Data model
 
@@ -795,6 +797,45 @@ export class TeamStatsTableUtils {
                                   ]
                             }
                             quickSwitchOverride={undefined}
+                            navigationLinkOverride={
+                              //(note this is ignore unless in TeamStatsExplorer mode because !_.isEmpty(players))
+                              <OverlayTrigger
+                                placement="top"
+                                overlay={(props: any) => (
+                                  <Tooltip id="viewPlayerDetails" {...props}>
+                                    The Team Stats Explorer Style view doesn't
+                                    support players breakdowns...
+                                    <br />
+                                    <br />
+                                    ...BUT just click on the hyperlink to open a
+                                    new tab with the Team Analysis page with a
+                                    style view that does support it. (Then click
+                                    on the same hyperlink on that page or on any
+                                    of the bar charts.)
+                                  </Tooltip>
+                                )}
+                              >
+                                <a
+                                  target="_blank"
+                                  href={UrlRouting.getGameUrl(
+                                    {
+                                      ...gameFilterParams,
+                                      showExpanded: true,
+                                      calcRapm: true,
+                                      showTeamPlayTypes: true,
+                                      showGrades: "rank:Combo",
+                                      showExtraInfo: false,
+                                      showRoster: true,
+                                      teamPlayTypeConfig: "sos||||all||multi||",
+                                    },
+                                    {}
+                                  )}
+                                >
+                                  <b>View Player Details</b>
+                                  <sup>*</sup>
+                                </a>
+                              </OverlayTrigger>
+                            }
                           />,
                         ]
                       : []

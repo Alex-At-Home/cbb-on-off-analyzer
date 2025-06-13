@@ -39,6 +39,7 @@ export type TeamPlayTypeDiagRadarProps = {
   startWithRaw?: boolean;
   configStr?: string;
   updateConfig?: (configStr: string) => void;
+  navigationLinkOverride?: React.ReactElement;
 };
 
 // Union type for the tabbed view
@@ -54,6 +55,7 @@ export type TeamPlayTypeTabbedViewProps = {
   showHelp: boolean;
   configStr?: string;
   updateConfig?: (configStr: string) => void;
+  navigationLinkOverride?: React.ReactElement;
 };
 
 const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (

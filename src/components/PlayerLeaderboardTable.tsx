@@ -1748,7 +1748,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                               {
                                 ...teamParams,
                                 showTeamPlayTypes: true,
-                                teamPlayTypeConfig: `||${player.code}||all||`,
+                                teamPlayTypeConfig: `||${player.code}||all||multi||`,
                               },
                               {}
                             )}

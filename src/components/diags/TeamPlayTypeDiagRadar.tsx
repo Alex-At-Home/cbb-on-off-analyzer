@@ -202,6 +202,7 @@ export type Props = {
   startWithRaw?: boolean;
   configStr?: string;
   updateConfig?: (configStr: string) => void;
+  navigationLinkOverride?: React.ReactElement;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -219,6 +220,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   startWithRaw,
   configStr,
   updateConfig: updateConfigIn,
+  navigationLinkOverride,
 }) => {
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -442,30 +444,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         };
       })
     : [];
-
-  const teamParams = {
-    team: (mainTeamStats as any)?.team_name || "??",
-    gender: "Men", //TODO: fix this
-    year: (mainTeamStats as any)?.year,
-    minRank: "0",
-    maxRank: "400",
-    //queryFilters: isConfOnly ? "Conf" : undefined,
-    showExpanded: true,
-    calcRapm: true,
-    showTeamPlayTypes: true,
-    teamPlayTypeConfig: radarConfigToStr(
-      {
-        adjustForSos: true,
-        filterStr: "",
-        selectedPlayTypes: "all",
-        multiMode: true,
-      },
-      startWithRaw || false
-    ),
-    showGrades: "rank:Combo",
-    showExtraInfo: false,
-    showRoster: true,
-  };
 
   // Compute the 'extra' (was 'base') chart data (from quickSwitchBase)
   let extraTopLevelPlayTypeStylesPctile: any = undefined;
@@ -977,34 +955,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                   </OverlayTrigger>
                 </>
               ) : null}
-              {!supportPlayerBreakdown &&
-              !defensiveOverrideIn &&
-              _.isEmpty(playersIn) ? (
+              {!supportPlayerBreakdown && navigationLinkOverride ? (
                 <>
                   &nbsp;|&nbsp;
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={(props: any) => (
-                      <Tooltip id="viewPlayerDetails" {...props}>
-                        The Team Stats Explorer Style view doesn't support
-                        players breakdowns...
-                        <br />
-                        <br />
-                        ...BUT just click on the hyperlink to open a new tab
-                        with the Team Analysis page with a style view that does
-                        support it. (Then click on the same hyperlink on that
-                        page or on any of the bar charts.)
-                      </Tooltip>
-                    )}
-                  >
-                    <a
-                      target="_blank"
-                      href={UrlRouting.getGameUrl(teamParams, {})}
-                    >
-                      <b>View Player Details</b>
-                      <sup>*</sup>
-                    </a>
-                  </OverlayTrigger>
+                  {navigationLinkOverride}
                 </>
               ) : null}
             </Col>
