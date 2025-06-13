@@ -1248,6 +1248,24 @@ export async function main() {
                   });
                 }
 
+                /** From eg [0, 1, 2, 3, 4] to { pg: 0, sg: 1, etc } */
+                const maybeConvertPosInfo = (
+                  posInfo: number[]
+                ): Record<string, number> | number[] => {
+                  if (injectExtraDataForNbaFolks) {
+                    return _.chain(posFreqs || [])
+                      .transform((acc, val, valIndex) => {
+                        const posKey = (
+                          PositionUtils.tradPosList[valIndex] || "pos_unk"
+                        ).substring(4); //(skip over pos_)
+                        acc[posKey] = val;
+                      }, {} as Record<string, number>)
+                      .value();
+                  } else {
+                    return posInfo;
+                  }
+                };
+
                 return {
                   /** _id used for indexing purposes, will mostly use NCAA id */
                   _id: `${
@@ -1264,7 +1282,7 @@ export async function main() {
                   year: teamYear,
                   shotInfo: shotChartMap[kv[0]],
                   style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this
-                  posFreqs,
+                  posFreqs: maybeConvertPosInfo(posFreqs),
                   ...((cutdownLowVolume
                     ? lowVolumeStripPlayerInfo(player)
                     : _.chain(player)
@@ -1301,6 +1319,7 @@ export async function main() {
                         .fromPairs()
                         .value()) as PureStatSet),
                   ...posInfo,
+                  posConfidences: maybeConvertPosInfo(posInfo.posConfidences),
                 } as IndivStatSet;
               });
 
