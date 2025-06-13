@@ -744,6 +744,10 @@ export class GradeUtils {
   static readonly teamFieldsToInvert = {
     off_to: true,
     def_to: true,
+    def_to_nonstl: true,
+    def_stl: true,
+    def_blk: true,
+    def_stk: true,
     off_scramble_to: true,
     def_scramble_to: true,
     off_trans_to: true,

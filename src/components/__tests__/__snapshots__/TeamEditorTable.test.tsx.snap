@@ -30567,6 +30567,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                           "override": "Adjusted from Def 3P%",
                           "value": 94.4478,
                         },
+                        "def_blk": Object {
+                          "value": 0.1004,
+                        },
                         "def_ftr": Object {
                           "value": 0.2497,
                         },
@@ -30602,8 +30605,17 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                         "def_scramble_to": Object {
                           "value": 0.1051,
                         },
+                        "def_stk": Object {
+                          "value": 0.0893,
+                        },
+                        "def_stl": Object {
+                          "value": 0.0782,
+                        },
                         "def_to": Object {
                           "value": 0.1698,
+                        },
+                        "def_to_nonstl": Object {
+                          "value": 0.0916,
                         },
                         "def_trans": Object {
                           "value": 0.1575,
@@ -36707,6 +36719,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                           "override": "Adjusted from Def 3P%",
                           "value": 94.4478,
                         },
+                        "def_blk": Object {
+                          "value": 0.1004,
+                        },
                         "def_ftr": Object {
                           "value": 0.2497,
                         },
@@ -36742,8 +36757,17 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                         "def_scramble_to": Object {
                           "value": 0.1051,
                         },
+                        "def_stk": Object {
+                          "value": 0.0893,
+                        },
+                        "def_stl": Object {
+                          "value": 0.0782,
+                        },
                         "def_to": Object {
                           "value": 0.1698,
+                        },
+                        "def_to_nonstl": Object {
+                          "value": 0.0916,
                         },
                         "def_trans": Object {
                           "value": 0.1575,

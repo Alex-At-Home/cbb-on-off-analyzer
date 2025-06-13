@@ -775,7 +775,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -868,11 +868,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -1272,7 +1272,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -1365,11 +1365,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -1772,7 +1772,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -1865,11 +1865,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -2269,7 +2269,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -2362,11 +2362,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -2769,7 +2769,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -2862,11 +2862,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -3266,7 +3266,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -3359,11 +3359,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -4830,7 +4830,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.4
                                       %
@@ -4925,11 +4925,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.2
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       9.5
                                       %
@@ -5072,7 +5072,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.4
                                       %
@@ -5167,11 +5167,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.2
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       9.5
                                       %
@@ -5292,7 +5292,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -5385,11 +5385,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -5789,7 +5789,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -5882,11 +5882,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -6289,7 +6289,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -6382,11 +6382,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -6786,7 +6786,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -6879,11 +6879,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -8325,7 +8325,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -8451,11 +8451,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -8690,7 +8690,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -8816,11 +8816,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -9058,7 +9058,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -9184,11 +9184,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -9423,7 +9423,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -9549,11 +9549,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -9791,7 +9791,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -9917,11 +9917,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -10156,7 +10156,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -10282,11 +10282,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -11563,7 +11563,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -11682,11 +11682,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -11916,7 +11916,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -12035,11 +12035,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -12307,7 +12307,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -12426,11 +12426,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -12660,7 +12660,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -12779,11 +12779,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -13051,7 +13051,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -13170,11 +13170,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -13404,7 +13404,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -13523,11 +13523,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -14822,7 +14822,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -14915,11 +14915,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -15333,7 +15333,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -15426,11 +15426,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -15847,7 +15847,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -15940,11 +15940,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -16358,7 +16358,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -16451,11 +16451,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -16872,7 +16872,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -16965,11 +16965,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -17383,7 +17383,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -17476,11 +17476,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -18936,7 +18936,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -19062,11 +19062,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -19513,7 +19513,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       11.8
                                       %
@@ -19639,11 +19639,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.0
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       7.2
                                       %
@@ -20093,7 +20093,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -20219,11 +20219,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -20670,7 +20670,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       10.8
                                       %
@@ -20796,11 +20796,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       8.5
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       13.6
                                       %
@@ -21250,7 +21250,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -21376,11 +21376,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %
@@ -21827,7 +21827,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_2prim: Object {
                                     "extraInfo": <span>
-                                      Block%:
+                                      Block:
                                        
                                       16.0
                                       %
@@ -21953,11 +21953,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_to: Object {
                                     "extraInfo": <span>
-                                      Stl%: 
+                                      Stl: 
                                       5.7
                                       %
                                       <br />
-                                      Non-Stl TO%:
+                                      Non-Stl TO:
                                        
                                       11.4
                                       %

@@ -1424,7 +1424,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -1519,11 +1519,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -1915,7 +1915,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -2010,11 +2010,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -2152,7 +2152,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -2239,11 +2239,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -2639,7 +2639,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -2726,11 +2726,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -2875,7 +2875,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -2970,11 +2970,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -3366,7 +3366,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -3461,11 +3461,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -3603,7 +3603,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -3690,11 +3690,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -4090,7 +4090,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -4177,11 +4177,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -4326,7 +4326,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -4421,11 +4421,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -4817,7 +4817,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -4912,11 +4912,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -5054,7 +5054,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -5141,11 +5141,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -5541,7 +5541,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -5628,11 +5628,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -5777,7 +5777,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -5872,11 +5872,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -6268,7 +6268,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -6363,11 +6363,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -6505,7 +6505,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -6600,11 +6600,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -7011,7 +7011,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -7106,11 +7106,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -7266,7 +7266,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -7361,11 +7361,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -7757,7 +7757,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -7852,11 +7852,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -7994,7 +7994,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -8089,11 +8089,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -8500,7 +8500,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -8595,11 +8595,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -8755,7 +8755,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -8850,11 +8850,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -9246,7 +9246,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -9341,11 +9341,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -9483,7 +9483,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -9578,11 +9578,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -9989,7 +9989,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -10084,11 +10084,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -12306,7 +12306,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -12423,11 +12423,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -12843,7 +12843,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -12960,11 +12960,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -13126,7 +13126,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -13213,11 +13213,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -13613,7 +13613,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -13700,11 +13700,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -14407,7 +14407,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -14524,11 +14524,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -14944,7 +14944,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -15061,11 +15061,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -15227,7 +15227,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -15314,11 +15314,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -15714,7 +15714,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -15801,11 +15801,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -16508,7 +16508,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -16625,11 +16625,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -17045,7 +17045,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -17162,11 +17162,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -17328,7 +17328,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -17415,11 +17415,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -17815,7 +17815,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -17902,11 +17902,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -18609,7 +18609,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -18726,11 +18726,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -19146,7 +19146,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -19263,11 +19263,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -19429,7 +19429,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -19546,11 +19546,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -19981,7 +19981,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -20098,11 +20098,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -20976,7 +20976,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -21093,11 +21093,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -21513,7 +21513,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -21630,11 +21630,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -21796,7 +21796,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -21913,11 +21913,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -22348,7 +22348,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -22465,11 +22465,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -23343,7 +23343,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -23460,11 +23460,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -23880,7 +23880,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -23997,11 +23997,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -24163,7 +24163,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -24280,11 +24280,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -24715,7 +24715,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -24832,11 +24832,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -27772,7 +27772,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -27867,11 +27867,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -28263,7 +28263,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -28358,11 +28358,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -28500,7 +28500,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -28587,11 +28587,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -28987,7 +28987,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -29074,11 +29074,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -29781,7 +29781,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -29876,11 +29876,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -30272,7 +30272,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -30367,11 +30367,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -30509,7 +30509,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -30596,11 +30596,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -30996,7 +30996,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -31083,11 +31083,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -31790,7 +31790,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -31885,11 +31885,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -32281,7 +32281,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -32376,11 +32376,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -32518,7 +32518,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -32605,11 +32605,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -33005,7 +33005,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -33092,11 +33092,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -33799,7 +33799,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -33894,11 +33894,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -34290,7 +34290,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -34385,11 +34385,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -34527,7 +34527,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -34622,11 +34622,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -35033,7 +35033,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -35128,11 +35128,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -35878,7 +35878,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -35973,11 +35973,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -36369,7 +36369,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -36464,11 +36464,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -36606,7 +36606,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -36701,11 +36701,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -37112,7 +37112,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -37207,11 +37207,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -37957,7 +37957,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -38052,11 +38052,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -38448,7 +38448,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -38543,11 +38543,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -38685,7 +38685,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -38780,11 +38780,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -39191,7 +39191,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -39286,11 +39286,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -42098,7 +42098,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -42193,11 +42193,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -42589,7 +42589,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -42684,11 +42684,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -42826,7 +42826,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -42913,11 +42913,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -43313,7 +43313,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -43400,11 +43400,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -44124,7 +44124,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       0.0
                                                       %
@@ -44209,11 +44209,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       0.0
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       0.0
                                                       %
@@ -44311,7 +44311,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       12.6
                                                       %
@@ -44404,11 +44404,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       7.6
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       9.9
                                                       %
@@ -44607,7 +44607,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -44702,11 +44702,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -45098,7 +45098,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -45193,11 +45193,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -45335,7 +45335,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -45422,11 +45422,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -45822,7 +45822,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -45909,11 +45909,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -46633,7 +46633,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       0.0
                                                       %
@@ -46718,11 +46718,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       0.0
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       0.0
                                                       %
@@ -46820,7 +46820,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       12.6
                                                       %
@@ -46913,11 +46913,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       7.6
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       9.9
                                                       %
@@ -47116,7 +47116,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -47211,11 +47211,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -47607,7 +47607,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -47702,11 +47702,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -47844,7 +47844,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -47931,11 +47931,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -48331,7 +48331,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -48418,11 +48418,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -49142,7 +49142,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       0.0
                                                       %
@@ -49227,11 +49227,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       0.0
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       0.0
                                                       %
@@ -49329,7 +49329,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       12.6
                                                       %
@@ -49422,11 +49422,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       7.6
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       9.9
                                                       %
@@ -49625,7 +49625,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -49720,11 +49720,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -50116,7 +50116,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -50211,11 +50211,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -50353,7 +50353,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -50448,11 +50448,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -50859,7 +50859,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -50954,11 +50954,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -52292,7 +52292,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       16.0
                                                       %
@@ -52385,11 +52385,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       5.7
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       11.4
                                                       %
@@ -52498,7 +52498,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       11.4
                                                       %
@@ -52591,11 +52591,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       8.2
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       9.5
                                                       %
@@ -52974,7 +52974,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -53069,11 +53069,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -53465,7 +53465,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -53560,11 +53560,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -53702,7 +53702,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -53797,11 +53797,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -54208,7 +54208,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -54303,11 +54303,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -55641,7 +55641,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       10.8
                                                       %
@@ -55734,11 +55734,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       8.5
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       13.6
                                                       %
@@ -55847,7 +55847,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       13.2
                                                       %
@@ -55940,11 +55940,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       7.2
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       8.6
                                                       %
@@ -56323,7 +56323,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -56418,11 +56418,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -56814,7 +56814,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -56909,11 +56909,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -57051,7 +57051,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -57146,11 +57146,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -57557,7 +57557,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -57652,11 +57652,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -58990,7 +58990,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       11.8
                                                       %
@@ -59083,11 +59083,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       8.0
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       7.2
                                                       %
@@ -59196,7 +59196,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       13.3
                                                       %
@@ -59289,11 +59289,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       7.1
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       12.6
                                                       %
@@ -61734,7 +61734,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -61829,11 +61829,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -62225,7 +62225,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -62320,11 +62320,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -62462,7 +62462,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -62549,11 +62549,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -62949,7 +62949,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -63036,11 +63036,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -63760,7 +63760,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       0.0
                                                       %
@@ -63845,11 +63845,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       0.0
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       0.0
                                                       %
@@ -63947,7 +63947,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_2prim: Object {
                                                     "extraInfo": <span>
-                                                      Block%:
+                                                      Block:
                                                        
                                                       12.6
                                                       %
@@ -64040,11 +64040,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                           def_to: Object {
                                                     "extraInfo": <span>
-                                                      Stl%: 
+                                                      Stl: 
                                                       7.6
                                                       %
                                                       <br />
-                                                      Non-Stl TO%:
+                                                      Non-Stl TO:
                                                        
                                                       9.9
                                                       %
@@ -66017,7 +66017,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -66112,11 +66112,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -66508,7 +66508,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -66603,11 +66603,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -66745,7 +66745,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -66832,11 +66832,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -67232,7 +67232,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -67319,11 +67319,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -67468,7 +67468,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -67563,11 +67563,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -67959,7 +67959,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -68054,11 +68054,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -68196,7 +68196,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -68283,11 +68283,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -68683,7 +68683,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -68770,11 +68770,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -68919,7 +68919,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -69014,11 +69014,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -69410,7 +69410,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           12.6
                                           %
@@ -69505,11 +69505,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.6
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.9
                                           %
@@ -69647,7 +69647,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -69734,11 +69734,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -70134,7 +70134,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           0.0
                                           %
@@ -70221,11 +70221,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           0.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           0.0
                                           %
@@ -70370,7 +70370,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -70465,11 +70465,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -70861,7 +70861,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.4
                                           %
@@ -70956,11 +70956,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           9.5
                                           %
@@ -71098,7 +71098,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -71193,11 +71193,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -71604,7 +71604,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           16.0
                                           %
@@ -71699,11 +71699,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           5.7
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           11.4
                                           %
@@ -71859,7 +71859,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -71954,11 +71954,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -72350,7 +72350,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.2
                                           %
@@ -72445,11 +72445,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.2
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           8.6
                                           %
@@ -72587,7 +72587,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -72682,11 +72682,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -73093,7 +73093,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           10.8
                                           %
@@ -73188,11 +73188,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.5
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           13.6
                                           %
@@ -73348,7 +73348,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -73443,11 +73443,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -73839,7 +73839,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           13.3
                                           %
@@ -73934,11 +73934,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           7.1
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           12.6
                                           %
@@ -74076,7 +74076,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -74171,11 +74171,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %
@@ -74582,7 +74582,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_2prim: Object {
                                         "extraInfo": <span>
-                                          Block%:
+                                          Block:
                                            
                                           11.8
                                           %
@@ -74677,11 +74677,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
                     def_to: Object {
                                         "extraInfo": <span>
-                                          Stl%: 
+                                          Stl: 
                                           8.0
                                           %
                                           <br />
-                                          Non-Stl TO%:
+                                          Non-Stl TO:
                                            
                                           7.2
                                           %

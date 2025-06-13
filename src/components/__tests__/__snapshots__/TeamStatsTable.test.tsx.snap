@@ -4887,7 +4887,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 >
                                   <ul>
                                     <li>
-                                      FT%: off=[
+                                      FTs: off=[
                                       <b
                                         style="text-shadow: 0px 0px 15px #fafdfa,0px 0px 15px #fafdfa,0px 0px 15px #fafdfa;"
                                       >
@@ -4902,7 +4902,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Steal%: [
+                                      Defensive Steals: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #ffb2b2,0px 0px 15px #ffb2b2,0px 0px 15px #ffb2b2;"
                                       >
@@ -4911,7 +4911,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Non-Steal TO%: [
+                                      Defensive Non-Steal TOs: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851;"
                                       >
@@ -4920,7 +4920,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Block%: [
+                                      Defensive Blocks: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
                                       >
@@ -7486,7 +7486,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 >
                                   <ul>
                                     <li>
-                                      FT%: off=[
+                                      FTs: off=[
                                       <b
                                         style="text-shadow: 0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3;"
                                       >
@@ -7501,7 +7501,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Steal%: [
+                                      Defensive Steals: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #ff4f4f,0px 0px 15px #ff4f4f,0px 0px 15px #ff4f4f;"
                                       >
@@ -7510,7 +7510,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Non-Steal TO%: [
+                                      Defensive Non-Steal TOs: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
                                       >
@@ -7519,7 +7519,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Block%: [
+                                      Defensive Blocks: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
                                       >
@@ -10085,7 +10085,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 >
                                   <ul>
                                     <li>
-                                      FT%: off=[
+                                      FTs: off=[
                                       <b
                                         style="text-shadow: 0px 0px 15px #fff8f8,0px 0px 15px #fff8f8,0px 0px 15px #fff8f8;"
                                       >
@@ -10100,7 +10100,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Steal%: [
+                                      Defensive Steals: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b;"
                                       >
@@ -10109,7 +10109,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Non-Steal TO%: [
+                                      Defensive Non-Steal TOs: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #209020,0px 0px 15px #209020,0px 0px 15px #209020;"
                                       >
@@ -10118,7 +10118,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       ]%
                                     </li>
                                     <li>
-                                      Defensive Block%: [
+                                      Defensive Blocks: [
                                       <b
                                         style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
                                       >

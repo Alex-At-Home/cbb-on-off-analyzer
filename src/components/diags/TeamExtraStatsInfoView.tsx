@@ -258,11 +258,19 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     def_ast_3p: teamStatSet.def_ast_3p,
     off_ast_rim: teamStatSet.off_ast_rim,
     def_ast_rim: teamStatSet.def_ast_rim,
+    off_ft: teamStatSet.off_ft,
+    def_ft: teamStatSet.def_ft,
   } as PureStatSet;
   DerivedStatsUtils.injectTeamDerivedStats(teamStatSet, extraStats);
 
   // And now maybe build ranks/%iles:
-  const extraOriginalFields = ["3p_ast", "2prim_ast", "ast_3p", "ast_rim"];
+  const extraOriginalFields = [
+    "3p_ast",
+    "2prim_ast",
+    "ast_3p",
+    "ast_rim",
+    "ft",
+  ];
   const teamPercentiles = tierToUse
     ? GradeUtils.buildTeamPercentiles(
         tierToUse,
@@ -536,7 +544,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
         <span
           style={CommonTableDefs.getTextShadow(
             teamPercentiles.def_stl,
-            CbbColors.def_pctile_qual
+            CbbColors.off_pctile_qual //(see GradeUtils.teamFieldsToInvert)
           )}
         >
           {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_stl)}
@@ -553,7 +561,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
         <span
           style={CommonTableDefs.getTextShadow(
             teamPercentiles.def_blk,
-            CbbColors.def_pctile_qual
+            CbbColors.off_pctile_qual //(see GradeUtils.teamFieldsToInvert)
           )}
         >
           {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_blk)}
@@ -570,7 +578,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
         <span
           style={CommonTableDefs.getTextShadow(
             teamPercentiles.def_to_nonstl,
-            CbbColors.def_pctile_qual
+            CbbColors.off_pctile_qual //(see GradeUtils.teamFieldsToInvert)
           )}
         >
           {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_to_nonstl)}
@@ -625,7 +633,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
               <Row>
                 <ul>
                   <li>
-                    FT%: off=[
+                    FTs: off=[
                     <b
                       style={CommonTableDefs.getTextShadow(
                         { value: off_ft },
@@ -647,7 +655,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
                     {offdefFtHtml}
                   </li>
                   <li>
-                    Defensive Steal%: [
+                    Defensive Steals: [
                     <b
                       style={CommonTableDefs.getTextShadow(
                         { value: def_stl },
@@ -660,7 +668,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
                     {defStlHtml}
                   </li>
                   <li>
-                    Defensive Non-Steal TO%: [
+                    Defensive Non-Steal TOs: [
                     <b
                       style={CommonTableDefs.getTextShadow(
                         { value: def_to_nonstl },
@@ -673,7 +681,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
                     {defToNonStlHtml}
                   </li>
                   <li>
-                    Defensive Block%: [
+                    Defensive Blocks: [
                     <b
                       style={CommonTableDefs.getTextShadow(
                         { value: def_blk },

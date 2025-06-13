@@ -557,7 +557,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
 
   def_2prim: Object {
     "extraInfo": <span>
-      Block%:
+      Block:
        
       11.8
       %
@@ -632,11 +632,11 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
 
   def_to: Object {
     "extraInfo": <span>
-      Stl%: 
+      Stl: 
       8.0
       %
       <br />
-      Non-Stl TO%:
+      Non-Stl TO:
        
       7.2
       %

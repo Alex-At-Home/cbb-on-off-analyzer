@@ -660,7 +660,7 @@ export class TableDisplayUtils {
         if (statSet.def_2prim && mutableExtraStats.def_blk) {
           statSet.def_2prim.extraInfo = (
             <span>
-              Block%:{" "}
+              Block:{" "}
               {(100 * (mutableExtraStats.def_blk?.value || 0)).toFixed(1)}%
             </span>
           );
@@ -672,10 +672,10 @@ export class TableDisplayUtils {
         ) {
           statSet.def_to.extraInfo = (
             <span>
-              Stl%: {(100 * (mutableExtraStats.def_stl?.value || 0)).toFixed(1)}
+              Stl: {(100 * (mutableExtraStats.def_stl?.value || 0)).toFixed(1)}
               %
               <br />
-              Non-Stl TO%:{" "}
+              Non-Stl TO:{" "}
               {(100 * (mutableExtraStats.def_to_nonstl?.value || 0)).toFixed(1)}
               %
             </span>

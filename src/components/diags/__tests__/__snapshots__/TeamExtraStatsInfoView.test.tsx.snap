@@ -615,7 +615,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           >
             <ul>
               <li>
-                FT%: off=[
+                FTs: off=[
                 <b
                   style={
                     Object {
@@ -638,7 +638,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                 ]%
               </li>
               <li>
-                Defensive Steal%: [
+                Defensive Steals: [
                 <b
                   style={
                     Object {
@@ -651,7 +651,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                 ]%
               </li>
               <li>
-                Defensive Non-Steal TO%: [
+                Defensive Non-Steal TOs: [
                 <b
                   style={
                     Object {
@@ -664,7 +664,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                 ]%
               </li>
               <li>
-                Defensive Block%: [
+                Defensive Blocks: [
                 <b
                   style={
                     Object {
