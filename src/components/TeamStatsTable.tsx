@@ -345,6 +345,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showPlayTypes,
       showRoster,
       showGameInfo,
+      divisionStatsCache,
       showGrades,
       showShotCharts,
       shotChartConfig, //(do need to re-render on this since is applied to on/off/baseline shot charts)
