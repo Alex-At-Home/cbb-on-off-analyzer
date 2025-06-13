@@ -24,7 +24,7 @@ export class PositionUtils {
     -2.82375823, -2.41283573, -3.74982844, -8.98755013, -3.23442276,
   ];
 
-  /** List of the fields used in the positional confidence vectors */
+  /** List of the fields used in the positional confidence vectors - note need to be prefixed with pos_ */
   static readonly tradPosList = [
     "pos_pg",
     "pos_sg",
