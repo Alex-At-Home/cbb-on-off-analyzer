@@ -13,10 +13,14 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 type Props = {
   size?: "sm" | "lg";
+  label?: React.ReactElement;
+  drop?: "up" | "left" | "right" | "down";
 };
 
 const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   size,
+  label,
+  drop,
   children,
 }) => {
   // Some extra logic for the config dropdown:
@@ -37,19 +41,29 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   return (
     <Dropdown
       alignRight
-      drop="up"
+      drop={drop || "up"}
       onToggle={handleToggle}
       show={configDropdownOpen}
     >
-      <OverlayTrigger placement="bottom" overlay={advancedSettingsTooltip}>
+      {label ? (
         <Dropdown.Toggle
           size={size}
           variant="outline-secondary"
           id="dropdown-basic"
         >
-          <FontAwesomeIcon icon={faCog} />
+          {label}
         </Dropdown.Toggle>
-      </OverlayTrigger>
+      ) : (
+        <OverlayTrigger placement="bottom" overlay={advancedSettingsTooltip}>
+          <Dropdown.Toggle
+            size={size}
+            variant="outline-secondary"
+            id="dropdown-basic"
+          >
+            <FontAwesomeIcon icon={faCog} />
+          </Dropdown.Toggle>
+        </OverlayTrigger>
+      )}
       <Dropdown.Menu>{children}</Dropdown.Menu>
     </Dropdown>
   );

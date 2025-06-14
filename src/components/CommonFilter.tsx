@@ -92,6 +92,7 @@ interface Props<PARAMS> {
   matchupMode?: "game" | "preview";
   blockSubmit?: boolean;
   onGameSelectionChange?: (gameSelection: FilteredGameSelection) => void;
+  hideSemiAdvancedOptions?: boolean; //(only show team selector)
 }
 
 /** Used to pass the submitListener to child components */
@@ -122,6 +123,7 @@ const CommonFilter: CommonFilterI = ({
   matchupMode,
   blockSubmit,
   onGameSelectionChange,
+  hideSemiAdvancedOptions,
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -970,7 +972,7 @@ const CommonFilter: CommonFilterI = ({
         <GlobalKeypressManager.Provider value={submitListenerFactory(true)}>
           {children}
         </GlobalKeypressManager.Provider>
-        {matchupMode ? null : (
+        {matchupMode || hideSemiAdvancedOptions ? null : (
           <Form.Group as={Row}>
             <Form.Label column sm="2">
               Baseline Query {maybeShowBlogHelp()}
@@ -1041,7 +1043,7 @@ const CommonFilter: CommonFilterI = ({
             </Col>
           </Form.Group>
         )}
-        {matchupMode ? null : (
+        {matchupMode || hideSemiAdvancedOptions ? null : (
           <Form.Group as={Row} controlId="oppositionFilter">
             <Form.Label column sm="2">
               Opponent Strength

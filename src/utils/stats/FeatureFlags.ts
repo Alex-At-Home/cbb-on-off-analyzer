@@ -13,9 +13,6 @@ export class FeatureFlags {
   }
   // Feature flags themselves:
 
-  /** Some long term work on showing guesses as to the play types players use */
-  static readonly betterStyleAnalysis = true;
-
   /** For team editor - short term work on generating make-believe NIL estimates - otherwise just a user-editable field */
   static readonly estimateNilValue = false;
 
@@ -27,4 +24,7 @@ export class FeatureFlags {
 
   /** For work in progress on player leaderboard (want to have single line view) */
   static readonly expandedPlayerLeaderboard = false;
+
+  /** For work in progress on improving the player UX */
+  static readonly friendlierInterface = false;
 }

@@ -6,6 +6,7 @@ import { NextPage } from "next";
 
 // Lodash:
 import _ from "lodash";
+import fetch from "isomorphic-unfetch";
 
 // Bootstrap imports:
 
@@ -16,7 +17,11 @@ import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBullseye,
+  faPlusCircle,
+  faSlidersH,
+} from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 
 // Component imports:
@@ -59,12 +64,18 @@ import {
   Badge,
   Button,
   ButtonGroup,
+  Dropdown,
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
 import GameSelectorModal from "./shared/GameSelectorModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+//@ts-ignore
+import Select, { components } from "react-select";
+import { ClientRequestCache } from "../utils/ClientRequestCache";
+import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 
 type Props = {
   onStats: (
@@ -78,6 +89,7 @@ type Props = {
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
   forceReload1Up: number;
+  testMode?: boolean;
 };
 
 const GameFilter: React.FunctionComponent<Props> = ({
@@ -85,7 +97,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
   startingState,
   onChangeState,
   forceReload1Up,
+  testMode,
 }) => {
+  const isServer = () => typeof window === `undefined`;
+  if (isServer() && !testMode) return null; //(don't render server-side)
+
   // Data model
 
   const {
@@ -133,9 +149,62 @@ const GameFilter: React.FunctionComponent<Props> = ({
     ...startingCommonFilterParams
   } = startingState;
 
+  const rebuildFullState = () => {
+    return {
+      // Team stats
+      autoOffQuery: autoOffQuery,
+      teamDiffs: startTeamDiffs,
+      showTeamPlayTypes: startShowTeamPlayTypes,
+      teamPlayTypeConfig: startTeamPlayTypeConfig,
+      showRoster: startShowRoster,
+      showGameInfo: startShowGameInfo,
+      showGrades: startShowGrades,
+      showExtraInfo: startShowExtraInfo,
+      teamShotCharts: startTeamShotCharts,
+      // Common luck stats across all tables:
+      //(manual overrides)
+      manual: startManual,
+      showPlayerManual: startShowPlayerManual,
+      showOnBallConfig: startShowOnBallConfig,
+      //(luck)
+      luck: startLuck,
+      onOffLuck: startOnOffLuck,
+      showOnOffLuckDiags: startShowOnOffLuckDiags,
+      showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+      // Individual stats:
+      calcRapm: startCalcRapm,
+      rapmPriorMode: startRapmPriorMode,
+      rapmRegressMode: startRapmRegressMode,
+      filter: startFilter,
+      sortBy: startSortBy,
+      showBase: startShowBase,
+      showExpanded: startShowExpanded,
+      showDiag: startShowDiag,
+      possAsPct: startPossAsPct,
+      showPosDiag: startShowPosDiag,
+      showPlayerPlayTypes: startShowPlayerPlayTypes,
+      showInfoSubHeader: startShowInfoSubHeader,
+      playerShotCharts: startPlayerShotCharts,
+    };
+  };
+
+  /** Whether to show pre-sets instead of full set */
+  const [advancedView, setAdvancedView] = useState(
+    FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface) ? false : true
+  );
+  const [presetMode, setPresetMode] = useState("");
+
+  /** Used to build preset options */
+  const [rosterNames, setRosterNames] = useState<string[]>([]);
+
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
     startingCommonFilterParams as CommonFilterParams
+  );
+
+  /** All the game-specific options */
+  const [newParamsOnSubmit, setNewParamsOnSubmit] = useState<GameFilterParams>(
+    rebuildFullState()
   );
 
   /** Ugly pattern that is part of support for force reloading */
@@ -281,6 +350,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
+    if (!advancedView) {
+      //(only need this if building presets)
+      if (
+        params.team != commonParams.team ||
+        params.year != commonParams.year ||
+        params.gender != commonParams.gender
+      ) {
+        setRosterNames([]);
+        if (isDebug)
+          console.log(
+            `[auto-debug-mode] Update params: old=[${JSON.stringify(
+              commonParams
+            )}] vs new=[${JSON.stringify(params)}]`
+          );
+        fetchRoster(params);
+      }
+    }
     setCommonParams(params);
   }
 
@@ -397,45 +483,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
         ? {}
         : { offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters) };
 
-    const primaryRequest: GameFilterParams = includeFilterParams
-      ? _.assign(buildParamsFromState(false)[0], {
-          // Team stats
-          autoOffQuery: autoOffQuery,
-          teamDiffs: startTeamDiffs,
-          showTeamPlayTypes: startShowTeamPlayTypes,
-          teamPlayTypeConfig: startTeamPlayTypeConfig,
-          showRoster: startShowRoster,
-          showGameInfo: startShowGameInfo,
-          showGrades: startShowGrades,
-          showExtraInfo: startShowExtraInfo,
-          teamShotCharts: startTeamShotCharts,
-          // Common luck stats across all tables:
-          //(manual overrides)
-          manual: startManual,
-          showPlayerManual: startShowPlayerManual,
-          showOnBallConfig: startShowOnBallConfig,
-          //(luck)
-          luck: startLuck,
-          onOffLuck: startOnOffLuck,
-          showOnOffLuckDiags: startShowOnOffLuckDiags,
-          showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
-          // Individual stats:
-          calcRapm: startCalcRapm,
-          rapmPriorMode: startRapmPriorMode,
-          rapmRegressMode: startRapmRegressMode,
-          filter: startFilter,
-          sortBy: startSortBy,
-          showBase: startShowBase,
-          showExpanded: startShowExpanded,
-          showDiag: startShowDiag,
-          possAsPct: startPossAsPct,
-          showPosDiag: startShowPosDiag,
-          showPlayerPlayTypes: startShowPlayerPlayTypes,
-          showInfoSubHeader: startShowInfoSubHeader,
-          playerShotCharts: startPlayerShotCharts,
-        })
-      : {
-          ...commonParams,
+    const primaryOnOffRequest = advancedView
+      ? {
           autoOffQuery: autoOffQuery,
           onQuery: onQuery,
           ...onQueryFiltersObj,
@@ -450,6 +499,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
               maybeOtherQueries //(if it's empty remove it)
             ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries)
           ),
+        }
+      : {
+          autoOffQuery: newParamsOnSubmit.autoOffQuery,
+          onQuery: newParamsOnSubmit.onQuery,
+          offQuery: newParamsOnSubmit.offQuery,
+          onQueryFilters: newParamsOnSubmit.onQueryFilters,
+          offQueryFilters: newParamsOnSubmit.offQueryFilters,
+        };
+
+    const primaryRequest: GameFilterParams = includeFilterParams
+      ? _.assign(buildParamsFromState(false)[0], {
+          ...rebuildFullState(),
+          ...(advancedView ? {} : newParamsOnSubmit), //(in preset mode use the presets)
+        })
+      : {
+          ...commonParams,
+          ...primaryOnOffRequest,
         };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
@@ -832,6 +898,199 @@ const GameFilter: React.FunctionComponent<Props> = ({
     };
   };
 
+  // Presets logic to make things easier
+
+  /** The two sub-headers for the dropdown */
+  const groupedPresetOptions = [
+    {
+      label: "Basic Views",
+      options: [
+        "Season Stats",
+        "Season Stats Vs T100ish",
+        "Season Stats In Conf",
+        "Last 30 days",
+      ].map(stringToOption),
+    },
+    {
+      label: "Splits",
+      options: [
+        "Home vs Away/Neutral",
+        "T100ish vs Weaker",
+        "First halves vs Second halves",
+        "Last 30 days vs Before",
+      ].map(stringToOption),
+    },
+    {
+      label: "On/Off Splits",
+      options: rosterNames.map((n) =>
+        stringToOption(`On/Off: ${n.replaceAll('"', "")}`)
+      ),
+    },
+  ];
+
+  const onUpdatePreset = (preset: string) => {
+    const baseQuery: CommonFilterParams = {
+      ...commonParams,
+      minRank: "0",
+      maxRank: "400",
+      queryFilters: "",
+      baseQuery: "",
+    };
+    const baseOnOffQuery: GameFilterParams = {
+      onQuery: "",
+      offQuery: "",
+      autoOffQuery: true,
+      onQueryFilters: "",
+      offQueryFilters: "",
+    };
+    _.thru(preset, (__) => {
+      if (preset == "Season Stats") {
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+        });
+        setCommonParams({ ...baseQuery });
+      } else if (preset == "Season Stats Vs T100ish") {
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+        });
+        setCommonParams({ ...baseQuery, maxRank: "100" });
+      } else if (preset == "Season Stats In Conf") {
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+        });
+        setCommonParams({ ...baseQuery, queryFilters: "Conf" });
+      } else if (preset == "Last 30 days") {
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+        });
+        setCommonParams({ ...baseQuery, queryFilters: "Last-30d" });
+      } else if (preset == "Home vs Away/Neutral") {
+        const split = "location_type:Home";
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+          onQuery: split,
+          offQuery: `NOT ${split}`,
+        });
+        setCommonParams({ ...baseQuery });
+      } else if (preset == "T100ish vs Weaker") {
+        const split = "vs_rank:<=100";
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+          onQuery: split,
+          offQuery: `NOT ${split}`,
+        });
+        setCommonParams({ ...baseQuery });
+      } else if (preset == "First halves vs Second halves") {
+        const split = "end_min:<=20";
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+          onQuery: split,
+          offQuery: `NOT ${split}`,
+        });
+        setCommonParams({ ...baseQuery });
+      } else if (preset == "Last 30 days vs Before") {
+        setNewParamsOnSubmit({
+          ...newParamsOnSubmit,
+          ...baseOnOffQuery,
+          onQueryFilters: "Last-30d",
+        });
+        setCommonParams({ ...baseQuery });
+      }
+    });
+    setPresetMode(preset);
+  };
+
+  /** Extra logic needed when switching between advanced and basic mode */
+  const toggleAdvancedMode = () => {
+    setAdvancedView(!advancedView);
+    setPresetMode("");
+    //TODO: lots of things to do?
+  };
+
+  /** for debugging roster loading issues */
+  const isDebug = false;
+
+  /** Makes an API call to elasticsearch to get the roster */
+  const fetchRoster = (params: CommonFilterParams) => {
+    if (params.gender && params.year && params.team) {
+      const genderYear = `${params.gender}_${params.year}`;
+      const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
+
+      const query: GameFilterParams = {
+        gender: params.gender,
+        year: params.year,
+        team: params.team,
+        baseQuery: "",
+        onQuery: "",
+        offQuery: "",
+        minRank: ParamDefaults.defaultMinRank,
+        maxRank: ParamDefaults.defaultMaxRank,
+      };
+      const paramStr = QueryUtils.stringify(query);
+      // Check if it's in the cache:
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr,
+        ParamPrefixes.roster,
+        currentJsonEpoch,
+        false /* This gets called every keypress, so even in debug mode it's a huge pain */
+      );
+      if (cachedJson && !_.isEmpty(cachedJson)) {
+        //(ignore placeholders here)
+        handleRosterResponse(cachedJson);
+      } else {
+        fetch(`/api/getRoster?${paramStr}`).then(function (
+          response: fetch.IsomorphicResponse
+        ) {
+          response.json().then(function (json: any) {
+            // Cache result locally:
+            if (isDebug) {
+              console.log(
+                `[auto-debug-mode] CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`
+              );
+              //(this is a bit chatty)
+              //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+            }
+            if (response.ok) {
+              //(never cache errors)
+              ClientRequestCache.cacheResponse(
+                paramStr,
+                ParamPrefixes.roster,
+                json,
+                currentJsonEpoch,
+                isDebug
+              );
+            }
+            handleRosterResponse(json);
+          });
+        });
+      }
+    }
+  };
+
+  /** Parse the return from fetch Roster into name fragments */
+  const handleRosterResponse = (json: any) => {
+    const jsons = json?.responses || [];
+    const rosterCompareJson = jsons.length > 0 ? jsons[0] : {};
+    const roster =
+      rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline?.player
+        ?.buckets || [];
+
+    const names = _.chain(roster)
+      .map((rosterObj) => `"${rosterObj.key}"`)
+      .sortBy()
+      .sortedUniq()
+      .value();
+
+    setRosterNames(names);
+  };
+
   // Visual components:
 
   const queryPlusTooltip = (
@@ -841,6 +1100,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
     <Tooltip id="queryMinusTooltip">
       Remove the last query row (cannot be undone)
     </Tooltip>
+  );
+
+  /** For use in selects */
+  function stringToOption(s: string) {
+    return { label: s, value: s };
+  }
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
   );
 
   return (
@@ -955,6 +1225,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         }
         setGameSelection(newGameSelection);
       }}
+      hideSemiAdvancedOptions={!advancedView}
     >
       <GlobalKeypressManager.Consumer>
         {(globalKeypressHandler) => (
@@ -1092,187 +1363,250 @@ const GameFilter: React.FunctionComponent<Props> = ({
               />
             ))}
 
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">
-                {maybeOn} Query
-              </Form.Label>
-              <Col sm="8">
-                <Container>
-                  <Row>
-                    <InputGroup>
-                      <LineupQueryAutoSuggestText
-                        readOnly={false}
-                        placeholder="eg 'Player1 AND (Player2 OR Player3)'"
-                        initValue={onQuery}
-                        year={commonParams.year}
-                        gender={commonParams.gender}
-                        team={commonParams.team}
-                        games={gameSelection.games}
-                        onKeyUp={handleOnQueryChange}
-                        onChange={handleOnQueryChange}
-                        onKeyDown={globalKeypressHandler}
-                      />
-                      <InputGroup.Append>
-                        <QueryFilterDropdown
-                          queryFilters={onQueryFilters}
-                          setQueryFilters={setOnQueryFilters}
-                          showCustomRangeFilter={() =>
-                            setOnShowDateRangeModal(true)
-                          }
-                          showGameSelectorModal={() => {
-                            setOnShowGameSelectorModal(true);
-                          }}
-                        />
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Row>
-                  {onQueryFilters.length > 0 ? (
-                    <Row>
-                      &nbsp;
-                      {onQueryFilters.map((p, i) => (
-                        <span key={`conf${i}`}>
-                          {i > 0 ? null : (
-                            <span>
-                              <Badge variant="primary">AND</Badge>{" "}
-                            </span>
-                          )}
-                          {QueryDisplayUtils.showQueryFilter(
-                            p,
-                            commonParams.gender || "",
-                            commonParams.year || ""
-                          )}
-                          &nbsp;
-                        </span>
-                      ))}
-                    </Row>
-                  ) : null}
-                </Container>
-              </Col>
-              <Col sm="2" className="mt-1">
-                <GenericTogglingMenu size="sm">
-                  <GenericTogglingMenuItem
-                    text="Extra Query Mode"
-                    truthVal={otherQueries.length > 0}
-                    onSelect={() =>
-                      _.isEmpty(otherQueries)
-                        ? addOtherQuery()
-                        : removeAllOtherQueries()
+            {!advancedView ? (
+              <Form.Group as={Row}>
+                <Form.Label column xs={2}>
+                  <b>What interests you?</b>
+                </Form.Label>
+                <Col xs={6}>
+                  <Select
+                    isClearable={false}
+                    styles={{
+                      menu: (base: any) => ({ ...base, zIndex: 1000 }),
+                    }}
+                    value={
+                      presetMode
+                        ? { label: presetMode, value: presetMode }
+                        : undefined
                     }
+                    options={groupedPresetOptions}
+                    formatGroupLabel={formatGroupLabel}
+                    onChange={(option: any) => {
+                      const newPreset = option.value || "";
+                      onUpdatePreset(newPreset);
+                    }}
                   />
-                </GenericTogglingMenu>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">
-                {maybeOff} Query
-              </Form.Label>
-              <Col sm="8">
-                {
-                  typeof window !== `undefined` ? (
-                    <Container>
-                      <Row>
-                        <InputGroup>
-                          <LineupQueryAutoSuggestText
-                            readOnly={autoOffQuery}
-                            placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
-                            initValue={offQuery}
-                            year={commonParams.year}
-                            gender={commonParams.gender}
-                            team={commonParams.team}
-                            games={gameSelection.games}
-                            onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
-                            onChange={(ev: any) => setOffQuery(ev.target.value)}
-                            onKeyDown={globalKeypressHandler}
-                          />
-                          {autoOffQuery ? null : (
-                            <InputGroup.Append>
-                              <QueryFilterDropdown
-                                queryFilters={offQueryFilters}
-                                setQueryFilters={setOffQueryFilters}
-                                showCustomRangeFilter={() =>
-                                  setOffShowDateRangeModal(true)
-                                }
-                                showGameSelectorModal={() => {
-                                  setOffShowGameSelectorModal(true);
-                                }}
-                              />
-                            </InputGroup.Append>
-                          )}
-                        </InputGroup>
-                      </Row>
-                      {offQueryFilters.length > 0 && !autoOffQuery ? (
-                        <Row>
-                          &nbsp;
-                          {offQueryFilters.map((p, i) => (
-                            <span key={`conf${i}`}>
-                              {i > 0 ? null : (
-                                <span>
-                                  <Badge variant="primary">AND</Badge>{" "}
-                                </span>
-                              )}
-                              {QueryDisplayUtils.showQueryFilter(
-                                p,
-                                commonParams.gender || "",
-                                commonParams.year || ""
-                              )}
-                              &nbsp;
-                            </span>
-                          ))}
-                        </Row>
-                      ) : null}
-                      {onQueryFilters.length > 0 && autoOffQuery ? (
-                        <Row>
-                          &nbsp;
-                          {onQueryFilters.map((p, i) => (
-                            <span key={`conf${i}`}>
-                              {i > 0 ? (
-                                <span>/ </span>
-                              ) : (
-                                <span>
-                                  <Badge pill variant="primary">
-                                    OR
-                                  </Badge>{" "}
-                                </span>
-                              )}
-                              {QueryDisplayUtils.showQueryFilter(
-                                p,
-                                commonParams.gender || "",
-                                commonParams.year || "",
-                                true
-                              )}
-                              &nbsp;
-                            </span>
-                          ))}
-                        </Row>
-                      ) : null}
-                    </Container>
-                  ) : null //(this construct needed to address SSR/readonly issue)
-                }
-              </Col>
-              <Col sm="2" className="mt-1">
-                <Form.Check
-                  type="switch"
-                  disabled={otherQueries.length > 0}
-                  id="autoOffQuery"
-                  checked={autoOffQuery}
-                  onChange={() => {
-                    if (otherQueries.length == 0) {
-                      //(for some reason the disabled/readOnly attributes do nothing so just disable)
-                      setOffQueryFilters([]);
-                      if (!autoOffQuery) {
-                        setAutoOffQuery(onQuery);
-                      } //(TODO: note clearing offQuery in the else doesn't work due to limitations of AutoSuggestText)
-                      toggleAutoOffQuery(!autoOffQuery);
+                </Col>
+                <Col xs={2}>
+                  <GenericTogglingMenu
+                    drop="down"
+                    label={<span>+ Visuals / Details...</span>}
+                  >
+                    <GenericTogglingMenuItem
+                      text="Reset to defaults"
+                      truthVal={false}
+                      onSelect={() => setNewParamsOnSubmit({})}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Take From Current View"
+                      truthVal={false}
+                      onSelect={() => setNewParamsOnSubmit(rebuildFullState())}
+                    />
+                    <Dropdown.Divider />
+                    <GenericTogglingMenuItem
+                      text="Show Team View"
+                      truthVal={true}
+                      disabled={true}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Shot Charts"
+                      truthVal={newParamsOnSubmit.teamShotCharts || false}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Play Type Breakdown"
+                      truthVal={newParamsOnSubmit.showTeamPlayTypes || false}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Roster Breakdown"
+                      truthVal={newParamsOnSubmit.showRoster || false}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Extra Detailed Stats"
+                      truthVal={newParamsOnSubmit.showExtraInfo || false}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showExtraInfo: !(
+                            newParamsOnSubmit.showExtraInfo || false
+                          ),
+                        })
+                      }
+                    />
+                    <GenericTogglingMenuItem
+                      text="Game Breakdown"
+                      truthVal={newParamsOnSubmit.showGameInfo || false}
+                      onSelect={() => {}}
+                    />
+                    <Dropdown.Divider />
+                    <GenericTogglingMenuItem
+                      text="Show Player View"
+                      truthVal={true}
+                      disabled={true}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Include RAPM"
+                      truthVal={newParamsOnSubmit.calcRapm || false}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Shot Charts"
+                      truthVal={newParamsOnSubmit.playerShotCharts || false}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Play Type Breakdown"
+                      truthVal={newParamsOnSubmit.showPlayerPlayTypes || false}
+                      onSelect={() => {}}
+                    />
+                    <Dropdown.Divider />
+                    <GenericTogglingMenuItem
+                      text="Show Lineup Comp View"
+                      truthVal={true}
+                      disabled={true}
+                      onSelect={() => {}}
+                    />
+                    <Dropdown.Divider />
+                    <GenericTogglingMenuItem
+                      text="Show Ranks/Pctiles"
+                      truthVal={!_.isEmpty(newParamsOnSubmit.showGrades || "")}
+                      onSelect={() => {
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showGrades: startingState.showGrades
+                            ? ""
+                            : ParamDefaults.defaultEnabledGrade,
+                        });
+                      }}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Filter Garbage Time"
+                      truthVal={commonParams.filterGarbage || false}
+                      onSelect={() =>
+                        //TODO: for some reason this is super slow
+                        updateCommonParams({
+                          ...commonParams,
+                          filterGarbage: !(commonParams.filterGarbage || false),
+                        })
+                      }
+                    />
+                    <GenericTogglingMenuItem
+                      text="Adjust For Luck"
+                      truthVal={newParamsOnSubmit.onOffLuck || false}
+                      onSelect={() => {}}
+                    />
+                  </GenericTogglingMenu>
+                </Col>
+                <Col sm={2} className="mt-1">
+                  <OverlayTrigger
+                    placement="auto"
+                    overlay={
+                      <Tooltip id="advancedMode">
+                        Go to advanced query mode
+                      </Tooltip>
                     }
-                  }}
-                  label="Auto"
-                />
-              </Col>
-            </Form.Group>
-            {_.range(0, otherQueries.length).map((extraQueryIndex) => (
+                  >
+                    <Button
+                      className="float-left"
+                      variant="outline-secondary"
+                      size="sm"
+                      onClick={(e) => toggleAdvancedMode()}
+                    >
+                      <FontAwesomeIcon icon={faSlidersH} />
+                    </Button>
+                  </OverlayTrigger>
+                </Col>
+              </Form.Group>
+            ) : null}
+            {advancedView ? (
               <Form.Group as={Row}>
                 <Form.Label column sm="2">
-                  '{String.fromCharCode(67 + extraQueryIndex)}' Query
+                  {maybeOn} Query
+                </Form.Label>
+                <Col sm="8">
+                  <Container>
+                    <Row>
+                      <InputGroup>
+                        <LineupQueryAutoSuggestText
+                          readOnly={false}
+                          placeholder="eg 'Player1 AND (Player2 OR Player3)'"
+                          initValue={onQuery}
+                          year={commonParams.year}
+                          gender={commonParams.gender}
+                          team={commonParams.team}
+                          games={gameSelection.games}
+                          onKeyUp={handleOnQueryChange}
+                          onChange={handleOnQueryChange}
+                          onKeyDown={globalKeypressHandler}
+                        />
+                        <InputGroup.Append>
+                          <QueryFilterDropdown
+                            queryFilters={onQueryFilters}
+                            setQueryFilters={setOnQueryFilters}
+                            showCustomRangeFilter={() =>
+                              setOnShowDateRangeModal(true)
+                            }
+                            showGameSelectorModal={() => {
+                              setOnShowGameSelectorModal(true);
+                            }}
+                          />
+                        </InputGroup.Append>
+                      </InputGroup>
+                    </Row>
+                    {onQueryFilters.length > 0 ? (
+                      <Row>
+                        &nbsp;
+                        {onQueryFilters.map((p, i) => (
+                          <span key={`conf${i}`}>
+                            {i > 0 ? null : (
+                              <span>
+                                <Badge variant="primary">AND</Badge>{" "}
+                              </span>
+                            )}
+                            {QueryDisplayUtils.showQueryFilter(
+                              p,
+                              commonParams.gender || "",
+                              commonParams.year || ""
+                            )}
+                            &nbsp;
+                          </span>
+                        ))}
+                      </Row>
+                    ) : null}
+                  </Container>
+                </Col>
+                <Col sm="2" className="mt-1">
+                  <GenericTogglingMenu size="sm">
+                    {FeatureFlags.isActiveWindow(
+                      FeatureFlags.friendlierInterface
+                    ) ? (
+                      <GenericTogglingMenuItem
+                        text="Simple Query Mode"
+                        truthVal={false}
+                        onSelect={() => toggleAdvancedMode()}
+                      />
+                    ) : null}
+                    <GenericTogglingMenuItem
+                      text="Extra Query Mode"
+                      truthVal={otherQueries.length > 0}
+                      onSelect={() =>
+                        _.isEmpty(otherQueries)
+                          ? addOtherQuery()
+                          : removeAllOtherQueries()
+                      }
+                    />
+                  </GenericTogglingMenu>
+                </Col>
+              </Form.Group>
+            ) : null}
+            {advancedView ? (
+              <Form.Group as={Row}>
+                <Form.Label column sm="2">
+                  {maybeOff} Query
                 </Form.Label>
                 <Col sm="8">
                   {
@@ -1281,122 +1615,237 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         <Row>
                           <InputGroup>
                             <LineupQueryAutoSuggestText
-                              readOnly={false}
+                              readOnly={autoOffQuery}
                               placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
-                              initValue={otherQueries[extraQueryIndex] || ""}
+                              initValue={offQuery}
                               year={commonParams.year}
                               gender={commonParams.gender}
                               team={commonParams.team}
                               games={gameSelection.games}
                               onKeyUp={(ev: any) =>
-                                setOtherQueries((curr) => {
-                                  curr[extraQueryIndex] = ev.target.value;
-                                  return [...curr];
-                                })
+                                setOffQuery(ev.target.value)
                               }
                               onChange={(ev: any) =>
-                                setOtherQueries((curr) => {
-                                  curr[extraQueryIndex] = ev.target.value;
-                                  return [...curr];
-                                })
+                                setOffQuery(ev.target.value)
                               }
                               onKeyDown={globalKeypressHandler}
                             />
-                            {
+                            {autoOffQuery ? null : (
                               <InputGroup.Append>
                                 <QueryFilterDropdown
-                                  queryFilters={
-                                    otherQueryFilters?.[extraQueryIndex] || []
-                                  }
-                                  setQueryFilters={(newQueryFilters) => {
-                                    setOtherQueryFilters((curr) => {
-                                      curr[extraQueryIndex] = newQueryFilters;
-                                      return [...curr];
-                                    });
-                                  }}
+                                  queryFilters={offQueryFilters}
+                                  setQueryFilters={setOffQueryFilters}
                                   showCustomRangeFilter={() =>
-                                    setShowOtherDateRangeModals((curr) => {
-                                      const newShowOtherDateRangeModals = [
-                                        ...curr,
-                                      ];
-                                      newShowOtherDateRangeModals[
-                                        extraQueryIndex
-                                      ] = true;
-                                      return newShowOtherDateRangeModals;
-                                    })
+                                    setOffShowDateRangeModal(true)
                                   }
                                   showGameSelectorModal={() => {
-                                    setShowOtherGameSelectorModals((curr) => {
-                                      const newShowOtherGameSelectorModals = [
-                                        ...curr,
-                                      ];
-                                      newShowOtherGameSelectorModals[
-                                        extraQueryIndex
-                                      ] = true;
-                                      return newShowOtherGameSelectorModals;
-                                    });
+                                    setOffShowGameSelectorModal(true);
                                   }}
                                 />
                               </InputGroup.Append>
-                            }
+                            )}
                           </InputGroup>
                         </Row>
-                        {otherQueryFilters?.[extraQueryIndex]?.length ? (
+                        {offQueryFilters.length > 0 && !autoOffQuery ? (
                           <Row>
                             &nbsp;
-                            {(otherQueryFilters?.[extraQueryIndex] || []).map(
-                              (p, i) => (
-                                <span key={`conf${i}`}>
-                                  {i > 0 ? null : (
-                                    <span>
-                                      <Badge variant="primary">AND</Badge>{" "}
-                                    </span>
-                                  )}
-                                  {QueryDisplayUtils.showQueryFilter(
-                                    p,
-                                    commonParams.gender || "",
-                                    commonParams.year || ""
-                                  )}
-                                  &nbsp;
-                                </span>
-                              )
-                            )}
+                            {offQueryFilters.map((p, i) => (
+                              <span key={`conf${i}`}>
+                                {i > 0 ? null : (
+                                  <span>
+                                    <Badge variant="primary">AND</Badge>{" "}
+                                  </span>
+                                )}
+                                {QueryDisplayUtils.showQueryFilter(
+                                  p,
+                                  commonParams.gender || "",
+                                  commonParams.year || ""
+                                )}
+                                &nbsp;
+                              </span>
+                            ))}
+                          </Row>
+                        ) : null}
+                        {onQueryFilters.length > 0 && autoOffQuery ? (
+                          <Row>
+                            &nbsp;
+                            {onQueryFilters.map((p, i) => (
+                              <span key={`conf${i}`}>
+                                {i > 0 ? (
+                                  <span>/ </span>
+                                ) : (
+                                  <span>
+                                    <Badge pill variant="primary">
+                                      OR
+                                    </Badge>{" "}
+                                  </span>
+                                )}
+                                {QueryDisplayUtils.showQueryFilter(
+                                  p,
+                                  commonParams.gender || "",
+                                  commonParams.year || "",
+                                  true
+                                )}
+                                &nbsp;
+                              </span>
+                            ))}
                           </Row>
                         ) : null}
                       </Container>
                     ) : null //(this construct needed to address SSR/readonly issue)
                   }
                 </Col>
-                {extraQueryIndex + 1 == otherQueries.length ? (
-                  <Col sm="2" className="mt-1">
-                    <ButtonGroup size="sm">
-                      <Button
-                        variant="outline-secondary"
-                        onClick={() => addOtherQuery()}
-                      >
-                        <OverlayTrigger
-                          placement="auto"
-                          overlay={queryPlusTooltip}
-                        >
-                          <FontAwesomeIcon icon={faPlusCircle} />
-                        </OverlayTrigger>
-                      </Button>
-                      <Button
-                        variant="outline-secondary"
-                        onClick={() => removeOtherQuery()}
-                      >
-                        <OverlayTrigger
-                          placement="auto"
-                          overlay={queryMinusTooltip}
-                        >
-                          <FontAwesomeIcon icon={faMinusCircle} />
-                        </OverlayTrigger>
-                      </Button>
-                    </ButtonGroup>
-                  </Col>
-                ) : undefined}
+                <Col sm="2" className="mt-1">
+                  <Form.Check
+                    type="switch"
+                    disabled={otherQueries.length > 0}
+                    id="autoOffQuery"
+                    checked={autoOffQuery}
+                    onChange={() => {
+                      if (otherQueries.length == 0) {
+                        //(for some reason the disabled/readOnly attributes do nothing so just disable)
+                        setOffQueryFilters([]);
+                        if (!autoOffQuery) {
+                          setAutoOffQuery(onQuery);
+                        } //(TODO: note clearing offQuery in the else doesn't work due to limitations of AutoSuggestText)
+                        toggleAutoOffQuery(!autoOffQuery);
+                      }
+                    }}
+                    label="Auto"
+                  />
+                </Col>
               </Form.Group>
-            ))}
+            ) : null}
+            {_.range(0, advancedView ? otherQueries.length : 0).map(
+              (extraQueryIndex) => (
+                <Form.Group as={Row}>
+                  <Form.Label column sm="2">
+                    '{String.fromCharCode(67 + extraQueryIndex)}' Query
+                  </Form.Label>
+                  <Col sm="8">
+                    {
+                      typeof window !== `undefined` ? (
+                        <Container>
+                          <Row>
+                            <InputGroup>
+                              <LineupQueryAutoSuggestText
+                                readOnly={false}
+                                placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
+                                initValue={otherQueries[extraQueryIndex] || ""}
+                                year={commonParams.year}
+                                gender={commonParams.gender}
+                                team={commonParams.team}
+                                games={gameSelection.games}
+                                onKeyUp={(ev: any) =>
+                                  setOtherQueries((curr) => {
+                                    curr[extraQueryIndex] = ev.target.value;
+                                    return [...curr];
+                                  })
+                                }
+                                onChange={(ev: any) =>
+                                  setOtherQueries((curr) => {
+                                    curr[extraQueryIndex] = ev.target.value;
+                                    return [...curr];
+                                  })
+                                }
+                                onKeyDown={globalKeypressHandler}
+                              />
+                              {
+                                <InputGroup.Append>
+                                  <QueryFilterDropdown
+                                    queryFilters={
+                                      otherQueryFilters?.[extraQueryIndex] || []
+                                    }
+                                    setQueryFilters={(newQueryFilters) => {
+                                      setOtherQueryFilters((curr) => {
+                                        curr[extraQueryIndex] = newQueryFilters;
+                                        return [...curr];
+                                      });
+                                    }}
+                                    showCustomRangeFilter={() =>
+                                      setShowOtherDateRangeModals((curr) => {
+                                        const newShowOtherDateRangeModals = [
+                                          ...curr,
+                                        ];
+                                        newShowOtherDateRangeModals[
+                                          extraQueryIndex
+                                        ] = true;
+                                        return newShowOtherDateRangeModals;
+                                      })
+                                    }
+                                    showGameSelectorModal={() => {
+                                      setShowOtherGameSelectorModals((curr) => {
+                                        const newShowOtherGameSelectorModals = [
+                                          ...curr,
+                                        ];
+                                        newShowOtherGameSelectorModals[
+                                          extraQueryIndex
+                                        ] = true;
+                                        return newShowOtherGameSelectorModals;
+                                      });
+                                    }}
+                                  />
+                                </InputGroup.Append>
+                              }
+                            </InputGroup>
+                          </Row>
+                          {otherQueryFilters?.[extraQueryIndex]?.length ? (
+                            <Row>
+                              &nbsp;
+                              {(otherQueryFilters?.[extraQueryIndex] || []).map(
+                                (p, i) => (
+                                  <span key={`conf${i}`}>
+                                    {i > 0 ? null : (
+                                      <span>
+                                        <Badge variant="primary">AND</Badge>{" "}
+                                      </span>
+                                    )}
+                                    {QueryDisplayUtils.showQueryFilter(
+                                      p,
+                                      commonParams.gender || "",
+                                      commonParams.year || ""
+                                    )}
+                                    &nbsp;
+                                  </span>
+                                )
+                              )}
+                            </Row>
+                          ) : null}
+                        </Container>
+                      ) : null //(this construct needed to address SSR/readonly issue)
+                    }
+                  </Col>
+                  {extraQueryIndex + 1 == otherQueries.length ? (
+                    <Col sm="2" className="mt-1">
+                      <ButtonGroup size="sm">
+                        <Button
+                          variant="outline-secondary"
+                          onClick={() => addOtherQuery()}
+                        >
+                          <OverlayTrigger
+                            placement="auto"
+                            overlay={queryPlusTooltip}
+                          >
+                            <FontAwesomeIcon icon={faPlusCircle} />
+                          </OverlayTrigger>
+                        </Button>
+                        <Button
+                          variant="outline-secondary"
+                          onClick={() => removeOtherQuery()}
+                        >
+                          <OverlayTrigger
+                            placement="auto"
+                            overlay={queryMinusTooltip}
+                          >
+                            <FontAwesomeIcon icon={faMinusCircle} />
+                          </OverlayTrigger>
+                        </Button>
+                      </ButtonGroup>
+                    </Col>
+                  ) : undefined}
+                </Form.Group>
+              )
+            )}
           </div>
         )}
       </GlobalKeypressManager.Consumer>
