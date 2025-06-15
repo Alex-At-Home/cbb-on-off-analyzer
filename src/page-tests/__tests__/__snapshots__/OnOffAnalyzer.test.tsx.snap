@@ -134,6 +134,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
           }
         }
         gameFilterParams={Object {}}
+        key="0"
         navigationRefs={
           Object {
             "otherRefs": Array [
@@ -273,6 +274,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
           }
         }
         gameFilterParams={Object {}}
+        key="0"
         onChangeState={[Function]}
       />
     </GenericCollapsibleCard>

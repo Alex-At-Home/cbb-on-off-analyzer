@@ -76,6 +76,7 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import Select, { components } from "react-select";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
+import { FilterUtils } from "../utils/FilterUtils";
 
 type Props = {
   onStats: (
@@ -192,6 +193,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       showPlayerPlayTypes: startShowPlayerPlayTypes,
       showInfoSubHeader: startShowInfoSubHeader,
       playerShotCharts: startPlayerShotCharts,
+      //(note doesn't include the actual game query params)
     };
   };
 
@@ -201,7 +203,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       ? _.thru(startingState, (state) => {
           if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
             return true;
-          if (!_.isEmpty(state.presetMode)) return true;
+          if (!_.isEmpty(state.presetMode)) return false;
           if (!_.isEmpty(state.onQuery)) return true;
           if (!_.isEmpty(state.onQueryFilters)) return true;
           if (!_.isEmpty(state.offQuery)) return true;
@@ -227,13 +229,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Used to build preset options */
   const [rosterNames, setRosterNames] = useState<string[]>([]);
+  useEffect(() => {
+    // On page load, if team is selected then fetch the roster
+    if (!advancedView) {
+      fetchRoster(startingCommonFilterParams);
+    }
+  }, []);
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
     startingCommonFilterParams as CommonFilterParams
   );
 
-  /** All the game-specific options */
+  /** All the game-specific viz options, ie not query/filter */
   const [newParamsOnSubmit, setNewParamsOnSubmit] = useState<GameFilterParams>(
     rebuildFullState()
   );
@@ -515,7 +523,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         : { offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters) };
 
     // It's painful but re-calc the result of the preset to make sure we are using the right params
-    const [maybeNewParams, __] = advancedView
+    const [maybeNewParams, maybeNewCommonParams] = advancedView
       ? [undefined, undefined]
       : onUpdatePreset(presetMode, false);
 
@@ -554,9 +562,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
           presetMode: presetMode,
         })
       : {
-          ...commonParams,
+          ...(advancedView
+            ? commonParams
+            : maybeNewCommonParams || commonParams),
           ...primaryOnOffRequest,
         };
+
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
 
@@ -944,26 +955,18 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const groupedPresetOptions = [
     {
       label: "Basic Views",
-      options: [
-        ParamDefaults.defaultPresetMode,
-        "Season Stats Vs T100ish",
-        "Season Stats In Conf",
-        "Last 30 days",
-      ].map(stringToOption),
+      options: _.keys(FilterUtils.gameFilterPresets).map(stringToOption),
     },
     {
       label: "Splits",
-      options: [
-        "Home vs Away/Neutral",
-        "T100ish vs Weaker",
-        "First halves vs Second halves",
-        "Last 30 days vs Before",
-      ].map(stringToOption),
+      options: _.keys(FilterUtils.gameSplitPresets).map(stringToOption),
     },
     {
       label: "On/Off Splits",
       options: rosterNames.map((n) =>
-        stringToOption(`On/Off: ${n.replaceAll('"', "")}`)
+        stringToOption(
+          `${FilterUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
+        )
       ),
     },
   ];
@@ -988,84 +991,33 @@ const GameFilter: React.FunctionComponent<Props> = ({
       offQueryFilters: "",
     };
     const [newParams, newCommonFilter] = _.thru(preset, (__) => {
-      if (preset == ParamDefaults.defaultPresetMode) {
+      const filterOrSplitPreset =
+        FilterUtils.gameFilterPresets[preset] ||
+        FilterUtils.gameSplitPresets[preset];
+      if (filterOrSplitPreset) {
         return [
           {
             ...newParamsOnSubmit,
             ...baseOnOffQuery,
+            ...(filterOrSplitPreset.gameParams || {}),
           },
-          baseQuery,
-        ];
-      } else if (preset == "Season Stats Vs T100ish") {
-        return [
           {
-            ...newParamsOnSubmit,
-            ...baseOnOffQuery,
+            ...baseQuery,
+            ...(filterOrSplitPreset.commonParams || {}),
           },
-          { ...baseQuery, maxRank: "100" },
         ];
-      } else if (preset == "Season Stats In Conf") {
-        return [
-          {
-            ...newParamsOnSubmit,
-            ...baseOnOffQuery,
-          },
-          { ...baseQuery, queryFilters: "Conf" },
-        ];
-      } else if (preset == "Last 30 days") {
-        return [
-          {
-            ...newParamsOnSubmit,
-            ...baseOnOffQuery,
-          },
-          { ...baseQuery, queryFilters: "Last-30d" },
-        ];
-      } else if (preset == "Home vs Away/Neutral") {
-        const split = "location_type:Home";
+      } else if (_.startsWith(preset, FilterUtils.gameFilterOnOffPrefix)) {
         return [
           {
             ...{
               ...newParamsOnSubmit,
               ...baseOnOffQuery,
-              onQuery: split,
-              offQuery: `NOT ${split}`,
-            },
-          },
-          baseQuery,
-        ];
-      } else if (preset == "T100ish vs Weaker") {
-        const split = "vs_rank:<=100";
-        return [
-          {
-            ...{
-              ...newParamsOnSubmit,
-              ...baseOnOffQuery,
-              onQuery: split,
-              offQuery: `NOT ${split}`,
-            },
-          },
-          baseQuery,
-        ];
-      } else if (preset == "First halves vs Second halves") {
-        const split = "end_min:<=20";
-        return [
-          {
-            ...{
-              ...newParamsOnSubmit,
-              ...baseOnOffQuery,
-              onQuery: split,
-              offQuery: `NOT ${split}`,
-            },
-          },
-          baseQuery,
-        ];
-      } else if (preset == "Last 30 days vs Before") {
-        return [
-          {
-            ...{
-              ...newParamsOnSubmit,
-              ...baseOnOffQuery,
-              onQueryFilters: "Last-30d",
+              onQuery: `"${preset.substring(
+                FilterUtils.gameFilterOnOffPrefix.length
+              )}"`,
+              offQuery: `NOT "${preset.substring(
+                FilterUtils.gameFilterOnOffPrefix.length
+              )}"`,
             },
           },
           baseQuery,
@@ -1074,6 +1026,13 @@ const GameFilter: React.FunctionComponent<Props> = ({
         return [undefined, undefined];
       }
     });
+
+    //DEBUG
+    // console.log(
+    //   `${applyEffects} ${JSON.stringify(newCommonFilter)}`,
+    //   newParams
+    // );
+
     if (applyEffects) {
       if (newParams) setNewParamsOnSubmit(newParams);
       if (newCommonFilter) setCommonParams(newCommonFilter);
@@ -1086,17 +1045,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
   /** Extra logic needed when switching between advanced and basic mode */
   const toggleAdvancedMode = () => {
     const currAdvancedMode = advancedView;
-    setAdvancedView(!advancedView);
+    const newAdvancedMode = !currAdvancedMode;
+    const currPresetMode = presetMode;
+    const [gameParamsToUse, commonParamsToUse] = !currAdvancedMode
+      ? onUpdatePreset(currPresetMode, false)
+      : [undefined, undefined];
+    setAdvancedView(newAdvancedMode);
     setPresetMode(ParamDefaults.defaultPresetMode);
-    if (!currAdvancedMode && onSwitchToAdvancedMode) {
+    if (onSwitchToAdvancedMode) {
       // Switching to advanced view so we want to copy query over:
       onSwitchToAdvancedMode({
-        ...commonParams,
-        ...newParamsOnSubmit,
+        ...(commonParamsToUse || commonParams),
+        ...(gameParamsToUse || newParamsOnSubmit),
+        advancedMode: newAdvancedMode,
+        presetMode: newAdvancedMode ? undefined : presetMode,
       });
     }
   };
-
   /** for debugging roster loading issues */
   const isDebug = false;
 
@@ -1195,6 +1160,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
       <span>{data.label}</span>
     </div>
   );
+
+  const disableViewDetails =
+    presetMode == (startingState.presetMode || ParamDefaults.defaultPresetMode);
 
   return (
     <CommonFilter //(generic type inferred)
@@ -1474,7 +1442,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 <Col xs={2}>
                   <GenericTogglingMenu
                     drop="down"
-                    label={<span>+ Visuals / Details...</span>}
+                    label={
+                      <OverlayTrigger
+                        placement="auto"
+                        overlay={
+                          <Tooltip id="viewsDetails">
+                            <>
+                              Pick which visualization elements you want for
+                              this preset query
+                              {disableViewDetails ? (
+                                <>
+                                  <br />
+                                  <br />
+                                  NOTE: once you've submitted a query, use the
+                                  per-section controls below - most of this
+                                  menu's settings will be greyed out until you
+                                  change to a different preset query.
+                                </>
+                              ) : null}
+                            </>
+                          </Tooltip>
+                        }
+                      >
+                        <span>+ Visuals / Details...</span>
+                      </OverlayTrigger>
+                    }
                   >
                     <GenericTogglingMenuItem
                       text="Reset to defaults"
@@ -1496,21 +1488,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     <GenericTogglingMenuItem
                       text="Shot Charts"
                       truthVal={newParamsOnSubmit.teamShotCharts || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Play Type Breakdown"
                       truthVal={newParamsOnSubmit.showTeamPlayTypes || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Roster Breakdown"
                       truthVal={newParamsOnSubmit.showRoster || false}
+                      disabled={disableViewDetails}
+                      onSelect={() => {}}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Games Breakdown"
+                      truthVal={newParamsOnSubmit.showGameInfo || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Extra Detailed Stats"
                       truthVal={newParamsOnSubmit.showExtraInfo || false}
+                      disabled={disableViewDetails}
                       onSelect={() =>
                         setNewParamsOnSubmit({
                           ...newParamsOnSubmit,
@@ -1520,11 +1522,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         })
                       }
                     />
-                    <GenericTogglingMenuItem
-                      text="Game Breakdown"
-                      truthVal={newParamsOnSubmit.showGameInfo || false}
-                      onSelect={() => {}}
-                    />
                     <Dropdown.Divider />
                     <GenericTogglingMenuItem
                       text="Show Player View"
@@ -1533,18 +1530,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
-                      text="Include RAPM"
-                      truthVal={newParamsOnSubmit.calcRapm || false}
+                      text="Information Sub-Header"
+                      truthVal={newParamsOnSubmit.showInfoSubHeader || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Shot Charts"
                       truthVal={newParamsOnSubmit.playerShotCharts || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Play Type Breakdown"
                       truthVal={newParamsOnSubmit.showPlayerPlayTypes || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                     <Dropdown.Divider />
@@ -1558,6 +1558,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     <GenericTogglingMenuItem
                       text="Show Ranks/Pctiles"
                       truthVal={!_.isEmpty(newParamsOnSubmit.showGrades || "")}
+                      disabled={disableViewDetails}
                       onSelect={() => {
                         setNewParamsOnSubmit({
                           ...newParamsOnSubmit,
@@ -1581,6 +1582,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     <GenericTogglingMenuItem
                       text="Adjust For Luck"
                       truthVal={newParamsOnSubmit.onOffLuck || false}
+                      disabled={disableViewDetails}
                       onSelect={() => {}}
                     />
                   </GenericTogglingMenu>
@@ -1590,7 +1592,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     placement="auto"
                     overlay={
                       <Tooltip id="advancedMode">
-                        Go to advanced query mode
+                        Switch to advanced query mode
                       </Tooltip>
                     }
                   >

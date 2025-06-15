@@ -186,6 +186,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       playerShotStats,
     });
     setRosterCompareStats(rosterCompareStats);
+    // Ensure any visualuzation changes from the "Views/Details" dropdown are applied
+    if (!gameFilterParams.advancedMode) {
+      setShouldReloadTableParams((oneUp) => oneUp + 1);
+    }
   };
 
   // Game and Lineup filters
@@ -221,6 +225,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   }
   const [shouldForceReload, setShouldForceReload] = useState(0 as number);
   const [shouldReinitFilter, setShouldReinitFilter] = useState(0 as number);
+  const [shouldReloadTableParams, setShouldReloadTableParams] = useState(
+    0 as number
+  );
 
   const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
     /** We're going to want to remove the manual options if the year changes */
@@ -334,6 +341,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     // These fields don't trigger a data change or a common param change
     // between the various tables
     const urlUpdateOnlyFields = [
+      "advancedMode",
+      "presetMode",
       // Team info:
       "showExtraInfo",
       "teamPlayTypeConfig",
@@ -478,6 +487,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         helpLink={maybeShowDocs()}
       >
         <TeamStatsTable
+          key={shouldReloadTableParams}
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
           onChangeState={onGameFilterParamsChange}
@@ -491,7 +501,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         />
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, shouldReinitFilter]);
+  }, [dataEvent, shouldReinitFilter, shouldReloadTableParams]);
 
   /** Only rebuild the table if the data changes, or if luck changes (see above) */
   const rosterStatsTable = React.useMemo(() => {
@@ -503,13 +513,14 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         helpLink={maybeShowDocs()}
       >
         <RosterStatsTable
+          key={shouldReloadTableParams}
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
           onChangeState={onGameFilterParamsChange}
         />
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, shouldReinitFilter]);
+  }, [dataEvent, shouldReinitFilter, shouldReloadTableParams]);
 
   return (
     <Container className={indivCardSize}>
@@ -542,8 +553,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
               // (force reload the state into both GameFilter and CommonFilter)
               setGameFilterParams({
                 ...newParams,
-                advancedMode: true,
-                presetMode: undefined,
               });
               setShouldReinitFilter((t) => t + 1);
             }}
