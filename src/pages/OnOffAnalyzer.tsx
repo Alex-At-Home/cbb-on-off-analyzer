@@ -259,6 +259,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.presetMode == ParamDefaults.defaultPresetMode
           ? ["presetMode"]
           : [],
+        !rawParams.presetSplit ||
+        rawParams.presetSplit == ParamDefaults.defaultPresetSplit
+          ? ["presetSplit"]
+          : [],
         !rawParams.advancedMode ||
         !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
           ? ["advancedMode"]
@@ -343,6 +347,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const urlUpdateOnlyFields = [
       "advancedMode",
       "presetMode",
+      "presetSplit",
       // Team info:
       "showExtraInfo",
       "teamPlayTypeConfig",

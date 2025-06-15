@@ -113,6 +113,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // UI
     advancedMode: startAdvancedMode,
     presetMode: startPresetMode,
+    presetSplit: startPreseSplit,
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
@@ -204,6 +205,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
             return true;
           if (!_.isEmpty(state.presetMode)) return false;
+          if (!_.isEmpty(state.presetSplit)) return false;
           if (!_.isEmpty(state.onQuery)) return true;
           if (!_.isEmpty(state.onQueryFilters)) return true;
           if (!_.isEmpty(state.offQuery)) return true;
@@ -220,11 +222,18 @@ const GameFilter: React.FunctionComponent<Props> = ({
       : startingState.advancedMode
   );
 
-  /** The preset to use */
+  /** The preset query to use */
   const [presetMode, setPresetMode] = useState(
     advancedView
       ? ""
       : startingState.presetMode || ParamDefaults.defaultPresetMode
+  );
+
+  /** The preset query to use */
+  const [presetSplit, setPresetSplit] = useState(
+    advancedView
+      ? ""
+      : startingState.presetSplit || ParamDefaults.defaultPresetSplit
   );
 
   /** Used to build preset options */
@@ -409,6 +418,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
     setCommonParams(params);
   }
 
+  /**/
+  //TODO: last?! issue there are some other methods in use here that aren't affected by the applyPreset
+  // I think the easiet thing to do is remove the applyPreset from buildParamsFromState and instead
+  // use in the initialization
+
   /** Builds lineup queries for on/off queries */
   function buildLineupQueriesFromOnOffQueries(): {
     on?: CommonFilterParams;
@@ -525,7 +539,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // It's painful but re-calc the result of the preset to make sure we are using the right params
     const [maybeNewParams, maybeNewCommonParams] = advancedView
       ? [undefined, undefined]
-      : onUpdatePreset(presetMode, false);
+      : applyPresetConfig(presetMode, presetSplit, false);
 
     const primaryOnOffRequest = advancedView
       ? {
@@ -560,6 +574,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           // UI
           advancedMode: advancedView,
           presetMode: presetMode,
+          presetSplit: presetSplit,
         })
       : {
           ...(advancedView
@@ -952,11 +967,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
   // Presets logic to make things easier
 
   /** The two sub-headers for the dropdown */
-  const groupedPresetOptions = [
+  const groupedPresetModeOptions = [
     {
       label: "Basic Views",
       options: _.keys(FilterUtils.gameFilterPresets).map(stringToOption),
     },
+  ];
+
+  /** The two sub-headers for the dropdown */
+  const groupedPresetSplitOptions = [
     {
       label: "Splits",
       options: _.keys(FilterUtils.gameSplitPresets).map(stringToOption),
@@ -972,12 +991,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
   ];
 
   /** Handles the setting of a preset */
-  const onUpdatePreset = (
-    preset: string,
+  const applyPresetConfig = (
+    newPresetMode: string,
+    newPresetSplit: string,
     applyEffects: boolean
   ): [GameFilterParams | undefined, CommonFilterParams | undefined] => {
     const baseQuery: CommonFilterParams = {
-      ...commonParams,
       minRank: "0",
       maxRank: "400",
       queryFilters: "",
@@ -990,42 +1009,37 @@ const GameFilter: React.FunctionComponent<Props> = ({
       onQueryFilters: "",
       offQueryFilters: "",
     };
-    const [newParams, newCommonFilter] = _.thru(preset, (__) => {
-      const filterOrSplitPreset =
-        FilterUtils.gameFilterPresets[preset] ||
-        FilterUtils.gameSplitPresets[preset];
-      if (filterOrSplitPreset) {
-        return [
-          {
+    const newCommonFilter = {
+      ...commonParams,
+      ...baseQuery,
+      ...(FilterUtils.gameFilterPresets[newPresetMode]?.commonParams || {}),
+    };
+
+    const newParams = _.thru(
+      FilterUtils.gameSplitPresets[newPresetSplit],
+      (maybeSplitConfig) => {
+        if (maybeSplitConfig) {
+          return {
             ...newParamsOnSubmit,
             ...baseOnOffQuery,
-            ...(filterOrSplitPreset.gameParams || {}),
-          },
-          {
-            ...baseQuery,
-            ...(filterOrSplitPreset.commonParams || {}),
-          },
-        ];
-      } else if (_.startsWith(preset, FilterUtils.gameFilterOnOffPrefix)) {
-        return [
-          {
-            ...{
-              ...newParamsOnSubmit,
-              ...baseOnOffQuery,
-              onQuery: `"${preset.substring(
-                FilterUtils.gameFilterOnOffPrefix.length
-              )}"`,
-              offQuery: `NOT "${preset.substring(
-                FilterUtils.gameFilterOnOffPrefix.length
-              )}"`,
-            },
-          },
-          baseQuery,
-        ];
-      } else {
-        return [undefined, undefined];
+            ...(maybeSplitConfig?.gameParams || {}),
+          };
+        } else if (
+          _.startsWith(newPresetSplit, FilterUtils.gameFilterOnOffPrefix)
+        ) {
+          return {
+            ...newParamsOnSubmit,
+            ...baseOnOffQuery,
+            onQuery: `"${newPresetSplit.substring(
+              FilterUtils.gameFilterOnOffPrefix.length
+            )}"`,
+            offQuery: `NOT "${newPresetSplit.substring(
+              FilterUtils.gameFilterOnOffPrefix.length
+            )}"`,
+          };
+        }
       }
-    });
+    );
 
     //DEBUG
     // console.log(
@@ -1034,10 +1048,33 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // );
 
     if (applyEffects) {
-      if (newParams) setNewParamsOnSubmit(newParams);
-      if (newCommonFilter) setCommonParams(newCommonFilter);
-
-      setPresetMode(preset);
+      if (newPresetSplit != presetSplit) {
+        setPresetSplit(newPresetSplit);
+        if (newParams) {
+          setOnQuery(onQuery);
+          setOnQueryFilters(
+            QueryUtils.parseFilter(
+              _.isNil(newParams.onQueryFilters)
+                ? ParamDefaults.defaultQueryFilters
+                : newParams.onQueryFilters,
+              startingState.year || ParamDefaults.defaultYear
+            )
+          );
+          setOffQuery(offQuery);
+          setOffQueryFilters(
+            QueryUtils.parseFilter(
+              _.isNil(newParams.offQueryFilters)
+                ? ParamDefaults.defaultQueryFilters
+                : newParams.offQueryFilters,
+              startingState.year || ParamDefaults.defaultYear
+            )
+          );
+        }
+      }
+      if (newPresetMode != presetMode) {
+        setPresetMode(newPresetMode);
+        if (newCommonFilter) setCommonParams(newCommonFilter);
+      }
     }
     return [newParams, newCommonFilter];
   };
@@ -1047,11 +1084,13 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const currAdvancedMode = advancedView;
     const newAdvancedMode = !currAdvancedMode;
     const currPresetMode = presetMode;
+    const currPresetSplit = presetSplit;
     const [gameParamsToUse, commonParamsToUse] = !currAdvancedMode
-      ? onUpdatePreset(currPresetMode, false)
+      ? applyPresetConfig(currPresetMode, currPresetSplit, false)
       : [undefined, undefined];
     setAdvancedView(newAdvancedMode);
     setPresetMode(ParamDefaults.defaultPresetMode);
+    setPresetSplit(ParamDefaults.defaultPresetSplit);
     if (onSwitchToAdvancedMode) {
       // Switching to advanced view so we want to copy query over:
       onSwitchToAdvancedMode({
@@ -1059,6 +1098,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         ...(gameParamsToUse || newParamsOnSubmit),
         advancedMode: newAdvancedMode,
         presetMode: newAdvancedMode ? undefined : presetMode,
+        presetSplit: newAdvancedMode ? undefined : presetSplit,
       });
     }
   };
@@ -1162,7 +1202,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
   );
 
   const disableViewDetails =
-    presetMode == (startingState.presetMode || ParamDefaults.defaultPresetMode);
+    presetMode ==
+      (startingState.presetMode || ParamDefaults.defaultPresetMode) &&
+    presetSplit ==
+      (startingState.presetSplit || ParamDefaults.defaultPresetSplit);
 
   return (
     <CommonFilter //(generic type inferred)
@@ -1420,7 +1463,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 <Form.Label column xs={2}>
                   <b>What interests you?</b>
                 </Form.Label>
-                <Col xs={6}>
+                <Col xs={3}>
                   <Select
                     isClearable={false}
                     styles={{
@@ -1431,11 +1474,30 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         ? { label: presetMode, value: presetMode }
                         : undefined
                     }
-                    options={groupedPresetOptions}
+                    options={groupedPresetModeOptions}
                     formatGroupLabel={formatGroupLabel}
                     onChange={(option: any) => {
                       const newPreset = option.value || "";
-                      onUpdatePreset(newPreset, true);
+                      applyPresetConfig(newPreset, presetSplit, true);
+                    }}
+                  />
+                </Col>
+                <Col xs={4}>
+                  <Select
+                    isClearable={false}
+                    styles={{
+                      menu: (base: any) => ({ ...base, zIndex: 1000 }),
+                    }}
+                    value={
+                      presetSplit
+                        ? { label: presetSplit, value: presetSplit }
+                        : undefined
+                    }
+                    options={groupedPresetSplitOptions}
+                    formatGroupLabel={formatGroupLabel}
+                    onChange={(option: any) => {
+                      const newPreset = option.value || "";
+                      applyPresetConfig(presetMode, newPreset, true);
                     }}
                   />
                 </Col>
@@ -1489,25 +1551,51 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Shot Charts"
                       truthVal={newParamsOnSubmit.teamShotCharts || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          teamShotCharts: !(
+                            newParamsOnSubmit.teamShotCharts || false
+                          ),
+                        })
+                      }
                     />
                     <GenericTogglingMenuItem
                       text="Play Type Breakdown"
                       truthVal={newParamsOnSubmit.showTeamPlayTypes || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showTeamPlayTypes: !(
+                            newParamsOnSubmit.showTeamPlayTypes || false
+                          ),
+                        })
+                      }
                     />
                     <GenericTogglingMenuItem
                       text="Roster Breakdown"
                       truthVal={newParamsOnSubmit.showRoster || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showRoster: !(newParamsOnSubmit.showRoster || false),
+                        })
+                      }
                     />
                     <GenericTogglingMenuItem
                       text="Games Breakdown"
                       truthVal={newParamsOnSubmit.showGameInfo || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showGameInfo: !(
+                            newParamsOnSubmit.showGameInfo || false
+                          ),
+                        })
+                      }
                     />
                     <GenericTogglingMenuItem
                       text="Extra Detailed Stats"
@@ -1533,19 +1621,40 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Information Sub-Header"
                       truthVal={newParamsOnSubmit.showInfoSubHeader || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showInfoSubHeader: !(
+                            newParamsOnSubmit.showInfoSubHeader || false
+                          ),
+                        })
+                      }
                     />
                     <GenericTogglingMenuItem
                       text="Shot Charts"
                       truthVal={newParamsOnSubmit.playerShotCharts || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          playerShotCharts: !(
+                            newParamsOnSubmit.playerShotCharts || false
+                          ),
+                        })
+                      }
                     />
                     <GenericTogglingMenuItem
                       text="Play Type Breakdown"
                       truthVal={newParamsOnSubmit.showPlayerPlayTypes || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          showPlayerPlayTypes: !(
+                            newParamsOnSubmit.showPlayerPlayTypes || false
+                          ),
+                        })
+                      }
                     />
                     <Dropdown.Divider />
                     <GenericTogglingMenuItem
@@ -1583,11 +1692,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Adjust For Luck"
                       truthVal={newParamsOnSubmit.onOffLuck || false}
                       disabled={disableViewDetails}
-                      onSelect={() => {}}
+                      onSelect={() =>
+                        setNewParamsOnSubmit({
+                          ...newParamsOnSubmit,
+                          onOffLuck: !(newParamsOnSubmit.onOffLuck || false),
+                        })
+                      }
                     />
                   </GenericTogglingMenu>
                 </Col>
-                <Col sm={2} className="mt-1">
+                <Col sm={1} className="mt-1">
                   <OverlayTrigger
                     placement="auto"
                     overlay={

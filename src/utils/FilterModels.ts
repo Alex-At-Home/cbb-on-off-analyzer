@@ -127,6 +127,7 @@ export type GameFilterParams = {
   // UI
   advancedMode?: boolean;
   presetMode?: string;
+  presetSplit?: string;
   // Base on/off
   onQuery?: string;
   offQuery?: string;
@@ -386,6 +387,7 @@ export type RequiredTeamReportFilterParams = {
 export class ParamDefaults {
   // Game
   static readonly defaultPresetMode = "Season Stats";
+  static readonly defaultPresetSplit = "No Splits";
   static readonly defaultAutoOffQuery = true;
   static readonly defaultPlayerFilter = "";
   static readonly defaultPlayerSortBy = "desc:off_team_poss_pct:baseline";
