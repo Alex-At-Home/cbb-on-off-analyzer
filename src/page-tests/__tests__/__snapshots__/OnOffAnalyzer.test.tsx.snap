@@ -42,8 +42,11 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     >
       <GameFilter
         forceReload1Up={0}
+        key="0"
         onChangeState={[Function]}
         onStats={[Function]}
+        onSwitchToAdvancedMode={[Function]}
+        propKey={0}
         startingState={Object {}}
       />
     </GenericCollapsibleCard>

@@ -124,6 +124,10 @@ export type MatchupFilterParams = {
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
+  // UI
+  advancedMode?: boolean;
+  presetMode?: string;
+  // Base on/off
   onQuery?: string;
   offQuery?: string;
   onQueryFilters?: string; //(missing iff empty)
@@ -381,6 +385,7 @@ export type RequiredTeamReportFilterParams = {
 
 export class ParamDefaults {
   // Game
+  static readonly defaultPresetMode = "Season Stats";
   static readonly defaultAutoOffQuery = true;
   static readonly defaultPlayerFilter = "";
   static readonly defaultPlayerSortBy = "desc:off_team_poss_pct:baseline";

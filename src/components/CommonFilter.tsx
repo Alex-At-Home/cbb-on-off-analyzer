@@ -93,6 +93,7 @@ interface Props<PARAMS> {
   blockSubmit?: boolean;
   onGameSelectionChange?: (gameSelection: FilteredGameSelection) => void;
   hideSemiAdvancedOptions?: boolean; //(only show team selector)
+  propKey?: number;
 }
 
 /** Used to pass the submitListener to child components */
@@ -124,6 +125,7 @@ const CommonFilter: CommonFilterI = ({
   blockSubmit,
   onGameSelectionChange,
   hideSemiAdvancedOptions,
+  propKey,
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -410,7 +412,7 @@ const CommonFilter: CommonFilterI = ({
 
     // Cached response and pre-load handling:
     const forceReload = forceReload1Up && forceReload1Up != currForceReload1Up;
-    if (pageJustLoaded) {
+    if (pageJustLoaded && (!propKey || propKey == 0)) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
       // Load the data if it's cached
       requestHandlingLogic(true);

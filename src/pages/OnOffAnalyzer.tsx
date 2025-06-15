@@ -47,6 +47,7 @@ import { ClientRequestCache } from "../utils/ClientRequestCache";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { sk } from "date-fns/locale";
 import { screen } from "@testing-library/react";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -219,6 +220,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getGameUrl(params, {});
   }
   const [shouldForceReload, setShouldForceReload] = useState(0 as number);
+  const [shouldReinitFilter, setShouldReinitFilter] = useState(0 as number);
 
   const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
     /** We're going to want to remove the manual options if the year changes */
@@ -245,6 +247,14 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           : [],
         _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig)
           ? ["luck"]
+          : [],
+        !rawParams.presetMode ||
+        rawParams.presetMode == ParamDefaults.defaultPresetMode
+          ? ["presetMode"]
+          : [],
+        !rawParams.advancedMode ||
+        !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
+          ? ["advancedMode"]
           : [],
         !rawParams.onOffLuck ? ["onOffLuck"] : [],
         rawParams.showPlayerOnOffLuckDiags ==
@@ -481,7 +491,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         />
       </GenericCollapsibleCard>
     );
-  }, [dataEvent]);
+  }, [dataEvent, shouldReinitFilter]);
 
   /** Only rebuild the table if the data changes, or if luck changes (see above) */
   const rosterStatsTable = React.useMemo(() => {
@@ -499,7 +509,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         />
       </GenericCollapsibleCard>
     );
-  }, [dataEvent]);
+  }, [dataEvent, shouldReinitFilter]);
 
   return (
     <Container className={indivCardSize}>
@@ -522,10 +532,21 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           summary={HistoryManager.gameFilterSummary(gameFilterParams)}
         >
           <GameFilter
+            key={shouldReinitFilter}
+            propKey={shouldReinitFilter}
             onStats={injectStats}
             startingState={gameFilterParams}
             onChangeState={onGameFilterParamsChange}
             forceReload1Up={shouldForceReload}
+            onSwitchToAdvancedMode={(newParams) => {
+              // (force reload the state into both GameFilter and CommonFilter)
+              setGameFilterParams({
+                ...newParams,
+                advancedMode: true,
+                presetMode: undefined,
+              });
+              setShouldReinitFilter((t) => t + 1);
+            }}
           />
         </GenericCollapsibleCard>
       </Row>

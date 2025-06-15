@@ -89,6 +89,8 @@ type Props = {
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
   forceReload1Up: number;
+  onSwitchToAdvancedMode?: (newParams: GameFilterParams) => void;
+  propKey?: number;
   testMode?: boolean;
 };
 
@@ -97,6 +99,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
   startingState,
   onChangeState,
   forceReload1Up,
+  onSwitchToAdvancedMode,
+  propKey,
   testMode,
 }) => {
   const isServer = () => typeof window === `undefined`;
@@ -105,6 +109,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   // Data model
 
   const {
+    // UI
+    advancedMode: startAdvancedMode,
+    presetMode: startPresetMode,
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
@@ -190,9 +197,33 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Whether to show pre-sets instead of full set */
   const [advancedView, setAdvancedView] = useState(
-    FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface) ? false : true
+    _.isNil(startingState.advancedMode)
+      ? _.thru(startingState, (state) => {
+          if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
+            return true;
+          if (!_.isEmpty(state.presetMode)) return true;
+          if (!_.isEmpty(state.onQuery)) return true;
+          if (!_.isEmpty(state.onQueryFilters)) return true;
+          if (!_.isEmpty(state.offQuery)) return true;
+          if (!_.isEmpty(state.offQueryFilters)) return true;
+          if (!_.isEmpty(state.baseQuery)) return true;
+          if (!_.isEmpty(state.queryFilters)) return true;
+          if (!_.isEmpty(state.otherQueries)) return true;
+          if (state.minRank && state.minRank != ParamDefaults.defaultMinRank)
+            return true;
+          if (state.maxRank && state.maxRank != ParamDefaults.defaultMaxRank)
+            return true;
+          return false;
+        })
+      : startingState.advancedMode
   );
-  const [presetMode, setPresetMode] = useState("");
+
+  /** The preset to use */
+  const [presetMode, setPresetMode] = useState(
+    advancedView
+      ? ""
+      : startingState.presetMode || ParamDefaults.defaultPresetMode
+  );
 
   /** Used to build preset options */
   const [rosterNames, setRosterNames] = useState<string[]>([]);
@@ -483,6 +514,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
         ? {}
         : { offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters) };
 
+    // It's painful but re-calc the result of the preset to make sure we are using the right params
+    const [maybeNewParams, __] = advancedView
+      ? [undefined, undefined]
+      : onUpdatePreset(presetMode, false);
+
     const primaryOnOffRequest = advancedView
       ? {
           autoOffQuery: autoOffQuery,
@@ -501,17 +537,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
           ),
         }
       : {
-          autoOffQuery: newParamsOnSubmit.autoOffQuery,
-          onQuery: newParamsOnSubmit.onQuery,
-          offQuery: newParamsOnSubmit.offQuery,
-          onQueryFilters: newParamsOnSubmit.onQueryFilters,
-          offQueryFilters: newParamsOnSubmit.offQueryFilters,
+          autoOffQuery: (maybeNewParams || newParamsOnSubmit).autoOffQuery,
+          onQuery: (maybeNewParams || newParamsOnSubmit).onQuery,
+          offQuery: (maybeNewParams || newParamsOnSubmit).offQuery,
+          onQueryFilters: (maybeNewParams || newParamsOnSubmit).onQueryFilters,
+          offQueryFilters: (maybeNewParams || newParamsOnSubmit)
+            .offQueryFilters,
         };
 
     const primaryRequest: GameFilterParams = includeFilterParams
       ? _.assign(buildParamsFromState(false)[0], {
           ...rebuildFullState(),
-          ...(advancedView ? {} : newParamsOnSubmit), //(in preset mode use the presets)
+          ...(advancedView ? {} : maybeNewParams || newParamsOnSubmit), //(in preset mode use the presets)
+          // UI
+          advancedMode: advancedView,
+          presetMode: presetMode,
         })
       : {
           ...commonParams,
@@ -905,7 +945,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     {
       label: "Basic Views",
       options: [
-        "Season Stats",
+        ParamDefaults.defaultPresetMode,
         "Season Stats Vs T100ish",
         "Season Stats In Conf",
         "Last 30 days",
@@ -928,7 +968,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
     },
   ];
 
-  const onUpdatePreset = (preset: string) => {
+  /** Handles the setting of a preset */
+  const onUpdatePreset = (
+    preset: string,
+    applyEffects: boolean
+  ): [GameFilterParams | undefined, CommonFilterParams | undefined] => {
     const baseQuery: CommonFilterParams = {
       ...commonParams,
       minRank: "0",
@@ -943,75 +987,114 @@ const GameFilter: React.FunctionComponent<Props> = ({
       onQueryFilters: "",
       offQueryFilters: "",
     };
-    _.thru(preset, (__) => {
-      if (preset == "Season Stats") {
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-        });
-        setCommonParams({ ...baseQuery });
+    const [newParams, newCommonFilter] = _.thru(preset, (__) => {
+      if (preset == ParamDefaults.defaultPresetMode) {
+        return [
+          {
+            ...newParamsOnSubmit,
+            ...baseOnOffQuery,
+          },
+          baseQuery,
+        ];
       } else if (preset == "Season Stats Vs T100ish") {
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-        });
-        setCommonParams({ ...baseQuery, maxRank: "100" });
+        return [
+          {
+            ...newParamsOnSubmit,
+            ...baseOnOffQuery,
+          },
+          { ...baseQuery, maxRank: "100" },
+        ];
       } else if (preset == "Season Stats In Conf") {
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-        });
-        setCommonParams({ ...baseQuery, queryFilters: "Conf" });
+        return [
+          {
+            ...newParamsOnSubmit,
+            ...baseOnOffQuery,
+          },
+          { ...baseQuery, queryFilters: "Conf" },
+        ];
       } else if (preset == "Last 30 days") {
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-        });
-        setCommonParams({ ...baseQuery, queryFilters: "Last-30d" });
+        return [
+          {
+            ...newParamsOnSubmit,
+            ...baseOnOffQuery,
+          },
+          { ...baseQuery, queryFilters: "Last-30d" },
+        ];
       } else if (preset == "Home vs Away/Neutral") {
         const split = "location_type:Home";
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-          onQuery: split,
-          offQuery: `NOT ${split}`,
-        });
-        setCommonParams({ ...baseQuery });
+        return [
+          {
+            ...{
+              ...newParamsOnSubmit,
+              ...baseOnOffQuery,
+              onQuery: split,
+              offQuery: `NOT ${split}`,
+            },
+          },
+          baseQuery,
+        ];
       } else if (preset == "T100ish vs Weaker") {
         const split = "vs_rank:<=100";
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-          onQuery: split,
-          offQuery: `NOT ${split}`,
-        });
-        setCommonParams({ ...baseQuery });
+        return [
+          {
+            ...{
+              ...newParamsOnSubmit,
+              ...baseOnOffQuery,
+              onQuery: split,
+              offQuery: `NOT ${split}`,
+            },
+          },
+          baseQuery,
+        ];
       } else if (preset == "First halves vs Second halves") {
         const split = "end_min:<=20";
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-          onQuery: split,
-          offQuery: `NOT ${split}`,
-        });
-        setCommonParams({ ...baseQuery });
+        return [
+          {
+            ...{
+              ...newParamsOnSubmit,
+              ...baseOnOffQuery,
+              onQuery: split,
+              offQuery: `NOT ${split}`,
+            },
+          },
+          baseQuery,
+        ];
       } else if (preset == "Last 30 days vs Before") {
-        setNewParamsOnSubmit({
-          ...newParamsOnSubmit,
-          ...baseOnOffQuery,
-          onQueryFilters: "Last-30d",
-        });
-        setCommonParams({ ...baseQuery });
+        return [
+          {
+            ...{
+              ...newParamsOnSubmit,
+              ...baseOnOffQuery,
+              onQueryFilters: "Last-30d",
+            },
+          },
+          baseQuery,
+        ];
+      } else {
+        return [undefined, undefined];
       }
     });
-    setPresetMode(preset);
+    if (applyEffects) {
+      if (newParams) setNewParamsOnSubmit(newParams);
+      if (newCommonFilter) setCommonParams(newCommonFilter);
+
+      setPresetMode(preset);
+    }
+    return [newParams, newCommonFilter];
   };
 
   /** Extra logic needed when switching between advanced and basic mode */
   const toggleAdvancedMode = () => {
+    const currAdvancedMode = advancedView;
     setAdvancedView(!advancedView);
-    setPresetMode("");
-    //TODO: lots of things to do?
+    setPresetMode(ParamDefaults.defaultPresetMode);
+    if (!currAdvancedMode && onSwitchToAdvancedMode) {
+      // Switching to advanced view so we want to copy query over:
+      onSwitchToAdvancedMode({
+        ...commonParams,
+        ...newParamsOnSubmit,
+      });
+    }
   };
 
   /** for debugging roster loading issues */
@@ -1226,6 +1309,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         setGameSelection(newGameSelection);
       }}
       hideSemiAdvancedOptions={!advancedView}
+      propKey={propKey}
     >
       <GlobalKeypressManager.Consumer>
         {(globalKeypressHandler) => (
@@ -1383,7 +1467,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     formatGroupLabel={formatGroupLabel}
                     onChange={(option: any) => {
                       const newPreset = option.value || "";
-                      onUpdatePreset(newPreset);
+                      onUpdatePreset(newPreset, true);
                     }}
                   />
                 </Col>
