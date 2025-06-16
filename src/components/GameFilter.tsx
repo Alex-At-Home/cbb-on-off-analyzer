@@ -49,6 +49,7 @@ import {
   StatModels,
   PlayerId,
   PlayerShotStatsModel,
+  IndivStatSet,
 } from "../utils/StatModels";
 import {
   QueryUtils,
@@ -77,6 +78,7 @@ import Select, { components } from "react-select";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { FilterUtils } from "../utils/FilterUtils";
+import { RequestUtils } from "../utils/RequestUtils";
 
 type Props = {
   onStats: (
@@ -240,9 +242,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [rosterNames, setRosterNames] = useState<string[]>([]);
   useEffect(() => {
     // On page load, if team is selected then fetch the roster
-    if (!advancedView) {
-      fetchRoster(startingCommonFilterParams);
-    }
+    RequestUtils.fetchRoster(
+      startingCommonFilterParams,
+      handleRosterResponse,
+      dataLastUpdated,
+      rosterFetchDebug
+    );
   }, []);
 
   /** The state managed by the CommonFilter element */
@@ -423,13 +428,18 @@ const GameFilter: React.FunctionComponent<Props> = ({
         params.gender != commonParams.gender
       ) {
         setRosterNames([]);
-        if (isDebug)
+        if (rosterFetchDebug)
           console.log(
             `[auto-debug-mode] Update params: old=[${JSON.stringify(
               commonParams
             )}] vs new=[${JSON.stringify(params)}]`
           );
-        fetchRoster(params);
+        RequestUtils.fetchRoster(
+          params,
+          handleRosterResponse,
+          dataLastUpdated,
+          rosterFetchDebug
+        );
       }
     }
     setCommonParams(params);
@@ -1013,28 +1023,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
     },
   ];
 
+  /** Handy constant for preset-calcs */
+  const basePresetQuery: CommonFilterParams = {
+    minRank: "0",
+    maxRank: "400",
+    queryFilters: "",
+    baseQuery: "",
+  };
+  /** Handy constant for preset-calcs */
+  const basePresetOnOffQuery: GameFilterParams = {
+    onQuery: "",
+    offQuery: "",
+    autoOffQuery: true,
+    onQueryFilters: "",
+    offQueryFilters: "",
+  };
+
   /** Handles the setting of a preset */
   const applyPresetConfig = (
     newPresetMode: string,
     newPresetSplit: string,
     applyEffects: boolean
   ): [GameFilterParams | undefined, CommonFilterParams | undefined] => {
-    const baseQuery: CommonFilterParams = {
-      minRank: "0",
-      maxRank: "400",
-      queryFilters: "",
-      baseQuery: "",
-    };
-    const baseOnOffQuery: GameFilterParams = {
-      onQuery: "",
-      offQuery: "",
-      autoOffQuery: true,
-      onQueryFilters: "",
-      offQueryFilters: "",
-    };
     const newCommonFilter = {
       ...commonParams,
-      ...baseQuery,
+      ...basePresetQuery,
       ...(FilterUtils.gameFilterPresets[newPresetMode]?.commonParams || {}),
     };
 
@@ -1044,7 +1057,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         if (maybeSplitConfig) {
           return {
             ...newParamsOnSubmit,
-            ...baseOnOffQuery,
+            ...basePresetOnOffQuery,
             ...(maybeSplitConfig?.gameParams || {}),
           };
         } else if (
@@ -1052,7 +1065,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         ) {
           return {
             ...newParamsOnSubmit,
-            ...baseOnOffQuery,
+            ...basePresetOnOffQuery,
             onQuery: `"${newPresetSplit.substring(
               FilterUtils.gameFilterOnOffPrefix.length
             )}"`,
@@ -1074,7 +1087,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
       if (newPresetSplit != presetSplit) {
         setPresetSplit(newPresetSplit);
         if (newParams) {
-          setOnQuery(onQuery);
+          if (newParams.onQuery) {
+            setOnQuery(newParams.onQuery);
+          }
           setOnQueryFilters(
             QueryUtils.parseFilter(
               _.isNil(newParams.onQueryFilters)
@@ -1083,7 +1098,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
               startingState.year || ParamDefaults.defaultYear
             )
           );
-          setOffQuery(offQuery);
+          if (newParams.offQuery) {
+            setOffQuery(newParams.offQuery);
+          }
           setOffQueryFilters(
             QueryUtils.parseFilter(
               _.isNil(newParams.offQueryFilters)
@@ -1112,89 +1129,85 @@ const GameFilter: React.FunctionComponent<Props> = ({
       ? applyPresetConfig(currPresetMode, currPresetSplit, false)
       : [undefined, undefined];
     setAdvancedView(newAdvancedMode);
-    setPresetMode(ParamDefaults.defaultPresetMode);
-    setPresetSplit(ParamDefaults.defaultPresetSplit);
+
+    const [newPresetMode, newPresetSplit] = _.thru(currAdvancedMode, (__) => {
+      if (currAdvancedMode) {
+        // Switching back to simple mode
+        // Let's figure out if we can re-use existing modes/splits
+        const maybeMode = _.findKey(FilterUtils.gameFilterPresets, (preset) => {
+          return _.isEqual(commonParams, {
+            ...commonParams,
+            ...basePresetQuery,
+            ...(preset.commonParams || {}),
+          });
+        });
+        const testSplit = {
+          autoOffQuery: true,
+          onQuery: onQuery,
+          offQuery: offQuery,
+          onQueryFilters: QueryUtils.buildFilterStr(onQueryFilters),
+          offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters),
+        };
+        const testPlayers = new Set(rosterNames);
+        const maybeSplit = _.thru(
+          testPlayers.has(onQuery),
+          (maybePlayerOnOff) => {
+            if (maybePlayerOnOff) {
+              return _.isEqual(testSplit, {
+                autoOffQuery: true,
+                ...basePresetOnOffQuery,
+                onQuery: onQuery,
+                offQuery: `NOT ${onQuery}`,
+              })
+                ? `${FilterUtils.gameFilterOnOffPrefix}${onQuery.replaceAll(
+                    '"',
+                    ""
+                  )}`
+                : undefined;
+            } else {
+              return _.findKey(FilterUtils.gameSplitPresets, (preset) => {
+                return _.isEqual(testSplit, {
+                  ...testSplit,
+                  ...basePresetOnOffQuery,
+                  ...(preset.gameParams || {}),
+                });
+              });
+            }
+          }
+        );
+        return [
+          maybeMode || ParamDefaults.defaultPresetMode,
+          maybeSplit || ParamDefaults.defaultPresetSplit,
+        ];
+      } else {
+        //(return presets to their defaults ready for when they are next to be used)
+        return [
+          ParamDefaults.defaultPresetMode,
+          ParamDefaults.defaultPresetSplit,
+        ];
+      }
+    });
+    setPresetMode(newPresetMode);
+    setPresetSplit(newPresetSplit);
+
     if (onSwitchToAdvancedMode) {
       // Switching to advanced view so we want to copy query over:
       onSwitchToAdvancedMode({
         ...(commonParamsToUse || commonParams),
         ...(gameParamsToUse || newParamsOnSubmit),
         advancedMode: newAdvancedMode,
-        presetMode: newAdvancedMode ? undefined : presetMode,
-        presetSplit: newAdvancedMode ? undefined : presetSplit,
+        presetMode: newAdvancedMode ? undefined : newPresetMode,
+        presetSplit: newAdvancedMode ? undefined : newPresetSplit,
       });
     }
   };
   /** for debugging roster loading issues */
-  const isDebug = false;
-
-  /** Makes an API call to elasticsearch to get the roster */
-  const fetchRoster = (params: CommonFilterParams) => {
-    if (params.gender && params.year && params.team) {
-      const genderYear = `${params.gender}_${params.year}`;
-      const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
-
-      const query: GameFilterParams = {
-        gender: params.gender,
-        year: params.year,
-        team: params.team,
-        baseQuery: "",
-        onQuery: "",
-        offQuery: "",
-        minRank: ParamDefaults.defaultMinRank,
-        maxRank: ParamDefaults.defaultMaxRank,
-      };
-      const paramStr = QueryUtils.stringify(query);
-      // Check if it's in the cache:
-      const cachedJson = ClientRequestCache.decacheResponse(
-        paramStr,
-        ParamPrefixes.roster,
-        currentJsonEpoch,
-        false /* This gets called every keypress, so even in debug mode it's a huge pain */
-      );
-      if (cachedJson && !_.isEmpty(cachedJson)) {
-        //(ignore placeholders here)
-        handleRosterResponse(cachedJson);
-      } else {
-        fetch(`/api/getRoster?${paramStr}`).then(function (
-          response: fetch.IsomorphicResponse
-        ) {
-          response.json().then(function (json: any) {
-            // Cache result locally:
-            if (isDebug) {
-              console.log(
-                `[auto-debug-mode] CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`
-              );
-              //(this is a bit chatty)
-              //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
-            }
-            if (response.ok) {
-              //(never cache errors)
-              ClientRequestCache.cacheResponse(
-                paramStr,
-                ParamPrefixes.roster,
-                json,
-                currentJsonEpoch,
-                isDebug
-              );
-            }
-            handleRosterResponse(json);
-          });
-        });
-      }
-    }
-  };
+  const rosterFetchDebug = false;
 
   /** Parse the return from fetch Roster into name fragments */
-  const handleRosterResponse = (json: any) => {
-    const jsons = json?.responses || [];
-    const rosterCompareJson = jsons.length > 0 ? jsons[0] : {};
-    const roster =
-      rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline?.player
-        ?.buckets || [];
-
-    const names = _.chain(roster)
-      .map((rosterObj) => `"${rosterObj.key}"`)
+  const handleRosterResponse = (players: string[]) => {
+    const names = _.chain(players)
+      .map((player) => `"${player}"`)
       .sortBy()
       .sortedUniq()
       .value();

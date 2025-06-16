@@ -8,6 +8,7 @@ import {
   FilterRequestInfo,
   CommonFilterParams,
   ParamDefaults,
+  GameFilterParams,
 } from "./FilterModels";
 import { QueryUtils } from "./QueryUtils";
 import { ClientRequestCache } from "./ClientRequestCache";
@@ -15,7 +16,7 @@ import { AvailableTeams } from "./internal-data/AvailableTeams";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
-import { GameInfoStatSet } from "./StatModels";
+import { GameInfoStatSet, IndivStatSet } from "./StatModels";
 import { LineupUtils } from "./stats/LineupUtils";
 
 const debugLogResponses = false;
@@ -248,7 +249,7 @@ export class RequestUtils {
 
   // Common smaller requests for control purposes:
 
-  /** Makes an API call to elasticsearch to get the roster */
+  /** Makes an API call to elasticsearch to get the list of opponents */
   static fetchOpponents(
     params: CommonFilterParams,
     resultCallback: (gameObjs: GameInfoStatSet[]) => void,
@@ -322,6 +323,79 @@ export class RequestUtils {
                 _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc")
               )
             );
+          });
+        });
+      }
+    }
+  }
+
+  //TODO: we should try just fetching the team roster first before we do this expensive call...
+
+  /** Makes an API call to elasticsearch to get the roster */
+  static fetchRoster(
+    params: CommonFilterParams,
+    resultCallback: (rosterObjs: string[]) => void,
+    dataLastUpdated: Record<string, number>,
+    isDebug: boolean
+  ) {
+    if (params.gender && params.year && params.team) {
+      const genderYear = `${params.gender}_${params.year}`;
+      const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
+
+      const jsonToIndivs = (json: any) => {
+        const jsons = json?.responses || [];
+        const rosterCompareJson = jsons.length > 0 ? jsons[0] : {};
+        const roster =
+          rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline?.player
+            ?.buckets || [];
+        return roster.map((r: any) => r.key) as string[];
+      };
+
+      const query: GameFilterParams = {
+        gender: params.gender,
+        year: params.year,
+        team: params.team,
+        baseQuery: "",
+        onQuery: "",
+        offQuery: "",
+        minRank: ParamDefaults.defaultMinRank,
+        maxRank: ParamDefaults.defaultMaxRank,
+      };
+      const paramStr = QueryUtils.stringify(query);
+      // Check if it's in the cache:
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr,
+        ParamPrefixes.roster,
+        currentJsonEpoch,
+        false /* This gets called every keypress, so even in debug mode it's a huge pain */
+      );
+      if (cachedJson && !_.isEmpty(cachedJson)) {
+        //(ignore placeholders here)
+        resultCallback(jsonToIndivs(cachedJson));
+      } else {
+        fetch(`/api/getRoster?${paramStr}`).then(function (
+          response: fetch.IsomorphicResponse
+        ) {
+          response.json().then(function (json: any) {
+            // Cache result locally:
+            if (isDebug) {
+              console.log(
+                `[auto-debug-mode] CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`
+              );
+              //(this is a bit chatty)
+              //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+            }
+            if (response.ok) {
+              //(never cache errors)
+              ClientRequestCache.cacheResponse(
+                paramStr,
+                ParamPrefixes.roster,
+                json,
+                currentJsonEpoch,
+                isDebug
+              );
+            }
+            resultCallback(jsonToIndivs(json));
           });
         });
       }
