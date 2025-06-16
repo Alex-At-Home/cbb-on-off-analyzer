@@ -186,10 +186,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       playerShotStats,
     });
     setRosterCompareStats(rosterCompareStats);
-    // Ensure any visualuzation changes from the "Views/Details" dropdown are applied
-    if (!gameFilterParams.advancedMode) {
-      setShouldReloadTableParams((oneUp) => oneUp + 1);
-    }
   };
 
   // Game and Lineup filters
@@ -428,13 +424,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       ) {
         setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
-      // Because changing the params in one table merges that table's params with the last set
-      // when the other table's memo was refreshed, currently we to always refresh the memo on both
-      // tables whenever any memo changes
-      // TODO: of course this can be done much more elegantly/efficiently
-      setDataEvent((d) => {
-        return { ...d };
-      }); //(leave data unchanged but fool the useMemo below)
 
       const href = getRootUrl(params);
       const as = href;
@@ -445,6 +434,12 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
       setGameFilterParams(params); //(to ensure the new params are included in links)
+
+      // Because changing the params in one table merges that table's params with the last set
+      // when the other table's memo was refreshed, currently we to always refresh the memo on both
+      // tables whenever any memo changes
+      // (note this has to happen _after_ setGameFilterParams to ensure the right properties get set)
+      setShouldReloadTableParams((oneUp) => oneUp + 1);
     } else if (
       !_.isEqual(
         checkUrlUpdateFields(params),

@@ -161,7 +161,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const rebuildFullState = () => {
     return {
       // Team stats
-      autoOffQuery: autoOffQuery,
+      autoOffQuery: autoOffQuery, //(TODO: I don't think this is needed)
       teamDiffs: startTeamDiffs,
       showTeamPlayTypes: startShowTeamPlayTypes,
       teamPlayTypeConfig: startTeamPlayTypeConfig,
@@ -264,11 +264,30 @@ const GameFilter: React.FunctionComponent<Props> = ({
     games: [],
   });
 
+  /** Whenever starting state updates, we also update the critical params
+   *  that trigger data reloadds, otherwise it gets too complicated to keep in sync
+   *  It's not ideal because these table UI features override the "preset details"
+   *  ... but it's necessary because the features trigger a reload which relies
+   *      on GameFilter for its state, and the preset / advanced code is too tightly
+   *      coupled to make that option workable
+   */
+  useEffect(() => {
+    setNewParamsOnSubmit({
+      ...newParamsOnSubmit,
+      calcRapm: startCalcRapm,
+      showRoster: startShowRoster,
+      showGameInfo: startShowGameInfo,
+      teamShotCharts: startTeamShotCharts,
+      playerShotCharts: startPlayerShotCharts,
+    });
+  }, [startingState]);
+
   useEffect(() => {
     // Whenever forceReload1Up is incremented, reset common params:
     if (forceReload1Up != internalForceReload1Up) {
       setCommonParams(startingCommonFilterParams as CommonFilterParams);
       setInternalForceReload1Up(forceReload1Up);
+
       // Actually have to reset these two vs just their underlying value
       // (could build that intermediate pair,. but we'll stick with this limitation for now)
       setOnQuery(startOnQuery || "");
@@ -418,11 +437,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
     setCommonParams(params);
   }
 
-  /**/
-  //TODO: last?! issue there are some other methods in use here that aren't affected by the applyPreset
-  // I think the easiet thing to do is remove the applyPreset from buildParamsFromState and instead
-  // use in the initialization
-
   /** Builds lineup queries for on/off queries */
   function buildLineupQueriesFromOnOffQueries(): {
     on?: CommonFilterParams;
@@ -523,6 +537,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Builds a game filter from the various state elements, and also any secondary filters
    * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
+   *
+   * Another nasty hack here is that you'll see some params are the state params
+   * and others come from calling applyPresetConfig ... in an ideal world, we'd just use
+   * the state params except for the startXxx which would come from newParamsOnSubmit
+   * but there's some complications based on what gets set when
    */
   function buildParamsFromState(
     includeFilterParams: Boolean
@@ -540,6 +559,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const [maybeNewParams, maybeNewCommonParams] = advancedView
       ? [undefined, undefined]
       : applyPresetConfig(presetMode, presetSplit, false);
+
+    const visualSettingsToUse = advancedView
+      ? startingState
+      : newParamsOnSubmit;
 
     const primaryOnOffRequest = advancedView
       ? {
@@ -601,7 +624,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // (ie and just ignore the on-off portion)
 
     const alsoPullLineups =
-      startCalcRapm || startShowRoster || startShowGameInfo;
+      visualSettingsToUse.calcRapm ||
+      visualSettingsToUse.showRoster ||
+      visualSettingsToUse.showGameInfo;
 
     // Lineups (eg for RAPM) calculations:
     //TODO: should tidy this up so can just make get lineups back from on/off query
@@ -640,7 +665,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               return l
                 ? {
                     ...l,
-                    showGameInfo: startShowGameInfo,
+                    showGameInfo: visualSettingsToUse.showGameInfo,
                   }
                 : undefined;
             })
@@ -652,7 +677,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         ...commonParams,
                         ...l,
                       }),
-                      showGameInfo: startShowGameInfo,
+                      showGameInfo: visualSettingsToUse.showGameInfo,
                     }
                   : undefined;
               })
@@ -684,7 +709,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         },
       ]
         .concat(
-          startTeamShotCharts
+          visualSettingsToUse.teamShotCharts
             ? [
                 {
                   tag: "shots",
@@ -695,7 +720,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
             : []
         )
         .concat(
-          startPlayerShotCharts
+          visualSettingsToUse.playerShotCharts
             ? [
                 {
                   tag: "playerShots",
@@ -1671,7 +1696,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       onSelect={() => {
                         setNewParamsOnSubmit({
                           ...newParamsOnSubmit,
-                          showGrades: startingState.showGrades
+                          showGrades: newParamsOnSubmit.showGrades
                             ? ""
                             : ParamDefaults.defaultEnabledGrade,
                         });
