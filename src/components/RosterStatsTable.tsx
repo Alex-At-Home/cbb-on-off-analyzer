@@ -771,9 +771,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix =
-      FilterUtils.gameSplitPresets[gameFilterParams.presetSplit || "??"]
-        ?.splitPhrases;
+    const maybePrefix = FilterUtils.getPresetPhrase(
+      gameFilterParams.presetSplit || "??"
+    );
     switch (type) {
       case "on":
         return maybePrefix ? maybePrefix[0] : "A";
@@ -783,6 +783,35 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         return "Base";
       case "other":
         return `${String.fromCharCode(67 + (otherIndex || 0))}`;
+      default:
+        return "unknown";
+    }
+  };
+  /** Longer equivalent to onOffBaseToPhrase */
+  const onOffBaseToLongerPhrase = (
+    type: OnOffBaselineOtherEnum,
+    otherIndex?: number
+  ) => {
+    const maybePrefix = FilterUtils.getPresetPhrase(
+      gameFilterParams.presetSplit || "??"
+    );
+    switch (type) {
+      case "on":
+        return maybePrefix
+          ? `'${maybePrefix[0]}' set`
+          : _.isEmpty(teamStats.other)
+          ? "On ('A')"
+          : "'A' set";
+      case "off":
+        return maybePrefix
+          ? `'${maybePrefix[1]}' set`
+          : _.isEmpty(teamStats.other)
+          ? "Off ('B')"
+          : "'B' set";
+      case "baseline":
+        return "'Base' set";
+      case "other":
+        return `'${String.fromCharCode(67 + (otherIndex || 0))}' set`;
       default:
         return "unknown";
     }
@@ -1255,7 +1284,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ) =>
         [
           {
-            title: "'Base' set",
+            title: onOffBaseToLongerPhrase("baseline"),
             key: "baseline",
             off:
               getPlayerShotChartStats("baseline", dataEvent.playerShotStats, 0)[
@@ -1265,7 +1294,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             gender: gameFilterParams.gender as "Men" | "Women",
           },
           {
-            title: "'A' set",
+            title: onOffBaseToLongerPhrase("on"),
             key: "on",
             off:
               getPlayerShotChartStats("on", dataEvent.playerShotStats, 0)[
@@ -1275,7 +1304,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             gender: gameFilterParams.gender as "Men" | "Women",
           },
           {
-            title: "'B' set",
+            title: onOffBaseToLongerPhrase("off"),
             key: "off",
             off:
               getPlayerShotChartStats("off", dataEvent.playerShotStats, 0)[
@@ -1288,7 +1317,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           .concat(
             (teamStats.other || []).map((opt, idx) => {
               return {
-                title: `'${String.fromCharCode(67 + idx)}' set`,
+                title: onOffBaseToLongerPhrase("other", idx),
                 key: `other${idx}`,
                 off:
                   getPlayerShotChartStats(
@@ -1310,12 +1339,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               )
           );
 
-      /**/
-      //TODO search for On ('A') and 'B', see below
-
       const indivPlayTypeQuickSwitchOptions = [
         {
-          title: "Baseline",
+          title: onOffBaseToLongerPhrase("baseline"),
           player: getPlayerStats("baseline", p, 0)!,
           rosterStatsByCode: rosterStatsByCode.global,
           teamStats: getTeamStats("baseline", teamStats, 0),
@@ -1325,7 +1351,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           quickSwitchOverride: undefined,
         },
         {
-          title: _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+          title: onOffBaseToLongerPhrase("on"),
           player: getPlayerStats("on", p, 0)!,
           rosterStatsByCode: rosterStatsByCode.global,
           teamStats: getTeamStats("on", teamStats, 0),
@@ -1335,7 +1361,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           quickSwitchOverride: undefined,
         },
         {
-          title: _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+          title: onOffBaseToLongerPhrase("off"),
           player: getPlayerStats("off", p, 0)!,
           rosterStatsByCode: rosterStatsByCode.global,
           teamStats: getTeamStats("off", teamStats, 0),
@@ -1348,7 +1374,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         .concat(
           (teamStats.other || []).map((__, idx) => {
             return {
-              title: `'${String.fromCharCode(67 + idx)}'`,
+              title: onOffBaseToLongerPhrase("other", idx),
               player: getPlayerStats("other", p, idx)!,
               rosterStatsByCode: rosterStatsByCode.global,
               teamStats: getTeamStats("other", teamStats, idx),
@@ -1361,9 +1387,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         )
         .filter((opt) => opt.player && (opt.teamStats.doc_count || 0) > 0);
 
-      /**/
-      //TODO use onOffBaseToPhrase below?
-
       const buildRowSet = (
         p: OnOffPlayerStatSet,
         queryKey: OnOffBaselineOtherEnum,
@@ -1374,18 +1397,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ) => {
         const player = getPlayerStats(queryKey, p, otherQueryIndex);
         const isBaseline = queryKey == "baseline";
-        const rowLetter = _.thru(queryKey, (__) => {
-          switch (queryKey) {
-            case "on":
-              return "A";
-            case "off":
-              return "B";
-            case "baseline":
-              return "Base";
-            case "other":
-              return String.fromCharCode(67 + otherQueryIndex);
-          }
-        });
+        const rowLetter = onOffBaseToPhrase(queryKey);
         return _.isNil(player?.off_title)
           ? []
           : _.flatten([
@@ -1499,7 +1511,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     GenericTableOps.buildTextRow(
                       <IndivPlayTypeTabbedView
-                        title={displayKey}
+                        title={onOffBaseToLongerPhrase(
+                          queryKey,
+                          otherQueryIndex
+                        )}
                         player={player}
                         rosterStatsByCode={rosterStatsByCode.global}
                         teamStats={getTeamStats(
@@ -1553,10 +1568,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     GenericTableOps.buildTextRow(
                       <ShotChartDiagView
-                        title={`'${onOffBaseToPhrase(
+                        title={onOffBaseToLongerPhrase(
                           queryKey,
                           otherQueryIndex
-                        )}' set`}
+                        )}
                         off={
                           getPlayerShotChartStats(
                             queryKey,
@@ -1583,14 +1598,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ]);
       };
 
-      /**/
-      //TODO: more harcoded row names that need to go in onOffBaseToLongerPhrase
-
       return _.flatten([
         buildRowSet(
           p,
           "on",
-          _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+          onOffBaseToLongerPhrase("on"),
           0,
           firstRowIsOn,
           tenthRowIsOn
@@ -1598,7 +1610,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         buildRowSet(
           p,
           "off",
-          _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+          onOffBaseToLongerPhrase("off"),
           0,
           firstRowIsOff,
           tenthRowIsOff
@@ -1607,7 +1619,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           return buildRowSet(
             p,
             "other",
-            `'${String.fromCharCode(67 + otherIdx)}'`,
+            onOffBaseToLongerPhrase("other", otherIdx),
             otherIdx,
             false,
             false
@@ -1697,18 +1709,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             // only do diff for a few:
             return [];
           }
-          /**/
-          //TODO: replace these (+ I think we need other also)
-          const onOrOff = (s: string) => {
-            switch (s) {
-              case "on":
-                return "'On'";
-              case "off":
-                return "'Off'";
-              case "baseline":
-                return "Base";
-            }
-          };
           const ascOrDesc = (s: string) => {
             switch (s) {
               case "asc":
@@ -1738,8 +1738,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 {
                   label: !_.isNil(labelOverride)
-                    ? `${onOrOff(combo[2])} ${label}`
-                    : `${onOrOff(combo[2])} ${
+                    ? `${onOffBaseToPhrase(
+                        combo[2] as OnOffBaselineEnum
+                      )} ${label}`
+                    : `${onOffBaseToPhrase(combo[2] as OnOffBaselineEnum)} ${
                         keycol[1].colName
                       } (${ascOrDecLabel} / ${offOrDefLabel})`,
                   value: `${combo[0]}:${combo[1]}_${keycol[0]}:${combo[2]}`,

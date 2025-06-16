@@ -8,6 +8,7 @@ type GameFilterPresets = {
   commonParams?: CommonFilterParams;
   gameParams?: GameFilterParams;
   splitPhrases?: [string, string];
+  longerSplitPhrases?: [string, string];
 };
 
 /** Collection of business logic related to CommonFilter, GameFilter, etc */
@@ -62,4 +63,14 @@ export class FilterUtils {
       },
     },
   };
+
+  /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */
+  static getPresetPhrase(presetSplit: string): [string, string] | undefined {
+    if (presetSplit.startsWith(FilterUtils.gameFilterOnOffPrefix)) {
+      return ["ON", "OFF"];
+    } else {
+      const radical = FilterUtils.gameSplitPresets[presetSplit || "??"];
+      return radical?.splitPhrases;
+    }
+  }
 }
