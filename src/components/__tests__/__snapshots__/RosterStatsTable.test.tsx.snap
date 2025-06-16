@@ -25657,7 +25657,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    A Lineups Grades
+                    'A' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -26389,7 +26389,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    B Lineups Grades
+                    'B' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -27124,7 +27124,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    A Lineups Grades
+                    'A' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -27859,7 +27859,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    B Lineups Grades
+                    'B' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -34575,7 +34575,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    A Lineups Grades
+                    'A' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -35913,7 +35913,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    B Lineups Grades
+                    'B' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -37254,7 +37254,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    A Lineups Grades
+                    'A' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -38595,7 +38595,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "kind": "text-row",
                 "text": <span>
                   <small>
-                    B Lineups Grades
+                    'B' Lineups Grades
                      
                     <OverlayTrigger
                       overlay={
@@ -45750,7 +45750,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="A Lineups"
+                  name="'A' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -46349,7 +46349,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="B Lineups"
+                  name="'B' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -46951,7 +46951,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="A Lineups"
+                  name="'A' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -47553,7 +47553,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="B Lineups"
+                  name="'B' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -54735,7 +54735,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="A Lineups"
+                  name="'A' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": -0.3042434656077867,
@@ -56200,7 +56200,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="B Lineups"
+                  name="'B' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 2.2679366009786426,
@@ -57668,7 +57668,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="A Lineups"
+                  name="'A' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 2.030680877993925,
@@ -59124,7 +59124,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="B Lineups"
+                  name="'B' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -66798,7 +66798,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 }
                   }
                   individualMode={true}
-                  name="A Lineups"
+                  name="'A' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -67381,7 +67381,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 }
                   }
                   individualMode={true}
-                  name="B Lineups"
+                  name="'B' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -67967,7 +67967,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 }
                   }
                   individualMode={true}
-                  name="A Lineups"
+                  name="'A' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,
@@ -68553,7 +68553,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 }
                   }
                   individualMode={true}
-                  name="B Lineups"
+                  name="'B' Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 0,

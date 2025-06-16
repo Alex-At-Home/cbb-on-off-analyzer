@@ -767,7 +767,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     _.some(rosterStats.other, (o) => o?.length)
   );
 
-  const onOffBaseToPhrase = (
+  const onOffBaseToShortPhrase = (
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
@@ -787,7 +787,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         return "unknown";
     }
   };
-  /** Longer equivalent to onOffBaseToPhrase */
+  /** Longer equivalent to onOffBaseToShortPhrase */
   const onOffBaseToLongerPhrase = (
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
@@ -826,7 +826,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   ) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
     //^ (if this is set we only show it together with on/off)
-    const sub = onOffBaseToPhrase(type, otherIndex);
+    const sub = onOffBaseToShortPhrase(type, otherIndex);
 
     const posIfNotExpanded1 = expandedView ? null : (
       <OverlayTrigger
@@ -1096,7 +1096,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             placement="auto"
             overlay={TableDisplayUtils.buildPositionTooltip(
               pos,
-              onOffBaseToPhrase(queryKey, otherQueryIndex)
+              onOffBaseToShortPhrase(queryKey, otherQueryIndex)
             )}
           >
             <small>{pos}</small>
@@ -1397,7 +1397,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ) => {
         const player = getPlayerStats(queryKey, p, otherQueryIndex);
         const isBaseline = queryKey == "baseline";
-        const rowLetter = onOffBaseToPhrase(queryKey);
+        const rowLetter = onOffBaseToShortPhrase(queryKey);
         return _.isNil(player?.off_title)
           ? []
           : _.flatten([
@@ -1445,7 +1445,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       : undefined,
                     selectionTitle: isBaseline
                       ? "Baseline Grades"
-                      : `${rowLetter} Lineups Grades`,
+                      : `'${rowLetter}' Lineups Grades`,
                     config: showGrades,
                     setConfig: (newConfig: string) => {
                       setShowGrades(newConfig);
@@ -1494,7 +1494,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     GenericTableOps.buildTextRow(
                       <LuckAdjDiagView
                         name={
-                          isBaseline ? `Player Base` : `${rowLetter} Lineups`
+                          isBaseline ? `Player Base` : `'${rowLetter}' Lineups`
                         }
                         offLuck={player?.off_luck}
                         defLuck={player?.def_luck}
@@ -1738,10 +1738,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 {
                   label: !_.isNil(labelOverride)
-                    ? `${onOffBaseToPhrase(
+                    ? `${onOffBaseToShortPhrase(
                         combo[2] as OnOffBaselineEnum
                       )} ${label}`
-                    : `${onOffBaseToPhrase(combo[2] as OnOffBaselineEnum)} ${
+                    : `${onOffBaseToShortPhrase(
+                        combo[2] as OnOffBaselineEnum
+                      )} ${
                         keycol[1].colName
                       } (${ascOrDecLabel} / ${offOrDefLabel})`,
                   value: `${combo[0]}:${combo[1]}_${keycol[0]}:${combo[2]}`,

@@ -46,6 +46,7 @@ import { TableDisplayUtils } from "./TableDisplayUtils";
 import TeamPlayTypeTabbedView from "../../components/shared/TeamPlayTypeTabbedView";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { UrlRouting } from "../UrlRouting";
+import { FilterUtils } from "../FilterUtils";
 
 // Data model
 
@@ -173,6 +174,61 @@ export class TeamStatsTableUtils {
     const teamSeasonLookup = `${gameFilterParams.gender}_${gameFilterParams.team}_${gameFilterParams.year}`;
     const avgEfficiency =
       efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+
+    // Build strings for rows, using presets where possible
+
+    const onOffBaseToShortPhrase = (
+      type: OnOffBaselineOtherEnum,
+      otherIndex?: number
+    ) => {
+      const maybePrefix = FilterUtils.getPresetPhrase(
+        gameFilterParams.presetSplit || "??"
+      );
+      switch (type) {
+        case "on":
+          return maybePrefix ? maybePrefix[0] : "A";
+        case "off":
+          return maybePrefix ? maybePrefix[1] : "B";
+        case "baseline":
+          return "Base";
+        case "other":
+          return `${String.fromCharCode(67 + (otherIndex || 0))}`;
+        default:
+          return "unknown";
+      }
+    };
+
+    /** Longer equivalent to onOffBaseToShortPhrase*/
+    const onOffBaseToLongerPhrase = (
+      type: OnOffBaselineOtherEnum,
+      includeSet: boolean = true,
+      otherIndex?: number
+    ) => {
+      const maybeSet = includeSet ? ` set` : "";
+      const maybePrefix = FilterUtils.getPresetPhrase(
+        gameFilterParams.presetSplit || "??"
+      );
+      switch (type) {
+        case "on":
+          return maybePrefix
+            ? `'${maybePrefix[0]}'${maybeSet}`
+            : teamStats.onOffMode && _.isEmpty(teamStats.other)
+            ? "On ('A')"
+            : `'A'${maybeSet}`;
+        case "off":
+          return maybePrefix
+            ? `'${maybePrefix[1]}'${maybeSet}`
+            : teamStats.onOffMode && _.isEmpty(teamStats.other)
+            ? "Off ('B')"
+            : `'B'${maybeSet}`;
+        case "baseline":
+          return `'Base'${maybeSet}`;
+        case "other":
+          return `'${String.fromCharCode(67 + (otherIndex || 0))}'${maybeSet}`;
+        default:
+          return "unknown";
+      }
+    };
 
     /** Largest sample of player stats, by player key - use for ORtg calcs */
     const globalRosterInfo = teamStats.global?.roster;
@@ -389,7 +445,9 @@ export class TeamStatsTableUtils {
               ? LineupUtils.getStatsDiff(
                   teamStats.on,
                   teamStats.off,
-                  "A - B diffs"
+                  `'${onOffBaseToShortPhrase(
+                    "on"
+                  )}' - '${onOffBaseToShortPhrase("off")}' diffs`
                 )
               : undefined;
           const aMinusBase =
@@ -397,7 +455,7 @@ export class TeamStatsTableUtils {
               ? LineupUtils.getStatsDiff(
                   teamStats.on,
                   teamStats.baseline,
-                  "A - Baseline diffs"
+                  `'${onOffBaseToShortPhrase("on")}' - 'Base' diffs`
                 )
               : undefined;
           const bMinusBase =
@@ -405,7 +463,7 @@ export class TeamStatsTableUtils {
               ? LineupUtils.getStatsDiff(
                   teamStats.off,
                   teamStats.baseline,
-                  "B - Baseline diffs"
+                  `'${onOffBaseToShortPhrase("off")}' - 'Base' diffs`
                 )
               : undefined;
 
@@ -466,12 +524,12 @@ export class TeamStatsTableUtils {
     const teamStatsKeys = _.zip(baselineOnOffKeys, [
       TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline"),
       TableDisplayUtils.addQueryInfo(
-        teamStats.onOffMode && _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+        onOffBaseToLongerPhrase("on", false),
         gameFilterParams,
         "on"
       ),
       TableDisplayUtils.addQueryInfo(
-        teamStats.onOffMode && _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+        onOffBaseToLongerPhrase("off", false),
         gameFilterParams,
         "off"
       ),
@@ -549,19 +607,19 @@ export class TeamStatsTableUtils {
 
     const shotChartQuickSwitchOptions = [
       {
-        title: "Baseline",
+        title: onOffBaseToLongerPhrase("baseline"),
         off: shotStats.baseline.off,
         def: shotStats.baseline.def,
         gender: gameFilterParams.gender as "Men" | "Women",
       },
       {
-        title: _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+        title: onOffBaseToLongerPhrase("on"),
         off: shotStats.on.off,
         def: shotStats.on.def,
         gender: gameFilterParams.gender as "Men" | "Women",
       },
       {
-        title: _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+        title: onOffBaseToLongerPhrase("off"),
         off: shotStats.off.off,
         def: shotStats.off.def,
         gender: gameFilterParams.gender as "Men" | "Women",
@@ -581,7 +639,7 @@ export class TeamStatsTableUtils {
 
     const teamPlayTypeQuickSwitchOptions = [
       {
-        title: "Baseline",
+        title: onOffBaseToLongerPhrase("baseline"),
         players: rosterStats["baseline"] || [],
         rosterStatsByCode: globalRosterStatsByCode,
         teamStats: teamStatsByQuery["baseline"],
@@ -590,7 +648,7 @@ export class TeamStatsTableUtils {
         showHelp,
       },
       {
-        title: _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+        title: onOffBaseToLongerPhrase("on"),
         players: rosterStats["on"] || [],
         rosterStatsByCode: globalRosterStatsByCode,
         teamStats: teamStatsByQuery["on"],
@@ -599,7 +657,7 @@ export class TeamStatsTableUtils {
         showHelp,
       },
       {
-        title: _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+        title: onOffBaseToLongerPhrase("off"),
         players: rosterStats["off"] || [],
         rosterStatsByCode: globalRosterStatsByCode,
         teamStats: teamStatsByQuery["off"],
@@ -679,20 +737,23 @@ export class TeamStatsTableUtils {
             ),
           ],
           showGrades != ""
-            ? GradeTableUtils.buildTeamGradeTableRows({
-                selectionType: queryKey,
-                config: showGrades,
-                setConfig: (newConfig: string) => {
-                  persistNewState.setShowGrades(newConfig);
-                },
-                teamStats: {
-                  comboTier: divisionStatsCache.Combo,
-                  highTier: divisionStatsCache.High,
-                  mediumTier: divisionStatsCache.Medium,
-                  lowTier: divisionStatsCache.Low,
-                },
-                team: getTeamStats(queryKey, teamStats, otherQueryIndex),
-              })
+            ? GradeTableUtils.buildTeamGradeTableRows(
+                onOffBaseToShortPhrase(queryKey, otherQueryIndex),
+                {
+                  selectionType: queryKey,
+                  config: showGrades,
+                  setConfig: (newConfig: string) => {
+                    persistNewState.setShowGrades(newConfig);
+                  },
+                  teamStats: {
+                    comboTier: divisionStatsCache.Combo,
+                    highTier: divisionStatsCache.High,
+                    mediumTier: divisionStatsCache.Medium,
+                    lowTier: divisionStatsCache.Low,
+                  },
+                  team: getTeamStats(queryKey, teamStats, otherQueryIndex),
+                }
+              )
             : [],
           showShotCharts
             ? [
@@ -994,15 +1055,12 @@ export class TeamStatsTableUtils {
     };
 
     return {
-      baseline: buildTableEntries("baseline", "Baseline"),
-      on: buildTableEntries(
-        "on",
-        _.isEmpty(teamStats.other) ? "On ('A')" : "'A'"
+      baseline: buildTableEntries(
+        "baseline",
+        onOffBaseToLongerPhrase("baseline")
       ),
-      off: buildTableEntries(
-        "off",
-        _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'"
-      ),
+      on: buildTableEntries("on", onOffBaseToLongerPhrase("on")),
+      off: buildTableEntries("off", onOffBaseToLongerPhrase("off")),
       other: (teamStats.other || []).map((__, queryIndex) => {
         return buildTableEntries(
           "other",

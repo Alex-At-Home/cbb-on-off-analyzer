@@ -1253,6 +1253,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
       childHandleResponse={handleResponse}
       buildLinks={(params) => {
         const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries();
+        const maybePresetPhrase = FilterUtils.getPresetPhrase(
+          params.presetSplit || "??"
+        );
         //(don't this is built from state instead of params)
         return [
           <a
@@ -1289,7 +1292,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       {}
                     )}
                   >
-                    'A'
+                    '{maybePresetPhrase?.[0] || "A"}'
                   </a>,
                 ]
               : []
@@ -1304,7 +1307,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       {}
                     )}
                   >
-                    'B'
+                    '{maybePresetPhrase?.[1] || "B"}'
                   </a>,
                 ]
               : []

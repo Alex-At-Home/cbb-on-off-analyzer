@@ -3833,7 +3833,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <span>
                       <small>
-                        A Lineups
+                        'A' Lineups
                          Team Grades 
                         <div>
                           <b>
@@ -6432,7 +6432,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <span>
                       <small>
-                        B Lineups
+                        'B' Lineups
                          Team Grades 
                         <div>
                           <b>
@@ -9099,7 +9099,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <span>
                         <b>
                           Extra stats info for [
-                          Baseline
+                          'Base' set
                           ]
                         </b>
                         <br />
@@ -9121,7 +9121,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <table
                                   class="table table-sm"
-                                  id="playTypeStats_Baseline"
+                                  id="playTypeStats_Baseset"
                                 >
                                   <thead>
                                     <tr>
@@ -9132,7 +9132,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <div>
                                           <button
                                             class="float-left btn btn-outline-secondary btn-sm"
-                                            id="playTypeStats_Baseline_copy"
+                                            id="playTypeStats_Baseset_copy"
                                             type="button"
                                           >
                                             <svg
@@ -9782,7 +9782,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   >
                                     <table
                                       class="table table-sm"
-                                      id="assistStats_Baseline"
+                                      id="assistStats_Baseset"
                                     >
                                       <thead>
                                         <tr>
@@ -9793,7 +9793,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             <div>
                                               <button
                                                 class="float-left btn btn-outline-secondary btn-sm"
-                                                id="assistStats_Baseline_copy"
+                                                id="assistStats_Baseset_copy"
                                                 type="button"
                                               >
                                                 <svg
@@ -10259,7 +10259,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <span>
                         <b>
                           Luck Adjustment diagnostics [
-                          Baseline
+                          'Base' set
                           ]
                         </b>
                         <span>
@@ -11921,7 +11921,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   >
                     <span>
                       <small>
-                        A Lineups
+                        'A' Lineups
                          Team Grades 
                         <div>
                           <b>
@@ -13198,7 +13198,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   >
                     <span>
                       <small>
-                        B Lineups
+                        'B' Lineups
                          Team Grades 
                         <div>
                           <b>

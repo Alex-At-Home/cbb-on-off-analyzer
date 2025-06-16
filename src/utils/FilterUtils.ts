@@ -35,6 +35,7 @@ export class FilterUtils {
   };
 
   static readonly gameSplitPresets: Record<string, GameFilterPresets> = {
+    [ParamDefaults.defaultPresetSplit]: {},
     "Home vs Away/Neutral": {
       splitPhrases: ["H", "A/N"],
       gameParams: {
