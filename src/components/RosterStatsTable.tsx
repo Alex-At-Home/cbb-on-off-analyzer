@@ -107,6 +107,7 @@ import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import IndivPlayTypeTabbedView from "./shared/IndivPlayTypeTabbedView";
+import { FilterUtils } from "../utils/FilterUtils";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -770,11 +771,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
+    const maybePrefix =
+      FilterUtils.gameSplitPresets[gameFilterParams.presetSplit || "??"]
+        ?.splitPhrases;
     switch (type) {
       case "on":
-        return "A";
+        return maybePrefix ? maybePrefix[0] : "A";
       case "off":
-        return "B";
+        return maybePrefix ? maybePrefix[1] : "B";
       case "baseline":
         return "Base";
       case "other":
@@ -1306,6 +1310,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               )
           );
 
+      /**/
+      //TODO search for On ('A') and 'B', see below
+
       const indivPlayTypeQuickSwitchOptions = [
         {
           title: "Baseline",
@@ -1353,6 +1360,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           })
         )
         .filter((opt) => opt.player && (opt.teamStats.doc_count || 0) > 0);
+
+      /**/
+      //TODO use onOffBaseToPhrase below?
 
       const buildRowSet = (
         p: OnOffPlayerStatSet,
@@ -1573,6 +1583,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ]);
       };
 
+      /**/
+      //TODO: more harcoded row names that need to go in onOffBaseToLongerPhrase
+
       return _.flatten([
         buildRowSet(
           p,
@@ -1684,6 +1697,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             // only do diff for a few:
             return [];
           }
+          /**/
+          //TODO: replace these (+ I think we need other also)
           const onOrOff = (s: string) => {
             switch (s) {
               case "on":

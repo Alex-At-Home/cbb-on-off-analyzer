@@ -274,11 +274,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   useEffect(() => {
     setNewParamsOnSubmit({
       ...newParamsOnSubmit,
-      calcRapm: startCalcRapm,
-      showRoster: startShowRoster,
-      showGameInfo: startShowGameInfo,
-      teamShotCharts: startTeamShotCharts,
-      playerShotCharts: startPlayerShotCharts,
+      // The ones that it really needs are calcRapm, showRoster, showGameInfo, teamShotCharts, playerShotCharts
+      // We need all the others also, otherwise they get lost when the above are fired
+      ...rebuildFullState(),
     });
   }, [startingState]);
 
@@ -1559,11 +1557,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Reset to defaults"
                       truthVal={false}
                       onSelect={() => setNewParamsOnSubmit({})}
-                    />
-                    <GenericTogglingMenuItem
-                      text="Take From Current View"
-                      truthVal={false}
-                      onSelect={() => setNewParamsOnSubmit(rebuildFullState())}
                     />
                     <Dropdown.Divider />
                     <GenericTogglingMenuItem
