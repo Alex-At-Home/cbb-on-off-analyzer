@@ -145,6 +145,14 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
           ? ["showGameInfo"]
           : [],
         !rawParams.onOffPlayerSel ? ["onOffPlayerSel"] : [],
+        rawParams.presetMode == ParamDefaults.defaultPresetMode
+          ? ["presetMode"]
+          : [],
+        !rawParams.presetGroup ||
+        rawParams.presetGroup == ParamDefaults.defaultPresetGroup
+          ? ["presetGroup"]
+          : [],
+        !rawParams.advancedMode ? ["advancedMode"] : [],
       ])
     );
     if (!_.isEqual(params, lineupFilterParamsRef.current)) {

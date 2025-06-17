@@ -384,7 +384,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // Switching back to simple mode
     // Let's figure out if we can re-use existing modes/splits
     const maybeMode = _.findKey(
-      FilterPresetUtils.gameFilterPresets,
+      FilterPresetUtils.commonFilterPresets,
       (preset, key) => {
         return _.isEqual(commonParamsIn, {
           ...commonParamsIn,
@@ -1114,7 +1114,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const groupedPresetModeOptions = [
     {
       label: "Basic Views",
-      options: _.keys(FilterPresetUtils.gameFilterPresets).map(stringToOption),
+      options: _.keys(FilterPresetUtils.commonFilterPresets).map(
+        stringToOption
+      ),
     },
   ];
 
@@ -1143,7 +1145,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const newCommonFilter = {
       ...commonParams,
       ...FilterPresetUtils.basePresetQuery,
-      ...(FilterPresetUtils.gameFilterPresets[newPresetMode]?.commonParams ||
+      ...(FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ||
         {}),
     };
 

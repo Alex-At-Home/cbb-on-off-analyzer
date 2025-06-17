@@ -183,6 +183,10 @@ export type GameFilterParams = {
 export type LineupFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
+  // UI
+  advancedMode?: boolean;
+  presetMode?: string;
+  presetGroup?: string;
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
   decorate?: boolean;
@@ -385,8 +389,20 @@ export type RequiredTeamReportFilterParams = {
 };
 
 export class ParamDefaults {
-  // Game
+  // Common
+  static readonly defaultTeam = "";
+  static readonly defaultYear = DateUtils.mostRecentYearWithData;
+  static readonly defaultLeaderboardYear =
+    DateUtils.mostRecentYearWithLboardData; //(takes a while longer to get updated)
+  static readonly defaultGender = "Men";
+  static readonly defaultMinRank = "0";
+  static readonly defaultMaxRank = "400";
+  static readonly defaultFilterGarbage = false;
+  static readonly defaultQueryFilters = "";
+  static readonly defaultLuckConfig: LuckParams = { base: "season" };
+  static readonly defaultEnabledGrade = "rank:Combo";
   static readonly defaultPresetMode = "Season Stats";
+  // Game
   static readonly defaultPresetSplit = "No Splits";
   static readonly defaultAutoOffQuery = true;
   static readonly defaultPlayerFilter = "";
@@ -407,6 +423,7 @@ export class ParamDefaults {
   static readonly defaultPlayerCalcRapm = false;
   static readonly defaultShotChartShowZones = true;
   // Lineup
+  static readonly defaultPresetGroup = "Straight Lineups";
   static readonly defaultLineupShowTotal = false;
   static readonly defaultLineupShowDropped = false;
   static readonly defaultLineupDecorate = true;
@@ -478,18 +495,6 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
   static readonly defaultMatchupAnalysisIconType = "icon";
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
-  // Common
-  static readonly defaultTeam = "";
-  static readonly defaultYear = DateUtils.mostRecentYearWithData;
-  static readonly defaultLeaderboardYear =
-    DateUtils.mostRecentYearWithLboardData; //(takes a while longer to get updated)
-  static readonly defaultGender = "Men";
-  static readonly defaultMinRank = "0";
-  static readonly defaultMaxRank = "400";
-  static readonly defaultFilterGarbage = false;
-  static readonly defaultQueryFilters = "";
-  static readonly defaultLuckConfig: LuckParams = { base: "season" };
-  static readonly defaultEnabledGrade = "rank:Combo";
 }
 
 export type FilterParamsType =

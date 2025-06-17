@@ -1,19 +1,26 @@
 import {
   CommonFilterParams,
   GameFilterParams,
+  LineupFilterParams,
   ParamDefaults,
 } from "./FilterModels";
 
-type GameFilterPresets = {
+type CommonFilterPresets = {
   commonParams?: CommonFilterParams;
+};
+
+type GameFilterPresets = {
   gameParams?: GameFilterParams;
   splitPhrases?: [string, string];
-  longerSplitPhrases?: [string, string];
+};
+
+type LineupFilterPresets = {
+  lineupParams?: LineupFilterParams;
 };
 
 /** Collection of business logic related to CommonFilter, GameFilter, etc */
 export class FilterPresetUtils {
-  static readonly gameFilterOnOffPrefix = "On/Off: ";
+  // Common Preset Utils
 
   /** Handy constant for preset-calcs */
   static readonly basePresetQuery: CommonFilterParams = {
@@ -22,6 +29,11 @@ export class FilterPresetUtils {
     queryFilters: "",
     baseQuery: "",
   };
+
+  // Game Preset Utils
+
+  static readonly gameFilterOnOffPrefix = "On/Off: ";
+
   /** Handy constant for preset-calcs */
   static readonly basePresetOnOffQuery: GameFilterParams = {
     onQuery: "",
@@ -32,7 +44,7 @@ export class FilterPresetUtils {
   };
 
   /** Filter/Query presets */
-  static readonly gameFilterPresets: Record<string, GameFilterPresets> = {
+  static readonly commonFilterPresets: Record<string, CommonFilterPresets> = {
     [ParamDefaults.defaultPresetMode]: {},
     "Season Stats vs T100ish": {
       commonParams: {
@@ -92,4 +104,6 @@ export class FilterPresetUtils {
       return radical?.splitPhrases;
     }
   }
+
+  // Lineup Preset Utils
 }
