@@ -1559,10 +1559,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
             {!advancedView ? (
               <Form.Group as={Row}>
-                <Form.Label column xs={2}>
+                <Form.Label column xs={12} lg={12} xl={2}>
                   <b>What interests you?</b>
                 </Form.Label>
-                <Col xs={3}>
+                <Col xs={12} lg={6} xl={3}>
                   <Select
                     isClearable={false}
                     styles={{
@@ -1581,7 +1581,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     }}
                   />
                 </Col>
-                <Col xs={4}>
+                <Col xs={12} lg={6} xl={4}>
                   <Select
                     isClearable={false}
                     styles={{
@@ -1600,7 +1600,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     }}
                   />
                 </Col>
-                <Col xs={2}>
+                <Col xs={10} lg={10} xl={2}>
                   <GenericTogglingMenu
                     drop="down"
                     label={
@@ -1795,7 +1795,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     />
                   </GenericTogglingMenu>
                 </Col>
-                <Col sm={1} className="mt-1">
+                <Col xs={2} lg={2} xl={1} className="mt-1 text-center">
                   <OverlayTrigger
                     placement="auto"
                     overlay={
@@ -1805,7 +1805,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     }
                   >
                     <Button
-                      className="float-left"
                       variant="outline-secondary"
                       size="sm"
                       onClick={(e) => toggleAdvancedMode()}

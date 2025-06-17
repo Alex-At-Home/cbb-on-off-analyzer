@@ -13,7 +13,7 @@
    .container.medium_screen,
    .container-lg.medium_screen,
    .container-xl.medium_screen {
-   max-width: calc(90% - 40px); /* 20px padding each side */
+   max-width: 1200px; /* 100px padding each side */
    }
 }
 
