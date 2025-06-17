@@ -456,8 +456,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [advancedView, setAdvancedView] = useState(
     _.isNil(startingState.advancedMode)
       ? _.thru(startingState, (state) => {
-          if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
-            return true;
           if (!_.isEmpty(state.presetMode)) return false;
           if (!_.isEmpty(state.presetSplit)) return false;
 
