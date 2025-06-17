@@ -259,10 +259,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.presetSplit == ParamDefaults.defaultPresetSplit
           ? ["presetSplit"]
           : [],
-        !rawParams.advancedMode ||
-        !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
-          ? ["advancedMode"]
-          : [],
+        !rawParams.advancedMode ? ["advancedMode"] : [],
         !rawParams.onOffLuck ? ["onOffLuck"] : [],
         rawParams.showPlayerOnOffLuckDiags ==
         ParamDefaults.defaultOnOffLuckDiagMode

@@ -434,6 +434,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
 
   const buildTeamDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
+      advancedMode: true,
       showTeamPlayTypes: true,
       showGrades: "rank:Combo",
       showRoster: true,
@@ -554,6 +555,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
 
   const buildPlayerDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
+      advancedMode: true,
       showRoster: true,
       calcRapm: true,
       showExpanded: true,

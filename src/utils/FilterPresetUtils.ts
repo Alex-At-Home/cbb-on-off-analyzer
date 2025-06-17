@@ -12,9 +12,26 @@ type GameFilterPresets = {
 };
 
 /** Collection of business logic related to CommonFilter, GameFilter, etc */
-export class FilterUtils {
+export class FilterPresetUtils {
   static readonly gameFilterOnOffPrefix = "On/Off: ";
 
+  /** Handy constant for preset-calcs */
+  static readonly basePresetQuery: CommonFilterParams = {
+    minRank: "0",
+    maxRank: "400",
+    queryFilters: "",
+    baseQuery: "",
+  };
+  /** Handy constant for preset-calcs */
+  static readonly basePresetOnOffQuery: GameFilterParams = {
+    onQuery: "",
+    offQuery: "",
+    autoOffQuery: true,
+    onQueryFilters: "",
+    offQueryFilters: "",
+  };
+
+  /** Filter/Query presets */
   static readonly gameFilterPresets: Record<string, GameFilterPresets> = {
     [ParamDefaults.defaultPresetMode]: {},
     "Season Stats vs T100ish": {
@@ -34,6 +51,7 @@ export class FilterUtils {
     },
   };
 
+  /** Split presets */
   static readonly gameSplitPresets: Record<string, GameFilterPresets> = {
     [ParamDefaults.defaultPresetSplit]: {},
     "Home vs Away/Neutral": {
@@ -67,10 +85,10 @@ export class FilterUtils {
 
   /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */
   static getPresetPhrase(presetSplit: string): [string, string] | undefined {
-    if (presetSplit.startsWith(FilterUtils.gameFilterOnOffPrefix)) {
+    if (presetSplit.startsWith(FilterPresetUtils.gameFilterOnOffPrefix)) {
       return ["ON", "OFF"];
     } else {
-      const radical = FilterUtils.gameSplitPresets[presetSplit || "??"];
+      const radical = FilterPresetUtils.gameSplitPresets[presetSplit || "??"];
       return radical?.splitPhrases;
     }
   }

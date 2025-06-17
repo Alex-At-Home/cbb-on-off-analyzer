@@ -77,7 +77,7 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import Select, { components } from "react-select";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
-import { FilterUtils } from "../utils/FilterUtils";
+import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { RequestUtils } from "../utils/RequestUtils";
 
 type Props = {
@@ -199,56 +199,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
       //(note doesn't include the actual game query params)
     };
   };
-
-  /** Whether to show pre-sets instead of full set */
-  const [advancedView, setAdvancedView] = useState(
-    _.isNil(startingState.advancedMode)
-      ? _.thru(startingState, (state) => {
-          if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
-            return true;
-          if (!_.isEmpty(state.presetMode)) return false;
-          if (!_.isEmpty(state.presetSplit)) return false;
-          if (!_.isEmpty(state.onQuery)) return true;
-          if (!_.isEmpty(state.onQueryFilters)) return true;
-          if (!_.isEmpty(state.offQuery)) return true;
-          if (!_.isEmpty(state.offQueryFilters)) return true;
-          if (!_.isEmpty(state.baseQuery)) return true;
-          if (!_.isEmpty(state.queryFilters)) return true;
-          if (!_.isEmpty(state.otherQueries)) return true;
-          if (state.minRank && state.minRank != ParamDefaults.defaultMinRank)
-            return true;
-          if (state.maxRank && state.maxRank != ParamDefaults.defaultMaxRank)
-            return true;
-          return false;
-        })
-      : startingState.advancedMode
-  );
-
-  /** The preset query to use */
-  const [presetMode, setPresetMode] = useState(
-    advancedView
-      ? ""
-      : startingState.presetMode || ParamDefaults.defaultPresetMode
-  );
-
-  /** The preset query to use */
-  const [presetSplit, setPresetSplit] = useState(
-    advancedView
-      ? ""
-      : startingState.presetSplit || ParamDefaults.defaultPresetSplit
-  );
-
-  /** Used to build preset options */
-  const [rosterNames, setRosterNames] = useState<string[]>([]);
-  useEffect(() => {
-    // On page load, if team is selected then fetch the roster
-    RequestUtils.fetchRoster(
-      startingCommonFilterParams,
-      handleRosterResponse,
-      dataLastUpdated,
-      rosterFetchDebug
-    );
-  }, []);
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
@@ -415,6 +365,169 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
+
+  // Preset state and basic logic
+
+  //(note the order matters here)
+
+  /** Tries to convert some simple query/on/off scenarios into presets */
+  const checkForImplicitPresets = (
+    commonParamsIn: CommonFilterParams,
+    queryParamsIn: {
+      autoOffQuery?: boolean;
+      onQuery?: string;
+      offQuery?: string;
+      onQueryFilters: CommonFilterType[];
+      offQueryFilters: CommonFilterType[];
+    }
+  ): [string | undefined, string | undefined] => {
+    // Switching back to simple mode
+    // Let's figure out if we can re-use existing modes/splits
+    const maybeMode = _.findKey(
+      FilterPresetUtils.gameFilterPresets,
+      (preset, key) => {
+        return _.isEqual(commonParamsIn, {
+          ...commonParamsIn,
+          ...FilterPresetUtils.basePresetQuery,
+          ...(preset.commonParams || {}),
+        });
+      }
+    );
+    const autoOffQueryIn = _.isNil(queryParamsIn.autoOffQuery)
+      ? true
+      : queryParamsIn.autoOffQuery;
+    const testSplit = {
+      autoOffQuery: autoOffQueryIn,
+      onQuery: queryParamsIn.onQuery || "",
+      // some minor complications with auto-off
+      offQuery:
+        _.isEmpty(queryParamsIn.offQuery) &&
+        autoOffQuery &&
+        !_.isEmpty(queryParamsIn.onQuery)
+          ? `NOT ${queryParamsIn.onQuery}`
+          : queryParamsIn.offQuery || "",
+      onQueryFilters: QueryUtils.buildFilterStr(
+        queryParamsIn.onQueryFilters || ""
+      ),
+      offQueryFilters: QueryUtils.buildFilterStr(
+        queryParamsIn.offQueryFilters || ""
+      ),
+    };
+
+    const testPlayers = new Set(rosterNames);
+    const maybeSplit = _.thru(testPlayers.has(onQuery), (maybePlayerOnOff) => {
+      if (maybePlayerOnOff) {
+        return _.isEqual(testSplit, {
+          autoOffQuery: true,
+          ...FilterPresetUtils.basePresetOnOffQuery,
+          onQuery: onQuery,
+          offQuery: `NOT ${onQuery}`,
+        })
+          ? `${FilterPresetUtils.gameFilterOnOffPrefix}${onQuery.replaceAll(
+              '"',
+              ""
+            )}`
+          : undefined;
+      } else {
+        return _.findKey(FilterPresetUtils.gameSplitPresets, (preset) => {
+          return _.isEqual(testSplit, {
+            ...testSplit,
+            ...FilterPresetUtils.basePresetOnOffQuery,
+            ...(preset.gameParams || {}),
+          });
+        });
+      }
+    });
+    return [maybeMode, maybeSplit];
+  };
+
+  /** Need to call this in a few places in the following startup logic */
+  const checkForImplicitPresetsOnStartup = () => {
+    return checkForImplicitPresets(commonParams, {
+      autoOffQuery,
+      onQuery,
+      offQuery,
+      onQueryFilters,
+      offQueryFilters,
+    });
+  };
+
+  /** Whether to show pre-sets instead of full set */
+  const [advancedView, setAdvancedView] = useState(
+    _.isNil(startingState.advancedMode)
+      ? _.thru(startingState, (state) => {
+          if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
+            return true;
+          if (!_.isEmpty(state.presetMode)) return false;
+          if (!_.isEmpty(state.presetSplit)) return false;
+
+          // Advanced mode unspecified but matbe we can infer it?
+          const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
+          if (maybeMode && maybeSplit) return false;
+
+          if (!_.isEmpty(state.onQuery)) return true;
+          if (!_.isEmpty(state.onQueryFilters)) return true;
+          if (!_.isEmpty(state.offQuery)) return true;
+          if (!_.isEmpty(state.offQueryFilters)) return true;
+          if (!_.isEmpty(state.baseQuery)) return true;
+          if (!_.isEmpty(state.queryFilters)) return true;
+          if (!_.isEmpty(state.otherQueries)) return true;
+          if (state.minRank && state.minRank != ParamDefaults.defaultMinRank)
+            return true;
+          if (state.maxRank && state.maxRank != ParamDefaults.defaultMaxRank)
+            return true;
+          return false;
+        })
+      : startingState.advancedMode
+  );
+
+  /** Used to build preset options */
+  const [rosterNames, setRosterNames] = useState<string[]>([]);
+  useEffect(() => {
+    // On page load, if team is selected then fetch the roster
+    RequestUtils.fetchRoster(
+      startingCommonFilterParams,
+      handleRosterResponse,
+      dataLastUpdated,
+      rosterFetchDebug
+    );
+  }, []);
+
+  /** The preset query to use */
+  const [presetMode, setPresetMode] = useState(
+    _.thru(!_.isEmpty(startingState.presetMode), (presetsDefined) => {
+      if (presetsDefined) {
+        return startingState.presetMode || ParamDefaults.defaultPresetMode;
+      } else if (advancedView) {
+        return "";
+      } else {
+        const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
+        if (maybeMode && maybeSplit) {
+          return maybeMode;
+        } else {
+          return startingState.presetMode || ParamDefaults.defaultPresetMode;
+        }
+      }
+    })
+  );
+
+  /** The preset query to use */
+  const [presetSplit, setPresetSplit] = useState(
+    _.thru(!_.isEmpty(startingState.presetSplit), (presetsDefined) => {
+      if (presetsDefined) {
+        return startingState.presetSplit || ParamDefaults.defaultPresetSplit;
+      } else if (advancedView) {
+        return "";
+      } else {
+        const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
+        if (maybeMode && maybeSplit) {
+          return maybeSplit;
+        } else {
+          return startingState.presetSplit || ParamDefaults.defaultPresetSplit;
+        }
+      }
+    })
+  );
 
   // Utils
 
@@ -1003,7 +1116,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const groupedPresetModeOptions = [
     {
       label: "Basic Views",
-      options: _.keys(FilterUtils.gameFilterPresets).map(stringToOption),
+      options: _.keys(FilterPresetUtils.gameFilterPresets).map(stringToOption),
     },
   ];
 
@@ -1011,33 +1124,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const groupedPresetSplitOptions = [
     {
       label: "Splits",
-      options: _.keys(FilterUtils.gameSplitPresets).map(stringToOption),
+      options: _.keys(FilterPresetUtils.gameSplitPresets).map(stringToOption),
     },
     {
       label: "On/Off Splits",
       options: rosterNames.map((n) =>
         stringToOption(
-          `${FilterUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
+          `${FilterPresetUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
         )
       ),
     },
   ];
-
-  /** Handy constant for preset-calcs */
-  const basePresetQuery: CommonFilterParams = {
-    minRank: "0",
-    maxRank: "400",
-    queryFilters: "",
-    baseQuery: "",
-  };
-  /** Handy constant for preset-calcs */
-  const basePresetOnOffQuery: GameFilterParams = {
-    onQuery: "",
-    offQuery: "",
-    autoOffQuery: true,
-    onQueryFilters: "",
-    offQueryFilters: "",
-  };
 
   /** Handles the setting of a preset */
   const applyPresetConfig = (
@@ -1047,30 +1144,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
   ): [GameFilterParams | undefined, CommonFilterParams | undefined] => {
     const newCommonFilter = {
       ...commonParams,
-      ...basePresetQuery,
-      ...(FilterUtils.gameFilterPresets[newPresetMode]?.commonParams || {}),
+      ...FilterPresetUtils.basePresetQuery,
+      ...(FilterPresetUtils.gameFilterPresets[newPresetMode]?.commonParams ||
+        {}),
     };
 
     const newParams = _.thru(
-      FilterUtils.gameSplitPresets[newPresetSplit],
+      FilterPresetUtils.gameSplitPresets[newPresetSplit],
       (maybeSplitConfig) => {
         if (maybeSplitConfig) {
           return {
             ...newParamsOnSubmit,
-            ...basePresetOnOffQuery,
+            ...FilterPresetUtils.basePresetOnOffQuery,
             ...(maybeSplitConfig?.gameParams || {}),
           };
         } else if (
-          _.startsWith(newPresetSplit, FilterUtils.gameFilterOnOffPrefix)
+          _.startsWith(newPresetSplit, FilterPresetUtils.gameFilterOnOffPrefix)
         ) {
           return {
             ...newParamsOnSubmit,
-            ...basePresetOnOffQuery,
+            ...FilterPresetUtils.basePresetOnOffQuery,
             onQuery: `"${newPresetSplit.substring(
-              FilterUtils.gameFilterOnOffPrefix.length
+              FilterPresetUtils.gameFilterOnOffPrefix.length
             )}"`,
             offQuery: `NOT "${newPresetSplit.substring(
-              FilterUtils.gameFilterOnOffPrefix.length
+              FilterPresetUtils.gameFilterOnOffPrefix.length
             )}"`,
           };
         }
@@ -1132,52 +1230,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
     const [newPresetMode, newPresetSplit] = _.thru(currAdvancedMode, (__) => {
       if (currAdvancedMode) {
-        // Switching back to simple mode
-        // Let's figure out if we can re-use existing modes/splits
-        const maybeMode = _.findKey(FilterUtils.gameFilterPresets, (preset) => {
-          return _.isEqual(commonParams, {
-            ...commonParams,
-            ...basePresetQuery,
-            ...(preset.commonParams || {}),
-          });
+        const [tmpMode, tmpSplit] = checkForImplicitPresets(commonParams, {
+          autoOffQuery,
+          onQuery,
+          offQuery,
+          onQueryFilters,
+          offQueryFilters,
         });
-        const testSplit = {
-          autoOffQuery: true,
-          onQuery: onQuery,
-          offQuery: offQuery,
-          onQueryFilters: QueryUtils.buildFilterStr(onQueryFilters),
-          offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters),
-        };
-        const testPlayers = new Set(rosterNames);
-        const maybeSplit = _.thru(
-          testPlayers.has(onQuery),
-          (maybePlayerOnOff) => {
-            if (maybePlayerOnOff) {
-              return _.isEqual(testSplit, {
-                autoOffQuery: true,
-                ...basePresetOnOffQuery,
-                onQuery: onQuery,
-                offQuery: `NOT ${onQuery}`,
-              })
-                ? `${FilterUtils.gameFilterOnOffPrefix}${onQuery.replaceAll(
-                    '"',
-                    ""
-                  )}`
-                : undefined;
-            } else {
-              return _.findKey(FilterUtils.gameSplitPresets, (preset) => {
-                return _.isEqual(testSplit, {
-                  ...testSplit,
-                  ...basePresetOnOffQuery,
-                  ...(preset.gameParams || {}),
-                });
-              });
-            }
-          }
-        );
         return [
-          maybeMode || ParamDefaults.defaultPresetMode,
-          maybeSplit || ParamDefaults.defaultPresetSplit,
+          tmpMode || ParamDefaults.defaultPresetMode,
+          tmpSplit || ParamDefaults.defaultPresetSplit,
         ];
       } else {
         //(return presets to their defaults ready for when they are next to be used)
@@ -1253,7 +1315,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       childHandleResponse={handleResponse}
       buildLinks={(params) => {
         const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries();
-        const maybePresetPhrase = FilterUtils.getPresetPhrase(
+        const maybePresetPhrase = FilterPresetUtils.getPresetPhrase(
           params.presetSplit || "??"
         );
         //(don't this is built from state instead of params)
@@ -1815,15 +1877,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 </Col>
                 <Col sm="2" className="mt-1">
                   <GenericTogglingMenu size="sm">
-                    {FeatureFlags.isActiveWindow(
-                      FeatureFlags.friendlierInterface
-                    ) ? (
-                      <GenericTogglingMenuItem
-                        text="Simple Query Mode"
-                        truthVal={false}
-                        onSelect={() => toggleAdvancedMode()}
-                      />
-                    ) : null}
+                    <GenericTogglingMenuItem
+                      text="Simple Query Mode"
+                      truthVal={false}
+                      onSelect={() => toggleAdvancedMode()}
+                    />
                     <GenericTogglingMenuItem
                       text="Extra Query Mode"
                       truthVal={otherQueries.length > 0}

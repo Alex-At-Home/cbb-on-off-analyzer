@@ -107,7 +107,7 @@ import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import IndivPlayTypeTabbedView from "./shared/IndivPlayTypeTabbedView";
-import { FilterUtils } from "../utils/FilterUtils";
+import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -771,7 +771,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix = FilterUtils.getPresetPhrase(
+    const maybePrefix = FilterPresetUtils.getPresetPhrase(
       gameFilterParams.presetSplit || "??"
     );
     switch (type) {
@@ -792,7 +792,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix = FilterUtils.getPresetPhrase(
+    const maybePrefix = FilterPresetUtils.getPresetPhrase(
       gameFilterParams.presetSplit || "??"
     );
     switch (type) {

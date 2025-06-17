@@ -46,7 +46,7 @@ import { TableDisplayUtils } from "./TableDisplayUtils";
 import TeamPlayTypeTabbedView from "../../components/shared/TeamPlayTypeTabbedView";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { UrlRouting } from "../UrlRouting";
-import { FilterUtils } from "../FilterUtils";
+import { FilterPresetUtils } from "../FilterPresetUtils";
 
 // Data model
 
@@ -181,7 +181,7 @@ export class TeamStatsTableUtils {
       type: OnOffBaselineOtherEnum,
       otherIndex?: number
     ) => {
-      const maybePrefix = FilterUtils.getPresetPhrase(
+      const maybePrefix = FilterPresetUtils.getPresetPhrase(
         gameFilterParams.presetSplit || "??"
       );
       switch (type) {
@@ -205,7 +205,7 @@ export class TeamStatsTableUtils {
       otherIndex?: number
     ) => {
       const maybeSet = includeSet ? ` set` : "";
-      const maybePrefix = FilterUtils.getPresetPhrase(
+      const maybePrefix = FilterPresetUtils.getPresetPhrase(
         gameFilterParams.presetSplit || "??"
       );
       switch (type) {
