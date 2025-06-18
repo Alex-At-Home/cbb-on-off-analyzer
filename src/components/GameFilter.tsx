@@ -115,7 +115,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // UI
     advancedMode: startAdvancedMode,
     presetMode: startPresetMode,
-    presetSplit: startPreseSplit,
+    presetSplit: startPresetSplit,
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
@@ -220,7 +220,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
   });
 
   /** Whenever starting state updates, we also update the critical params
-   *  that trigger data reloadds, otherwise it gets too complicated to keep in sync
+   *  that trigger data reloads, otherwise it gets too complicated to keep in sync
    *  It's not ideal because these table UI features override the "preset details"
    *  ... but it's necessary because the features trigger a reload which relies
    *      on GameFilter for its state, and the preset / advanced code is too tightly
@@ -545,6 +545,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               commonParams
             )}] vs new=[${JSON.stringify(params)}]`
           );
+        //TODO move this into CommonFilter, have a callback like for opponents
         RequestUtils.fetchRoster(
           params,
           handleRosterResponse,

@@ -707,7 +707,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "label": "/ ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+                "tooltip": "Aggregate lineups by combinations of 2/3/4 players",
               },
               Object {
                 "label": "2",
@@ -4737,7 +4737,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "label": "/ ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+                "tooltip": "Aggregate lineups by combinations of 2/3/4 players",
               },
               Object {
                 "label": "2",
@@ -8257,7 +8257,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "/ ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+                "tooltip": "Aggregate lineups by combinations of 2/3/4 players",
               },
               Object {
                 "label": "2",
@@ -11495,7 +11495,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "/ ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+                "tooltip": "Aggregate lineups by combinations of 2/3/4 players",
               },
               Object {
                 "label": "2",
@@ -14754,7 +14754,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "/ ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+                "tooltip": "Aggregate lineups by combinations of 2/3/4 players",
               },
               Object {
                 "label": "2",
@@ -18868,7 +18868,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "/ ",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+                "tooltip": "Aggregate lineups by combinations of 2/3/4 players",
               },
               Object {
                 "label": "2",

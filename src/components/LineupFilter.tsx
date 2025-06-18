@@ -42,6 +42,15 @@ import {
   LineupStatSet,
 } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+//@ts-ignore
+import Select, { components } from "react-select";
+import GenericTogglingMenu from "./shared/GenericTogglingMenu";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import { Button, Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
+import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 
 type Props = {
   onStats: (
@@ -53,6 +62,9 @@ type Props = {
   onChangeState: (newParams: LineupFilterParams) => void;
   startingLineupLinks: (newParams: LineupFilterParams) => React.ReactNode[];
   forceReload1Up: number;
+  onSwitchToAdvancedMode?: (newParams: LineupFilterParams) => void;
+  propKey?: number;
+  testMode?: boolean;
 };
 
 const LineupFilter: React.FunctionComponent<Props> = ({
@@ -61,12 +73,22 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   onChangeState,
   startingLineupLinks,
   forceReload1Up,
+  onSwitchToAdvancedMode,
+  propKey,
+  testMode,
 }) => {
+  const isServer = () => typeof window === `undefined`;
+  if (isServer() && !testMode) return null; //(don't render server-side)
+
   //console.log("Loading LineupFilter " + JSON.stringify(startingState));
 
   // Data model
 
   const {
+    // UI
+    advancedMode: startAdvancedMode,
+    presetMode: startPresetMode,
+    presetGroup: startPresetGroup,
     // Luck stats:
     luck: startLuck,
     lineupLuck: startLineupLuck,
@@ -83,10 +105,33 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     ...startingCommonFilterParams
   } = startingState;
 
+  const rebuildFullState = () => {
+    return {
+      // Luck stats:
+      luck: startLuck,
+      lineupLuck: startLineupLuck,
+      showLineupLuckDiags: startShowLineupLuckDiags,
+      aggByPos: startAggByPos,
+      showGameInfo: startShowGameInfo,
+      // Filters etc
+      decorate: startDecorate,
+      showTotal: startShowTotal,
+      maxTableSize: startMaxTableSize,
+      minPoss: startMinPoss,
+      sortBy: startSortBy,
+      filter: startFilter,
+      //(note doesn't include the actual game query params)
+    };
+  };
+
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
     startingCommonFilterParams as CommonFilterParams
   );
+
+  /** All the game-specific viz options, ie not query/filter */
+  const [newParamsOnSubmit, setNewParamsOnSubmit] =
+    useState<LineupFilterParams>(rebuildFullState());
 
   /** Ugly pattern that is part of support for force reloading */
   const [internalForceReload1Up, setInternalForceReload1Up] =
@@ -99,6 +144,74 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       setInternalForceReload1Up(forceReload1Up);
     }
   }, [forceReload1Up]);
+
+  // Preset state and basic logic
+
+  //(note the order matters here)
+
+  /** Whether to show pre-sets instead of full set */
+  const [advancedView, setAdvancedView] = useState(
+    _.isNil(startingState.advancedMode)
+      ? _.thru(startingState, (state) => {
+          if (!_.isEmpty(state.presetMode)) return false;
+          if (!_.isEmpty(state.presetGroup)) return false;
+
+          if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
+            return true;
+
+          // Advanced mode unspecified but matbe we can infer it?
+          //TODO: implement this when we have a moment
+          // const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
+          // if (maybeMode && maybeSplit) return false;
+
+          if (!_.isEmpty(state.baseQuery)) return true;
+          if (!_.isEmpty(state.queryFilters)) return true;
+          if (state.minRank && state.minRank != ParamDefaults.defaultMinRank)
+            return true;
+          if (state.maxRank && state.maxRank != ParamDefaults.defaultMaxRank)
+            return true;
+          return false;
+        })
+      : startingState.advancedMode
+  );
+
+  /** The preset query to use */
+  const [presetMode, setPresetMode] = useState(
+    _.thru(!_.isEmpty(startingState.presetMode), (presetsDefined) => {
+      if (presetsDefined) {
+        return startingState.presetMode || ParamDefaults.defaultPresetMode;
+      } else if (advancedView) {
+        return "";
+      } else {
+        //TODO: implement this:
+        const [maybeMode, maybeSplit] = [undefined, undefined]; //checkForImplicitPresetsOnStartup();
+        if (maybeMode && maybeSplit) {
+          return maybeMode;
+        } else {
+          return startingState.presetMode || ParamDefaults.defaultPresetMode;
+        }
+      }
+    })
+  );
+
+  /** The preset query to use */
+  const [presetGroup, setPresetGroup] = useState(
+    _.thru(!_.isEmpty(startingState.presetGroup), (presetsDefined) => {
+      if (presetsDefined) {
+        return startingState.presetGroup || ParamDefaults.defaultPresetGroup;
+      } else if (advancedView) {
+        return "";
+      } else {
+        //TODO: implement this:
+        const [maybeMode, maybeSplit] = [undefined, undefined]; //checkForImplicitPresetsOnStartup();
+        if (maybeMode && maybeSplit) {
+          return maybeSplit;
+        } else {
+          return startingState.presetGroup || ParamDefaults.defaultPresetGroup;
+        }
+      }
+    })
+  );
 
   // Lineup Filter - custom queries and filters:
 
@@ -252,9 +365,130 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     );
   }
 
+  // More preset logic
+
+  /** The two sub-headers for the dropdown */
+  const groupedPresetModeOptions = [
+    {
+      label: "Basic Views",
+      options: _.keys(FilterPresetUtils.commonFilterPresets).map(
+        stringToOption
+      ),
+    },
+  ];
+
+  /** The two sub-headers for the dropdown */
+  const groupedPresetSplitOptions = [
+    {
+      label: "Lineup Groups",
+      options: _.keys(FilterPresetUtils.lineupGroupPresets).map(stringToOption),
+    },
+  ];
+
+  /** Handles the setting of a preset */
+  const applyPresetConfig = (
+    newPresetMode: string,
+    newPresetGroup: string,
+    applyEffects: boolean
+  ): [LineupFilterParams | undefined, CommonFilterParams | undefined] => {
+    const newCommonFilter = {
+      ...commonParams,
+      ...FilterPresetUtils.basePresetQuery,
+      ...(FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ||
+        {}),
+    };
+
+    const newParams = _.thru(
+      FilterPresetUtils.lineupGroupPresets[newPresetGroup],
+      (maybeSplitConfig) => {
+        //TODO
+        return {};
+      }
+    );
+
+    //DEBUG
+    // console.log(
+    //   `${applyEffects} ${JSON.stringify(newCommonFilter)}`,
+    //   newParams
+    // );
+
+    if (applyEffects) {
+      if (newPresetGroup != presetGroup) {
+        setPresetGroup(newPresetGroup);
+        if (newParams) {
+        }
+      }
+      if (newPresetMode != presetMode) {
+        setPresetMode(newPresetMode);
+        if (newCommonFilter) setCommonParams(newCommonFilter);
+      }
+    }
+    return [newParams, newCommonFilter];
+  };
+
+  /** Extra logic needed when switching between advanced and basic mode */
+  const toggleAdvancedMode = () => {
+    const currAdvancedMode = advancedView;
+    const newAdvancedMode = !currAdvancedMode;
+    const currPresetMode = presetMode;
+    const currPresetGroup = presetGroup;
+    const [gameParamsToUse, commonParamsToUse] = !currAdvancedMode
+      ? applyPresetConfig(currPresetMode, currPresetGroup, false)
+      : [undefined, undefined];
+    setAdvancedView(newAdvancedMode);
+
+    const [newPresetMode, newPresetGroup] = _.thru(currAdvancedMode, (__) => {
+      if (currAdvancedMode) {
+        const [tmpMode, tmpGroup] = [undefined, undefined];
+        //TODO: add this in:
+        // checkForImplicitPresets(commonParams, {
+        //   aggByPos
+        // });
+        return [
+          tmpMode || ParamDefaults.defaultPresetMode,
+          tmpGroup || ParamDefaults.defaultPresetGroup,
+        ];
+      } else {
+        //(return presets to their defaults ready for when they are next to be used)
+        return [
+          ParamDefaults.defaultPresetMode,
+          ParamDefaults.defaultPresetGroup,
+        ];
+      }
+    });
+    setPresetMode(newPresetMode);
+    setPresetGroup(newPresetGroup);
+
+    if (onSwitchToAdvancedMode) {
+      // Switching to advanced view so we want to copy query over:
+      onSwitchToAdvancedMode({
+        ...(commonParamsToUse || commonParams),
+        ...(gameParamsToUse || newParamsOnSubmit),
+        advancedMode: newAdvancedMode,
+        presetMode: newAdvancedMode ? undefined : newPresetMode,
+        presetGroup: newAdvancedMode ? undefined : newPresetGroup,
+      });
+    }
+  };
+
   // Visual components:
 
-  /** Let the user know that he might need to change */
+  /** For use in selects */
+  function stringToOption(s: string) {
+    return { label: s, value: s };
+  }
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
+  );
+
+  const disableViewDetails =
+    presetMode ==
+      (startingState.presetMode || ParamDefaults.defaultPresetMode) &&
+    presetGroup ==
+      (startingState.presetGroup || ParamDefaults.defaultPresetGroup);
 
   return (
     <CommonFilter //(generic type inferred)
@@ -268,7 +502,131 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}
-    />
+      hideSemiAdvancedOptions={!advancedView}
+    >
+      {!advancedView ? (
+        <Form.Group as={Row}>
+          <Form.Label column xs={12} lg={12} xl={2}>
+            <b>What interests you?</b>
+          </Form.Label>
+          <Col xs={12} lg={6} xl={3}>
+            <Select
+              isClearable={false}
+              styles={{
+                menu: (base: any) => ({ ...base, zIndex: 1000 }),
+              }}
+              value={
+                presetMode
+                  ? { label: presetMode, value: presetMode }
+                  : undefined
+              }
+              options={groupedPresetModeOptions}
+              formatGroupLabel={formatGroupLabel}
+              onChange={(option: any) => {
+                const newPreset = option.value || "";
+                applyPresetConfig(newPreset, presetGroup, true);
+              }}
+            />
+          </Col>
+          <Col xs={12} lg={6} xl={4}>
+            <Select
+              isClearable={false}
+              styles={{
+                menu: (base: any) => ({ ...base, zIndex: 1000 }),
+              }}
+              value={
+                presetGroup
+                  ? { label: presetGroup, value: presetGroup }
+                  : undefined
+              }
+              options={groupedPresetSplitOptions}
+              formatGroupLabel={formatGroupLabel}
+              onChange={(option: any) => {
+                const newPreset = option.value || "";
+                applyPresetConfig(presetMode, newPreset, true);
+              }}
+            />
+          </Col>
+          <Col xs={10} lg={10} xl={2}>
+            <GenericTogglingMenu
+              drop="down"
+              label={
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip id="viewsDetails">
+                      <>
+                        Pick which visualization elements you want for this
+                        preset query
+                        {disableViewDetails ? (
+                          <>
+                            <br />
+                            <br />
+                            NOTE: once you've submitted a query, use the
+                            per-section controls below - most of this menu's
+                            settings will be greyed out until you change to a
+                            different preset query.
+                          </>
+                        ) : null}
+                      </>
+                    </Tooltip>
+                  }
+                >
+                  <span>+ Visuals / Details...</span>
+                </OverlayTrigger>
+              }
+            >
+              <GenericTogglingMenuItem
+                text="Reset to defaults"
+                truthVal={false}
+                onSelect={() => setNewParamsOnSubmit({})}
+              />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text="Filter Garbage Time"
+                truthVal={commonParams.filterGarbage || false}
+                onSelect={() =>
+                  //TODO: for some reason this is super slow
+                  updateCommonParams({
+                    ...commonParams,
+                    filterGarbage: !(commonParams.filterGarbage || false),
+                  })
+                }
+              />
+              <GenericTogglingMenuItem
+                text="Adjust For Luck"
+                truthVal={newParamsOnSubmit.lineupLuck || false}
+                disabled={disableViewDetails}
+                onSelect={() =>
+                  setNewParamsOnSubmit({
+                    ...newParamsOnSubmit,
+                    lineupLuck: !(newParamsOnSubmit.lineupLuck || false),
+                  })
+                }
+              />
+            </GenericTogglingMenu>
+          </Col>
+          <Col xs={2} lg={2} xl={1} className="mt-1 text-center">
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip id="advancedMode">
+                  Switch to advanced query mode
+                </Tooltip>
+              }
+            >
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                onClick={(e) => toggleAdvancedMode()}
+              >
+                <FontAwesomeIcon icon={faSlidersH} />
+              </Button>
+            </OverlayTrigger>
+          </Col>
+        </Form.Group>
+      ) : null}
+    </CommonFilter>
   );
 };
 

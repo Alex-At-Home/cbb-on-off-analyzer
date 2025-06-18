@@ -106,4 +106,54 @@ export class FilterPresetUtils {
   }
 
   // Lineup Preset Utils
+
+  /** Filter/Query presets */
+  static readonly lineupGroupPresets: Record<string, LineupFilterPresets> = {
+    [ParamDefaults.defaultPresetGroup]: {},
+    "Grouped by On/Off Combos": {
+      lineupParams: {
+        aggByPos: "On-Off",
+      },
+    },
+    "Grouped by PG": {
+      lineupParams: {
+        aggByPos: "PG",
+      },
+    },
+    "Grouped by PG+C": {
+      lineupParams: {
+        aggByPos: "PG+C",
+      },
+    },
+    "Grouped by Backcourt": {
+      lineupParams: {
+        aggByPos: "Backcourt",
+      },
+    },
+    "Grouped by Frontcourt": {
+      lineupParams: {
+        aggByPos: "Frontcourt",
+      },
+    },
+    "Grouped by Center": {
+      lineupParams: {
+        aggByPos: "C",
+      },
+    },
+    "Grouped by Pairs": {
+      lineupParams: {
+        aggByPos: "Pairs",
+      },
+    },
+    "Grouped by Triples": {
+      lineupParams: {
+        aggByPos: "Triples",
+      },
+    },
+    "Grouped by Quads": {
+      lineupParams: {
+        aggByPos: "Quads",
+      },
+    },
+  };
 }

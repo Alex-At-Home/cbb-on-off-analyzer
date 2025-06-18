@@ -52,6 +52,7 @@ import {
 import { UrlRouting } from "../utils/UrlRouting";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -152,7 +153,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
         rawParams.presetGroup == ParamDefaults.defaultPresetGroup
           ? ["presetGroup"]
           : [],
-        !rawParams.advancedMode ? ["advancedMode"] : [],
+        !rawParams.advancedMode ||
+        !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
+          ? ["advancedMode"]
+          : [],
       ])
     );
     if (!_.isEqual(params, lineupFilterParamsRef.current)) {

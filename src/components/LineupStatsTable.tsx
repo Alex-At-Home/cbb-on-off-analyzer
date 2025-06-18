@@ -1317,7 +1317,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 },
                 {
                   label: "/ ",
-                  tooltip: "Aggregate lineups by combiations of 2/3/4 players",
+                  tooltip: "Aggregate lineups by combinations of 2/3/4 players",
                   toggled: true,
                   onClick: () => {},
                   isLabelOnly: true,
