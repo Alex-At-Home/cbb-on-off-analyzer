@@ -48,6 +48,7 @@ import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { sk } from "date-fns/locale";
 import { screen } from "@testing-library/react";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -80,9 +81,12 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     "Roster Comp.": { ref: lineupComparisonRef },
   };
   const complexNavigationsRefs = (params: GameFilterParams) => {
+    const shortRowPhrases = FilterPresetUtils.getPresetPhrase(
+      gameFilterParams.presetSplit || "??"
+    );
     const onOffMode = params.autoOffQuery && !_.isEmpty(params.otherQueries);
-    const onKey = onOffMode ? "On" : "A";
-    const offKey = onOffMode ? "Off" : "B";
+    const onKey = shortRowPhrases?.[0] || (onOffMode ? "On" : "A");
+    const offKey = shortRowPhrases?.[1] || (onOffMode ? "Off" : "B");
     return {
       Top: { ref: topRef },
       Teams: { ref: teamAnalysisRef },
@@ -98,7 +102,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       },
       ..._.chain(params.otherQueries || [])
         .map((_, idx) => [
-          `${String.fromCharCode(67 + idx)}`,
+          shortRowPhrases?.[2 + idx] || `${String.fromCharCode(67 + idx)}`,
           {
             ref: teamAnalysisOtherRefs[idx]!,
             offset: 75,
