@@ -471,11 +471,19 @@ export class QueryUtils {
       };
       const parseHandlingLeapYears = (d: string) => {
         if (d == "02.29") {
-          return dateParse(
+          const attempt1 = dateParse(
             d,
             QueryUtils.customDateFormat,
             addYears(contextDate, 1)
           );
+
+          return isNaN(attempt1.getTime())
+            ? dateParse(
+                "02.28", //(not a leap year - switch to day before)
+                QueryUtils.customDateFormat,
+                addYears(contextDate, 1)
+              )
+            : attempt1;
         } else {
           return getCorrectYear(
             dateParse(d, QueryUtils.customDateFormat, contextDate)
