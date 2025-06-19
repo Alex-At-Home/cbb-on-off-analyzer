@@ -6,6 +6,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   buildParamsFromState={[Function]}
   childHandleResponse={[Function]}
   forceReload1Up={0}
+  gameSelectionRef={
+    Object {
+      "current": undefined,
+    }
+  }
   hideSemiAdvancedOptions={true}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}

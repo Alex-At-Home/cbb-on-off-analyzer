@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -214,10 +214,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [internalForceReload1Up, setInternalForceReload1Up] =
     useState(forceReload1Up);
 
-  /** Duplicate from CommonFilter */
-  const [gameSelection, setGameSelection] = useState<FilteredGameSelection>({
-    games: [],
-  });
+  /** Reference from CommonFilter */
+  const gameSelectionRef = useRef<FilteredGameSelection | undefined>();
 
   /** Whenever starting state updates, we also update the critical params
    *  that trigger data reloads, otherwise it gets too complicated to keep in sync
@@ -557,8 +555,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
     setCommonParams(params);
   }
 
+  /** Handy builder for dynamic query filters */
+  const buildFilterMaybeForQuery = (
+    queries: CommonFilterType[],
+    forQuery: Boolean
+  ) => {
+    return forQuery
+      ? QueryUtils.buildFilterStrForQuery(
+          queries,
+          gameSelectionRef.current?.games || []
+        )
+      : QueryUtils.buildFilterStr(queries);
+  };
+
   /** Builds lineup queries for on/off queries */
-  function buildLineupQueriesFromOnOffQueries(): {
+  function buildLineupQueriesFromOnOffQueries(forQuery: Boolean): {
     on?: CommonFilterParams;
     off?: CommonFilterParams;
     others?: (CommonFilterParams | undefined)[];
@@ -586,14 +597,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
       on: QueryUtils.nonEmptyQuery(onQuery, onQueryFilters)
         ? {
             baseQuery: getLineupQuery(onQuery || "*"),
-            queryFilters: QueryUtils.buildFilterStr(
+            queryFilters: buildFilterMaybeForQuery(
               onQueryFilters.concat(
                 QueryUtils.parseFilter(
                   commonParams.queryFilters ||
                     ParamDefaults.defaultQueryFilters,
                   commonParams.year || ParamDefaults.defaultYear
                 )
-              )
+              ),
+              forQuery
             ),
           }
         : undefined,
@@ -609,14 +621,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
           if (!autoOff && nonEmptyOff) {
             return {
               baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
-              queryFilters: QueryUtils.buildFilterStr(
+              queryFilters: buildFilterMaybeForQuery(
                 offQueryFilters.concat(
                   QueryUtils.parseFilter(
                     commonParams.queryFilters ||
                       ParamDefaults.defaultQueryFilters,
                     commonParams.year || ParamDefaults.defaultYear
                   )
-                )
+                ),
+                forQuery
               ),
             };
           } else if (autoOff) {
@@ -624,7 +637,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
               baseQuery: commonParams.baseQuery,
               queryFilters: commonParams.queryFilters,
               invertBase: getLineupQuery(onQuery || "*", true),
-              invertBaseQueryFilters: QueryUtils.buildFilterStr(onQueryFilters),
+              invertBaseQueryFilters: buildFilterMaybeForQuery(
+                onQueryFilters,
+                forQuery
+              ),
               //(ie will be * once inverted, ie ignore this clause if missing)
             };
           } else {
@@ -640,14 +656,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
               QueryUtils.nonEmptyQuery(otherQuery, otherQueryFilter || [])
                 ? {
                     baseQuery: getLineupQuery(otherQuery || "*"),
-                    queryFilters: QueryUtils.buildFilterStr(
+                    queryFilters: buildFilterMaybeForQuery(
                       (otherQueryFilter || []).concat(
                         QueryUtils.parseFilter(
                           commonParams.queryFilters ||
                             ParamDefaults.defaultQueryFilters,
                           commonParams.year || ParamDefaults.defaultYear
                         )
-                      )
+                      ),
+                      forQuery
                     ),
                   }
                 : undefined
@@ -664,16 +681,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
    * but there's some complications based on what gets set when
    */
   function buildParamsFromState(
-    includeFilterParams: Boolean
+    includeFilterParams: Boolean,
+    forQuery?: Boolean
   ): [GameFilterParams, FilterRequestInfo[]] {
     // Only include these if they aren't defaults:
     const onQueryFiltersObj = !_.isEmpty(onQueryFilters)
-      ? { onQueryFilters: QueryUtils.buildFilterStr(onQueryFilters) }
+      ? {
+          onQueryFilters: buildFilterMaybeForQuery(
+            onQueryFilters,
+            forQuery || false
+          ),
+        }
       : {};
     const offQueryFiltersObj =
       autoOffQuery || _.isEmpty(offQueryFilters)
         ? {}
-        : { offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters) };
+        : {
+            offQueryFilters: buildFilterMaybeForQuery(
+              offQueryFilters,
+              forQuery || false
+            ),
+          };
 
     // It's painful but re-calc the result of the preset to make sure we are using the right params
     const [maybeNewParams, maybeNewCommonParams] = advancedView
@@ -694,7 +722,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
           otherQueries: _.thru(
             _.zip(otherQueries, otherQueryFilters).map((qZipQ) => ({
               query: qZipQ[0],
-              queryFilters: QueryUtils.buildFilterStr(qZipQ[1] || []),
+              queryFilters: buildFilterMaybeForQuery(
+                qZipQ[1] || [],
+                forQuery || false
+              ),
             })),
             (
               maybeOtherQueries //(if it's empty remove it)
@@ -705,13 +736,26 @@ const GameFilter: React.FunctionComponent<Props> = ({
           autoOffQuery: (maybeNewParams || newParamsOnSubmit).autoOffQuery,
           onQuery: (maybeNewParams || newParamsOnSubmit).onQuery,
           offQuery: (maybeNewParams || newParamsOnSubmit).offQuery,
-          onQueryFilters: (maybeNewParams || newParamsOnSubmit).onQueryFilters,
-          offQueryFilters: (maybeNewParams || newParamsOnSubmit)
-            .offQueryFilters,
+          onQueryFilters: buildFilterMaybeForQuery(
+            QueryUtils.parseFilter(
+              (maybeNewParams || newParamsOnSubmit).onQueryFilters ||
+                ParamDefaults.defaultQueryFilters,
+              commonParams.year || ParamDefaults.defaultYear
+            ) || [],
+            forQuery || false
+          ),
+          offQueryFilters: buildFilterMaybeForQuery(
+            QueryUtils.parseFilter(
+              (maybeNewParams || newParamsOnSubmit).offQueryFilters ||
+                ParamDefaults.defaultQueryFilters,
+              commonParams.year || ParamDefaults.defaultYear
+            ) || [],
+            forQuery || false
+          ),
         };
 
     const primaryRequest: GameFilterParams = includeFilterParams
-      ? _.assign(buildParamsFromState(false)[0], {
+      ? _.assign(buildParamsFromState(false, forQuery)[0], {
           ...rebuildFullState(),
           ...(advancedView ? {} : maybeNewParams || newParamsOnSubmit), //(in preset mode use the presets)
           // UI
@@ -722,7 +766,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       : {
           ...(advancedView
             ? commonParams
-            : maybeNewCommonParams || commonParams),
+            : maybeNewCommonParams || commonParams), //TODO: need to build games dynamically
           ...primaryOnOffRequest,
         };
 
@@ -753,7 +797,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
     //      but for now we'll just hack a workaround
     const lineupRequests: (LineupFilterParams | undefined)[] = alsoPullLineups
       ? _.thru(alsoPullLineups, (__) => {
-          const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries();
+          const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries(
+            forQuery || false
+          );
           return (
             [
               QueryUtils.cleanseQuery({
@@ -1315,7 +1361,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       buildLinks={(params) => {
-        const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries();
+        const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries(false);
         const maybePresetPhrase = FilterPresetUtils.getPresetPhrase(
           params.presetSplit || "??"
         );
@@ -1394,14 +1440,18 @@ const GameFilter: React.FunctionComponent<Props> = ({
           );
       }}
       forceReload1Up={internalForceReload1Up}
+      gameSelectionRef={gameSelectionRef}
       onGameSelectionChange={(newGameSelection) => {
         // Reset any game-based filters:
         if (
-          gameSelection.filter &&
+          gameSelectionRef.current?.filter &&
           newGameSelection.filter &&
-          (gameSelection.filter.team != newGameSelection.filter.team ||
-            gameSelection.filter.year != newGameSelection.filter.year ||
-            gameSelection.filter.gender != newGameSelection.filter.gender)
+          (gameSelectionRef.current.filter.team !=
+            newGameSelection.filter.team ||
+            gameSelectionRef.current.filter.year !=
+              newGameSelection.filter.year ||
+            gameSelectionRef.current.filter.gender !=
+              newGameSelection.filter.gender)
         ) {
           setOnQueryFilters(
             QueryUtils.setCustomGameSelection(onQueryFilters, undefined)
@@ -1419,7 +1469,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
             return newOtherQueryFilters;
           });
         }
-        setGameSelection(newGameSelection);
       }}
       hideSemiAdvancedOptions={!advancedView}
       propKey={propKey}
@@ -1457,7 +1506,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               queryType={
                 !_.isEmpty(otherQueries) ? "'A' Query" : "On/'A' Query"
               }
-              games={gameSelection.games}
+              games={gameSelectionRef.current?.games || []}
               selectedGames={QueryUtils.buildGameSelectionModel(onQueryFilters)}
               show={showOnGameSelectorModal}
               onClose={() => setOnShowGameSelectorModal(false)}
@@ -1465,7 +1514,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 setOnQueryFilters(
                   QueryUtils.setCustomGameSelection(
                     onQueryFilters,
-                    gameSelection.games.length > 0
+                    (gameSelectionRef.current?.games || []).length > 0
                       ? QueryUtils.buildGameSelectionFilter(selectedGame)
                       : undefined
                   )
@@ -1477,7 +1526,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               queryType={
                 !_.isEmpty(otherQueries) ? "'B' Query" : "Off/'B' Query"
               }
-              games={gameSelection.games}
+              games={gameSelectionRef.current?.games || []}
               selectedGames={QueryUtils.buildGameSelectionModel(
                 offQueryFilters
               )}
@@ -1487,7 +1536,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 setOffQueryFilters(
                   QueryUtils.setCustomGameSelection(
                     offQueryFilters,
-                    gameSelection.games.length > 0
+                    (gameSelectionRef.current?.games || []).length > 0
                       ? QueryUtils.buildGameSelectionFilter(selectedGame)
                       : undefined
                   )
@@ -1527,7 +1576,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 queryType={`'${String.fromCharCode(
                   67 + extraQueryIndex
                 )}' Query`}
-                games={gameSelection.games}
+                games={gameSelectionRef.current?.games || []}
                 selectedGames={QueryUtils.buildGameSelectionModel(
                   otherQueryFilters[extraQueryIndex] || []
                 )}
@@ -1545,7 +1594,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     newOtherQueryFilters[extraQueryIndex] =
                       QueryUtils.setCustomGameSelection(
                         newOtherQueryFilters[extraQueryIndex] || [],
-                        gameSelection.games.length > 0
+                        (gameSelectionRef.current?.games || []).length > 0
                           ? QueryUtils.buildGameSelectionFilter(selectedGame)
                           : undefined
                       );
@@ -1834,7 +1883,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                           year={commonParams.year}
                           gender={commonParams.gender}
                           team={commonParams.team}
-                          games={gameSelection.games}
+                          games={gameSelectionRef.current?.games || []}
                           onKeyUp={handleOnQueryChange}
                           onChange={handleOnQueryChange}
                           onKeyDown={globalKeypressHandler}
@@ -1913,7 +1962,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                               year={commonParams.year}
                               gender={commonParams.gender}
                               team={commonParams.team}
-                              games={gameSelection.games}
+                              games={gameSelectionRef.current?.games || []}
                               onKeyUp={(ev: any) =>
                                 setOffQuery(ev.target.value)
                               }
@@ -2027,7 +2076,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                 year={commonParams.year}
                                 gender={commonParams.gender}
                                 team={commonParams.team}
-                                games={gameSelection.games}
+                                games={gameSelectionRef.current?.games || []}
                                 onKeyUp={(ev: any) =>
                                   setOtherQueries((curr) => {
                                     curr[extraQueryIndex] = ev.target.value;

@@ -423,7 +423,7 @@ export class ParamDefaults {
   static readonly defaultPlayerCalcRapm = false;
   static readonly defaultShotChartShowZones = true;
   // Lineup
-  static readonly defaultPresetGroup = "Straight Lineups";
+  static readonly defaultPresetGroup = "Lineups";
   static readonly defaultLineupShowTotal = false;
   static readonly defaultLineupShowDropped = false;
   static readonly defaultLineupDecorate = true;

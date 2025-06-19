@@ -15,6 +15,7 @@ type GameFilterPresets = {
 };
 
 type LineupFilterPresets = {
+  label: string;
   lineupParams?: LineupFilterParams;
 };
 
@@ -93,6 +94,13 @@ export class FilterPresetUtils {
         onQueryFilters: "Last-30d",
       },
     },
+    //TODO: not quite working yet, starts off OK then lineups stop including games
+    // "Wins vs Losses": {
+    //   splitPhrases: ["W", "L"],
+    //   gameParams: {
+    //     onQueryFilters: "Opponents:wins",
+    //   },
+    // },
   };
 
   /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */
@@ -109,48 +117,59 @@ export class FilterPresetUtils {
 
   /** Filter/Query presets */
   static readonly lineupGroupPresets: Record<string, LineupFilterPresets> = {
-    [ParamDefaults.defaultPresetGroup]: {},
+    [ParamDefaults.defaultPresetGroup]: {
+      label: "No Groupings",
+    },
     "Grouped by On/Off Combos": {
+      label: "Player Groupings",
       lineupParams: {
         aggByPos: "On-Off",
       },
     },
-    "Grouped by PG": {
-      lineupParams: {
-        aggByPos: "PG",
-      },
-    },
-    "Grouped by PG+C": {
-      lineupParams: {
-        aggByPos: "PG+C",
-      },
-    },
     "Grouped by Backcourt": {
+      label: "Positional Groupings",
       lineupParams: {
         aggByPos: "Backcourt",
       },
     },
     "Grouped by Frontcourt": {
+      label: "Positional Groupings",
       lineupParams: {
         aggByPos: "Frontcourt",
       },
     },
+    "Grouped by PG": {
+      label: "Positional Groupings",
+      lineupParams: {
+        aggByPos: "PG",
+      },
+    },
+    "Grouped by PG+C": {
+      label: "Positional Groupings",
+      lineupParams: {
+        aggByPos: "PG+C",
+      },
+    },
     "Grouped by Center": {
+      label: "Positional Groupings",
       lineupParams: {
         aggByPos: "C",
       },
     },
     "Grouped by Pairs": {
+      label: "Player Groupings",
       lineupParams: {
         aggByPos: "Pairs",
       },
     },
     "Grouped by Triples": {
+      label: "Player Groupings",
       lineupParams: {
         aggByPos: "Triples",
       },
     },
     "Grouped by Quads": {
+      label: "Player Groupings",
       lineupParams: {
         aggByPos: "Quads",
       },

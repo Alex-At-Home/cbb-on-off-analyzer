@@ -378,12 +378,18 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   ];
 
   /** The two sub-headers for the dropdown */
-  const groupedPresetSplitOptions = [
-    {
-      label: "Lineup Groups",
-      options: _.keys(FilterPresetUtils.lineupGroupPresets).map(stringToOption),
-    },
-  ];
+  const groupedPresetSplitOptions = _.chain(
+    FilterPresetUtils.lineupGroupPresets
+  )
+    .toPairs()
+    .groupBy((kv) => kv[1].label)
+    .map((kvs, key) => {
+      return {
+        label: key,
+        options: kvs.map((kv) => stringToOption(kv[0])),
+      };
+    })
+    .value();
 
   /** Handles the setting of a preset */
   const applyPresetConfig = (
@@ -503,6 +509,15 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}
       hideSemiAdvancedOptions={!advancedView}
+      extraButton={
+        <GenericTogglingMenu size="sm">
+          <GenericTogglingMenuItem
+            text="Simple Query Mode"
+            truthVal={false}
+            onSelect={() => toggleAdvancedMode()}
+          />
+        </GenericTogglingMenu>
+      }
     >
       {!advancedView ? (
         <Form.Group as={Row}>

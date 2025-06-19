@@ -35,6 +35,7 @@ export type CommonFilterCustomDate = {
 
 export type CommonFilterGameSelector = {
   kind: GameSelectorAlias;
+  specialCase?: "wins"; //(if specified, use instead of gamesIds)
   gameIds: string[]; //(format "YYYYMMDD:[HNA]:team")
 };
 
@@ -342,10 +343,18 @@ export class QueryUtils {
       )}-${dateFormat(filter.end, QueryUtils.customDateFormat)}`;
     } else if (isCommonFilterGameSelector(filter)) {
       if (forDisplay) {
-        const gameSuffix = filter.gameIds.length > 1 ? "s" : "";
-        return `${QueryUtils.customGamesPrefix}${filter.gameIds.length}-game${gameSuffix}`;
+        if (filter.specialCase) {
+          return `${QueryUtils.customGamesPrefix}${filter.specialCase}`;
+        } else {
+          const gameSuffix = filter.gameIds.length > 1 ? "s" : "";
+          return `${QueryUtils.customGamesPrefix}${filter.gameIds.length}-game${gameSuffix}`;
+        }
       } else {
-        return `${QueryUtils.customGamesPrefix}${filter.gameIds.join("|")}`;
+        if (filter.specialCase) {
+          return `${QueryUtils.customGamesPrefix}${filter.specialCase}`;
+        } else {
+          return `${QueryUtils.customGamesPrefix}${filter.gameIds.join("|")}`;
+        }
       }
     } else {
       return filter as string;
@@ -502,8 +511,16 @@ export class QueryUtils {
 
   /** Builds a game filter from the URL parameter */
   static parseGameSelector(gameStr: string): CommonFilterGameSelector {
-    const gameIds = gameStr.split("|").filter((s) => s != "");
-    return { kind: QueryUtils.customGamesAliasName, gameIds };
+    if (gameStr == "wins") {
+      return {
+        kind: QueryUtils.customGamesAliasName,
+        specialCase: gameStr,
+        gameIds: [],
+      };
+    } else {
+      const gameIds = gameStr.split("|").filter((s) => s != "");
+      return { kind: QueryUtils.customGamesAliasName, gameIds };
+    }
   }
 
   /** Returns the custom game selector if it exists in the current filter set */
@@ -541,9 +558,35 @@ export class QueryUtils {
       });
   }
 
-  /** Converts the CommonFilterTypr into a string, deduplicating if necessary */
+  /** Converts the CommonFilterTypr into a string, deduplicating if necessary  - FOR param building, not actual querying */
   static buildFilterStr(curr: CommonFilterType[]) {
-    const currByName = curr.map((qf) => QueryUtils.asString(qf));
+    const currByName = curr.map((qf) => QueryUtils.asString(qf, false));
+    return _.join(_.uniq(currByName), ",");
+  }
+
+  /** Like buildFilterStr but specifically when being used to build an ES query, so expand dynamic */
+  static buildFilterStrForQuery(
+    curr: CommonFilterType[],
+    gameSelection: GameSelection[]
+  ) {
+    const currByName = curr.map((qf) => {
+      if (QueryUtils.byName(qf) == QueryUtils.customGamesAliasName) {
+        const gf = QueryUtils.extractGameSelector([qf]);
+        if (gf && gf.specialCase == "wins") {
+          return QueryUtils.asString(
+            QueryUtils.buildGameSelectionFilter(
+              gameSelection.filter((g) => {
+                return g.score?.[0] == "W";
+              })
+            )
+          );
+        } else {
+          return QueryUtils.asString(qf);
+        }
+      } else {
+        return QueryUtils.asString(qf);
+      }
+    });
     return _.join(_.uniq(currByName), ",");
   }
 
@@ -585,6 +628,9 @@ export class QueryUtils {
     };
   }
 
+  /** Note for special (dynamic) cases likes "wins" and "close-games", we don't populate this
+   * .. that way it's clear if you hit "save" you're going to over-write them
+   */
   static buildGameSelectionModel(
     queryFilters: CommonFilterType[]
   ): GameSelection[] {
@@ -598,7 +644,7 @@ export class QueryUtils {
               ? "Home"
               : locationTmp == "A"
               ? "Away"
-              : "Nuetral";
+              : "Neutral";
           return { date, location, opponent, score: "" };
         });
       }

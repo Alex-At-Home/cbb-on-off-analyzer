@@ -79,7 +79,8 @@ interface Props<PARAMS> {
   tablePrefixForPrimaryRequest?: ParamPrefixesType; //(goes with primary request, normally same as tablePrefix)
   /** If all FilterRequestInfo[] have tags then first FilterRequestInfo[] must equal PARAMS and all must have tags */
   buildParamsFromState: (
-    includeFilterParams: Boolean
+    includeFilterParams: Boolean,
+    forQuery?: Boolean
   ) => [PARAMS, FilterRequestInfo[]];
   /** if the FilterRequestInfo's all contains tags then its input is a Record<string, (json)>, else it's an array */
   childHandleResponse:
@@ -92,8 +93,10 @@ interface Props<PARAMS> {
   matchupMode?: "game" | "preview";
   blockSubmit?: boolean;
   onGameSelectionChange?: (gameSelection: FilteredGameSelection) => void;
+  gameSelectionRef?: React.MutableRefObject<FilteredGameSelection | undefined>;
   hideSemiAdvancedOptions?: boolean; //(only show team selector)
   propKey?: number;
+  extraButton?: React.ReactElement;
 }
 
 /** Used to pass the submitListener to child components */
@@ -124,8 +127,10 @@ const CommonFilter: CommonFilterI = ({
   matchupMode,
   blockSubmit,
   onGameSelectionChange,
+  gameSelectionRef,
   hideSemiAdvancedOptions,
   propKey,
+  extraButton,
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -236,6 +241,10 @@ const CommonFilter: CommonFilterI = ({
       gameSelection.filter &&
       onGameSelectionChange(gameSelection);
   }, [gameSelection]);
+  if (gameSelectionRef) {
+    //(allow access from child elements)
+    gameSelectionRef.current = gameSelection;
+  }
 
   // Validation, this currently only supports once case:
   const [showInvalidQuery, setShowInvalidQuery] = useState(false as boolean);
@@ -351,7 +360,7 @@ const CommonFilter: CommonFilterI = ({
             new Error("Needed request, currently forcing user to press submit")
           );
     };
-    const [primaryRequest, filterRequests] = buildParamsFromState(false);
+    const [primaryRequest, filterRequests] = buildParamsFromState(false, true);
 
     const newFormat = !_.isNil(_.find(filterRequests, (req) => req.tag));
 
@@ -413,9 +422,24 @@ const CommonFilter: CommonFilterI = ({
     // Cached response and pre-load handling:
     const forceReload = forceReload1Up && forceReload1Up != currForceReload1Up;
     if (pageJustLoaded && (!propKey || propKey == 0)) {
-      setPageJustLoaded(false); //(ensures this code only gets called once)
-      // Load the data if it's cached
-      requestHandlingLogic(true);
+      // Only do this once the team list has loaded
+      if (
+        !_.isEmpty(gameSelection.games) ||
+        tablePrefix != ParamPrefixes.game
+      ) {
+        if (isDebug)
+          console.log(
+            `Auto-reloading query on page reload ([${gameSelection.games.length} games])`
+          );
+        setPageJustLoaded(false); //(ensures this code only gets called once)
+        // Load the data if it's cached
+        requestHandlingLogic(true);
+      } else {
+        if (isDebug)
+          console.log(
+            "Disabling auto-reload query on page reload (because game selection not loaded)"
+          );
+      }
     } else if (forceReload) {
       // simulate user pressing "submit button"
       setCurrForceload1up(forceReload1Up || 0);
@@ -1043,6 +1067,11 @@ const CommonFilter: CommonFilterI = ({
                 ) : null}
               </Container>
             </Col>
+            {extraButton ? (
+              <Col sm="2" className="mt-1">
+                {extraButton}
+              </Col>
+            ) : null}
           </Form.Group>
         )}
         {matchupMode || hideSemiAdvancedOptions ? null : (
