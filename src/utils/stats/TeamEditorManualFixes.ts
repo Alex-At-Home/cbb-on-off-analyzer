@@ -1664,6 +1664,9 @@ export class TeamEditorManualFixes {
           Maryland: {
             leftTeam: ["TaGapare::"], //(missing from transfers)
           },
+          "Michigan St.": {
+            leftTeam: ["KaGlenn::"], //(injured for the season)
+          },
           "Murray St.": {
             leftTeam: ["JuMorgan::"], //(MVC fixes)
           },
