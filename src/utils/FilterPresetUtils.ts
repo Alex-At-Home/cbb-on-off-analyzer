@@ -94,13 +94,12 @@ export class FilterPresetUtils {
         onQueryFilters: "Last-30d",
       },
     },
-    //TODO: not quite working yet, starts off OK then lineups stop including games
-    // "Wins vs Losses": {
-    //   splitPhrases: ["W", "L"],
-    //   gameParams: {
-    //     onQueryFilters: "Opponents:wins",
-    //   },
-    // },
+    "Wins vs Losses": {
+      splitPhrases: ["W", "L"],
+      gameParams: {
+        onQueryFilters: "Opponents:wins",
+      },
+    },
   };
 
   /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */

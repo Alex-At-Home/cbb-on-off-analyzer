@@ -1270,10 +1270,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const newAdvancedMode = !currAdvancedMode;
     const currPresetMode = presetMode;
     const currPresetSplit = presetSplit;
-    const [gameParamsToUse, commonParamsToUse] = !currAdvancedMode
-      ? applyPresetConfig(currPresetMode, currPresetSplit, false)
-      : [undefined, undefined];
-    setAdvancedView(newAdvancedMode);
 
     const [newPresetMode, newPresetSplit] = _.thru(currAdvancedMode, (__) => {
       if (currAdvancedMode) {
@@ -1296,8 +1292,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
         ];
       }
     });
+
+    // Effects:
+
+    setAdvancedView(newAdvancedMode);
     setPresetMode(newPresetMode);
     setPresetSplit(newPresetSplit);
+
+    // If switching out of simple mode, then sync the current presets into the advanced state
+    // (and then reset the presets to defaults)
+    // If switching into simple mode then apply whatever inferred presets we find (or defaults if none)
+    const [gameParamsToUse, commonParamsToUse] = applyPresetConfig(
+      currAdvancedMode ? newPresetMode : currPresetMode,
+      currAdvancedMode ? newPresetSplit : currPresetSplit,
+      false
+    );
 
     if (onSwitchToAdvancedMode) {
       // Switching to advanced view so we want to copy query over:

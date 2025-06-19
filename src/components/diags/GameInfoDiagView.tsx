@@ -47,7 +47,7 @@ const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({
   label,
 }) => {
   if (active) {
-    const data = payload?.[0].payload || {};
+    const data = payload?.[0]?.payload || {};
     return (
       <div
         className="custom-tooltip"
