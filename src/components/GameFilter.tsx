@@ -1208,20 +1208,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
   ];
 
   /** The two sub-headers for the dropdown */
-  const groupedPresetSplitOptions = [
-    {
-      label: "Splits",
-      options: _.keys(FilterPresetUtils.gameSplitPresets).map(stringToOption),
-    },
-    {
-      label: "On/Off Splits",
-      options: rosterNames.map((n) =>
-        stringToOption(
-          `${FilterPresetUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
-        )
-      ),
-    },
-  ];
+  const groupedPresetSplitOptions = _.chain(FilterPresetUtils.gameSplitPresets)
+    .toPairs()
+    .groupBy((kv) => kv[1].label)
+    .pick(FilterPresetUtils.gameSplitLabelSortOrder)
+    .map((kvs, key) => {
+      return {
+        label: key,
+        options: kvs.map((kv) => stringToOption(kv[0])),
+      };
+    })
+    .value()
+    .concat([
+      {
+        label: "On/Off Splits",
+        options: rosterNames.map((n) =>
+          stringToOption(
+            `${FilterPresetUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
+          )
+        ),
+      },
+    ]);
 
   /** Handles the setting of a preset */
   const applyPresetConfig = (

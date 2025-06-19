@@ -383,6 +383,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   )
     .toPairs()
     .groupBy((kv) => kv[1].label)
+    .pick(FilterPresetUtils.lineupLabelSortOrder)
     .map((kvs, key) => {
       return {
         label: key,

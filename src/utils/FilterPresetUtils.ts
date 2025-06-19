@@ -10,6 +10,7 @@ type CommonFilterPresets = {
 };
 
 type GameFilterPresets = {
+  label: string;
   gameParams?: GameFilterParams;
   splitPhrases?: string[];
 };
@@ -75,10 +76,19 @@ export class FilterPresetUtils {
     },
   };
 
+  static readonly gameSplitLabelSortOrder: string[] = [
+    "Misc Splits",
+    "Date Splits",
+    "SoS Splits",
+  ];
+
   /** Split presets */
   static readonly gameSplitPresets: Record<string, GameFilterPresets> = {
-    [ParamDefaults.defaultPresetSplit]: {},
+    [ParamDefaults.defaultPresetSplit]: {
+      label: "Misc Splits",
+    },
     "Home vs Away/Neutral": {
+      label: "Misc Splits",
       splitPhrases: ["H", "A/N"],
       gameParams: {
         onQuery: "location_type:Home",
@@ -86,12 +96,14 @@ export class FilterPresetUtils {
       },
     },
     "Wins vs Losses": {
+      label: "Misc Splits",
       splitPhrases: ["W", "L"],
       gameParams: {
         onQueryFilters: "Opponents:wins",
       },
     },
     "T100ish vs Weaker": {
+      label: "SoS Splits",
       splitPhrases: ["T100", ">100"],
       gameParams: {
         onQuery: "vs_rank:<=100",
@@ -99,6 +111,7 @@ export class FilterPresetUtils {
       },
     },
     "Split by SoS band": {
+      label: "SoS Splits",
       splitPhrases: [":T30", "T30:T80", "T80:T175", ">175"],
       gameParams: {
         autoOffQuery: false,
@@ -111,6 +124,7 @@ export class FilterPresetUtils {
       },
     },
     "First halves vs Second halves": {
+      label: "Misc Splits",
       splitPhrases: ["1H", "2H"],
       gameParams: {
         onQuery: "end_min:<=20",
@@ -118,12 +132,14 @@ export class FilterPresetUtils {
       },
     },
     "Last 30 days vs Before": {
+      label: "Date Splits",
       splitPhrases: ["L30", ">30"],
       gameParams: {
         onQueryFilters: "Last-30d",
       },
     },
     "Split by Month": {
+      label: "Date Splits",
       splitPhrases: ["Nov", "Dec", "Jan", "Feb", "Mar+"],
       gameParams: {
         autoOffQuery: false,
@@ -151,6 +167,12 @@ export class FilterPresetUtils {
   //////////////////////////////////////////////////////
 
   // Lineup Preset Utils
+
+  static readonly lineupLabelSortOrder: string[] = [
+    "No Groupings",
+    "Positional Groupings",
+    "Player Groupings",
+  ];
 
   /** Filter/Query presets */
   static readonly lineupGroupPresets: Record<string, LineupFilterPresets> = {
