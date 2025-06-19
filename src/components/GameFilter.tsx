@@ -377,6 +377,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
       offQuery?: string;
       onQueryFilters: CommonFilterType[];
       offQueryFilters: CommonFilterType[];
+      otherQueries: (string | undefined)[];
+      otherQueryFilters: (CommonFilterType[] | undefined)[];
     }
   ): [string | undefined, string | undefined] => {
     // Switching back to simple mode
@@ -410,6 +412,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
       offQueryFilters: QueryUtils.buildFilterStr(
         queryParamsIn.offQueryFilters || ""
       ),
+      otherQueries: _.zip(
+        queryParamsIn.otherQueries,
+        queryParamsIn.otherQueryFilters
+      ).map(([oq, oqf]) => {
+        return oqf && !_.isEmpty(oqf)
+          ? {
+              query: oq,
+              queryFilter: QueryUtils.buildFilterStr(oqf),
+            }
+          : {
+              query: oq,
+            };
+      }),
     };
 
     const testPlayers = new Set(rosterNames);
@@ -436,6 +451,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         });
       }
     });
+
     return [maybeMode, maybeSplit];
   };
 
@@ -447,6 +463,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
       offQuery,
       onQueryFilters,
       offQueryFilters,
+      otherQueries,
+      otherQueryFilters,
     });
   };
 
@@ -751,6 +769,25 @@ const GameFilter: React.FunctionComponent<Props> = ({
               commonParams.year || ParamDefaults.defaultYear
             ) || [],
             forQuery || false
+          ),
+          otherQueries: _.thru(
+            ((maybeNewParams || newParamsOnSubmit)?.otherQueries || []).map(
+              (oq) => {
+                return {
+                  query: oq.query,
+                  queryFilter: buildFilterMaybeForQuery(
+                    QueryUtils.parseFilter(
+                      oq.queryFilters || ParamDefaults.defaultQueryFilters,
+                      commonParams.year || ParamDefaults.defaultYear
+                    ) || [],
+                    forQuery || false
+                  ),
+                };
+              }
+            ),
+            (
+              maybeOtherQueries //(if it's empty remove it)
+            ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries)
           ),
         };
 
@@ -1254,6 +1291,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
               startingState.year || ParamDefaults.defaultYear
             )
           );
+          setOtherQueries((newParams.otherQueries || []).map((oq) => oq.query));
+          setOtherQueryFilters(
+            (newParams.otherQueries || []).map((oq) => {
+              return QueryUtils.parseFilter(
+                _.isNil(oq.queryFilters)
+                  ? ParamDefaults.defaultQueryFilters
+                  : oq.queryFilters,
+                startingState.year || ParamDefaults.defaultYear
+              );
+            })
+          );
         }
       }
       if (newPresetMode != presetMode) {
@@ -1279,6 +1327,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
           offQuery,
           onQueryFilters,
           offQueryFilters,
+          otherQueries,
+          otherQueryFilters,
         });
         return [
           tmpMode || ParamDefaults.defaultPresetMode,
@@ -1441,7 +1491,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         {}
                       )}
                     >
-                      '{String.fromCharCode(67 + idx)}'
+                      '
+                      {maybePresetPhrase?.[2 + idx] ||
+                        String.fromCharCode(67 + idx)}
+                      '
                     </a>,
                   ]
                 : [];

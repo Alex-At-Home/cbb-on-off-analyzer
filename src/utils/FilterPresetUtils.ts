@@ -11,7 +11,7 @@ type CommonFilterPresets = {
 
 type GameFilterPresets = {
   gameParams?: GameFilterParams;
-  splitPhrases?: [string, string];
+  splitPhrases?: string[];
 };
 
 type LineupFilterPresets = {
@@ -42,14 +42,25 @@ export class FilterPresetUtils {
     autoOffQuery: true,
     onQueryFilters: "",
     offQueryFilters: "",
+    otherQueries: [],
   };
 
   /** Filter/Query presets */
   static readonly commonFilterPresets: Record<string, CommonFilterPresets> = {
     [ParamDefaults.defaultPresetMode]: {},
+    "Season Stats vs T50ish": {
+      commonParams: {
+        maxRank: "50",
+      },
+    },
     "Season Stats vs T100ish": {
       commonParams: {
         maxRank: "100",
+      },
+    },
+    "Season Stats vs T150ish": {
+      commonParams: {
+        maxRank: "150",
       },
     },
     "Season Stats In Conf": {
@@ -74,11 +85,29 @@ export class FilterPresetUtils {
         offQuery: `NOT ${"location_type:Home"}`,
       },
     },
+    "Wins vs Losses": {
+      splitPhrases: ["W", "L"],
+      gameParams: {
+        onQueryFilters: "Opponents:wins",
+      },
+    },
     "T100ish vs Weaker": {
       splitPhrases: ["T100", ">100"],
       gameParams: {
         onQuery: "vs_rank:<=100",
         offQuery: `NOT ${"vs_rank:<=100"}`,
+      },
+    },
+    "Split by SoS band": {
+      splitPhrases: [":T30", "T30:T80", "T80:T175", ">175"],
+      gameParams: {
+        autoOffQuery: false,
+        onQuery: "vs_rank:<=30",
+        offQuery: `${"vs_rank:>30"} AND ${"vs_rank:<=80"}`,
+        otherQueries: [
+          { query: `${"vs_rank:>80"} AND ${"vs_rank:<=175"}` },
+          { query: "vs_rank:>175" },
+        ],
       },
     },
     "First halves vs Second halves": {
@@ -94,16 +123,10 @@ export class FilterPresetUtils {
         onQueryFilters: "Last-30d",
       },
     },
-    "Wins vs Losses": {
-      splitPhrases: ["W", "L"],
-      gameParams: {
-        onQueryFilters: "Opponents:wins",
-      },
-    },
   };
 
   /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */
-  static getPresetPhrase(presetSplit: string): [string, string] | undefined {
+  static getPresetPhrase(presetSplit: string): string[] | undefined {
     if (presetSplit.startsWith(FilterPresetUtils.gameFilterOnOffPrefix)) {
       return ["ON", "OFF"];
     } else {
@@ -111,6 +134,8 @@ export class FilterPresetUtils {
       return radical?.splitPhrases;
     }
   }
+
+  //////////////////////////////////////////////////////
 
   // Lineup Preset Utils
 
