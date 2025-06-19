@@ -776,17 +776,21 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     );
     switch (type) {
       case "on":
-        return maybePrefix ? maybePrefix[0] : "A";
+        return maybePrefix?.[0] || "A";
       case "off":
-        return maybePrefix ? maybePrefix[1] : "B";
+        return maybePrefix?.[1] || "B";
       case "baseline":
         return "Base";
       case "other":
-        return `${String.fromCharCode(67 + (otherIndex || 0))}`;
+        return (
+          maybePrefix?.[2 + (otherIndex || 0)] ||
+          `${String.fromCharCode(67 + (otherIndex || 0))}`
+        );
       default:
         return "unknown";
     }
   };
+
   /** Longer equivalent to onOffBaseToShortPhrase */
   const onOffBaseToLongerPhrase = (
     type: OnOffBaselineOtherEnum,
@@ -797,13 +801,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     );
     switch (type) {
       case "on":
-        return maybePrefix
+        return maybePrefix?.[0]
           ? `'${maybePrefix[0]}' set`
           : _.isEmpty(teamStats.other)
           ? "On ('A')"
           : "'A' set";
       case "off":
-        return maybePrefix
+        return maybePrefix?.[1]
           ? `'${maybePrefix[1]}' set`
           : _.isEmpty(teamStats.other)
           ? "Off ('B')"
@@ -811,7 +815,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       case "baseline":
         return "'Base' set";
       case "other":
-        return `'${String.fromCharCode(67 + (otherIndex || 0))}' set`;
+        const prefixIndex = 2 + (otherIndex || 0);
+        return maybePrefix?.[prefixIndex]
+          ? `'${maybePrefix[1]}' set`
+          : `'${String.fromCharCode(67 + (otherIndex || 0))}' set`;
       default:
         return "unknown";
     }

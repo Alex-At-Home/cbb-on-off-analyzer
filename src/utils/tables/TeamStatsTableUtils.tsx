@@ -186,13 +186,16 @@ export class TeamStatsTableUtils {
       );
       switch (type) {
         case "on":
-          return maybePrefix ? maybePrefix[0] : "A";
+          return maybePrefix?.[0] || "A";
         case "off":
-          return maybePrefix ? maybePrefix[1] : "B";
+          return maybePrefix?.[1] || "B";
         case "baseline":
           return "Base";
         case "other":
-          return `${String.fromCharCode(67 + (otherIndex || 0))}`;
+          return (
+            maybePrefix?.[2 + (otherIndex || 0)] ||
+            `${String.fromCharCode(67 + (otherIndex || 0))}`
+          );
         default:
           return "unknown";
       }
@@ -210,13 +213,13 @@ export class TeamStatsTableUtils {
       );
       switch (type) {
         case "on":
-          return maybePrefix
+          return maybePrefix?.[0]
             ? `'${maybePrefix[0]}'${maybeSet}`
             : teamStats.onOffMode && _.isEmpty(teamStats.other)
             ? "On ('A')"
             : `'A'${maybeSet}`;
         case "off":
-          return maybePrefix
+          return maybePrefix?.[1]
             ? `'${maybePrefix[1]}'${maybeSet}`
             : teamStats.onOffMode && _.isEmpty(teamStats.other)
             ? "Off ('B')"
@@ -224,7 +227,10 @@ export class TeamStatsTableUtils {
         case "baseline":
           return `'Base'${maybeSet}`;
         case "other":
-          return `'${String.fromCharCode(67 + (otherIndex || 0))}'${maybeSet}`;
+          const prefixIndex = 2 + (otherIndex || 0);
+          return maybePrefix?.[prefixIndex]
+            ? `'${maybePrefix[prefixIndex]}'${maybeSet}`
+            : `'${String.fromCharCode(67 + (otherIndex || 0))}'${maybeSet}`;
         default:
           return "unknown";
       }
@@ -566,7 +572,7 @@ export class TeamStatsTableUtils {
     const teamStatsByOtherQuery = _.chain(teamStats.other || [])
       .map((other, idx) => {
         const attachedQueryInfo = TableDisplayUtils.addQueryInfo(
-          `'${String.fromCharCode(67 + idx)}'`,
+          onOffBaseToLongerPhrase("other", false, idx),
           gameFilterParams,
           "other",
           idx
@@ -669,7 +675,7 @@ export class TeamStatsTableUtils {
       .concat(
         (teamStats.other || []).map((__, idx) => {
           return {
-            title: `'${String.fromCharCode(67 + idx)}'`,
+            title: onOffBaseToLongerPhrase("other", false, idx),
             players: getRosterStats("other", rosterStats, idx),
             rosterStatsByCode: globalRosterStatsByCode,
             teamStats: getTeamStats("other", teamStats, idx),
@@ -1064,7 +1070,7 @@ export class TeamStatsTableUtils {
       other: (teamStats.other || []).map((__, queryIndex) => {
         return buildTableEntries(
           "other",
-          `'${String.fromCharCode(67 + queryIndex)}'`,
+          onOffBaseToLongerPhrase("other", false, queryIndex),
           queryIndex
         );
       }),
