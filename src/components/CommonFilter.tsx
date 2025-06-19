@@ -140,7 +140,7 @@ const CommonFilter: CommonFilterI = ({
   const [queryIsLoading, setQueryIsLoading] = useState(false);
   const [atLeastOneQueryMade, setAtLeastOneQueryMade] = useState(false);
   const [pageJustLoaded, setPageJustLoaded] = useState(true);
-  const [currForceReload1Up, setCurrForceload1up] = useState(0);
+  const [currForceReload1Up, setCurrForceload1up] = useState(forceReload1Up);
   const [currState, setCurrState] = useState(startingState);
 
   const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
