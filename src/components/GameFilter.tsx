@@ -416,14 +416,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
         queryParamsIn.otherQueries,
         queryParamsIn.otherQueryFilters
       ).map(([oq, oqf]) => {
-        return oqf && !_.isEmpty(oqf)
-          ? {
-              query: oq,
-              queryFilter: QueryUtils.buildFilterStr(oqf),
-            }
-          : {
-              query: oq,
-            };
+        const qComp = oq ? { query: oq } : {};
+        const qfComp =
+          oqf && !_.isEmpty(oqf)
+            ? { queryFilters: QueryUtils.buildFilterStr(oqf) }
+            : {};
+        return _.merge(qComp, qfComp);
       }),
     };
 
@@ -443,11 +441,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
           : undefined;
       } else {
         return _.findKey(FilterPresetUtils.gameSplitPresets, (preset) => {
-          return _.isEqual(testSplit, {
+          const toTest = {
             ...testSplit,
             ...FilterPresetUtils.basePresetOnOffQuery,
             ...(preset.gameParams || {}),
-          });
+          };
+          //DIAG:
+          // console.log(`A ${JSON.stringify(testSplit)}`, testSplit);
+          // console.log(`B ${JSON.stringify(toTest)}`, toTest);
+
+          return _.isEqual(testSplit, toTest);
         });
       }
     });
@@ -775,7 +778,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               (oq) => {
                 return {
                   query: oq.query,
-                  queryFilter: buildFilterMaybeForQuery(
+                  queryFilters: buildFilterMaybeForQuery(
                     QueryUtils.parseFilter(
                       oq.queryFilters || ParamDefaults.defaultQueryFilters,
                       commonParams.year || ParamDefaults.defaultYear
@@ -1269,7 +1272,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
       if (newPresetSplit != presetSplit) {
         setPresetSplit(newPresetSplit);
         if (newParams) {
-          if (newParams.onQuery) {
+          toggleAutoOffQuery(
+            _.isNil(newParams.autoOffQuery) ? true : newParams.autoOffQuery
+          );
+          if (!_.isNil(newParams.onQuery)) {
             setOnQuery(newParams.onQuery);
           }
           setOnQueryFilters(
@@ -1280,7 +1286,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               startingState.year || ParamDefaults.defaultYear
             )
           );
-          if (newParams.offQuery) {
+          if (!_.isNil(newParams.offQuery)) {
             setOffQuery(newParams.offQuery);
           }
           setOffQueryFilters(

@@ -123,6 +123,19 @@ export class FilterPresetUtils {
         onQueryFilters: "Last-30d",
       },
     },
+    "Split by Month": {
+      splitPhrases: ["Nov", "Dec", "Jan", "Feb", "Mar+"],
+      gameParams: {
+        autoOffQuery: false,
+        onQueryFilters: "Date:11.01-11.30",
+        offQueryFilters: "Date:12.01-12.31",
+        otherQueries: [
+          { queryFilters: "Date:01.01-01.31" },
+          { queryFilters: "Date:02.01-02.29" },
+          { queryFilters: "Date:03.01-04.30" },
+        ],
+      },
+    },
   };
 
   /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */
