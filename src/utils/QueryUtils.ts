@@ -337,10 +337,11 @@ export class QueryUtils {
   static asString(filter: CommonFilterType, forDisplay: boolean = false) {
     if (isCommonFilterCustomDate(filter)) {
       // must be a custom date
-      return `${QueryUtils.customDatePrefix}${dateFormat(
-        filter.start,
-        QueryUtils.customDateFormat
-      )}-${dateFormat(filter.end, QueryUtils.customDateFormat)}`;
+      // we assume 02.28 actually means 02.29..
+      const maybeLeapYear = (s: string) => (s == "02.28" ? "02.29" : s);
+      return `${QueryUtils.customDatePrefix}${maybeLeapYear(
+        dateFormat(filter.start, QueryUtils.customDateFormat)
+      )}-${maybeLeapYear(dateFormat(filter.end, QueryUtils.customDateFormat))}`;
     } else if (isCommonFilterGameSelector(filter)) {
       if (forDisplay) {
         if (filter.specialCase) {
