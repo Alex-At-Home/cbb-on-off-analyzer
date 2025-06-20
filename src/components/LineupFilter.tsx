@@ -145,9 +145,63 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     }
   }, [forceReload1Up]);
 
+  /** Whenever starting state updates, we also update the critical params
+   *  that trigger data reloads, otherwise it gets too complicated to keep in sync
+   *  It's not ideal because these table UI features override the "preset details"
+   *  ... but it's necessary because the features trigger a reload which relies
+   *      on GameFilter for its state, and the preset / advanced code is too tightly
+   *      coupled to make that option workable
+   */
+  if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
+    useEffect(() => {
+      setNewParamsOnSubmit({
+        ...newParamsOnSubmit,
+        // The ones that it really needs are calcRapm, showRoster, showGameInfo, teamShotCharts, playerShotCharts
+        // We need all the others also, otherwise they get lost when the above are fired
+        ...rebuildFullState(),
+      });
+      const [__, newPresetGroup] = checkForImplicitPresets(
+        commonParams,
+        startingState
+      );
+      if ((newPresetGroup || ParamDefaults.defaultPresetGroup) != presetGroup) {
+        setPresetGroup(newPresetGroup || ParamDefaults.defaultPresetGroup);
+      }
+    }, [startingState]);
+
   // Preset state and basic logic
 
   //(note the order matters here)
+
+  /** Tries to convert some simple query/on/off scenarios into presets */
+  const checkForImplicitPresets = (
+    commonParamsIn: CommonFilterParams,
+    queryParamsIn: {
+      //(lots of other things+)
+      aggByPos?: string;
+    }
+  ): [string | undefined, string | undefined] => {
+    // Switching back to simple mode
+    // Let's figure out if we can re-use existing modes/groups
+    const maybeMode = _.findKey(
+      FilterPresetUtils.commonFilterPresets,
+      (preset, key) => {
+        return _.isEqual(commonParamsIn, {
+          ...commonParamsIn,
+          ...FilterPresetUtils.basePresetQuery,
+          ...(preset.commonParams || {}),
+        });
+      }
+    );
+    //(for simplicity we make this code very specific to the one aggByPos case)
+    return [
+      maybeMode,
+      _.findKey(
+        FilterPresetUtils.lineupGroupPresets,
+        (preset) => preset.lineupParams?.aggByPos == queryParamsIn.aggByPos
+      ),
+    ];
+  };
 
   /** Whether to show pre-sets instead of full set */
   const [advancedView, setAdvancedView] = useState(
@@ -160,9 +214,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             return true;
 
           // Advanced mode unspecified but matbe we can infer it?
-          //TODO: implement this when we have a moment
-          // const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
-          // if (maybeMode && maybeSplit) return false;
+          const [maybeMode, maybeGroup] = checkForImplicitPresets(
+            commonParams,
+            state
+          );
+          if (maybeMode && maybeGroup) return false;
 
           if (!_.isEmpty(state.baseQuery)) return true;
           if (!_.isEmpty(state.queryFilters)) return true;
@@ -183,9 +239,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       } else if (advancedView) {
         return "";
       } else {
-        //TODO: implement this:
-        const [maybeMode, maybeSplit] = [undefined, undefined]; //checkForImplicitPresetsOnStartup();
-        if (maybeMode && maybeSplit) {
+        const [maybeMode, maybeGroup] = checkForImplicitPresets(
+          commonParams,
+          startingState
+        );
+        if (maybeMode && maybeGroup) {
           return maybeMode;
         } else {
           return startingState.presetMode || ParamDefaults.defaultPresetMode;
@@ -202,10 +260,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       } else if (advancedView) {
         return "";
       } else {
-        //TODO: implement this:
-        const [maybeMode, maybeSplit] = [undefined, undefined]; //checkForImplicitPresetsOnStartup();
-        if (maybeMode && maybeSplit) {
-          return maybeSplit;
+        const [maybeMode, maybeGroup] = checkForImplicitPresets(
+          commonParams,
+          startingState
+        );
+        if (maybeMode && maybeGroup) {
+          return maybeGroup;
         } else {
           return startingState.presetGroup || ParamDefaults.defaultPresetGroup;
         }
@@ -408,8 +468,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     const newParams = _.thru(
       FilterPresetUtils.lineupGroupPresets[newPresetGroup],
       (maybeSplitConfig) => {
-        //TODO
-        return {};
+        if (maybeSplitConfig) {
+          return {
+            ...newParamsOnSubmit,
+            ...(maybeSplitConfig?.lineupParams || {}),
+          };
+        }
       }
     );
 
@@ -423,6 +487,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       if (newPresetGroup != presetGroup) {
         setPresetGroup(newPresetGroup);
         if (newParams) {
+          setNewParamsOnSubmit(newParams);
         }
       }
       if (newPresetMode != presetMode) {
@@ -446,11 +511,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({
 
     const [newPresetMode, newPresetGroup] = _.thru(currAdvancedMode, (__) => {
       if (currAdvancedMode) {
-        const [tmpMode, tmpGroup] = [undefined, undefined];
-        //TODO: add this in:
-        // checkForImplicitPresets(commonParams, {
-        //   aggByPos
-        // });
+        const [tmpMode, tmpGroup] = checkForImplicitPresets(
+          commonParams,
+          newParamsOnSubmit
+        );
         return [
           tmpMode || ParamDefaults.defaultPresetMode,
           tmpGroup || ParamDefaults.defaultPresetGroup,
@@ -511,13 +575,15 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       forceReload1Up={internalForceReload1Up}
       hideSemiAdvancedOptions={!advancedView}
       extraButton={
-        <GenericTogglingMenu size="sm">
-          <GenericTogglingMenuItem
-            text="Simple Query Mode"
-            truthVal={false}
-            onSelect={() => toggleAdvancedMode()}
-          />
-        </GenericTogglingMenu>
+        FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface) ? (
+          <GenericTogglingMenu size="sm">
+            <GenericTogglingMenuItem
+              text="Simple Query Mode"
+              truthVal={false}
+              onSelect={() => toggleAdvancedMode()}
+            />
+          </GenericTogglingMenu>
+        ) : null
       }
     >
       {!advancedView ? (
@@ -559,7 +625,22 @@ const LineupFilter: React.FunctionComponent<Props> = ({
               formatGroupLabel={formatGroupLabel}
               onChange={(option: any) => {
                 const newPreset = option.value || "";
-                applyPresetConfig(presetMode, newPreset, true);
+                const [__, newParams] = applyPresetConfig(
+                  presetMode,
+                  newPreset,
+                  true
+                );
+                if (
+                  newParams &&
+                  (presetMode == startingState.presetMode ||
+                    ParamDefaults.defaultPresetMode)
+                ) {
+                  // Apply immediately:
+                  onChangeState({
+                    ...startingState,
+                    ...newParams,
+                  });
+                }
               }}
             />
           </Col>

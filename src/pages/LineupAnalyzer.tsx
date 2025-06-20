@@ -116,6 +116,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getLineupUrl(params, {});
   }
   const [shouldForceReload, setShouldForceReload] = useState(0 as number);
+  const [shouldReinitFilter, setShouldReinitFilter] = useState(0 as number);
+  const [shouldReloadTableParams, setShouldReloadTableParams] = useState(
+    0 as number
+  );
 
   const onLineupFilterParamsChange = (rawParams: LineupFilterParams) => {
     const params = _.omit(
@@ -175,6 +179,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
       setLineupFilterParams(params); // (to ensure the new params are included in links)
+
+      // Updates the table to ensure its internal state is updated
+      if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
+        setShouldReloadTableParams((oneUp) => oneUp + 1);
     }
   };
 
@@ -261,13 +269,14 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
         helpLink={maybeShowDocs()}
       >
         <LineupStatsTable
+          key={shouldReloadTableParams}
           startingState={lineupFilterParamsRef.current || {}}
           dataEvent={dataEvent}
           onChangeState={onLineupFilterParamsChange}
         />
       </GenericCollapsibleCard>
     );
-  }, [dataEvent]);
+  }, [dataEvent, shouldReinitFilter, shouldReloadTableParams]);
 
   return (
     <Container className="medium_screen">
@@ -298,6 +307,15 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
             onChangeState={onLineupFilterParamsChange}
             startingLineupLinks={startingLineupLinks}
             forceReload1Up={shouldForceReload}
+            key={shouldReinitFilter}
+            propKey={shouldReinitFilter}
+            onSwitchToAdvancedMode={(newParams) => {
+              // (force reload the state into both GameFilter and CommonFilter)
+              setLineupFilterParams({
+                ...newParams,
+              });
+              setShouldReinitFilter((t) => t + 1);
+            }}
           />
         </GenericCollapsibleCard>
       </Row>

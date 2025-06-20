@@ -26,5 +26,5 @@ export class FeatureFlags {
   static readonly expandedPlayerLeaderboard = false;
 
   /** For work in progress on improving the player UX */
-  static readonly friendlierInterface = true;
+  static readonly friendlierInterface = false;
 }
