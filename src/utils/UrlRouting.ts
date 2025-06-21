@@ -111,9 +111,15 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params,
     })}`;
   }
-  /** The URL to use to view the "Offseason Leaderboard" page */
+  /** The URL to use to view the "Team Stats Explorer" page */
   static getTeamStatsExplorer(params: TeamStatsExplorerParams) {
     return `/TeamStatsExplorer?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
+  /** The URL to use to view the "Team Style Explorer" page */
+  static getTeamStyleExplorer(params: TeamStatsExplorerParams) {
+    return `/getTeamStyleExplorer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
     })}`;
   }
