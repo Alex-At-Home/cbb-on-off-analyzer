@@ -583,7 +583,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
               onSelect={() => toggleAdvancedMode()}
             />
           </GenericTogglingMenu>
-        ) : null
+        ) : undefined
       }
     >
       {!advancedView ? (
