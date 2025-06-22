@@ -99,6 +99,16 @@ import {
   TopLevelPlayAnalysis,
   TopLevelPlayType,
 } from "../utils/stats/PlayTypeUtils";
+import {
+  CartesianGrid,
+  Label,
+  ResponsiveContainer,
+  Scatter,
+  ScatterChart,
+  XAxis,
+  YAxis,
+  Tooltip as RechartsTooltip,
+} from "recharts";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -579,10 +589,15 @@ const TeamStyleExplorerChart: React.FunctionComponent<Props> = ({
 
   // 2.2.1 Chart
 
-  useEffect(() => {
+  //  useEffect(() => {
+  const chart = React.useMemo(() => {
     // Kick off building table
 
-    const umap = new UMAP();
+    const umap = new UMAP({
+      nNeighbors: 10,
+      minDist: 0.05,
+      spread: 0.5,
+    });
 
     // Weights for styles
     const lowFreqWeight = new Set<TopLevelPlayType>([
@@ -611,6 +626,11 @@ const TeamStyleExplorerChart: React.FunctionComponent<Props> = ({
       const offStyle = team.style as TopLevelPlayAnalysis;
       const offLevel = 0.01 * (team.off_ppp?.value || 100) * 0.9; //(not including ORBs)
 
+      //TODO: things to try ..
+      // tempo, percentiles, distribution of scoring
+      // (ppp percentile adjusted by ppp percentile, ie +- 0.5)
+      // compare to PCA and others where maybe can interpret structure better?
+
       const offs = _.flatMap(PlayTypeUtils.topLevelPlayTypes, (playType) => {
         const off = offStyle[playType];
         const weight = lowFreqWeight.has(playType)
@@ -619,7 +639,7 @@ const TeamStyleExplorerChart: React.FunctionComponent<Props> = ({
           ? 1.5
           : 1;
         return [
-          (pppNormalization * (off.pts?.value || 0)) / offLevel,
+          //(pppNormalization * (off.pts?.value || 0)) / offLevel,
           (off.possPct?.value || 0) * playFreqWeight,
         ];
       });
@@ -651,7 +671,8 @@ const TeamStyleExplorerChart: React.FunctionComponent<Props> = ({
         0.5 * (team.def_blk?.value || 0),
         0.25 * (team.def_ftr?.value || 0),
       ];
-      return offs.concat(extraOff).concat(defs).concat(extraDef);
+      return offs.concat(extraOff);
+      //.concat(defs).concat(extraDef);
     });
 
     /**/
@@ -670,12 +691,66 @@ const TeamStyleExplorerChart: React.FunctionComponent<Props> = ({
     console.log(embedding);
 
     const teamsPlusEmbedding = embedding.map((vec, idx) => {
-      return [teamsPhase1[idx].team_name, teamsPhase1[idx].conf_nick].concat(
-        vec
-      );
+      // return [teamsPhase1[idx].team_name, teamsPhase1[idx].conf_nick].concat(
+      //   vec
+      // );
+      return {
+        team_name: teamsPhase1[idx].team_name,
+        conf_nick: teamsPhase1[idx].conf_nick,
+        x: vec[0],
+        y: vec[1],
+      };
     });
 
     console.log(JSON.stringify(teamsPlusEmbedding));
+
+    const height = 800;
+
+    const subChart = undefined;
+
+    const renderTooltip = (props: any) => {
+      const { active, payload } = props;
+
+      if (active && payload && payload.length) {
+        const data = payload[0] && payload[0].payload;
+
+        return (
+          <div
+            style={{
+              backgroundColor: "#fff",
+              border: "1px solid #999",
+              margin: 0,
+              padding: 10,
+            }}
+          >
+            <p>{data.team_name}</p>
+            <p>{data.conf_nick}</p>
+          </div>
+        );
+      }
+
+      return null;
+    };
+
+    return (
+      <ResponsiveContainer width={"100%"} height={0.75 * height}>
+        <ScatterChart>
+          <CartesianGrid />
+          <XAxis type="number" dataKey="x"></XAxis>
+          <YAxis type="number" dataKey="y"></YAxis>
+          <RechartsTooltip
+            cursor={{ strokeDasharray: "3 3" }}
+            wrapperStyle={{ zIndex: 100 }}
+            content={renderTooltip}
+          />
+          <Scatter
+            data={teamsPlusEmbedding}
+            fill="green"
+            opacity={1.0}
+          ></Scatter>
+        </ScatterChart>
+      </ResponsiveContainer>
+    );
   }, [dataEvent]);
 
   // 2.2.2: Table
@@ -1364,6 +1439,17 @@ const TeamStyleExplorerChart: React.FunctionComponent<Props> = ({
           {fullHelpDropdown}
         </Col>
       </StickyRow>
+      <Row>
+        <Col>
+          <LoadingOverlay
+            active={needToLoadQuery()}
+            spinner
+            text={"Loading Team Stats Explorer..."}
+          >
+            {chart}
+          </LoadingOverlay>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <LoadingOverlay

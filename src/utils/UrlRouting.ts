@@ -119,7 +119,7 @@ export class UrlRouting {
   }
   /** The URL to use to view the "Team Style Explorer" page */
   static getTeamStyleExplorer(params: TeamStatsExplorerParams) {
-    return `/getTeamStyleExplorer?${UrlRouting.getUrl({
+    return `/TeamStyleExplorer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
     })}`;
   }
