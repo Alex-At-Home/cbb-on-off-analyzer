@@ -298,7 +298,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           luck: startLuck,
           lineupLuck: startLineupLuck,
           showLineupLuckDiags: startShowLineupLuckDiags,
-          aggByPos: startAggByPos,
+          aggByPos: advancedView ? startAggByPos : newParamsOnSubmit.aggByPos,
           // Filters etc
           decorate: startDecorate,
           showTotal: startShowTotal,
@@ -306,6 +306,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           minPoss: startMinPoss,
           sortBy: startSortBy,
           filter: startFilter,
+          // UI:
+          advancedMode: advancedView,
+          presetMode: presetMode,
+          presetGroup: presetGroup,
         })
       : {
           ...commonParams,
@@ -452,6 +456,14 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     })
     .value();
 
+  const fixedPresetGroupOnceSubmitted = [
+    {
+      label:
+        "Once query is submitted, change query or use 'Quick Select' bar below to change grouping",
+      options: [stringToOption(presetGroup)],
+    },
+  ];
+
   /** Handles the setting of a preset */
   const applyPresetConfig = (
     newPresetMode: string,
@@ -556,10 +568,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   );
 
   const disableViewDetails =
-    presetMode ==
-      (startingState.presetMode || ParamDefaults.defaultPresetMode) &&
-    presetGroup ==
-      (startingState.presetGroup || ParamDefaults.defaultPresetGroup);
+    presetMode == (startingState.presetMode || ParamDefaults.defaultPresetMode);
 
   return (
     <CommonFilter //(generic type inferred)
@@ -621,24 +630,32 @@ const LineupFilter: React.FunctionComponent<Props> = ({
                   ? { label: presetGroup, value: presetGroup }
                   : undefined
               }
-              options={groupedPresetSplitOptions}
+              options={
+                presetMode ==
+                (startingState.presetMode || ParamDefaults.defaultPresetMode)
+                  ? fixedPresetGroupOnceSubmitted
+                  : groupedPresetSplitOptions
+              }
               formatGroupLabel={formatGroupLabel}
               onChange={(option: any) => {
                 const newPreset = option.value || "";
-                const [__, newParams] = applyPresetConfig(
+                const [newGroupParams, newParams] = applyPresetConfig(
                   presetMode,
                   newPreset,
                   true
                 );
                 if (
                   newParams &&
-                  (presetMode == startingState.presetMode ||
-                    ParamDefaults.defaultPresetMode)
+                  presetMode ==
+                    (startingState.presetMode ||
+                      ParamDefaults.defaultPresetMode)
                 ) {
-                  // Apply immediately:
+                  // Apply immediately (in practice we block this in the options above):
                   onChangeState({
                     ...startingState,
                     ...newParams,
+                    ...newGroupParams,
+                    presetGroup: newPreset,
                   });
                 }
               }}

@@ -178,6 +178,9 @@ export class FilterPresetUtils {
   static readonly lineupGroupPresets: Record<string, LineupFilterPresets> = {
     [ParamDefaults.defaultPresetGroup]: {
       label: "No Groupings",
+      lineupParams: {
+        aggByPos: "",
+      },
     },
     "Grouped by On/Off Combos": {
       label: "Player Groupings",

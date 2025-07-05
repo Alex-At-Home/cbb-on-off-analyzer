@@ -165,6 +165,8 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     );
     if (!_.isEqual(params, lineupFilterParamsRef.current)) {
       //(to avoid recursion)
+      const isChangingAggByPos =
+        params.aggByPos != lineupFilterParamsRef.current?.aggByPos;
 
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.showGameInfo != lineupFilterParamsRef.current?.showGameInfo) {
@@ -180,9 +182,13 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       Router.replace(href, as, { shallow: true });
       setLineupFilterParams(params); // (to ensure the new params are included in links)
 
-      // Updates the table to ensure its internal state is updated
-      if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
+      // Updates the table to ensure its internal state is updated, if preset group changing
+      if (
+        FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface) &&
+        isChangingAggByPos
+      ) {
         setShouldReloadTableParams((oneUp) => oneUp + 1);
+      }
     }
   };
 
