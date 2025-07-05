@@ -647,6 +647,13 @@ export const freshmenMen2025_26: Record<string, any> = {
     },
   },
   Arizona: {
+    "Burries, Brayden": {
+      pos: "CG",
+      pr: "5*/Lotto",
+      c: "BrBurries",
+      h: "6-4",
+      r: -54,
+    },
     "Peat, Koa": { pos: "S-PF", pr: "5*/Lotto", c: "KoPeat", h: "6-8", r: -54 },
     "Aristode, Dwayne": {
       pos: "WF",

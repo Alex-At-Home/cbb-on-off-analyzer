@@ -1649,6 +1649,9 @@ export class TeamEditorManualFixes {
           string,
           TeamEditorManualFixModel
         > = {
+          Arizona: {
+            leftTeam: ["LlLiam::"], //(no idea who this is, but they are messing up my predictions!)
+          },
           Duke: {
             leftTeam: ["KhMaluach::"], //(hasn't declared yet but expected to?)
           },
