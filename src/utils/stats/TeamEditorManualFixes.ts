@@ -1679,6 +1679,9 @@ export class TeamEditorManualFixes {
           "Southern Ill.": {
             leftTeam: ["AlDibber::"], //(MVC fixes)
           },
+          "St. John's (NY)": {
+            leftTeam: ["AaScott::"], //(year was wrong)
+          },
           UIC: {
             leftTeam: ["SaCiani::"], //(MVC fixes)
           },
