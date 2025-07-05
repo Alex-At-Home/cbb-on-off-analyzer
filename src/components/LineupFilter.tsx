@@ -566,7 +566,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   );
 
   const disableViewDetails =
-    presetMode == (startingState.presetMode || ParamDefaults.defaultPresetMode);
+    presetMode ==
+      (startingState.presetMode || ParamDefaults.defaultPresetMode) &&
+    presetGroup ==
+      (startingState.presetGroup || ParamDefaults.defaultPresetGroup);
 
   return (
     <CommonFilter //(generic type inferred)
