@@ -30,17 +30,7 @@ import {
 } from "../utils/FilterModels";
 
 // Utils
-import {
-  StatModels,
-  OnOffBaselineEnum,
-  OnOffBaselineGlobalEnum,
-  PlayerCode,
-  PlayerId,
-  Statistic,
-  IndivStatSet,
-  TeamStatSet,
-  LineupStatSet,
-} from "../utils/StatModels";
+import { StatModels } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 //@ts-ignore
@@ -102,6 +92,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     minPoss: startMinPoss,
     sortBy: startSortBy,
     filter: startFilter,
+    showOff: startShowOff,
+    showRawPts: startShowRawPts,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -120,6 +112,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       minPoss: startMinPoss,
       sortBy: startSortBy,
       filter: startFilter,
+      showOff: startShowOff,
+      showRawPts: startShowRawPts,
       //(note doesn't include the actual game query params)
     };
   };
@@ -149,14 +143,15 @@ const LineupFilter: React.FunctionComponent<Props> = ({
    *  that trigger data reloads, otherwise it gets too complicated to keep in sync
    *  It's not ideal because these table UI features override the "preset details"
    *  ... but it's necessary because the features trigger a reload which relies
-   *      on GameFilter for its state, and the preset / advanced code is too tightly
+   *      on LineupFilter for its state, and the preset / advanced code is too tightly
    *      coupled to make that option workable
    */
   if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
     useEffect(() => {
+      /**/
+      console.log(`??? ${startingState.showRawPts}`);
       setNewParamsOnSubmit({
         ...newParamsOnSubmit,
-        // The ones that it really needs are calcRapm, showRoster, showGameInfo, teamShotCharts, playerShotCharts
         // We need all the others also, otherwise they get lost when the above are fired
         ...rebuildFullState(),
       });
@@ -292,27 +287,24 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   function buildParamsFromState(
     includeFilterParams: Boolean
   ): [LineupFilterParams, FilterRequestInfo[]] {
+    // It's painful but re-calc the result of the preset to make sure we are using the right params
+    const [maybeNewParams, maybeNewCommonParams] = advancedView
+      ? [undefined, undefined]
+      : applyPresetConfig(presetMode, presetGroup, false);
+
     const primaryRequest: LineupFilterParams = includeFilterParams
       ? _.assign(buildParamsFromState(false)[0], {
-          // Luck stats:
-          luck: startLuck,
-          lineupLuck: startLineupLuck,
-          showLineupLuckDiags: startShowLineupLuckDiags,
-          aggByPos: advancedView ? startAggByPos : newParamsOnSubmit.aggByPos,
-          // Filters etc
-          decorate: startDecorate,
-          showTotal: startShowTotal,
-          maxTableSize: startMaxTableSize,
-          minPoss: startMinPoss,
-          sortBy: startSortBy,
-          filter: startFilter,
+          ...rebuildFullState(),
+          ...(advancedView ? {} : maybeNewParams || newParamsOnSubmit), //(in preset mode use the presets)
           // UI:
           advancedMode: advancedView,
           presetMode: presetMode,
           presetGroup: presetGroup,
         })
       : {
-          ...commonParams,
+          ...(advancedView
+            ? commonParams
+            : maybeNewCommonParams || commonParams),
         };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
@@ -694,6 +686,53 @@ const LineupFilter: React.FunctionComponent<Props> = ({
                 text="Reset to defaults"
                 truthVal={false}
                 onSelect={() => setNewParamsOnSubmit({})}
+              />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text="Show game breakdown for each lineup"
+                truthVal={newParamsOnSubmit.showGameInfo || false}
+                disabled={disableViewDetails}
+                onSelect={() =>
+                  setNewParamsOnSubmit({
+                    ...newParamsOnSubmit,
+                    showGameInfo: !(newParamsOnSubmit.showGameInfo || false),
+                  })
+                }
+              />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text="Show pt totals instead of efficiency"
+                truthVal={newParamsOnSubmit.showRawPts || false}
+                disabled={disableViewDetails}
+                onSelect={() =>
+                  setNewParamsOnSubmit({
+                    ...newParamsOnSubmit,
+                    showRawPts: !(newParamsOnSubmit.showRawPts || false),
+                  })
+                }
+              />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text="Show selected lineup totals"
+                truthVal={newParamsOnSubmit.showTotal || false}
+                disabled={disableViewDetails}
+                onSelect={() =>
+                  setNewParamsOnSubmit({
+                    ...newParamsOnSubmit,
+                    showTotal: !(newParamsOnSubmit.showTotal || false),
+                  })
+                }
+              />
+              <GenericTogglingMenuItem
+                text="Show filtered-out lineup totals"
+                truthVal={newParamsOnSubmit.showOff || false}
+                disabled={disableViewDetails}
+                onSelect={() =>
+                  setNewParamsOnSubmit({
+                    ...newParamsOnSubmit,
+                    showOff: !(newParamsOnSubmit.showOff || false),
+                  })
+                }
               />
               <Dropdown.Divider />
               <GenericTogglingMenuItem

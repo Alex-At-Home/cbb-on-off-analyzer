@@ -122,51 +122,52 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   );
 
   const onLineupFilterParamsChange = (rawParams: LineupFilterParams) => {
-    const params = _.omit(
-      rawParams,
-      _.flatten([
-        // omit all defaults
-        rawParams.decorate == ParamDefaults.defaultLineupDecorate
-          ? ["decorate"]
-          : [],
-        rawParams.showTotal == ParamDefaults.defaultLineupShowTotal
-          ? ["showTotal"]
-          : [],
-        rawParams.showOff == ParamDefaults.defaultLineupShowDropped
-          ? ["showOff"]
-          : [],
-        !rawParams.showRawPts ? ["showRawPts"] : [],
-        _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig)
-          ? ["luck"]
-          : [],
-        !rawParams.lineupLuck ? ["lineupLuck"] : [],
-        rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode
-          ? ["showLineupLuckDiags"]
-          : [],
-        rawParams.aggByPos == ParamDefaults.defaultLineupAggByPos
-          ? ["aggByPos"]
-          : [],
-        rawParams.showGameInfo == ParamDefaults.defaultLineupShowGameInfo
-          ? ["showGameInfo"]
-          : [],
-        !rawParams.onOffPlayerSel ? ["onOffPlayerSel"] : [],
-        rawParams.presetMode == ParamDefaults.defaultPresetMode
-          ? ["presetMode"]
-          : [],
-        !rawParams.presetGroup ||
-        rawParams.presetGroup == ParamDefaults.defaultPresetGroup
-          ? ["presetGroup"]
-          : [],
-        !rawParams.advancedMode ||
-        !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
-          ? ["advancedMode"]
-          : [],
-      ])
-    );
+    const params: LineupFilterParams = _.chain(rawParams)
+      .omitBy(_.isNil) //(handles weirdness between null/undefined/missing in isEquals below)
+      .omit(
+        _.flatten([
+          // omit all defaults
+          rawParams.decorate == ParamDefaults.defaultLineupDecorate
+            ? ["decorate"]
+            : [],
+          rawParams.showTotal == ParamDefaults.defaultLineupShowTotal
+            ? ["showTotal"]
+            : [],
+          rawParams.showOff == ParamDefaults.defaultLineupShowDropped
+            ? ["showOff"]
+            : [],
+          !rawParams.showRawPts ? ["showRawPts"] : [],
+          _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig)
+            ? ["luck"]
+            : [],
+          !rawParams.lineupLuck ? ["lineupLuck"] : [],
+          rawParams.showLineupLuckDiags ==
+          ParamDefaults.defaultOnOffLuckDiagMode
+            ? ["showLineupLuckDiags"]
+            : [],
+          rawParams.aggByPos == ParamDefaults.defaultLineupAggByPos
+            ? ["aggByPos"]
+            : [],
+          rawParams.showGameInfo == ParamDefaults.defaultLineupShowGameInfo
+            ? ["showGameInfo"]
+            : [],
+          !rawParams.onOffPlayerSel ? ["onOffPlayerSel"] : [],
+          rawParams.presetMode == ParamDefaults.defaultPresetMode
+            ? ["presetMode"]
+            : [],
+          !rawParams.presetGroup ||
+          rawParams.presetGroup == ParamDefaults.defaultPresetGroup
+            ? ["presetGroup"]
+            : [],
+          !rawParams.advancedMode ||
+          !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
+            ? ["advancedMode"]
+            : [],
+        ])
+      )
+      .value();
     if (!_.isEqual(params, lineupFilterParamsRef.current)) {
       //(to avoid recursion)
-      const isChangingAggByPos =
-        params.aggByPos != lineupFilterParamsRef.current?.aggByPos;
 
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.showGameInfo != lineupFilterParamsRef.current?.showGameInfo) {
@@ -183,10 +184,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       setLineupFilterParams(params); // (to ensure the new params are included in links)
 
       // Updates the table to ensure its internal state is updated, if preset group changing
-      if (
-        FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface) &&
-        isChangingAggByPos
-      ) {
+      if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)) {
         setShouldReloadTableParams((oneUp) => oneUp + 1);
       }
     }
