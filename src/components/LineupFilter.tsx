@@ -289,6 +289,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       ? [undefined, undefined]
       : applyPresetConfig(presetMode, presetGroup, false);
 
+    const currAggByPos = (maybeNewParams || newParamsOnSubmit)?.aggByPos || "";
+
     const primaryRequest: LineupFilterParams = includeFilterParams
       ? _.assign(buildParamsFromState(false)[0], {
           ...rebuildFullState(),
@@ -298,11 +300,17 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           presetMode: presetMode,
           presetGroup: presetGroup,
         })
-      : {
-          ...(advancedView
-            ? commonParams
-            : maybeNewCommonParams || commonParams),
-        };
+      : _.omit(
+          {
+            ...(advancedView
+              ? commonParams
+              : maybeNewCommonParams || commonParams),
+            aggByPos: currAggByPos,
+          },
+          advancedView || currAggByPos == (startingState.aggByPos || "")
+            ? ["aggByPos"]
+            : []
+        ); //(in basic view, enable submit button whenever aggByPos changes)
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
 
@@ -445,10 +453,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     })
     .value();
 
+  /** I decided to treat grouping like a query instead of blocking it, so this is unused */
   const fixedPresetGroupOnceSubmitted = [
     {
       label:
-        "Once query is submitted, change query or use 'Quick Select' bar below to change grouping",
+        "Once query is submitted, change query or use 'Quick Select' bar below ('Combos' section) to change grouping",
       options: [stringToOption(presetGroup)],
     },
   ];
@@ -617,34 +626,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({
                   ? { label: presetGroup, value: presetGroup }
                   : undefined
               }
-              options={
-                presetMode ==
-                (startingState.presetMode || ParamDefaults.defaultPresetMode)
-                  ? fixedPresetGroupOnceSubmitted
-                  : groupedPresetSplitOptions
-              }
+              options={groupedPresetSplitOptions}
               formatGroupLabel={formatGroupLabel}
               onChange={(option: any) => {
                 const newPreset = option.value || "";
-                const [newGroupParams, newParams] = applyPresetConfig(
-                  presetMode,
-                  newPreset,
-                  true
-                );
-                if (
-                  newParams &&
-                  presetMode ==
-                    (startingState.presetMode ||
-                      ParamDefaults.defaultPresetMode)
-                ) {
-                  // Apply immediately (in practice we block this in the options above):
-                  onChangeState({
-                    ...startingState,
-                    ...newParams,
-                    ...newGroupParams,
-                    presetGroup: newPreset,
-                  });
-                }
+                applyPresetConfig(presetMode, newPreset, true);
               }}
             />
           </Col>
