@@ -146,23 +146,20 @@ const LineupFilter: React.FunctionComponent<Props> = ({
    *      on LineupFilter for its state, and the preset / advanced code is too tightly
    *      coupled to make that option workable
    */
-  if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
-    useEffect(() => {
-      /**/
-      console.log(`??? ${startingState.showRawPts}`);
-      setNewParamsOnSubmit({
-        ...newParamsOnSubmit,
-        // We need all the others also, otherwise they get lost when the above are fired
-        ...rebuildFullState(),
-      });
-      const [__, newPresetGroup] = checkForImplicitPresets(
-        commonParams,
-        startingState
-      );
-      if ((newPresetGroup || ParamDefaults.defaultPresetGroup) != presetGroup) {
-        setPresetGroup(newPresetGroup || ParamDefaults.defaultPresetGroup);
-      }
-    }, [startingState]);
+  useEffect(() => {
+    setNewParamsOnSubmit({
+      ...newParamsOnSubmit,
+      // We need all the others also, otherwise they get lost when the above are fired
+      ...rebuildFullState(),
+    });
+    const [__, newPresetGroup] = checkForImplicitPresets(
+      commonParams,
+      startingState
+    );
+    if ((newPresetGroup || ParamDefaults.defaultPresetGroup) != presetGroup) {
+      setPresetGroup(newPresetGroup || ParamDefaults.defaultPresetGroup);
+    }
+  }, [startingState]);
 
   // Preset state and basic logic
 
@@ -193,7 +190,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       maybeMode,
       _.findKey(
         FilterPresetUtils.lineupGroupPresets,
-        (preset) => preset.lineupParams?.aggByPos == queryParamsIn.aggByPos
+        (preset) =>
+          preset.lineupParams?.aggByPos == queryParamsIn.aggByPos ||
+          (preset.lineupParams?.aggByPos == "" && !queryParamsIn.aggByPos)
       ),
     ];
   };
@@ -205,14 +204,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           if (!_.isEmpty(state.presetMode)) return false;
           if (!_.isEmpty(state.presetGroup)) return false;
 
-          if (!FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface))
-            return true;
-
           // Advanced mode unspecified but matbe we can infer it?
           const [maybeMode, maybeGroup] = checkForImplicitPresets(
             commonParams,
             state
           );
+
           if (maybeMode && maybeGroup) return false;
 
           if (!_.isEmpty(state.baseQuery)) return true;
@@ -576,15 +573,13 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       forceReload1Up={internalForceReload1Up}
       hideSemiAdvancedOptions={!advancedView}
       extraButton={
-        FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface) ? (
-          <GenericTogglingMenu size="sm">
-            <GenericTogglingMenuItem
-              text="Simple Query Mode"
-              truthVal={false}
-              onSelect={() => toggleAdvancedMode()}
-            />
-          </GenericTogglingMenu>
-        ) : undefined
+        <GenericTogglingMenu size="sm">
+          <GenericTogglingMenuItem
+            text="Simple Query Mode"
+            truthVal={false}
+            onSelect={() => toggleAdvancedMode()}
+          />
+        </GenericTogglingMenu>
       }
     >
       {!advancedView ? (

@@ -159,10 +159,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
           rawParams.presetGroup == ParamDefaults.defaultPresetGroup
             ? ["presetGroup"]
             : [],
-          !rawParams.advancedMode ||
-          !FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
-            ? ["advancedMode"]
-            : [],
+          !rawParams.advancedMode ? ["advancedMode"] : [],
         ])
       )
       .value();
@@ -184,9 +181,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       setLineupFilterParams(params); // (to ensure the new params are included in links)
 
       // Updates the table to ensure its internal state is updated, if preset group changing
-      if (FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)) {
-        setShouldReloadTableParams((oneUp) => oneUp + 1);
-      }
+      setShouldReloadTableParams((oneUp) => oneUp + 1);
     }
   };
 

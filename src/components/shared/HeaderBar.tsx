@@ -731,6 +731,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               `${ParamPrefixes.lineup}`
             )}
           </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Advanced Lineup Analysis",
+              baseLineupTooltip,
+              getBaseLineupUrl({ advancedMode: true }),
+              `${ParamPrefixes.lineup}`
+            )}
+          </Dropdown.Item>
           <Dropdown.Divider />
           {!common.year ||
           common.year >= DateUtils.firstYearWithImprovedLineupLboards ? (

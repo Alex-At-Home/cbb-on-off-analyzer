@@ -42,8 +42,11 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     >
       <LineupFilter
         forceReload1Up={0}
+        key="0"
         onChangeState={[Function]}
         onStats={[Function]}
+        onSwitchToAdvancedMode={[Function]}
+        propKey={0}
         startingLineupLinks={[Function]}
         startingState={Object {}}
       />
@@ -85,6 +88,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
             },
           }
         }
+        key="0"
         onChangeState={[Function]}
         startingState={Object {}}
       />
