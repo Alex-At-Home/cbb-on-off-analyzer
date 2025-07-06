@@ -282,7 +282,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({
    * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
    */
   function buildParamsFromState(
-    includeFilterParams: Boolean
+    includeFilterParams: Boolean,
+    forQuery?: Boolean
   ): [LineupFilterParams, FilterRequestInfo[]] {
     // It's painful but re-calc the result of the preset to make sure we are using the right params
     const [maybeNewParams, maybeNewCommonParams] = advancedView
@@ -307,7 +308,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
               : maybeNewCommonParams || commonParams),
             aggByPos: currAggByPos,
           },
-          advancedView || currAggByPos == (startingState.aggByPos || "")
+          forQuery || //(when deciding if canSubmit, use aggByPos, but for actual query remove it)
+            advancedView ||
+            currAggByPos == (startingState.aggByPos || "")
             ? ["aggByPos"]
             : []
         ); //(in basic view, enable submit button whenever aggByPos changes)
