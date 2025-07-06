@@ -119,9 +119,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       const teamName = _.trim(v);
       if (teamName == separatorKeyword) {
         acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
-      } else {
-        acc.queryFiltersAsMap[teamName] =
-          1 + ii - acc.queryFilterRowBreaks.size;
+      } else if (teamName != "") {
+        const teams = AvailableTeams.teamAliases[teamName] || [teamName];
+        teams.forEach(
+          (team) =>
+            (acc.queryFiltersAsMap[team] =
+              1 + ii - acc.queryFilterRowBreaks.size)
+        );
       }
     },
     {

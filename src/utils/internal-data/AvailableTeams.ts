@@ -15,6 +15,12 @@ export class AvailableTeams {
 
   static readonly extraTeamName = "Extra";
 
+  /** Teams with multiple names for the same team, created by running */
+  static readonly teamAliases: Record<string, Array<string>> = {
+    "Northern Ill.": ["Northern Ill.", "NIU"],
+    NIU: ["NIU", "Northern Ill."],
+  };
+
   /** A list of all the teams with lineup data available
    * To rebuild at the start of the season run the test buildAvailableTemsForNewYear
    * then search for "???CHANGE???" and fix by hand
