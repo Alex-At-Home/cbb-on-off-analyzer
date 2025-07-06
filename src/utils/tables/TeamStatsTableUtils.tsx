@@ -190,7 +190,10 @@ export class TeamStatsTableUtils {
         case "off":
           return maybePrefix?.[1] || "B";
         case "baseline":
-          return "Base";
+          const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
+            gameFilterParams.presetMode || "??"
+          );
+          return maybeFilterPhrase ? `[${maybeFilterPhrase}]` : "Base";
         case "other":
           return (
             maybePrefix?.[2 + (otherIndex || 0)] ||
@@ -225,7 +228,12 @@ export class TeamStatsTableUtils {
             ? "Off ('B')"
             : `'B'${maybeSet}`;
         case "baseline":
-          return `'Base'${maybeSet}`;
+          const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
+            gameFilterParams.presetMode || "??"
+          );
+          return maybeFilterPhrase
+            ? `'Base'${maybeSet} (${maybeFilterPhrase})`
+            : `'Base'${maybeSet}`;
         case "other":
           const prefixIndex = 2 + (otherIndex || 0);
           return maybePrefix?.[prefixIndex]
@@ -527,8 +535,13 @@ export class TeamStatsTableUtils {
     //(end show game info logic)
 
     // Last stage before building the table: inject titles into the stats:
+    const maybeBasePhrase = onOffBaseToLongerPhrase("baseline", false);
     const teamStatsKeys = _.zip(baselineOnOffKeys, [
-      TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline"),
+      TableDisplayUtils.addQueryInfo(
+        maybeBasePhrase != "'Base'" ? maybeBasePhrase : "Baseline",
+        gameFilterParams,
+        "baseline"
+      ),
       TableDisplayUtils.addQueryInfo(
         onOffBaseToLongerPhrase("on", false),
         gameFilterParams,

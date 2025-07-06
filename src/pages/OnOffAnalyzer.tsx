@@ -84,6 +84,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const shortRowPhrases = FilterPresetUtils.getPresetPhrase(
       gameFilterParams.presetSplit || "??"
     );
+    const filterPhrase = FilterPresetUtils.getPresetFilterPhrase(
+      gameFilterParams.presetMode || "??"
+    );
     const onOffMode = params.autoOffQuery && !_.isEmpty(params.otherQueries);
     const onKey = shortRowPhrases?.[0] || (onOffMode ? "On" : "A");
     const offKey = shortRowPhrases?.[1] || (onOffMode ? "Off" : "B");
@@ -113,7 +116,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       Diffs: params.teamDiffs
         ? { ref: teamAnalysisRefDiffs, offset: 75 }
         : { skip: true },
-      Base: { ref: teamAnalysisRefBase, offset: 75 },
+      [filterPhrase ? `Base (${filterPhrase})` : "Base"]: {
+        ref: teamAnalysisRefBase,
+        offset: 75,
+      },
       " ] | ": { isLabel: true },
       Players: { ref: indivAnalysisRef },
       "Roster Comp.": { ref: lineupComparisonRef },

@@ -6,6 +6,7 @@ import {
 } from "./FilterModels";
 
 type CommonFilterPresets = {
+  phrase?: string;
   commonParams?: CommonFilterParams;
 };
 
@@ -50,26 +51,31 @@ export class FilterPresetUtils {
   static readonly commonFilterPresets: Record<string, CommonFilterPresets> = {
     [ParamDefaults.defaultPresetMode]: {},
     "Season Stats vs T50ish": {
+      phrase: "T50",
       commonParams: {
         maxRank: "50",
       },
     },
     "Season Stats vs T100ish": {
+      phrase: "T100",
       commonParams: {
         maxRank: "100",
       },
     },
     "Season Stats vs T150ish": {
+      phrase: "T150",
       commonParams: {
         maxRank: "150",
       },
     },
     "Season Stats In Conf": {
+      phrase: "Conf",
       commonParams: {
         queryFilters: "Conf",
       },
     },
     "Last 30 days": {
+      phrase: "L30d",
       commonParams: {
         queryFilters: "Last-30d",
       },
@@ -153,6 +159,11 @@ export class FilterPresetUtils {
       },
     },
   };
+
+  /** Encapsulation over commonFilterPresets */
+  static getPresetFilterPhrase(presetMode: string): string | undefined {
+    return FilterPresetUtils.commonFilterPresets[presetMode]?.phrase;
+  }
 
   /** Encapsulation over gameSplitPresets to handle the dynamically built on/off */
   static getPresetPhrase(presetSplit: string): string[] | undefined {

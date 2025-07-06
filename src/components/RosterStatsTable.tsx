@@ -780,7 +780,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       case "off":
         return maybePrefix?.[1] || "B";
       case "baseline":
-        return "Base";
+        const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
+          gameFilterParams.presetMode || "??"
+        );
+        return maybeFilterPhrase ? `[${maybeFilterPhrase}]` : "Base";
       case "other":
         return (
           maybePrefix?.[2 + (otherIndex || 0)] ||
@@ -813,7 +816,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           ? "Off ('B')"
           : "'B' set";
       case "baseline":
-        return "'Base' set";
+        const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
+          gameFilterParams.presetMode || "??"
+        );
+        return maybeFilterPhrase
+          ? `'Base' set (${maybeFilterPhrase})`
+          : `'Base' set`;
       case "other":
         const prefixIndex = 2 + (otherIndex || 0);
         return maybePrefix?.[prefixIndex]
@@ -1451,7 +1459,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         !gameFilterParams.queryFilters
                       : undefined,
                     selectionTitle: isBaseline
-                      ? "Baseline Grades"
+                      ? rowLetter != "Base"
+                        ? `Base ${rowLetter} Grades`
+                        : "Baseline Grades"
                       : `'${rowLetter}' Lineups Grades`,
                     config: showGrades,
                     setConfig: (newConfig: string) => {

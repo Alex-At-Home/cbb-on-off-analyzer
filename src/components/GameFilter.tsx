@@ -1437,6 +1437,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
         const maybePresetPhrase = FilterPresetUtils.getPresetPhrase(
           params.presetSplit || "??"
         );
+        const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
+          params.presetMode || "??"
+        );
         //(don't this is built from state instead of params)
         return [
           <a
@@ -1460,7 +1463,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               {}
             )}
           >
-            Base
+            {maybeFilterPhrase ? `Base (${maybeFilterPhrase})` : "Base"}
           </a>,
         ]
           .concat(

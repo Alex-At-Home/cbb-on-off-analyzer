@@ -333,7 +333,11 @@ export class GradeTableUtils {
     const maybeEquiv = isFullSelection ? "" : "Equiv ";
     const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, "");
     const title =
-      selectionType != "baseline" ? `'${rowLetter}' Lineups` : "Baseline";
+      selectionType != "baseline"
+        ? `'${rowLetter}' Lineups`
+        : rowLetter != "Base"
+        ? `Base ${rowLetter}`
+        : "Baseline";
     const tiers = {
       //(handy LUT)
       High: highTier,
