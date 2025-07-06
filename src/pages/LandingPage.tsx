@@ -25,6 +25,7 @@ import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
 import { ParamDefaults } from "../utils/FilterModels";
 import { DateUtils } from "../utils/DateUtils";
+import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -74,9 +75,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <p>
-            This site is intended for folks who want to explore college
-            basketball stats one notch deeper than is possible with most other
-            sites.
+            Hoop Explorer is intended for folks who want to, well,{" "}
+            <i>explore</i> college basketball stats one notch deeper than is
+            possible with most other sites.
           </p>
           <p>
             The original goal, back in 2019, was to be{" "}
@@ -99,7 +100,122 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       </Row>
       <Row>
         <Col xs={12} className="text-center">
-          <p>TODO Quick Select Topics</p>
+          <ToggleButtonGroup
+            labelOverride="Topic Filter: "
+            items={[
+              {
+                label: "All",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+              },
+              {
+                label: "| ",
+                isLabelOnly: true,
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Teams",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Players",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Lineups",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Games",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "| ",
+                isLabelOnly: true,
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Leaderboards",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "RAPM",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "On-Off",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Splits",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "CSV Export",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Off-Season",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Multi-Year",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "| ",
+                isLabelOnly: true,
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Shot Charts",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Play Types",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+              {
+                label: "Misc Charts",
+                tooltip: "",
+                toggled: false,
+                onClick: () => {},
+              },
+            ]}
+          />
         </Col>
       </Row>
       <Row xs={1} sm={1} md={1} lg={2} xl={3} className="g-4 mb-4">
@@ -113,7 +229,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 all-in-one production metric RAPM)...?
                 <br />
                 <br />
-                ... Well they will probably do a little better next season
+                ... Well they will probably do a little better next season, so
+                add those up to get the team's Adjusted Efficiency Margin
                 (skipping over some details!)
                 <br />
                 <br />

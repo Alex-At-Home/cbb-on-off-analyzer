@@ -19,11 +19,13 @@ export type ToggleButtonItem = {
 };
 
 type Props = {
+  labelOverride?: string;
   items: ToggleButtonItem[];
   override?: boolean; //(for testing, set to true to force it to render)
 };
 
 const ToggleButtonGroup: React.FunctionComponent<Props> = ({
+  labelOverride,
   items,
   override,
 }) => {
@@ -33,7 +35,7 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({
 
   return override || typeof window !== `undefined` ? (
     <div>
-      <small>Quick Select:</small>&nbsp;&nbsp;
+      <small>{labelOverride || "Quick Select:"}</small>&nbsp;&nbsp;
       {items.map((item, index) => {
         return (
           <span key={"divtog" + index}>
