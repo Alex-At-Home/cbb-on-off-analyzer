@@ -19,6 +19,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import CloseButton from "react-bootstrap/CloseButton";
 
 // App imports:
 import Footer from "../components/shared/Footer";
@@ -74,28 +75,54 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       </Row>
       <Row className="mt-2">
         <Col xs={12} className="text-center">
+          <Card>
+            <Card.Body>
+              <CloseButton
+                aria-label="Close"
+                style={{ marginTop: -15 }}
+                className="float-right" // Set position-absolute, top, right, and margin
+              />
+              <Card.Text style={{ fontSize: "1.2rem" }}>
+                <p>
+                  Hoop Explorer is a free and open Web App intended for folks
+                  who want to, well, <i>explore</i> college basketball stats ...
+                  one notch deeper than is possible with most other sites.
+                </p>
+                <p>
+                  It's used by college teams, NBA teams, Draft Twitter, sports
+                  bettors, analytics gurus, basketball journalists and bloggers,
+                  and (the group that includes me!) fans who enjoy digging into
+                  stats when there are no games to watch.
+                </p>
+                <span>
+                  The original goal, set back in 2019, was to be{" "}
+                  <i>
+                    "Like{" "}
+                    <a target="_blank" href="https://kenpom.com">
+                      KenPom
+                    </a>{" "}
+                    /{" "}
+                    <a target="_blank" href="https://barttorvik.com">
+                      Bart Torvik
+                    </a>
+                    , but for also lineups and with user-defined splits and
+                    queries"
+                  </i>
+                  ; and while the features have grown far beyond that (as you
+                  can see below!) the principle remains similar: I aim for Hoop
+                  Explorer to complement those excellent sites.
+                </span>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="mt-2 mb-2">
+        <Col xs={12} className="text-center">
           <p>
-            Hoop Explorer is intended for folks who want to, well,{" "}
-            <i>explore</i> college basketball stats one notch deeper than is
-            possible with most other sites.
-          </p>
-          <p>
-            The original goal, back in 2019, was to be{" "}
-            <i>
-              "
-              <a target="_blank" href="https://kenpom.com">
-                KenPom
-              </a>{" "}
-              /{" "}
-              <a target="_blank" href="https://barttorvik.com">
-                Bart Torvik
-              </a>
-              , but for lineups and user-defined splits and queries"
-            </i>
-            ; and while the scope has crept far beyond that (as you can see
-            below!) the principle remains similar: I aim to be a complement to
-            those excellent sites.
-          </p>
+            <b>Currently selected team</b>:{" "}
+            <a href="#">2024/25 | Men | Maryland (edit)</a>
+          </p>{" "}
         </Col>
       </Row>
       <Row>
@@ -222,22 +249,35 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         <Col className="mt-2">
           <Card>
             <Card.Body>
+              <Card.Title>Practical Examples</Card.Title>
+              <Card.Text>
+                Some screenshots / descriptions / links of Hoop Explorer uses in
+                the wild.
+                <br />
+                <br />
+                Have a browse to get an idea of some of the features!
+              </Card.Text>
+              <Card.Link href="#">
+                <b>Show me Examples!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
               <Card.Title>Offseason Predictions / Analysis</Card.Title>
               <Card.Text>
-                Hoop Explorer builds a really simple prediction model for each
-                roster: how did each player do last season (measured by the
-                all-in-one production metric RAPM)...?
+                Check out Hoop Explorer's very simple off-season predictions.
                 <br />
-                <br />
-                ... Well they will probably do a little better next season, so
-                add those up to get the team's Adjusted Efficiency Margin
-                (skipping over some details!)
-                <br />
-                <br />
-                This lets us do a few fun things during the Long Summer
-                Months... <a href="#">(Click For More Info / Options)</a>
+                <br />A key point is that I show in detail how they are
+                constructed and let you play with them to fix the bits you don't
+                like.
               </Card.Text>
-              <Card.Link href="#">Just take me to the predictions!</Card.Link>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Just take me to the predictions!</b>
+              </Card.Link>
             </Card.Body>
           </Card>
         </Col>
@@ -246,22 +286,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             <Card.Body>
               <Card.Title>Team Lineup Analysis</Card.Title>
               <Card.Text>
-                I never found pure lineup aggregations very useful, outside of
-                early season "What is the coach's plan?" type questions. Still,
-                you can see them <a href="">Here</a>.
+                All sorts of metrics about the different lineups played by the
+                selected team.
                 <br />
                 <br />
-                More interesting are various ways of combining lineups together
-                into useful aggregates (eg{" "}
-                <a href="">Evaluate backcourt combos</a>).{" "}
-                <a href="">See Other Options Here.</a>
-                <br />
-                <br />
-                There's also a leaderboard of all lineups (<a href="">Here</a>),
-                though unless you want to export them for external analytics,
-                you'll probably want the one filtered for higher frequency:{" "}
-                <a href="">Here</a>
+                The best bit is the ability to combine stats for lineups, based
+                on various groupings (frontcourt, backcourt, etc).
               </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Straight to the page!</b>
+              </Card.Link>
             </Card.Body>
           </Card>
         </Col>
@@ -270,22 +305,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             <Card.Body>
               <Card.Title>Player Leaderboards</Card.Title>
               <Card.Text>
-                See all players with enough possessions (about 10mpg), sorted by
-                the all-in-one production metric RAPM (or filtered/sorted by any
-                other stat, or combination of stats!): <a href="">Here</a>
+                See all qualifying players sorted by various stats (eg the
+                all-in-one production stat called RAPM)
                 <br />
                 <br />
-                You can see <a href="">Style Breakdowns</a> and{" "}
-                <a href="">Shot Charts</a> for the top 50 shown players.
-                <br />
-                <br />
-                By default this is per season, but you can also list players
-                across multiple years: <a href="">Here</a>
-                <br />
-                <br />
-                Almost nobody uses this, but you can even see players plotted on
-                a map of their listed hometowns! (<a href="">Here</a>)
+                And lots and lots of options for sorting, filtering,
+                visualizing, and exporting the data.
               </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Just take me to the leaderboard!</b>
+              </Card.Link>
             </Card.Body>
           </Card>
         </Col>
@@ -294,16 +324,125 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             <Card.Body>
               <Card.Title>Team Stats Explorer</Card.Title>
               <Card.Text>
-                View, sort, and filter D1 teams by all sorts of basic and
-                advanced team metrics and attributes in single (
-                <a href="">Here</a>) or multiple (<a href="">Here</a>) seasons.
+                View, sort, and filter D1 teams by lots of basic and advanced
+                team metrics across single or multiple seasons.
                 <br />
                 <br />
-                Also see offensive and defensive <a href="">
-                  Style Breakdowns
-                </a>{" "}
-                and <a href="">Shot Charts</a>.
+                Also see offensive and defensive Style Breakdowns and Shot
+                Charts.
               </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Let Me Explore!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Team And Roster Analysis / Splits</Card.Title>
+              <Card.Text>
+                The classic "KenPom"-like page showing team Adjusted Efficiency,
+                4-factors, etc and player offensive/defensive ratings, shooting
+                stats, etc...
+                <br />
+                <br />
+                ... And a lot more: Filters! Splits! Style! Shot Charts! etc
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>I'm Sold! Let's Go</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Play Type / Style Analysis</Card.Title>
+              <Card.Text>
+                Maybe Hoop Explorer's most unique feature - break down a team or
+                player's offense or defense into intuitive "style" categories
+                ("Post-Up", "Transition", "Perimeter Sniper", etc)
+                <br />
+                <br />
+                Accesible from lots of pages - see "More Details".
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Show Me For The Top 10 Teams!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Shot Charts</Card.Title>
+              <Card.Text>
+                Many pages allow you to view a hex map of team or player shots,
+                showing frequency and efficiency vs D1 averages.
+                <br />
+                <br />
+                Accesible from lots of pages - see "More Details". Particularly
+                interesting with filters and splits!
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Show Me For The Top 10 Teams!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Team On-Off</Card.Title>
+              <Card.Text>
+                TODO
+                <br />
+                <br />
+                TODO
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Straight to the page!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Game Reports</Card.Title>
+              <Card.Text>
+                TODO
+                <br />
+                <br />
+                TODO
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Straight to the page!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Game Previews</Card.Title>
+              <Card.Text>
+                TODO
+                <br />
+                <br />
+                TODO
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Straight to the page!</b>
+              </Card.Link>
             </Card.Body>
           </Card>
         </Col>
