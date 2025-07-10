@@ -157,6 +157,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
   const [teamView, setTeamView] = useState(startingState.teamView || "");
 
+  const [showAllTeams, setShowAllTeams] = useState(
+    startingState.showAllTeams || false
+  );
   const [transferInOutMode, setTransferInOutMode] = useState(
     startingState.transferInOutMode || false
   );
@@ -269,6 +272,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           transferInOutMode: transferInOutMode,
           sortBy: sortBy,
           queryFilters: queryFilters,
+          showAllTeams,
         },
         _.chain(teamOverrides)
           .flatMap((teamEdit, teamToOver) => {
@@ -289,6 +293,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     year,
     evalMode,
     transferInOutMode,
+    showAllTeams,
     sortBy,
     queryFilters,
   ]);
@@ -673,7 +678,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       );
     };
 
-    const maxUnfilteredRows = 75;
+    const maxUnfilteredRows = showAllTeams ? 10000 : 75;
     const useManualOrderForTeams = !_.isEmpty(queryFilterRowBreaks);
     const tableRowsPreMaybeManualSort: _.CollectionChain<
       [OffseasonTeamInfo, number]
@@ -1179,6 +1184,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                   () => setTransferInOutMode(!transferInOutMode),
                   !evalMode
                 )
+              }
+            />
+            <GenericTogglingMenuItem
+              text={"Show all teams (slow, useful for export)"}
+              truthVal={showAllTeams}
+              disabled={false}
+              onSelect={() =>
+                friendlyChange(() => setShowAllTeams(!showAllTeams), !evalMode)
               }
             />
             <GenericTogglingMenuItem

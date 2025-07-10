@@ -276,6 +276,7 @@ export type OffseasonLeaderboardParams = {
   confs?: string;
   evalMode?: boolean;
   transferInOutMode?: boolean;
+  showAllTeams?: boolean;
   sortBy?: string; //(for transferInOutMode)
   queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)

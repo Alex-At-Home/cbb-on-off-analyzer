@@ -95,7 +95,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   stats when there are no games to watch.
                 </p>
                 <span>
-                  The original goal, set back in 2019, was to be{" "}
+                  The original goal, back in 2019, was to be{" "}
                   <i>
                     "Like{" "}
                     <a target="_blank" href="https://kenpom.com">
@@ -109,7 +109,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     queries"
                   </i>
                   ; and while the features have grown far beyond that (as you
-                  can see below!) the principle remains similar: I aim for Hoop
+                  can see below!) the principle remains similar: I want Hoop
                   Explorer to complement those excellent sites.
                 </span>
               </Card.Text>
@@ -118,11 +118,15 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </Col>
       </Row>
       <Row className="mt-2 mb-2">
-        <Col xs={12} className="text-center">
-          <p>
+        <Col xs={12} className="text-center" style={{ position: "relative" }}>
+          <div style={{ position: "absolute", right: 20 }}>
+            <br className="d-block d-md-none" />
+            <a href="">(welcome)</a>
+          </div>
+          <p style={{ display: "inline-block" }}>
             <b>Currently selected team</b>:{" "}
             <a href="#">2024/25 | Men | Maryland (edit)</a>
-          </p>{" "}
+          </p>
         </Col>
       </Row>
       <Row>
@@ -442,6 +446,23 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               <Card.Link href="#">More details...</Card.Link>
               <Card.Link href="#">
                 <b>Straight to the page!</b>
+              </Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="mt-2">
+          <Card>
+            <Card.Body>
+              <Card.Title>Build Your Own T25</Card.Title>
+              <Card.Text>
+                TODO
+                <br />
+                <br />
+                TODO
+              </Card.Text>
+              <Card.Link href="#">More details...</Card.Link>
+              <Card.Link href="#">
+                <b>Just take me to the leaderboard!</b>
               </Card.Link>
             </Card.Body>
           </Card>
