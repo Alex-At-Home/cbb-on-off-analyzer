@@ -387,6 +387,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   const [isT100, setIsT100] = useState(startingState.t100 || false);
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
+  const [incLowVol, setIncLowVol] = useState(startingState.incLowVol || false);
 
   const [showExpanded, setShowExpanded] = useState(
     _.isNil(startingState.showExpanded)
@@ -561,6 +562,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       conf: confs,
       tier: tier,
       t100: isT100,
+      incLowVol,
       confOnly: isConfOnly,
       // Player filters/settings:
       posClasses: posClasses,
@@ -593,6 +595,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     advancedFilterStr,
     isT100,
     isConfOnly,
+    incLowVol,
     possAsPct,
     factorMins,
     showInfoSubHeader,
@@ -2582,6 +2585,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 onSelect={() =>
                   friendlyChange(() => setPossAsPct(!possAsPct), true)
                 }
+              />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text={<span>Include low-volume players</span>}
+                truthVal={incLowVol}
+                onSelect={() => {
+                  friendlyChange(() => {
+                    setIncLowVol(!incLowVol);
+                  }, true);
+                }}
               />
               <Dropdown.Divider />
               <GenericTogglingMenuItem

@@ -134,6 +134,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         // omit all defaults
         !rawParams.t100 ? ["t100"] : [],
         !rawParams.confOnly ? ["confOnly"] : [],
+        !rawParams.incLowVol ? ["incLowVol"] : [],
         !rawParams.filter ? ["filter"] : [],
         !rawParams.advancedFilter ? ["advancedFilter"] : [],
         !rawParams.conf ? ["conf"] : [],
@@ -234,7 +235,9 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         transferMode && transferYearStr ? [transferYearStr] : [];
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        dataSubEventKey,
+        dataSubEventKey == "all" && paramObj.incLowVol
+          ? "all-lowvol"
+          : dataSubEventKey,
         gender,
         fullYear,
         tier,

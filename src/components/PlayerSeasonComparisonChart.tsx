@@ -270,8 +270,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   );
   const globalScatterChartRef = React.createRef<any>();
 
-  const [incLowVolPlayers, setIncLowVolPlayers] = useState<boolean>(
-    startingState.includeLowVolPlayers || false
+  const [incLowVol, setIncLowVol] = useState<boolean>(
+    startingState.incLowVol || false
   );
 
   // All the complex config:
@@ -482,7 +482,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       showTable: showTable,
       showPrevNextInTable: showPrevNextInTable,
       showOnlyHandSelectedInTable: showOnlyHandSelectedInTable,
-      includeLowVolPlayers: incLowVolPlayers,
+      incLowVol,
     });
   }, [
     confs,
@@ -503,7 +503,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     showPrevNextInTable,
     showOnlyHandSelectedInTable,
     showTable,
-    incLowVolPlayers,
+    incLowVol,
   ]);
 
   /** Set this to be true on expensive operations */
@@ -1366,7 +1366,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
           year: multiYearScenarios[year] ? DateUtils.AllYears : year,
           tier: "All",
-          minPoss: incLowVolPlayers ? "0" : undefined,
+          minPoss: incLowVol ? "0" : undefined,
         }}
         dataEvent={{
           players: (subChart || mainChart)

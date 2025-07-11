@@ -303,6 +303,7 @@ export type PlayerLeaderboardParams = {
   // Query pre-sets
   confOnly?: boolean;
   t100?: boolean;
+  incLowVol?: boolean; //(if true includes players in the ~3-10mpg range who are otherwise filtered out)
   // Transfer info
   transferMode?: string; //==true => show only available, vs ==$year show all, append ":predictions" show all but including predictions
   includePrevYear?: boolean; //(if available add an extra 2 rows with the player's prev year stats)
@@ -339,7 +340,7 @@ export type PlayerSeasonComparisonParams = {
   dotColorMap?: string;
   labelStrategy?: string;
   toggledPlayers?: string;
-  includeLowVolPlayers?: boolean;
+  incLowVol?: boolean;
 };
 
 export type TeamLeaderboardParams = {

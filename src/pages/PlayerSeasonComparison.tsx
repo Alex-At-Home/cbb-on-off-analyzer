@@ -117,7 +117,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         //These aren't plumbed in:
         !rawParams.t100 ? ["t100"] : [], //(these 2 don't work anyway in this view)
         !rawParams.confOnly ? ["confOnly"] : [],
-        !rawParams.includeLowVolPlayers ? ["includeLowVolPlayers"] : [],
+        !rawParams.incLowVol ? ["incLowVol"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]
@@ -202,7 +202,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
           const prevYearWithStats = DateUtils.getPrevYear(yearWithStats);
           const transferYears = [transferYear, transferYearPrev];
           const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-            paramObj.includeLowVolPlayers ? "all-lowvol" : "all",
+            paramObj.incLowVol ? "all-lowvol" : "all",
             gender,
             yearWithStats,
             tier,
