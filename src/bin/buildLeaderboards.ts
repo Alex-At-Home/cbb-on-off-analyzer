@@ -1283,41 +1283,39 @@ export async function main() {
                   shotInfo: shotChartMap[kv[0]],
                   style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this
                   posFreqs: maybeConvertPosInfo(posFreqs),
-                  ...((cutdownLowVolume
-                    ? lowVolumeStripPlayerInfo(player)
-                    : _.chain(player)
-                        .toPairs()
-                        .filter(
-                          (
-                            t2 //Reduce down to the field we'll actually need
-                          ) =>
-                            t2[0] == "off_team_poss" ||
-                            t2[0] == "off_team_poss_pct" ||
-                            t2[0] == "def_team_poss" ||
-                            t2[0] == "def_team_poss_pct" ||
-                            (t2[0] != "diag_off_rtg" &&
-                              t2[0] != "diag_def_rtg" &&
-                              t2[0] != "off_luck" &&
-                              t2[0] != "def_luck" &&
-                              !_.startsWith(t2[0], "off_team_") &&
-                              !_.startsWith(t2[0], "def_team_") &&
-                              !_.startsWith(t2[0], "off_oppo_") &&
-                              !_.startsWith(t2[0], "def_oppo_") &&
-                              !_.startsWith(t2[0], "team_") &&
-                              !_.startsWith(t2[0], "oppo_") &&
-                              !(
-                                _.startsWith(t2[0], "total_") &&
-                                !GradeUtils.playerTotalsToKeep.has(t2[0]) &&
-                                !extraTotalFieldsToKeep.has(t2[0])
-                              ) &&
-                              !_.endsWith(t2[0], "_target") &&
-                              !_.endsWith(t2[0], "_source") &&
-                              t2[0] != "player_array" &&
-                              t2[0] != "role" &&
-                              t2[0] != "roster")
-                        )
-                        .fromPairs()
-                        .value()) as PureStatSet),
+                  ...(_.chain(player) //(for lowvol players (cutdownLowVolume) we used to just call lowVolumeStripPlayerInfo instead, but trying with all info)
+                    .toPairs()
+                    .filter(
+                      (
+                        t2 //Reduce down to the field we'll actually need
+                      ) =>
+                        t2[0] == "off_team_poss" ||
+                        t2[0] == "off_team_poss_pct" ||
+                        t2[0] == "def_team_poss" ||
+                        t2[0] == "def_team_poss_pct" ||
+                        (t2[0] != "diag_off_rtg" &&
+                          t2[0] != "diag_def_rtg" &&
+                          t2[0] != "off_luck" &&
+                          t2[0] != "def_luck" &&
+                          !_.startsWith(t2[0], "off_team_") &&
+                          !_.startsWith(t2[0], "def_team_") &&
+                          !_.startsWith(t2[0], "off_oppo_") &&
+                          !_.startsWith(t2[0], "def_oppo_") &&
+                          !_.startsWith(t2[0], "team_") &&
+                          !_.startsWith(t2[0], "oppo_") &&
+                          !(
+                            _.startsWith(t2[0], "total_") &&
+                            !GradeUtils.playerTotalsToKeep.has(t2[0]) &&
+                            !extraTotalFieldsToKeep.has(t2[0])
+                          ) &&
+                          !_.endsWith(t2[0], "_target") &&
+                          !_.endsWith(t2[0], "_source") &&
+                          t2[0] != "player_array" &&
+                          t2[0] != "role" &&
+                          t2[0] != "roster")
+                    )
+                    .fromPairs()
+                    .value() as PureStatSet),
                   ...posInfo,
                   posConfidences: maybeConvertPosInfo(posInfo.posConfidences),
                 } as IndivStatSet;
@@ -1823,7 +1821,7 @@ const lowVolumePlayerCheck = (p: IndivStatSet): boolean => {
   // ).valueOf();
 };
 
-/** Handy util to cut a player's stats down to the bare min needed for evaluating them */
+/** CURRENTLY UNUSED: Handy util to cut a player's stats down to the bare min needed for evaluating them */
 const lowVolumeStripPlayerInfo = (p: IndivStatSet) =>
   _.chain(p)
     .pick([
@@ -1860,7 +1858,7 @@ const lowVolumeStripPlayerInfo = (p: IndivStatSet) =>
     })
     .value();
 
-/** Adds some handy default sortings - includes stripped down view of key players removed due to lack of posessions in second array */
+/** Adds some handy default sortings - includes stripped down view of key players removed due to lack of possessions in second array */
 export function completePlayerLeaderboard(
   key: string,
   leaderboard: any[],
@@ -1907,9 +1905,8 @@ export function completePlayerLeaderboard(
     );
     return [
       sortedLeaderboard,
-      processedCastOffs
-        .filter(lowVolumePlayerCheck)
-        .map(lowVolumeStripPlayerInfo),
+      processedCastOffs.filter(lowVolumePlayerCheck),
+      //(used to always strip via lowVolumeStripPlayerInfo but we're actually leaving all the fields in now)
     ];
   }
 }
@@ -2047,7 +2044,7 @@ if (!testMode) {
 
       console.log("Processing Complete!");
 
-      var savedCastoffs = [] as IndivStatSet[];
+      var savedCastoffs = [] as IndivStatSet[]; //(relies on lowvol being processed twice)
 
       const outputCases: Array<[string, Array<any>, Array<any>, Array<any>]> = [
         ["all", savedLineups, savedPlayers, detailedTeamInfo],
