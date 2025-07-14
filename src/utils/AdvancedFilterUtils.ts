@@ -2,6 +2,7 @@ import _ from "lodash";
 import Enumerable from "linq";
 import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
+import { PlayTypeUtils } from "./stats/PlayTypeUtils";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -462,6 +463,75 @@ export class AdvancedFilterUtils {
     reb_scramble: "Put-Back",
     transition: "Transition",
   };
+  /** Auto-complete names to data model mapping */
+  static readonly playerStyleFromAutocompleteLut: Record<string, string> = {
+    rim_attack: "Rim Attack",
+    attack_kick: "Attack & Kick",
+    dribble_jumper: "Dribble Jumper",
+    mid_range: "Mid-Range",
+    perimeter_cut: "Backdoor Cut",
+    big_cut_roll: "Big Cut & Roll",
+    post_up: "Post-Up",
+    post_kick: "Post & Kick",
+    pick_pop: "Pick & Pop",
+    high_low: "High-Low",
+    reb_scramble: "Put-Back",
+    transition: "Transition",
+    // Indiv only:
+    perimeter_sniper: "Perimeter Sniper",
+    hits_cutter: "Hits Cutter",
+    pnr_passer: "PnR Passer",
+  };
+
+  /** The concat of the graded versions of these work slightly different */
+  static readonly playerLeaderboardPlayStyles = [
+    //Play styles
+    "off_style_rim_attack_pct",
+    "off_style_rim_attack_usg",
+    "off_style_rim_attack_ppp",
+    "off_style_attack_kick_pct",
+    "off_style_attack_kick_usg",
+    "off_style_attack_kick_ppp",
+    "off_style_perimeter_sniper_pct",
+    "off_style_perimeter_sniper_usg",
+    "off_style_perimeter_sniper_ppp",
+    "off_style_dribble_jumper_pct",
+    "off_style_dribble_jumper_usg",
+    "off_style_dribble_jumper_ppp",
+    "off_style_mid_range_pct",
+    "off_style_mid_range_usg",
+    "off_style_mid_range_ppp",
+    "off_style_hits_cutter_pct",
+    "off_style_hits_cutter_usg",
+    "off_style_hits_cutter_ppp",
+    "off_style_perimeter_cut_pct",
+    "off_style_perimeter_cut_usg",
+    "off_style_perimeter_cut_ppp",
+    "off_style_pnr_passer_pct",
+    "off_style_pnr_passer_usg",
+    "off_style_pnr_passer_ppp",
+    "off_style_big_cut_roll_pct",
+    "off_style_big_cut_roll_usg",
+    "off_style_big_cut_roll_ppp",
+    "off_style_post_up_pct",
+    "off_style_post_up_usg",
+    "off_style_post_up_ppp",
+    "off_style_post_kick_pct",
+    "off_style_post_kick_usg",
+    "off_style_post_kick_ppp",
+    "off_style_pick_pop_pct",
+    "off_style_pick_pop_usg",
+    "off_style_pick_pop_ppp",
+    "off_style_high_low_pct",
+    "off_style_high_low_usg",
+    "off_style_high_low_ppp",
+    "off_style_reb_scramble_pct",
+    "off_style_reb_scramble_usg",
+    "off_style_reb_scramble_ppp",
+    "off_style_transition_pct",
+    "off_style_transition_usg",
+    "off_style_transition_ppp",
+  ];
 
   static readonly playerLeaderBoardAutocomplete = AdvancedFilterUtils.operators
     .concat([
@@ -604,9 +674,17 @@ export class AdvancedFilterUtils {
       // Regional views:
       "hs_region_dmv",
     ])
+    .concat(AdvancedFilterUtils.playerLeaderboardPlayStyles)
     .concat(
       ["rank_", "pctile_"].flatMap((prefix) =>
         _.keys(GradeUtils.playerFields).map((field) => `${prefix}${field}`)
+      )
+    )
+    .concat(
+      ["rank_", "pctile_"].flatMap((prefix) =>
+        AdvancedFilterUtils.playerLeaderboardPlayStyles.map(
+          (field) => `${prefix}${field}`
+        )
       )
     );
 
@@ -692,6 +770,16 @@ export class AdvancedFilterUtils {
     return s
       .replace(/ALL/g, "($.player_code)")
       .replace(
+        /(off|def)_style_([0-9a-zA-Z_]+)_(pct|ppp|usg)/g,
+        (substr: string, offDef: string, styleType: string, pctPpp: string) =>
+          `$.${
+            offDef == "def" ? "style_def" : "style" //(have to reverse prefix to avoid colliding with def_ below)
+          }?.${AdvancedFilterUtils.playerStyleFromAutocomplete(
+            styleType,
+            pctPpp
+          )}?.value`
+      )
+      .replace(
         /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
         (
           substr: string,
@@ -766,6 +854,20 @@ export class AdvancedFilterUtils {
     )}"]?.${suffix == "pct" ? "possPct" : "pts"}`;
   };
 
+  /** Creates an accessor into p.style for play type analysis */
+  static readonly playerStyleFromAutocomplete = (
+    str: string,
+    suffix: string
+  ) => {
+    return `["${_.thru(
+      str,
+      (__) =>
+        AdvancedFilterUtils.playerStyleFromAutocompleteLut[str] || "unknown"
+    )}"]?.${
+      suffix == "pct" ? "possPct" : suffix == "usg" ? "possPctUsg" : "pts"
+    }`;
+  };
+
   /** Converts team stats explorer autocomplete terms to ugly object formats */
   static teamFixObjectFormat(s: string) {
     return s
@@ -835,6 +937,9 @@ export class AdvancedFilterUtils {
         .replace(/pctile_[$][.]p[.]team_stats[.]/g, "$.pctile_team_stats.")
         .replace(/rank_[$][.]p[.]/g, "$.rank.")
         .replace(/pctile_[$][.]p[.]/g, "$.pctile.")
+        // For play styles in player leaderboards - decompress style so sits in top level (so needs to be below the "rank_[$][.]p[.]" cases)
+        .replace(/rank_[$][.]/g, "$.rank.")
+        .replace(/pctile_[$][.]/g, "$.pctile.")
         // Special cases where for some reason the underlying value is transformed by *100 (but the grade is on the original)
         .replace(/rank_[(]100[*][$][.]p[.]/g, "(100*$.rank.")
         .replace(/pctile_[(]100[*][$][.]p[.]/g, "(100*$.pctile.")
@@ -1090,8 +1195,10 @@ export class AdvancedFilterUtils {
       const teamDivStatsForYear = teamDivStats
         ? teamDivStats(p.year)
         : undefined;
+      const decompStyle = PlayTypeUtils.decompressIndivPlayType(p.style);
       const retVal = {
         p: p,
+        style: decompStyle,
         player_name: p.key,
         player_code: p.code,
         transfer_src: p.transfer_src || "",
@@ -1109,15 +1216,15 @@ export class AdvancedFilterUtils {
 
         // Percentile and rank, including team stats:
         //TODO: need to handle prevYear
-        pctile: AdvancedFilterUtils.buildGrades(
-          p,
+        pctile: AdvancedFilterUtils.buildPlayerGrades(
+          { p: p, style: decompStyle },
           divStatsForYear,
           pctileFields,
           stylePctileFields,
           false
         ),
-        rank: AdvancedFilterUtils.buildGrades(
-          p,
+        rank: AdvancedFilterUtils.buildPlayerGrades(
+          { p: p, style: decompStyle },
           divStatsForYear,
           rankFields,
           styleRankFields,
@@ -1557,6 +1664,8 @@ export class AdvancedFilterUtils {
     const isStyleField = (field: string) =>
       _.startsWith(field, "$.p.style") ||
       _.startsWith(field, "$.p.style_def") ||
+      _.startsWith(field, "$.style") || //(player play styles)
+      _.startsWith(field, "$.style_def") ||
       _.startsWith(field, "$.p.team_stats.style") ||
       _.startsWith(field, "$.p.team_stats.style_def");
 
@@ -1581,11 +1690,14 @@ export class AdvancedFilterUtils {
             "$1|DefPpp"
           )
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
+          .replace(/[$][.]style.*["]([^"]+)["].*[.]possPctUsg.*/, "$1|UsgPct") //(player play styles, off only)
+          .replace(/[$][.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct") //(player play styles, off only)
           .replace(
             /[$][.]p[.]team_stats[.]style.*["]([^"]+)["].*[.]possPct.*/,
             "$1|Pct"
           )
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
+          .replace(/[$][.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp") //(player play styles, off only)
           .replace(
             /[$][.]p[.]team_stats[.]style.*["]([^"]+)["].*[.]pts.*/,
             "$1|Ppp"
@@ -1620,10 +1732,12 @@ export class AdvancedFilterUtils {
     ): [string, Statistic | undefined] => {
       const styleDecomp = styleField.split("|");
       const isPpp = styleDecomp[1] == "Ppp" || styleDecomp[1] == "DefPpp";
-      const nestedField = isPpp ? "pts" : "possPct";
+      const isUsg = styleDecomp[1] == "UsgPct";
+      const nestedField = isPpp ? "pts" : isUsg ? "possPctUsg" : "possPct";
       const styleKey = offDef == "off" ? "style" : "def_style";
       //(this is the pointer to the original object so is def_style ie the team_details field name
       // as opposed to the temp style_def I use internally to avoid collision with def_ regexes)
+
       const retVal = _.thru(
         GradeUtils.getPercentile(
           divStatsForYear,
@@ -1651,7 +1765,7 @@ export class AdvancedFilterUtils {
       ];
     };
     // Going to end with a format like this:
-    // style: { "Dribble Jumper": { possPct|pts: { value: XXX } } }
+    // style: { "Dribble Jumper": { possPct|possPctUsg|pts: { value: XXX } } }
     const [offStyleGrades, defStyleGrades] = _.partition(
       styleGrades,
       (field) => !field.includes("|Def")
@@ -1714,6 +1828,35 @@ export class AdvancedFilterUtils {
           ),
           AdvancedFilterUtils.buildStyleGrades(
             p,
+            divStatsForYear,
+            styleGrades,
+            convertToRank
+          )
+        )
+      : {};
+  };
+
+  /** Builds the rank / style grades for Linq expressions */
+  private static buildPlayerGrades = (
+    playerObj: { p: any; style: any },
+    divStatsForYear: DivisionStatistics | undefined,
+    statGrades: string[],
+    styleGrades: string[],
+    convertToRank: boolean = false
+  ) => {
+    return divStatsForYear
+      ? _.merge(
+          _.mapValues(
+            GradeUtils.buildTeamPercentiles(
+              divStatsForYear,
+              playerObj.p,
+              statGrades,
+              convertToRank
+            ),
+            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
+          ),
+          AdvancedFilterUtils.buildStyleGrades(
+            playerObj, //(style under $.style for players)
             divStatsForYear,
             styleGrades,
             convertToRank
