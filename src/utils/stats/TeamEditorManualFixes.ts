@@ -1688,6 +1688,9 @@ export class TeamEditorManualFixes {
           UIC: {
             leftTeam: ["SaCiani::"], //(MVC fixes)
           },
+          Virginia: {
+            leftTeam: ["JaWarley::"],
+          },
         };
 
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(

@@ -328,6 +328,20 @@ export const freshmenMen2025_26: Record<string, any> = {
   },
   Virginia: {
     "Mallory, Chance": { pos: "PG", pr: "4*", c: "ChMallory", h: "5-9", r: 74 },
+    "de Ridder, Thijs": {
+      pos: "WF",
+      pr: "5*",
+      c: "ThDeridder",
+      h: "6-8",
+      r: -70,
+    },
+    "Grunloh, Johann": {
+      pos: "C",
+      pr: "5*",
+      c: "JoGrunloh",
+      h: "6-11",
+      r: -80,
+    },
   },
   VCU: {
     "Lewis, Nyk": { pos: "PG", pr: "4*", c: "NyLewis", h: "6-1", r: 99 },
