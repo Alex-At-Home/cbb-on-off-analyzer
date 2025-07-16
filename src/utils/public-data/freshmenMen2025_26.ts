@@ -52,6 +52,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: -70,
     },
     "Magwood, Kaden": { pos: "CG", pr: "4*", c: "KaMagwood", h: "6-1", r: 81 },
+    "Jovic, Filip": {
+      pos: "S-PF",
+      pr: "5*",
+      c: "JoFilip",
+      h: "6-9",
+      r: -100,
+    },
   },
   Washington: {
     "Bundalo, Niko": {
@@ -69,6 +76,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-3",
       r: 44,
     },
+    "Steinbech, Hannes": {
+      pos: "S-PF",
+      pr: "5*",
+      c: "HaSteinbech",
+      h: "6-9",
+      r: -80,
+    },
   },
   "Ole Miss": {
     "Jordan, Tylis": { pos: "PF/C", pr: "4*", c: "TyJordan", h: "6-9", r: 99 },
@@ -78,6 +92,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       c: "PaPinkins",
       h: "6-5",
       r: -48,
+    },
+    "Kamardine, Ilias": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "IlKamardine",
+      h: "6-5",
+      r: 50,
     },
   },
   Florida: {
@@ -123,6 +144,20 @@ export const freshmenMen2025_26: Record<string, any> = {
   },
   "Arizona St.": {
     "Pitt, Jaion": { pos: "S-PF", pr: "4*", c: "JaPitt", h: "6-7", r: -87 },
+    "Massamba Diop, Mor": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "MoMassambadiop",
+      h: "6-10",
+      r: 20,
+    },
+    "Grbovic, Andrija": {
+      pos: "S-PF",
+      pr: "4*/T40ish",
+      c: "AnGrbovic",
+      h: "6-9",
+      r: 20,
+    },
   },
   "Iowa St.": {
     "Batemon, Jamarion": {
@@ -313,6 +348,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: -86,
     },
     "Denis, Isaiah": { pos: "CG", pr: "4*", c: "IsDenis", h: "6-5", r: 38 },
+    "Bogavac, Luka": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "LuBogavac",
+      h: "6-5",
+      r: 20,
+    },
   },
   Gonzaga: {
     "Fogle, Davis": {
@@ -321,6 +363,22 @@ export const freshmenMen2025_26: Record<string, any> = {
       c: "DaFogle",
       h: "6-7",
       r: 22,
+    },
+    "Saint-Supery, Mario": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "MaSaint-supery",
+      h: "6-3",
+      r: 60,
+    },
+  },
+  Davidson: {
+    "Platteeuw, Ian": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "IaPlatteeuw",
+      h: "7-0",
+      r: -25,
     },
   },
   Pepperdine: {
@@ -341,6 +399,15 @@ export const freshmenMen2025_26: Record<string, any> = {
       c: "JoGrunloh",
       h: "6-11",
       r: -80,
+    },
+  },
+  "Virginia Tech": {
+    "Avdalas, Neoklis": {
+      pos: "WF",
+      pr: "4*/T40ish",
+      c: "NeAvdalas",
+      h: "6-8",
+      r: 75,
     },
   },
   VCU: {
@@ -500,6 +567,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: 80,
     },
     "Moreno, Malachi": { pos: "C", pr: "5*", c: "MaMoreno", h: "6-11", r: -94 },
+    "Jelavic, Andrej": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "AnJelavic",
+      h: "6-11",
+      r: 0,
+    },
   },
   "Notre Dame": {
     "Haralson, Jalen": {
@@ -534,6 +608,31 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-3",
       r: 54,
     },
+    "Mirkovic, David": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "DaMirkovic",
+      h: "6-9",
+      r: 100,
+    },
+  },
+  "Grand Canyon": {
+    "Demirel, Efe": {
+      pos: "C",
+      pr: "4*",
+      c: "EfDemirel",
+      h: "7-1",
+      r: 75,
+    },
+  },
+  "Saint Mary's (CA)": {
+    "Juzenas, Mantas": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "MaJuzenas",
+      h: "6-7",
+      r: 75,
+    },
   },
   "UC Santa Barbara": {
     "Simcoe, Michael": {
@@ -565,6 +664,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       r: -62,
     },
     "Fru, Sananda": { pos: "PF/C", pr: "5*", c: "SaFru", h: "6-11", r: -60 },
+    "Zougris, Evangelos": {
+      pos: "S-PF",
+      pr: "5*",
+      c: "EvZougris",
+      h: "6-8",
+      r: -50,
+    },
   },
   Kansas: {
     "Peterson, Darryn": {
@@ -676,6 +782,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-8",
       r: -74,
     },
+    "Kharchenkov, Ivan": {
+      pos: "WG",
+      pr: "4*",
+      c: "IvKharchenkov",
+      h: "6-6",
+      r: 75,
+    },
   },
   "Oklahoma St.": {
     "Ahmed, Ben": {
@@ -684,6 +797,13 @@ export const freshmenMen2025_26: Record<string, any> = {
       c: "BeAhmed",
       h: "6-9",
       r: 80,
+    },
+    "Mantzoukas, Lefteris": {
+      pos: "S-PF",
+      pr: "5*",
+      c: "EvZougris",
+      h: "6-9",
+      r: -50,
     },
   },
   "Fla. Atlantic": {
