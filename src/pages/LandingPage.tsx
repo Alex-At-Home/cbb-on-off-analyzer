@@ -20,6 +20,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import CloseButton from "react-bootstrap/CloseButton";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 // App imports:
 import Footer from "../components/shared/Footer";
@@ -34,6 +36,7 @@ type Props = {
 const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gaInited, setGaInited] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set(['All']));
+  const [showIntro, setShowIntro] = useState<boolean>(true);
 
   // Topic-filtered card component
   type TopicFilteredCardProps = {
@@ -183,53 +186,68 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       </Row>
       <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <Card>
-            <Card.Body>
-              <CloseButton
-                aria-label="Close"
-                style={{ marginTop: -15 }}
-                className="float-right" // Set position-absolute, top, right, and margin
-              />
-              <Card.Text style={{ fontSize: "1.2rem" }}>
-                <p>
-                  Hoop Explorer is a free and open Web App intended for folks
-                  who want to, well, <i>explore</i> college basketball stats ...
-                  one notch deeper than is possible with most other sites.
-                </p>
-                <p>
-                  It's used by college teams, NBA teams, Draft Twitter, sports
-                  bettors, analytics gurus, basketball journalists and bloggers,
-                  and (the group that includes me!) fans who enjoy digging into
-                  stats when there are no games to watch.
-                </p>
-                <span>
-                  The original goal, back in 2019, was to be{" "}
-                  <i>
-                    "Like{" "}
-                    <a target="_blank" href="https://kenpom.com">
-                      KenPom
-                    </a>{" "}
-                    /{" "}
-                    <a target="_blank" href="https://barttorvik.com">
-                      Bart Torvik
-                    </a>
-                    , but for also lineups and with user-defined splits and
-                    queries"
-                  </i>
-                  ; and while the features have grown far beyond that (as you
-                  can see below!) the principle remains similar: I want Hoop
-                  Explorer to complement those excellent sites.
-                </span>
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          {showIntro && (
+            <Card id="intro">
+              <Card.Body>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="close-tooltip">Hide the welcome message</Tooltip>}
+                >
+                  <CloseButton
+                    aria-label="Close"
+                    style={{ marginTop: -15 }}
+                    className="float-right"
+                    onClick={() => setShowIntro(false)}
+                  />
+                </OverlayTrigger>
+                <Card.Text style={{ fontSize: "1.2rem" }}>
+                  <p>
+                    Hoop Explorer is a free and open Web App intended for folks
+                    who want to, well, <i>explore</i> college basketball stats ...
+                    one notch deeper than is possible with most other sites.
+                  </p>
+                  <p>
+                    It's used by college teams, NBA teams, Draft Twitter, sports
+                    bettors, analytics gurus, basketball journalists and bloggers,
+                    and (the group that includes me!) fans who enjoy digging into
+                    stats when there are no games to watch.
+                  </p>
+                  <span>
+                    The original goal, back in 2019, was to be{" "}
+                    <i>
+                      "Like{" "}
+                      <a target="_blank" href="https://kenpom.com">
+                        KenPom
+                      </a>{" "}
+                      /{" "}
+                      <a target="_blank" href="https://barttorvik.com">
+                        Bart Torvik
+                      </a>
+                      , but for also lineups and with user-defined splits and
+                      queries"
+                    </i>
+                    ; and while the features have grown far beyond that (as you
+                    can see below!) the principle remains similar: I want Hoop
+                    Explorer to complement those excellent sites.
+                  </span>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          )}
         </Col>
       </Row>
       <Row className="mt-2 mb-2">
         <Col xs={12} className="text-center" style={{ position: "relative" }}>
           <div style={{ position: "absolute", right: 20 }}>
             <br className="d-block d-md-none" />
-            <a href="">(welcome)</a>
+            {!showIntro && (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="welcome-tooltip">Show the welcome message</Tooltip>}
+              >
+                <a href="#" onClick={(e) => { e.preventDefault(); setShowIntro(true); }}>(welcome)</a>
+              </OverlayTrigger>
+            )}
           </div>
           <p style={{ display: "inline-block" }}>
             <b>Currently selected team</b>:{" "}
