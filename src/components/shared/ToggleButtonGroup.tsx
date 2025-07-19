@@ -11,7 +11,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 
 export type ToggleButtonItem = {
   label: string | React.ReactNode;
-  tooltip: string | React.ReactNode;
+  tooltip?: string | React.ReactNode;
   toggled: boolean;
   onClick: () => void;
   isLabelOnly?: boolean;
@@ -29,8 +29,19 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({
   items,
   override,
 }) => {
-  const tooltip = (tooltip: string | React.ReactNode, i: number) => (
+  const tooltipGen = (tooltip: string | React.ReactNode, i: number) => (
     <Tooltip id={`tooltip-${i}`}>{tooltip}</Tooltip>
+  );
+
+  const maybeOverlayTrigger = (child: React.ReactElement, item: ToggleButtonItem, index: number) => (
+    item.tooltip && item.tooltip != "" ? (
+      <OverlayTrigger
+        placement="auto"
+        overlay={tooltipGen(item.tooltip, index)}
+      >
+        {child}
+      </OverlayTrigger>
+    ): child
   );
 
   return override || typeof window !== `undefined` ? (
@@ -39,11 +50,8 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({
       {items.map((item, index) => {
         return (
           <span key={"divtog" + index}>
-            <OverlayTrigger
-              placement="auto"
-              overlay={tooltip(item.tooltip, index)}
-            >
-              {item.isLabelOnly ? (
+            {maybeOverlayTrigger(
+              item.isLabelOnly ? (
                 <small>{item.label}</small>
               ) : (
                 <Button
@@ -55,8 +63,8 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({
                 >
                   {item.label}
                 </Button>
-              )}
-            </OverlayTrigger>
+              ),
+              item, index)}
             &nbsp;&nbsp;
           </span>
         );
