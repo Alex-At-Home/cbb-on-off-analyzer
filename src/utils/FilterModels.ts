@@ -343,6 +343,12 @@ export type PlayerSeasonComparisonParams = {
   incLowVol?: boolean;
 };
 
+export type LandingPageParams = {
+  gender?: string;
+  year?: string;
+  topics?: string; // Comma-separated list of selected topics
+};
+
 export type TeamLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {

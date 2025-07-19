@@ -24,7 +24,7 @@ import CloseButton from "react-bootstrap/CloseButton";
 // App imports:
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
-import { ParamDefaults } from "../utils/FilterModels";
+import { ParamDefaults, LandingPageParams } from "../utils/FilterModels";
 import { DateUtils } from "../utils/DateUtils";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 
@@ -33,6 +33,91 @@ type Props = {
 };
 const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gaInited, setGaInited] = useState(false);
+  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set(['All']));
+  const router = useRouter();
+
+  // Parse URL params on initial load
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const topicsParam = urlParams.get('topics');
+      
+      if (topicsParam) {
+        const topicsList = topicsParam.split(',');
+        // If 'All' is in the list, only include 'All'
+        if (topicsList.includes('All')) {
+          setSelectedTopics(new Set(['All']));
+        } else {
+          setSelectedTopics(new Set(topicsList));
+        }
+      }
+    }
+  }, []);
+
+  // Update URL when selected topics change - using useRef to track previous value
+  const prevTopicsRef = useRef<string>('');
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined' && selectedTopics.size > 0) {
+      const topicsArray = Array.from(selectedTopics);
+      const currentTopicsStr = topicsArray.join(',');
+      
+      // Only update URL if topics have actually changed
+      if (currentTopicsStr !== prevTopicsRef.current) {
+        prevTopicsRef.current = currentTopicsStr;
+        
+        // Use setTimeout to ensure we're not calling replaceState too frequently
+        const timer = setTimeout(() => {
+          const urlParams = new URLSearchParams(window.location.search);
+          
+          // Only include the topics parameter if it's not just "All" selected
+          if (topicsArray.length > 0 && !(topicsArray.length === 1 && topicsArray[0] === 'All')) {
+            urlParams.set('topics', currentTopicsStr);
+          } else {
+            urlParams.delete('topics');
+          }
+          
+          const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+          router.replace(newUrl, undefined, { shallow: true });
+        }, 100);
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [selectedTopics, router]);
+
+  // Handle topic toggle clicks
+  const handleTopicToggle = (topic: string): void => {
+    // Create a new set to avoid mutating the state directly
+    const newTopics = new Set(selectedTopics);
+    
+    // Special case for "All" button
+    if (topic === 'All') {
+      // If All was already selected, do nothing
+      if (newTopics.has('All')) {
+        return;
+      }
+      // Clear all other selections and only select "All"
+      newTopics.clear();
+      newTopics.add('All');
+    } else {
+      // For regular topics
+      if (newTopics.has(topic)) {
+        // If the topic is already selected, remove it
+        newTopics.delete(topic);
+        // If no topics are left, select "All"
+        if (newTopics.size === 0) {
+          newTopics.add('All');
+        }
+      } else {
+        // If the topic isn't selected, add it and remove "All" if it was selected
+        newTopics.delete('All');
+        newTopics.add(topic);
+      }
+    }
+    
+    setSelectedTopics(newTopics);
+  };
 
   useEffect(() => {
     // Set up GA
@@ -136,9 +221,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             items={[
               {
                 label: "All",
-                tooltip: "",
-                toggled: true,
-                onClick: () => {},
+                tooltip: "Show all topic cards",
+                toggled: selectedTopics.has('All'),
+                onClick: () => handleTopicToggle('All'),
               },
               {
                 label: "| ",
@@ -149,27 +234,27 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               },
               {
                 label: "Teams",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Teams",
+                toggled: selectedTopics.has('Teams'),
+                onClick: () => handleTopicToggle('Teams'),
               },
               {
                 label: "Players",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Players",
+                toggled: selectedTopics.has('Players'),
+                onClick: () => handleTopicToggle('Players'),
               },
               {
                 label: "Lineups",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Lineups",
+                toggled: selectedTopics.has('Lineups'),
+                onClick: () => handleTopicToggle('Lineups'),
               },
               {
                 label: "Games",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Games",
+                toggled: selectedTopics.has('Games'),
+                onClick: () => handleTopicToggle('Games'),
               },
               {
                 label: "| ",
@@ -180,45 +265,45 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               },
               {
                 label: "Leaderboards",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Leaderboards",
+                toggled: selectedTopics.has('Leaderboards'),
+                onClick: () => handleTopicToggle('Leaderboards'),
               },
               {
                 label: "RAPM",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to RAPM",
+                toggled: selectedTopics.has('RAPM'),
+                onClick: () => handleTopicToggle('RAPM'),
               },
               {
                 label: "On-Off",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to On-Off",
+                toggled: selectedTopics.has('On-Off'),
+                onClick: () => handleTopicToggle('On-Off'),
               },
               {
                 label: "Splits",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Splits",
+                toggled: selectedTopics.has('Splits'),
+                onClick: () => handleTopicToggle('Splits'),
               },
               {
                 label: "CSV Export",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to CSV Export",
+                toggled: selectedTopics.has('CSV Export'),
+                onClick: () => handleTopicToggle('CSV Export'),
               },
               {
                 label: "Off-Season",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Off-Season",
+                toggled: selectedTopics.has('Off-Season'),
+                onClick: () => handleTopicToggle('Off-Season'),
               },
               {
                 label: "Multi-Year",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Multi-Year",
+                toggled: selectedTopics.has('Multi-Year'),
+                onClick: () => handleTopicToggle('Multi-Year'),
               },
               {
                 label: "| ",
@@ -229,21 +314,21 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               },
               {
                 label: "Shot Charts",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Shot Charts",
+                toggled: selectedTopics.has('Shot Charts'),
+                onClick: () => handleTopicToggle('Shot Charts'),
               },
               {
                 label: "Play Types",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Play Types",
+                toggled: selectedTopics.has('Play Types'),
+                onClick: () => handleTopicToggle('Play Types'),
               },
               {
                 label: "Misc Charts",
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
+                tooltip: "Show/hide topic cards related to Misc Charts",
+                toggled: selectedTopics.has('Misc Charts'),
+                onClick: () => handleTopicToggle('Misc Charts'),
               },
             ]}
           />
