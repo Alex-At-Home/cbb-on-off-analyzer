@@ -2,7 +2,7 @@
 import { initGA, logPageView } from "../utils/GoogleAnalytics";
 
 // React imports:
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, FC, ReactNode } from "react";
 import Router, { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -34,6 +34,29 @@ type Props = {
 const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gaInited, setGaInited] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set(['All']));
+
+  // Topic-filtered card component
+  type TopicFilteredCardProps = {
+    topics: string[];
+    hide?: boolean;
+    children: ReactNode;
+  };
+
+  const TopicFilteredCard: FC<TopicFilteredCardProps> = ({ topics, hide = false, children }) => {
+    // Show the card if:
+    // 1. hide is not set to true, AND
+    // 2. Either 'All' is selected OR any of the card's topics are in the selected topics
+    const showCard = !hide && (
+      selectedTopics.has('All') || 
+      topics.some(topic => selectedTopics.has(topic))
+    );
+    
+    // Don't render anything if the card should be hidden
+    if (!showCard) return null;
+    
+    // Otherwise render the children
+    return <>{children}</>;
+  };
   const router = useRouter();
 
   // Parse URL params on initial load
@@ -335,70 +358,77 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </Col>
       </Row>
       <Row xs={1} sm={1} md={1} lg={2} xl={3} className="g-4 mb-4">
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Practical Examples</Card.Title>
-              <Card.Text>
-                Some screenshots / descriptions / links of Hoop Explorer uses in
-                the wild.
-                <br />
-                <br />
-                Have a browse to get an idea of some of the features!
-              </Card.Text>
-              <Card.Link href="#">
-                <b>Show me Examples!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Offseason Predictions / Analysis</Card.Title>
-              <Card.Text>
-                Check out Hoop Explorer's very simple off-season predictions.
-                <br />
-                <br />A key point is that I show in detail how they are
-                constructed and let you play with them to fix the bits you don't
-                like.
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Just take me to the predictions!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Team Lineup Analysis</Card.Title>
-              <Card.Text>
-                All sorts of metrics about the different lineups played by the
-                selected team.
-                <br />
-                <br />
-                The best bit is the ability to combine stats for lineups, based
-                on various groupings (frontcourt, backcourt, etc).
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Straight to the page!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Player Leaderboards</Card.Title>
-              <Card.Text>
-                See all qualifying players sorted by various stats (eg the
-                all-in-one production stat called RAPM)
-                <br />
-                <br />
-                And lots and lots of options for sorting, filtering,
+        <TopicFilteredCard topics={['Examples', 'Teams', 'Players', 'Lineups', 'Games', 'RAPM', 'On-Off', 'Splits', 'CSV Export', 'Shot Charts', 'Play Types', 'Misc Charts']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Practical Examples</Card.Title>
+                <Card.Text>
+                  Some screenshots / descriptions / links of Hoop Explorer uses in
+                  the wild.
+                  <br />
+                  <br />
+                  Have a browse to get an idea of some of the features!
+                </Card.Text>
+                <Card.Link href="#">
+                  <b>Show me Examples!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Off-Season', 'Teams']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Offseason Predictions / Analysis</Card.Title>
+                <Card.Text>
+                  Check out Hoop Explorer's very simple off-season predictions.
+                  <br />
+                  <br />A key point is that I show in detail how they are
+                  constructed and let you play with them to fix the bits you don't
+                  like.
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Just take me to the predictions!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Lineups', 'Teams']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Team Lineup Analysis</Card.Title>
+                <Card.Text>
+                  All sorts of metrics about the different lineups played by the
+                  selected team.
+                  <br />
+                  <br />
+                  The best bit is the ability to combine stats for lineups, based
+                  on various groupings (frontcourt, backcourt, etc).
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Players', 'Leaderboards', 'RAPM']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Player Leaderboards</Card.Title>
+                <Card.Text>
+                  See all qualifying players sorted by various stats (eg the
+                  all-in-one production stat called RAPM)
+                  <br />
+                  <br />
+                  And lots and lots of options for sorting, filtering,
                 visualizing, and exporting the data.
               </Card.Text>
               <Card.Link href="#">More details...</Card.Link>
@@ -407,158 +437,196 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               </Card.Link>
             </Card.Body>
           </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Team Stats Explorer</Card.Title>
-              <Card.Text>
-                View, sort, and filter D1 teams by lots of basic and advanced
-                team metrics across single or multiple seasons.
-                <br />
-                <br />
-                Also see offensive and defensive Style Breakdowns and Shot
-                Charts.
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Let Me Explore!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Team And Roster Analysis / Splits</Card.Title>
-              <Card.Text>
-                The classic "KenPom"-like page showing team Adjusted Efficiency,
-                4-factors, etc and player offensive/defensive ratings, shooting
-                stats, etc...
-                <br />
-                <br />
-                ... And a lot more: Filters! Splits! Style! Shot Charts! etc
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>I'm Sold! Let's Go</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Play Type / Style Analysis</Card.Title>
-              <Card.Text>
-                Maybe Hoop Explorer's most unique feature - break down a team or
-                player's offense or defense into intuitive "style" categories
-                ("Post-Up", "Transition", "Perimeter Sniper", etc)
-                <br />
-                <br />
-                Accesible from lots of pages - see "More Details".
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Show Me For The Top 10 Teams!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Shot Charts</Card.Title>
-              <Card.Text>
-                Many pages allow you to view a hex map of team or player shots,
-                showing frequency and efficiency vs D1 averages.
-                <br />
-                <br />
-                Accesible from lots of pages - see "More Details". Particularly
-                interesting with filters and splits!
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Show Me For The Top 10 Teams!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Team On-Off</Card.Title>
-              <Card.Text>
-                See how the team stats vary with each player on/off the court.
-                <br />
-                <br />
-                Also provides a more detailed breakdown of players' RAPM metric
-                into 4-factors etc components.
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Straight to the page!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Game Reports</Card.Title>
-              <Card.Text>
-                Advanced game analytics you won't find elsewhere:
-                <ul>
-                  <li>Single game player offensive and defensive impact</li>
-                  <li>Time series charts showing lineups</li>
-                  <li>A style breakdown for each team</li>
-                </ul>
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Straight to the page!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Game Previews</Card.Title>
-              <Card.Text>
-                Advanced match-up analytics between any two teams in D1, with
-                charts showing:
-                <ul>
-                  <li>Players' offensive and defensive impact</li>
-                  <li>A breakdown of offense vs defense style matchups</li>
-                  <li>Shot charts</li>
-                </ul>
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Straight to the page!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="mt-2">
-          <Card>
-            <Card.Body>
-              <Card.Title>Build Your Own T25</Card.Title>
-              <Card.Text>
-                The only team ranking <b>you</b> control! What matters to you
-                most - Wins? Efficiency? Dominance? Recency?
-                <br />
-                <br />
-                Pick the weights you want and see how the teams stack up...
-              </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
-              <Card.Link href="#">
-                <b>Just take me to the leaderboard!</b>
-              </Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Players', 'Leaderboards']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Generic Player Stats</Card.Title>
+                <Card.Text>
+                  All the basic stats - but with the ability to do
+                  filtering/sorting by conference and other dimensions.
+                  <br />
+                  <br />
+                  Includes (depending on availability): USG, eFG, ORB/DRB, ORtg/DRtg, TS%, A:TO, Win Shares, BPM
+                  variants...
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Teams', 'Players', 'Splits', 'Shot Charts']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Team And Roster Analysis / Splits</Card.Title>
+                <Card.Text>
+                  The classic "KenPom"-like page showing team Adjusted Efficiency,
+                  4-factors, etc and player offensive/defensive ratings, shooting
+                  stats, etc...
+                  <br />
+                  <br />
+                  ... And a lot more: Filters! Splits! Style! Shot Charts! etc
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>I'm Sold! Let's Go</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Play Types', 'Teams', 'Players']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Play Type / Style Analysis</Card.Title>
+                <Card.Text>
+                  Maybe Hoop Explorer's most unique feature - break down a team or
+                  player's offense or defense into intuitive "style" categories
+                  ("Post-Up", "Transition", "Perimeter Sniper", etc)
+                  <br />
+                  <br />
+                  Accesible from lots of pages - see "More Details".
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Show Me For The Top 10 Teams!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Shot Charts', 'Teams', 'Players']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Shot Charts</Card.Title>
+                <Card.Text>
+                  Many pages allow you to view a hex map of team or player shots,
+                  showing frequency and efficiency vs D1 averages.
+                  <br />
+                  <br />
+                  Accesible from lots of pages - see "More Details". Particularly
+                  interesting with filters and splits!
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Show Me For The Top 10 Teams!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Teams', 'Players', 'On-Off', 'RAPM']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Team On-Off</Card.Title>
+                <Card.Text>
+                  See how the team stats vary with each player on/off the court.
+                  <br />
+                  <br />
+                  Also provides a more detailed breakdown of players' RAPM metric
+                  into 4-factors etc components.
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Teams', 'Leaderboards']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Team Efficiency Stats</Card.Title>
+                <Card.Text>
+                  Team-focused, conference-adjusted team efficiency stats.
+                  <br />
+                  <br />
+                  Sort by Adjusted Efficiency Margin, Offensive Efficiency, or
+                  Defensive Efficiency, see 1/2/3 point shooting stats, turnover
+                  percentages, etc.
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Games', 'Teams', 'Players', 'Lineups', 'Play Types']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Game Reports</Card.Title>
+                <Card.Text>
+                  Advanced game analytics you won't find elsewhere:
+                  <ul>
+                    <li>Single game player offensive and defensive impact</li>
+                    <li>Time series charts showing lineups</li>
+                    <li>A style breakdown for each team</li>
+                  </ul>
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Games', 'Teams', 'Players', 'Play Types', 'Shot Charts']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Game Previews</Card.Title>
+                <Card.Text>
+                  Advanced match-up analytics between any two teams in D1, with
+                  charts showing:
+                  <ul>
+                    <li>Players' offensive and defensive impact</li>
+                    <li>A breakdown of offense vs defense style matchups</li>
+                    <li>Shot charts</li>
+                  </ul>
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={['Teams', 'Leaderboards']}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Build Your Own T25</Card.Title>
+                <Card.Text>
+                  The only team ranking <b>you</b> control! What matters to you
+                  most - Wins? Efficiency? Dominance? Recency?
+                  <br />
+                  <br />
+                  Pick the weights you want and see how the teams stack up...
+                </Card.Text>
+                <Card.Link href="#">More details...</Card.Link>
+                <Card.Link href="#">
+                  <b>Just take me to the leaderboard!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
       </Row>
       <Footer
         year={ParamDefaults.defaultLeaderboardYear}
