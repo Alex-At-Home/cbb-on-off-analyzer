@@ -402,7 +402,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </Col>
       </Row>
       <Row xs={1} sm={1} md={1} lg={2} xl={3} className="g-4 mb-4">
-        <TopicFilteredCard topics={['Examples', 'Teams', 'Players', 'Lineups', 'Games', 'RAPM', 'On-Off', 'Splits', 'CSV Export', 'Shot Charts', 'Play Types', 'Misc Charts']}>
+        <TopicFilteredCard hide={true} topics={['Examples', 'Teams', 'Players', 'Lineups', 'Games', 'RAPM', 'On-Off', 'Splits', 'CSV Export', 'Shot Charts', 'Play Types', 'Misc Charts']}>
           <Col className="mt-2">
             <Card>
               <Card.Body>
