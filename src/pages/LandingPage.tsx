@@ -39,7 +39,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gaInited, setGaInited] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set(['All']));
   
-  // Team selection state
+  // Team selection state - will be initialized properly in useEffect
   const [year, setYear] = useState<string>(ParamDefaults.defaultYear);
   const [gender, setGender] = useState<string>(ParamDefaults.defaultGender);
   const [team, setTeam] = useState<string>("");
@@ -95,7 +95,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   };
   const router = useRouter();
 
-  // Parse URL params on initial load
+  // Parse URL params on initial load and load from cache if params aren't present
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
@@ -112,15 +112,42 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         }
       }
       
-      // Parse team selection params
+      // Parse team selection params or use cached values if URL params are not present
+      // Year
       const yearParam = urlParams.get('year');
-      if (yearParam) setYear(yearParam);
+      if (yearParam) {
+        setYear(yearParam);
+      } else {
+        // Try to load from cache
+        const cachedYear = ClientRequestCache.decacheResponse('landing_show_year', '', undefined);
+        if (cachedYear !== null && cachedYear.value) {
+          setYear(cachedYear.value as string);
+        }
+      }
       
+      // Gender
       const genderParam = urlParams.get('gender');
-      if (genderParam) setGender(genderParam);
+      if (genderParam) {
+        setGender(genderParam);
+      } else {
+        // Try to load from cache
+        const cachedGender = ClientRequestCache.decacheResponse('landing_show_gender', '', undefined);
+        if (cachedGender !== null && cachedGender.value) {
+          setGender(cachedGender.value as string);
+        }
+      }
       
+      // Team
       const teamParam = urlParams.get('team');
-      if (teamParam) setTeam(teamParam);
+      if (teamParam) {
+        setTeam(teamParam);
+      } else {
+        // Try to load from cache
+        const cachedTeam = ClientRequestCache.decacheResponse('landing_show_team', '', undefined);
+        if (cachedTeam !== null && cachedTeam.value) {
+          setTeam(cachedTeam.value as string);
+        }
+      }
     }
   }, []);
 
@@ -255,15 +282,32 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
 
   // Handler functions for team selection modal
   const handleTeamSave = (newYear: string, newGender: string, newTeam: string) => {
+    // Update state
     setYear(newYear);
     setGender(newGender);
     setTeam(newTeam);
     setShowTeamModal(false);
+    
+    // Update cache entries
+    if (typeof window !== 'undefined') {
+      ClientRequestCache.cacheResponse('landing_show_year', '', { value: newYear }, undefined);
+      ClientRequestCache.cacheResponse('landing_show_gender', '', { value: newGender }, undefined);
+      ClientRequestCache.cacheResponse('landing_show_team', '', { value: newTeam }, undefined);
+    }
   };
 
   const handleTeamClear = () => {
+    // Update state
     setTeam("");
     setShowTeamModal(false);
+    
+    // Clear cache entries
+    if (typeof window !== 'undefined') {
+      // For consistency with showIntro behavior, we'll set empty objects to effectively clear the entries
+      ClientRequestCache.cacheResponse('landing_show_year', '', {}, undefined);
+      ClientRequestCache.cacheResponse('landing_show_gender', '', {}, undefined);
+      ClientRequestCache.cacheResponse('landing_show_team', '', {}, undefined);
+    }
   };
 
   return (

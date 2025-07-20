@@ -109,7 +109,6 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                   onChange={(option: any) => {
                     if ((option as any)?.value) {
                       setSelectedGender((option as any).value);
-                      setSelectedTeam(""); // Reset team when gender changes
                     }
                   }}
                 />
@@ -135,7 +134,6 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                   onChange={(option: any) => {
                     if ((option as any)?.value) {
                       setSelectedYear((option as any).value);
-                      setSelectedTeam(""); // Reset team when year changes
                     }
                   }}
                 />
