@@ -344,6 +344,7 @@ export type PlayerSeasonComparisonParams = {
 };
 
 export type LandingPageParams = {
+  team?: string;
   gender?: string;
   year?: string;
   topics?: string; // Comma-separated list of selected topics

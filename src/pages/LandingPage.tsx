@@ -30,6 +30,7 @@ import { ParamDefaults, LandingPageParams } from "../utils/FilterModels";
 import { DateUtils } from "../utils/DateUtils";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
+import LandingPageSelectModal from "../components/shared/LandingPageSelectModal";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -37,6 +38,12 @@ type Props = {
 const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gaInited, setGaInited] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set(['All']));
+  
+  // Team selection state
+  const [year, setYear] = useState<string>(ParamDefaults.defaultYear);
+  const [gender, setGender] = useState<string>(ParamDefaults.defaultGender);
+  const [team, setTeam] = useState<string>("");
+  const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
   
   // Initialize showIntro state from cache (default to true if not in cache)
   const [showIntro, setShowIntro] = useState<boolean>(() => {
@@ -92,8 +99,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
-      const topicsParam = urlParams.get('topics');
       
+      // Parse topics param
+      const topicsParam = urlParams.get('topics');
       if (topicsParam) {
         const topicsList = topicsParam.split(',');
         // If 'All' is in the list, only include 'All'
@@ -103,11 +111,22 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           setSelectedTopics(new Set(topicsList));
         }
       }
+      
+      // Parse team selection params
+      const yearParam = urlParams.get('year');
+      if (yearParam) setYear(yearParam);
+      
+      const genderParam = urlParams.get('gender');
+      if (genderParam) setGender(genderParam);
+      
+      const teamParam = urlParams.get('team');
+      if (teamParam) setTeam(teamParam);
     }
   }, []);
 
-  // Update URL when selected topics change - using useRef to track previous value
+  // Update URL when selected topics or team selection change - using useRef to track previous values
   const prevTopicsRef = useRef<string>('');
+  const prevTeamSelectionRef = useRef<string>('');
   
   useEffect(() => {
     if (typeof window !== 'undefined' && selectedTopics.size > 0) {
@@ -137,6 +156,48 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       }
     }
   }, [selectedTopics, router]);
+  
+  // Update URL when team selection changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Create a string representation of current team selection
+      const currentTeamSelection = JSON.stringify({ year, gender, team });
+      
+      // Only update URL if team selection has changed
+      if (currentTeamSelection !== prevTeamSelectionRef.current) {
+        prevTeamSelectionRef.current = currentTeamSelection;
+        
+        // Use setTimeout to ensure we're not calling replaceState too frequently
+        const timer = setTimeout(() => {
+          const urlParams = new URLSearchParams(window.location.search);
+          
+          // Update or delete URL params based on selected values
+          if (year) {
+            urlParams.set('year', year);
+          } else {
+            urlParams.delete('year');
+          }
+          
+          if (gender) {
+            urlParams.set('gender', gender);
+          } else {
+            urlParams.delete('gender');
+          }
+          
+          if (team) {
+            urlParams.set('team', team);
+          } else {
+            urlParams.delete('team');
+          }
+          
+          const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+          router.replace(newUrl, undefined, { shallow: true });
+        }, 100);
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [year, gender, team, router]);
 
   // Handle topic toggle clicks
   const handleTopicToggle = (topic: string): void => {
@@ -191,6 +252,19 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     typeof window === `undefined` //(ensures SSR code still compiles)
       ? "server"
       : window.location.hostname;
+
+  // Handler functions for team selection modal
+  const handleTeamSave = (newYear: string, newGender: string, newTeam: string) => {
+    setYear(newYear);
+    setGender(newGender);
+    setTeam(newTeam);
+    setShowTeamModal(false);
+  };
+
+  const handleTeamClear = () => {
+    setTeam("");
+    setShowTeamModal(false);
+  };
 
   return (
     <Container className="medium_screen">
@@ -277,7 +351,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </div>
           <p style={{ display: "inline-block" }}>
             <b>Currently selected team</b>:{" "}
-            <a href="#">2024/25 | Men | Maryland (edit)</a>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip id="team-select-tooltip">(Optional) select a team-season to use when following any of the links below</Tooltip>}
+            >
+              <a href="#" onClick={(e) => { e.preventDefault(); setShowTeamModal(true); }}>
+                {team && year && gender ? `${year} | ${gender} | ${team} (edit)` : "Select Here"}
+              </a>
+            </OverlayTrigger>
           </p>
         </Col>
       </Row>
@@ -676,6 +757,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         year={ParamDefaults.defaultLeaderboardYear}
         gender={"Men"}
         server={server}
+      />
+      
+      {/* Team selection modal */}
+      <LandingPageSelectModal
+        show={showTeamModal}
+        onHide={() => setShowTeamModal(false)}
+        onSave={handleTeamSave}
+        onClear={handleTeamClear}
+        year={year}
+        gender={gender}
+        team={team}
       />
     </Container>
   );
