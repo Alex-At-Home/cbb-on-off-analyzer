@@ -31,6 +31,7 @@ import { DateUtils } from "../utils/DateUtils";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import LandingPageSelectModal from "../components/shared/LandingPageSelectModal";
+import LandingPageMoreDetails, { MoreDetailsProps } from "../components/shared/LandingPageMoreDetails";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -44,6 +45,83 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gender, setGender] = useState<string>(ParamDefaults.defaultGender);
   const [team, setTeam] = useState<string>("");
   const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
+  
+  // More Details modal state
+  const [showMoreDetailsModal, setShowMoreDetailsModal] = useState<boolean>(false);
+  const [selectedCardId, setSelectedCardId] = useState<string>("");
+  
+  // Helper function to generate card ID from title
+  const getCardIdFromTitle = (title: string): string => {
+    return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  };
+  
+  // More details handler functions
+  const handleMoreDetailsOpen = (cardId: string) => {
+    setSelectedCardId(cardId);
+    setShowMoreDetailsModal(true);
+  };
+  
+  const handleMoreDetailsClose = () => {
+    setShowMoreDetailsModal(false);
+  };
+  
+  // Define the moreDetailsByCardId record with example data
+  const moreDetailsByCardId: Record<string, MoreDetailsProps> = {
+    // Example entry for Team Lineup Analysis
+    'team-lineup-analysis': {
+      content: (
+        <div>
+          <h4>Team Lineup Analysis Details</h4>
+          <p>
+            This feature lets you analyze team lineups in incredible detail. Some key features include:
+          </p>
+          <ul>
+            <li>View detailed offensive and defensive stats for any lineup combination</li>
+            <li>Compare how different lineups perform against various opponent types</li>
+            <li>Analyze 2, 3, 4, or 5-player combinations to find optimal groupings</li>
+            <li>Filter by minutes played, opponent strength, time period, and more</li>
+          </ul>
+        </div>
+      ),
+      imageList: [
+        {
+          src: "https://via.placeholder.com/600x400?text=Lineup+Analysis+Sample+1",
+          text: "Lineup comparison dashboard showing efficiency metrics"
+        },
+        {
+          src: "https://via.placeholder.com/600x400?text=Lineup+Analysis+Sample+2",
+          text: "Player combination analysis with filtering options"
+        }
+      ]
+    },
+    // Example entry for Shot Charts
+    'shot-charts': {
+      content: (
+        <div>
+          <h4>Shot Charts Feature</h4>
+          <p>
+            The shot charts visualization provides detailed insights into shooting patterns and efficiency:
+          </p>
+          <ul>
+            <li>View team or individual player shot distribution</li>
+            <li>Compare shooting efficiency against D1 averages</li>
+            <li>Filter shots by various criteria (time, score, defender distance)</li>
+            <li>Toggle between frequency and efficiency views</li>
+          </ul>
+        </div>
+      ),
+      imageList: [
+        {
+          src: "https://via.placeholder.com/600x400?text=Shot+Chart+Sample+1",
+          text: "Team shot distribution heat map"
+        },
+        {
+          src: "https://via.placeholder.com/600x400?text=Shot+Chart+Sample+2",
+          text: "Player shooting efficiency by zone"
+        }
+      ]
+    }
+  };
   
   // Initialize showIntro state from cache (default to true if not in cache)
   const [showIntro, setShowIntro] = useState<boolean>(() => {
@@ -310,6 +388,30 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     }
   };
 
+  // Helper function to add team parameters to links
+  const withTeamParam = (url: string): string => {
+    if (!team || !year || !gender) return url;
+    
+    // If the URL already has query parameters, append team parameters
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}team=${encodeURIComponent(team)}&year=${encodeURIComponent(year)}&gender=${encodeURIComponent(gender)}`;
+  };
+  
+  // Helper function to conditionally render the More Details link
+  const maybeMoreDetails = (cardId: string): JSX.Element | null => {
+    return moreDetailsByCardId[cardId] ? (
+      <Card.Link 
+        href="#" 
+        onClick={(e) => {
+          e.preventDefault();
+          handleMoreDetailsOpen(cardId);
+        }}
+      >
+        More Details
+      </Card.Link>
+    ) : null;
+  };
+
   return (
     <Container className="medium_screen">
       <Row>
@@ -558,7 +660,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   constructed and let you play with them to fix the bits you don't
                   like.
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Offseason Predictions / Analysis"))}
                 <Card.Link href="#">
                   <b>Just take me to the predictions!</b>
                 </Card.Link>
@@ -579,10 +681,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   The best bit is the ability to combine stats for lineups, based
                   on various groupings (frontcourt, backcourt, etc).
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Team Lineup Analysis"))}
                 <Card.Link href="#">
                   <b>Straight to the page!</b>
-                </Card.Link>
+                  </Card.Link>
               </Card.Body>
             </Card>
           </Col>
@@ -600,7 +702,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   And lots and lots of options for sorting, filtering,
                 visualizing, and exporting the data.
               </Card.Text>
-              <Card.Link href="#">More details...</Card.Link>
+              {maybeMoreDetails(getCardIdFromTitle("Player Leaderboards"))}
               <Card.Link href="#">
                 <b>Just take me to the leaderboard!</b>
               </Card.Link>
@@ -621,7 +723,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Includes (depending on availability): USG, eFG, ORB/DRB, ORtg/DRtg, TS%, A:TO, Win Shares, BPM
                   variants...
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Generic Player Stats"))}
                 <Card.Link href="#">
                   <b>Straight to the page!</b>
                 </Card.Link>
@@ -642,7 +744,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   ... And a lot more: Filters! Splits! Style! Shot Charts! etc
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Team And Roster Analysis / Splits"))}
                 <Card.Link href="#">
                   <b>I'm Sold! Let's Go</b>
                 </Card.Link>
@@ -663,7 +765,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   Accesible from lots of pages - see "More Details".
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Play Type / Style Analysis"))}
                 <Card.Link href="#">
                   <b>Show Me For The Top 10 Teams!</b>
                 </Card.Link>
@@ -681,10 +783,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   showing frequency and efficiency vs D1 averages.
                   <br />
                   <br />
-                  Accesible from lots of pages - see "More Details". Particularly
+                  Accessible from lots of pages - see "More Details". Particularly
                   interesting with filters and splits!
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Shot Charts"))}
                 <Card.Link href="#">
                   <b>Show Me For The Top 10 Teams!</b>
                 </Card.Link>
@@ -704,10 +806,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Also provides a more detailed breakdown of players' RAPM metric
                   into 4-factors etc components.
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
                 <Card.Link href="#">
                   <b>Straight to the page!</b>
-                </Card.Link>
+                  </Card.Link>
               </Card.Body>
             </Card>
           </Col>
@@ -725,7 +827,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Defensive Efficiency, see 1/2/3 point shooting stats, turnover
                   percentages, etc.
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Team Efficiency Stats"))}
                 <Card.Link href="#">
                   <b>Straight to the page!</b>
                 </Card.Link>
@@ -746,7 +848,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     <li>A style breakdown for each team</li>
                   </ul>
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Game Reports"))}
                 <Card.Link href="#">
                   <b>Straight to the page!</b>
                 </Card.Link>
@@ -768,7 +870,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     <li>Shot charts</li>
                   </ul>
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Game Previews"))}
                 <Card.Link href="#">
                   <b>Straight to the page!</b>
                 </Card.Link>
@@ -788,7 +890,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   Pick the weights you want and see how the teams stack up...
                 </Card.Text>
-                <Card.Link href="#">More details...</Card.Link>
+                {maybeMoreDetails(getCardIdFromTitle("Build Your Own T25"))}
                 <Card.Link href="#">
                   <b>Just take me to the leaderboard!</b>
                 </Card.Link>
@@ -813,6 +915,16 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         gender={gender}
         team={team}
       />
+      
+      {/* More Details Modal */}
+      {selectedCardId && moreDetailsByCardId[selectedCardId] && (
+        <LandingPageMoreDetails
+          show={showMoreDetailsModal}
+          onHide={handleMoreDetailsClose}
+          content={moreDetailsByCardId[selectedCardId].content}
+          imageList={moreDetailsByCardId[selectedCardId].imageList}
+        />
+      )}
     </Container>
   );
 };
