@@ -459,22 +459,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     stats when there are no games to watch.
                   </p>
                   <span>
-                    The original goal, back in 2019, was to be{" "}
-                    <i>
-                      "Like{" "}
-                      <a target="_blank" href="https://kenpom.com">
-                        KenPom
-                      </a>{" "}
-                      /{" "}
-                      <a target="_blank" href="https://barttorvik.com">
-                        Bart Torvik
-                      </a>
-                      , but for also lineups and with user-defined splits and
-                      queries"
-                    </i>
-                    ; and while the features have grown far beyond that (as you
-                    can see below!) the principle remains similar: I want Hoop
-                    Explorer to complement those excellent sites.
+                    The list below gives an idea of the different ways
+                    you can use Hoop Explorer both to get everything from
+                    high-level summaries of how teams play, through game reports
+                    with insights not found elsewhere, to the most detailed samples
+                    and splits you can imagine.
                   </span>
                 </Card.Text>
               </Card.Body>
