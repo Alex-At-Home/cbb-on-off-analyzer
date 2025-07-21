@@ -402,7 +402,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     return moreDetailsByCardId[cardId] ? (
       <Card.Link 
         href="#" 
-        onClick={(e) => {
+        onClick={(e: any) => {
           e.preventDefault();
           handleMoreDetailsOpen(cardId);
         }}
@@ -480,7 +480,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 placement="top"
                 overlay={<Tooltip id="welcome-tooltip">Show the welcome message</Tooltip>}
               >
-                <a href="#" onClick={(e) => { e.preventDefault(); setShowIntro(true); }}>(welcome)</a>
+                <a href="#" onClick={(e: any) => { e.preventDefault(); setShowIntro(true); }}>(welcome)</a>
               </OverlayTrigger>
             )}
           </div>
@@ -490,7 +490,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               placement="top"
               overlay={<Tooltip id="team-select-tooltip">(Optional) select a team-season to use when following any of the links below</Tooltip>}
             >
-              <a href="#" onClick={(e) => { e.preventDefault(); setShowTeamModal(true); }}>
+              <a href="#" onClick={(e: any) => { e.preventDefault(); setShowTeamModal(true); }}>
                 {team && year && gender ? `${year} | ${gender} | ${team} (edit)` : "Select Here"}
               </a>
             </OverlayTrigger>
