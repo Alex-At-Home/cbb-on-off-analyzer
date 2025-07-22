@@ -59,3 +59,11 @@
    margin-right: auto;
    margin-left: auto;
 } 
+
+/* Carousel */
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+    bottom: 100%;
+}
