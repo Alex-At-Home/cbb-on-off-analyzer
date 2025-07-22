@@ -206,12 +206,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       ),
       imageList: [
         {
-          src: "https://via.placeholder.com/600x400?text=Shot+Chart+Sample+1",
-          text: "Team shot distribution heat map",
+          src: "./images/landing_page/shot_charts/shot_chart_team_split.jpeg",
+          text: "See how Purdue's shot distribution changed 2 seasons ago with/without Zach Edey on the court",
         },
         {
-          src: "https://via.placeholder.com/600x400?text=Shot+Chart+Sample+2",
-          text: "Player shooting efficiency by zone",
+          src: "./images/landing_page/shot_charts/shot_chart_player_split.jpeg",
+          text: "See how Purdue's PG's shot distribution changed 2 seasons ago with/without Zach Edey on the court",
         },
       ],
     },

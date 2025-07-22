@@ -85,7 +85,7 @@ const LandingPageMoreDetails: React.FC<LandingPageMoreDetailsProps> = ({
           </Row>
           {/* Carousel section - only shown if imageList is not empty */}
           {showCarousel && (
-            <Row>
+            <Row className="mb-1">
               <Col xs={12} className="text-center">
                 <hr />
                 <i>{imageList?.[selectedImage]?.text}</i>
