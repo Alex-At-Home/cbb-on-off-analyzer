@@ -79,7 +79,6 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
    * sips -s format jpeg -s formatOptions low ~/Desktop/offseason_predictions_1.png  --out public/images/landing_page/offseason/offseason_predictions_1.jpeg
    */
   const moreDetailsByCardId: Record<string, MoreDetailsProps> = {
-    // Off-season lineups
     "offseason-predictions--analysis": {
       title: "Offseason Predictions / Analysis",
       content: (
@@ -97,18 +96,26 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             <br />
             This lets us do a few fun things during the Long Summer Months:
             <ul>
-              <li>The usual "next season predictions"</li>
               <li>
-                See a breakdown of how each player contributes to their team, in
-                optimistic/balanced/pessimistic scenarios
+                <a href="">The usual "next season predictions"</a>
               </li>
               <li>
-                Look at what each team is losing vs picking up vs keeping /
-                developing
+                <a href="">
+                  See a breakdown of how each player contributes to their team,
+                  in optimistic/balanced/pessimistic scenarios
+                </a>
               </li>
               <li>
-                How did a team do compared to its prediction, and what were the
-                key differences?
+                <a href="">
+                  Look at what each team is losing vs picking up vs keeping /
+                  developing
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  How did a team do compared to its prediction, and what were
+                  the key differences?
+                </a>
               </li>
             </ul>
           </p>
@@ -129,22 +136,71 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         },
       ],
     },
-    // Example entry for Shot Charts
     "shot-charts": {
+      title: "Shot Charts Feature",
       content: (
-        <div>
-          <h4>Shot Charts Feature</h4>
+        <div style={{ fontSize: "1.2rem" }}>
           <p>
-            The shot charts visualization provides detailed insights into
-            shooting patterns and efficiency:
+            A number of pages allow you to view different hex maps of team or
+            player shots, showing frequency and efficiency vs D1 averages:
           </p>
           <ul>
-            <li>View team or individual player shot distribution</li>
-            <li>Compare shooting efficiency against D1 averages</li>
             <li>
-              Filter shots by various criteria (time, score, defender distance)
+              <b>Team Shot Charts</b>
             </li>
-            <li>Toggle between frequency and efficiency views</li>
+            <ul>
+              <li>
+                For a given filter / split,{" "}
+                <a href="">see the team shot chart</a> (and compare vs other
+                splits)
+              </li>
+              <ul>
+                <li>
+                  <i>
+                    (To see the shot chart for a given lineup,{" "}
+                    <a href="">go to the Lineup Analysis page</a>, and click the
+                    lineup in which you're interested (leftmost column) to open
+                    a new tab including Shot Chart info.)
+                  </i>
+                </li>
+              </ul>
+              <li>
+                You can see the shot charts for all teams in the{" "}
+                <a href="">Team Stats Explorer page (eg Top 10)</a>
+              </li>
+              <li>
+                <a href="">Every game report includes each team's shot chart</a>{" "}
+                for that game (and you can compare vs their season)
+              </li>
+              <li>
+                When <a href="">previewing a matchup between two teams</a> you
+                can see/compare their offensive and defensive shot charts
+              </li>
+            </ul>
+            <li>
+              <b>Player Shot Charts</b>
+            </li>
+            <ul>
+              <li>
+                For a given filter / split,{" "}
+                <a href="">see each player's shot chart</a> (and compare vs
+                other splits)
+              </li>
+              <ul>
+                <li>
+                  <i>
+                    (To see the shot chart for a given lineup,{" "}
+                    <a href="">go to the Lineup Analysis page</a>, and click the
+                    lineup in which you're interested (leftmost column) to open
+                    a new tab including Shot Chart info.)
+                  </i>
+                </li>
+              </ul>
+              <li>
+                You can see the shot charts for all players in the{" "}
+                <a href="">Player Leaderboard page (eg Top 50)</a>
+              </li>
+            </ul>
           </ul>
         </div>
       ),
