@@ -89,7 +89,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     ) : (
       <a
         href="#"
-        onClick={(e) => {
+        onClick={(e: any) => {
           e.preventDefault();
           setVisitOnExitTeamModal((__: any) => visitOnSave);
           setShowTeamModal(true);
@@ -484,6 +484,21 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     }
   }, [showIntro]);
 
+  type SupportedTopic =
+    | "Teams"
+    | "Players"
+    | "Lineups"
+    | "Games"
+    | "Leaderboards"
+    | "RAPM"
+    | "On-Off"
+    | "Splits"
+    | "CSV Export"
+    | "Off-Season"
+    | "Multi-Year"
+    | "Shot Charts"
+    | "Play Types";
+
   // Topic-filtered card component
   type TopicFilteredCardProps = {
     topics: string[];
@@ -682,8 +697,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           newTopics.add("All");
         }
       } else {
+        // For now we'll always have a single selection
         // If the topic isn't selected, add it and remove "All" if it was selected
-        newTopics.delete("All");
+        newTopics.clear();
+        //newTopics.delete("All");
         newTopics.add(topic);
       }
     }
@@ -1017,12 +1034,6 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 toggled: selectedTopics.has("Play Types"),
                 onClick: () => handleTopicToggle("Play Types"),
               },
-              {
-                label: "Misc Charts",
-                tooltip: "Show/hide topic cards related to Misc Charts",
-                toggled: selectedTopics.has("Misc Charts"),
-                onClick: () => handleTopicToggle("Misc Charts"),
-              },
             ]}
           />
         </Col>
@@ -1061,7 +1072,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Off-Season", "Teams"]}>
+        <TopicFilteredCard topics={["Off-Season", "Teams", "Leaderboards"]}>
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1087,7 +1098,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Play Types", "Teams", "Players"]}>
+        <TopicFilteredCard
+          topics={[
+            "Play Types",
+            "Teams",
+            "Players",
+            "Games",
+            "Leaderboards",
+            "Splits",
+            "On-Off",
+          ]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1118,7 +1139,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Players", "Leaderboards", "RAPM"]}>
+        <TopicFilteredCard
+          topics={[
+            "Players",
+            "Leaderboards",
+            "RAPM",
+            "CSV Export",
+            "Multi-Year",
+            "Shot Charts",
+            "Play Types",
+          ]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1142,7 +1173,16 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
+        <TopicFilteredCard
+          topics={[
+            "Teams",
+            "Leaderboards",
+            "CSV Export",
+            "Multi-Year",
+            "Shot Charts",
+            "Play Types",
+          ]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1170,7 +1210,15 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
-          topics={["Teams", "Players", "Splits", "Shot Charts"]}
+          topics={[
+            "Teams",
+            "Players",
+            "Splits",
+            "Shot Charts",
+            "On-Off",
+            "Play Types",
+            "RAPM",
+          ]}
         >
           <Col className="mt-2">
             <Card>
@@ -1203,7 +1251,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Lineups", "Teams"]}>
+        <TopicFilteredCard
+          topics={["Lineups", "Leaderboards", "CSV Export", "Multi Year"]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1241,7 +1291,16 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Shot Charts", "Teams", "Players"]}>
+        <TopicFilteredCard
+          topics={[
+            "Shot Charts",
+            "Teams",
+            "Players",
+            "Leaderboards",
+            "Splits",
+            "On-Off",
+          ]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1271,7 +1330,15 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
-          topics={["Games", "Teams", "Players", "Lineups", "Play Types"]}
+          topics={[
+            "Games",
+            "Players",
+            "Lineups",
+            "Play Types",
+            "Shot Charts",
+            "CSV Export",
+            "RAPM",
+          ]}
         >
           <Col className="mt-2">
             <Card>
@@ -1301,7 +1368,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
-          topics={["Games", "Teams", "Players", "Play Types", "Shot Charts"]}
+          topics={[
+            "Games",
+            "Players",
+            "Play Types",
+            "Shot Charts",
+            "CSV Export",
+            "RAPM",
+          ]}
         >
           <Col className="mt-2">
             <Card>
@@ -1331,7 +1405,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Teams", "Players", "On-Off", "RAPM"]}>
+        <TopicFilteredCard topics={["Players", "On-Off", "RAPM", "Splits"]}>
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1359,7 +1433,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Players", "Misc Charts"]}>
+        <TopicFilteredCard
+          topics={["Players", "Multi-Year", "RAPM", "CSV Export"]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
