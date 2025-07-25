@@ -738,6 +738,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
       backgroundColor: backgroundColorFn(),
       verticalAlign: "middle",
       ...rowStyleOverride,
+      color: "black", //TODO
     };
   }
   const isResponsive = _.isNil(responsive) ? true : responsive;

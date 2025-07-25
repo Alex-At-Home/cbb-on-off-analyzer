@@ -1,7 +1,8 @@
 import Head from "next/head";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/united/bootstrap.min.css";
 
 // Global styles
 import "../styles/globals.css";

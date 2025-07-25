@@ -1,5 +1,7 @@
 /* Global styles */
 
+/* Widescreen */
+
 /* Ensure padding between 1400px and 1600px */
 @media (min-width: 1400px) and (max-width: 1600px) {
    .container.wide_screen,
