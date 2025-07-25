@@ -112,7 +112,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     ) : (
       <Card.Link
         href="#"
-        onClick={(e) => {
+        onClick={(e: any) => {
           e.preventDefault();
           setVisitOnExitTeamModal((__: any) => visitOnSave);
           setShowTeamModal(true);

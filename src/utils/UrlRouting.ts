@@ -6,6 +6,7 @@ import { QueryUtils } from "./QueryUtils";
 
 // Utils
 import {
+  CommonFilterParams,
   GameFilterParams,
   LineupFilterParams,
   LineupLeaderboardParams,
@@ -55,6 +56,12 @@ export class UrlRouting {
     }
   }
 
+  /** The URL to use to view the Landing Page */
+  static getLandingPageUrl(params: CommonFilterParams) {
+    return `/LandingPage?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
   /** The URL to use to view the "On/Off" page */
   static getGameUrl(
     params: GameFilterParams,
