@@ -67,3 +67,17 @@
     filter: invert(100%);
     bottom: 100%;
 }
+
+/* Nested Modals */
+
+.modal_lower {
+   z-index: 1500;
+}
+
+.modal_upper {
+   z-index: 2500;
+}
+
+.modal_backdrop_upper {
+   z-index: 2000;
+}

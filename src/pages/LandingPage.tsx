@@ -34,6 +34,7 @@ import LandingPageSelectModal from "../components/shared/LandingPageSelectModal"
 import LandingPageMoreDetails, {
   MoreDetailsProps,
 } from "../components/shared/LandingPageMoreDetails";
+import { UrlRouting } from "../utils/UrlRouting";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -49,6 +50,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gender, setGender] = useState<string>(ParamDefaults.defaultGender);
   const [team, setTeam] = useState<string>("");
   const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
+  const [visitOnExitTeamModal, setVisitOnExitTeamModal] = useState<
+    ((year: string, gender: string, team: string) => string) | undefined
+  >(undefined);
 
   // More Details modal state
   const [showMoreDetailsModal, setShowMoreDetailsModal] =
@@ -73,6 +77,52 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     setShowMoreDetailsModal(false);
   };
 
+  /** Builds a link that either opens a new, or opens a dialog box to specify the  */
+  const buildLink = (
+    toDisplay: React.ReactElement | string,
+    visitOnSave: (year: string, gender: string, team: string) => string
+  ) => {
+    return team && year && gender ? (
+      <a href={visitOnSave(year, gender, team)} target="_blank">
+        {toDisplay}
+      </a>
+    ) : (
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          setVisitOnExitTeamModal((__: any) => visitOnSave);
+          setShowTeamModal(true);
+        }}
+      >
+        {toDisplay}
+      </a>
+    );
+  };
+
+  /** Builds a link that either opens a new, or opens a dialog box to specify the  */
+  const buildCardLink = (
+    toDisplay: React.ReactElement | string,
+    visitOnSave: (year: string, gender: string, team: string) => string
+  ) => {
+    return team && year && gender ? (
+      <Card.Link href={visitOnSave(year, gender, team)} target="_blank">
+        {toDisplay}
+      </Card.Link>
+    ) : (
+      <Card.Link
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          setVisitOnExitTeamModal((__: any) => visitOnSave);
+          setShowTeamModal(true);
+        }}
+      >
+        {toDisplay}
+      </Card.Link>
+    );
+  };
+
   /**
    * The HTML to display
    * Note to build images for the image list use eg:
@@ -80,7 +130,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
    */
   const moreDetailsByCardId: Record<string, MoreDetailsProps> = {
     "offseason-predictions--analysis": {
-      title: "Offseason Predictions / Analysis",
+      title: "Off-Season Predictions / Analysis",
       content: (
         <div style={{ fontSize: "1.2rem" }}>
           <p>
@@ -134,6 +184,181 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           src: "./images/landing_page/offseason/offseason_predictions_3.jpeg",
           text: "During Portal Season, pick players you like and see the impact of landing them.",
         },
+        {
+          src: "./images/landing_page/offseason/offseason_changes.jpeg",
+          text: "Break down a team's predictions compared to last season's performance based on who is coming/staying/leaving",
+        },
+      ],
+    },
+    "play-type--style-analysis": {
+      title: "Play Type / Style Analysis",
+      content: (
+        <div style={{ fontSize: "1.2rem" }}>
+          <p>
+            This is probably Hoop Explorer's most important feature that is not
+            easily available elsewhere.
+          </p>
+          <p>
+            The Play-by-Play action is algorithmically (/statistically)
+            converted into a set of "intuitive" individual or team play type
+            categories, eg:
+            <ul>
+              <li>
+                <b>Rim Attack</b> - drives and slashes to the rim from the
+                perimeter
+              </li>
+              <li>
+                <b>Attack & Kick</b> - ball-handler passes to the perimeter for
+                3P, usually after the defense collapses on a drive
+              </li>
+              <li>
+                <b>Perimeter Sniper</b> - A 3P shooter fed by a drive or post-up
+                (individual category only)
+              </li>
+              <li>
+                <b>Big Cut & Roll</b> - A frontcourt player cuts to the basket,
+                usually after a screen, eg in PnR
+              </li>
+              <li>
+                <i>And many more...</i>
+              </li>
+            </ul>
+          </p>
+          <p>
+            A number of pages allow you to view different variants of the Play
+            Style graphs:
+            <ul>
+              <li>
+                <b>Team Play Styles</b>
+              </li>
+              <ul>
+                <li>
+                  For a given filter / split, see the{" "}
+                  {buildLink(
+                    "Team Offensive Play Style Breakdown",
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                        },
+                        {}
+                      )
+                  )}{" "}
+                  (and compare vs other splits)
+                </li>
+                <ul>
+                  <li>
+                    <i>
+                      (Note this view doesn't currently include the defense,
+                      which is complicated to calculate for splits - for now you
+                      can see it from the <a href="">Team Stats Explorer</a> or{" "}
+                      <a href="">Game Previews (No Oppponent) pages though</a>)
+                    </i>
+                  </li>
+                  <li>
+                    <i>
+                      (To see the Team Play Style Breakdown for a given lineup,{" "}
+                      <a href="">go to the Lineup Analysis page</a>, and click
+                      the lineup in which you're interested (leftmost column) to
+                      open a new tab including Play Style info.)
+                    </i>
+                  </li>
+                </ul>
+                <li>
+                  For a given filter / split, see how the different players
+                  contribute to the{" "}
+                  <a href="">Team Offensive Play Style Breakdown</a>
+                </li>
+                <li>
+                  You can see the Offensive and Defensive Play Style Breakdowns
+                  for all teams in the{" "}
+                  <a href="">Team Stats Explorer page (eg Top 10)</a>
+                </li>
+                <li>
+                  Every game report includes each team's{" "}
+                  <a href="">Offensive and Defensive Play Style Breakdown</a>{" "}
+                  for that game (and you can compare vs their season)
+                </li>
+                <li>
+                  When <a href="">previewing a matchup between two teams</a> you
+                  can see/compare their Offensive and Defensive Play Style
+                  Breakdowns (including SoS filters.)
+                </li>
+                <ul>
+                  <li>
+                    <i>
+                      If you just want to use the SoS filters and don't have a
+                      particular opponent in mind, then use the{" "}
+                      <a href="">"No Opponent" mode</a>. Otherwise the Team
+                      Stats Explorer is probably better.
+                    </i>
+                  </li>
+                </ul>
+              </ul>
+              <li>
+                <b>Individual Play Styles</b>
+              </li>
+              <ul>
+                <li>
+                  For a given filter / split, see the{" "}
+                  <a href="">Individual Offensive Play Style Breakdown</a> (and
+                  compare vs other splits)
+                </li>
+                <ul>
+                  <li>
+                    <i>
+                      (To see the Individual Play Style Breakdown for a given
+                      lineup, <a href="">go to the Lineup Analysis page</a>, and
+                      click the lineup in which you're interested (leftmost
+                      column) to open a new tab including Play Style info.)
+                    </i>
+                  </li>
+                </ul>
+                <li>
+                  For a given filter / split, see how the different players
+                  contribute to the{" "}
+                  <a href="">Team Offensive Play Style Breakdown</a>
+                </li>
+              </ul>
+              <li>
+                You can see the Offensive Play Style Breakdowns for all players
+                in the <a href="">Player Leaderboard page (eg Top 50)</a>
+              </li>
+            </ul>
+          </p>
+        </div>
+      ),
+      imageList: [
+        {
+          src: "./images/landing_page/play_style/player_and_team.jpeg",
+          text: "See a team's Offensive Play Style Breakdown, and how each player contributed",
+        },
+        {
+          src: "./images/landing_page/play_style/player_and_team_2.jpeg",
+          text: "See a team's Offensive Play Style Breakdown, and how each player contributed (filtered by Play Type)",
+        },
+        {
+          src: "./images/landing_page/play_style/player_lboard.jpeg",
+          text: "See the Offensive Play Style Breakdown for every player directly in the Leaderboard",
+        },
+        {
+          src: "./images/landing_page/play_style/team_explorer.jpeg",
+          text: "See Offensive and Defensive Play Style Breakdowns for every team in D1 (single year)",
+        },
+        {
+          src: "./images/landing_page/play_style/multi_yr_team_explorer.jpeg",
+          text: "See Offensive and Defensive Play Style Breakdowns for every team in D1 (multi year, with a filter to single out one coach)",
+        },
+        {
+          src: "./images/landing_page/play_style/play_style_matchup.jpeg",
+          text: "Another Team Stats Explorer use - to preview the match-up of two teams",
+        },
+        {
+          src: "./images/landing_page/play_style/team_play_style_fun.jpeg",
+          text: "How the excellent Michigan CBB blogger mgoblog brought a 24/25 Wisconsin Play Style Breakdown to life!",
+        },
       ],
     },
     "shot-charts": {
@@ -150,14 +375,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </li>
             <ul>
               <li>
-                For a given filter / split,{" "}
-                <a href="">see the team shot chart</a> (and compare vs other
-                splits)
+                For a given filter / split, see the{" "}
+                <a href="">Team Shot Chart</a> (and compare vs other splits)
               </li>
               <ul>
                 <li>
                   <i>
-                    (To see the shot chart for a given lineup,{" "}
+                    (To see the Shot Chart for a given lineup,{" "}
                     <a href="">go to the Lineup Analysis page</a>, and click the
                     lineup in which you're interested (leftmost column) to open
                     a new tab including Shot Chart info.)
@@ -165,31 +389,30 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 </li>
               </ul>
               <li>
-                You can see the shot charts for all teams in the{" "}
+                You can see the Shot Charts for all teams in the{" "}
                 <a href="">Team Stats Explorer page (eg Top 10)</a>
               </li>
               <li>
-                <a href="">Every game report includes each team's shot chart</a>{" "}
+                <a href="">Every game report includes each team's Shot Chart</a>{" "}
                 for that game (and you can compare vs their season)
               </li>
               <li>
                 When <a href="">previewing a matchup between two teams</a> you
-                can see/compare their offensive and defensive shot charts
+                can see/compare their Offensive and Defensive Shot Charts
               </li>
             </ul>
             <li>
-              <b>Player Shot Charts</b>
+              <b>Individual Shot Charts</b>
             </li>
             <ul>
               <li>
-                For a given filter / split,{" "}
-                <a href="">see each player's shot chart</a> (and compare vs
-                other splits)
+                For a given filter / split, see each player's{" "}
+                <a href="">Shot Chart</a> (and compare vs other splits)
               </li>
               <ul>
                 <li>
                   <i>
-                    (To see the shot chart for a given lineup,{" "}
+                    (To see the Shot Chart for a given lineup,{" "}
                     <a href="">go to the Lineup Analysis page</a>, and click the
                     lineup in which you're interested (leftmost column) to open
                     a new tab including Shot Chart info.)
@@ -197,7 +420,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 </li>
               </ul>
               <li>
-                You can see the shot charts for all players in the{" "}
+                You can see the Shot Charts for all players in the{" "}
                 <a href="">Player Leaderboard page (eg Top 50)</a>
               </li>
             </ul>
@@ -207,11 +430,15 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       imageList: [
         {
           src: "./images/landing_page/shot_charts/shot_chart_team_split.jpeg",
-          text: "See how Purdue's shot distribution changed 2 seasons ago with/without Zach Edey on the court",
+          text: "See how Purdue's shot distribution changed with/without Zach Edey on the court (23/24 season)",
         },
         {
           src: "./images/landing_page/shot_charts/shot_chart_player_split.jpeg",
-          text: "See how Purdue's PG's shot distribution changed 2 seasons ago with/without Zach Edey on the court",
+          text: "See how Purdue's PG's shot distribution changed with/without Zach Edey on the court (23/24 season)",
+        },
+        {
+          src: "./images/landing_page/shot_charts/shot_chart_player_lboard.jpeg",
+          text: "See player's shot charts directly in the Player Leaderboard",
         },
       ],
     },
@@ -560,7 +787,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           handleMoreDetailsOpen(cardId);
         }}
       >
-        More Details
+        <u>More Details</u>
       </Card.Link>
     ) : null;
   };
@@ -669,6 +896,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 onClick={(e: any) => {
                   e.preventDefault();
                   setShowTeamModal(true);
+                  setVisitOnExitTeamModal(undefined);
                 }}
               >
                 {team && year && gender
@@ -828,9 +1056,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   Have a browse to get an idea of some of the features!
                 </Card.Text>
-                <Card.Link href="#">
-                  <b>Show me Examples!</b>
-                </Card.Link>
+                {/** TODO ADD CARD ONCE WE HAVE WRITTEN A MODAL TO DISPLAY EXAMPLES */}
               </Card.Body>
             </Card>
           </Col>
@@ -839,9 +1065,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           <Col className="mt-2">
             <Card>
               <Card.Body>
-                <Card.Title>Offseason Predictions / Analysis</Card.Title>
+                <Card.Title>Off-Season Predictions / Analysis</Card.Title>
                 <Card.Text>
-                  Check out Hoop Explorer's very simple off-season predictions.
+                  Check out Hoop Explorer's very simple off-season predictions{" "}
+                  <small>(please don't be mad at me.)</small>
                   <br />
                   <br />A key point is that I show in detail how they are
                   constructed and let you play with them to fix the bits you
@@ -850,29 +1077,42 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 {maybeMoreDetails(
                   getCardIdFromTitle("Offseason Predictions / Analysis")
                 )}
-                <Card.Link href="#">
+                <Card.Link
+                  href={UrlRouting.getOffseasonLeaderboard({ year, gender })}
+                  target="_blank"
+                >
                   <b>Just take me to the predictions!</b>
                 </Card.Link>
               </Card.Body>
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Lineups", "Teams"]}>
+        <TopicFilteredCard topics={["Play Types", "Teams", "Players"]}>
           <Col className="mt-2">
             <Card>
               <Card.Body>
-                <Card.Title>Team Lineup Analysis</Card.Title>
+                <Card.Title>Play Type / Style Analysis</Card.Title>
                 <Card.Text>
-                  All sorts of metrics about the different lineups played by the
-                  selected team.
+                  Maybe Hoop Explorer's most unique feature - break down a team
+                  or player's offense or defense into intuitive "style"
+                  categories ("Post-Up", "Transition", "Perimeter Sniper", etc)
                   <br />
                   <br />
-                  The best bit is the ability to combine stats for lineups,
-                  based on various groupings (frontcourt, backcourt, etc).
+                  Accesible from lots of pages - see "More Details".
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team Lineup Analysis"))}
-                <Card.Link href="#">
-                  <b>Straight to the page!</b>
+                {maybeMoreDetails(
+                  getCardIdFromTitle("Play Type / Style Analysis")
+                )}
+                <Card.Link
+                  href={UrlRouting.getTeamStatsExplorerUrl({
+                    year,
+                    gender,
+                    showPlayStyles: true,
+                    maxTableSize: "10",
+                  })}
+                  target="_blank"
+                >
+                  <b>Show Me For The Top 10 Teams!</b>
                 </Card.Link>
               </Card.Body>
             </Card>
@@ -892,28 +1132,37 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   visualizing, and exporting the data.
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Player Leaderboards"))}
-                <Card.Link href="#">
+                <Card.Link
+                  href={UrlRouting.getPlayerLeaderboardUrl({ year, gender })}
+                  target="_blank"
+                >
                   <b>Just take me to the leaderboard!</b>
                 </Card.Link>
               </Card.Body>
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Players", "Leaderboards"]}>
+        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
           <Col className="mt-2">
             <Card>
               <Card.Body>
-                <Card.Title>Generic Player Stats</Card.Title>
+                <Card.Title>Multi Team Stats Explorer</Card.Title>
                 <Card.Text>
-                  All the basic stats - but with the ability to do
-                  filtering/sorting by conference and other dimensions.
+                  Team-focused, conference-adjusted team efficiency stats.
                   <br />
                   <br />
-                  Includes (depending on availability): USG, eFG, ORB/DRB,
-                  ORtg/DRtg, TS%, A:TO, Win Shares, BPM variants...
+                  Sort by Adjusted Efficiency Margin, Offensive Efficiency, or
+                  Defensive Efficiency, see 1/2/3 point shooting stats, turnover
+                  percentages, etc.
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Generic Player Stats"))}
-                <Card.Link href="#">
+                {maybeMoreDetails(getCardIdFromTitle("Team Efficiency Stats"))}
+                <Card.Link
+                  href={UrlRouting.getTeamStatsExplorerUrl({
+                    year,
+                    gender,
+                  })}
+                  target="_blank"
+                >
                   <b>Straight to the page!</b>
                 </Card.Link>
               </Card.Body>
@@ -938,31 +1187,55 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 {maybeMoreDetails(
                   getCardIdFromTitle("Team And Roster Analysis / Splits")
                 )}
-                <Card.Link href="#">
-                  <b>I'm Sold! Let's Go</b>
-                </Card.Link>
+                {buildCardLink(
+                  <b>I'm Sold! Let's Go...</b>,
+                  (year, gender, team) =>
+                    UrlRouting.getGameUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                      },
+                      {}
+                    )
+                )}
               </Card.Body>
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Play Types", "Teams", "Players"]}>
+        <TopicFilteredCard topics={["Lineups", "Teams"]}>
           <Col className="mt-2">
             <Card>
               <Card.Body>
-                <Card.Title>Play Type / Style Analysis</Card.Title>
+                <Card.Title>Team Lineup Analysis</Card.Title>
                 <Card.Text>
-                  Maybe Hoop Explorer's most unique feature - break down a team
-                  or player's offense or defense into intuitive "style"
-                  categories ("Post-Up", "Transition", "Perimeter Sniper", etc)
+                  All sorts of metrics about the different lineups played by the
+                  selected team.
                   <br />
                   <br />
-                  Accesible from lots of pages - see "More Details".
+                  The best bit is the ability to combine stats for lineups,
+                  based on various groupings (frontcourt, backcourt, etc).
                 </Card.Text>
-                {maybeMoreDetails(
-                  getCardIdFromTitle("Play Type / Style Analysis")
+                {maybeMoreDetails(getCardIdFromTitle("Team Lineup Analysis"))}
+                {buildCardLink(<b>Team Page...</b>, (year, gender, team) =>
+                  UrlRouting.getLineupUrl(
+                    {
+                      year,
+                      gender,
+                      team,
+                    },
+                    {}
+                  )
                 )}
-                <Card.Link href="#">
-                  <b>Show Me For The Top 10 Teams!</b>
+                <Card.Link
+                  href={UrlRouting.getLineupLeaderboardUrl({
+                    year,
+                    gender,
+                    tier: "All",
+                  })}
+                  target="_blank"
+                >
+                  Leaderboard...
                 </Card.Link>
               </Card.Body>
             </Card>
@@ -982,49 +1255,16 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Particularly interesting with filters and splits!
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Shot Charts"))}
-                <Card.Link href="#">
-                  <b>Show Me For The Top 10 Teams!</b>
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard topics={["Teams", "Players", "On-Off", "RAPM"]}>
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Team On-Off</Card.Title>
-                <Card.Text>
-                  See how the team stats vary with each player on/off the court.
-                  <br />
-                  <br />
-                  Also provides a more detailed breakdown of players' RAPM
-                  metric into 4-factors etc components.
-                </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
-                <Card.Link href="#">
-                  <b>Straight to the page!</b>
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Team Efficiency Stats</Card.Title>
-                <Card.Text>
-                  Team-focused, conference-adjusted team efficiency stats.
-                  <br />
-                  <br />
-                  Sort by Adjusted Efficiency Margin, Offensive Efficiency, or
-                  Defensive Efficiency, see 1/2/3 point shooting stats, turnover
-                  percentages, etc.
-                </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team Efficiency Stats"))}
-                <Card.Link href="#">
-                  <b>Straight to the page!</b>
+                <Card.Link
+                  href={UrlRouting.getPlayerLeaderboardUrl({
+                    year,
+                    gender,
+                    shotCharts: true,
+                    maxTableSize: "50",
+                  })}
+                  target="_blank"
+                >
+                  <b>Show Me For The Top 50 Players!</b>
                 </Card.Link>
               </Card.Body>
             </Card>
@@ -1046,7 +1286,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   </ul>
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Game Reports"))}
-                <Card.Link href="#">
+                <Card.Link
+                  href={UrlRouting.getMatchupUrl({
+                    year,
+                    gender,
+                    team,
+                  })}
+                  target="_blank"
+                >
                   <b>Straight to the page!</b>
                 </Card.Link>
               </Card.Body>
@@ -1070,8 +1317,70 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   </ul>
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Game Previews"))}
-                <Card.Link href="#">
+                <Card.Link
+                  href={UrlRouting.getMatchupPreviewUrl({
+                    year,
+                    gender,
+                    team,
+                  })}
+                  target="_blank"
+                >
                   <b>Straight to the page!</b>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={["Teams", "Players", "On-Off", "RAPM"]}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Team On-Off</Card.Title>
+                <Card.Text>
+                  See how the team stats vary with <i>each</i> player on/off the
+                  court. (Unlike the Splits Analysis page which shows you more
+                  detailed stats but for a selected player on/off)
+                  <br />
+                  <br />
+                  Also provides a more detailed breakdown of players' RAPM
+                  metric into 4-factors etc components.
+                </Card.Text>
+                {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
+                {buildCardLink(
+                  <b>Straight to the page!</b>,
+                  (year, gender, team) =>
+                    UrlRouting.getTeamReportUrl({
+                      year,
+                      gender,
+                      team,
+                    })
+                )}
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={["Players", "Misc Charts"]}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>X-Season Player Charts</Card.Title>
+                <Card.Text>
+                  Build Your Own Visualization of how player stats are related,
+                  or explore one of our built-in charts.
+                  <br />
+                  <br />A key feature of this page is that each "player season"
+                  data set contains both their current and previous seasons, so
+                  you can ask questions like "how did they improve"?
+                </Card.Text>
+                {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
+                <Card.Link
+                  href={UrlRouting.getPlayerSeasonComparisonUrl({
+                    gender,
+                    year,
+                  })}
+                  target="_blank"
+                >
+                  <b>Let's Go Charting!</b>
                 </Card.Link>
               </Card.Body>
             </Card>
@@ -1090,7 +1399,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Pick the weights you want and see how the teams stack up...
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Build Your Own T25"))}
-                <Card.Link href="#">
+                <Card.Link
+                  href={UrlRouting.getTeamLeaderboardUrl({
+                    gender,
+                    year,
+                  })}
+                  target="_blank"
+                >
                   <b>Just take me to the leaderboard!</b>
                 </Card.Link>
               </Card.Body>
@@ -1109,6 +1424,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         show={showTeamModal}
         onHide={() => setShowTeamModal(false)}
         onSave={handleTeamSave}
+        visitOnSave={visitOnExitTeamModal}
         onClear={handleTeamClear}
         year={year}
         gender={gender}

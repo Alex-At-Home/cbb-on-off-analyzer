@@ -73,6 +73,7 @@ const LandingPageMoreDetails: React.FC<LandingPageMoreDetailsProps> = ({
         document.body.style.overflow = "scroll";
       }}
       {...props}
+      className="modal_lower"
     >
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>

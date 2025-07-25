@@ -1,32 +1,34 @@
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // Lodash:
-import _ from 'lodash';
+import _ from "lodash";
 
 // Bootstrap imports:
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
 // Additional components:
 // @ts-ignore
 import Select, { components } from "react-select";
 
 // App imports:
-import { ParamDefaults } from '../../utils/FilterModels';
-import { DateUtils } from '../../utils/DateUtils';
-import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
+import { ParamDefaults } from "../../utils/FilterModels";
+import { DateUtils } from "../../utils/DateUtils";
+import { AvailableTeams } from "../../utils/internal-data/AvailableTeams";
 
 // Props type definition
 type Props = {
   show: boolean;
   onHide: () => void;
   onSave: (year: string, gender: string, team: string) => void;
+  /** If specified then on exit opens a new tab with this URL */
+  visitOnSave?: (year: string, gender: string, team: string) => string;
   onClear: () => void;
   year: string;
   gender: string;
@@ -34,11 +36,12 @@ type Props = {
 };
 
 const LandingPageSelectModal: React.FunctionComponent<Props> = ({
-  onSave, 
+  onSave,
+  visitOnSave,
   onClear,
-  year, 
-  gender, 
-  team, 
+  year,
+  gender,
+  team,
   ...props
 }) => {
   // State management for form values
@@ -72,7 +75,12 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
   }, [year, gender, team]);
 
   // Get teams from AvailableTeams API
-  const teamList = AvailableTeams.getTeams(selectedTeam, selectedYear, selectedGender, true);
+  const teamList = AvailableTeams.getTeams(
+    selectedTeam,
+    selectedYear,
+    selectedGender,
+    true
+  );
 
   // Handle save action
   const handleSave = () => {
@@ -82,13 +90,17 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
   return (
     <Modal
       {...props}
+      className="modal_upper"
+      backdropClassName="modal_backdrop_upper"
       size="xl"
       onEntered={() => {
         document.body.style.overflow = "scroll";
       }}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Select Team</Modal.Title>
+        <Modal.Title>
+          {visitOnSave ? "To Continue " : ""}Select Team Season
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Container>
@@ -100,9 +112,12 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                   value={stringToOption(selectedGender)}
                   options={Array.from(
                     new Set(
-                      AvailableTeams.getTeams(selectedTeam, selectedYear, null, true).map(
-                        (r) => r.gender
-                      )
+                      AvailableTeams.getTeams(
+                        selectedTeam,
+                        selectedYear,
+                        null,
+                        true
+                      ).map((r) => r.gender)
                     )
                   ).map((gender) => stringToOption(gender))}
                   isSearchable={false}
@@ -122,9 +137,12 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                     Array.from(
                       //(reverse because years are descending we want them ascending)
                       new Set(
-                        AvailableTeams.getTeams(selectedTeam, null, selectedGender, true).map(
-                          (r) => r.year
-                        )
+                        AvailableTeams.getTeams(
+                          selectedTeam,
+                          null,
+                          selectedGender,
+                          true
+                        ).map((r) => r.year)
                       )
                     )
                   )
@@ -146,7 +164,12 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                   isClearable={false}
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
-                  options={AvailableTeams.getTeams(null, selectedYear, selectedGender, true).map((r) => stringToOption(r.team))}
+                  options={AvailableTeams.getTeams(
+                    null,
+                    selectedYear,
+                    selectedGender,
+                    true
+                  ).map((r) => stringToOption(r.team))}
                   onChange={(option: any) => {
                     const selection = (option as any)?.value || "";
                     if (selectedYear == AvailableTeams.extraTeamName) {
@@ -164,9 +187,33 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.onHide}>Cancel</Button>
-        <Button variant="danger" onClick={onClear}>Clear</Button>
-        <Button variant="primary" onClick={handleSave}>Save</Button>
+        <Button variant="secondary" onClick={props.onHide}>
+          Cancel
+        </Button>
+        {visitOnSave ? undefined : (
+          <Button variant="danger" onClick={onClear}>
+            Clear
+          </Button>
+        )}
+        {visitOnSave ? (
+          <Button
+            variant="primary"
+            disabled={!selectedYear || !selectedGender || !selectedTeam}
+            href={visitOnSave(selectedYear, selectedGender, selectedTeam)}
+            target="_blank"
+            onClick={handleSave}
+          >
+            Open...
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            onClick={handleSave}
+            disabled={!selectedYear || !selectedGender || !selectedTeam}
+          >
+            Save
+          </Button>
+        )}
       </Modal.Footer>
     </Modal>
   );
