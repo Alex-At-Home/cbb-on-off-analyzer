@@ -58,7 +58,7 @@ export class UrlRouting {
 
   /** The URL to use to view the Landing Page */
   static getLandingPageUrl(params: CommonFilterParams) {
-    return `/LandingPage?${UrlRouting.getUrl({
+    return `/?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
     })}`;
   }
@@ -90,7 +90,7 @@ export class UrlRouting {
   }
   /** The URL to use to view the "Team Leaderboard" page */
   static getTeamLeaderboardUrl(params: PlayerLeaderboardParams) {
-    return `/?${UrlRouting.getUrl({
+    return `/TeamLeaderboardPage?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
     })}`;
   }

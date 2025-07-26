@@ -15,7 +15,8 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
       The following table shows the confidence that the player could fit into one of the traditional positional categories. That "signature" is then used to assign a "positional role".
     </li>
     <li>
-      Rule used to categorize player: 
+      Rule used to categorize player:
+       
       <i>
         <b>
           (P[PG] &gt;= 50%)
@@ -180,7 +181,8 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
       </span>
     </li>
     <li>
-      Rule used to categorize player: 
+      Rule used to categorize player:
+       
       <i>
         <b>
           (P[PG] &gt;= 50%)
@@ -1938,7 +1940,8 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (use hei
       The following table shows the confidence that the player could fit into one of the traditional positional categories. That "signature" is then used to assign a "positional role".
     </li>
     <li>
-      Rule used to categorize player: 
+      Rule used to categorize player:
+       
       <i>
         <b>
           (P[PG] &gt;= 50%)

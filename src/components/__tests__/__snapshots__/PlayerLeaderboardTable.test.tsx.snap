@@ -1235,6 +1235,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
+                Include low-volume players
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
                 <FontAwesomeIcon
                   beat={false}
                   beatFade={false}
@@ -9231,6 +9243,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             text={
               <span>
                 Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Include low-volume players
               </span>
             }
             truthVal={false}
@@ -17248,6 +17272,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             text={
               <span>
                 Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Include low-volume players
               </span>
             }
             truthVal={false}
@@ -28470,6 +28506,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
+                Include low-volume players
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
                 <FontAwesomeIcon
                   beat={false}
                   beatFade={false}
@@ -36429,6 +36477,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
+                Include low-volume players
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
                 <FontAwesomeIcon
                   beat={false}
                   beatFade={false}
@@ -38234,6 +38294,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             text={
               <span>
                 Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Include low-volume players
               </span>
             }
             truthVal={false}

@@ -35,6 +35,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 const PlayerGeoMapNoSsr = dynamic(
   () => import("../components/diags/PlayerGeoMap"),
@@ -320,12 +321,10 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />
       </Head>
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Player Hometowns{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Player Hometowns</h3>
         </Col>
       </Row>
       <Row className="border-bottom">

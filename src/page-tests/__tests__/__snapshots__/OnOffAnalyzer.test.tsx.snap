@@ -6,20 +6,16 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   fluid={false}
 >
   <Row
+    className="mt-2"
     noGutters={false}
   >
     <Col
       className="text-center"
       xs={12}
     >
+      <LandingPageIcon />
       <h3>
-        CBB On/Off Analysis Tool
-         
-        <span
-          className="badge badge-pill badge-info"
-        >
-          BETA!
-        </span>
+        Team / Roster Analysis Tool
       </h3>
     </Col>
   </Row>

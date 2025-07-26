@@ -850,6 +850,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "right",
               "verticalAlign": "middle",
@@ -871,6 +872,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -889,6 +891,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#7fbf7f",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -907,6 +910,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#b4dab4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -925,6 +929,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -943,6 +948,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffdfdf",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -961,6 +967,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#7ebf7e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -979,6 +986,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffb5b5",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -997,6 +1005,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1015,6 +1024,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1033,6 +1043,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f7fbfd",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1051,6 +1062,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1069,6 +1081,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#feffff",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1087,6 +1100,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f9fcfd",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1105,6 +1119,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff8ea",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1123,6 +1138,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1141,6 +1157,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffafaf",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1159,6 +1176,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d7ebd7",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1177,6 +1195,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff2e2e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1195,6 +1214,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#6db66d",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1213,6 +1233,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1231,6 +1252,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1249,6 +1271,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1269,6 +1292,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1287,6 +1311,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff6060",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1305,6 +1330,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff6c6c",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1323,6 +1349,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1341,6 +1368,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7575",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1359,6 +1387,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffcfcf",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1377,6 +1406,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#108810",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1395,6 +1425,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#aad5aa",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1413,6 +1444,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1431,6 +1463,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#c9e5ef",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1449,6 +1482,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1467,6 +1501,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f7fbfd",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1485,6 +1520,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffd079",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1503,6 +1539,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#dceef4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1521,6 +1558,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1539,6 +1577,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7e7e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1557,6 +1596,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff9a9a",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1575,6 +1615,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff0000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1593,6 +1634,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffb9b9",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1611,6 +1653,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1629,6 +1672,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1647,6 +1691,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1667,6 +1712,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "right",
               "verticalAlign": "middle",
@@ -1701,6 +1747,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1719,6 +1766,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#249224",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1737,6 +1785,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1755,6 +1804,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1773,6 +1823,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#e7f3e7",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1791,6 +1842,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#5eaf5e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1809,6 +1861,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d2e9d2",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1827,6 +1880,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1845,6 +1899,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1863,6 +1918,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff2db",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1881,6 +1937,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1899,6 +1956,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffbd43",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1917,6 +1975,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#badeea",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1935,6 +1994,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffecca",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1953,6 +2013,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1971,6 +2032,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffa8a8",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -1989,6 +2051,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#7dbe7d",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2007,6 +2070,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff0000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2025,6 +2089,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2043,6 +2108,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2061,6 +2127,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2079,6 +2146,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2099,6 +2167,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2117,6 +2186,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#aad4aa",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2135,6 +2205,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#64b264",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2153,6 +2224,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2171,6 +2243,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#5cae5c",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2189,6 +2262,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffdddd",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2207,6 +2281,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#84c284",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2225,6 +2300,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#b3d9b3",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2243,6 +2319,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2261,6 +2338,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffeed0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2279,6 +2357,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2297,6 +2376,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffdd9e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2315,6 +2395,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f1f8fb",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2333,6 +2414,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f4fafc",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2351,6 +2433,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2369,6 +2452,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#94ca94",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2387,6 +2471,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#43a243",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2405,6 +2490,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#128912",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2423,6 +2509,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#6fb76f",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2441,6 +2528,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2459,6 +2547,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2477,6 +2566,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2497,6 +2587,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "right",
               "verticalAlign": "middle",
@@ -2535,6 +2626,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2553,6 +2645,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#64b264",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2571,6 +2664,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2589,6 +2683,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2607,6 +2702,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#c7e3c7",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2625,6 +2721,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffc9c9",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2643,6 +2740,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#80c080",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2661,6 +2759,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff4040",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2679,6 +2778,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2697,6 +2797,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffeccb",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2715,6 +2816,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2733,6 +2835,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffbc42",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2751,6 +2854,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#bee0eb",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2769,6 +2873,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffeed0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2787,6 +2892,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2805,6 +2911,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#e4f2e4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2823,6 +2930,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#a5d2a5",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2841,6 +2949,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff3c3c",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2859,6 +2968,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#89c489",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2877,6 +2987,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2895,6 +3006,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2913,6 +3025,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2933,6 +3046,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2951,6 +3065,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#5aad5a",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2969,6 +3084,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#1b8d1b",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -2987,6 +3103,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3005,6 +3122,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3023,6 +3141,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d0e8d0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3041,6 +3160,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7070",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3059,6 +3179,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff6f6",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3077,6 +3198,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3095,6 +3217,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffc761",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3113,6 +3236,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3131,6 +3255,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffd88f",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3149,6 +3274,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d9edf3",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3167,6 +3293,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff5e4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3185,6 +3312,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3203,6 +3331,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3221,6 +3350,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3239,6 +3369,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3257,6 +3388,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#299429",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3275,6 +3407,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3293,6 +3426,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3311,6 +3445,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3414,6 +3549,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "right",
               "verticalAlign": "middle",
@@ -3435,6 +3571,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3453,6 +3590,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7e7e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3471,6 +3609,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff9494",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3489,6 +3628,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3507,6 +3647,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7e7e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3525,6 +3666,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d6ead6",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3543,6 +3685,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f4faf4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3561,6 +3704,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3579,6 +3723,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3597,6 +3742,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffeed0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3615,6 +3761,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3633,6 +3780,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#dceff4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3651,6 +3799,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffedcc",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3669,6 +3818,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffebc6",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3687,6 +3837,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3705,6 +3856,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffaeae",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3723,6 +3875,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7373",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3741,6 +3894,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff0000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3759,6 +3913,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f1f8f1",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3777,6 +3932,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3795,6 +3951,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3813,6 +3970,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3833,6 +3991,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3851,6 +4010,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#b2d9b2",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3869,6 +4029,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#b9dcb9",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3887,6 +4048,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3905,6 +4067,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff9d9d",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3923,6 +4086,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#80c080",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3941,6 +4105,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#7abd7a",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3959,6 +4124,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#389c38",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3977,6 +4143,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -3995,6 +4162,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#b3dbe8",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4013,6 +4181,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4031,6 +4200,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#cbe6ef",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4049,6 +4219,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffa500",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4067,6 +4238,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#deeff5",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4085,6 +4257,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4103,6 +4276,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffc1c1",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4121,6 +4295,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff9e9e",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4139,6 +4314,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff0000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4157,6 +4333,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffa0a0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4175,6 +4352,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4193,6 +4371,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4211,6 +4390,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4231,6 +4411,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "right",
               "verticalAlign": "middle",
@@ -4265,6 +4446,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4283,6 +4465,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#a4d2a4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4301,6 +4484,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#319831",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4319,6 +4503,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4337,6 +4522,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffb6b6",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4355,6 +4541,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f0f7f0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4373,6 +4560,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#74ba74",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4391,6 +4579,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4409,6 +4598,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4427,6 +4617,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffe1ab",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4445,6 +4636,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4463,6 +4655,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffd381",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4481,6 +4674,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#c7e4ee",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4499,6 +4693,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffe5b5",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4517,6 +4712,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4535,6 +4731,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffa6a6",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4553,6 +4750,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffcdcd",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4571,6 +4769,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff0000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4589,6 +4788,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#7cbe7c",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4607,6 +4807,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4625,6 +4826,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4643,6 +4845,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4663,6 +4866,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4681,6 +4885,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#339a33",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4699,6 +4904,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4717,6 +4923,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4735,6 +4942,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#349a34",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4753,6 +4961,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4771,6 +4980,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fafdfa",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4789,6 +4999,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#40a040",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4807,6 +5018,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4825,6 +5037,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffffff",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4843,6 +5056,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4861,6 +5075,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff9ef",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4879,6 +5094,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff4df",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4897,6 +5113,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#f5fafc",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4915,6 +5132,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4933,6 +5151,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#349a34",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4951,6 +5170,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#40a040",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4969,6 +5189,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#209020",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -4987,6 +5208,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#89c489",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5005,6 +5227,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5023,6 +5246,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5041,6 +5265,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5061,6 +5286,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "right",
               "verticalAlign": "middle",
@@ -5099,6 +5325,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5117,6 +5344,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#64b264",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5135,6 +5363,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5153,6 +5382,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5171,6 +5401,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#c7e3c7",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5189,6 +5420,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffc9c9",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5207,6 +5439,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#80c080",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5225,6 +5458,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff4040",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5243,6 +5477,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5261,6 +5496,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffeccb",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5279,6 +5515,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5297,6 +5534,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffbc42",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5315,6 +5553,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#bee0eb",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5333,6 +5572,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffeed0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5351,6 +5591,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5369,6 +5610,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#e4f2e4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5387,6 +5629,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#a5d2a5",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5405,6 +5648,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff3c3c",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5423,6 +5667,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#89c489",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5441,6 +5686,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5459,6 +5705,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5477,6 +5724,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5497,6 +5745,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5515,6 +5764,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#5aad5a",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5533,6 +5783,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#1b8d1b",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5551,6 +5802,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5569,6 +5821,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5587,6 +5840,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d0e8d0",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5605,6 +5859,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ff7070",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5623,6 +5878,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff6f6",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5641,6 +5897,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5659,6 +5916,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffc761",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5677,6 +5935,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5695,6 +5954,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#ffd88f",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5713,6 +5973,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#d9edf3",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5731,6 +5992,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#fff5e4",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5749,6 +6011,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5767,6 +6030,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5785,6 +6049,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5803,6 +6068,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#008000",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5821,6 +6087,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": "#299429",
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5839,6 +6106,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5857,6 +6125,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",
@@ -5875,6 +6144,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
           style={
             Object {
               "backgroundColor": undefined,
+              "color": "black",
               "fontWeight": "normal",
               "textAlign": "center",
               "verticalAlign": "middle",

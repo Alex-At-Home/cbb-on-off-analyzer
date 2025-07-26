@@ -249,6 +249,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}
+          text="Show all teams (slow, useful for export)"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
           text="Review mode"
           truthVal={false}
         />
@@ -1263,6 +1269,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
           disabled={false}
           onSelect={[Function]}
           text="Show breakdown of team's offseason metrics"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show all teams (slow, useful for export)"
           truthVal={false}
         />
         <GenericTogglingMenuItem
@@ -4320,6 +4332,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
           disabled={true}
           onSelect={[Function]}
           text="Show breakdown of team's offseason metrics"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show all teams (slow, useful for export)"
           truthVal={false}
         />
         <GenericTogglingMenuItem
@@ -19184,6 +19202,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
           disabled={false}
           onSelect={[Function]}
           text="Show breakdown of team's offseason metrics"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show all teams (slow, useful for export)"
           truthVal={false}
         />
         <GenericTogglingMenuItem
@@ -34963,6 +34987,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}
+          text="Show all teams (slow, useful for export)"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
           text="Review mode"
           truthVal={false}
         />
@@ -48871,6 +48901,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
           onSelect={[Function]}
           text="Show breakdown of team's offseason metrics"
           truthVal={true}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show all teams (slow, useful for export)"
+          truthVal={false}
         />
         <GenericTogglingMenuItem
           disabled={true}

@@ -5,20 +5,16 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
   fluid={false}
 >
   <Row
+    className="mt-2"
     noGutters={false}
   >
     <Col
       className="text-center"
       xs={12}
     >
+      <LandingPageIcon />
       <h3>
         CBB Team On/Off Report Tool
-         
-        <span
-          className="badge badge-pill badge-info"
-        >
-          BETA!
-        </span>
       </h3>
     </Col>
   </Row>

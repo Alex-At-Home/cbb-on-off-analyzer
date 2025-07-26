@@ -49,6 +49,7 @@ import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { DateUtils } from "../utils/DateUtils";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -517,12 +518,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row ref={topRef}>
+      <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Match-up Analysis Tool{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Match-up Analysis Tool</h3>
         </Col>
       </Row>
       <Row>

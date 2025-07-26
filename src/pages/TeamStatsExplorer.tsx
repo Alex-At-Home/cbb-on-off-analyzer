@@ -36,6 +36,7 @@ import TeamStatsExplorerTable, {
   TeamStatsExplorerModel,
 } from "../components/TeamStatsExplorerTable";
 import { QueryUtils } from "../utils/QueryUtils";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -241,12 +242,10 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />
       </Head>
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            Team Stats Explorer{" "}
-            <span className="badge badge-pill badge-info">IN DEV!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Team Stats Explorer</h3>
         </Col>
       </Row>
       <Row className="border-bottom">

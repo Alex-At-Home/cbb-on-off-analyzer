@@ -1,5 +1,9 @@
 /* Global styles */
 
+.off_white {
+   background-color: 0x010101;
+}
+
 /* Widescreen */
 
 /* Ensure padding between 1400px and 1600px */

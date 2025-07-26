@@ -59,6 +59,7 @@ import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import { DateUtils } from "../utils/DateUtils";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -770,12 +771,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row ref={topRef}>
+      <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Match-up Preview Tool{" "}
-            <span className="badge badge-pill badge-info">IN DEV!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Match-up Preview Tool</h3>
         </Col>
       </Row>
       <Row>

@@ -35,6 +35,7 @@ import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -299,12 +300,10 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />
       </Head>
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            Off-Season Team Builder{" "}
-            <span className="badge badge-pill badge-info">ALPHA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Off-Season Team Builder</h3>
         </Col>
       </Row>
       <Row className="border-bottom">

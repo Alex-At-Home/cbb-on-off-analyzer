@@ -48,6 +48,7 @@ import {
   LineupStatSet,
 } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 const TeamReportPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -182,12 +183,10 @@ const TeamReportPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Team On/Off Report Tool{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>CBB Team On/Off Report Tool</h3>
         </Col>
       </Row>
       <Row>

@@ -35,6 +35,7 @@ import { DateUtils } from "../utils/DateUtils";
 import PlayerSeasonComparisonChart, {
   multiYearScenarios,
 } from "../components/PlayerSeasonComparisonChart";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -319,8 +320,9 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />
       </Head>
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
+          <LandingPageIcon />
           <h3>
             Multi-Season Player Analysis&nbsp;
             {showHelp ? (
@@ -331,10 +333,8 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
                 >
                   (?)
                 </a>
-                &nbsp;
               </small>
             ) : undefined}
-            <span className="badge badge-pill badge-info">IN DEV!</span>
           </h3>
         </Col>
       </Row>

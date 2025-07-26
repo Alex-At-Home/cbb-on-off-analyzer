@@ -52,6 +52,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -278,12 +279,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container className="medium_screen">
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Lineup Analysis Tool{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Lineup Analysis Tool</h3>
         </Col>
       </Row>
       <Row>

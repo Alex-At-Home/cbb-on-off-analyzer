@@ -33,6 +33,7 @@ import HeaderBar from "../components/shared/HeaderBar";
 import { UrlRouting } from "../utils/UrlRouting";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -231,12 +232,10 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
   return (
     <Container className="medium_screen">
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Lineup Leaderboard{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Lineup Leaderboard</h3>
         </Col>
       </Row>
       <Row className="border-bottom">

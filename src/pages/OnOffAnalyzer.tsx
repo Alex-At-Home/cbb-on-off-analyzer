@@ -49,6 +49,7 @@ import { sk } from "date-fns/locale";
 import { screen } from "@testing-library/react";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -531,12 +532,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container className={indivCardSize}>
-      <Row ref={topRef}>
+      <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB On/Off Analysis Tool{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Team / Roster Analysis Tool</h3>
         </Col>
       </Row>
       <Row>

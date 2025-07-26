@@ -6,20 +6,16 @@ exports[`LineupLeaderboardPage LineupLeaderboardPage - should create snapshot 1`
   fluid={false}
 >
   <Row
+    className="mt-2"
     noGutters={false}
   >
     <Col
       className="text-center"
       xs={12}
     >
+      <LandingPageIcon />
       <h3>
-        CBB Lineup Leaderboard
-         
-        <span
-          className="badge badge-pill badge-info"
-        >
-          BETA!
-        </span>
+        Lineup Leaderboard
       </h3>
     </Col>
   </Row>

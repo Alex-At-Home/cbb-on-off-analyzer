@@ -15,20 +15,16 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
     />
   </Head>
   <Row
+    className="mt-2"
     noGutters={false}
   >
     <Col
       className="text-center"
       xs={12}
     >
+      <LandingPageIcon />
       <h3>
         Off-Season Team Builder
-         
-        <span
-          className="badge badge-pill badge-info"
-        >
-          ALPHA!
-        </span>
       </h3>
     </Col>
   </Row>

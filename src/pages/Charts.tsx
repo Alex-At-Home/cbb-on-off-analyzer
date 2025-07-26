@@ -27,6 +27,7 @@ import HeaderBar from "../components/shared/HeaderBar";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
+import LandingPageIcon from "../components/shared/LandingPageIcon";
 
 // Utils:
 
@@ -108,12 +109,10 @@ const ChartsPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="mt-2">
         <Col xs={12} className="text-center">
-          <h3>
-            CBB Analysis Tool - Interesting Charts{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
-          </h3>
+          <LandingPageIcon />
+          <h3>Analysis Tool - Interesting Charts</h3>
         </Col>
       </Row>
       <Row>
