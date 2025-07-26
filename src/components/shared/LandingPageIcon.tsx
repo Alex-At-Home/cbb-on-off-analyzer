@@ -53,8 +53,8 @@ const LandingPageIcon: React.FunctionComponent<{}> = () => {
         className="d-none d-md-flex"
         src={
           isAutoDarkMode < 0
-            ? "images/Large_Banner_invert.jpg"
-            : "images/Large_Banner.jpg"
+            ? "images/Large_Banner_invert_trans.jpg"
+            : "images/Large_Banner_trans.jpg"
         }
       />
     </a>
