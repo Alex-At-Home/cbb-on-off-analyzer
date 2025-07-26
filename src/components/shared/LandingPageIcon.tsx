@@ -1,34 +1,57 @@
 // React imports:
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UrlRouting } from "../../utils/UrlRouting";
 
 const LandingPageIcon: React.FunctionComponent<{}> = () => {
-  const [darkMode, setDarkMode] = useState(
-    _.thru(undefined, (__) => {
-      // We can also use JavaScript to generate the detection element.
-      const detectionDiv = document.createElement("div");
-      detectionDiv.style.display = "none";
-      detectionDiv.style.backgroundColor = "canvas";
-      detectionDiv.style.colorScheme = "light";
-      document.body.appendChild(detectionDiv);
-      // If the computed style is not white then the page is in Auto Dark Theme.
-      const isAutoDark =
-        getComputedStyle(detectionDiv).backgroundColor != "rgb(255, 255, 255)";
+  const [isAutoDarkMode, setIsAutoDarkMode] = useState(0);
+  const testElementRef = useRef(null);
 
-      // remove the detection element from the DOM.
-      document.body.removeChild(detectionDiv);
-      return isAutoDark;
-    })
-  );
-  return (
+  useEffect(() => {
+    if (testElementRef.current) {
+      // Create a temporary element with specific styles to check for auto dark theme
+      const testElement = document.createElement("div");
+      testElement.style.backgroundColor = "canvas";
+      testElement.style.colorScheme = "light";
+      testElement.style.position = "absolute";
+      testElement.style.top = "-9999px";
+      testElement.style.left = "-9999px";
+      document.body.appendChild(testElement);
+
+      // Check the computed background color
+      const computedStyle = window.getComputedStyle(testElement);
+      const backgroundColor = computedStyle.backgroundColor;
+
+      // If the background color is not white (rgb(255, 255, 255)),
+      // it indicates that Chrome's Auto Dark Theme is applied.
+      if (backgroundColor !== "rgb(255, 255, 255)") {
+        setIsAutoDarkMode(-1);
+      } else {
+        setIsAutoDarkMode(1);
+      }
+      // Clean up the temporary element
+      document.body.removeChild(testElement);
+    }
+  }, []);
+
+  return isAutoDarkMode == 0 ? (
+    <div ref={testElementRef} style={{ display: "none" }}></div>
+  ) : (
     <a
       href={UrlRouting.getLandingPageUrl({})}
       className="float-left"
       style={{ position: "relative", top: "2px" }}
     >
+      <div
+        id="detection"
+        style={{
+          display: "none",
+          backgroundColor: "canvas",
+          colorScheme: "light",
+        }}
+      ></div>
       <img
         src={
-          darkMode
+          isAutoDarkMode < 0
             ? "images/Large_Banner_invert.jpg"
             : "images/Large_Banner.jpg"
         }
