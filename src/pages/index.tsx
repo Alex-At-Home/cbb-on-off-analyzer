@@ -1072,7 +1072,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Off-Season", "Teams", "Leaderboards"]}>
+        <TopicFilteredCard
+          hide={gender == "Women"}
+          topics={["Off-Season", "Teams", "Leaderboards"]}
+        >
           <Col className="mt-2">
             <Card>
               <Card.Body>
@@ -1434,6 +1437,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
+          hide={gender == "Women"}
           topics={["Players", "Multi-Year", "RAPM", "CSV Export"]}
         >
           <Col className="mt-2">
