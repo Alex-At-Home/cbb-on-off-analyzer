@@ -1,8 +1,11 @@
 /* Global styles */
 
-.off_white {
-   background-color: 0x010101;
-}
+/* To build a dark mode of United with Superhero colors
+
+echo '(?:^\s*(?:\.|@).*$|^\s*.*(?:color|border|background|fill|stroke|outline|shadow).*(?:#[0-9a-fA-F]{3,8}|rgba?\(|hsla?\(|white|black|gray|grey|red|green|blue|yellow|orange|purple|pink|brown|teal|cyan|magenta|violet|indigo|maroon|olive|navy|silver|gold|beige|ivory|khaki|lavender|lime|mint|plum|tan|aqua|coral|crimson|fuchsia|turquoise).*$|^\s*\}$)' > color_pattern.txt
+grep -E -f color_pattern.txt src/styles/bootstrap.united.css > src/styles/bootstrap.cutdown_united.css
+grep -E -f color_pattern.txt src/styles/bootstrap.original_superhero.css > src/styles/bootstrap.cutdown_superhero.css
+*/
 
 /* Widescreen */
 

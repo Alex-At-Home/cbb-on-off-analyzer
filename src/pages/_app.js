@@ -3,12 +3,17 @@ import Head from "next/head";
 // Bootstrap imports:
 //import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/united/bootstrap.min.css";
+import "../styles/bootstrap.dark_united.css";
+//import "../styles/bootstrap.superhero.min.css";
 
-// Global styles
+// // Global styles
 import "../styles/globals.css";
 
-// Need this for FA to work with favicons
+// // Need this for FA to work with favicons
 import "@fortawesome/fontawesome-svg-core/styles.css";
+
+// pages/_app.js
+import { ThemeProvider } from "next-themes";
 
 const App = ({ Component, pageProps }) => (
   <>
@@ -40,7 +45,9 @@ const App = ({ Component, pageProps }) => (
         content="Open analytics web-site for college basketball"
       />
     </Head>
-    <Component {...pageProps} />
+    <ThemeProvider enableSystem={false} defaultTheme="light">
+      <Component {...pageProps} />
+    </ThemeProvider>
   </>
 );
 

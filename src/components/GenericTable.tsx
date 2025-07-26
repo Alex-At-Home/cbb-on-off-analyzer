@@ -10,6 +10,10 @@ import _ from "lodash";
 import styles from "./GenericTable.module.css";
 import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
 
+// Themes
+import chroma from "chroma-js";
+import { useTheme } from "next-themes";
+
 // Bootstrap imports:
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
@@ -380,6 +384,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   rowStyleOverride,
   extraInfoLookups,
 }) => {
+  const { theme, setTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
     (cellTooltipMode || "missing") as LockModes
   );
@@ -726,6 +731,15 @@ const GenericTable: React.FunctionComponent<Props> = ({
         return colProps.colorPicker(val, cellMeta);
       } else return undefined;
     };
+    const colorToUse = backgroundColorFn();
+    const colorOverride = _.thru(colorToUse, (maybeColor) => {
+      if (maybeColor) {
+        const chromaColor = chroma(maybeColor);
+        return chromaColor.hsv()[2] < 0.5 ? "white" : "black";
+      } else {
+        return undefined;
+      }
+    });
     return {
       textAlign: colProps.isTitle
         ? ("right" as "right")
@@ -735,10 +749,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
         colProps.isTitle && _.isString(val)
           ? ("bold" as "bold")
           : ("normal" as "normal"),
-      backgroundColor: backgroundColorFn(),
+      backgroundColor: colorToUse,
       verticalAlign: "middle",
       ...rowStyleOverride,
-      color: "black", //TODO
+      color: colorOverride || (theme == "dark" ? "white" : "black"),
     };
   }
   const isResponsive = _.isNil(responsive) ? true : responsive;
