@@ -1515,6 +1515,7 @@ export class AdvancedFilterUtils {
           ? headerFieldsPhase1
               .filter(
                 (field) =>
+                  !_.startsWith(field, "off_style_") && //(don't generate prev_ for style)
                   !_.startsWith(field, "rank_") &&
                   !_.startsWith(field, "pctile_") && //(don't currently support prev_ ranks)
                   !_.startsWith(field, "player_") &&
