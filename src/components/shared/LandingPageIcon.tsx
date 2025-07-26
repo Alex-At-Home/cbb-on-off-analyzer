@@ -41,15 +41,16 @@ const LandingPageIcon: React.FunctionComponent<{}> = () => {
       className="float-left"
       style={{ position: "relative", top: "2px" }}
     >
-      <div
-        id="detection"
-        style={{
-          display: "none",
-          backgroundColor: "canvas",
-          colorScheme: "light",
-        }}
-      ></div>
       <img
+        className="d-md-none pr-2"
+        src={
+          isAutoDarkMode < 0
+            ? "images/favicon-32x32_invert.png"
+            : "images/favicon-32x32.png"
+        }
+      />
+      <img
+        className="d-none d-md-flex"
         src={
           isAutoDarkMode < 0
             ? "images/Large_Banner_invert.jpg"
