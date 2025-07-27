@@ -819,10 +819,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       <Row className="border-bottom">
         <HeaderBar
           common={{
-            gender: "Men",
-            year: DateUtils.getLastSeasonWithDataFrom(
-              ParamDefaults.defaultLeaderboardYear
-            ),
+            gender: gender || "Men",
+            year:
+              year ||
+              DateUtils.getLastSeasonWithDataFrom(
+                ParamDefaults.defaultLeaderboardYear
+              ),
+            team: team,
           }}
           thisPage={`home`}
         />
