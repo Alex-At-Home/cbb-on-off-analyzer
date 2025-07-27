@@ -12,6 +12,7 @@ import { CbbColors } from "../../utils/CbbColors";
 import * as d3 from "d3";
 import { hexbin } from "d3-hexbin";
 import { HexZone, HexData } from "../../utils/StatModels";
+import { useTheme } from "next-themes";
 
 const MIN_Y = -5;
 const MAX_Y = 35;
@@ -46,6 +47,11 @@ const HexMap: React.FC<HexMapProps> = ({
   buildZones,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
+
+  const { theme } = useTheme();
+  const backgroundColor = theme == "dark" ? "#272b30" : "#ffffff";
+  const clusterStrokeColor = theme == "dark" ? "#444" : "#ccc";
+  const courtStrokeColor = theme == "dark" ? "#fff" : "#000";
 
   // Define scales for x and y to map original coordinates to canvas
   const xScale = d3
@@ -107,7 +113,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("y", yScale(rectCoords.y))
         .attr("width", widthScale(2 * halfPaintWidth * D.ft_per_px_y))
         .attr("height", heightScale(topOfPaint * D.ft_per_px_x))
-        .style("stroke", "black")
+        .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
         .style("fill", "none");
 
@@ -126,7 +132,7 @@ const HexMap: React.FC<HexMapProps> = ({
           "transform",
           `translate(${courtXScale(ftArcCoords.x)}, ${yScale(ftArcCoords.y)})`
         )
-        .style("stroke", "black")
+        .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
         .style("fill", "none");
 
@@ -147,7 +153,7 @@ const HexMap: React.FC<HexMapProps> = ({
           "y2",
           yScale(left3ptCoords.y) - heightScale(straightBitOf3ptHeight)
         )
-        .style("stroke", "black")
+        .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
         .style("fill", "none");
 
@@ -162,7 +168,7 @@ const HexMap: React.FC<HexMapProps> = ({
           "y2",
           yScale(right3ptCoords.y) - heightScale(straightBitOf3ptHeight)
         )
-        .style("stroke", "black")
+        .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
         .style("fill", "none");
 
@@ -186,7 +192,7 @@ const HexMap: React.FC<HexMapProps> = ({
             threePtArcCoords.y
           )})`
         )
-        .style("stroke", "black")
+        .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
         .style("fill", "none");
     }
@@ -197,7 +203,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("cx", courtXScale(goalCoords.x))
         .attr("cy", yScale(goalCoords.y))
         .attr("r", widthScale(9 * D.ft_per_px_x))
-        .style("stroke", "black")
+        .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
         .style("fill", "none");
     }
@@ -500,9 +506,9 @@ const HexMap: React.FC<HexMapProps> = ({
       })
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       .attr("fill", (d) => {
-        return "#ffFFff";
+        return backgroundColor;
       })
-      .attr("stroke", "#ccc")
+      .attr("stroke", clusterStrokeColor)
       .attr("stroke-width", 0.5);
 
     injectCourtLines(svg, 0);

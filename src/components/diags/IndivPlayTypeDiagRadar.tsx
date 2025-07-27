@@ -50,6 +50,7 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
+import { useTheme } from "next-themes";
 
 export type Props = {
   title?: string;
@@ -83,6 +84,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   compressedPlayTypeStats,
   navigationLinkOverride,
 }) => {
+  const { theme } = useTheme();
+  const highlightColor = theme == "dark" ? "#ffFFff" : "#000000";
+
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
   //   console.log(
@@ -183,7 +187,11 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
     const adjustment = adjustForSos ? mainSosAdjustment : 1.0;
-    const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
+    const themedRawColorBuilder =
+      theme == "dark"
+        ? CbbColors.off_diff10_p100_redGreen_darkMode
+        : CbbColors.off_diff10_p100_redBlackGreen;
+    const rawColor = themedRawColorBuilder(
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
 
@@ -192,7 +200,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         <text
           x={x + width / 2}
           y={y - textHeight + 3}
-          fill="#000000"
+          fill={highlightColor}
           textAnchor="middle"
           dominantBaseline="middle"
         >
@@ -204,7 +212,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ) : undefined}
         </text>
         <path
-          stroke="#000000"
+          stroke={highlightColor}
           strokeWidth={outlineWidth}
           fill={fill}
           className="recharts-rectangle"
@@ -225,7 +233,10 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         <div
           className="custom-tooltip"
           style={{
-            background: "rgba(255, 255, 255, 0.9)",
+            background:
+              theme == "dark"
+                ? "rgba(0, 0, 0, 0.9)"
+                : "rgba(238, 238, 238, 0.9)",
           }}
         >
           <p className="label pl-1 pr-1">
@@ -338,7 +349,10 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <RechartTooltip
                 content={<CustomTooltip />}
                 wrapperStyle={{
-                  background: "rgba(255, 255, 255, 0.9)",
+                  background:
+                    theme == "dark"
+                      ? "rgba(0, 0, 0, 1.0)"
+                      : "rgba(238, 238, 238, 1.0)",
                   zIndex: 1000,
                 }}
                 allowEscapeViewBox={{ x: true, y: false }}

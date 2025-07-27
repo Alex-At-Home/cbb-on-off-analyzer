@@ -55,6 +55,7 @@ import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 import AsyncFormControl from "../shared/AsyncFormControl";
 import { UrlRouting } from "../../utils/UrlRouting";
+import { useTheme } from "next-themes";
 
 const indivPlayTypeBreakdownFields = (
   adjustForSos: boolean,
@@ -232,6 +233,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   //     )
   //   );
   // }
+
+  const { theme } = useTheme();
+  const highlightColor = theme == "dark" ? "#ffFFff" : "#000000";
 
   /** Translate from hacky string */
   const [incomingConfig, setIncomingConfig] =
@@ -564,7 +568,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
     const adjustment = adjustForSos ? mainSosAdjustment : 1.0;
-    const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
+    const themedRawColorBuilder =
+      theme == "dark"
+        ? CbbColors.off_diff10_p100_redGreen_darkMode
+        : CbbColors.off_diff10_p100_redBlackGreen;
+    const rawColor = themedRawColorBuilder(
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
 
@@ -589,7 +597,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             height={
               y + height - 20
             } /* Extend all the way to the bottom (x-axis) */
-            fill="#aaaaaa"
+            fill={theme == "dark" ? "#666666" : "#aaaaaa"}
             rx={2}
             ry={2}
             opacity={0.5}
@@ -598,7 +606,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         <text
           x={x + width / 2}
           y={y - textHeight + 3}
-          fill="#000000"
+          fill={highlightColor}
           textAnchor="middle"
           dominantBaseline="middle"
         >
@@ -610,7 +618,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ) : undefined}
         </text>
         <path
-          stroke="#000000"
+          stroke={highlightColor}
           strokeWidth={outlineWidth}
           fill={fill}
           className="recharts-rectangle"
@@ -631,7 +639,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         <div
           className="custom-tooltip"
           style={{
-            background: "rgba(255, 255, 255, 0.9)",
+            background:
+              theme == "dark"
+                ? "rgba(0, 0, 0, 0.9)"
+                : "rgba(238, 238, 238, 0.9)",
           }}
         >
           <p className="label pl-1 pr-1">
@@ -742,7 +753,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <RechartTooltip
                 content={<CustomTooltip />}
                 wrapperStyle={{
-                  background: "rgba(255, 255, 255, 0.9)",
+                  background:
+                    theme == "dark"
+                      ? "rgba(0, 0, 0, 1.0)"
+                      : "rgba(238, 238, 238, 1.0)",
                   zIndex: 1000,
                 }}
                 allowEscapeViewBox={{ x: true, y: false }}

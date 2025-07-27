@@ -41,6 +41,7 @@ import { IndivPosInfo } from "../utils/StatModels";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import ThemedSelect from "./shared/ThemedSelect";
+import { useTheme } from "next-themes";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -123,6 +124,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   // Viewport management
 
+  const { theme } = useTheme();
+  const teamAColor = theme == "dark" ? "#ccc" : "black";
+  const teamBColor = theme == "dark" ? "hotpink" : "purple";
+  const themedColorBuilder =
+    theme == "dark"
+      ? CbbColors.off_diff10_p100_redGreen_darkMode
+      : CbbColors.off_diff10_p100_redBlackGreen;
+
   const [iconType, setIconType] = useState<"icon" | "pos" | "jersey">(
     (startingState.iconType || ParamDefaults.defaultMatchupAnalysisIconType) as
       | "icon"
@@ -171,7 +180,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     if (_.isEmpty(cachedStats.ab) && !_.isEmpty(lineupStatsA.lineups)) {
       const aStats = buildStats(
         commonParams.team!,
-        "black",
+        teamAColor,
         lineupStatsA,
         teamStatsA,
         rosterStatsA,
@@ -179,7 +188,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       );
       const bStats = buildStats(
         opponent,
-        "purple",
+        teamBColor,
         lineupStatsB,
         teamStatsB,
         rosterStatsB,
@@ -366,7 +375,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         <div
           className="custom-tooltip"
           style={{
-            background: "rgba(255, 255, 255, 0.9)",
+            background:
+              theme == "dark"
+                ? "rgba(0, 0, 0, 0.9)"
+                : "rgba(238, 238, 238, 0.9)",
           }}
         >
           <small>
@@ -574,13 +586,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   y2="0"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop
-                    offset="0%"
-                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}
-                  />
+                  <stop offset="0%" stopColor={themedColorBuilder(-10)} />
                   <stop
                     offset="100%"
-                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}
+                    stopColor={themedColorBuilder(10)}
                     stopOpacity={1}
                   />
                 </linearGradient>
@@ -592,13 +601,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   y2={screenHeight}
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop
-                    offset="0%"
-                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}
-                  />
+                  <stop offset="0%" stopColor={themedColorBuilder(10)} />
                   <stop
                     offset="100%"
-                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}
+                    stopColor={themedColorBuilder(-10)}
                     stopOpacity={1}
                   />
                 </linearGradient>
@@ -670,7 +676,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
               <Scatter
                 data={cachedStats.ab}
-                fill="black"
+                fill={teamAColor}
                 fillOpacity={iconType == "icon" ? "100%" : "0%"}
                 shape="triangle"
                 name={commonParams.team!}
@@ -701,7 +707,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   return p.seriesId == commonParams.team! ? (
                     <Cell
                       key={`cellA-${index}`}
-                      fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+                      fill={themedColorBuilder(p.color)}
                       opacity={p.filteredOut ? 0.25 : 1}
                     />
                   ) : (
@@ -712,7 +718,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               </Scatter>
               <Scatter
                 data={cachedStats.ab}
-                fill="purple"
+                fill={teamBColor}
                 fillOpacity={iconType == "icon" ? "100%" : "0%"}
                 shape="circle"
                 name={opponent}
@@ -743,7 +749,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   return p.seriesId == opponent ? (
                     <Cell
                       key={`cellB-${index}`}
-                      fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+                      fill={themedColorBuilder(p.color)}
                       opacity={p.filteredOut ? 0.25 : 1}
                     />
                   ) : (

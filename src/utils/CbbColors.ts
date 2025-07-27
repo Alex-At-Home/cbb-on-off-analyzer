@@ -56,6 +56,11 @@ export class CbbColors {
     "#ffFFff",
     "green",
   ]);
+  private static readonly brightRedToBrightGreen = chroma.scale([
+    "#FE5B3B",
+    "#ffFFff",
+    "#2BEE4B",
+  ]);
   private static readonly greenToRed = chroma.scale([
     "green",
     "#ffFFff",
@@ -472,6 +477,10 @@ export class CbbColors {
     CbbColors.greenBlackRed.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly off_diff10_p100_redBlackGreen = (val: number) =>
     CbbColors.redBlackGreen
+      .domain(CbbColors.diff10Domainp100RedGreen)(val)
+      .toString();
+  public static readonly off_diff10_p100_redGreen_darkMode = (val: number) =>
+    CbbColors.brightRedToBrightGreen
       .domain(CbbColors.diff10Domainp100RedGreen)(val)
       .toString();
   public static readonly def_diff10_p100_redBlackGreen = (val: number) =>

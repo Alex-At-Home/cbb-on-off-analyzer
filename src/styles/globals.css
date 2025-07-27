@@ -96,6 +96,12 @@ grep -E -f color_pattern.txt src/styles/bootstrap.original_superhero.css > src/s
 .internal-sticky-overlay {
    background-color: #ffffff;
 }
-[data-theme='dark']  .internal-sticky-overlay {
+[data-theme='dark'] .internal-sticky-overlay {
    background-color: #272b30;
+}
+
+/* Handle dark mode for recharts bar graphs */
+
+[data-theme='dark'] .recharts-tooltip-cursor {
+   fill: #888;
 }
