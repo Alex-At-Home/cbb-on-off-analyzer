@@ -90,3 +90,12 @@ grep -E -f color_pattern.txt src/styles/bootstrap.original_superhero.css > src/s
 .modal_backdrop_upper {
    z-index: 2000;
 }
+
+/* Handle dark mode for sticky overlays */
+
+.internal-sticky-overlay {
+   background-color: "white";
+}
+[data-theme='dark']  .internal-sticky-overlay {
+   background-color: #272b30;
+}

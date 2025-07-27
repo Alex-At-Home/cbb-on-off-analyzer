@@ -33,7 +33,11 @@ const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({
   helpLink,
 }) => {
   return (
-    <Dropdown.Item as={Button} disabled={disabled} className={className}>
+    <Dropdown.Item
+      as={Button}
+      disabled={disabled}
+      className={`${className} btn-secondary`}
+    >
       <div
         onClick={(e: any) => {
           if (!e.target.href) onSelect();

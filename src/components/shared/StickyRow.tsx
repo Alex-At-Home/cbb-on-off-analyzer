@@ -4,8 +4,6 @@ import React, { Fragment } from "react";
 // Bootstrap imports:
 import Form from "react-bootstrap/Form";
 
-import { useTheme } from "next-themes";
-
 type Props = {
   readonly stickyEnabled: boolean;
   readonly className?: string;
@@ -18,17 +16,17 @@ const StickyRow: React.FunctionComponent<Props> = ({
   className,
   topOffset,
 }) => {
-  const { theme, setTheme } = useTheme();
   return (
     <Fragment>
       {stickyEnabled ? (
         <Form.Row
-          className={`${className || ""} sticky-top d-none d-md-flex`}
+          className={`${
+            className || ""
+          } sticky-top d-none d-md-flex internal-sticky-overlay`}
           style={{
             position: "sticky",
             top: topOffset || "0em",
-            backgroundColor: theme == "dark" ? "#272b30" : "white", //(see bootstrap.dark_united theme)
-            opacity: "85%",
+            opacity: "95%", //(higher than the 85% i use elsehwere because of the dropdown it usually hosts)
             zIndex: 2,
           }}
         >

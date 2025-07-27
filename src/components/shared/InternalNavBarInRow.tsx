@@ -1,6 +1,5 @@
 // Lodash:
 import _ from "lodash";
-import { useTheme } from "next-themes";
 import { Col, Row } from "react-bootstrap";
 
 type Props = {
@@ -16,12 +15,10 @@ type Props = {
 };
 
 const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs }) => {
-  const { theme } = useTheme();
   return (
     <Row
-      className="mt-2 sticky-top small pb-1"
+      className="mt-2 sticky-top small pb-1 internal-sticky-overlay"
       style={{
-        backgroundColor: theme == "dark" ? "#272b30" : "white",
         opacity: "85%",
         zIndex: 1,
       }}
