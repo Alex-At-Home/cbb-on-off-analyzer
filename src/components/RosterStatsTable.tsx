@@ -108,6 +108,7 @@ import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import IndivPlayTypeTabbedView from "./shared/IndivPlayTypeTabbedView";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
+import { useTheme } from "next-themes";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -191,6 +192,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     typeof window === `undefined` //(ensures SSR code still compiles)
       ? "server"
       : window.location.hostname;
+
+  const { theme } = useTheme();
 
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
@@ -2105,7 +2108,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** The sub-header builder - Can show some handy context in between the header and data rows: */
   const maybeSubheaderRow = showInfoSubHeader
-    ? RosterTableUtils.buildInformationalSubheader(calcRapm, expandedView)
+    ? RosterTableUtils.buildInformationalSubheader(
+        calcRapm,
+        expandedView,
+        theme == "dark"
+      )
     : [];
 
   const formatGroupLabel = (data: any) => (

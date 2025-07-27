@@ -4,6 +4,8 @@ import React, { Fragment } from "react";
 // Bootstrap imports:
 import Form from "react-bootstrap/Form";
 
+import { useTheme } from "next-themes";
+
 type Props = {
   readonly stickyEnabled: boolean;
   readonly className?: string;
@@ -16,6 +18,7 @@ const StickyRow: React.FunctionComponent<Props> = ({
   className,
   topOffset,
 }) => {
+  const { theme, setTheme } = useTheme();
   return (
     <Fragment>
       {stickyEnabled ? (
@@ -24,7 +27,7 @@ const StickyRow: React.FunctionComponent<Props> = ({
           style={{
             position: "sticky",
             top: topOffset || "0em",
-            backgroundColor: "white",
+            backgroundColor: theme == "dark" ? "#272b30" : "white", //(see bootstrap.dark_united theme)
             opacity: "85%",
             zIndex: 2,
           }}

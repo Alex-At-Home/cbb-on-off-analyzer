@@ -81,6 +81,7 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import StickyRow from "./shared/StickyRow";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
+import { useTheme } from "next-themes";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -264,6 +265,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
+  const { theme } = useTheme();
 
   /** Just for posting a link that loads the page with the presets open for publicity :) */
   const showPresetsOnLoad =
@@ -1793,7 +1796,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
     /** The sub-header builder - Can show some handy context in between the header and data rows: */
     const maybeSubheaderRow = showInfoSubHeader
-      ? RosterTableUtils.buildInformationalSubheader(true, true)
+      ? RosterTableUtils.buildInformationalSubheader(
+          true,
+          true,
+          theme == "dark"
+        )
       : [];
 
     return {

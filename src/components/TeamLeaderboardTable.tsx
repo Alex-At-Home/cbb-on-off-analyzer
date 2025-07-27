@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
 import styles from "./TeamLeaderboardTable.module.css";
+import { useTheme } from "next-themes";
 
 // mathjs
 // @ts-ignore
@@ -97,6 +98,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   // 1] Data Model
 
   const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
+  const { theme, setTheme } = useTheme();
 
   // 2] State
 
@@ -1701,7 +1703,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
       ) : null}
       <Row
         className="mt-2 sticky-top"
-        style={{ backgroundColor: "white", opacity: "85%", zIndex: 1 }}
+        style={{
+          backgroundColor: theme == "dark" ? "#272b30" : "white",
+          opacity: "85%",
+          zIndex: 1,
+        }}
       >
         <Col xs={11}>
           <Row>

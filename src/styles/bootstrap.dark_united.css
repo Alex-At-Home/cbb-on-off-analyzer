@@ -34,7 +34,7 @@
 /* Base Elements */
 [data-theme='dark'] body {
   color: #ebebeb;
-  background-color: #2b3e50;
+  background-color: #272b30;
 }
 
 [data-theme='dark'] a {
@@ -457,8 +457,10 @@
 
 /* Card Styling */
 [data-theme='dark'] .card {
-  background-color: #4e5d6c;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  /*background-color: #4e5d6c;*/
+  background-color: #272b30;
+  /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+  border: 1px solid #df691a44;
   border-radius: 0;
 }
 
@@ -594,11 +596,11 @@
 [data-theme='dark'] .alert-light {
   background-color: #abb6c2;
   border-color: #abb6c2;
-  color: #2b3e50;
+  color: #272b30;
 }
 
 [data-theme='dark'] .alert-light .alert-link {
-  color: #2b3e50;
+  color: #272b30;
 }
 
 [data-theme='dark'] .alert-dark {
@@ -1148,7 +1150,7 @@
 
 [data-theme='dark'] .custom-select:disabled {
   color: #868e96;
-  background-color: #2b3e50;
+  background-color: #272b30;
 }
 
 /* Custom File Input */
@@ -1435,7 +1437,7 @@
 }
 
 [data-theme='dark'] .text-secondary {
-  color: #4e5d6c !important;
+  color: #868e96 !important;
 }
 
 [data-theme='dark'] a.text-secondary:hover, 

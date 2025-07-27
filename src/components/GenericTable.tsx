@@ -732,14 +732,18 @@ const GenericTable: React.FunctionComponent<Props> = ({
       } else return undefined;
     };
     const colorToUse = backgroundColorFn();
-    const colorOverride = _.thru(colorToUse, (maybeColor) => {
-      if (maybeColor) {
-        const chromaColor = chroma(maybeColor);
-        return chromaColor.hsv()[2] < 0.5 ? "white" : "black";
-      } else {
-        return undefined;
-      }
-    });
+    // I wanted some clever code that used the background color to decide on black vs white
+    // but actually can do something cheaper, since background color override doesn't currently change with
+    // theme, and was designed to work black text:
+    const colorOverride = colorToUse ? "black" : undefined;
+    // const colorOverride = _.thru(colorToUse, (maybeColor) => {
+    //   if (maybeColor) {
+    //     const chromaColor = chroma(maybeColor);
+    //     return chromaColor.hsv()[2] < 0.5 ? "white" : "black";
+    //   } else {
+    //     return undefined;
+    //   }
+    // });
     return {
       textAlign: colProps.isTitle
         ? ("right" as "right")

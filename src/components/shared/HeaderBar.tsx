@@ -408,7 +408,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   ) => {
     return thisPage == dstPage ? (
       <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
-        <a className="text-center small" href={url} onClick={onForce(url)}>
+        <a
+          className="text-center small dropdown-item"
+          href={url}
+          onClick={onForce(url)}
+        >
           {itemName}
         </a>
       </OverlayTrigger>
@@ -417,7 +421,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         <span>
           <Link href={url}>
             <div>
-              <a className="text-center small" href={url} onClick={onNav}>
+              <a
+                className="text-center small dropdown-item"
+                href={url}
+                onClick={onNav}
+              >
                 {itemName}
               </a>
             </div>

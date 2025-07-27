@@ -1,10 +1,12 @@
 // React imports:
 import React, { useState, useEffect, useRef } from "react";
 import { UrlRouting } from "../../utils/UrlRouting";
+import { useTheme } from "next-themes";
 
 const LandingPageIcon: React.FunctionComponent<{}> = () => {
   const [isAutoDarkMode, setIsAutoDarkMode] = useState(0);
   const testElementRef = useRef(null);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (testElementRef.current) {
@@ -26,7 +28,11 @@ const LandingPageIcon: React.FunctionComponent<{}> = () => {
       if (backgroundColor !== "rgb(255, 255, 255)") {
         setIsAutoDarkMode(-1);
       } else {
-        setIsAutoDarkMode(1);
+        if (theme == "light") {
+          setIsAutoDarkMode(1);
+        } else {
+          setIsAutoDarkMode(-1);
+        }
       }
       // Clean up the temporary element
       document.body.removeChild(testElement);
