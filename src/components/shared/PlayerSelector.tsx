@@ -8,9 +8,9 @@ import _ from "lodash";
 //@ts-ignore
 import Select, { components, createFilter } from "react-select";
 import { PlayerCodeId } from "../../utils/StatModels";
+import ThemedSelect from "./ThemedSelect";
 
 type Props = {
-  className?: string;
   emptyLabel?: string;
   playerSelectionStr: string; //(; separated list of player codes)
   players: Array<PlayerCodeId>;
@@ -18,7 +18,6 @@ type Props = {
 };
 
 const PlayerSelector: React.FunctionComponent<Props> = ({
-  className,
   emptyLabel,
   playerSelectionStr,
   players,
@@ -64,7 +63,7 @@ const PlayerSelector: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Select
+    <ThemedSelect
       className={className}
       isClearable={true}
       isMulti={true}

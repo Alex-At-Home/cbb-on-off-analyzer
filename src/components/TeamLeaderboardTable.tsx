@@ -59,6 +59,7 @@ import ConferenceSelector, {
   ConfSelectorConstants,
 } from "./shared/ConferenceSelector";
 import TeamFilterAutoSuggestText from "./shared/TeamFilterAutoSuggestText";
+import ThemedSelect from "./shared/ThemedSelect";
 
 export type TeamLeaderboardStatsModel = {
   year?: string;
@@ -1618,7 +1619,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
     <Container>
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
-          <Select
+          <ThemedSelect
             value={stringToOption(gender)}
             options={["Men", "Women"].map((gender) => stringToOption(gender))}
             isSearchable={false}
@@ -1632,7 +1633,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <Select
+          <ThemedSelect
             value={stringToOption(year)}
             options={DateUtils.lboardYearListWithNextYear(tier == "High").map(
               (r) => stringToOption(r)

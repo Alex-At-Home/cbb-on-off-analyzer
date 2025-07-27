@@ -58,6 +58,7 @@ import {
   getCommonFilterParams,
 } from "../utils/FilterModels";
 import PlayerSelector from "./shared/PlayerSelector";
+import ThemedSelect from "./shared/ThemedSelect";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -1162,7 +1163,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
               </InputGroup.Prepend>
-              <Select
+              <ThemedSelect
                 className="w-75"
                 value={stringToOption(sortBy)}
                 options={groupedOptions}

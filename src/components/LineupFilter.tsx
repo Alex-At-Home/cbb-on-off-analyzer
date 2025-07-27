@@ -40,6 +40,7 @@ import { Button, Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   onStats: (
@@ -602,7 +603,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             <b>What interests you?</b>
           </Form.Label>
           <Col xs={12} lg={6} xl={3}>
-            <Select
+            <ThemedSelect
               isClearable={false}
               styles={{
                 menu: (base: any) => ({ ...base, zIndex: 1000 }),
@@ -621,7 +622,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col xs={12} lg={6} xl={4}>
-            <Select
+            <ThemedSelect
               isClearable={false}
               styles={{
                 menu: (base: any) => ({ ...base, zIndex: 1000 }),

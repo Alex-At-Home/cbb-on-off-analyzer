@@ -82,6 +82,7 @@ import StickyRow from "./shared/StickyRow";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import { useTheme } from "next-themes";
+import ThemedSelect from "./shared/ThemedSelect";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -2118,7 +2119,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         {dataEvent.syntheticData ? null : (
           <Form.Group as={Row}>
             <Col xs={6} sm={6} md={3} lg={2}>
-              <Select
+              <ThemedSelect
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(genderUnreliable)}
                 options={["Men", "Women"].map((gender) =>
@@ -2137,7 +2138,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </Col>
             <Col xs={6} sm={6} md={3} lg={2}>
-              <Select
+              <ThemedSelect
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(yearUnreliable)}
                 options={DateUtils.lboardYearList(tier)
@@ -2207,7 +2208,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             </InputGroup>
           </Form.Group>
           <Col xs={12} sm={12} md={4} lg={4}>
-            <Select
+            <ThemedSelect
               isClearable={true}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               isMulti
@@ -2255,7 +2256,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
               </InputGroup.Prepend>
-              <Select
+              <ThemedSelect
                 className="w-75"
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={sortStringToOption(sortBy)}

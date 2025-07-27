@@ -79,6 +79,7 @@ import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { RequestUtils } from "../utils/RequestUtils";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   onStats: (
@@ -1693,7 +1694,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                   <b>What interests you?</b>
                 </Form.Label>
                 <Col xs={12} lg={6} xl={3}>
-                  <Select
+                  <ThemedSelect
                     isClearable={false}
                     styles={{
                       menu: (base: any) => ({ ...base, zIndex: 1000 }),
@@ -1712,7 +1713,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                   />
                 </Col>
                 <Col xs={12} lg={6} xl={4}>
-                  <Select
+                  <ThemedSelect
                     isClearable={false}
                     styles={{
                       menu: (base: any) => ({ ...base, zIndex: 1000 }),

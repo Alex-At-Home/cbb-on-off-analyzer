@@ -85,6 +85,7 @@ import { efficiencyInfo } from "../utils/internal-data/efficiencyInfo";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { CbbColors } from "../utils/CbbColors";
 import { IndivStatSet } from "../utils/StatModels";
+import ThemedSelect from "./shared/ThemedSelect";
 
 // Input params/models
 
@@ -2831,7 +2832,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       {overrideGrades ? null : (
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <Select
+            <ThemedSelect
               value={stringToOption(gender)}
               options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
@@ -2852,7 +2853,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <Select
+            <ThemedSelect
               value={stringToOption(year)}
               options={DateUtils.teamEditorYears(offSeasonMode)
                 .concat(offSeasonMode ? [] : ["All"])
@@ -2883,7 +2884,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
           <Col xs={12} sm={12} md={6} lg={6}>
-            <Select
+            <ThemedSelect
               isDisabled={false}
               components={maybeMenuList()}
               isClearable={false}

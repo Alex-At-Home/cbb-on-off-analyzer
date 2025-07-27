@@ -109,6 +109,7 @@ import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import IndivPlayTypeTabbedView from "./shared/IndivPlayTypeTabbedView";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { useTheme } from "next-themes";
+import ThemedSelect from "./shared/ThemedSelect";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -2205,7 +2206,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
               </InputGroup.Prepend>
-              <Select
+              <ThemedSelect
                 className="w-75"
                 value={stringToOption(sortBy)}
                 options={groupedOptions}

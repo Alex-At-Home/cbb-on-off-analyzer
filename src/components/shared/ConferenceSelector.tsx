@@ -14,6 +14,7 @@ import {
   P6Nick,
   NonP6Nick,
 } from "../../utils/public-data/ConferenceInfo";
+import ThemedSelect from "./ThemedSelect";
 
 export class ConfSelectorConstants {
   static readonly highMajorConfsName = "Power 6 Conferences";
@@ -125,7 +126,7 @@ const ConferenceSelector: React.FunctionComponent<Props> = ({
   );
 
   return (
-    <Select
+    <ThemedSelect
       isClearable={true}
       styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
       isMulti={isMultiConfs}

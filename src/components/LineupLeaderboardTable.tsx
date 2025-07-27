@@ -74,6 +74,7 @@ import { LineupStatSet, IndivPosInfo } from "../utils/StatModels";
 import ConferenceSelector from "./shared/ConferenceSelector";
 import { line } from "d3";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
+import ThemedSelect from "./shared/ThemedSelect";
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>;
@@ -838,7 +839,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       >
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <Select
+            <ThemedSelect
               value={stringToOption(gender)}
               options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
@@ -848,7 +849,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <Select
+            <ThemedSelect
               value={stringToOption(year)}
               options={DateUtils.lboardYearList(tier).map((r) =>
                 stringToOption(r)
@@ -1025,7 +1026,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               <InputGroup.Prepend>
                 <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
               </InputGroup.Prepend>
-              <Select
+              <ThemedSelect
                 className="w-75"
                 value={sortStringToOption(sortBy)}
                 options={groupedOptions}

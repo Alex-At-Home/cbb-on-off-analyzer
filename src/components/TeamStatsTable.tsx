@@ -538,7 +538,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         />
         <StickyRow
           className="pt-1"
-          stickyEnabled={stickyQuickToggle}
+          stickyEnabled={
+            /** (for some reason, goes under the roster stats sticky bar when sticky, so disable that unless needed) */
+            stickyQuickToggle && tableData.length > 2
+          }
           topOffset="1em"
         >
           <Col sm="11">

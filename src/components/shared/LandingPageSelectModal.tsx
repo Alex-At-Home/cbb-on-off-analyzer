@@ -20,6 +20,7 @@ import Select, { components } from "react-select";
 import { ParamDefaults } from "../../utils/FilterModels";
 import { DateUtils } from "../../utils/DateUtils";
 import { AvailableTeams } from "../../utils/internal-data/AvailableTeams";
+import ThemedSelect from "./ThemedSelect";
 
 // Props type definition
 type Props = {
@@ -106,7 +107,7 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
           <Form>
             <Form.Group as={Row}>
               <Col xs={6} sm={6} md={3} lg={2}>
-                <Select
+                <ThemedSelect
                   isDisabled={false}
                   value={stringToOption(selectedGender)}
                   options={Array.from(
@@ -128,7 +129,7 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                 />
               </Col>
               <Col xs={6} sm={6} md={3} lg={2}>
-                <Select
+                <ThemedSelect
                   isDisabled={false}
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={stringToOption(selectedYear)}
@@ -157,7 +158,7 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
               </Col>
               <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
               <Col xs={12} sm={12} md={6} lg={6}>
-                <Select
+                <ThemedSelect
                   isDisabled={false}
                   components={maybeMenuList()}
                   isClearable={false}

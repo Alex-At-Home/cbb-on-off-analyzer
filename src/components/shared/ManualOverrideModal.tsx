@@ -31,6 +31,7 @@ import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OverrideUtils } from "../../utils/stats/OverrideUtils";
 import { Statistic, IndivStatSet, PureStatSet } from "../../utils/StatModels";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
+import ThemedSelect from "./ThemedSelect";
 
 // External Data Model
 
@@ -500,7 +501,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
                           {inStatsLabel}
                         </InputGroup.Text>
                       </InputGroup.Prepend>
-                      <Select
+                      <ThemedSelect
                         className="w-75"
                         value={statToOption(valueToStatMap[currInStat])}
                         options={groupedOptions}
@@ -524,7 +525,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
                       <InputGroup.Prepend>
                         <InputGroup.Text id="inStatKey">Metric</InputGroup.Text>
                       </InputGroup.Prepend>
-                      <Select
+                      <ThemedSelect
                         className="w-75"
                         value={metricToOption([
                           currStatName,

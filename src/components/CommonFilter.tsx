@@ -70,6 +70,7 @@ import DateRangeModal from "./shared/DateRangeModal";
 import { DateUtils } from "../utils/DateUtils";
 import { Badge } from "react-bootstrap";
 import GameSelectorModal from "./shared/GameSelectorModal";
+import ThemedSelect from "./shared/ThemedSelect";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -929,9 +930,7 @@ const CommonFilter: CommonFilterI = ({
       <Form>
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <Select
-              className="hoop-explorer-select-container"
-              classNamePrefix="hoop-explorer-select"
+            <ThemedSelect
               isDisabled={majorParamsDisabled}
               value={stringToOption(gender)}
               options={Array.from(
@@ -948,7 +947,7 @@ const CommonFilter: CommonFilterI = ({
             />
           </Col>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <Select
+            <ThemedSelect
               isDisabled={majorParamsDisabled}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={stringToOption(year)}
@@ -972,7 +971,7 @@ const CommonFilter: CommonFilterI = ({
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
           <Col xs={12} sm={12} md={6} lg={6}>
-            <Select
+            <ThemedSelect
               isDisabled={majorParamsDisabled}
               components={maybeMenuList()}
               isClearable={false}

@@ -97,6 +97,7 @@ import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { ScatterChartUtils } from "../utils/charts/ScatterChartUtils";
 import GenericCollapsibleCard from "./shared/GenericCollapsibleCard";
 import PlayerLeaderboardTable from "./PlayerLeaderboardTable";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   startingState: PlayerSeasonComparisonParams;
@@ -1519,7 +1520,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     <Container>
       <Form.Row>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
-          <Select
+          <ThemedSelect
             isDisabled={true}
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
@@ -1532,7 +1533,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <Select
+          <ThemedSelect
             value={stringToOption(year)}
             options={supportedYears
               .concat(_.keys(multiYearScenarios))
@@ -1756,7 +1757,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col xs={6} sm={6} md={2} lg={2}>
-            <Select
+            <ThemedSelect
               value={stringToOption(dotColorMap)}
               options={_.keys(colorMapOptions).map((colorMap) =>
                 stringToOption(colorMap)

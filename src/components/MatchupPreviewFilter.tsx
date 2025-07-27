@@ -44,6 +44,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { DateUtils } from "../utils/DateUtils";
 import { FilterParamsType, CommonFilterParams } from "../utils/FilterModels";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   onStats: (
@@ -544,7 +545,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
           <div>
             <Form.Group as={Row}>
               <Col xs={0} sm={0} md={0} lg={4}>
-                <Select
+                <ThemedSelect
                   isClearable={false}
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={stringToOption(getCurrentGameFilter())}
@@ -564,7 +565,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                 />
               </Col>
               <Col xs={12} sm={12} md={12} lg={6}>
-                <Select
+                <ThemedSelect
                   isClearable={false}
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}

@@ -83,6 +83,7 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import ThemedSelect from "./shared/ThemedSelect";
 
 /** Convert from LineupStatsModel into this via LineupUtils */
 export type TeamReportStatsModel = {
@@ -971,7 +972,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
                 <InputGroup.Prepend>
                   <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Select
+                <ThemedSelect
                   className="w-75"
                   value={stringToOption(sortBy)}
                   options={groupedOptions}

@@ -40,6 +40,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { IndivPosInfo } from "../utils/StatModels";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -537,7 +538,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={12} md={12} lg={5} className="text-left mb-1">
-          <Select
+          <ThemedSelect
             isClearable={true}
             styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
             isMulti

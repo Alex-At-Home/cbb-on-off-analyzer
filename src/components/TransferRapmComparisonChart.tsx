@@ -76,6 +76,7 @@ import {
   NonP6Conferences,
   Power6Conferences,
 } from "../utils/public-data/ConferenceInfo";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   startingState: PlayerSeasonComparisonParams;
@@ -755,7 +756,7 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({
     <Container>
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
-          <Select
+          <ThemedSelect
             isDisabled={true}
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
@@ -768,7 +769,7 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <Select
+          <ThemedSelect
             value={stringToOption(year)}
             options={[stringToOption("2021/22"), stringToOption("2022/23")]}
             isSearchable={false}

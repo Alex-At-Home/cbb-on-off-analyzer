@@ -92,6 +92,7 @@ import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from "./shared/AsyncFormControl";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import StickyRow from "./shared/StickyRow";
+import ThemedSelect from "./shared/ThemedSelect";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -1103,7 +1104,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     <Container className="medium_screen">
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
-          <Select
+          <ThemedSelect
             value={stringToOption(gender)}
             options={["Men", "Women"].map((g) => stringToOption(g))}
             isSearchable={false}
@@ -1116,7 +1117,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <Select
+          <ThemedSelect
             isDisabled={false}
             value={stringToOption(year)}
             options={DateUtils.coreYears
@@ -1183,7 +1184,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           </InputGroup>
         </Col>
         <Form.Group as={Col} xs={8} sm={10} md={4} lg={4}>
-          <Select
+          <ThemedSelect
             styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
             value={sortByOptions[sortBy]}
             options={_.values(sortByOptions)}

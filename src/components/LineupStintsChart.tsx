@@ -39,6 +39,7 @@ import {
   GameStatsCache,
 } from "../utils/tables/GameAnalysisUtils";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -1076,7 +1077,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         </Col>
         <Col></Col>
         <Col xs={12} md={4} lg={3}>
-          <Select
+          <ThemedSelect
             value={stringToOption(labelToShow)}
             isDisabled={!(showUsage || showPpp) || !showLabels}
             options={_.keys(labelOptions).map((l) => stringToOption(l))}

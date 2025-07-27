@@ -16,6 +16,7 @@ import {
   LineupFilterParams,
   TeamReportFilterParams,
 } from "../../utils/FilterModels";
+import ThemedSelect from "./ThemedSelect";
 
 /** Popovers appear to need to know their children's width, if it's "complex" */
 export const historySelectContainerWidth = "600px";
@@ -42,7 +43,7 @@ const HistorySelector: React.FunctionComponent<Props> = ({ tablePrefix }) => {
 
   return (
     <div style={{ width: "500px" }}>
-      <Select
+      <ThemedSelect
         styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
         value={getPlaceholder()}
         menuIsOpen={true}

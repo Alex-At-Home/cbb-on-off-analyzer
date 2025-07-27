@@ -33,6 +33,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 //@ts-ignore
 import Select, { components } from "react-select";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
+import ThemedSelect from "./ThemedSelect";
 
 type Props = {
   overrides?: PlayerEditModel;
@@ -474,7 +475,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                             Production profile
                           </InputGroup.Text>
                         </InputGroup.Prepend>
-                        <Select
+                        <ThemedSelect
                           className="flex-fill"
                           isDisabled={overrides?.pause}
                           value={profileToOption(currProfile)}
@@ -538,7 +539,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                             Positional Role
                           </InputGroup.Text>
                         </InputGroup.Prepend>
-                        <Select
+                        <ThemedSelect
                           className="flex-fill"
                           isDisabled={overrides?.pause}
                           value={stringToOption(currPos)}

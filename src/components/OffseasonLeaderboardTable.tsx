@@ -67,6 +67,7 @@ import {
 import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
+import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
   startingState: OffseasonLeaderboardParams;
@@ -1119,7 +1120,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     <Container>
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
-          <Select
+          <ThemedSelect
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
             isSearchable={false}
@@ -1131,7 +1132,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <Select
+          <ThemedSelect
             isDisabled={transferInOutMode}
             value={stringToOption(year)}
             options={DateUtils.lboardYearListWithNextYear(tier == "High")
@@ -1260,7 +1261,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           ) : null}
           {transferInOutMode ? (
             <Col xs={12} sm={12} md={4} lg={4}>
-              <Select
+              <ThemedSelect
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                 value={sortByOptions[sortBy]}
                 options={_.values(sortByOptions)}
