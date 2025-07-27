@@ -1376,7 +1376,7 @@ export async function main() {
                   enrichedAndFilteredPlayersMap[rapmP.playerId]
                 );
 
-                if (injectExtraDataForNbaFolks && !cutdownMode) {
+                if (injectExtraDataForNbaFolks) {
                   player.rapm = _.omit(rapmP.rapm, [
                     "key",
                     "off_sep2-1",
