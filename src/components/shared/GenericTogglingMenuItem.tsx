@@ -36,7 +36,8 @@ const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({
     <Dropdown.Item
       as={Button}
       disabled={disabled}
-      className={`${className} btn-secondary`}
+      variant="secondary"
+      className={className}
     >
       <div
         onClick={(e: any) => {

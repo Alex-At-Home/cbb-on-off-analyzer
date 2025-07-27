@@ -2212,6 +2212,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 onChange={(option: any) => {
                   if ((option as any)?.value) setSortBy((option as any)?.value);
                 }}
+                styles={{
+                  menu: (base: any) => ({ ...base, zIndex: 1000 }),
+                }}
                 formatGroupLabel={formatGroupLabel}
               />
             </InputGroup>

@@ -930,6 +930,8 @@ const CommonFilter: CommonFilterI = ({
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
             <Select
+              className="hoop-explorer-select-container"
+              classNamePrefix="hoop-explorer-select"
               isDisabled={majorParamsDisabled}
               value={stringToOption(gender)}
               options={Array.from(
