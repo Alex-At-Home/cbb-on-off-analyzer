@@ -39,7 +39,7 @@ exports[`GenericTogglingMenu GenericTogglingMenu - should create snapshot 1`] = 
 exports[`GenericTogglingMenu GenericTogglingMenuItem - should create snapshot 1`] = `
 <span>
   <button
-    className="dropdown-item btn btn-primary"
+    className="dropdown-item btn btn-secondary"
     disabled={false}
     onClick={[Function]}
     type="button"
@@ -56,7 +56,7 @@ exports[`GenericTogglingMenu GenericTogglingMenuItem - should create snapshot 1`
     </div>
   </button>
   <button
-    className="dropdown-item btn btn-primary"
+    className="dropdown-item btn btn-secondary"
     disabled={false}
     onClick={[Function]}
     type="button"
@@ -99,7 +99,7 @@ exports[`GenericTogglingMenu GenericTogglingMenuItem - should create snapshot 1`
     </div>
   </button>
   <button
-    className="dropdown-item btn btn-primary"
+    className="dropdown-item btn btn-secondary"
     disabled={false}
     onClick={[Function]}
     type="button"
@@ -116,7 +116,7 @@ exports[`GenericTogglingMenu GenericTogglingMenuItem - should create snapshot 1`
     </div>
   </button>
   <button
-    className="dropdown-item btn btn-primary"
+    className="dropdown-item btn btn-secondary"
     disabled={false}
     onClick={[Function]}
     type="button"

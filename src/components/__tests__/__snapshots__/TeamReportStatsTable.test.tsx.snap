@@ -78,11 +78,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 Sort By
               </InputGroupText>
             </InputGroupPrepend>
-            <StateManager
+            <ThemedSelect
               className="w-75"
-              defaultInputValue=""
-              defaultMenuIsOpen={false}
-              defaultValue={null}
               formatGroupLabel={[Function]}
               onChange={[Function]}
               options={
@@ -10576,11 +10573,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Sort By
               </InputGroupText>
             </InputGroupPrepend>
-            <StateManager
+            <ThemedSelect
               className="w-75"
-              defaultInputValue=""
-              defaultMenuIsOpen={false}
-              defaultValue={null}
               formatGroupLabel={[Function]}
               onChange={[Function]}
               options={
@@ -26042,11 +26036,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Sort By
               </InputGroupText>
             </InputGroupPrepend>
-            <StateManager
+            <ThemedSelect
               className="w-75"
-              defaultInputValue=""
-              defaultMenuIsOpen={false}
-              defaultValue={null}
               formatGroupLabel={[Function]}
               onChange={[Function]}
               options={
@@ -40368,11 +40359,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Sort By
               </InputGroupText>
             </InputGroupPrepend>
-            <StateManager
+            <ThemedSelect
               className="w-75"
-              defaultInputValue=""
-              defaultMenuIsOpen={false}
-              defaultValue={null}
               formatGroupLabel={[Function]}
               onChange={[Function]}
               options={
@@ -60004,11 +59992,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Sort By
               </InputGroupText>
             </InputGroupPrepend>
-            <StateManager
+            <ThemedSelect
               className="w-75"
-              defaultInputValue=""
-              defaultMenuIsOpen={false}
-              defaultValue={null}
               formatGroupLabel={[Function]}
               onChange={[Function]}
               options={
@@ -64671,11 +64656,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Sort By
               </InputGroupText>
             </InputGroupPrepend>
-            <StateManager
+            <ThemedSelect
               className="w-75"
-              defaultInputValue=""
-              defaultMenuIsOpen={false}
-              defaultValue={null}
               formatGroupLabel={[Function]}
               onChange={[Function]}
               options={

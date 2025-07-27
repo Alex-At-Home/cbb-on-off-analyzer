@@ -1,15 +1,16 @@
 import Head from "next/head";
 
-// Bootstrap imports:
-//import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap imports, light and dark themes:
 import "bootswatch/dist/united/bootstrap.min.css";
 import "../styles/bootstrap.dark_united.css";
-//import "../styles/bootstrap.superhero.min.css";
 
-// // Global styles
+// Global styles
 import "../styles/globals.css";
 
-// // Need this for FA to work with favicons
+// Import react-select dark theme globally
+import "../styles/react_select_dark.css";
+
+// Need this for FA to work with favicons
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 // pages/_app.js

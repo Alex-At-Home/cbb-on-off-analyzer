@@ -26,10 +26,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -59,10 +56,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isDisabled={false}
         isSearchable={false}
         onChange={[Function]}
@@ -1051,10 +1045,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -1084,10 +1075,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isDisabled={false}
         isSearchable={false}
         onChange={[Function]}
@@ -4118,10 +4106,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -4151,10 +4136,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isDisabled={false}
         isSearchable={false}
         onChange={[Function]}
@@ -18984,10 +18966,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -19017,10 +18996,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isDisabled={false}
         isSearchable={false}
         onChange={[Function]}
@@ -34764,10 +34740,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -34797,10 +34770,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isDisabled={false}
         isSearchable={false}
         onChange={[Function]}
@@ -48682,10 +48652,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -48715,10 +48682,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       }
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isDisabled={true}
         isSearchable={false}
         onChange={[Function]}
@@ -49074,10 +49038,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={

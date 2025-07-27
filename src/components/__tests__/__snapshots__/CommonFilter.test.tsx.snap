@@ -110,10 +110,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -142,10 +139,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -207,10 +201,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         sm={12}
         xs={12}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isClearable={false}
           onChange={[Function]}
           options={
@@ -2166,10 +2157,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -2198,10 +2186,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -2263,15 +2248,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MenuList": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={false}
           onChange={[Function]}
           options={
@@ -3313,10 +3295,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -3345,10 +3324,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -3410,15 +3386,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MenuList": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={false}
           onChange={[Function]}
           options={
@@ -4379,10 +4352,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -4411,10 +4381,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -4476,15 +4443,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MenuList": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={false}
           onChange={[Function]}
           options={

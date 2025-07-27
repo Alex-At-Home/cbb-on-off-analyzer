@@ -8,10 +8,7 @@ exports[`HistorySelector HistorySelector - should create snapshot 1`] = `
     }
   }
 >
-  <StateManager
-    defaultInputValue=""
-    defaultMenuIsOpen={false}
-    defaultValue={null}
+  <ThemedSelect
     menuIsOpen={true}
     onChange={[Function]}
     options={

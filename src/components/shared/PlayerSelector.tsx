@@ -64,7 +64,6 @@ const PlayerSelector: React.FunctionComponent<Props> = ({
 
   return (
     <ThemedSelect
-      className={className}
       isClearable={true}
       isMulti={true}
       styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}

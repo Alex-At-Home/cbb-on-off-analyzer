@@ -25,6 +25,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
       common={
         Object {
           "gender": "Men",
+          "team": "",
           "year": "2024/25",
         }
       }
@@ -320,6 +321,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
       </Col>
     </TopicFilteredCard>
     <TopicFilteredCard
+      hide={false}
       topics={
         Array [
           "Off-Season",
@@ -771,6 +773,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
       </Col>
     </TopicFilteredCard>
     <TopicFilteredCard
+      hide={false}
       topics={
         Array [
           "Players",

@@ -21,10 +21,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -53,10 +50,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -109,10 +103,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -5753,10 +5744,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -5785,10 +5773,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -5841,10 +5826,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -11175,10 +11157,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -11207,10 +11186,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -11263,10 +11239,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -17583,10 +17556,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -17615,10 +17585,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -17671,10 +17638,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -24200,10 +24164,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -24232,10 +24193,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -24288,10 +24246,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -30771,10 +30726,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -30803,10 +30755,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -30859,10 +30808,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -36911,10 +36857,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -36943,10 +36886,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -36999,10 +36939,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -41631,10 +41568,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -41663,10 +41597,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -41723,10 +41654,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -45881,10 +45809,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -45913,10 +45838,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -45973,10 +45895,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}
@@ -49235,10 +49154,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -49267,10 +49183,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       sm={6}
       xs={6}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isSearchable={false}
         onChange={[Function]}
         options={
@@ -49327,10 +49240,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       sm={12}
       xs={12}
     >
-      <StateManager
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
+      <ThemedSelect
         isClearable={false}
         isDisabled={false}
         onChange={[Function]}

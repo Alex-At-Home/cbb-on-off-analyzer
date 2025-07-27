@@ -26,10 +26,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -58,10 +55,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -457,11 +451,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -13685,10 +13676,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -13717,10 +13705,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -14013,11 +13998,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -33567,10 +33549,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -33599,10 +33578,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -33998,11 +33974,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={

@@ -191,11 +191,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -4221,11 +4218,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -7741,11 +7735,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -10979,11 +10970,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -14238,11 +14226,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -18352,11 +18337,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={

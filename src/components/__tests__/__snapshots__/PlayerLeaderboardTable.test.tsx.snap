@@ -26,10 +26,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -63,10 +60,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -294,15 +288,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MultiValueContainer": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -433,11 +424,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -8045,10 +8033,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -8082,10 +8067,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -8313,15 +8295,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MultiValueContainer": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -8452,11 +8431,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -16064,10 +16040,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -16101,10 +16074,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -16332,15 +16302,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MultiValueContainer": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -16471,11 +16438,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -27297,10 +27261,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -27334,10 +27295,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -27565,15 +27523,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MultiValueContainer": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -27704,11 +27659,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -35296,10 +35248,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -35333,10 +35282,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -35536,15 +35482,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MultiValueContainer": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -35675,11 +35618,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -37096,10 +37036,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -37133,10 +37070,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={6}
         xs={6}
       >
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
+        <ThemedSelect
           isSearchable={false}
           onChange={[Function]}
           options={
@@ -37364,15 +37298,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         sm={12}
         xs={12}
       >
-        <StateManager
+        <ThemedSelect
           components={
             Object {
               "MultiValueContainer": [Function],
             }
           }
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -37503,11 +37434,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={

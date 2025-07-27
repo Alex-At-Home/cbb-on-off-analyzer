@@ -5481,11 +5481,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -5869,6 +5866,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -7645,16 +7647,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               </span>
             </div>
             <div
-              class="w-75 css-2b097c-container"
+              class="w-75 hoop-explorer-select-container css-2b097c-container"
             >
               <div
-                class=" css-yk16xz-control"
+                class="hoop-explorer-select__control css-yk16xz-control"
               >
                 <div
-                  class=" css-g1d714-ValueContainer"
+                  class="hoop-explorer-select__value-container hoop-explorer-select__value-container--has-value css-g1d714-ValueContainer"
                 >
                   <div
-                    class=" css-1uccc91-singleValue"
+                    class="hoop-explorer-select__single-value css-1uccc91-singleValue"
                   >
                     Base Poss% (Desc. / Offensive)
                   </div>
@@ -7662,7 +7664,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class="css-b8ldur-Input"
                   >
                     <div
-                      class=""
+                      class="hoop-explorer-select__input"
                       style="display: inline-block;"
                     >
                       <input
@@ -7684,14 +7686,14 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                   </div>
                 </div>
                 <div
-                  class=" css-1hb7zxy-IndicatorsContainer"
+                  class="hoop-explorer-select__indicators css-1hb7zxy-IndicatorsContainer"
                 >
                   <span
-                    class=" css-1okebmr-indicatorSeparator"
+                    class="hoop-explorer-select__indicator-separator css-1okebmr-indicatorSeparator"
                   />
                   <div
                     aria-hidden="true"
-                    class=" css-tlfecz-indicatorContainer"
+                    class="hoop-explorer-select__indicator hoop-explorer-select__dropdown-indicator css-tlfecz-indicatorContainer"
                   >
                     <svg
                       aria-hidden="true"
@@ -7713,8 +7715,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
         </div>
       </div>
       <div
-        class="pt-1 sticky-top d-none d-md-flex form-row"
-        style="position: sticky; top: 1em; background-color: white; z-index: 2;"
+        class="pt-1 sticky-top d-none d-md-flex internal-sticky-overlay form-row"
+        style="position: sticky; top: 1em; z-index: 2;"
       >
         <div
           class="col-sm-11"
@@ -10509,11 +10511,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -10913,6 +10912,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -16464,11 +16468,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -16868,6 +16869,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -24418,11 +24424,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -24806,6 +24809,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -32714,11 +32722,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -33118,6 +33123,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -44490,11 +44500,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -44878,6 +44885,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -53451,11 +53463,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -53839,6 +53848,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
@@ -65546,11 +65560,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               Sort By
             </InputGroupText>
           </InputGroupPrepend>
-          <StateManager
+          <ThemedSelect
             className="w-75"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
             formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
@@ -65934,6 +65945,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   ],
                 },
               ]
+            }
+            styles={
+              Object {
+                "menu": [Function],
+              }
             }
             value={
               Object {
