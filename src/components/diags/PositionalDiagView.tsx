@@ -37,7 +37,7 @@ const tooltipAverageGenerator = (pos: string) => {
 };
 
 const tooltipContribGenerator = (pos: string) => {
-  return `A relative value for much this feature improves/reduces the chance of this player's fit for this position ([${pos}])`;
+  return `A relative value for how much this feature improves/reduces the chance of this player's fit for this position ([${pos}])`;
 };
 
 // Table defs

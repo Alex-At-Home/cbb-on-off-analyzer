@@ -1718,7 +1718,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Center])",
+                "toolTip": "A relative value for how much this feature improves/reduces the chance of this player's fit for this position ([Center])",
                 "widthUnits": 2,
               },
               "contrib_pos_pf": GenericTableColProps {
@@ -1729,7 +1729,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Power Forward])",
+                "toolTip": "A relative value for how much this feature improves/reduces the chance of this player's fit for this position ([Power Forward])",
                 "widthUnits": 2,
               },
               "contrib_pos_pg": GenericTableColProps {
@@ -1740,7 +1740,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Point Guard])",
+                "toolTip": "A relative value for how much this feature improves/reduces the chance of this player's fit for this position ([Point Guard])",
                 "widthUnits": 2,
               },
               "contrib_pos_sf": GenericTableColProps {
@@ -1751,7 +1751,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Small Forward])",
+                "toolTip": "A relative value for how much this feature improves/reduces the chance of this player's fit for this position ([Small Forward])",
                 "widthUnits": 2,
               },
               "contrib_pos_sg": GenericTableColProps {
@@ -1762,7 +1762,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Shooting Guard])",
+                "toolTip": "A relative value for how much this feature improves/reduces the chance of this player's fit for this position ([Shooting Guard])",
                 "widthUnits": 2,
               },
               "feature": GenericTableColProps {

@@ -1198,7 +1198,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   <br />
                   Sort by Adjusted Efficiency Margin, Offensive Efficiency, or
-                  Defensive Efficiency, see 1/2/3 point shooting stats, turnover
+                  Defensive Efficiency, Play Style; see shooting stats, turnover
                   percentages, etc.
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Team Efficiency Stats"))}

@@ -38,6 +38,7 @@ import {
 } from "../../utils/stats/RapmUtils";
 import { CbbColors } from "../../utils/CbbColors";
 import { PlayerOnOffStats, LineupUtils } from "../../utils/stats/LineupUtils";
+import { useTheme } from "next-themes";
 
 //TODO
 const tidyNumbers = (k: string, v: any) => {
@@ -83,6 +84,8 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = ({
   rapmInfo,
   topRef,
 }) => {
+  const { theme } = useTheme();
+
   if (rapmInfo.preProcDiags)
     try {
       const ctx = rapmInfo.ctx;
@@ -466,7 +469,11 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = ({
                     />
                   </ReferenceLine>
                   <Tooltip
-                    wrapperStyle={{ opacity: "0.8", zIndex: 1000 }}
+                    wrapperStyle={{
+                      opacity: "0.8",
+                      zIndex: 1000,
+                      color: theme == "dark" ? "black" : undefined,
+                    }}
                     formatter={(value: any, name: string, props: any) =>
                       value.toFixed(3)
                     }
@@ -506,7 +513,11 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = ({
                     />
                   </ReferenceLine>
                   <Tooltip
-                    wrapperStyle={{ opacity: "0.8", zIndex: 1000 }}
+                    wrapperStyle={{
+                      opacity: "0.8",
+                      zIndex: 1000,
+                      color: theme == "dark" ? "black" : undefined,
+                    }}
                     formatter={(value: any, name: string, props: any) =>
                       value.toFixed(3)
                     }

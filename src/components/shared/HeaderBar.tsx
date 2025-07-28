@@ -655,7 +655,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               style={{ position: "relative" }}
             >
               <span
-                className="small"
+                className="small text-center"
                 style={{ display: "block", padding: "0.25rem 1.5rem" }}
               >
                 Regional Player Leaderboards&nbsp;&nbsp;

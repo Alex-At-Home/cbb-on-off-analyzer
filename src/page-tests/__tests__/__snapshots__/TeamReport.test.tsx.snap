@@ -14,7 +14,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
     >
       <LandingPageIcon />
       <h3>
-        CBB Team On/Off Report Tool
+        Team On/Off Report Tool
       </h3>
     </Col>
   </Row>

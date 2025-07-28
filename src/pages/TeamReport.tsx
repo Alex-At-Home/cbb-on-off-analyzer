@@ -186,7 +186,7 @@ const TeamReportPage: NextPage<{}> = () => {
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />
-          <h3>CBB Team On/Off Report Tool</h3>
+          <h3>Team On/Off Report Tool</h3>
         </Col>
       </Row>
       <Row>
