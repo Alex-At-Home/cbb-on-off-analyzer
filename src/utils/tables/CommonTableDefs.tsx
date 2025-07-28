@@ -38,8 +38,8 @@ export class CommonTableDefs {
   static defCellMetaFn = (key: string, val: any) => "def";
 
   static picker(
-    offScale: (val: number) => string,
-    defScale: (val: number) => string
+    offScale: (val: number) => string | undefined,
+    defScale: (val: number) => string | undefined
   ) {
     return (val: any, valMeta: string) => {
       const num = _.isNil(val.colorOverride)
@@ -58,7 +58,7 @@ export class CommonTableDefs {
       if ("off" == valMeta) {
         return CommonTableDefs.picker(offScale, offScale);
       } else {
-        return CbbColors.background;
+        return undefined;
       }
     };
   }
@@ -208,12 +208,12 @@ export class CommonTableDefs {
   /** Utility to put a faint colored backing to text */
   static readonly getTextShadow = (
     stat: { value?: number },
-    colorMapper: (val: number) => string,
+    colorMapper: (val: number) => string | undefined,
     radius: string = "15px",
     strength = 3
   ) => {
     const shadow = _.range(0, strength)
-      .map((__) => `0px 0px ${radius} ${colorMapper(stat?.value || 0)}`)
+      .map((__) => `0px 0px ${radius} ${colorMapper(stat?.value || 0) || ""}`)
       .join(",");
     return {
       textShadow: shadow,
@@ -762,7 +762,7 @@ export class CommonTableDefs {
         raw_ppp: GenericTableOps.addDataCol(
           "Pts",
           "Points scored/conceded by this lineup",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.pointsOrHtmlFormatter
         ),
         ppp: GenericTableOps.addPtsCol(
@@ -1206,7 +1206,7 @@ export class CommonTableDefs {
         roster: GenericTableOps.addDataCol(
           "Roster",
           "Projected of (high major) Superstars / Stars / Starters / Rotation players on the team",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.htmlFormatter
         ),
 
@@ -1215,7 +1215,7 @@ export class CommonTableDefs {
         edit: GenericTableOps.addDataCol(
           "",
           "Edit the team projections",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.htmlFormatter
         ),
       },

@@ -52,31 +52,31 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
     pg: GenericTableOps.addDataCol(
       `PG`,
       "Roster distribution for PG slot",
-      CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+      CbbColors.applyThemedBackground,
       GenericTableOps.percentOrHtmlFormatter
     ),
     sg: GenericTableOps.addDataCol(
       `SG`,
       "Roster distribution for SG slot",
-      CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+      CbbColors.applyThemedBackground,
       GenericTableOps.percentOrHtmlFormatter
     ),
     sf: GenericTableOps.addDataCol(
       `SF`,
       "Roster distribution for SF slot",
-      CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+      CbbColors.applyThemedBackground,
       GenericTableOps.percentOrHtmlFormatter
     ),
     pf: GenericTableOps.addDataCol(
       `PF`,
       "Roster distribution for PF slot",
-      CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+      CbbColors.applyThemedBackground,
       GenericTableOps.percentOrHtmlFormatter
     ),
     c: GenericTableOps.addDataCol(
       `C`,
       "Roster distribution for C slot",
-      CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+      CbbColors.applyThemedBackground,
       GenericTableOps.percentOrHtmlFormatter
     ),
   };

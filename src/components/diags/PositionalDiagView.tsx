@@ -99,7 +99,7 @@ const colorPicker = (val: any, valMeta: string) => {
     case "def_2prim":
       return CbbColors.p_def_2P_rim(num);
     case "def_ftr":
-      return CbbColors.alwaysWhite(num);
+      return CbbColors.applyThemedBackground(num);
     default:
       return undefined;
   }

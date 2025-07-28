@@ -72,13 +72,13 @@ const indivPlayTypeBreakdownFields = (
   pos: GenericTableOps.addDataCol(
     "Pos",
     "The positional role of the player",
-    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    CbbColors.applyThemedBackground,
     GenericTableOps.htmlFormatter
   ),
   playType: GenericTableOps.addDataCol(
     "Sub-Type",
     "The sub-type of the selected play type(s)",
-    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    CbbColors.applyThemedBackground,
     GenericTableOps.htmlFormatter
   ),
   sep2: GenericTableOps.addColSeparator(),
@@ -92,13 +92,13 @@ const indivPlayTypeBreakdownFields = (
     adjustForSos
       ? "Adjusted points per play for this player/play type"
       : "Points per play for this player/play type",
-    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    CbbColors.applyThemedBackground,
     GenericTableOps.pointsFormatter2dp
   ),
   pts: GenericTableOps.addDataCol(
     "Pts",
     "The number of points per 100 team plays for this player/play type",
-    CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite),
+    CbbColors.applyThemedBackground,
     GenericTableOps.pointsFormatter2dp
   ),
 });
@@ -999,7 +999,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             <>
               <Row className="mt-1">
                 <Col xs={10}>
-                  <div className="p-3 bg-white border">
+                  <div className="p-3 border">
                     <strong>Selected:</strong>{" "}
                     {Array.from(selectedPlayTypes).map((playType, index) => (
                       <span key={playType}>

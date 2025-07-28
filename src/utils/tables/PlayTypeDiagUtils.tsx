@@ -177,10 +177,7 @@ export class PlayTypeDiagUtils {
                               GenericTableOps.addDataCol(
                                 `eFG`,
                                 descriptionEfg,
-                                CbbColors.offOnlyPicker(
-                                  CbbColors.alwaysWhite,
-                                  CbbColors.alwaysWhite
-                                ),
+                                CbbColors.applyThemedBackground,
                                 GenericTableOps.percentOrHtmlFormatter
                               ),
                             ],
@@ -200,10 +197,7 @@ export class PlayTypeDiagUtils {
                               GenericTableOps.addDataCol(
                                 `PPP`,
                                 descriptionPpp,
-                                CbbColors.offOnlyPicker(
-                                  CbbColors.alwaysWhite,
-                                  CbbColors.alwaysWhite
-                                ),
+                                CbbColors.applyThemedBackground,
                                 GenericTableOps.percentOrHtmlFormatter
                               ),
                             ],
@@ -238,10 +232,7 @@ export class PlayTypeDiagUtils {
                           GenericTableOps.addDataCol(
                             `PPP`,
                             descriptionPpp,
-                            CbbColors.offOnlyPicker(
-                              CbbColors.alwaysWhite,
-                              CbbColors.alwaysWhite
-                            ),
+                            CbbColors.applyThemedBackground,
                             GenericTableOps.percentOrHtmlFormatter
                           ),
                         ],

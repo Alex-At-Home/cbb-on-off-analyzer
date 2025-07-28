@@ -62,24 +62,24 @@ export class TeamEditorTableUtils {
         pos: GenericTableOps.addDataCol(
           "Pos",
           "Positional class of player (algorithmically generated)",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.htmlFormatter
         ),
         nil: GenericTableOps.addDataCol(
           "NIL",
           "User entered guess at players' NIL value / team's NIL costs",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.htmlFormatter
         ),
         actual_mpg: GenericTableOps.addPtsCol(
           "act. mpg",
           "Actual minutes per game (bench minutes are currently estimated)",
-          CbbColors.alwaysWhite
+          CbbColors.applyThemedBackground
         ),
         mpg: GenericTableOps.addPtsCol(
           "mpg",
           "Approximate expected minutes per game (missing minutes per team shown if there are any)",
-          CbbColors.alwaysWhite
+          CbbColors.applyThemedBackground
         ),
         "sep0.6": GenericTableOps.addColSeparator(0.05),
         ortg: GenericTableOps.addPtsCol(
@@ -95,7 +95,7 @@ export class TeamEditorTableUtils {
         ptsPlus: GenericTableOps.addPtsCol(
           "Pts+",
           "Points per game scored or created - weighted according to scored/assisted/rebounded: a reasonable proxy for PPG ('Balanced' projection, assumes a 70 possession game)",
-          CbbColors.alwaysWhite
+          CbbColors.applyThemedBackground
         ),
         rebound: GenericTableOps.addPctCol(
           "RB%",
@@ -105,7 +105,7 @@ export class TeamEditorTableUtils {
         rpg: GenericTableOps.addPtsCol(
           "Rpg",
           "Rebounds per game, offensive and defensive (approximately last season's numbers)",
-          CbbColors.alwaysWhite
+          CbbColors.applyThemedBackground
         ),
 
         act_caliber: GenericTableOps.addDataCol(
@@ -210,13 +210,13 @@ export class TeamEditorTableUtils {
         edit: GenericTableOps.addDataCol(
           "",
           "Edit the Optimistic/Balanced/Pessmistic projections for the player",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.htmlFormatter
         ),
         disable: GenericTableOps.addDataCol(
           "",
           "Disable/re-enabled this player from the roster",
-          CbbColors.alwaysWhite,
+          CbbColors.applyThemedBackground,
           GenericTableOps.htmlFormatter
         ),
       },
@@ -271,14 +271,14 @@ export class TeamEditorTableUtils {
     mpg: GenericTableOps.addPtsCol(
       "mpg",
       "Approximate expected minutes per game",
-      CbbColors.alwaysWhite
+      CbbColors.applyThemedBackground
     ),
 
     // Only used in eval mode:
     actual_mpg: GenericTableOps.addPtsCol(
       "act. mpg",
       "Actual minutes per game",
-      CbbColors.alwaysWhite
+      CbbColors.applyThemedBackground
     ),
     actual_net: GenericTableOps.addPtsCol(
       "Net",
@@ -358,7 +358,7 @@ export class TeamEditorTableUtils {
     actual_mpg: GenericTableOps.addPtsCol(
       "act. mpg",
       "Actual minutes per game",
-      CbbColors.alwaysWhite
+      CbbColors.applyThemedBackground
     ),
     actual_net: GenericTableOps.addDataCol(
       "Net",

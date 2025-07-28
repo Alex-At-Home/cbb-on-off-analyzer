@@ -41,7 +41,7 @@ const playTypeTable = {
   pct_orbs: GenericTableOps.addPctCol(
     "%ORB",
     "Percentage of Off rebounds resulting in a scramble play type",
-    CbbColors.alwaysWhite
+    CbbColors.applyThemedBackground
   ),
   ppp: GenericTableOps.addPtsCol(
     "P/100",
@@ -334,7 +334,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
             pct: GenericTableOps.addPctCol(
               "%",
               "Percentage of possessions this play type occurs",
-              CbbColors.alwaysWhite
+              CbbColors.applyThemedBackground
             ),
           }
     );

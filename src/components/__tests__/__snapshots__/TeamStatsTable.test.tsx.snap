@@ -4189,7 +4189,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           10.4
@@ -4199,7 +4199,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           64.1
@@ -4460,7 +4460,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           8.5
@@ -4470,7 +4470,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           60.3
@@ -6788,7 +6788,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           11.9
@@ -6798,7 +6798,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           64.3
@@ -7059,7 +7059,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           8.5
@@ -7069,7 +7069,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           52.8
@@ -9387,7 +9387,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           10.8
@@ -9397,7 +9397,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           64.2
@@ -9658,7 +9658,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           8.5
@@ -9668,7 +9668,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         class=""
                                         colspan="1"
                                         rowspan="1"
-                                        style="text-align: center; width: 7.3%; font-weight: normal; background-color: rgb(255, 255, 255); vertical-align: middle; color: black;"
+                                        style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: black;"
                                       >
                                         <div>
                                           58.4

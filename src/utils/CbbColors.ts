@@ -1,13 +1,16 @@
 import chroma from "chroma-js";
 import _ from "lodash";
 
-type CbbColorTuple = [(val: number) => string, (val: number) => string];
+type CbbColorTuple = [
+  (val: number) => string | undefined,
+  (val: number) => string | undefined
+];
 
 export class CbbColors {
   /** Utility to pick a color scale based on whether the stat is offensive or defensive */
   static picker(
-    offScale: (val: number) => string,
-    defScale: (val: number) => string
+    offScale: (val: number) => string | undefined,
+    defScale: (val: number) => string | undefined
   ) {
     return (val: any, valMeta: string) => {
       const num = _.isNil(val.colorOverride)
@@ -22,8 +25,8 @@ export class CbbColors {
   }
   /** For off/def tables where only the off is used */
   static offOnlyPicker(
-    offScale: (val: number) => string,
-    defScale: (val: number) => string
+    offScale: (val: number) => string | undefined,
+    defScale: (val: number) => string | undefined
   ) {
     return (val: any, valMeta: string) => {
       return "off" == valMeta
@@ -32,7 +35,10 @@ export class CbbColors {
     };
   }
   /** For non-off/def tables, single row */
-  static varPicker(scaleFn: (val: number) => string, scale: number = 1) {
+  static varPicker(
+    scaleFn: (val: number) => string | undefined,
+    scale: number = 1
+  ) {
     return (val: any, valMeta: string) => {
       const num = _.isNil(val.colorOverride)
         ? (val.value as number)
@@ -49,7 +55,7 @@ export class CbbColors {
   }
 
   static readonly malformedDataColor = "#ccCCcc";
-  static readonly background = "#ffFFff";
+  static readonly lightBackground = "#ffFFff";
 
   private static readonly redToGreen = chroma.scale([
     "red",
@@ -108,8 +114,10 @@ export class CbbColors {
   public static readonly getBlueToOrange = () =>
     chroma.scale(["lightblue", "#ffFFff", "orange"]);
 
-  public static readonly alwaysWhite = (val: number) => CbbColors.background;
-  public static readonly alwaysBlack = (val: number) => "#000000";
+  public static readonly applyThemedBackground = (val: number) => undefined;
+  /** I think everywhere this is used, in practice should be using defaultBackground? */
+  public static readonly alwaysWhite = (val: number) =>
+    CbbColors.lightBackground;
   public static readonly alwaysDarkGrey = (val: number) => "#555555";
 
   // %iles
@@ -397,7 +405,7 @@ export class CbbColors {
   // Personal FTR / FC/50
   public static readonly p_ftr: CbbColorTuple = [
     CbbColors.off_FTR,
-    CbbColors.alwaysWhite,
+    CbbColors.applyThemedBackground,
   ];
   // Personal TO / STL
   private static readonly stlDomain = [0.0, 0.02, 0.05];

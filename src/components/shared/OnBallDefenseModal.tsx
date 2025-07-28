@@ -233,7 +233,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
       ppp: GenericTableOps.addDataCol(
         "Ball PPP",
         "On-Ball Points/Play conceded (each possession can include multiple plays)",
-        CbbColors.varPicker(CbbColors.alwaysWhite),
+        CbbColors.varPicker(CbbColors.applyThemedBackground),
         GenericTableOps.twoDpFormatter
       ),
       eff_ppp: GenericTableOps.addDataCol(
@@ -273,12 +273,12 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
       plays: GenericTableOps.addIntCol(
         "Plays",
         "Number of targeted plays recorded (each possession can include multiple plays)",
-        CbbColors.varPicker(CbbColors.alwaysWhite)
+        CbbColors.varPicker(CbbColors.applyThemedBackground)
       ),
       poss: GenericTableOps.addPctCol(
         "Poss%",
         "% of team possessions the player is on the floor",
-        CbbColors.varPicker(CbbColors.alwaysWhite)
+        CbbColors.varPicker(CbbColors.applyThemedBackground)
       ),
     },
     hasRapm ? [] : ["delta_rapm"]
