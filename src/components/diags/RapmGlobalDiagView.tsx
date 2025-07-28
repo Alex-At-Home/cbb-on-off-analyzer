@@ -84,7 +84,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = ({
   rapmInfo,
   topRef,
 }) => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   if (rapmInfo.preProcDiags)
     try {
@@ -472,7 +472,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = ({
                     wrapperStyle={{
                       opacity: "0.8",
                       zIndex: 1000,
-                      color: theme == "dark" ? "black" : undefined,
+                      color: resolvedTheme == "dark" ? "black" : undefined,
                     }}
                     formatter={(value: any, name: string, props: any) =>
                       value.toFixed(3)
@@ -516,7 +516,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = ({
                     wrapperStyle={{
                       opacity: "0.8",
                       zIndex: 1000,
-                      color: theme == "dark" ? "black" : undefined,
+                      color: resolvedTheme == "dark" ? "black" : undefined,
                     }}
                     formatter={(value: any, name: string, props: any) =>
                       value.toFixed(3)

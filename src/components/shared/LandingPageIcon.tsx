@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 const LandingPageIcon: React.FunctionComponent<{}> = () => {
   const [isAutoDarkMode, setIsAutoDarkMode] = useState(0);
   const testElementRef = useRef(null);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (testElementRef.current) {
@@ -28,7 +28,7 @@ const LandingPageIcon: React.FunctionComponent<{}> = () => {
       if (backgroundColor !== "rgb(255, 255, 255)") {
         setIsAutoDarkMode(-1);
       } else {
-        if (theme == "light") {
+        if (resolvedTheme == "light") {
           setIsAutoDarkMode(1);
         } else {
           setIsAutoDarkMode(-1);

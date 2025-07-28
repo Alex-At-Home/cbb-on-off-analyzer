@@ -194,7 +194,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ? "server"
       : window.location.hostname;
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
@@ -2112,7 +2112,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     ? RosterTableUtils.buildInformationalSubheader(
         calcRapm,
         expandedView,
-        theme == "dark"
+        resolvedTheme == "dark"
       )
     : [];
 

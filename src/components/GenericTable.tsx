@@ -384,7 +384,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   rowStyleOverride,
   extraInfoLookups,
 }) => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
     (cellTooltipMode || "missing") as LockModes
   );
@@ -756,7 +756,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
       backgroundColor: colorToUse,
       verticalAlign: "middle",
       ...rowStyleOverride,
-      color: colorOverride || (theme == "dark" ? "white" : "black"),
+      color: colorOverride || (resolvedTheme == "dark" ? "white" : "black"),
     };
   }
   const isResponsive = _.isNil(responsive) ? true : responsive;

@@ -267,7 +267,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   /** Just for posting a link that loads the page with the presets open for publicity :) */
   const showPresetsOnLoad =
@@ -1800,7 +1800,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? RosterTableUtils.buildInformationalSubheader(
           true,
           true,
-          theme == "dark"
+          resolvedTheme == "dark"
         )
       : [];
 

@@ -229,9 +229,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       ? "server"
       : window.location.hostname;
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const contrastForegroundBuilder =
-    theme == "dark" ? CbbColors.alwaysLightGrey : CbbColors.alwaysDarkGrey;
+    resolvedTheme == "dark"
+      ? CbbColors.alwaysLightGrey
+      : CbbColors.alwaysDarkGrey;
 
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
@@ -397,7 +399,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     startingState.dotColorMap || "Default"
   );
   const colorMapOptions: Record<string, undefined | ((val: number) => string)> =
-    theme == "dark"
+    resolvedTheme == "dark"
       ? {
           Default: undefined,
           "Red/Green Auto": CbbColors.percentile_brightRedToBrightGreen,
@@ -775,7 +777,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           className="custom-tooltip"
           style={{
             background:
-              theme == "dark"
+              resolvedTheme == "dark"
                 ? "rgba(0, 0, 0, 0.9)"
                 : "rgba(238, 238, 238, 0.9)",
           }}

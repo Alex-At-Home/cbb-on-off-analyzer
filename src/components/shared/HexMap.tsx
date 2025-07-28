@@ -48,10 +48,10 @@ const HexMap: React.FC<HexMapProps> = ({
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const { theme } = useTheme();
-  const backgroundColor = theme == "dark" ? "#272b30" : "#ffffff";
-  const clusterStrokeColor = theme == "dark" ? "#444" : "#ccc";
-  const courtStrokeColor = theme == "dark" ? "#fff" : "#000";
+  const { resolvedTheme } = useTheme();
+  const backgroundColor = resolvedTheme == "dark" ? "#272b30" : "#ffffff";
+  const clusterStrokeColor = resolvedTheme == "dark" ? "#444" : "#ccc";
+  const courtStrokeColor = resolvedTheme == "dark" ? "#fff" : "#000";
 
   // Define scales for x and y to map original coordinates to canvas
   const xScale = d3

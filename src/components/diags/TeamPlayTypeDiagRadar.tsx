@@ -234,8 +234,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   //   );
   // }
 
-  const { theme } = useTheme();
-  const highlightColor = theme == "dark" ? "#ffFFff" : "#000000";
+  const { resolvedTheme } = useTheme();
+  const highlightColor = resolvedTheme == "dark" ? "#ffFFff" : "#000000";
 
   /** Translate from hacky string */
   const [incomingConfig, setIncomingConfig] =
@@ -569,7 +569,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const radius = 0.4 * (widthToUse / 2);
     const adjustment = adjustForSos ? mainSosAdjustment : 1.0;
     const themedRawColorBuilder =
-      theme == "dark"
+      resolvedTheme == "dark"
         ? CbbColors.off_diff10_p100_redGreen_darkMode
         : CbbColors.off_diff10_p100_redBlackGreen;
     const rawColor = themedRawColorBuilder(
@@ -597,7 +597,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             height={
               y + height - 20
             } /* Extend all the way to the bottom (x-axis) */
-            fill={theme == "dark" ? "#666666" : "#aaaaaa"}
+            fill={resolvedTheme == "dark" ? "#666666" : "#aaaaaa"}
             rx={2}
             ry={2}
             opacity={0.5}
@@ -640,7 +640,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           className="custom-tooltip"
           style={{
             background:
-              theme == "dark"
+              resolvedTheme == "dark"
                 ? "rgba(0, 0, 0, 0.9)"
                 : "rgba(238, 238, 238, 0.9)",
           }}
@@ -754,7 +754,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 content={<CustomTooltip />}
                 wrapperStyle={{
                   background:
-                    theme == "dark"
+                    resolvedTheme == "dark"
                       ? "rgba(0, 0, 0, 1.0)"
                       : "rgba(238, 238, 238, 1.0)",
                   zIndex: 1000,

@@ -124,11 +124,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   // Viewport management
 
-  const { theme } = useTheme();
-  const teamAColor = theme == "dark" ? "#ccc" : "black";
-  const teamBColor = theme == "dark" ? "hotpink" : "purple";
+  const { resolvedTheme } = useTheme();
+  const teamAColor = resolvedTheme == "dark" ? "#ccc" : "black";
+  const teamBColor = resolvedTheme == "dark" ? "hotpink" : "purple";
   const themedColorBuilder =
-    theme == "dark"
+    resolvedTheme == "dark"
       ? CbbColors.off_diff10_p100_redGreen_darkMode
       : CbbColors.off_diff10_p100_redBlackGreen;
 
@@ -376,7 +376,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           className="custom-tooltip"
           style={{
             background:
-              theme == "dark"
+              resolvedTheme == "dark"
                 ? "rgba(0, 0, 0, 0.9)"
                 : "rgba(238, 238, 238, 0.9)",
           }}

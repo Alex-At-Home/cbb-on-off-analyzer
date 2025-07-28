@@ -84,8 +84,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   compressedPlayTypeStats,
   navigationLinkOverride,
 }) => {
-  const { theme } = useTheme();
-  const highlightColor = theme == "dark" ? "#ffFFff" : "#000000";
+  const { resolvedTheme } = useTheme();
+  const highlightColor = resolvedTheme == "dark" ? "#ffFFff" : "#000000";
 
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -188,7 +188,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const radius = 0.4 * (widthToUse / 2);
     const adjustment = adjustForSos ? mainSosAdjustment : 1.0;
     const themedRawColorBuilder =
-      theme == "dark"
+      resolvedTheme == "dark"
         ? CbbColors.off_diff10_p100_redGreen_darkMode
         : CbbColors.off_diff10_p100_redBlackGreen;
     const rawColor = themedRawColorBuilder(
@@ -234,7 +234,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           className="custom-tooltip"
           style={{
             background:
-              theme == "dark"
+              resolvedTheme == "dark"
                 ? "rgba(0, 0, 0, 0.9)"
                 : "rgba(238, 238, 238, 0.9)",
           }}
@@ -350,7 +350,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 content={<CustomTooltip />}
                 wrapperStyle={{
                   background:
-                    theme == "dark"
+                    resolvedTheme == "dark"
                       ? "rgba(0, 0, 0, 1.0)"
                       : "rgba(238, 238, 238, 1.0)",
                   zIndex: 1000,
