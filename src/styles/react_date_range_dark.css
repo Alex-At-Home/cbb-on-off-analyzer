@@ -1,0 +1,274 @@
+[data-theme='dark'] .rdrCalendarWrapper{
+  color: #fff;
+  font-size: 12px;
+}
+
+[data-theme='dark'] .rdrDateDisplayWrapper{
+  background-color: #2b3e50;
+}
+
+[data-theme='dark'] .rdrDateDisplay{
+  margin: 0.833em;
+}
+
+[data-theme='dark'] .rdrDateDisplayItem{
+  border-radius: 4px;
+  background-color: #343a40;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid transparent;
+}
+
+[data-theme='dark'] .rdrDateDisplayItem input{
+  cursor: pointer;
+  height: 2.5em;
+  line-height: 2.5em;
+  border: 0px;
+  background: transparent;
+  width: 100%;
+  color: #dee2e6;
+}
+
+[data-theme='dark'] .rdrDateDisplayItemActive{
+  border-color: currentColor;
+}
+
+[data-theme='dark'] .rdrDateDisplayItemActive input{
+  color: #f5f5f5;
+}
+
+[data-theme='dark'] .rdrMonthAndYearWrapper {
+  align-items: center;
+  height: 60px;
+  padding-top: 10px;
+}
+
+[data-theme='dark'] .rdrMonthAndYearPickers{
+  font-weight: 600;
+}
+
+[data-theme='dark'] .rdrMonthAndYearPickers select{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 10px 30px 10px 10px;
+  border-radius: 4px;
+  outline: 0;
+  color: #375a7f;
+  background-image: url("data:image/svg+xml;utf8,<svg width='9px' height='6px' viewBox='0 0 9 6' xmlns='http://www.w3.org/2000/svg'><path fill='%23dee2e6' d='M0 0l4.5 6L9 0z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  cursor: pointer;
+  text-align: center;
+}
+
+[data-theme='dark'] .rdrMonthAndYearPickers select:hover{
+  background-color: #375a7f;
+}
+
+[data-theme='dark'] .rdrMonthPicker, [data-theme='dark'] .rdrYearPicker{
+  margin: 0 5px;
+}
+
+[data-theme='dark'] .rdrNextPrevButton {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 0.833em;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: #375a7f;
+}
+
+[data-theme='dark'] .rdrNextPrevButton:hover{
+  background: #4e6e8e;
+}
+
+[data-theme='dark'] .rdrNextPrevButton i {
+  display: block;
+  width: 0;
+  height: 0;
+  padding: 0;
+  text-align: center;
+  border-style: solid;
+  margin: auto;
+  transform: translate(-3px, 0px);
+}
+
+[data-theme='dark'] .rdrPprevButton i {
+  border-width: 4px 6px 4px 4px;
+  border-color: transparent #fff transparent transparent;
+}
+
+[data-theme='dark'] .rdrNextButton i {
+  margin: 0 0 0 7px;
+  border-width: 4px 4px 4px 6px;
+  border-color: transparent transparent transparent #fff;
+  transform: translate(3px, 0px);
+}
+
+[data-theme='dark'] .rdrWeekDays {
+  padding: 0 0.833em;
+}
+
+[data-theme='dark'] .rdrMonth{
+  padding: 0 0.833em 1.666em 0.833em;
+}
+
+[data-theme='dark'] .rdrMonth .rdrWeekDays {
+  padding: 0;
+}
+
+[data-theme='dark'] .rdrWeekDay {
+  font-weight: 400;
+  line-height: 2.667em;
+  color: #375a7f;
+}
+
+[data-theme='dark'] .rdrDay {
+  background: transparent;
+  user-select: none;
+  border: 0;
+  padding: 0;
+  line-height: 3em;
+  height: 3em;
+  text-align: center;
+  color: #fff;
+}
+
+[data-theme='dark'] .rdrDay:focus {
+  outline: 0;
+}
+
+[data-theme='dark'] .rdrDayNumber {
+  outline: 0;
+  font-weight: 300;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme='dark'] .rdrDayToday .rdrDayNumber span{
+  font-weight: 500;
+}
+
+[data-theme='dark'] .rdrDayToday .rdrDayNumber span:after{
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: #18bc9c;
+}
+
+[data-theme='dark'] .rdrDayToday:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span:after,
+[data-theme='dark'] .rdrDayToday:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span:after,
+[data-theme='dark'] .rdrDayToday:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span:after,
+[data-theme='dark'] .rdrDayToday:not(.rdrDayPassive) .rdrSelected ~ .rdrDayNumber span:after{
+  background: #fff;
+}
+
+[data-theme='dark'] .rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span,
+[data-theme='dark'] .rdrDay:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span,
+[data-theme='dark'] .rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span,
+[data-theme='dark'] .rdrDay:not(.rdrDayPassive) .rdrSelected ~ .rdrDayNumber span{
+  color: #fff;
+}
+
+[data-theme='dark'] .rdrSelected, [data-theme='dark'] .rdrInRange, [data-theme='dark'] .rdrStartEdge, [data-theme='dark'] .rdrEndEdge{
+  background: #18bc9c;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+}
+
+[data-theme='dark'] .rdrSelected{
+  left: 2px;
+  right: 2px;
+  border-radius: 1.042em;
+}
+
+[data-theme='dark'] .rdrStartEdge{
+  border-top-left-radius: 1.042em;
+  border-bottom-left-radius: 1.042em;
+  left: 2px;
+}
+
+[data-theme='dark'] .rdrEndEdge{
+  border-top-right-radius: 1.042em;
+  border-bottom-right-radius: 1.042em;
+  right: 2px;
+}
+
+[data-theme='dark'] .rdrDayStartPreview, [data-theme='dark'] .rdrDayInPreview, [data-theme='dark'] .rdrDayEndPreview{
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #18bc9c;
+}
+
+[data-theme='dark'] .rdrDefinedRangesWrapper{
+  font-size: 12px;
+  width: 226px;
+  border-right: solid 1px #2b3e50;
+  background: #343a40;
+}
+
+[data-theme='dark'] .rdrStaticRange{
+  border-bottom: 1px solid #2b3e50;
+  background: #343a40;
+}
+
+[data-theme='dark'] .rdrStaticRange:hover .rdrStaticRangeLabel, .rdrStaticRange:focus .rdrStaticRangeLabel{
+  background: #375a7f;
+}
+
+[data-theme='dark'] .rdrStaticRangeLabel{
+  color: #fff;
+}
+
+[data-theme='dark'] .rdrInputRangeInput{
+  border: solid 1px #4e6e8e;
+  color: #fff;
+  background: transparent;
+}
+
+[data-theme='dark'] .rdrInputRangeInput:focus, .rdrInputRangeInput:hover{
+  border-color: #18bc9c;
+  outline: 0;
+  color: #fff;
+}
+
+[data-theme='dark'] .rdrDayPassive .rdrDayNumber span{
+  color: #6c757d;
+}
+
+[data-theme='dark'] .rdrDayDisabled {
+  background-color: #495057;
+}
+
+[data-theme='dark'] .rdrDayDisabled .rdrDayNumber span{
+  color: #adb5bd;
+}
+
+[data-theme='dark'] .rdrDayDisabled .rdrInRange,
+[data-theme='dark'] .rdrDayDisabled .rdrStartEdge,
+[data-theme='dark'] .rdrDayDisabled .rdrEndEdge,
+[data-theme='dark'] .rdrDayDisabled .rdrSelected,
+[data-theme='dark'] .rdrDayDisabled .rdrDayStartPreview,
+[data-theme='dark'] .rdrDayDisabled .rdrDayInPreview,
+[data-theme='dark'] .rdrDayDisabled .rdrDayEndPreview{
+  filter: grayscale(100%) opacity(60%);
+}
+
+[data-theme='dark'] .rdrMonthName{
+  color: #adb5bd;
+}
