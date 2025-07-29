@@ -140,7 +140,19 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
       </div>
     </div>
     <div
-      className="small col-1"
+      className="text-center small d-xl-none col"
+    >
+      <div>
+        <a
+          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+          target="_blank"
+        >
+          Docs...
+        </a>
+      </div>
+    </div>
+    <div
+      className="text-center small d-none d-xl-block col"
     >
       <div>
         <a
@@ -293,7 +305,19 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
       </div>
     </div>
     <div
-      className="small col-1"
+      className="text-center small d-xl-none col"
+    >
+      <div>
+        <a
+          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+          target="_blank"
+        >
+          Docs...
+        </a>
+      </div>
+    </div>
+    <div
+      className="text-center small d-none d-xl-block col"
     >
       <div>
         <a
@@ -446,7 +470,19 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
       </div>
     </div>
     <div
-      className="small col-1"
+      className="text-center small d-xl-none col"
+    >
+      <div>
+        <a
+          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+          target="_blank"
+        >
+          Docs...
+        </a>
+      </div>
+    </div>
+    <div
+      className="text-center small d-none d-xl-block col"
     >
       <div>
         <a

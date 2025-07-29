@@ -8253,7 +8253,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class="small"
                     colspan="1"
                     rowspan="1"
-                    style="text-align: right; width: 18.0%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: right; width: 18.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <span>
                       <span
@@ -8282,7 +8282,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8320,7 +8320,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8402,7 +8402,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8461,7 +8461,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8509,7 +8509,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8517,7 +8517,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div>
                       <div>
@@ -8563,7 +8563,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class="small"
                     colspan="1"
                     rowspan="1"
-                    style="text-align: right; width: 18.0%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: right; width: 18.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <span>
                       <span
@@ -8592,7 +8592,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8630,7 +8630,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8712,7 +8712,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8771,7 +8771,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8819,7 +8819,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div />
                   </td>
@@ -8827,7 +8827,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div>
                       <div>

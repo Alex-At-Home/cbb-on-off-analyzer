@@ -8,14 +8,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 
+/** An alternate way of letting the user pick the theme (only show on large screens) */
 const SiteModeDropdown: React.FunctionComponent<any> = () => {
   const { theme, setTheme } = useTheme();
   return (
     <Dropdown
+      className="d-none d-xl-block"
       as={InputGroup.Append}
       variant="outline-secondary"
       alignRight
-      style={{ maxHeight: "2.4rem", position: "absolute", top: 4, right: 4 }}
+      style={{ maxHeight: "2.4rem", position: "absolute", top: 8, right: 16 }}
     >
       <Dropdown.Toggle
         size="sm"

@@ -39,6 +39,8 @@ import {
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from "../../utils/HistoryManager";
 import { DateUtils } from "../../utils/DateUtils";
+import { useTheme } from "next-themes";
+import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 
 type Props = {
   thisPage: string;
@@ -71,6 +73,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     typeof window === `undefined` //(ensures SSR code still compiles)
       ? "server"
       : window.location.hostname;
+
+  const { theme, setTheme } = useTheme();
 
   const hasMidMajors =
     !common.year || common.year >= DateUtils.yearFromWhichAllMenD1Imported;
@@ -836,19 +840,58 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         </Tooltip>
       );
       return (
-        <Col xs={1} className="small">
-          <OverlayTrigger placement="auto" overlay={blogTooltip}>
-            <a
-              href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-              target="_blank"
-            >
-              Docs...
-            </a>
-          </OverlayTrigger>
-        </Col>
+        <OverlayTrigger placement="auto" overlay={blogTooltip}>
+          <a
+            href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+            target="_blank"
+          >
+            Docs...
+          </a>
+        </OverlayTrigger>
       );
     }
   }
+
+  const buildOtherDropdown = () => {
+    return (
+      <Dropdown>
+        <Dropdown.Toggle
+          id={"other"}
+          as={StyledDropdown as unknown as undefined}
+        >
+          Other
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={dropdownStyle}>
+          <Dropdown.Item>{maybeShowBlog()}</Dropdown.Item>
+          <Dropdown.Divider />
+          <GenericTogglingMenuItem
+            text="Light Theme"
+            truthVal={theme == "light"}
+            onSelect={() => {
+              setTheme("light");
+              window.location.reload();
+            }}
+          />
+          <GenericTogglingMenuItem
+            text="Dark Theme"
+            truthVal={theme == "dark"}
+            onSelect={() => {
+              setTheme("dark");
+              window.location.reload();
+            }}
+          />
+          <GenericTogglingMenuItem
+            text="System Theme"
+            truthVal={theme == "system"}
+            onSelect={() => {
+              setTheme("system");
+              window.location.reload();
+            }}
+          />{" "}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
 
   //(only render client-side - was running into cache issues of the Link href)
   return override || typeof window !== `undefined` ? (
@@ -874,7 +917,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         <Col className="text-center small">
           {buildGameDropdown(_.startsWith(thisPage, ParamPrefixes.gameInfo))}
         </Col>
-        {maybeShowBlog()}
+        <Col className="text-center small d-xl-none">
+          {thisPage == `${ParamPrefixes.gameInfo}_review`
+            ? buildOtherDropdown()
+            : maybeShowBlog()}
+        </Col>
+        <Col className="text-center small d-none d-xl-block">
+          {maybeShowBlog()}
+        </Col>
       </Row>
     </Container>
   ) : null;

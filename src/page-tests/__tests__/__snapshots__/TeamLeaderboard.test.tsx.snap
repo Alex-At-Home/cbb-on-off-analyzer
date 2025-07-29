@@ -9,7 +9,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
     noGutters={false}
   >
     <Col
-      className="text-center"
+      className="text-center mt-2"
       xs={12}
     >
       <h3>
@@ -76,7 +76,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
             }
           >
             <p>
-              Hoop Explorer is a free and open Web App intended for folks who want to, well, 
+              Created in 2019, Hoop Explorer is a free and open Web App intended for folks who want to, well, 
               <i>
                 explore
               </i>
@@ -486,7 +486,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
               Team-focused, conference-adjusted team efficiency stats.
               <br />
               <br />
-              Sort by Adjusted Efficiency Margin, Offensive Efficiency, or Defensive Efficiency, see 1/2/3 point shooting stats, turnover percentages, etc.
+              Sort by Adjusted Efficiency Margin, Offensive Efficiency, or Defensive Efficiency, Play Style; see shooting stats, turnover percentages, etc.
             </CardText>
             <CardLink
               href="/TeamStatsExplorer?gender=Men&year=2024%2F25&"
@@ -536,6 +536,14 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
               <b>
                 I'm Sold! Let's Go...
               </b>
+            </CardLink>
+            <CardLink
+              href="#"
+              onClick={[Function]}
+            >
+              <text>
+                (Advanced View...)
+              </text>
             </CardLink>
           </CardBody>
         </Card>
