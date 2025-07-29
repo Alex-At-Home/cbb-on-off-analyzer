@@ -65,6 +65,10 @@
   color: #ebebeb;
 }
 
+[data-theme='dark'] .table-hover tbody tr:hover {
+  color: #fff;
+}
+
 [data-theme='dark'] .table-primary,
 [data-theme='dark'] .table-primary > th,
 [data-theme='dark'] .table-primary > td {

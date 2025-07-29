@@ -3,6 +3,8 @@ import { Modal, Button, Table } from "react-bootstrap";
 import { GameSelection } from "../../utils/QueryUtils";
 import Form from "react-bootstrap/Form";
 
+import styles from "./GameSelectorModal.module.css";
+
 type Props = {
   queryType: string;
   games: GameSelection[];
@@ -109,11 +111,13 @@ const GameSelectorModal: React.FC<Props> = ({
             {games.map((game, index) => (
               <tr
                 key={index}
+                className={
+                  selectedIndexes.includes(index)
+                    ? styles["selected_game_selector_row"]
+                    : ""
+                }
                 onClick={(event) => handleRowClick(index, event)}
                 style={{
-                  backgroundColor: selectedIndexes.includes(index)
-                    ? "#d9edf7"
-                    : "transparent",
                   cursor: "pointer",
                 }}
               >

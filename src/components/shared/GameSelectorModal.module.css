@@ -1,0 +1,6 @@
+.selected_game_selector_row {
+   background-color: #d9edf7;
+}
+[data-theme='dark'] .selected_game_selector_row {
+   background-color: #df691a;
+}
