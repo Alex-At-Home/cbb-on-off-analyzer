@@ -1065,7 +1065,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   return (
     <Container className="medium_screen">
       <Row>
-        <Col xs={12} className="text-center">
+        <Col xs={12} className="text-center mt-2">
           <h3>Welcome to Hoop Explorer!</h3>
         </Col>
       </Row>

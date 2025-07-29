@@ -50,6 +50,7 @@ import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { DateUtils } from "../utils/DateUtils";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -518,6 +519,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
+      <SiteModeDropdown />
       <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />
