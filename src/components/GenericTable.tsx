@@ -756,7 +756,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
       backgroundColor: colorToUse,
       verticalAlign: "middle",
       ...rowStyleOverride,
-      color: colorOverride || (resolvedTheme == "dark" ? "white" : "black"),
+      color: colorOverride || (resolvedTheme == "dark" ? "white" : "#525252"),
     };
   }
   const isResponsive = _.isNil(responsive) ? true : responsive;
