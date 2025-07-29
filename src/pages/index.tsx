@@ -26,7 +26,11 @@ import Tooltip from "react-bootstrap/Tooltip";
 // App imports:
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
-import { ParamDefaults, LandingPageParams } from "../utils/FilterModels";
+import {
+  ParamDefaults,
+  LandingPageParams,
+  OffseasonLeaderboardParams,
+} from "../utils/FilterModels";
 import { DateUtils } from "../utils/DateUtils";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
@@ -147,25 +151,52 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             This lets us do a few fun things during the Long Summer Months:
             <ul>
               <li>
-                <a href="">The usual "next season predictions"</a>
+                {buildLink(
+                  `The usual "next season predictions"`,
+                  (year, gender, team) =>
+                    UrlRouting.getOffseasonLeaderboard({
+                      gender,
+                      year,
+                    })
+                )}
               </li>
               <li>
-                <a href="">
-                  See a breakdown of how each player contributes to their team,
-                  in optimistic/balanced/pessimistic scenarios
-                </a>
+                {buildLink(
+                  `See a breakdown of how each player contributes to their team, in optimistic/balanced/pessimistic scenarios`,
+                  (year, gender, team) =>
+                    UrlRouting.getTeamEditorUrl({
+                      gender,
+                      year,
+                      team,
+                    })
+                )}
               </li>
               <li>
-                <a href="">
-                  Look at what each team is losing vs picking up vs keeping /
-                  developing
-                </a>
+                {buildLink(
+                  `Look at what each team is losing vs picking up vs keeping / developing`,
+                  (year, gender, team) =>
+                    UrlRouting.getOffseasonLeaderboard({
+                      gender,
+                      year,
+                      transferInOutMode: true,
+                    } as OffseasonLeaderboardParams)
+                )}
               </li>
               <li>
-                <a href="">
-                  How did a team do compared to its prediction, and what were
-                  the key differences?
-                </a>
+                {buildLink(
+                  `How did a team do compared to its prediction, and what were the key differences?`,
+                  (year, gender, team) =>
+                    UrlRouting.getOffseasonLeaderboard({
+                      gender,
+                      year,
+                      evalMode: true,
+                    } as OffseasonLeaderboardParams)
+                )}
+                <ul>
+                  <li>
+                    <i>(tangent: why does nobody else do this?!)</i>
+                  </li>
+                </ul>
               </li>
             </ul>
           </p>
@@ -220,7 +251,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 usually after a screen, eg in PnR
               </li>
               <li>
-                <i>And many more...</i>
+                <i>And many more... (see screenshots below)</i>
               </li>
             </ul>
           </p>
@@ -242,6 +273,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           year,
                           gender,
                           team,
+                          showTeamPlayTypes: true,
+                          //(always show these)
+                          calcRapm: true,
+                          showRoster: true,
                         },
                         {}
                       )
@@ -251,39 +286,113 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <ul>
                   <li>
                     <i>
-                      (Note this view doesn't currently include the defense,
+                      Note this view doesn't currently include the defense,
                       which is complicated to calculate for splits - for now you
-                      can see it from the <a href="">Team Stats Explorer</a> or{" "}
-                      <a href="">Game Previews (No Oppponent) pages though</a>)
+                      can see it from the{" "}
+                      {buildLink("Team Stats Explorer", (year, gender, team) =>
+                        UrlRouting.getTeamStatsExplorerUrl({
+                          year,
+                          gender,
+                          showPlayStyles: true,
+                          playStyleConfig: "def",
+                          maxTableSize: "10",
+                        })
+                      )}{" "}
+                      or{" "}
+                      {buildLink(
+                        `Game Previews (No Oppponent) pages`,
+                        (year, gender, team) =>
+                          UrlRouting.getMatchupPreviewUrl({
+                            year,
+                            gender,
+                            team,
+                            oppoTeam: "No Opponent",
+                          })
+                      )}
                     </i>
                   </li>
                   <li>
                     <i>
-                      (To see the Team Play Style Breakdown for a given lineup,{" "}
-                      <a href="">go to the Lineup Analysis page</a>, and click
-                      the lineup in which you're interested (leftmost column) to
-                      open a new tab including Play Style info.)
+                      To see the Team Play Style Breakdown for a given lineup,{" "}
+                      {buildLink(
+                        `go to the Lineup Analysis page`,
+                        (year, gender, team) =>
+                          UrlRouting.getLineupUrl(
+                            {
+                              year,
+                              gender,
+                              team,
+                            },
+                            {}
+                          )
+                      )}
+                      , and click the lineup in which you're interested
+                      (leftmost column) to open a new tab including Play Style
+                      info.
                     </i>
                   </li>
                 </ul>
                 <li>
                   For a given filter / split, see how the different players
                   contribute to the{" "}
-                  <a href="">Team Offensive Play Style Breakdown</a>
+                  {buildLink(
+                    `Team Offensive Play Style Breakdown`,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          showTeamPlayTypes: true,
+                          teamPlayTypeConfig: "sos||||all||multi||",
+                          //(always show these)
+                          calcRapm: true,
+                          showRoster: true,
+                        },
+                        {}
+                      )
+                  )}
                 </li>
                 <li>
                   You can see the Offensive and Defensive Play Style Breakdowns
                   for all teams in the{" "}
-                  <a href="">Team Stats Explorer page (eg Top 10)</a>
+                  {buildLink(
+                    "Team Stats Explorer page (eg Top 10)",
+                    (year, gender, team) =>
+                      UrlRouting.getTeamStatsExplorerUrl({
+                        year,
+                        gender,
+                        showPlayStyles: true,
+                        maxTableSize: "10",
+                      })
+                  )}
                 </li>
                 <li>
                   Every game report includes each team's{" "}
-                  <a href="">Offensive and Defensive Play Style Breakdown</a>{" "}
+                  {buildLink(
+                    `Offensive and Defensive Play Style Breakdown`,
+                    (year, gender, team) =>
+                      UrlRouting.getMatchupUrl({
+                        year,
+                        gender,
+                        team,
+                        oppoTeam: "No Opponent",
+                      })
+                  )}{" "}
                   for that game (and you can compare vs their season)
                 </li>
                 <li>
-                  When <a href="">previewing a matchup between two teams</a> you
-                  can see/compare their Offensive and Defensive Play Style
+                  When{" "}
+                  {buildLink(
+                    `previewing a matchup between two teams`,
+                    (year, gender, team) =>
+                      UrlRouting.getMatchupPreviewUrl({
+                        year,
+                        gender,
+                        team,
+                      })
+                  )}{" "}
+                  you can see/compare their Offensive and Defensive Play Style
                   Breakdowns (including SoS filters.)
                 </li>
                 <ul>
@@ -291,28 +400,63 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     <i>
                       If you just want to use the SoS filters and don't have a
                       particular opponent in mind, then use the{" "}
-                      <a href="">"No Opponent" mode</a>. Otherwise the Team
-                      Stats Explorer is probably better.
+                      {buildLink(`"No Opponent" mode`, (year, gender, team) =>
+                        UrlRouting.getMatchupPreviewUrl({
+                          year,
+                          gender,
+                          team,
+                          oppoTeam: "No Opponent",
+                        })
+                      )}
+                      . Otherwise the Team Stats Explorer is probably better.
                     </i>
                   </li>
                 </ul>
               </ul>
-              <li>
+              <li className="mt-2">
                 <b>Individual Play Styles</b>
               </li>
               <ul>
                 <li>
                   For a given filter / split, see the{" "}
-                  <a href="">Individual Offensive Play Style Breakdown</a> (and
-                  compare vs other splits)
+                  {buildLink(
+                    "Individual Offensive Play Style Breakdown",
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          showPlayerPlayTypes: true,
+                          //(always show these)
+                          calcRapm: true,
+                          showRoster: true,
+                        },
+                        {}
+                      )
+                  )}{" "}
+                  (and compare vs other splits)
                 </li>
                 <ul>
                   <li>
                     <i>
                       (To see the Individual Play Style Breakdown for a given
-                      lineup, <a href="">go to the Lineup Analysis page</a>, and
-                      click the lineup in which you're interested (leftmost
-                      column) to open a new tab including Play Style info.)
+                      lineup,{" "}
+                      {buildLink(
+                        `go to the Lineup Analysis page`,
+                        (year, gender, team) =>
+                          UrlRouting.getLineupUrl(
+                            {
+                              year,
+                              gender,
+                              team,
+                            },
+                            {}
+                          )
+                      )}
+                      , and click the lineup in which you're interested
+                      (leftmost column) to open a new tab including Play Style
+                      info.)
                     </i>
                   </li>
                 </ul>
@@ -324,7 +468,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               </ul>
               <li>
                 You can see the Offensive Play Style Breakdowns for all players
-                in the <a href="">Player Leaderboard page (eg Top 50)</a>
+                in the{" "}
+                {buildLink(
+                  `Player Leaderboard page (eg Top 50)`,
+                  (year, gender, team) =>
+                    UrlRouting.getPlayerLeaderboardUrl({
+                      year,
+                      gender,
+                      showPlayerPlayTypes: true,
+                      maxTableSize: "50",
+                    })
+                )}
               </li>
             </ul>
           </p>
@@ -441,6 +595,19 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           text: "See player's shot charts directly in the Player Leaderboard",
         },
       ],
+    },
+    "team-lineup-analysis-XXX": {
+      title: "Team Lineup Analysis",
+      content: (
+        <div style={{ fontSize: "1.2rem" }}>
+          <p>
+            Lineup tables were one of the first pages I added to Hoop Explorer,
+            but I never found them very useful in practice, outside of the early
+            season before the rotations became set.
+          </p>
+        </div>
+      ),
+      imageList: [],
     },
   };
 
@@ -852,9 +1019,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 </OverlayTrigger>
                 <Card.Text style={{ fontSize: "1.2rem" }}>
                   <p>
-                    Hoop Explorer is a free and open Web App intended for folks
-                    who want to, well, <i>explore</i> college basketball stats
-                    ... one notch deeper than is possible with most other sites.
+                    Created in 2019, Hoop Explorer is a free and open Web App
+                    intended for folks who want to, well, <i>explore</i> college
+                    basketball stats ... one notch deeper than is possible with
+                    most other sites.
                   </p>
                   <p>
                     It's used by college teams, NBA teams, Draft Twitter, sports
@@ -1249,6 +1417,32 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         year,
                         gender,
                         team,
+                        // Show these "advanced options" always
+                        showRoster: true,
+                        calcRapm: true,
+                      },
+                      {}
+                    )
+                )}
+                {buildCardLink(
+                  <text>(Advanced View...)</text>,
+                  (year, gender, team) =>
+                    UrlRouting.getGameUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        // Advanced settings
+                        advancedMode: true,
+                        showGrades: "rank:Combo",
+                        // Advanced settings - team
+                        showTeamPlayTypes: true,
+                        showRoster: true,
+                        calcRapm: true,
+                        showExtraInfo: true,
+                        // Advanced settings - player
+                        showPlayerPlayTypes: true,
+                        showExpanded: true,
                       },
                       {}
                     )
@@ -1433,6 +1627,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       year,
                       gender,
                       team,
+                      incRapm: true,
                     })
                 )}
               </Card.Body>
