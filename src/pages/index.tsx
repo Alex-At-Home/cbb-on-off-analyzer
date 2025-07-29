@@ -430,7 +430,6 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           showPlayerPlayTypes: true,
                           //(always show these)
                           calcRapm: true,
-                          showRoster: true,
                         },
                         {}
                       )
@@ -463,7 +462,23 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <li>
                   For a given filter / split, see how the different players
                   contribute to the{" "}
-                  <a href="">Team Offensive Play Style Breakdown</a>
+                  {buildLink(
+                    `Team Offensive Play Style Breakdown`,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          showTeamPlayTypes: true,
+                          teamPlayTypeConfig: "sos||||all||multi||",
+                          //(always show these)
+                          calcRapm: true,
+                          showRoster: true,
+                        },
+                        {}
+                      )
+                  )}
                 </li>
               </ul>
               <li>
@@ -530,52 +545,123 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             <ul>
               <li>
                 For a given filter / split, see the{" "}
-                <a href="">Team Shot Chart</a> (and compare vs other splits)
+                {buildLink("Team Shot Charts", (year, gender, team) =>
+                  UrlRouting.getGameUrl(
+                    {
+                      year,
+                      gender,
+                      team,
+                      teamShotCharts: true,
+                      //(always show these)
+                      calcRapm: true,
+                      showRoster: true,
+                    },
+                    {}
+                  )
+                )}{" "}
+                (and compare vs other splits)
               </li>
               <ul>
                 <li>
                   <i>
                     (To see the Shot Chart for a given lineup,{" "}
-                    <a href="">go to the Lineup Analysis page</a>, and click the
-                    lineup in which you're interested (leftmost column) to open
-                    a new tab including Shot Chart info.)
+                    {buildLink(
+                      `go to the Lineup Analysis page`,
+                      (year, gender, team) =>
+                        UrlRouting.getLineupUrl(
+                          {
+                            year,
+                            gender,
+                            team,
+                          },
+                          {}
+                        )
+                    )}
+                    , and click the lineup in which you're interested (leftmost
+                    column) to open a new tab including Shot Chart info.)
                   </i>
                 </li>
               </ul>
               <li>
-                You can see the Shot Charts for all teams in the{" "}
-                <a href="">Team Stats Explorer page (eg Top 10)</a>
-              </li>
-              <li>
-                <a href="">Every game report includes each team's Shot Chart</a>{" "}
+                {buildLink(
+                  `Every game report includes each team's Shot Chart`,
+                  (year, gender, team) =>
+                    UrlRouting.getMatchupPreviewUrl({
+                      year,
+                      gender,
+                      team,
+                    })
+                )}{" "}
                 for that game (and you can compare vs their season)
               </li>
               <li>
-                When <a href="">previewing a matchup between two teams</a> you
-                can see/compare their Offensive and Defensive Shot Charts
+                When{" "}
+                {buildLink(
+                  `previewing a matchup between two teams`,
+                  (year, gender, team) =>
+                    UrlRouting.getMatchupPreviewUrl({
+                      year,
+                      gender,
+                      team,
+                    })
+                )}{" "}
+                you can see/compare their Offensive and Defensive Shot Charts
               </li>
             </ul>
-            <li>
+            <li className="mt-2">
               <b>Individual Shot Charts</b>
             </li>
             <ul>
               <li>
                 For a given filter / split, see each player's{" "}
-                <a href="">Shot Chart</a> (and compare vs other splits)
+                {buildLink("Shot Chart", (year, gender, team) =>
+                  UrlRouting.getGameUrl(
+                    {
+                      year,
+                      gender,
+                      team,
+                      playerShotCharts: true,
+                      //(always show these)
+                      calcRapm: true,
+                    },
+                    {}
+                  )
+                )}{" "}
+                (and compare vs other splits)
               </li>
               <ul>
                 <li>
                   <i>
                     (To see the Shot Chart for a given lineup,{" "}
-                    <a href="">go to the Lineup Analysis page</a>, and click the
-                    lineup in which you're interested (leftmost column) to open
-                    a new tab including Shot Chart info.)
+                    {buildLink(
+                      `go to the Lineup Analysis page`,
+                      (year, gender, team) =>
+                        UrlRouting.getLineupUrl(
+                          {
+                            year,
+                            gender,
+                            team,
+                          },
+                          {}
+                        )
+                    )}
+                    , and click the lineup in which you're interested (leftmost
+                    column) to open a new tab including Shot Chart info.)
                   </i>
                 </li>
               </ul>
               <li>
                 You can see the Shot Charts for all players in the{" "}
-                <a href="">Player Leaderboard page (eg Top 50)</a>
+                {buildLink(
+                  `Player Leaderboard page (eg Top 50)`,
+                  (year, gender, team) =>
+                    UrlRouting.getPlayerLeaderboardUrl({
+                      year,
+                      gender,
+                      shotCharts: true,
+                      maxTableSize: "50",
+                    })
+                )}
               </li>
             </ul>
           </ul>
