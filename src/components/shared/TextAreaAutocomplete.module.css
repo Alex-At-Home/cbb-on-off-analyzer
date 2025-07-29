@@ -23,6 +23,9 @@
   cursor: pointer;
   padding: 10px;
   min-width: 100px;
+}
+
+[data-theme='dark']  .react-autocomplete-input > li {
   color: #525252;
 }
 
