@@ -34,7 +34,6 @@ const SiteModeDropdown: React.FunctionComponent<any> = () => {
           truthVal={theme == "light"}
           onSelect={() => {
             setTheme("light");
-            window.location.reload();
           }}
         />
         <GenericTogglingMenuItem
@@ -42,7 +41,6 @@ const SiteModeDropdown: React.FunctionComponent<any> = () => {
           truthVal={theme == "dark"}
           onSelect={() => {
             setTheme("dark");
-            window.location.reload();
           }}
         />
         <GenericTogglingMenuItem
@@ -50,7 +48,6 @@ const SiteModeDropdown: React.FunctionComponent<any> = () => {
           truthVal={theme == "system"}
           onSelect={() => {
             setTheme("system");
-            window.location.reload();
           }}
         />
       </Dropdown.Menu>

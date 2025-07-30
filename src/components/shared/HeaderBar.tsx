@@ -869,7 +869,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             truthVal={theme == "light"}
             onSelect={() => {
               setTheme("light");
-              window.location.reload();
             }}
           />
           <GenericTogglingMenuItem
@@ -877,7 +876,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             truthVal={theme == "dark"}
             onSelect={() => {
               setTheme("dark");
-              window.location.reload();
             }}
           />
           <GenericTogglingMenuItem
@@ -885,9 +883,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             truthVal={theme == "system"}
             onSelect={() => {
               setTheme("system");
-              window.location.reload();
             }}
-          />{" "}
+          />
         </Dropdown.Menu>
       </Dropdown>
     );

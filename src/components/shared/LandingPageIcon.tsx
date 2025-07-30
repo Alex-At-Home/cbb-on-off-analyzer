@@ -37,7 +37,7 @@ const LandingPageIcon: React.FunctionComponent<{}> = () => {
       // Clean up the temporary element
       document.body.removeChild(testElement);
     }
-  }, []);
+  }, [resolvedTheme]);
 
   return isAutoDarkMode == 0 ? (
     <div ref={testElementRef} style={{ display: "none" }}></div>
@@ -47,6 +47,7 @@ const LandingPageIcon: React.FunctionComponent<{}> = () => {
       className="float-left"
       style={{ position: "relative", top: "2px" }}
     >
+      <div ref={testElementRef} style={{ display: "none" }}></div>
       <img
         className="d-md-none pr-2"
         src={
