@@ -405,7 +405,7 @@ export class TableDisplayUtils {
               backgroundColor: playerInfo
                 ? singleColorField(playerInfo, colorField)
                 : isOffPlayer
-                ? "lightblue"
+                ? "#5bc0de"
                 : "grey",
               // consider this in the future:
               //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
@@ -414,6 +414,7 @@ export class TableDisplayUtils {
             <span
               style={{
                 fontSize: "small",
+                color: isOffPlayer ? "#525252" : undefined,
                 fontWeight: playerInfo
                   ? fontWeight(playerInfo)
                   : isOffPlayer
