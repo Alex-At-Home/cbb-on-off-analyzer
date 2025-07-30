@@ -42,6 +42,7 @@ import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -101,6 +102,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
     return (
       <Container>
+        <SiteModeDropdown />
         <Row className="mt-3 mb-3">
           <Col xs={12} className="text-center">
             <span>

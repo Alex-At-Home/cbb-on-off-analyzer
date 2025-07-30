@@ -5,6 +5,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   className="medium_screen"
   fluid={false}
 >
+  <SiteModeDropdown />
   <Row
     className="mt-2"
     noGutters={false}

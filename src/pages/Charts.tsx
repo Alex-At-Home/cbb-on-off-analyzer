@@ -28,6 +28,7 @@ import HeaderBar from "../components/shared/HeaderBar";
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 // Utils:
 
@@ -109,6 +110,7 @@ const ChartsPage: NextPage<{}> = () => {
 
   return (
     <Container>
+      <SiteModeDropdown />
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />

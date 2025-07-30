@@ -34,6 +34,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -232,6 +233,7 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
   return (
     <Container className="medium_screen">
+      <SiteModeDropdown />
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />

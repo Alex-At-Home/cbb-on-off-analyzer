@@ -37,6 +37,7 @@ import TeamStatsExplorerTable, {
 } from "../components/TeamStatsExplorerTable";
 import { QueryUtils } from "../utils/QueryUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -238,6 +239,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className="medium_screen">
+      <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />

@@ -915,9 +915,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           {buildGameDropdown(_.startsWith(thisPage, ParamPrefixes.gameInfo))}
         </Col>
         <Col className="text-center small d-xl-none">
-          {thisPage == `${ParamPrefixes.gameInfo}_review`
-            ? buildOtherDropdown()
-            : maybeShowBlog()}
+          {buildOtherDropdown()}
         </Col>
         <Col className="text-center small d-none d-xl-block">
           {maybeShowBlog()}

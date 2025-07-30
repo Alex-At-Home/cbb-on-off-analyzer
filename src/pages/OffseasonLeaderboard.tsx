@@ -34,6 +34,7 @@ import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import OffSeasonLeaderboardTable from "../components/OffseasonLeaderboardTable";
 import { DateUtils } from "../utils/DateUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -219,6 +220,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container>
+      <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />

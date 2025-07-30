@@ -307,6 +307,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             <span
               style={
                 Object {
+                  "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 100,
                 }
@@ -355,6 +356,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             <span
               style={
                 Object {
+                  "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 300,
                 }
@@ -403,6 +405,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             <span
               style={
                 Object {
+                  "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 500,
                 }
@@ -448,6 +451,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             <span
               style={
                 Object {
+                  "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 600,
                 }
@@ -496,6 +500,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             <span
               style={
                 Object {
+                  "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 700,
                 }

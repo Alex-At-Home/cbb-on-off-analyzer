@@ -1069,6 +1069,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1111,6 +1112,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1153,6 +1155,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1195,6 +1198,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1237,6 +1241,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1566,6 +1571,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1608,6 +1614,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1650,6 +1657,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1692,6 +1700,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -1734,6 +1743,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2066,6 +2076,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2108,6 +2119,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2150,6 +2162,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2192,6 +2205,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2234,6 +2248,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2563,6 +2578,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2605,6 +2621,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2647,6 +2664,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2689,6 +2707,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -2731,6 +2750,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3063,6 +3083,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3105,6 +3126,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3147,6 +3169,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3189,6 +3212,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3231,6 +3255,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3560,6 +3585,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3602,6 +3628,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3644,6 +3671,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3686,6 +3714,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -3728,6 +3757,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -5583,6 +5613,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -5625,6 +5656,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -5667,6 +5699,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -5709,6 +5742,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -5751,6 +5785,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6080,6 +6115,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6122,6 +6158,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6164,6 +6201,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6206,6 +6244,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6248,6 +6287,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6580,6 +6620,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6622,6 +6663,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6664,6 +6706,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6706,6 +6749,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -6748,6 +6792,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -7077,6 +7122,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -7119,6 +7165,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -7161,6 +7208,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -7203,6 +7251,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -7245,6 +7294,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -15104,6 +15154,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -15156,6 +15207,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -15202,6 +15254,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -15244,6 +15297,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -15286,6 +15340,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -15615,6 +15670,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -15667,6 +15723,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -15713,6 +15770,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -15755,6 +15813,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -15797,6 +15856,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -16129,6 +16189,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -16181,6 +16242,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -16227,6 +16289,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -16269,6 +16332,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -16311,6 +16375,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -16640,6 +16705,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -16692,6 +16758,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -16738,6 +16805,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -16780,6 +16848,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -16822,6 +16891,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -17154,6 +17224,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -17206,6 +17277,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -17252,6 +17324,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -17294,6 +17367,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -17336,6 +17410,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -17665,6 +17740,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -17717,6 +17793,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -17763,6 +17840,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -17805,6 +17883,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -17847,6 +17926,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -19281,6 +19361,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -19333,6 +19414,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -19379,6 +19461,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -19421,6 +19504,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -19463,6 +19547,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -19858,6 +19943,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -19910,6 +19996,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -19956,6 +20043,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -19998,6 +20086,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -20040,6 +20129,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -20438,6 +20528,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -20490,6 +20581,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -20536,6 +20628,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -20578,6 +20671,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -20620,6 +20714,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -21015,6 +21110,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -21067,6 +21163,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -21113,6 +21210,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -21155,6 +21253,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -21197,6 +21296,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -21595,6 +21695,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -21647,6 +21748,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -21693,6 +21795,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -21735,6 +21838,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -21777,6 +21881,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -22172,6 +22277,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
                                                 }
@@ -22224,6 +22330,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
                                                 }
@@ -22270,6 +22377,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -22312,6 +22420,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }
@@ -22354,6 +22463,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             <span
                                               style={
                                                 Object {
+                                                  "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
                                                 }

@@ -49,6 +49,7 @@ import {
 } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 const TeamReportPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -183,6 +184,7 @@ const TeamReportPage: NextPage<{}> = () => {
 
   return (
     <Container>
+      <SiteModeDropdown />
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />

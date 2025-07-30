@@ -37,6 +37,7 @@ import { DateUtils } from "../utils/DateUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -375,6 +376,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className={isWideScreen ? "wide_screen" : "medium_screen"}>
+      <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />

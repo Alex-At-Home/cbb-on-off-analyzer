@@ -39,6 +39,7 @@ import LandingPageMoreDetails, {
   MoreDetailsProps,
 } from "../components/shared/LandingPageMoreDetails";
 import { UrlRouting } from "../utils/UrlRouting";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -1064,6 +1065,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
 
   return (
     <Container className="medium_screen">
+      <SiteModeDropdown />
       <Row>
         <Col xs={12} className="text-center mt-2">
           <h3>Welcome to Hoop Explorer!</h3>

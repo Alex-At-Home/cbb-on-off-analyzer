@@ -1413,6 +1413,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -1462,6 +1463,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -1511,6 +1513,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -1557,6 +1560,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -1603,6 +1607,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -2031,6 +2036,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -2080,6 +2086,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -2129,6 +2136,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -2175,6 +2183,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -2221,6 +2230,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -2652,6 +2662,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -2701,6 +2712,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -2750,6 +2762,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -2796,6 +2809,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -2842,6 +2856,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -3270,6 +3285,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -3319,6 +3335,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -3368,6 +3385,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -3414,6 +3432,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -3460,6 +3479,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -3891,6 +3911,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -3937,6 +3958,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -3983,6 +4005,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -4025,6 +4048,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -4071,6 +4095,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -4499,6 +4524,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -4545,6 +4571,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -4591,6 +4618,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -4633,6 +4661,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -4679,6 +4708,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -5110,6 +5140,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -5159,6 +5190,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -5205,6 +5237,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -5251,6 +5284,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -5300,6 +5334,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -5725,6 +5760,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -5774,6 +5810,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -5820,6 +5857,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -5866,6 +5904,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -5915,6 +5954,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -6343,6 +6383,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -6395,6 +6436,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -6447,6 +6489,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -6496,6 +6539,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -6545,6 +6589,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -6973,6 +7018,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -7025,6 +7071,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -7077,6 +7124,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -7126,6 +7174,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -7175,6 +7224,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -7621,6 +7671,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -7670,6 +7721,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -7716,6 +7768,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -7762,6 +7815,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -7804,6 +7858,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -8229,6 +8284,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -8278,6 +8334,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -8324,6 +8381,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -8370,6 +8428,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -8412,6 +8471,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -8836,6 +8896,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -8882,6 +8943,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -8931,6 +8993,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -8977,6 +9040,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -9026,6 +9090,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -9450,6 +9515,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -9496,6 +9562,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -9545,6 +9612,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -9591,6 +9659,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -9640,6 +9709,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -10071,6 +10141,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -10117,6 +10188,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -10166,6 +10238,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -10215,6 +10288,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -10264,6 +10338,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -10692,6 +10767,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -10738,6 +10814,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -10787,6 +10864,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -10836,6 +10914,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -10885,6 +10964,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -11316,6 +11396,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -11365,6 +11446,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -11414,6 +11496,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -11460,6 +11543,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -11502,6 +11586,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -11927,6 +12012,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -11976,6 +12062,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -12025,6 +12112,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -12071,6 +12159,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -12113,6 +12202,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -12541,6 +12631,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -12593,6 +12684,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -12639,6 +12731,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -12685,6 +12778,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -12731,6 +12825,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -13156,6 +13251,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -13208,6 +13304,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -13254,6 +13351,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -13300,6 +13398,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -13346,6 +13445,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -14969,6 +15069,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -15018,6 +15119,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -15067,6 +15169,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -15113,6 +15216,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -15159,6 +15263,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -15596,6 +15701,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -15645,6 +15751,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -15694,6 +15801,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -15740,6 +15848,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -15786,6 +15895,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -16226,6 +16336,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -16275,6 +16386,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -16321,6 +16433,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -16367,6 +16480,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -16413,6 +16527,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -16847,6 +16962,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -16896,6 +17012,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -16942,6 +17059,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -16988,6 +17106,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -17034,6 +17153,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -17471,6 +17591,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -17517,6 +17638,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -17563,6 +17685,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -17609,6 +17732,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -17655,6 +17779,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -18085,6 +18210,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -18131,6 +18257,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -18177,6 +18304,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -18223,6 +18351,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -18269,6 +18398,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -18702,6 +18832,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -18748,6 +18879,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -18794,6 +18926,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -18836,6 +18969,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -18882,6 +19016,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -19319,6 +19454,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -19365,6 +19501,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -19411,6 +19548,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -19453,6 +19591,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -19499,6 +19638,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -19939,6 +20079,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 800,
                                                   }
@@ -19985,6 +20126,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -20031,6 +20173,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -20080,6 +20223,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 100,
                                                   }
@@ -20126,6 +20270,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -20563,6 +20708,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 800,
                                                   }
@@ -20609,6 +20755,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -20655,6 +20802,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -20704,6 +20852,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 100,
                                                   }
@@ -20750,6 +20899,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -21205,6 +21355,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -21251,6 +21402,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -21300,6 +21452,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -21346,6 +21499,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -21388,6 +21542,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -21825,6 +21980,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -21871,6 +22027,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -21920,6 +22077,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -21966,6 +22124,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -22008,6 +22167,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -22448,6 +22608,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -22497,6 +22658,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -22543,6 +22705,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -22585,6 +22748,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -22631,6 +22795,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -23068,6 +23233,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -23117,6 +23283,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -23163,6 +23330,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -23205,6 +23373,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -23251,6 +23420,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -23691,6 +23861,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -23743,6 +23914,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -23795,6 +23967,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -23844,6 +24017,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -23893,6 +24067,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -24330,6 +24505,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -24382,6 +24558,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -24434,6 +24611,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -24483,6 +24661,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -24532,6 +24711,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -24972,6 +25152,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -25021,6 +25202,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -25070,6 +25252,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -25116,6 +25299,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -25162,6 +25346,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -25599,6 +25784,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -25648,6 +25834,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -25697,6 +25884,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -25743,6 +25931,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -25789,6 +25978,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -26229,6 +26419,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -26278,6 +26469,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -26324,6 +26516,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -26370,6 +26563,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -26419,6 +26613,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -26853,6 +27048,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -26902,6 +27098,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -26948,6 +27145,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -26994,6 +27192,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -27043,6 +27242,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -27484,6 +27684,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -27533,6 +27734,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -27579,6 +27781,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -27621,6 +27824,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -27670,6 +27874,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -28096,6 +28301,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -28145,6 +28351,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -28191,6 +28398,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -28233,6 +28441,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -28282,6 +28491,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -28711,6 +28921,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -28760,6 +28971,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -28802,6 +29014,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -28848,6 +29061,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -28897,6 +29111,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -29323,6 +29538,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -29372,6 +29588,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -29414,6 +29631,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -29460,6 +29678,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -29509,6 +29728,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -29938,6 +30158,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -29990,6 +30211,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -30039,6 +30261,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -30085,6 +30308,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -30127,6 +30351,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -30553,6 +30778,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -30605,6 +30831,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -30654,6 +30881,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -30700,6 +30928,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -30742,6 +30971,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -31171,6 +31401,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -31220,6 +31451,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -31269,6 +31501,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -31321,6 +31554,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -31367,6 +31601,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -31793,6 +32028,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -31842,6 +32078,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -31891,6 +32128,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -31943,6 +32181,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -31989,6 +32228,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -32418,6 +32658,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -32467,6 +32708,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -32509,6 +32751,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -32555,6 +32798,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -32604,6 +32848,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -33030,6 +33275,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -33079,6 +33325,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -33121,6 +33368,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -33167,6 +33415,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -33216,6 +33465,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -34936,6 +35186,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -34985,6 +35236,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -35034,6 +35286,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -35080,6 +35333,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -35126,6 +35380,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -35554,6 +35809,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -35603,6 +35859,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -35652,6 +35909,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -35698,6 +35956,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 200,
                                                   }
@@ -35744,6 +36003,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -36175,6 +36435,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -36224,6 +36485,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -36273,6 +36535,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -36319,6 +36582,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -36365,6 +36629,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -36793,6 +37058,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -36842,6 +37108,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -36891,6 +37158,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -36937,6 +37205,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -36983,6 +37252,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -37414,6 +37684,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -37460,6 +37731,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -37506,6 +37778,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -37548,6 +37821,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -37594,6 +37868,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -38022,6 +38297,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -38068,6 +38344,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -38114,6 +38391,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -38156,6 +38434,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -38202,6 +38481,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -38633,6 +38913,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -38682,6 +38963,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -38728,6 +39010,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -38774,6 +39057,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -38823,6 +39107,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -39248,6 +39533,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -39297,6 +39583,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -39343,6 +39630,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -39389,6 +39677,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -39438,6 +39727,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -39866,6 +40156,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -39918,6 +40209,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -39970,6 +40262,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -40019,6 +40312,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -40068,6 +40362,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -40496,6 +40791,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -40548,6 +40844,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -40600,6 +40897,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -40649,6 +40947,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -40698,6 +40997,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -41144,6 +41444,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -41193,6 +41494,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -41239,6 +41541,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -41285,6 +41588,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -41327,6 +41631,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -41752,6 +42057,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -41801,6 +42107,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -41847,6 +42154,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -41893,6 +42201,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -41935,6 +42244,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -42359,6 +42669,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -42405,6 +42716,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -42454,6 +42766,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -42500,6 +42813,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -42549,6 +42863,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -42973,6 +43288,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -43019,6 +43335,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -43068,6 +43385,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -43114,6 +43432,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -43163,6 +43482,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -43594,6 +43914,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -43640,6 +43961,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -43689,6 +44011,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -43738,6 +44061,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -43787,6 +44111,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -44215,6 +44540,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -44261,6 +44587,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 700,
                                                   }
@@ -44310,6 +44637,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -44359,6 +44687,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -44408,6 +44737,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -44839,6 +45169,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -44888,6 +45219,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -44937,6 +45269,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -44983,6 +45316,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -45025,6 +45359,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -45450,6 +45785,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -45499,6 +45835,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -45548,6 +45885,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 300,
                                                   }
@@ -45594,6 +45932,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 400,
                                                   }
@@ -45636,6 +45975,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46064,6 +46404,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -46116,6 +46457,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46162,6 +46504,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46208,6 +46551,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46254,6 +46598,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -46679,6 +47024,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }
@@ -46731,6 +47077,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46777,6 +47124,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46823,6 +47171,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 500,
                                                   }
@@ -46869,6 +47218,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               <span
                                                 style={
                                                   Object {
+                                                    "color": undefined,
                                                     "fontSize": "small",
                                                     "fontWeight": 600,
                                                   }

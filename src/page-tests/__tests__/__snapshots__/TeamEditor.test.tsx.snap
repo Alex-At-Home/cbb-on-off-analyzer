@@ -4,6 +4,7 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
+  <SiteModeDropdown />
   <Head>
     <meta
       content="https://server/thumbnails/player_leaderboard_thumbnail.png"

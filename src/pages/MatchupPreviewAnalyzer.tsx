@@ -60,6 +60,7 @@ import { DateUtils } from "../utils/DateUtils";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -771,6 +772,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
+      <SiteModeDropdown />
       <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />

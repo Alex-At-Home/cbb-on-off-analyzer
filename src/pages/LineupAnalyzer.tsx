@@ -53,6 +53,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -279,6 +280,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container className="medium_screen">
+      <SiteModeDropdown />
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />

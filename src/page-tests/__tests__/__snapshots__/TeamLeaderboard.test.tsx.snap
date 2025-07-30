@@ -5,6 +5,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
   className="medium_screen"
   fluid={false}
 >
+  <SiteModeDropdown />
   <Row
     noGutters={false}
   >

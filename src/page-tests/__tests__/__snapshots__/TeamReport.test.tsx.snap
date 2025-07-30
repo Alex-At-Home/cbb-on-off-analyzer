@@ -4,6 +4,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
+  <SiteModeDropdown />
   <Row
     className="mt-2"
     noGutters={false}

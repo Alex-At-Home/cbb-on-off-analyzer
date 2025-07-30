@@ -5,6 +5,7 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
   className="medium_screen"
   fluid={false}
 >
+  <SiteModeDropdown />
   <Head>
     <meta
       content="https://server/thumbnails/player_leaderboard_thumbnail.png"

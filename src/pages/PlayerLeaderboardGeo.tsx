@@ -36,6 +36,7 @@ import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 const PlayerGeoMapNoSsr = dynamic(
   () => import("../components/diags/PlayerGeoMap"),
@@ -317,6 +318,7 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className="medium_screen">
+      <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />

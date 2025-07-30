@@ -50,6 +50,7 @@ import { screen } from "@testing-library/react";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
+import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -532,6 +533,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container className={indivCardSize}>
+      <SiteModeDropdown />
       <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />
