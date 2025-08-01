@@ -85,9 +85,10 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   /** Builds a link that either opens a new, or opens a dialog box to specify the  */
   const buildLink = (
     toDisplay: React.ReactElement | string,
-    visitOnSave: (year: string, gender: string, team: string) => string
+    visitOnSave: (year: string, gender: string, team: string) => string,
+    teamNotNeeded: Boolean = false
   ) => {
-    return team && year && gender ? (
+    return (team || teamNotNeeded) && year && gender ? (
       <a href={visitOnSave(year, gender, team)} target="_blank">
         {toDisplay}
       </a>
@@ -158,7 +159,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     UrlRouting.getOffseasonLeaderboard({
                       gender,
                       year,
-                    })
+                    }),
+                  true
                 )}
               </li>
               <li>
@@ -180,7 +182,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       year,
                       transferInOutMode: true,
-                    } as OffseasonLeaderboardParams)
+                    } as OffseasonLeaderboardParams),
+                  true
                 )}
               </li>
               <li>
@@ -191,7 +194,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       year,
                       evalMode: true,
-                    } as OffseasonLeaderboardParams)
+                    } as OffseasonLeaderboardParams),
+                  true
                 )}
                 <ul>
                   <li>
@@ -290,14 +294,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       Note this view doesn't currently include the defense,
                       which is complicated to calculate for splits - for now you
                       can see it from the{" "}
-                      {buildLink("Team Stats Explorer", (year, gender, team) =>
-                        UrlRouting.getTeamStatsExplorerUrl({
-                          year,
-                          gender,
-                          showPlayStyles: true,
-                          playStyleConfig: "def",
-                          maxTableSize: "10",
-                        })
+                      {buildLink(
+                        "Team Stats Explorer",
+                        (year, gender, team) =>
+                          UrlRouting.getTeamStatsExplorerUrl({
+                            year,
+                            gender,
+                            showPlayStyles: true,
+                            playStyleConfig: "def",
+                            maxTableSize: "10",
+                          }),
+                        true
                       )}{" "}
                       or{" "}
                       {buildLink(
@@ -365,7 +372,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         showPlayStyles: true,
                         maxTableSize: "10",
-                      })
+                      }),
+                    true
                   )}
                 </li>
                 <li>
@@ -493,7 +501,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       showPlayerPlayTypes: true,
                       maxTableSize: "50",
-                    })
+                    }),
+                  true
                 )}
               </li>
             </ul>
@@ -661,7 +670,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       shotCharts: true,
                       maxTableSize: "50",
-                    })
+                    }),
+                  true
                 )}
               </li>
             </ul>
@@ -689,8 +699,43 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         <div style={{ fontSize: "1.2rem" }}>
           <p>
             Lineup tables were one of the first pages I added to Hoop Explorer,
-            but I never found them very useful in practice, outside of the early
-            season before the rotations became set.
+            but I never found them very useful in practice, outside of being an
+            early indication of a coach's thinking, before the rotations became
+            set.
+            <br />
+            <br />
+            Why? The sample sizes get too small really quickly (eg the third
+            most common lineup for most teams is already ~150 possessions over a
+            season, or only about 2 games), so you're mostly looking at noise. A
+            good way of illustrating this is by looking at the{" "}
+            {buildLink(
+              `unfiltered Lineup Leaderboard`,
+              (year, gender, team) =>
+                UrlRouting.getLineupLeaderboardUrl({
+                  year,
+                  gender,
+                }),
+              true
+            )}
+            , and observing how the best performing lineups typically are on the
+            lower end of possessions counts, and typically have a big plus net
+            in 3P% (a very high variance stat).
+            <br />
+            <br />I did add an option to{" "}
+            {buildLink(`regress 3P% for luck`, (year, gender, team) =>
+              UrlRouting.getLineupUrl(
+                {
+                  year,
+                  gender,
+                  team,
+                },
+                {}
+              )
+            )}
+            , XXX
+            <br />
+            <br />
+            Later I came back to the idea of Lineup Analysis with the goal of
           </p>
         </div>
       ),
