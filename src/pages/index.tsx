@@ -732,10 +732,44 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 {}
               )
             )}
-            , XXX
+            , but even the full Team Analysis version isn't <i>that</i> good,
+            and the lineup starts are missing some key info so should be treated
+            as very unreliable.
             <br />
             <br />
             Later I came back to the idea of Lineup Analysis with the goal of
+            combining individual lineups back together in meaningful ways to try
+            to get the sample sizes into the 300 possessions+:
+            <ul>
+              <li>
+                <b>Positional Groupings:</b>
+              </li>
+              <ul>
+                <li>TODO</li>
+              </ul>
+              <li>
+                <b>Combinatorial Groupings:</b>
+              </li>
+              <ul>
+                <li>TODO</li>
+              </ul>
+              <li>
+                <b>On / Off Groupings:</b>
+              </li>
+              <ul>
+                <li>TODO</li>
+              </ul>
+            </ul>
+            <br />
+            <br />
+            TODO: something about the ways of getting more details
+            <br />
+            <br />
+            TODO: games view .. one interesting thing that you can do with the
+            basic lineup view but also works well with the combined views is XXX
+            <br />
+            <br />
+            TODO: better version of lineup leaderboards
           </p>
         </div>
       ),
@@ -1793,6 +1827,56 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 >
                   <b>Let's Go Charting!</b>
                 </Card.Link>
+                <Card.Link
+                  href={`https://hoop-explorer.blogspot.com/2023/04/multi-season-player-analysis-chart.html`}
+                  target="_blank"
+                >
+                  Blog Post
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={["Players"]}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Positional Analysis</Card.Title>
+                <Card.Text>
+                  A feature used to power a lot of cool stuff in Hoop Explorer
+                  is the "positional role" categorization of each player based
+                  on their box score stats (mostly offensive) and height.
+                  <br />
+                  <br />
+                  <i>
+                    It's not perfect (especially for the women), let me know if
+                    you spot errors and I'll fix them.
+                  </i>
+                </Card.Text>
+                <Card.Link
+                  href={`https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html`}
+                  target="_blank"
+                >
+                  <b>Blog Post</b>
+                </Card.Link>
+                <Card.Link href={`/Charts`} target="_blank">
+                  Source Data
+                </Card.Link>
+                {buildCardLink(
+                  <span>Team Details</span>,
+                  (year, gender, team) =>
+                    UrlRouting.getGameUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        showPosDiag: true,
+                        showExpanded: true,
+                        calcRapm: true,
+                      },
+                      {}
+                    )
+                )}
               </Card.Body>
             </Card>
           </Col>
