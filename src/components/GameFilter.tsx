@@ -117,6 +117,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     advancedMode: startAdvancedMode,
     presetMode: startPresetMode,
     presetSplit: startPresetSplit,
+    splitPhrases: startSplitPhrases,
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
@@ -163,6 +164,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   const rebuildFullState = () => {
     return {
+      splitPhrases: startSplitPhrases,
       // Team stats
       autoOffQuery: autoOffQuery, //(TODO: I don't think this is needed)
       teamDiffs: startTeamDiffs,
@@ -1435,9 +1437,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
       childHandleResponse={handleResponse}
       buildLinks={(params) => {
         const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries(false);
-        const maybePresetPhrase = FilterPresetUtils.getPresetPhrase(
-          params.presetSplit || "??"
-        );
+        const maybePresetPhrase =
+          (params as GameFilterParams).splitPhrases ||
+          FilterPresetUtils.getPresetPhrase(params.presetSplit || "??");
         const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
           params.presetMode || "??"
         );

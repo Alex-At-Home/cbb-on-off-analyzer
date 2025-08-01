@@ -511,6 +511,9 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     team,
     minRank: "1",
     maxRank: "400",
+    //TODO: 1) need to figure out how to clear on change, 2) if only one is specified then treats it as "G","A","M","E"
+    //TODO: (compare vs startingState in GameFilter and invalidate if needed)
+    //splitPhrases: ["GAME", ""],
     gender: params.gender,
     year: params.year,
     onQuery: subFor

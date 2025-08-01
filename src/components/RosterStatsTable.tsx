@@ -775,9 +775,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix = FilterPresetUtils.getPresetPhrase(
-      gameFilterParams.presetSplit || "??"
-    );
+    const maybePrefix =
+      gameFilterParams.splitPhrases ||
+      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
     switch (type) {
       case "on":
         return maybePrefix?.[0] || "A";
@@ -803,9 +803,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix = FilterPresetUtils.getPresetPhrase(
-      gameFilterParams.presetSplit || "??"
-    );
+    const maybePrefix =
+      gameFilterParams.splitPhrases ||
+      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
     switch (type) {
       case "on":
         return maybePrefix?.[0]
