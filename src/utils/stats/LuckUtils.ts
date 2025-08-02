@@ -151,7 +151,9 @@ export class LuckUtils {
     "unknown_3pM",
   ];
   static readonly lineupAggregatedShotInfoFields =
-    LuckUtils.lineupShotInfoFields.map((i) => `shot_info_${i}`);
+    LuckUtils.lineupShotInfoFields
+      .concat(["scramble_3pa"])
+      .map((i) => `shot_info_${i}`);
 
   /** Set of all the fields that are affected by luck adjustments */
   static readonly affectedFieldSet = new Set([
