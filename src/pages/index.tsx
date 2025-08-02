@@ -728,13 +728,16 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   year,
                   gender,
                   team,
+                  lineupLuck: true,
+                  showLineupLuckDiags: true,
                 },
                 {}
               )
-            )}
-            , but even the full Team Analysis version isn't <i>that</i> good,
-            and the lineup starts are missing some key info so should be treated
-            as very unreliable.
+            )}{" "}
+            (and the leaderboard does use that), but even the full Team Analysis
+            luck calculations aren't great, and the Lineup Analysis version are
+            missing some key per-lineup info so should be treated as very
+            unreliable.
             <br />
             <br />
             Later I came back to the idea of Lineup Analysis with the goal of
@@ -745,7 +748,42 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <b>Positional Groupings:</b>
               </li>
               <ul>
-                <li>TODO</li>
+                <li>
+                  <i>
+                    (warning: depend on the slightly unreliable positional roles
+                    assigned algorithmically - I have a manual override to
+                    correct errors if you let me know!)
+                  </i>
+                </li>
+                <li>
+                  {buildLink(`PG`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by PG",
+                      },
+                      {}
+                    )
+                  )}
+                  : Aggregate all the lineups with each PG
+                </li>
+                <li>
+                  {buildLink(`PG + C`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by PG+C",
+                      },
+                      {}
+                    )
+                  )}
+                  : Aggregate all the lineups with a specific PG and Center (PnR
+                  buddies!)
+                </li>
               </ul>
               <li>
                 <b>Combinatorial Groupings:</b>
