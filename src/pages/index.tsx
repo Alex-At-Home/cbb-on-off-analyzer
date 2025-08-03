@@ -750,19 +750,35 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               <ul>
                 <li>
                   <i>
-                    (warning: depend on the slightly unreliable positional roles
-                    assigned algorithmically - I have a manual override to
-                    correct errors if you let me know!)
+                    (Warning: I love these but they depend on the slightly
+                    unreliable positional roles assigned algorithmically - I
+                    have a manual override to correct errors if you let me
+                    know!)
                   </i>
                 </li>
                 <li>
-                  {buildLink(`PG`, (year, gender, team) =>
+                  {buildLink(`Point Guard`, (year, gender, team) =>
                     UrlRouting.getLineupUrl(
                       {
                         year,
                         gender,
                         team,
                         presetGroup: "Grouped by PG",
+                      },
+                      {}
+                    )
+                  )}
+                  : Aggregate all the lineups with each PG{" "}
+                  <i>("How did the team do with each floor general?")</i>
+                </li>
+                <li>
+                  {buildLink(`Center`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by Center",
                       },
                       {}
                     )
@@ -784,17 +800,58 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   : Aggregate all the lineups with a specific PG and Center (PnR
                   buddies!)
                 </li>
+                <li>
+                  {buildLink(`Backcourt`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by Backcourt",
+                      },
+                      {}
+                    )
+                  )}
+                  : Aggregate all the lineups for a given 3-player backcourt (or
+                  4-player if it's a 4-guard lineup) -{" "}
+                  <i>one of the most useful groupings in my experience</i>
+                </li>
+                <li>
+                  {buildLink(`Frontcourt`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by Frontcourt",
+                      },
+                      {}
+                    )
+                  )}
+                  : Aggregate all the lineups for a given Frontcourt (PF/C,
+                  includes the guard playing the 4) - <i>also very useful!</i>
+                </li>
               </ul>
               <li>
                 <b>Combinatorial Groupings:</b>
               </li>
               <ul>
+                <li>
+                  <i>
+                    (I'm not such a fan of these position-independent groupings
+                    of 2 / 3 / 4 players, but lots of people who understand
+                    basketball better than I do like them!)
+                  </i>
+                </li>
                 <li>TODO</li>
               </ul>
               <li>
-                <b>On / Off Groupings:</b>
+                <b>On / Off Groupings: (check this one out!)</b>
               </li>
               <ul>
+                <li>
+                  <i>(This is the newest lineup grouping feature, TODO)</i>
+                </li>
                 <li>TODO</li>
               </ul>
             </ul>

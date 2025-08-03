@@ -157,6 +157,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       startingState
     );
     if ((newPresetGroup || ParamDefaults.defaultPresetGroup) != presetGroup) {
+      //(also update the URL params for presetGroup, which otherwise takes prio over aggByPos)
+      onChangeState({
+        ...startingState,
+        presetGroup: newPresetGroup,
+      });
+
       setPresetGroup(newPresetGroup || ParamDefaults.defaultPresetGroup);
     }
   }, [startingState]);
@@ -178,11 +184,17 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     const maybeMode = _.findKey(
       FilterPresetUtils.commonFilterPresets,
       (preset, key) => {
-        return _.isEqual(commonParamsIn, {
-          ...commonParamsIn,
-          ...FilterPresetUtils.basePresetQuery,
-          ...(preset.commonParams || {}),
-        });
+        return _.isEqual(
+          {
+            ...commonParamsIn,
+            queryFilters: commonParamsIn.queryFilters || "", //(handle defaults for queryFilters, unclear why not needed for GameFilter)
+          },
+          {
+            ...commonParamsIn,
+            ...FilterPresetUtils.basePresetQuery,
+            ...(preset.commonParams || {}),
+          }
+        );
       }
     );
     //(for simplicity we make this code very specific to the one aggByPos case)
@@ -257,6 +269,18 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           startingState
         );
         if (maybeMode && maybeGroup) {
+          // Ugliness ... if aggByPos is set but presetGroup isn't, we need to add the inferred presetGroup
+          // to the URL params, otherwise the missing/default presetGroup takes precedence at some point during
+          // the Rube Goldberg machine of initialization
+          if (
+            (maybeGroup || ParamDefaults.defaultPresetGroup) !=
+            (startingState.presetGroup || ParamDefaults.defaultPresetGroup)
+          ) {
+            onChangeState({
+              ...startingState,
+              presetGroup: maybeGroup,
+            });
+          }
           return maybeGroup;
         } else {
           return startingState.presetGroup || ParamDefaults.defaultPresetGroup;

@@ -265,6 +265,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
   useEffect(() => {
     //(this ensures that the filter component is up to date with the union of these fields)
+
     const newState = {
       ...startingState,
       // Luck

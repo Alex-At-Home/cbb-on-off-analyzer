@@ -309,7 +309,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
             key={shouldReinitFilter}
             propKey={shouldReinitFilter}
             onSwitchToAdvancedMode={(newParams) => {
-              // (force reload the state into both GameFilter and CommonFilter)
+              // (force reload the state into both LineupFilter and CommonFilter)
               setLineupFilterParams({
                 ...newParams,
               });
