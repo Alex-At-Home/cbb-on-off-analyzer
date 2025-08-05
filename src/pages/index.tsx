@@ -839,24 +839,168 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <li>
                   <i>
                     (I'm not such a fan of these position-independent groupings
-                    of 2 / 3 / 4 players, but lots of people who understand
-                    basketball better than I do like them!)
+                    of 2 / 3 / 4 players, I find it hard to trust them without
+                    knowing the mix of team-mates; but lots of people who
+                    understand basketball better than I do like them, so see
+                    what you think!)
                   </i>
                 </li>
-                <li>TODO</li>
+                <li>
+                  {buildLink(`Pairs (2)`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by Pairs",
+                      },
+                      {}
+                    )
+                  )}
+                  : Group by pairs of players
+                </li>
+                <li>
+                  {buildLink(`Triples (3)`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by Triples",
+                      },
+                      {}
+                    )
+                  )}
+                  : Group by triples of players
+                </li>
+                <li>
+                  {buildLink(`Quads (4)`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by Quads",
+                      },
+                      {}
+                    )
+                  )}
+                  : Group by quads of players
+                </li>
               </ul>
               <li>
                 <b>On / Off Groupings: (check this one out!)</b>
               </li>
               <ul>
                 <li>
-                  <i>(This is the newest lineup grouping feature, TODO)</i>
+                  <i>
+                    This is the newest lineup grouping feature ... I find it
+                    really useful for analyzing teams with a very dominant
+                    starting lineup -{" "}
+                    <a
+                      href={UrlRouting.getLineupUrl(
+                        {
+                          year: "2024/25",
+                          gender: "Men",
+                          team: "Maryland",
+                          presetGroup: "Grouped by On/Off Combos",
+                        },
+                        {}
+                      )}
+                      target="_blank"
+                    >
+                      say 24/25 Maryland
+                    </a>{" "}
+                    (~15mpg), but less useful for more balanced teams like{" "}
+                    <a
+                      href={UrlRouting.getLineupUrl(
+                        {
+                          year: "2024/25",
+                          gender: "Men",
+                          team: "Texas A&M",
+                          presetGroup: "Grouped by On/Off Combos",
+                        },
+                        {}
+                      )}
+                      target="_blank"
+                    >
+                      say 24/25 Texas A&amp;M
+                    </a>{" "}
+                    (just ~3mpg!). The idea is to show how every possible
+                    deviation from the starting lineup (shown in blue) impacts
+                    the team's stats.
+                  </i>
                 </li>
-                <li>TODO</li>
+                <ul>
+                  <li>
+                    <i>
+                      (if you have an idea for how to make this concept more
+                      useful for teams without a dominant lineup, let me know!)
+                    </i>
+                  </li>
+                </ul>
+                <li>
+                  {buildLink(`On/Off Analysis`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "Grouped by On/Off Combos",
+                      },
+                      {}
+                    )
+                  )}
+                  : As described above, shows deviations from most common lineup
+                  <ul>
+                    <li>
+                      (or select the lineup/sub-lineup you want from the
+                      "On/Off" selector)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  From the{" "}
+                  {buildLink(`Main Lineup Page`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                      },
+                      {}
+                    )
+                  )}
+                  , click the '5/4/3/2 "Starter Analysis" link (middle/bottom of
+                  Filter)': A similar concept to the On/Off Analysis above with
+                  two differences
+                </li>
+                <ul>
+                  <li>
+                    Takes you to the Team Analysis page (which has a bunch more
+                    detail, as explained in the next paragraph)
+                  </li>
+                  <li>
+                    Has only 4 "rows" of data, showing the main lineup, main
+                    lineup with any <i>one</i> player missing, then any{" "}
+                    <i>two</i> players missing etc - in other words it's
+                    aggregated one step further than the On/Off Analysis, you
+                    lose a bit of information but in return get a really clear
+                    picture of how the team is impacted by the substitution
+                    patterns.
+                  </li>
+                  <ul>
+                    <li>
+                      <i>
+                        (as with the On/Off Analysis, I'd love ideas on making
+                        the concept work better when there isn't a clear "main
+                        lineup"!)
+                      </i>
+                    </li>
+                  </ul>
+                </ul>
               </ul>
             </ul>
-            <br />
-            <br />
             TODO: something about the ways of getting more details
             <br />
             <br />
