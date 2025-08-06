@@ -461,7 +461,8 @@ const CommonFilter: CommonFilterI = ({
       if (
         !_.isEmpty(gameSelection.games) ||
         !_.isEmpty(rosterNames) ||
-        tablePrefix != ParamPrefixes.game
+        (tablePrefix != ParamPrefixes.game &&
+          tablePrefix != ParamPrefixes.lineup)
       ) {
         if (isDebug)
           console.log(

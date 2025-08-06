@@ -343,9 +343,10 @@ export class RequestUtils {
     return inQuery?.replace(
       /ROSTER_TOP_([0-9]+) *([=~][0-9]+)?/g,
       (match, numGroupStr, qualifier) => {
-        const replacement = `{${_.take(roster, parseInt(numGroupStr)).join(
-          ";"
-        )}}${qualifier || `=${numGroupStr}`}`;
+        const numGroup = parseInt(numGroupStr);
+        const replacement = `{${_.take(roster, numGroup).join(";")}}${
+          qualifier || `=${Math.min(numGroup, 5)}`
+        }`;
 
         //DEBUG
         // console.log(

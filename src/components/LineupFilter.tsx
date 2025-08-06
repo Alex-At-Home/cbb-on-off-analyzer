@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -41,6 +41,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import ThemedSelect from "./shared/ThemedSelect";
+import { RequestUtils } from "../utils/RequestUtils";
 
 type Props = {
   onStats: (
@@ -117,6 +118,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       //(note doesn't include the actual game query params)
     };
   };
+
+  /** Reference from CommonFilter */
+  const rosterRef = useRef<string[]>();
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
@@ -316,6 +320,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
 
     const currAggByPos = (maybeNewParams || newParamsOnSubmit)?.aggByPos || "";
 
+    const commonRequestToUse = advancedView
+      ? commonParams
+      : maybeNewCommonParams || commonParams;
     const primaryRequest: LineupFilterParams = includeFilterParams
       ? _.assign(buildParamsFromState(false)[0], {
           ...rebuildFullState(),
@@ -327,9 +334,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({
         })
       : _.omit(
           {
-            ...(advancedView
-              ? commonParams
-              : maybeNewCommonParams || commonParams),
+            ...commonRequestToUse,
+            baseQuery: RequestUtils.replaceRosterShortcut(
+              commonRequestToUse.baseQuery,
+              rosterRef.current || [],
+              forQuery || false
+            ),
             aggByPos: currAggByPos,
           },
           forQuery || //(when deciding if canSubmit, use aggByPos, but for actual query remove it)
@@ -611,6 +621,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}
       hideSemiAdvancedOptions={!advancedView}
+      rosterRef={rosterRef}
       extraButton={
         <GenericTogglingMenu size="sm">
           <GenericTogglingMenuItem

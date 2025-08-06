@@ -583,9 +583,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
         QueryUtils.extractAdvancedQuery(onOrOffQuery);
       const baseToUse = ignoreBase ? "*" : maybeAdvBaseQuery || baseQuery || "";
       const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
-      return baseToUse != ""
-        ? `(${onOffToUse}) AND (${baseToUse})`
-        : onOffToUse;
+      return RequestUtils.replaceRosterShortcut(
+        baseToUse != "" ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse,
+        rosterRef.current || [],
+        forQuery
+      );
     };
 
     return {
@@ -852,6 +854,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
             [
               QueryUtils.cleanseQuery({
                 ...commonParams,
+                baseQuery: RequestUtils.replaceRosterShortcut(
+                  commonParams.baseQuery,
+                  rosterRef.current || [],
+                  forQuery || false
+                ),
               }),
             ] as (LineupFilterParams | undefined)[]
           )
