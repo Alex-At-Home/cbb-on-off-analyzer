@@ -87,6 +87,13 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
     "vs_adj_off:",
     "vs_adj_def:",
     "vs_3p:",
+    "ROSTER_TOP_8",
+    "ROSTER_TOP_7",
+    "ROSTER_TOP_6",
+    "ROSTER_TOP_5",
+    "ROSTER_TOP_4",
+    "ROSTER_TOP_3",
+    "ROSTER_TOP_2",
   ]);
 
   const textRef = createRef<HTMLTextAreaElement>();

@@ -329,6 +329,34 @@ export class RequestUtils {
     }
   }
 
+  /** Handy query shortcut, eg ROSTER_TOP_4 gives you the top 4 players as ";" separated inside {}
+   * if the =N / ~N is specified, also applies that else has to be all of them, eg:
+   * ROSTER_TOP_4 -> {list}=4
+   * ROSTER_TOP_6~3 -> {list}~3 etc
+   */
+  static replaceRosterShortcut(
+    inQuery: string | undefined,
+    roster: string[],
+    forQuery: Boolean //(if false then do nothing)
+  ): string | undefined {
+    if (!forQuery) return inQuery;
+    return inQuery?.replace(
+      /ROSTER_TOP_([0-9]+) *([=~][0-9]+)?/g,
+      (match, numGroupStr, qualifier) => {
+        const replacement = `{${_.take(roster, parseInt(numGroupStr)).join(
+          ";"
+        )}}${qualifier || `=${numGroupStr}`}`;
+
+        //DEBUG
+        // console.log(
+        //   `ROSTER_TOP REPLACE1 [${inQuery}] with [${replacement}] (${roster}/${match}/${numGroupStr}/${qualifier})`
+        // );
+
+        return replacement;
+      }
+    );
+  }
+
   //TODO: we should try just fetching the team roster first before we do this expensive call...
 
   /** Makes an API call to elasticsearch to get the roster */

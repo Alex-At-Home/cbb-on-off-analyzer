@@ -107,6 +107,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   propKey,
   testMode,
 }) => {
+  /** handy to force rerender when roster changes */
+  const [forceRerender, setForceRerender] = useState<number>(0);
+
   const isServer = () => typeof window === `undefined`;
   if (isServer() && !testMode) return null; //(don't render server-side)
 
@@ -219,6 +222,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Reference from CommonFilter */
   const gameSelectionRef = useRef<FilteredGameSelection | undefined>();
+
+  /** Reference from CommonFilter */
+  const rosterRef = useRef<string[]>();
 
   /** Whenever starting state updates, we also update the critical params
    *  that trigger data reloads, otherwise it gets too complicated to keep in sync
@@ -428,7 +434,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       }),
     };
 
-    const testPlayers = new Set(rosterNames);
+    const testPlayers = new Set(rosterRef.current || []);
     const maybeSplit = _.thru(testPlayers.has(onQuery), (maybePlayerOnOff) => {
       if (maybePlayerOnOff) {
         return _.isEqual(testSplit, {
@@ -501,18 +507,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
       : startingState.advancedMode
   );
 
-  /** Used to build preset options */
-  const [rosterNames, setRosterNames] = useState<string[]>([]);
-  useEffect(() => {
-    // On page load, if team is selected then fetch the roster
-    RequestUtils.fetchRoster(
-      startingCommonFilterParams,
-      handleRosterResponse,
-      dataLastUpdated,
-      rosterFetchDebug
-    );
-  }, []);
-
   /** The preset query to use */
   const [presetMode, setPresetMode] = useState(
     _.thru(!_.isEmpty(startingState.presetMode), (presetsDefined) => {
@@ -553,29 +547,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
-    if (!advancedView) {
-      //(only need this if building presets)
-      if (
-        params.team != commonParams.team ||
-        params.year != commonParams.year ||
-        params.gender != commonParams.gender
-      ) {
-        setRosterNames([]);
-        if (rosterFetchDebug)
-          console.log(
-            `[auto-debug-mode] Update params: old=[${JSON.stringify(
-              commonParams
-            )}] vs new=[${JSON.stringify(params)}]`
-          );
-        //TODO move this into CommonFilter, have a callback like for opponents
-        RequestUtils.fetchRoster(
-          params,
-          handleRosterResponse,
-          dataLastUpdated,
-          rosterFetchDebug
-        );
-      }
-    }
     setCommonParams(params);
   }
 
@@ -738,14 +709,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
     const primaryOnOffRequest = advancedView
       ? {
+          baseQuery: RequestUtils.replaceRosterShortcut(
+            commonParams.baseQuery,
+            rosterRef.current || [],
+            forQuery || false
+          ),
           autoOffQuery: autoOffQuery,
-          onQuery: onQuery,
+          onQuery: RequestUtils.replaceRosterShortcut(
+            onQuery,
+            rosterRef.current || [],
+            forQuery || false
+          ),
           ...onQueryFiltersObj,
-          offQuery: offQuery,
+          offQuery: RequestUtils.replaceRosterShortcut(
+            offQuery,
+            rosterRef.current || [],
+            forQuery || false
+          ),
           ...offQueryFiltersObj, //(not possible to specify if auto-off)
           otherQueries: _.thru(
             _.zip(otherQueries, otherQueryFilters).map((qZipQ) => ({
-              query: qZipQ[0],
+              query: RequestUtils.replaceRosterShortcut(
+                qZipQ[0],
+                rosterRef.current || [],
+                forQuery || false
+              ),
               queryFilters: buildFilterMaybeForQuery(
                 qZipQ[1] || [],
                 forQuery || false
@@ -757,9 +745,22 @@ const GameFilter: React.FunctionComponent<Props> = ({
           ),
         }
       : {
+          baseQuery: RequestUtils.replaceRosterShortcut(
+            (maybeNewCommonParams || commonParams).baseQuery,
+            rosterRef.current || [],
+            forQuery || false
+          ),
           autoOffQuery: (maybeNewParams || newParamsOnSubmit).autoOffQuery,
-          onQuery: (maybeNewParams || newParamsOnSubmit).onQuery,
-          offQuery: (maybeNewParams || newParamsOnSubmit).offQuery,
+          onQuery: RequestUtils.replaceRosterShortcut(
+            (maybeNewParams || newParamsOnSubmit).onQuery,
+            rosterRef.current || [],
+            forQuery || false
+          ),
+          offQuery: RequestUtils.replaceRosterShortcut(
+            (maybeNewParams || newParamsOnSubmit).offQuery,
+            rosterRef.current || [],
+            forQuery || false
+          ),
           onQueryFilters: buildFilterMaybeForQuery(
             QueryUtils.parseFilter(
               (maybeNewParams || newParamsOnSubmit).onQueryFilters ||
@@ -780,7 +781,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
             ((maybeNewParams || newParamsOnSubmit)?.otherQueries || []).map(
               (oq) => {
                 return {
-                  query: oq.query,
+                  query: RequestUtils.replaceRosterShortcut(
+                    oq.query,
+                    rosterRef.current || [],
+                    forQuery || false
+                  ),
                   queryFilters: buildFilterMaybeForQuery(
                     QueryUtils.parseFilter(
                       oq.queryFilters || ParamDefaults.defaultQueryFilters,
@@ -1225,7 +1230,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     .concat([
       {
         label: "On/Off Splits",
-        options: rosterNames.map((n) =>
+        options: (rosterRef.current || []).map((n) =>
           stringToOption(
             `${FilterPresetUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
           )
@@ -1385,19 +1390,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
       });
     }
   };
-  /** for debugging roster loading issues */
-  const rosterFetchDebug = false;
-
-  /** Parse the return from fetch Roster into name fragments */
-  const handleRosterResponse = (players: string[]) => {
-    const names = _.chain(players)
-      .map((player) => `"${player}"`)
-      .sortBy()
-      .sortedUniq()
-      .value();
-
-    setRosterNames(names);
-  };
 
   // Visual components:
 
@@ -1522,6 +1514,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
       }}
       forceReload1Up={internalForceReload1Up}
       gameSelectionRef={gameSelectionRef}
+      rosterRef={rosterRef}
+      onRosterChange={(newRoster) => {
+        // Just change something to reload page:
+        setForceRerender((curr) => curr + 1);
+      }}
       onGameSelectionChange={(newGameSelection) => {
         // Reset any game-based filters:
         if (

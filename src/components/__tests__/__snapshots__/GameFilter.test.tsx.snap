@@ -15,6 +15,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
   onGameSelectionChange={[Function]}
+  rosterRef={
+    Object {
+      "current": undefined,
+    }
+  }
   startingState={Object {}}
   tablePrefix="game-"
 >

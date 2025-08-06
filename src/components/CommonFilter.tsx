@@ -94,7 +94,9 @@ interface Props<PARAMS> {
   matchupMode?: "game" | "preview";
   blockSubmit?: boolean;
   onGameSelectionChange?: (gameSelection: FilteredGameSelection) => void;
+  onRosterChange?: (roster: string[]) => void;
   gameSelectionRef?: React.MutableRefObject<FilteredGameSelection | undefined>;
+  rosterRef?: React.MutableRefObject<string[] | undefined>;
   hideSemiAdvancedOptions?: boolean; //(only show team selector)
   propKey?: number;
   extraButton?: React.ReactElement;
@@ -128,7 +130,9 @@ const CommonFilter: CommonFilterI = ({
   matchupMode,
   blockSubmit,
   onGameSelectionChange,
+  onRosterChange,
   gameSelectionRef,
+  rosterRef,
   hideSemiAdvancedOptions,
   propKey,
   extraButton,
@@ -188,10 +192,33 @@ const CommonFilter: CommonFilterI = ({
   const [gameSelection, setGameSelection] = useState<FilteredGameSelection>({
     games: [],
   });
+
   const [showGamesModal, setShowGamesModal] = useState<boolean>(false);
+  const [rosterNames, setRosterNames] = useState<string[]>([]);
+  /** for debugging roster loading issues */
+  const rosterFetchDebug = false;
+
+  /** Parse the return from fetch Roster into name fragments */
+  const handleRosterResponse = (players: string[]) => {
+    const names = _.chain(players)
+      .map((player) => `"${player}"`)
+      .value();
+
+    setRosterNames(names);
+  };
+
   useEffect(() => {
+    setRosterNames([]);
     setGameSelection({ games: [] }); //(changes to team season so unset games)
     if (team && year && gender) {
+      // Fetch the team roster
+      RequestUtils.fetchRoster(
+        { team, year, gender },
+        handleRosterResponse,
+        dataLastUpdated,
+        rosterFetchDebug
+      );
+
       // Fetch the team's set of games
       RequestUtils.fetchOpponents(
         { team, year, gender },
@@ -242,9 +269,16 @@ const CommonFilter: CommonFilterI = ({
       gameSelection.filter &&
       onGameSelectionChange(gameSelection);
   }, [gameSelection]);
+  useEffect(() => {
+    onRosterChange && onRosterChange(rosterNames);
+  }, [rosterNames]);
   if (gameSelectionRef) {
     //(allow access from child elements)
     gameSelectionRef.current = gameSelection;
+  }
+  if (rosterRef) {
+    //(allow access from child elements)
+    rosterRef.current = rosterNames;
   }
 
   // Validation, this currently only supports once case:
@@ -426,6 +460,7 @@ const CommonFilter: CommonFilterI = ({
       // Only do this once the team list has loaded
       if (
         !_.isEmpty(gameSelection.games) ||
+        !_.isEmpty(rosterNames) ||
         tablePrefix != ParamPrefixes.game
       ) {
         if (isDebug)
