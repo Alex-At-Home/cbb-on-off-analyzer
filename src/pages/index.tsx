@@ -512,31 +512,31 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       imageList: [
         {
           src: "./images/landing_page/play_style/player_and_team.jpeg",
-          text: "See a team's Offensive Play Style Breakdown, and how each player contributed",
+          text: "See a team's Offensive Play Style Breakdown, and how each player contributed [1/7]",
         },
         {
           src: "./images/landing_page/play_style/player_and_team_2.jpeg",
-          text: "See a team's Offensive Play Style Breakdown, and how each player contributed (filtered by Play Type)",
+          text: "See a team's Offensive Play Style Breakdown, and how each player contributed (filtered by Play Type) [2/7]",
         },
         {
           src: "./images/landing_page/play_style/player_lboard.jpeg",
-          text: "See the Offensive Play Style Breakdown for every player directly in the Leaderboard",
+          text: "See the Offensive Play Style Breakdown for every player directly in the Leaderboard [3/7]",
         },
         {
           src: "./images/landing_page/play_style/team_explorer.jpeg",
-          text: "See Offensive and Defensive Play Style Breakdowns for every team in D1 (single year)",
+          text: "See Offensive and Defensive Play Style Breakdowns for every team in D1 (single year) [4/7]",
         },
         {
           src: "./images/landing_page/play_style/multi_yr_team_explorer.jpeg",
-          text: "See Offensive and Defensive Play Style Breakdowns for every team in D1 (multi year, with a filter to single out one coach)",
+          text: "See Offensive and Defensive Play Style Breakdowns for every team in D1 (multi year, with a filter to single out one coach) [5/7]",
         },
         {
           src: "./images/landing_page/play_style/play_style_matchup.jpeg",
-          text: "Another Team Stats Explorer use - to preview the match-up of two teams",
+          text: "Another Team Stats Explorer use - to preview the match-up of two teams [6/7]",
         },
         {
           src: "./images/landing_page/play_style/team_play_style_fun.jpeg",
-          text: "How the excellent Michigan CBB blogger mgoblog brought a 24/25 Wisconsin Play Style Breakdown to life!",
+          text: "How the excellent Michigan CBB blogger mgoblog brought a 24/25 Wisconsin Play Style Breakdown to life! [7/7]",
         },
       ],
     },
@@ -681,15 +681,15 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       imageList: [
         {
           src: "./images/landing_page/shot_charts/shot_chart_team_split.jpeg",
-          text: "See how Purdue's shot distribution changed with/without Zach Edey on the court (23/24 season)",
+          text: "See how Purdue's shot distribution changed with/without Zach Edey on the court (23/24 season) [1/3]",
         },
         {
           src: "./images/landing_page/shot_charts/shot_chart_player_split.jpeg",
-          text: "See how Purdue's PG's shot distribution changed with/without Zach Edey on the court (23/24 season)",
+          text: "See how Purdue's PG's shot distribution changed with/without Zach Edey on the court (23/24 season) [2/3]",
         },
         {
           src: "./images/landing_page/shot_charts/shot_chart_player_lboard.jpeg",
-          text: "See player's shot charts directly in the Player Leaderboard",
+          text: "See player's shot charts directly in the Player Leaderboard [3/3]",
         },
       ],
     },
@@ -927,8 +927,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       say 24/25 Texas A&amp;M
                     </a>{" "}
                     (just ~3mpg!). The idea is to show how every possible
-                    deviation from the starting lineup (shown in blue) impacts
-                    the team's stats.
+                    deviation from the starting lineup (shown in blue) - aka
+                    substitution patterns - impacts the team's stats.
                   </i>
                 </li>
                 <ul>
@@ -978,7 +978,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <ul>
                   <li>
                     Takes you to the Team Analysis page (which has a bunch more
-                    detail, as explained in the next paragraph)
+                    detail, as explained in the next section)
                   </li>
                   <li>
                     Has only 4 "rows" of data, showing the main lineup, main
@@ -1001,7 +1001,58 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 </ul>
               </ul>
             </ul>
-            TODO: something about the ways of getting more details
+            For each lineup (or lineup combo), there is relatively little detail
+            - just the "standard" Hoop Explorer team offense/defense stat lines.
+            This lets you compare many lineups/lineup-combos very easily, but
+            often you'll want to "dig into" a given lineup/lineup-combo and get
+            access to all the goodies that the Team/Roster analysis provides,
+            eg:
+            <ul>
+              <li>
+                <i>
+                  {buildLink(
+                    `What do each players' stats (Off Rating, usage, rebounding etc) look like within a lineup/combo?`,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          // custom query:
+                          onQuery: "ROSTER_TOP_5",
+                          offQuery: "",
+                          autoOffQuery: false,
+                          //(player view)
+                          possAsPct: false,
+                          calcRapm: true,
+                          showExpanded: true,
+                        },
+                        {}
+                      )
+                  )}
+                </i>
+              </li>
+              <li>
+                <i>
+                  How is the team's play style impacted by the lineup/combo?
+                </i>
+              </li>
+              <li>
+                <i>
+                  What does the team shot chart look like for the given
+                  lineup/combo?
+                </i>
+              </li>
+              <li>
+                (etc; as noted above the higher the sample size the more
+                valuable the stats are so lineup combos tend to work better than
+                most lineups.)
+              </li>
+            </ul>
+            To see these more detailed views, simply click on the lineup or
+            combo cell on the right of the table. This will show the
+            lineup/combo-specific stats as the "A" query, and the season stats
+            as the "Base" query.
             <br />
             <br />
             TODO: games view .. one interesting thing that you can do with the
