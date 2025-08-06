@@ -40,6 +40,7 @@ import LandingPageMoreDetails, {
 } from "../components/shared/LandingPageMoreDetails";
 import { UrlRouting } from "../utils/UrlRouting";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -693,7 +694,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         },
       ],
     },
-    "team-lineup-analysis-XXX": {
+    [FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
+      ? "team-lineup-analysis"
+      : "XXX"]: {
       title: "Team Lineup Analysis",
       content: (
         <div style={{ fontSize: "1.2rem" }}>
@@ -960,7 +963,25 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   </ul>
                 </li>
                 <li>
-                  From the{" "}
+                  {buildLink(
+                    `Main Lineup vs Substitution Patterns`,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          presetSplit: "Top 5 players vs Substitution Patterns",
+                          //(player view)
+                          showRoster: true,
+                          possAsPct: false,
+                          calcRapm: true,
+                          showExpanded: true,
+                        },
+                        {}
+                      )
+                  )}{" "}
+                  (or from the{" "}
                   {buildLink(`Main Lineup Page`, (year, gender, team) =>
                     UrlRouting.getLineupUrl(
                       {
@@ -971,9 +992,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       {}
                     )
                   )}
-                  , click the '5/4/3/2 "Starter Analysis" link (middle/bottom of
-                  Filter)': A similar concept to the On/Off Analysis above with
-                  two differences
+                  , click the '5/4/3/2 "Starter Analysis" link): A similar
+                  concept to the On/Off Analysis above with two differences
                 </li>
                 <ul>
                   <li>
@@ -1882,7 +1902,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     )
                 )}
                 {buildCardLink(
-                  <text>(Advanced View...)</text>,
+                  <span>(Advanced View...)</span>,
                   (year, gender, team) =>
                     UrlRouting.getGameUrl(
                       {
@@ -2003,11 +2023,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <Card.Title>Game Reports</Card.Title>
                 <Card.Text>
                   Advanced game analytics you won't find elsewhere:
-                  <ul>
-                    <li>Single game player offensive and defensive impact</li>
-                    <li>Time series charts showing lineups</li>
-                    <li>A style breakdown for each team</li>
-                  </ul>
+                  <li>Single game player offensive and defensive impact</li>
+                  <li>Time series charts showing lineups</li>
+                  <li>A style breakdown for each team</li>
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Game Reports"))}
                 <Card.Link
@@ -2041,11 +2059,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <Card.Text>
                   Advanced match-up analytics between any two teams in D1, with
                   charts showing:
-                  <ul>
-                    <li>Players' offensive and defensive impact</li>
-                    <li>A breakdown of offense vs defense style matchups</li>
-                    <li>Shot charts</li>
-                  </ul>
+                  <li>Players' offensive and defensive impact</li>
+                  <li>A breakdown of offense vs defense style matchups</li>
+                  <li>Shot charts</li>
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Game Previews"))}
                 <Card.Link

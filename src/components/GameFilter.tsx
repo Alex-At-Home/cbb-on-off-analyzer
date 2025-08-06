@@ -564,7 +564,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
   };
 
   /** Builds lineup queries for on/off queries */
-  function buildLineupQueriesFromOnOffQueries(forQuery: Boolean): {
+  function buildLineupQueriesFromOnOffQueries(
+    forQuery: Boolean,
+    primaryRequest?: GameFilterParams
+  ): {
     on?: CommonFilterParams;
     off?: CommonFilterParams;
     others?: (CommonFilterParams | undefined)[];
@@ -590,12 +593,42 @@ const GameFilter: React.FunctionComponent<Props> = ({
       );
     };
 
+    const onQueryToUse = primaryRequest ? primaryRequest.onQuery : onQuery;
+    const onQueryFiltersToUse = primaryRequest
+      ? QueryUtils.parseFilter(
+          primaryRequest.onQueryFilters || ParamDefaults.defaultQueryFilters,
+          commonParams.year || ParamDefaults.defaultYear
+        )
+      : onQueryFilters;
+    const offQueryToUse = primaryRequest ? primaryRequest.offQuery : offQuery;
+    const offQueryFiltersToUse = primaryRequest
+      ? QueryUtils.parseFilter(
+          primaryRequest.offQueryFilters || ParamDefaults.defaultQueryFilters,
+          commonParams.year || ParamDefaults.defaultYear
+        )
+      : offQueryFilters;
+    const autoOffQueryToUse =
+      primaryRequest && !_.isNil(primaryRequest.autoOffQuery)
+        ? primaryRequest.autoOffQuery
+        : autoOffQuery;
+    const otherQueriesToUse = primaryRequest
+      ? (primaryRequest.otherQueries || []).map((oq) => oq.query)
+      : otherQueries;
+    const otherQueryFiltersToUse = primaryRequest
+      ? (primaryRequest.otherQueries || []).map((oq) =>
+          QueryUtils.parseFilter(
+            oq.queryFilters || ParamDefaults.defaultQueryFilters,
+            commonParams.year || ParamDefaults.defaultYear
+          )
+        )
+      : otherQueryFilters;
+
     return {
-      on: QueryUtils.nonEmptyQuery(onQuery, onQueryFilters)
+      on: QueryUtils.nonEmptyQuery(onQueryToUse, onQueryFiltersToUse)
         ? {
-            baseQuery: getLineupQuery(onQuery || "*"),
+            baseQuery: getLineupQuery(onQueryToUse || "*"),
             queryFilters: buildFilterMaybeForQuery(
-              onQueryFilters.concat(
+              onQueryFiltersToUse.concat(
                 QueryUtils.parseFilter(
                   commonParams.queryFilters ||
                     ParamDefaults.defaultQueryFilters,
@@ -608,18 +641,18 @@ const GameFilter: React.FunctionComponent<Props> = ({
         : undefined,
 
       off: _.thru(
-        QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters),
+        QueryUtils.autoOffAndFilters(autoOffQueryToUse, onQueryFiltersToUse),
         (autoOff) => {
           const nonEmptyOff = QueryUtils.nonEmptyQuery(
-            offQuery,
-            offQueryFilters
+            offQueryToUse,
+            offQueryFiltersToUse
           );
 
           if (!autoOff && nonEmptyOff) {
             return {
-              baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
+              baseQuery: getLineupQuery(offQueryToUse || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
               queryFilters: buildFilterMaybeForQuery(
-                offQueryFilters.concat(
+                offQueryFiltersToUse.concat(
                   QueryUtils.parseFilter(
                     commonParams.queryFilters ||
                       ParamDefaults.defaultQueryFilters,
@@ -633,7 +666,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
             return {
               baseQuery: commonParams.baseQuery,
               queryFilters: commonParams.queryFilters,
-              invertBase: getLineupQuery(onQuery || "*", true),
+              invertBase: getLineupQuery(onQueryToUse || "*", true),
               invertBaseQueryFilters: buildFilterMaybeForQuery(
                 onQueryFilters,
                 forQuery
@@ -646,9 +679,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
         }
       ),
 
-      others: _.isEmpty(otherQueries)
+      others: _.isEmpty(otherQueriesToUse)
         ? undefined
-        : _.zip(otherQueries, otherQueryFilters).map(
+        : _.zip(otherQueriesToUse, otherQueryFiltersToUse).map(
             ([otherQuery, otherQueryFilter], index) =>
               QueryUtils.nonEmptyQuery(otherQuery, otherQueryFilter || [])
                 ? {
@@ -848,7 +881,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const lineupRequests: (LineupFilterParams | undefined)[] = alsoPullLineups
       ? _.thru(alsoPullLineups, (__) => {
           const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries(
-            forQuery || false
+            forQuery || false,
+            primaryRequest
           );
           return (
             [

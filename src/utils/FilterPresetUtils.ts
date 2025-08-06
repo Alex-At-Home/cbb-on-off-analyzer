@@ -85,6 +85,7 @@ export class FilterPresetUtils {
   static readonly gameSplitLabelSortOrder: string[] = [
     "Misc Splits",
     "Date Splits",
+    "Lineup Splits",
     "SoS Splits",
   ];
 
@@ -99,6 +100,45 @@ export class FilterPresetUtils {
       gameParams: {
         onQuery: "location_type:Home",
         offQuery: `NOT ${"location_type:Home"}`,
+      },
+    },
+    "Top 5 players vs Substitution Patterns": {
+      label: "Lineup Splits",
+      splitPhrases: ["5_of_T5", "4_of_T5", "3_of_T5", "2_of_T5"],
+      gameParams: {
+        autoOffQuery: false,
+        onQuery: "ROSTER_TOP_5",
+        offQuery: `ROSTER_TOP_5=4`,
+        otherQueries: [
+          { query: `ROSTER_TOP_5=3` },
+          { query: "ROSTER_TOP_5=2" },
+        ],
+      },
+    },
+    "Top 6 players vs Substitution Patterns": {
+      label: "Lineup Splits",
+      splitPhrases: ["5_of_T6", "4_of_T6", "3_of_T6", "2_of_T6"],
+      gameParams: {
+        autoOffQuery: false,
+        onQuery: "ROSTER_TOP_6=5",
+        offQuery: `ROSTER_TOP_6=4`,
+        otherQueries: [
+          { query: `ROSTER_TOP_6=3` },
+          { query: "ROSTER_TOP_6=2" },
+        ],
+      },
+    },
+    "Top 7 players vs Substitution Patterns": {
+      label: "Lineup Splits",
+      splitPhrases: ["5_of_T7", "4_of_T7", "3_of_T7", "2_of_T7"],
+      gameParams: {
+        autoOffQuery: false,
+        onQuery: "ROSTER_TOP_7=5",
+        offQuery: `ROSTER_TOP_7=4`,
+        otherQueries: [
+          { query: `ROSTER_TOP_7=3` },
+          { query: "ROSTER_TOP_7=2" },
+        ],
       },
     },
     "Wins vs Losses": {
