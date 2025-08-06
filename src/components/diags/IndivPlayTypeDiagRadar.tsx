@@ -153,7 +153,14 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
     const { x, y, payload } = props;
     return (
-      <Text x={x} y={y} width={40} textAnchor="middle" verticalAnchor="start">
+      <Text
+        x={x}
+        y={y}
+        width={40}
+        textAnchor="middle"
+        verticalAnchor="start"
+        fill={resolvedTheme == "dark" ? "#CCC" : undefined}
+      >
         {payload.value}
       </Text>
     );
@@ -319,11 +326,13 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="name"
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 interval={0}
                 tick={<CustomizedAxisTick />}
               />
               <YAxis
                 type="number"
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 domain={
                   possFreqType == "P%" || possFreqType == "T%"
                     ? undefined
@@ -343,6 +352,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       : `Frequency %ile in D1`
                   }
                   position="insideLeft"
+                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
                   style={{ textAnchor: "middle", fontWeight: "bold" }}
                 />
               </YAxis>

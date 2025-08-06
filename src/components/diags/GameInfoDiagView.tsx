@@ -30,6 +30,7 @@ import {
   ReferenceLine,
   Label,
 } from "recharts";
+import { useTheme } from "next-themes";
 
 // Utils
 
@@ -45,13 +46,18 @@ const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({
   payload,
   label,
 }) => {
+  const { resolvedTheme } = useTheme();
+
   if (active) {
     const data = payload?.[0]?.payload || {};
     return (
       <div
         className="custom-tooltip"
         style={{
-          background: "rgba(255, 255, 255, 0.9)",
+          background:
+            resolvedTheme == "dark"
+              ? "rgba(0, 0, 0, 0.9)"
+              : "rgba(238, 238, 238, 0.9)",
         }}
       >
         <p className="label">
@@ -101,6 +107,7 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({
   params,
   maxOffPoss,
 }) => {
+  const { resolvedTheme } = useTheme();
   const currId = oneUp_;
   oneUp_++;
 
@@ -140,15 +147,20 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="opponent" />
+              <XAxis
+                dataKey="opponent"
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
+              />
               <YAxis
                 yAxisId="left"
                 domain={[0, zoomIn ? "auto" : maxOffPoss + 1]}
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
               >
                 <Label
                   angle={-90}
                   value="# possessions"
                   position="insideLeft"
+                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
                   style={{ textAnchor: "middle" }}
                 />
               </YAxis>
@@ -203,7 +215,7 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({
                 type="monotone"
                 isAnimationActive={false}
                 dataKey="num_off_poss"
-                stroke="#000"
+                stroke={resolvedTheme == "dark" ? "#ccCCcc" : "#000"}
                 strokeWidth={1}
               />
             </ComposedChart>

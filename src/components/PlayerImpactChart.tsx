@@ -641,6 +641,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               <Legend verticalAlign="bottom" align="center" iconSize={8} />
               <XAxis
                 type="number"
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 dataKey="x"
                 domain={[-graphLimitX, graphLimitX]}
                 axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
@@ -653,11 +654,13 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   }
                   position="top"
                   style={{ textAnchor: "middle" }}
+                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
                 />
               </XAxis>
               <YAxis
                 type="number"
                 dataKey="y"
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 domain={[-graphLimitY, graphLimitY]}
                 axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
                 tickFormatter={(s) => `-${s}`.replace("--", "")}
@@ -667,6 +670,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   value={"Defensive Impact (pts)"}
                   position="insideLeft"
                   style={{ textAnchor: "middle" }}
+                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
                 />
               </YAxis>
               {seasonStats ? (

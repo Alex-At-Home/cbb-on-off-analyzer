@@ -526,6 +526,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         textAnchor="middle"
         verticalAnchor="start"
         style={{ fontWeight: "bold" }}
+        fill={resolvedTheme == "dark" ? "#CCC" : undefined}
       >
         {payload.value}
       </Text>
@@ -740,12 +741,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               />
               <YAxis
                 type="number"
+                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 domain={[0, 100]}
                 ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
               >
                 <Label
                   angle={-90}
                   value={`Frequency %ile in D1`}
+                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
                   position="insideLeft"
                   style={{ textAnchor: "middle", fontWeight: "bold" }}
                 />
