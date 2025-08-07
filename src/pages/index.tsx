@@ -90,11 +90,16 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     teamNotNeeded: Boolean = false
   ) => {
     return (team || teamNotNeeded) && year && gender ? (
-      <a href={visitOnSave(year, gender, team)} target="_blank">
+      <a
+        className="card-body-link"
+        href={visitOnSave(year, gender, team)}
+        target="_blank"
+      >
         {toDisplay}
       </a>
     ) : (
       <a
+        className="card-body-link"
         href="#"
         onClick={(e: any) => {
           e.preventDefault();
@@ -722,7 +727,17 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             )}
             , and observing how the best performing lineups typically are on the
             lower end of possessions counts, and typically have a big plus net
-            in 3P% (a very high variance stat).
+            in 3P% (a very high variance stat) - filtering it with a{" "}
+            {buildLink(
+              `higher possession count`,
+              (year, gender, team) =>
+                UrlRouting.getLineupLeaderboardUrl({
+                  year,
+                  gender,
+                }),
+              true
+            )}{" "}
+            gives a more stable (but much smaller) list.
             <br />
             <br />I did add an option to{" "}
             {buildLink(`regress 3P% for luck`, (year, gender, team) =>
@@ -901,6 +916,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     really useful for analyzing teams with a very dominant
                     starting lineup -{" "}
                     <a
+                      className="card-body-link"
                       href={UrlRouting.getLineupUrl(
                         {
                           year: "2024/25",
@@ -916,6 +932,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     </a>{" "}
                     (~15mpg), but less useful for more balanced teams like{" "}
                     <a
+                      className="card-body-link"
                       href={UrlRouting.getLineupUrl(
                         {
                           year: "2024/25",
@@ -1054,13 +1071,54 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               </li>
               <li>
                 <i>
-                  How is the team's play style impacted by the lineup/combo?
+                  {buildLink(
+                    `How is the team's play style impacted by the lineup/combo?`,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          // custom query:
+                          onQuery: "ROSTER_TOP_5",
+                          offQuery: "",
+                          autoOffQuery: false,
+                          //(team view)
+                          showTeamPlayTypes: true,
+                          //(player view)
+                          possAsPct: false,
+                          calcRapm: true,
+                          showExpanded: true,
+                        },
+                        {}
+                      )
+                  )}
                 </i>
               </li>
               <li>
                 <i>
-                  What does the team shot chart look like for the given
-                  lineup/combo?
+                  {buildLink(
+                    `What does the team shot chart look like for the given lineup/combo?`,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          // custom query:
+                          onQuery: "ROSTER_TOP_5",
+                          offQuery: "",
+                          autoOffQuery: false,
+                          //(team view)
+                          teamShotCharts: true,
+                          //(player view)
+                          possAsPct: false,
+                          calcRapm: true,
+                          showExpanded: true,
+                        },
+                        {}
+                      )
+                  )}
                 </i>
               </li>
               <li>
@@ -1075,11 +1133,23 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             as the "Base" query.
             <br />
             <br />
-            TODO: games view .. one interesting thing that you can do with the
-            basic lineup view but also works well with the combined views is XXX
-            <br />
-            <br />
-            TODO: better version of lineup leaderboards
+            One visualization that can be useful is the{" "}
+            {buildLink(
+              `possessions-per-game chart for each lineup/combo`,
+              (year, gender, team) =>
+                UrlRouting.getLineupUrl(
+                  {
+                    year,
+                    gender,
+                    team,
+                    showGameInfo: true,
+                  },
+                  {}
+                )
+            )}
+            , which shows how lineups wane and wax in popularity over the
+            season. (in the Team/Roster Analysis Page it's also very useful as a
+            diagnostic to ensure the filter/splits are doing what you expect.)
           </p>
         </div>
       ),
@@ -1584,6 +1654,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 onClick: () => handleTopicToggle("All"),
               },
               {
+                label: "Details",
+                tooltip:
+                  "Show cards with extra details that I think are worth reading! (Click on 'More Details')",
+                toggled: selectedTopics.has("Details"),
+                onClick: () => handleTopicToggle("Details"),
+              },
+              {
                 label: "| ",
                 isLabelOnly: true,
                 tooltip: "",
@@ -1751,6 +1828,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </TopicFilteredCard>
         <TopicFilteredCard
           topics={[
+            "Details",
             "Play Types",
             "Teams",
             "Players",
@@ -1929,7 +2007,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
-          topics={["Lineups", "Leaderboards", "CSV Export", "Multi Year"]}
+          topics={[
+            "Details",
+            "Lineups",
+            "Leaderboards",
+            "CSV Export",
+            "Multi Year",
+          ]}
         >
           <Col className="mt-2">
             <Card>
@@ -1970,6 +2054,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </TopicFilteredCard>
         <TopicFilteredCard
           topics={[
+            "Details",
             "Shot Charts",
             "Teams",
             "Players",

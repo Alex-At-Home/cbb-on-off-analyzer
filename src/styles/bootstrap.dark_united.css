@@ -520,6 +520,13 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
+[data-theme='dark'] .card-body-link {
+  color: #f4ad7e;
+}
+[data-theme='dark'] .card-body-link:hover {
+  color: #df691a;
+}
+
 [data-theme='dark'] .card-link {
   color: #df691a;
 }
