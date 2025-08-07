@@ -706,10 +706,19 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       content: (
         <div style={{ fontSize: "1.2rem" }}>
           <p>
-            Lineup tables were one of the first pages I added to Hoop Explorer,
-            but I never found them very useful in practice, outside of being an
-            early indication of a coach's thinking, before the rotations became
-            set.
+            {buildLink(`Lineup tables`, (year, gender, team) =>
+              UrlRouting.getLineupUrl(
+                {
+                  year,
+                  gender,
+                  team,
+                },
+                {}
+              )
+            )}{" "}
+            were one of the first pages I added to Hoop Explorer, but I never
+            found them very useful in practice, outside of being an early
+            indication of a coach's thinking, before the rotations became set.
             <br />
             <br />
             Why? The sample sizes get too small really quickly (eg the third
@@ -782,6 +791,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by PG",
+                        aggByPos: "PG",
                       },
                       {}
                     )
@@ -797,6 +807,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by Center",
+                        aggByPos: "C",
                       },
                       {}
                     )
@@ -811,6 +822,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by PG+C",
+                        aggByPos: "PG+C",
                       },
                       {}
                     )
@@ -826,6 +838,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by Backcourt",
+                        aggByPos: "Backcourt",
                       },
                       {}
                     )
@@ -842,6 +855,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by Frontcourt",
+                        aggByPos: "Frontcourt",
                       },
                       {}
                     )
@@ -871,6 +885,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by Pairs",
+                        aggByPos: "Pairs",
                       },
                       {}
                     )
@@ -885,6 +900,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by Triples",
+                        aggByPos: "Triples",
                       },
                       {}
                     )
@@ -899,6 +915,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by Quads",
+                        aggByPos: "Quads",
                       },
                       {}
                     )
@@ -923,6 +940,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           gender: "Men",
                           team: "Maryland",
                           presetGroup: "Grouped by On/Off Combos",
+                          aggByPos: "On-Off",
                         },
                         {}
                       )}
@@ -939,6 +957,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           gender: "Men",
                           team: "Texas A&M",
                           presetGroup: "Grouped by On/Off Combos",
+                          aggByPos: "On-Off",
                         },
                         {}
                       )}
@@ -967,6 +986,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         presetGroup: "Grouped by On/Off Combos",
+                        aggByPos: "On-Off",
                       },
                       {}
                     )
