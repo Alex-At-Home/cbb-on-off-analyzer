@@ -762,7 +762,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               )
             )}{" "}
             (and the leaderboard does use that), but even the full Team Analysis
-            luck calculations aren't great, and the Lineup Analysis version are
+            luck calculations aren't great, and the Lineup Analysis versions are
             missing some key per-lineup info so should be treated as very
             unreliable.
             <br />
