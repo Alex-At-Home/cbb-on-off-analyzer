@@ -624,6 +624,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     csvData,
     adjustForSos,
     possFreqType,
+    resolvedTheme,
   ]);
 };
 export default IndivPlayTypeDiagRadar;

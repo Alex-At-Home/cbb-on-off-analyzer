@@ -1081,6 +1081,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       selectedPlayTypes,
       multiMode,
       filterStr,
+      resolvedTheme,
     ]
   );
 };

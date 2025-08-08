@@ -589,7 +589,7 @@ const HexMap: React.FC<HexMapProps> = ({
     return () => {
       tooltip.remove(); // Clean up tooltip on unmount
     };
-  }, [data]);
+  }, [data, resolvedTheme]);
 
   return <svg ref={svgRef} width={width} height={height}></svg>;
 };

@@ -1455,6 +1455,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     toggledPlayers,
     showPrevNextInTable,
     showOnlyHandSelectedInTable,
+    resolvedTheme,
   ]);
 
   // 3] View
