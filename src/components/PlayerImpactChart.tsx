@@ -125,6 +125,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   // Viewport management
 
   const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setCachedStats({ ab: [] });
+  }, [resolvedTheme]);
+
   const teamAColor = resolvedTheme == "dark" ? "#ccc" : "black";
   const teamBColor = resolvedTheme == "dark" ? "hotpink" : "purple";
   const themedColorBuilder =
@@ -461,6 +466,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     return { label: s, value: s };
   }
   const labelState = ScatterChartUtils.buildEmptyLabelState();
+
   return _.isEmpty(cachedStats.ab) ? (
     <Col className="text-center w-100">
       <i>(No Data)</i>
