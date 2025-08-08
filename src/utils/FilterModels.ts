@@ -349,6 +349,7 @@ export type LandingPageParams = {
   gender?: string;
   year?: string;
   topics?: string; // Comma-separated list of selected topics
+  moreDetailsId?: string;
 };
 
 export type TeamLeaderboardParams = {

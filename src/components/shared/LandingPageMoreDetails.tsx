@@ -10,6 +10,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import ClipboardJS from "clipboard";
 
 // Define the props for image items in the carousel
 interface CarouselImageItem {
@@ -42,8 +46,49 @@ const LandingPageMoreDetails: React.FC<LandingPageMoreDetailsProps> = ({
   const [isXlScreen, setIsXlScreen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState(0);
 
+  const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
+
+  /** Copy to clipboard button */
+  const getCopyLinkButton = () => {
+    const tooltip = (
+      <Tooltip id="copyLinkTooltip" className="modal_upper">
+        Copies URL to clipboard
+      </Tooltip>
+    );
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button
+          id={`copyLink_landingPageMoreDetails`}
+          variant="outline-secondary"
+          size="sm"
+        >
+          <FontAwesomeIcon icon={faLink} />
+        </Button>
+      </OverlayTrigger>
+    );
+  };
+
+  /** This grovelling is needed to ensure that clipboard is only loaded client side */
+  function initClipboard() {
+    if (null == clipboard) {
+      var newClipboard = new ClipboardJS(`#copyLink_landingPageMoreDetails`, {
+        text: function (trigger) {
+          return window.location.href;
+        },
+      });
+      newClipboard.on("success", (event: ClipboardJS.Event) => {
+        // Clear the selection in some visually pleasing way
+        setTimeout(function () {
+          event.clearSelection();
+        }, 150);
+      });
+      setClipboard(newClipboard);
+    }
+  }
+
   // Check screen size on mount and window resize
   useEffect(() => {
+    initClipboard();
     const checkScreenSize = () => {
       // Bootstrap xl breakpoint is 1200px
       setIsXlScreen(window.innerWidth >= 1200);
@@ -58,6 +103,10 @@ const LandingPageMoreDetails: React.FC<LandingPageMoreDetailsProps> = ({
     // Cleanup event listener on unmount
     return () => {
       window.removeEventListener("resize", checkScreenSize);
+      if (clipboard) {
+        clipboard.destroy();
+        setClipboard(null);
+      }
     };
   }, []);
 
@@ -76,7 +125,9 @@ const LandingPageMoreDetails: React.FC<LandingPageMoreDetailsProps> = ({
       className="modal_lower"
     >
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title>
+          {title} {getCopyLinkButton()}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Container>

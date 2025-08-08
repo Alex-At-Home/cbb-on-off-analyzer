@@ -41,6 +41,7 @@ import LandingPageMoreDetails, {
 import { UrlRouting } from "../utils/UrlRouting";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import ExpandableImage from "../components/shared/ExpandableImage";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -77,10 +78,25 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const handleMoreDetailsOpen = (cardId: string) => {
     setSelectedCardId(cardId);
     setShowMoreDetailsModal(true);
+    const urlParams = new URLSearchParams(window.location.search);
+    const currSelectedCardId = urlParams.get("moreDetailsId");
+    if (currSelectedCardId != cardId) {
+      urlParams.set("moreDetailsId", cardId);
+      const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+      router.replace(newUrl, undefined, { shallow: true });
+    }
   };
 
   const handleMoreDetailsClose = () => {
     setShowMoreDetailsModal(false);
+    setSelectedCardId("");
+    const urlParams = new URLSearchParams(window.location.search);
+    const currSelectedCardId = urlParams.get("moreDetailsId");
+    if (currSelectedCardId) {
+      urlParams.delete("moreDetailsId");
+      const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+      router.replace(newUrl, undefined, { shallow: true });
+    }
   };
 
   /** Builds a link that either opens a new, or opens a dialog box to specify the  */
@@ -168,6 +184,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     }),
                   true
                 )}
+                <ul>
+                  <li>
+                    <ExpandableImage
+                      src="./images/landing_page/offseason/offseason_predictions_1.jpeg"
+                      caption="The ranking is the least interesting bit, except for being the starting point for more analysis..."
+                    />
+                  </li>
+                </ul>
               </li>
               <li>
                 {buildLink(
@@ -179,6 +203,22 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       team,
                     })
                 )}
+                <ul>
+                  <li>
+                    Edit the breakdowns:{" "}
+                    <ExpandableImage
+                      src="./images/landing_page/offseason/offseason_predictions_2.jpeg"
+                      caption="See a detailed breakdown of why a team has a given ranking, and change it if you don't like it!"
+                    />
+                  </li>
+                  <li>
+                    Or add more players!{" "}
+                    <ExpandableImage
+                      src="./images/landing_page/offseason/offseason_predictions_3.jpeg"
+                      caption="During Portal Season, pick players you like and see the impact of landing them."
+                    />
+                  </li>
+                </ul>
               </li>
               <li>
                 {buildLink(
@@ -191,6 +231,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     } as OffseasonLeaderboardParams),
                   true
                 )}
+                <ul>
+                  <li>
+                    <ExpandableImage
+                      src="./images/landing_page/offseason/offseason_changes.jpeg"
+                      caption="Break down a team's predictions compared to last season's performance based on who is coming/staying/leaving"
+                    />
+                  </li>
+                </ul>
               </li>
               <li>
                 {buildLink(
@@ -216,19 +264,19 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       imageList: [
         {
           src: "./images/landing_page/offseason/offseason_predictions_1.jpeg",
-          text: "The ranking is the least interesting bit, except for being the starting point for more analysis...",
+          text: "The ranking is the least interesting bit, except for being the starting point for more analysis... [1/4]",
         },
         {
           src: "./images/landing_page/offseason/offseason_predictions_2.jpeg",
-          text: "See a detailed breakdown of why a team has a given ranking, and change it if you don't like it!",
+          text: "See a detailed breakdown of why a team has a given ranking, and change it if you don't like it! [2/4]",
         },
         {
           src: "./images/landing_page/offseason/offseason_predictions_3.jpeg",
-          text: "During Portal Season, pick players you like and see the impact of landing them.",
+          text: "During Portal Season, pick players you like and see the impact of landing them. [3/4]",
         },
         {
           src: "./images/landing_page/offseason/offseason_changes.jpeg",
-          text: "Break down a team's predictions compared to last season's performance based on who is coming/staying/leaving",
+          text: "Break down a team's predictions compared to last season's performance based on who is coming/staying/leaving [4/4]",
         },
       ],
     },
@@ -262,7 +310,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 usually after a screen, eg in PnR
               </li>
               <li>
-                <i>And many more... (see screenshots below)</i>
+                <i>
+                  And many more... eg{" "}
+                  <ExpandableImage
+                    src="./images/landing_page/play_style/team_explorer.jpeg"
+                    caption="The set of team play styles"
+                  />
+                </i>
               </li>
             </ul>
           </p>
@@ -366,6 +420,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         {}
                       )
                   )}
+                  <ul>
+                    <li>
+                      <ExpandableImage
+                        src="./images/landing_page/play_style/player_and_team.jpeg"
+                        caption="See a team's Offensive Play Style Breakdown, and how each player contributed"
+                      />
+                    </li>
+                  </ul>
                 </li>
                 <li>
                   You can see the Offensive and Defensive Play Style Breakdowns
@@ -411,6 +473,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Breakdowns (including SoS filters.)
                 </li>
                 <ul>
+                  <li>
+                    <ExpandableImage
+                      src="./images/landing_page/play_style/play_style_matchup.jpeg"
+                      caption="Another Team Stats Explorer use - to preview the match-up of two teams"
+                    />
+                  </li>
                   <li>
                     <i>
                       If you just want to use the SoS filters and don't have a
@@ -494,6 +562,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         {}
                       )
                   )}
+                  <ul>
+                    <li>
+                      <ExpandableImage
+                        src="./images/landing_page/play_style/player_and_team_2.jpeg"
+                        caption="See a team's Offensive Play Style Breakdown, and how each player contributed (filtered by Play Type)"
+                      />
+                    </li>
+                  </ul>
                 </li>
               </ul>
               <li>
@@ -510,6 +586,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     }),
                   true
                 )}
+                <ul>
+                  <li>
+                    <ExpandableImage
+                      src="./images/landing_page/play_style/player_lboard.jpeg"
+                      caption="See the Offensive Play Style Breakdown for every player directly in the Leaderboard"
+                    />
+                  </li>
+                </ul>
               </li>
             </ul>
           </p>
@@ -1265,6 +1349,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search);
 
+      // Parse "more details" page
+      const moreDetailsId = urlParams.get("moreDetailsId");
+      if (moreDetailsId) {
+        handleMoreDetailsOpen(moreDetailsId);
+      }
+
       // Parse topics param
       const topicsParam = urlParams.get("topics");
       if (topicsParam) {
@@ -1819,7 +1909,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </TopicFilteredCard>
         <TopicFilteredCard
           hide={gender == "Women"}
-          topics={["Off-Season", "Teams", "Leaderboards"]}
+          topics={["Details", "Off-Season", "Teams", "Leaderboards"]}
         >
           <Col className="mt-2">
             <Card>
