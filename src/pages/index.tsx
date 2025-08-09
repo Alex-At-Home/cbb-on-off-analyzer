@@ -2298,6 +2298,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       incRapm: true,
                     })
                 )}
+                <Card.Link
+                  href={`https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html`}
+                  target="_blank"
+                >
+                  Blog Post
+                </Card.Link>
               </Card.Body>
             </Card>
           </Col>

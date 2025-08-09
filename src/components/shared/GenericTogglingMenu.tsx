@@ -14,6 +14,7 @@ type Props = {
   size?: "sm" | "lg";
   label?: React.ReactElement;
   drop?: "up" | "left" | "right" | "down";
+  alwaysOpen?: boolean;
 };
 
 const GenericTogglingMenu: React.FunctionComponent<Props> = ({
@@ -21,15 +22,18 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   label,
   drop,
   children,
+  alwaysOpen,
 }) => {
   // Some extra logic for the config dropdown:
-  const [configDropdownOpen, setConfigDropdownOpen] = useState(false);
+  const [configDropdownOpen, setConfigDropdownOpen] = useState(
+    alwaysOpen || false
+  );
 
   const handleToggle = (open: boolean, ev: any, eventType: any) => {
     if (!open && eventType.source == "select") {
       setConfigDropdownOpen(true); //(keep open on select)
     } else {
-      setConfigDropdownOpen(open);
+      setConfigDropdownOpen(alwaysOpen || open);
     }
   };
 

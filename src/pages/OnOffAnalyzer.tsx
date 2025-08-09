@@ -478,9 +478,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const indivCardSize = "medium_screen";
   const otherCardSize = "medium_screen";
 
-  function maybeShowDocs() {
+  function maybeShowQueryDocs() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return "https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html";
+      return "https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html";
+    } else {
+      return undefined;
+    }
+  }
+  function maybeShowTableDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html";
     } else {
       return undefined;
     }
@@ -493,7 +500,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         screenSize={otherCardSize}
         title="Team Analysis"
-        helpLink={maybeShowDocs()}
+        helpLink={maybeShowTableDocs()}
       >
         <TeamStatsTable
           key={shouldReloadTableParams}
@@ -519,7 +526,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         screenSize={otherCardSize}
         title="Individual Analysis"
-        helpLink={maybeShowDocs()}
       >
         <RosterStatsTable
           key={shouldReloadTableParams}
@@ -549,6 +555,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           screenSize={otherCardSize}
           title="Team and Game Filter"
           summary={HistoryManager.gameFilterSummary(gameFilterParams)}
+          helpLink={maybeShowQueryDocs()}
         >
           <GameFilter
             key={shouldReinitFilter}
@@ -575,7 +582,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           screenSize={otherCardSize}
           minimizeMargin={false}
           title="Lineup Comparison"
-          helpLink={maybeShowDocs()}
         >
           <RosterCompareTable
             gameFilterParams={gameFilterParams}

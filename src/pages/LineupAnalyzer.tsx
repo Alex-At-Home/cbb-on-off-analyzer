@@ -251,9 +251,17 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
-  function maybeShowDocs() {
+  function maybeShowLineupDocs() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
       return "https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html";
+    } else {
+      return undefined;
+    }
+  }
+
+  function maybeShowQueryDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html";
     } else {
       return undefined;
     }
@@ -266,7 +274,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         screenSize="medium_screen"
         title="Lineup Analysis"
-        helpLink={maybeShowDocs()}
+        helpLink={maybeShowLineupDocs()}
       >
         <LineupStatsTable
           key={shouldReloadTableParams}
@@ -299,6 +307,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
           screenSize="medium_screen"
           title="Team and Game Filter"
           summary={HistoryManager.lineupFilterSummary(lineupFilterParams)}
+          helpLink={maybeShowQueryDocs()}
         >
           <LineupFilter
             onStats={injectStats}
