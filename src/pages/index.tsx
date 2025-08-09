@@ -2410,6 +2410,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 >
                   <b>Just take me to the leaderboard!</b>
                 </Card.Link>
+                <Card.Link
+                  href={`https://hoop-explorer.blogspot.com/2019/12/a-very-simple-and-transparent-ncaa-seed.html?view=classic`}
+                  target="_blank"
+                >
+                  Blog Post
+                </Card.Link>
               </Card.Body>
             </Card>
           </Col>
