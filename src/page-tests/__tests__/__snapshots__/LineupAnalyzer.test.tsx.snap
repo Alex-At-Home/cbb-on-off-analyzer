@@ -32,6 +32,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
       minimizeMargin={false}
       screenSize="medium_screen"
       summary="Lineups: 2024/25  (M): query:'' (max:50, min-poss:5)"

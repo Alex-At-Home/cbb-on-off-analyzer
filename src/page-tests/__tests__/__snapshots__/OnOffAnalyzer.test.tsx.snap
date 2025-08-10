@@ -32,6 +32,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
       minimizeMargin={false}
       screenSize="medium_screen"
       summary="On/Off: 2024/25  (M): on:'', auto-off, base:''"
@@ -78,7 +79,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
-      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      helpLink="https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html"
       minimizeMargin={true}
       screenSize="medium_screen"
       title="Team Analysis"
@@ -218,7 +219,6 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
-      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       minimizeMargin={true}
       screenSize="medium_screen"
       title="Individual Analysis"
@@ -280,7 +280,6 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
-      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       minimizeMargin={false}
       screenSize="medium_screen"
       title="Lineup Comparison"

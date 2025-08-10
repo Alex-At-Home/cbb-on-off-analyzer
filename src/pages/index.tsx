@@ -783,9 +783,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         },
       ],
     },
-    [FeatureFlags.isActiveWindow(FeatureFlags.friendlierInterface)
-      ? "team-lineup-analysis"
-      : "XXX"]: {
+    "team-lineup-analysis": {
       title: "Team Lineup Analysis",
       content: (
         <div style={{ fontSize: "1.2rem" }}>
@@ -802,7 +800,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             )}{" "}
             were one of the first pages I added to Hoop Explorer, but I never
             found them very useful in practice, outside of being an early
-            indication of a coach's thinking, before the rotations became set.
+            indication of a coach's thinking, before the rotations became set.{" "}
+            <ExpandableImage
+              src="./images/landing_page/lineups/ungrouped_lineups.jpeg"
+              caption="Why I didn't find the basic lineup view all that useful:"
+            />
             <br />
             <br />
             Why? The sample sizes get too small really quickly (eg the third
@@ -853,7 +855,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             <br />
             Later I came back to the idea of Lineup Analysis with the goal of
             combining individual lineups back together in meaningful ways to try
-            to get the sample sizes into the 300 possessions+:
+            to get the sample sizes into the 300 possessions+:{" "}
+            <ExpandableImage
+              src="./images/landing_page/lineups/grouped_lineups.jpeg"
+              caption="One of the many groupings available:"
+            />
             <ul>
               <li>
                 <b>Positional Groupings:</b>
@@ -1078,6 +1084,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   : As described above, shows deviations from most common lineup
                   <ul>
                     <li>
+                      <ExpandableImage
+                        src="./images/landing_page/lineups/on_off_lineups_1.jpeg"
+                        caption="Substitution patterns off the starting lineup:"
+                      />
+                    </li>
+                    <li>
                       (or select the lineup/sub-lineup you want from the
                       "On/Off" selector)
                     </li>
@@ -1122,6 +1134,12 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     detail, as explained in the next section)
                   </li>
                   <li>
+                    <ExpandableImage
+                      src="./images/landing_page/lineups/on_off_lineups_2.jpeg"
+                      caption="Substitution patterns with maximum aggregation:"
+                    />
+                  </li>
+                  <li>
                     Has only 4 "rows" of data, showing the main lineup, main
                     lineup with any <i>one</i> player missing, then any{" "}
                     <i>two</i> players missing etc - in other words it's
@@ -1147,7 +1165,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             This lets you compare many lineups/lineup-combos very easily, but
             often you'll want to "dig into" a given lineup/lineup-combo and get
             access to all the goodies that the Team/Roster analysis provides,
-            eg:
+            eg:{" "}
+            <ExpandableImage
+              src="./images/landing_page/lineups/lineups_more_details_trigger.jpeg"
+              caption="Just one easy click!"
+            />
             <ul>
               <li>
                 <i>
@@ -1228,7 +1250,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               <li>
                 (etc; as noted above the higher the sample size the more
                 valuable the stats are so lineup combos tend to work better than
-                most lineups.)
+                most lineups.){" "}
+                <ExpandableImage
+                  src="./images/landing_page/lineups/lineups_more_details.jpeg"
+                  caption="Much richer stats for a given lineup (and comparison vs season stats):"
+                />
               </li>
             </ul>
             To see these more detailed views, simply click on the lineup or
@@ -1253,11 +1279,55 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             )}
             , which shows how lineups wane and wax in popularity over the
             season. (in the Team/Roster Analysis Page it's also very useful as a
-            diagnostic to ensure the filter/splits are doing what you expect.)
+            diagnostic to ensure the filter/splits are doing what you expect.){" "}
+            <ExpandableImage
+              src="./images/landing_page/lineups/lineups_games_view.jpeg"
+              caption="Look for interesting patterns - are they injuries / slumps / experimentation etc?"
+            />
+            <br />
+            <br />
+            <a
+              href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
+              target="_blank"
+            >
+              <i>
+                Link to an older article I wrote about the two lineup pages,
+                which has some extra details.
+              </i>
+            </a>
           </p>
         </div>
       ),
-      imageList: [],
+      imageList: [
+        {
+          src: "./images/landing_page/lineups/ungrouped_lineups.jpeg",
+          text: "See the stats for each individual lineup, but note that the possessions get low very quickly [1/7]",
+        },
+        {
+          src: "./images/landing_page/lineups/grouped_lineups.jpeg",
+          text: "One of many ways of grouping lineups together in sensible ways to get the possession count up [2/7]",
+        },
+        {
+          src: "./images/landing_page/lineups/on_off_lineups_1.jpeg",
+          text: "On-Off: a very useful grouping technique to analyze subsitution patterns from significant lineups [3/7]",
+        },
+        {
+          src: "./images/landing_page/lineups/on_off_lineups_2.jpeg",
+          text: "Another On-Off view, groups missing players to maximize the possession count  [4/7]",
+        },
+        {
+          src: "./images/landing_page/lineups/lineups_more_details_trigger.jpeg",
+          text: "The lineup view is quite simple but you can click on a lineup/combo to get a much richer view... [5/7]",
+        },
+        {
+          src: "./images/landing_page/lineups/lineups_more_details.jpeg",
+          text: "...A richer view of a lineup stats in the Team Analysis page [6/7]",
+        },
+        {
+          src: "./images/landing_page/lineups/lineups_games_view.jpeg",
+          text: "A fun view showing how the lineup usages varied over time [7/7]",
+        },
+      ],
     },
   };
 

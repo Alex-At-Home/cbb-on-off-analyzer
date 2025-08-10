@@ -15,6 +15,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
   onGameSelectionChange={[Function]}
+  onRosterChange={[Function]}
   rosterRef={
     Object {
       "current": undefined,
