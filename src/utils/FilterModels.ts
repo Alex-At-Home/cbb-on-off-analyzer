@@ -13,6 +13,7 @@ export class ParamPrefixes {
   static readonly gameInfo = "gameInfo-";
   static readonly shots = "shots-";
   static readonly playerShots = "playerShots-";
+  static readonly playerCareer = "playerCareer-";
   static readonly team = "team-"; //(only used for HeaderBar)
   static readonly defensiveInfo = "defensiveInfo-"; //(only used for HeaderBar)
   static readonly allTeamInfo = "allTeamInfo-"; //(only used for HeaderBar)
@@ -25,6 +26,7 @@ export type ParamPrefixesType =
   | "roster-"
   | "player-"
   | "playerShots-"
+  | "playerCareer-"
   | "gameInfo-"
   | "shots-"
   | "defensiveInfo-"

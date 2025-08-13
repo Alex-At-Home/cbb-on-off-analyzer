@@ -133,6 +133,8 @@ export class CommonApiUtils {
       lookup: Record<string, any>,
       avgEfficiency: number
     ) => string,
+    /** index pattern, apart from gender prefix (doesn't support efficiency/lookup/avgEfficiency)  */
+    indexPatternOverride?: string,
     // Defaults:
     isDebug: boolean = pxIsDebug,
     useTestIndices: boolean = pxUseTestIndices,
@@ -171,83 +173,110 @@ export class CommonApiUtils {
     if (maybeCacheJson) {
       onCacheHit(maybeCacheJson, resHandle);
     } else {
-      const team =
-        params.team && params.year && params.gender
-          ? AvailableTeams.getTeam(
-              //(params is string|string[], so toString is needed for type safety)
-              params.team.toString(),
-              params.year.toString(),
-              params.gender.toString()
-            ) || { use_team: null, index_template: null, year: null }
-          : null;
+      const body = await _.thru(indexPatternOverride, async () => {
+        if (indexPatternOverride) {
+          const genderPrefix = `${gender}_`.toLowerCase();
 
-      if (team?.use_team) {
-        // User has entered a team that has changed their name - use the correct name
-        params.team = team?.use_team;
-      }
-
-      // The efficiency is either stored in the project or retrieved on the fly from the ES store
-      const genderYearKey = `${params.gender}_${params.year}`;
-      const [tmpEfficiency, lookup] = efficiencyInfo[genderYearKey] || [
-        undefined,
-        {},
-      ];
-      const getEfficiency = async () => {
-        const lookupForQuery = ncaaToEfficiencyLookup[genderYearKey];
-        if (!_.isUndefined(lookupForQuery)) {
-          const cachedEff = CommonApiUtils.efficiencyCache.get(genderYearKey);
-          if (cachedEff) {
-            return cachedEff;
-          } else {
-            const year = parseInt((params.year as string).substring(0, 4)) + 1; //(KP uses final year of season)
-            const newEff = await CommonApiUtils.buildCurrentEfficiency(
-              genderYearKey,
-              year.toString(),
-              gender,
-              lookupForQuery
-            );
-            return newEff;
-          }
+          return getBody(
+            indexPatternOverride,
+            genderPrefix,
+            params,
+            currentJsonEpoch,
+            {},
+            {},
+            0
+          );
         } else {
-          //(the data is not available in the ES store, so this just falls through to having no efficiency stats)
-          return {};
+          const team =
+            params.team && params.year && params.gender
+              ? AvailableTeams.getTeam(
+                  //(params is string|string[], so toString is needed for type safety)
+                  params.team.toString(),
+                  params.year.toString(),
+                  params.gender.toString()
+                ) || { use_team: null, index_template: null, year: null }
+              : null;
+
+          if (team?.use_team) {
+            // User has entered a team that has changed their name - use the correct name
+            params.team = team?.use_team;
+          }
+
+          // The efficiency is either stored in the project or retrieved on the fly from the ES store
+          const genderYearKey = `${params.gender}_${params.year}`;
+          const [tmpEfficiency, lookup] = efficiencyInfo[genderYearKey] || [
+            undefined,
+            {},
+          ];
+          const getEfficiency = async () => {
+            const lookupForQuery = ncaaToEfficiencyLookup[genderYearKey];
+            if (!_.isUndefined(lookupForQuery)) {
+              const cachedEff =
+                CommonApiUtils.efficiencyCache.get(genderYearKey);
+              if (cachedEff) {
+                return cachedEff;
+              } else {
+                const year =
+                  parseInt((params.year as string).substring(0, 4)) + 1; //(KP uses final year of season)
+                const newEff = await CommonApiUtils.buildCurrentEfficiency(
+                  genderYearKey,
+                  year.toString(),
+                  gender,
+                  lookupForQuery
+                );
+                return newEff;
+              }
+            } else {
+              //(the data is not available in the ES store, so this just falls through to having no efficiency stats)
+              return {};
+            }
+          };
+          const efficiency = tmpEfficiency
+            ? tmpEfficiency
+            : await getEfficiency();
+
+          const avgEfficiency =
+            efficiencyAverages[`${params.gender}_${params.year}`] ||
+            efficiencyAverages.fallback;
+
+          if (team == null) {
+            return null;
+          } else {
+            const yearStr = (team.year || params.year || "xxxx").substring(
+              0,
+              4
+            );
+            const index =
+              (team.index_template || AvailableTeams.defaultConfIndex) +
+              "_" +
+              yearStr +
+              (useTestIndices ? "_ltest" : "");
+
+            //(women is the suffix for index, so only need to add for men)
+            const genderPrefix = (
+              gender == "Women" ? "" : `${gender}_` || ""
+            ).toLowerCase();
+
+            // Use this to get all conference data:
+            //const allConfsIndex = `*_${(team.year || params.year || "xxxx").substring(0, 4)},-women*,-player*,-bad*,-kenpom*,-shot*`;
+
+            return getBody(
+              index,
+              //allConfsIndex,
+              genderPrefix,
+              params,
+              currentJsonEpoch,
+              efficiency,
+              lookup,
+              avgEfficiency
+            );
+          }
         }
-      };
-      const efficiency = tmpEfficiency ? tmpEfficiency : await getEfficiency();
+      });
 
-      const avgEfficiency =
-        efficiencyAverages[`${params.gender}_${params.year}`] ||
-        efficiencyAverages.fallback;
-
-      if (team == null) {
+      if (body == null) {
         onTeamNotFound(resHandle);
       } else {
-        const yearStr = (team.year || params.year || "xxxx").substring(0, 4);
-        const index =
-          (team.index_template || AvailableTeams.defaultConfIndex) +
-          "_" +
-          yearStr +
-          (useTestIndices ? "_ltest" : "");
-
-        //(women is the suffix for index, so only need to add for men)
-        const genderPrefix = (
-          gender == "Women" ? "" : `${gender}_` || ""
-        ).toLowerCase();
-
-        // Use this to get all conference data:
-        //const allConfsIndex = `*_${(team.year || params.year || "xxxx").substring(0, 4)},-women*,-player*,-bad*,-kenpom*,-shot*`;
-
-        const body = getBody(
-          index,
-          //allConfsIndex,
-          genderPrefix,
-          params,
-          currentJsonEpoch,
-          efficiency,
-          lookup,
-          avgEfficiency
-        );
-
         try {
           const startTimeMs = new Date().getTime();
           const [esFetchOk, esFetchStatus, esFetchJson] = await makeRequest(
