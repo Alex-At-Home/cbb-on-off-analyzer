@@ -11,6 +11,7 @@ import {
   LineupFilterParams,
   LineupLeaderboardParams,
   OffseasonLeaderboardParams,
+  PlayerCareerParams,
   PlayerLeaderboardParams,
   TeamEditorParams,
   TeamReportFilterParams,
@@ -103,6 +104,12 @@ export class UrlRouting {
   /** The URL to use to view the "Player Leaderboard" page */
   static getPlayerLeaderboardGeoUrl(params: PlayerLeaderboardParams) {
     return `/PlayerLeaderboardGeo?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
+  /** The URL to use to view the "Player Leaderboard" page */
+  static getPlayerCareer(params: PlayerCareerParams) {
+    return `/PlayerCareer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
     })}`;
   }

@@ -7,6 +7,7 @@ import {
 } from "./stats/LuckUtils";
 import { ORtgDiagnostics, DRtgDiagnostics } from "./stats/RatingUtils";
 import { RedBlackTree } from "@collectable/red-black-tree";
+import { PlayTypeStat, TopLevelIndivPlayType } from "./stats/PlayTypeUtils";
 
 export type DivisionStatisticsElement = {
   isPct?: boolean; //(whether you need to *100 before applying .toFixed(0))
@@ -190,6 +191,19 @@ export type IndivEnrichment = {
 };
 
 export type IndivStatSet = PureStatSet & IndivEnrichment & IndivMetadata;
+
+export type IndivCareerStatSet = IndivStatSet & {
+  style?: Record<TopLevelIndivPlayType, PlayTypeStat>;
+  rapm?: TeamStatSet;
+  on?: TeamStatSet;
+  off?: TeamStatSet;
+};
+
+export type IndivCareerInfo = {
+  season: IndivCareerStatSet;
+  t100?: IndivCareerStatSet;
+  conf?: IndivCareerStatSet;
+};
 
 /** Contains stats defining the position role for a given player */
 export type IndivPosInfo = {

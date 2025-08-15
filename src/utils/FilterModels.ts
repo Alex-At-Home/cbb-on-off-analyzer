@@ -284,6 +284,32 @@ export type OffseasonLeaderboardParams = {
   queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)
 
+export type PlayerCareerParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  ncaaId?: string;
+  // Player settings
+  possAsPct?: boolean;
+  factorMins?: boolean;
+  useRapm?: boolean;
+  showGrades?: string;
+  // Filtering:
+  filter?: string;
+  sortBy?: string;
+  // Misc display:
+  showInfoSubHeader?: boolean;
+  // Query pre-sets
+  conf?: boolean;
+  t100?: boolean;
+  // Transfer info
+  showExpanded?: boolean;
+  stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
+  // Shot charts:
+  playerShotCharts?: boolean;
+  playerShotChartsShowZones?: boolean;
+  showPlayerPlayTypes?: boolean;
+};
+
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
@@ -513,7 +539,8 @@ export class ParamDefaults {
 export type FilterParamsType =
   | GameFilterParams
   | LineupFilterParams
-  | TeamReportFilterParams;
+  | TeamReportFilterParams
+  | PlayerCareerParams;
 
 /** Which API to call and with what object */
 export type FilterRequestInfo = {

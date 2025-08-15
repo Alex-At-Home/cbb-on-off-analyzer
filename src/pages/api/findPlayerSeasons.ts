@@ -21,7 +21,7 @@ function marshallRequest(
         query: {
           term: {
             "roster.ncaa_id": {
-              value: `${params.ncaa_id}`,
+              value: `${params.ncaaId}`,
             },
           },
         },
