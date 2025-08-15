@@ -17,6 +17,11 @@ import {
 import { useTheme } from "next-themes";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { UserChartOpts } from "./diags/ShotChartDiagView";
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import GenericTable, { GenericTableOps } from "./GenericTable";
+import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { Container } from "react-bootstrap";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -105,9 +110,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   // 2] Data Model
 
-  const playerSeasonInfo = _.transform(
-    playerSeasons,
-    (acc, v) => {
+  const playerSeasonInfo = _.chain(playerSeasons)
+    .transform((acc, v) => {
       const year = v.year;
       if (year) {
         const playerYear = acc[year] || {};
@@ -121,10 +125,84 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         }
         acc[year] = playerYear;
       }
-    },
-    {} as Record<string, IndivCareerInfo>
-  );
+    }, {} as Record<string, IndivCareerInfo>)
+    .toPairs()
+    .orderBy(([key, __]) => key, "desc")
+    .value();
 
+  // Table building:
+
+  const offPrefixFn = (key: string) => "off_" + key;
+  const offCellMetaFn = (key: string, val: any) => "off";
+  const defPrefixFn = (key: string) => "def_" + key;
+  const defCellMetaFn = (key: string, val: any) => "def";
+
+  /** Compresses number/height/year into 1 double-width column */
+  const rosterInfoSpanCalculator = (key: string) =>
+    key == "efg" ? 2 : key == "assist" ? 0 : 1;
+
+  const playerRowBuilder = (
+    player: IndivCareerStatSet,
+    titleOverride?: string
+  ) => {
+    player.off_title =
+      titleOverride || `${player.year} | ${player.key} | ${player.team}`;
+
+    player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
+    TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
+
+    return _.flatten([
+      [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
+      [
+        GenericTableOps.buildDataRow(
+          player,
+          defPrefixFn,
+          defCellMetaFn,
+          undefined,
+          rosterInfoSpanCalculator
+        ),
+      ],
+    ]);
+  };
+
+  const tableData = _.flatMap(playerSeasonInfo, ([year, playerCareerInfo]) => {
+    const seasonRows = playerRowBuilder(playerCareerInfo.season);
+    const confRows = playerCareerInfo.conf
+      ? playerRowBuilder(playerCareerInfo.conf, "Conf Stats")
+      : [];
+    const t100Rows = playerCareerInfo.t100
+      ? playerRowBuilder(playerCareerInfo.t100, "vs T100")
+      : [];
+    return _.flatten([seasonRows, confRows, t100Rows]);
+  });
+
+  /** The sub-header builder - Can show some handy context in between the header and data rows: */
+  const maybeSubheaderRow = showInfoSubHeader
+    ? RosterTableUtils.buildInformationalSubheader(
+        true,
+        true,
+        resolvedTheme == "dark"
+      )
+    : [];
+
+  const table = (
+    <GenericTable
+      tableCopyId="playerLeaderboardTable"
+      tableFields={CommonTableDefs.onOffIndividualTable(
+        true,
+        possAsPct,
+        factorMins,
+        true
+      )}
+      tableData={maybeSubheaderRow.concat(tableData)}
+      cellTooltipMode="none"
+      extraInfoLookups={{
+        //(see buildLeaderboards)
+        PREPROCESSING_WARNING:
+          "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+      }}
+    />
+  );
   // 4] Views
 
   const quickToggleBar = (
@@ -142,17 +220,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const optionsDropdown = <GenericTogglingMenu></GenericTogglingMenu>;
 
-  return (
-    <div>
-      {_.map(
-        playerSeasonInfo,
-        (val, key) =>
-          `[${key}][${val.season ? "S" : ""}${val.t100 ? "T" : ""}${
-            val.conf ? "C" : ""
-          }]`
-      ).join("|")}
-    </div>
-  );
+  return <Container fluid>{table}</Container>;
 };
 
 export default PlayerCareerTable;
