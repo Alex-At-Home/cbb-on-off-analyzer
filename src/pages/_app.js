@@ -12,6 +12,9 @@ import "../styles/react_select_dark.css";
 // Import react-date-range dark theme globally
 import "../styles/react_date_range_dark.css";
 
+// ES search UI styles
+import "../styles/elastic_search_ui.css";
+
 // Need this for FA to work with favicons
 import "@fortawesome/fontawesome-svg-core/styles.css";
 

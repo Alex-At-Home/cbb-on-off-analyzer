@@ -27,6 +27,12 @@ import {
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
 
+// ES search
+//@ts-ignore
+import { ApiProxyConnector } from "@elastic/search-ui-elasticsearch-connector/api-proxy";
+//@ts-ignore
+import { SearchProvider, SearchBox, Results } from "@elastic/react-search-ui";
+
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from "next/head";
@@ -40,6 +46,7 @@ import fetch from "isomorphic-unfetch";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import PlayerCareerTable from "../components/PlayerCareerTable";
 import { IndivCareerStatSet } from "../utils/StatModels";
+import { DebouncedSearchBox } from "../components/shared/DebouncedSearchBox";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -56,6 +63,10 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
   if (isServer() && !testMode) return null; //(don't render server-side)
 
   const isDebug = process.env.NODE_ENV !== "production";
+
+  const connector = new ApiProxyConnector({
+    basePath: "/api",
+  });
 
   useEffect(() => {
     // Set up GA
@@ -157,11 +168,10 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       const currentJsonEpoch =
         dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
 
-      //TODO fetch via findPlayerCareer, including cache logic
       if (playerCareerParams.ncaaId) {
         const allPromises = Promise.all(
           RequestUtils.requestHandlingLogic(
-            { gender: currGender, ncaaId: playerCareerParams.ncaaId },
+            { gender, ncaaId: playerCareerParams.ncaaId },
             ParamPrefixes.playerCareer,
             [],
             (url: string, force: boolean) => {
@@ -209,6 +219,131 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     );
   }, [dataEvent]);
 
+  const playerFinder = (
+    <SearchProvider
+      config={{
+        apiConnector: connector,
+        autocompleteQuery: {
+          results: {
+            resultsPerPage: 100,
+            result_fields: {
+              key: {},
+              team: {},
+              year: {},
+              "roster.ncaa_id": {},
+            },
+            // override the default query
+            search_fields: {
+              key: {
+                // Search UI will expand this into multi_match bool_prefix
+                weight: 1,
+              },
+            },
+          },
+        },
+      }}
+    >
+      <DebouncedSearchBox minChars={3} debounceMs={300}>
+        {(onChangeHandler) => (
+          <SearchBox
+            inputProps={{
+              placeholder:
+                dataEvent.length > 0
+                  ? "Find another player..."
+                  : "Search for players...",
+            }}
+            autocompleteMinimumCharacters={3}
+            autocompleteView={({ autocompletedResults, getItemProps }) => {
+              // group by ncaa_id
+              const grouped: Record<string, typeof autocompletedResults> = {};
+
+              autocompletedResults.forEach((r) => {
+                const esIndex = r._meta?.rawHit?._index;
+                const gender = _.startsWith(esIndex, "hoopexp_women_")
+                  ? "Women"
+                  : "Men";
+                if (
+                  dataEvent.length == 0 ||
+                  gender ==
+                    (playerCareerParamsRef.current?.gender ||
+                      ParamDefaults.defaultGender)
+                ) {
+                  const id = r.roster?.raw?.ncaa_id;
+                  if (!id) return;
+                  grouped[id] = grouped[id] || [];
+                  grouped[id].push(r);
+                }
+              });
+
+              return (
+                <div className="sui-search-box__autocomplete-container">
+                  {_.chain(grouped)
+                    .values()
+                    .sortBy((gs) => {
+                      const maxVal =
+                        _.maxBy(
+                          gs,
+                          (g: any) => (g._meta?.rawHit?._score || 1) as number
+                        )?._meta?.rawHit?._score || 1;
+                      return -(maxVal * 5 + gs.length);
+                    })
+                    .map((group, i) => {
+                      const result = group[0]; // pick first as representative
+                      const teams = Array.from(
+                        new Set(group.map((r) => r.team?.raw))
+                      );
+                      const years = group
+                        .map((r) => r.year?.raw)
+                        .filter(Boolean)
+                        .map(Number);
+                      const minYear = Math.min(...years);
+                      const maxYear = Math.max(...years);
+                      const yearStr =
+                        minYear == maxYear ? minYear : `${minYear}-${maxYear}`;
+
+                      return (
+                        <div
+                          {...getItemProps({
+                            index: i,
+                            key: result.id?.raw,
+                            item: result,
+                          })}
+                          className="flex cursor-pointer p-2 hover:bg-gray-100"
+                          onClick={() => {
+                            const esIndex = result._meta?.rawHit?._index;
+                            const gender = _.startsWith(
+                              esIndex,
+                              "hoopexp_women_"
+                            )
+                              ? "Women"
+                              : "Men";
+                            onPlayerCareerParamsChange({
+                              ...(playerCareerParamsRef.current || {}),
+                              ncaaId: result.roster?.raw?.ncaa_id,
+                              gender,
+                            });
+                          }}
+                        >
+                          {result.key?.raw} ({teams.join("; ")}) [{yearStr}]
+                        </div>
+                      );
+                    })
+                    .take(10)
+                    .value()}
+                </div>
+              );
+            }}
+            autocompleteResults={{
+              titleField: "key", // shows the player name
+              urlField: "", // no link
+              shouldTrackClickThrough: false,
+            }}
+          />
+        )}
+      </DebouncedSearchBox>{" "}
+    </SearchProvider>
+  );
+
   const thumbnailUrl = `${
     server != "localhost" ? `https://${server}` : "http://localhost:3000"
   }/thumbnails/player_leaderboard_thumbnail.png`;
@@ -234,10 +369,13 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           thisPage={`${ParamPrefixes.player}_leaderboard`}
         />
       </Row>
+      <Row className="mt-3"></Row>
       <Row className="mt-3">
         <GenericCollapsibleCard
+          screenSize="medium_screen"
           minimizeMargin={false}
           title={`Yearly Stats${currPlayer ? `: [${currPlayer}]` : ""}`}
+          extraElement={playerFinder}
         >
           {table}
         </GenericCollapsibleCard>

@@ -18,6 +18,7 @@ function marshallRequest(
     [
       JSON.stringify({ index: `hoopexp_${genderPrefix}players_*` }),
       JSON.stringify({
+        size: 100,
         query: {
           term: {
             "roster.ncaa_id": {

@@ -593,7 +593,7 @@ export async function main() {
               ShotChartUtils.compressHexZones(
                 ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones
               ),
-            ])
+            ]) //TODO: in enriched mode also (sort-of) compress the lower-level data
             .fromPairs()
             .value();
 

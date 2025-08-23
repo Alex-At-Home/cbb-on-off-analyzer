@@ -23,6 +23,10 @@
   "homepage": "https://github.com/Alex-At-Home/cbb-on-off-analyzer#readme",
   "dependencies": {
     "@collectable/red-black-tree": "^5.1.1",
+    "@elastic/react-search-ui": "^1.24.2",
+    "@elastic/react-search-ui-views": "^1.24.2",
+    "@elastic/search-ui": "^1.24.2",
+    "@elastic/search-ui-elasticsearch-connector": "^1.24.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",

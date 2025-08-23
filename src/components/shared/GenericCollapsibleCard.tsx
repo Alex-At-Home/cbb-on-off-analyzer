@@ -18,6 +18,7 @@ type Props = {
   readonly helpLink?: string;
   readonly startClosed?: boolean;
   readonly onShowHide?: (nowShown: boolean) => void;
+  readonly extraElement?: React.ReactNode;
 };
 
 const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
@@ -29,6 +30,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   helpLink,
   startClosed,
   onShowHide,
+  extraElement,
 }) => {
   const [showTable, toggleShowTable] = useState(
     undefined == startClosed || !startClosed
@@ -48,6 +50,11 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
           </a>
         </span>
       );
+    }
+  };
+  const optionalExtraElement = () => {
+    if (extraElement) {
+      return <span className="float-right">{extraElement}</span>;
     }
   };
 
@@ -79,6 +86,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
               ({showTable ? "+" : "-"}) {title}
             </a>
           </span>
+          {optionalExtraElement()}
           {optionalHelpLink()}
         </Card.Title>
         {showSummaryIfHidden()}

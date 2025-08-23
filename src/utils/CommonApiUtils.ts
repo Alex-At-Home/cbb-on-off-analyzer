@@ -34,7 +34,7 @@ export class CommonApiUtils {
   });
 
   /** Encodes the auth header */
-  private static authHeader =
+  static authHeader =
     "Basic " +
     Buffer.from(
       `${process.env.CLUSTER_USER}:${process.env.CLUSTER_PASS}`
