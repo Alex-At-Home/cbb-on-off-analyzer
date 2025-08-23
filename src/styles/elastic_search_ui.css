@@ -9,7 +9,7 @@
 }
 
 /* Input box */
-.sui-search-box__input {
+.sui-search-box input {
   width: 100%;
   padding: 8px 12px;
   font-size: 14px;
@@ -20,7 +20,7 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.sui-search-box__input:focus {
+.sui-search-box input:focus {
   border-color: #2684ff;
   box-shadow: 0 0 0 1px #2684ff;
 }
@@ -53,7 +53,7 @@
 }
 
 /* Optional: placeholder style */
-.sui-search-box__input::placeholder {
+.sui-search-box input::placeholder {
   color: #999;
 }
 
@@ -76,20 +76,20 @@
   width: 300px; /* adjust as needed */
 }
 
-[data-theme="dark"] .sui-search-box__input {
+[data-theme="dark"] .sui-search-box input {
   width: 100%;
   padding: 8px 12px;
   font-size: 14px;
-  border: 1px solid #525252; /* dark border */
+  border: 1px solid #df691a; /* dark border */
   border-radius: 4px;
   background-color: #404040; /* dark background */
   color: #e5e5e5; /* light text */
   outline: none;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-[data-theme="dark"] .sui-search-box__input:focus {
+[data-theme="dark"] .sui-search-box input:focus {
   border-color: #737373; /* focus border */
   box-shadow: 0 0 0 1px #737373;
 }
@@ -124,7 +124,7 @@
 }
 
 /* Placeholder text */
-[data-theme="dark"] .sui-search-box__input::placeholder {
+[data-theme="dark"] .sui-search-box input::placeholder {
   color: #a3a3a3;
 }
 

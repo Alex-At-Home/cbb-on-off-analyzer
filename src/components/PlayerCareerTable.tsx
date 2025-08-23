@@ -7,7 +7,9 @@ import { NextPage } from "next";
 // Lodash:
 import _ from "lodash";
 import { IndivCareerInfo, IndivCareerStatSet } from "../utils/StatModels";
-import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import ToggleButtonGroup, {
+  ToggleButtonItem,
+} from "./shared/ToggleButtonGroup";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import {
   getCommonFilterParams,
@@ -21,7 +23,7 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -207,20 +209,87 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const quickToggleBar = (
     <ToggleButtonGroup
-      items={[
-        {
-          label: "TODO",
-          tooltip: "",
-          toggled: false,
-          onClick: () => null,
-        },
-      ]}
+      items={playerSeasonInfo
+        .map(
+          (y) =>
+            ({
+              label: y[0],
+              tooltip: "",
+              toggled: true,
+              onClick: () => null,
+            } as ToggleButtonItem)
+        )
+        .concat([
+          {
+            label: " | ",
+            isLabelOnly: true,
+            toggled: false,
+            onClick: () => null,
+          },
+          {
+            label: "All",
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: "Conf",
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: "T100",
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: " | ",
+            isLabelOnly: true,
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: "Grades",
+            toggled: false,
+            onClick: () => null,
+          },
+          {
+            label: "Style",
+            toggled: false,
+            onClick: () => null,
+          },
+          {
+            label: "Shots",
+            toggled: false,
+            onClick: () => null,
+          },
+          {
+            label: " | ",
+            isLabelOnly: true,
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: "Poss%",
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: "Info",
+            toggled: false,
+            onClick: () => null,
+          },
+        ])}
     />
   );
 
   const optionsDropdown = <GenericTogglingMenu></GenericTogglingMenu>;
 
-  return <Container fluid>{table}</Container>;
+  return (
+    <Container fluid>
+      <Row className="mb-2">{quickToggleBar}</Row>
+      <Row>{table}</Row>
+    </Container>
+  );
 };
 
 export default PlayerCareerTable;

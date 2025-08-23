@@ -238,6 +238,12 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
                 // Search UI will expand this into multi_match bool_prefix
                 weight: 1,
               },
+              conf: {
+                weight: 0.2,
+              },
+              team: {
+                weight: 0.2,
+              },
             },
           },
         },
@@ -246,6 +252,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       <DebouncedSearchBox minChars={3} debounceMs={300}>
         {(onChangeHandler) => (
           <SearchBox
+            className="mb-2"
             inputProps={{
               placeholder:
                 dataEvent.length > 0
@@ -285,7 +292,10 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
                           gs,
                           (g: any) => (g._meta?.rawHit?._score || 1) as number
                         )?._meta?.rawHit?._score || 1;
-                      return -(maxVal * 5 + gs.length);
+                      return -(
+                        maxVal *
+                        (1 + (1 / 16) * Math.min(4, gs.length))
+                      ); //(4 year player gets x1.25 bonus)
                     })
                     .map((group, i) => {
                       const result = group[0]; // pick first as representative
@@ -328,7 +338,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
                         </div>
                       );
                     })
-                    .take(10)
+                    .take(30)
                     .value()}
                 </div>
               );
