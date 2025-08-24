@@ -1055,33 +1055,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 }
               />
               <GenericTogglingMenuItem
-                text="Show Weighted Combo of All Lineups"
-                truthVal={showTotals}
-                onSelect={() =>
-                  friendlyChange(() => setShowTotals(!showTotals), true)
-                }
-              />
-              <GenericTogglingMenuItem
-                text="Show raw Off/Def/Net as Pts (vs P/100)"
-                truthVal={showRawPts}
-                onSelect={() =>
-                  friendlyChange(() => setShowRawPts(!showRawPts), true)
-                }
-              />
-              <GenericTogglingMenuItem
-                text="Show Weighted Combo of All Filtered-Out Lineups"
-                truthVal={showDropped}
-                onSelect={() =>
-                  friendlyChange(() => setShowDropped(!showDropped), true)
-                }
-              />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    Adjust for Luck{" "}
-                    <span className="badge badge-pill badge-info">alpha!</span>
-                  </span>
-                }
+                text={<span>Adjust for Luck</span>}
                 truthVal={adjustForLuck}
                 onSelect={() =>
                   friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)
@@ -1090,13 +1064,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   showHelp
                     ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
                     : undefined
-                }
-              />
-              <GenericTogglingMenuItem
-                text="Show Minimal Game Info for All Lineups"
-                truthVal={showGameInfo}
-                onSelect={() =>
-                  friendlyChange(() => setShowGameInfo(!showGameInfo), true)
                 }
               />
               <Dropdown.Divider />

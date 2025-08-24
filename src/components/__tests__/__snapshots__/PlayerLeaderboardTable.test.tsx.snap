@@ -1181,20 +1181,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -1203,18 +1189,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               </span>
             }
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
-            truthVal={false}
           />
           <DropdownDivider
             role="separator"
@@ -9188,20 +9162,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -9210,18 +9170,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               </span>
             }
             truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
-            truthVal={false}
           />
           <DropdownDivider
             role="separator"
@@ -17135,7 +17083,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "Shots",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show simple shot zones for first 50 players in table",
+                "tooltip": "Show simple shot zones for first 50 players in table (2023/24+ only)",
               },
               Object {
                 "label": "Style",
@@ -17205,37 +17153,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
               <span>
                 Use RAPM (vs Adj Rtg) when displaying rankings
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
               </span>
             }
             truthVal={false}
@@ -28416,37 +28338,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
               <span>
                 Use RAPM (vs Adj Rtg) when displaying rankings
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
               </span>
             }
             truthVal={false}
@@ -36375,37 +36271,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
               <span>
                 Use RAPM (vs Adj Rtg) when displaying rankings
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
               </span>
             }
             truthVal={false}
@@ -38191,37 +38061,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
               <span>
                 Use RAPM (vs Adj Rtg) when displaying rankings
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
               </span>
             }
             truthVal={false}

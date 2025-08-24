@@ -5973,54 +5973,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -6028,12 +5985,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -6046,12 +5997,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -6075,7 +6020,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -6083,21 +6028,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -6129,11 +6059,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -11019,54 +10944,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -11074,12 +10956,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -11092,12 +10968,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -11121,7 +10991,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -11129,21 +10999,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -11175,11 +11030,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -16976,54 +16826,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -17031,12 +16838,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -17049,12 +16850,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -17078,7 +16873,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -17086,21 +16881,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -17132,11 +16912,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -24916,54 +24691,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -24971,12 +24703,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -24989,12 +24715,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -25018,7 +24738,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -25026,21 +24746,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -25072,11 +24777,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -33230,54 +32930,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -33285,12 +32942,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -33303,12 +32954,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -33332,7 +32977,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -33340,21 +32985,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -33386,11 +33016,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -44992,54 +44617,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -45047,12 +44629,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={true}
@@ -45065,12 +44641,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -45094,7 +44664,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -45102,21 +44672,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -45148,11 +44703,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -53963,54 +53513,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -54018,12 +53525,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={true}
@@ -54036,12 +53537,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={true}
@@ -54065,7 +53560,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -54073,21 +53568,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={true}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -54119,11 +53599,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -66060,54 +65535,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show expanded statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
             text="Always show baseline statistics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show possessions as count
-              </span>
-            }
             truthVal={false}
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Factor minutes % into Adjusted Rating+
-              </span>
-            }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Player Ranks/Percentiles"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Calculate RAPM metric (
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-                , slow)
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -66115,12 +65547,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={false}
@@ -66133,12 +65559,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             text={
               <span>
                 Configure Manual Overrides...
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={true}
@@ -66162,7 +65582,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 <span
                   className="badge badge-pill badge-info"
                 >
-                  pre-alpha!
+                  alpha
                 </span>
               </span>
             }
@@ -66170,21 +65590,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text={
-              <span>
-                Show Play Style Breakdowns
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
-              </span>
-            }
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -66216,11 +65621,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <DropdownDivider
             role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show extra info sub-header"
-            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}

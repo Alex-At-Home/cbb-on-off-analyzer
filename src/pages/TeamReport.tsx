@@ -183,7 +183,7 @@ const TeamReportPage: NextPage<{}> = () => {
   }
 
   return (
-    <Container>
+    <Container className="medium_screen">
       <SiteModeDropdown />
       <Row className="mt-2">
         <Col xs={12} className="text-center">
@@ -199,6 +199,7 @@ const TeamReportPage: NextPage<{}> = () => {
       </Row>
       <Row>
         <GenericCollapsibleCard
+          screenSize={"medium_screen"}
           minimizeMargin={false}
           title="Team Report Filter"
           summary={HistoryManager.teamReportFilterSummary(
@@ -214,6 +215,7 @@ const TeamReportPage: NextPage<{}> = () => {
       </Row>
       <Row>
         <GenericCollapsibleCard
+          screenSize={"medium_screen"}
           minimizeMargin={true}
           title="Team Analysis"
           helpLink={maybeShowDocs()}

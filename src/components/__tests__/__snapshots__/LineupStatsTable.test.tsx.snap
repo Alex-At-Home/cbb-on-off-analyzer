@@ -62,39 +62,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show raw Off/Def/Net as Pts (vs P/100)"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Filtered-Out Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Minimal Game Info for All Lineups"
             truthVal={false}
           />
           <DropdownDivider
@@ -4119,39 +4093,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Lineups"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show raw Off/Def/Net as Pts (vs P/100)"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Filtered-Out Lineups"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Minimal Game Info for All Lineups"
             truthVal={false}
           />
           <DropdownDivider
@@ -7656,39 +7604,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show raw Off/Def/Net as Pts (vs P/100)"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Filtered-Out Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Minimal Game Info for All Lineups"
             truthVal={false}
           />
           <DropdownDivider
@@ -10891,40 +10813,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show raw Off/Def/Net as Pts (vs P/100)"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Filtered-Out Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
             truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Minimal Game Info for All Lineups"
-            truthVal={false}
           />
           <DropdownDivider
             role="separator"
@@ -14147,39 +14043,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show raw Off/Def/Net as Pts (vs P/100)"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Filtered-Out Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Minimal Game Info for All Lineups"
             truthVal={false}
           />
           <DropdownDivider
@@ -18288,39 +18158,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={true}
           />
           <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show raw Off/Def/Net as Pts (vs P/100)"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Weighted Combo of All Filtered-Out Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
               <span>
                 Adjust for Luck
-                 
-                <span
-                  className="badge badge-pill badge-info"
-                >
-                  alpha!
-                </span>
               </span>
             }
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Minimal Game Info for All Lineups"
             truthVal={false}
           />
           <DropdownDivider

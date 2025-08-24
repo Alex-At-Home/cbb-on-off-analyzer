@@ -2551,24 +2551,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 }
               />
               <GenericTogglingMenuItem
-                text={<span>Factor minutes % into Adjusted Rating+</span>}
-                truthVal={factorMins}
-                onSelect={() => friendlyChange(() => toggleFactorMins(), true)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Player Ranks/Percentiles"
-                truthVal={showGrades != ""}
-                onSelect={() =>
-                  friendlyChange(
-                    () =>
-                      setShowGrades(
-                        showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                      ),
-                    true
-                  )
-                }
-              />
-              <GenericTogglingMenuItem
                 text={
                   <span>Use RAPM (vs Adj Rtg) when displaying rankings</span>
                 }
@@ -2578,20 +2560,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   showHelp
                     ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
                     : undefined
-                }
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text={
-                  <span>
-                    {possAsPct
-                      ? "Show possessions as count"
-                      : "Show possessions as % of team"}
-                  </span>
-                }
-                truthVal={false}
-                onSelect={() =>
-                  friendlyChange(() => setPossAsPct(!possAsPct), true)
                 }
               />
               <Dropdown.Divider />

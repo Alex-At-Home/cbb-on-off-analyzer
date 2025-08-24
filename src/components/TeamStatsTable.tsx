@@ -452,44 +452,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             : undefined
         }
       />
-      <GenericTogglingMenuItem
-        text="Show Stat Differences"
-        truthVal={showDiffs}
-        disabled={(gameFilterParams.otherQueries?.length || 0) > 0}
-        onSelect={() => setShowDiffs(!showDiffs)}
-      />
-      <GenericTogglingMenuItem
-        text="Show Extra Team Information"
-        truthVal={showExtraInfo}
-        onSelect={() => setShowExtraInfo(!showExtraInfo)}
-      />
-      <GenericTogglingMenuItem
-        text="Show Team Ranks/Percentiles"
-        truthVal={showGrades != ""}
-        onSelect={() =>
-          setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)
-        }
-      />
-      <GenericTogglingMenuItem
-        text="Show Play Style Breakdowns"
-        truthVal={showPlayTypes}
-        onSelect={() => setShowPlayTypes(!showPlayTypes)}
-      />
-      <GenericTogglingMenuItem
-        text="Show Roster Information"
-        truthVal={showRoster}
-        onSelect={() => setShowRoster(!showRoster)}
-      />
-      <GenericTogglingMenuItem
-        text="Show Game Information"
-        truthVal={showGameInfo}
-        onSelect={() => setShowGameInfo(!showGameInfo)}
-      />
-      <GenericTogglingMenuItem
-        text="Show Shot Charts"
-        truthVal={showShotCharts}
-        onSelect={() => setShowShotCharts(!showShotCharts)}
-      />
       <Dropdown.Divider />
       <GenericTogglingMenuItem
         text="Configure Luck Adjustments..."

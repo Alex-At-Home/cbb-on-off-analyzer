@@ -1936,56 +1936,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const optionsDropdown = (
     <GenericTogglingMenu>
       <GenericTogglingMenuItem
-        text="Show expanded statistics"
-        truthVal={expandedView}
-        onSelect={() => setExpandedView(!expandedView)}
-      />
-      <GenericTogglingMenuItem
         text="Always show baseline statistics"
         truthVal={alwaysShowBaseline}
         onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
       />
-      <GenericTogglingMenuItem
-        text={
-          <span>
-            {possAsPct
-              ? "Show possessions as count"
-              : "Show possessions as % of team"}
-          </span>
-        }
-        truthVal={false}
-        onSelect={() => setPossAsPct(!possAsPct)}
-      />
       <Dropdown.Divider />
       <GenericTogglingMenuItem
-        text={<span>Factor minutes % into Adjusted Rating+</span>}
-        truthVal={factorMins}
-        onSelect={() => toggleFactorMins()}
-      />
-      <GenericTogglingMenuItem
-        text="Show Player Ranks/Percentiles"
-        truthVal={showGrades != ""}
-        onSelect={() =>
-          setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)
-        }
-      />
-      <GenericTogglingMenuItem
-        text={
-          <span>
-            Calculate RAPM metric (
-            <span className="badge badge-pill badge-info">alpha!</span>, slow)
-          </span>
-        }
-        truthVal={calcRapm}
-        onSelect={() => setCalcRapm(!calcRapm)}
-      />
-      <GenericTogglingMenuItem
-        text={
-          <span>
-            Adjust for Luck{" "}
-            <span className="badge badge-pill badge-info">alpha!</span>
-          </span>
-        }
+        text={<span>Adjust for Luck</span>}
         truthVal={adjustForLuck}
         onSelect={() => setAdjustForLuck(!adjustForLuck)}
         helpLink={
@@ -1996,12 +1953,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       />
       <Dropdown.Divider />
       <GenericTogglingMenuItem
-        text={
-          <span>
-            Configure Manual Overrides...{" "}
-            <span className="badge badge-pill badge-info">alpha!</span>
-          </span>
-        }
+        text={<span>Configure Manual Overrides...</span>}
         truthVal={showManualOverrides}
         onSelect={() => setShowManualOverrides(!showManualOverrides)}
       />
@@ -2019,23 +1971,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         text={
           <span>
             Upload On-Ball Defense...{" "}
-            <span className="badge badge-pill badge-info">pre-alpha!</span>
+            <span className="badge badge-pill badge-info">alpha</span>
           </span>
         }
         truthVal={showOnBallConfig}
         onSelect={() => setShowOnBallConfig(true)}
       />
       <Dropdown.Divider />
-      <GenericTogglingMenuItem
-        text={
-          <span>
-            Show Play Style Breakdowns{" "}
-            <span className="badge badge-pill badge-info">alpha!</span>
-          </span>
-        }
-        truthVal={showPlayTypes}
-        onSelect={() => setShowPlayTypes(!showPlayTypes)}
-      />
       <GenericTogglingMenuItem
         text="Show Off/Def Rating diagnostics"
         truthVal={showDiagMode}
@@ -2081,11 +2023,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         onSelect={() => false}
       />
       <Dropdown.Divider />
-      <GenericTogglingMenuItem
-        text={"Show extra info sub-header"}
-        truthVal={showInfoSubHeader}
-        onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
-      />
       <GenericTogglingMenuItem
         text={"Show repeating header every 10 rows"}
         truthVal={showRepeatingHeader}

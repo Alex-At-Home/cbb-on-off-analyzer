@@ -2,7 +2,7 @@
 
 exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no individual data) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <div>
     <LoadingOverlay
@@ -1268,11 +1268,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
         >
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              onSelect={[Function]}
-              text="Show on/off statistics"
-              truthVal={true}
-            />
-            <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
@@ -1282,7 +1277,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    alpha!
+                    alpha
                   </span>
                 </span>
               }
@@ -1294,12 +1289,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               text={
                 <span>
                   Show RAPM
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -1318,12 +1307,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               text={
                 <span>
                   Adjust for Luck
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -10497,7 +10480,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
 
 exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (with individual data - all viewing modes on + luck) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <div>
     <LoadingOverlay
@@ -12147,11 +12130,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              onSelect={[Function]}
-              text="Show on/off statistics"
-              truthVal={true}
-            />
-            <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
@@ -12161,7 +12139,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    alpha!
+                    alpha
                   </span>
                 </span>
               }
@@ -12173,12 +12151,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Show RAPM
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -12197,12 +12169,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Adjust for Luck
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={true}
@@ -25960,7 +25926,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
 exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (with individual data - all viewing modes on) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <div>
     <LoadingOverlay
@@ -27610,11 +27576,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              onSelect={[Function]}
-              text="Show on/off statistics"
-              truthVal={true}
-            />
-            <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
@@ -27624,7 +27585,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    alpha!
+                    alpha
                   </span>
                 </span>
               }
@@ -27636,12 +27597,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Show RAPM
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -27660,12 +27615,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Adjust for Luck
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -40283,7 +40232,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
 exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (with individual data - rep on-off diagnostic mode) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <div>
     <LoadingOverlay
@@ -41933,11 +41882,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              onSelect={[Function]}
-              text="Show on/off statistics"
-              truthVal={true}
-            />
-            <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
@@ -41947,7 +41891,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    alpha!
+                    alpha
                   </span>
                 </span>
               }
@@ -41959,12 +41903,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Show RAPM
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -41983,12 +41921,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Adjust for Luck
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -59916,7 +59848,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
 exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (with individual data - rep on-off diagnostic mode, expanded) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <div>
     <LoadingOverlay
@@ -61566,11 +61498,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              onSelect={[Function]}
-              text="Show on/off statistics"
-              truthVal={true}
-            />
-            <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
@@ -61580,7 +61507,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    alpha!
+                    alpha
                   </span>
                 </span>
               }
@@ -61592,12 +61519,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Show RAPM
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -61616,12 +61537,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Adjust for Luck
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -64580,7 +64495,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
 
 exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (with individual data) 1`] = `
 <Container
-  fluid={false}
+  fluid={true}
 >
   <div>
     <LoadingOverlay
@@ -65846,11 +65761,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              onSelect={[Function]}
-              text="Show on/off statistics"
-              truthVal={true}
-            />
-            <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
@@ -65860,7 +65770,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    alpha!
+                    alpha
                   </span>
                 </span>
               }
@@ -65872,12 +65782,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Show RAPM
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}
@@ -65896,12 +65800,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text={
                 <span>
                   Adjust for Luck
-                   
-                  <span
-                    className="badge badge-pill badge-info"
-                  >
-                    alpha!
-                  </span>
                 </span>
               }
               truthVal={false}

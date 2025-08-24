@@ -918,7 +918,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
 
   // 4] View
   return (
-    <Container>
+    <Container fluid>
       <div ref={topRef}>
         <LoadingOverlay
           active={needToLoadQuery()}
@@ -987,17 +987,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
             <Form.Group as={Col} sm="1">
               <GenericTogglingMenu>
                 <GenericTogglingMenuItem
-                  text="Show on/off statistics"
-                  truthVal={showOnOff}
-                  onSelect={() => setShowOnOff(!showOnOff)}
-                />
-                <GenericTogglingMenuItem
                   text={
                     <span>
                       Show replacement On-Off{" "}
-                      <span className="badge badge-pill badge-info">
-                        alpha!
-                      </span>
+                      <span className="badge badge-pill badge-info">alpha</span>
                     </span>
                   }
                   truthVal={incReplacementOnOff}
@@ -1009,14 +1002,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
                   }
                 />
                 <GenericTogglingMenuItem
-                  text={
-                    <span>
-                      Show RAPM{" "}
-                      <span className="badge badge-pill badge-info">
-                        alpha!
-                      </span>
-                    </span>
-                  }
+                  text={<span>Show RAPM</span>}
                   truthVal={incRapm}
                   onSelect={() => setIncRapm(!incRapm)}
                   helpLink={
@@ -1034,14 +1020,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
                 />
                 <Dropdown.Divider />
                 <GenericTogglingMenuItem
-                  text={
-                    <span>
-                      Adjust for Luck{" "}
-                      <span className="badge badge-pill badge-info">
-                        alpha!
-                      </span>
-                    </span>
-                  }
+                  text={<span>Adjust for Luck</span>}
                   truthVal={adjustForLuck}
                   onSelect={() => setAdjustForLuck(!adjustForLuck)}
                   helpLink={
