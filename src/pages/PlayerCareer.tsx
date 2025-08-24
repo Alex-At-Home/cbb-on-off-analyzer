@@ -395,7 +395,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       <Row>
         <GenericCollapsibleCard
           minimizeMargin={false}
-          title={`Similar Players${currPlayer ? `: [${currPlayer}]` : ""}`}
+          title={`Similar Players${currPlayer ? ` to: [${currPlayer}]` : ""}`}
         >
           Coming Soon!
         </GenericCollapsibleCard>

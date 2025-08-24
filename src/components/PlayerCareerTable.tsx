@@ -23,7 +23,7 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { Container, Row } from "react-bootstrap";
+import { Container, OverlayTrigger, Row } from "react-bootstrap";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -101,6 +101,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showT100, setShowT100] = useState(playerCareerParams.t100 || false);
   const [showConf, setShowConf] = useState(playerCareerParams.conf || false);
 
+  const [yearsToShow, setYearsToShow] = useState(new Set<string>());
+
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
     playerCareerParams.showInfoSubHeader || false
@@ -152,19 +154,93 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const playerRowBuilder = (
     player: IndivCareerStatSet,
+    topYear: boolean,
     titleOverride?: string,
     titleSuffix?: string
   ) => {
+    // Title
+
     player.off_title =
       titleOverride ||
       `${player.year} | ${player.key} | ${player.team}${
         titleSuffix ? `\n${titleSuffix}` : ""
       }`;
 
+    // Misc stats
+
     player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
     TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
+    // Positional Info
+
+    //(they are in format {pg,sg,sf,pf,c} from this index so we can use them for searching)
+    const posFreqs = ["pg", "sg", "sf", "pf", "c"].map(
+      (pos) => (player.posFreqs as unknown as Record<string, number>)[pos] || 0
+    );
+    const posBreakdown =
+      _.size(posFreqs) >= 5
+        ? _.flatMap(["PG", "SG", "SF", "PF", "C"], (pos, index) => {
+            const freqOfPos = (posFreqs[index] || 0) * 100;
+            return freqOfPos >= 10 ? [`${pos}: ${freqOfPos.toFixed(0)}%`] : [];
+          }).join(", ")
+        : undefined;
+    const withNonBreakingHyphen = (s: string) => {
+      return <span style={{ whiteSpace: "nowrap" }}>{s}</span>;
+    };
+    player.def_usage = (
+      <OverlayTrigger
+        placement="auto"
+        overlay={TableDisplayUtils.buildPositionTooltip(
+          player.posClass || "G?",
+          "season",
+          true,
+          posBreakdown
+        )}
+      >
+        <small>
+          {withNonBreakingHyphen(player.posClass || "G?")}
+          {posBreakdown ? <sup>*</sup> : undefined}
+        </small>
+      </OverlayTrigger>
+    );
+
+    // Add roster metadata (top-line only):
+
+    if (!titleOverride) {
+      const height = player.roster?.height;
+      const yearClass = player.roster?.year_class;
+      const rosterNum = player.roster?.number;
+      const rosterInfoText = `${height && height != "-" ? height : ""} ${
+        yearClass ? yearClass : ""
+      }${rosterNum ? ` / #${rosterNum}` : ""}`;
+
+      if (rosterInfoText.length > 2) {
+        player.def_efg = (
+          <small>
+            <i className="text-secondary">{rosterInfoText}</i>
+          </small>
+        );
+      }
+    } else {
+      player.def_efg = undefined;
+    }
+
+    // Finally build rows
+
+    const multipleRowsPerYear =
+      (showAll && (showT100 || showConf)) || (showT100 && showConf);
+    const extraCharts = false;
+    const showEveryYear = multipleRowsPerYear || extraCharts;
+
     return _.flatten([
+      !topYear && showEveryYear
+        ? [
+            GenericTableOps.buildHeaderRepeatRow(
+              CommonTableDefs.repeatingOnOffIndivHeaderFields,
+              "small"
+            ),
+          ]
+        : [],
       [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
       [
         GenericTableOps.buildDataRow(
@@ -178,26 +254,34 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     ]);
   };
 
-  const tableData = _.flatMap(playerSeasonInfo, ([year, playerCareerInfo]) => {
-    const seasonRows = showAll ? playerRowBuilder(playerCareerInfo.season) : [];
-    const confRows =
-      playerCareerInfo.conf && showConf
-        ? playerRowBuilder(
-            playerCareerInfo.conf,
-            showAll ? "Conf Stats" : undefined,
-            "Conf Stats"
-          )
+  const tableData = _.chain(playerSeasonInfo)
+    .filter((info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0]))
+    .flatMap(([year, playerCareerInfo], index) => {
+      const topYear = index == 0;
+      const seasonRows = showAll
+        ? playerRowBuilder(playerCareerInfo.season, topYear)
         : [];
-    const t100Rows =
-      playerCareerInfo.t100 && showT100
-        ? playerRowBuilder(
-            playerCareerInfo.t100,
-            showAll || showConf ? "vs T100" : undefined,
-            "vs T100"
-          )
-        : [];
-    return _.flatten([seasonRows, confRows, t100Rows]);
-  });
+      const confRows =
+        playerCareerInfo.conf && showConf
+          ? playerRowBuilder(
+              playerCareerInfo.conf,
+              topYear || showAll,
+              showAll ? "Conf Stats" : undefined,
+              "Conf Stats"
+            )
+          : [];
+      const t100Rows =
+        playerCareerInfo.t100 && showT100
+          ? playerRowBuilder(
+              playerCareerInfo.t100,
+              topYear || showAll || showConf,
+              showAll || showConf ? "vs T100" : undefined,
+              "vs T100"
+            )
+          : [];
+      return _.flatten([seasonRows, confRows, t100Rows]);
+    })
+    .value();
 
   /** The sub-header builder - Can show some handy context in between the header and data rows: */
   const maybeSubheaderRow = showInfoSubHeader
@@ -235,9 +319,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           (y) =>
             ({
               label: y[0],
-              tooltip: "",
-              toggled: true,
-              onClick: () => null,
+              tooltip: "Show / hide data for this year",
+              toggled: _.isEmpty(yearsToShow) || yearsToShow.has(y[0]),
+              onClick: () => {
+                const newYearSet = _.isEmpty(yearsToShow)
+                  ? new Set<string>(playerSeasonInfo.map((y) => y[0]))
+                  : new Set(yearsToShow);
+                const currHasYear = newYearSet.has(y[0]);
+                if (currHasYear) {
+                  newYearSet.delete(y[0]);
+                } else {
+                  newYearSet.add(y[0]);
+                }
+                setYearsToShow(newYearSet);
+              },
             } as ToggleButtonItem)
         )
         .concat([
@@ -249,7 +344,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "All",
-            tooltip: "Show a row for the player's stats vs all opposition",
+            tooltip: "Show data for the player's stats vs all opposition",
             toggled: showAll,
             disabled: !showConf && !showT100,
             onClick: () => {
@@ -261,7 +356,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           {
             label: "Conf",
             tooltip:
-              "Show a row for the player's stats vs Conference opposition",
+              "Show data for the player's stats vs Conference opposition",
             toggled: showConf,
             onClick: () => {
               if (!showAll && !showT100 && showConf) {
@@ -273,7 +368,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "T100",
-            tooltip: "Show a row for the player's stats vs T100",
+            tooltip: "Show data for the player's stats vs T100",
             toggled: showT100,
             onClick: () => {
               if (!showAll && !showConf && showT100) {
