@@ -94,6 +94,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       : playerCareerParams.factorMins
   );
 
+  /** T100 and conf */
+  const [showAll, setShowAll] = useState(
+    _.isNil(playerCareerParams.d1) ? true : playerCareerParams.d1
+  );
+  const [showT100, setShowT100] = useState(playerCareerParams.t100 || false);
+  const [showConf, setShowConf] = useState(playerCareerParams.conf || false);
+
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
     playerCareerParams.showInfoSubHeader || false
@@ -145,10 +152,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const playerRowBuilder = (
     player: IndivCareerStatSet,
-    titleOverride?: string
+    titleOverride?: string,
+    titleSuffix?: string
   ) => {
     player.off_title =
-      titleOverride || `${player.year} | ${player.key} | ${player.team}`;
+      titleOverride ||
+      `${player.year} | ${player.key} | ${player.team}${
+        titleSuffix ? `\n${titleSuffix}` : ""
+      }`;
 
     player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
     TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
@@ -168,13 +179,23 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   };
 
   const tableData = _.flatMap(playerSeasonInfo, ([year, playerCareerInfo]) => {
-    const seasonRows = playerRowBuilder(playerCareerInfo.season);
-    const confRows = playerCareerInfo.conf
-      ? playerRowBuilder(playerCareerInfo.conf, "Conf Stats")
-      : [];
-    const t100Rows = playerCareerInfo.t100
-      ? playerRowBuilder(playerCareerInfo.t100, "vs T100")
-      : [];
+    const seasonRows = showAll ? playerRowBuilder(playerCareerInfo.season) : [];
+    const confRows =
+      playerCareerInfo.conf && showConf
+        ? playerRowBuilder(
+            playerCareerInfo.conf,
+            showAll ? "Conf Stats" : undefined,
+            "Conf Stats"
+          )
+        : [];
+    const t100Rows =
+      playerCareerInfo.t100 && showT100
+        ? playerRowBuilder(
+            playerCareerInfo.t100,
+            showAll || showConf ? "vs T100" : undefined,
+            "vs T100"
+          )
+        : [];
     return _.flatten([seasonRows, confRows, t100Rows]);
   });
 
@@ -228,18 +249,39 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "All",
-            toggled: true,
-            onClick: () => null,
+            tooltip: "Show a row for the player's stats vs all opposition",
+            toggled: showAll,
+            disabled: !showConf && !showT100,
+            onClick: () => {
+              if (showConf || showT100) {
+                setShowAll(!showAll);
+              }
+            },
           },
           {
             label: "Conf",
-            toggled: true,
-            onClick: () => null,
+            tooltip:
+              "Show a row for the player's stats vs Conference opposition",
+            toggled: showConf,
+            onClick: () => {
+              if (!showAll && !showT100 && showConf) {
+                //revert back to showAll
+                setShowAll(true);
+              }
+              setShowConf(!showConf);
+            },
           },
           {
             label: "T100",
-            toggled: true,
-            onClick: () => null,
+            tooltip: "Show a row for the player's stats vs T100",
+            toggled: showT100,
+            onClick: () => {
+              if (!showAll && !showConf && showT100) {
+                //revert back to showAll
+                setShowAll(true);
+              }
+              setShowT100(!showT100);
+            },
           },
           {
             label: " | ",
@@ -249,8 +291,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "Grades",
-            toggled: false,
-            onClick: () => null,
+            tooltip: showGrades
+              ? "Hide player ranks/percentiles"
+              : "Show player ranks/percentiles",
+            toggled: showGrades != "",
+            onClick: () =>
+              setShowGrades(
+                showGrades ? "" : ParamDefaults.defaultEnabledGrade
+              ),
           },
           {
             label: "Style",
@@ -270,13 +318,19 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "Poss%",
-            toggled: true,
-            onClick: () => null,
+            tooltip: possAsPct
+              ? "Show possessions as count"
+              : "Show possessions as percentage",
+            toggled: possAsPct,
+            onClick: () => setPossAsPct(!possAsPct),
           },
           {
-            label: "Info",
-            toggled: false,
-            onClick: () => null,
+            label: "+ Info",
+            tooltip: showInfoSubHeader
+              ? "Hide extra info sub-header"
+              : "Show extra info sub-header",
+            toggled: showInfoSubHeader,
+            onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
           },
         ])}
     />

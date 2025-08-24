@@ -31,7 +31,7 @@ import HeaderBar from "../components/shared/HeaderBar";
 //@ts-ignore
 import { ApiProxyConnector } from "@elastic/search-ui-elasticsearch-connector/api-proxy";
 //@ts-ignore
-import { SearchProvider, SearchBox, Results } from "@elastic/react-search-ui";
+import { SearchProvider, SearchBox } from "@elastic/react-search-ui";
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
@@ -250,7 +250,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       }}
     >
       <DebouncedSearchBox minChars={3} debounceMs={300}>
-        {(onChangeHandler) => (
+        {(onChangeHandler, clearSelection) => (
           <SearchBox
             className="mb-2"
             inputProps={{
@@ -320,6 +320,8 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
                           })}
                           className="flex cursor-pointer p-2 hover:bg-gray-100"
                           onClick={() => {
+                            setDataEvent([]);
+                            clearSelection();
                             const esIndex = result._meta?.rawHit?._index;
                             const gender = _.startsWith(
                               esIndex,
@@ -350,7 +352,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
             }}
           />
         )}
-      </DebouncedSearchBox>{" "}
+      </DebouncedSearchBox>
     </SearchProvider>
   );
 

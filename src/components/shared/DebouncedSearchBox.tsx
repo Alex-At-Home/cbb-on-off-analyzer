@@ -4,7 +4,8 @@ import debounce from "lodash/debounce";
 
 interface DebouncedSearchBoxProps {
   children: (
-    onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    clearSelection: () => void
   ) => React.ReactNode;
   minChars?: number;
   debounceMs?: number;
@@ -36,8 +37,10 @@ export const DebouncedSearchBox: React.FC<DebouncedSearchBoxProps> = ({
             if (setSearchTerm) setSearchTerm("");
           }
         };
-
-        return <>{children(handleChange)}</>;
+        const clearSelection = () => {
+          if (setSearchTerm) setSearchTerm("");
+        };
+        return <>{children(handleChange, clearSelection)}</>;
       }}
     </WithSearch>
   );

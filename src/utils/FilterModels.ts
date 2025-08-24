@@ -299,6 +299,7 @@ export type PlayerCareerParams = {
   // Misc display:
   showInfoSubHeader?: boolean;
   // Query pre-sets
+  d1?: boolean;
   conf?: boolean;
   t100?: boolean;
   // Transfer info
