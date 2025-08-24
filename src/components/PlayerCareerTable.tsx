@@ -24,6 +24,11 @@ import GenericTable, { GenericTableOps } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { Container, OverlayTrigger, Row } from "react-bootstrap";
+import {
+  DivisionStatsCache,
+  GradeTableUtils,
+  PositionStatsCache,
+} from "../utils/tables/GradeTableUtils";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -141,6 +146,98 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     .orderBy(([key, __]) => key, "desc")
     .value();
 
+  // Grades
+
+  // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
+  const [divisionStatsCache, setDivisionStatsCache] = useState<
+    Record<string, DivisionStatsCache>
+  >({});
+  const [teamDivisionStatsCache, setTeamDivisionStatsCache] = useState<
+    Record<string, DivisionStatsCache>
+  >({});
+  const [positionalStatsCache, setPositionalStatsCache] = useState<
+    Record<string, PositionStatsCache>
+  >({});
+  /** TODO: this is used to trigger the memoized table, but not sure it works since the caches could be stale
+   * since I'm not using a ref? Maybe it's OK because it's in a memo not an effect?
+   */
+  const [divisionStatsRefresh, setDivisionStatsRefresh] = useState<number>(0);
+
+  useEffect(() => {
+    if (showGrades) {
+      const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
+
+      const yearsToCheck = playerSeasons.map((info) => info.year || "");
+      yearsToCheck
+        .filter((y) => y != "")
+        .forEach((yearToCheck) => {
+          const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
+          const currPosCacheForThisYear =
+            positionalStatsCache[yearToCheck] || {};
+          const currTeamCacheForThisYear =
+            teamDivisionStatsCache[yearToCheck] || {};
+          const yearOrGenderChanged =
+            yearToCheck != currCacheForThisYear.year ||
+            gender != currCacheForThisYear.gender;
+
+          if (_.isEmpty(currCacheForThisYear) || yearOrGenderChanged) {
+            if (!_.isEmpty(currCacheForThisYear)) {
+              setDivisionStatsCache((currCache) => ({
+                ...currCache,
+                [yearToCheck]: {},
+              })); //unset if set
+            }
+            if (!_.isEmpty(currPosCacheForThisYear)) {
+              setPositionalStatsCache((currPosCache) => ({
+                ...currPosCache,
+                [yearToCheck]: {},
+              })); //unset if set
+            }
+            GradeTableUtils.populatePlayerDivisionStatsCache(
+              { year: yearToCheck, gender },
+              (newCache) => {
+                setDivisionStatsCache((currCache) => ({
+                  ...currCache,
+                  [yearToCheck]: newCache,
+                }));
+                setDivisionStatsRefresh((curr) => curr + 1);
+              }
+            );
+          }
+
+          if (showGrades) {
+            //(these are no use if we're just predicted transfer performance)
+            const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
+            if (maybePosGroup && maybePosGroup != "All") {
+              const posGroupStats = currPosCacheForThisYear[maybePosGroup];
+              if (yearOrGenderChanged || !posGroupStats) {
+                GradeTableUtils.populatePlayerDivisionStatsCache(
+                  { year: yearToCheck, gender },
+                  (s: DivisionStatsCache) => {
+                    setPositionalStatsCache((currPosCache) => ({
+                      ...currPosCache,
+                      [yearToCheck]: {
+                        ...(currPosCache[yearToCheck] || {}),
+                        [maybePosGroup]: {
+                          comboTier: s.Combo,
+                          highTier: s.High,
+                          mediumTier: s.Medium,
+                          lowTier: s.Low,
+                        },
+                      },
+                    }));
+                    setDivisionStatsRefresh((curr) => curr + 1);
+                  },
+                  undefined,
+                  maybePosGroup
+                );
+              }
+            }
+          }
+        });
+    }
+  }, [playerCareerParams, playerSeasons, showGrades]);
+
   // Table building:
 
   const offPrefixFn = (key: string) => "off_" + key;
@@ -225,11 +322,19 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       player.def_efg = undefined;
     }
 
+    // Grades
+
+    //TODO: it would be nice to use the direct vals we have
+    // (also do we have intra-conf / T100 stats in enriched mode?)
+
+    const divisionStatsCacheByYear: DivisionStatsCache =
+      divisionStatsCache[player.year || "??"] || {};
+
     // Finally build rows
 
     const multipleRowsPerYear =
       (showAll && (showT100 || showConf)) || (showT100 && showConf);
-    const extraCharts = false;
+    const extraCharts = showGrades;
     const showEveryYear = multipleRowsPerYear || extraCharts;
 
     return _.flatten([
@@ -251,6 +356,27 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           rosterInfoSpanCalculator
         ),
       ],
+      showGrades
+        ? GradeTableUtils.buildPlayerGradeTableRows({
+            isFullSelection: !titleOverride && !titleSuffix,
+            selectionTitle: `Grades`,
+            config: showGrades,
+            setConfig: (newConfig: string) => setShowGrades(newConfig),
+            playerStats: {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            playerPosStats: positionalStatsCache[player.year || "??"] || {},
+            player,
+            expandedView: true,
+            possAsPct,
+            factorMins,
+            includeRapm: true,
+            leaderboardMode: true,
+          })
+        : [],
     ]);
   };
 

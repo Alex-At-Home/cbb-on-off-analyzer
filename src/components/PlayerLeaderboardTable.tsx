@@ -1071,7 +1071,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       const firstRowForPlayer = nextYearState != "y2of2";
       const lastRowForPlayer = nextYearState != "y1ofN";
 
-      const divisionStatesCacheByYear: DivisionStatsCache =
+      const divisionStatsCacheByYear: DivisionStatsCache =
         divisionStatsCache[player.year || year] || {};
 
       const isDup =
@@ -1463,10 +1463,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   GradeTableUtils.buildPlayerTierInfo(
                     showGrades || "rank:Combo",
                     {
-                      comboTier: divisionStatesCacheByYear.Combo,
-                      highTier: divisionStatesCacheByYear.High,
-                      mediumTier: divisionStatesCacheByYear.Medium,
-                      lowTier: divisionStatesCacheByYear.Low,
+                      comboTier: divisionStatsCacheByYear.Combo,
+                      highTier: divisionStatsCacheByYear.High,
+                      mediumTier: divisionStatsCacheByYear.Medium,
+                      lowTier: divisionStatsCacheByYear.Low,
                     },
                     positionalStatsCache[player.year || year] || {}
                   );
@@ -1692,10 +1692,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     );
                   },
                   playerStats: {
-                    comboTier: divisionStatesCacheByYear.Combo,
-                    highTier: divisionStatesCacheByYear.High,
-                    mediumTier: divisionStatesCacheByYear.Medium,
-                    lowTier: divisionStatesCacheByYear.Low,
+                    comboTier: divisionStatsCacheByYear.Combo,
+                    highTier: divisionStatsCacheByYear.High,
+                    mediumTier: divisionStatsCacheByYear.Medium,
+                    lowTier: divisionStatsCacheByYear.Low,
                   },
                   playerPosStats:
                     positionalStatsCache[player.year || year] || {},
