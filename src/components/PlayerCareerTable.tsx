@@ -37,6 +37,7 @@ import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import { UrlRouting } from "../utils/UrlRouting";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import { DateUtils } from "../utils/DateUtils";
+import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -348,10 +349,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     // Play style
 
+    const fullYear = DateUtils.fullYearFromShortYear(player.year || "") || "";
+
     const teamParams = {
       team: player.team,
-      gender: player.gender as unknown as string,
-      year: DateUtils.fullYearFromShortYear(player.year || ""),
+      gender: playerCareerParams.gender as unknown as string,
+      year: fullYear,
       minRank: "0",
       maxRank: showT100 ? "100" : "400",
       queryFilters: showConf ? "Conf" : undefined,
@@ -412,6 +415,23 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             leaderboardMode: true,
           })
         : [],
+      showShotCharts &&
+      fullYear >= DateUtils.firstYearWithShotChartData &&
+      player.shotInfo
+        ? [
+            GenericTableOps.buildTextRow(
+              <ShotZoneChartDiagView
+                gender={
+                  (playerCareerParams.gender || ParamDefaults.defaultGender) as
+                    | "Men"
+                    | "Women"
+                }
+                off={player.shotInfo as any}
+              />,
+              "small"
+            ),
+          ]
+        : [],
       showPlayerPlayTypes && player.style
         ? [
             GenericTableOps.buildTextRow(
@@ -421,8 +441,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 rosterStatsByCode={{}}
                 teamStats={{} as TeamStatSet}
                 avgEfficiency={
-                  efficiencyAverages[`${player.gender}_${player.year}`] ||
-                  efficiencyAverages.fallback
+                  efficiencyAverages[
+                    `${playerCareerParams.gender}_${player.year}`
+                  ] || efficiencyAverages.fallback
                 }
                 quickSwitchOptions={[]}
                 showGrades={showGrades}
@@ -607,17 +628,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               ),
           },
           {
+            label: "Shots",
+            tooltip: `Show simple shot zones (${DateUtils.firstYearWithShotChartData}+ only)`,
+            toggled: showShotCharts,
+            onClick: () => setShowShotCharts(!showShotCharts),
+          },
+          {
             label: "Style",
             tooltip: showPlayerPlayTypes
               ? "Hide play style breakdowns"
               : "Show play style breakdowns",
             toggled: showPlayerPlayTypes,
             onClick: () => setShowPlayerPlayTypes(!showPlayerPlayTypes),
-          },
-          {
-            label: "Shots",
-            toggled: false,
-            onClick: () => null,
           },
           {
             label: " | ",

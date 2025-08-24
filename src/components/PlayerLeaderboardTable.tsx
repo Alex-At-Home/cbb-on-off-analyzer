@@ -2456,8 +2456,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       ? [
                           {
                             label: "Shots",
-                            tooltip:
-                              "Show simple shot zones for first 50 players in table",
+                            tooltip: `Show simple shot zones for first 50 players in table (${DateUtils.firstYearWithShotChartData}+ only)`,
                             toggled: showPlayerShots,
                             onClick: () =>
                               friendlyChange(
