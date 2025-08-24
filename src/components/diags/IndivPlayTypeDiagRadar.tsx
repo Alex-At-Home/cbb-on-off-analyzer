@@ -406,18 +406,27 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           mainTeamStats
         );
 
-    const mainTopLevelPlayTypeStylesPctile =
-      possFreqType == "P%" || possFreqType == "T%"
-        ? mainTopLevelPlayTypeStyles
-        : mainTierToUse
-        ? GradeUtils.getIndivPlayStyleStats(
-            mainTopLevelPlayTypeStyles,
-            mainTierToUse,
-            mainSosAdjustment,
-            possFreqType == "T%le",
-            true
-          )
-        : undefined;
+    const mainTopLevelPlayTypeStylesPctile = mainTierToUse
+      ? GradeUtils.getIndivPlayStyleStats(
+          mainTopLevelPlayTypeStyles,
+          mainTierToUse,
+          mainSosAdjustment,
+          possFreqType == "T%le",
+          true
+        )
+      : undefined;
+
+    // In this case we just use the raw freq, but we do want the efficiency %s
+    if (possFreqType == "P%" || possFreqType == "T%") {
+      _.forEach(mainTopLevelPlayTypeStyles, (val, key) => {
+        const toAdjust =
+          mainTopLevelPlayTypeStylesPctile?.[key as TopLevelIndivPlayType];
+        if (toAdjust) {
+          toAdjust.possPct = val.possPct;
+          toAdjust.possPctUsg = val.possPctUsg;
+        }
+      });
+    }
 
     const mainData = mainTopLevelPlayTypeStylesPctile
       ? _.map(mainTopLevelPlayTypeStylesPctile, (stat, playType) => {
@@ -465,37 +474,58 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       if (extraOpt) {
         const extraTeamStats = extraOpt.teamStats || StatModels.emptyTeam();
         const extraPlayer = extraOpt.player;
+        const extraCompressedPlayTypeStats = extraOpt.compressedPlayTypeStats;
         extraDefOverride = extraOpt.defensiveOverride;
         extraSosAdjustment =
           avgEfficiency /
           ((extraDefOverride
             ? extraPlayer.off_adj_opp?.value
             : extraPlayer.def_adj_opp?.value) || avgEfficiency);
-        const extraTopLevelPlayTypeStyles =
-          extraDefOverride ||
-          (extraTeamStats.style as TopLevelPlayAnalysis) ||
-          PlayTypeUtils.buildTopLevelIndivPlayStyles(
-            extraPlayer,
-            rosterStatsByCode,
-            extraTeamStats
-          );
+        const extraTopLevelPlayTypeStyles = extraCompressedPlayTypeStats
+          ? PlayTypeUtils.decompressIndivPlayType(extraCompressedPlayTypeStats)
+          : extraDefOverride ||
+            (extraTeamStats.style as TopLevelPlayAnalysis) ||
+            PlayTypeUtils.buildTopLevelIndivPlayStyles(
+              extraPlayer,
+              rosterStatsByCode,
+              extraTeamStats
+            );
+
         extraTopLevelPlayTypeStylesPctile = mainTierToUse
-          ? GradeUtils.getPlayStyleStats(
+          ? GradeUtils.getIndivPlayStyleStats(
               extraTopLevelPlayTypeStyles,
               mainTierToUse,
               extraSosAdjustment,
+              possFreqType == "T%le",
               true
             )
           : undefined;
+
+        // In this case we just use the raw freq, but we do want the efficiency %s
+        if (possFreqType == "P%" || possFreqType == "T%") {
+          _.forEach(extraTopLevelPlayTypeStyles, (val, key) => {
+            const toAdjust =
+              extraTopLevelPlayTypeStylesPctile?.[key as TopLevelIndivPlayType];
+            if (toAdjust) {
+              toAdjust.possPct = val.possPct;
+              toAdjust.possPctUsg = val.possPctUsg;
+            }
+          });
+        }
+
         extraData = extraTopLevelPlayTypeStylesPctile
           ? _.map(extraTopLevelPlayTypeStylesPctile, (stat, playType) => {
               const rawVal = (
                 extraTopLevelPlayTypeStyles as Record<
                   string,
-                  { possPct: Statistic; pts: Statistic }
+                  { possPct: Statistic; pts: Statistic; possPctUsg: Statistic }
                 >
               )[playType];
-              const rawPct = rawVal?.possPct?.value || 0;
+              const rawPct =
+                possFreqType == "T%le" || possFreqType == "T%"
+                  ? rawVal?.possPctUsg?.value || 0
+                  : rawVal?.possPct?.value || 0;
+
               return {
                 name: PlayTypeDiagUtils.getPlayTypeName(playType).replace(
                   "-",
@@ -505,7 +535,12 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 pct:
                   rawPct == 0
                     ? 0
-                    : Math.min(100, (stat.possPct.value || 0) * 100),
+                    : Math.min(
+                        100,
+                        (possFreqType == "T%"
+                          ? stat.possPctUsg?.value || 0
+                          : stat.possPct.value || 0) * 100
+                      ),
                 pts: Math.min(100, (stat.pts.value || 0) * 100),
                 rawPct,
                 rawPts: rawVal?.pts?.value || 0,

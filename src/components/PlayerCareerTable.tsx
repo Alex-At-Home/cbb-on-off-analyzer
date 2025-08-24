@@ -266,11 +266,43 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const rosterInfoSpanCalculator = (key: string) =>
     key == "efg" ? 2 : key == "assist" ? 0 : 1;
 
+  /** Teams for selected seasons */
+  const selectedYearsChain = _.chain(playerSeasonInfo).filter(
+    (info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0])
+  );
+
+  type DataType = "Conf Stats" | "vs T100";
+
+  const selectedYearsDataTypeChain: [
+    string,
+    DataType | undefined,
+    IndivCareerStatSet
+  ][] = selectedYearsChain
+    .flatMap(([year, playerCareerInfo]) => {
+      return (
+        showAll && playerCareerInfo.season
+          ? [[year, undefined, playerCareerInfo.season]]
+          : []
+      )
+        .concat(
+          showConf && playerCareerInfo.conf
+            ? [[year, "Conf Stats", playerCareerInfo.conf]]
+            : []
+        )
+        .concat(
+          showT100 && playerCareerInfo.t100
+            ? [[year, "vs T100", playerCareerInfo.t100]]
+            : []
+        ) as [string, DataType | undefined, IndivCareerStatSet][];
+    })
+    .value();
+
   const playerRowBuilder = (
     player: IndivCareerStatSet,
+    playerYear: string,
     topYear: boolean,
-    titleOverride?: string,
-    titleSuffix?: string
+    titleOverride?: DataType,
+    titleSuffix?: DataType
   ) => {
     // Title
 
@@ -351,10 +383,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     const fullYear = DateUtils.fullYearFromShortYear(player.year || "") || "";
 
-    const teamParams = {
+    const teamParams = (fullYearInUse: string) => ({
       team: player.team,
       gender: playerCareerParams.gender as unknown as string,
-      year: fullYear,
+      year: fullYearInUse,
       minRank: "0",
       maxRank: showT100 ? "100" : "400",
       queryFilters: showConf ? "Conf" : undefined,
@@ -366,7 +398,77 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       showGrades: "rank:Combo",
       showExtraInfo: true,
       showRoster: true,
-    };
+    });
+
+    // Inject like this so we don't need to recalculate every time
+    if (!player.off_style && player.style) {
+      (player as any).off_style = PlayTypeUtils.compressIndivPlayType(
+        player.style //(quick hack to re-use PlayerLeaderboardTable logic)
+      );
+    }
+
+    const navigationOverride = (fullYearInUse: string) => (
+      <OverlayTrigger
+        placement="auto"
+        overlay={
+          <Tooltip id={`${player.code}styleTeamView`}>
+            Open the Team view with the play style chart showing this player's
+            actions in a team context
+          </Tooltip>
+        }
+      >
+        <a
+          target="_blank"
+          href={UrlRouting.getGameUrl(
+            {
+              ...teamParams(fullYearInUse),
+              showTeamPlayTypes: true,
+              teamPlayTypeConfig: `||${player.code}||all||multi||`,
+            },
+            {}
+          )}
+        >
+          Team View<sup>*</sup>
+        </a>
+      </OverlayTrigger>
+    );
+
+    const playStyleQuickSwitchOptions = selectedYearsDataTypeChain
+      .filter(([year, dataType, playerSeason]) => {
+        return year != playerYear || dataType != titleSuffix;
+      })
+      .map(([year, dataType, playerSeason]) => {
+        const infix = !dataType
+          ? "All"
+          : dataType == "Conf Stats"
+          ? "Conf"
+          : "T100";
+
+        // Inject like this so we don't need to recalculate every time
+        if (!playerSeason.off_style && playerSeason.style) {
+          (playerSeason as any).off_style = PlayTypeUtils.compressIndivPlayType(
+            playerSeason.style //(quick hack to re-use PlayerLeaderboardTable logic)
+          );
+        }
+
+        return {
+          title: `${year} (${infix})`,
+          player: playerSeason,
+          rosterStatsByCode: {},
+          teamStats: {} as TeamStatSet,
+          avgEfficiency:
+            efficiencyAverages[`${playerCareerParams.gender}_${year}`] ||
+            efficiencyAverages.fallback,
+          showGrades,
+          grades: divisionStatsCache[year || "??"],
+          showHelp,
+          quickSwitchOverride: undefined,
+          compressedPlayTypeStats: playerSeason.off_style as any,
+          navigationLinkOverride: navigationOverride(
+            DateUtils.fullYearFromShortYear(year) || ""
+          ),
+        };
+      });
 
     // Finally build rows
 
@@ -396,7 +498,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ],
       showGrades
         ? GradeTableUtils.buildPlayerGradeTableRows({
-            isFullSelection: !titleOverride && !titleSuffix,
+            isFullSelection: !titleSuffix,
             selectionTitle: `Grades`,
             config: showGrades,
             setConfig: (newConfig: string) => setShowGrades(newConfig),
@@ -432,7 +534,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             ),
           ]
         : [],
-      showPlayerPlayTypes && player.style
+      showPlayerPlayTypes && player.off_style
         ? [
             GenericTableOps.buildTextRow(
               <IndivPlayTypeDiagRadar
@@ -445,39 +547,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     `${playerCareerParams.gender}_${player.year}`
                   ] || efficiencyAverages.fallback
                 }
-                quickSwitchOptions={[]}
+                quickSwitchOptions={playStyleQuickSwitchOptions}
                 showGrades={showGrades}
                 grades={divisionStatsCache[player.year || "??"]}
                 showHelp={showHelp}
                 quickSwitchOverride={undefined}
-                compressedPlayTypeStats={PlayTypeUtils.compressIndivPlayType(
-                  player.style //(quick hack to re-use PlayerLeaderboardTable)
-                )}
-                navigationLinkOverride={
-                  <OverlayTrigger
-                    placement="auto"
-                    overlay={
-                      <Tooltip id={`${player.code}styleTeamView`}>
-                        Open the Team view with the play style chart showing
-                        this player's actions in a team context
-                      </Tooltip>
-                    }
-                  >
-                    <a
-                      target="_blank"
-                      href={UrlRouting.getGameUrl(
-                        {
-                          ...teamParams,
-                          showTeamPlayTypes: true,
-                          teamPlayTypeConfig: `||${player.code}||all||multi||`,
-                        },
-                        {}
-                      )}
-                    >
-                      Team View<sup>*</sup>
-                    </a>
-                  </OverlayTrigger>
-                }
+                compressedPlayTypeStats={player.off_style as any}
+                navigationLinkOverride={navigationOverride(fullYear)}
               />,
               "small"
             ),
@@ -486,17 +562,17 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     ]);
   };
 
-  const tableData = _.chain(playerSeasonInfo)
-    .filter((info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0]))
+  const tableData = selectedYearsChain
     .flatMap(([year, playerCareerInfo], index) => {
       const topYear = index == 0;
       const seasonRows = showAll
-        ? playerRowBuilder(playerCareerInfo.season, topYear)
+        ? playerRowBuilder(playerCareerInfo.season, year, topYear)
         : [];
       const confRows =
         playerCareerInfo.conf && showConf
           ? playerRowBuilder(
               playerCareerInfo.conf,
+              year,
               topYear || showAll,
               showAll ? "Conf Stats" : undefined,
               "Conf Stats"
@@ -506,6 +582,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         playerCareerInfo.t100 && showT100
           ? playerRowBuilder(
               playerCareerInfo.t100,
+              year,
               topYear || showAll || showConf,
               showAll || showConf ? "vs T100" : undefined,
               "vs T100"
