@@ -3,6 +3,7 @@ import Enumerable from "linq";
 import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
 import { PlayTypeUtils } from "./stats/PlayTypeUtils";
+import { ShotChartUtils } from "./stats/ShotChartUtils";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -532,6 +533,24 @@ export class AdvancedFilterUtils {
     "off_style_transition_usg",
     "off_style_transition_ppp",
   ];
+
+  static readonly playerShotChartZones = _.flatMap(
+    ShotChartUtils.zoneNames,
+    (zoneName) => {
+      return [
+        "efg",
+        "fg",
+        "freq",
+        "efg_delta",
+        "fg_delta",
+        "freq_delta",
+        "minDist",
+        "maxDist",
+        "minAngle",
+        "maxAngle",
+      ].map((stat) => `${zoneName}_${stat}`);
+    }
+  );
 
   static readonly playerLeaderBoardAutocomplete = AdvancedFilterUtils.operators
     .concat([

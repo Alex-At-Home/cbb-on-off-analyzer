@@ -175,6 +175,21 @@ export class ShotChartUtils {
     return mutableZones;
   };
 
+  /** Useful names */
+  static zoneNames = [
+    "zone_at_rim",
+    "zone_close_left",
+    "zone_close_right",
+    "zone_mid_left",
+    "zone_mid_center",
+    "zone_mid_right",
+    "zone_3p_baseline_left",
+    "zone_3p_left",
+    "zone_3p_center",
+    "zone_3p_right",
+    "zone_3p_baseline_right",
+  ];
+
   /** 0 is vertical axis pointing up, when averaging angle make >= 90 and <= 270 */
   static buildStartingZones = (): HexZone[] => {
     return [
