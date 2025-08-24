@@ -37,6 +37,9 @@ export class DateUtils {
     "2018/9",
   ];
 
+  static fullYearFromShortYear = (year: string) =>
+    _.find(this.coreYears, (longYear) => _.startsWith(longYear, year));
+
   /** Note should include all 3 formats $date, Men_$date, Women_$date */
   static readonly seasonNotFinished: Record<string, boolean> = {
     "2023/24": false,

@@ -6,7 +6,11 @@ import { NextPage } from "next";
 
 // Lodash:
 import _ from "lodash";
-import { IndivCareerInfo, IndivCareerStatSet } from "../utils/StatModels";
+import {
+  IndivCareerInfo,
+  IndivCareerStatSet,
+  TeamStatSet,
+} from "../utils/StatModels";
 import ToggleButtonGroup, {
   ToggleButtonItem,
 } from "./shared/ToggleButtonGroup";
@@ -23,12 +27,16 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { Container, OverlayTrigger, Row } from "react-bootstrap";
+import { Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import {
   DivisionStatsCache,
   GradeTableUtils,
   PositionStatsCache,
 } from "../utils/tables/GradeTableUtils";
+import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
+import { UrlRouting } from "../utils/UrlRouting";
+import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
+import { DateUtils } from "../utils/DateUtils";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -62,6 +70,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(playerCareerParams.showGrades) ? "" : playerCareerParams.showGrades
+  );
+
+  /** Play style config */
+  /** Show simplified player play style breakdown */
+  const [showPlayerPlayTypes, setShowPlayerPlayTypes] = useState(
+    _.isNil(playerCareerParams.showPlayerPlayTypes)
+      ? false
+      : playerCareerParams.showPlayerPlayTypes
   );
 
   /** Shot chart config */
@@ -164,7 +180,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [divisionStatsRefresh, setDivisionStatsRefresh] = useState<number>(0);
 
   useEffect(() => {
-    if (showGrades) {
+    if (showGrades || showPlayerPlayTypes) {
       const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
 
       const yearsToCheck = playerSeasons.map((info) => info.year || "");
@@ -236,7 +252,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           }
         });
     }
-  }, [playerCareerParams, playerSeasons, showGrades]);
+  }, [playerCareerParams, playerSeasons, showGrades, showPlayerPlayTypes]);
 
   // Table building:
 
@@ -330,11 +346,30 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     const divisionStatsCacheByYear: DivisionStatsCache =
       divisionStatsCache[player.year || "??"] || {};
 
+    // Play style
+
+    const teamParams = {
+      team: player.team,
+      gender: player.gender as unknown as string,
+      year: DateUtils.fullYearFromShortYear(player.year || ""),
+      minRank: "0",
+      maxRank: showT100 ? "100" : "400",
+      queryFilters: showConf ? "Conf" : undefined,
+      factorMins: factorMins,
+      possAsPct: possAsPct,
+      showExpanded: true,
+      calcRapm: true,
+      showTeamPlayTypes: !showT100 && !showConf,
+      showGrades: "rank:Combo",
+      showExtraInfo: true,
+      showRoster: true,
+    };
+
     // Finally build rows
 
     const multipleRowsPerYear =
       (showAll && (showT100 || showConf)) || (showT100 && showConf);
-    const extraCharts = showGrades;
+    const extraCharts = showGrades || showPlayerPlayTypes || showShotCharts;
     const showEveryYear = multipleRowsPerYear || extraCharts;
 
     return _.flatten([
@@ -376,6 +411,56 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             includeRapm: true,
             leaderboardMode: true,
           })
+        : [],
+      showPlayerPlayTypes && player.style
+        ? [
+            GenericTableOps.buildTextRow(
+              <IndivPlayTypeDiagRadar
+                title={player.key}
+                player={player}
+                rosterStatsByCode={{}}
+                teamStats={{} as TeamStatSet}
+                avgEfficiency={
+                  efficiencyAverages[`${player.gender}_${player.year}`] ||
+                  efficiencyAverages.fallback
+                }
+                quickSwitchOptions={[]}
+                showGrades={showGrades}
+                grades={divisionStatsCache[player.year || "??"]}
+                showHelp={showHelp}
+                quickSwitchOverride={undefined}
+                compressedPlayTypeStats={PlayTypeUtils.compressIndivPlayType(
+                  player.style //(quick hack to re-use PlayerLeaderboardTable)
+                )}
+                navigationLinkOverride={
+                  <OverlayTrigger
+                    placement="auto"
+                    overlay={
+                      <Tooltip id={`${player.code}styleTeamView`}>
+                        Open the Team view with the play style chart showing
+                        this player's actions in a team context
+                      </Tooltip>
+                    }
+                  >
+                    <a
+                      target="_blank"
+                      href={UrlRouting.getGameUrl(
+                        {
+                          ...teamParams,
+                          showTeamPlayTypes: true,
+                          teamPlayTypeConfig: `||${player.code}||all||multi||`,
+                        },
+                        {}
+                      )}
+                    >
+                      Team View<sup>*</sup>
+                    </a>
+                  </OverlayTrigger>
+                }
+              />,
+              "small"
+            ),
+          ]
         : [],
     ]);
   };
@@ -523,8 +608,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "Style",
-            toggled: false,
-            onClick: () => null,
+            tooltip: showPlayerPlayTypes
+              ? "Hide play style breakdowns"
+              : "Show play style breakdowns",
+            toggled: showPlayerPlayTypes,
+            onClick: () => setShowPlayerPlayTypes(!showPlayerPlayTypes),
           },
           {
             label: "Shots",
