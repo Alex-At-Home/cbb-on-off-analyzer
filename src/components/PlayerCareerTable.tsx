@@ -22,7 +22,7 @@ import {
 } from "../utils/FilterModels";
 import { useTheme } from "next-themes";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
-import { UserChartOpts } from "./diags/ShotChartDiagView";
+import ShotChartDiagView, { UserChartOpts } from "./diags/ShotChartDiagView";
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -38,6 +38,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import { DateUtils } from "../utils/DateUtils";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
+import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -470,6 +471,41 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         };
       });
 
+    // Shot charts
+
+    // Inject like this so we don't need to recalculate every time
+    if (!player.off_shots && player.shotInfo) {
+      (player as any).off_shots = ShotChartUtils.decompressHexData(
+        player.shotInfo as any
+      );
+    }
+
+    const shotChartQuickSwitchOptions = selectedYearsDataTypeChain
+      .filter(([year, dataType, playerSeason]) => {
+        return year != playerYear || dataType != titleSuffix;
+      })
+      .map(([year, dataType, playerSeason]) => {
+        const infix = !dataType
+          ? "All"
+          : dataType == "Conf Stats"
+          ? "Conf"
+          : "T100";
+
+        // Inject like this so we don't need to recalculate every time
+        if (!playerSeason.off_shots && playerSeason.shotInfo) {
+          (playerSeason as any).off_shots = ShotChartUtils.decompressHexData(
+            playerSeason.shotInfo as any
+          );
+        }
+
+        return {
+          title: `${year} (${infix})`,
+          gender: playerCareerParams.gender || ParamDefaults.defaultGender,
+          off: playerSeason.off_shots as any,
+          def: {},
+        };
+      });
+
     // Finally build rows
 
     const multipleRowsPerYear =
@@ -521,17 +557,39 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       fullYear >= DateUtils.firstYearWithShotChartData &&
       player.shotInfo
         ? [
-            GenericTableOps.buildTextRow(
-              <ShotZoneChartDiagView
-                gender={
-                  (playerCareerParams.gender || ParamDefaults.defaultGender) as
-                    | "Men"
-                    | "Women"
-                }
-                off={player.shotInfo as any}
-              />,
-              "small"
-            ),
+            (player.shotInfo as any).data
+              ? GenericTableOps.buildTextRow(
+                  <ShotChartDiagView
+                    title={player.key}
+                    off={
+                      (player.off_shots ||
+                        ShotChartUtils.decompressHexData(
+                          player.shotInfo as any
+                        )) as any
+                    }
+                    def={{}}
+                    gender={
+                      (playerCareerParams.gender ||
+                        ParamDefaults.defaultGender) as "Men" | "Women"
+                    }
+                    quickSwitchOptions={shotChartQuickSwitchOptions as any}
+                    chartOpts={shotChartConfig}
+                    onChangeChartOpts={(newOpts: any) => {
+                      setShotChartConfig(newOpts);
+                    }}
+                  />,
+                  "small"
+                )
+              : GenericTableOps.buildTextRow(
+                  <ShotZoneChartDiagView
+                    gender={
+                      (playerCareerParams.gender ||
+                        ParamDefaults.defaultGender) as "Men" | "Women"
+                    }
+                    off={player.shotInfo as any}
+                  />,
+                  "small"
+                ),
           ]
         : [],
       showPlayerPlayTypes && player.off_style

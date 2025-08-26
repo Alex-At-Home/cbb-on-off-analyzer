@@ -1,19 +1,38 @@
 // Lodash:
 import _ from "lodash";
 import { ShotStats, HexZone, CompressedHexZone, HexData } from "../StatModels";
+import { keyAt } from "@collectable/red-black-tree";
 
 /** Wrapper for WAB and related utils */
 export class ShotChartUtils {
   ///////////////////// Top Level Logic
 
   /** Creates a smaller JSON object to show player stats in the leaderboard */
-  static compressHexZones = (zones: HexZone[]): CompressedHexZone => {
+  static compressHexZones = (
+    zones: HexZone[],
+    rawStats?: ShotStats
+  ): CompressedHexZone => {
+    const totalFreq = _.head(zones)?.total_freq || 0;
+    const nonZeroBuckets = (rawStats?.shot_chart?.buckets || []).filter(
+      (b) => (b.doc_count || 0) > 0
+    );
     return {
-      total_freq: _.head(zones)?.total_freq || 0,
+      total_freq: totalFreq,
       info: _.map(
         zones.filter((z) => z.frequency > 0),
         (zone, index) => [index, zone.frequency, zone.intensity]
       ),
+      data: rawStats
+        ? {
+            doc_count: rawStats.doc_count || 0,
+            keys: _.map(nonZeroBuckets, (b) => b.key || ""),
+            info: _.map(nonZeroBuckets, (b) => {
+              const x = b.center.location.x;
+              const y = b.center.location.y;
+              return [x, y, b.total_pts.value, b.doc_count];
+            }),
+          }
+        : undefined,
     };
   };
 
@@ -31,6 +50,44 @@ export class ShotChartUtils {
       }
     });
     return mutableZones;
+  };
+
+  /** Decompressed compress hex data back to what the ES query response would look like */
+  static decompressHexData = (comp: CompressedHexZone): ShotStats => {
+    if (comp.data) {
+      const infoWithKeys = _.zip(comp.data.keys || [], comp.data.info || []);
+      const bucketInsets = _.flatMap(infoWithKeys, ([key, info]) => {
+        if (key && info) {
+          const x = info[0];
+          const y = info[1];
+          const total_pts = info[2];
+          const doc_count = info[3];
+          return [
+            {
+              key,
+              center: {
+                location: {
+                  x,
+                  y,
+                },
+              },
+              total_pts: { value: total_pts },
+              doc_count: doc_count,
+            },
+          ];
+        } else {
+          return [];
+        }
+      });
+      return {
+        doc_count: comp.data.doc_count,
+        shot_chart: {
+          buckets: bucketInsets,
+        },
+      };
+    } else {
+      return {};
+    }
   };
 
   /** Converts from the ES aggregation format into all the info we need to display the hex data

@@ -313,9 +313,15 @@ export interface HexZone {
   shots?: any[]; //(for debugging)
 }
 
+export interface CompressedHexData {
+  doc_count: number;
+  keys: string[]; //(have to zip these with the info, ES storage limitation)
+  info: [number, number, number, number][]; //(x, y, total_pts, doc_count)
+}
 export interface CompressedHexZone {
   total_freq: number;
   info: [number, number, number][]; //(index, frequency, intensity)
+  data?: CompressedHexData;
 }
 
 export interface HexData {

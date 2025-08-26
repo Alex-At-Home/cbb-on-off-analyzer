@@ -96,7 +96,7 @@ export class DateUtils {
   static readonly firstYearWithDecentRosterData: string = "2021/22";
 
   /** Can't display shot charts before here */
-  static readonly firstYearWithShotChartData: string = "2023/24";
+  static readonly firstYearWithShotChartData: string = "2021/22";
 
   /** Don't have player geo before here */
   static readonly firstYearWithRosterGeoData: string = "2023/24";

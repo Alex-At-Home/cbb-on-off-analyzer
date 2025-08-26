@@ -8,6 +8,8 @@
 // Other command line options:
 // --enrich-rosters: if included then rosters are enriched with positional info
 // --extra-data: if included then adds extra sub-objects (rapm / on / off)
+//
+// (run with --debug to dump into ./leaderboardDebug)
 
 // NOTE: test code is under src/__tests__
 
@@ -591,9 +593,10 @@ export async function main() {
             .map((playerShotChartInfo) => [
               playerShotChartInfo.key || "???",
               ShotChartUtils.compressHexZones(
-                ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones
+                ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones,
+                injectExtraDataForNbaFolks ? playerShotChartInfo : undefined
               ),
-            ]) //TODO: in enriched mode also (sort-of) compress the lower-level data
+            ])
             .fromPairs()
             .value();
 
