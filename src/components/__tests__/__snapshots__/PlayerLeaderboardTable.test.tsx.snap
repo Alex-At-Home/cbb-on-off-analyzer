@@ -17083,7 +17083,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "Shots",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show simple shot zones for first 50 players in table (2023/24+ only)",
+                "tooltip": "Show simple shot zones for first 50 players in table (2021/22+ only)",
               },
               Object {
                 "label": "Style",

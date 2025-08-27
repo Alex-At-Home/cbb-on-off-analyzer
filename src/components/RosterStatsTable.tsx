@@ -1367,7 +1367,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           showGrades: showGrades,
           avgEfficiency,
           showHelp,
-          quickSwitchOverride: undefined,
         },
         {
           title: onOffBaseToLongerPhrase("on"),
@@ -1377,7 +1376,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           showGrades: showGrades,
           avgEfficiency,
           showHelp,
-          quickSwitchOverride: undefined,
         },
         {
           title: onOffBaseToLongerPhrase("off"),
@@ -1387,7 +1385,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           showGrades: showGrades,
           avgEfficiency,
           showHelp,
-          quickSwitchOverride: undefined,
         },
       ]
         .concat(
@@ -1400,7 +1397,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               showGrades: showGrades,
               avgEfficiency,
               showHelp,
-              quickSwitchOverride: undefined,
             };
           })
         )
@@ -1550,7 +1546,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
                           (opt) => opt.title != displayKey
                         )}
-                        quickSwitchOverride={undefined}
                         navigationLinkOverride={
                           <OverlayTrigger
                             placement="auto"

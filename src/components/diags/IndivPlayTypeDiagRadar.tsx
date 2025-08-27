@@ -52,6 +52,12 @@ import {
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { useTheme } from "next-themes";
 
+export type PlayerStyleOpts = {
+  rawPpp?: boolean;
+  playType?: string;
+  quickSwitch?: string;
+};
+
 export type Props = {
   title?: string;
   player: IndivStatSet;
@@ -62,8 +68,8 @@ export type Props = {
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
+  userOpts?: PlayerStyleOpts;
   playCountToUse?: number;
-  quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
   compressedPlayTypeStats?: [number, number, number, number][];
   navigationLinkOverride?: React.ReactElement;
@@ -80,7 +86,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   showHelp,
   playCountToUse,
   defensiveOverride: defensiveOverrideIn,
-  quickSwitchOverride,
+  userOpts,
   compressedPlayTypeStats,
   navigationLinkOverride,
 }) => {
@@ -654,7 +660,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     teamStatsIn,
     quickSwitch,
     quickSwitchTimer,
-    quickSwitchOverride,
+    userOpts,
     defensiveOverrideIn,
     csvData,
     adjustForSos,

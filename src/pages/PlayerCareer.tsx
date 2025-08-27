@@ -114,10 +114,10 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       rawParams,
       _.flatten([
         // omit all defaults
+        rawParams.d1 ? ["d1"] : [],
         !rawParams.t100 ? ["t100"] : [],
         !rawParams.conf ? ["conf"] : [],
-        !rawParams.filter ? ["filter"] : [],
-        !rawParams.conf ? ["conf"] : [],
+        !rawParams.yearsToShow ? ["yearsToShow"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]
@@ -130,8 +130,21 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           : [],
         rawParams.showGrades == "" ? ["showGrades"] : [],
 
-        !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+        !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
+        !rawParams.playerShotCharts ? ["playerShotCharts"] : [],
+        rawParams.playerShotChartsShowZones ==
+        ParamDefaults.defaultShotChartShowZones
+          ? ["playerShotChartsShowZones"]
+          : [],
+        !rawParams.playerShotChartQuickSwitch
+          ? ["playerShotChartQuickSwitch"]
+          : [],
 
+        !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+        rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
+
+        //not used but maybe later:
+        !rawParams.filter ? ["filter"] : [],
         rawParams.sortBy ==
         ParamDefaults.defaultPlayerLboardSortBy(
           _.isNil(rawParams.useRapm)
@@ -215,6 +228,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       <PlayerCareerTable
         playerSeasons={dataEvent}
         playerCareerParams={playerCareerParamsRef.current || {}}
+        onPlayerCareerParamsChange={onPlayerCareerParamsChange}
       />
     );
   }, [dataEvent]);

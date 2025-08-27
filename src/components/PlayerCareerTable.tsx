@@ -43,11 +43,13 @@ import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
   playerCareerParams: PlayerCareerParams;
+  onPlayerCareerParamsChange: (p: PlayerCareerParams) => void;
 };
 
 const PlayerCareerTable: React.FunctionComponent<Props> = ({
   playerSeasons,
   playerCareerParams,
+  onPlayerCareerParamsChange,
 }) => {
   // 1] Input state
 
@@ -91,11 +93,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
     UserChartOpts | undefined
-  >(
-    _.isNil(playerCareerParams.playerShotChartsShowZones)
-      ? undefined
-      : { buildZones: playerCareerParams.playerShotChartsShowZones }
-  );
+  >({
+    buildZones: playerCareerParams.playerShotChartsShowZones,
+    quickSwitch: playerCareerParams.playerShotChartQuickSwitch,
+  });
 
   /** Splits out offensive and defensive metrics into separate rows */
   const [expandedView, setExpandedView] = useState(
@@ -124,7 +125,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showT100, setShowT100] = useState(playerCareerParams.t100 || false);
   const [showConf, setShowConf] = useState(playerCareerParams.conf || false);
 
-  const [yearsToShow, setYearsToShow] = useState(new Set<string>());
+  const [yearsToShow, setYearsToShow] = useState(
+    new Set<string>(
+      (playerCareerParams.yearsToShow || "")
+        .split(",")
+        .map(_.trim)
+        .filter((p) => !_.isEmpty(p))
+    )
+  );
 
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
@@ -135,7 +143,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     true as boolean
   ); //(always defaults to on)
 
-  /** Whether to make the quick toggle bar stick (default: on) */
+  /** Whether to make the quick toggle bar stick (default: on) - TODO: unused currently */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(playerCareerParams.stickyQuickToggle)
       ? true
@@ -163,6 +171,44 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     .toPairs()
     .orderBy(([key, __]) => key, "desc")
     .value();
+
+  useEffect(() => {
+    const yearsToShowArr = Array.from(yearsToShow);
+
+    onPlayerCareerParamsChange({
+      ...playerCareerParams,
+      showGrades,
+      showPlayerPlayTypes,
+      playerShotCharts: showShotCharts,
+      playerShotChartsShowZones: shotChartConfig?.buildZones,
+      playerShotChartQuickSwitch: shotChartConfig?.quickSwitch,
+      factorMins,
+      possAsPct,
+      d1: showAll,
+      t100: showT100,
+      conf: showConf,
+      yearsToShow:
+        yearsToShowArr.length == playerSeasonInfo.length
+          ? undefined
+          : yearsToShowArr.join(","),
+      stickyQuickToggle,
+      showInfoSubHeader,
+    });
+  }, [
+    showGrades,
+    showPlayerPlayTypes,
+    showShotCharts,
+    shotChartConfig,
+    expandedView,
+    possAsPct,
+    factorMins,
+    showAll,
+    showT100,
+    showConf,
+    yearsToShow,
+    stickyQuickToggle,
+    showInfoSubHeader,
+  ]);
 
   // Grades
 
@@ -463,7 +509,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           showGrades,
           grades: divisionStatsCache[year || "??"],
           showHelp,
-          quickSwitchOverride: undefined,
           compressedPlayTypeStats: playerSeason.off_style as any,
           navigationLinkOverride: navigationOverride(
             DateUtils.fullYearFromShortYear(year) || ""
@@ -609,7 +654,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 showGrades={showGrades}
                 grades={divisionStatsCache[player.year || "??"]}
                 showHelp={showHelp}
-                quickSwitchOverride={undefined}
                 compressedPlayTypeStats={player.off_style as any}
                 navigationLinkOverride={navigationOverride(fullYear)}
               />,

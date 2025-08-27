@@ -299,16 +299,18 @@ export type PlayerCareerParams = {
   // Misc display:
   showInfoSubHeader?: boolean;
   // Query pre-sets
+  yearsToShow?: string;
   d1?: boolean;
   conf?: boolean;
   t100?: boolean;
   // Transfer info
   showExpanded?: boolean;
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
-  // Shot charts:
+  // Shot charts and style:
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
   showPlayerPlayTypes?: boolean;
+  playerShotChartQuickSwitch?: string;
 };
 
 export type PlayerLeaderboardParams = {

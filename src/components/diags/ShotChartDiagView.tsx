@@ -484,7 +484,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                 } else {
                   onChangeChartOpts?.({
                     buildZones: buildZones,
-                    quickSwitch: quickSwitch,
+                    quickSwitch: newSetting,
                   });
                   setQuickSwitch(newSetting);
                 }

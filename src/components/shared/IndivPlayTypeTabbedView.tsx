@@ -30,7 +30,6 @@ export type IndivPlayTypeDiagRadarProps = {
   grades?: DivisionStatsCache;
   showHelp: boolean;
   playCountToUse?: number;
-  quickSwitchOverride: string | undefined;
   navigationLinkOverride?: React.ReactElement;
 };
 
@@ -53,7 +52,7 @@ const IndivPlayTypeTabbedView: React.FC<IndivPlayTypeTabbedViewProps> = (
         <PlayerPlayTypeDiagView {...props} />
       </Tab>
       <Tab eventKey="breakdown" title="Play Types">
-        <IndivPlayTypeDiagRadar {...props} quickSwitchOverride={undefined} />
+        <IndivPlayTypeDiagRadar {...props} />
       </Tab>
     </Tabs>
   );

@@ -1737,7 +1737,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       showGrades={showGrades}
                       grades={divisionStatsCache[player.year || year]}
                       showHelp={showHelp}
-                      quickSwitchOverride={undefined}
                       compressedPlayTypeStats={player.style}
                       navigationLinkOverride={
                         <OverlayTrigger
