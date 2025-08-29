@@ -7,7 +7,6 @@ import Router, { useRouter } from "next/router";
 
 // Next imports:
 import { NextPage } from "next";
-import dynamic from "next/dynamic";
 
 // Lodash:
 import _ from "lodash";
@@ -27,12 +26,6 @@ import {
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
 
-// ES search
-//@ts-ignore
-import { ApiProxyConnector } from "@elastic/search-ui-elasticsearch-connector/api-proxy";
-//@ts-ignore
-import { SearchProvider, SearchBox } from "@elastic/react-search-ui";
-
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from "next/head";
@@ -46,7 +39,7 @@ import fetch from "isomorphic-unfetch";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import PlayerCareerTable from "../components/PlayerCareerTable";
 import { IndivCareerStatSet } from "../utils/StatModels";
-import { DebouncedSearchBox } from "../components/shared/DebouncedSearchBox";
+import PlayerFinderTextBox from "../components/shared/PlayerFinderTextBox";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -63,10 +56,6 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
   if (isServer() && !testMode) return null; //(don't render server-side)
 
   const isDebug = process.env.NODE_ENV !== "production";
-
-  const connector = new ApiProxyConnector({
-    basePath: "/api",
-  });
 
   useEffect(() => {
     // Set up GA
@@ -234,140 +223,18 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
   }, [dataEvent]);
 
   const playerFinder = (
-    <SearchProvider
-      config={{
-        apiConnector: connector,
-        autocompleteQuery: {
-          results: {
-            resultsPerPage: 100,
-            result_fields: {
-              key: {},
-              team: {},
-              year: {},
-              "roster.ncaa_id": {},
-            },
-            // override the default query
-            search_fields: {
-              key: {
-                // Search UI will expand this into multi_match bool_prefix
-                weight: 1,
-              },
-              conf: {
-                weight: 0.2,
-              },
-              team: {
-                weight: 0.2,
-              },
-            },
-          },
-        },
+    <PlayerFinderTextBox
+      currGender={playerCareerParamsRef.current?.gender}
+      playerCurrSelected={dataEvent.length > 0}
+      onSelectPlayer={(ncaaId: string, gender: string) => {
+        setDataEvent([]);
+        onPlayerCareerParamsChange({
+          ...(playerCareerParamsRef.current || {}),
+          ncaaId,
+          gender,
+        });
       }}
-    >
-      <DebouncedSearchBox minChars={3} debounceMs={300}>
-        {(onChangeHandler, clearSelection) => (
-          <SearchBox
-            className="mb-2"
-            inputProps={{
-              placeholder:
-                dataEvent.length > 0
-                  ? "Find another player..."
-                  : "Search for players...",
-            }}
-            autocompleteMinimumCharacters={3}
-            autocompleteView={({ autocompletedResults, getItemProps }) => {
-              // group by ncaa_id
-              const grouped: Record<string, typeof autocompletedResults> = {};
-
-              autocompletedResults.forEach((r) => {
-                const esIndex = r._meta?.rawHit?._index;
-                const gender = _.startsWith(esIndex, "hoopexp_women_")
-                  ? "Women"
-                  : "Men";
-                if (
-                  dataEvent.length == 0 ||
-                  gender ==
-                    (playerCareerParamsRef.current?.gender ||
-                      ParamDefaults.defaultGender)
-                ) {
-                  const id = r.roster?.raw?.ncaa_id;
-                  if (!id) return;
-                  grouped[id] = grouped[id] || [];
-                  grouped[id].push(r);
-                }
-              });
-
-              return (
-                <div className="sui-search-box__autocomplete-container">
-                  {_.chain(grouped)
-                    .values()
-                    .sortBy((gs) => {
-                      const maxVal =
-                        _.maxBy(
-                          gs,
-                          (g: any) => (g._meta?.rawHit?._score || 1) as number
-                        )?._meta?.rawHit?._score || 1;
-                      return -(
-                        maxVal *
-                        (1 + (1 / 16) * Math.min(4, gs.length))
-                      ); //(4 year player gets x1.25 bonus)
-                    })
-                    .map((group, i) => {
-                      const result = group[0]; // pick first as representative
-                      const teams = Array.from(
-                        new Set(group.map((r) => r.team?.raw))
-                      );
-                      const years = group
-                        .map((r) => r.year?.raw)
-                        .filter(Boolean)
-                        .map(Number);
-                      const minYear = Math.min(...years);
-                      const maxYear = Math.max(...years);
-                      const yearStr =
-                        minYear == maxYear ? minYear : `${minYear}-${maxYear}`;
-
-                      return (
-                        <div
-                          {...getItemProps({
-                            index: i,
-                            key: result.id?.raw,
-                            item: result,
-                          })}
-                          className="flex cursor-pointer p-2 hover:bg-gray-100"
-                          onClick={() => {
-                            setDataEvent([]);
-                            clearSelection();
-                            const esIndex = result._meta?.rawHit?._index;
-                            const gender = _.startsWith(
-                              esIndex,
-                              "hoopexp_women_"
-                            )
-                              ? "Women"
-                              : "Men";
-                            onPlayerCareerParamsChange({
-                              ...(playerCareerParamsRef.current || {}),
-                              ncaaId: result.roster?.raw?.ncaa_id,
-                              gender,
-                            });
-                          }}
-                        >
-                          {result.key?.raw} ({teams.join("; ")}) [{yearStr}]
-                        </div>
-                      );
-                    })
-                    .take(30)
-                    .value()}
-                </div>
-              );
-            }}
-            autocompleteResults={{
-              titleField: "key", // shows the player name
-              urlField: "", // no link
-              shouldTrackClickThrough: false,
-            }}
-          />
-        )}
-      </DebouncedSearchBox>
-    </SearchProvider>
+    />
   );
 
   const thumbnailUrl = `${
