@@ -42,6 +42,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import ExpandableImage from "../components/shared/ExpandableImage";
+import PlayerFinderTextBox from "../components/shared/PlayerFinderTextBox";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -2008,16 +2009,45 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </TopicFilteredCard>
         <TopicFilteredCard
           topics={[
-            "Details",
             "Play Types",
-            "Teams",
             "Players",
-            "Games",
-            "Leaderboards",
-            "Splits",
-            "On-Off",
+            "RAPM",
+            "Shot Charts",
+            "Multi-Year",
           ]}
         >
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Player Career View</Card.Title>
+                <Card.Text>
+                  My newest page! Search for players (currently 2021+) using
+                  auto-complete; then view and compare their stats, shot charts,
+                  play styles, and more across seasons and all/Conference/T100
+                  samples. Just start typing below...
+                  <br />
+                  <br />
+                  <PlayerFinderTextBox
+                    currGender={gender == "" ? undefined : gender}
+                    playerCurrSelected={false}
+                    onSelectPlayer={function (
+                      ncaaId: string,
+                      gender: string
+                    ): void {
+                      window.open(
+                        UrlRouting.getPlayerCareer({
+                          ncaaId,
+                          showInfoSubHeader: true,
+                        }),
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    }}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
           <Col className="mt-2">
             <Card>
               <Card.Body>
