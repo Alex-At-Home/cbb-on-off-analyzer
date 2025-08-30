@@ -2317,9 +2317,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <Card.Title>Game Reports</Card.Title>
                 <Card.Text>
                   Advanced game analytics you won't find elsewhere:
-                  <li>Single game player offensive and defensive impact</li>
-                  <li>Time series charts showing lineups</li>
-                  <li>A style breakdown for each team</li>
+                  <ul>
+                    <li>Single game player offensive and defensive impact</li>
+                    <li>Time series charts showing lineups</li>
+                    <li>A style breakdown for each team</li>
+                  </ul>
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Game Reports"))}
                 <Card.Link
@@ -2353,9 +2355,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <Card.Text>
                   Advanced match-up analytics between any two teams in D1, with
                   charts showing:
-                  <li>Players' offensive and defensive impact</li>
-                  <li>A breakdown of offense vs defense style matchups</li>
-                  <li>Shot charts</li>
+                  <ul>
+                    <li>Players' offensive and defensive impact</li>
+                    <li>A breakdown of offense vs defense style matchups</li>
+                    <li>Shot charts</li>
+                  </ul>
                 </Card.Text>
                 {maybeMoreDetails(getCardIdFromTitle("Game Previews"))}
                 <Card.Link
