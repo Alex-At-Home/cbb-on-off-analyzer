@@ -339,6 +339,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       Go to the On/Off Analysis page with the current baseline query
     </Tooltip>
   );
+  const playerCareerTooltip = (
+    <Tooltip id="playerCareerTooltip">
+      Search for a player and view their career stats
+    </Tooltip>
+  );
   const lastGameTooltip = (
     <Tooltip id="lastGameTooltip">
       Go back to the most recently submitted On/Off Analysis page
@@ -607,6 +612,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             </Dropdown.Item>
           ) : null}
           <Dropdown.Divider />
+          <Dropdown.Item>
+            {buildNavItem(
+              "Player Career View",
+              playerCareerTooltip,
+              UrlRouting.getPlayerCareer({}),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
               "Roster Analysis",
