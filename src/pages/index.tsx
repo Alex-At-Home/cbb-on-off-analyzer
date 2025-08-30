@@ -2023,12 +2023,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 <Card.Text>
                   My newest page! Search for players (currently 2021+) using
                   auto-complete; then view and compare their stats, shot charts,
-                  play styles, and more across seasons and all/Conference/T100
+                  play styles, and more across seasons and All/Conference/T100
                   samples. Just start typing below...
                   <br />
                   <br />
                   <PlayerFinderTextBox
-                    currGender={gender == "" ? undefined : gender}
                     playerCurrSelected={false}
                     onSelectPlayer={function (
                       ncaaId: string,
