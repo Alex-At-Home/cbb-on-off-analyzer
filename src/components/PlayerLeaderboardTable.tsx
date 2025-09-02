@@ -1207,6 +1207,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           version of the leaderboard
         </Tooltip>
       );
+      const playerCareerTooltip = (
+        <Tooltip id={`lboard_${playerIndex}_${nextYearState}`}>
+          {player.roster?.origin ? (
+            <span>
+              {player.roster?.origin}
+              <br />
+              <br />
+            </span>
+          ) : null}
+          Open new tab showing all the player's seasons, in the Player Career
+          page
+        </Tooltip>
+      );
       const playerTeamEditorTooltip = (
         <Tooltip id={`lboard_teamEditor_${playerIndex}_${nextYearState}`}>
           Add this player to the Team Builder table
@@ -1219,6 +1232,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         sortBy: "desc:year",
         showInfoSubHeader: true,
       };
+
+      //TODO: this currently only works for Fr, need to re-run buildLeaderboard
+      const shouldUsePlayerCareerPage =
+        player.roster?.ncaa_id &&
+        DateUtils.shouldUsePlayerCareerPage(
+          player.year || year,
+          gender,
+          player.roster?.year_class || ""
+        );
+
       const playerEl = teamEditorMode ? (
         <OverlayTrigger placement="auto" overlay={playerTeamEditorTooltip}>
           <a
@@ -1234,11 +1257,31 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </a>
         </OverlayTrigger>
       ) : (
-        <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
+        <OverlayTrigger
+          placement="auto"
+          overlay={
+            shouldUsePlayerCareerPage
+              ? playerCareerTooltip
+              : playerLboardTooltip
+          }
+        >
           <a
             target="_blank"
             style={{ wordWrap: "normal" }}
-            href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}
+            href={
+              shouldUsePlayerCareerPage
+                ? UrlRouting.getPlayerCareer({
+                    ncaaId: player.roster?.ncaa_id || "",
+                    conf: isConfOnly,
+                    t100: isT100,
+                    showGrades,
+                    showInfoSubHeader,
+                    showPlayerPlayTypes,
+                    playerShotCharts: showPlayerShots,
+                    possAsPct,
+                  })
+                : UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)
+            }
           >
             {firstRowForPlayer
               ? player.key
@@ -1331,6 +1374,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         : factorMins
         ? (player.off_adj_prod?.value || 0) - (player.def_adj_prod?.value || 0)
         : (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
+      const adjMarginShadow = CommonTableDefs.getTextShadow(
+        { value: adjMargin },
+        CbbColors.diff10_p100_redGreen[0],
+        "20px",
+        4
+      );
+
       const adjMarginStr = teamEditorMode ? (
         <b>{`${adjMargin > 0.0 ? "+" : ""}${adjMargin.toFixed(1)}`}</b>
       ) : (
@@ -1588,18 +1638,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
       player.off_title = (
         <div>
-          <span className="float-left">{rankings}</span>&nbsp;
-          <b>
-            {playerEl}
-            {maybeYrStr}
-          </b>
-          <br />
-          <span className="float-left">
-            <span>
-              {teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]
-              {txfeEl}
+          <div className="multi_line_title_row">
+            <span
+              className="multi_line_title_row_left_aligned_snippet"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {rankings}
             </span>
-          </span>
+            &nbsp;
+            <b>
+              {playerEl}
+              {maybeYrStr}
+            </b>
+          </div>
+          <div className="multi_line_title_row">
+            <span className="multi_line_title_row_left_aligned_snippet">
+              <span>
+                {teamEl}&nbsp;(<span>{confNickname}</span>){txfeEl}
+              </span>
+            </span>{" "}
+            <span style={adjMarginShadow}>[{adjMarginStr}]</span>
+          </div>
         </div>
       );
 

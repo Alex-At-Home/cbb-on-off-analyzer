@@ -15,10 +15,12 @@ export class AvailableTeams {
 
   static readonly extraTeamName = "Extra";
 
-  /** Teams with multiple names for the same team, created by running */
+  /** Teams with multiple names for the same team, created by running TODO */
   static readonly teamAliases: Record<string, Array<string>> = {
     "Northern Ill.": ["Northern Ill.", "NIU"],
     NIU: ["NIU", "Northern Ill."],
+    "Sam Houston": ["Sam Houston St.", "Sam Houston"],
+    "Sam Houston St.": ["Sam Houston St.", "Sam Houston"],
   };
 
   /** A list of all the teams with lineup data available
@@ -13373,13 +13375,6 @@ export class AvailableTeams {
       },
     ],
     "Sam Houston": [
-      {
-        team: "Sam Houston",
-        year: "2020/21",
-        gender: "Men",
-        index_template: "southland",
-        category: "low",
-      },
       {
         team: "Sam Houston",
         year: "2021/22",

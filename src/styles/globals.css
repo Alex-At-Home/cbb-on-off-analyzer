@@ -105,3 +105,15 @@ grep -E -f color_pattern.txt src/styles/bootstrap.original_superhero.css > src/s
 [data-theme='dark'] .recharts-tooltip-cursor {
    fill: #888;
 }
+
+/* Some CSS for multi-line titles */
+
+.multi_line_title_row {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.multi_line_title_row_left_aligned_snippet {
+   text-align: left;
+}

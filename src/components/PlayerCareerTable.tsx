@@ -9,6 +9,7 @@ import _ from "lodash";
 import {
   IndivCareerInfo,
   IndivCareerStatSet,
+  Statistic,
   TeamStatSet,
 } from "../utils/StatModels";
 import ToggleButtonGroup, {
@@ -39,6 +40,8 @@ import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import { DateUtils } from "../utils/DateUtils";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
+import { ConferenceToNickname } from "../utils/public-data/ConferenceInfo";
+import { CbbColors } from "../utils/CbbColors";
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -344,6 +347,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     })
     .value();
 
+  // Some layouting information
+  const multipleRowsPerYear =
+    (showAll && (showT100 || showConf)) || (showT100 && showConf);
+  const extraCharts = showGrades || showPlayerPlayTypes || showShotCharts;
+  const showEveryYear = multipleRowsPerYear || extraCharts;
+
   const playerRowBuilder = (
     player: IndivCareerStatSet,
     playerYear: string,
@@ -351,14 +360,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     titleOverride?: DataType,
     titleSuffix?: DataType
   ) => {
-    // Title
-
-    player.off_title =
-      titleOverride ||
-      `${player.year} | ${player.key} | ${player.team}${
-        titleSuffix ? `\n${titleSuffix}` : ""
-      }`;
-
     // Misc stats
 
     player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
@@ -426,6 +427,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     const divisionStatsCacheByYear: DivisionStatsCache =
       divisionStatsCache[player.year || "??"] || {};
 
+    const adjMarginPer100 =
+      ((player.off_adj_rapm_prod as Statistic)?.value || 0) -
+      ((player.def_adj_rapm_prod as Statistic)?.value || 0);
+    const adjMarginProd =
+      ((player.off_adj_rapm as Statistic)?.value || 0) -
+      ((player.def_adj_rapm as Statistic)?.value || 0);
+    const adjMargin = factorMins ? adjMarginPer100 : adjMarginProd;
+    player.off_adj_rapm_margin = {
+      value: adjMarginPer100,
+    };
+
+    player.off_adj_rapm_margin_prod = {
+      value: adjMarginProd,
+    };
     // Play style
 
     const fullYear = DateUtils.fullYearFromShortYear(player.year || "") || "";
@@ -441,9 +456,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       possAsPct: possAsPct,
       showExpanded: true,
       calcRapm: true,
-      showTeamPlayTypes: !showT100 && !showConf,
       showGrades: "rank:Combo",
-      showExtraInfo: true,
       showRoster: true,
     });
 
@@ -551,12 +564,125 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         };
       });
 
-    // Finally build rows
+    // Title
 
-    const multipleRowsPerYear =
-      (showAll && (showT100 || showConf)) || (showT100 && showConf);
-    const extraCharts = showGrades || showPlayerPlayTypes || showShotCharts;
-    const showEveryYear = multipleRowsPerYear || extraCharts;
+    const shortTitle =
+      titleSuffix == "Conf Stats"
+        ? " (Conf)"
+        : titleSuffix == "vs T100"
+        ? " (T100)"
+        : "";
+    const confNickname = ConferenceToNickname[player.conf || "??"] || "???";
+
+    const titleSuffixKey =
+      titleSuffix == "Conf Stats"
+        ? "conf"
+        : titleSuffix == "vs T100"
+        ? "t100"
+        : "all";
+    const adjMarginShadow = CommonTableDefs.getTextShadow(
+      { value: adjMargin },
+      CbbColors.diff10_p100_redGreen[0],
+      "20px",
+      4
+    );
+    const adjMarginEl = (
+      <OverlayTrigger
+        placement="auto"
+        overlay={
+          <Tooltip
+            id={`${player.code}${player.year}${titleSuffixKey}rapmMargin`}
+          >
+            Overall player RAPM impact, in pts/100 above average.
+          </Tooltip>
+        }
+      >
+        <b style={adjMarginShadow}>
+          [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
+        </b>
+      </OverlayTrigger>
+    );
+
+    const formattedTitleOverride = titleOverride ? (
+      <div>
+        <OverlayTrigger
+          placement="auto"
+          overlay={
+            <Tooltip
+              id={`${player.code}${player.year}${titleSuffixKey}OverlayTeamView`}
+            >
+              Open the Team view with the same visualizations open{shortTitle}.
+            </Tooltip>
+          }
+        >
+          <a
+            target="_blank"
+            href={UrlRouting.getGameUrl(
+              {
+                ...teamParams(fullYear),
+                showInfoSubHeader,
+                showPlayerPlayTypes: showPlayerPlayTypes,
+                playerShotCharts: showShotCharts,
+                showGrades: showGrades,
+              },
+              {}
+            )}
+          >
+            <b>{titleOverride}</b>
+          </a>
+        </OverlayTrigger>
+        <br /> {adjMarginEl}
+      </div>
+    ) : undefined;
+
+    player.off_title = formattedTitleOverride || (
+      <div>
+        <div className="multi_line_title_row">
+          <span className="multi_line_title_row_left_aligned_snippet">
+            {player.year}+<b>{shortTitle}</b>
+          </span>
+          &nbsp;
+          <b>{player.key}</b>
+        </div>
+        <div className="multi_line_title_row">
+          <span className="multi_line_title_row_left_aligned_snippet">
+            <span>
+              <OverlayTrigger
+                placement="auto"
+                overlay={
+                  <Tooltip
+                    id={`${player.code}${player.year}${titleSuffixKey}TeamView`}
+                  >
+                    Open the Team view with the same visualizations open
+                    {shortTitle}.
+                  </Tooltip>
+                }
+              >
+                <a
+                  target="_blank"
+                  href={UrlRouting.getGameUrl(
+                    {
+                      ...teamParams(fullYear),
+                      showInfoSubHeader,
+                      showPlayerPlayTypes: showPlayerPlayTypes,
+                      playerShotCharts: showShotCharts,
+                      showGrades: showGrades,
+                    },
+                    {}
+                  )}
+                >
+                  {player.team}
+                </a>
+              </OverlayTrigger>
+              &nbsp;(<span>{confNickname}</span>)&nbsp;
+            </span>
+          </span>{" "}
+          {adjMarginEl}
+        </div>
+      </div>
+    );
+
+    // Finally build rows
 
     return _.flatten([
       !topYear && showEveryYear
@@ -676,7 +802,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               playerCareerInfo.conf,
               year,
               topYear || showAll,
-              showAll ? "Conf Stats" : undefined,
+              showAll && !extraCharts ? "Conf Stats" : undefined,
               "Conf Stats"
             )
           : [];
@@ -686,7 +812,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               playerCareerInfo.t100,
               year,
               topYear || showAll || showConf,
-              showAll || showConf ? "vs T100" : undefined,
+              (showAll || showConf) && !extraCharts ? "vs T100" : undefined,
               "vs T100"
             )
           : [];
@@ -729,8 +855,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         .map(
           (y) =>
             ({
-              label: y[0],
-              tooltip: "Show / hide data for this year",
+              label: y[0] + "+",
+              tooltip: `Show / hide data for this year (starting ${y[0]})`,
               toggled: _.isEmpty(yearsToShow) || yearsToShow.has(y[0]),
               onClick: () => {
                 const newYearSet = _.isEmpty(yearsToShow)
