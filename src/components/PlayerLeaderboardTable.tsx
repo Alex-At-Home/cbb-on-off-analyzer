@@ -1233,7 +1233,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         showInfoSubHeader: true,
       };
 
-      //TODO: this currently only works for Fr, need to re-run buildLeaderboard
       const shouldUsePlayerCareerPage =
         player.roster?.ncaa_id &&
         DateUtils.shouldUsePlayerCareerPage(
@@ -1637,7 +1636,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       // Player display
 
       player.off_title = (
-        <div>
+        <div className="multi_line_title_content">
           <div className="multi_line_title_row">
             <span
               className="multi_line_title_row_left_aligned_snippet"

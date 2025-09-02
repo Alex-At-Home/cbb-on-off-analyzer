@@ -1070,10 +1070,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -6793,10 +6789,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -12204,10 +12196,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             Object {
               "label": "Saint Peter's",
               "value": "Saint Peter's",
-            },
-            Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
             },
             Object {
               "label": "Sam Houston St.",
@@ -18603,10 +18591,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             Object {
               "label": "Saint Peter's",
               "value": "Saint Peter's",
-            },
-            Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
             },
             Object {
               "label": "Sam Houston St.",
@@ -25213,10 +25197,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -31775,10 +31755,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -37906,10 +37882,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -42621,10 +42593,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -46862,10 +46830,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Saint Peter's",
             },
             Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
-            },
-            Object {
               "label": "Sam Houston St.",
               "value": "Sam Houston St.",
             },
@@ -50205,10 +50169,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             Object {
               "label": "Saint Peter's",
               "value": "Saint Peter's",
-            },
-            Object {
-              "label": "Sam Houston",
-              "value": "Sam Houston",
             },
             Object {
               "label": "Sam Houston St.",

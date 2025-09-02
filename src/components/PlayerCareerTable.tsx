@@ -636,7 +636,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     ) : undefined;
 
     player.off_title = formattedTitleOverride || (
-      <div>
+      <div className="multi_line_title_content">
         <div className="multi_line_title_row">
           <span className="multi_line_title_row_left_aligned_snippet">
             {player.year}+<b>{shortTitle}</b>

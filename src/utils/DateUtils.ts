@@ -274,7 +274,7 @@ export class DateUtils {
       return true;
     } else if (season == "2022/23" && yearClass != "Sr") {
       return true;
-    } else if (season == "2021/22" && yearClass != "Sr" && yearClass == "Jr") {
+    } else if (season == "2021/22" && yearClass != "Sr" && yearClass != "Jr") {
       return true;
     } else {
       return false;

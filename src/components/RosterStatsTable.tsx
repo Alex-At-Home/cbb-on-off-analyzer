@@ -838,9 +838,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** Utility function to build the title for the player stats */
   const insertTitle = (
-    playerName: string,
+    playerName: string | React.ReactElement,
     type: OnOffBaselineOtherEnum,
     pos: string,
+    rapmInfo?: React.ReactElement,
     otherIndex?: number
   ) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
@@ -879,6 +880,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         <span className="d-block d-xl-none">
           <b>{playerName}</b>
         </span>
+        {rapmInfo ? <span>{rapmInfo}</span> : undefined}
       </span>
     ) : (
       <span>
@@ -896,8 +898,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             otherIndex,
             numTeamPoss
           )}
+          {rapmInfo ? " " : ""}
+          {rapmInfo}
         </span>
-        <span className="d-block d-xl-none">
+        <span className="d-block d-xl-none" style={{ whiteSpace: "nowrap" }}>
           {TableDisplayUtils.addQueryInfo(
             <span>
               <b>{sub}</b> set
@@ -906,6 +910,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             type,
             otherIndex
           )}
+          {rapmInfo ? " " : ""}
+          {rapmInfo}
         </span>
       </span>
     );
@@ -1176,32 +1182,108 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               : undefined;
             //(note don't copy override across for defense, currently there are no defensive overrides and on-ball adjustments are shown elsewhere)
 
-            if (!expandedView || showGrades) {
-              const adjRapmMargin: Statistic | undefined =
-                rapm.off_adj_rapm && rapm.def_adj_rapm
-                  ? {
-                      value:
-                        (rapm.off_adj_rapm?.value || 0) -
-                        (rapm.def_adj_rapm?.value || 0),
-                    }
-                  : undefined;
+            const adjRapmMargin: Statistic | undefined =
+              rapm.off_adj_rapm && rapm.def_adj_rapm
+                ? {
+                    value:
+                      (rapm.off_adj_rapm?.value || 0) -
+                      (rapm.def_adj_rapm?.value || 0),
+                  }
+                : undefined;
 
-              if (adjRapmMargin) {
-                if (stat.off_adj_rtg.override || stat.off_adj_rtg.override) {
-                  adjRapmMargin.override = "Luck/Manual/On-Ball adjusted"; //(gloss over the exact details!)
-                }
-                stat.off_adj_rapm_margin = adjRapmMargin;
-                stat.off_adj_rapm_prod_margin = {
-                  value: adjRapmMargin.value! * stat.off_team_poss_pct.value!,
-                  override: adjRapmMargin.override,
-                };
+            if (adjRapmMargin) {
+              if (stat.off_adj_rtg.override || stat.def_adj_rtg.override) {
+                adjRapmMargin.override = "Luck/Manual/On-Ball adjusted"; //(gloss over the exact details!)
               }
+              stat.off_adj_rapm_margin = adjRapmMargin;
+              stat.off_adj_rapm_prod_margin = {
+                value: adjRapmMargin.value! * stat.off_team_poss_pct.value!,
+                override: adjRapmMargin.override,
+              };
             }
           }
         }
+        const maybeRapm = _.thru(
+          factorMins ? stat.off_adj_rapm_prod_margin : stat.off_adj_rapm_margin,
+          (rapmMargin) => {
+            if (rapmMargin && calcRapm && expandedView) {
+              const rapmMarginVal = rapmMargin.value ?? 0;
+              const adjMarginShadow = CommonTableDefs.getTextShadow(
+                rapmMargin,
+                CbbColors.diff10_p100_redGreen[0],
+                "20px",
+                4
+              );
+              const adjMarginEl = (
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip
+                      id={`${stat.code}${queryKey}${otherQueryIndex}rapmMargin`}
+                    >
+                      Overall player RAPM impact, in pts/100 above average.
+                    </Tooltip>
+                  }
+                >
+                  <b style={adjMarginShadow}>
+                    [{(rapmMarginVal > 0 ? "+" : "") + rapmMarginVal.toFixed(1)}
+                    ]
+                  </b>
+                </OverlayTrigger>
+              );
+              return adjMarginEl;
+            } else {
+              return undefined;
+            }
+          }
+        );
+
+        /**/
+        console.log(`${stat.key} ${_.keys(stat.roster)}`);
+
+        const playElToUse =
+          stat.roster?.player_code_id?.ncaa_id &&
+          DateUtils.shouldUsePlayerCareerPage(
+            commonParams.year || ParamDefaults.defaultYear,
+            commonParams.gender || ParamDefaults.defaultGender,
+            stat.roster?.year_class || ""
+          ) ? (
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip id={`${stat.code}${queryKey}${otherQueryIndex}Link`}>
+                  Open new tab showing all the player's seasons, in the Player
+                  Career page
+                </Tooltip>
+              }
+            >
+              <a
+                target="_blank"
+                style={{ wordWrap: "normal" }}
+                href={UrlRouting.getPlayerCareer({
+                  ncaaId: stat.roster?.player_code_id?.ncaa_id || "",
+                  showGrades,
+                  showInfoSubHeader,
+                  showPlayerPlayTypes: showPlayTypes,
+                  playerShotCharts: showShotCharts,
+                  possAsPct,
+                })}
+              >
+                {stat.key}
+              </a>
+            </OverlayTrigger>
+          ) : (
+            stat.key
+          );
 
         // Now we have the position we can build the titles:
-        stat.off_title = insertTitle(stat.key, queryKey, pos, otherQueryIndex);
+        stat.off_title = insertTitle(
+          playElToUse,
+          queryKey,
+          pos,
+          maybeRapm,
+          otherQueryIndex
+        );
 
         // Create a table for the mutable overrides:
 

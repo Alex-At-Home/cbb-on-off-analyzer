@@ -108,8 +108,15 @@ grep -E -f color_pattern.txt src/styles/bootstrap.original_superhero.css > src/s
 
 /* Some CSS for multi-line titles */
 
+.multi_line_title_content {
+  display: flex;
+  flex-direction: column; /* stack top/bottom */
+  height: 100%;           /* fill the cell’s total height */
+}
+
 .multi_line_title_row {
    display: flex;
+   flex: 1;  
    justify-content: space-between;
    align-items: center;
 }

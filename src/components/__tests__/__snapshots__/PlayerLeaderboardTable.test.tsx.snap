@@ -1631,7 +1631,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -1960,7 +1962,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -2292,7 +2296,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -2621,7 +2627,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -2953,7 +2961,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -3282,7 +3292,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -3614,7 +3626,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -3943,7 +3957,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -4275,7 +4291,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -4604,7 +4622,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -4957,7 +4977,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -5286,7 +5308,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -5618,7 +5642,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -5947,7 +5973,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -6279,7 +6307,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -6608,7 +6638,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -6940,7 +6972,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -7269,7 +7303,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -7601,7 +7637,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -7930,7 +7968,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -10052,7 +10092,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -10381,7 +10423,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -10713,7 +10757,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -11042,7 +11088,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -11374,7 +11422,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -11703,7 +11753,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -12035,7 +12087,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -12364,7 +12418,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -12696,7 +12752,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -13025,7 +13083,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -13378,7 +13438,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -13707,7 +13769,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -14039,7 +14103,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -14368,7 +14434,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -14700,7 +14768,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -15029,7 +15099,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -15361,7 +15433,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -15690,7 +15764,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -16022,7 +16098,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -16351,7 +16429,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -18483,7 +18563,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6693,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -18820,7 +18902,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6693,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -19160,7 +19244,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.754,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -19497,7 +19583,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.754,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -19837,7 +19925,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7339,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -20174,7 +20264,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7339,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -20514,7 +20606,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8373,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -20851,7 +20945,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8373,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -21191,7 +21287,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -21528,7 +21626,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -21889,7 +21989,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7999,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -22226,7 +22328,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7999,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -22566,7 +22670,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -22903,7 +23009,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -23243,7 +23351,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -23580,7 +23690,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -23920,7 +24032,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -24257,7 +24371,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -24597,7 +24713,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -24934,7 +25052,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -25295,7 +25415,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8373,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -25621,7 +25743,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8373,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -25950,7 +26074,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.9582,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -26276,7 +26402,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.9582,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -26605,7 +26733,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8865,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -26931,7 +27061,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8865,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -27252,7 +27384,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8338,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -27570,7 +27704,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8338,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -27891,7 +28027,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8198,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -28209,7 +28347,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8198,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -30328,7 +30468,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -30656,7 +30798,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -30987,7 +31131,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -31315,7 +31461,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -31646,7 +31794,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -31974,7 +32124,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -32305,7 +32457,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -32633,7 +32787,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -32964,7 +33120,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -33292,7 +33450,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -33644,7 +33804,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -33972,7 +34134,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -34303,7 +34467,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -34631,7 +34797,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -34962,7 +35130,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -35290,7 +35460,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -35621,7 +35793,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -35949,7 +36123,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -36280,7 +36456,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -36608,7 +36786,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -40491,7 +40671,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -40819,7 +41001,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.803,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -41150,7 +41334,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -41478,7 +41664,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8168,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -41809,7 +41997,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -42137,7 +42327,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8901,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -42468,7 +42660,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -42796,7 +42990,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7906,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -43127,7 +43323,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -43455,7 +43653,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8489,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -43807,7 +44007,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -44135,7 +44337,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6287,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -44466,7 +44670,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -44794,7 +45000,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7347,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -45125,7 +45333,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -45453,7 +45663,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.687,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -45784,7 +45996,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -46112,7 +46326,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -46443,7 +46659,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
@@ -46771,7 +46989,9 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.8644,
                                   }
 
-                  off_title: <div>
+                  off_title: <div
+                                    className="multi_line_title_content"
+                                  >
                                     <div
                                       className="multi_line_title_row"
                                     >
