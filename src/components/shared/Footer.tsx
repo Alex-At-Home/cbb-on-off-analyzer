@@ -122,9 +122,13 @@ const Footer: React.FunctionComponent<Props> = ({
           <span className="float-right">
             <i>
               <small>
-                PbP events from{" "}
+                PbP events and roster info from{" "}
                 <a href="https://stats.ncaa.org" target="_blank">
                   stats.ncaa.org
+                </a>{" "}
+                and{" "}
+                <a href="https://collegebasketballdata.com" target="_blank">
+                  collegebasketballdata.com
                 </a>
               </small>
             </i>
