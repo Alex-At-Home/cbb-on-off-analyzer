@@ -1148,8 +1148,28 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             }
           />
         </Col>
-        <Col xs={1} lg={2} className="mt-1">
+        <Col xs={2} lg={2} className="mt-1">
           {getCopyLinkButton()}
+          <span className="float-left pl-2">
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip id={"playerDocsTooltip"}>
+                  Go to an article describing for the contents of the table
+                  below
+                </Tooltip>
+              }
+            >
+              <a
+                target="_blank"
+                href={
+                  "https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html"
+                }
+              >
+                (?)
+              </a>
+            </OverlayTrigger>
+          </span>
         </Col>
       </Form.Group>
       <Row>

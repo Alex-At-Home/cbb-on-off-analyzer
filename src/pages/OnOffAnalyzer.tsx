@@ -485,9 +485,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       return undefined;
     }
   }
-  function maybeShowTableDocs() {
+  function maybeShowTeamDocs() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
       return "https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html";
+    } else {
+      return undefined;
+    }
+  }
+  function maybeShowPlayerDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2025/09/individual-stats-table-explanation.html";
     } else {
       return undefined;
     }
@@ -500,7 +507,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         screenSize={otherCardSize}
         title="Team Analysis"
-        helpLink={maybeShowTableDocs()}
+        helpLink={maybeShowTeamDocs()}
       >
         <TeamStatsTable
           key={shouldReloadTableParams}
@@ -526,6 +533,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         screenSize={otherCardSize}
         title="Individual Analysis"
+        helpLink={maybeShowPlayerDocs()}
       >
         <RosterStatsTable
           key={shouldReloadTableParams}

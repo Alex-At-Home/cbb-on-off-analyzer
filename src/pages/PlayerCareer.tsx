@@ -211,6 +211,14 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
 
   // View
 
+  function maybeShowPlayerDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2025/09/individual-stats-table-explanation.html";
+    } else {
+      return undefined;
+    }
+  }
+
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return (
@@ -269,6 +277,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           minimizeMargin={false}
           title={`Yearly Stats${currPlayer ? `: [${currPlayer}]` : ""}`}
           extraElement={playerFinder}
+          helpLink={maybeShowPlayerDocs()}
         >
           {table}
         </GenericCollapsibleCard>

@@ -44,7 +44,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   const optionalHelpLink = () => {
     if (helpLink) {
       return (
-        <span className="float-right">
+        <span className="float-right pl-2">
           <a target="_blank" href={helpLink}>
             <small>(?)</small>
           </a>
@@ -86,8 +86,8 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
               ({showTable ? "+" : "-"}) {title}
             </a>
           </span>
-          {optionalExtraElement()}
           {optionalHelpLink()}
+          {optionalExtraElement()}
         </Card.Title>
         {showSummaryIfHidden()}
         <Collapse in={showTable}>
