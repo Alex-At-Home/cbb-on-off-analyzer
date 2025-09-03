@@ -1661,6 +1661,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const handleTeamClear = () => {
     // Update state
     setTeam("");
+    setGender("Men");
     setShowTeamModal(false);
 
     // Clear cache entries
@@ -2021,7 +2022,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               <Card.Body>
                 <Card.Title>Player Career View</Card.Title>
                 <Card.Text>
-                  My newest page! Search for players (currently 2021+) using
+                  My newest page! Search for players (currently 2018+) using
                   auto-complete; then view and compare their stats, shot charts,
                   play styles, and more across seasons and All/Conference/T100
                   samples. Just start typing below...
@@ -2029,6 +2030,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   <PlayerFinderTextBox
                     playerCurrSelected={false}
+                    currGender={gender}
                     onSelectPlayer={function (
                       ncaaId: string,
                       gender: string

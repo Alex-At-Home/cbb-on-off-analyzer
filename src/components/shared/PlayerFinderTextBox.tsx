@@ -78,7 +78,7 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                   ? "Women"
                   : "Men";
                 if (
-                  !playerCurrSelected ||
+                  (!playerCurrSelected && !currGender) ||
                   gender == (currGender || ParamDefaults.defaultGender)
                 ) {
                   const id = r.roster?.raw?.ncaa_id;
