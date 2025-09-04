@@ -283,7 +283,13 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
               title,
               quickSwitch,
               quickSwitchOptions,
-              setQuickSwitch,
+              (newSetting, fromTimer) => {
+                if (fromTimer) {
+                  setQuickSwitch((curr) => (curr ? undefined : newSetting));
+                } else {
+                  setQuickSwitch(newSetting);
+                }
+              },
               quickSwitchTimer,
               setQuickSwitchTimer
             )

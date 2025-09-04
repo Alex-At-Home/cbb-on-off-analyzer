@@ -279,8 +279,9 @@ export class PlayTypeDiagUtils {
     title: string,
     quickSwitch: string | undefined,
     quickSwitchOptions: { title?: string }[] | undefined,
-    setQuickSwitch: (
-      callback: (curr: string | undefined) => string | undefined
+    updateQuickSwitch: (
+      newSetting: string | undefined,
+      fromTimer: boolean
     ) => void,
     quickSwitchTimer: NodeJS.Timer | undefined,
     setQuickSwitchTimer: (
@@ -350,14 +351,14 @@ export class PlayTypeDiagUtils {
         clearInterval(quickSwitchTimer);
       }
       if (quickSwitch) {
-        setQuickSwitch((curr) => undefined);
+        updateQuickSwitch(undefined, false);
       } else {
-        setQuickSwitch((curr) => newQuickSwitch);
+        updateQuickSwitch(newQuickSwitch, false);
       }
       if (newQuickSwitch) {
         setQuickSwitchTimer(
           setInterval(() => {
-            setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+            updateQuickSwitch(newQuickSwitch, true);
           }, 4000)
         );
       } else {
@@ -378,7 +379,10 @@ export class PlayTypeDiagUtils {
             onClick={(e) => {
               e.preventDefault();
               if (!quickSwitchTimer) {
-                setQuickSwitch((curr) => (quickSwitch == t ? undefined : t)); //(ie toggle)
+                updateQuickSwitch(
+                  quickSwitch == t ? undefined : t, //(ie toggle)
+                  false
+                );
               } else {
                 quickSwitchTimerLogic(undefined);
               }
@@ -412,13 +416,14 @@ export class PlayTypeDiagUtils {
                     onClick={(e) => {
                       e.preventDefault();
                       if (quickSwitchExtra === "extra" && t === quickSwitch) {
-                        setQuickSwitch((curr) => undefined);
+                        updateQuickSwitch(undefined, false);
                       } else {
-                        setQuickSwitch((curr) =>
+                        updateQuickSwitch(
                           quickSwitch ==
-                          `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`
+                            `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`
                             ? undefined
-                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`
+                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`,
+                          false
                         );
                       }
                     }}
@@ -434,13 +439,14 @@ export class PlayTypeDiagUtils {
                     onClick={(e) => {
                       e.preventDefault();
                       if (quickSwitchExtra === "diff" && t === quickSwitch) {
-                        setQuickSwitch((curr) => undefined);
+                        updateQuickSwitch(undefined, false);
                       } else {
-                        setQuickSwitch((curr) =>
+                        updateQuickSwitch(
                           quickSwitch ==
-                          `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`
+                            `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`
                             ? undefined
-                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`
+                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`,
+                          false
                         );
                       }
                     }}

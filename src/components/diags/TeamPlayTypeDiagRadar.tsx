@@ -851,15 +851,20 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           title,
           quickSwitchBase,
           quickSwitchOptions,
-          (callback: (curr: string | undefined) => string | undefined) => {
-            setQuickSwitch((curr) => {
-              const newCurr = callback(curr);
-              updateConfig({
-                ...incomingConfig,
-                quickSwitch: title + quickSwitchTitleDelim + newCurr,
+          (newSetting, fromTimer) => {
+            if (fromTimer) {
+              setQuickSwitch((curr) => (curr ? undefined : newSetting));
+            } else {
+              //TODO call onChangeChartOpts
+              setQuickSwitch((__) => {
+                const newCurr = newSetting;
+                updateConfig({
+                  ...incomingConfig,
+                  quickSwitch: title + quickSwitchTitleDelim + newCurr,
+                });
+                return newCurr;
               });
-              return newCurr;
-            });
+            }
           },
           quickSwitchTimer,
           setQuickSwitchTimer,

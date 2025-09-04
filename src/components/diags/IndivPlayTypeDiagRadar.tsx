@@ -65,6 +65,7 @@ export type Props = {
   teamStats: TeamStatSet;
   avgEfficiency: number;
   quickSwitchOptions?: Props[];
+  onChangeChartOpts?: (opts: PlayerStyleOpts) => void; //(needs to be optional for quick switch options)
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
@@ -81,6 +82,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   teamStats: teamStatsIn,
   avgEfficiency,
   quickSwitchOptions,
+  onChangeChartOpts,
   showGrades,
   grades,
   showHelp,
@@ -585,7 +587,18 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 title,
                 quickSwitchBase,
                 quickSwitchOptions,
-                setQuickSwitch,
+                (newSetting, fromTimer) => {
+                  if (fromTimer) {
+                    setQuickSwitch((curr) => (curr ? undefined : newSetting));
+                  } else {
+                    onChangeChartOpts?.({
+                      rawPpp: !adjustForSos,
+                      playType: possFreqType,
+                      quickSwitch: newSetting,
+                    });
+                    setQuickSwitch(newSetting);
+                  }
+                },
                 quickSwitchTimer,
                 setQuickSwitchTimer,
                 quickSwitchExtra,
@@ -603,12 +616,12 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {PlayTypeDiagUtils.buildAdjustedVsRawControls(
                 mainSosAdjustment,
                 adjustForSos,
-                setAdjustForSos
+                setAdjustForSos //TODO
               )}
               {" | "}
               {PlayTypeDiagUtils.buildFrequencyType(
                 possFreqType,
-                setPossFreqType
+                setPossFreqType //TODO
               )}
               {navigationLinkOverride ? " | " : null}
               {navigationLinkOverride}
