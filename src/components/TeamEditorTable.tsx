@@ -803,6 +803,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           ) : null}
         </Tooltip>
       );
+      const playerCareerTooltip = (
+        <Tooltip id={`career_${triple.orig.code}`}>
+          Open new tab showing all the player's seasons, in the Player Career
+          Page
+        </Tooltip>
+      );
       const name = triple.orig.key;
       const maybeTransferName = otherPlayerCache[triple.key] ? (
         <i>{name}</i>
@@ -813,11 +819,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const showLinks =
         !triple.manualProfile ||
         ((!offSeasonMode || evalMode) && triple.actualResults);
+      const usePlayerCareerPage =
+        showLinks &&
+        triple.orig.roster?.ncaa_id &&
+        DateUtils.shouldUsePlayerCareerPage(
+          year,
+          gender,
+          triple.orig.roster?.year_class || ""
+        );
       const playerLink = showLinks ? (
-        <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
+        <OverlayTrigger
+          placement="auto"
+          overlay={
+            usePlayerCareerPage ? playerCareerTooltip : playerLboardTooltip
+          }
+        >
           <a
             target="_blank"
-            href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}
+            href={
+              usePlayerCareerPage
+                ? UrlRouting.getPlayerCareer({
+                    ncaaId: triple.orig.roster?.ncaa_id,
+                    showInfoSubHeader: true,
+                  })
+                : UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)
+            }
           >
             <b>
               {maybeTransferName}
