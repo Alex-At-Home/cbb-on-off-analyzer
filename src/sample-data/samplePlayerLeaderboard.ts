@@ -236,6 +236,7 @@ export const samplePlayerLeaderboard: Record<string, any> = {
       },
       posConfidences: [0.0309, 0.263, 0.4538, 0.2519, 0.0003],
       roster: {
+        ncaa_id: "9999",
         number: "2",
         height: "6-9",
         year_class: "Fr",

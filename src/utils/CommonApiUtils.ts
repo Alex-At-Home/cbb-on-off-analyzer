@@ -194,13 +194,8 @@ export class CommonApiUtils {
                   params.team.toString(),
                   params.year.toString(),
                   params.gender.toString()
-                ) || { use_team: null, index_template: null, year: null }
+                ) || { index_template: null, year: null }
               : null;
-
-          if (team?.use_team) {
-            // User has entered a team that has changed their name - use the correct name
-            params.team = team?.use_team;
-          }
 
           // The efficiency is either stored in the project or retrieved on the fly from the ES store
           const genderYearKey = `${params.gender}_${params.year}`;

@@ -236,7 +236,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
 
-  const teamList =
+  const teamList = _.flatMap(
     year == "All"
       ? _.keys(AvailableTeams.byName)
       : _.flatMap(AvailableTeams.byName, (teams, __) => {
@@ -244,7 +244,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             (t) => t.year == year && t.gender == gender
           );
           return maybeTeam ? [maybeTeam.team] : [];
-        });
+        }),
+    (team) => {
+      // Add aliases in:
+      return [team].concat(AvailableTeams.teamAliases[team] || []);
+    }
+  );
+
+  /**/
+  console.log(teamList.filter((p) => p == "NIU"));
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
@@ -610,6 +618,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     const rowsForEachTeam = teamsPhase2.map((team, teamIndex) => {
       const teamTooltip = (
         <Tooltip id={`team_${teamIndex}`}>
+          {AvailableTeams.teamAliases[team.team_name] ? (
+            <>
+              Other names over the years:{" "}
+              {AvailableTeams.teamAliases[team.team_name].join("; ")}
+              <br />
+              <br />
+            </>
+          ) : undefined}
           Open new tab with a detailed analysis view (roster, play style info,
           on/off) for this team
         </Tooltip>

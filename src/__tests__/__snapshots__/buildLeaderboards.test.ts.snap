@@ -335,7 +335,7 @@ Array [
       "year": "2020/21",
     },
     Object {
-      "_id": "AaWiggins_Men_2020_all",
+      "_id": "4397183_Men_2020_all",
       "adj_prod_margin_rank": 2,
       "adj_rapm_margin_rank": 2,
       "adj_rapm_prod_margin_rank": 2,
@@ -582,9 +582,9 @@ Array [
       ],
       "roster": Object {
         "height": "6-6",
-        "ncaa_id": undefined,
+        "ncaa_id": "4397183",
         "number": "2",
-        "origin": undefined,
+        "origin": "Greensboro, NC",
         "pos": "G",
         "year_class": "Jr",
       },
@@ -1483,7 +1483,7 @@ Array [
         },
         "height_in": 78,
         "key": "Wiggins, Aaron",
-        "ncaa_id": undefined,
+        "ncaa_id": "4397183",
         "off_3pr": Object {
           "value": 0.5566666666666666,
         },
@@ -2005,7 +2005,7 @@ Array [
         },
         "height_in": 78,
         "key": "Wiggins, Aaron",
-        "ncaa_id": undefined,
+        "ncaa_id": "4397183",
         "off_3pr": Object {
           "value": 0.5566666666666666,
         },
@@ -2527,7 +2527,7 @@ Array [
         },
         "height_in": 78,
         "key": "Wiggins, Aaron",
-        "ncaa_id": undefined,
+        "ncaa_id": "4397183",
         "off_3pr": Object {
           "value": 0.5566666666666666,
         },
@@ -3054,7 +3054,7 @@ Array [
         },
         "height_in": 78,
         "key": "Wiggins, Aaron",
-        "ncaa_id": undefined,
+        "ncaa_id": "4397183",
         "off_3pr": Object {
           "value": 0.5566666666666666,
         },

@@ -146,6 +146,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "Albany (NY)",
             },
             Object {
+              "label": "UAlbany",
+              "value": "Albany (NY)",
+            },
+            Object {
               "label": "Alcorn",
               "value": "Alcorn",
             },
@@ -434,6 +438,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -542,11 +550,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -854,6 +870,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -891,6 +911,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -1054,6 +1078,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -1071,6 +1099,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -2386,16 +2418,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_MyPowell"
+                          id="career_MyPowell"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Powell%2C%20Myles%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4065816&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -2905,16 +2937,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -3132,16 +3164,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DaMorsell"
+                          id="career_DaMorsell"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Morsell%2C%20Darryl%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -3350,16 +3382,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -3701,16 +3733,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -4112,16 +4144,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -4595,13 +4627,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -4700,13 +4732,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -4735,13 +4767,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -4910,13 +4942,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -4945,13 +4977,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -5015,13 +5047,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -5190,13 +5222,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -5330,13 +5362,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -5400,13 +5432,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -5435,13 +5467,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -5470,13 +5502,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -5575,13 +5607,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -5645,13 +5677,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -5862,6 +5894,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
             },
             Object {
               "label": "Albany (NY)",
+              "value": "Albany (NY)",
+            },
+            Object {
+              "label": "UAlbany",
               "value": "Albany (NY)",
             },
             Object {
@@ -6153,6 +6189,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -6261,11 +6301,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -6573,6 +6621,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -6610,6 +6662,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -6773,6 +6829,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -6790,6 +6850,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -8105,16 +8169,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_ErAyala"
+                          id="career_ErAyala"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Ayala%2C%20Eric%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8456,16 +8520,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8674,16 +8738,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DaMorsell"
+                          id="career_DaMorsell"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Morsell%2C%20Darryl%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8892,16 +8956,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -9133,16 +9197,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -9544,16 +9608,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -10008,13 +10072,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -10113,13 +10177,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -10148,13 +10212,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -10323,13 +10387,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -10358,13 +10422,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -10428,13 +10492,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -10603,13 +10667,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -10743,13 +10807,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -10813,13 +10877,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -10848,13 +10912,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -10883,13 +10947,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -10988,13 +11052,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -11058,13 +11122,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -11271,6 +11335,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             },
             Object {
               "label": "Albany (NY)",
+              "value": "Albany (NY)",
+            },
+            Object {
+              "label": "UAlbany",
               "value": "Albany (NY)",
             },
             Object {
@@ -11562,6 +11630,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -11670,11 +11742,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -11982,6 +12062,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -12019,6 +12103,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -12182,6 +12270,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -12199,6 +12291,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -13645,16 +13741,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_ErAyala"
+                          id="career_ErAyala"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Ayala%2C%20Eric%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -13863,16 +13959,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_HaHart"
+                          id="career_HaHart"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hart%2C%20Hakim%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14081,16 +14177,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14299,16 +14395,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14517,16 +14613,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JsHamilton"
+                          id="career_JsHamilton"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hamilton%2C%20Jairus%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14854,16 +14950,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -15265,16 +15361,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -15843,13 +15939,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -15948,13 +16044,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -15983,13 +16079,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -16158,13 +16254,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -16193,13 +16289,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -16263,13 +16359,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -16438,13 +16534,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -16578,13 +16674,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -16648,13 +16744,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -16683,13 +16779,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -16718,13 +16814,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -16823,13 +16919,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -16893,13 +16989,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -17010,14 +17106,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -2.1604,
+                                            "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3036,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.839,
+                                            "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9609,
                                           }
@@ -17090,14 +17186,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.4708,
+                                            "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7398,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.2912,
+                                            "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5273,
                                           }
@@ -17170,14 +17266,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.7666,
+                                            "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.8313,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.264,
+                                            "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3104,
                                           }
@@ -17210,14 +17306,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.7478,
+                                            "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2314,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5671,
+                                            "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.9339,
                                           }
@@ -17290,14 +17386,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -3.4966,
+                                            "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.5468,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.8888,
+                                            "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9159,
                                           }
@@ -17330,14 +17426,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5171,
+                                            "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.6975,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.2571,
+                                            "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.3469,
                                           }
@@ -17410,14 +17506,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 1.4913,
+                                            "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.3544,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 0.6258,
+                                            "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.5684,
                                           }
@@ -17666,6 +17762,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             },
             Object {
               "label": "Albany (NY)",
+              "value": "Albany (NY)",
+            },
+            Object {
+              "label": "UAlbany",
               "value": "Albany (NY)",
             },
             Object {
@@ -17957,6 +18057,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -18065,11 +18169,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -18377,6 +18489,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -18414,6 +18530,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -18577,6 +18697,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -18594,6 +18718,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -19921,16 +20049,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_MyPowell"
+                          id="career_MyPowell"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Powell%2C%20Myles%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4065816&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -20467,16 +20595,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_HaHart"
+                          id="career_HaHart"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hart%2C%20Hakim%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -20662,16 +20790,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -20880,16 +21008,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21098,16 +21226,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JsHamilton"
+                          id="career_JsHamilton"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hamilton%2C%20Jairus%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21435,16 +21563,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21846,16 +21974,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -22443,13 +22571,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -22548,13 +22676,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -22583,13 +22711,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -22758,13 +22886,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -22793,13 +22921,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -22863,13 +22991,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -23038,13 +23166,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -23178,13 +23306,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -23248,13 +23376,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -23283,13 +23411,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -23318,13 +23446,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -23423,13 +23551,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -23493,13 +23621,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -23610,14 +23738,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -2.1604,
+                                            "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3036,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.839,
+                                            "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9609,
                                           }
@@ -23690,14 +23818,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.4708,
+                                            "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7398,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.2912,
+                                            "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5273,
                                           }
@@ -23770,14 +23898,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.7666,
+                                            "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.8313,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.264,
+                                            "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3104,
                                           }
@@ -23810,14 +23938,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.7478,
+                                            "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2314,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5671,
+                                            "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.9339,
                                           }
@@ -23890,14 +24018,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -3.4966,
+                                            "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.5468,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.8888,
+                                            "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9159,
                                           }
@@ -23930,14 +24058,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5171,
+                                            "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.6975,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.2571,
+                                            "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.3469,
                                           }
@@ -24010,14 +24138,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 1.4913,
+                                            "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.3544,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 0.6258,
+                                            "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.5684,
                                           }
@@ -24270,6 +24398,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
             },
             Object {
               "label": "Albany (NY)",
+              "value": "Albany (NY)",
+            },
+            Object {
+              "label": "UAlbany",
               "value": "Albany (NY)",
             },
             Object {
@@ -24561,6 +24693,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -24669,11 +24805,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -24981,6 +25125,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -25018,6 +25166,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -25181,6 +25333,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -25198,6 +25354,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -26644,16 +26804,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_ErAyala"
+                          id="career_ErAyala"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Ayala%2C%20Eric%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -26862,16 +27022,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_HaHart"
+                          id="career_HaHart"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hart%2C%20Hakim%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27080,16 +27240,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27298,16 +27458,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27516,16 +27676,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JsHamilton"
+                          id="career_JsHamilton"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hamilton%2C%20Jairus%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27853,16 +28013,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -28264,16 +28424,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -28842,13 +29002,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -28947,13 +29107,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -28982,13 +29142,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -29157,13 +29317,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -29192,13 +29352,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -29262,13 +29422,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -29437,13 +29597,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -29577,13 +29737,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -29647,13 +29807,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -29682,13 +29842,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -29717,13 +29877,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -29822,13 +29982,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -29892,13 +30052,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -30009,14 +30169,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -2.1604,
+                                            "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3036,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.839,
+                                            "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9609,
                                           }
@@ -30089,14 +30249,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.4708,
+                                            "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7398,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.2912,
+                                            "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5273,
                                           }
@@ -30169,14 +30329,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.7666,
+                                            "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.8313,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.264,
+                                            "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3104,
                                           }
@@ -30209,14 +30369,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.7478,
+                                            "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2314,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5671,
+                                            "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.9339,
                                           }
@@ -30289,14 +30449,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -3.4966,
+                                            "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.5468,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.8888,
+                                            "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9159,
                                           }
@@ -30329,14 +30489,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5171,
+                                            "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.6975,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.2571,
+                                            "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.3469,
                                           }
@@ -30409,14 +30569,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 1.4913,
+                                            "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.3544,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 0.6258,
+                                            "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.5684,
                                           }
@@ -30831,6 +30991,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "Albany (NY)",
             },
             Object {
+              "label": "UAlbany",
+              "value": "Albany (NY)",
+            },
+            Object {
               "label": "Alcorn",
               "value": "Alcorn",
             },
@@ -31119,6 +31283,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -31227,11 +31395,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -31539,6 +31715,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -31576,6 +31756,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -31739,6 +31923,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -31756,6 +31944,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -33083,16 +33275,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AnCowan"
+                          id="career_AnCowan"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Cowan%2C%20Anthony%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4066371&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -33420,16 +33612,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_ErAyala"
+                          id="career_ErAyala"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Ayala%2C%20Eric%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -33638,16 +33830,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_HaHart"
+                          id="career_HaHart"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hart%2C%20Hakim%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -33856,16 +34048,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34074,16 +34266,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DaMorsell"
+                          id="career_DaMorsell"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Morsell%2C%20Darryl%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34292,16 +34484,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34510,16 +34702,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JsHamilton"
+                          id="career_JsHamilton"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Hamilton%2C%20Jairus%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34847,16 +35039,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -35258,16 +35450,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -35476,16 +35668,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_GaSmith"
+                          id="career_GaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Galin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277815&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -36136,14 +36328,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -2.1604,
+                                            "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3036,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.839,
+                                            "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9609,
                                           }
@@ -36216,14 +36408,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.4708,
+                                            "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7398,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.2912,
+                                            "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5273,
                                           }
@@ -36296,14 +36488,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.7666,
+                                            "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.8313,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.264,
+                                            "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3104,
                                           }
@@ -36336,14 +36528,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.7478,
+                                            "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2314,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5671,
+                                            "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.9339,
                                           }
@@ -36416,14 +36608,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -3.4966,
+                                            "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.5468,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -1.8888,
+                                            "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.9159,
                                           }
@@ -36456,14 +36648,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.5171,
+                                            "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.6975,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": -0.2571,
+                                            "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.3469,
                                           }
@@ -36536,14 +36728,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                       def_adj_rapm: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 1.4913,
+                                            "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.3544,
                                           }
 
                       def_adj_rapm_prod: Object {
                                             "extraInfo": "PREPROCESSING_WARNING",
-                                            "old_value": 0.6258,
+                                            "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.5684,
                                           }
@@ -36958,6 +37150,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "Albany (NY)",
             },
             Object {
+              "label": "UAlbany",
+              "value": "Albany (NY)",
+            },
+            Object {
               "label": "Alcorn",
               "value": "Alcorn",
             },
@@ -37246,6 +37442,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -37354,11 +37554,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -37666,6 +37874,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -37703,6 +37915,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -37866,6 +38082,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -37883,6 +38103,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -39198,16 +39422,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AnCowan"
+                          id="career_AnCowan"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Cowan%2C%20Anthony%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4066371&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -39416,16 +39640,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_ErAyala"
+                          id="career_ErAyala"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Ayala%2C%20Eric%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -39749,16 +39973,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_AaWiggins"
+                          id="career_AaWiggins"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Wiggins%2C%20Aaron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -39967,16 +40191,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DaMorsell"
+                          id="career_DaMorsell"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Morsell%2C%20Darryl%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -40185,16 +40409,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_DoScott"
+                          id="career_DoScott"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Scott%2C%20Donta%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -40518,16 +40742,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_JaSmith"
+                          id="career_JaSmith"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Smith%2C%20Jalen%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -40929,16 +41153,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     <OverlayTrigger
                       overlay={
                         <Tooltip
-                          id="lboard_BrFernando"
+                          id="career_BrFernando"
                           placement="right"
                         >
-                          Open new tab showing all the player's seasons, in the multi-year version of the leaderboard
+                          Open new tab showing all the player's seasons, in the Player Career Page
                         </Tooltip>
                       }
                       placement="auto"
                     >
                       <a
-                        href="/PlayerLeaderboard?filter=Fernando%2C%20Bruno%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -41669,6 +41893,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Albany (NY)",
             },
             Object {
+              "label": "UAlbany",
+              "value": "Albany (NY)",
+            },
+            Object {
               "label": "Alcorn",
               "value": "Alcorn",
             },
@@ -41957,6 +42185,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -42065,11 +42297,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -42377,6 +42617,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -42414,6 +42658,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -42577,6 +42825,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -42594,6 +42846,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -44632,13 +44888,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -44737,13 +44993,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -44772,13 +45028,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -44947,13 +45203,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -44982,13 +45238,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -45052,13 +45308,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -45227,13 +45483,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -45367,13 +45623,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -45437,13 +45693,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -45472,13 +45728,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -45507,13 +45763,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -45612,13 +45868,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -45682,13 +45938,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -45903,6 +46159,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
             Object {
               "label": "Albany (NY)",
+              "value": "Albany (NY)",
+            },
+            Object {
+              "label": "UAlbany",
               "value": "Albany (NY)",
             },
             Object {
@@ -46194,6 +46454,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -46302,11 +46566,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -46614,6 +46886,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -46651,6 +46927,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -46814,6 +47094,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -46831,6 +47115,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {
@@ -47977,13 +48265,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.4984,
+                                            "old_value": -3.5109,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.3589,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.7117,
+                                            "old_value": -2.7213,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.6035,
                                           }
@@ -48082,13 +48370,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -4.07,
+                                            "old_value": -4.0789,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -3.9224,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -2.9141,
+                                            "old_value": -2.9205,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8084,
                                           }
@@ -48117,13 +48405,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.3832,
+                                            "old_value": -1.3883,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.2921,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.1897,
+                                            "old_value": -1.1942,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1114,
                                           }
@@ -48292,13 +48580,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -3.0257,
+                                            "old_value": -3.0336,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.8738,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.5907,
+                                            "old_value": -1.5948,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.5108,
                                           }
@@ -48327,13 +48615,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1856,
+                                            "old_value": -2.1901,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.0885,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.525,
+                                            "old_value": -1.5282,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.4572,
                                           }
@@ -48397,13 +48685,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.2385,
+                                            "old_value": -1.2445,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.1671,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.8636,
+                                            "old_value": -0.8677,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.8138,
                                           }
@@ -48572,13 +48860,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.1604,
+                                            "old_value": -2.162,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.028,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9002,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7825,
                                           }
@@ -48712,13 +49000,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.4817,
+                                            "old_value": -2.4835,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.3406,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7603,
+                                            "old_value": -1.7615,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6602,
                                           }
@@ -48782,13 +49070,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -0.8274,
+                                            "old_value": -0.8281,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.7194,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -0.594,
+                                            "old_value": -0.5944,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -0.5164,
                                           }
@@ -48817,13 +49105,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -1.8989,
+                                            "old_value": -1.9007,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.7714,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.4359,
+                                            "old_value": -1.4373,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.3395,
                                           }
@@ -48852,13 +49140,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": -2.2638,
+                                            "old_value": -2.2651,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -2.1312,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": -1.7148,
+                                            "old_value": -1.7157,
                                             "override": "Adjusted from Def 3P%",
                                             "value": -1.6143,
                                           }
@@ -48957,13 +49245,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 0.3835,
+                                            "old_value": 0.3828,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4212,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.1282,
+                                            "old_value": 0.1279,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.1407,
                                           }
@@ -49027,13 +49315,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       def_adj_rapm: Object {
-                                            "old_value": 1.7585,
+                                            "old_value": 1.7592,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 1.6898,
                                           }
 
                       def_adj_rapm_prod: Object {
-                                            "old_value": 0.5097,
+                                            "old_value": 0.5099,
                                             "override": "Adjusted from Def 3P%",
                                             "value": 0.4898,
                                           }
@@ -49244,6 +49532,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             },
             Object {
               "label": "Albany (NY)",
+              "value": "Albany (NY)",
+            },
+            Object {
+              "label": "UAlbany",
               "value": "Albany (NY)",
             },
             Object {
@@ -49535,6 +49827,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "value": "Fairleigh Dickinson",
             },
             Object {
+              "label": "FDU",
+              "value": "Fairleigh Dickinson",
+            },
+            Object {
               "label": "Fla. Atlantic",
               "value": "Fla. Atlantic",
             },
@@ -49643,11 +49939,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "value": "Houston Baptist",
             },
             Object {
+              "label": "Houston Christian",
+              "value": "Houston Baptist",
+            },
+            Object {
               "label": "Howard",
               "value": "Howard",
             },
             Object {
               "label": "IUPUI",
+              "value": "IUPUI",
+            },
+            Object {
+              "label": "IU Indy",
               "value": "IUPUI",
             },
             Object {
@@ -49955,6 +50259,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "value": "Nicholls St.",
             },
             Object {
+              "label": "Nicholls",
+              "value": "Nicholls St.",
+            },
+            Object {
               "label": "Norfolk St.",
               "value": "Norfolk St.",
             },
@@ -49992,6 +50300,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             },
             Object {
               "label": "Northern Ill.",
+              "value": "Northern Ill.",
+            },
+            Object {
+              "label": "NIU",
               "value": "Northern Ill.",
             },
             Object {
@@ -50155,6 +50467,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "value": "Saint Francis (PA)",
             },
             Object {
+              "label": "Saint Francis",
+              "value": "Saint Francis (PA)",
+            },
+            Object {
               "label": "Saint Joseph's",
               "value": "Saint Joseph's",
             },
@@ -50172,6 +50488,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             },
             Object {
               "label": "Sam Houston St.",
+              "value": "Sam Houston St.",
+            },
+            Object {
+              "label": "Sam Houston",
               "value": "Sam Houston St.",
             },
             Object {

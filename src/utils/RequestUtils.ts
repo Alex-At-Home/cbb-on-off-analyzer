@@ -109,10 +109,6 @@ export class RequestUtils {
             )
           : null;
 
-      if (teamToCheck?.use_team) {
-        req.paramsObj!.team = teamToCheck.use_team;
-      }
-
       const newParamsStr = QueryUtils.stringify(req.paramsObj);
 
       if (isDebug) {

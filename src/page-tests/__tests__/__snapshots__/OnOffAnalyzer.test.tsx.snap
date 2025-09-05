@@ -219,6 +219,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2025/09/individual-stats-table-explanation.html"
       minimizeMargin={true}
       screenSize="medium_screen"
       title="Individual Analysis"

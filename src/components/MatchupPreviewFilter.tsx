@@ -28,6 +28,7 @@ import {
   FilterRequestInfo,
   MatchupFilterParams,
   GameFilterParams,
+  ParamDefaults,
 } from "../utils/FilterModels";
 
 // Utils
@@ -111,8 +112,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(
     null,
-    commonParams.year || DateUtils.mostRecentYearWithData,
-    commonParams.gender || "Men"
+    commonParams.year || ParamDefaults.defaultYear,
+    commonParams.gender || ParamDefaults.defaultGender
   ).filter((t) => t.team != commonParams.team);
 
   /** Bridge between the callback in CommonFilter and state management */
@@ -404,7 +405,18 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   }
   /** For use in team select */
   function getCurrentTeamOrPlaceholder() {
-    return game == "" ? { label: "Choose Game..." } : stringToOption(game);
+    const currTeam = AvailableTeams.calculateCurrentLabel(
+      game,
+      commonParams.year || ParamDefaults.defaultYear,
+      commonParams.gender || ParamDefaults.defaultGender,
+      (aliasUpdate) => {
+        setGame(aliasUpdate);
+      }
+    ) || {
+      value: undefined,
+      label: "Choose Team...",
+    };
+    return currTeam;
   }
 
   function getCurrentGameFilter() {
@@ -570,7 +582,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
                   options={[stringToOption(AvailableTeams.noOpponent)].concat(
-                    teamList.map((r) => stringToOption(r.team))
+                    AvailableTeams.teamsToLabels(teamList)
                   )}
                   onChange={(option: any) => {
                     setGame((option as any)?.value);

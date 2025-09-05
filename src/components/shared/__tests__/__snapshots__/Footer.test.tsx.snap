@@ -37,13 +37,22 @@ exports[`Footer Footer - should create snapshot 1`] = `
       >
         <i>
           <small>
-            PbP events from
+            PbP events and roster info from
              
             <a
               href="https://stats.ncaa.org"
               target="_blank"
             >
               stats.ncaa.org
+            </a>
+             
+            and
+             
+            <a
+              href="https://collegebasketballdata.com"
+              target="_blank"
+            >
+              collegebasketballdata.com
             </a>
           </small>
         </i>

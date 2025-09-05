@@ -1,6 +1,7 @@
+import _ from "lodash";
+
 export type AvailableTeamMeta = {
   team: string;
-  use_team?: string;
   year: string;
   gender: string;
   index_template: string;
@@ -12085,53 +12086,8 @@ export class AvailableTeams {
         category: "mid",
         source_id: "2459",
       },
-      {
-        team: "Northern Ill.",
-        use_team: "NIU",
-        year: "2022/23",
-        gender: "Men",
-        index_template: "mac",
-        category: "mid",
-        source_id: "2459",
-      },
-      {
-        team: "Northern Ill.",
-        use_team: "NIU",
-        year: "2023/24",
-        gender: "Men",
-        index_template: "mac",
-        category: "mid",
-        source_id: "2459",
-      },
-      {
-        team: "Northern Ill.",
-        use_team: "NIU",
-        year: "2024/25",
-        gender: "Men",
-        index_template: "mac",
-        category: "mid",
-        source_id: "2459",
-      },
     ],
     NIU: [
-      {
-        team: "NIU",
-        use_team: "Northern Ill.",
-        year: "2020/21",
-        gender: "Men",
-        index_template: "mac",
-        category: "mid",
-        source_id: "2459",
-      },
-      {
-        team: "NIU",
-        use_team: "Northern Ill.",
-        year: "2021/22",
-        gender: "Men",
-        index_template: "mac",
-        category: "mid",
-        source_id: "2459",
-      },
       {
         team: "NIU",
         year: "2022/23",
@@ -22014,33 +21970,85 @@ export class AvailableTeams {
   static getTeams(
     team: string | null,
     year: string | null,
-    gender: string | null,
-    includeNameChanged: Boolean = false
+    gender: string | null
   ): Array<AvailableTeamMeta> {
     // Special cases
     if (year == AvailableTeams.extraTeamName && gender == "Men") {
       return AvailableTeams.extraTeams;
     } else {
+      const aliasTeams = team ? AvailableTeams.teamAliases[team] || [] : [];
       const list = team
-        ? AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)
+        ? _.isEmpty(aliasTeams)
+          ? AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)
+          : _.flatMap(
+              [team].concat(aliasTeams),
+              (t) =>
+                AvailableTeams.byName[t] || ([] as Array<AvailableTeamMeta>)
+            )
         : AvailableTeams.flatten(Object.values(AvailableTeams.byName));
 
-      return list.filter(function (record) {
+      const filteredList = list.filter(function (record) {
         return (
-          (!team || team == record.team) &&
+          (!team ||
+            team == record.team ||
+            (aliasTeams && _.find(aliasTeams, (t) => t == record.team))) &&
           (!year || year == record.year) &&
-          (!gender || gender == record.gender) &&
-          (includeNameChanged || !record.use_team)
+          (!gender || gender == record.gender)
         );
       });
+      return team && !year
+        ? _.sortBy(filteredList, (t) => t.year)
+        : filteredList;
     }
   }
+
+  /** Creates a dropdown-friendly array of teams including aliases (label field) */
+  static teamsToLabels(
+    teams: AvailableTeamMeta[]
+  ): { label: string; value: string }[] {
+    return _.flatMap(teams, (team) => {
+      return [team.team]
+        .concat(AvailableTeams.teamAliases[team.team] || [])
+        .map((alias) => {
+          return { label: alias, value: team.team };
+        });
+    });
+  }
+
+  /** When a year changes, recalculate if the alias is now the actual value / vice versa */
+  static calculateCurrentLabel(
+    team: string,
+    year: string,
+    gender: string,
+    onAliasChange: (aliasUpdate: string) => void
+  ): { label: string; value: string } | undefined {
+    if (_.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(team)) {
+      return undefined;
+    } else if (_.isEmpty(AvailableTeams.teamAliases[team])) {
+      return { label: team, value: team };
+    } else {
+      const label = _.find(
+        AvailableTeams.teamsToLabels(
+          AvailableTeams.getTeams(team, year, gender)
+        ),
+        (o) => o.label == o.value
+      );
+      if (label && label.value && label.value != team) {
+        onAliasChange(label.value);
+      }
+
+      return label;
+    }
+  }
+
   static getTeam(
     team: string,
     year: string,
     gender: string
   ): AvailableTeamMeta | null {
-    const retVal = AvailableTeams.getTeams(team, year, gender, true);
+    const retVal = AvailableTeams.getTeams(team, year, gender).filter(
+      (t) => t.team == team
+    ); //(discard aliases)
     return retVal.length > 0 ? retVal[0] : null;
   }
 }

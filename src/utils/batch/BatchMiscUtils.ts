@@ -109,9 +109,7 @@ export class BatchMiscUtils {
       )
       .filter((team) => {
         return (
-          !team.use_team && //(these are teams that have changed names - under their "not valid that year" name)
-          team.gender == inGender &&
-          (inYear == "Extra" || team.year == inYear)
+          team.gender == inGender && (inYear == "Extra" || team.year == inYear)
         );
       });
 

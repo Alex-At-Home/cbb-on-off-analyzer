@@ -54,13 +54,18 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
     return { value: val, label: val };
   };
 
-  // Helper function to get current team or placeholder
-  const getCurrentTeamOrPlaceholder = () => {
-    if (selectedTeam) {
-      return stringToOption(selectedTeam);
-    }
-    return null;
-  };
+  /** For use in team select */
+  function getCurrentTeamOrPlaceholder() {
+    const currTeam = AvailableTeams.calculateCurrentLabel(
+      selectedTeam,
+      selectedYear,
+      selectedGender,
+      (aliasUpdate) => {
+        setSelectedTeam(aliasUpdate);
+      }
+    );
+    return currTeam;
+  }
 
   // Function to handle menu list rendering (similar to CommonFilter)
   const maybeMenuList = () => {
@@ -73,14 +78,6 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
     setSelectedGender(gender);
     setSelectedTeam(team);
   }, [year, gender, team]);
-
-  // Get teams from AvailableTeams API
-  const teamList = AvailableTeams.getTeams(
-    selectedTeam,
-    selectedYear,
-    selectedGender,
-    true
-  );
 
   // Handle save action
   const handleSave = () => {
@@ -115,8 +112,7 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                       AvailableTeams.getTeams(
                         selectedTeam,
                         selectedYear,
-                        null,
-                        true
+                        null
                       ).map((r) => r.gender)
                     )
                   ).map((gender) => stringToOption(gender))}
@@ -140,8 +136,7 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                         AvailableTeams.getTeams(
                           selectedTeam,
                           null,
-                          selectedGender,
-                          true
+                          selectedGender
                         ).map((r) => r.year)
                       )
                     )
@@ -164,12 +159,9 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
                   isClearable={false}
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
-                  options={AvailableTeams.getTeams(
-                    null,
-                    selectedYear,
-                    selectedGender,
-                    true
-                  ).map((r) => stringToOption(r.team))}
+                  options={AvailableTeams.teamsToLabels(
+                    AvailableTeams.getTeams(null, selectedYear, selectedGender)
+                  )}
                   onChange={(option: any) => {
                     const selection = (option as any)?.value || "";
                     if (selectedYear == AvailableTeams.extraTeamName) {

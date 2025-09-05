@@ -243,6 +243,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "UAlbany",
               },
               Object {
+                "label": "Albany (NY)",
+                "value": "UAlbany",
+              },
+              Object {
                 "label": "Alcorn",
                 "value": "Alcorn",
               },
@@ -499,6 +503,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Utah Tech",
               },
               Object {
+                "label": "Dixie St.",
+                "value": "Utah Tech",
+              },
+              Object {
                 "label": "Drake",
                 "value": "Drake",
               },
@@ -560,6 +568,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               },
               Object {
                 "label": "FDU",
+                "value": "FDU",
+              },
+              Object {
+                "label": "Fairleigh Dickinson",
                 "value": "FDU",
               },
               Object {
@@ -671,11 +683,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Houston Christian",
               },
               Object {
+                "label": "Houston Baptist",
+                "value": "Houston Christian",
+              },
+              Object {
                 "label": "Howard",
                 "value": "Howard",
               },
               Object {
                 "label": "IU Indy",
+                "value": "IU Indy",
+              },
+              Object {
+                "label": "IUPUI",
                 "value": "IU Indy",
               },
               Object {
@@ -999,6 +1019,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Nicholls",
               },
               Object {
+                "label": "Nicholls St.",
+                "value": "Nicholls",
+              },
+              Object {
                 "label": "Norfolk St.",
                 "value": "Norfolk St.",
               },
@@ -1039,11 +1063,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Northern Colo.",
               },
               Object {
-                "label": "Northern Ill.",
-                "value": "Northern Ill.",
+                "label": "NIU",
+                "value": "NIU",
               },
               Object {
-                "label": "NIU",
+                "label": "Northern Ill.",
                 "value": "NIU",
               },
               Object {
@@ -1219,6 +1243,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Saint Francis",
               },
               Object {
+                "label": "Saint Francis (PA)",
+                "value": "Saint Francis",
+              },
+              Object {
                 "label": "Saint Joseph's",
                 "value": "Saint Joseph's",
               },
@@ -1236,6 +1264,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               },
               Object {
                 "label": "Sam Houston",
+                "value": "Sam Houston",
+              },
+              Object {
+                "label": "Sam Houston St.",
                 "value": "Sam Houston",
               },
               Object {
@@ -1388,6 +1420,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               },
               Object {
                 "label": "East Texas A&M",
+                "value": "East Texas A&M",
+              },
+              Object {
+                "label": "Tex. A&M-Commerce",
                 "value": "East Texas A&M",
               },
               Object {
@@ -1676,6 +1712,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           value={
             Object {
               "label": "Choose Team...",
+              "value": undefined,
             }
           }
         />

@@ -174,12 +174,18 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     {} as Record<string, Record<string, RosterEntry>>
   );
 
-  const teamList = _.flatMap(AvailableTeams.byName, (teams, __) => {
-    const maybeTeam = teams.find(
-      (t) => t.year == yearWithStats && t.gender == gender
-    );
-    return maybeTeam ? [maybeTeam.team] : [];
-  });
+  const teamList = _.flatMap(
+    _.flatMap(AvailableTeams.byName, (teams, __) => {
+      const maybeTeam = teams.find(
+        (t) => t.year == yearWithStats && t.gender == gender
+      );
+      return maybeTeam ? [maybeTeam.team] : [];
+    }),
+    (team) => {
+      // Add aliases in:
+      return [team].concat(AvailableTeams.teamAliases[team] || []);
+    }
+  );
 
   if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
     const fetchRosterJson = (teamName: string) => {
@@ -752,6 +758,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 <br />
               </span>
             ) : null}
+            {AvailableTeams.teamAliases[t.team] ? (
+              <>
+                Other names over the years:{" "}
+                {AvailableTeams.teamAliases[t.team].join("; ")}
+                <br />
+                <br />
+              </>
+            ) : undefined}
             Open new tab with the detailed off-season predictions for this team
             {maybeOverriddenEl ? <span> (with these edits)</span> : null}
           </Tooltip>

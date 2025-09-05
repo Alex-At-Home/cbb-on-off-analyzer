@@ -2840,7 +2840,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   }
   /** For use in team select */
   function getCurrentTeamOrPlaceholder() {
-    return team == "" ? { label: "Choose Team..." } : stringToOption(team);
+    const currTeam = AvailableTeams.calculateCurrentLabel(
+      team,
+      yearWithStats,
+      gender,
+      (aliasUpdate) => {
+        setTeam(aliasUpdate);
+      }
+    ) || {
+      value: undefined,
+      label: "Choose Team...",
+    };
+    return currTeam;
   }
 
   /** Handles switching between off-season and what-if mode */
@@ -2916,7 +2927,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               isClearable={false}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={getCurrentTeamOrPlaceholder()}
-              options={teamList.map((r) => stringToOption(r.team))}
+              options={AvailableTeams.teamsToLabels(teamList)}
               onChange={(option: any) => {
                 const selection = (option as any)?.value || "";
                 friendlyChange(() => {

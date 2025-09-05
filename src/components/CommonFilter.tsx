@@ -161,7 +161,7 @@ const CommonFilter: CommonFilterI = ({
     startingState.gender || ParamDefaults.defaultGender
   );
   /** Pre-calculate this */
-  const teamList = AvailableTeams.getTeams(null, year, gender, true);
+  const teamList = AvailableTeams.getTeams(null, year, gender);
 
   // Generic filters:
 
@@ -689,7 +689,18 @@ const CommonFilter: CommonFilterI = ({
   }
   /** For use in team select */
   function getCurrentTeamOrPlaceholder() {
-    return team == "" ? { label: "Choose Team..." } : stringToOption(team);
+    const currTeam = AvailableTeams.calculateCurrentLabel(
+      team,
+      year,
+      gender,
+      (aliasUpdate) => {
+        setTeam(aliasUpdate);
+      }
+    ) || {
+      value: undefined,
+      label: "Choose Team...",
+    };
+    return currTeam;
   }
 
   /** Adds the MenuList component with user prompt if there are teams fitered out*/
@@ -971,9 +982,7 @@ const CommonFilter: CommonFilterI = ({
               value={stringToOption(gender)}
               options={Array.from(
                 new Set(
-                  AvailableTeams.getTeams(team, year, null, true).map(
-                    (r) => r.gender
-                  )
+                  AvailableTeams.getTeams(team, year, null).map((r) => r.gender)
                 )
               ).map((gender) => stringToOption(gender))}
               isSearchable={false}
@@ -991,7 +1000,7 @@ const CommonFilter: CommonFilterI = ({
                 Array.from(
                   //(reverse because years are descending we want them ascending)
                   new Set(
-                    AvailableTeams.getTeams(team, null, gender, true).map(
+                    AvailableTeams.getTeams(team, null, gender).map(
                       (r) => r.year
                     )
                   )
@@ -1013,7 +1022,7 @@ const CommonFilter: CommonFilterI = ({
               isClearable={false}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={getCurrentTeamOrPlaceholder()}
-              options={teamList.map((r) => stringToOption(r.team))}
+              options={AvailableTeams.teamsToLabels(teamList)}
               onChange={(option: any) => {
                 const selection = (option as any)?.value || "";
                 if (year == AvailableTeams.extraTeamName) {
