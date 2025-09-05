@@ -566,6 +566,7 @@ export class AdvancedFilterUtils {
       "posClass",
       "posConfidences",
       "posFreqs",
+      "roster.ncaa_id",
       "roster.number",
       "roster.height",
       "roster.year_class",
