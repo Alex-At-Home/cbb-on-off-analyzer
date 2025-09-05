@@ -185,7 +185,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       if (teamName == separatorKeyword) {
         acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
       } else if (teamName != "") {
-        const teams = AvailableTeams.teamAliases[teamName] || [teamName];
+        const teams = [teamName].concat(AvailableTeams.teamAliases[teamName]);
         teams.forEach(
           (team) =>
             (acc.queryFiltersAsMap[team] =
@@ -476,6 +476,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         team.wae = wae;
         team.wins = wins;
         team.losses = losses;
+
+        // Bonus step: get the source_id and inject an _id
+        team._id = _.find(
+          [team.team_name]
+            .concat(AvailableTeams.teamAliases[team.team_name] || [])
+            .map(
+              (teamAlias) => AvailableTeams.byName[teamAlias]?.[0]?.source_id
+            ),
+          (sourceId) => !_.isEmpty(sourceId)
+        );
 
         // Ugh, so some fields are luck adjusted but we don't want that
         // TODO: longer term provide a "Luck" toggle, though it's not ideal because some stats

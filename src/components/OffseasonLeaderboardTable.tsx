@@ -121,7 +121,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       if (teamName == separatorKeyword) {
         acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
       } else if (teamName != "") {
-        const teams = AvailableTeams.teamAliases[teamName] || [teamName];
+        const teams = [teamName].concat(AvailableTeams.teamAliases[teamName]);
         teams.forEach(
           (team) =>
             (acc.queryFiltersAsMap[team] =

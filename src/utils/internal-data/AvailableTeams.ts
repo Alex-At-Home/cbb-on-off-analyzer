@@ -5,6 +5,7 @@ export type AvailableTeamMeta = {
   gender: string;
   index_template: string;
   category?: string;
+  source_id?: string;
 };
 
 export class AvailableTeams {
@@ -15,12 +16,28 @@ export class AvailableTeams {
 
   static readonly extraTeamName = "Extra";
 
-  /** Teams with multiple names for the same team, created by running TODO */
+  /** Teams with multiple names for the same team, created by running cbb-crawler:correlate_available_teams */
   static readonly teamAliases: Record<string, Array<string>> = {
-    "Northern Ill.": ["Northern Ill.", "NIU"],
-    NIU: ["NIU", "Northern Ill."],
-    "Sam Houston": ["Sam Houston St.", "Sam Houston"],
-    "Sam Houston St.": ["Sam Houston St.", "Sam Houston"],
+    IUPUI: ["IU Indy"],
+    "IU Indy": ["IUPUI"],
+    "Fairleigh Dickinson": ["FDU"],
+    FDU: ["Fairleigh Dickinson"],
+    "Albany (NY)": ["UAlbany"],
+    UAlbany: ["Albany (NY)"],
+    "Houston Baptist": ["Houston Christian"],
+    "Houston Christian": ["Houston Baptist"],
+    Nicholls: ["Nicholls St."],
+    "Nicholls St.": ["Nicholls"],
+    "Northern Ill.": ["NIU"],
+    NIU: ["Northern Ill."],
+    "Sam Houston": ["Sam Houston St."],
+    "Sam Houston St.": ["Sam Houston"],
+    "Saint Francis (PA)": ["Saint Francis"],
+    "Saint Francis": ["Saint Francis (PA)"],
+    "Tex. A&M-Commerce": ["East Texas A&M"],
+    "East Texas A&M": ["Tex. A&M-Commerce"],
+    "Dixie St.": ["Utah Tech"],
+    "Utah Tech": ["Dixie St."],
   };
 
   /** A list of all the teams with lineup data available
@@ -36,6 +53,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -43,6 +61,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -50,6 +69,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -57,6 +77,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -64,6 +85,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -71,6 +93,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -78,6 +101,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -85,6 +109,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -92,6 +117,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -99,6 +125,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -106,6 +133,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -113,6 +141,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -120,6 +149,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
       {
         team: "Maryland",
@@ -127,6 +157,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "120",
       },
     ],
     "A&M-Corpus Christi": [
@@ -136,6 +167,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "357",
       },
       {
         team: "A&M-Corpus Christi",
@@ -143,6 +175,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "357",
       },
       {
         team: "A&M-Corpus Christi",
@@ -150,6 +183,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "357",
       },
       {
         team: "A&M-Corpus Christi",
@@ -157,6 +191,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "357",
       },
       {
         team: "A&M-Corpus Christi",
@@ -164,6 +199,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "357",
       },
     ],
     "Abilene Christian": [
@@ -173,6 +209,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2000",
       },
       {
         team: "Abilene Christian",
@@ -180,6 +217,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2000",
       },
       {
         team: "Abilene Christian",
@@ -187,6 +225,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2000",
       },
       {
         team: "Abilene Christian",
@@ -194,6 +233,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2000",
       },
       {
         team: "Abilene Christian",
@@ -201,6 +241,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2000",
       },
     ],
     "Air Force": [
@@ -210,6 +251,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2005",
       },
       {
         team: "Air Force",
@@ -217,6 +259,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2005",
       },
       {
         team: "Air Force",
@@ -224,6 +267,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2005",
       },
       {
         team: "Air Force",
@@ -231,6 +275,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2005",
       },
       {
         team: "Air Force",
@@ -238,6 +283,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2005",
       },
     ],
     Akron: [
@@ -247,6 +293,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2006",
       },
       {
         team: "Akron",
@@ -254,6 +301,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2006",
       },
       {
         team: "Akron",
@@ -261,6 +309,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2006",
       },
       {
         team: "Akron",
@@ -268,6 +317,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2006",
       },
       {
         team: "Akron",
@@ -275,6 +325,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2006",
       },
     ],
     Alabama: [
@@ -284,6 +335,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -291,6 +343,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -298,6 +351,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -305,6 +359,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -312,6 +367,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -319,6 +375,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -326,6 +383,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -333,6 +391,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -340,6 +399,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -347,6 +407,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -354,6 +415,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -361,6 +423,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -368,6 +431,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
       {
         team: "Alabama",
@@ -375,6 +439,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "333",
       },
     ],
     "Alabama A&M": [
@@ -384,6 +449,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2010",
       },
       {
         team: "Alabama A&M",
@@ -391,6 +457,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2010",
       },
       {
         team: "Alabama A&M",
@@ -398,6 +465,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2010",
       },
       {
         team: "Alabama A&M",
@@ -405,6 +473,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2010",
       },
       {
         team: "Alabama A&M",
@@ -412,6 +481,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2010",
       },
     ],
     "Alabama St.": [
@@ -421,6 +491,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2011",
       },
       {
         team: "Alabama St.",
@@ -428,6 +499,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2011",
       },
       {
         team: "Alabama St.",
@@ -435,6 +507,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2011",
       },
       {
         team: "Alabama St.",
@@ -442,6 +515,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2011",
       },
       {
         team: "Alabama St.",
@@ -449,6 +523,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2011",
       },
     ],
     "Albany (NY)": [
@@ -458,6 +533,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "399",
       },
       {
         team: "Albany (NY)",
@@ -465,6 +541,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "399",
       },
     ],
     UAlbany: [
@@ -474,6 +551,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "399",
       },
       {
         team: "UAlbany",
@@ -481,6 +559,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "399",
       },
       {
         team: "UAlbany",
@@ -488,6 +567,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "399",
       },
     ],
     Alcorn: [
@@ -497,6 +577,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2016",
       },
       {
         team: "Alcorn",
@@ -504,6 +585,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2016",
       },
       {
         team: "Alcorn",
@@ -511,6 +593,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2016",
       },
       {
         team: "Alcorn",
@@ -518,6 +601,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2016",
       },
       {
         team: "Alcorn",
@@ -525,6 +609,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2016",
       },
     ],
     American: [
@@ -534,6 +619,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "44",
       },
       {
         team: "American",
@@ -541,6 +627,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "44",
       },
       {
         team: "American",
@@ -548,6 +635,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "44",
       },
       {
         team: "American",
@@ -555,6 +643,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "44",
       },
       {
         team: "American",
@@ -562,6 +651,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "44",
       },
     ],
     "App State": [
@@ -571,6 +661,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2026",
       },
       {
         team: "App State",
@@ -578,6 +669,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2026",
       },
       {
         team: "App State",
@@ -585,6 +677,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2026",
       },
       {
         team: "App State",
@@ -592,6 +685,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2026",
       },
       {
         team: "App State",
@@ -599,6 +693,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2026",
       },
     ],
     Arizona: [
@@ -608,6 +703,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -615,6 +711,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -622,6 +719,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -629,6 +727,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -636,6 +735,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -643,6 +743,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -650,6 +751,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -657,6 +759,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -664,6 +767,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -671,6 +775,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -678,6 +783,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -685,6 +791,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -692,6 +799,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "12",
       },
       {
         team: "Arizona",
@@ -699,6 +807,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "12",
       },
     ],
     "Arizona St.": [
@@ -708,6 +817,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -715,6 +825,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -722,6 +833,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -729,6 +841,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -736,6 +849,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -743,6 +857,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -750,6 +865,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -757,6 +873,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -764,6 +881,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -771,6 +889,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -778,6 +897,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -785,6 +905,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -792,6 +913,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "9",
       },
       {
         team: "Arizona St.",
@@ -799,6 +921,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "9",
       },
     ],
     "Ark.-Pine Bluff": [
@@ -808,6 +931,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2029",
       },
       {
         team: "Ark.-Pine Bluff",
@@ -815,6 +939,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2029",
       },
       {
         team: "Ark.-Pine Bluff",
@@ -822,6 +947,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2029",
       },
       {
         team: "Ark.-Pine Bluff",
@@ -829,6 +955,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2029",
       },
       {
         team: "Ark.-Pine Bluff",
@@ -836,6 +963,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2029",
       },
     ],
     Arkansas: [
@@ -845,6 +973,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -852,6 +981,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -859,6 +989,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -866,6 +997,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -873,6 +1005,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -880,6 +1013,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -887,6 +1021,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -894,6 +1029,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -901,6 +1037,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -908,6 +1045,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -915,6 +1053,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -922,6 +1061,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -929,6 +1069,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
       {
         team: "Arkansas",
@@ -936,6 +1077,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "8",
       },
     ],
     "Arkansas St.": [
@@ -945,6 +1087,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2032",
       },
       {
         team: "Arkansas St.",
@@ -952,6 +1095,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2032",
       },
       {
         team: "Arkansas St.",
@@ -959,6 +1103,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2032",
       },
       {
         team: "Arkansas St.",
@@ -966,6 +1111,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2032",
       },
       {
         team: "Arkansas St.",
@@ -973,6 +1119,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2032",
       },
     ],
     "Army West Point": [
@@ -982,6 +1129,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "349",
       },
       {
         team: "Army West Point",
@@ -989,6 +1137,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "349",
       },
       {
         team: "Army West Point",
@@ -996,6 +1145,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "349",
       },
       {
         team: "Army West Point",
@@ -1003,6 +1153,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "349",
       },
       {
         team: "Army West Point",
@@ -1010,6 +1161,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "349",
       },
     ],
     Auburn: [
@@ -1019,6 +1171,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1026,6 +1179,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1033,6 +1187,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1040,6 +1195,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1047,6 +1203,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1054,6 +1211,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1061,6 +1219,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1068,6 +1227,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1075,6 +1235,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1082,6 +1243,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1089,6 +1251,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1096,6 +1259,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1103,6 +1267,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
       {
         team: "Auburn",
@@ -1110,6 +1275,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2",
       },
     ],
     "Austin Peay": [
@@ -1119,6 +1285,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2046",
       },
       {
         team: "Austin Peay",
@@ -1126,6 +1293,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2046",
       },
       {
         team: "Austin Peay",
@@ -1133,6 +1301,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2046",
       },
       {
         team: "Austin Peay",
@@ -1140,6 +1309,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2046",
       },
       {
         team: "Austin Peay",
@@ -1147,6 +1317,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2046",
       },
     ],
     BYU: [
@@ -1156,6 +1327,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1163,6 +1335,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1170,6 +1343,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1177,6 +1351,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1184,6 +1359,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1191,6 +1367,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1198,6 +1375,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1205,6 +1383,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1212,6 +1391,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1219,6 +1399,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1226,6 +1407,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "252",
       },
       {
         team: "BYU",
@@ -1233,6 +1415,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "252",
       },
     ],
     "Ball St.": [
@@ -1242,6 +1425,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2050",
       },
       {
         team: "Ball St.",
@@ -1249,6 +1433,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2050",
       },
       {
         team: "Ball St.",
@@ -1256,6 +1441,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2050",
       },
       {
         team: "Ball St.",
@@ -1263,6 +1449,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2050",
       },
       {
         team: "Ball St.",
@@ -1270,6 +1457,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2050",
       },
       {
         team: "Ball St.",
@@ -1277,6 +1465,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2050",
       },
     ],
     Baylor: [
@@ -1286,6 +1475,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1293,6 +1483,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1300,6 +1491,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1307,6 +1499,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1314,6 +1507,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1321,6 +1515,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1328,6 +1523,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1335,6 +1531,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1342,6 +1539,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1349,6 +1547,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1356,6 +1555,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1363,6 +1563,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1370,6 +1571,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
       {
         team: "Baylor",
@@ -1377,6 +1579,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "239",
       },
     ],
     Bellarmine: [
@@ -1386,6 +1589,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "91",
       },
       {
         team: "Bellarmine",
@@ -1393,6 +1597,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "91",
       },
       {
         team: "Bellarmine",
@@ -1400,6 +1605,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "91",
       },
       {
         team: "Bellarmine",
@@ -1407,6 +1613,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "91",
       },
     ],
     Belmont: [
@@ -1416,6 +1623,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2057",
       },
       {
         team: "Belmont",
@@ -1423,6 +1631,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2057",
       },
       {
         team: "Belmont",
@@ -1430,6 +1639,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2057",
       },
       {
         team: "Belmont",
@@ -1437,6 +1647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2057",
       },
       {
         team: "Belmont",
@@ -1444,6 +1655,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2057",
       },
       {
         team: "Belmont",
@@ -1451,6 +1663,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2057",
       },
     ],
     "Bethune-Cookman": [
@@ -1460,6 +1673,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2065",
       },
       {
         team: "Bethune-Cookman",
@@ -1467,6 +1681,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2065",
       },
       {
         team: "Bethune-Cookman",
@@ -1474,6 +1689,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2065",
       },
       {
         team: "Bethune-Cookman",
@@ -1481,6 +1697,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2065",
       },
     ],
     Binghamton: [
@@ -1490,6 +1707,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2066",
       },
       {
         team: "Binghamton",
@@ -1497,6 +1715,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2066",
       },
       {
         team: "Binghamton",
@@ -1504,6 +1723,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2066",
       },
       {
         team: "Binghamton",
@@ -1511,6 +1731,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2066",
       },
       {
         team: "Binghamton",
@@ -1518,6 +1739,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2066",
       },
     ],
     "Boise St.": [
@@ -1527,6 +1749,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "68",
       },
       {
         team: "Boise St.",
@@ -1534,6 +1757,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "68",
       },
       {
         team: "Boise St.",
@@ -1541,6 +1765,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "68",
       },
       {
         team: "Boise St.",
@@ -1548,6 +1773,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "68",
       },
       {
         team: "Boise St.",
@@ -1555,6 +1781,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "68",
       },
     ],
     "Boston College": [
@@ -1564,6 +1791,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1571,6 +1799,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1578,6 +1807,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1585,6 +1815,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1592,6 +1823,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1599,6 +1831,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1606,6 +1839,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1613,6 +1847,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1620,6 +1855,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1627,6 +1863,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1634,6 +1871,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1641,6 +1879,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1648,6 +1887,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
       {
         team: "Boston College",
@@ -1655,6 +1895,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "103",
       },
     ],
     "Boston U.": [
@@ -1664,6 +1905,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "104",
       },
       {
         team: "Boston U.",
@@ -1671,6 +1913,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "104",
       },
       {
         team: "Boston U.",
@@ -1678,6 +1921,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "104",
       },
       {
         team: "Boston U.",
@@ -1685,6 +1929,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "104",
       },
       {
         team: "Boston U.",
@@ -1692,6 +1937,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "104",
       },
     ],
     "Bowling Green": [
@@ -1701,6 +1947,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "189",
       },
       {
         team: "Bowling Green",
@@ -1708,6 +1955,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "189",
       },
       {
         team: "Bowling Green",
@@ -1715,6 +1963,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "189",
       },
       {
         team: "Bowling Green",
@@ -1722,6 +1971,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "189",
       },
       {
         team: "Bowling Green",
@@ -1729,6 +1979,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "189",
       },
     ],
     Bradley: [
@@ -1738,6 +1989,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "71",
       },
       {
         team: "Bradley",
@@ -1745,6 +1997,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "71",
       },
       {
         team: "Bradley",
@@ -1752,6 +2005,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "71",
       },
       {
         team: "Bradley",
@@ -1759,6 +2013,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "71",
       },
       {
         team: "Bradley",
@@ -1766,6 +2021,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "71",
       },
     ],
     Brown: [
@@ -1775,6 +2031,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "225",
       },
       {
         team: "Brown",
@@ -1782,6 +2039,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "225",
       },
       {
         team: "Brown",
@@ -1789,6 +2047,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "225",
       },
       {
         team: "Brown",
@@ -1796,6 +2055,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "225",
       },
     ],
     Bryant: [
@@ -1805,6 +2065,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2803",
       },
       {
         team: "Bryant",
@@ -1812,6 +2073,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2803",
       },
       {
         team: "Bryant",
@@ -1819,6 +2081,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2803",
       },
       {
         team: "Bryant",
@@ -1826,6 +2089,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2803",
       },
       {
         team: "Bryant",
@@ -1833,6 +2097,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2803",
       },
     ],
     Bucknell: [
@@ -1842,6 +2107,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2083",
       },
       {
         team: "Bucknell",
@@ -1849,6 +2115,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2083",
       },
       {
         team: "Bucknell",
@@ -1856,6 +2123,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2083",
       },
       {
         team: "Bucknell",
@@ -1863,6 +2131,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2083",
       },
       {
         team: "Bucknell",
@@ -1870,6 +2139,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2083",
       },
     ],
     Buffalo: [
@@ -1879,6 +2149,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2084",
       },
       {
         team: "Buffalo",
@@ -1886,6 +2157,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2084",
       },
       {
         team: "Buffalo",
@@ -1893,6 +2165,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2084",
       },
       {
         team: "Buffalo",
@@ -1900,6 +2173,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2084",
       },
       {
         team: "Buffalo",
@@ -1907,6 +2181,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2084",
       },
     ],
     Butler: [
@@ -1916,6 +2191,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1923,6 +2199,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1930,6 +2207,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1937,6 +2215,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1944,6 +2223,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1951,6 +2231,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1958,6 +2239,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1965,6 +2247,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1972,6 +2255,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1979,6 +2263,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1986,6 +2271,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2086",
       },
       {
         team: "Butler",
@@ -1993,6 +2279,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2086",
       },
     ],
     "CSU Bakersfield": [
@@ -2002,6 +2289,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2934",
       },
       {
         team: "CSU Bakersfield",
@@ -2009,6 +2297,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2934",
       },
       {
         team: "CSU Bakersfield",
@@ -2016,6 +2305,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2934",
       },
       {
         team: "CSU Bakersfield",
@@ -2023,6 +2313,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2934",
       },
       {
         team: "CSU Bakersfield",
@@ -2030,6 +2321,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2934",
       },
     ],
     CSUN: [
@@ -2039,6 +2331,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2463",
       },
       {
         team: "CSUN",
@@ -2046,6 +2339,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2463",
       },
       {
         team: "CSUN",
@@ -2053,6 +2347,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2463",
       },
       {
         team: "CSUN",
@@ -2060,6 +2355,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2463",
       },
       {
         team: "CSUN",
@@ -2067,6 +2363,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2463",
       },
     ],
     "Cal Poly": [
@@ -2076,6 +2373,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "13",
       },
       {
         team: "Cal Poly",
@@ -2083,6 +2381,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "13",
       },
       {
         team: "Cal Poly",
@@ -2090,6 +2389,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "13",
       },
       {
         team: "Cal Poly",
@@ -2097,6 +2397,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "13",
       },
       {
         team: "Cal Poly",
@@ -2104,6 +2405,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "13",
       },
     ],
     "Cal St. Fullerton": [
@@ -2113,6 +2415,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2239",
       },
       {
         team: "Cal St. Fullerton",
@@ -2120,6 +2423,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2239",
       },
       {
         team: "Cal St. Fullerton",
@@ -2127,6 +2431,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2239",
       },
       {
         team: "Cal St. Fullerton",
@@ -2134,6 +2439,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2239",
       },
       {
         team: "Cal St. Fullerton",
@@ -2141,6 +2447,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2239",
       },
     ],
     California: [
@@ -2150,6 +2457,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2157,6 +2465,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2164,6 +2473,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2171,6 +2481,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2178,6 +2489,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2185,6 +2497,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2192,6 +2505,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2199,6 +2513,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2206,6 +2521,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2213,6 +2529,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2220,6 +2537,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2227,6 +2545,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2234,6 +2553,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "25",
       },
       {
         team: "California",
@@ -2241,6 +2561,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "25",
       },
     ],
     "California Baptist": [
@@ -2250,6 +2571,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2856",
       },
       {
         team: "California Baptist",
@@ -2257,6 +2579,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2856",
       },
       {
         team: "California Baptist",
@@ -2264,6 +2587,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2856",
       },
       {
         team: "California Baptist",
@@ -2271,6 +2595,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2856",
       },
     ],
     Campbell: [
@@ -2280,6 +2605,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2097",
       },
       {
         team: "Campbell",
@@ -2287,6 +2613,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2097",
       },
       {
         team: "Campbell",
@@ -2294,6 +2621,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2097",
       },
       {
         team: "Campbell",
@@ -2301,6 +2629,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2097",
       },
       {
         team: "Campbell",
@@ -2308,6 +2637,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2097",
       },
     ],
     Canisius: [
@@ -2317,6 +2647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2099",
       },
       {
         team: "Canisius",
@@ -2324,6 +2655,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2099",
       },
       {
         team: "Canisius",
@@ -2331,6 +2663,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2099",
       },
       {
         team: "Canisius",
@@ -2338,6 +2671,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2099",
       },
       {
         team: "Canisius",
@@ -2345,6 +2679,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2099",
       },
     ],
     "Central Ark.": [
@@ -2354,6 +2689,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2110",
       },
       {
         team: "Central Ark.",
@@ -2361,6 +2697,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2110",
       },
       {
         team: "Central Ark.",
@@ -2368,6 +2705,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2110",
       },
       {
         team: "Central Ark.",
@@ -2375,6 +2713,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2110",
       },
       {
         team: "Central Ark.",
@@ -2382,6 +2721,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2110",
       },
     ],
     "Central Conn. St.": [
@@ -2391,6 +2731,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2115",
       },
       {
         team: "Central Conn. St.",
@@ -2398,6 +2739,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2115",
       },
       {
         team: "Central Conn. St.",
@@ -2405,6 +2747,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2115",
       },
       {
         team: "Central Conn. St.",
@@ -2412,6 +2755,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2115",
       },
       {
         team: "Central Conn. St.",
@@ -2419,6 +2763,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2115",
       },
     ],
     "Central Mich.": [
@@ -2428,6 +2773,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2117",
       },
       {
         team: "Central Mich.",
@@ -2435,6 +2781,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2117",
       },
       {
         team: "Central Mich.",
@@ -2442,6 +2789,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2117",
       },
       {
         team: "Central Mich.",
@@ -2449,6 +2797,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2117",
       },
       {
         team: "Central Mich.",
@@ -2456,6 +2805,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2117",
       },
     ],
     "Charleston So.": [
@@ -2465,6 +2815,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2127",
       },
       {
         team: "Charleston So.",
@@ -2472,6 +2823,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2127",
       },
       {
         team: "Charleston So.",
@@ -2479,6 +2831,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2127",
       },
       {
         team: "Charleston So.",
@@ -2486,6 +2839,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2127",
       },
       {
         team: "Charleston So.",
@@ -2493,6 +2847,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2127",
       },
     ],
     Charlotte: [
@@ -2502,6 +2857,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2429",
       },
       {
         team: "Charlotte",
@@ -2509,6 +2865,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2429",
       },
       {
         team: "Charlotte",
@@ -2516,6 +2873,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2429",
       },
       {
         team: "Charlotte",
@@ -2523,6 +2881,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2429",
       },
       {
         team: "Charlotte",
@@ -2530,6 +2889,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2429",
       },
     ],
     Chattanooga: [
@@ -2539,6 +2899,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "236",
       },
       {
         team: "Chattanooga",
@@ -2546,6 +2907,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "236",
       },
       {
         team: "Chattanooga",
@@ -2553,6 +2915,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "236",
       },
       {
         team: "Chattanooga",
@@ -2560,6 +2923,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "236",
       },
       {
         team: "Chattanooga",
@@ -2567,6 +2931,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "236",
       },
     ],
     "Chicago St.": [
@@ -2576,6 +2941,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2130",
       },
       {
         team: "Chicago St.",
@@ -2583,6 +2949,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2130",
       },
       {
         team: "Chicago St.",
@@ -2590,6 +2957,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2130",
       },
       {
         team: "Chicago St.",
@@ -2597,6 +2965,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2130",
       },
       {
         team: "Chicago St.",
@@ -2604,6 +2973,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "midlow",
+        source_id: "2130",
       },
     ],
     Cincinnati: [
@@ -2613,6 +2983,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2620,6 +2991,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2627,6 +2999,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2634,6 +3007,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2641,6 +3015,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2648,6 +3023,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2655,6 +3031,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2662,6 +3039,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2669,6 +3047,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2676,6 +3055,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2683,6 +3063,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2690,6 +3071,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2697,6 +3079,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2132",
       },
       {
         team: "Cincinnati",
@@ -2704,6 +3087,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2132",
       },
     ],
     Clemson: [
@@ -2713,6 +3097,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2720,6 +3105,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2727,6 +3113,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2734,6 +3121,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2741,6 +3129,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2748,6 +3137,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2755,6 +3145,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2762,6 +3153,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2769,6 +3161,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2776,6 +3169,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2783,6 +3177,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2790,6 +3185,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2797,6 +3193,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
       {
         team: "Clemson",
@@ -2804,6 +3201,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "228",
       },
     ],
     "Cleveland St.": [
@@ -2813,6 +3211,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "325",
       },
       {
         team: "Cleveland St.",
@@ -2820,6 +3219,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "325",
       },
       {
         team: "Cleveland St.",
@@ -2827,6 +3227,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "325",
       },
       {
         team: "Cleveland St.",
@@ -2834,6 +3235,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "325",
       },
       {
         team: "Cleveland St.",
@@ -2841,6 +3243,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "325",
       },
     ],
     "Coastal Carolina": [
@@ -2850,6 +3253,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "324",
       },
       {
         team: "Coastal Carolina",
@@ -2857,6 +3261,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "324",
       },
       {
         team: "Coastal Carolina",
@@ -2864,6 +3269,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "324",
       },
       {
         team: "Coastal Carolina",
@@ -2871,6 +3277,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "324",
       },
       {
         team: "Coastal Carolina",
@@ -2878,6 +3285,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "324",
       },
     ],
     "Col. of Charleston": [
@@ -2887,6 +3295,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "232",
       },
       {
         team: "Col. of Charleston",
@@ -2894,6 +3303,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "232",
       },
       {
         team: "Col. of Charleston",
@@ -2901,6 +3311,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "232",
       },
       {
         team: "Col. of Charleston",
@@ -2908,6 +3319,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "232",
       },
       {
         team: "Col. of Charleston",
@@ -2915,6 +3327,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "232",
       },
     ],
     Colgate: [
@@ -2924,6 +3337,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2142",
       },
       {
         team: "Colgate",
@@ -2931,6 +3345,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2142",
       },
       {
         team: "Colgate",
@@ -2938,6 +3353,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2142",
       },
       {
         team: "Colgate",
@@ -2945,6 +3361,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2142",
       },
       {
         team: "Colgate",
@@ -2952,6 +3369,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2142",
       },
     ],
     Colorado: [
@@ -2961,6 +3379,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -2968,6 +3387,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -2975,6 +3395,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -2982,6 +3403,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -2989,6 +3411,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -2996,6 +3419,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3003,6 +3427,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3010,6 +3435,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3017,6 +3443,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3024,6 +3451,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3031,6 +3459,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3038,6 +3467,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3045,6 +3475,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "38",
       },
       {
         team: "Colorado",
@@ -3052,6 +3483,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "38",
       },
     ],
     "Colorado St.": [
@@ -3061,6 +3493,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "36",
       },
       {
         team: "Colorado St.",
@@ -3068,6 +3501,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "36",
       },
       {
         team: "Colorado St.",
@@ -3075,6 +3509,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "36",
       },
       {
         team: "Colorado St.",
@@ -3082,6 +3517,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "36",
       },
       {
         team: "Colorado St.",
@@ -3089,6 +3525,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "36",
       },
     ],
     Columbia: [
@@ -3098,6 +3535,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "171",
       },
       {
         team: "Columbia",
@@ -3105,6 +3543,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "171",
       },
       {
         team: "Columbia",
@@ -3112,6 +3551,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "171",
       },
       {
         team: "Columbia",
@@ -3119,6 +3559,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "171",
       },
       {
         team: "Columbia",
@@ -3126,6 +3567,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "171",
       },
     ],
     "Coppin St.": [
@@ -3135,6 +3577,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2154",
       },
       {
         team: "Coppin St.",
@@ -3142,6 +3585,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2154",
       },
       {
         team: "Coppin St.",
@@ -3149,6 +3593,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2154",
       },
       {
         team: "Coppin St.",
@@ -3156,6 +3601,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2154",
       },
       {
         team: "Coppin St.",
@@ -3163,6 +3609,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2154",
       },
     ],
     Cornell: [
@@ -3172,6 +3619,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "172",
       },
       {
         team: "Cornell",
@@ -3179,6 +3627,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "172",
       },
       {
         team: "Cornell",
@@ -3186,6 +3635,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "172",
       },
       {
         team: "Cornell",
@@ -3193,6 +3643,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "172",
       },
     ],
     Creighton: [
@@ -3202,6 +3653,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3209,6 +3661,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3216,6 +3669,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3223,6 +3677,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3230,6 +3685,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3237,6 +3693,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3244,6 +3701,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3251,6 +3709,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3258,6 +3717,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3265,6 +3725,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3272,6 +3733,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "156",
       },
       {
         team: "Creighton",
@@ -3279,6 +3741,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "156",
       },
     ],
     Dartmouth: [
@@ -3288,6 +3751,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "159",
       },
       {
         team: "Dartmouth",
@@ -3295,6 +3759,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "159",
       },
       {
         team: "Dartmouth",
@@ -3302,6 +3767,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "159",
       },
       {
         team: "Dartmouth",
@@ -3309,6 +3775,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "159",
       },
     ],
     Davidson: [
@@ -3318,6 +3785,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
       {
         team: "Davidson",
@@ -3325,6 +3793,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
       {
         team: "Davidson",
@@ -3332,6 +3801,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
       {
         team: "Davidson",
@@ -3339,6 +3809,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
       {
         team: "Davidson",
@@ -3346,6 +3817,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
       {
         team: "Davidson",
@@ -3353,6 +3825,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
       {
         team: "Davidson",
@@ -3360,6 +3833,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2166",
       },
     ],
     Dayton: [
@@ -3369,6 +3843,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
       {
         team: "Dayton",
@@ -3376,6 +3851,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
       {
         team: "Dayton",
@@ -3383,6 +3859,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
       {
         team: "Dayton",
@@ -3390,6 +3867,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
       {
         team: "Dayton",
@@ -3397,6 +3875,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
       {
         team: "Dayton",
@@ -3404,6 +3883,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
       {
         team: "Dayton",
@@ -3411,6 +3891,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2168",
       },
     ],
     DePaul: [
@@ -3420,6 +3901,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3427,6 +3909,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3434,6 +3917,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3441,6 +3925,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3448,6 +3933,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3455,6 +3941,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3462,6 +3949,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3469,6 +3957,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3476,6 +3965,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3483,6 +3973,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3490,6 +3981,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "305",
       },
       {
         team: "DePaul",
@@ -3497,6 +3989,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "305",
       },
     ],
     Delaware: [
@@ -3506,6 +3999,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "48",
       },
       {
         team: "Delaware",
@@ -3513,6 +4007,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "48",
       },
       {
         team: "Delaware",
@@ -3520,6 +4015,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "48",
       },
       {
         team: "Delaware",
@@ -3527,6 +4023,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "48",
       },
       {
         team: "Delaware",
@@ -3534,6 +4031,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "48",
       },
     ],
     "Delaware St.": [
@@ -3543,6 +4041,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2169",
       },
       {
         team: "Delaware St.",
@@ -3550,6 +4049,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2169",
       },
       {
         team: "Delaware St.",
@@ -3557,6 +4057,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2169",
       },
       {
         team: "Delaware St.",
@@ -3564,6 +4065,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2169",
       },
       {
         team: "Delaware St.",
@@ -3571,6 +4073,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2169",
       },
     ],
     Denver: [
@@ -3580,6 +4083,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2172",
       },
       {
         team: "Denver",
@@ -3587,6 +4091,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2172",
       },
       {
         team: "Denver",
@@ -3594,6 +4099,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2172",
       },
       {
         team: "Denver",
@@ -3601,6 +4107,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2172",
       },
       {
         team: "Denver",
@@ -3608,6 +4115,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2172",
       },
     ],
     "Detroit Mercy": [
@@ -3617,6 +4125,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2174",
       },
       {
         team: "Detroit Mercy",
@@ -3624,6 +4133,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2174",
       },
       {
         team: "Detroit Mercy",
@@ -3631,6 +4141,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2174",
       },
       {
         team: "Detroit Mercy",
@@ -3638,6 +4149,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2174",
       },
       {
         team: "Detroit Mercy",
@@ -3645,6 +4157,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2174",
       },
     ],
     "Dixie St.": [
@@ -3654,6 +4167,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3101",
       },
     ],
     "Utah Tech": [
@@ -3663,6 +4177,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3101",
       },
       {
         team: "Utah Tech",
@@ -3670,6 +4185,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3101",
       },
       {
         team: "Utah Tech",
@@ -3677,6 +4193,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3101",
       },
     ],
     Drake: [
@@ -3686,6 +4203,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2181",
       },
       {
         team: "Drake",
@@ -3693,6 +4211,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2181",
       },
       {
         team: "Drake",
@@ -3700,6 +4219,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2181",
       },
       {
         team: "Drake",
@@ -3707,6 +4227,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2181",
       },
       {
         team: "Drake",
@@ -3714,6 +4235,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2181",
       },
     ],
     Drexel: [
@@ -3723,6 +4245,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2182",
       },
       {
         team: "Drexel",
@@ -3730,6 +4253,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2182",
       },
       {
         team: "Drexel",
@@ -3737,6 +4261,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2182",
       },
       {
         team: "Drexel",
@@ -3744,6 +4269,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2182",
       },
       {
         team: "Drexel",
@@ -3751,6 +4277,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2182",
       },
     ],
     Duke: [
@@ -3760,6 +4287,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3767,6 +4295,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3774,6 +4303,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3781,6 +4311,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3788,6 +4319,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3795,6 +4327,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3802,6 +4335,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3809,6 +4343,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3816,6 +4351,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3823,6 +4359,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3830,6 +4367,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3837,6 +4375,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3844,6 +4383,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
       {
         team: "Duke",
@@ -3851,6 +4391,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "150",
       },
     ],
     Duquesne: [
@@ -3860,6 +4401,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
       {
         team: "Duquesne",
@@ -3867,6 +4409,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
       {
         team: "Duquesne",
@@ -3874,6 +4417,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
       {
         team: "Duquesne",
@@ -3881,6 +4425,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
       {
         team: "Duquesne",
@@ -3888,6 +4433,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
       {
         team: "Duquesne",
@@ -3895,6 +4441,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
       {
         team: "Duquesne",
@@ -3902,6 +4449,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2184",
       },
     ],
     ETSU: [
@@ -3911,6 +4459,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2193",
       },
       {
         team: "ETSU",
@@ -3918,6 +4467,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2193",
       },
       {
         team: "ETSU",
@@ -3925,6 +4475,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2193",
       },
       {
         team: "ETSU",
@@ -3932,6 +4483,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2193",
       },
       {
         team: "ETSU",
@@ -3939,6 +4491,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2193",
       },
     ],
     "East Carolina": [
@@ -3948,6 +4501,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3955,6 +4509,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3962,6 +4517,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3969,6 +4525,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3976,6 +4533,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3983,6 +4541,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3990,6 +4549,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -3997,6 +4557,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -4004,6 +4565,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -4011,6 +4573,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -4018,6 +4581,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -4025,6 +4589,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -4032,6 +4597,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
       {
         team: "East Carolina",
@@ -4039,6 +4605,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "151",
       },
     ],
     "Eastern Ill.": [
@@ -4048,6 +4615,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2197",
       },
       {
         team: "Eastern Ill.",
@@ -4055,6 +4623,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2197",
       },
       {
         team: "Eastern Ill.",
@@ -4062,6 +4631,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2197",
       },
       {
         team: "Eastern Ill.",
@@ -4069,6 +4639,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2197",
       },
       {
         team: "Eastern Ill.",
@@ -4076,6 +4647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2197",
       },
     ],
     "Eastern Ky.": [
@@ -4085,6 +4657,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2198",
       },
       {
         team: "Eastern Ky.",
@@ -4092,6 +4665,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2198",
       },
       {
         team: "Eastern Ky.",
@@ -4099,6 +4673,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2198",
       },
       {
         team: "Eastern Ky.",
@@ -4106,6 +4681,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2198",
       },
       {
         team: "Eastern Ky.",
@@ -4113,6 +4689,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2198",
       },
     ],
     "Eastern Mich.": [
@@ -4122,6 +4699,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2199",
       },
       {
         team: "Eastern Mich.",
@@ -4129,6 +4707,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2199",
       },
       {
         team: "Eastern Mich.",
@@ -4136,6 +4715,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2199",
       },
       {
         team: "Eastern Mich.",
@@ -4143,6 +4723,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2199",
       },
       {
         team: "Eastern Mich.",
@@ -4150,6 +4731,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2199",
       },
     ],
     "Eastern Wash.": [
@@ -4159,6 +4741,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "331",
       },
       {
         team: "Eastern Wash.",
@@ -4166,6 +4749,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "331",
       },
       {
         team: "Eastern Wash.",
@@ -4173,6 +4757,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "331",
       },
       {
         team: "Eastern Wash.",
@@ -4180,6 +4765,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "331",
       },
       {
         team: "Eastern Wash.",
@@ -4187,6 +4773,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "331",
       },
     ],
     Elon: [
@@ -4196,6 +4783,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2210",
       },
       {
         team: "Elon",
@@ -4203,6 +4791,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2210",
       },
       {
         team: "Elon",
@@ -4210,6 +4799,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2210",
       },
       {
         team: "Elon",
@@ -4217,6 +4807,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2210",
       },
       {
         team: "Elon",
@@ -4224,6 +4815,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2210",
       },
     ],
     Evansville: [
@@ -4233,6 +4825,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "339",
       },
       {
         team: "Evansville",
@@ -4240,6 +4833,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "339",
       },
       {
         team: "Evansville",
@@ -4247,6 +4841,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "339",
       },
       {
         team: "Evansville",
@@ -4254,6 +4849,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "339",
       },
       {
         team: "Evansville",
@@ -4261,6 +4857,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "339",
       },
     ],
     FGCU: [
@@ -4270,6 +4867,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4277,6 +4875,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4284,6 +4883,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4291,6 +4891,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4298,6 +4899,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4305,6 +4907,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4312,6 +4915,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4319,6 +4923,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "526",
       },
       {
         team: "FGCU",
@@ -4326,6 +4931,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "526",
       },
     ],
     FIU: [
@@ -4335,6 +4941,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2229",
       },
       {
         team: "FIU",
@@ -4342,6 +4949,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2229",
       },
       {
         team: "FIU",
@@ -4349,6 +4957,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2229",
       },
       {
         team: "FIU",
@@ -4356,6 +4965,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2229",
       },
       {
         team: "FIU",
@@ -4363,6 +4973,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2229",
       },
     ],
     Fairfield: [
@@ -4372,6 +4983,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2217",
       },
       {
         team: "Fairfield",
@@ -4379,6 +4991,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2217",
       },
       {
         team: "Fairfield",
@@ -4386,6 +4999,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2217",
       },
       {
         team: "Fairfield",
@@ -4393,6 +5007,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2217",
       },
       {
         team: "Fairfield",
@@ -4400,6 +5015,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2217",
       },
       {
         team: "Fairfield",
@@ -4407,6 +5023,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2217",
       },
     ],
     "Fairleigh Dickinson": [
@@ -4416,6 +5033,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "161",
       },
       {
         team: "Fairleigh Dickinson",
@@ -4423,6 +5041,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "161",
       },
       {
         team: "Fairleigh Dickinson",
@@ -4430,6 +5049,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "161",
       },
     ],
     FDU: [
@@ -4439,6 +5059,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "161",
       },
       {
         team: "FDU",
@@ -4446,6 +5067,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "161",
       },
     ],
     "Fla. Atlantic": [
@@ -4455,6 +5077,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2226",
       },
       {
         team: "Fla. Atlantic",
@@ -4462,6 +5085,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2226",
       },
       {
         team: "Fla. Atlantic",
@@ -4469,6 +5093,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2226",
       },
       {
         team: "Fla. Atlantic",
@@ -4476,6 +5101,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2226",
       },
       {
         team: "Fla. Atlantic",
@@ -4483,6 +5109,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2226",
       },
     ],
     Florida: [
@@ -4492,6 +5119,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4499,6 +5127,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4506,6 +5135,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4513,6 +5143,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4520,6 +5151,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4527,6 +5159,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4534,6 +5167,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4541,6 +5175,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4548,6 +5183,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4555,6 +5191,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4562,6 +5199,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4569,6 +5207,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4576,6 +5215,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
       {
         team: "Florida",
@@ -4583,6 +5223,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "57",
       },
     ],
     "Florida A&M": [
@@ -4592,6 +5233,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "50",
       },
       {
         team: "Florida A&M",
@@ -4599,6 +5241,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "50",
       },
       {
         team: "Florida A&M",
@@ -4606,6 +5249,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "50",
       },
       {
         team: "Florida A&M",
@@ -4613,6 +5257,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "50",
       },
       {
         team: "Florida A&M",
@@ -4620,6 +5265,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "50",
       },
     ],
     "Florida St.": [
@@ -4629,6 +5275,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4636,6 +5283,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4643,6 +5291,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4650,6 +5299,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4657,6 +5307,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4664,6 +5315,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4671,6 +5323,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4678,6 +5331,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4685,6 +5339,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4692,6 +5347,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4699,6 +5355,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4706,6 +5363,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4713,6 +5371,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
       {
         team: "Florida St.",
@@ -4720,6 +5379,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "52",
       },
     ],
     Fordham: [
@@ -4729,6 +5389,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
       {
         team: "Fordham",
@@ -4736,6 +5397,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
       {
         team: "Fordham",
@@ -4743,6 +5405,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
       {
         team: "Fordham",
@@ -4750,6 +5413,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
       {
         team: "Fordham",
@@ -4757,6 +5421,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
       {
         team: "Fordham",
@@ -4764,6 +5429,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
       {
         team: "Fordham",
@@ -4771,6 +5437,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2230",
       },
     ],
     "Fresno St.": [
@@ -4780,6 +5447,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "278",
       },
       {
         team: "Fresno St.",
@@ -4787,6 +5455,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "278",
       },
       {
         team: "Fresno St.",
@@ -4794,6 +5463,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "278",
       },
       {
         team: "Fresno St.",
@@ -4801,6 +5471,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "278",
       },
       {
         team: "Fresno St.",
@@ -4808,6 +5479,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "278",
       },
     ],
     Furman: [
@@ -4817,6 +5489,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "231",
       },
       {
         team: "Furman",
@@ -4824,6 +5497,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "231",
       },
       {
         team: "Furman",
@@ -4831,6 +5505,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "231",
       },
       {
         team: "Furman",
@@ -4838,6 +5513,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "231",
       },
       {
         team: "Furman",
@@ -4845,6 +5521,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "231",
       },
     ],
     "Ga. Southern": [
@@ -4854,6 +5531,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "290",
       },
       {
         team: "Ga. Southern",
@@ -4861,6 +5539,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "290",
       },
       {
         team: "Ga. Southern",
@@ -4868,6 +5547,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "290",
       },
       {
         team: "Ga. Southern",
@@ -4875,6 +5555,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "290",
       },
       {
         team: "Ga. Southern",
@@ -4882,6 +5563,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "290",
       },
     ],
     "Gardner-Webb": [
@@ -4891,6 +5573,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2241",
       },
       {
         team: "Gardner-Webb",
@@ -4898,6 +5581,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2241",
       },
       {
         team: "Gardner-Webb",
@@ -4905,6 +5589,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2241",
       },
       {
         team: "Gardner-Webb",
@@ -4912,6 +5597,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2241",
       },
       {
         team: "Gardner-Webb",
@@ -4919,6 +5605,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2241",
       },
     ],
     "George Mason": [
@@ -4928,6 +5615,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4935,6 +5623,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4942,6 +5631,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4949,6 +5639,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4956,6 +5647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4963,6 +5655,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4970,6 +5663,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2244",
       },
       {
         team: "George Mason",
@@ -4977,6 +5671,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2244",
       },
     ],
     "George Washington": [
@@ -4986,6 +5681,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
       {
         team: "George Washington",
@@ -4993,6 +5689,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
       {
         team: "George Washington",
@@ -5000,6 +5697,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
       {
         team: "George Washington",
@@ -5007,6 +5705,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
       {
         team: "George Washington",
@@ -5014,6 +5713,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
       {
         team: "George Washington",
@@ -5021,6 +5721,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
       {
         team: "George Washington",
@@ -5028,6 +5729,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "45",
       },
     ],
     Georgetown: [
@@ -5037,6 +5739,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5044,6 +5747,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5051,6 +5755,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5058,6 +5763,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5065,6 +5771,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5072,6 +5779,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5079,6 +5787,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5086,6 +5795,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5093,6 +5803,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5100,6 +5811,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5107,6 +5819,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "46",
       },
       {
         team: "Georgetown",
@@ -5114,6 +5827,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "46",
       },
     ],
     Georgia: [
@@ -5123,6 +5837,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5130,6 +5845,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5137,6 +5853,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5144,6 +5861,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5151,6 +5869,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5158,6 +5877,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5165,6 +5885,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5172,6 +5893,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5179,6 +5901,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5186,6 +5909,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5193,6 +5917,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5200,6 +5925,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5207,6 +5933,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
       {
         team: "Georgia",
@@ -5214,6 +5941,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "61",
       },
     ],
     "Georgia St.": [
@@ -5223,6 +5951,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2247",
       },
       {
         team: "Georgia St.",
@@ -5230,6 +5959,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2247",
       },
       {
         team: "Georgia St.",
@@ -5237,6 +5967,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2247",
       },
       {
         team: "Georgia St.",
@@ -5244,6 +5975,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2247",
       },
       {
         team: "Georgia St.",
@@ -5251,6 +5983,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2247",
       },
     ],
     "Georgia Tech": [
@@ -5260,6 +5993,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5267,6 +6001,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5274,6 +6009,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5281,6 +6017,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5288,6 +6025,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5295,6 +6033,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5302,6 +6041,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5309,6 +6049,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5316,6 +6057,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5323,6 +6065,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5330,6 +6073,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5337,6 +6081,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5344,6 +6089,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
       {
         team: "Georgia Tech",
@@ -5351,6 +6097,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "59",
       },
     ],
     Gonzaga: [
@@ -5360,6 +6107,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5367,6 +6115,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5374,6 +6123,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5381,6 +6131,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5388,6 +6139,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5395,6 +6147,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5402,6 +6155,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5409,6 +6163,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5416,6 +6171,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5423,6 +6179,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5430,6 +6187,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
       {
         team: "Gonzaga",
@@ -5437,6 +6195,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2250",
       },
     ],
     Grambling: [
@@ -5446,6 +6205,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2755",
       },
       {
         team: "Grambling",
@@ -5453,6 +6213,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2755",
       },
       {
         team: "Grambling",
@@ -5460,6 +6221,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2755",
       },
       {
         team: "Grambling",
@@ -5467,6 +6229,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2755",
       },
       {
         team: "Grambling",
@@ -5474,6 +6237,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2755",
       },
     ],
     "Grand Canyon": [
@@ -5483,6 +6247,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2253",
       },
       {
         team: "Grand Canyon",
@@ -5490,6 +6255,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2253",
       },
       {
         team: "Grand Canyon",
@@ -5497,6 +6263,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2253",
       },
       {
         team: "Grand Canyon",
@@ -5504,6 +6271,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2253",
       },
       {
         team: "Grand Canyon",
@@ -5511,6 +6279,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2253",
       },
       {
         team: "Grand Canyon",
@@ -5518,6 +6287,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2253",
       },
     ],
     "Green Bay": [
@@ -5527,6 +6297,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2739",
       },
       {
         team: "Green Bay",
@@ -5534,6 +6305,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2739",
       },
       {
         team: "Green Bay",
@@ -5541,6 +6313,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2739",
       },
       {
         team: "Green Bay",
@@ -5548,6 +6321,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2739",
       },
       {
         team: "Green Bay",
@@ -5555,6 +6329,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2739",
       },
     ],
     Hampton: [
@@ -5564,6 +6339,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2261",
       },
       {
         team: "Hampton",
@@ -5571,6 +6347,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2261",
       },
       {
         team: "Hampton",
@@ -5578,6 +6355,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2261",
       },
       {
         team: "Hampton",
@@ -5585,6 +6363,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2261",
       },
       {
         team: "Hampton",
@@ -5592,6 +6371,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2261",
       },
     ],
     Hartford: [
@@ -5601,6 +6381,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "42",
       },
       {
         team: "Hartford",
@@ -5608,6 +6389,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "42",
       },
       {
         team: "Hartford",
@@ -5615,6 +6397,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "42",
       },
     ],
     Harvard: [
@@ -5624,6 +6407,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "108",
       },
       {
         team: "Harvard",
@@ -5631,6 +6415,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "108",
       },
       {
         team: "Harvard",
@@ -5638,6 +6423,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "108",
       },
       {
         team: "Harvard",
@@ -5645,6 +6431,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "108",
       },
     ],
     Hawaii: [
@@ -5654,6 +6441,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "62",
       },
       {
         team: "Hawaii",
@@ -5661,6 +6449,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "62",
       },
       {
         team: "Hawaii",
@@ -5668,6 +6457,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "62",
       },
       {
         team: "Hawaii",
@@ -5675,6 +6465,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "62",
       },
       {
         team: "Hawaii",
@@ -5682,6 +6473,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "62",
       },
     ],
     "High Point": [
@@ -5691,6 +6483,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2272",
       },
       {
         team: "High Point",
@@ -5698,6 +6491,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2272",
       },
       {
         team: "High Point",
@@ -5705,6 +6499,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2272",
       },
       {
         team: "High Point",
@@ -5712,6 +6507,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2272",
       },
       {
         team: "High Point",
@@ -5719,6 +6515,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2272",
       },
     ],
     Hofstra: [
@@ -5728,6 +6525,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2275",
       },
       {
         team: "Hofstra",
@@ -5735,6 +6533,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2275",
       },
       {
         team: "Hofstra",
@@ -5742,6 +6541,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2275",
       },
       {
         team: "Hofstra",
@@ -5749,6 +6549,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2275",
       },
       {
         team: "Hofstra",
@@ -5756,6 +6557,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2275",
       },
     ],
     "Holy Cross": [
@@ -5765,6 +6567,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "107",
       },
       {
         team: "Holy Cross",
@@ -5772,6 +6575,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "107",
       },
       {
         team: "Holy Cross",
@@ -5779,6 +6583,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "107",
       },
       {
         team: "Holy Cross",
@@ -5786,6 +6591,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "107",
       },
       {
         team: "Holy Cross",
@@ -5793,6 +6599,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "107",
       },
     ],
     Houston: [
@@ -5802,6 +6609,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5809,6 +6617,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5816,6 +6625,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5823,6 +6633,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5830,6 +6641,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5837,6 +6649,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5844,6 +6657,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5851,6 +6665,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5858,6 +6673,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5865,6 +6681,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5872,6 +6689,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5879,6 +6697,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5886,6 +6705,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "248",
       },
       {
         team: "Houston",
@@ -5893,6 +6713,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "248",
       },
     ],
     "Houston Baptist": [
@@ -5902,6 +6723,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2277",
       },
       {
         team: "Houston Baptist",
@@ -5909,6 +6731,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2277",
       },
     ],
     "Houston Christian": [
@@ -5918,6 +6741,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2277",
       },
       {
         team: "Houston Christian",
@@ -5925,6 +6749,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2277",
       },
       {
         team: "Houston Christian",
@@ -5932,6 +6757,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2277",
       },
     ],
     Howard: [
@@ -5941,6 +6767,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "47",
       },
       {
         team: "Howard",
@@ -5948,6 +6775,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "47",
       },
       {
         team: "Howard",
@@ -5955,6 +6783,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "47",
       },
       {
         team: "Howard",
@@ -5962,6 +6791,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "47",
       },
       {
         team: "Howard",
@@ -5969,6 +6799,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "47",
       },
     ],
     IUPUI: [
@@ -5978,6 +6809,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "85",
       },
       {
         team: "IUPUI",
@@ -5985,6 +6817,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "85",
       },
       {
         team: "IUPUI",
@@ -5992,6 +6825,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "85",
       },
       {
         team: "IUPUI",
@@ -5999,6 +6833,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "85",
       },
     ],
     "IU Indy": [
@@ -6008,6 +6843,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "85",
       },
     ],
     Idaho: [
@@ -6017,6 +6853,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "70",
       },
       {
         team: "Idaho",
@@ -6024,6 +6861,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "70",
       },
       {
         team: "Idaho",
@@ -6031,6 +6869,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "70",
       },
       {
         team: "Idaho",
@@ -6038,6 +6877,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "70",
       },
       {
         team: "Idaho",
@@ -6045,6 +6885,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "70",
       },
     ],
     "Idaho St.": [
@@ -6054,6 +6895,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "304",
       },
       {
         team: "Idaho St.",
@@ -6061,6 +6903,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "304",
       },
       {
         team: "Idaho St.",
@@ -6068,6 +6911,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "304",
       },
       {
         team: "Idaho St.",
@@ -6075,6 +6919,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "304",
       },
       {
         team: "Idaho St.",
@@ -6082,6 +6927,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "304",
       },
     ],
     Illinois: [
@@ -6091,6 +6937,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6098,6 +6945,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6105,6 +6953,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6112,6 +6961,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6119,6 +6969,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6126,6 +6977,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6133,6 +6985,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6140,6 +6993,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6147,6 +7001,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6154,6 +7009,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6161,6 +7017,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6168,6 +7025,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6175,6 +7033,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
       {
         team: "Illinois",
@@ -6182,6 +7041,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "356",
       },
     ],
     "Illinois St.": [
@@ -6191,6 +7051,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2287",
       },
       {
         team: "Illinois St.",
@@ -6198,6 +7059,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2287",
       },
       {
         team: "Illinois St.",
@@ -6205,6 +7067,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2287",
       },
       {
         team: "Illinois St.",
@@ -6212,6 +7075,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2287",
       },
       {
         team: "Illinois St.",
@@ -6219,6 +7083,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2287",
       },
     ],
     Indiana: [
@@ -6228,6 +7093,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6235,6 +7101,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6242,6 +7109,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6249,6 +7117,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6256,6 +7125,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6263,6 +7133,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6270,6 +7141,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6277,6 +7149,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6284,6 +7157,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6291,6 +7165,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6298,6 +7173,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6305,6 +7181,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6312,6 +7189,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
       {
         team: "Indiana",
@@ -6319,6 +7197,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "84",
       },
     ],
     "Indiana St.": [
@@ -6328,6 +7207,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "282",
       },
       {
         team: "Indiana St.",
@@ -6335,6 +7215,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "282",
       },
       {
         team: "Indiana St.",
@@ -6342,6 +7223,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "282",
       },
       {
         team: "Indiana St.",
@@ -6349,6 +7231,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "282",
       },
       {
         team: "Indiana St.",
@@ -6356,6 +7239,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "282",
       },
     ],
     Iona: [
@@ -6365,6 +7249,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "314",
       },
       {
         team: "Iona",
@@ -6372,6 +7257,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "314",
       },
       {
         team: "Iona",
@@ -6379,6 +7265,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "314",
       },
       {
         team: "Iona",
@@ -6386,6 +7273,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "314",
       },
       {
         team: "Iona",
@@ -6393,6 +7281,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "314",
       },
     ],
     Iowa: [
@@ -6402,6 +7291,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6409,6 +7299,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6416,6 +7307,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6423,6 +7315,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6430,6 +7323,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6437,6 +7331,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6444,6 +7339,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6451,6 +7347,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6458,6 +7355,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6465,6 +7363,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6472,6 +7371,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6479,6 +7379,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6486,6 +7387,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
       {
         team: "Iowa",
@@ -6493,6 +7395,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2294",
       },
     ],
     "Iowa St.": [
@@ -6502,6 +7405,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6509,6 +7413,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6516,6 +7421,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6523,6 +7429,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6530,6 +7437,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6537,6 +7445,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6544,6 +7453,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6551,6 +7461,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6558,6 +7469,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6565,6 +7477,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6572,6 +7485,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6579,6 +7493,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6586,6 +7501,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
       {
         team: "Iowa St.",
@@ -6593,6 +7509,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "66",
       },
     ],
     "Jackson St.": [
@@ -6602,6 +7519,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2296",
       },
       {
         team: "Jackson St.",
@@ -6609,6 +7527,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2296",
       },
       {
         team: "Jackson St.",
@@ -6616,6 +7535,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2296",
       },
       {
         team: "Jackson St.",
@@ -6623,6 +7543,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2296",
       },
       {
         team: "Jackson St.",
@@ -6630,6 +7551,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2296",
       },
     ],
     Jacksonville: [
@@ -6639,6 +7561,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "294",
       },
       {
         team: "Jacksonville",
@@ -6646,6 +7569,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "294",
       },
       {
         team: "Jacksonville",
@@ -6653,6 +7577,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "294",
       },
       {
         team: "Jacksonville",
@@ -6660,6 +7585,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "294",
       },
       {
         team: "Jacksonville",
@@ -6667,6 +7593,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "294",
       },
     ],
     "Jacksonville St.": [
@@ -6676,6 +7603,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "55",
       },
       {
         team: "Jacksonville St.",
@@ -6683,6 +7611,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "55",
       },
       {
         team: "Jacksonville St.",
@@ -6690,6 +7619,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "55",
       },
       {
         team: "Jacksonville St.",
@@ -6697,6 +7627,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "55",
       },
       {
         team: "Jacksonville St.",
@@ -6704,6 +7635,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "55",
       },
     ],
     "James Madison": [
@@ -6713,6 +7645,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "256",
       },
       {
         team: "James Madison",
@@ -6720,6 +7653,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "256",
       },
       {
         team: "James Madison",
@@ -6727,6 +7661,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "256",
       },
       {
         team: "James Madison",
@@ -6734,6 +7669,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "256",
       },
       {
         team: "James Madison",
@@ -6741,6 +7677,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "256",
       },
       {
         team: "James Madison",
@@ -6748,6 +7685,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "256",
       },
     ],
     Kansas: [
@@ -6757,6 +7695,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6764,6 +7703,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6771,6 +7711,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6778,6 +7719,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6785,6 +7727,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6792,6 +7735,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6799,6 +7743,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6806,6 +7751,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6813,6 +7759,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6820,6 +7767,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6827,6 +7775,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6834,6 +7783,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6841,6 +7791,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
       {
         team: "Kansas",
@@ -6848,6 +7799,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2305",
       },
     ],
     "Kansas City": [
@@ -6857,6 +7809,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "140",
       },
       {
         team: "Kansas City",
@@ -6864,6 +7817,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "140",
       },
       {
         team: "Kansas City",
@@ -6871,6 +7825,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "140",
       },
       {
         team: "Kansas City",
@@ -6878,6 +7833,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "140",
       },
       {
         team: "Kansas City",
@@ -6885,6 +7841,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "140",
       },
     ],
     "Kansas St.": [
@@ -6894,6 +7851,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6901,6 +7859,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6908,6 +7867,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6915,6 +7875,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6922,6 +7883,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6929,6 +7891,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6936,6 +7899,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6943,6 +7907,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6950,6 +7915,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6957,6 +7923,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6964,6 +7931,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6971,6 +7939,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6978,6 +7947,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
       {
         team: "Kansas St.",
@@ -6985,6 +7955,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2306",
       },
     ],
     "Kennesaw St.": [
@@ -6994,6 +7965,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "338",
       },
       {
         team: "Kennesaw St.",
@@ -7001,6 +7973,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "338",
       },
       {
         team: "Kennesaw St.",
@@ -7008,6 +7981,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "338",
       },
       {
         team: "Kennesaw St.",
@@ -7015,6 +7989,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "338",
       },
       {
         team: "Kennesaw St.",
@@ -7022,6 +7997,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "low",
+        source_id: "338",
       },
     ],
     "Kent St.": [
@@ -7031,6 +8007,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2309",
       },
       {
         team: "Kent St.",
@@ -7038,6 +8015,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2309",
       },
       {
         team: "Kent St.",
@@ -7045,6 +8023,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2309",
       },
       {
         team: "Kent St.",
@@ -7052,6 +8031,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2309",
       },
       {
         team: "Kent St.",
@@ -7059,6 +8039,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2309",
       },
     ],
     Kentucky: [
@@ -7068,6 +8049,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7075,6 +8057,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7082,6 +8065,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7089,6 +8073,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7096,6 +8081,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7103,6 +8089,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7110,6 +8097,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7117,6 +8105,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7124,6 +8113,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7131,6 +8121,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7138,6 +8129,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7145,6 +8137,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7152,6 +8145,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
       {
         team: "Kentucky",
@@ -7159,6 +8153,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "96",
       },
     ],
     "Le Moyne": [
@@ -7168,6 +8163,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2330",
       },
       {
         team: "Le Moyne",
@@ -7175,6 +8171,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2330",
       },
     ],
     LIU: [
@@ -7184,6 +8181,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "112358",
       },
       {
         team: "LIU",
@@ -7191,6 +8189,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "112358",
       },
       {
         team: "LIU",
@@ -7198,6 +8197,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "112358",
       },
       {
         team: "LIU",
@@ -7205,6 +8205,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "112358",
       },
       {
         team: "LIU",
@@ -7212,6 +8213,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "112358",
       },
     ],
     "LMU (CA)": [
@@ -7221,6 +8223,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2351",
       },
       {
         team: "LMU (CA)",
@@ -7228,6 +8231,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2351",
       },
       {
         team: "LMU (CA)",
@@ -7235,6 +8239,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2351",
       },
       {
         team: "LMU (CA)",
@@ -7242,6 +8247,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2351",
       },
       {
         team: "LMU (CA)",
@@ -7249,6 +8255,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2351",
       },
     ],
     LSU: [
@@ -7258,6 +8265,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7265,6 +8273,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7272,6 +8281,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7279,6 +8289,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7286,6 +8297,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7293,6 +8305,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7300,6 +8313,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7307,6 +8321,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7314,6 +8329,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7321,6 +8337,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7328,6 +8345,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7335,6 +8353,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7342,6 +8361,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
       {
         team: "LSU",
@@ -7349,6 +8369,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "99",
       },
     ],
     "La Salle": [
@@ -7358,6 +8379,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
       {
         team: "La Salle",
@@ -7365,6 +8387,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
       {
         team: "La Salle",
@@ -7372,6 +8395,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
       {
         team: "La Salle",
@@ -7379,6 +8403,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
       {
         team: "La Salle",
@@ -7386,6 +8411,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
       {
         team: "La Salle",
@@ -7393,6 +8419,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
       {
         team: "La Salle",
@@ -7400,6 +8427,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2325",
       },
     ],
     Lafayette: [
@@ -7409,6 +8437,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "322",
       },
       {
         team: "Lafayette",
@@ -7416,6 +8445,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "322",
       },
       {
         team: "Lafayette",
@@ -7423,6 +8453,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "322",
       },
       {
         team: "Lafayette",
@@ -7430,6 +8461,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "322",
       },
       {
         team: "Lafayette",
@@ -7437,6 +8469,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "322",
       },
     ],
     "Lamar University": [
@@ -7446,6 +8479,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2320",
       },
       {
         team: "Lamar University",
@@ -7453,6 +8487,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2320",
       },
       {
         team: "Lamar University",
@@ -7460,6 +8495,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2320",
       },
       {
         team: "Lamar University",
@@ -7467,6 +8503,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2320",
       },
       {
         team: "Lamar University",
@@ -7474,6 +8511,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2320",
       },
     ],
     Lehigh: [
@@ -7483,6 +8521,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2329",
       },
       {
         team: "Lehigh",
@@ -7490,6 +8529,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2329",
       },
       {
         team: "Lehigh",
@@ -7497,6 +8537,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2329",
       },
       {
         team: "Lehigh",
@@ -7504,6 +8545,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2329",
       },
       {
         team: "Lehigh",
@@ -7511,6 +8553,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2329",
       },
     ],
     Liberty: [
@@ -7520,6 +8563,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2335",
       },
       {
         team: "Liberty",
@@ -7527,6 +8571,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2335",
       },
       {
         team: "Liberty",
@@ -7534,6 +8579,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2335",
       },
       {
         team: "Liberty",
@@ -7541,6 +8587,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2335",
       },
       {
         team: "Liberty",
@@ -7548,6 +8595,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2335",
       },
     ],
     Lindenwood: [
@@ -7557,6 +8605,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2815",
       },
       {
         team: "Lindenwood",
@@ -7564,6 +8613,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2815",
       },
       {
         team: "Lindenwood",
@@ -7571,6 +8621,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2815",
       },
     ],
     Lipscomb: [
@@ -7580,6 +8631,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "288",
       },
       {
         team: "Lipscomb",
@@ -7587,6 +8639,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "288",
       },
       {
         team: "Lipscomb",
@@ -7594,6 +8647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "288",
       },
       {
         team: "Lipscomb",
@@ -7601,6 +8655,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "288",
       },
       {
         team: "Lipscomb",
@@ -7608,6 +8663,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "288",
       },
     ],
     "Little Rock": [
@@ -7617,6 +8673,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2031",
       },
       {
         team: "Little Rock",
@@ -7624,6 +8681,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2031",
       },
       {
         team: "Little Rock",
@@ -7631,6 +8689,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2031",
       },
       {
         team: "Little Rock",
@@ -7638,6 +8697,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2031",
       },
       {
         team: "Little Rock",
@@ -7645,6 +8705,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2031",
       },
     ],
     "Long Beach St.": [
@@ -7654,6 +8715,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "299",
       },
       {
         team: "Long Beach St.",
@@ -7661,6 +8723,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "299",
       },
       {
         team: "Long Beach St.",
@@ -7668,6 +8731,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "299",
       },
       {
         team: "Long Beach St.",
@@ -7675,6 +8739,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "299",
       },
       {
         team: "Long Beach St.",
@@ -7682,6 +8747,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "299",
       },
     ],
     Longwood: [
@@ -7691,6 +8757,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2344",
       },
       {
         team: "Longwood",
@@ -7698,6 +8765,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2344",
       },
       {
         team: "Longwood",
@@ -7705,6 +8773,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2344",
       },
       {
         team: "Longwood",
@@ -7712,6 +8781,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2344",
       },
       {
         team: "Longwood",
@@ -7719,6 +8789,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2344",
       },
     ],
     Louisiana: [
@@ -7728,6 +8799,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "309",
       },
       {
         team: "Louisiana",
@@ -7735,6 +8807,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "309",
       },
       {
         team: "Louisiana",
@@ -7742,6 +8815,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "309",
       },
       {
         team: "Louisiana",
@@ -7749,6 +8823,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "309",
       },
       {
         team: "Louisiana",
@@ -7756,6 +8831,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "309",
       },
     ],
     "Louisiana Tech": [
@@ -7765,6 +8841,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2348",
       },
       {
         team: "Louisiana Tech",
@@ -7772,6 +8849,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2348",
       },
       {
         team: "Louisiana Tech",
@@ -7779,6 +8857,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2348",
       },
       {
         team: "Louisiana Tech",
@@ -7786,6 +8865,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2348",
       },
       {
         team: "Louisiana Tech",
@@ -7793,6 +8873,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2348",
       },
     ],
     Louisville: [
@@ -7802,6 +8883,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7809,6 +8891,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7816,6 +8899,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7823,6 +8907,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7830,6 +8915,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7837,6 +8923,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7844,6 +8931,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7851,6 +8939,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7858,6 +8947,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7865,6 +8955,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7872,6 +8963,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7879,6 +8971,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7886,6 +8979,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
       {
         team: "Louisville",
@@ -7893,6 +8987,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "97",
       },
     ],
     "Loyola Chicago": [
@@ -7902,6 +8997,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2350",
       },
       {
         team: "Loyola Chicago",
@@ -7909,6 +9005,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2350",
       },
       {
         team: "Loyola Chicago",
@@ -7916,6 +9013,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2350",
       },
       {
         team: "Loyola Chicago",
@@ -7923,6 +9021,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2350",
       },
       {
         team: "Loyola Chicago",
@@ -7930,6 +9029,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2350",
       },
     ],
     "Loyola Maryland": [
@@ -7939,6 +9039,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2352",
       },
       {
         team: "Loyola Maryland",
@@ -7946,6 +9047,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2352",
       },
       {
         team: "Loyola Maryland",
@@ -7953,6 +9055,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2352",
       },
       {
         team: "Loyola Maryland",
@@ -7960,6 +9063,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2352",
       },
       {
         team: "Loyola Maryland",
@@ -7967,6 +9071,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2352",
       },
     ],
     Maine: [
@@ -7976,6 +9081,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "311",
       },
       {
         team: "Maine",
@@ -7983,6 +9089,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "311",
       },
       {
         team: "Maine",
@@ -7990,6 +9097,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "311",
       },
       {
         team: "Maine",
@@ -7997,6 +9105,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "311",
       },
       {
         team: "Maine",
@@ -8004,6 +9113,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "311",
       },
     ],
     Manhattan: [
@@ -8013,6 +9123,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2363",
       },
       {
         team: "Manhattan",
@@ -8020,6 +9131,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2363",
       },
       {
         team: "Manhattan",
@@ -8027,6 +9139,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2363",
       },
       {
         team: "Manhattan",
@@ -8034,6 +9147,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2363",
       },
       {
         team: "Manhattan",
@@ -8041,6 +9155,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2363",
       },
     ],
     Marist: [
@@ -8050,6 +9165,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2368",
       },
       {
         team: "Marist",
@@ -8057,6 +9173,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2368",
       },
       {
         team: "Marist",
@@ -8064,6 +9181,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2368",
       },
       {
         team: "Marist",
@@ -8071,6 +9189,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2368",
       },
       {
         team: "Marist",
@@ -8078,6 +9197,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2368",
       },
     ],
     Marquette: [
@@ -8087,6 +9207,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8094,6 +9215,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8101,6 +9223,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8108,6 +9231,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8115,6 +9239,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8122,6 +9247,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8129,6 +9255,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8136,6 +9263,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8143,6 +9271,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8150,6 +9279,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8157,6 +9287,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "269",
       },
       {
         team: "Marquette",
@@ -8164,6 +9295,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "269",
       },
     ],
     Marshall: [
@@ -8173,6 +9305,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "276",
       },
       {
         team: "Marshall",
@@ -8180,6 +9313,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "276",
       },
       {
         team: "Marshall",
@@ -8187,6 +9321,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "276",
       },
       {
         team: "Marshall",
@@ -8194,6 +9329,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "276",
       },
       {
         team: "Marshall",
@@ -8201,6 +9337,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "276",
       },
     ],
     Massachusetts: [
@@ -8210,6 +9347,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
       {
         team: "Massachusetts",
@@ -8217,6 +9355,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
       {
         team: "Massachusetts",
@@ -8224,6 +9363,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
       {
         team: "Massachusetts",
@@ -8231,6 +9371,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
       {
         team: "Massachusetts",
@@ -8238,6 +9379,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
       {
         team: "Massachusetts",
@@ -8245,6 +9387,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
       {
         team: "Massachusetts",
@@ -8252,6 +9395,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "113",
       },
     ],
     McNeese: [
@@ -8261,6 +9405,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2377",
       },
       {
         team: "McNeese",
@@ -8268,6 +9413,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2377",
       },
       {
         team: "McNeese",
@@ -8275,6 +9421,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2377",
       },
       {
         team: "McNeese",
@@ -8282,6 +9429,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2377",
       },
       {
         team: "McNeese",
@@ -8289,6 +9437,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2377",
       },
     ],
     Memphis: [
@@ -8298,6 +9447,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8305,6 +9455,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8312,6 +9463,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8319,6 +9471,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8326,6 +9479,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8333,6 +9487,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8340,6 +9495,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8347,6 +9503,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8354,6 +9511,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8361,6 +9519,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8368,6 +9527,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8375,6 +9535,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8382,6 +9543,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
       {
         team: "Memphis",
@@ -8389,6 +9551,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "235",
       },
     ],
     Mercer: [
@@ -8398,6 +9561,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2382",
       },
       {
         team: "Mercer",
@@ -8405,6 +9569,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2382",
       },
       {
         team: "Mercer",
@@ -8412,6 +9577,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2382",
       },
       {
         team: "Mercer",
@@ -8419,6 +9585,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2382",
       },
       {
         team: "Mercer",
@@ -8426,6 +9593,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2382",
       },
     ],
     Mercyhurst: [
@@ -8435,6 +9603,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2385",
       },
     ],
     Merrimack: [
@@ -8444,6 +9613,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2771",
       },
       {
         team: "Merrimack",
@@ -8451,6 +9621,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2771",
       },
       {
         team: "Merrimack",
@@ -8458,6 +9629,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2771",
       },
       {
         team: "Merrimack",
@@ -8465,6 +9637,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "low",
+        source_id: "2771",
       },
     ],
     "Miami (FL)": [
@@ -8474,6 +9647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8481,6 +9655,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8488,6 +9663,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8495,6 +9671,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8502,6 +9679,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8509,6 +9687,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8516,6 +9695,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8523,6 +9703,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8530,6 +9711,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8537,6 +9719,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8544,6 +9727,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8551,6 +9735,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8558,6 +9743,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
       {
         team: "Miami (FL)",
@@ -8565,6 +9751,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "2390",
       },
     ],
     "Miami (OH)": [
@@ -8574,6 +9761,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "193",
       },
       {
         team: "Miami (OH)",
@@ -8581,6 +9769,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "193",
       },
       {
         team: "Miami (OH)",
@@ -8588,6 +9777,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "193",
       },
       {
         team: "Miami (OH)",
@@ -8595,6 +9785,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "193",
       },
       {
         team: "Miami (OH)",
@@ -8602,6 +9793,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "193",
       },
     ],
     Michigan: [
@@ -8611,6 +9803,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8618,6 +9811,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8625,6 +9819,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8632,6 +9827,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8639,6 +9835,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8646,6 +9843,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8653,6 +9851,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8660,6 +9859,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8667,6 +9867,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8674,6 +9875,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8681,6 +9883,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8688,6 +9891,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8695,6 +9899,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
       {
         team: "Michigan",
@@ -8702,6 +9907,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "130",
       },
     ],
     "Michigan St.": [
@@ -8711,6 +9917,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8718,6 +9925,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8725,6 +9933,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8732,6 +9941,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8739,6 +9949,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8746,6 +9957,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8753,6 +9965,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8760,6 +9973,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8767,6 +9981,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8774,6 +9989,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8781,6 +9997,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8788,6 +10005,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8795,6 +10013,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
       {
         team: "Michigan St.",
@@ -8802,6 +10021,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "127",
       },
     ],
     "Middle Tenn.": [
@@ -8811,6 +10031,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2393",
       },
       {
         team: "Middle Tenn.",
@@ -8818,6 +10039,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2393",
       },
       {
         team: "Middle Tenn.",
@@ -8825,6 +10047,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2393",
       },
       {
         team: "Middle Tenn.",
@@ -8832,6 +10055,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2393",
       },
       {
         team: "Middle Tenn.",
@@ -8839,6 +10063,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2393",
       },
       {
         team: "Middle Tenn.",
@@ -8846,6 +10071,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2393",
       },
     ],
     Milwaukee: [
@@ -8855,6 +10081,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "270",
       },
       {
         team: "Milwaukee",
@@ -8862,6 +10089,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "270",
       },
       {
         team: "Milwaukee",
@@ -8869,6 +10097,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "270",
       },
       {
         team: "Milwaukee",
@@ -8876,6 +10105,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "270",
       },
       {
         team: "Milwaukee",
@@ -8883,6 +10113,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "270",
       },
     ],
     Minnesota: [
@@ -8892,6 +10123,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8899,6 +10131,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8906,6 +10139,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8913,6 +10147,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8920,6 +10155,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8927,6 +10163,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8934,6 +10171,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8941,6 +10179,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8948,6 +10187,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8955,6 +10195,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8962,6 +10203,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8969,6 +10211,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8976,6 +10219,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
       {
         team: "Minnesota",
@@ -8983,6 +10227,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "135",
       },
     ],
     "Mississippi St.": [
@@ -8992,6 +10237,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -8999,6 +10245,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9006,6 +10253,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9013,6 +10261,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9020,6 +10269,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9027,6 +10277,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9034,6 +10285,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9041,6 +10293,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9048,6 +10301,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9055,6 +10309,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9062,6 +10317,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9069,6 +10325,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9076,6 +10333,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
       {
         team: "Mississippi St.",
@@ -9083,6 +10341,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "344",
       },
     ],
     "Mississippi Val.": [
@@ -9092,6 +10351,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2400",
       },
       {
         team: "Mississippi Val.",
@@ -9099,6 +10359,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2400",
       },
       {
         team: "Mississippi Val.",
@@ -9106,6 +10367,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2400",
       },
       {
         team: "Mississippi Val.",
@@ -9113,6 +10375,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2400",
       },
       {
         team: "Mississippi Val.",
@@ -9120,6 +10383,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2400",
       },
     ],
     Missouri: [
@@ -9129,6 +10393,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9136,6 +10401,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9143,6 +10409,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9150,6 +10417,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9157,6 +10425,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9164,6 +10433,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9171,6 +10441,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9178,6 +10449,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9185,6 +10457,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9192,6 +10465,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9199,6 +10473,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9206,6 +10481,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9213,6 +10489,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
       {
         team: "Missouri",
@@ -9220,6 +10497,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "142",
       },
     ],
     "Missouri St.": [
@@ -9229,6 +10507,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9236,6 +10515,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9243,6 +10523,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9250,6 +10531,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9257,6 +10539,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9264,6 +10547,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9271,6 +10555,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9278,6 +10563,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9285,6 +10571,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2623",
       },
       {
         team: "Missouri St.",
@@ -9292,6 +10579,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2623",
       },
     ],
     Monmouth: [
@@ -9301,6 +10589,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2405",
       },
       {
         team: "Monmouth",
@@ -9308,6 +10597,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2405",
       },
       {
         team: "Monmouth",
@@ -9315,6 +10605,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2405",
       },
       {
         team: "Monmouth",
@@ -9322,6 +10613,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2405",
       },
       {
         team: "Monmouth",
@@ -9329,6 +10621,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2405",
       },
     ],
     Montana: [
@@ -9338,6 +10631,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "149",
       },
       {
         team: "Montana",
@@ -9345,6 +10639,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "149",
       },
       {
         team: "Montana",
@@ -9352,6 +10647,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "149",
       },
       {
         team: "Montana",
@@ -9359,6 +10655,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "149",
       },
       {
         team: "Montana",
@@ -9366,6 +10663,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "149",
       },
     ],
     "Montana St.": [
@@ -9375,6 +10673,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "147",
       },
       {
         team: "Montana St.",
@@ -9382,6 +10681,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "147",
       },
       {
         team: "Montana St.",
@@ -9389,6 +10689,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "147",
       },
       {
         team: "Montana St.",
@@ -9396,6 +10697,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "147",
       },
       {
         team: "Montana St.",
@@ -9403,6 +10705,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "147",
       },
     ],
     "Morehead St.": [
@@ -9412,6 +10715,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2413",
       },
       {
         team: "Morehead St.",
@@ -9419,6 +10723,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2413",
       },
       {
         team: "Morehead St.",
@@ -9426,6 +10731,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2413",
       },
       {
         team: "Morehead St.",
@@ -9433,6 +10739,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2413",
       },
       {
         team: "Morehead St.",
@@ -9440,6 +10747,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2413",
       },
     ],
     "Morgan St.": [
@@ -9449,6 +10757,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2415",
       },
       {
         team: "Morgan St.",
@@ -9456,6 +10765,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2415",
       },
       {
         team: "Morgan St.",
@@ -9463,6 +10773,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2415",
       },
       {
         team: "Morgan St.",
@@ -9470,6 +10781,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2415",
       },
       {
         team: "Morgan St.",
@@ -9477,6 +10789,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2415",
       },
     ],
     "Mount St. Mary's": [
@@ -9486,6 +10799,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "116",
       },
       {
         team: "Mount St. Mary's",
@@ -9493,6 +10807,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "116",
       },
       {
         team: "Mount St. Mary's",
@@ -9500,6 +10815,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "116",
       },
       {
         team: "Mount St. Mary's",
@@ -9507,6 +10823,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "116",
       },
       {
         team: "Mount St. Mary's",
@@ -9514,6 +10831,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "116",
       },
     ],
     "Murray St.": [
@@ -9523,6 +10841,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "93",
       },
       {
         team: "Murray St.",
@@ -9530,6 +10849,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "93",
       },
       {
         team: "Murray St.",
@@ -9537,6 +10857,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "93",
       },
       {
         team: "Murray St.",
@@ -9544,6 +10865,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "93",
       },
       {
         team: "Murray St.",
@@ -9551,6 +10873,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "93",
       },
       {
         team: "Murray St.",
@@ -9558,6 +10881,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "93",
       },
     ],
     "N.C. A&T": [
@@ -9567,6 +10891,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2448",
       },
       {
         team: "N.C. A&T",
@@ -9574,6 +10899,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2448",
       },
       {
         team: "N.C. A&T",
@@ -9581,6 +10907,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2448",
       },
       {
         team: "N.C. A&T",
@@ -9588,6 +10915,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2448",
       },
       {
         team: "N.C. A&T",
@@ -9595,6 +10923,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2448",
       },
       {
         team: "N.C. A&T",
@@ -9602,6 +10931,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2448",
       },
     ],
     "N.C. Central": [
@@ -9611,6 +10941,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2428",
       },
       {
         team: "N.C. Central",
@@ -9618,6 +10949,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2428",
       },
       {
         team: "N.C. Central",
@@ -9625,6 +10957,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2428",
       },
       {
         team: "N.C. Central",
@@ -9632,6 +10965,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2428",
       },
       {
         team: "N.C. Central",
@@ -9639,6 +10973,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2428",
       },
     ],
     "NC State": [
@@ -9648,6 +10983,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9655,6 +10991,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9662,6 +10999,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9669,6 +11007,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9676,6 +11015,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9683,6 +11023,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9690,6 +11031,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9697,6 +11039,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9704,6 +11047,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9711,6 +11055,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9718,6 +11063,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9725,6 +11071,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9732,6 +11079,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
       {
         team: "NC State",
@@ -9739,6 +11087,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "152",
       },
     ],
     NJIT: [
@@ -9748,6 +11097,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2885",
       },
       {
         team: "NJIT",
@@ -9755,6 +11105,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2885",
       },
       {
         team: "NJIT",
@@ -9762,6 +11113,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2885",
       },
       {
         team: "NJIT",
@@ -9769,6 +11121,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2885",
       },
       {
         team: "NJIT",
@@ -9776,6 +11129,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2885",
       },
     ],
     Navy: [
@@ -9785,6 +11139,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2426",
       },
       {
         team: "Navy",
@@ -9792,6 +11147,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2426",
       },
       {
         team: "Navy",
@@ -9799,6 +11155,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2426",
       },
       {
         team: "Navy",
@@ -9806,6 +11163,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2426",
       },
       {
         team: "Navy",
@@ -9813,6 +11171,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
+        source_id: "2426",
       },
     ],
     Nebraska: [
@@ -9822,6 +11181,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9829,6 +11189,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9836,6 +11197,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9843,6 +11205,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9850,6 +11213,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9857,6 +11221,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9864,6 +11229,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9871,6 +11237,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9878,6 +11245,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9885,6 +11253,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9892,6 +11261,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9899,6 +11269,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9906,6 +11277,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
       {
         team: "Nebraska",
@@ -9913,6 +11285,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "158",
       },
     ],
     Nevada: [
@@ -9922,6 +11295,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2440",
       },
       {
         team: "Nevada",
@@ -9929,6 +11303,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2440",
       },
       {
         team: "Nevada",
@@ -9936,6 +11311,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2440",
       },
       {
         team: "Nevada",
@@ -9943,6 +11319,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2440",
       },
       {
         team: "Nevada",
@@ -9950,6 +11327,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2440",
       },
     ],
     "New Hampshire": [
@@ -9959,6 +11337,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "160",
       },
       {
         team: "New Hampshire",
@@ -9966,6 +11345,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "160",
       },
       {
         team: "New Hampshire",
@@ -9973,6 +11353,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "160",
       },
       {
         team: "New Hampshire",
@@ -9980,6 +11361,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "160",
       },
       {
         team: "New Hampshire",
@@ -9987,6 +11369,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "160",
       },
     ],
     "New Mexico": [
@@ -9996,6 +11379,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "167",
       },
       {
         team: "New Mexico",
@@ -10003,6 +11387,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "167",
       },
       {
         team: "New Mexico",
@@ -10010,6 +11395,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "167",
       },
       {
         team: "New Mexico",
@@ -10017,6 +11403,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "167",
       },
       {
         team: "New Mexico",
@@ -10024,6 +11411,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "167",
       },
     ],
     "New Mexico St.": [
@@ -10033,6 +11421,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "166",
       },
       {
         team: "New Mexico St.",
@@ -10040,6 +11429,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "166",
       },
       {
         team: "New Mexico St.",
@@ -10047,6 +11437,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "166",
       },
       {
         team: "New Mexico St.",
@@ -10054,6 +11445,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "166",
       },
       {
         team: "New Mexico St.",
@@ -10061,6 +11453,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "166",
       },
     ],
     "New Orleans": [
@@ -10070,6 +11463,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2443",
       },
       {
         team: "New Orleans",
@@ -10077,6 +11471,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2443",
       },
       {
         team: "New Orleans",
@@ -10084,6 +11479,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2443",
       },
       {
         team: "New Orleans",
@@ -10091,6 +11487,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2443",
       },
       {
         team: "New Orleans",
@@ -10098,6 +11495,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2443",
       },
     ],
     Niagara: [
@@ -10107,6 +11505,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "315",
       },
       {
         team: "Niagara",
@@ -10114,6 +11513,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "315",
       },
       {
         team: "Niagara",
@@ -10121,6 +11521,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "315",
       },
       {
         team: "Niagara",
@@ -10128,6 +11529,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "315",
       },
       {
         team: "Niagara",
@@ -10135,6 +11537,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "315",
       },
     ],
     Nicholls: [
@@ -10144,6 +11547,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2447",
       },
       {
         team: "Nicholls",
@@ -10151,6 +11555,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2447",
       },
       {
         team: "Nicholls",
@@ -10158,6 +11563,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2447",
       },
       {
         team: "Nicholls",
@@ -10165,6 +11571,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2447",
       },
     ],
     "Nicholls St.": [
@@ -10174,6 +11581,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2447",
       },
     ],
     "Norfolk St.": [
@@ -10183,6 +11591,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2450",
       },
       {
         team: "Norfolk St.",
@@ -10190,6 +11599,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2450",
       },
       {
         team: "Norfolk St.",
@@ -10197,6 +11607,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2450",
       },
       {
         team: "Norfolk St.",
@@ -10204,6 +11615,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2450",
       },
       {
         team: "Norfolk St.",
@@ -10211,6 +11623,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2450",
       },
     ],
     "North Ala.": [
@@ -10220,6 +11633,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2453",
       },
       {
         team: "North Ala.",
@@ -10227,6 +11641,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2453",
       },
       {
         team: "North Ala.",
@@ -10234,6 +11649,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2453",
       },
       {
         team: "North Ala.",
@@ -10241,6 +11657,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2453",
       },
     ],
     "North Carolina": [
@@ -10250,6 +11667,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10257,6 +11675,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10264,6 +11683,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10271,6 +11691,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10278,6 +11699,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10285,6 +11707,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10292,6 +11715,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10299,6 +11723,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10306,6 +11731,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10313,6 +11739,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10320,6 +11747,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10327,6 +11755,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10334,6 +11763,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
       {
         team: "North Carolina",
@@ -10341,6 +11771,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "153",
       },
     ],
     "North Dakota": [
@@ -10350,6 +11781,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "155",
       },
       {
         team: "North Dakota",
@@ -10357,6 +11789,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "155",
       },
       {
         team: "North Dakota",
@@ -10364,6 +11797,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "155",
       },
       {
         team: "North Dakota",
@@ -10371,6 +11805,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "155",
       },
       {
         team: "North Dakota",
@@ -10378,6 +11813,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "155",
       },
     ],
     "North Dakota St.": [
@@ -10387,6 +11823,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2449",
       },
       {
         team: "North Dakota St.",
@@ -10394,6 +11831,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2449",
       },
       {
         team: "North Dakota St.",
@@ -10401,6 +11839,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2449",
       },
       {
         team: "North Dakota St.",
@@ -10408,6 +11847,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2449",
       },
       {
         team: "North Dakota St.",
@@ -10415,6 +11855,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2449",
       },
     ],
     "North Florida": [
@@ -10424,6 +11865,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2454",
       },
       {
         team: "North Florida",
@@ -10431,6 +11873,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2454",
       },
       {
         team: "North Florida",
@@ -10438,6 +11881,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2454",
       },
       {
         team: "North Florida",
@@ -10445,6 +11889,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2454",
       },
       {
         team: "North Florida",
@@ -10452,6 +11897,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2454",
       },
     ],
     "North Texas": [
@@ -10461,6 +11907,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "249",
       },
       {
         team: "North Texas",
@@ -10468,6 +11915,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "249",
       },
       {
         team: "North Texas",
@@ -10475,6 +11923,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "249",
       },
       {
         team: "North Texas",
@@ -10482,6 +11931,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "249",
       },
       {
         team: "North Texas",
@@ -10489,6 +11939,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "249",
       },
     ],
     Northeastern: [
@@ -10498,6 +11949,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "111",
       },
       {
         team: "Northeastern",
@@ -10505,6 +11957,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "111",
       },
       {
         team: "Northeastern",
@@ -10512,6 +11965,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "111",
       },
       {
         team: "Northeastern",
@@ -10519,6 +11973,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "111",
       },
       {
         team: "Northeastern",
@@ -10526,6 +11981,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "111",
       },
     ],
     "Northern Ariz.": [
@@ -10535,6 +11991,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2464",
       },
       {
         team: "Northern Ariz.",
@@ -10542,6 +11999,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2464",
       },
       {
         team: "Northern Ariz.",
@@ -10549,6 +12007,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2464",
       },
       {
         team: "Northern Ariz.",
@@ -10556,6 +12015,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2464",
       },
       {
         team: "Northern Ariz.",
@@ -10563,6 +12023,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2464",
       },
     ],
     "Northern Colo.": [
@@ -10572,6 +12033,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2458",
       },
       {
         team: "Northern Colo.",
@@ -10579,6 +12041,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2458",
       },
       {
         team: "Northern Colo.",
@@ -10586,6 +12049,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2458",
       },
       {
         team: "Northern Colo.",
@@ -10593,6 +12057,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2458",
       },
       {
         team: "Northern Colo.",
@@ -10600,6 +12065,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2458",
       },
     ],
     "Northern Ill.": [
@@ -10609,6 +12075,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "Northern Ill.",
@@ -10616,6 +12083,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "Northern Ill.",
@@ -10624,6 +12092,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "Northern Ill.",
@@ -10632,6 +12101,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "Northern Ill.",
@@ -10640,6 +12110,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
     ],
     NIU: [
@@ -10650,6 +12121,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "NIU",
@@ -10658,6 +12130,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "NIU",
@@ -10665,6 +12138,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "NIU",
@@ -10672,6 +12146,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
       {
         team: "NIU",
@@ -10679,6 +12154,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2459",
       },
     ],
     "Northern Ky.": [
@@ -10688,6 +12164,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "94",
       },
       {
         team: "Northern Ky.",
@@ -10695,6 +12172,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "94",
       },
       {
         team: "Northern Ky.",
@@ -10702,6 +12180,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "94",
       },
       {
         team: "Northern Ky.",
@@ -10709,6 +12188,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "94",
       },
       {
         team: "Northern Ky.",
@@ -10716,6 +12196,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "94",
       },
     ],
     Northwestern: [
@@ -10725,6 +12206,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10732,6 +12214,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10739,6 +12222,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10746,6 +12230,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10753,6 +12238,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10760,6 +12246,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10767,6 +12254,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10774,6 +12262,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10781,6 +12270,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10788,6 +12278,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10795,6 +12286,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10802,6 +12294,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10809,6 +12302,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
       {
         team: "Northwestern",
@@ -10816,6 +12310,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "77",
       },
     ],
     "Northwestern St.": [
@@ -10825,6 +12320,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2466",
       },
       {
         team: "Northwestern St.",
@@ -10832,6 +12328,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2466",
       },
       {
         team: "Northwestern St.",
@@ -10839,6 +12336,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2466",
       },
       {
         team: "Northwestern St.",
@@ -10846,6 +12344,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2466",
       },
       {
         team: "Northwestern St.",
@@ -10853,6 +12352,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2466",
       },
     ],
     "Notre Dame": [
@@ -10862,6 +12362,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10869,6 +12370,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10876,6 +12378,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10883,6 +12386,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10890,6 +12394,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10897,6 +12402,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10904,6 +12410,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10911,6 +12418,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10918,6 +12426,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10925,6 +12434,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10932,6 +12442,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10939,6 +12450,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10946,6 +12458,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
       {
         team: "Notre Dame",
@@ -10953,6 +12466,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "87",
       },
     ],
     Oakland: [
@@ -10962,6 +12476,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2473",
       },
       {
         team: "Oakland",
@@ -10969,6 +12484,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2473",
       },
       {
         team: "Oakland",
@@ -10976,6 +12492,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2473",
       },
       {
         team: "Oakland",
@@ -10983,6 +12500,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2473",
       },
       {
         team: "Oakland",
@@ -10990,6 +12508,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2473",
       },
     ],
     Ohio: [
@@ -10999,6 +12518,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "195",
       },
       {
         team: "Ohio",
@@ -11006,6 +12526,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "195",
       },
       {
         team: "Ohio",
@@ -11013,6 +12534,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "195",
       },
       {
         team: "Ohio",
@@ -11020,6 +12542,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "195",
       },
       {
         team: "Ohio",
@@ -11027,6 +12550,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "195",
       },
     ],
     "Ohio St.": [
@@ -11036,6 +12560,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11043,6 +12568,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11050,6 +12576,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11057,6 +12584,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11064,6 +12592,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11071,6 +12600,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11078,6 +12608,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11085,6 +12616,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11092,6 +12624,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11099,6 +12632,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11106,6 +12640,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11113,6 +12648,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11120,6 +12656,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
       {
         team: "Ohio St.",
@@ -11127,6 +12664,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "194",
       },
     ],
     Oklahoma: [
@@ -11136,6 +12674,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11143,6 +12682,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11150,6 +12690,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11157,6 +12698,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11164,6 +12706,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11171,6 +12714,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11178,6 +12722,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11185,6 +12730,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11192,6 +12738,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11199,6 +12746,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11206,6 +12754,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11213,6 +12762,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11220,6 +12770,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "201",
       },
       {
         team: "Oklahoma",
@@ -11227,6 +12778,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "201",
       },
     ],
     "Oklahoma St.": [
@@ -11236,6 +12788,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11243,6 +12796,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11250,6 +12804,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11257,6 +12812,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11264,6 +12820,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11271,6 +12828,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11278,6 +12836,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11285,6 +12844,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11292,6 +12852,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11299,6 +12860,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11306,6 +12868,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11313,6 +12876,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11320,6 +12884,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
       {
         team: "Oklahoma St.",
@@ -11327,6 +12892,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "197",
       },
     ],
     "Old Dominion": [
@@ -11336,6 +12902,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "295",
       },
       {
         team: "Old Dominion",
@@ -11343,6 +12910,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "295",
       },
       {
         team: "Old Dominion",
@@ -11350,6 +12918,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "295",
       },
       {
         team: "Old Dominion",
@@ -11357,6 +12926,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "295",
       },
       {
         team: "Old Dominion",
@@ -11364,6 +12934,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "295",
       },
     ],
     "Ole Miss": [
@@ -11373,6 +12944,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11380,6 +12952,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11387,6 +12960,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11394,6 +12968,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11401,6 +12976,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11408,6 +12984,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11415,6 +12992,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11422,6 +13000,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11429,6 +13008,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11436,6 +13016,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11443,6 +13024,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11450,6 +13032,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11457,6 +13040,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
       {
         team: "Ole Miss",
@@ -11464,6 +13048,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "145",
       },
     ],
     Omaha: [
@@ -11473,6 +13058,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2437",
       },
       {
         team: "Omaha",
@@ -11480,6 +13066,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2437",
       },
       {
         team: "Omaha",
@@ -11487,6 +13074,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2437",
       },
       {
         team: "Omaha",
@@ -11494,6 +13082,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2437",
       },
       {
         team: "Omaha",
@@ -11501,6 +13090,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2437",
       },
     ],
     "Oral Roberts": [
@@ -11510,6 +13100,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "198",
       },
       {
         team: "Oral Roberts",
@@ -11517,6 +13108,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "198",
       },
       {
         team: "Oral Roberts",
@@ -11524,6 +13116,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "198",
       },
       {
         team: "Oral Roberts",
@@ -11531,6 +13124,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "198",
       },
       {
         team: "Oral Roberts",
@@ -11538,6 +13132,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "198",
       },
     ],
     Oregon: [
@@ -11547,6 +13142,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11554,6 +13150,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11561,6 +13158,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11568,6 +13166,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11575,6 +13174,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11582,6 +13182,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11589,6 +13190,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11596,6 +13198,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11603,6 +13206,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11610,6 +13214,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11617,6 +13222,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11624,6 +13230,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11631,6 +13238,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "2483",
       },
       {
         team: "Oregon",
@@ -11638,6 +13246,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2483",
       },
     ],
     "Oregon St.": [
@@ -11647,6 +13256,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11654,6 +13264,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11661,6 +13272,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11668,6 +13280,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11675,6 +13288,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11682,6 +13296,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11689,6 +13304,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11696,6 +13312,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11703,6 +13320,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11710,6 +13328,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11717,6 +13336,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11724,6 +13344,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11731,6 +13352,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "204",
       },
       {
         team: "Oregon St.",
@@ -11738,6 +13360,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "high",
+        source_id: "204",
       },
     ],
     Pacific: [
@@ -11747,6 +13370,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "279",
       },
       {
         team: "Pacific",
@@ -11754,6 +13378,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "279",
       },
       {
         team: "Pacific",
@@ -11761,6 +13386,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "279",
       },
       {
         team: "Pacific",
@@ -11768,6 +13394,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "279",
       },
       {
         team: "Pacific",
@@ -11775,6 +13402,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "279",
       },
     ],
     Penn: [
@@ -11784,6 +13412,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "219",
       },
       {
         team: "Penn",
@@ -11791,6 +13420,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "219",
       },
       {
         team: "Penn",
@@ -11798,6 +13428,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "219",
       },
       {
         team: "Penn",
@@ -11805,6 +13436,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "219",
       },
     ],
     "Penn St.": [
@@ -11814,6 +13446,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11821,6 +13454,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11828,6 +13462,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11835,6 +13470,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11842,6 +13478,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11849,6 +13486,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11856,6 +13494,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11863,6 +13502,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11870,6 +13510,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11877,6 +13518,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11884,6 +13526,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11891,6 +13534,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11898,6 +13542,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
       {
         team: "Penn St.",
@@ -11905,6 +13550,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "213",
       },
     ],
     Pepperdine: [
@@ -11914,6 +13560,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2492",
       },
       {
         team: "Pepperdine",
@@ -11921,6 +13568,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2492",
       },
       {
         team: "Pepperdine",
@@ -11928,6 +13576,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2492",
       },
       {
         team: "Pepperdine",
@@ -11935,6 +13584,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2492",
       },
       {
         team: "Pepperdine",
@@ -11942,6 +13592,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2492",
       },
     ],
     Pittsburgh: [
@@ -11951,6 +13602,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -11958,6 +13610,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -11965,6 +13618,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -11972,6 +13626,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -11979,6 +13634,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -11986,6 +13642,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -11993,6 +13650,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12000,6 +13658,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12007,6 +13666,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12014,6 +13674,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12021,6 +13682,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12028,6 +13690,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12035,6 +13698,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
       {
         team: "Pittsburgh",
@@ -12042,6 +13706,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "221",
       },
     ],
     Portland: [
@@ -12051,6 +13716,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2501",
       },
       {
         team: "Portland",
@@ -12058,6 +13724,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2501",
       },
       {
         team: "Portland",
@@ -12065,6 +13732,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2501",
       },
       {
         team: "Portland",
@@ -12072,6 +13740,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2501",
       },
       {
         team: "Portland",
@@ -12079,6 +13748,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2501",
       },
       {
         team: "Portland",
@@ -12086,6 +13756,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2501",
       },
     ],
     "Portland St.": [
@@ -12095,6 +13766,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2502",
       },
       {
         team: "Portland St.",
@@ -12102,6 +13774,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2502",
       },
       {
         team: "Portland St.",
@@ -12109,6 +13782,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2502",
       },
       {
         team: "Portland St.",
@@ -12116,6 +13790,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2502",
       },
       {
         team: "Portland St.",
@@ -12123,6 +13798,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2502",
       },
     ],
     "Prairie View": [
@@ -12132,6 +13808,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2504",
       },
       {
         team: "Prairie View",
@@ -12139,6 +13816,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2504",
       },
       {
         team: "Prairie View",
@@ -12146,6 +13824,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2504",
       },
       {
         team: "Prairie View",
@@ -12153,6 +13832,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2504",
       },
       {
         team: "Prairie View",
@@ -12160,6 +13840,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2504",
       },
     ],
     Presbyterian: [
@@ -12169,6 +13850,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2506",
       },
       {
         team: "Presbyterian",
@@ -12176,6 +13858,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2506",
       },
       {
         team: "Presbyterian",
@@ -12183,6 +13866,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2506",
       },
       {
         team: "Presbyterian",
@@ -12190,6 +13874,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2506",
       },
       {
         team: "Presbyterian",
@@ -12197,6 +13882,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2506",
       },
     ],
     Princeton: [
@@ -12206,6 +13892,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12213,6 +13900,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12220,6 +13908,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12227,6 +13916,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12234,6 +13924,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12241,6 +13932,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12248,6 +13940,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "163",
       },
       {
         team: "Princeton",
@@ -12255,6 +13948,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "163",
       },
     ],
     Providence: [
@@ -12264,6 +13958,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12271,6 +13966,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12278,6 +13974,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12285,6 +13982,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12292,6 +13990,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12299,6 +13998,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12306,6 +14006,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12313,6 +14014,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12320,6 +14022,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12327,6 +14030,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12334,6 +14038,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2507",
       },
       {
         team: "Providence",
@@ -12341,6 +14046,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2507",
       },
     ],
     Purdue: [
@@ -12350,6 +14056,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12357,6 +14064,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12364,6 +14072,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12371,6 +14080,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12378,6 +14088,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12385,6 +14096,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12392,6 +14104,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12399,6 +14112,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12406,6 +14120,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12413,6 +14128,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12420,6 +14136,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12427,6 +14144,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12434,6 +14152,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
       {
         team: "Purdue",
@@ -12441,6 +14160,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "2509",
       },
     ],
     "Purdue Fort Wayne": [
@@ -12450,6 +14170,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2870",
       },
       {
         team: "Purdue Fort Wayne",
@@ -12457,6 +14178,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2870",
       },
       {
         team: "Purdue Fort Wayne",
@@ -12464,6 +14186,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2870",
       },
       {
         team: "Purdue Fort Wayne",
@@ -12471,6 +14194,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2870",
       },
       {
         team: "Purdue Fort Wayne",
@@ -12478,6 +14202,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2870",
       },
     ],
     "Queens (NC)": [
@@ -12487,6 +14212,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2511",
       },
       {
         team: "Queens (NC)",
@@ -12494,6 +14220,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2511",
       },
       {
         team: "Queens (NC)",
@@ -12501,6 +14228,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2511",
       },
     ],
     Quinnipiac: [
@@ -12510,6 +14238,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2514",
       },
       {
         team: "Quinnipiac",
@@ -12517,6 +14246,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2514",
       },
       {
         team: "Quinnipiac",
@@ -12524,6 +14254,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2514",
       },
       {
         team: "Quinnipiac",
@@ -12531,6 +14262,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2514",
       },
       {
         team: "Quinnipiac",
@@ -12538,6 +14270,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2514",
       },
     ],
     Radford: [
@@ -12547,6 +14280,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2515",
       },
       {
         team: "Radford",
@@ -12554,6 +14288,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2515",
       },
       {
         team: "Radford",
@@ -12561,6 +14296,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2515",
       },
       {
         team: "Radford",
@@ -12568,6 +14304,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2515",
       },
       {
         team: "Radford",
@@ -12575,6 +14312,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2515",
       },
     ],
     "Rhode Island": [
@@ -12584,6 +14322,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
       {
         team: "Rhode Island",
@@ -12591,6 +14330,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
       {
         team: "Rhode Island",
@@ -12598,6 +14338,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
       {
         team: "Rhode Island",
@@ -12605,6 +14346,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
       {
         team: "Rhode Island",
@@ -12612,6 +14354,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
       {
         team: "Rhode Island",
@@ -12619,6 +14362,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
       {
         team: "Rhode Island",
@@ -12626,6 +14370,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "227",
       },
     ],
     Rice: [
@@ -12635,6 +14380,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "242",
       },
       {
         team: "Rice",
@@ -12642,6 +14388,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "242",
       },
       {
         team: "Rice",
@@ -12649,6 +14396,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "242",
       },
       {
         team: "Rice",
@@ -12656,6 +14404,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "242",
       },
       {
         team: "Rice",
@@ -12663,6 +14412,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "242",
       },
     ],
     Richmond: [
@@ -12672,6 +14422,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12679,6 +14430,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12686,6 +14438,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12693,6 +14446,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12700,6 +14454,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12707,6 +14462,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12714,6 +14470,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "257",
       },
       {
         team: "Richmond",
@@ -12721,6 +14478,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "257",
       },
     ],
     Rider: [
@@ -12730,6 +14488,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2520",
       },
       {
         team: "Rider",
@@ -12737,6 +14496,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2520",
       },
       {
         team: "Rider",
@@ -12744,6 +14504,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2520",
       },
       {
         team: "Rider",
@@ -12751,6 +14512,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2520",
       },
       {
         team: "Rider",
@@ -12758,6 +14520,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2520",
       },
     ],
     "Robert Morris": [
@@ -12767,6 +14530,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2523",
       },
       {
         team: "Robert Morris",
@@ -12774,6 +14538,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2523",
       },
       {
         team: "Robert Morris",
@@ -12781,6 +14546,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2523",
       },
       {
         team: "Robert Morris",
@@ -12788,6 +14554,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2523",
       },
       {
         team: "Robert Morris",
@@ -12795,6 +14562,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2523",
       },
     ],
     Rutgers: [
@@ -12804,6 +14572,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12811,6 +14580,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12818,6 +14588,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12825,6 +14596,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12832,6 +14604,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12839,6 +14612,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12846,6 +14620,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12853,6 +14628,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12860,6 +14636,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12867,6 +14644,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12874,6 +14652,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12881,6 +14660,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12888,6 +14668,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
       {
         team: "Rutgers",
@@ -12895,6 +14676,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "164",
       },
     ],
     SFA: [
@@ -12904,6 +14686,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2617",
       },
       {
         team: "SFA",
@@ -12911,6 +14694,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2617",
       },
       {
         team: "SFA",
@@ -12918,6 +14702,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2617",
       },
       {
         team: "SFA",
@@ -12925,6 +14710,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2617",
       },
       {
         team: "SFA",
@@ -12932,6 +14718,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2617",
       },
     ],
     SIUE: [
@@ -12941,6 +14728,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2565",
       },
       {
         team: "SIUE",
@@ -12948,6 +14736,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2565",
       },
       {
         team: "SIUE",
@@ -12955,6 +14744,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2565",
       },
       {
         team: "SIUE",
@@ -12962,6 +14752,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2565",
       },
       {
         team: "SIUE",
@@ -12969,6 +14760,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2565",
       },
     ],
     SMU: [
@@ -12978,6 +14770,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -12985,6 +14778,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -12992,6 +14786,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -12999,6 +14794,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13006,6 +14802,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13013,6 +14810,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13020,6 +14818,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13027,6 +14826,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13034,6 +14834,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13041,6 +14842,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13048,6 +14850,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13055,6 +14858,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13062,6 +14866,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2567",
       },
       {
         team: "SMU",
@@ -13069,6 +14874,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "midhigh",
+        source_id: "2567",
       },
     ],
     "Sacramento St.": [
@@ -13078,6 +14884,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "16",
       },
       {
         team: "Sacramento St.",
@@ -13085,6 +14892,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "16",
       },
       {
         team: "Sacramento St.",
@@ -13092,6 +14900,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "16",
       },
       {
         team: "Sacramento St.",
@@ -13099,6 +14908,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "16",
       },
       {
         team: "Sacramento St.",
@@ -13106,6 +14916,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "16",
       },
     ],
     "Sacred Heart": [
@@ -13115,6 +14926,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2529",
       },
       {
         team: "Sacred Heart",
@@ -13122,6 +14934,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2529",
       },
       {
         team: "Sacred Heart",
@@ -13129,6 +14942,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2529",
       },
       {
         team: "Sacred Heart",
@@ -13136,6 +14950,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2529",
       },
       {
         team: "Sacred Heart",
@@ -13143,6 +14958,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "low",
+        source_id: "2529",
       },
     ],
     "Saint Francis (PA)": [
@@ -13152,6 +14968,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2598",
       },
       {
         team: "Saint Francis (PA)",
@@ -13159,6 +14976,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2598",
       },
       {
         team: "Saint Francis (PA)",
@@ -13166,6 +14984,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2598",
       },
       {
         team: "Saint Francis (PA)",
@@ -13173,6 +14992,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2598",
       },
     ],
     "Saint Francis": [
@@ -13182,6 +15002,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2598",
       },
     ],
     "Saint Joseph's": [
@@ -13191,6 +15012,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
       {
         team: "Saint Joseph's",
@@ -13198,6 +15020,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
       {
         team: "Saint Joseph's",
@@ -13205,6 +15028,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
       {
         team: "Saint Joseph's",
@@ -13212,6 +15036,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
       {
         team: "Saint Joseph's",
@@ -13219,6 +15044,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
       {
         team: "Saint Joseph's",
@@ -13226,6 +15052,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
       {
         team: "Saint Joseph's",
@@ -13233,6 +15060,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2603",
       },
     ],
     "Saint Louis": [
@@ -13242,6 +15070,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
       {
         team: "Saint Louis",
@@ -13249,6 +15078,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
       {
         team: "Saint Louis",
@@ -13256,6 +15086,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
       {
         team: "Saint Louis",
@@ -13263,6 +15094,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
       {
         team: "Saint Louis",
@@ -13270,6 +15102,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
       {
         team: "Saint Louis",
@@ -13277,6 +15110,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
       {
         team: "Saint Louis",
@@ -13284,6 +15118,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "139",
       },
     ],
     "Saint Mary's (CA)": [
@@ -13293,6 +15128,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "2608",
       },
       {
         team: "Saint Mary's (CA)",
@@ -13300,6 +15136,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "2608",
       },
       {
         team: "Saint Mary's (CA)",
@@ -13307,6 +15144,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2608",
       },
       {
         team: "Saint Mary's (CA)",
@@ -13314,6 +15152,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2608",
       },
       {
         team: "Saint Mary's (CA)",
@@ -13321,6 +15160,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2608",
       },
       {
         team: "Saint Mary's (CA)",
@@ -13328,6 +15168,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2608",
       },
       {
         team: "Saint Mary's (CA)",
@@ -13335,6 +15176,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2608",
       },
     ],
     "Saint Peter's": [
@@ -13344,6 +15186,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2612",
       },
       {
         team: "Saint Peter's",
@@ -13351,6 +15194,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2612",
       },
       {
         team: "Saint Peter's",
@@ -13358,6 +15202,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2612",
       },
       {
         team: "Saint Peter's",
@@ -13365,6 +15210,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2612",
       },
       {
         team: "Saint Peter's",
@@ -13372,6 +15218,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2612",
       },
     ],
     "Sam Houston": [
@@ -13381,6 +15228,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2534",
       },
       {
         team: "Sam Houston",
@@ -13388,6 +15236,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2534",
       },
       {
         team: "Sam Houston",
@@ -13395,6 +15244,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2534",
       },
       {
         team: "Sam Houston",
@@ -13402,6 +15252,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2534",
       },
     ],
     "Sam Houston St.": [
@@ -13411,6 +15262,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2534",
       },
     ],
     Samford: [
@@ -13420,6 +15272,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2535",
       },
       {
         team: "Samford",
@@ -13427,6 +15280,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2535",
       },
       {
         team: "Samford",
@@ -13434,6 +15288,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2535",
       },
       {
         team: "Samford",
@@ -13441,6 +15296,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2535",
       },
       {
         team: "Samford",
@@ -13448,6 +15304,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2535",
       },
     ],
     "San Diego": [
@@ -13457,6 +15314,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "301",
       },
       {
         team: "San Diego",
@@ -13464,6 +15322,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "301",
       },
       {
         team: "San Diego",
@@ -13471,6 +15330,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "301",
       },
       {
         team: "San Diego",
@@ -13478,6 +15338,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "301",
       },
       {
         team: "San Diego",
@@ -13485,6 +15346,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "301",
       },
     ],
     "San Diego St.": [
@@ -13494,6 +15356,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "21",
       },
       {
         team: "San Diego St.",
@@ -13501,6 +15364,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "21",
       },
       {
         team: "San Diego St.",
@@ -13508,6 +15372,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "21",
       },
       {
         team: "San Diego St.",
@@ -13515,6 +15380,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "21",
       },
       {
         team: "San Diego St.",
@@ -13522,6 +15388,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "21",
       },
       {
         team: "San Diego St.",
@@ -13529,6 +15396,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "21",
       },
       {
         team: "San Diego St.",
@@ -13536,6 +15404,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "21",
       },
     ],
     "San Francisco": [
@@ -13545,6 +15414,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2539",
       },
       {
         team: "San Francisco",
@@ -13552,6 +15422,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2539",
       },
       {
         team: "San Francisco",
@@ -13559,6 +15430,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2539",
       },
       {
         team: "San Francisco",
@@ -13566,6 +15438,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2539",
       },
       {
         team: "San Francisco",
@@ -13573,6 +15446,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2539",
       },
     ],
     "San Jose St.": [
@@ -13582,6 +15456,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "23",
       },
       {
         team: "San Jose St.",
@@ -13589,6 +15464,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "23",
       },
       {
         team: "San Jose St.",
@@ -13596,6 +15472,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "23",
       },
       {
         team: "San Jose St.",
@@ -13603,6 +15480,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "23",
       },
       {
         team: "San Jose St.",
@@ -13610,6 +15488,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "23",
       },
     ],
     "Santa Clara": [
@@ -13619,6 +15498,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2541",
       },
       {
         team: "Santa Clara",
@@ -13626,6 +15506,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2541",
       },
       {
         team: "Santa Clara",
@@ -13633,6 +15514,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2541",
       },
       {
         team: "Santa Clara",
@@ -13640,6 +15522,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2541",
       },
       {
         team: "Santa Clara",
@@ -13647,6 +15530,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
+        source_id: "2541",
       },
     ],
     "Seattle U": [
@@ -13656,6 +15540,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2547",
       },
       {
         team: "Seattle U",
@@ -13663,6 +15548,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2547",
       },
       {
         team: "Seattle U",
@@ -13670,6 +15556,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2547",
       },
       {
         team: "Seattle U",
@@ -13677,6 +15564,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2547",
       },
       {
         team: "Seattle U",
@@ -13684,6 +15572,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2547",
       },
     ],
     "Seton Hall": [
@@ -13693,6 +15582,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13700,6 +15590,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13707,6 +15598,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13714,6 +15606,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13721,6 +15614,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13728,6 +15622,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13735,6 +15630,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13742,6 +15638,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13749,6 +15646,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13756,6 +15654,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13763,6 +15662,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2550",
       },
       {
         team: "Seton Hall",
@@ -13770,6 +15670,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2550",
       },
     ],
     Siena: [
@@ -13779,6 +15680,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2561",
       },
       {
         team: "Siena",
@@ -13786,6 +15688,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2561",
       },
       {
         team: "Siena",
@@ -13793,6 +15696,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2561",
       },
       {
         team: "Siena",
@@ -13800,6 +15704,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2561",
       },
       {
         team: "Siena",
@@ -13807,6 +15712,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "maac",
         category: "midlow",
+        source_id: "2561",
       },
     ],
     "South Alabama": [
@@ -13816,6 +15722,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "6",
       },
       {
         team: "South Alabama",
@@ -13823,6 +15730,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "6",
       },
       {
         team: "South Alabama",
@@ -13830,6 +15738,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "6",
       },
       {
         team: "South Alabama",
@@ -13837,6 +15746,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "6",
       },
       {
         team: "South Alabama",
@@ -13844,6 +15754,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "6",
       },
     ],
     "South Carolina": [
@@ -13853,6 +15764,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13860,6 +15772,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13867,6 +15780,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13874,6 +15788,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13881,6 +15796,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13888,6 +15804,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13895,6 +15812,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13902,6 +15820,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13909,6 +15828,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13916,6 +15836,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13923,6 +15844,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13930,6 +15852,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13937,6 +15860,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
       {
         team: "South Carolina",
@@ -13944,6 +15868,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2579",
       },
     ],
     "South Carolina St.": [
@@ -13953,6 +15878,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2569",
       },
       {
         team: "South Carolina St.",
@@ -13960,6 +15886,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2569",
       },
       {
         team: "South Carolina St.",
@@ -13967,6 +15894,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2569",
       },
       {
         team: "South Carolina St.",
@@ -13974,6 +15902,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2569",
       },
       {
         team: "South Carolina St.",
@@ -13981,6 +15910,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2569",
       },
     ],
     "South Dakota": [
@@ -13990,6 +15920,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -13997,6 +15928,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14004,6 +15936,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14011,6 +15944,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14018,6 +15952,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14025,6 +15960,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14032,6 +15968,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14039,6 +15976,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14046,6 +15984,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "233",
       },
       {
         team: "South Dakota",
@@ -14053,6 +15992,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "233",
       },
     ],
     "South Dakota St.": [
@@ -14062,6 +16002,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14069,6 +16010,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14076,6 +16018,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14083,6 +16026,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14090,6 +16034,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14097,6 +16042,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14104,6 +16050,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14111,6 +16058,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14118,6 +16066,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14125,6 +16074,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14132,6 +16082,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
       {
         team: "South Dakota St.",
@@ -14139,6 +16090,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2571",
       },
     ],
     "South Fla.": [
@@ -14148,6 +16100,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14155,6 +16108,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14162,6 +16116,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14169,6 +16124,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14176,6 +16132,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14183,6 +16140,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14190,6 +16148,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14197,6 +16156,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14204,6 +16164,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14211,6 +16172,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14218,6 +16180,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14225,6 +16188,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14232,6 +16196,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
       {
         team: "South Fla.",
@@ -14239,6 +16204,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "58",
       },
     ],
     "Southeast Mo. St.": [
@@ -14248,6 +16214,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2546",
       },
       {
         team: "Southeast Mo. St.",
@@ -14255,6 +16222,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2546",
       },
       {
         team: "Southeast Mo. St.",
@@ -14262,6 +16230,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2546",
       },
       {
         team: "Southeast Mo. St.",
@@ -14269,6 +16238,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2546",
       },
       {
         team: "Southeast Mo. St.",
@@ -14276,6 +16246,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2546",
       },
     ],
     "Southeastern La.": [
@@ -14285,6 +16256,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2545",
       },
       {
         team: "Southeastern La.",
@@ -14292,6 +16264,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2545",
       },
       {
         team: "Southeastern La.",
@@ -14299,6 +16272,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2545",
       },
       {
         team: "Southeastern La.",
@@ -14306,6 +16280,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2545",
       },
       {
         team: "Southeastern La.",
@@ -14313,6 +16288,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2545",
       },
     ],
     "Southern California": [
@@ -14322,6 +16298,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14329,6 +16306,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14336,6 +16314,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14343,6 +16322,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14350,6 +16330,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14357,6 +16338,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14364,6 +16346,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14371,6 +16354,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14378,6 +16362,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14385,6 +16370,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14392,6 +16378,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14399,6 +16386,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14406,6 +16394,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "30",
       },
       {
         team: "Southern California",
@@ -14413,6 +16402,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "30",
       },
     ],
     "Southern Ill.": [
@@ -14422,6 +16412,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "79",
       },
       {
         team: "Southern Ill.",
@@ -14429,6 +16420,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "79",
       },
       {
         team: "Southern Ill.",
@@ -14436,6 +16428,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "79",
       },
       {
         team: "Southern Ill.",
@@ -14443,6 +16436,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "79",
       },
       {
         team: "Southern Ill.",
@@ -14450,6 +16444,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "79",
       },
     ],
     "Southern Ind.": [
@@ -14459,6 +16454,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "88",
       },
       {
         team: "Southern Ind.",
@@ -14466,6 +16462,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "88",
       },
       {
         team: "Southern Ind.",
@@ -14473,6 +16470,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "88",
       },
     ],
     "Southern Miss.": [
@@ -14482,6 +16480,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2572",
       },
       {
         team: "Southern Miss.",
@@ -14489,6 +16488,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2572",
       },
       {
         team: "Southern Miss.",
@@ -14496,6 +16496,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2572",
       },
       {
         team: "Southern Miss.",
@@ -14503,6 +16504,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2572",
       },
       {
         team: "Southern Miss.",
@@ -14510,6 +16512,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2572",
       },
     ],
     "Southern U.": [
@@ -14519,6 +16522,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2582",
       },
       {
         team: "Southern U.",
@@ -14526,6 +16530,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2582",
       },
       {
         team: "Southern U.",
@@ -14533,6 +16538,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2582",
       },
       {
         team: "Southern U.",
@@ -14540,6 +16546,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2582",
       },
       {
         team: "Southern U.",
@@ -14547,6 +16554,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2582",
       },
     ],
     "Southern Utah": [
@@ -14556,6 +16564,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "253",
       },
       {
         team: "Southern Utah",
@@ -14563,6 +16572,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "253",
       },
       {
         team: "Southern Utah",
@@ -14570,6 +16580,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "253",
       },
       {
         team: "Southern Utah",
@@ -14577,6 +16588,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "253",
       },
       {
         team: "Southern Utah",
@@ -14584,6 +16596,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "253",
       },
     ],
     "St. Bonaventure": [
@@ -14593,6 +16606,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
       {
         team: "St. Bonaventure",
@@ -14600,6 +16614,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
       {
         team: "St. Bonaventure",
@@ -14607,6 +16622,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
       {
         team: "St. Bonaventure",
@@ -14614,6 +16630,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
       {
         team: "St. Bonaventure",
@@ -14621,6 +16638,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
       {
         team: "St. Bonaventure",
@@ -14628,6 +16646,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
       {
         team: "St. Bonaventure",
@@ -14635,6 +16654,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "179",
       },
     ],
     "St. Francis Brooklyn": [
@@ -14644,6 +16664,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2597",
       },
       {
         team: "St. Francis Brooklyn",
@@ -14651,6 +16672,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2597",
       },
       {
         team: "St. Francis Brooklyn",
@@ -14658,6 +16680,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2597",
       },
     ],
     "St. John's (NY)": [
@@ -14667,6 +16690,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14674,6 +16698,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14681,6 +16706,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14688,6 +16714,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14695,6 +16722,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14702,6 +16730,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14709,6 +16738,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14716,6 +16746,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14723,6 +16754,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14730,6 +16762,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14737,6 +16770,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2599",
       },
       {
         team: "St. John's (NY)",
@@ -14744,6 +16778,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2599",
       },
     ],
     "St. Thomas (MN)": [
@@ -14753,6 +16788,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2900",
       },
       {
         team: "St. Thomas (MN)",
@@ -14760,6 +16796,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2900",
       },
       {
         team: "St. Thomas (MN)",
@@ -14767,6 +16804,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2900",
       },
       {
         team: "St. Thomas (MN)",
@@ -14774,6 +16812,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2900",
       },
     ],
     Stanford: [
@@ -14783,6 +16822,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14790,6 +16830,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14797,6 +16838,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14804,6 +16846,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14811,6 +16854,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14818,6 +16862,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14825,6 +16870,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14832,6 +16878,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14839,6 +16886,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14846,6 +16894,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14853,6 +16902,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14860,6 +16910,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14867,6 +16918,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "24",
       },
       {
         team: "Stanford",
@@ -14874,6 +16926,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "24",
       },
     ],
     Stetson: [
@@ -14883,6 +16936,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "56",
       },
       {
         team: "Stetson",
@@ -14890,6 +16944,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "56",
       },
       {
         team: "Stetson",
@@ -14897,6 +16952,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "56",
       },
       {
         team: "Stetson",
@@ -14904,6 +16960,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "56",
       },
       {
         team: "Stetson",
@@ -14911,6 +16968,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "56",
       },
     ],
     Stonehill: [
@@ -14920,6 +16978,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "284",
       },
       {
         team: "Stonehill",
@@ -14927,6 +16986,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "284",
       },
       {
         team: "Stonehill",
@@ -14934,6 +16994,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "284",
       },
     ],
     "Stony Brook": [
@@ -14943,6 +17004,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2619",
       },
       {
         team: "Stony Brook",
@@ -14950,6 +17012,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2619",
       },
       {
         team: "Stony Brook",
@@ -14957,6 +17020,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2619",
       },
       {
         team: "Stony Brook",
@@ -14964,6 +17028,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2619",
       },
       {
         team: "Stony Brook",
@@ -14971,6 +17036,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2619",
       },
     ],
     Syracuse: [
@@ -14980,6 +17046,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -14987,6 +17054,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -14994,6 +17062,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15001,6 +17070,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15008,6 +17078,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15015,6 +17086,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15022,6 +17094,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15029,6 +17102,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15036,6 +17110,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15043,6 +17118,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15050,6 +17126,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15057,6 +17134,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15064,6 +17142,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
       {
         team: "Syracuse",
@@ -15071,6 +17150,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "183",
       },
     ],
     TCU: [
@@ -15080,6 +17160,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15087,6 +17168,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15094,6 +17176,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15101,6 +17184,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15108,6 +17192,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15115,6 +17200,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15122,6 +17208,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15129,6 +17216,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15136,6 +17224,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15143,6 +17232,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15150,6 +17240,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15157,6 +17248,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15164,6 +17256,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
       {
         team: "TCU",
@@ -15171,6 +17264,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2628",
       },
     ],
     "Tarleton St.": [
@@ -15180,6 +17274,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2627",
       },
       {
         team: "Tarleton St.",
@@ -15187,6 +17282,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2627",
       },
       {
         team: "Tarleton St.",
@@ -15194,6 +17290,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2627",
       },
       {
         team: "Tarleton St.",
@@ -15201,6 +17298,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "2627",
       },
     ],
     Temple: [
@@ -15210,6 +17308,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15217,6 +17316,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15224,6 +17324,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15231,6 +17332,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15238,6 +17340,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15245,6 +17348,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15252,6 +17356,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15259,6 +17364,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15266,6 +17372,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15273,6 +17380,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15280,6 +17388,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15287,6 +17396,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15294,6 +17404,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
       {
         team: "Temple",
@@ -15301,6 +17412,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "218",
       },
     ],
     Tennessee: [
@@ -15310,6 +17422,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15317,6 +17430,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15324,6 +17438,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15331,6 +17446,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15338,6 +17454,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15345,6 +17462,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15352,6 +17470,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15359,6 +17478,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15366,6 +17486,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15373,6 +17494,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15380,6 +17502,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15387,6 +17510,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15394,6 +17518,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
       {
         team: "Tennessee",
@@ -15401,6 +17526,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "2633",
       },
     ],
     "Tennessee St.": [
@@ -15410,6 +17536,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2634",
       },
       {
         team: "Tennessee St.",
@@ -15417,6 +17544,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2634",
       },
       {
         team: "Tennessee St.",
@@ -15424,6 +17552,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2634",
       },
       {
         team: "Tennessee St.",
@@ -15431,6 +17560,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2634",
       },
       {
         team: "Tennessee St.",
@@ -15438,6 +17568,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2634",
       },
     ],
     "Tennessee Tech": [
@@ -15447,6 +17578,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2635",
       },
       {
         team: "Tennessee Tech",
@@ -15454,6 +17586,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2635",
       },
       {
         team: "Tennessee Tech",
@@ -15461,6 +17594,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2635",
       },
       {
         team: "Tennessee Tech",
@@ -15468,6 +17602,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2635",
       },
       {
         team: "Tennessee Tech",
@@ -15475,6 +17610,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2635",
       },
     ],
     "Tex. A&M-Commerce": [
@@ -15484,6 +17620,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2837",
       },
       {
         team: "Tex. A&M-Commerce",
@@ -15491,6 +17628,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2837",
       },
     ],
     "East Texas A&M": [
@@ -15500,6 +17638,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2837",
       },
     ],
     Texas: [
@@ -15509,6 +17648,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15516,6 +17656,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15523,6 +17664,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15530,6 +17672,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15537,6 +17680,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15544,6 +17688,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15551,6 +17696,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15558,6 +17704,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15565,6 +17712,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15572,6 +17720,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15579,6 +17728,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15586,6 +17736,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15593,6 +17744,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "251",
       },
       {
         team: "Texas",
@@ -15600,6 +17752,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "251",
       },
     ],
     "Texas A&M": [
@@ -15609,6 +17762,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15616,6 +17770,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15623,6 +17778,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15630,6 +17786,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15637,6 +17794,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15644,6 +17802,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15651,6 +17810,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15658,6 +17818,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15665,6 +17826,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15672,6 +17834,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15679,6 +17842,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15686,6 +17850,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15693,6 +17858,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
       {
         team: "Texas A&M",
@@ -15700,6 +17866,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "245",
       },
     ],
     "Texas Southern": [
@@ -15709,6 +17876,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2640",
       },
       {
         team: "Texas Southern",
@@ -15716,6 +17884,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2640",
       },
       {
         team: "Texas Southern",
@@ -15723,6 +17892,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2640",
       },
       {
         team: "Texas Southern",
@@ -15730,6 +17900,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2640",
       },
       {
         team: "Texas Southern",
@@ -15737,6 +17908,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "swac",
         category: "low",
+        source_id: "2640",
       },
     ],
     "Texas St.": [
@@ -15746,6 +17918,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "326",
       },
       {
         team: "Texas St.",
@@ -15753,6 +17926,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "326",
       },
       {
         team: "Texas St.",
@@ -15760,6 +17934,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "326",
       },
       {
         team: "Texas St.",
@@ -15767,6 +17942,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "326",
       },
       {
         team: "Texas St.",
@@ -15774,6 +17950,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "326",
       },
     ],
     "Texas Tech": [
@@ -15783,6 +17960,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15790,6 +17968,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15797,6 +17976,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15804,6 +17984,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15811,6 +17992,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15818,6 +18000,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15825,6 +18008,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15832,6 +18016,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15839,6 +18024,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15846,6 +18032,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15853,6 +18040,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15860,6 +18048,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15867,6 +18056,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
       {
         team: "Texas Tech",
@@ -15874,6 +18064,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "2641",
       },
     ],
     "The Citadel": [
@@ -15883,6 +18074,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2643",
       },
       {
         team: "The Citadel",
@@ -15890,6 +18082,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2643",
       },
       {
         team: "The Citadel",
@@ -15897,6 +18090,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2643",
       },
       {
         team: "The Citadel",
@@ -15904,6 +18098,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2643",
       },
       {
         team: "The Citadel",
@@ -15911,6 +18106,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2643",
       },
     ],
     Toledo: [
@@ -15920,6 +18116,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2649",
       },
       {
         team: "Toledo",
@@ -15927,6 +18124,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2649",
       },
       {
         team: "Toledo",
@@ -15934,6 +18132,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2649",
       },
       {
         team: "Toledo",
@@ -15941,6 +18140,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2649",
       },
       {
         team: "Toledo",
@@ -15948,6 +18148,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2649",
       },
     ],
     Towson: [
@@ -15957,6 +18158,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "119",
       },
       {
         team: "Towson",
@@ -15964,6 +18166,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "119",
       },
       {
         team: "Towson",
@@ -15971,6 +18174,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "119",
       },
       {
         team: "Towson",
@@ -15978,6 +18182,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "119",
       },
       {
         team: "Towson",
@@ -15985,6 +18190,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "119",
       },
     ],
     Troy: [
@@ -15994,6 +18200,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2653",
       },
       {
         team: "Troy",
@@ -16001,6 +18208,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2653",
       },
       {
         team: "Troy",
@@ -16008,6 +18216,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2653",
       },
       {
         team: "Troy",
@@ -16015,6 +18224,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2653",
       },
       {
         team: "Troy",
@@ -16022,6 +18232,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2653",
       },
     ],
     Tulane: [
@@ -16031,6 +18242,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16038,6 +18250,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16045,6 +18258,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16052,6 +18266,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16059,6 +18274,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16066,6 +18282,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16073,6 +18290,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16080,6 +18298,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16087,6 +18306,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16094,6 +18314,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16101,6 +18322,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16108,6 +18330,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16115,6 +18338,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
       {
         team: "Tulane",
@@ -16122,6 +18346,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2655",
       },
     ],
     Tulsa: [
@@ -16131,6 +18356,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16138,6 +18364,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16145,6 +18372,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16152,6 +18380,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16159,6 +18388,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16166,6 +18396,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16173,6 +18404,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16180,6 +18412,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16187,6 +18420,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16194,6 +18428,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16201,6 +18436,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16208,6 +18444,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16215,6 +18452,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
       {
         team: "Tulsa",
@@ -16222,6 +18460,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "202",
       },
     ],
     UAB: [
@@ -16231,6 +18470,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "5",
       },
       {
         team: "UAB",
@@ -16238,6 +18478,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "5",
       },
       {
         team: "UAB",
@@ -16245,6 +18486,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "5",
       },
       {
         team: "UAB",
@@ -16252,6 +18494,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "5",
       },
       {
         team: "UAB",
@@ -16259,6 +18502,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "5",
       },
     ],
     "UC Davis": [
@@ -16268,6 +18512,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "302",
       },
       {
         team: "UC Davis",
@@ -16275,6 +18520,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "302",
       },
       {
         team: "UC Davis",
@@ -16282,6 +18528,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "302",
       },
       {
         team: "UC Davis",
@@ -16289,6 +18536,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "302",
       },
       {
         team: "UC Davis",
@@ -16296,6 +18544,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "302",
       },
     ],
     "UC Irvine": [
@@ -16305,6 +18554,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "300",
       },
       {
         team: "UC Irvine",
@@ -16312,6 +18562,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "300",
       },
       {
         team: "UC Irvine",
@@ -16319,6 +18570,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "300",
       },
       {
         team: "UC Irvine",
@@ -16326,6 +18578,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "300",
       },
       {
         team: "UC Irvine",
@@ -16333,6 +18586,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "300",
       },
     ],
     "UC Riverside": [
@@ -16342,6 +18596,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "27",
       },
       {
         team: "UC Riverside",
@@ -16349,6 +18604,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "27",
       },
       {
         team: "UC Riverside",
@@ -16356,6 +18612,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "27",
       },
       {
         team: "UC Riverside",
@@ -16363,6 +18620,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "27",
       },
       {
         team: "UC Riverside",
@@ -16370,6 +18628,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "27",
       },
     ],
     "UC San Diego": [
@@ -16379,6 +18638,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "28",
       },
       {
         team: "UC San Diego",
@@ -16386,6 +18646,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "28",
       },
       {
         team: "UC San Diego",
@@ -16393,6 +18654,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "28",
       },
       {
         team: "UC San Diego",
@@ -16400,6 +18662,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "28",
       },
     ],
     "UC Santa Barbara": [
@@ -16409,6 +18672,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2540",
       },
       {
         team: "UC Santa Barbara",
@@ -16416,6 +18680,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2540",
       },
       {
         team: "UC Santa Barbara",
@@ -16423,6 +18688,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2540",
       },
       {
         team: "UC Santa Barbara",
@@ -16430,6 +18696,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2540",
       },
       {
         team: "UC Santa Barbara",
@@ -16437,6 +18704,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
+        source_id: "2540",
       },
     ],
     UCF: [
@@ -16446,6 +18714,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16453,6 +18722,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16460,6 +18730,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16467,6 +18738,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16474,6 +18746,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16481,6 +18754,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16488,6 +18762,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16495,6 +18770,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16502,6 +18778,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16509,6 +18786,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16516,6 +18794,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16523,6 +18802,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16530,6 +18810,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2116",
       },
       {
         team: "UCF",
@@ -16537,6 +18818,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "2116",
       },
     ],
     UCLA: [
@@ -16546,6 +18828,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16553,6 +18836,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16560,6 +18844,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16567,6 +18852,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16574,6 +18860,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16581,6 +18868,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16588,6 +18876,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16595,6 +18884,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16602,6 +18892,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16609,6 +18900,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16616,6 +18908,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16623,6 +18916,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16630,6 +18924,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "26",
       },
       {
         team: "UCLA",
@@ -16637,6 +18932,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "26",
       },
     ],
     UConn: [
@@ -16646,6 +18942,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16653,6 +18950,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16660,6 +18958,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16667,6 +18966,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16674,6 +18974,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16681,6 +18982,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16688,6 +18990,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16695,6 +18998,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16702,6 +19006,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16709,6 +19014,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16716,6 +19022,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16723,6 +19030,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16730,6 +19038,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "41",
       },
       {
         team: "UConn",
@@ -16737,6 +19046,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "41",
       },
     ],
     UIC: [
@@ -16746,6 +19056,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "82",
       },
       {
         team: "UIC",
@@ -16753,6 +19064,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "82",
       },
       {
         team: "UIC",
@@ -16760,6 +19072,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "82",
       },
       {
         team: "UIC",
@@ -16767,6 +19080,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "82",
       },
       {
         team: "UIC",
@@ -16774,6 +19088,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "82",
       },
     ],
     UIW: [
@@ -16783,6 +19098,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2916",
       },
       {
         team: "UIW",
@@ -16790,6 +19106,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2916",
       },
       {
         team: "UIW",
@@ -16797,6 +19114,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2916",
       },
       {
         team: "UIW",
@@ -16804,6 +19122,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2916",
       },
       {
         team: "UIW",
@@ -16811,6 +19130,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "low",
+        source_id: "2916",
       },
     ],
     ULM: [
@@ -16820,6 +19140,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2433",
       },
       {
         team: "ULM",
@@ -16827,6 +19148,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2433",
       },
       {
         team: "ULM",
@@ -16834,6 +19156,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2433",
       },
       {
         team: "ULM",
@@ -16841,6 +19164,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2433",
       },
       {
         team: "ULM",
@@ -16848,6 +19172,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "2433",
       },
     ],
     UMBC: [
@@ -16857,6 +19182,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2378",
       },
       {
         team: "UMBC",
@@ -16864,6 +19190,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2378",
       },
       {
         team: "UMBC",
@@ -16871,6 +19198,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2378",
       },
       {
         team: "UMBC",
@@ -16878,6 +19206,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2378",
       },
       {
         team: "UMBC",
@@ -16885,6 +19214,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2378",
       },
     ],
     UMES: [
@@ -16894,6 +19224,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2379",
       },
       {
         team: "UMES",
@@ -16901,6 +19232,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2379",
       },
       {
         team: "UMES",
@@ -16908,6 +19240,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2379",
       },
       {
         team: "UMES",
@@ -16915,6 +19248,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "meac",
         category: "low",
+        source_id: "2379",
       },
     ],
     "UMass Lowell": [
@@ -16924,6 +19258,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2349",
       },
       {
         team: "UMass Lowell",
@@ -16931,6 +19266,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2349",
       },
       {
         team: "UMass Lowell",
@@ -16938,6 +19274,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2349",
       },
       {
         team: "UMass Lowell",
@@ -16945,6 +19282,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2349",
       },
       {
         team: "UMass Lowell",
@@ -16952,6 +19290,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "2349",
       },
     ],
     "UNC Asheville": [
@@ -16961,6 +19300,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2427",
       },
       {
         team: "UNC Asheville",
@@ -16968,6 +19308,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2427",
       },
       {
         team: "UNC Asheville",
@@ -16975,6 +19316,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2427",
       },
       {
         team: "UNC Asheville",
@@ -16982,6 +19324,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2427",
       },
       {
         team: "UNC Asheville",
@@ -16989,6 +19332,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2427",
       },
     ],
     "UNC Greensboro": [
@@ -16998,6 +19342,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2430",
       },
       {
         team: "UNC Greensboro",
@@ -17005,6 +19350,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2430",
       },
       {
         team: "UNC Greensboro",
@@ -17012,6 +19358,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2430",
       },
       {
         team: "UNC Greensboro",
@@ -17019,6 +19366,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2430",
       },
       {
         team: "UNC Greensboro",
@@ -17026,6 +19374,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2430",
       },
     ],
     UNCW: [
@@ -17035,6 +19384,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "350",
       },
       {
         team: "UNCW",
@@ -17042,6 +19392,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "350",
       },
       {
         team: "UNCW",
@@ -17049,6 +19400,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "350",
       },
       {
         team: "UNCW",
@@ -17056,6 +19408,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "350",
       },
       {
         team: "UNCW",
@@ -17063,6 +19416,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "350",
       },
     ],
     UNI: [
@@ -17072,6 +19426,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2460",
       },
       {
         team: "UNI",
@@ -17079,6 +19434,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2460",
       },
       {
         team: "UNI",
@@ -17086,6 +19442,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2460",
       },
       {
         team: "UNI",
@@ -17093,6 +19450,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2460",
       },
       {
         team: "UNI",
@@ -17100,6 +19458,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2460",
       },
     ],
     UNLV: [
@@ -17109,6 +19468,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2439",
       },
       {
         team: "UNLV",
@@ -17116,6 +19476,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2439",
       },
       {
         team: "UNLV",
@@ -17123,6 +19484,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2439",
       },
       {
         team: "UNLV",
@@ -17130,6 +19492,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2439",
       },
       {
         team: "UNLV",
@@ -17137,6 +19500,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2439",
       },
       {
         team: "UNLV",
@@ -17144,6 +19508,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2439",
       },
     ],
     "USC Upstate": [
@@ -17153,6 +19518,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2908",
       },
       {
         team: "USC Upstate",
@@ -17160,6 +19526,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2908",
       },
       {
         team: "USC Upstate",
@@ -17167,6 +19534,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2908",
       },
       {
         team: "USC Upstate",
@@ -17174,6 +19542,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2908",
       },
       {
         team: "USC Upstate",
@@ -17181,6 +19550,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2908",
       },
     ],
     "UT Arlington": [
@@ -17190,6 +19560,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "250",
       },
       {
         team: "UT Arlington",
@@ -17197,6 +19568,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+        source_id: "250",
       },
       {
         team: "UT Arlington",
@@ -17204,6 +19576,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "250",
       },
       {
         team: "UT Arlington",
@@ -17211,6 +19584,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "250",
       },
       {
         team: "UT Arlington",
@@ -17218,6 +19592,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "250",
       },
     ],
     "UT Martin": [
@@ -17227,6 +19602,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2630",
       },
       {
         team: "UT Martin",
@@ -17234,6 +19610,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2630",
       },
       {
         team: "UT Martin",
@@ -17241,6 +19618,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2630",
       },
       {
         team: "UT Martin",
@@ -17248,6 +19626,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2630",
       },
       {
         team: "UT Martin",
@@ -17255,6 +19634,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
+        source_id: "2630",
       },
     ],
     UTEP: [
@@ -17264,6 +19644,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2638",
       },
       {
         team: "UTEP",
@@ -17271,6 +19652,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2638",
       },
       {
         team: "UTEP",
@@ -17278,6 +19660,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2638",
       },
       {
         team: "UTEP",
@@ -17285,6 +19668,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2638",
       },
       {
         team: "UTEP",
@@ -17292,6 +19676,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2638",
       },
     ],
     UTRGV: [
@@ -17301,6 +19686,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "292",
       },
       {
         team: "UTRGV",
@@ -17308,6 +19694,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "292",
       },
       {
         team: "UTRGV",
@@ -17315,6 +19702,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "292",
       },
       {
         team: "UTRGV",
@@ -17322,6 +19710,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "292",
       },
       {
         team: "UTRGV",
@@ -17329,6 +19718,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "southland",
         category: "midlow",
+        source_id: "292",
       },
     ],
     UTSA: [
@@ -17338,6 +19728,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2636",
       },
       {
         team: "UTSA",
@@ -17345,6 +19736,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2636",
       },
       {
         team: "UTSA",
@@ -17352,6 +19744,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "2636",
       },
       {
         team: "UTSA",
@@ -17359,6 +19752,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2636",
       },
       {
         team: "UTSA",
@@ -17366,6 +19760,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2636",
       },
     ],
     Utah: [
@@ -17375,6 +19770,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17382,6 +19778,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17389,6 +19786,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17396,6 +19794,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17403,6 +19802,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17410,6 +19810,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17417,6 +19818,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17424,6 +19826,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17431,6 +19834,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17438,6 +19842,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17445,6 +19850,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17452,6 +19858,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17459,6 +19866,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "254",
       },
       {
         team: "Utah",
@@ -17466,6 +19874,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "254",
       },
     ],
     "Utah St.": [
@@ -17475,6 +19884,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "328",
       },
       {
         team: "Utah St.",
@@ -17482,6 +19892,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "misc_conf",
         category: "midhigh",
+        source_id: "328",
       },
       {
         team: "Utah St.",
@@ -17489,6 +19900,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "328",
       },
       {
         team: "Utah St.",
@@ -17496,6 +19908,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "328",
       },
       {
         team: "Utah St.",
@@ -17503,6 +19916,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "328",
       },
       {
         team: "Utah St.",
@@ -17510,6 +19924,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "328",
       },
       {
         team: "Utah St.",
@@ -17517,6 +19932,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "328",
       },
     ],
     "Utah Valley": [
@@ -17526,6 +19942,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3084",
       },
       {
         team: "Utah Valley",
@@ -17533,6 +19950,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3084",
       },
       {
         team: "Utah Valley",
@@ -17540,6 +19958,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3084",
       },
       {
         team: "Utah Valley",
@@ -17547,6 +19966,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3084",
       },
       {
         team: "Utah Valley",
@@ -17554,6 +19974,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+        source_id: "3084",
       },
     ],
     VCU: [
@@ -17563,6 +19984,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
       {
         team: "VCU",
@@ -17570,6 +19992,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
       {
         team: "VCU",
@@ -17577,6 +20000,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
       {
         team: "VCU",
@@ -17584,6 +20008,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
       {
         team: "VCU",
@@ -17591,6 +20016,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
       {
         team: "VCU",
@@ -17598,6 +20024,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
       {
         team: "VCU",
@@ -17605,6 +20032,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
+        source_id: "2670",
       },
     ],
     VMI: [
@@ -17614,6 +20042,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2678",
       },
       {
         team: "VMI",
@@ -17621,6 +20050,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2678",
       },
       {
         team: "VMI",
@@ -17628,6 +20058,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2678",
       },
       {
         team: "VMI",
@@ -17635,6 +20066,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2678",
       },
       {
         team: "VMI",
@@ -17642,6 +20074,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2678",
       },
     ],
     Valparaiso: [
@@ -17651,6 +20084,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2674",
       },
       {
         team: "Valparaiso",
@@ -17658,6 +20092,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2674",
       },
       {
         team: "Valparaiso",
@@ -17665,6 +20100,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2674",
       },
       {
         team: "Valparaiso",
@@ -17672,6 +20108,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2674",
       },
       {
         team: "Valparaiso",
@@ -17679,6 +20116,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+        source_id: "2674",
       },
     ],
     Vanderbilt: [
@@ -17688,6 +20126,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17695,6 +20134,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17702,6 +20142,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17709,6 +20150,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17716,6 +20158,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17723,6 +20166,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17730,6 +20174,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17737,6 +20182,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17744,6 +20190,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17751,6 +20198,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17758,6 +20206,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17765,6 +20214,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17772,6 +20222,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
       {
         team: "Vanderbilt",
@@ -17779,6 +20230,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_sec",
         category: "high",
+        source_id: "238",
       },
     ],
     Vermont: [
@@ -17788,6 +20240,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "261",
       },
       {
         team: "Vermont",
@@ -17795,6 +20248,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "261",
       },
       {
         team: "Vermont",
@@ -17802,6 +20256,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "261",
       },
       {
         team: "Vermont",
@@ -17809,6 +20264,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "261",
       },
       {
         team: "Vermont",
@@ -17816,6 +20272,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "americaeast",
         category: "low",
+        source_id: "261",
       },
     ],
     Villanova: [
@@ -17825,6 +20282,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17832,6 +20290,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17839,6 +20298,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17846,6 +20306,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17853,6 +20314,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17860,6 +20322,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17867,6 +20330,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17874,6 +20338,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17881,6 +20346,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17888,6 +20354,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17895,6 +20362,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "222",
       },
       {
         team: "Villanova",
@@ -17902,6 +20370,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "222",
       },
     ],
     Virginia: [
@@ -17911,6 +20380,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17918,6 +20388,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17925,6 +20396,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17932,6 +20404,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17939,6 +20412,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17946,6 +20420,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17953,6 +20428,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17960,6 +20436,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17967,6 +20444,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17974,6 +20452,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17981,6 +20460,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17988,6 +20468,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -17995,6 +20476,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
       {
         team: "Virginia",
@@ -18002,6 +20484,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "258",
       },
     ],
     "Virginia Tech": [
@@ -18011,6 +20494,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18018,6 +20502,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18025,6 +20510,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18032,6 +20518,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18039,6 +20526,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18046,6 +20534,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18053,6 +20542,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18060,6 +20550,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18067,6 +20558,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18074,6 +20566,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18081,6 +20574,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18088,6 +20582,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18095,6 +20590,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
       {
         team: "Virginia Tech",
@@ -18102,6 +20598,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "259",
       },
     ],
     Wagner: [
@@ -18111,6 +20608,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2681",
       },
       {
         team: "Wagner",
@@ -18118,6 +20616,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2681",
       },
       {
         team: "Wagner",
@@ -18125,6 +20624,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2681",
       },
       {
         team: "Wagner",
@@ -18132,6 +20632,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2681",
       },
       {
         team: "Wagner",
@@ -18139,6 +20640,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "nec",
         category: "low",
+        source_id: "2681",
       },
     ],
     "Wake Forest": [
@@ -18148,6 +20650,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18155,6 +20658,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18162,6 +20666,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18169,6 +20674,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18176,6 +20682,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18183,6 +20690,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18190,6 +20698,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18197,6 +20706,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18204,6 +20714,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18211,6 +20722,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18218,6 +20730,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18225,6 +20738,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18232,6 +20746,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
       {
         team: "Wake Forest",
@@ -18239,6 +20754,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_acc",
         category: "high",
+        source_id: "154",
       },
     ],
     Washington: [
@@ -18248,6 +20764,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18255,6 +20772,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18262,6 +20780,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18269,6 +20788,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18276,6 +20796,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18283,6 +20804,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18290,6 +20812,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18297,6 +20820,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18304,6 +20828,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18311,6 +20836,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18318,6 +20844,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18325,6 +20852,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18332,6 +20860,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "264",
       },
       {
         team: "Washington",
@@ -18339,6 +20868,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "264",
       },
     ],
     "Washington St.": [
@@ -18348,6 +20878,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18355,6 +20886,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18362,6 +20894,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18369,6 +20902,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18376,6 +20910,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18383,6 +20918,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18390,6 +20926,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wcc",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18397,6 +20934,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18404,6 +20942,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18411,6 +20950,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18418,6 +20958,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18425,6 +20966,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18432,6 +20974,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
+        source_id: "265",
       },
       {
         team: "Washington St.",
@@ -18439,6 +20982,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "high",
+        source_id: "265",
       },
     ],
     "Weber St.": [
@@ -18448,6 +20992,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2692",
       },
       {
         team: "Weber St.",
@@ -18455,6 +21000,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2692",
       },
       {
         team: "Weber St.",
@@ -18462,6 +21008,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2692",
       },
       {
         team: "Weber St.",
@@ -18469,6 +21016,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2692",
       },
       {
         team: "Weber St.",
@@ -18476,6 +21024,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
+        source_id: "2692",
       },
     ],
     "West Ga.": [
@@ -18485,6 +21034,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
+        source_id: "2698",
       },
     ],
     "West Virginia": [
@@ -18494,6 +21044,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18501,6 +21052,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18508,6 +21060,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18515,6 +21068,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18522,6 +21076,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18529,6 +21084,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18536,6 +21092,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18543,6 +21100,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18550,6 +21108,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18557,6 +21116,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18564,6 +21124,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18571,6 +21132,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18578,6 +21140,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
       {
         team: "West Virginia",
@@ -18585,6 +21148,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
+        source_id: "277",
       },
     ],
     "Western Caro.": [
@@ -18594,6 +21158,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2717",
       },
       {
         team: "Western Caro.",
@@ -18601,6 +21166,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2717",
       },
       {
         team: "Western Caro.",
@@ -18608,6 +21174,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2717",
       },
       {
         team: "Western Caro.",
@@ -18615,6 +21182,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2717",
       },
       {
         team: "Western Caro.",
@@ -18622,6 +21190,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2717",
       },
     ],
     "Western Ill.": [
@@ -18631,6 +21200,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2710",
       },
       {
         team: "Western Ill.",
@@ -18638,6 +21208,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2710",
       },
       {
         team: "Western Ill.",
@@ -18645,6 +21216,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2710",
       },
       {
         team: "Western Ill.",
@@ -18652,6 +21224,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2710",
       },
       {
         team: "Western Ill.",
@@ -18659,6 +21232,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "summit",
         category: "mid",
+        source_id: "2710",
       },
     ],
     "Western Ky.": [
@@ -18668,6 +21242,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "98",
       },
       {
         team: "Western Ky.",
@@ -18675,6 +21250,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "98",
       },
       {
         team: "Western Ky.",
@@ -18682,6 +21258,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "98",
       },
       {
         team: "Western Ky.",
@@ -18689,6 +21266,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "98",
       },
       {
         team: "Western Ky.",
@@ -18696,6 +21274,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+        source_id: "98",
       },
     ],
     "Western Mich.": [
@@ -18705,6 +21284,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2711",
       },
       {
         team: "Western Mich.",
@@ -18712,6 +21292,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2711",
       },
       {
         team: "Western Mich.",
@@ -18719,6 +21300,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2711",
       },
       {
         team: "Western Mich.",
@@ -18726,6 +21308,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2711",
       },
       {
         team: "Western Mich.",
@@ -18733,6 +21316,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mac",
         category: "mid",
+        source_id: "2711",
       },
     ],
     "Wichita St.": [
@@ -18742,6 +21326,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18749,6 +21334,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18756,6 +21342,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18763,6 +21350,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18770,6 +21358,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18777,6 +21366,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18784,6 +21374,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18791,6 +21382,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18798,6 +21390,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18805,6 +21398,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18812,6 +21406,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18819,6 +21414,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18826,6 +21422,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
       {
         team: "Wichita St.",
@@ -18833,6 +21430,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+        source_id: "2724",
       },
     ],
     "William & Mary": [
@@ -18842,6 +21440,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2729",
       },
       {
         team: "William & Mary",
@@ -18849,6 +21448,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2729",
       },
       {
         team: "William & Mary",
@@ -18856,6 +21456,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2729",
       },
       {
         team: "William & Mary",
@@ -18863,6 +21464,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2729",
       },
       {
         team: "William & Mary",
@@ -18870,6 +21472,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "colonial",
         category: "mid",
+        source_id: "2729",
       },
     ],
     Winthrop: [
@@ -18879,6 +21482,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2737",
       },
       {
         team: "Winthrop",
@@ -18886,6 +21490,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2737",
       },
       {
         team: "Winthrop",
@@ -18893,6 +21498,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2737",
       },
       {
         team: "Winthrop",
@@ -18900,6 +21506,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2737",
       },
       {
         team: "Winthrop",
@@ -18907,6 +21514,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
+        source_id: "2737",
       },
     ],
     Wisconsin: [
@@ -18916,6 +21524,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18923,6 +21532,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18930,6 +21540,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18937,6 +21548,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18944,6 +21556,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18951,6 +21564,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18958,6 +21572,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18965,6 +21580,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18972,6 +21588,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18979,6 +21596,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18986,6 +21604,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -18993,6 +21612,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -19000,6 +21620,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
       {
         team: "Wisconsin",
@@ -19007,6 +21628,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
+        source_id: "275",
       },
     ],
     Wofford: [
@@ -19016,6 +21638,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2747",
       },
       {
         team: "Wofford",
@@ -19023,6 +21646,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2747",
       },
       {
         team: "Wofford",
@@ -19030,6 +21654,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2747",
       },
       {
         team: "Wofford",
@@ -19037,6 +21662,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2747",
       },
       {
         team: "Wofford",
@@ -19044,6 +21670,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "socon",
         category: "midlow",
+        source_id: "2747",
       },
     ],
     "Wright St.": [
@@ -19053,6 +21680,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2750",
       },
       {
         team: "Wright St.",
@@ -19060,6 +21688,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2750",
       },
       {
         team: "Wright St.",
@@ -19067,6 +21696,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2750",
       },
       {
         team: "Wright St.",
@@ -19074,6 +21704,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2750",
       },
       {
         team: "Wright St.",
@@ -19081,6 +21712,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2750",
       },
     ],
     Wyoming: [
@@ -19090,6 +21722,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2751",
       },
       {
         team: "Wyoming",
@@ -19097,6 +21730,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2751",
       },
       {
         team: "Wyoming",
@@ -19104,6 +21738,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2751",
       },
       {
         team: "Wyoming",
@@ -19111,6 +21746,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2751",
       },
       {
         team: "Wyoming",
@@ -19118,6 +21754,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
+        source_id: "2751",
       },
       {
         team: "Wyoming",
@@ -19125,6 +21762,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+        source_id: "2751",
       },
     ],
     Xavier: [
@@ -19134,6 +21772,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19141,6 +21780,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19148,6 +21788,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19155,6 +21796,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19162,6 +21804,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19169,6 +21812,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19176,6 +21820,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19183,6 +21828,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19190,6 +21836,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19197,6 +21844,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19204,6 +21852,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2752",
       },
       {
         team: "Xavier",
@@ -19211,6 +21860,7 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
+        source_id: "2752",
       },
     ],
     Yale: [
@@ -19220,6 +21870,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "43",
       },
       {
         team: "Yale",
@@ -19227,6 +21878,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "43",
       },
       {
         team: "Yale",
@@ -19234,6 +21886,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "43",
       },
       {
         team: "Yale",
@@ -19241,6 +21894,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "ivy",
         category: "mid",
+        source_id: "43",
       },
     ],
     "Youngstown St.": [
@@ -19250,6 +21904,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2754",
       },
       {
         team: "Youngstown St.",
@@ -19257,6 +21912,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2754",
       },
       {
         team: "Youngstown St.",
@@ -19264,6 +21920,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2754",
       },
       {
         team: "Youngstown St.",
@@ -19271,6 +21928,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2754",
       },
       {
         team: "Youngstown St.",
@@ -19278,6 +21936,7 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "horizon",
         category: "mid",
+        source_id: "2754",
       },
     ],
   };

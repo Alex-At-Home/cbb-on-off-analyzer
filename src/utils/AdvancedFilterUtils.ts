@@ -202,6 +202,7 @@ export class AdvancedFilterUtils {
 
   static readonly teamExplorerMetadata = [
     // Basic metadata:
+    "_id",
     "team_name",
     "conf",
     "conf_nick",
@@ -891,7 +892,7 @@ export class AdvancedFilterUtils {
   static teamFixObjectFormat(s: string) {
     return s
       .replace(
-        /(team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)/g,
+        /(_id|team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)/g,
         "$.p.$1"
       )
       .replace(
