@@ -1233,13 +1233,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         showInfoSubHeader: true,
       };
 
-      const shouldUsePlayerCareerPage =
-        player.roster?.ncaa_id &&
-        DateUtils.shouldUsePlayerCareerPage(
-          player.year || year,
-          gender,
-          player.roster?.year_class || ""
-        );
+      const shouldUsePlayerCareerPage = player.roster?.ncaa_id;
 
       const playerEl = teamEditorMode ? (
         <OverlayTrigger placement="auto" overlay={playerTeamEditorTooltip}>
@@ -1271,6 +1265,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               shouldUsePlayerCareerPage
                 ? UrlRouting.getPlayerCareer({
                     ncaaId: player.roster?.ncaa_id || "",
+                    gender,
                     conf: isConfOnly,
                     t100: isT100,
                     showGrades,

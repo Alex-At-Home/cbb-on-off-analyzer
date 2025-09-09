@@ -819,14 +819,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const showLinks =
         !triple.manualProfile ||
         ((!offSeasonMode || evalMode) && triple.actualResults);
-      const usePlayerCareerPage =
-        showLinks &&
-        triple.orig.roster?.ncaa_id &&
-        DateUtils.shouldUsePlayerCareerPage(
-          year,
-          gender,
-          triple.orig.roster?.year_class || ""
-        );
+      const usePlayerCareerPage = showLinks && triple.orig.roster?.ncaa_id;
       const playerLink = showLinks ? (
         <OverlayTrigger
           placement="auto"
@@ -840,6 +833,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               usePlayerCareerPage
                 ? UrlRouting.getPlayerCareer({
                     ncaaId: triple.orig.roster?.ncaa_id,
+                    gender,
                     showInfoSubHeader: true,
                   })
                 : UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)

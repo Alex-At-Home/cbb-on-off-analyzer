@@ -264,28 +264,4 @@ export class DateUtils {
       return false;
     }
   };
-
-  static readonly shouldUsePlayerCareerPage = (
-    season: string,
-    gender: string,
-    yearClass: string
-  ) => {
-    if (gender == "Men") {
-      return true;
-    } else {
-      if (season >= "2023/24") {
-        return true;
-      } else if (season == "2022/23" && yearClass != "Sr") {
-        return true;
-      } else if (
-        season == "2021/22" &&
-        yearClass != "Sr" &&
-        yearClass != "Jr"
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  };
 }

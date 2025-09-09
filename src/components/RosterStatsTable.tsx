@@ -1238,43 +1238,35 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           }
         );
 
-        /**/
-        console.log(`${stat.key} ${_.keys(stat.roster)}`);
-
-        const playElToUse =
-          stat.roster?.player_code_id?.ncaa_id &&
-          DateUtils.shouldUsePlayerCareerPage(
-            commonParams.year || ParamDefaults.defaultYear,
-            commonParams.gender || ParamDefaults.defaultGender,
-            stat.roster?.year_class || ""
-          ) ? (
-            <OverlayTrigger
-              placement="auto"
-              overlay={
-                <Tooltip id={`${stat.code}${queryKey}${otherQueryIndex}Link`}>
-                  Open new tab showing all the player's seasons, in the Player
-                  Career page
-                </Tooltip>
-              }
+        const playElToUse = stat.roster?.player_code_id?.ncaa_id ? (
+          <OverlayTrigger
+            placement="auto"
+            overlay={
+              <Tooltip id={`${stat.code}${queryKey}${otherQueryIndex}Link`}>
+                Open new tab showing all the player's seasons, in the Player
+                Career page
+              </Tooltip>
+            }
+          >
+            <a
+              target="_blank"
+              style={{ wordWrap: "normal" }}
+              href={UrlRouting.getPlayerCareer({
+                ncaaId: stat.roster?.player_code_id?.ncaa_id || "",
+                gender: gameFilterParams.gender,
+                showGrades,
+                showInfoSubHeader,
+                showPlayerPlayTypes: showPlayTypes,
+                playerShotCharts: showShotCharts,
+                possAsPct,
+              })}
             >
-              <a
-                target="_blank"
-                style={{ wordWrap: "normal" }}
-                href={UrlRouting.getPlayerCareer({
-                  ncaaId: stat.roster?.player_code_id?.ncaa_id || "",
-                  showGrades,
-                  showInfoSubHeader,
-                  showPlayerPlayTypes: showPlayTypes,
-                  playerShotCharts: showShotCharts,
-                  possAsPct,
-                })}
-              >
-                {stat.key}
-              </a>
-            </OverlayTrigger>
-          ) : (
-            stat.key
-          );
+              {stat.key}
+            </a>
+          </OverlayTrigger>
+        ) : (
+          stat.key
+        );
 
         // Now we have the position we can build the titles:
         stat.off_title = insertTitle(
