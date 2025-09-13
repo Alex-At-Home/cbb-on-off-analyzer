@@ -1652,11 +1652,17 @@ export class TeamEditorManualFixes {
           Arizona: {
             leftTeam: ["LlLiam::"], //(no idea who this is, but they are messing up my predictions!)
           },
+          Cincinnati: {
+            leftTeam: ["JiJames::"],
+          },
           Duke: {
             leftTeam: ["KhMaluach::"], //(hasn't declared yet but expected to?)
           },
           Drake: {
             leftTeam: ["MiMascari::", "IsJackson::", "DaAbreu::"], //(MVC fixes)
+          },
+          "Fresno St.": {
+            leftTeam: ["MyRobinson::", "JaWeaver::"], //(banned!)
           },
           "Illinois St.": {
             leftTeam: ["CaBoser::"], //(MVC fixes)
@@ -1678,6 +1684,12 @@ export class TeamEditorManualFixes {
           },
           Oregon: {
             leftTeam: ["NaBittle::"], //(is a senior?)
+          },
+          "Portland St.": {
+            superSeniorsReturning: new Set(["TrMinott::"]),
+          },
+          Princeton: {
+            leftTeam: ["CaPierce::"], //(redshirting and transferring)
           },
           "Southern Ill.": {
             leftTeam: ["AlDibber::"], //(MVC fixes)
