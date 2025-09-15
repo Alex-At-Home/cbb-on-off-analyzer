@@ -113,12 +113,16 @@ export class QueryUtils {
     const luck = {} as any;
     const manualTmp = {} as any; //(start as map of arrays, will convert to array of maps later)
     const otherQueriesTmp = {} as any;
+    const similarityParamsTmp = {} as any;
     _.forEach(parsed, (value: any, key: string) => {
       if (_.startsWith(key, "luck.")) {
         luck[key.substring(5)] = value;
         delete parsed[key];
       } else if (_.startsWith(key, "manual.")) {
         manualTmp[key.substring(7)] = _.isArray(value) ? value : [value];
+        delete parsed[key];
+      } else if (_.startsWith(key, "similarityParams.")) {
+        similarityParamsTmp[key.substring(17)] = value;
         delete parsed[key];
       } else if (_.startsWith(key, "otherQueries.")) {
         const otherQueryArr = key.substring(13).split(".");
@@ -145,6 +149,9 @@ export class QueryUtils {
     }
     if (!_.isEmpty(otherQueriesTmp)) {
       parsed.otherQueries = _.values(otherQueriesTmp);
+    }
+    if (!_.isEmpty(similarityParamsTmp)) {
+      parsed.similarityParams = similarityParamsTmp;
     }
 
     // (Extra annoyance: handle bwc in change of onOffLuck becoming a boolean)

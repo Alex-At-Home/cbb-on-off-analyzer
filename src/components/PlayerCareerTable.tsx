@@ -47,12 +47,14 @@ type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
   playerCareerParams: PlayerCareerParams;
   onPlayerCareerParamsChange: (p: PlayerCareerParams) => void;
+  playerSimilarityMode?: boolean;
 };
 
 const PlayerCareerTable: React.FunctionComponent<Props> = ({
   playerSeasons,
   playerCareerParams,
   onPlayerCareerParamsChange,
+  playerSimilarityMode,
 }) => {
   // 1] Input state
 
@@ -791,6 +793,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   };
 
   const tableData = selectedYearsChain
+    .take(playerSimilarityMode ? 1 : 1e9)
     .flatMap(([year, playerCareerInfo], index) => {
       const topYear = index == 0;
       const seasonRows = showAll
@@ -859,16 +862,21 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               tooltip: `Show / hide data for this year (starting ${y[0]})`,
               toggled: _.isEmpty(yearsToShow) || yearsToShow.has(y[0]),
               onClick: () => {
-                const newYearSet = _.isEmpty(yearsToShow)
-                  ? new Set<string>(playerSeasonInfo.map((y) => y[0]))
-                  : new Set(yearsToShow);
-                const currHasYear = newYearSet.has(y[0]);
-                if (currHasYear) {
-                  newYearSet.delete(y[0]);
+                if (playerSimilarityMode) {
+                  //(currently - can only view one season/sample at a time)
+                  setYearsToShow(new Set([y[0]]));
                 } else {
-                  newYearSet.add(y[0]);
+                  const newYearSet = _.isEmpty(yearsToShow)
+                    ? new Set<string>(playerSeasonInfo.map((y) => y[0]))
+                    : new Set(yearsToShow);
+                  const currHasYear = newYearSet.has(y[0]);
+                  if (currHasYear) {
+                    newYearSet.delete(y[0]);
+                  } else {
+                    newYearSet.add(y[0]);
+                  }
+                  setYearsToShow(newYearSet);
                 }
-                setYearsToShow(newYearSet);
               },
             } as ToggleButtonItem)
         )
@@ -883,10 +891,17 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             label: "All",
             tooltip: "Show data for the player's stats vs all opposition",
             toggled: showAll,
-            disabled: !showConf && !showT100,
+            disabled: !playerSimilarityMode && !showConf && !showT100,
             onClick: () => {
-              if (showConf || showT100) {
-                setShowAll(!showAll);
+              if (playerSimilarityMode) {
+                //(currently - can only view one season/sample at a time)
+                setShowAll(true);
+                setShowConf(false);
+                setShowT100(false);
+              } else {
+                if (showConf || showT100) {
+                  setShowAll(!showAll);
+                }
               }
             },
           },
@@ -896,11 +911,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               "Show data for the player's stats vs Conference opposition",
             toggled: showConf,
             onClick: () => {
-              if (!showAll && !showT100 && showConf) {
-                //revert back to showAll
-                setShowAll(true);
+              if (playerSimilarityMode) {
+                //(currently - can only view one season/sample at a time)
+                setShowAll(false);
+                setShowConf(true);
+                setShowT100(false);
+              } else {
+                if (!showAll && !showT100 && showConf) {
+                  //revert back to showAll
+                  setShowAll(true);
+                }
+                setShowConf(!showConf);
               }
-              setShowConf(!showConf);
             },
           },
           {
@@ -908,11 +930,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             tooltip: "Show data for the player's stats vs T100",
             toggled: showT100,
             onClick: () => {
-              if (!showAll && !showConf && showT100) {
-                //revert back to showAll
-                setShowAll(true);
+              if (playerSimilarityMode) {
+                //(currently - can only view one season/sample at a time)
+                setShowAll(false);
+                setShowConf(false);
+                setShowT100(true);
+              } else {
+                if (!showAll && !showConf && showT100) {
+                  //revert back to showAll
+                  setShowAll(true);
+                }
+                setShowT100(!showT100);
               }
-              setShowT100(!showT100);
             },
           },
           {

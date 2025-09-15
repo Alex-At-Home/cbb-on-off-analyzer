@@ -135,6 +135,7 @@ export class CommonApiUtils {
     ) => string,
     /** index pattern, apart from gender prefix (doesn't support efficiency/lookup/avgEfficiency)  */
     indexPatternOverride?: string,
+    bypassCache?: boolean,
     // Defaults:
     isDebug: boolean = pxIsDebug,
     useTestIndices: boolean = pxUseTestIndices,
@@ -163,12 +164,14 @@ export class CommonApiUtils {
     const year = params.year || ParamDefaults.defaultYear;
 
     const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
-    const maybeCacheJson = ServerRequestCache.decacheResponse(
-      urlQuery,
-      queryPrefix,
-      currentJsonEpoch,
-      isDebug
-    );
+    const maybeCacheJson = bypassCache
+      ? null
+      : ServerRequestCache.decacheResponse(
+          urlQuery,
+          queryPrefix,
+          currentJsonEpoch,
+          isDebug
+        );
 
     if (maybeCacheJson) {
       onCacheHit(maybeCacheJson, resHandle);
@@ -290,7 +293,7 @@ export class CommonApiUtils {
             ? esFetchJson
             : { error: { reason: "unknown" }, status_code: "" + esFetchStatus };
 
-          if (esFetchOk) {
+          if (esFetchOk && !bypassCache) {
             // only cache if resposne was OK
             ServerRequestCache.cacheResponse(
               urlQuery,

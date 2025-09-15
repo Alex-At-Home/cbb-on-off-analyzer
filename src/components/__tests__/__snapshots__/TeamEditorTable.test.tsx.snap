@@ -2427,7 +2427,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4065816&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4065816&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -2946,7 +2946,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -3173,7 +3173,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -3391,7 +3391,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -3742,7 +3742,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -4153,7 +4153,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8178,7 +8178,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8529,7 +8529,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8747,7 +8747,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -8965,7 +8965,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -9206,7 +9206,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -9617,7 +9617,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -13750,7 +13750,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -13968,7 +13968,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14186,7 +14186,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14404,7 +14404,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14622,7 +14622,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -14959,7 +14959,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -15370,7 +15370,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -20058,7 +20058,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4065816&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4065816&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -20604,7 +20604,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -20799,7 +20799,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21017,7 +21017,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21235,7 +21235,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21572,7 +21572,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -21983,7 +21983,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -26813,7 +26813,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27031,7 +27031,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27249,7 +27249,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27467,7 +27467,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -27685,7 +27685,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -28022,7 +28022,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -28433,7 +28433,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -33284,7 +33284,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4066371&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4066371&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -33621,7 +33621,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -33839,7 +33839,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4431984&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4431984&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34057,7 +34057,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34275,7 +34275,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34493,7 +34493,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -34711,7 +34711,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4395617&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4395617&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -35048,7 +35048,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -35459,7 +35459,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -35677,7 +35677,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277815&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277815&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -39431,7 +39431,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4066371&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4066371&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -39649,7 +39649,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397184&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397184&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -39982,7 +39982,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397183&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397183&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -40200,7 +40200,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277954&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277954&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -40418,7 +40418,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4432852&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4432852&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -40751,7 +40751,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4397189&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4397189&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>
@@ -41162,7 +41162,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       placement="auto"
                     >
                       <a
-                        href="/PlayerCareer?ncaaId=4277952&showInfoSubHeader=true&"
+                        href="/PlayerCareer?gender=Men&ncaaId=4277952&showInfoSubHeader=true&"
                         target="_blank"
                       >
                         <b>

@@ -65,6 +65,7 @@ describe("CommonApiUtils", () => {
       testMarshallRequest,
       // indexPatternOverride
       undefined,
+      undefined,
       // isDebug
       false,
       // useLocalIndices

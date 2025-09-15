@@ -399,7 +399,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   const onNav = (e: any) => {
     if (!_.isEmpty(common)) {
       //(do nothing if the page has just been loaded and not modified)
-      const key = UrlRouting.getUrl({ [UrlRouting.noSuffix]: common });
+      const key = UrlRouting.getUrl({ [UrlRouting.noPrefix]: common });
       HistoryManager.addParamsToHistory(key, thisPage);
     }
   };

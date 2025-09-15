@@ -40,6 +40,7 @@ import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import PlayerCareerTable from "../components/PlayerCareerTable";
 import { IndivCareerStatSet } from "../utils/StatModels";
 import PlayerFinderTextBox from "../components/shared/PlayerFinderTextBox";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -98,8 +99,8 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
   const playerCareerParamsRef = useRef<PlayerCareerParams>();
   playerCareerParamsRef.current = playerCareerParams;
 
-  const onPlayerCareerParamsChange = (rawParams: PlayerCareerParams) => {
-    const params = _.omit(
+  const removeDefaultsFromParams = (rawParams: PlayerCareerParams) => {
+    return _.omit(
       rawParams,
       _.flatten([
         // omit all defaults
@@ -132,6 +133,8 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
 
+        !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
+
         //not used but maybe later:
         !rawParams.filter ? ["filter"] : [],
         rawParams.sortBy ==
@@ -147,6 +150,20 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           : [],
       ])
     );
+  };
+
+  const onPlayerCareerParamsChange = (
+    rawParams: PlayerCareerParams,
+    similarityMode: boolean = false
+  ) => {
+    const newParams = removeDefaultsFromParams(rawParams);
+    const params = similarityMode
+      ? removeDefaultsFromParams({
+          ...(playerCareerParamsRef.current || {}),
+          similarityParams: newParams,
+        })
+      : newParams;
+
     if (!_.isEqual(params, playerCareerParamsRef.current)) {
       //(to avoid recursion)
       const href = getRootUrl(params);
@@ -230,6 +247,22 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     );
   }, [dataEvent]);
 
+  /** Only rebuild the table if the data changes */
+  const similarityTable = React.useMemo(() => {
+    return (
+      <PlayerCareerTable
+        playerSeasons={dataEvent}
+        playerCareerParams={
+          playerCareerParamsRef?.current?.similarityParams || {}
+        }
+        onPlayerCareerParamsChange={(params: PlayerCareerParams) =>
+          onPlayerCareerParamsChange(params, true)
+        }
+        playerSimilarityMode={true}
+      />
+    );
+  }, [dataEvent]);
+
   const playerFinder = (
     <PlayerFinderTextBox
       currGender={playerCareerParamsRef.current?.gender}
@@ -284,10 +317,16 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       </Row>
       <Row>
         <GenericCollapsibleCard
+          screenSize="medium_screen"
           minimizeMargin={false}
           title={`Similar Players${currPlayer ? ` to: [${currPlayer}]` : ""}`}
+          helpLink={maybeShowPlayerDocs()}
         >
-          Coming Soon!
+          {FeatureFlags.isActiveWindow(FeatureFlags.playerSimilarityScoring) ? (
+            similarityTable
+          ) : (
+            <span>Coming Soon!</span>
+          )}
         </GenericCollapsibleCard>
       </Row>
       <Footer

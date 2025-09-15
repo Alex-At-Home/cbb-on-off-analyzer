@@ -311,6 +311,8 @@ export type PlayerCareerParams = {
   playerShotChartsShowZones?: boolean;
   showPlayerPlayTypes?: boolean;
   playerShotChartQuickSwitch?: string;
+  // Equivalent for similarity table
+  similarityParams?: PlayerCareerParams;
 };
 
 export type PlayerLeaderboardParams = {
