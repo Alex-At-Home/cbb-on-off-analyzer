@@ -28,7 +28,13 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from "react-bootstrap";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -138,6 +144,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         .filter((p) => !_.isEmpty(p))
     )
   );
+  /** The NCAA id corresponding to yearsToShow */
+  const [currNcaaId, setCurrNcaaId] = useState<string | undefined>(
+    playerCareerParams.ncaaId
+  );
 
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
@@ -214,6 +224,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     stickyQuickToggle,
     showInfoSubHeader,
   ]);
+
+  /** NCAA id has changed, clear years to show */
+  if (!playerSimilarityMode)
+    useEffect(() => {
+      if (playerCareerParams.ncaaId != currNcaaId) {
+        setYearsToShow(new Set());
+        setCurrNcaaId(playerCareerParams.ncaaId);
+      }
+    }, [playerCareerParams, currNcaaId]);
 
   // Grades
 
@@ -792,7 +811,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     ]);
   };
 
-  const tableData = selectedYearsChain
+  const tableDataPhase1Chain = selectedYearsChain
     .take(playerSimilarityMode ? 1 : 1e9)
     .flatMap(([year, playerCareerInfo], index) => {
       const topYear = index == 0;
@@ -820,8 +839,31 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             )
           : [];
       return _.flatten([seasonRows, confRows, t100Rows]);
-    })
-    .value();
+    });
+
+  const tableData = _.thru(playerSimilarityMode, (__) => {
+    if (playerSimilarityMode) {
+      //TODO: only show one of these
+      const similarityRow = GenericTableOps.buildTextRow(
+        <span>
+          <i>
+            Similar Players: (<a href="#">clear</a>)
+          </i>
+        </span>,
+        "text-center"
+      );
+      const similaritySetUpRow = GenericTableOps.buildTextRow(
+        <Button>Find Similar Players</Button>,
+        "text-center"
+      );
+
+      return tableDataPhase1Chain
+        .concat([similarityRow, similaritySetUpRow])
+        .value();
+    } else {
+      return tableDataPhase1Chain.value();
+    }
+  });
 
   /** The sub-header builder - Can show some handy context in between the header and data rows: */
   const maybeSubheaderRow = showInfoSubHeader

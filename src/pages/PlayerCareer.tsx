@@ -167,6 +167,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     if (!_.isEqual(params, playerCareerParamsRef.current)) {
       //(to avoid recursion)
       const href = getRootUrl(params);
+
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
       // (plus adding the _current_ query to the history is a bit counter-intuitive)
@@ -271,6 +272,8 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         setDataEvent([]);
         onPlayerCareerParamsChange({
           ...(playerCareerParamsRef.current || {}),
+          similarityParams: {},
+          yearsToShow: undefined,
           ncaaId,
           gender,
         });
