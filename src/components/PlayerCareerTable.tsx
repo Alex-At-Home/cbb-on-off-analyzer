@@ -19,6 +19,7 @@ import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import {
   getCommonFilterParams,
   ParamDefaults,
+  ParamPrefixes,
   PlayerCareerParams,
 } from "../utils/FilterModels";
 import { useTheme } from "next-themes";
@@ -48,6 +49,20 @@ import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
 import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
 import { ConferenceToNickname } from "../utils/public-data/ConferenceInfo";
 import { CbbColors } from "../utils/CbbColors";
+import { RequestUtils } from "../utils/RequestUtils";
+import fetchBuilder from "fetch-retry-ts";
+import fetch from "isomorphic-unfetch";
+import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
+import { PlayerSimilarityUtils } from "../utils/stats/PlayerSimilarityUtils";
+//@ts-ignore
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+
+const fetchRetryOptions = {
+  retries: 5,
+  retryDelay: 500,
+  retryOn: [419, 502, 503, 504],
+};
+const fetchWithRetry = fetchBuilder(fetch, fetchRetryOptions);
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -62,6 +77,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   onPlayerCareerParamsChange,
   playerSimilarityMode,
 }) => {
+  const isDebug = process.env.NODE_ENV !== "production";
+
   // 1] Input state
 
   const server =
@@ -81,6 +98,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const teamSeasonLookup = `${commonParams.gender}_${commonParams.team}_${commonParams.year}`;
   const avgEfficiency =
     efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+
+  const [similarPlayers, setSimilarPlayers] = useState<IndivCareerStatSet[]>(
+    []
+  );
+  const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
@@ -255,7 +277,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     if (showGrades || showPlayerPlayTypes) {
       const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
 
-      const yearsToCheck = playerSeasons.map((info) => info.year || "");
+      const yearsToCheck = _.uniq(
+        playerSeasons
+          .map((info) => info.year || "")
+          .concat(similarPlayers.map((info) => info.year || ""))
+      );
       yearsToCheck
         .filter((y) => y != "")
         .forEach((yearToCheck) => {
@@ -324,7 +350,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           }
         });
     }
-  }, [playerCareerParams, playerSeasons, showGrades, showPlayerPlayTypes]);
+  }, [
+    playerCareerParams,
+    playerSeasons,
+    showGrades,
+    showPlayerPlayTypes,
+    similarPlayers,
+  ]);
 
   // Table building:
 
@@ -841,24 +873,102 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       return _.flatten([seasonRows, confRows, t100Rows]);
     });
 
+  const requestSimilarPlayers = () => {
+    {
+      const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
+
+      const currPlayerSelected = selectedYearsChain
+        .take(1)
+        .map(([__, player]) => {
+          if (showConf) return player.conf || player.season;
+          else if (showT100) return player.t100 || player.season;
+          else return player.season;
+        })
+        .value()?.[0];
+
+      //TODO: make similarity query index
+      if (currPlayerSelected) {
+        setRetrievingPlayers(true);
+        const allPromises = Promise.all(
+          RequestUtils.requestHandlingLogic(
+            {
+              gender,
+              queryVector:
+                PlayerSimilarityUtils.buildPlayerSimilarityVector(
+                  currPlayerSelected
+                ).join(","),
+            },
+            ParamPrefixes.similarPlayers,
+            [],
+            (url: string, force: boolean) => {
+              return fetchWithRetry(url).then(
+                (response: fetch.IsomorphicResponse) => {
+                  return response
+                    .json()
+                    .then((json: any) => [json, response.ok, response]);
+                }
+              );
+            },
+            Number.NaN,
+            isDebug
+          )
+        );
+        allPromises
+          .then((jsons) => {
+            const playerJsons = (jsons?.[0]?.responses?.[0]?.hits?.hits || [])
+              .map((p: any) => {
+                const source = p._source || {};
+                source._id = p._id;
+                return source;
+              })
+              .filter(
+                (p: any) =>
+                  !_.isEmpty(p) &&
+                  p._id != currPlayerSelected._id &&
+                  _.endsWith(p._id, "_all")
+              );
+
+            setSimilarPlayers(playerJsons);
+            setRetrievingPlayers(false);
+          })
+          .catch((__) => {
+            setRetrievingPlayers(false);
+            setSimilarPlayers([]);
+          });
+      }
+    }
+  };
   const tableData = _.thru(playerSimilarityMode, (__) => {
     if (playerSimilarityMode) {
       //TODO: only show one of these
       const similarityRow = GenericTableOps.buildTextRow(
         <span>
           <i>
-            Similar Players: (<a href="#">clear</a>)
+            Similar Players: (
+            <a href="#" onClick={() => setSimilarPlayers([])}>
+              clear
+            </a>
+            )
           </i>
         </span>,
         "text-center"
       );
       const similaritySetUpRow = GenericTableOps.buildTextRow(
-        <Button>Find Similar Players</Button>,
+        <Button onClick={() => requestSimilarPlayers()}>
+          Find Similar Players
+        </Button>,
         "text-center"
       );
 
       return tableDataPhase1Chain
-        .concat([similarityRow, similaritySetUpRow])
+        .concat([
+          _.isEmpty(similarPlayers) ? similaritySetUpRow : similarityRow,
+        ])
+        .concat(
+          _.flatMap(similarPlayers, (p, i) => {
+            return playerRowBuilder(p, p.year || "????", i == 0);
+          })
+        )
         .value();
     } else {
       return tableDataPhase1Chain.value();
@@ -898,11 +1008,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     <ToggleButtonGroup
       items={playerSeasonInfo
         .map(
-          (y) =>
+          (y, yIndex) =>
             ({
               label: y[0] + "+",
               tooltip: `Show / hide data for this year (starting ${y[0]})`,
-              toggled: _.isEmpty(yearsToShow) || yearsToShow.has(y[0]),
+              toggled:
+                (playerSimilarityMode
+                  ? _.isEmpty(yearsToShow) && yIndex == 0 //(player similarity mode, default to first year)
+                  : _.isEmpty(yearsToShow)) || yearsToShow.has(y[0]),
               onClick: () => {
                 if (playerSimilarityMode) {
                   //(currently - can only view one season/sample at a time)
@@ -1047,8 +1160,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   return (
     <Container fluid>
-      <Row className="mb-2">{quickToggleBar}</Row>
-      <Row>{table}</Row>
+      <LoadingOverlay
+        spinner
+        active={retrievingPlayers}
+        text={"Finding similar players..."}
+      >
+        <Row className="mb-2">{quickToggleBar}</Row>
+        <Row>{table}</Row>
+      </LoadingOverlay>
     </Container>
   );
 };

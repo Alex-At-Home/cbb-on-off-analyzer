@@ -1,41 +1,6 @@
+import { PlayerSimilarityUtils } from "../stats/PlayerSimilarityUtils";
+
 export const playerSimilarityQuery = function (inputQueryVector: number[]) {
-  const styles = [
-    "Rim Attack",
-    "Attack & Kick",
-    "Dribble Jumper",
-    "Mid-Range",
-    "Backdoor Cut",
-    "Big Cut & Roll",
-    "Post-Up",
-    "Post & Kick",
-    "Pick & Pop",
-    "High-Low",
-    "Put-Back",
-    "Transition",
-    "Perimeter Sniper",
-    "Hits Cutter",
-    "PnR Passer",
-  ];
-
-  // your specified sets (only include styles that actually appear in `styles`)
-  const lowFreqStyles = [
-    "Pick & Pop",
-    "High-Low",
-    "Backdoor Cut",
-    "Hits Cutter",
-    "PnR Passer",
-    // "Inside Out" omitted here because it's not in `styles` list above
-  ];
-  const medFreqStyles = [
-    "Put-Back",
-    "Post-Up",
-    "Big Cut & Roll",
-    "Mid-Range",
-    "Dribble Jumper",
-    "Perimeter Sniper",
-    "Attack & Kick",
-  ];
-
   return {
     query: {
       script_score: {
@@ -48,7 +13,7 @@ export const playerSimilarityQuery = function (inputQueryVector: number[]) {
 
             for (int i = 0; i < params.styles.length; i++) {
               String styleName = params.styles[i];
-              String fieldName = "style." + styleName + "." + params.statField;
+              String fieldName = "style." + styleName + "." + params.statField + ".value";
               double docVal = 0.0;
 
               if (doc.containsKey(fieldName) && doc[fieldName].size() > 0) {
@@ -81,13 +46,13 @@ export const playerSimilarityQuery = function (inputQueryVector: number[]) {
           `,
           params: {
             queryVector: inputQueryVector,
-            styles,
+            styles: PlayerSimilarityUtils.allStyles,
             statField: "possPctUsg",
-            lowFreqStyles,
-            medFreqStyles,
+            lowFreqStyles: PlayerSimilarityUtils.lowFreqStyles,
+            medFreqStyles: PlayerSimilarityUtils.medFreqStyles,
             // numeric weight constants
-            lowFreqWeight: 3.0,
-            medFreqWeight: 1.5,
+            lowFreqWeight: PlayerSimilarityUtils.lowFreqStylesWeight,
+            medFreqWeight: PlayerSimilarityUtils.medFreqStylesWeight,
             highFreqWeight: 1.0,
           },
         },

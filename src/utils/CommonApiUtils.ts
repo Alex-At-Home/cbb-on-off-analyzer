@@ -282,6 +282,7 @@ export class CommonApiUtils {
           );
 
           // Debug logs:
+          //console.log(`bypass cache? = [${bypassCache}]`);
           //console.log(JSON.stringify(body, null, 3));
           //console.log(JSON.stringify(esFetchJson, null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));

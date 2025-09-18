@@ -20,7 +20,9 @@ function marshallRequest(
       JSON.stringify({ index: `hoopexp_${genderPrefix}players_*` }),
       JSON.stringify({
         size: 10,
-        ...playerSimilarityQuery(params.queryVector || []),
+        ...playerSimilarityQuery(
+          (params.queryVector || "").split(",").map((n: any) => parseFloat(n))
+        ),
       }),
     ].join("\n") + "\n";
 

@@ -91,6 +91,7 @@ export class RequestUtils {
       url: string,
       force: boolean
     ) => Promise<[any, boolean, fetch.IsomorphicResponse]>,
+    /** if NaN then bypass cache */
     currentJsonEpoch: number,
     isDebug: boolean
   ): Promise<any>[] {
@@ -111,19 +112,22 @@ export class RequestUtils {
 
       const newParamsStr = QueryUtils.stringify(req.paramsObj);
 
-      if (isDebug) {
+      const bypassCache = Number.isNaN(currentJsonEpoch);
+      if (isDebug && !bypassCache) {
         console.log(
           `Looking for cache entry for [${index}][${req.context}][${newParamsStr}]`
         );
       }
 
       // Check if it's in the cache:
-      const cachedJson = ClientRequestCache.decacheResponse(
-        newParamsStr,
-        req.context,
-        currentJsonEpoch,
-        isDebug
-      );
+      const cachedJson = !bypassCache
+        ? ClientRequestCache.decacheResponse(
+            newParamsStr,
+            req.context,
+            currentJsonEpoch,
+            isDebug
+          )
+        : null;
       const jsonExistsButEmpty = !_.isNil(cachedJson) && _.isEmpty(cachedJson);
 
       if (cachedJson && !jsonExistsButEmpty) {
@@ -171,7 +175,7 @@ export class RequestUtils {
             }
 
             // Cache result locally:
-            if (isDebug) {
+            if (isDebug && !bypassCache) {
               console.log(
                 `CACHE_KEY[${index}]=[${req.context}${newParamsStr}]`
               );
@@ -234,6 +238,8 @@ export class RequestUtils {
         return `/api/calculatePlayerShotStats?${paramStr}`;
       case ParamPrefixes.playerCareer:
         return `/api/findPlayerSeasons?${paramStr}`;
+      case ParamPrefixes.similarPlayers:
+        return `/api/findSimilarPlayerSeasons?${paramStr}`;
       case ParamPrefixes.gameInfo:
         return `/api/getGameInfo?${paramStr}`;
       case ParamPrefixes.defensiveInfo:

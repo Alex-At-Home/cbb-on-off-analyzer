@@ -14,6 +14,7 @@ export class ParamPrefixes {
   static readonly shots = "shots-";
   static readonly playerShots = "playerShots-";
   static readonly playerCareer = "playerCareer-";
+  static readonly similarPlayers = "similarPlayers-";
   static readonly team = "team-"; //(only used for HeaderBar)
   static readonly defensiveInfo = "defensiveInfo-"; //(only used for HeaderBar)
   static readonly allTeamInfo = "allTeamInfo-"; //(only used for HeaderBar)
@@ -27,6 +28,7 @@ export type ParamPrefixesType =
   | "player-"
   | "playerShots-"
   | "playerCareer-"
+  | "similarPlayers-"
   | "gameInfo-"
   | "shots-"
   | "defensiveInfo-"
@@ -313,6 +315,7 @@ export type PlayerCareerParams = {
   playerShotChartQuickSwitch?: string;
   // Equivalent for similarity table
   similarityParams?: PlayerCareerParams;
+  queryVector?: string; //(only used for API interface)
 };
 
 export type PlayerLeaderboardParams = {
