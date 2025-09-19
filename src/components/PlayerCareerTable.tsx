@@ -1085,7 +1085,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           (y, yIndex) =>
             ({
               label: y[0] + "+",
-              tooltip: `Show / hide data for this year (starting ${y[0]})`,
+              tooltip:
+                `Show / hide data for this year (starting ${y[0]})` +
+                _.isEmpty(similarPlayers)
+                  ? ""
+                  : " (disabled until similar players cleared)",
+              disabled: !_.isEmpty(similarPlayers), //(locked until you clear players)
               toggled:
                 (playerSimilarityMode
                   ? _.isEmpty(yearsToShow) && yIndex == 0 //(player similarity mode, default to first year)
@@ -1118,9 +1123,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "All",
-            tooltip: "Show data for the player's stats vs all opposition",
+            tooltip:
+              "Show data for the player's stats vs all opposition" +
+              _.isEmpty(similarPlayers)
+                ? ""
+                : " (disabled until similar players cleared)",
             toggled: showAll,
-            disabled: !playerSimilarityMode && !showConf && !showT100,
+            disabled:
+              (!playerSimilarityMode && !showConf && !showT100) ||
+              !_.isEmpty(similarPlayers),
             onClick: () => {
               if (playerSimilarityMode) {
                 //(currently - can only view one season/sample at a time)
@@ -1137,8 +1148,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           {
             label: "Conf",
             tooltip:
-              "Show data for the player's stats vs Conference opposition",
+              "Show data for the player's stats vs Conference opposition" +
+              _.isEmpty(similarPlayers)
+                ? ""
+                : " (disabled until similar players cleared)",
             toggled: showConf,
+            disabled: !_.isEmpty(similarPlayers),
             onClick: () => {
               if (playerSimilarityMode) {
                 //(currently - can only view one season/sample at a time)
@@ -1156,8 +1171,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "T100",
-            tooltip: "Show data for the player's stats vs T100",
+            tooltip:
+              "Show data for the player's stats vs T100" +
+              _.isEmpty(similarPlayers)
+                ? ""
+                : " (disabled until similar players cleared)",
             toggled: showT100,
+            disabled: !_.isEmpty(similarPlayers),
             onClick: () => {
               if (playerSimilarityMode) {
                 //(currently - can only view one season/sample at a time)
