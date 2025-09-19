@@ -373,6 +373,16 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const selectedYearsChain = _.chain(playerSeasonInfo).filter(
     (info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0])
   );
+  const currPlayerSelected = playerSimilarityMode
+    ? selectedYearsChain
+        .take(1)
+        .map(([__, player]) => {
+          if (showConf) return player.conf || player.season;
+          else if (showT100) return player.t100 || player.season;
+          else return player.season;
+        })
+        .value()?.[0]
+    : undefined;
 
   type DataType = "Conf Stats" | "vs T100";
 
@@ -546,41 +556,91 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       </OverlayTrigger>
     );
 
-    const playStyleQuickSwitchOptions = selectedYearsDataTypeChain
-      .filter(([year, dataType, playerSeason]) => {
-        return year != playerYear || dataType != titleSuffix;
-      })
-      .map(([year, dataType, playerSeason]) => {
-        const infix = !dataType
-          ? "All"
-          : dataType == "Conf Stats"
-          ? "Conf"
-          : "T100";
+    const isSimilarPlayer =
+      playerSimilarityMode &&
+      currPlayerSelected &&
+      player._id != currPlayerSelected?._id;
 
-        // Inject like this so we don't need to recalculate every time
-        if (!playerSeason.off_style && playerSeason.style) {
-          (playerSeason as any).off_style = PlayTypeUtils.compressIndivPlayType(
-            playerSeason.style //(quick hack to re-use PlayerLeaderboardTable logic)
-          );
-        }
-
-        return {
-          title: `${year} (${infix})`,
-          player: playerSeason,
+    const playStyleQuickSwitchOptions = _.thru(isSimilarPlayer, () => {
+      if (isSimilarPlayer) {
+        // (just allow comparison vs currPlayerSelected)
+        return [
+          {
+            title: `${currPlayerSelected.key}`,
+            player: currPlayerSelected,
+            rosterStatsByCode: {},
+            teamStats: {} as TeamStatSet,
+            avgEfficiency:
+              efficiencyAverages[
+                `${playerCareerParams.gender}_${currPlayerSelected.year || ""}`
+              ] || efficiencyAverages.fallback,
+            showGrades,
+            grades: divisionStatsCache[currPlayerSelected.year || "??"],
+            showHelp,
+            compressedPlayTypeStats: currPlayerSelected.off_style as any,
+            navigationLinkOverride: navigationOverride(
+              DateUtils.fullYearFromShortYear(currPlayerSelected.year || "") ||
+                ""
+            ),
+          },
+        ];
+      } else if (playerSimilarityMode) {
+        return similarPlayers.map((player) => ({
+          title: `${player.key}`,
+          player: player,
           rosterStatsByCode: {},
           teamStats: {} as TeamStatSet,
           avgEfficiency:
-            efficiencyAverages[`${playerCareerParams.gender}_${year}`] ||
-            efficiencyAverages.fallback,
+            efficiencyAverages[
+              `${playerCareerParams.gender}_${player.year || ""}`
+            ] || efficiencyAverages.fallback,
           showGrades,
-          grades: divisionStatsCache[year || "??"],
+          grades: divisionStatsCache[player.year || "??"],
           showHelp,
-          compressedPlayTypeStats: playerSeason.off_style as any,
+          compressedPlayTypeStats: player.off_style as any,
           navigationLinkOverride: navigationOverride(
-            DateUtils.fullYearFromShortYear(year) || ""
+            DateUtils.fullYearFromShortYear(player.year || "") || ""
           ),
-        };
-      });
+        }));
+      } else {
+        return selectedYearsDataTypeChain
+          .filter(([year, dataType, playerSeason]) => {
+            return year != playerYear || dataType != titleSuffix;
+          })
+          .map(([year, dataType, playerSeason]) => {
+            const infix = !dataType
+              ? "All"
+              : dataType == "Conf Stats"
+              ? "Conf"
+              : "T100";
+
+            // Inject like this so we don't need to recalculate every time
+            if (!playerSeason.off_style && playerSeason.style) {
+              (playerSeason as any).off_style =
+                PlayTypeUtils.compressIndivPlayType(
+                  playerSeason.style //(quick hack to re-use PlayerLeaderboardTable logic)
+                );
+            }
+
+            return {
+              title: `${year} (${infix})`,
+              player: playerSeason,
+              rosterStatsByCode: {},
+              teamStats: {} as TeamStatSet,
+              avgEfficiency:
+                efficiencyAverages[`${playerCareerParams.gender}_${year}`] ||
+                efficiencyAverages.fallback,
+              showGrades,
+              grades: divisionStatsCache[year || "??"],
+              showHelp,
+              compressedPlayTypeStats: playerSeason.off_style as any,
+              navigationLinkOverride: navigationOverride(
+                DateUtils.fullYearFromShortYear(year) || ""
+              ),
+            };
+          });
+      }
+    });
 
     // Shot charts
 
@@ -591,6 +651,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       );
     }
 
+    //TODO: duplicate style quick switch
     const shotChartQuickSwitchOptions = selectedYearsDataTypeChain
       .filter(([year, dataType, playerSeason]) => {
         return year != playerYear || dataType != titleSuffix;
@@ -695,7 +756,29 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             {player.year}+<b>{shortTitle}</b>
           </span>
           &nbsp;
-          <b>{player.key}</b>
+          {isSimilarPlayer ? (
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip
+                  id={`${player.code}${player.year}${titleSuffixKey}SimilarPlayer`}
+                >
+                  View this player's career page in a new tab
+                </Tooltip>
+              }
+            >
+              <a
+                target="_blank"
+                href={UrlRouting.getPlayerCareer({
+                  ncaaId: player.roster?.ncaa_id || "",
+                })}
+              >
+                <b>{player.key}</b>
+              </a>
+            </OverlayTrigger>
+          ) : (
+            <b>{player.key}</b>
+          )}
         </div>
         <div className="multi_line_title_row">
           <span className="multi_line_title_row_left_aligned_snippet">
@@ -876,15 +959,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const requestSimilarPlayers = () => {
     {
       const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
-
-      const currPlayerSelected = selectedYearsChain
-        .take(1)
-        .map(([__, player]) => {
-          if (showConf) return player.conf || player.season;
-          else if (showT100) return player.t100 || player.season;
-          else return player.season;
-        })
-        .value()?.[0];
 
       //TODO: make similarity query index
       if (currPlayerSelected) {
