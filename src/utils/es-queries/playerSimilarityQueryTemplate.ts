@@ -4,7 +4,13 @@ export const playerSimilarityQuery = function (inputQueryVector: number[]) {
   return {
     query: {
       script_score: {
-        query: { match_all: {} },
+        query: {
+          term: {
+            sample_name: {
+              value: `all`,
+            },
+          },
+        },
         script: {
           source: `
             double dot = 0.0;
