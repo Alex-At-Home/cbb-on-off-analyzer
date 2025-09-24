@@ -225,6 +225,7 @@ export class TeamEditorManualFixes {
     return phase3;
   };
 
+  /** See also getTransfers:transferFixes */
   static readonly fixes: (
     genderYear: string
   ) => Record<string, TeamEditorManualFixModel> = _.memoize(
@@ -1292,7 +1293,8 @@ export class TeamEditorManualFixes {
                   h: "6-4",
                   r: 90,
                 },
-                // Late transfer for which source is missing
+                // For some reason fixing transfers_2024.json did not include him
+                // TODO: maybe because he has a code match with an outgoing player
                 "Young, Jayhlon": {
                   pos: "CG",
                   pr: "2*",
@@ -1670,9 +1672,6 @@ export class TeamEditorManualFixes {
           Louisville: {
             superSeniorsReturning: new Set(["J'Hadley::"]),
           },
-          Maryland: {
-            leftTeam: ["TaGapare::"], //(missing from transfers)
-          },
           "Michigan St.": {
             leftTeam: ["KaGlenn::"], //(injured for the season)
           },
@@ -1690,9 +1689,6 @@ export class TeamEditorManualFixes {
           },
           Princeton: {
             leftTeam: ["CaPierce::"], //(redshirting and transferring)
-          },
-          "Southern Ill.": {
-            leftTeam: ["AlDibber::"], //(MVC fixes)
           },
           "St. John's (NY)": {
             leftTeam: ["AaScott::"], //(year was wrong)

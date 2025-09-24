@@ -5,6 +5,33 @@ import fetch from "isomorphic-unfetch";
 import queryString from "query-string";
 import { DateUtils } from "../../utils/DateUtils";
 
+import _ from "lodash";
+
+const transferFixes: Record<string, any> = {
+  // Once we start the next season move this into the GH version and remove
+  // Note: this array replaces the one in the file so needs to be hand merged currently
+  "transfers_2025.json": {
+    TaGapare: [
+      {
+        f: "Maryland",
+        t: "Villanova",
+      },
+    ],
+    AlDibba: [
+      {
+        f: "Southern Ill.",
+        t: "Texas A&M",
+      },
+    ],
+    MaWol: [
+      {
+        f: "Eastern Ky.",
+        t: "Bowling Green",
+      },
+    ],
+  },
+};
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const url = require("url").parse(req.url);
   const parsed: Record<string, any> = queryString.parse(url.query, {
@@ -38,17 +65,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return undefined;
   } else {
     try {
+      const filename = getFilename();
       const resp = await fetch(
-        `https://storage.googleapis.com/${
-          process.env.LEADERBOARD_BUCKET
-        }/${getFilename()}`,
+        `https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${filename}`,
         {
           method: "get",
         }
       );
       const respJson = await resp.json();
+      const jsonWithFixes = _.merge(respJson, transferFixes[filename] || {});
+
       res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
-      res.status(200).json(respJson);
+      res.status(200).json(jsonWithFixes);
     } catch (err: unknown) {
       console.log(
         `Transfer error: [${err instanceof Error ? err.message : err}]`
