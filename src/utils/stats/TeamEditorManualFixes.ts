@@ -1696,8 +1696,76 @@ export class TeamEditorManualFixes {
           UIC: {
             leftTeam: ["SaCiani::"], //(MVC fixes)
           },
+
           Virginia: {
             leftTeam: ["JaWarley::"],
+          },
+          // B1G adjustments
+          Indiana: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "TaConerway:Troy:": {
+                  d: -0.75,
+                },
+              },
+            })[""],
+          },
+          Michigan: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "MoJohnson:Illinois:": {
+                  o: -0.5,
+                  d: -1,
+                },
+                "AdMara:UCLA:": {
+                  o: -0.5,
+                  d: -1,
+                },
+                "YaLendeborg:UAB:": {
+                  o: -0.5,
+                },
+              },
+            })[""],
+          },
+          Maryland: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                RaPassmore: {
+                  m: 0, // injured for the season
+                },
+              },
+            })[""],
+          },
+          "Southern California": {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "RoRice:Maryland:": {
+                  o: -1,
+                  d: -2,
+                },
+                "ChBaker-maza:Auburn:": {
+                  o: -0.75,
+                },
+                "RyCornish:Dartmouth:": {
+                  o: -1.5,
+                },
+              },
+            })[""],
+          },
+          UCLA: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "DoDent:New Mexico:": {
+                  o: -0.5,
+                  d: -1,
+                },
+              },
+            })[""],
           },
         };
 
