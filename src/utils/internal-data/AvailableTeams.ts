@@ -3836,6 +3836,14 @@ export class AvailableTeams {
         category: "midhigh",
         source_id: "2166",
       },
+      {
+        team: "Davidson",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_atlanticten",
+        category: "midhigh",
+        source_id: "2166",
+      },
     ],
     Dayton: [
       {
@@ -3893,6 +3901,14 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
         source_id: "2168",
+      },
+      {
+        team: "Dayton",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_atlanticten",
+        category: "midhigh",
+        source_id: "2166",
       },
     ],
     DePaul: [
@@ -4451,6 +4467,14 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
         source_id: "2184",
+      },
+      {
+        team: "Duquesne",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_atlanticten",
+        category: "midhigh",
+        source_id: "2166",
       },
     ],
     ETSU: [
@@ -14432,9 +14456,9 @@ export class AvailableTeams {
         team: "Richmond",
         year: "2024/25",
         gender: "Women",
-        index_template: "women_misc_conf",
+        index_template: "women_atlanticten",
         category: "midhigh",
-        source_id: "257",
+        source_id: "2166",
       },
     ],
     Rider: [
@@ -19989,6 +20013,14 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
         source_id: "2670",
+      },
+      {
+        team: "VCU",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_atlanticten",
+        category: "midhigh",
+        source_id: "2166",
       },
     ],
     VMI: [
