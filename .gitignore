@@ -24,3 +24,4 @@ enrichedPlayers/*
 .bsp
 .gitconfig
 .windsurf/*
+.vscode/*
