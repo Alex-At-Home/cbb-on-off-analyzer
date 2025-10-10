@@ -121,6 +121,11 @@ export class UrlRouting {
       [UrlRouting.noPrefix]: params,
     })}`;
   }
+  static getOffseasonTierList(params: OffseasonLeaderboardParams) {
+    return `/OffseasonTierList?${UrlRouting.getUrl({
+      [UrlRouting.noPrefix]: params,
+    })}`;
+  }
   /** The URL to use to view the "Team Report" page */
   static getTeamReportUrl(params: TeamReportFilterParams) {
     return `/TeamReport?${UrlRouting.getUrl({

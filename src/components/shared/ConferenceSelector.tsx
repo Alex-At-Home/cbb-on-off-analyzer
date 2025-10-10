@@ -36,6 +36,7 @@ type Props = {
   >;
   confs?: Array<string>;
   onChangeConf: (newConfOrTier: string) => void;
+  confOnlySelectionMode?: boolean;
 };
 const ConferenceSelector: React.FunctionComponent<Props> = ({
   emptyLabel,
@@ -44,6 +45,7 @@ const ConferenceSelector: React.FunctionComponent<Props> = ({
   confMap,
   confs,
   onChangeConf,
+  confOnlySelectionMode
 }) => {
   const confArray = confStrIn.split(",");
   const confStr =
@@ -127,12 +129,15 @@ const ConferenceSelector: React.FunctionComponent<Props> = ({
 
   return (
     <ThemedSelect
-      isClearable={true}
+      isClearable={!confOnlySelectionMode}
       styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-      isMulti={isMultiConfs}
+      isMulti={isMultiConfs && !confOnlySelectionMode}
       components={{ MultiValueContainer: ConferenceValueContainer }}
       value={getCurrentConfsOrPlaceholder()}
-      options={[
+      options={confOnlySelectionMode ? [        {
+        label: "Confs",
+        options: _.sortBy(confsWithTeams).map(stringToOption),
+      }] :[
         tier
           ? {
               label: "Tiers",

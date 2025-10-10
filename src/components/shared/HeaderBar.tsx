@@ -273,6 +273,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       metrics!
     </Tooltip>
   );
+  const offseasonTierListTooltip = (
+    <Tooltip id={"offseasonTierListTooltip"}>
+      Show each conference split into tiers of teams of similar caliber. Edit
+      results you don't like!
+    </Tooltip>
+  );
   const teamBuilderTooltip = (
     <Tooltip id={"teamBuilderTooltip"}>
       Build your own roster out of returning players, transfers (or steals!),
@@ -485,14 +491,24 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             </Dropdown.Item>
           ) : undefined}
           {DateUtils.frontPageIsOffseasonLeaderboard ? (
-            <Dropdown.Item>
-              {buildNavItem(
-                "Editable off-season leaderboard!",
-                teamLeaderboardTooltip,
-                getTeamLeaderboardUrl(),
-                `${ParamPrefixes.team}_leaderboard`
-              )}
-            </Dropdown.Item>
+            <>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Editable off-season leaderboard!",
+                  teamLeaderboardTooltip,
+                  getTeamLeaderboardUrl(),
+                  `${ParamPrefixes.team}_leaderboard`
+                )}
+              </Dropdown.Item>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Off-season Tier List!!",
+                  offseasonTierListTooltip,
+                  UrlRouting.getOffseasonTierList({}),
+                  `${ParamPrefixes.team}_tierList`
+                )}
+              </Dropdown.Item>
+            </>
           ) : (
             <Dropdown.Item>
               {buildNavItem(

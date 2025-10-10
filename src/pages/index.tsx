@@ -43,6 +43,8 @@ import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import ExpandableImage from "../components/shared/ExpandableImage";
 import PlayerFinderTextBox from "../components/shared/PlayerFinderTextBox";
+import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
+import { IndexTemplateToNickname } from "../utils/public-data/ConferenceInfo";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -181,7 +183,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   (year, gender, team) =>
                     UrlRouting.getOffseasonLeaderboard({
                       gender,
-                      year,
+                      year: DateUtils.getNextYear(year),
                     }),
                   true
                 )}
@@ -195,12 +197,59 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 </ul>
               </li>
               <li>
+                I actually really dislke pre-season rankings, both because I
+                don't think they capture the range of outcomes well (see below),
+                but also because they don't show how close teams often are.
+                {buildLink(
+                  ` Tier lists are much better for this:`,
+                  (year, gender, team) => {
+                    const nextYear = DateUtils.getNextYear(year);
+                    const teamInfo =
+                      _.find(
+                        AvailableTeams.byName[team],
+                        (t) => t.year == nextYear
+                      ) ||
+                      _.find(
+                        AvailableTeams.byName[team],
+                        (t) => t.year == year
+                      );
+                    const confFromTeam =
+                      IndexTemplateToNickname[
+                        teamInfo?.index_template || "???"
+                      ];
+                    return UrlRouting.getOffseasonTierList({
+                      gender,
+                      confs: confFromTeam,
+                      year: nextYear,
+                    });
+                  },
+                  true
+                )}
+                <ul>
+                  <li>
+                    <ExpandableImage
+                      src="./images/landing_page/offseason/offseason_predictions_4.jpg"
+                      caption="A more nuanced view of where a team sits in the pre-season conference rankings"
+                    />
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <i>
+                      (What I'd really like to do is list the number of things
+                      that would need to go right for a team to reach their
+                      ceiling. For next off-season maybe!)
+                    </i>
+                  </li>
+                </ul>
+              </li>
+              <li>
                 {buildLink(
                   `See a breakdown of how each player contributes to their team, in optimistic/balanced/pessimistic scenarios`,
                   (year, gender, team) =>
                     UrlRouting.getTeamEditorUrl({
                       gender,
-                      year,
+                      year: DateUtils.getNextYear(year),
                       team,
                     })
                 )}
@@ -227,7 +276,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   (year, gender, team) =>
                     UrlRouting.getOffseasonLeaderboard({
                       gender,
-                      year,
+                      year: DateUtils.getNextYear(year),
                       transferInOutMode: true,
                     } as OffseasonLeaderboardParams),
                   true
@@ -265,19 +314,23 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       imageList: [
         {
           src: "./images/landing_page/offseason/offseason_predictions_1.jpeg",
-          text: "The ranking is the least interesting bit, except for being the starting point for more analysis... [1/4]",
+          text: "The ranking is the least interesting bit, except for being the starting point for more analysis... [1/5]",
+        },
+        {
+          src: "./images/landing_page/offseason/offseason_predictions_4.jpg",
+          text: "A more nuanced view of where a team sits in the pre-season conference rankings [2/5]",
         },
         {
           src: "./images/landing_page/offseason/offseason_predictions_2.jpeg",
-          text: "See a detailed breakdown of why a team has a given ranking, and change it if you don't like it! [2/4]",
+          text: "See a detailed breakdown of why a team has a given ranking, and change it if you don't like it! [3/5]",
         },
         {
           src: "./images/landing_page/offseason/offseason_predictions_3.jpeg",
-          text: "During Portal Season, pick players you like and see the impact of landing them. [3/4]",
+          text: "During Portal Season, pick players you like and see the impact of landing them. [4/5]",
         },
         {
           src: "./images/landing_page/offseason/offseason_changes.jpeg",
-          text: "Break down a team's predictions compared to last season's performance based on who is coming/staying/leaving [4/4]",
+          text: "Break down a team's predictions compared to last season's performance based on who is coming/staying/leaving [5/5]",
         },
       ],
     },
@@ -1998,11 +2051,30 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 {maybeMoreDetails(
                   getCardIdFromTitle("Offseason Predictions / Analysis")
                 )}
+                {buildCardLink(<b>Tier List!</b>, (year, gender, team) => {
+                  const nextYear = DateUtils.getNextYear(year);
+                  const teamInfo =
+                    _.find(
+                      AvailableTeams.byName[team],
+                      (t) => t.year == nextYear
+                    ) ||
+                    _.find(AvailableTeams.byName[team], (t) => t.year == year);
+                  const confFromTeam =
+                    IndexTemplateToNickname[teamInfo?.index_template || "???"];
+                  return UrlRouting.getOffseasonTierList({
+                    gender,
+                    confs: confFromTeam,
+                    year: nextYear,
+                  });
+                })}
                 <Card.Link
-                  href={UrlRouting.getOffseasonLeaderboard({ year, gender })}
+                  href={UrlRouting.getOffseasonLeaderboard({
+                    year: DateUtils.getNextYear(year),
+                    gender,
+                  })}
                   target="_blank"
                 >
-                  <b>Just take me to the predictions!</b>
+                  <span>Predictions</span>
                 </Card.Link>
               </Card.Body>
             </Card>
