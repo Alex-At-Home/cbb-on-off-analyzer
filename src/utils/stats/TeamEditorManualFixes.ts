@@ -1690,9 +1690,6 @@ export class TeamEditorManualFixes {
           Princeton: {
             leftTeam: ["CaPierce::"], //(redshirting and transferring)
           },
-          "St. John's (NY)": {
-            leftTeam: ["AaScott::"], //(year was wrong)
-          },
           UIC: {
             leftTeam: ["SaCiani::"], //(MVC fixes)
           },
@@ -1815,6 +1812,40 @@ export class TeamEditorManualFixes {
                 // Adjustments:
                 "TaPettiford::": {
                   o: -0.5,
+                },
+              },
+            })[""],
+          },
+          // Big East Adjustments
+          "St. John's (NY)": {
+            leftTeam: ["AaScott::"], //(year was wrong)
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "BrHopkins::": {
+                  o: 1.0,
+                },
+              },
+            })[""],
+          },
+          // Big 12 Adjustments
+          BYU: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "RiSaunders::": {
+                  o: -0.5,
+                },
+              },
+            })[""],
+          },
+          // ACC Adjustments
+          "North Carolina": {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "HeVeesaar:Arizona:": {
+                  d: -0.75,
                 },
               },
             })[""],
