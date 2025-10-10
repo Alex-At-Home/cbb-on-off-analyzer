@@ -422,7 +422,7 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
     
     while (additionalSplitsNeeded > 0) {
       // Find the biggest gap within any tier
-      let bestSplitInfo = null;
+      let bestSplitInfo: any = null;
       let maxIntraTierGap = 0;
       
       const maxTierNum = currentTierCount + (targetTiers - currentTierCount - additionalSplitsNeeded);
@@ -477,7 +477,7 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
     let foundOversizedTierToSplit = true;
     while (foundOversizedTierToSplit) {
       foundOversizedTierToSplit = false;
-      let bestOversizedSplitInfo = null;
+      let bestOversizedSplitInfo: any  = null;
       let maxOversizedGap = 0;
       
       const currentMaxTier = _.max(tieredTeams.map(t => t.tier)) || 1;
