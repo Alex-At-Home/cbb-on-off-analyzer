@@ -1767,6 +1767,58 @@ export class TeamEditorManualFixes {
               },
             })[""],
           },
+          // SEC adjustments
+          Vanderbilt: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "AkOkereke:Cornell:": {
+                  o: -1,
+                  d: -0.5,
+                },
+                "DeMcglockton::": {
+                  o: -1,
+                  d: -1,
+                },
+              },
+            })[""],
+          },
+          Missouri: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "AnRobinson::": {
+                  o: -1,
+                  d: -1,
+                },
+              },
+            })[""],
+          },
+          Alabama: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "LaPhilon::": {
+                  o: -0.5,
+                  d: -0.5,
+                },
+                "AiSherrell::": {
+                  o: -0.5,
+                  d: -0.5,
+                },
+              },
+            })[""],
+          },
+          Auburn: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "TaPettiford::": {
+                  o: -0.5,
+                },
+              },
+            })[""],
+          },
         };
 
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
