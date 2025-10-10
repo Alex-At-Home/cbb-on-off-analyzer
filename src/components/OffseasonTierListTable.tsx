@@ -372,75 +372,112 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
     // Determine target number of tiers based on league size
     const targetTiers = numTeams >= 15 ? 5 : 4;
     const minGapThreshold = 2.0; // 2+ pts/100 efficiency gap
-    
+
     // Sort teams by net efficiency (highest first)
-    const sortedTeams = _.orderBy(teams, ['net'], ['desc']);
-    
+    const sortedTeams = _.orderBy(teams, ["net"], ["desc"]);
+
     // Calculate gaps between consecutive teams
     const gaps = _.map(sortedTeams.slice(0, -1), (team, i) => ({
       index: i,
       gap: team.net - sortedTeams[i + 1].net,
       afterTeam: team.team,
-      beforeTeam: sortedTeams[i + 1].team
+      beforeTeam: sortedTeams[i + 1].team,
     }));
-    
+
     // Find significant gaps (start with minGapThreshold)
     let gapThreshold = minGapThreshold;
-    let significantGaps = _.filter(gaps, g => g.gap >= gapThreshold);
-    
+    let significantGaps = _.filter(gaps, (g) => g.gap >= gapThreshold);
+
     // If we have too many gaps, increase threshold
     while (significantGaps.length > targetTiers - 1 && gapThreshold < 5.0) {
       gapThreshold += 0.5;
-      significantGaps = _.filter(gaps, g => g.gap >= gapThreshold);
+      significantGaps = _.filter(gaps, (g) => g.gap >= gapThreshold);
     }
-    
+
     // If we still have too many, take the largest gaps
     if (significantGaps.length > targetTiers - 1) {
-      significantGaps = _.orderBy(significantGaps, ['gap'], ['desc'])
-        .slice(0, targetTiers - 1);
+      significantGaps = _.orderBy(significantGaps, ["gap"], ["desc"]).slice(
+        0,
+        targetTiers - 1
+      );
     }
-    
+
     // Determine tier boundaries
-    const tierBoundaries = _.orderBy(significantGaps, ['index'], ['desc'])
-      .map(g => g.index);
-    
+    const tierBoundaries = _.orderBy(significantGaps, ["index"], ["desc"]).map(
+      (g) => g.index
+    );
+
+    // Bonus Pass 1.5: Bottom tier consolidation
+    // Find the first team in bottom 4 that's 5+ pts away from next highest team
+    // and combine it with all teams below into bottom tier
+    const bottom4StartIndex = Math.max(0, sortedTeams.length - 4);
+    let bottomTierStartIndex = -1;
+
+    for (let i = bottom4StartIndex; i < sortedTeams.length - 1; i++) {
+      const currentTeam = sortedTeams[i];
+      const nextHigherTeam = sortedTeams[i - 1]; // Next higher efficiency team
+
+      if (nextHigherTeam && nextHigherTeam.net - currentTeam.net >= 5.0) {
+        bottomTierStartIndex = i;
+        break;
+      }
+    }
+
+    // If we found a bottom tier consolidation point, remove any boundaries within that range
+    if (bottomTierStartIndex >= 0) {
+      const originalBoundaries = [...tierBoundaries];
+      const filteredBoundaries = tierBoundaries.filter(
+        (boundary) => boundary < bottomTierStartIndex
+      );
+
+      // Only update if we actually removed some boundaries
+      if (filteredBoundaries.length < originalBoundaries.length) {
+        tierBoundaries.length = 0;
+        tierBoundaries.push(...filteredBoundaries);
+      }
+    }
+
     // Assign initial tiers
     let tieredTeams = _.map(sortedTeams, (team, index) => {
-      const tierIndex = _.sumBy(tierBoundaries, boundary => boundary < index ? 1 : 0);
+      const tierIndex = _.sumBy(tierBoundaries, (boundary) =>
+        boundary < index ? 1 : 0
+      );
       const tier = tierIndex + 1;
-      
+
       return {
         ...team,
         tier,
-        originalIndex: index
+        originalIndex: index,
       };
     });
 
     // Second pass: if we have fewer tiers than optimal, split the tier with the biggest internal gap
-    const currentTierCount = _.max(tieredTeams.map(t => t.tier)) || 1;
+    const currentTierCount = _.max(tieredTeams.map((t) => t.tier)) || 1;
     let additionalSplitsNeeded = targetTiers - currentTierCount;
-    
+
     while (additionalSplitsNeeded > 0) {
       // Find the biggest gap within any tier
       let bestSplitInfo: any = null;
       let maxIntraTierGap = 0;
-      
-      const maxTierNum = currentTierCount + (targetTiers - currentTierCount - additionalSplitsNeeded);
-      
+
+      const maxTierNum =
+        currentTierCount +
+        (targetTiers - currentTierCount - additionalSplitsNeeded);
+
       for (let tierNum = 1; tierNum <= maxTierNum; tierNum++) {
-        const teamsInTier = _.filter(tieredTeams, t => t.tier === tierNum);
+        const teamsInTier = _.filter(tieredTeams, (t) => t.tier === tierNum);
         if (teamsInTier.length < 2) continue; // Can't split a tier with < 2 teams
-        
+
         // Don't split the bottom tier unless it's exceptionally large
         const isBottomTier = tierNum === maxTierNum;
         const bottomTierThreshold = targetTiers >= 5 ? 5 : 4; // 5 for big leagues, 4 for smaller
         if (isBottomTier && teamsInTier.length <= bottomTierThreshold) {
           continue; // Skip bottom tier unless it has too many teams
         }
-        
+
         // Sort by original index to maintain efficiency order
-        const sortedTierTeams = _.sortBy(teamsInTier, 'originalIndex');
-        
+        const sortedTierTeams = _.sortBy(teamsInTier, "originalIndex");
+
         // Find biggest gap within this tier
         for (let i = 0; i < sortedTierTeams.length - 1; i++) {
           const gap = sortedTierTeams[i].net - sortedTierTeams[i + 1].net;
@@ -448,23 +485,26 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
             maxIntraTierGap = gap;
             bestSplitInfo = {
               tierToSplit: tierNum,
-              splitAfterIndex: sortedTierTeams[i].originalIndex
+              splitAfterIndex: sortedTierTeams[i].originalIndex,
             };
           }
         }
       }
-      
+
       // If we found a meaningful gap to split (at least 0.5 pts), split it
       if (bestSplitInfo && maxIntraTierGap >= 0.5) {
         // Increment tiers for all teams after the split point that are in tiers >= the split tier
-        tieredTeams = _.map(tieredTeams, team => {
-          if (team.tier > bestSplitInfo.tierToSplit || 
-              (team.tier === bestSplitInfo.tierToSplit && team.originalIndex > bestSplitInfo.splitAfterIndex)) {
+        tieredTeams = _.map(tieredTeams, (team) => {
+          if (
+            team.tier > bestSplitInfo.tierToSplit ||
+            (team.tier === bestSplitInfo.tierToSplit &&
+              team.originalIndex > bestSplitInfo.splitAfterIndex)
+          ) {
             return { ...team, tier: team.tier + 1 };
           }
           return team;
         });
-        
+
         additionalSplitsNeeded--;
       } else {
         // No meaningful gaps found, stop trying to split
@@ -477,18 +517,18 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
     let foundOversizedTierToSplit = true;
     while (foundOversizedTierToSplit) {
       foundOversizedTierToSplit = false;
-      let bestOversizedSplitInfo: any  = null;
+      let bestOversizedSplitInfo: any = null;
       let maxOversizedGap = 0;
-      
-      const currentMaxTier = _.max(tieredTeams.map(t => t.tier)) || 1;
-      
+
+      const currentMaxTier = _.max(tieredTeams.map((t) => t.tier)) || 1;
+
       for (let tierNum = 1; tierNum <= currentMaxTier; tierNum++) {
-        const teamsInTier = _.filter(tieredTeams, t => t.tier === tierNum);
+        const teamsInTier = _.filter(tieredTeams, (t) => t.tier === tierNum);
         if (teamsInTier.length < 6) continue; // Only split tiers with 6+ teams
-        
+
         // Sort by original index to maintain efficiency order
-        const sortedTierTeams = _.sortBy(teamsInTier, 'originalIndex');
-        
+        const sortedTierTeams = _.sortBy(teamsInTier, "originalIndex");
+
         // Find biggest gap within this oversized tier
         for (let i = 0; i < sortedTierTeams.length - 1; i++) {
           const gap = sortedTierTeams[i].net - sortedTierTeams[i + 1].net;
@@ -496,23 +536,26 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
             maxOversizedGap = gap;
             bestOversizedSplitInfo = {
               tierToSplit: tierNum,
-              splitAfterIndex: sortedTierTeams[i].originalIndex
+              splitAfterIndex: sortedTierTeams[i].originalIndex,
             };
           }
         }
       }
-      
+
       // If we found an oversized tier with a meaningful gap, split it
       if (bestOversizedSplitInfo && maxOversizedGap > 1.25) {
         // Increment tiers for all teams after the split point that are in tiers >= the split tier
-        tieredTeams = _.map(tieredTeams, team => {
-          if (team.tier > bestOversizedSplitInfo.tierToSplit || 
-              (team.tier === bestOversizedSplitInfo.tierToSplit && team.originalIndex > bestOversizedSplitInfo.splitAfterIndex)) {
+        tieredTeams = _.map(tieredTeams, (team) => {
+          if (
+            team.tier > bestOversizedSplitInfo.tierToSplit ||
+            (team.tier === bestOversizedSplitInfo.tierToSplit &&
+              team.originalIndex > bestOversizedSplitInfo.splitAfterIndex)
+          ) {
             return { ...team, tier: team.tier + 1 };
           }
           return team;
         });
-        
+
         foundOversizedTierToSplit = true; // Continue looking for more oversized tiers
       }
     }
@@ -521,42 +564,45 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
     // A straggler is defined as a team whose efficiency gap to the team above them is within 0.35 of the gap below them
     const potentialStragglers = new Set<string>();
     tieredTeams = _.map(tieredTeams, (team) => {
-      const sortedTeams = _.sortBy(tieredTeams, 'originalIndex'); // Maintain efficiency order
-      const teamIndex = _.findIndex(sortedTeams, t => t.team === team.team);
-      
+      const sortedTeams = _.sortBy(tieredTeams, "originalIndex"); // Maintain efficiency order
+      const teamIndex = _.findIndex(sortedTeams, (t) => t.team === team.team);
+
       if (teamIndex === -1) return team; // Safety check
-      
+
       const teamAbove = teamIndex > 0 ? sortedTeams[teamIndex - 1] : null;
-      const teamBelow = teamIndex < sortedTeams.length - 1 ? sortedTeams[teamIndex + 1] : null;
-      
+      const teamBelow =
+        teamIndex < sortedTeams.length - 1 ? sortedTeams[teamIndex + 1] : null;
+
       // Only consider stragglers if they're at the boundary of their tier AND adjacent to a different tier
       const isAtTopOfTier = teamAbove && teamAbove.tier === team.tier - 1;
       const isAtBottomOfTier = teamBelow && teamBelow.tier === team.tier + 1;
-      
+
       if (!isAtTopOfTier && !isAtBottomOfTier) {
         return team; // Not at a tier boundary adjacent to another tier
       }
-      
+
       let isStraggler = false;
-      let stragglerTierInfo = '';
-      let boundaryKey = '';
-      
+      let stragglerTierInfo = "";
+      let boundaryKey = "";
+
       if (isAtTopOfTier) {
         // Team is at top of their tier, adjacent to tier above
         const gapToAbove = teamAbove!.net - team.net;
-        
+
         // Find next team in same tier (team below in same tier)
-        const teamBelowInSameTier = _.find(sortedTeams, (t, i) => 
-          i > teamIndex && t.tier === team.tier
+        const teamBelowInSameTier = _.find(
+          sortedTeams,
+          (t, i) => i > teamIndex && t.tier === team.tier
         );
-        
+
         if (teamBelowInSameTier) {
           const gapToBelow = team.net - teamBelowInSameTier.net;
           const gapDiff = Math.abs(gapToAbove - gapToBelow);
           if (gapDiff <= 0.35) {
             boundaryKey = `${teamAbove!.tier}-${team.tier}`;
-            const otherTeamAlreadyStraggler = potentialStragglers.has(boundaryKey);
-            
+            const otherTeamAlreadyStraggler =
+              potentialStragglers.has(boundaryKey);
+
             if (!otherTeamAlreadyStraggler) {
               isStraggler = true;
               stragglerTierInfo = `Tier ${teamAbove!.tier} / ${team.tier}`;
@@ -565,23 +611,25 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
           }
         }
       }
-      
+
       if (isAtBottomOfTier) {
         // Team is at bottom of their tier, adjacent to tier below
         const gapToBelow = team.net - teamBelow!.net;
-        
+
         // Find previous team in same tier (team above in same tier)
-        const teamAboveInSameTier = _.findLast(sortedTeams, (t, i) => 
-          i < teamIndex && t.tier === team.tier
+        const teamAboveInSameTier = _.findLast(
+          sortedTeams,
+          (t, i) => i < teamIndex && t.tier === team.tier
         );
-        
+
         if (teamAboveInSameTier) {
           const gapToAbove = teamAboveInSameTier.net - team.net;
           const gapDiff = Math.abs(gapToAbove - gapToBelow);
           if (gapDiff <= 0.35) {
             boundaryKey = `${team.tier}-${teamBelow!.tier}`;
-            const otherTeamAlreadyStraggler = potentialStragglers.has(boundaryKey);
-            
+            const otherTeamAlreadyStraggler =
+              potentialStragglers.has(boundaryKey);
+
             if (!otherTeamAlreadyStraggler) {
               isStraggler = true;
               stragglerTierInfo = `Tier ${team.tier} / ${teamBelow!.tier}`;
@@ -590,22 +638,24 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
           }
         }
       }
-      
+
       return {
         ...team,
         isStraggler,
-        tierInfo: isStraggler ? stragglerTierInfo : `Tier ${team.tier}`
+        tierInfo: isStraggler ? stragglerTierInfo : `Tier ${team.tier}`,
       };
     });
 
     // Final pass: clean up and preserve only straggler designations
     return _.map(tieredTeams, (team) => {
       const { originalIndex, ...teamWithoutIndex } = team;
-      
+
       // Only preserve straggler tierInfo from Pass 4, no additional logic
       return {
         ...teamWithoutIndex,
-        tierInfo: (teamWithoutIndex as any).isStraggler ? (teamWithoutIndex as any).tierInfo : `Tier ${team.tier}`
+        tierInfo: (teamWithoutIndex as any).isStraggler
+          ? (teamWithoutIndex as any).tierInfo
+          : `Tier ${team.tier}`,
       };
     });
   };
@@ -982,96 +1032,98 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
     const tieredTeams = assignTiers(filteredTeams, actualNumRows);
 
     // Group teams by their tier for the new display format
-    const teamsByTier = _.groupBy(tieredTeams, 'tierInfo');
-    const tierOrder = _.uniq(tieredTeams.map(t => t.tierInfo)).sort((a, b) => {
-      // Extract tier numbers for sorting (handle stragglers like "Tier 1 / 2")
-      const getTierNum = (tierStr: string) => {
-        const match = tierStr.match(/Tier (\d+)/);
-        return match ? parseInt(match[1]) : 999;
-      };
-      return getTierNum(a) - getTierNum(b);
-    });
+    const teamsByTier = _.groupBy(tieredTeams, "tierInfo");
+    const tierOrder = _.uniq(tieredTeams.map((t) => t.tierInfo)).sort(
+      (a, b) => {
+        // Extract tier numbers for sorting (handle stragglers like "Tier 1 / 2")
+        const getTierNum = (tierStr: string) => {
+          const match = tierStr.match(/Tier (\d+)/);
+          return match ? parseInt(match[1]) : 999;
+        };
+        return getTierNum(a) - getTierNum(b);
+      }
+    );
 
     const buildTeamLink = (t: any) => {
-        const teamParams = {
-          year,
-          gender,
-          team: t.team,
-          evalMode: evalMode,
-          ...(teamOverrides[t.team] || {}),
-        };
-        const teamOverride = teamOverrides[t.team] || {};
-        const hasOverrides =
-          teamOverride.addedPlayers ||
-          teamOverride.deletedPlayers ||
-          teamOverride.disabledPlayers ||
-          teamOverride.overrides;
-        const maybeOverriddenEl = hasOverrides ? <span> (*)</span> : null;
+      const teamParams = {
+        year,
+        gender,
+        team: t.team,
+        evalMode: evalMode,
+        ...(teamOverrides[t.team] || {}),
+      };
+      const teamOverride = teamOverrides[t.team] || {};
+      const hasOverrides =
+        teamOverride.addedPlayers ||
+        teamOverride.deletedPlayers ||
+        teamOverride.disabledPlayers ||
+        teamOverride.overrides;
+      const maybeOverriddenEl = hasOverrides ? <span> (*)</span> : null;
 
-        const teamTooltip = (
+      const teamTooltip = (
         <Tooltip id={`teamTooltip${t.team}`}>
-            {maybeOverriddenEl ? (
-              <span>
-                (Team has edits, click on View icon to right to see them)
-                <br />
-                <br />
-              </span>
-            ) : null}
-            {AvailableTeams.teamAliases[t.team] ? (
-              <>
-                Other names over the years:{" "}
-                {AvailableTeams.teamAliases[t.team].join("; ")}
-                <br />
-                <br />
-              </>
-            ) : undefined}
-            Open new tab with the detailed off-season predictions for this team
-            {maybeOverriddenEl ? <span> (with these edits)</span> : null}
-          </Tooltip>
-        );
+          {maybeOverriddenEl ? (
+            <span>
+              (Team has edits, click on View icon to right to see them)
+              <br />
+              <br />
+            </span>
+          ) : null}
+          {AvailableTeams.teamAliases[t.team] ? (
+            <>
+              Other names over the years:{" "}
+              {AvailableTeams.teamAliases[t.team].join("; ")}
+              <br />
+              <br />
+            </>
+          ) : undefined}
+          Open new tab with the detailed off-season predictions for this team
+          {maybeOverriddenEl ? <span> (with these edits)</span> : null}
+        </Tooltip>
+      );
 
-        /** Gives an idea of when H-E didn't have enough data to work with */
-        const maybeMinutesWarning = () => {
-          if (t.playersInPrediction <= 5) {
-            const badPredictionWarning = (
+      /** Gives an idea of when H-E didn't have enough data to work with */
+      const maybeMinutesWarning = () => {
+        if (t.playersInPrediction <= 5) {
+          const badPredictionWarning = (
             <Tooltip id={`badPredictionWarning${t.team}`}>
-                This prediction is very dubious - only based on [
-                {t.playersInPrediction}] players' stats, with [
-                {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
-                to [{t.conf}] replacement level stats, despite unrealistically
-                maxing out the minutes of the named players.
-              </Tooltip>
-            );
-            return (
-              <OverlayTrigger placement="auto" overlay={badPredictionWarning}>
-                <sup style={{ color: "red" }}>&nbsp;(!!)</sup>
-              </OverlayTrigger>
-            );
-          } else if (
-            t.playersInPrediction == 6 ||
-            (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
-          ) {
-            const mehPredictionWarning = (
+              This prediction is very dubious - only based on [
+              {t.playersInPrediction}] players' stats, with [
+              {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
+              to [{t.conf}] replacement level stats, despite unrealistically
+              maxing out the minutes of the named players.
+            </Tooltip>
+          );
+          return (
+            <OverlayTrigger placement="auto" overlay={badPredictionWarning}>
+              <sup style={{ color: "red" }}>&nbsp;(!!)</sup>
+            </OverlayTrigger>
+          );
+        } else if (
+          t.playersInPrediction == 6 ||
+          (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
+        ) {
+          const mehPredictionWarning = (
             <Tooltip id={`mehPredictionWarning${t.team}`}>
-                This prediction is dubious - only based on [
-                {t.playersInPrediction}] players' stats, with [
-                {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
-                to [{t.conf}] replacement level stats, despite possibly
-                unrealistically maxing out the minutes of the named players.
-              </Tooltip>
-            );
-            return (
-              <OverlayTrigger placement="auto" overlay={mehPredictionWarning}>
-                <sup style={{ color: "orange" }}>&nbsp;(!)</sup>
-              </OverlayTrigger>
-            );
-          } else {
-            return null;
-          }
-        };
+              This prediction is dubious - only based on [
+              {t.playersInPrediction}] players' stats, with [
+              {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
+              to [{t.conf}] replacement level stats, despite possibly
+              unrealistically maxing out the minutes of the named players.
+            </Tooltip>
+          );
+          return (
+            <OverlayTrigger placement="auto" overlay={mehPredictionWarning}>
+              <sup style={{ color: "orange" }}>&nbsp;(!)</sup>
+            </OverlayTrigger>
+          );
+        } else {
+          return null;
+        }
+      };
 
       return (
-                  <span>
+        <span>
           <OverlayTrigger placement="auto" overlay={teamTooltip}>
             <b>
               <a target="_blank" href={UrlRouting.getTeamEditorUrl(teamParams)}>
@@ -1080,35 +1132,35 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
               {maybeOverriddenEl}
             </b>
           </OverlayTrigger>
-                    {maybeMinutesWarning()}
-                  </span>
+          {maybeMinutesWarning()}
+        </span>
       );
     };
 
     const tableRows = _.flatMap(tierOrder, (tierInfo, tierIndex) => {
       const teamsInTier = teamsByTier[tierInfo];
-      const sortedTeamsInTier = _.sortBy(teamsInTier, t => -t.net); // Sort by efficiency descending
+      const sortedTeamsInTier = _.sortBy(teamsInTier, (t) => -t.net); // Sort by efficiency descending
 
       const teamLinks = sortedTeamsInTier.map((team, index) => (
         <span key={team.team}>
-          {index > 0 && ', '}
+          {index > 0 && ", "}
           {buildTeamLink(team)}
-                  </span>
+        </span>
       ));
 
       return [
         GenericTableOps.buildDataRow(
           {
-            title: <b>{tierInfo}</b>,
-            teams: (
-              <div style={{ textAlign: 'center' }}>
-                {teamLinks}
-              </div>
-                ),
-              },
-              GenericTableOps.defaultFormatter,
-              GenericTableOps.defaultCellMeta
+            title: _.includes(tierInfo, "/") ? (
+              <i>{tierInfo}</i>
+            ) : (
+              <b>{tierInfo}</b>
             ),
+            teams: <div style={{ textAlign: "center" }}>{teamLinks}</div>,
+          },
+          GenericTableOps.defaultFormatter,
+          GenericTableOps.defaultCellMeta
+        ),
       ];
     });
 
@@ -1119,132 +1171,137 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
       );
 
       const originalTableRows = maybeHandSortedTeamRanks
-      .flatMap(([t, netRankIn], finalTeamOrder) => {
-        const nonStdSort = sortBy && sortBy != "net" && transferInOutMode;
+        .flatMap(([t, netRankIn], finalTeamOrder) => {
+          const nonStdSort = sortBy && sortBy != "net" && transferInOutMode;
 
-        const goodNet = GradeUtils.buildTeamPercentiles(
-          derivedDivisionStats,
-          { off_net: { value: t.goodNet } },
-          ["net"],
-          true
-        );
-        const badNet = GradeUtils.buildTeamPercentiles(
-          derivedDivisionStats,
-          { off_net: { value: t.badNet } },
-          ["net"],
-          true
-        );
+          const goodNet = GradeUtils.buildTeamPercentiles(
+            derivedDivisionStats,
+            { off_net: { value: t.goodNet } },
+            ["net"],
+            true
+          );
+          const badNet = GradeUtils.buildTeamPercentiles(
+            derivedDivisionStats,
+            { off_net: { value: t.badNet } },
+            ["net"],
+            true
+          );
 
-        const teamParams = {
-          year,
-          gender,
-          team: t.team,
-          evalMode: evalMode,
-          ...(teamOverrides[t.team] || {}),
-        };
-        const teamOverride = teamOverrides[t.team] || {};
-        const hasOverrides =
-          teamOverride.addedPlayers ||
-          teamOverride.deletedPlayers ||
-          teamOverride.disabledPlayers ||
-          teamOverride.overrides;
-        const maybeOverriddenEl = hasOverrides ? <span> (*)</span> : null;
+          const teamParams = {
+            year,
+            gender,
+            team: t.team,
+            evalMode: evalMode,
+            ...(teamOverrides[t.team] || {}),
+          };
+          const teamOverride = teamOverrides[t.team] || {};
+          const hasOverrides =
+            teamOverride.addedPlayers ||
+            teamOverride.deletedPlayers ||
+            teamOverride.disabledPlayers ||
+            teamOverride.overrides;
+          const maybeOverriddenEl = hasOverrides ? <span> (*)</span> : null;
 
-        const teamTooltip = (
-          <Tooltip id={`teamTooltip${netRankIn}`}>
-            {maybeOverriddenEl ? (
-              <span>
-                (Team has edits, click on View icon to right to see them)
-                <br />
-                <br />
-              </span>
-            ) : null}
-            {AvailableTeams.teamAliases[t.team] ? (
-              <>
-                Other names over the years:{" "}
-                {AvailableTeams.teamAliases[t.team].join("; ")}
-                <br />
-                <br />
-              </>
-            ) : undefined}
-            Open new tab with the detailed off-season predictions for this team
-            {maybeOverriddenEl ? <span> (with these edits)</span> : null}
-          </Tooltip>
-        );
-        const teamLink = (
-          <OverlayTrigger placement="auto" overlay={teamTooltip}>
-            <b>
-              <a target="_blank" href={UrlRouting.getTeamEditorUrl(teamParams)}>
-                {t.team}
-              </a>
-              {maybeOverriddenEl}
-            </b>
-          </OverlayTrigger>
-        );
+          const teamTooltip = (
+            <Tooltip id={`teamTooltip${netRankIn}`}>
+              {maybeOverriddenEl ? (
+                <span>
+                  (Team has edits, click on View icon to right to see them)
+                  <br />
+                  <br />
+                </span>
+              ) : null}
+              {AvailableTeams.teamAliases[t.team] ? (
+                <>
+                  Other names over the years:{" "}
+                  {AvailableTeams.teamAliases[t.team].join("; ")}
+                  <br />
+                  <br />
+                </>
+              ) : undefined}
+              Open new tab with the detailed off-season predictions for this
+              team
+              {maybeOverriddenEl ? <span> (with these edits)</span> : null}
+            </Tooltip>
+          );
+          const teamLink = (
+            <OverlayTrigger placement="auto" overlay={teamTooltip}>
+              <b>
+                <a
+                  target="_blank"
+                  href={UrlRouting.getTeamEditorUrl(teamParams)}
+                >
+                  {t.team}
+                </a>
+                {maybeOverriddenEl}
+              </b>
+            </OverlayTrigger>
+          );
 
-        const netRank =
-          nonStdSort || confs ? netEffToRankMap[t.net]! : netRankIn;
+          const netRank =
+            nonStdSort || confs ? netEffToRankMap[t.net]! : netRankIn;
 
-        // Eval mode part 2:
-        const actualNetRankObj = getActualNetRankObj(t);
-        const actualNetRank = actualNetRankObj
-          ? toIntRank(actualNetRankObj?.off_net)
-          : 0;
-        const goodNetRank = actualNetRankObj ? toIntRank(goodNet.off_net) : 0;
-        const badNetRank = actualNetRankObj ? toIntRank(badNet.off_net) : 0;
-        const evalStdDev =
-          actualNetRank < netRank
-            ? netRank - goodNetRank
-            : badNetRank - netRank;
-        const deltaProjRank =
-          Math.abs(netRank - actualNetRank) / (evalStdDev || 1);
+          // Eval mode part 2:
+          const actualNetRankObj = getActualNetRankObj(t);
+          const actualNetRank = actualNetRankObj
+            ? toIntRank(actualNetRankObj?.off_net)
+            : 0;
+          const goodNetRank = actualNetRankObj ? toIntRank(goodNet.off_net) : 0;
+          const badNetRank = actualNetRankObj ? toIntRank(badNet.off_net) : 0;
+          const evalStdDev =
+            actualNetRank < netRank
+              ? netRank - goodNetRank
+              : badNetRank - netRank;
+          const deltaProjRank =
+            Math.abs(netRank - actualNetRank) / (evalStdDev || 1);
 
-        /** Gives an idea of when H-E didn't have enough data to work with */
-        const maybeMinutesWarning = () => {
-          if (t.playersInPrediction <= 5) {
-            const badPredictionWarning = (
-              <Tooltip id={`badPredictionWarning${netRankIn}`}>
-                This prediction is very dubious - only based on [
-                {t.playersInPrediction}] players' stats, with [
-                {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
-                to [{t.conf}] replacement level stats, despite unrealistically
-                maxing out the minutes of the named players.
-              </Tooltip>
-            );
-            return (
-              <OverlayTrigger placement="auto" overlay={badPredictionWarning}>
-                <sup style={{ color: "red" }}>&nbsp;(!!)</sup>
-              </OverlayTrigger>
-            );
-          } else if (
-            t.playersInPrediction == 6 ||
-            (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
-          ) {
-            const mehPredictionWarning = (
-              <Tooltip id={`mehPredictionWarning${netRankIn}`}>
-                This prediction is dubious - only based on [
-                {t.playersInPrediction}] players' stats, with [
-                {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
-                to [{t.conf}] replacement level stats, despite possibly
-                unrealistically maxing out the minutes of the named players.
-              </Tooltip>
-            );
-            return (
-              <OverlayTrigger placement="auto" overlay={mehPredictionWarning}>
-                <sup style={{ color: "orange" }}>&nbsp;(!)</sup>
-              </OverlayTrigger>
-            );
-          } else {
-            return null;
-          }
-        };
+          /** Gives an idea of when H-E didn't have enough data to work with */
+          const maybeMinutesWarning = () => {
+            if (t.playersInPrediction <= 5) {
+              const badPredictionWarning = (
+                <Tooltip id={`badPredictionWarning${netRankIn}`}>
+                  This prediction is very dubious - only based on [
+                  {t.playersInPrediction}] players' stats, with [
+                  {(200 - t.playersInPredictionMins).toFixed(1)}] minutes
+                  assigned to [{t.conf}] replacement level stats, despite
+                  unrealistically maxing out the minutes of the named players.
+                </Tooltip>
+              );
+              return (
+                <OverlayTrigger placement="auto" overlay={badPredictionWarning}>
+                  <sup style={{ color: "red" }}>&nbsp;(!!)</sup>
+                </OverlayTrigger>
+              );
+            } else if (
+              t.playersInPrediction == 6 ||
+              (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
+            ) {
+              const mehPredictionWarning = (
+                <Tooltip id={`mehPredictionWarning${netRankIn}`}>
+                  This prediction is dubious - only based on [
+                  {t.playersInPrediction}] players' stats, with [
+                  {(200 - t.playersInPredictionMins).toFixed(1)}] minutes
+                  assigned to [{t.conf}] replacement level stats, despite
+                  possibly unrealistically maxing out the minutes of the named
+                  players.
+                </Tooltip>
+              );
+              return (
+                <OverlayTrigger placement="auto" overlay={mehPredictionWarning}>
+                  <sup style={{ color: "orange" }}>&nbsp;(!)</sup>
+                </OverlayTrigger>
+              );
+            } else {
+              return null;
+            }
+          };
 
-        const totalInOutMargin =
-          t.fr_net +
-          (t.in_off - t.in_def) -
-          (t.out_off - t.out_def) -
-          (t.nba_off - t.nba_def) -
-          (t.sr_off - t.sr_def);
+          const totalInOutMargin =
+            t.fr_net +
+            (t.in_off - t.in_def) -
+            (t.out_off - t.out_def) -
+            (t.nba_off - t.nba_def) -
+            (t.sr_off - t.sr_def);
 
           return [
             GenericTableOps.buildDataRow(
@@ -1357,10 +1414,10 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
                 ]
               : []
           );
-      })
-      .value();
+        })
+        .value();
 
-    return (
+      return (
         <GenericTable
           tableCopyId="originalTeamTable"
           tableFields={originalTableDefs}
@@ -1372,13 +1429,13 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
 
     return (
       <div>
-      <GenericTable
-        tableCopyId="teamTable"
-        tableFields={tableDefs}
-        tableData={tableRows}
-        cellTooltipMode={undefined}
-      />
-        
+        <GenericTable
+          tableCopyId="teamTable"
+          tableFields={tableDefs}
+          tableData={tableRows}
+          cellTooltipMode={undefined}
+        />
+
         <Row className="mt-3">
           <Col>
             <GenericCollapsibleCard
