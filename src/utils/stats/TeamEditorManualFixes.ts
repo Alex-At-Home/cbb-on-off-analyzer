@@ -1681,9 +1681,6 @@ export class TeamEditorManualFixes {
           Nebraska: {
             superSeniorsReturning: new Set(["RiMast::"]),
           },
-          Oregon: {
-            leftTeam: ["NaBittle::"], //(is a senior?)
-          },
           "Portland St.": {
             superSeniorsReturning: new Set(["TrMinott::"]),
           },
@@ -1735,6 +1732,9 @@ export class TeamEditorManualFixes {
                 },
               },
             })[""],
+          },
+          Oregon: {
+            superSeniorsReturning: new Set(["NaBittle::"]),
           },
           "Southern California": {
             ...TeamEditorManualFixes.buildOverrides({
