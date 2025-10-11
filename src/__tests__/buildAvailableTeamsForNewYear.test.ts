@@ -6,10 +6,11 @@ import { latestConfChanges_yearlyDiffs } from "../utils/public-data/ConferenceIn
 import { DateUtils } from "../utils/DateUtils";
 import _ from "lodash";
 
-/** Run "YEAR_TO_BUILD_FROM=2022/23 npm run test src/__tests__/buildAvailableTeamsForNewYear.test.ts  -- --coverage=false" to build
- * After copying "transfers_${offseasonYearStr}" to working dir
+/** Run "YEAR_TO_BUILD_FROM=2024/25 npm run test src/__tests__/buildAvailableTeamsForNewYear.test.ts  -- --coverage=false" to build
+ * use ADD_WOMEN=yes to ensure there is a women's team for every men's team  in YEAR_TO_BUILD_FROM
  */
 describe("buildAvailableTeamsForNewYear", () => {
+  const addWomenMode = !_.isNil(process.env.ADD_WOMEN);
   if (process.env.YEAR_TO_BUILD_FROM) {
     const yearToBuildFrom = process.env.YEAR_TO_BUILD_FROM! as string;
     const newYear = DateUtils.getNextYear(yearToBuildFrom);
