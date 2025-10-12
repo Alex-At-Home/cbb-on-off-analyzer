@@ -301,6 +301,9 @@ const latestConfChanges_2025 = {
   Delaware: "Conference USA", //(caa)
   "Missouri St.": "Conference USA", //(mvc)
 
+  // WCC
+  "Seattle U": "West Coast Conference",
+
   // MAC
   Massachusetts: "Mid American Conference", //(a10)
 };
