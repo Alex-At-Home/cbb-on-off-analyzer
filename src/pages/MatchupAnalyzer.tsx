@@ -156,6 +156,13 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   const [csvData, setCsvData] = useState<object[]>([]);
 
+  // Experimental JSON mode
+
+  const jsonMode =
+    typeof window === `undefined`
+      ? false
+      : window.location.search.indexOf("jsonMode=true") >= 0;
+
   // Game and Lineup filters
 
   const allParams =
@@ -381,7 +388,24 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     const avgEfficiency =
       efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-    return (
+    return jsonMode ? (
+      <span>
+        {dataEvent.teamStatsA.baseline.off_poss?.value &&
+        !_.isEmpty(divisionStatsCache)
+          ? PlayTypeDiagUtils.buildTeamStyleBreakdown(
+              matchupFilterParams.team || "Unknown",
+              dataEvent.rosterStatsA,
+              dataEvent.teamStatsA,
+              avgEfficiency,
+              divisionStatsCache,
+              showHelp,
+              true,
+              undefined,
+              jsonMode
+            )
+          : `Loading Data... ${dataEvent.teamStatsA.baseline.off_poss?.value}`}
+      </span>
+    ) : (
       <GenericCollapsibleCard
         minimizeMargin={true}
         title="Play Type Breakdown"
@@ -517,7 +541,17 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent, shotChartsShowZones]);
 
-  return (
+  /** In JSON mode display the view until the request is submitted and data has returned */
+  const jsonModeAndAllDataLoaded =
+    jsonMode &&
+    dataEvent.teamStatsA.baseline.off_poss?.value &&
+    !_.isEmpty(divisionStatsCache);
+
+  return jsonModeAndAllDataLoaded ? (
+    <text id="jsonOutput">
+      WORK IN PROGRESS "playStyleBreakdown": {playStyleChart}
+    </text>
+  ) : (
     <Container>
       <SiteModeDropdown />
       <Row ref={topRef} className="mt-2">

@@ -485,7 +485,8 @@ export class PlayTypeDiagUtils {
     grades: DivisionStatsCache,
     showHelp: boolean,
     singleGameMode: boolean,
-    defensiveOverride?: TopLevelPlayAnalysis
+    defensiveOverride?: TopLevelPlayAnalysis,
+    jsonMode?: boolean
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -536,6 +537,7 @@ export class PlayTypeDiagUtils {
           quickSwitchOverride={undefined}
           defensiveOverride={defensiveOverride}
           startWithRaw={singleGameMode}
+          jsonMode={jsonMode}
         />
       </div>
     );
