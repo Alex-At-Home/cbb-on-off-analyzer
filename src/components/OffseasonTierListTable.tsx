@@ -76,12 +76,6 @@ type Props = {
   onChangeState: (newParams: OffseasonLeaderboardParams) => void;
 };
 
-/** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
-const logDivisionStatsToConsole = false;
-const logDivisionStatsToFile =
-  process.env.BUILD_OFFSEASON_STATS_LEADERBOARD == "true";
-const updateNextYearsRoster = process.env.BUILD_OFFSEASON_ROSTER == "true";
-
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
 
@@ -731,79 +725,8 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
       rostersPerTeam,
       avgEff,
       actualResultsAvgEff,
-      logDivisionStatsToFile && typeof window === `undefined` //(in preseason-building mode, include teams)
+      false
     );
-
-    //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json)
-    //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)
-    if (logDivisionStatsToConsole && server == "localhost") {
-      console.log(JSON.stringify(derivedDivisionStats));
-    }
-    if (typeof window === `undefined`) {
-      //(since require('fs) needs to appear only in server side code)
-      if (logDivisionStatsToFile) {
-        console.log(
-          `(BUILDING [./stats_all_Men_${year.substring(0, 4)}_Preseason.json] )`
-        );
-
-        const fs = require("fs");
-        fs.writeFileSync(
-          `./stats_all_Men_${year.substring(0, 4)}_Preseason.json`,
-          JSON.stringify(derivedDivisionStats)
-        );
-        //(DEBUG)
-        //console.log(JSON.stringify(derivedDivisionStats));
-
-        // For each team, if we have a roster file for them for the next seasion,
-        // We have the option to update it with role info
-        //(only do this as a one-off when building next year's rosters, otherwise it happens
-        // during the normal buildLeaderboard process)
-        if (updateNextYearsRoster)
-          teamRanks.forEach((teamInfo) => {
-            const filename = `./public/rosters/${gender}_${(
-              year || ""
-            ).substring(0, 4)}/${RequestUtils.fixLocalhostRosterUrl(
-              teamInfo.team,
-              false
-            )}.json`;
-
-            var varUpdatedOffseasonRoles = false;
-            try {
-              const currRosterJson = JSON.parse(
-                fs.readFileSync(filename)
-              ) as Record<PlayerCode, RosterEntry>;
-
-              _.forEach(teamInfo.players || [], (playerInfo) => {
-                const playerCode = playerInfo.key.replace(/:.*/, "");
-                const playerRosterInfo = currRosterJson[playerCode];
-
-                if (
-                  playerInfo.ok.posClass &&
-                  playerRosterInfo &&
-                  playerRosterInfo.role != playerInfo.ok.posClass
-                ) {
-                  //(DEBUG)
-                  // console.log(
-                  //   `Will update roster info for [${playerCode}], old_role=[${playerRosterInfo.role}], new_role=[${playerInfo.ok.posClass}]`
-                  // );
-                  playerRosterInfo.role = playerInfo.ok.posClass;
-                  varUpdatedOffseasonRoles = true;
-                }
-              });
-              if (varUpdatedOffseasonRoles) {
-                fs.writeFileSync(
-                  filename,
-                  JSON.stringify(currRosterJson, null, 3)
-                );
-              }
-            } catch (err: unknown) {
-              //(this can happen if the team rosters aren't available yet, so just skip)
-              //(DEBUG)
-              //console.log(`Roster filename [${filename}] doesn't exist`);
-            }
-          });
-      }
-    }
 
     const confFilter = (t: { team: string; conf: string }) => {
       return (
