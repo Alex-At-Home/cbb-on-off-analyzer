@@ -204,7 +204,13 @@ export type Props = {
   configStr?: string;
   updateConfig?: (configStr: string) => void;
   navigationLinkOverride?: React.ReactElement;
-  jsonMode?: boolean;
+  exportOptions?: {
+    gameId?: string;
+    teamTitle?: string;
+    invertTeamAndOppo?: boolean;
+    jsonMode?: boolean;
+    singleGameMode?: boolean;
+  };
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -223,7 +229,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   configStr,
   updateConfig: updateConfigIn,
   navigationLinkOverride,
-  jsonMode,
+  exportOptions,
 }) => {
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -846,257 +852,257 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   /** Shows the JSON at the bottom if enabled */
   const debugView = false;
 
-  return jsonMode ? (
-    <span>TEST</span>
-  ) : (
-    React.useMemo(
-      () => (
-        <span>
-          {PlayTypeDiagUtils.buildQuickSwitchOptions(
-            title,
-            quickSwitchBase,
-            quickSwitchOptions,
-            (newSetting, fromTimer) => {
-              if (fromTimer) {
-                setQuickSwitch((curr) => (curr ? undefined : newSetting));
-              } else {
-                //TODO call onChangeChartOpts
-                setQuickSwitch((__) => {
-                  const newCurr = newSetting;
+  return React.useMemo(() => {
+    const buildExportData = () => {
+      return grades
+        ? PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+            exportOptions?.teamTitle || title,
+            !exportOptions?.invertTeamAndOppo,
+            exportOptions?.gameId || "",
+            {
+              on: [],
+              off: [],
+              other: [],
+              baseline: playersIn,
+              global: [],
+            },
+            {
+              on: StatModels.emptyTeam(),
+              off: StatModels.emptyTeam(),
+              other: [],
+              baseline: teamStatsIn,
+              global: StatModels.emptyTeam(),
+            },
+            avgEfficiency,
+            grades,
+            exportOptions?.singleGameMode ?? false,
+            undefined,
+            rosterStatsByCode
+          )
+        : [];
+    };
+
+    return exportOptions?.jsonMode ? (
+      <span>{JSON.stringify(buildExportData(), null, 3)}</span>
+    ) : (
+      <span>
+        {PlayTypeDiagUtils.buildQuickSwitchOptions(
+          title,
+          quickSwitchBase,
+          quickSwitchOptions,
+          (newSetting, fromTimer) => {
+            if (fromTimer) {
+              setQuickSwitch((curr) => (curr ? undefined : newSetting));
+            } else {
+              //TODO call onChangeChartOpts
+              setQuickSwitch((__) => {
+                const newCurr = newSetting;
+                updateConfig({
+                  ...incomingConfig,
+                  quickSwitch: title + quickSwitchTitleDelim + newCurr,
+                });
+                return newCurr;
+              });
+            }
+          },
+          quickSwitchTimer,
+          setQuickSwitchTimer,
+          quickSwitchExtra,
+          ["extra"]
+        )}
+        <Container className="mt-2">
+          <Row className="text-center">
+            <Col xs={6} lg={2}>
+              {PlayTypeDiagUtils.buildLegend("[LEGEND]")}
+              {grades ? (
+                <>
+                  <span> | </span>
+                  {PlayTypeDiagUtils.buildCsvDownload(
+                    "[CSV]",
+                    `play_types_${title}`,
+                    csvData,
+                    () => {
+                      const playStyleData: object[] = buildExportData();
+                      setCsvData(playStyleData);
+                    }
+                  )}
+                </>
+              ) : undefined}
+            </Col>
+            <Col xs={6} lg={7}>
+              {PlayTypeDiagUtils.buildAdjustedVsRawControls(
+                mainSosAdjustment,
+                adjustForSos,
+                (useAdjustedSos: boolean) => {
+                  setAdjustForSos(useAdjustedSos);
                   updateConfig({
                     ...incomingConfig,
-                    quickSwitch: title + quickSwitchTitleDelim + newCurr,
+                    adjustForSos: useAdjustedSos,
                   });
-                  return newCurr;
-                });
-              }
-            },
-            quickSwitchTimer,
-            setQuickSwitchTimer,
-            quickSwitchExtra,
-            ["extra"]
-          )}
-          <Container className="mt-2">
-            <Row className="text-center">
-              <Col xs={6} lg={2}>
-                {PlayTypeDiagUtils.buildLegend("[LEGEND]")}
-                {grades ? (
-                  <>
-                    <span> | </span>
-                    {PlayTypeDiagUtils.buildCsvDownload(
-                      "[CSV]",
-                      `play_types_${title}`,
-                      csvData,
-                      () => {
-                        const playStyleData: object[] =
-                          PlayTypeDiagUtils.buildTeamStyleBreakdownData(
-                            title,
-                            true,
-                            "",
-                            {
-                              on: [],
-                              off: [],
-                              other: [],
-                              baseline: playersIn,
-                              global: [],
-                            },
-                            {
-                              on: StatModels.emptyTeam(),
-                              off: StatModels.emptyTeam(),
-                              other: [],
-                              baseline: teamStatsIn,
-                              global: StatModels.emptyTeam(),
-                            },
-                            avgEfficiency,
-                            grades,
-                            false,
-                            undefined,
-                            rosterStatsByCode
-                          );
-                        setCsvData(playStyleData);
-                      }
-                    )}
-                  </>
-                ) : undefined}
-              </Col>
-              <Col xs={6} lg={7}>
-                {PlayTypeDiagUtils.buildAdjustedVsRawControls(
-                  mainSosAdjustment,
-                  adjustForSos,
-                  (useAdjustedSos: boolean) => {
-                    setAdjustForSos(useAdjustedSos);
-                    updateConfig({
-                      ...incomingConfig,
-                      adjustForSos: useAdjustedSos,
-                    });
-                  }
-                )}
-                {supportPlayerBreakdown ? (
-                  <>
-                    &nbsp;|&nbsp;
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={(props: any) => (
-                        <Tooltip id="showHidePlayerDetails" {...props}>
-                          Shows / hides the individual play-type breakdown for
-                          all team plays.
-                          <br />
-                          <br />
-                          Click on individual bars to select / deselect specific
-                          team play types.
-                        </Tooltip>
-                      )}
-                    >
-                      <a
-                        href=""
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (selectedPlayTypes.size > 0) {
-                            setSelectedPlayTypes(new Set());
-                            setMultiMode(false);
-                            updateConfig({
-                              ...incomingConfig,
-                              selectedPlayTypes: new Set(),
-                              multiMode: false,
-                            });
-                          } else {
-                            setMultiMode(true);
-                            setSelectedPlayTypes(
-                              new Set(PlayTypeUtils.topLevelPlayTypes)
-                            );
-                            updateConfig({
-                              ...incomingConfig,
-                              selectedPlayTypes: "all",
-                              multiMode: true,
-                            });
-                          }
-                        }}
-                      >
-                        {selectedPlayTypes.size > 0 ? (
-                          "Hide Player Details"
-                        ) : (
-                          <b>Show Player Details</b>
-                        )}
-                        <sup>*</sup>
-                      </a>
-                    </OverlayTrigger>
-                  </>
-                ) : null}
-                {!supportPlayerBreakdown && navigationLinkOverride ? (
-                  <>
-                    &nbsp;|&nbsp;
-                    {navigationLinkOverride}
-                  </>
-                ) : null}
-              </Col>
-            </Row>
-            {renderBarChartRow(
-              topData,
-              topPctile,
-              topDefOverride,
-              topSosAdjustment,
-              topTitle,
-              topCellPrefix
-            )}
-            {showBottom
-              ? renderBarChartRow(
-                  extraData,
-                  extraTopLevelPlayTypeStylesPctile,
-                  extraDefOverride,
-                  extraSosAdjustment ?? 1.0,
-                  `Compare vs [${quickSwitchBase}]`,
-                  "cell-extra-"
-                )
-              : null}
-            {playerTopLevelPlayTypeStyles && selectedPlayTypes.size > 0 && (
-              <>
-                <Row className="mt-1">
-                  <Col xs={10}>
-                    <div className="p-3 border">
-                      <strong>Selected:</strong>{" "}
-                      {Array.from(selectedPlayTypes).map((playType, index) => (
-                        <span key={playType}>
-                          {index > 0 ? ", " : ""}
-                          {PlayTypeDiagUtils.getPlayTypeName(playType)}
-                        </span>
-                      ))}
-                      &nbsp;(
-                      <a
-                        href=""
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (multiMode) {
-                            setSelectedPlayTypes(new Set());
-                            setMultiMode(false);
-                            updateConfig({
-                              ...incomingConfig,
-                              selectedPlayTypes: new Set(),
-                              multiMode: false,
-                            });
-                          } else {
-                            setMultiMode(true);
-                            updateConfig({
-                              ...incomingConfig,
-                              multiMode: true,
-                            });
-                          }
-                        }}
-                      >
-                        {multiMode ? "clear" : "multi-select"}
-                      </a>
-                      )
-                      <br />
-                      <div className="mt-2">{indivPlayTypeBreakdownTable}</div>
-                      <span>
-                        <i>
-                          (Passers and scorers both get some "credit" for
-                          passing plays, so frequencies will not add up to 100%)
-                        </i>
-                      </span>
-                    </div>
-                  </Col>
-                </Row>
-              </>
-            )}
-            {debugView ? (
-              <Row>
-                <Col xs={10}>
-                  {_.toPairs(mainTopLevelPlayTypeStylesPctile || {}).map(
-                    (o) => (
-                      <span>
-                        {JSON.stringify(o, tidyNumbers)}
+                }
+              )}
+              {supportPlayerBreakdown ? (
+                <>
+                  &nbsp;|&nbsp;
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={(props: any) => (
+                      <Tooltip id="showHidePlayerDetails" {...props}>
+                        Shows / hides the individual play-type breakdown for all
+                        team plays.
                         <br />
+                        <br />
+                        Click on individual bars to select / deselect specific
+                        team play types.
+                      </Tooltip>
+                    )}
+                  >
+                    <a
+                      href=""
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (selectedPlayTypes.size > 0) {
+                          setSelectedPlayTypes(new Set());
+                          setMultiMode(false);
+                          updateConfig({
+                            ...incomingConfig,
+                            selectedPlayTypes: new Set(),
+                            multiMode: false,
+                          });
+                        } else {
+                          setMultiMode(true);
+                          setSelectedPlayTypes(
+                            new Set(PlayTypeUtils.topLevelPlayTypes)
+                          );
+                          updateConfig({
+                            ...incomingConfig,
+                            selectedPlayTypes: "all",
+                            multiMode: true,
+                          });
+                        }
+                      }}
+                    >
+                      {selectedPlayTypes.size > 0 ? (
+                        "Hide Player Details"
+                      ) : (
+                        <b>Show Player Details</b>
+                      )}
+                      <sup>*</sup>
+                    </a>
+                  </OverlayTrigger>
+                </>
+              ) : null}
+              {!supportPlayerBreakdown && navigationLinkOverride ? (
+                <>
+                  &nbsp;|&nbsp;
+                  {navigationLinkOverride}
+                </>
+              ) : null}
+            </Col>
+          </Row>
+          {renderBarChartRow(
+            topData,
+            topPctile,
+            topDefOverride,
+            topSosAdjustment,
+            topTitle,
+            topCellPrefix
+          )}
+          {showBottom
+            ? renderBarChartRow(
+                extraData,
+                extraTopLevelPlayTypeStylesPctile,
+                extraDefOverride,
+                extraSosAdjustment ?? 1.0,
+                `Compare vs [${quickSwitchBase}]`,
+                "cell-extra-"
+              )
+            : null}
+          {playerTopLevelPlayTypeStyles && selectedPlayTypes.size > 0 && (
+            <>
+              <Row className="mt-1">
+                <Col xs={10}>
+                  <div className="p-3 border">
+                    <strong>Selected:</strong>{" "}
+                    {Array.from(selectedPlayTypes).map((playType, index) => (
+                      <span key={playType}>
+                        {index > 0 ? ", " : ""}
+                        {PlayTypeDiagUtils.getPlayTypeName(playType)}
                       </span>
+                    ))}
+                    &nbsp;(
+                    <a
+                      href=""
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (multiMode) {
+                          setSelectedPlayTypes(new Set());
+                          setMultiMode(false);
+                          updateConfig({
+                            ...incomingConfig,
+                            selectedPlayTypes: new Set(),
+                            multiMode: false,
+                          });
+                        } else {
+                          setMultiMode(true);
+                          updateConfig({
+                            ...incomingConfig,
+                            multiMode: true,
+                          });
+                        }
+                      }}
+                    >
+                      {multiMode ? "clear" : "multi-select"}
+                    </a>
                     )
-                  )}
-                  {_.toPairs(mainTopLevelPlayTypeStyles || {}).map((o) => (
+                    <br />
+                    <div className="mt-2">{indivPlayTypeBreakdownTable}</div>
                     <span>
-                      {JSON.stringify(o, tidyNumbers)}
-                      <br />
+                      <i>
+                        (Passers and scorers both get some "credit" for passing
+                        plays, so frequencies will not add up to 100%)
+                      </i>
                     </span>
-                  ))}
+                  </div>
                 </Col>
               </Row>
-            ) : undefined}
-          </Container>
-        </span>
-      ),
-      [
-        playersIn,
-        grades,
-        showGrades,
-        teamStatsIn,
-        quickSwitch,
-        quickSwitchTimer,
-        csvData,
-        adjustForSos,
-        selectedPlayTypes,
-        multiMode,
-        filterStr,
-        resolvedTheme,
-      ]
-    )
-  );
+            </>
+          )}
+          {debugView ? (
+            <Row>
+              <Col xs={10}>
+                {_.toPairs(mainTopLevelPlayTypeStylesPctile || {}).map((o) => (
+                  <span>
+                    {JSON.stringify(o, tidyNumbers)}
+                    <br />
+                  </span>
+                ))}
+                {_.toPairs(mainTopLevelPlayTypeStyles || {}).map((o) => (
+                  <span>
+                    {JSON.stringify(o, tidyNumbers)}
+                    <br />
+                  </span>
+                ))}
+              </Col>
+            </Row>
+          ) : undefined}
+        </Container>
+      </span>
+    );
+  }, [
+    playersIn,
+    grades,
+    showGrades,
+    teamStatsIn,
+    quickSwitch,
+    quickSwitchTimer,
+    csvData,
+    adjustForSos,
+    selectedPlayTypes,
+    multiMode,
+    filterStr,
+    resolvedTheme,
+  ]);
 };
 export default TeamPlayTypeDiagRadar;
 

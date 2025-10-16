@@ -388,22 +388,59 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     const avgEfficiency =
       efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
+    const buildTeamA = () =>
+      PlayTypeDiagUtils.buildTeamStyleBreakdown(
+        matchupFilterParams.team || "Unknown",
+        dataEvent.rosterStatsA,
+        dataEvent.teamStatsA,
+        avgEfficiency,
+        divisionStatsCache,
+        showHelp,
+        true,
+        undefined,
+        {
+          teamTitle: matchupFilterParams.team,
+          gameId: matchupFilterParams.oppoTeam,
+          invertTeamAndOppo: false,
+          singleGameMode: true,
+          jsonMode,
+        }
+      );
+
+    const buildTeamB = () =>
+      PlayTypeDiagUtils.buildTeamStyleBreakdown(
+        buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || "Unknown",
+        dataEvent.rosterStatsB,
+        dataEvent.teamStatsB,
+        avgEfficiency,
+        divisionStatsCache,
+        showHelp,
+        true,
+        undefined,
+        {
+          teamTitle: matchupFilterParams.team,
+          gameId: matchupFilterParams.oppoTeam,
+          invertTeamAndOppo: true,
+          singleGameMode: true,
+          jsonMode,
+        }
+      );
     return jsonMode ? (
       <span>
+        {"{"}
+        "team":
         {dataEvent.teamStatsA.baseline.off_poss?.value &&
         !_.isEmpty(divisionStatsCache)
-          ? PlayTypeDiagUtils.buildTeamStyleBreakdown(
-              matchupFilterParams.team || "Unknown",
-              dataEvent.rosterStatsA,
-              dataEvent.teamStatsA,
-              avgEfficiency,
-              divisionStatsCache,
-              showHelp,
-              true,
-              undefined,
-              jsonMode
-            )
-          : `Loading Data... ${dataEvent.teamStatsA.baseline.off_poss?.value}`}
+          ? buildTeamA()
+          : `[]`}
+        ,
+        <br />
+        "oppo":
+        {dataEvent.teamStatsB.baseline.off_poss?.value &&
+        !_.isEmpty(divisionStatsCache)
+          ? buildTeamB()
+          : `[]`}
+        {"}"}
       </span>
     ) : (
       <GenericCollapsibleCard
@@ -420,34 +457,13 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                     <i>(Loading data...)</i>
                   </span>
                 ) : (
-                  PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                    matchupFilterParams.team || "Unknown",
-                    dataEvent.rosterStatsA,
-                    dataEvent.teamStatsA,
-                    avgEfficiency,
-                    divisionStatsCache,
-                    showHelp,
-                    true
-                  )
+                  buildTeamA()
                 )}
               </Col>
             </Row>
             <Row className="mt-2">
               <Col xs={12}>
-                {_.isEmpty(divisionStatsCache) ? (
-                  <span></span>
-                ) : (
-                  PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                    buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team ||
-                      "Unknown",
-                    dataEvent.rosterStatsB,
-                    dataEvent.teamStatsB,
-                    avgEfficiency,
-                    divisionStatsCache,
-                    showHelp,
-                    true
-                  )
-                )}
+                {_.isEmpty(divisionStatsCache) ? <span></span> : buildTeamB()}
               </Col>
             </Row>
           </Container>
@@ -549,7 +565,11 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   return jsonModeAndAllDataLoaded ? (
     <text id="jsonOutput">
-      WORK IN PROGRESS "playStyleBreakdown": {playStyleChart}
+      WORK IN PROGRESS
+      <br />
+      {"{"}
+      "playStyleBreakdown": {playStyleChart}
+      {"}"}
     </text>
   ) : (
     <Container>

@@ -486,7 +486,13 @@ export class PlayTypeDiagUtils {
     showHelp: boolean,
     singleGameMode: boolean,
     defensiveOverride?: TopLevelPlayAnalysis,
-    jsonMode?: boolean
+    exportOptions?: {
+      gameId?: string;
+      teamTitle?: string;
+      invertTeamAndOppo?: boolean;
+      singleGameMode?: boolean;
+      jsonMode?: boolean;
+    }
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -537,7 +543,7 @@ export class PlayTypeDiagUtils {
           quickSwitchOverride={undefined}
           defensiveOverride={defensiveOverride}
           startWithRaw={singleGameMode}
-          jsonMode={jsonMode}
+          exportOptions={exportOptions}
         />
       </div>
     );
@@ -930,14 +936,15 @@ export class PlayTypeDiagUtils {
   ):
     | { teamB: string; dateStr: string; scoreTeamA: number; scoreTeamB: number }
     | undefined => {
-    const regex = /^(?:@|vs)? *(.*) [(]([^)]*)[)]: *[WL] *(\d+)-(\d+).*$/;
+    const regex =
+      /^(?:@|vs)? *(.*) [(]([^)]*)[)](?:[:] *[WL] *(\d+)-(\d+))?.*$/;
     const regexResult = regex.exec(menuItemStr);
     if (regexResult && regexResult.length >= 3) {
       return {
         teamB: regexResult[1],
         dateStr: regexResult[2],
-        scoreTeamA: parseInt(regexResult[3]),
-        scoreTeamB: parseInt(regexResult[4]),
+        scoreTeamA: regexResult[3] ? parseInt(regexResult[3]) : 0,
+        scoreTeamB: regexResult[4] ? parseInt(regexResult[4]) : 0,
       };
     } else {
       return undefined;
