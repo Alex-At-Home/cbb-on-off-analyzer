@@ -306,6 +306,15 @@ const latestConfChanges_2025 = {
 
   // MAC
   Massachusetts: "Mid American Conference", //(a10)
+
+  // NEC
+  Stonehill: "Northeast Conference", //(AEC)
+
+  //OVC
+  "Western Ill.": "Ohio Valley Conference", //(summit)
+
+  //Southland
+  SFA: "Southland Conference", //(WAC)
 };
 
 //https://en.wikipedia.org/wiki/2021–2026_NCAA_conference_realignment#2026 (waiting for 26/27 season)
