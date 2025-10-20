@@ -1091,6 +1091,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     );
   }, [
     playersIn,
+    defensiveOverrideIn,
     grades,
     showGrades,
     teamStatsIn,
