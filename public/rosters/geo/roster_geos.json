@@ -14958,5 +14958,4105 @@
    "Los Lunas, NM": {
       "Lon": -106.7357525,
       "Lat": 34.8075184
+   },
+   "Middle Village, NY": {
+      "Lon": -73.87425,
+      "Lat": 40.717372
+   },
+   "Newington, CT": {
+      "Lon": -72.7228293,
+      "Lat": 41.6972996
+   },
+   "Trumbull, CT": {
+      "Lon": -73.2006639,
+      "Lat": 41.2428563
+   },
+   "Eastham, MA": {
+      "Lon": -69.9870492,
+      "Lat": 41.8565388
+   },
+   "Walpole, MA": {
+      "Lon": -71.2520606,
+      "Lat": 42.1470361
+   },
+   "Reading, MA": {
+      "Lon": -71.1029921,
+      "Lat": 42.5235564
+   },
+   "Sant Adrià de Besòs, Spain": {
+      "Lon": 2.226101,
+      "Lat": 41.4271596
+   },
+   "Beira, Mozambique": {
+      "Lon": 34.8370183,
+      "Lat": -19.8315949
+   },
+   "Holland, MI": {
+      "Lon": -86.1089511,
+      "Lat": 42.7893867
+   },
+   "Horsham, PA": {
+      "Lon": -75.1285061,
+      "Lat": 40.1784422
+   },
+   "Conshohocken, PA": {
+      "Lon": -75.3015714,
+      "Lat": 40.0792766
+   },
+   "Farum, Denmark": {
+      "Lon": 12.370791,
+      "Lat": 55.813039
+   },
+   "Lansdale, PA": {
+      "Lon": -75.2837862,
+      "Lat": 40.2414952
+   },
+   "Thornville, OH": {
+      "Lon": -82.4201539,
+      "Lat": 39.896454
+   },
+   "Punta Arenas, Chile": {
+      "Lon": -70.907705,
+      "Lat": -53.1633778
+   },
+   "Albi, France": {
+      "Lon": 2.1486789,
+      "Lat": 43.9248689
+   },
+   "Villeneuve-d'Ascq, France": {
+      "Lon": 3.131833,
+      "Lat": 50.619499
+   },
+   "Ternay, France": {
+      "Lon": 4.8075761,
+      "Lat": 45.6016077
+   },
+   "Dobbs Ferry, NY": {
+      "Lon": -73.872635,
+      "Lat": 41.0145418
+   },
+   "Livonia, NY": {
+      "Lon": -77.6686097,
+      "Lat": 42.8214525
+   },
+   "South Burlington, VT": {
+      "Lon": -73.1771872,
+      "Lat": 44.4654257
+   },
+   "Cheektowaga, NY": {
+      "Lon": -78.7542892,
+      "Lat": 42.9071477
+   },
+   "Hancock, NY": {
+      "Lon": -75.2804502,
+      "Lat": 41.9539754
+   },
+   "Collegeville, PA": {
+      "Lon": -75.451571,
+      "Lat": 40.1856597
+   },
+   "Hilton, NY": {
+      "Lon": -77.7933423,
+      "Lat": 43.2881161
+   },
+   "Elyria, OH": {
+      "Lon": -82.1076486,
+      "Lat": 41.3683798
+   },
+   "Terrebonne, Qc, Canada": {
+      "Lon": -73.6331102,
+      "Lat": 45.6929818
+   },
+   "Clarendon Hills, IL": {
+      "Lon": -87.9547835,
+      "Lat": 41.7975307
+   },
+   "Hannover, Germany": {
+      "Lon": 9.7320104,
+      "Lat": 52.3758916
+   },
+   "Cayennes, French Guiana": {
+      "Lon": -52.3354386,
+      "Lat": 4.9379774
+   },
+   "Guediawaye, Senegal": {
+      "Lon": -17.389687,
+      "Lat": 14.7802284
+   },
+   "Washington, PA": {
+      "Lon": -80.2461714,
+      "Lat": 40.17396
+   },
+   "Bolton, MA": {
+      "Lon": -71.6078449,
+      "Lat": 42.4334258
+   },
+   "Blairsville, PA": {
+      "Lon": -79.260869,
+      "Lat": 40.4311796
+   },
+   "Weldon, NC": {
+      "Lon": -77.5955331,
+      "Lat": 36.427096
+   },
+   "Winchester, CA": {
+      "Lon": -117.0844733,
+      "Lat": 33.706966
+   },
+   "St. Rose, IL": {
+      "Lon": -89.5545304,
+      "Lat": 38.6842146
+   },
+   "Centralia, IL": {
+      "Lon": -89.1306193,
+      "Lat": 38.5296109
+   },
+   "North Kansas City, MO": {
+      "Lon": -94.5729781,
+      "Lat": 39.1429081
+   },
+   "Narrabeen, Australia": {
+      "Lon": 151.2984024,
+      "Lat": -33.7222735
+   },
+   "Natchez, LA": {
+      "Lon": -93.0446069,
+      "Lat": 31.6754441
+   },
+   "Calafell, Spain": {
+      "Lon": 1.5664556,
+      "Lat": 41.1938386
+   },
+   "Kerala, India": {
+      "Lon": 76.6412712,
+      "Lat": 10.1631526
+   },
+   "Ourense, Spain": {
+      "Lon": -7.863881,
+      "Lat": 42.3357893
+   },
+   "Shepparton, Australia": {
+      "Lon": 145.3993137,
+      "Lat": -36.3811027
+   },
+   "Podilsk, Ukraine": {
+      "Lon": 29.5339155,
+      "Lat": 47.7585809
+   },
+   "Santa Cruz De Tenerife, Spain": {
+      "Lon": -16.2518467,
+      "Lat": 28.4636296
+   },
+   "Venise-en-Quebec, Canada": {
+      "Lon": -73.1267755,
+      "Lat": 45.0816819
+   },
+   "Zion Crossroads, VA": {
+      "Lon": -78.2197262,
+      "Lat": 37.9709736
+   },
+   "Hazelwood South, Australia": {
+      "Lon": 146.4581045,
+      "Lat": -38.3167623
+   },
+   "S Lake Tahoe, CA": {
+      "Lon": -120.240968,
+      "Lat": 37.1296858
+   },
+   "Saronno, Italy": {
+      "Lon": 9.0348132,
+      "Lat": 45.6264294
+   },
+   "Vail, AZ": {
+      "Lon": -110.7009206,
+      "Lat": 32.0005283
+   },
+   "Belohorizonte, Brazil": {
+      "Lon": -43.9386685,
+      "Lat": -19.919052
+   },
+   "Entzheim, France": {
+      "Lon": 7.632307,
+      "Lat": 48.536734
+   },
+   "Fairfield, NJ": {
+      "Lon": -74.3116195,
+      "Lat": 40.8681844
+   },
+   "St. Jean sur Richelieu, Canada": {
+      "Lon": -73.2544903,
+      "Lat": 45.305771
+   },
+   "Levis, Canada": {
+      "Lon": -71.2397151,
+      "Lat": 46.7582576
+   },
+   "Arlington Hts, IL": {
+      "Lon": -87.9806265,
+      "Lat": 42.0883603
+   },
+   "Maumee, OH": {
+      "Lon": -83.6538244,
+      "Lat": 41.5628294
+   },
+   "Wallacia, Australia": {
+      "Lon": 150.6405893,
+      "Lat": -33.8657244
+   },
+   "Pattersonville, NY": {
+      "Lon": -74.0746751,
+      "Lat": 42.8851351
+   },
+   "Saint Stephen, SC": {
+      "Lon": -79.9251516,
+      "Lat": 33.405202
+   },
+   "Bergen, Norway": {
+      "Lon": 5.3220544,
+      "Lat": 60.3912628
+   },
+   "Newport, Australia": {
+      "Lon": 151.3181223,
+      "Lat": -33.6567377
+   },
+   "Kensington, Australia": {
+      "Lon": 151.2232749,
+      "Lat": -33.910021
+   },
+   "Kent, CT": {
+      "Lon": -73.4769643,
+      "Lat": 41.7247554
+   },
+   "Andover, MN": {
+      "Lon": -93.2913405,
+      "Lat": 45.2332984
+   },
+   "Perth, Austrailia, Australia": {
+      "Lon": 115.8616783,
+      "Lat": -31.9513993
+   },
+   "Darwin, Australia": {
+      "Lon": 130.8444446,
+      "Lat": -12.4637333
+   },
+   "Riverdale, GA": {
+      "Lon": -84.4132594,
+      "Lat": 33.5726113
+   },
+   "Kadima, Israel": {
+      "Lon": 34.9190724,
+      "Lat": 32.2777011
+   },
+   "Manhasset, NY": {
+      "Lon": -73.6995749,
+      "Lat": 40.7978787
+   },
+   "Templestowe Lower, Australia": {
+      "Lon": 145.118525,
+      "Lat": -37.7578654
+   },
+   "Ajdovscina, Slovenia": {
+      "Lon": 13.909914,
+      "Lat": 45.8869025
+   },
+   "North Easton, MA": {
+      "Lon": -71.1045482,
+      "Lat": 42.066662
+   },
+   "Mcminnville, OR": {
+      "Lon": -123.1944874,
+      "Lat": 45.2107513
+   },
+   "Brandenburg, KY": {
+      "Lon": -86.1721474,
+      "Lat": 38.0010277
+   },
+   "Danville, KY": {
+      "Lon": -84.7725154,
+      "Lat": 37.6458551
+   },
+   "Kiev, Ukraine": {
+      "Lon": 30.5245025,
+      "Lat": 50.4503596
+   },
+   "Larkspur, CA": {
+      "Lon": -122.5352539,
+      "Lat": 37.9340915
+   },
+   "Detroit, Mi, MI": {
+      "Lon": -83.0424533,
+      "Lat": 42.3297182
+   },
+   "Sorengo, Switzerland": {
+      "Lon": 8.938607,
+      "Lat": 45.9978309
+   },
+   "Minna, Nigeria": {
+      "Lon": 6.5463156,
+      "Lat": 9.5835546
+   },
+   "Modi‘in Makkabbim Re‘ut, Israel": {
+      "Lon": 35.010397,
+      "Lat": 31.890267
+   },
+   "Rubano, Italy": {
+      "Lon": 11.7937858,
+      "Lat": 45.4262382
+   },
+   "Lyles, TN": {
+      "Lon": -87.346117,
+      "Lat": 35.9206072
+   },
+   "Crystal Springs, MN": {
+      "Lon": -91.9862116,
+      "Lat": 44.074647
+   },
+   "Manchester, TN": {
+      "Lon": -86.0885993,
+      "Lat": 35.4817431
+   },
+   "Pisgah, AL": {
+      "Lon": -85.8477523,
+      "Lat": 34.6809168
+   },
+   "Hampstead, MD": {
+      "Lon": -76.8499774,
+      "Lat": 39.6048253
+   },
+   "Largo, FL": {
+      "Lon": -82.7748945,
+      "Lat": 27.9182717
+   },
+   "Nelsonville, OH": {
+      "Lon": -82.2318156,
+      "Lat": 39.458681
+   },
+   "Monroeville, PA": {
+      "Lon": -79.7881024,
+      "Lat": 40.4211798
+   },
+   "Lacey, WA": {
+      "Lon": -122.8232553,
+      "Lat": 47.0358969
+   },
+   "Immokalee, FL": {
+      "Lon": -81.4174057,
+      "Lat": 26.4185248
+   },
+   "Montgomery, TX": {
+      "Lon": -95.6963355,
+      "Lat": 30.3882613
+   },
+   "Sergach, Nizhny Novgorod, Russia": {
+      "Lon": 45.4649376,
+      "Lat": 55.5309772
+   },
+   "Lawrenceburg, TN": {
+      "Lon": -87.3347389,
+      "Lat": 35.2423023
+   },
+   "Ruda, Udine, Italy": {
+      "Lon": 13.402031,
+      "Lat": 45.8381438
+   },
+   "Gallarate, Italy": {
+      "Lon": 8.7921269,
+      "Lat": 45.6623632
+   },
+   "Vila Nova De Gaia, Portugal": {
+      "Lon": -8.6117851,
+      "Lat": 41.1238759
+   },
+   "Harrodsburg, KY": {
+      "Lon": -84.8433006,
+      "Lat": 37.7623374
+   },
+   "Praia, Cabo Verde": {
+      "Lon": -23.5073437,
+      "Lat": 14.919775
+   },
+   "Wildwood, FL": {
+      "Lon": -82.0379317,
+      "Lat": 28.8655006
+   },
+   "Cambridge, New Zealand": {
+      "Lon": 175.466267,
+      "Lat": -37.8891864
+   },
+   "York, SC": {
+      "Lon": -81.2420175,
+      "Lat": 34.9943021
+   },
+   "Ashdod, Israel": {
+      "Lon": 34.655314,
+      "Lat": 31.804381
+   },
+   "Linda a Velha, Portugal": {
+      "Lon": -9.2365085,
+      "Lat": 38.712265
+   },
+   "Chester, SC": {
+      "Lon": -81.2142561,
+      "Lat": 34.7048613
+   },
+   "Eguzon Chantome, France": {
+      "Lon": 1.5692119,
+      "Lat": 46.4381863
+   },
+   "Dodge City, KS": {
+      "Lon": -100.018797,
+      "Lat": 37.7560487
+   },
+   "Luton, United Kingdom": {
+      "Lon": -0.4200255,
+      "Lat": 51.8786707
+   },
+   "Blue Ridge, GA": {
+      "Lon": -84.324087,
+      "Lat": 34.8639719
+   },
+   "Hobart, IN": {
+      "Lon": -87.2550353,
+      "Lat": 41.5322592
+   },
+   "Lowell, MI": {
+      "Lon": -85.3419609,
+      "Lat": 42.9336426
+   },
+   "Issaquah, WA": {
+      "Lon": -122.0329148,
+      "Lat": 47.5300699
+   },
+   "Crofton, MD": {
+      "Lon": -76.6874671,
+      "Lat": 39.0017772
+   },
+   "Chilliwack, Canada": {
+      "Lon": -121.9514666,
+      "Lat": 49.1579401
+   },
+   "Shelburne, VT": {
+      "Lon": -73.2275593,
+      "Lat": 44.3806787
+   },
+   "Alexandria, IN": {
+      "Lon": -85.6744049,
+      "Lat": 40.2626417
+   },
+   "Bluffton, SC": {
+      "Lon": -80.8603868,
+      "Lat": 32.2371465
+   },
+   "Wells, ME": {
+      "Lon": -70.5805209,
+      "Lat": 43.3222329
+   },
+   "Corinth, ME": {
+      "Lon": -68.9991802,
+      "Lat": 44.9861321
+   },
+   "Las Rozas, Spain": {
+      "Lon": -3.8784732,
+      "Lat": 40.4953138
+   },
+   "Gardiner, ME": {
+      "Lon": -69.7753222,
+      "Lat": 44.2300698
+   },
+   "Veazie, ME": {
+      "Lon": -68.7087927,
+      "Lat": 44.8357865
+   },
+   "Windham, ME": {
+      "Lon": -70.4083872,
+      "Lat": 43.7894183
+   },
+   "Wethersfield, CT": {
+      "Lon": -72.6596244,
+      "Lat": 41.7063537
+   },
+   "Montverde, FL": {
+      "Lon": -81.673964,
+      "Lat": 28.6002769
+   },
+   "Cleveland Heights, OH": {
+      "Lon": -81.556235,
+      "Lat": 41.5200518
+   },
+   "Valatie, NY": {
+      "Lon": -73.6731749,
+      "Lat": 42.4134168
+   },
+   "Oneida, NY": {
+      "Lon": -75.6512931,
+      "Lat": 43.0925684
+   },
+   "Foxboro, MA": {
+      "Lon": -71.2499762,
+      "Lat": 42.06415
+   },
+   "Rumson, NJ": {
+      "Lon": -74.0037816,
+      "Lat": 40.3680933
+   },
+   "Egg Harbor Township, NJ": {
+      "Lon": -74.5594779,
+      "Lat": 39.3943253
+   },
+   "Clark, NJ": {
+      "Lon": -74.3170218,
+      "Lat": 40.6259727
+   },
+   "Putnam Valley, NY": {
+      "Lon": -73.8397757,
+      "Lat": 41.3534949
+   },
+   "Martello , Spain": {
+      "Lon": -3.74922,
+      "Lat": 40.463667
+   },
+   "Point Pleasant Beach, NJ": {
+      "Lon": -74.0497287,
+      "Lat": 40.0917532
+   },
+   "Cordeaux Heights, Australia": {
+      "Lon": 150.8376789,
+      "Lat": -34.4451841
+   },
+   "Figueira da Foz Municipality, Portugal": {
+      "Lon": -8.857583,
+      "Lat": 40.1521398
+   },
+   "Branford, CT": {
+      "Lon": -72.8104708,
+      "Lat": 41.2827123
+   },
+   "Brooklyn Park, MD": {
+      "Lon": -76.6163555,
+      "Lat": 39.2284408
+   },
+   "Apollo Beach, FL": {
+      "Lon": -82.4062046,
+      "Lat": 27.7716947
+   },
+   "N White Plns, NY": {
+      "Lon": -73.7371693,
+      "Lat": 41.0160055
+   },
+   "Thornleigh, Australia": {
+      "Lon": 151.0841008,
+      "Lat": -33.7261881
+   },
+   "Elkins Park, PA": {
+      "Lon": -75.1253492,
+      "Lat": 40.0697037
+   },
+   "E Rochester, NY": {
+      "Lon": -77.6215096,
+      "Lat": 43.1231334
+   },
+   "Auburn, NY": {
+      "Lon": -76.5660529,
+      "Lat": 42.9317335
+   },
+   "Hightstown, NJ": {
+      "Lon": -74.5236723,
+      "Lat": 40.2689151
+   },
+   "Waterloo On, Canada": {
+      "Lon": -80.5204096,
+      "Lat": 43.4642578
+   },
+   "Woodbridge, NJ": {
+      "Lon": -74.3004456,
+      "Lat": 40.5630218
+   },
+   "Bene Atarot, Israel": {
+      "Lon": 34.910146,
+      "Lat": 32.02147
+   },
+   "Williamstown, NJ": {
+      "Lon": -74.995168,
+      "Lat": 39.6862263
+   },
+   "Argentona, Spain": {
+      "Lon": 2.4008466,
+      "Lat": 41.5531639
+   },
+   "Pequannock, NJ": {
+      "Lon": -74.2859424,
+      "Lat": 40.9688916
+   },
+   "Mansfield, MA": {
+      "Lon": -71.2190578,
+      "Lat": 42.0334565
+   },
+   "Bethel, CT": {
+      "Lon": -73.4142958,
+      "Lat": 41.3711193
+   },
+   "Harrison, NY": {
+      "Lon": -73.7176337,
+      "Lat": 40.9700171
+   },
+   "Union City, NJ": {
+      "Lon": -74.0312075,
+      "Lat": 40.7744557
+   },
+   "Medford Lakes, NJ": {
+      "Lon": -74.8049616,
+      "Lat": 39.8627085
+   },
+   "Mifflin, PA": {
+      "Lon": -77.4027674,
+      "Lat": 40.5695217
+   },
+   "Edinboro, PA": {
+      "Lon": -80.1317236,
+      "Lat": 41.8742225
+   },
+   "Kewaskum, WI": {
+      "Lon": -88.2289851,
+      "Lat": 43.5208302
+   },
+   "New Port Richey, FL": {
+      "Lon": -82.7192671,
+      "Lat": 28.2441768
+   },
+   "Tiffin, IA": {
+      "Lon": -91.6666711,
+      "Lat": 41.7072653
+   },
+   "Concord, MA": {
+      "Lon": -71.3489484,
+      "Lat": 42.4603719
+   },
+   "Mead, CO": {
+      "Lon": -104.9985899,
+      "Lat": 40.2333174
+   },
+   "Novosibirsk, Russia": {
+      "Lon": 82.8963831,
+      "Lat": 54.9832693
+   },
+   "Thompson, CT": {
+      "Lon": -71.8792264,
+      "Lat": 41.9840732
+   },
+   "Jezera, Croatia": {
+      "Lon": 15.6432564,
+      "Lat": 43.7864033
+   },
+   "Bitan Aharon, Israel": {
+      "Lon": 34.86956,
+      "Lat": 32.364928
+   },
+   "Puerto del Rosario, Spain": {
+      "Lon": -13.8627945,
+      "Lat": 28.4997908
+   },
+   "Mcloud, OK": {
+      "Lon": -97.0914163,
+      "Lat": 35.4358996
+   },
+   "Grenoble, France": {
+      "Lon": 5.724524,
+      "Lat": 45.188529
+   },
+   "Taneytown, MD": {
+      "Lon": -77.1744279,
+      "Lat": 39.6578773
+   },
+   "Abernathy, TX": {
+      "Lon": -101.8429491,
+      "Lat": 33.8323038
+   },
+   "Winnsboro, TX": {
+      "Lon": -95.2902224,
+      "Lat": 32.9573449
+   },
+   "Hunan Province, China": {
+      "Lon": 112.9833341,
+      "Lat": 28.1142216
+   },
+   "Langley, Canada": {
+      "Lon": -122.5593213,
+      "Lat": 49.0743297
+   },
+   "Risskov, Denmark": {
+      "Lon": 10.226571,
+      "Lat": 56.188276
+   },
+   "Jamestown, TN": {
+      "Lon": -84.9318919,
+      "Lat": 36.4275699
+   },
+   "Waregem, Belgium": {
+      "Lon": 3.4244789,
+      "Lat": 50.8837851
+   },
+   "Montgat, Spain": {
+      "Lon": 2.2850483,
+      "Lat": 41.4684703
+   },
+   "Warrenton, MO": {
+      "Lon": -91.1391977,
+      "Lat": 38.8211845
+   },
+   "Almeria, Spain": {
+      "Lon": -2.4521658,
+      "Lat": 36.8512151
+   },
+   "Recklinhausen, Germany": {
+      "Lon": 7.1973885,
+      "Lat": 51.6117809
+   },
+   "Nolensville, TN": {
+      "Lon": -86.6694413,
+      "Lat": 35.9522852
+   },
+   "Dyersburg, TN": {
+      "Lon": -89.3856281,
+      "Lat": 36.0345159
+   },
+   "Idabel, OK": {
+      "Lon": -94.8263281,
+      "Lat": 33.8956647
+   },
+   "Godley, TX": {
+      "Lon": -97.5266886,
+      "Lat": 32.449029
+   },
+   "Drew, MS": {
+      "Lon": -90.5264813,
+      "Lat": 33.809558
+   },
+   "Avinyó, Spain": {
+      "Lon": 1.9724179,
+      "Lat": 41.8641878
+   },
+   "Gowanda, NY": {
+      "Lon": -78.935868,
+      "Lat": 42.4631167
+   },
+   "Blair, NE": {
+      "Lon": -96.1350702,
+      "Lat": 41.5446975
+   },
+   "Ventspils, Latvia": {
+      "Lon": 21.620621,
+      "Lat": 57.4088355
+   },
+   "Whitehouse, OH": {
+      "Lon": -83.8038284,
+      "Lat": 41.5189413
+   },
+   "Montego Bay, Jamaica": {
+      "Lon": -77.9228676,
+      "Lat": 18.4713814
+   },
+   "Newton, MA": {
+      "Lon": -71.2092214,
+      "Lat": 42.3370413
+   },
+   "Dennis Port, MA": {
+      "Lon": -70.1265374,
+      "Lat": 41.6669626
+   },
+   "Aldie, VA": {
+      "Lon": -77.6418724,
+      "Lat": 38.9756745
+   },
+   "Locust Grove, GA": {
+      "Lon": -84.109083,
+      "Lat": 33.3459495
+   },
+   "Lake Zurich, IL": {
+      "Lon": -88.0934108,
+      "Lat": 42.1969689
+   },
+   "Lisboa, Portugal": {
+      "Lon": -9.1393366,
+      "Lat": 38.7222524
+   },
+   "Grodno, Belarus": {
+      "Lon": 23.8222673,
+      "Lat": 53.6687634
+   },
+   "Larwill, IN": {
+      "Lon": -85.6255391,
+      "Lat": 41.1806012
+   },
+   "Harvest, AL": {
+      "Lon": -86.7508323,
+      "Lat": 34.8556441
+   },
+   "Roy, UT": {
+      "Lon": -112.0263313,
+      "Lat": 41.1616108
+   },
+   "Greeley, CO": {
+      "Lon": -104.7091322,
+      "Lat": 40.4233142
+   },
+   "Shiprock, NM": {
+      "Lon": -108.6870322,
+      "Lat": 36.7855543
+   },
+   "Angers, France": {
+      "Lon": -0.5518257,
+      "Lat": 47.4711616
+   },
+   "Dinuba, CA": {
+      "Lon": -119.3870656,
+      "Lat": 36.5432837
+   },
+   "Richfield, UT": {
+      "Lon": -112.0840943,
+      "Lat": 38.7724673
+   },
+   "Geelong, Australia": {
+      "Lon": 144.3598426,
+      "Lat": -38.1492994
+   },
+   "Monroe, WA": {
+      "Lon": -121.9709579,
+      "Lat": 47.8553772
+   },
+   "Melstone, MT": {
+      "Lon": -107.8720495,
+      "Lat": 46.5985922
+   },
+   "Royse City, TX": {
+      "Lon": -96.3324817,
+      "Lat": 32.9751204
+   },
+   "Tonyrefail, United Kingdom": {
+      "Lon": -3.428319,
+      "Lat": 51.583768
+   },
+   "Chehalis, WA": {
+      "Lon": -122.9698002,
+      "Lat": 46.6652443
+   },
+   "Welland, Canada": {
+      "Lon": -79.2482555,
+      "Lat": 42.9921579
+   },
+   "Roberts, MT": {
+      "Lon": -109.1676544,
+      "Lat": 45.3596673
+   },
+   "Saco, MT": {
+      "Lon": -107.3420829,
+      "Lat": 48.4571957
+   },
+   "Laurel, MT": {
+      "Lon": -108.7715328,
+      "Lat": 45.6691159
+   },
+   "Cody, WY": {
+      "Lon": -109.0565308,
+      "Lat": 44.5263422
+   },
+   "La Grande, OR": {
+      "Lon": -118.0877188,
+      "Lat": 45.3245771
+   },
+   "Prosser, WA": {
+      "Lon": -119.7689222,
+      "Lat": 46.2067997
+   },
+   "Stonecrest, GA": {
+      "Lon": -84.1307434,
+      "Lat": 33.7040882
+   },
+   "Los Altos, CA": {
+      "Lon": -122.1142578,
+      "Lat": 37.3813639
+   },
+   "Kaibeto, AZ": {
+      "Lon": -111.0942099,
+      "Lat": 36.5796354
+   },
+   "San Pedro, CA": {
+      "Lon": -118.2923791,
+      "Lat": 33.7360696
+   },
+   "Hagersten, Sweden": {
+      "Lon": 17.966667,
+      "Lat": 59.3
+   },
+   "Braga, Portugal": {
+      "Lon": -8.426507,
+      "Lat": 41.5454486
+   },
+   "Itatiba, Brazil": {
+      "Lon": -46.8376019,
+      "Lat": -23.0116481
+   },
+   "Lewiston, ID": {
+      "Lon": -117.0019991,
+      "Lat": 46.4040971
+   },
+   "Sumner, WA": {
+      "Lon": -122.2403966,
+      "Lat": 47.2031566
+   },
+   "Richland, WA": {
+      "Lon": -119.2751996,
+      "Lat": 46.28042
+   },
+   "Vernon, Canada": {
+      "Lon": -119.2720107,
+      "Lat": 50.2670137
+   },
+   "Greenacres, WA": {
+      "Lon": -117.1643804,
+      "Lat": 47.6677705
+   },
+   "Winlock, WA": {
+      "Lon": -122.9378983,
+      "Lat": 46.4912176
+   },
+   "Wasilla, AK": {
+      "Lon": -149.4410597,
+      "Lat": 61.5808763
+   },
+   "Kelowna, Canada": {
+      "Lon": -119.4965917,
+      "Lat": 49.8863235
+   },
+   "Lake Stevens, WA": {
+      "Lon": -122.0635085,
+      "Lat": 48.0155451
+   },
+   "Pinedale, WY": {
+      "Lon": -109.8633501,
+      "Lat": 42.8678809
+   },
+   "Billings, MO": {
+      "Lon": -93.5521411,
+      "Lat": 37.0675544
+   },
+   "Mount Barker, Australia": {
+      "Lon": 117.6615969,
+      "Lat": -34.6253079
+   },
+   "Gladstone, OR": {
+      "Lon": -122.5946179,
+      "Lat": 45.3802718
+   },
+   "Sierra Vista, AZ": {
+      "Lon": -110.2743566,
+      "Lat": 31.5659931
+   },
+   "Taree, Australia": {
+      "Lon": 152.453931,
+      "Lat": -31.9111159
+   },
+   "Albany, OR": {
+      "Lon": -123.1059282,
+      "Lat": 44.6365107
+   },
+   "Silverton, OR": {
+      "Lon": -122.7831455,
+      "Lat": 45.0051213
+   },
+   "Temple, TX": {
+      "Lon": -97.3408419,
+      "Lat": 31.097633
+   },
+   "Combine, TX": {
+      "Lon": -96.5085994,
+      "Lat": 32.5884683
+   },
+   "Brownfield, TX": {
+      "Lon": -102.2743489,
+      "Lat": 33.1812035
+   },
+   "Trieste, Italy": {
+      "Lon": 13.7674486,
+      "Lat": 45.6508342
+   },
+   "Laukaa, Finland": {
+      "Lon": 25.949633,
+      "Lat": 62.4123095
+   },
+   "Lynnwood, WA": {
+      "Lon": -122.3151313,
+      "Lat": 47.8209301
+   },
+   "Devonport, Australia": {
+      "Lon": 146.3502862,
+      "Lat": -41.1800656
+   },
+   "Lake Elsinore, CA": {
+      "Lon": -117.3276917,
+      "Lat": 33.6680447
+   },
+   "South Perth, Australia": {
+      "Lon": 115.8504979,
+      "Lat": -31.9725411
+   },
+   "Leesburg, OH": {
+      "Lon": -83.5529748,
+      "Lat": 39.3450634
+   },
+   "Lleida, Spain": {
+      "Lon": 0.6204561,
+      "Lat": 41.6168393
+   },
+   "Crockett, TX": {
+      "Lon": -95.4571905,
+      "Lat": 31.3177591
+   },
+   "Dodoma, Tanzania": {
+      "Lon": 35.746877,
+      "Lat": -6.1811245
+   },
+   "Franklin, IN": {
+      "Lon": -84.8359395,
+      "Lat": 39.9690461
+   },
+   "Round Hill, VA": {
+      "Lon": -77.7687256,
+      "Lat": 39.1326352
+   },
+   "Basildon, United Kingdom": {
+      "Lon": 0.488736,
+      "Lat": 51.576084
+   },
+   "Beeville, TX": {
+      "Lon": -97.7483312,
+      "Lat": 28.4008319
+   },
+   "Warri Delta, Nigeria": {
+      "Lon": 5.7665824,
+      "Lat": 5.5493807
+   },
+   "Old Hickory, TN": {
+      "Lon": -86.6477794,
+      "Lat": 36.2608419
+   },
+   "Bastrop, TX": {
+      "Lon": -97.3152701,
+      "Lat": 30.1104947
+   },
+   "San Fernando, Spain": {
+      "Lon": -6.1965948,
+      "Lat": 36.4718646
+   },
+   "Franklinville, NC": {
+      "Lon": -79.6922501,
+      "Lat": 35.7437485
+   },
+   "Lake Villa, IL": {
+      "Lon": -88.0732077,
+      "Lat": 42.4154988
+   },
+   "Frederiksberg, Denmark": {
+      "Lon": 12.513321,
+      "Lat": 55.677069
+   },
+   "Dekalb, IL": {
+      "Lon": -88.7499128,
+      "Lat": 41.9295355
+   },
+   "Latta, SC": {
+      "Lon": -79.4311616,
+      "Lat": 34.3371047
+   },
+   "Richfield, WI": {
+      "Lon": -88.2618401,
+      "Lat": 43.2368559
+   },
+   "Mexico City, Mexico": {
+      "Lon": -99.133208,
+      "Lat": 19.4326077
+   },
+   "Castellon De La Plana, Spain": {
+      "Lon": -0.0496388,
+      "Lat": 39.9855905
+   },
+   "Putnam Hall, FL": {
+      "Lon": -81.9592635,
+      "Lat": 29.7366333
+   },
+   "Nottingham, England, United Kingdom": {
+      "Lon": -1.1549892,
+      "Lat": 52.9540223
+   },
+   "Highland Springs, VA": {
+      "Lon": -77.3277568,
+      "Lat": 37.545979
+   },
+   "St. Louis, Senegal": {
+      "Lon": -16.5037302,
+      "Lat": 16.0260722
+   },
+   "Cullowhee, NC": {
+      "Lon": -83.1765333,
+      "Lat": 35.3137111
+   },
+   "Hamburg, NJ": {
+      "Lon": -74.5763001,
+      "Lat": 41.1534753
+   },
+   "Oldham, United Kingdom": {
+      "Lon": -2.1113659,
+      "Lat": 53.5409298
+   },
+   "Salina, KS": {
+      "Lon": -97.6114237,
+      "Lat": 38.8402805
+   },
+   "Niceville, FL": {
+      "Lon": -86.482172,
+      "Lat": 30.5168639
+   },
+   "Seymour, IN": {
+      "Lon": -85.8902547,
+      "Lat": 38.9592201
+   },
+   "Tustin, CA": {
+      "Lon": -117.8236391,
+      "Lat": 33.7420005
+   },
+   "Cervera, Spain": {
+      "Lon": 1.272254,
+      "Lat": 41.671465
+   },
+   "Berdianski, Ukraine": {
+      "Lon": 36.8034779,
+      "Lat": 46.7737707
+   },
+   "Taylorsville, UT": {
+      "Lon": -111.9578509,
+      "Lat": 40.6531536
+   },
+   "Lomira, WI": {
+      "Lon": -88.443713,
+      "Lat": 43.591382
+   },
+   "Glenwood, AR": {
+      "Lon": -93.5497446,
+      "Lat": 34.3271349
+   },
+   "South Amboy, NJ": {
+      "Lon": -74.2840549,
+      "Lat": 40.4862912
+   },
+   "Kisovec, Slovenia": {
+      "Lon": 14.9617162,
+      "Lat": 46.1399991
+   },
+   "Greenville, WI": {
+      "Lon": -88.5364954,
+      "Lat": 44.3002628
+   },
+   "Arad, Romania": {
+      "Lon": 21.3122677,
+      "Lat": 46.1865606
+   },
+   "Laxou, France": {
+      "Lon": 6.152525,
+      "Lat": 48.684256
+   },
+   "Massagno, Switzerland": {
+      "Lon": 8.9418624,
+      "Lat": 46.0129713
+   },
+   "San Bruno, CA": {
+      "Lon": -122.4110835,
+      "Lat": 37.6304904
+   },
+   "Cobourg, Canada": {
+      "Lon": -78.165509,
+      "Lat": 43.9599054
+   },
+   "Varena, Republic of Lithuania": {
+      "Lon": 24.574164,
+      "Lat": 54.2153947
+   },
+   "North Adelaide, Australia": {
+      "Lon": 138.5919105,
+      "Lat": -34.9083198
+   },
+   "Warden, WA": {
+      "Lon": -119.0397305,
+      "Lat": 46.9676426
+   },
+   "Harbor City, CA": {
+      "Lon": -118.2975261,
+      "Lat": 33.7899467
+   },
+   "Brown Deer, WI": {
+      "Lon": -87.9645321,
+      "Lat": 43.1633426
+   },
+   "Raanana, Israel": {
+      "Lon": 34.8745337,
+      "Lat": 32.1923797
+   },
+   "Stezzano (bg), Italy": {
+      "Lon": 9.6547004,
+      "Lat": 45.6526669
+   },
+   "Couer d'Alene, ID": {
+      "Lon": -116.7812225,
+      "Lat": 47.6734632
+   },
+   "Keflavik, Iceland": {
+      "Lon": -22.5582716,
+      "Lat": 63.9997549
+   },
+   "Laveen, AZ": {
+      "Lon": -112.1236468,
+      "Lat": 33.3825705
+   },
+   "Oxnard, CA": {
+      "Lon": -119.1774639,
+      "Lat": 34.1976816
+   },
+   "Donostia-San Sebastián, Spain": {
+      "Lon": -1.9817051,
+      "Lat": 43.318237
+   },
+   "Georgetown, TX": {
+      "Lon": -97.6779842,
+      "Lat": 30.6332618
+   },
+   "Rosh Haayin, Israel": {
+      "Lon": 34.952177,
+      "Lat": 32.095838
+   },
+   "Loomis, CA": {
+      "Lon": -121.1930041,
+      "Lat": 38.8212889
+   },
+   "Elche, Spain": {
+      "Lon": -0.7114243,
+      "Lat": 38.2691827
+   },
+   "Savannah, TX": {
+      "Lon": -96.9081597,
+      "Lat": 33.2258526
+   },
+   "North Hollywood, CA": {
+      "Lon": -118.3877732,
+      "Lat": 34.1866635
+   },
+   "Wildomar, CA": {
+      "Lon": -117.2800372,
+      "Lat": 33.5989126
+   },
+   "Culver City, CA": {
+      "Lon": -118.3968001,
+      "Lat": 34.0211416
+   },
+   "Vanves, France": {
+      "Lon": 2.288405,
+      "Lat": 48.822484
+   },
+   "El Cerrito, CA": {
+      "Lon": -122.310765,
+      "Lat": 37.9161326
+   },
+   "Rialto, CA": {
+      "Lon": -117.3703235,
+      "Lat": 34.1064001
+   },
+   "Kaiapoi, New Zealand": {
+      "Lon": 172.6623102,
+      "Lat": -43.3787838
+   },
+   "Leominster, MA": {
+      "Lon": -71.759794,
+      "Lat": 42.5250906
+   },
+   "Wattle Grove, NSW, Australia": {
+      "Lon": 150.9424079,
+      "Lat": -33.9492164
+   },
+   "Woodend, Australia": {
+      "Lon": 144.5273723,
+      "Lat": -37.3568266
+   },
+   "Pueblo West, CO": {
+      "Lon": -104.7404269,
+      "Lat": 38.3324119
+   },
+   "Inchelium, WA": {
+      "Lon": -118.1973729,
+      "Lat": 48.2970435
+   },
+   "Bayelsa, Nigeria": {
+      "Lon": 6.0698526,
+      "Lat": 4.7719071
+   },
+   "Tyler, TX": {
+      "Lon": -95.3010624,
+      "Lat": 32.3512601
+   },
+   "Maffra, Victoria, Australia": {
+      "Lon": 146.9840606,
+      "Lat": -37.9713015
+   },
+   "Easley, SC": {
+      "Lon": -82.6015206,
+      "Lat": 34.829838
+   },
+   "Plain City, OH": {
+      "Lon": -83.2674165,
+      "Lat": 40.1075615
+   },
+   "Brasstown, NC": {
+      "Lon": -83.9576097,
+      "Lat": 35.0390699
+   },
+   "Lagrangeville, NY": {
+      "Lon": -73.7633635,
+      "Lat": 41.6495919
+   },
+   "Parede, Portugal": {
+      "Lon": -9.3553319,
+      "Lat": 38.692914
+   },
+   "Middletown, RI": {
+      "Lon": -71.2834538,
+      "Lat": 41.5218243
+   },
+   "Jackson, NC": {
+      "Lon": -77.4213614,
+      "Lat": 36.3895976
+   },
+   "South Hempstead, NY": {
+      "Lon": -73.6235244,
+      "Lat": 40.6809892
+   },
+   "Damascus, MD": {
+      "Lon": -77.2038716,
+      "Lat": 39.2884381
+   },
+   "Webster, NY": {
+      "Lon": -77.4299939,
+      "Lat": 43.2122851
+   },
+   "Drexel Hill, PA": {
+      "Lon": -75.2921301,
+      "Lat": 39.9470567
+   },
+   "Waterloo, SC": {
+      "Lon": -82.0590919,
+      "Lat": 34.3512225
+   },
+   "Palestine, TX": {
+      "Lon": -95.6307891,
+      "Lat": 31.7621153
+   },
+   "Levittown, PA": {
+      "Lon": -74.8287747,
+      "Lat": 40.1551096
+   },
+   "Smyrna, DE": {
+      "Lon": -75.6046494,
+      "Lat": 39.2998339
+   },
+   "Rockaway, NJ": {
+      "Lon": -74.5140168,
+      "Lat": 40.9021697
+   },
+   "Guatemala City, Guatemala": {
+      "Lon": -90.5068824,
+      "Lat": 14.6349149
+   },
+   "Sugarland, TX": {
+      "Lon": -95.6225521,
+      "Lat": 29.5984434
+   },
+   "Lawrence, NJ": {
+      "Lon": -74.7348792,
+      "Lat": 40.2727829
+   },
+   "Morristown, NJ": {
+      "Lon": -74.4763123,
+      "Lat": 40.7922983
+   },
+   "Statesboro, GA": {
+      "Lon": -81.7831674,
+      "Lat": 32.4487876
+   },
+   "Concepción de la Vega, Dominican Republic": {
+      "Lon": -70.5288768,
+      "Lat": 19.2211421
+   },
+   "Rocafort, Spain": {
+      "Lon": -0.41134,
+      "Lat": 39.5335655
+   },
+   "Averill Park, NY": {
+      "Lon": -73.5537257,
+      "Lat": 42.6339685
+   },
+   "Nigeria, Africa": {
+      "Lon": 8.675277,
+      "Lat": 9.081999
+   },
+   "Kingston, RI": {
+      "Lon": -71.5225598,
+      "Lat": 41.4803791
+   },
+   "Kershaw, SC": {
+      "Lon": -80.5836836,
+      "Lat": 34.5518201
+   },
+   "Encinitas, CA": {
+      "Lon": -117.2919818,
+      "Lat": 33.0369867
+   },
+   "Vass, Nc, NC": {
+      "Lon": -79.2822491,
+      "Lat": 35.2562684
+   },
+   "Leawood, KS": {
+      "Lon": -94.6169012,
+      "Lat": 38.966673
+   },
+   "Harare, Zimbabwe": {
+      "Lon": 31.0503723,
+      "Lat": -17.8262928
+   },
+   "Catskill, NY": {
+      "Lon": -73.8645734,
+      "Lat": 42.2173102
+   },
+   "Cohoes, NY": {
+      "Lon": -73.7001187,
+      "Lat": 42.7742446
+   },
+   "Les Coteaux, Canada": {
+      "Lon": -74.206729,
+      "Lat": 45.2593027
+   },
+   "Howard Beach, NY": {
+      "Lon": -73.8429989,
+      "Lat": 40.6571222
+   },
+   "Pego, Spain": {
+      "Lon": -0.1156439,
+      "Lat": 38.8429394
+   },
+   "Peabody, MA": {
+      "Lon": -70.9272438,
+      "Lat": 42.5259485
+   },
+   "Nepean, Canada": {
+      "Lon": -75.7241006,
+      "Lat": 45.3349046
+   },
+   "Green Brook, NJ": {
+      "Lon": -74.490079,
+      "Lat": 40.5958666
+   },
+   "Guelph, Canada": {
+      "Lon": -80.2481666,
+      "Lat": 43.5448048
+   },
+   "Vista, CA": {
+      "Lon": -117.2425355,
+      "Lat": 33.2000368
+   },
+   "Plainsboro, NJ": {
+      "Lon": -74.5862191,
+      "Lat": 40.3350091
+   },
+   "Randallstown, MD": {
+      "Lon": -76.7952525,
+      "Lat": 39.3673278
+   },
+   "Smithfield, NC": {
+      "Lon": -78.3394455,
+      "Lat": 35.5084935
+   },
+   "Cheltenham, MD": {
+      "Lon": -76.8276657,
+      "Lat": 38.7344244
+   },
+   "Barrington, NJ": {
+      "Lon": -75.0537676,
+      "Lat": 39.8674725
+   },
+   "Youngsville, NC": {
+      "Lon": -78.4744439,
+      "Lat": 36.0248732
+   },
+   "Graniteville, SC": {
+      "Lon": -81.8081622,
+      "Lat": 33.5633311
+   },
+   "Candler, NC": {
+      "Lon": -82.6927363,
+      "Lat": 35.5360973
+   },
+   "Kampala, Uganda": {
+      "Lon": 32.5816313,
+      "Lat": 0.3151692
+   },
+   "Mostoles, Spain": {
+      "Lon": -3.8676291,
+      "Lat": 40.3232129
+   },
+   "Roseville, MN": {
+      "Lon": -93.1566107,
+      "Lat": 45.0060767
+   },
+   "Arua, Uganda": {
+      "Lon": 30.9070514,
+      "Lat": 3.0274495
+   },
+   "Bergamo, Italy": {
+      "Lon": 9.6707462,
+      "Lat": 45.6941966
+   },
+   "Trinidad, TX": {
+      "Lon": -96.0910813,
+      "Lat": 32.1440417
+   },
+   "Boerne, TX": {
+      "Lon": -98.7319703,
+      "Lat": 29.7946641
+   },
+   "Lonoke, AR": {
+      "Lon": -91.9000647,
+      "Lat": 34.7843212
+   },
+   "Hualien, Taiwan": {
+      "Lon": 121.6014001,
+      "Lat": 23.9871434
+   },
+   "La Victoria De Acentejo, Spain": {
+      "Lon": -16.4709368,
+      "Lat": 28.4340344
+   },
+   "Salon-de-provence, France": {
+      "Lon": 5.097022,
+      "Lat": 43.640199
+   },
+   "Deatsville, AL": {
+      "Lon": -86.3958071,
+      "Lat": 32.6081874
+   },
+   "Waynesboro, TN": {
+      "Lon": -87.7622468,
+      "Lat": 35.3195217
+   },
+   "New Albany, MS": {
+      "Lon": -89.0078418,
+      "Lat": 34.4942683
+   },
+   "St. Peterburg, Russia": {
+      "Lon": 30.3609097,
+      "Lat": 59.9310584
+   },
+   "Mc Kenzie, TN": {
+      "Lon": -88.5186636,
+      "Lat": 36.1325616
+   },
+   "Giza, Egypt": {
+      "Lon": 31.2088526,
+      "Lat": 30.0130557
+   },
+   "Adana, Turkey": {
+      "Lon": 35.3308285,
+      "Lat": 36.9914194
+   },
+   "Keur Moussa Thies, Senegal": {
+      "Lon": -17.1112111,
+      "Lat": 14.780552
+   },
+   "Mataro, Spain": {
+      "Lon": 2.4447406,
+      "Lat": 41.5381124
+   },
+   "Orléans, France": {
+      "Lon": 1.9085203,
+      "Lat": 47.9032335
+   },
+   "Tallulah Falls, GA": {
+      "Lon": -83.3927364,
+      "Lat": 34.736723
+   },
+   "Guanajuato, México, Mexico": {
+      "Lon": -101.1617356,
+      "Lat": 20.9170187
+   },
+   "Girona, Spain": {
+      "Lon": 2.8214264,
+      "Lat": 41.9794005
+   },
+   "Almelo, Netherlands": {
+      "Lon": 6.6684919,
+      "Lat": 52.3670267
+   },
+   "Texarkana, TX": {
+      "Lon": -94.0476882,
+      "Lat": 33.425125
+   },
+   "Ripollet, Spain": {
+      "Lon": 2.1569325,
+      "Lat": 41.49845
+   },
+   "Waterford, Ireland": {
+      "Lon": -7.1115235,
+      "Lat": 52.2572983
+   },
+   "Levelland, TX": {
+      "Lon": -102.37796,
+      "Lat": 33.5873164
+   },
+   "Newbern, AL": {
+      "Lon": -87.5327815,
+      "Lat": 32.5931884
+   },
+   "Kissimme, FL": {
+      "Lon": -81.4039314,
+      "Lat": 28.2955867
+   },
+   "Conil de la Frontera, Spain": {
+      "Lon": -6.0862071,
+      "Lat": 36.2780988
+   },
+   "Gwinnett, GA": {
+      "Lon": -84.0167423,
+      "Lat": 33.9190653
+   },
+   "Heiloo, Netherlands": {
+      "Lon": 4.7004931,
+      "Lat": 52.6012341
+   },
+   "La Granada, Spain": {
+      "Lon": 1.72088,
+      "Lat": 41.3752526
+   },
+   "Szolnok, Hungary": {
+      "Lon": 20.1824712,
+      "Lat": 47.1621355
+   },
+   "Charleville-Mézières, France": {
+      "Lon": 4.726096,
+      "Lat": 49.762085
+   },
+   "Central Coast, Australia": {
+      "Lon": 151.21729,
+      "Lat": -33.2319648
+   },
+   "Rockmart, GA": {
+      "Lon": -85.0416133,
+      "Lat": 34.0026005
+   },
+   "Barranquilla, Colombia": {
+      "Lon": -74.8069813,
+      "Lat": 11.0041072
+   },
+   "Stoughton, WI": {
+      "Lon": -89.2178937,
+      "Lat": 42.9169462
+   },
+   "Germantown, OH": {
+      "Lon": -84.3693882,
+      "Lat": 39.6261682
+   },
+   "Winnebago, IL": {
+      "Lon": -89.2412202,
+      "Lat": 42.2661311
+   },
+   "Lee-on-the-Solent, United Kingdom": {
+      "Lon": -1.202352,
+      "Lat": 50.8020939
+   },
+   "Baltimore, OH": {
+      "Lon": -82.6014152,
+      "Lat": 39.8453933
+   },
+   "Akersberga, Sweden": {
+      "Lon": 18.310783,
+      "Lat": 59.4802773
+   },
+   "West Alexandria, OH": {
+      "Lon": -84.5321727,
+      "Lat": 39.7444973
+   },
+   "Johnstown, OH": {
+      "Lon": -82.6851699,
+      "Lat": 40.1536742
+   },
+   "Hortonville, WI": {
+      "Lon": -88.6381615,
+      "Lat": 44.334705
+   },
+   "Rogers, MN": {
+      "Lon": -93.5525206,
+      "Lat": 45.1878015
+   },
+   "Minocqua, WI": {
+      "Lon": -89.7092705,
+      "Lat": 45.8710837
+   },
+   "Round Lake, IL": {
+      "Lon": -88.0934145,
+      "Lat": 42.353355
+   },
+   "Circle Pines, MN": {
+      "Lon": -93.1516124,
+      "Lat": 45.1485771
+   },
+   "Becker, MN": {
+      "Lon": -93.8703184,
+      "Lat": 45.3936601
+   },
+   "Cuba City, WI": {
+      "Lon": -90.4298502,
+      "Lat": 42.6055549
+   },
+   "East Troy, WI": {
+      "Lon": -88.405096,
+      "Lat": 42.7852922
+   },
+   "Mason City, IA": {
+      "Lon": -93.2027087,
+      "Lat": 43.1527382
+   },
+   "Rosendale, WI": {
+      "Lon": -88.674832,
+      "Lat": 43.8077629
+   },
+   "Randolph, WI": {
+      "Lon": -89.0067778,
+      "Lat": 43.5391527
+   },
+   "Union Grove, WI": {
+      "Lon": -88.0514731,
+      "Lat": 42.688074
+   },
+   "Oneida, WI": {
+      "Lon": -88.2510198,
+      "Lat": 44.4732531
+   },
+   "Norrkoping, Sweden": {
+      "Lon": 16.192421,
+      "Lat": 58.587745
+   },
+   "Rivas-vaciamadrid, Spain": {
+      "Lon": -3.532005,
+      "Lat": 40.3518758
+   },
+   "Earle, AR": {
+      "Lon": -90.4657452,
+      "Lat": 35.2708512
+   },
+   "Sant Andreu de Llavaneres, Spain": {
+      "Lon": 2.4831483,
+      "Lat": 41.5754747
+   },
+   "Bentley, MI": {
+      "Lon": -84.1224036,
+      "Lat": 43.9641252
+   },
+   "Warren, OH": {
+      "Lon": -80.8184166,
+      "Lat": 41.2375569
+   },
+   "Lavalette, WV": {
+      "Lon": -82.4468201,
+      "Lat": 38.3228619
+   },
+   "Oconomowoc, WI": {
+      "Lon": -88.4994512,
+      "Lat": 43.1114407
+   },
+   "Cameron, WV": {
+      "Lon": -80.566467,
+      "Lat": 39.8270237
+   },
+   "Olmsted Falls, OH": {
+      "Lon": -81.9081937,
+      "Lat": 41.375049
+   },
+   "Alliance, OH": {
+      "Lon": -81.1059309,
+      "Lat": 40.9153362
+   },
+   "Cedarburg, WI": {
+      "Lon": -87.9875898,
+      "Lat": 43.2966716
+   },
+   "Dayton, MN": {
+      "Lon": -93.5149576,
+      "Lat": 45.243854
+   },
+   "Ano Liosia, Greece": {
+      "Lon": 23.697774,
+      "Lat": 38.0810715
+   },
+   "Marinette, WI": {
+      "Lon": -87.6306623,
+      "Lat": 45.0999849
+   },
+   "Milwaukie, OR": {
+      "Lon": -122.6398398,
+      "Lat": 45.4426186
+   },
+   "South Milwaukee, WI": {
+      "Lon": -87.8606367,
+      "Lat": 42.9105722
+   },
+   "Port-Gentil, Gabon": {
+      "Lon": 8.7843278,
+      "Lat": -0.7149503
+   },
+   "Farmland, IN": {
+      "Lon": -85.1274677,
+      "Lat": 40.1878219
+   },
+   "Oshawa, Canada": {
+      "Lon": -78.8635999,
+      "Lat": 43.8975974
+   },
+   "Cold Spring, KY": {
+      "Lon": -84.4399406,
+      "Lat": 39.0217283
+   },
+   "Waterloo, IL": {
+      "Lon": -90.1498341,
+      "Lat": 38.3358857
+   },
+   "Hebron, KY": {
+      "Lon": -84.7031888,
+      "Lat": 39.0661472
+   },
+   "Tel Mond, Israel": {
+      "Lon": 34.9205712,
+      "Lat": 32.2567936
+   },
+   "Madisonville, TN": {
+      "Lon": -84.3635338,
+      "Lat": 35.5197984
+   },
+   "Springport, MI": {
+      "Lon": -84.6985883,
+      "Lat": 42.378372
+   },
+   "Dunnville, KY": {
+      "Lon": -85.0092909,
+      "Lat": 37.1986945
+   },
+   "Waterford, OH": {
+      "Lon": -81.6406827,
+      "Lat": 39.5425161
+   },
+   "Byrdstown, TN": {
+      "Lon": -85.1288435,
+      "Lat": 36.5745104
+   },
+   "Rocky River, OH": {
+      "Lon": -81.8497567,
+      "Lat": 41.4768217
+   },
+   "Redford, MI": {
+      "Lon": -83.2958857,
+      "Lat": 42.3995939
+   },
+   "Harper Woods, MI": {
+      "Lon": -82.9240833,
+      "Lat": 42.4330924
+   },
+   "Mount Pleasant, PA": {
+      "Lon": -79.4928857,
+      "Lat": 40.1767505
+   },
+   "Lognes, France": {
+      "Lon": 2.6327379,
+      "Lat": 48.836571
+   },
+   "Acton, MA": {
+      "Lon": -71.43284,
+      "Lat": 42.4850931
+   },
+   "Lafayette Hill, PA": {
+      "Lon": -75.2527292,
+      "Lat": 40.0868579
+   },
+   "Gmunden, Austria": {
+      "Lon": 13.79933,
+      "Lat": 47.91839
+   },
+   "Broomfield, CO": {
+      "Lon": -105.0866504,
+      "Lat": 39.9205411
+   },
+   "Alcala De Henares, Spain": {
+      "Lon": -3.3688023,
+      "Lat": 40.4843898
+   },
+   "Milpitas, CA": {
+      "Lon": -121.8995741,
+      "Lat": 37.4323341
+   },
+   "Liberty Lake, WA": {
+      "Lon": -117.1124241,
+      "Lat": 47.6743428
+   },
+   "Kozani, Greece": {
+      "Lon": 21.7887737,
+      "Lat": 40.3005586
+   },
+   "Hewlett, NY": {
+      "Lon": -73.6956864,
+      "Lat": 40.6431591
+   },
+   "North Curl Curl, Australia": {
+      "Lon": 151.2954913,
+      "Lat": -33.7626172
+   },
+   "Monte Sereno, CA": {
+      "Lon": -121.992458,
+      "Lat": 37.236333
+   },
+   "Seaford, DE": {
+      "Lon": -75.6110381,
+      "Lat": 38.6412256
+   },
+   "Golf, IL": {
+      "Lon": -87.7837118,
+      "Lat": 42.0593273
+   },
+   "South Pasadena, CA": {
+      "Lon": -118.1503488,
+      "Lat": 34.1161196
+   },
+   "Park Ridge, IL": {
+      "Lon": -87.8406192,
+      "Lat": 42.0111412
+   },
+   "Lake Bluff, IL": {
+      "Lon": -87.8443151,
+      "Lat": 42.2791365
+   },
+   "Hyde Park, MA": {
+      "Lon": -71.1255855,
+      "Lat": 42.2556619
+   },
+   "Western Springs, IL": {
+      "Lon": -87.9006155,
+      "Lat": 41.8097532
+   },
+   "Delmar, NY": {
+      "Lon": -73.8328924,
+      "Lat": 42.6221917
+   },
+   "Buena Park, CA": {
+      "Lon": -117.9981387,
+      "Lat": 33.8674044
+   },
+   "Norway, ME": {
+      "Lon": -70.5400085,
+      "Lat": 44.2129856
+   },
+   "Guilford, CT": {
+      "Lon": -72.6839226,
+      "Lat": 41.287943
+   },
+   "Lynnfield, MA": {
+      "Lon": -71.0477601,
+      "Lat": 42.5390412
+   },
+   "Tianjin, China": {
+      "Lon": 117.19937,
+      "Lat": 39.0850999
+   },
+   "Wall, NJ": {
+      "Lon": -74.0928666,
+      "Lat": 40.1703777
+   },
+   "Bedminster, NJ": {
+      "Lon": -74.6499451,
+      "Lat": 40.6791746
+   },
+   "Mc Lean, VA": {
+      "Lon": -77.1772604,
+      "Lat": 38.9338676
+   },
+   "Belmont, MA": {
+      "Lon": -71.1776114,
+      "Lat": 42.3956405
+   },
+   "Burbank, CA": {
+      "Lon": -118.3074827,
+      "Lat": 34.1820605
+   },
+   "Pikermi, Greece": {
+      "Lon": 23.9414114,
+      "Lat": 38.0021559
+   },
+   "Edmonds, WA": {
+      "Lon": -122.3769102,
+      "Lat": 47.8111602
+   },
+   "West Dundee, IL": {
+      "Lon": -88.2828581,
+      "Lat": 42.0980812
+   },
+   "Parker, TX": {
+      "Lon": -96.6219376,
+      "Lat": 33.0553975
+   },
+   "Marin, Spain": {
+      "Lon": -8.7020824,
+      "Lat": 42.3914848
+   },
+   "Neptune, NJ": {
+      "Lon": -74.0270245,
+      "Lat": 40.2094787
+   },
+   "Bergenfield, NJ": {
+      "Lon": -73.9960366,
+      "Lat": 40.9278841
+   },
+   "Chanteloup-les-Vignes, France": {
+      "Lon": 2.0305104,
+      "Lat": 48.9787422
+   },
+   "Guangdong, China": {
+      "Lon": 113.26627,
+      "Lat": 23.1317099
+   },
+   "Pompton Plains, NJ": {
+      "Lon": -74.2958532,
+      "Lat": 40.9681661
+   },
+   "Karlovy Vary, Czechia": {
+      "Lon": 12.8719616,
+      "Lat": 50.2318521
+   },
+   "Derwood, MD": {
+      "Lon": -77.1611903,
+      "Lat": 39.1174267
+   },
+   "Ocean, NJ": {
+      "Lon": -74.0393392,
+      "Lat": 40.2518422
+   },
+   "Pine Beach, NJ": {
+      "Lon": -74.1747551,
+      "Lat": 39.9376633
+   },
+   "Norwich, CT": {
+      "Lon": -72.0759105,
+      "Lat": 41.5242649
+   },
+   "Cowbridge, United Kingdom": {
+      "Lon": -3.449581,
+      "Lat": 51.46209
+   },
+   "Sea Girt, NJ": {
+      "Lon": -74.043401,
+      "Lat": 40.1314597
+   },
+   "Middle Island, NY": {
+      "Lon": -72.9421869,
+      "Lat": 40.8831181
+   },
+   "Elma, WA": {
+      "Lon": -123.4087692,
+      "Lat": 47.0034291
+   },
+   "Prospect Park, PA": {
+      "Lon": -75.3082426,
+      "Lat": 39.8878904
+   },
+   "Medway, MA": {
+      "Lon": -71.3967256,
+      "Lat": 42.1417641
+   },
+   "Wantagh, NY": {
+      "Lon": -73.5101258,
+      "Lat": 40.6837121
+   },
+   "Bukovacka, Croatia": {
+      "Lon": 16.00467,
+      "Lat": 45.8345202
+   },
+   "Yiron, Israel": {
+      "Lon": 35.454291,
+      "Lat": 33.077239
+   },
+   "Gentofte, Denmark": {
+      "Lon": 12.5386956,
+      "Lat": 55.75311
+   },
+   "Ballston Lake, NY": {
+      "Lon": -73.8680872,
+      "Lat": 42.9117377
+   },
+   "Hamburg, Germany": {
+      "Lon": 9.9871703,
+      "Lat": 53.5488282
+   },
+   "Altamont, NY": {
+      "Lon": -74.0337382,
+      "Lat": 42.7006324
+   },
+   "Kirkland, Qc, Canada": {
+      "Lon": -73.8623337,
+      "Lat": 45.4560415
+   },
+   "Brooklyn, OH": {
+      "Lon": -81.7512107,
+      "Lat": 41.4301349
+   },
+   "Brighton, MI": {
+      "Lon": -83.7802214,
+      "Lat": 42.5294773
+   },
+   "Delanson, NY": {
+      "Lon": -74.1881834,
+      "Lat": 42.7453531
+   },
+   "Hildesheim, Germany": {
+      "Lon": 9.9579652,
+      "Lat": 52.154778
+   },
+   "Linden, NJ": {
+      "Lon": -74.2434197,
+      "Lat": 40.6265743
+   },
+   "Little Hampton, Australia": {
+      "Lon": 144.2963842,
+      "Lat": -37.3687818
+   },
+   "Langhore, PA": {
+      "Lon": -74.9226665,
+      "Lat": 40.1745538
+   },
+   "Dc, DC": {
+      "Lon": "",
+      "Lat": ""
+   },
+   "Manacor, Spain": {
+      "Lon": 3.2095318,
+      "Lat": 39.5697165
+   },
+   "Tappan, NY": {
+      "Lon": -73.9473593,
+      "Lat": 41.0220416
+   },
+   "Colstrip, MT": {
+      "Lon": -106.6236368,
+      "Lat": 45.8841618
+   },
+   "Adams Center, NY": {
+      "Lon": -76.0055853,
+      "Lat": 43.8602193
+   },
+   "Red Hook, NY": {
+      "Lon": -73.8754114,
+      "Lat": 41.9950919
+   },
+   "Fair Haven, NJ": {
+      "Lon": -74.0457392,
+      "Lat": 40.3596747
+   },
+   "Villa Park, IL": {
+      "Lon": -87.9889543,
+      "Lat": 41.8897519
+   },
+   "Saco, ME": {
+      "Lon": -70.4428286,
+      "Lat": 43.5009176
+   },
+   "Chalfont, PA": {
+      "Lon": -75.2090623,
+      "Lat": 40.2884395
+   },
+   "Shankill, Ireland": {
+      "Lon": -7.0245374,
+      "Lat": 52.6957369
+   },
+   "Warwick, NY": {
+      "Lon": -74.3598755,
+      "Lat": 41.256483
+   },
+   "Poland, OH": {
+      "Lon": -80.6147954,
+      "Lat": 41.0242258
+   },
+   "Donegal, Ireland": {
+      "Lon": -8.1096142,
+      "Lat": 54.653827
+   },
+   "Rocky Mount, VA": {
+      "Lon": -79.8919774,
+      "Lat": 36.9976403
+   },
+   "West Kelowna, Canada": {
+      "Lon": -119.5644584,
+      "Lat": 49.863612
+   },
+   "Narragansett, RI": {
+      "Lon": -71.449503,
+      "Lat": 41.4500844
+   },
+   "Wayland, MA": {
+      "Lon": -71.3614484,
+      "Lat": 42.3625953
+   },
+   "Corozal, Puerto Rico": {
+      "Lon": -66.3200234,
+      "Lat": 18.3097638
+   },
+   "Oxford, OH": {
+      "Lon": -84.745231,
+      "Lat": 39.5069974
+   },
+   "Amherst, OH": {
+      "Lon": -82.2223774,
+      "Lat": 41.3978217
+   },
+   "Twinsburg, OH": {
+      "Lon": -81.4401129,
+      "Lat": 41.3125552
+   },
+   "Little London, United Kingdom": {
+      "Lon": -1.1073053,
+      "Lat": 51.3305314
+   },
+   "Rio Grande, Puerto Rico": {
+      "Lon": -65.8322841,
+      "Lat": 18.3450502
+   },
+   "Wynantskill, NY": {
+      "Lon": -73.644284,
+      "Lat": 42.6967455
+   },
+   "Chadds Ford, PA": {
+      "Lon": -75.5684254,
+      "Lat": 39.8653481
+   },
+   "Powell, OH": {
+      "Lon": -83.0751869,
+      "Lat": 40.1578402
+   },
+   "Golden, CO": {
+      "Lon": -105.2210997,
+      "Lat": 39.755543
+   },
+   "Nolanville, TX": {
+      "Lon": -97.6055693,
+      "Lat": 31.0787888
+   },
+   "Embrach, Zurich, Switzerland": {
+      "Lon": 8.5938067,
+      "Lat": 47.509856
+   },
+   "Marysville, OH": {
+      "Lon": -83.3669504,
+      "Lat": 40.2364032
+   },
+   "Silver Lake, OH": {
+      "Lon": -81.4542792,
+      "Lat": 41.158945
+   },
+   "Yamanashi, Japan": {
+      "Lon": 138.6873168,
+      "Lat": 35.6933453
+   },
+   "Troy, OH": {
+      "Lon": -84.2032767,
+      "Lat": 40.0394982
+   },
+   "Ferdinand, IN": {
+      "Lon": -86.8621803,
+      "Lat": 38.2235908
+   },
+   "Northbrook, IL": {
+      "Lon": -87.8289548,
+      "Lat": 42.1275267
+   },
+   "Comstock Park, MI": {
+      "Lon": -85.6700332,
+      "Lat": 43.0386368
+   },
+   "Heidelberg, Germany": {
+      "Lon": 8.6724335,
+      "Lat": 49.3987524
+   },
+   "Coldwater, OH": {
+      "Lon": -84.628291,
+      "Lat": 40.4797688
+   },
+   "Rochester, PA": {
+      "Lon": -80.2864509,
+      "Lat": 40.7022882
+   },
+   "Allegheny, PA": {
+      "Lon": -80.0157633,
+      "Lat": 40.4519933
+   },
+   "Huntley, IL": {
+      "Lon": -88.4281415,
+      "Lat": 42.1680796
+   },
+   "Ribeirão Preto, Brazil": {
+      "Lon": -47.8110855,
+      "Lat": -21.1694018
+   },
+   "Findlay, OH": {
+      "Lon": -83.6502309,
+      "Lat": 41.0391283
+   },
+   "New London, CT": {
+      "Lon": -72.0995209,
+      "Lat": 41.3556539
+   },
+   "Tiffin, OH": {
+      "Lon": -83.1779746,
+      "Lat": 41.1144992
+   },
+   "New Washington, OH": {
+      "Lon": -82.8543501,
+      "Lat": 40.9622784
+   },
+   "Flora, IN": {
+      "Lon": -86.5237935,
+      "Lat": 40.547063
+   },
+   "Gernika-Lumo, Spain": {
+      "Lon": -2.6808403,
+      "Lat": 43.311373
+   },
+   "Aguimes, Spain": {
+      "Lon": -15.4463485,
+      "Lat": 27.9018327
+   },
+   "Aizkraukle, Latvia": {
+      "Lon": 25.2510258,
+      "Lat": 56.5992679
+   },
+   "Harbor Springs, MI": {
+      "Lon": -84.9919992,
+      "Lat": 45.4316759
+   },
+   "Royal Center, IN": {
+      "Lon": -86.4997266,
+      "Lat": 40.8644849
+   },
+   "Courtice, Canada": {
+      "Lon": -78.7884468,
+      "Lat": 43.9109352
+   },
+   "Sosnowiec, Poland": {
+      "Lon": 19.1268002,
+      "Lat": 50.2779874
+   },
+   "Wayne, OH": {
+      "Lon": -84.5299708,
+      "Lat": 40.5686562
+   },
+   "Tecumseh, MI": {
+      "Lon": -83.9449417,
+      "Lat": 42.0039331
+   },
+   "Irun, Spain": {
+      "Lon": -1.7888495,
+      "Lat": 43.3381465
+   },
+   "Woonona, Australia": {
+      "Lon": 150.9052832,
+      "Lat": -34.3423802
+   },
+   "Benguela, Angola": {
+      "Lon": 13.416501,
+      "Lat": -12.5905158
+   },
+   "Story City, IA": {
+      "Lon": -93.5955532,
+      "Lat": 42.1871601
+   },
+   "Riverwoods, IL": {
+      "Lon": -87.897014,
+      "Lat": 42.1675254
+   },
+   "La Pobla de Vallbona, Spain": {
+      "Lon": -0.5517843,
+      "Lat": 39.5962965
+   },
+   "Minooka, IL": {
+      "Lon": -88.2617305,
+      "Lat": 41.4553084
+   },
+   "West Olive, MI": {
+      "Lon": -86.1464352,
+      "Lat": 42.9214101
+   },
+   "Belleville, MI": {
+      "Lon": -83.4852133,
+      "Lat": 42.2047619
+   },
+   "Cannon Falls, MN": {
+      "Lon": -92.905484,
+      "Lat": 44.5069113
+   },
+   "Granville, OH": {
+      "Lon": -82.5196037,
+      "Lat": 40.0681192
+   },
+   "Copley, OH": {
+      "Lon": -81.6445685,
+      "Lat": 41.0989439
+   },
+   "New Concord, OH": {
+      "Lon": -81.7340168,
+      "Lat": 39.9936837
+   },
+   "Saint Charles, IL": {
+      "Lon": -88.3086867,
+      "Lat": 41.9141945
+   },
+   "Yackandandah, Austria": {
+      "Lon": 14.550072,
+      "Lat": 47.516231
+   },
+   "South Bend, In, IN": {
+      "Lon": -86.2519898,
+      "Lat": 41.6763545
+   },
+   "Fisherville, KY": {
+      "Lon": -85.4718869,
+      "Lat": 38.191485
+   },
+   "Bensalem, PA": {
+      "Lon": -74.9325683,
+      "Lat": 40.0994425
+   },
+   "Barnegat, NJ": {
+      "Lon": -74.2135695,
+      "Lat": 39.7680306
+   },
+   "Clarence Center, NY": {
+      "Lon": -78.6375283,
+      "Lat": 43.0106139
+   },
+   "Pittsford, NY": {
+      "Lon": -77.5149969,
+      "Lat": 43.0906186
+   },
+   "Parma, OH": {
+      "Lon": -81.7229086,
+      "Lat": 41.4047742
+   },
+   "Bartow, FL": {
+      "Lon": -81.8431374,
+      "Lat": 27.8964147
+   },
+   "Bristol, PA": {
+      "Lon": -74.8518311,
+      "Lat": 40.1006661
+   },
+   "Ruther Glen, VA": {
+      "Lon": -77.4558151,
+      "Lat": 37.9287494
+   },
+   "Palmdale, FL": {
+      "Lon": -81.3161838,
+      "Lat": 26.9453358
+   },
+   "Plymouth Meeting, PA": {
+      "Lon": -75.2743467,
+      "Lat": 40.1023319
+   },
+   "Elda, Spain": {
+      "Lon": -0.7965933,
+      "Lat": 38.4764864
+   },
+   "Hookerton, NC": {
+      "Lon": -77.5883039,
+      "Lat": 35.4251622
+   },
+   "Barnesville, GA": {
+      "Lon": -84.1557495,
+      "Lat": 33.0545709
+   },
+   "Beach Park, IL": {
+      "Lon": -87.8572955,
+      "Lat": 42.4222435
+   },
+   "Tivaouane, Senegal": {
+      "Lon": -16.8119382,
+      "Lat": 14.9526715
+   },
+   "Pleasant Hill, IA": {
+      "Lon": -93.5196138,
+      "Lat": 41.5873903
+   },
+   "Washington, IL": {
+      "Lon": -89.4073123,
+      "Lat": 40.7036482
+   },
+   "Saint Albans, MO": {
+      "Lon": -90.7558553,
+      "Lat": 38.5811838
+   },
+   "Sant Vicenç de Montalt, Spain": {
+      "Lon": 2.5135477,
+      "Lat": 41.5795447
+   },
+   "Okawville, IL": {
+      "Lon": -89.5505846,
+      "Lat": 38.430552
+   },
+   "Brandon, MS": {
+      "Lon": -90.001384,
+      "Lat": 32.2788733
+   },
+   "Altamont, IL": {
+      "Lon": -88.747914,
+      "Lat": 39.061737
+   },
+   "De Witt, IA": {
+      "Lon": -90.5389662,
+      "Lat": 41.8239952
+   },
+   "Maryland City, MD": {
+      "Lon": -76.8177498,
+      "Lat": 39.0920531
+   },
+   "Goddard, KS": {
+      "Lon": -97.5749762,
+      "Lat": 37.6641152
+   },
+   "Hesston, KS": {
+      "Lon": -97.4314267,
+      "Lat": 38.1383437
+   },
+   "Center Point, IA": {
+      "Lon": -91.7851772,
+      "Lat": 42.1908265
+   },
+   "Atkins, IA": {
+      "Lon": -91.8621262,
+      "Lat": 41.9969436
+   },
+   "Polk City, IA": {
+      "Lon": -93.7129997,
+      "Lat": 41.7713764
+   },
+   "Cicero, IN": {
+      "Lon": -86.0133181,
+      "Lat": 40.1239257
+   },
+   "Kurunjang, Australia": {
+      "Lon": 144.5953137,
+      "Lat": -37.6661536
+   },
+   "Hazelwood, MO": {
+      "Lon": -90.3709489,
+      "Lat": 38.7714396
+   },
+   "Louisa, KY": {
+      "Lon": -82.6032119,
+      "Lat": 38.1142544
+   },
+   "Spring Hill, TN": {
+      "Lon": -86.9300023,
+      "Lat": 35.751179
+   },
+   "Winner, SD": {
+      "Lon": -99.8590069,
+      "Lat": 43.3766665
+   },
+   "Milbank, SD": {
+      "Lon": -96.6408445,
+      "Lat": 45.2189724
+   },
+   "Muskego, WI": {
+      "Lon": -88.1492892,
+      "Lat": 42.9016299
+   },
+   "Trotwood, OH": {
+      "Lon": -84.3113334,
+      "Lat": 39.7972788
+   },
+   "Royalton, MN": {
+      "Lon": -94.2938809,
+      "Lat": 45.8301117
+   },
+   "Bonne Terre, MO": {
+      "Lon": -90.5554039,
+      "Lat": 37.9231069
+   },
+   "Niverville, Canada": {
+      "Lon": -97.0373634,
+      "Lat": 49.6059233
+   },
+   "Michigan City, IN": {
+      "Lon": -86.8950297,
+      "Lat": 41.7075394
+   },
+   "San Leandro, CA": {
+      "Lon": -122.1568554,
+      "Lat": 37.7257663
+   },
+   "Thessaloniki, Greece, Germany": {
+      "Lon": 10.451526,
+      "Lat": 51.165691
+   },
+   "Paul, ID": {
+      "Lon": -113.7833506,
+      "Lat": 42.6079646
+   },
+   "Kavala, Greece": {
+      "Lon": 24.412866,
+      "Lat": 40.937607
+   },
+   "Lagoa, Portugal": {
+      "Lon": -8.4513272,
+      "Lat": 37.1346084
+   },
+   "Mukono, Uganda": {
+      "Lon": 32.7520139,
+      "Lat": 0.3548655
+   },
+   "Chino Hills, CA": {
+      "Lon": -117.7325848,
+      "Lat": 33.9898188
+   },
+   "Willowick, OH": {
+      "Lon": -81.4687274,
+      "Lat": 41.6331034
+   },
+   "Holon, Israel": {
+      "Lon": 34.7706369,
+      "Lat": 32.0180655
+   },
+   "Casper, WY": {
+      "Lon": -106.2980824,
+      "Lat": 42.848709
+   },
+   "Laugavellir, Iceland": {
+      "Lon": -15.7597801,
+      "Lat": 65.00568
+   },
+   "Balwyn, Australia": {
+      "Lon": 145.0813238,
+      "Lat": -37.8128937
+   },
+   "Hugoton, KS": {
+      "Lon": -101.3496025,
+      "Lat": 37.1753025
+   },
+   "Smithville, MO": {
+      "Lon": -94.5810659,
+      "Lat": 39.3869442
+   },
+   "Aabyhoj, Denmark": {
+      "Lon": 10.1689744,
+      "Lat": 56.1565195
+   },
+   "Huntingtown, MD": {
+      "Lon": -76.613015,
+      "Lat": 38.6159533
+   },
+   "Blackfoot, ID": {
+      "Lon": -112.3449773,
+      "Lat": 43.1904709
+   },
+   "Winnemucca, NV": {
+      "Lon": -117.7357354,
+      "Lat": 40.9728274
+   },
+   "Dubbo, Australia": {
+      "Lon": 148.614418,
+      "Lat": -32.2443908
+   },
+   "Vrbas, Serbia": {
+      "Lon": 19.64968,
+      "Lat": 45.5669011
+   },
+   "Millville, UT": {
+      "Lon": -111.8229982,
+      "Lat": 41.6815987
+   },
+   "Lusaka, Zambia, Germany": {
+      "Lon": 28.2773267,
+      "Lat": -15.4154677
+   },
+   "Rangiora, New Zealand": {
+      "Lon": 172.5966281,
+      "Lat": -43.3032326
+   },
+   "Seymour, CT": {
+      "Lon": -73.0747534,
+      "Lat": 41.397146
+   },
+   "Port Angeles, WA": {
+      "Lon": -123.4307413,
+      "Lat": 48.118146
+   },
+   "Lette, Germany": {
+      "Lon": 8.1585566,
+      "Lat": 51.8833159
+   },
+   "Brier, WA": {
+      "Lon": -122.2742948,
+      "Lat": 47.7845419
+   },
+   "Maplewood, NJ": {
+      "Lon": -74.2679249,
+      "Lat": 40.7355105
+   },
+   "Yardley, PA": {
+      "Lon": -74.8459972,
+      "Lat": 40.245664
+   },
+   "Townsend, DE": {
+      "Lon": -75.6915973,
+      "Lat": 39.3951115
+   },
+   "Galloway, NJ": {
+      "Lon": -74.4582205,
+      "Lat": 39.4905113
+   },
+   "Bayville, NY": {
+      "Lon": -73.5620689,
+      "Lat": 40.9106541
+   },
+   "Monroe, GA": {
+      "Lon": -83.713229,
+      "Lat": 33.7948364
+   },
+   "West Babylon, NY": {
+      "Lon": -73.354287,
+      "Lat": 40.718155
+   },
+   "Woburn, MA": {
+      "Lon": -71.1522765,
+      "Lat": 42.4792618
+   },
+   "Hastings On Hudson, NY": {
+      "Lon": -73.8787461,
+      "Lat": 40.994542
+   },
+   "Orford, Canada": {
+      "Lon": -72.1729273,
+      "Lat": 45.393367
+   },
+   "Pineda de Mar, Spain": {
+      "Lon": 2.682942,
+      "Lat": 41.6260349
+   },
+   "Cabinda, Angola": {
+      "Lon": 12.197583,
+      "Lat": -5.5705739
+   },
+   "Ondo State, Nigeria": {
+      "Lon": 5.1478144,
+      "Lat": 6.9148682
+   },
+   "Tarragona, Spain": {
+      "Lon": 1.2444909,
+      "Lat": 41.1188827
+   },
+   "Founex, Switzerland": {
+      "Lon": 6.192647,
+      "Lat": 46.3328701
+   },
+   "Venetia, PA": {
+      "Lon": -80.0429089,
+      "Lat": 40.2469378
+   },
+   "Long Is City, NY": {
+      "Lon": -73.9570637,
+      "Lat": 40.741525
+   },
+   "Santander, Spain": {
+      "Lon": -3.8226402,
+      "Lat": 43.4636346
+   },
+   "Cornwall On Hudson, NY": {
+      "Lon": -74.0156961,
+      "Lat": 41.444816
+   },
+   "Conley, GA": {
+      "Lon": -84.3357992,
+      "Lat": 33.6418635
+   },
+   "Avon Lake, OH": {
+      "Lon": -82.0282001,
+      "Lat": 41.5053178
+   },
+   "Attleboro, MA": {
+      "Lon": -71.2813908,
+      "Lat": 41.9443066
+   },
+   "Woonsocket, RI": {
+      "Lon": -71.5147839,
+      "Lat": 42.0028761
+   },
+   "Givat Haim Ichud, Israel": {
+      "Lon": 34.932978,
+      "Lat": 32.396745
+   },
+   "Hudson, NH": {
+      "Lon": -71.4398074,
+      "Lat": 42.7647763
+   },
+   "Mansfield Center, CT": {
+      "Lon": -72.1981334,
+      "Lat": 41.7653764
+   },
+   "Winneba, Ghana": {
+      "Lon": -0.6298922,
+      "Lat": 5.3622295
+   },
+   "South Paris, ME": {
+      "Lon": -70.5133929,
+      "Lat": 44.223681
+   },
+   "Jersey Shore, PA": {
+      "Lon": -77.2644152,
+      "Lat": 41.2020171
+   },
+   "Horseheads, NY": {
+      "Lon": -76.8205119,
+      "Lat": 42.167019
+   },
+   "Wynstanskill, NY": {
+      "Lon": -73.644284,
+      "Lat": 42.6967455
+   },
+   "Fairview, PA": {
+      "Lon": -80.2553407,
+      "Lat": 42.0314456
+   },
+   "Churchville, NY": {
+      "Lon": -77.8844543,
+      "Lat": 43.1042277
+   },
+   "Rome, NY": {
+      "Lon": -75.4557303,
+      "Lat": 43.2128473
+   },
+   "Hopewell Jct, NY": {
+      "Lon": -73.8087442,
+      "Lat": 41.5839823
+   },
+   "Red Lion, PA": {
+      "Lon": -76.6058001,
+      "Lat": 39.9009334
+   },
+   "Valley Cottage, NY": {
+      "Lon": -73.9554159,
+      "Lat": 41.1181514
+   },
+   "Oakhurst, NJ": {
+      "Lon": -74.023593,
+      "Lat": 40.2613515
+   },
+   "Beaver Falls, PA": {
+      "Lon": -80.3192295,
+      "Lat": 40.7520097
+   },
+   "Mcdonald, PA": {
+      "Lon": -80.2328612,
+      "Lat": 40.3700362
+   },
+   "Nanty Glo, PA": {
+      "Lon": -78.8333571,
+      "Lat": 40.4722936
+   },
+   "Villasanta, Italy": {
+      "Lon": 9.3016133,
+      "Lat": 45.6061542
+   },
+   "Sodertalje, Sweden": {
+      "Lon": 17.6201942,
+      "Lat": 59.197762
+   },
+   "Raices Nuevo, Spain": {
+      "Lon": -5.9403105,
+      "Lat": 43.5751425
+   },
+   "Spanga, Sweden": {
+      "Lon": 17.9012902,
+      "Lat": 59.381668
+   },
+   "Sudbury Suffolk, United Kingdom": {
+      "Lon": 0.726706,
+      "Lat": 52.041047
+   },
+   "Gatlinburg, TN": {
+      "Lon": -83.5101638,
+      "Lat": 35.714259
+   },
+   "Zwolle, Netherlands": {
+      "Lon": 6.0830219,
+      "Lat": 52.5167747
+   },
+   "Franklin, KY": {
+      "Lon": -86.5785573,
+      "Lat": 36.7187855
+   },
+   "Baxter, TN": {
+      "Lon": -85.6435909,
+      "Lat": 36.1536718
+   },
+   "Lansing, IL": {
+      "Lon": -87.538931,
+      "Lat": 41.5647575
+   },
+   "Melbourne, AR": {
+      "Lon": -91.9071156,
+      "Lat": 36.0592901
+   },
+   "Vilonia, AR": {
+      "Lon": -92.1984203,
+      "Lat": 35.0854486
+   },
+   "Zebulon, GA": {
+      "Lon": -84.3426997,
+      "Lat": 33.1023454
+   },
+   "Marshville, NC": {
+      "Lon": -80.3670085,
+      "Lat": 34.988486
+   },
+   "Brimfield, IL": {
+      "Lon": -89.8864976,
+      "Lat": 40.838926
+   },
+   "Millbury, MA": {
+      "Lon": -71.7605519,
+      "Lat": 42.1913074
+   },
+   "International Falls, MN": {
+      "Lon": -93.4040679,
+      "Lat": 48.6023149
+   },
+   "Sigel, IL": {
+      "Lon": -88.4942152,
+      "Lat": 39.2261504
+   },
+   "Warren, RI": {
+      "Lon": -71.2825493,
+      "Lat": 41.7303793
+   },
+   "Troy, IL": {
+      "Lon": -89.8831541,
+      "Lat": 38.7292147
+   },
+   "Glen Carbon, IL": {
+      "Lon": -89.983158,
+      "Lat": 38.7483814
+   },
+   "Camp Point, IL": {
+      "Lon": -91.0693041,
+      "Lat": 40.0392139
+   },
+   "Fairfield, TX": {
+      "Lon": -96.1652481,
+      "Lat": 31.7246128
+   },
+   "Hugo, OK": {
+      "Lon": -95.5096821,
+      "Lat": 34.01066
+   },
+   "Burr Ridge, IL": {
+      "Lon": -87.9183919,
+      "Lat": 41.7489203
+   },
+   "Harrison, OH": {
+      "Lon": -84.7915999,
+      "Lat": 39.2536967
+   },
+   "Depauw, IN": {
+      "Lon": -86.2174763,
+      "Lat": 38.3350634
+   },
+   "Mascoutah, IL": {
+      "Lon": -89.793154,
+      "Lat": 38.490327
+   },
+   "Palatine, IL": {
+      "Lon": -88.03424,
+      "Lat": 42.1103041
+   },
+   "Bourbon, MO": {
+      "Lon": -91.2440328,
+      "Lat": 38.1547697
+   },
+   "Evansville, WI": {
+      "Lon": -89.2992838,
+      "Lat": 42.7802831
+   },
+   "Lebanon, MO": {
+      "Lon": -92.6637932,
+      "Lat": 37.6805149
+   },
+   "Boonville, MO": {
+      "Lon": -92.7432241,
+      "Lat": 38.9735565
+   },
+   "Sudbury, On, Canada": {
+      "Lon": -80.993029,
+      "Lat": 46.4917317
+   },
+   "Biggsville, IL": {
+      "Lon": -90.8648617,
+      "Lat": 40.8536498
+   },
+   "Waverly, IA": {
+      "Lon": -92.4668511,
+      "Lat": 42.7272032
+   },
+   "Macomb, IL": {
+      "Lon": -90.6717971,
+      "Lat": 40.4592076
+   },
+   "Rochester, IL": {
+      "Lon": -89.5317603,
+      "Lat": 39.7494943
+   },
+   "Wellington, KS": {
+      "Lon": -97.3717118,
+      "Lat": 37.2653004
+   },
+   "Leavenworth, KS": {
+      "Lon": -94.9279371,
+      "Lat": 39.3103522
+   },
+   "Mountain Home, AR": {
+      "Lon": -92.385217,
+      "Lat": 36.3400904
+   },
+   "Ofallon, MO": {
+      "Lon": -90.6998477,
+      "Lat": 38.8106075
+   },
+   "Agency, MO": {
+      "Lon": -94.7399611,
+      "Lat": 39.644718
+   },
+   "Burlingame, CA": {
+      "Lon": -122.34809,
+      "Lat": 37.5778696
+   },
+   "Johnson City, NY": {
+      "Lon": -75.9588092,
+      "Lat": 42.1156308
+   },
+   "St. Catharines, Canada": {
+      "Lon": -79.2470299,
+      "Lat": 43.1599795
+   },
+   "Gettysburg, PA": {
+      "Lon": -77.2310955,
+      "Lat": 39.8309293
+   },
+   "Fairport, NY": {
+      "Lon": -77.4419378,
+      "Lat": 43.0986742
+   },
+   "Dunnellon, FL": {
+      "Lon": -82.4609331,
+      "Lat": 29.0491426
+   },
+   "Centreville, VA": {
+      "Lon": -77.4288769,
+      "Lat": 38.8403909
+   },
+   "Algonquin, IL": {
+      "Lon": -88.2942493,
+      "Lat": 42.1655801
+   },
+   "Spotsylvania, VA": {
+      "Lon": -77.5877652,
+      "Lat": 38.1979096
+   },
+   "Verona, NJ": {
+      "Lon": -74.2450419,
+      "Lat": 40.8315121
+   },
+   "Clintondale, NY": {
+      "Lon": -74.0512528,
+      "Lat": 41.6948156
+   },
+   "North Arlington, NJ": {
+      "Lon": -74.1334804,
+      "Lat": 40.7883584
+   },
+   "North Mankato, MN": {
+      "Lon": -94.033845,
+      "Lat": 44.1732996
+   },
+   "Bradley Beach, NJ": {
+      "Lon": -74.0179727,
+      "Lat": 40.203092
+   },
+   "Hutchinson, MN": {
+      "Lon": -94.3692926,
+      "Lat": 44.8925483
+   },
+   "Belle Mead, NJ": {
+      "Lon": -74.6628114,
+      "Lat": 40.4675835
+   },
+   "Ponte Vedra, FL": {
+      "Lon": -81.3778862,
+      "Lat": 30.2389212
+   },
+   "Bow, NH": {
+      "Lon": -71.5492377,
+      "Lat": 43.1320263
+   },
+   "Sicily, Italy": {
+      "Lon": 14.6587821,
+      "Lat": 37.3979297
+   },
+   "Molins de Rei, Spain": {
+      "Lon": 2.0182425,
+      "Lat": 41.4134488
+   },
+   "Flanders, NJ": {
+      "Lon": -74.7161489,
+      "Lat": 40.8418677
+   },
+   "Keila, Estonia": {
+      "Lon": 24.4157526,
+      "Lat": 59.3108007
+   },
+   "Selfoss, Iceland": {
+      "Lon": -20.9996925,
+      "Lat": 63.9318322
+   },
+   "Gran Canaria, Spain": {
+      "Lon": -15.5474373,
+      "Lat": 27.9202202
+   },
+   "Parkville, MO": {
+      "Lon": -94.6821806,
+      "Lat": 39.1950029
+   },
+   "Union Springs, NY": {
+      "Lon": -76.6932818,
+      "Lat": 42.8397906
+   },
+   "Castellnou de Bages, Spain": {
+      "Lon": 1.8367862,
+      "Lat": 41.8343436
+   },
+   "Canal Fulton, OH": {
+      "Lon": -81.597623,
+      "Lat": 40.8897784
+   },
+   "Sant Cugat del Vallès, Spain": {
+      "Lon": 2.0865154,
+      "Lat": 41.4720702
+   },
+   "Dedham, MA": {
+      "Lon": -71.1676536,
+      "Lat": 42.2436085
+   },
+   "Uppsala, Sweden": {
+      "Lon": 17.6389267,
+      "Lat": 59.8585638
+   },
+   "Spring Garden, AL": {
+      "Lon": -85.5538487,
+      "Lat": 33.9728781
+   },
+   "Toney, AL": {
+      "Lon": -86.7333446,
+      "Lat": 34.8983333
+   },
+   "Edo, Nigeria": {
+      "Lon": 5.9304056,
+      "Lat": 6.6341831
+   },
+   "Scandiano, Italy": {
+      "Lon": 10.6902974,
+      "Lat": 44.5984801
+   },
+   "Auburn, NH": {
+      "Lon": -71.348398,
+      "Lat": 43.0045288
+   },
+   "Montreal,qc, Canada": {
+      "Lon": -73.5673919,
+      "Lat": 45.5018869
+   },
+   "Pima, AZ": {
+      "Lon": -109.8275815,
+      "Lat": 32.8961755
+   },
+   "Bokchito, OK": {
+      "Lon": -96.1427628,
+      "Lat": 34.0173184
+   },
+   "Thunder Bay, Canada": {
+      "Lon": -89.2476823,
+      "Lat": 48.3808951
+   },
+   "Lavagno (vr), Italy": {
+      "Lon": 11.1321943,
+      "Lat": 45.440542
+   },
+   "Berlicum, Netherlands": {
+      "Lon": 5.4012001,
+      "Lat": 51.6788511
+   },
+   "Courcouronnes, France": {
+      "Lon": 2.407091,
+      "Lat": 48.617871
+   },
+   "Cavan, Ireland": {
+      "Lon": -7.3635248,
+      "Lat": 53.9898639
+   },
+   "Co Spgs, CO": {
+      "Lon": -104.8216009,
+      "Lat": 38.8353142
+   },
+   "Draveil, France": {
+      "Lon": 2.408154,
+      "Lat": 48.685388
+   },
+   "Warr Acres, OK": {
+      "Lon": -97.6189809,
+      "Lat": 35.5223057
+   },
+   "Foley, AL": {
+      "Lon": -87.6835974,
+      "Lat": 30.4065868
+   },
+   "Hayneville, AL": {
+      "Lon": -86.5802533,
+      "Lat": 32.1840315
+   },
+   "Roxie, MS": {
+      "Lon": -91.0689929,
+      "Lat": 31.5046128
+   },
+   "Clarksdale, MS": {
+      "Lon": -90.5709323,
+      "Lat": 34.2001086
+   },
+   "Crete, IL": {
+      "Lon": -87.6314312,
+      "Lat": 41.4444791
+   },
+   "Johnston, SC": {
+      "Lon": -81.8009424,
+      "Lat": 33.83208
+   },
+   "Washington, GA": {
+      "Lon": -82.7393089,
+      "Lat": 33.7367948
+   },
+   "Spring Valley, CA": {
+      "Lon": -116.998916,
+      "Lat": 32.744774
+   },
+   "Magee, MS": {
+      "Lon": -89.7336852,
+      "Lat": 31.8737712
+   },
+   "Itta Bena, MS": {
+      "Lon": -90.3198067,
+      "Lat": 33.49512
+   },
+   "Clarendon, AR": {
+      "Lon": -91.3092086,
+      "Lat": 34.6926398
+   },
+   "Port of Spain, Trinidad and Tobago": {
+      "Lon": -61.5097236,
+      "Lat": 10.6540251
+   },
+   "Lexington Park, MD": {
+      "Lon": -76.4620928,
+      "Lat": 38.2575517
+   },
+   "Batesville, MS": {
+      "Lon": -89.9442567,
+      "Lat": 34.3114982
+   },
+   "Lagrange, GA": {
+      "Lon": -85.0322444,
+      "Lat": 33.0362218
+   },
+   "Crystal Springs, MS": {
+      "Lon": -90.3570353,
+      "Lat": 31.987378
+   },
+   "Alexander, AR": {
+      "Lon": -92.4460572,
+      "Lat": 34.6117735
+   },
+   "Poplar Grove, AR": {
+      "Lon": -90.8176129,
+      "Lat": 34.9350935
+   },
+   "Nesbit, MS": {
+      "Lon": -90.0089187,
+      "Lat": 34.8821538
+   },
+   "Leesburg, GA": {
+      "Lon": -84.1707423,
+      "Lat": 31.7321156
+   },
+   "Pelzer, SC": {
+      "Lon": -82.4591443,
+      "Lat": 34.6462737
+   },
+   "Pleasant View, TN": {
+      "Lon": -87.0366685,
+      "Lat": 36.3942164
+   },
+   "Oakland Park, FL": {
+      "Lon": -80.1319893,
+      "Lat": 26.1723065
+   },
+   "Whittier, CA": {
+      "Lon": -118.0326781,
+      "Lat": 33.9754423
+   },
+   "Wise, VA": {
+      "Lon": -82.5757108,
+      "Lat": 36.9759345
+   },
+   "Rabun Gap, GA": {
+      "Lon": -83.4299562,
+      "Lat": 34.9464937
+   },
+   "Ashville, OH": {
+      "Lon": -82.9529584,
+      "Lat": 39.7156186
+   },
+   "New Madison, OH": {
+      "Lon": -84.709124,
+      "Lat": 39.9678269
+   },
+   "Patterson, CA": {
+      "Lon": -121.1299128,
+      "Lat": 37.4716546
+   },
+   "Liberty, NC": {
+      "Lon": -79.5716903,
+      "Lat": 35.8534705
+   },
+   "Seymour, TN": {
+      "Lon": -83.7740198,
+      "Lat": 35.8725599
+   },
+   "Englewood, TN": {
+      "Lon": -89.1547897,
+      "Lat": 36.366732
+   },
+   "Jefferson City, TN": {
+      "Lon": -83.492396,
+      "Lat": 36.122311
+   },
+   "Warrensville, NC": {
+      "Lon": -81.5187955,
+      "Lat": 36.460963
+   },
+   "Bushnell, FL": {
+      "Lon": -82.1128629,
+      "Lat": 28.6649924
+   },
+   "Vinton, VA": {
+      "Lon": -79.8969819,
+      "Lat": 37.2809707
+   },
+   "Antananarivo, Madagascar": {
+      "Lon": 47.5211293,
+      "Lat": -18.9184607
+   },
+   "Martinez, CA": {
+      "Lon": -122.1341321,
+      "Lat": 38.0193657
+   },
+   "Waukegan, IL": {
+      "Lon": -87.8447938,
+      "Lat": 42.3636331
+   },
+   "Greenwood, MO": {
+      "Lon": -94.3438378,
+      "Lat": 38.8516751
+   },
+   "Hunstville, AK": {
+      "Lon": -86.5853155,
+      "Lat": 34.7295497
+   },
+   "Gunter, TX": {
+      "Lon": -96.747494,
+      "Lat": 33.4478881
+   },
+   "Or Yehuda, Israel": {
+      "Lon": 34.856173,
+      "Lat": 32.029748
+   },
+   "New Hope, AL": {
+      "Lon": -86.3944307,
+      "Lat": 34.5370339
+   },
+   "Angola, IN": {
+      "Lon": -84.9994088,
+      "Lat": 41.6347726
+   },
+   "Surulere, Nigeria": {
+      "Lon": 3.3489671,
+      "Lat": 6.4926317
+   },
+   "Nome, TX": {
+      "Lon": -94.4243572,
+      "Lat": 30.03577
+   },
+   "Kountze, TX": {
+      "Lon": -94.3124116,
+      "Lat": 30.3715975
+   },
+   "Senatobia, MS": {
+      "Lon": -89.9687011,
+      "Lat": 34.6176032
+   },
+   "St Paul, TX": {
+      "Lon": -96.5502681,
+      "Lat": 33.0412307
+   },
+   "Jacksonville, TX": {
+      "Lon": -95.2705042,
+      "Lat": 31.963778
+   },
+   "Byblos, Lebanon": {
+      "Lon": 35.653368,
+      "Lat": 34.1235296
+   },
+   "Sint-Niklaas, Belgium": {
+      "Lon": 4.1370695,
+      "Lat": 51.1657403
+   },
+   "Newark Valley, NY": {
+      "Lon": -76.183263,
+      "Lat": 42.2236853
+   },
+   "Laredo, TX": {
+      "Lon": -99.5075519,
+      "Lat": 27.5035613
+   },
+   "Tres Rios, Costa Rica": {
+      "Lon": -83.9880863,
+      "Lat": 9.9060735
+   },
+   "College Station, TX": {
+      "Lon": -96.3255016,
+      "Lat": 30.6210482
+   },
+   "Laurel, MS": {
+      "Lon": -89.1306124,
+      "Lat": 31.6940509
+   },
+   "Bronte, Australia": {
+      "Lon": 151.260259,
+      "Lat": -33.9029348
+   },
+   "Silver Lake, KS": {
+      "Lon": -95.8585978,
+      "Lat": 39.104166
+   },
+   "Friendswood, TX": {
+      "Lon": -95.2010447,
+      "Lat": 29.5293998
+   },
+   "Warsaw, Poland": {
+      "Lon": 21.0122287,
+      "Lat": 52.2296756
+   },
+   "Glen Rose, TX": {
+      "Lon": -97.7554986,
+      "Lat": 32.2346721
+   },
+   "Ettelbruck, Luxembourg": {
+      "Lon": 6.0984347,
+      "Lat": 49.8442521
+   },
+   "Eunice, LA": {
+      "Lon": -92.4176324,
+      "Lat": 30.4943669
+   },
+   "Doetinchem, Netherlands": {
+      "Lon": 6.2937736,
+      "Lat": 51.9646995
+   },
+   "Aubrey, TX": {
+      "Lon": -96.986118,
+      "Lat": 33.3042834
+   },
+   "el Morell, Spain": {
+      "Lon": 1.2064499,
+      "Lat": 41.1921839
+   },
+   "Pharr, TX": {
+      "Lon": -98.1836216,
+      "Lat": 26.1947962
+   },
+   "West Sussex, United Kingdom": {
+      "Lon": -0.4159547,
+      "Lat": 50.969873
+   },
+   "Princeton, TX": {
+      "Lon": -96.4989407,
+      "Lat": 33.1742162
+   },
+   "Vinton, LA": {
+      "Lon": -93.5813576,
+      "Lat": 30.1911244
+   },
+   "Ormond Beach, FL": {
+      "Lon": -81.0558894,
+      "Lat": 29.2858129
+   },
+   "Rayne, LA": {
+      "Lon": -92.2684617,
+      "Lat": 30.234925
+   },
+   "Rockport, TX": {
+      "Lon": -97.0545378,
+      "Lat": 28.0272821
+   },
+   "Hickory Creek, TX": {
+      "Lon": -97.0389599,
+      "Lat": 33.114742
+   },
+   "Muecke, Germany": {
+      "Lon": 9.038462,
+      "Lat": 50.6256243
+   },
+   "Oberwart, Austria": {
+      "Lon": 16.19914,
+      "Lat": 47.29482
+   },
+   "Obertwart, Austria": {
+      "Lon": 16.19914,
+      "Lat": 47.29482
+   },
+   "Howe, OK": {
+      "Lon": -94.6371704,
+      "Lat": 34.9512108
+   },
+   "Modiin Maccabim Reut, Israel": {
+      "Lon": 35.010397,
+      "Lat": 31.890267
+   },
+   "Fort Wingate, NM": {
+      "Lon": -108.5438525,
+      "Lat": 35.4718903
+   },
+   "Sauk City, WI": {
+      "Lon": -89.722067,
+      "Lat": 43.2708225
+   },
+   "Alexandria, MN": {
+      "Lon": -95.3776663,
+      "Lat": 45.8848164
+   },
+   "Flandreau, SD": {
+      "Lon": -96.595324,
+      "Lat": 44.0494154
+   },
+   "Lino Lakes, MN": {
+      "Lon": -93.0888324,
+      "Lat": 45.1602442
+   },
+   "Mandan, ND": {
+      "Lon": -100.8895761,
+      "Lat": 46.8266603
+   },
+   "Montevideo, MN": {
+      "Lon": -95.7236136,
+      "Lat": 44.9410447
+   },
+   "Epworth, IA": {
+      "Lon": -90.9319006,
+      "Lat": 42.445193
+   },
+   "Jordan, MN": {
+      "Lon": -93.6294286,
+      "Lat": 44.6711949
+   },
+   "West Fargo, ND": {
+      "Lon": -96.8999057,
+      "Lat": 46.8769487
+   },
+   "Parkdale, Australia": {
+      "Lon": 145.0767488,
+      "Lat": -37.9937732
+   },
+   "Meckling, SD": {
+      "Lon": -97.067323,
+      "Lat": 42.839198
+   },
+   "Milan, IL": {
+      "Lon": -90.5720803,
+      "Lat": 41.453089
+   },
+   "Banyeres De Mariola, Spain": {
+      "Lon": -0.6595184,
+      "Lat": 38.7153272
+   },
+   "Sagamore Hills, OH": {
+      "Lon": -81.5706109,
+      "Lat": 41.3223093
+   },
+   "Hampshire, IL": {
+      "Lon": -88.5303643,
+      "Lat": 42.0978027
+   },
+   "Ado-Ekiti, Nigeria": {
+      "Lon": 5.2371087,
+      "Lat": 7.6124263
+   },
+   "Edgeley, ND": {
+      "Lon": -98.7156564,
+      "Lat": 46.3591377
+   },
+   "Thompson, ND": {
+      "Lon": -97.109805,
+      "Lat": 47.7735899
+   },
+   "Presho, SD": {
+      "Lon": -100.0587343,
+      "Lat": 43.9097116
+   },
+   "Elko, MN": {
+      "Lon": -93.3162295,
+      "Lat": 44.5610022
+   },
+   "Mora, MN": {
+      "Lon": -93.2938352,
+      "Lat": 45.8769031
+   },
+   "Fenwick, Canada": {
+      "Lon": -79.3622975,
+      "Lat": 43.0240705
+   },
+   "Golden Valley, MN": {
+      "Lon": -93.3600034,
+      "Lat": 44.9917149
+   },
+   "Strathroy, Canada": {
+      "Lon": -81.6232333,
+      "Lat": 42.95542
+   },
+   "Port Washington, WI": {
+      "Lon": -87.875644,
+      "Lat": 43.3872247
+   },
+   "Crosby, MN": {
+      "Lon": -93.9577611,
+      "Lat": 46.4821848
+   },
+   "Colorado Spgs, CO": {
+      "Lon": -104.8216009,
+      "Lat": 38.8353142
+   },
+   "College City, CA": {
+      "Lon": -122.006813,
+      "Lat": 39.0129021
+   },
+   "Altafulla, Spain": {
+      "Lon": 1.3776889,
+      "Lat": 41.1408587
+   },
+   "Douglas, AZ": {
+      "Lon": -109.5453447,
+      "Lat": 31.3445471
+   },
+   "Ivanjica, Serbia": {
+      "Lon": 20.2301407,
+      "Lat": 43.5826282
+   },
+   "Carbajosa De La Sagrada, Salamanca, Spain": {
+      "Lon": -5.6497387,
+      "Lat": 40.9327558
+   },
+   "Sheboygan Falls, WI": {
+      "Lon": -87.8106439,
+      "Lat": 43.7291617
+   },
+   "West Saint Paul, MN": {
+      "Lon": -93.1016074,
+      "Lat": 44.9160768
+   },
+   "New London, WI": {
+      "Lon": -88.7398256,
+      "Lat": 44.3927582
+   },
+   "Navarre, FL": {
+      "Lon": -86.9123217,
+      "Lat": 30.4109342
+   },
+   "Salamanca, Spain": {
+      "Lon": -5.6635397,
+      "Lat": 40.9701039
+   },
+   "Gramercy, LA": {
+      "Lon": -90.6898128,
+      "Lat": 30.0474239
+   },
+   "Florianopolis, Brazil": {
+      "Lon": -48.5468118,
+      "Lat": -27.5968578
+   },
+   "Fontanilles, Spain": {
+      "Lon": 3.108041,
+      "Lat": 42.0099494
+   },
+   "Colquitt, GA": {
+      "Lon": -84.7332527,
+      "Lat": 31.1712935
+   },
+   "Bafoussam, Cameroon": {
+      "Lon": 10.4271347,
+      "Lat": 5.4815596
+   },
+   "Hazlehurst, MS": {
+      "Lon": -90.3959255,
+      "Lat": 31.8604382
+   },
+   "Pearl, MS": {
+      "Lon": -90.1342608,
+      "Lat": 32.2662515
+   },
+   "St Thomas, VI": {
+      "Lon": -64.8940946,
+      "Lat": 18.3380965
+   },
+   "Huntington, TX": {
+      "Lon": -94.5770539,
+      "Lat": 31.2776969
+   },
+   "Mexia, TX": {
+      "Lon": -96.482203,
+      "Lat": 31.6798895
+   },
+   "Philadelphia, MS": {
+      "Lon": -89.1167275,
+      "Lat": 32.7715227
+   },
+   "Leland, NC": {
+      "Lon": -78.0343212,
+      "Lat": 34.2293803
+   },
+   "La Place, LA": {
+      "Lon": -90.4800848,
+      "Lat": 30.0665907
+   },
+   "Denia, Spain": {
+      "Lon": 0.1050557,
+      "Lat": 38.8387992
+   },
+   "Rijeka, Croatia": {
+      "Lon": 14.442176,
+      "Lat": 45.3270631
+   },
+   "Tooele, UT": {
+      "Lon": -112.29828,
+      "Lat": 40.5307776
+   },
+   "Fountain Inn, SC": {
+      "Lon": -82.1956679,
+      "Lat": 34.6890095
+   },
+   "Birdsboro, PA": {
+      "Lon": -75.8040852,
+      "Lat": 40.2645371
+   },
+   "Newhebron, MS": {
+      "Lon": -89.9786921,
+      "Lat": 31.7309975
+   },
+   "Wiggins, MS": {
+      "Lon": -89.1353283,
+      "Lat": 30.858244
+   },
+   "Port Orange, FL": {
+      "Lon": -80.9956105,
+      "Lat": 29.1383165
+   },
+   "Carroll, OH": {
+      "Lon": -82.7010016,
+      "Lat": 39.7989528
+   },
+   "Logan, WV": {
+      "Lon": -81.9934581,
+      "Lat": 37.8487147
+   },
+   "Springfield, OR": {
+      "Lon": -123.0220289,
+      "Lat": 44.0462362
+   },
+   "Chelsea, MA": {
+      "Lon": -71.0328284,
+      "Lat": 42.3917638
+   },
+   "Zacatecas, Mexico": {
+      "Lon": -102.5765714,
+      "Lat": 22.7727913
+   },
+   "Musanze, Rwanda": {
+      "Lon": 29.6325193,
+      "Lat": -1.5007223
+   },
+   "Bluffdale, UT": {
+      "Lon": -111.9388244,
+      "Lat": 40.4896711
+   },
+   "Syracuse, UT": {
+      "Lon": -112.0646657,
+      "Lat": 41.0893878
+   },
+   "Happy Valley, OR": {
+      "Lon": -122.5125279,
+      "Lat": 45.4412329
+   },
+   "University Place, WA": {
+      "Lon": -122.5504041,
+      "Lat": 47.2356536
+   },
+   "Marbach, Germany": {
+      "Lon": 9.2645971,
+      "Lat": 48.939615
+   },
+   "Valladolid, Spain": {
+      "Lon": -4.7222733,
+      "Lat": 41.6543639
+   },
+   "Windsor, CO": {
+      "Lon": -104.9013617,
+      "Lat": 40.4774818
+   },
+   "Ixonia, WI": {
+      "Lon": -88.597323,
+      "Lat": 43.1438923
+   },
+   "Vermoim, Portugal": {
+      "Lon": -8.4485846,
+      "Lat": 41.4229179
+   },
+   "Douglas, WY": {
+      "Lon": -105.3822069,
+      "Lat": 42.7596897
+   },
+   "Peaster, TX": {
+      "Lon": -97.8667016,
+      "Lat": 32.8720699
+   },
+   "Tuscola, TX": {
+      "Lon": -99.7967542,
+      "Lat": 32.2095776
+   },
+   "Red Oak, TX": {
+      "Lon": -96.8153,
+      "Lat": 32.5332101
+   },
+   "Bushland, TX": {
+      "Lon": -102.063912,
+      "Lat": 35.1905251
+   },
+   "Cochiti Pueblo, NM": {
+      "Lon": -106.3503042,
+      "Lat": 35.60892
+   },
+   "Caen, France": {
+      "Lon": -0.3708324,
+      "Lat": 49.1820662
+   },
+   "Anadarko, OK": {
+      "Lon": -98.2436625,
+      "Lat": 35.072562
+   },
+   "Kanarraville, UT": {
+      "Lon": -113.1841166,
+      "Lat": 37.5388676
+   },
+   "Crane, OR": {
+      "Lon": -118.5786837,
+      "Lat": 43.4166527
+   },
+   "Boulder Creek, CA": {
+      "Lon": -122.1221869,
+      "Lat": 37.1260578
+   },
+   "Kapaa, HI": {
+      "Lon": -159.3245926,
+      "Lat": 22.0947394
+   },
+   "Caruthers, CA": {
+      "Lon": -119.8331965,
+      "Lat": 36.5427271
+   },
+   "Mount Zion, IL": {
+      "Lon": -88.8742405,
+      "Lat": 39.7714252
+   },
+   "Smithton, Australia": {
+      "Lon": 145.1258454,
+      "Lat": -40.8417721
+   },
+   "Galicia, Spain": {
+      "Lon": -8.1338558,
+      "Lat": 42.5750554
+   },
+   "Naples, Italy": {
+      "Lon": 14.26812,
+      "Lat": 40.8517983
+   },
+   "Rio Colorado, Argentina": {
+      "Lon": -64.095561,
+      "Lat": -38.9945636
+   },
+   "Poprad, Slovakia": {
+      "Lon": 20.295414,
+      "Lat": 49.0511221
+   },
+   "O Porrino, Spain": {
+      "Lon": -8.6192316,
+      "Lat": 42.161161
+   },
+   "Mataró, Spain": {
+      "Lon": 2.4447406,
+      "Lat": 41.5381124
+   },
+   "Richmond, New Zealand": {
+      "Lon": 173.1817667,
+      "Lat": -41.3366133
+   },
+   "Redwood Valley, CA": {
+      "Lon": -123.2041429,
+      "Lat": 39.2652491
+   },
+   "Ballantine, MT": {
+      "Lon": -108.1451196,
+      "Lat": 45.9488511
+   },
+   "Canterbury, New Zealand": {
+      "Lon": 171.1637245,
+      "Lat": -43.7542275
+   },
+   "Wolfenbüttel, Germany": {
+      "Lon": 10.5342445,
+      "Lat": 52.160443
+   },
+   "Kastel Novi, Croatia": {
+      "Lon": 16.3374805,
+      "Lat": 43.5516824
+   },
+   "Ub, Serbia": {
+      "Lon": 20.075116,
+      "Lat": 44.4558581
+   },
+   "Erie, CO": {
+      "Lon": -105.0499817,
+      "Lat": 40.0502623
+   },
+   "Cottesloe, Australia": {
+      "Lon": 115.7597955,
+      "Lat": -31.989667
+   },
+   "Surrey Hills, Victoria, Australia": {
+      "Lon": 145.0972417,
+      "Lat": -37.8259381
+   },
+   "Les Franqueses Del Valles, Spain": {
+      "Lon": 2.3123031,
+      "Lat": 41.6478275
+   },
+   "Mercer Island, WA": {
+      "Lon": -122.2220673,
+      "Lat": 47.5706548
+   },
+   "St. Andrews, Australia": {
+      "Lon": 145.2815861,
+      "Lat": -37.5951173
+   },
+   "Centralia, WA": {
+      "Lon": -122.9542972,
+      "Lat": 46.7162136
+   },
+   "Travis Afb, CA": {
+      "Lon": -121.9398577,
+      "Lat": 38.2721187
+   },
+   "El Dorado Hills, CA": {
+      "Lon": -121.082167,
+      "Lat": 38.6857367
+   },
+   "Vushtrria, Kosovo": {
+      "Lon": 20.9703489,
+      "Lat": 42.8267025
+   },
+   "Cesson, France": {
+      "Lon": 2.600995,
+      "Lat": 48.56225
+   },
+   "Lorentzweiler, Luxembourg": {
+      "Lon": 6.1408978,
+      "Lat": 49.7016798
+   },
+   "East Albury, Australia": {
+      "Lon": 146.9301049,
+      "Lat": -36.0758001
+   },
+   "Lausanne, Switzerland": {
+      "Lon": 6.6322734,
+      "Lat": 46.5196535
+   },
+   "Cholet, France": {
+      "Lon": -0.8801125999999999,
+      "Lat": 47.0597412
+   },
+   "Prince George County, MD": {
+      "Lon": -76.8720961,
+      "Lat": 38.78492110000001
+   },
+   "Cherry, MN": {
+      "Lon": -92.70712970000001,
+      "Lat": 47.4007645
+   },
+   "Kinshasa, Congo": {
+      "Lon": 15.310528,
+      "Lat": -4.3032527
+   },
+   "Klaipeda, Lithuania": {
+      "Lon": 21.1442794,
+      "Lat": 55.70329479999999
+   },
+   "Sharpsville, PA": {
+      "Lon": -80.4720141,
+      "Lat": 41.2592225
+   },
+   "Salem, MA": {
+      "Lon": -70.8954626,
+      "Lat": 42.5197473
+   },
+   "Wau, South Sudan": {
+      "Lon": 27.9834738,
+      "Lat": 7.7091884
+   },
+   "Nevesinje, Bosnia & Herzegovina": {
+      "Lon": 18.1134187,
+      "Lat": 43.2587038
    }
 }
