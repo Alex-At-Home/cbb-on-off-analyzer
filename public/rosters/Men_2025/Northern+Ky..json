@@ -1,1 +1,212 @@
-{"JjApathjang":{"player_code_id":{"code":"JjApathjang","id":"Apathjang, JJ","ncaa_id":"5313284"},"number":"22","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"West Jordan, UT"},"DoOday":{"player_code_id":{"code":"DoOday","id":"Oday, Donovan","ncaa_id":"5107298"},"number":"8","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Arlington, TX"},"ShNelson":{"player_code_id":{"code":"ShNelson","id":"Nelson, Shawn","ncaa_id":"5313280"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Miami, FL"},"KaRobinson":{"player_code_id":{"code":"KaRobinson","id":"Robinson, Kael","ncaa_id":"4904206"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Hamilton, New Zealand"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Darrin Horn"},"number":"","pos":"","height":"","year_class":"","gp":-1},"TaDozier":{"player_code_id":{"code":"TaDozier","id":"Dozier, Tae","ncaa_id":"4901934"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Louisville, KY"},"DaGherezgher":{"player_code_id":{"code":"DaGherezgher","id":"Gherezgher, Dan","ncaa_id":"5241674"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Brookfield, WI"},"JuManuelRuiz":{"player_code_id":{"code":"JuManuelRuiz","id":"Manuel Ruiz, Juan","ncaa_id":"11191881"},"number":"17","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Begijar, Spain"},"LjWells":{"player_code_id":{"code":"LjWells","id":"Wells, LJ","ncaa_id":"5106776"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Eau Claire, WI"},"RyTolliver":{"player_code_id":{"code":"RyTolliver","id":"Tolliver, Ryan","ncaa_id":"5313279"},"number":"1","pos":"G","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Hartford, CT"},"AdArcher":{"player_code_id":{"code":"AdArcher","id":"Archer, Addison","ncaa_id":"5313282"},"number":"12","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Forest City, NC"},"EtElliott":{"player_code_id":{"code":"EtElliott","id":"Elliott, Ethan","ncaa_id":"5313281"},"number":"6","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Perth, Australia"},"DoRakotonana":{"player_code_id":{"code":"DoRakotonana","id":"Rakotonanahary, Donovan","ncaa_id":"5241676"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Fianarantsoa, Madagascar"},"MiMinor":{"player_code_id":{"code":"MiMinor","id":"Minor, Mitchel","ncaa_id":"5106778"},"number":"26","pos":"G","height":"5-10","height_in":70,"year_class":"Sr","gp":0,"origin":"Taylor Mill, KY"},"BrDarbyshire":{"player_code_id":{"code":"BrDarbyshire","id":"Darbyshire, Bryce","ncaa_id":"5177192"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Cincinnati, OH"}}
+{
+   "JjApathjang": {
+      "player_code_id": {
+         "code": "JjApathjang",
+         "id": "Apathjang, JJ",
+         "ncaa_id": "5313284"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "West Jordan, UT"
+   },
+   "DoOday": {
+      "player_code_id": {
+         "code": "DoOday",
+         "id": "Oday, Donovan",
+         "ncaa_id": "5107298"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Arlington, TX",
+      "role": "WG"
+   },
+   "ShNelson": {
+      "player_code_id": {
+         "code": "ShNelson",
+         "id": "Nelson, Shawn",
+         "ncaa_id": "5313280"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Miami, FL"
+   },
+   "KaRobinson": {
+      "player_code_id": {
+         "code": "KaRobinson",
+         "id": "Robinson, Kael",
+         "ncaa_id": "4904206"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hamilton, New Zealand"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Darrin Horn"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "TaDozier": {
+      "player_code_id": {
+         "code": "TaDozier",
+         "id": "Dozier, Tae",
+         "ncaa_id": "4901934"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Louisville, KY"
+   },
+   "DaGherezgher": {
+      "player_code_id": {
+         "code": "DaGherezgher",
+         "id": "Gherezgher, Dan",
+         "ncaa_id": "5241674"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brookfield, WI",
+      "role": "CG"
+   },
+   "JuManuelRuiz": {
+      "player_code_id": {
+         "code": "JuManuelRuiz",
+         "id": "Manuel Ruiz, Juan",
+         "ncaa_id": "11191881"
+      },
+      "number": "17",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Begijar, Spain"
+   },
+   "LjWells": {
+      "player_code_id": {
+         "code": "LjWells",
+         "id": "Wells, LJ",
+         "ncaa_id": "5106776"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Eau Claire, WI",
+      "role": "WF"
+   },
+   "RyTolliver": {
+      "player_code_id": {
+         "code": "RyTolliver",
+         "id": "Tolliver, Ryan",
+         "ncaa_id": "5313279"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Hartford, CT"
+   },
+   "AdArcher": {
+      "player_code_id": {
+         "code": "AdArcher",
+         "id": "Archer, Addison",
+         "ncaa_id": "5313282"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Forest City, NC"
+   },
+   "EtElliott": {
+      "player_code_id": {
+         "code": "EtElliott",
+         "id": "Elliott, Ethan",
+         "ncaa_id": "5313281"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Perth, Australia"
+   },
+   "DoRakotonana": {
+      "player_code_id": {
+         "code": "DoRakotonana",
+         "id": "Rakotonanahary, Donovan",
+         "ncaa_id": "5241676"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fianarantsoa, Madagascar"
+   },
+   "MiMinor": {
+      "player_code_id": {
+         "code": "MiMinor",
+         "id": "Minor, Mitchel",
+         "ncaa_id": "5106778"
+      },
+      "number": "26",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Taylor Mill, KY"
+   },
+   "BrDarbyshire": {
+      "player_code_id": {
+         "code": "BrDarbyshire",
+         "id": "Darbyshire, Bryce",
+         "ncaa_id": "5177192"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cincinnati, OH"
+   }
+}

@@ -1,1 +1,225 @@
-{"AiAnabitarte":{"player_code_id":{"code":"AiAnabitarte","id":"Anabitarte, Aitor","ncaa_id":"4709991"},"number":"21","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Lasarte, Spain"},"JoVick":{"player_code_id":{"code":"JoVick","id":"Vick, Jordan","ncaa_id":"5312341"},"number":"8","pos":"G","height":"-","year_class":"Fr","gp":0,"origin":"Bailey, NC"},"JaNash":{"player_code_id":{"code":"JaNash","id":"Nash, Jaye","ncaa_id":"5060718"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Memphis, TN"},"JaFranklin":{"player_code_id":{"code":"JaFranklin","id":"Franklin, Jamar","ncaa_id":"5106456"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Rockledge, FL"},"MoElMoutaouakk":{"player_code_id":{"code":"MoElMoutaouakk","id":"El Moutaouakkil, Mostapha","ncaa_id":"5240082"},"number":"23","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Rabat, Morocco"},"AcBryant":{"player_code_id":{"code":"AcBryant","id":"Bryant, AC","ncaa_id":"5177521"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Shreveport, LA"},"EmErkins-for":{"player_code_id":{"code":"EmErkins-for","id":"Erkins-Ford, Emondrek","ncaa_id":"5312342"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Chicago, IL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Ray Harper"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaFitzgerald":{"player_code_id":{"code":"MaFitzgerald","id":"Fitzgerald Jr., Marcus","ncaa_id":"4703415"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Nashville, TN"},"JaHill":{"player_code_id":{"code":"JaHill","id":"Hill, JaCoby","ncaa_id":"5312340"},"number":"2","pos":"G","height":"-","year_class":"Fr","gp":0,"origin":"Phenix City, AL"},"BeVungo":{"player_code_id":{"code":"BeVungo","id":"Vungo, Bencao","ncaa_id":"5196348"},"number":"5","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Chitato, Angola"},"ToNnadozie":{"player_code_id":{"code":"ToNnadozie","id":"Nnadozie, Toby","ncaa_id":"5108777"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Baltimore, MD"},"CoLoy":{"player_code_id":{"code":"CoLoy","id":"Loy, Connor","ncaa_id":"5312343"},"number":"14","pos":"G","height":"-","year_class":"Fr","gp":0,"origin":"Columbia, KY"},"IaNiagu":{"player_code_id":{"code":"IaNiagu","id":"Niagu, Iaroslav","ncaa_id":"5105645"},"number":"99","pos":"F","height":"7-0","height_in":84,"year_class":"Jr","gp":0,"origin":"Krasnodar, Russia"},"ThTut":{"player_code_id":{"code":"ThTut","id":"Tut, Thomas","ncaa_id":"5107805"},"number":"42","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Juba, South Sudan"},"AiDriggers":{"player_code_id":{"code":"AiDriggers","id":"Driggers, Aidan","ncaa_id":"5242122"},"number":"55","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Oneonta, AL"}}
+{
+   "AiAnabitarte": {
+      "player_code_id": {
+         "code": "AiAnabitarte",
+         "id": "Anabitarte, Aitor",
+         "ncaa_id": "4709991"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lasarte, Spain"
+   },
+   "JoVick": {
+      "player_code_id": {
+         "code": "JoVick",
+         "id": "Vick, Jordan",
+         "ncaa_id": "5312341"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bailey, NC"
+   },
+   "JaNash": {
+      "player_code_id": {
+         "code": "JaNash",
+         "id": "Nash, Jaye",
+         "ncaa_id": "5060718"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Memphis, TN"
+   },
+   "JaFranklin": {
+      "player_code_id": {
+         "code": "JaFranklin",
+         "id": "Franklin, Jamar",
+         "ncaa_id": "5106456"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rockledge, FL",
+      "role": "WG"
+   },
+   "MoElMoutaouakk": {
+      "player_code_id": {
+         "code": "MoElMoutaouakk",
+         "id": "El Moutaouakkil, Mostapha",
+         "ncaa_id": "5240082"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rabat, Morocco",
+      "role": "WG"
+   },
+   "AcBryant": {
+      "player_code_id": {
+         "code": "AcBryant",
+         "id": "Bryant, AC",
+         "ncaa_id": "5177521"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Shreveport, LA",
+      "role": "WG"
+   },
+   "EmErkins-for": {
+      "player_code_id": {
+         "code": "EmErkins-for",
+         "id": "Erkins-Ford, Emondrek",
+         "ncaa_id": "5312342"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Ray Harper"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaFitzgerald": {
+      "player_code_id": {
+         "code": "MaFitzgerald",
+         "id": "Fitzgerald Jr., Marcus",
+         "ncaa_id": "4703415"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Nashville, TN"
+   },
+   "JaHill": {
+      "player_code_id": {
+         "code": "JaHill",
+         "id": "Hill, JaCoby",
+         "ncaa_id": "5312340"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Phenix City, AL"
+   },
+   "BeVungo": {
+      "player_code_id": {
+         "code": "BeVungo",
+         "id": "Vungo, Bencao",
+         "ncaa_id": "5196348"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chitato, Angola"
+   },
+   "ToNnadozie": {
+      "player_code_id": {
+         "code": "ToNnadozie",
+         "id": "Nnadozie, Toby",
+         "ncaa_id": "5108777"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Baltimore, MD",
+      "role": "CG"
+   },
+   "CoLoy": {
+      "player_code_id": {
+         "code": "CoLoy",
+         "id": "Loy, Connor",
+         "ncaa_id": "5312343"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Columbia, KY"
+   },
+   "IaNiagu": {
+      "player_code_id": {
+         "code": "IaNiagu",
+         "id": "Niagu, Iaroslav",
+         "ncaa_id": "5105645"
+      },
+      "number": "99",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Krasnodar, Russia",
+      "role": "C"
+   },
+   "ThTut": {
+      "player_code_id": {
+         "code": "ThTut",
+         "id": "Tut, Thomas",
+         "ncaa_id": "5107805"
+      },
+      "number": "42",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Juba, South Sudan"
+   },
+   "AiDriggers": {
+      "player_code_id": {
+         "code": "AiDriggers",
+         "id": "Driggers, Aidan",
+         "ncaa_id": "5242122"
+      },
+      "number": "55",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Oneonta, AL"
+   }
+}

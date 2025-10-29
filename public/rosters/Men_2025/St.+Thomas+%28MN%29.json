@@ -1,1 +1,240 @@
-{"TiFranks":{"player_code_id":{"code":"TiFranks","id":"Franks, Tim","ncaa_id":"5241413"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Mequon, WI"},"ToHumphries":{"player_code_id":{"code":"ToHumphries","id":"Humphries, Tommy","ncaa_id":"5176134"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Minneapolis, MN"},"RyLafferty":{"player_code_id":{"code":"RyLafferty","id":"Lafferty, Ryan","ncaa_id":"5241414"},"number":"3","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Spokane, WA"},"AuHerro":{"player_code_id":{"code":"AuHerro","id":"Herro, Austin","ncaa_id":"4685653"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Milwaukee, WI"},"AdTauer":{"player_code_id":{"code":"AdTauer","id":"Tauer, Adam","ncaa_id":"5177053"},"number":"15","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Saint Paul, MN"},"NoMinessale":{"player_code_id":{"code":"NoMinessale","id":"Minessale, Nolan","ncaa_id":"5241415"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Brookfield, WI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"John Tauer"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaTauer":{"player_code_id":{"code":"JaTauer","id":"Tauer, Jack","ncaa_id":"5314673"},"number":"20","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Saint Paul, MN"},"LuMomcilovic":{"player_code_id":{"code":"LuMomcilovic","id":"Momcilovic, Luka","ncaa_id":"5314672"},"number":"13","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Pewaukee, WI"},"HaTibbits":{"player_code_id":{"code":"HaTibbits","id":"Tibbits, Hayden","ncaa_id":"5177052"},"number":"1","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Medina, MN"},"NiJanowski":{"player_code_id":{"code":"NiJanowski","id":"Janowski, Nick","ncaa_id":"5060721"},"number":"23","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Pewaukee, WI"},"CaBjerke":{"player_code_id":{"code":"CaBjerke","id":"Bjerke, Carter","ncaa_id":"5109020"},"number":"32","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Plymouth, MN"},"RyDufault":{"player_code_id":{"code":"RyDufault","id":"Dufault, Ryan","ncaa_id":"4897245"},"number":"12","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Waseca, MN"},"KyCounts":{"player_code_id":{"code":"KyCounts","id":"Counts, Kyle","ncaa_id":"5241412"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Wilsonville, OR"},"IsJohnson-ar":{"player_code_id":{"code":"IsJohnson-ar","id":"Johnson-Arigu, Isaiah","ncaa_id":"5171688"},"number":"0","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Minneapolis, MN"},"BeOosterbaan":{"player_code_id":{"code":"BeOosterbaan","id":"Oosterbaan, Ben","ncaa_id":"5177054"},"number":"34","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Hinsdale, IL"},"JeColeman":{"player_code_id":{"code":"JeColeman","id":"Coleman, Jermaine","ncaa_id":"5177708"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Indianapolis, IN"}}
+{
+   "TiFranks": {
+      "player_code_id": {
+         "code": "TiFranks",
+         "id": "Franks, Tim",
+         "ncaa_id": "5241413"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Mequon, WI"
+   },
+   "ToHumphries": {
+      "player_code_id": {
+         "code": "ToHumphries",
+         "id": "Humphries, Tommy",
+         "ncaa_id": "5176134"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Minneapolis, MN"
+   },
+   "RyLafferty": {
+      "player_code_id": {
+         "code": "RyLafferty",
+         "id": "Lafferty, Ryan",
+         "ncaa_id": "5241414"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Spokane, WA"
+   },
+   "AuHerro": {
+      "player_code_id": {
+         "code": "AuHerro",
+         "id": "Herro, Austin",
+         "ncaa_id": "4685653"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Milwaukee, WI"
+   },
+   "AdTauer": {
+      "player_code_id": {
+         "code": "AdTauer",
+         "id": "Tauer, Adam",
+         "ncaa_id": "5177053"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Saint Paul, MN"
+   },
+   "NoMinessale": {
+      "player_code_id": {
+         "code": "NoMinessale",
+         "id": "Minessale, Nolan",
+         "ncaa_id": "5241415"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Brookfield, WI",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "John Tauer"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaTauer": {
+      "player_code_id": {
+         "code": "JaTauer",
+         "id": "Tauer, Jack",
+         "ncaa_id": "5314673"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Saint Paul, MN"
+   },
+   "LuMomcilovic": {
+      "player_code_id": {
+         "code": "LuMomcilovic",
+         "id": "Momcilovic, Luka",
+         "ncaa_id": "5314672"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Pewaukee, WI"
+   },
+   "HaTibbits": {
+      "player_code_id": {
+         "code": "HaTibbits",
+         "id": "Tibbits, Hayden",
+         "ncaa_id": "5177052"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Medina, MN"
+   },
+   "NiJanowski": {
+      "player_code_id": {
+         "code": "NiJanowski",
+         "id": "Janowski, Nick",
+         "ncaa_id": "5060721"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Pewaukee, WI"
+   },
+   "CaBjerke": {
+      "player_code_id": {
+         "code": "CaBjerke",
+         "id": "Bjerke, Carter",
+         "ncaa_id": "5109020"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Plymouth, MN",
+      "role": "S-PF"
+   },
+   "RyDufault": {
+      "player_code_id": {
+         "code": "RyDufault",
+         "id": "Dufault, Ryan",
+         "ncaa_id": "4897245"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Waseca, MN"
+   },
+   "KyCounts": {
+      "player_code_id": {
+         "code": "KyCounts",
+         "id": "Counts, Kyle",
+         "ncaa_id": "5241412"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Wilsonville, OR"
+   },
+   "IsJohnson-ar": {
+      "player_code_id": {
+         "code": "IsJohnson-ar",
+         "id": "Johnson-Arigu, Isaiah",
+         "ncaa_id": "5171688"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Minneapolis, MN"
+   },
+   "BeOosterbaan": {
+      "player_code_id": {
+         "code": "BeOosterbaan",
+         "id": "Oosterbaan, Ben",
+         "ncaa_id": "5177054"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hinsdale, IL",
+      "role": "WG"
+   },
+   "JeColeman": {
+      "player_code_id": {
+         "code": "JeColeman",
+         "id": "Coleman, Jermaine",
+         "ncaa_id": "5177708"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Indianapolis, IN"
+   }
+}

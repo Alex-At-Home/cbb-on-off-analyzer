@@ -1,1 +1,226 @@
-{"TrGlover":{"player_code_id":{"code":"TrGlover","id":"Glover II, Troy","ncaa_id":"5112412"},"number":"16","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Wheaton, IL"},"AiGoins":{"player_code_id":{"code":"AiGoins","id":"Goins, Aidenn","ncaa_id":"5312972"},"number":"34","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Knoxville, TN"},"GrSpurgin":{"player_code_id":{"code":"GrSpurgin","id":"Spurgin, Greg","ncaa_id":"4905915"},"number":"8","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Toowoomba, Australia"},"JuThomas":{"player_code_id":{"code":"JuThomas","id":"Thomas, Justin","ncaa_id":"5106773"},"number":"25","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Baton Rouge, LA"},"JoShackelfor":{"player_code_id":{"code":"JoShackelfor","id":"Shackelford, Josiah","ncaa_id":"5312969"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Sanford, FL"},"CaKarel":{"player_code_id":{"code":"CaKarel","id":"Karel, Camden","ncaa_id":"5312971"},"number":"15","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Byron Center, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Todd Simon"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaCampbell":{"player_code_id":{"code":"JaCampbell","id":"Campbell, Javontae","ncaa_id":"5242560"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Muskogee, OK"},"JaPardon":{"player_code_id":{"code":"JaPardon","id":"Pardon, Jaxon","ncaa_id":"5242559"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Fort Wayne, IN"},"SaTowns":{"player_code_id":{"code":"SaTowns","id":"Towns, Sam","ncaa_id":"4703531"},"number":"14","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Columbus, OH"},"PrSquire":{"player_code_id":{"code":"PrSquire","id":"Squire, Preston","ncaa_id":"5242564"},"number":"13","pos":"F","height":"6-11","height_in":83,"year_class":"Jr","gp":0,"origin":"Ephraim, UT"},"AlAdem":{"player_code_id":{"code":"AlAdem","id":"Adem, Alijah","ncaa_id":"5242565"},"number":"31","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Las Vegas, NV"},"MoMaxamud":{"player_code_id":{"code":"MoMaxamud","id":"Maxamud, Mohamed","ncaa_id":"5242563"},"number":"12","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Westerville, OH"},"JaRuffin":{"player_code_id":{"code":"JaRuffin","id":"Ruffin, Javon","ncaa_id":"4693725"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Phoenix, AZ"},"MaLeach":{"player_code_id":{"code":"MaLeach","id":"Leach, Makhi","ncaa_id":"5312968"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Toledo, OH"},"JaKimbrough":{"player_code_id":{"code":"JaKimbrough","id":"Kimbrough Jr., Jason","ncaa_id":"5312967"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Maricopa, AZ"}}
+{
+   "TrGlover": {
+      "player_code_id": {
+         "code": "TrGlover",
+         "id": "Glover II, Troy",
+         "ncaa_id": "5112412"
+      },
+      "number": "16",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Wheaton, IL"
+   },
+   "AiGoins": {
+      "player_code_id": {
+         "code": "AiGoins",
+         "id": "Goins, Aidenn",
+         "ncaa_id": "5312972"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Knoxville, TN"
+   },
+   "GrSpurgin": {
+      "player_code_id": {
+         "code": "GrSpurgin",
+         "id": "Spurgin, Greg",
+         "ncaa_id": "4905915"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Toowoomba, Australia"
+   },
+   "JuThomas": {
+      "player_code_id": {
+         "code": "JuThomas",
+         "id": "Thomas, Justin",
+         "ncaa_id": "5106773"
+      },
+      "number": "25",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Baton Rouge, LA",
+      "role": "CG"
+   },
+   "JoShackelfor": {
+      "player_code_id": {
+         "code": "JoShackelfor",
+         "id": "Shackelford, Josiah",
+         "ncaa_id": "5312969"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Sanford, FL"
+   },
+   "CaKarel": {
+      "player_code_id": {
+         "code": "CaKarel",
+         "id": "Karel, Camden",
+         "ncaa_id": "5312971"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Byron Center, MI"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Todd Simon"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaCampbell": {
+      "player_code_id": {
+         "code": "JaCampbell",
+         "id": "Campbell, Javontae",
+         "ncaa_id": "5242560"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Muskogee, OK",
+      "role": "s-PG"
+   },
+   "JaPardon": {
+      "player_code_id": {
+         "code": "JaPardon",
+         "id": "Pardon, Jaxon",
+         "ncaa_id": "5242559"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fort Wayne, IN"
+   },
+   "SaTowns": {
+      "player_code_id": {
+         "code": "SaTowns",
+         "id": "Towns, Sam",
+         "ncaa_id": "4703531"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Columbus, OH"
+   },
+   "PrSquire": {
+      "player_code_id": {
+         "code": "PrSquire",
+         "id": "Squire, Preston",
+         "ncaa_id": "5242564"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Ephraim, UT"
+   },
+   "AlAdem": {
+      "player_code_id": {
+         "code": "AlAdem",
+         "id": "Adem, Alijah",
+         "ncaa_id": "5242565"
+      },
+      "number": "31",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Las Vegas, NV"
+   },
+   "MoMaxamud": {
+      "player_code_id": {
+         "code": "MoMaxamud",
+         "id": "Maxamud, Mohamed",
+         "ncaa_id": "5242563"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Westerville, OH"
+   },
+   "JaRuffin": {
+      "player_code_id": {
+         "code": "JaRuffin",
+         "id": "Ruffin, Javon",
+         "ncaa_id": "4693725"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Phoenix, AZ",
+      "role": "CG"
+   },
+   "MaLeach": {
+      "player_code_id": {
+         "code": "MaLeach",
+         "id": "Leach, Makhi",
+         "ncaa_id": "5312968"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Toledo, OH"
+   },
+   "JaKimbrough": {
+      "player_code_id": {
+         "code": "JaKimbrough",
+         "id": "Kimbrough Jr., Jason",
+         "ncaa_id": "5312967"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Maricopa, AZ"
+   }
+}

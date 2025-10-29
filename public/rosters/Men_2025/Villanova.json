@@ -1,1 +1,217 @@
-{"MaFlaggs":{"player_code_id":{"code":"MaFlaggs","id":"Flaggs, Malcolm","ncaa_id":"5105576"},"number":"15","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Chandler, AZ"},"MaPalmer":{"player_code_id":{"code":"MaPalmer","id":"Palmer, Malachi","ncaa_id":"5239554"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Harrisburg, PA"},"DuBrennan":{"player_code_id":{"code":"DuBrennan","id":"Brennan, Duke","ncaa_id":"4870569"},"number":"24","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Chandler, AZ"},"MaHodge":{"player_code_id":{"code":"MaHodge","id":"Hodge, Matt","ncaa_id":"5175588"},"number":"33","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Limburg, Belgium"},"AcLewis":{"player_code_id":{"code":"AcLewis","id":"Lewis, Acaden","ncaa_id":"5144105"},"number":"55","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Washington, DC"},"TaGapare":{"player_code_id":{"code":"TaGapare","id":"Gapare, Tafara","ncaa_id":"5106034"},"number":"6","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Wellington, New Zealand"},"WaChiddick":{"player_code_id":{"code":"WaChiddick","id":"Chiddick, Wade","ncaa_id":"5240540"},"number":"14","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"King Of Prussia, PA"},"BrLindsay":{"player_code_id":{"code":"BrLindsay","id":"Lindsay, Bryce","ncaa_id":"5174291"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Baltimore, MD"},"ChJeffrey":{"player_code_id":{"code":"ChJeffrey","id":"Jeffrey, Christian","ncaa_id":"5221332"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Brooklyn, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Kevin Willard"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DeAskew":{"player_code_id":{"code":"DeAskew","id":"Askew, Devin","ncaa_id":"4702467"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Sacramento, CA"},"TyPerkins":{"player_code_id":{"code":"TyPerkins","id":"Perkins, Tyler","ncaa_id":"5182412"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Lorton, VA"},"NiOnyekwere":{"player_code_id":{"code":"NiOnyekwere","id":"Onyekwere, Nico","ncaa_id":"5281374"},"number":"21","pos":"C","height":"7-1","height_in":85,"year_class":"Fr","gp":0,"origin":"Abuja, Nigeria"},"ZiStanford":{"player_code_id":{"code":"ZiStanford","id":"Stanford, Zion","ncaa_id":"5175067"},"number":"1","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Philadelphia, PA"},"BrPierce":{"player_code_id":{"code":"BrPierce","id":"Pierce, Braden","ncaa_id":"5142360"},"number":"17","pos":"C","height":"7-0","height_in":84,"year_class":"So","gp":0,"origin":"Woodstock, GA"}}
+{
+   "MaFlaggs": {
+      "player_code_id": {
+         "code": "MaFlaggs",
+         "id": "Flaggs, Malcolm",
+         "ncaa_id": "5105576"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chandler, AZ"
+   },
+   "MaPalmer": {
+      "player_code_id": {
+         "code": "MaPalmer",
+         "id": "Palmer, Malachi",
+         "ncaa_id": "5239554"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Harrisburg, PA",
+      "role": "WF"
+   },
+   "DuBrennan": {
+      "player_code_id": {
+         "code": "DuBrennan",
+         "id": "Brennan, Duke",
+         "ncaa_id": "4870569"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chandler, AZ",
+      "role": "C"
+   },
+   "MaHodge": {
+      "player_code_id": {
+         "code": "MaHodge",
+         "id": "Hodge, Matt",
+         "ncaa_id": "5175588"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Limburg, Belgium",
+      "role": "S-PF"
+   },
+   "AcLewis": {
+      "player_code_id": {
+         "code": "AcLewis",
+         "id": "Lewis, Acaden",
+         "ncaa_id": "5144105"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Washington, DC",
+      "role": "PG"
+   },
+   "TaGapare": {
+      "player_code_id": {
+         "code": "TaGapare",
+         "id": "Gapare, Tafara",
+         "ncaa_id": "5106034"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Wellington, New Zealand"
+   },
+   "WaChiddick": {
+      "player_code_id": {
+         "code": "WaChiddick",
+         "id": "Chiddick, Wade",
+         "ncaa_id": "5240540"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "King Of Prussia, PA"
+   },
+   "BrLindsay": {
+      "player_code_id": {
+         "code": "BrLindsay",
+         "id": "Lindsay, Bryce",
+         "ncaa_id": "5174291"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Baltimore, MD",
+      "role": "CG"
+   },
+   "ChJeffrey": {
+      "player_code_id": {
+         "code": "ChJeffrey",
+         "id": "Jeffrey, Christian",
+         "ncaa_id": "5221332"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Brooklyn, NY"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Kevin Willard"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DeAskew": {
+      "player_code_id": {
+         "code": "DeAskew",
+         "id": "Askew, Devin",
+         "ncaa_id": "4702467"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sacramento, CA",
+      "role": "s-PG"
+   },
+   "TyPerkins": {
+      "player_code_id": {
+         "code": "TyPerkins",
+         "id": "Perkins, Tyler",
+         "ncaa_id": "5182412"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lorton, VA",
+      "role": "WG"
+   },
+   "NiOnyekwere": {
+      "player_code_id": {
+         "code": "NiOnyekwere",
+         "id": "Onyekwere, Nico",
+         "ncaa_id": "5281374"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Abuja, Nigeria"
+   },
+   "ZiStanford": {
+      "player_code_id": {
+         "code": "ZiStanford",
+         "id": "Stanford, Zion",
+         "ncaa_id": "5175067"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "WG"
+   },
+   "BrPierce": {
+      "player_code_id": {
+         "code": "BrPierce",
+         "id": "Pierce, Braden",
+         "ncaa_id": "5142360"
+      },
+      "number": "17",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Woodstock, GA"
+   }
+}

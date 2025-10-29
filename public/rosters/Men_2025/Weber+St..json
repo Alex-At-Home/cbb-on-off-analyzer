@@ -1,1 +1,201 @@
-{"DeCutler":{"player_code_id":{"code":"DeCutler","id":"Cutler, Declan","ncaa_id":"5241318"},"number":"15","pos":"C","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Vancouver, Canada"},"MaGomma":{"player_code_id":{"code":"MaGomma","id":"Gomma, Malek","ncaa_id":"5177717"},"number":"7","pos":"C","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Seattle, WA"},"JaWhiting":{"player_code_id":{"code":"JaWhiting","id":"Whiting, Jace","ncaa_id":"5107474"},"number":"24","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Burley, ID"},"ArGrayson":{"player_code_id":{"code":"ArGrayson","id":"Grayson, ArDarius","ncaa_id":"5313295"},"number":"12","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Oakland, CA"},"TrHennig":{"player_code_id":{"code":"TrHennig","id":"Hennig, Trevor","ncaa_id":"5241316"},"number":"6","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"North Bend, WA"},"NiBurris":{"player_code_id":{"code":"NiBurris","id":"Burris, Nigel","ncaa_id":"5107824"},"number":"5","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"San Francisco, CA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Eric Duft"},"number":"","pos":"","height":"","year_class":"","gp":-1},"BoTshilobo":{"player_code_id":{"code":"BoTshilobo","id":"Tshilobo, Bourgeois","ncaa_id":"5313296"},"number":"17","pos":"C","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Los Angeles, CA"},"EdSuarez":{"player_code_id":{"code":"EdSuarez","id":"Suarez, Edwin","ncaa_id":"5313291"},"number":"0","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Reading, PA"},"AnMoore":{"player_code_id":{"code":"AnMoore","id":"Moore, Anthony","ncaa_id":"5313293"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Stockton, CA"},"DaHansen":{"player_code_id":{"code":"DaHansen","id":"Hansen, David","ncaa_id":"5241319"},"number":"33","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Magrath, Canada"},"ViVartiainen":{"player_code_id":{"code":"ViVartiainen","id":"Vartiainen, Viljami","ncaa_id":"5175397"},"number":"8","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Helsinki, Finland"},"TiSaine":{"player_code_id":{"code":"TiSaine","id":"Saine, Tijan","ncaa_id":"5313292"},"number":"3","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Everett, WA"},"DuPaschal":{"player_code_id":{"code":"DuPaschal","id":"Paschal, Duce","ncaa_id":"5313294"},"number":"9","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Portland, OR"}}
+{
+   "DeCutler": {
+      "player_code_id": {
+         "code": "DeCutler",
+         "id": "Cutler, Declan",
+         "ncaa_id": "5241318"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Vancouver, Canada",
+      "role": "C"
+   },
+   "MaGomma": {
+      "player_code_id": {
+         "code": "MaGomma",
+         "id": "Gomma, Malek",
+         "ncaa_id": "5177717"
+      },
+      "number": "7",
+      "pos": "C",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Seattle, WA",
+      "role": "C"
+   },
+   "JaWhiting": {
+      "player_code_id": {
+         "code": "JaWhiting",
+         "id": "Whiting, Jace",
+         "ncaa_id": "5107474"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Burley, ID",
+      "role": "CG"
+   },
+   "ArGrayson": {
+      "player_code_id": {
+         "code": "ArGrayson",
+         "id": "Grayson, ArDarius",
+         "ncaa_id": "5313295"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Oakland, CA"
+   },
+   "TrHennig": {
+      "player_code_id": {
+         "code": "TrHennig",
+         "id": "Hennig, Trevor",
+         "ncaa_id": "5241316"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "North Bend, WA",
+      "role": "WG"
+   },
+   "NiBurris": {
+      "player_code_id": {
+         "code": "NiBurris",
+         "id": "Burris, Nigel",
+         "ncaa_id": "5107824"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "San Francisco, CA",
+      "role": "S-PF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Eric Duft"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "BoTshilobo": {
+      "player_code_id": {
+         "code": "BoTshilobo",
+         "id": "Tshilobo, Bourgeois",
+         "ncaa_id": "5313296"
+      },
+      "number": "17",
+      "pos": "C",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "EdSuarez": {
+      "player_code_id": {
+         "code": "EdSuarez",
+         "id": "Suarez, Edwin",
+         "ncaa_id": "5313291"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Reading, PA"
+   },
+   "AnMoore": {
+      "player_code_id": {
+         "code": "AnMoore",
+         "id": "Moore, Anthony",
+         "ncaa_id": "5313293"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Stockton, CA"
+   },
+   "DaHansen": {
+      "player_code_id": {
+         "code": "DaHansen",
+         "id": "Hansen, David",
+         "ncaa_id": "5241319"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Magrath, Canada"
+   },
+   "ViVartiainen": {
+      "player_code_id": {
+         "code": "ViVartiainen",
+         "id": "Vartiainen, Viljami",
+         "ncaa_id": "5175397"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Helsinki, Finland",
+      "role": "WF"
+   },
+   "TiSaine": {
+      "player_code_id": {
+         "code": "TiSaine",
+         "id": "Saine, Tijan",
+         "ncaa_id": "5313292"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Everett, WA"
+   },
+   "DuPaschal": {
+      "player_code_id": {
+         "code": "DuPaschal",
+         "id": "Paschal, Duce",
+         "ncaa_id": "5313294"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Portland, OR"
+   }
+}

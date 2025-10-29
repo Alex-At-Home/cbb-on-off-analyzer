@@ -1,1 +1,244 @@
-{"MiEvbagharu":{"player_code_id":{"code":"MiEvbagharu","id":"Evbagharu, Mike","ncaa_id":"5177167"},"number":"15","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Scarborough, Canada"},"ChKumu":{"player_code_id":{"code":"ChKumu","id":"Kumu, Christopher","ncaa_id":"5311725"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Montreal, Canada"},"AnBenard":{"player_code_id":{"code":"AnBenard","id":"Benard, Anthony","ncaa_id":"5176146"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Detroit, MI"},"MyWilmoth":{"player_code_id":{"code":"MyWilmoth","id":"Wilmoth, Myles","ncaa_id":"4433560"},"number":"5","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Chestnut Ridge, NY"},"MaJusianiec":{"player_code_id":{"code":"MaJusianiec","id":"Jusianiec, Max","ncaa_id":"5243383"},"number":"21","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Alfred, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jim Christian"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnAsh":{"player_code_id":{"code":"AnAsh","id":"Ash, Andreo","ncaa_id":"5311729"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Liverpool, NY"},"TrAugustine":{"player_code_id":{"code":"TrAugustine","id":"Augustine, Trevor","ncaa_id":"5265865"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Grand Island, NY"},"ZaChristian":{"player_code_id":{"code":"ZaChristian","id":"Christian, Zach","ncaa_id":"5311727"},"number":"6","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Grand Island, NY"},"BrNdjonga":{"player_code_id":{"code":"BrNdjonga","id":"Ndjonga, Bryan","ncaa_id":"5175788"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Yaoundé, Cameroon"},"NiDigiulio":{"player_code_id":{"code":"NiDigiulio","id":"DiGiulio, Nicco","ncaa_id":"5177093"},"number":"4","pos":"G","height":"5-10","height_in":70,"year_class":"So","gp":0,"origin":"Williamsville, NY"},"KaSingleton":{"player_code_id":{"code":"KaSingleton","id":"Singleton, Kahlil","ncaa_id":"5176059"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Vancouver, WA"},"JaEdwards":{"player_code_id":{"code":"JaEdwards","id":"Edwards, Javante","ncaa_id":"5311726"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Milwaukee, WI"},"EvDerPlas":{"player_code_id":{"code":"EvDerPlas","id":"van der Plas, Evan","ncaa_id":"5241462"},"number":"9","pos":"F","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Rosmalen, Netherlands"},"BrOliver":{"player_code_id":{"code":"BrOliver","id":"Oliver, Brendan","ncaa_id":"5311728"},"number":"22","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"West Orange, NJ"},"KiIjeoma":{"player_code_id":{"code":"KiIjeoma","id":"Ijeoma, King","ncaa_id":"5258414"},"number":"34","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Houston, TX"},"MaNiblack":{"player_code_id":{"code":"MaNiblack","id":"Niblack, Marcus","ncaa_id":"4703805"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Leesburg, FL"}}
+{
+   "MiEvbagharu": {
+      "player_code_id": {
+         "code": "MiEvbagharu",
+         "id": "Evbagharu, Mike",
+         "ncaa_id": "5177167"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Scarborough, Canada",
+      "role": "WG"
+   },
+   "ChKumu": {
+      "player_code_id": {
+         "code": "ChKumu",
+         "id": "Kumu, Christopher",
+         "ncaa_id": "5311725"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Montreal, Canada"
+   },
+   "AnBenard": {
+      "player_code_id": {
+         "code": "AnBenard",
+         "id": "Benard, Anthony",
+         "ncaa_id": "5176146"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "s-PG"
+   },
+   "MyWilmoth": {
+      "player_code_id": {
+         "code": "MyWilmoth",
+         "id": "Wilmoth, Myles",
+         "ncaa_id": "4433560"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chestnut Ridge, NY",
+      "role": "PF/C"
+   },
+   "MaJusianiec": {
+      "player_code_id": {
+         "code": "MaJusianiec",
+         "id": "Jusianiec, Max",
+         "ncaa_id": "5243383"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Alfred, NY",
+      "role": "WF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jim Christian"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnAsh": {
+      "player_code_id": {
+         "code": "AnAsh",
+         "id": "Ash, Andreo",
+         "ncaa_id": "5311729"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Liverpool, NY"
+   },
+   "TrAugustine": {
+      "player_code_id": {
+         "code": "TrAugustine",
+         "id": "Augustine, Trevor",
+         "ncaa_id": "5265865"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Grand Island, NY"
+   },
+   "ZaChristian": {
+      "player_code_id": {
+         "code": "ZaChristian",
+         "id": "Christian, Zach",
+         "ncaa_id": "5311727"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Grand Island, NY"
+   },
+   "BrNdjonga": {
+      "player_code_id": {
+         "code": "BrNdjonga",
+         "id": "Ndjonga, Bryan",
+         "ncaa_id": "5175788"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Yaoundé, Cameroon",
+      "role": "S-PF"
+   },
+   "NiDigiulio": {
+      "player_code_id": {
+         "code": "NiDigiulio",
+         "id": "DiGiulio, Nicco",
+         "ncaa_id": "5177093"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Williamsville, NY"
+   },
+   "KaSingleton": {
+      "player_code_id": {
+         "code": "KaSingleton",
+         "id": "Singleton, Kahlil",
+         "ncaa_id": "5176059"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Vancouver, WA",
+      "role": "WG"
+   },
+   "JaEdwards": {
+      "player_code_id": {
+         "code": "JaEdwards",
+         "id": "Edwards, Javante",
+         "ncaa_id": "5311726"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Milwaukee, WI"
+   },
+   "EvDerPlas": {
+      "player_code_id": {
+         "code": "EvDerPlas",
+         "id": "van der Plas, Evan",
+         "ncaa_id": "5241462"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Rosmalen, Netherlands",
+      "role": "WF"
+   },
+   "BrOliver": {
+      "player_code_id": {
+         "code": "BrOliver",
+         "id": "Oliver, Brendan",
+         "ncaa_id": "5311728"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "West Orange, NJ"
+   },
+   "KiIjeoma": {
+      "player_code_id": {
+         "code": "KiIjeoma",
+         "id": "Ijeoma, King",
+         "ncaa_id": "5258414"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "MaNiblack": {
+      "player_code_id": {
+         "code": "MaNiblack",
+         "id": "Niblack, Marcus",
+         "ncaa_id": "4703805"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Leesburg, FL"
+   }
+}

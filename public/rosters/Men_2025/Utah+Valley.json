@@ -1,1 +1,228 @@
-{"TyHendricks":{"player_code_id":{"code":"TyHendricks","id":"Hendricks, Tyler","ncaa_id":"4838703"},"number":"15","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Fort Lauderdale, FL"},"AjRiggs":{"player_code_id":{"code":"AjRiggs","id":"Riggs, AJ","ncaa_id":"5314812"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Gilbert, AZ"},"JaRoberts":{"player_code_id":{"code":"JaRoberts","id":"Roberts, Jaxson","ncaa_id":"5314811"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Draper, UT"},"TyWeaver":{"player_code_id":{"code":"TyWeaver","id":"Weaver, Tyler","ncaa_id":"5241382"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Aliso Viejo, CA"},"AjDixon":{"player_code_id":{"code":"AjDixon","id":"Dixon, AJ","ncaa_id":"5243016"},"number":"24","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Merrillville, IN"},"IsHawkins":{"player_code_id":{"code":"IsHawkins","id":"Hawkins, Isaac","ncaa_id":"5314813"},"number":"23","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Fort Mill, SC"},"JoKarram":{"player_code_id":{"code":"JoKarram","id":"Karram, Joul","ncaa_id":"5240506"},"number":"99","pos":"","height":"6-11","height_in":83,"year_class":"So","gp":0,"origin":"Nazareth, Israel"},"HaWelling":{"player_code_id":{"code":"HaWelling","id":"Welling, Hayden","ncaa_id":"5107161"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Draper, UT"},"NoTaitz":{"player_code_id":{"code":"NoTaitz","id":"Taitz, Noah","ncaa_id":"4432398"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Las Vegas, NV"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Todd Phillips"},"number":"","pos":"","height":"","year_class":"","gp":-1},"IsDavis":{"player_code_id":{"code":"IsDavis","id":"Davis, Isaac","ncaa_id":"4873202"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Idaho Falls, ID"},"JaHolcombe":{"player_code_id":{"code":"JaHolcombe","id":"Holcombe, Jackson","ncaa_id":"5176632"},"number":"2","pos":"G","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Charleston, SC"},"BrHousley":{"player_code_id":{"code":"BrHousley","id":"Housley, Braden","ncaa_id":"5105495"},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Lehi, UT"},"TyMedaris":{"player_code_id":{"code":"TyMedaris","id":"Medaris, Tyler","ncaa_id":"5241377"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Middleton, ID"},"ShWeatherspo":{"player_code_id":{"code":"ShWeatherspo","id":"Weatherspoon IV, Sherman","ncaa_id":"5176399"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Bowie, MD"},"TrLeonhardt":{"player_code_id":{"code":"TrLeonhardt","id":"Leonhardt, Trevan","ncaa_id":"5105468"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Kaysville, UT"}}
+{
+   "TyHendricks": {
+      "player_code_id": {
+         "code": "TyHendricks",
+         "id": "Hendricks, Tyler",
+         "ncaa_id": "4838703"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Fort Lauderdale, FL",
+      "role": "WF"
+   },
+   "AjRiggs": {
+      "player_code_id": {
+         "code": "AjRiggs",
+         "id": "Riggs, AJ",
+         "ncaa_id": "5314812"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Gilbert, AZ"
+   },
+   "JaRoberts": {
+      "player_code_id": {
+         "code": "JaRoberts",
+         "id": "Roberts, Jaxson",
+         "ncaa_id": "5314811"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Draper, UT"
+   },
+   "TyWeaver": {
+      "player_code_id": {
+         "code": "TyWeaver",
+         "id": "Weaver, Tyler",
+         "ncaa_id": "5241382"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Aliso Viejo, CA"
+   },
+   "AjDixon": {
+      "player_code_id": {
+         "code": "AjDixon",
+         "id": "Dixon, AJ",
+         "ncaa_id": "5243016"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Merrillville, IN"
+   },
+   "IsHawkins": {
+      "player_code_id": {
+         "code": "IsHawkins",
+         "id": "Hawkins, Isaac",
+         "ncaa_id": "5314813"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Fort Mill, SC"
+   },
+   "JoKarram": {
+      "player_code_id": {
+         "code": "JoKarram",
+         "id": "Karram, Joul",
+         "ncaa_id": "5240506"
+      },
+      "number": "99",
+      "pos": "",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Nazareth, Israel"
+   },
+   "HaWelling": {
+      "player_code_id": {
+         "code": "HaWelling",
+         "id": "Welling, Hayden",
+         "ncaa_id": "5107161"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Draper, UT",
+      "role": "S-PF"
+   },
+   "NoTaitz": {
+      "player_code_id": {
+         "code": "NoTaitz",
+         "id": "Taitz, Noah",
+         "ncaa_id": "4432398"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Las Vegas, NV"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Todd Phillips"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "IsDavis": {
+      "player_code_id": {
+         "code": "IsDavis",
+         "id": "Davis, Isaac",
+         "ncaa_id": "4873202"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Idaho Falls, ID"
+   },
+   "JaHolcombe": {
+      "player_code_id": {
+         "code": "JaHolcombe",
+         "id": "Holcombe, Jackson",
+         "ncaa_id": "5176632"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Charleston, SC",
+      "role": "WF"
+   },
+   "BrHousley": {
+      "player_code_id": {
+         "code": "BrHousley",
+         "id": "Housley, Braden",
+         "ncaa_id": "5105495"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Lehi, UT",
+      "role": "CG"
+   },
+   "TyMedaris": {
+      "player_code_id": {
+         "code": "TyMedaris",
+         "id": "Medaris, Tyler",
+         "ncaa_id": "5241377"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Middleton, ID"
+   },
+   "ShWeatherspo": {
+      "player_code_id": {
+         "code": "ShWeatherspo",
+         "id": "Weatherspoon IV, Sherman",
+         "ncaa_id": "5176399"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bowie, MD"
+   },
+   "TrLeonhardt": {
+      "player_code_id": {
+         "code": "TrLeonhardt",
+         "id": "Leonhardt, Trevan",
+         "ncaa_id": "5105468"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Kaysville, UT",
+      "role": "PG"
+   }
+}

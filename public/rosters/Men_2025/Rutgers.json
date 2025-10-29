@@ -1,1 +1,228 @@
-{"HaZrno":{"player_code_id":{"code":"HaZrno","id":"Zrno, Harun","ncaa_id":"5264730"},"number":"13","pos":"G","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Sarajevo, Bosnia and Herzegovina"},"GeWare":{"player_code_id":{"code":"GeWare","id":"Ware, Gevonte","ncaa_id":"5101841"},"number":"15","pos":"C","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Roosevelt Isl, NY"},"DaBuchanan":{"player_code_id":{"code":"DaBuchanan","id":"Buchanan Jr., Darren","ncaa_id":"5105402"},"number":"5","pos":"G","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Washington, DC"},"JaDavis":{"player_code_id":{"code":"JaDavis","id":"Davis, Jamichael","ncaa_id":"5142358"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Powder Springs, GA"},"MaFradkin":{"player_code_id":{"code":"MaFradkin","id":"Fradkin, Max","ncaa_id":"5239609"},"number":"44","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Southbury, CT"},"DeBadalau":{"player_code_id":{"code":"DeBadalau","id":"Badalau, Denis","ncaa_id":"5312037"},"number":"27","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Bucuresti, Romania"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Steve Pikiell"},"number":"","pos":"","height":"","year_class":"","gp":-1},"BrDortch":{"player_code_id":{"code":"BrDortch","id":"Dortch, Bryce","ncaa_id":"5144387"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Somerset, MA"},"BaFall":{"player_code_id":{"code":"BaFall","id":"Fall, Baye","ncaa_id":"4683770"},"number":"32","pos":"C","height":"6-11","height_in":83,"year_class":"Jr","gp":0,"origin":"Dakar, Senegal"},"DyGrant":{"player_code_id":{"code":"DyGrant","id":"Grant, Dylan","ncaa_id":"5061576"},"number":"9","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Mississauga, Canada"},"AnMark":{"player_code_id":{"code":"AnMark","id":"Mark, Angelino","ncaa_id":"5234749"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Chatsworth, Ca, CA"},"EmOgbole":{"player_code_id":{"code":"EmOgbole","id":"Ogbole, Emmanuel","ncaa_id":"5174805"},"number":"21","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Aune-Adoka, Nigeria"},"TaFrancis":{"player_code_id":{"code":"TaFrancis","id":"Francis, Tariq","ncaa_id":"5175809"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Pittsburgh, PA"},"ChNwuli":{"player_code_id":{"code":"ChNwuli","id":"Nwuli, Christopher","ncaa_id":"5081348"},"number":"11","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"North Las Vegas, NV"},"DoJones":{"player_code_id":{"code":"DoJones","id":"Jones, Dorian","ncaa_id":"5101811"},"number":"22","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Cleveland, OH"},"KaPowers":{"player_code_id":{"code":"KaPowers","id":"Powers, Kaden","ncaa_id":"5248301"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Seattle, WA"}}
+{
+   "HaZrno": {
+      "player_code_id": {
+         "code": "HaZrno",
+         "id": "Zrno, Harun",
+         "ncaa_id": "5264730"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Sarajevo, Bosnia and Herzegovina"
+   },
+   "GeWare": {
+      "player_code_id": {
+         "code": "GeWare",
+         "id": "Ware, Gevonte",
+         "ncaa_id": "5101841"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Roosevelt Isl, NY"
+   },
+   "DaBuchanan": {
+      "player_code_id": {
+         "code": "DaBuchanan",
+         "id": "Buchanan Jr., Darren",
+         "ncaa_id": "5105402"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Washington, DC",
+      "role": "WF"
+   },
+   "JaDavis": {
+      "player_code_id": {
+         "code": "JaDavis",
+         "id": "Davis, Jamichael",
+         "ncaa_id": "5142358"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Powder Springs, GA",
+      "role": "s-PG"
+   },
+   "MaFradkin": {
+      "player_code_id": {
+         "code": "MaFradkin",
+         "id": "Fradkin, Max",
+         "ncaa_id": "5239609"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Southbury, CT"
+   },
+   "DeBadalau": {
+      "player_code_id": {
+         "code": "DeBadalau",
+         "id": "Badalau, Denis",
+         "ncaa_id": "5312037"
+      },
+      "number": "27",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bucuresti, Romania"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Steve Pikiell"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "BrDortch": {
+      "player_code_id": {
+         "code": "BrDortch",
+         "id": "Dortch, Bryce",
+         "ncaa_id": "5144387"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Somerset, MA"
+   },
+   "BaFall": {
+      "player_code_id": {
+         "code": "BaFall",
+         "id": "Fall, Baye",
+         "ncaa_id": "4683770"
+      },
+      "number": "32",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dakar, Senegal"
+   },
+   "DyGrant": {
+      "player_code_id": {
+         "code": "DyGrant",
+         "id": "Grant, Dylan",
+         "ncaa_id": "5061576"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Mississauga, Canada",
+      "role": "S-PF"
+   },
+   "AnMark": {
+      "player_code_id": {
+         "code": "AnMark",
+         "id": "Mark, Angelino",
+         "ncaa_id": "5234749"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chatsworth, Ca, CA"
+   },
+   "EmOgbole": {
+      "player_code_id": {
+         "code": "EmOgbole",
+         "id": "Ogbole, Emmanuel",
+         "ncaa_id": "5174805"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Aune-Adoka, Nigeria",
+      "role": "C"
+   },
+   "TaFrancis": {
+      "player_code_id": {
+         "code": "TaFrancis",
+         "id": "Francis, Tariq",
+         "ncaa_id": "5175809"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Pittsburgh, PA",
+      "role": "s-PG"
+   },
+   "ChNwuli": {
+      "player_code_id": {
+         "code": "ChNwuli",
+         "id": "Nwuli, Christopher",
+         "ncaa_id": "5081348"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "North Las Vegas, NV"
+   },
+   "DoJones": {
+      "player_code_id": {
+         "code": "DoJones",
+         "id": "Jones, Dorian",
+         "ncaa_id": "5101811"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cleveland, OH"
+   },
+   "KaPowers": {
+      "player_code_id": {
+         "code": "KaPowers",
+         "id": "Powers, Kaden",
+         "ncaa_id": "5248301"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Seattle, WA"
+   }
+}

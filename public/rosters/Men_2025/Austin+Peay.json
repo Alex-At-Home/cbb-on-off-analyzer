@@ -1,1 +1,200 @@
-{"TyWagner":{"player_code_id":{"code":"TyWagner","id":"Wagner, Tyler","ncaa_id":"5312886"},"number":"2","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Brooklyn Park, MN"},"ZyCollins":{"player_code_id":{"code":"ZyCollins","id":"Collins, Zyree","ncaa_id":"5312885"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"Fr","gp":0,"origin":"Saint Louis, MO"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Corey Gipson"},"number":"","pos":"","height":"","year_class":"","gp":-1},"HaEnmanuel":{"player_code_id":{"code":"HaEnmanuel","id":"Enmanuel, Hansel","ncaa_id":"5108913"},"number":"24","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Santo Domingo, Dominican Republic"},"TeGaines":{"player_code_id":{"code":"TeGaines","id":"Gaines, Terrell","ncaa_id":"5239750"},"number":"10","pos":"G","height":"5-8","height_in":68,"year_class":"So","gp":0,"origin":"West Plains, MO"},"AnBrookshire":{"player_code_id":{"code":"AnBrookshire","id":"Brookshire, Anton","ncaa_id":"4683734"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Springfield, MO"},"TaMccubbin":{"player_code_id":{"code":"TaMccubbin","id":"McCubbin, Tate","ncaa_id":"5239748"},"number":"0","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Columbia, MO"},"CrMorisch":{"player_code_id":{"code":"CrMorisch","id":"Morisch, Creighton","ncaa_id":"5312888"},"number":"7","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Spirit Lake, IA"},"JaRobinson":{"player_code_id":{"code":"JaRobinson","id":"Robinson, Ja'Corey","ncaa_id":"5312890"},"number":"23","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Topeka, KS"},"RaMarshall":{"player_code_id":{"code":"RaMarshall","id":"Marshall, Rashaud","ncaa_id":"5060699"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Blytheville, AR"},"QuLax":{"player_code_id":{"code":"QuLax","id":"Lax, Quan","ncaa_id":"5239753"},"number":"20","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Bolivar, TN"},"TrTorain":{"player_code_id":{"code":"TrTorain","id":"Torain, Travis","ncaa_id":"5312889"},"number":"22","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Surprise, AZ"},"MaEnright":{"player_code_id":{"code":"MaEnright","id":"Enright, Matt","ncaa_id":"5312887"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Saint Louis, MO"},"CoParker":{"player_code_id":{"code":"CoParker","id":"Parker, Collin","ncaa_id":"5312891"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Montgomery City, MO"}}
+{
+   "TyWagner": {
+      "player_code_id": {
+         "code": "TyWagner",
+         "id": "Wagner, Tyler",
+         "ncaa_id": "5312886"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Brooklyn Park, MN"
+   },
+   "ZyCollins": {
+      "player_code_id": {
+         "code": "ZyCollins",
+         "id": "Collins, Zyree",
+         "ncaa_id": "5312885"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Corey Gipson"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "HaEnmanuel": {
+      "player_code_id": {
+         "code": "HaEnmanuel",
+         "id": "Enmanuel, Hansel",
+         "ncaa_id": "5108913"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Santo Domingo, Dominican Republic",
+      "role": "WF"
+   },
+   "TeGaines": {
+      "player_code_id": {
+         "code": "TeGaines",
+         "id": "Gaines, Terrell",
+         "ncaa_id": "5239750"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "West Plains, MO"
+   },
+   "AnBrookshire": {
+      "player_code_id": {
+         "code": "AnBrookshire",
+         "id": "Brookshire, Anton",
+         "ncaa_id": "4683734"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Springfield, MO",
+      "role": "s-PG"
+   },
+   "TaMccubbin": {
+      "player_code_id": {
+         "code": "TaMccubbin",
+         "id": "McCubbin, Tate",
+         "ncaa_id": "5239748"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Columbia, MO",
+      "role": "WF"
+   },
+   "CrMorisch": {
+      "player_code_id": {
+         "code": "CrMorisch",
+         "id": "Morisch, Creighton",
+         "ncaa_id": "5312888"
+      },
+      "number": "7",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Spirit Lake, IA"
+   },
+   "JaRobinson": {
+      "player_code_id": {
+         "code": "JaRobinson",
+         "id": "Robinson, Ja'Corey",
+         "ncaa_id": "5312890"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Topeka, KS"
+   },
+   "RaMarshall": {
+      "player_code_id": {
+         "code": "RaMarshall",
+         "id": "Marshall, Rashaud",
+         "ncaa_id": "5060699"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Blytheville, AR",
+      "role": "C"
+   },
+   "QuLax": {
+      "player_code_id": {
+         "code": "QuLax",
+         "id": "Lax, Quan",
+         "ncaa_id": "5239753"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bolivar, TN",
+      "role": "CG"
+   },
+   "TrTorain": {
+      "player_code_id": {
+         "code": "TrTorain",
+         "id": "Torain, Travis",
+         "ncaa_id": "5312889"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Surprise, AZ"
+   },
+   "MaEnright": {
+      "player_code_id": {
+         "code": "MaEnright",
+         "id": "Enright, Matt",
+         "ncaa_id": "5312887"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "CoParker": {
+      "player_code_id": {
+         "code": "CoParker",
+         "id": "Parker, Collin",
+         "ncaa_id": "5312891"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Montgomery City, MO"
+   }
+}

@@ -1,1 +1,224 @@
-{"MaCompas":{"player_code_id":{"code":"MaCompas","id":"Compas, Matt","ncaa_id":"5181934"},"number":"15","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Blue Bell, PA"},"MiDavis":{"player_code_id":{"code":"MiDavis","id":"Davis, Micah","ncaa_id":"5239785"},"number":"4","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Greenwood, IN"},"CoBoston":{"player_code_id":{"code":"CoBoston","id":"Boston, Corey","ncaa_id":"5313208"},"number":"2","pos":"G","height":"5-10","height_in":70,"year_class":"Sr","gp":0,"origin":"Lafayette, AL"},"ReHagy":{"player_code_id":{"code":"ReHagy","id":"Hagy, Reece","ncaa_id":"5313207"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Charlottesville, VA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Ben Howlett"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KaTinsley":{"player_code_id":{"code":"KaTinsley","id":"Tinsley, Kameron","ncaa_id":"5313214"},"number":"20","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Roanoke, VA"},"GaStewart":{"player_code_id":{"code":"GaStewart","id":"Stewart, Gabe","ncaa_id":"5313216"},"number":"24","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Flagler Beach, FL"},"KyD'augustin":{"player_code_id":{"code":"KyD'augustin","id":"D'Augustino, Kyler","ncaa_id":"5313212"},"number":"12","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Albany, OH"},"FiWoodward":{"player_code_id":{"code":"FiWoodward","id":"Woodward, Finley","ncaa_id":"5313210"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Bristol, United Kingdom"},"AjHolubar":{"player_code_id":{"code":"AjHolubar","id":"Holubar, Ajay","ncaa_id":"5115456"},"number":"22","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Bargersville, IN"},"GaSever":{"player_code_id":{"code":"GaSever","id":"Sever, Garrett","ncaa_id":"5313211"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Hilliard, OH"},"AiMiller":{"player_code_id":{"code":"AiMiller","id":"Miller, Aiden","ncaa_id":"5313215"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Austin, TX"},"JaEdwards":{"player_code_id":{"code":"JaEdwards","id":"Edwards, Jaxon","ncaa_id":"5107890"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Indianapolis, IN"},"LaCvetkovic'":{"player_code_id":{"code":"LaCvetkovic'","id":"Cvetkovic', Lav","ncaa_id":"5261271"},"number":"10","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Novi Sad, Serbia"},"MaMitchell":{"player_code_id":{"code":"MaMitchell","id":"Mitchell, Maguire","ncaa_id":"5313213"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Zionsville, IN"},"JpDragas":{"player_code_id":{"code":"JpDragas","id":"Dragas, JP","ncaa_id":"9960746"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Madison, OH"}}
+{
+   "MaCompas": {
+      "player_code_id": {
+         "code": "MaCompas",
+         "id": "Compas, Matt",
+         "ncaa_id": "5181934"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Blue Bell, PA"
+   },
+   "MiDavis": {
+      "player_code_id": {
+         "code": "MiDavis",
+         "id": "Davis, Micah",
+         "ncaa_id": "5239785"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Greenwood, IN"
+   },
+   "CoBoston": {
+      "player_code_id": {
+         "code": "CoBoston",
+         "id": "Boston, Corey",
+         "ncaa_id": "5313208"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lafayette, AL"
+   },
+   "ReHagy": {
+      "player_code_id": {
+         "code": "ReHagy",
+         "id": "Hagy, Reece",
+         "ncaa_id": "5313207"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Charlottesville, VA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Ben Howlett"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KaTinsley": {
+      "player_code_id": {
+         "code": "KaTinsley",
+         "id": "Tinsley, Kameron",
+         "ncaa_id": "5313214"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Roanoke, VA"
+   },
+   "GaStewart": {
+      "player_code_id": {
+         "code": "GaStewart",
+         "id": "Stewart, Gabe",
+         "ncaa_id": "5313216"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Flagler Beach, FL"
+   },
+   "KyD'augustin": {
+      "player_code_id": {
+         "code": "KyD'augustin",
+         "id": "D'Augustino, Kyler",
+         "ncaa_id": "5313212"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Albany, OH"
+   },
+   "FiWoodward": {
+      "player_code_id": {
+         "code": "FiWoodward",
+         "id": "Woodward, Finley",
+         "ncaa_id": "5313210"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bristol, United Kingdom"
+   },
+   "AjHolubar": {
+      "player_code_id": {
+         "code": "AjHolubar",
+         "id": "Holubar, Ajay",
+         "ncaa_id": "5115456"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bargersville, IN"
+   },
+   "GaSever": {
+      "player_code_id": {
+         "code": "GaSever",
+         "id": "Sever, Garrett",
+         "ncaa_id": "5313211"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Hilliard, OH"
+   },
+   "AiMiller": {
+      "player_code_id": {
+         "code": "AiMiller",
+         "id": "Miller, Aiden",
+         "ncaa_id": "5313215"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Austin, TX"
+   },
+   "JaEdwards": {
+      "player_code_id": {
+         "code": "JaEdwards",
+         "id": "Edwards, Jaxon",
+         "ncaa_id": "5107890"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "WF"
+   },
+   "LaCvetkovic'": {
+      "player_code_id": {
+         "code": "LaCvetkovic'",
+         "id": "Cvetkovic', Lav",
+         "ncaa_id": "5261271"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Novi Sad, Serbia"
+   },
+   "MaMitchell": {
+      "player_code_id": {
+         "code": "MaMitchell",
+         "id": "Mitchell, Maguire",
+         "ncaa_id": "5313213"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Zionsville, IN"
+   },
+   "JpDragas": {
+      "player_code_id": {
+         "code": "JpDragas",
+         "id": "Dragas, JP",
+         "ncaa_id": "9960746"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Madison, OH"
+   }
+}

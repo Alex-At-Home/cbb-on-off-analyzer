@@ -1,1 +1,246 @@
-{"AmLindsey":{"player_code_id":{"code":"AmLindsey","id":"Lindsey, Amir","ncaa_id":"5239812"},"number":"2","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Framingham, MA"},"AbFall":{"player_code_id":{"code":"AbFall","id":"Fall, Abdoulaye","ncaa_id":"5313145"},"number":"22","pos":"G","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Dakar, Senegal"},"WiRichardson":{"player_code_id":{"code":"WiRichardson","id":"Richardson, Will","ncaa_id":"5105887"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Teaneck, NJ"},"BaGiralt":{"player_code_id":{"code":"BaGiralt","id":"Giralt, Bautista","ncaa_id":"5175795"},"number":"10","pos":"C","height":"7-0","height_in":84,"year_class":"Jr","gp":0,"origin":"Buenos Aires, Argentina"},"WiPaulino":{"player_code_id":{"code":"WiPaulino","id":"Paulino, Wilkin","ncaa_id":"5313143"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Worcester, MA"},"TaFoster":{"player_code_id":{"code":"TaFoster","id":"Foster, Tarique","ncaa_id":"5174615"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Bronx, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Dwayne Killings"},"number":"","pos":"","height":"","year_class":"","gp":-1},"IsAbidde":{"player_code_id":{"code":"IsAbidde","id":"Abidde, Isaac","ncaa_id":"4897200"},"number":"5","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Albany, GA"},"NaMuhammad":{"player_code_id":{"code":"NaMuhammad","id":"Muhammad, Nasir","ncaa_id":"5176224"},"number":"8","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Brooklyn, NY"},"IfWest-ingra":{"player_code_id":{"code":"IfWest-ingra","id":"West-Ingram, Ife","ncaa_id":"5177145"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Philadelphia, PA"},"MiRose":{"player_code_id":{"code":"MiRose","id":"Rose, Miles","ncaa_id":"5174669"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Rochester, NY"},"ZaMatulu":{"player_code_id":{"code":"ZaMatulu","id":"Matulu, Zach","ncaa_id":"5175797"},"number":"14","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Latham, NY"},"JaKempson":{"player_code_id":{"code":"JaKempson","id":"Kempson, Jaden","ncaa_id":"5313144"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Bronx, NY"},"MaTaylor":{"player_code_id":{"code":"MaTaylor","id":"Taylor, Ma'Kye","ncaa_id":"5239814"},"number":"13","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Philadelphia, PA"},"SuAdewale":{"player_code_id":{"code":"SuAdewale","id":"Adewale, Sultan","ncaa_id":"5177099"},"number":"33","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"London, United Kingdom"},"OkOkeke":{"player_code_id":{"code":"OkOkeke","id":"Okeke, Okechukwu","ncaa_id":"5177685"},"number":"00","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"East Chicago, IN"},"YaKeita":{"player_code_id":{"code":"YaKeita","id":"Keita, Yaya","ncaa_id":"4684461"},"number":"25","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"St. Louis, MO"}}
+{
+   "AmLindsey": {
+      "player_code_id": {
+         "code": "AmLindsey",
+         "id": "Lindsey, Amir",
+         "ncaa_id": "5239812"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Framingham, MA",
+      "role": "CG"
+   },
+   "AbFall": {
+      "player_code_id": {
+         "code": "AbFall",
+         "id": "Fall, Abdoulaye",
+         "ncaa_id": "5313145"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dakar, Senegal"
+   },
+   "WiRichardson": {
+      "player_code_id": {
+         "code": "WiRichardson",
+         "id": "Richardson, Will",
+         "ncaa_id": "5105887"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Teaneck, NJ",
+      "role": "s-PG"
+   },
+   "BaGiralt": {
+      "player_code_id": {
+         "code": "BaGiralt",
+         "id": "Giralt, Bautista",
+         "ncaa_id": "5175795"
+      },
+      "number": "10",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Buenos Aires, Argentina"
+   },
+   "WiPaulino": {
+      "player_code_id": {
+         "code": "WiPaulino",
+         "id": "Paulino, Wilkin",
+         "ncaa_id": "5313143"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Worcester, MA"
+   },
+   "TaFoster": {
+      "player_code_id": {
+         "code": "TaFoster",
+         "id": "Foster, Tarique",
+         "ncaa_id": "5174615"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bronx, NY",
+      "role": "WF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Dwayne Killings"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "IsAbidde": {
+      "player_code_id": {
+         "code": "IsAbidde",
+         "id": "Abidde, Isaac",
+         "ncaa_id": "4897200"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Albany, GA",
+      "role": "S-PF"
+   },
+   "NaMuhammad": {
+      "player_code_id": {
+         "code": "NaMuhammad",
+         "id": "Muhammad, Nasir",
+         "ncaa_id": "5176224"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "CG"
+   },
+   "IfWest-ingra": {
+      "player_code_id": {
+         "code": "IfWest-ingra",
+         "id": "West-Ingram, Ife",
+         "ncaa_id": "5177145"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "C"
+   },
+   "MiRose": {
+      "player_code_id": {
+         "code": "MiRose",
+         "id": "Rose, Miles",
+         "ncaa_id": "5174669"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Rochester, NY"
+   },
+   "ZaMatulu": {
+      "player_code_id": {
+         "code": "ZaMatulu",
+         "id": "Matulu, Zach",
+         "ncaa_id": "5175797"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Latham, NY",
+      "role": "WG"
+   },
+   "JaKempson": {
+      "player_code_id": {
+         "code": "JaKempson",
+         "id": "Kempson, Jaden",
+         "ncaa_id": "5313144"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "MaTaylor": {
+      "player_code_id": {
+         "code": "MaTaylor",
+         "id": "Taylor, Ma'Kye",
+         "ncaa_id": "5239814"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Philadelphia, PA"
+   },
+   "SuAdewale": {
+      "player_code_id": {
+         "code": "SuAdewale",
+         "id": "Adewale, Sultan",
+         "ncaa_id": "5177099"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "London, United Kingdom",
+      "role": "C"
+   },
+   "OkOkeke": {
+      "player_code_id": {
+         "code": "OkOkeke",
+         "id": "Okeke, Okechukwu",
+         "ncaa_id": "5177685"
+      },
+      "number": "00",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "East Chicago, IN",
+      "role": "C"
+   },
+   "YaKeita": {
+      "player_code_id": {
+         "code": "YaKeita",
+         "id": "Keita, Yaya",
+         "ncaa_id": "4684461"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "St. Louis, MO"
+   }
+}

@@ -1,1 +1,198 @@
-{"BeNacey":{"player_code_id":{"code":"BeNacey","id":"Nacey, Ben","ncaa_id":"5240620"},"number":"42","pos":"C","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Virginia Beach, VA"},"DeWare":{"player_code_id":{"code":"DeWare","id":"Ware, Deion","ncaa_id":"5313179"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"New Orleans, LA"},"RiHellams":{"player_code_id":{"code":"RiHellams","id":"Hellams, Rieco","ncaa_id":"5246872"},"number":"16","pos":"G","height":"5-8","height_in":68,"year_class":"Jr","gp":0,"origin":"Washington, DC"},"SeDurugordon":{"player_code_id":{"code":"SeDurugordon","id":"Durugordon, Sean","ncaa_id":"4683842"},"number":"6","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Queens Village, NY"},"CoJones":{"player_code_id":{"code":"CoJones","id":"Jones, Cooper","ncaa_id":"5106462"},"number":"30","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Williamsburg, VA"},"RoDavis":{"player_code_id":{"code":"RoDavis","id":"Davis Jr., Robert","ncaa_id":"5174612"},"number":"4","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Detroit, MI"},"CaSwanton-ro":{"player_code_id":{"code":"CaSwanton-ro","id":"Swanton-Rodger, Caelum","ncaa_id":"5105804"},"number":"35","pos":"C","height":"7-0","height_in":84,"year_class":"Sr","gp":0,"origin":"Calgary, Canada"},"ScHubbard":{"player_code_id":{"code":"ScHubbard","id":"Hubbard, Scottie","ncaa_id":"5240615"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Washington, DC"},"JaJenkins":{"player_code_id":{"code":"JaJenkins","id":"Jenkins, Jaylen","ncaa_id":"9336646"},"number":"55","pos":"G","height":"5-9","height_in":69,"year_class":"Jr","gp":0,"origin":"Hampton, VA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mike Jones"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DoRaymond":{"player_code_id":{"code":"DoRaymond","id":"Raymond, Donovan","ncaa_id":"4711303"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Norcross, GA"},"CjParker":{"player_code_id":{"code":"CjParker","id":"Parker, CJ","ncaa_id":"5240617"},"number":"15","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Norfolk, VA"},"VyZygas":{"player_code_id":{"code":"VyZygas","id":"Zygas, Vytautas","ncaa_id":"9336653"},"number":"21","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Kaunas, Republic of Lithuania"},"StWalker":{"player_code_id":{"code":"StWalker","id":"Walker, Stephaun","ncaa_id":"5106791"},"number":"0","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Washington, DC"}}
+{
+   "BeNacey": {
+      "player_code_id": {
+         "code": "BeNacey",
+         "id": "Nacey, Ben",
+         "ncaa_id": "5240620"
+      },
+      "number": "42",
+      "pos": "C",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Virginia Beach, VA"
+   },
+   "DeWare": {
+      "player_code_id": {
+         "code": "DeWare",
+         "id": "Ware, Deion",
+         "ncaa_id": "5313179"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "New Orleans, LA"
+   },
+   "RiHellams": {
+      "player_code_id": {
+         "code": "RiHellams",
+         "id": "Hellams, Rieco",
+         "ncaa_id": "5246872"
+      },
+      "number": "16",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Washington, DC"
+   },
+   "SeDurugordon": {
+      "player_code_id": {
+         "code": "SeDurugordon",
+         "id": "Durugordon, Sean",
+         "ncaa_id": "4683842"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Queens Village, NY"
+   },
+   "CoJones": {
+      "player_code_id": {
+         "code": "CoJones",
+         "id": "Jones, Cooper",
+         "ncaa_id": "5106462"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Williamsburg, VA"
+   },
+   "RoDavis": {
+      "player_code_id": {
+         "code": "RoDavis",
+         "id": "Davis Jr., Robert",
+         "ncaa_id": "5174612"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "CG"
+   },
+   "CaSwanton-ro": {
+      "player_code_id": {
+         "code": "CaSwanton-ro",
+         "id": "Swanton-Rodger, Caelum",
+         "ncaa_id": "5105804"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Calgary, Canada",
+      "role": "C"
+   },
+   "ScHubbard": {
+      "player_code_id": {
+         "code": "ScHubbard",
+         "id": "Hubbard, Scottie",
+         "ncaa_id": "5240615"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Washington, DC"
+   },
+   "JaJenkins": {
+      "player_code_id": {
+         "code": "JaJenkins",
+         "id": "Jenkins, Jaylen",
+         "ncaa_id": "9336646"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Hampton, VA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mike Jones"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DoRaymond": {
+      "player_code_id": {
+         "code": "DoRaymond",
+         "id": "Raymond, Donovan",
+         "ncaa_id": "4711303"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Norcross, GA"
+   },
+   "CjParker": {
+      "player_code_id": {
+         "code": "CjParker",
+         "id": "Parker, CJ",
+         "ncaa_id": "5240617"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Norfolk, VA"
+   },
+   "VyZygas": {
+      "player_code_id": {
+         "code": "VyZygas",
+         "id": "Zygas, Vytautas",
+         "ncaa_id": "9336653"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Kaunas, Republic of Lithuania"
+   },
+   "StWalker": {
+      "player_code_id": {
+         "code": "StWalker",
+         "id": "Walker, Stephaun",
+         "ncaa_id": "5106791"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Washington, DC",
+      "role": "S-PF"
+   }
+}

@@ -1,1 +1,198 @@
-{"JaOuwinga":{"player_code_id":{"code":"JaOuwinga","id":"Ouwinga, Jaylan","ncaa_id":"5243086"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Grand Rapids, MI"},"WiJames":{"player_code_id":{"code":"WiJames","id":"James, Jr., Will","ncaa_id":"5314227"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Holly Springs, NC"},"LoPraytor":{"player_code_id":{"code":"LoPraytor","id":"Praytor, London","ncaa_id":"5314228"},"number":"21","pos":"F","height":"-","year_class":"Fr","gp":0,"origin":"Colorado Springs, CO"},"AuParks":{"player_code_id":{"code":"AuParks","id":"Parks, Austin","ncaa_id":"4711260"},"number":"25","pos":"C","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Saint Marys, OH"},"LeBlyden":{"player_code_id":{"code":"LeBlyden","id":"Blyden Jr., Leroy","ncaa_id":"5314225"},"number":"2","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Detroit, MI"},"PhGlassnor":{"player_code_id":{"code":"PhGlassnor","id":"Glassnor, Phoenix","ncaa_id":"5314229"},"number":"23","pos":"G","height":"6-0","height_in":72,"year_class":"Fr","gp":0,"origin":"Port Huron, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Tod Kowalczyk"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ChRiddle":{"player_code_id":{"code":"ChRiddle","id":"Riddle, Chris","ncaa_id":"4905252"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Chicago, IL"},"ToNwokolo":{"player_code_id":{"code":"ToNwokolo","id":"Nwokolo, Toby","ncaa_id":"5314224"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Columbus, OH"},"MyStrong":{"player_code_id":{"code":"MyStrong","id":"Strong, Mynor","ncaa_id":"5314226"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Omaha, NE"},"KyVanderjagt":{"player_code_id":{"code":"KyVanderjagt","id":"VanderJagt, Kyler","ncaa_id":"5107969"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Grand Rapids, MI"},"SeCraig":{"player_code_id":{"code":"SeCraig","id":"Craig, Sean","ncaa_id":"5115458"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Sylvania, OH"},"SoWilson":{"player_code_id":{"code":"SoWilson","id":"Wilson, Sonny","ncaa_id":"4845365"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Pontiac, MI"},"TyOde":{"player_code_id":{"code":"TyOde","id":"Ode, Tyler","ncaa_id":"5147322"},"number":"22","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Saginaw, MI"}}
+{
+   "JaOuwinga": {
+      "player_code_id": {
+         "code": "JaOuwinga",
+         "id": "Ouwinga, Jaylan",
+         "ncaa_id": "5243086"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Grand Rapids, MI",
+      "role": "PF/C"
+   },
+   "WiJames": {
+      "player_code_id": {
+         "code": "WiJames",
+         "id": "James, Jr., Will",
+         "ncaa_id": "5314227"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Holly Springs, NC"
+   },
+   "LoPraytor": {
+      "player_code_id": {
+         "code": "LoPraytor",
+         "id": "Praytor, London",
+         "ncaa_id": "5314228"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "-",
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Colorado Springs, CO"
+   },
+   "AuParks": {
+      "player_code_id": {
+         "code": "AuParks",
+         "id": "Parks, Austin",
+         "ncaa_id": "4711260"
+      },
+      "number": "25",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Saint Marys, OH"
+   },
+   "LeBlyden": {
+      "player_code_id": {
+         "code": "LeBlyden",
+         "id": "Blyden Jr., Leroy",
+         "ncaa_id": "5314225"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Detroit, MI"
+   },
+   "PhGlassnor": {
+      "player_code_id": {
+         "code": "PhGlassnor",
+         "id": "Glassnor, Phoenix",
+         "ncaa_id": "5314229"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Port Huron, MI"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Tod Kowalczyk"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ChRiddle": {
+      "player_code_id": {
+         "code": "ChRiddle",
+         "id": "Riddle, Chris",
+         "ncaa_id": "4905252"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "ToNwokolo": {
+      "player_code_id": {
+         "code": "ToNwokolo",
+         "id": "Nwokolo, Toby",
+         "ncaa_id": "5314224"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Columbus, OH"
+   },
+   "MyStrong": {
+      "player_code_id": {
+         "code": "MyStrong",
+         "id": "Strong, Mynor",
+         "ncaa_id": "5314226"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Omaha, NE"
+   },
+   "KyVanderjagt": {
+      "player_code_id": {
+         "code": "KyVanderjagt",
+         "id": "VanderJagt, Kyler",
+         "ncaa_id": "5107969"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Grand Rapids, MI",
+      "role": "WG"
+   },
+   "SeCraig": {
+      "player_code_id": {
+         "code": "SeCraig",
+         "id": "Craig, Sean",
+         "ncaa_id": "5115458"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Sylvania, OH",
+      "role": "S-PF"
+   },
+   "SoWilson": {
+      "player_code_id": {
+         "code": "SoWilson",
+         "id": "Wilson, Sonny",
+         "ncaa_id": "4845365"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Pontiac, MI",
+      "role": "CG"
+   },
+   "TyOde": {
+      "player_code_id": {
+         "code": "TyOde",
+         "id": "Ode, Tyler",
+         "ncaa_id": "5147322"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Saginaw, MI"
+   }
+}

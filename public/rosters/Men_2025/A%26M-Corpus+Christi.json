@@ -1,1 +1,143 @@
-{"ShWilliams":{"player_code_id":{"code":"ShWilliams","id":"Williams, Sheldon","ncaa_id":"5243128"},"number":"6","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Atmore, AL"},"JaWalker":{"player_code_id":{"code":"JaWalker","id":"Walker, Jaden","ncaa_id":"5314706"},"number":"21","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Lawrenceville, GA"},"LeTorbor":{"player_code_id":{"code":"LeTorbor","id":"Torbor, Leo","ncaa_id":"5107813"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Brooklyn Center, MN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jim Shaw"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KaHargrove":{"player_code_id":{"code":"KaHargrove","id":"Hargrove, Kalon","ncaa_id":"5111902"},"number":"22","pos":"G","height":"5-10","height_in":70,"year_class":"So","gp":0,"origin":"San Antonio, TX"},"AaPotter":{"player_code_id":{"code":"AaPotter","id":"Potter, Aaron","ncaa_id":"5107267"},"number":"24","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Tulsa, OK"},"MiOaks":{"player_code_id":{"code":"MiOaks","id":"Oaks, Michael","ncaa_id":"5193275"},"number":"20","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Houston, TX"},"IsWilliams":{"player_code_id":{"code":"IsWilliams","id":"Williams, Isaac","ncaa_id":"5314705"},"number":"10","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Oklahoma City, OK"},"KaParker":{"player_code_id":{"code":"KaParker","id":"Parker, Kam","ncaa_id":"5176710"},"number":"4","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Tulsa, OK"},"KaCrosby":{"player_code_id":{"code":"KaCrosby","id":"Crosby, Kayden","ncaa_id":"5243129"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Pflugerville, TX"}}
+{
+   "ShWilliams": {
+      "player_code_id": {
+         "code": "ShWilliams",
+         "id": "Williams, Sheldon",
+         "ncaa_id": "5243128"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Atmore, AL",
+      "role": "C"
+   },
+   "JaWalker": {
+      "player_code_id": {
+         "code": "JaWalker",
+         "id": "Walker, Jaden",
+         "ncaa_id": "5314706"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lawrenceville, GA",
+      "role": "WG"
+   },
+   "LeTorbor": {
+      "player_code_id": {
+         "code": "LeTorbor",
+         "id": "Torbor, Leo",
+         "ncaa_id": "5107813"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brooklyn Center, MN",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jim Shaw"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KaHargrove": {
+      "player_code_id": {
+         "code": "KaHargrove",
+         "id": "Hargrove, Kalon",
+         "ncaa_id": "5111902"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "San Antonio, TX"
+   },
+   "AaPotter": {
+      "player_code_id": {
+         "code": "AaPotter",
+         "id": "Potter, Aaron",
+         "ncaa_id": "5107267"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Tulsa, OK"
+   },
+   "MiOaks": {
+      "player_code_id": {
+         "code": "MiOaks",
+         "id": "Oaks, Michael",
+         "ncaa_id": "5193275"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "IsWilliams": {
+      "player_code_id": {
+         "code": "IsWilliams",
+         "id": "Williams, Isaac",
+         "ncaa_id": "5314705"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Oklahoma City, OK"
+   },
+   "KaParker": {
+      "player_code_id": {
+         "code": "KaParker",
+         "id": "Parker, Kam",
+         "ncaa_id": "5176710"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Tulsa, OK",
+      "role": "s-PG"
+   },
+   "KaCrosby": {
+      "player_code_id": {
+         "code": "KaCrosby",
+         "id": "Crosby, Kayden",
+         "ncaa_id": "5243129"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Pflugerville, TX"
+   }
+}

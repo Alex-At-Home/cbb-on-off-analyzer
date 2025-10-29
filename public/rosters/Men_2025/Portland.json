@@ -1,1 +1,229 @@
-{"CaBriggs":{"player_code_id":{"code":"CaBriggs","id":"Briggs, Carlin","ncaa_id":"5240968"},"number":"9","pos":"G","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Melbourne, Australia"},"DaCensori-he":{"player_code_id":{"code":"DaCensori-he","id":"Censori-Hercules, Dante","ncaa_id":"5314718"},"number":"5","pos":"G","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Bolton, Canada"},"CaWilliams":{"player_code_id":{"code":"CaWilliams","id":"Williams, Cameron","ncaa_id":"5314723"},"number":"35","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Cape Girardeau, MO"},"MiBallew":{"player_code_id":{"code":"MiBallew","id":"Ballew, Mikah","ncaa_id":"5240973"},"number":"44","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Palmdale, CA"},"GaNuckolls":{"player_code_id":{"code":"GaNuckolls","id":"Nuckolls, Garrett","ncaa_id":"5314720"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Bullard, TX"},"NaLong":{"player_code_id":{"code":"NaLong","id":"Long, NaVaughn","ncaa_id":"5240970"},"number":"21","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Livermore, CA"},"JoFoxwell":{"player_code_id":{"code":"JoFoxwell","id":"Foxwell, Joel","ncaa_id":"5314722"},"number":"23","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Melbourne, Australia"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Shantay Legans"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaO'donnell":{"player_code_id":{"code":"JaO'donnell","id":"O'Donnell, James","ncaa_id":"5241061"},"number":"14","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Sydney, Australia"},"RiParker":{"player_code_id":{"code":"RiParker","id":"Parker, Riley","ncaa_id":"5242402"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Mandurah, Australia"},"JeBallisagerWebb":{"player_code_id":{"code":"JeBallisagerWebb","id":"Ballisager Webb, Jermaine","ncaa_id":"5105662"},"number":"1","pos":"C","height":"7-1","height_in":85,"year_class":"Sr","gp":0,"origin":"Stjaer, Denmark"},"TiGeorge":{"player_code_id":{"code":"TiGeorge","id":"George, Timo","ncaa_id":"5314717"},"number":"3","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Amsterdam, Netherlands"},"MaMoreira":{"player_code_id":{"code":"MaMoreira","id":"Moreira, Marchelo","ncaa_id":"5314721"},"number":"13","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Abu Dhabi, United Arab Emirates"},"PrLee":{"player_code_id":{"code":"PrLee","id":"Lee, Preston","ncaa_id":"5240967"},"number":"8","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Laguna Hills, CA"},"MaHronsky":{"player_code_id":{"code":"MaHronsky","id":"Hronsky, Matus","ncaa_id":"5105883"},"number":"7","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Zavazna Poruba, Slovakia"},"KeGebbers":{"player_code_id":{"code":"KeGebbers","id":"Gebbers, Kelson","ncaa_id":"5176495"},"number":"12","pos":"G","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Brewster, WA"}}
+{
+   "CaBriggs": {
+      "player_code_id": {
+         "code": "CaBriggs",
+         "id": "Briggs, Carlin",
+         "ncaa_id": "5240968"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Melbourne, Australia"
+   },
+   "DaCensori-he": {
+      "player_code_id": {
+         "code": "DaCensori-he",
+         "id": "Censori-Hercules, Dante",
+         "ncaa_id": "5314718"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bolton, Canada"
+   },
+   "CaWilliams": {
+      "player_code_id": {
+         "code": "CaWilliams",
+         "id": "Williams, Cameron",
+         "ncaa_id": "5314723"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cape Girardeau, MO"
+   },
+   "MiBallew": {
+      "player_code_id": {
+         "code": "MiBallew",
+         "id": "Ballew, Mikah",
+         "ncaa_id": "5240973"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Palmdale, CA",
+      "role": "WG"
+   },
+   "GaNuckolls": {
+      "player_code_id": {
+         "code": "GaNuckolls",
+         "id": "Nuckolls, Garrett",
+         "ncaa_id": "5314720"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bullard, TX"
+   },
+   "NaLong": {
+      "player_code_id": {
+         "code": "NaLong",
+         "id": "Long, NaVaughn",
+         "ncaa_id": "5240970"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Livermore, CA"
+   },
+   "JoFoxwell": {
+      "player_code_id": {
+         "code": "JoFoxwell",
+         "id": "Foxwell, Joel",
+         "ncaa_id": "5314722"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Melbourne, Australia"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Shantay Legans"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaO'donnell": {
+      "player_code_id": {
+         "code": "JaO'donnell",
+         "id": "O'Donnell, James",
+         "ncaa_id": "5241061"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Sydney, Australia",
+      "role": "C"
+   },
+   "RiParker": {
+      "player_code_id": {
+         "code": "RiParker",
+         "id": "Parker, Riley",
+         "ncaa_id": "5242402"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mandurah, Australia",
+      "role": "CG"
+   },
+   "JeBallisagerWebb": {
+      "player_code_id": {
+         "code": "JeBallisagerWebb",
+         "id": "Ballisager Webb, Jermaine",
+         "ncaa_id": "5105662"
+      },
+      "number": "1",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Stjaer, Denmark",
+      "role": "PF/C"
+   },
+   "TiGeorge": {
+      "player_code_id": {
+         "code": "TiGeorge",
+         "id": "George, Timo",
+         "ncaa_id": "5314717"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Amsterdam, Netherlands"
+   },
+   "MaMoreira": {
+      "player_code_id": {
+         "code": "MaMoreira",
+         "id": "Moreira, Marchelo",
+         "ncaa_id": "5314721"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Abu Dhabi, United Arab Emirates"
+   },
+   "PrLee": {
+      "player_code_id": {
+         "code": "PrLee",
+         "id": "Lee, Preston",
+         "ncaa_id": "5240967"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Laguna Hills, CA"
+   },
+   "MaHronsky": {
+      "player_code_id": {
+         "code": "MaHronsky",
+         "id": "Hronsky, Matus",
+         "ncaa_id": "5105883"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Zavazna Poruba, Slovakia",
+      "role": "WF"
+   },
+   "KeGebbers": {
+      "player_code_id": {
+         "code": "KeGebbers",
+         "id": "Gebbers, Kelson",
+         "ncaa_id": "5176495"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Brewster, WA",
+      "role": "WG"
+   }
+}

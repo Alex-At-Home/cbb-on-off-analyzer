@@ -1,1 +1,172 @@
-{"DoMuordar":{"player_code_id":{"code":"DoMuordar","id":"Muordar, Dok","ncaa_id":"5107158"},"number":"0","pos":"F","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Rumbek , South Sudan"},"JaCollins":{"player_code_id":{"code":"JaCollins","id":"Collins, Jack","ncaa_id":"5106703"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Manasquan, NJ"},"AnBall":{"player_code_id":{"code":"AnBall","id":"Ball, Andrew","ncaa_id":"5106702"},"number":"4","pos":"G","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Marlton, NJ"},"CoRobinson":{"player_code_id":{"code":"CoRobinson","id":"Robinson Jr., Cornelius","ncaa_id":"5174962"},"number":"23","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Willingboro, NJ"},"ChGreen":{"player_code_id":{"code":"ChGreen","id":"Green, Christopher","ncaa_id":"9334618"},"number":"8","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Brooklyn, NY"},"LuOrchard":{"player_code_id":{"code":"LuOrchard","id":"Orchard, Lucas","ncaa_id":"5242599"},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Wayne, PA"},"ArDemings":{"player_code_id":{"code":"ArDemings","id":"Demings, Aric","ncaa_id":"9334613"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Desoto, TX"},"CoMiller":{"player_code_id":{"code":"CoMiller","id":"Miller, Corey","ncaa_id":"5174960"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Brick, NJ"},"__coach__":{"player_code_id":{"code":"__coach__","id":"King Rice"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaLeahy":{"player_code_id":{"code":"JaLeahy","id":"Leahy, Jack","ncaa_id":"5174961"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Long Branch, NJ"},"QuPeters":{"player_code_id":{"code":"QuPeters","id":"Peters, Quinn","ncaa_id":"5174963"},"number":"42","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Spring Lake, NJ"},"JuRay":{"player_code_id":{"code":"JuRay","id":"Ray, Justin","ncaa_id":"5242598"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Greer, SC"}}
+{
+   "DoMuordar": {
+      "player_code_id": {
+         "code": "DoMuordar",
+         "id": "Muordar, Dok",
+         "ncaa_id": "5107158"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rumbek , South Sudan",
+      "role": "C"
+   },
+   "JaCollins": {
+      "player_code_id": {
+         "code": "JaCollins",
+         "id": "Collins, Jack",
+         "ncaa_id": "5106703"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Manasquan, NJ",
+      "role": "WG"
+   },
+   "AnBall": {
+      "player_code_id": {
+         "code": "AnBall",
+         "id": "Ball, Andrew",
+         "ncaa_id": "5106702"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Marlton, NJ",
+      "role": "WF"
+   },
+   "CoRobinson": {
+      "player_code_id": {
+         "code": "CoRobinson",
+         "id": "Robinson Jr., Cornelius",
+         "ncaa_id": "5174962"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Willingboro, NJ",
+      "role": "WG"
+   },
+   "ChGreen": {
+      "player_code_id": {
+         "code": "ChGreen",
+         "id": "Green, Christopher",
+         "ncaa_id": "9334618"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Brooklyn, NY"
+   },
+   "LuOrchard": {
+      "player_code_id": {
+         "code": "LuOrchard",
+         "id": "Orchard, Lucas",
+         "ncaa_id": "5242599"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Wayne, PA"
+   },
+   "ArDemings": {
+      "player_code_id": {
+         "code": "ArDemings",
+         "id": "Demings, Aric",
+         "ncaa_id": "9334613"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Desoto, TX"
+   },
+   "CoMiller": {
+      "player_code_id": {
+         "code": "CoMiller",
+         "id": "Miller, Corey",
+         "ncaa_id": "5174960"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Brick, NJ"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "King Rice"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaLeahy": {
+      "player_code_id": {
+         "code": "JaLeahy",
+         "id": "Leahy, Jack",
+         "ncaa_id": "5174961"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Long Branch, NJ"
+   },
+   "QuPeters": {
+      "player_code_id": {
+         "code": "QuPeters",
+         "id": "Peters, Quinn",
+         "ncaa_id": "5174963"
+      },
+      "number": "42",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Spring Lake, NJ"
+   },
+   "JuRay": {
+      "player_code_id": {
+         "code": "JuRay",
+         "id": "Ray, Justin",
+         "ncaa_id": "5242598"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Greer, SC",
+      "role": "WG"
+   }
+}

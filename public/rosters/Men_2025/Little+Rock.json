@@ -1,1 +1,228 @@
-{"KkRobinson":{"player_code_id":{"code":"KkRobinson","id":"Robinson, KK","ncaa_id":"4565207"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Little Rock, AR"},"TeBurgess":{"player_code_id":{"code":"TeBurgess","id":"Burgess, Terrion","ncaa_id":"5101825"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Benton, AR"},"BrBayless":{"player_code_id":{"code":"BrBayless","id":"Bayless, Braxton","ncaa_id":"5107792"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Ankeny, IA"},"CaPennyfeath":{"player_code_id":{"code":"CaPennyfeath","id":"Pennyfeather, Caleb","ncaa_id":"5242548"},"number":"10","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Orlando, FL"},"JoLawson":{"player_code_id":{"code":"JoLawson","id":"Lawson, Johnathan","ncaa_id":"4432589"},"number":"11","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Memphis, TN"},"TrClaytor":{"player_code_id":{"code":"TrClaytor","id":"Claytor IV, Truman","ncaa_id":"5314308"},"number":"22","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Cameron, NC"},"ChHughes":{"player_code_id":{"code":"ChHughes","id":"Hughes, Christian","ncaa_id":"5177351"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Kirkwood, MO"},"KaNzeh":{"player_code_id":{"code":"KaNzeh","id":"Nzeh, Kachi","ncaa_id":"4895787"},"number":"15","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Upper Darby, PA"},"TuGatkek":{"player_code_id":{"code":"TuGatkek","id":"Gatkek, Tuongthach","ncaa_id":"4896453"},"number":"32","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Portland, ME"},"TrSteele":{"player_code_id":{"code":"TrSteele","id":"Steele Jr., Tracy","ncaa_id":"4904926"},"number":"12","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"North Little Rock, AR"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Darrell Walker"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KhRobinson":{"player_code_id":{"code":"KhRobinson","id":"Robinson, Khasen","ncaa_id":"5314307"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Little Rock, AR"},"TrJackson":{"player_code_id":{"code":"TrJackson","id":"Jackson, Travonne","ncaa_id":"5242547"},"number":"8","pos":"G","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Columbus, OH"},"CaWallace":{"player_code_id":{"code":"CaWallace","id":"Wallace, Cameron","ncaa_id":"5314309"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Little Rock, AR"},"JoThomas":{"player_code_id":{"code":"JoThomas","id":"Thomas, Joseph","ncaa_id":"5242545"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Portal, GA"},"KeRobinson":{"player_code_id":{"code":"KeRobinson","id":"Robinson, Kellen","ncaa_id":"5144094"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Little Rock, AR"}}
+{
+   "KkRobinson": {
+      "player_code_id": {
+         "code": "KkRobinson",
+         "id": "Robinson, KK",
+         "ncaa_id": "4565207"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   },
+   "TeBurgess": {
+      "player_code_id": {
+         "code": "TeBurgess",
+         "id": "Burgess, Terrion",
+         "ncaa_id": "5101825"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Benton, AR"
+   },
+   "BrBayless": {
+      "player_code_id": {
+         "code": "BrBayless",
+         "id": "Bayless, Braxton",
+         "ncaa_id": "5107792"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Ankeny, IA",
+      "role": "CG"
+   },
+   "CaPennyfeath": {
+      "player_code_id": {
+         "code": "CaPennyfeath",
+         "id": "Pennyfeather, Caleb",
+         "ncaa_id": "5242548"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Orlando, FL",
+      "role": "C"
+   },
+   "JoLawson": {
+      "player_code_id": {
+         "code": "JoLawson",
+         "id": "Lawson, Johnathan",
+         "ncaa_id": "4432589"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Memphis, TN",
+      "role": "CG"
+   },
+   "TrClaytor": {
+      "player_code_id": {
+         "code": "TrClaytor",
+         "id": "Claytor IV, Truman",
+         "ncaa_id": "5314308"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cameron, NC"
+   },
+   "ChHughes": {
+      "player_code_id": {
+         "code": "ChHughes",
+         "id": "Hughes, Christian",
+         "ncaa_id": "5177351"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Kirkwood, MO",
+      "role": "WG"
+   },
+   "KaNzeh": {
+      "player_code_id": {
+         "code": "KaNzeh",
+         "id": "Nzeh, Kachi",
+         "ncaa_id": "4895787"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Upper Darby, PA",
+      "role": "C"
+   },
+   "TuGatkek": {
+      "player_code_id": {
+         "code": "TuGatkek",
+         "id": "Gatkek, Tuongthach",
+         "ncaa_id": "4896453"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Portland, ME"
+   },
+   "TrSteele": {
+      "player_code_id": {
+         "code": "TrSteele",
+         "id": "Steele Jr., Tracy",
+         "ncaa_id": "4904926"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "North Little Rock, AR"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Darrell Walker"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KhRobinson": {
+      "player_code_id": {
+         "code": "KhRobinson",
+         "id": "Robinson, Khasen",
+         "ncaa_id": "5314307"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   },
+   "TrJackson": {
+      "player_code_id": {
+         "code": "TrJackson",
+         "id": "Jackson, Travonne",
+         "ncaa_id": "5242547"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Columbus, OH"
+   },
+   "CaWallace": {
+      "player_code_id": {
+         "code": "CaWallace",
+         "id": "Wallace, Cameron",
+         "ncaa_id": "5314309"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   },
+   "JoThomas": {
+      "player_code_id": {
+         "code": "JoThomas",
+         "id": "Thomas, Joseph",
+         "ncaa_id": "5242545"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Portal, GA"
+   },
+   "KeRobinson": {
+      "player_code_id": {
+         "code": "KeRobinson",
+         "id": "Robinson, Kellen",
+         "ncaa_id": "5144094"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   }
+}

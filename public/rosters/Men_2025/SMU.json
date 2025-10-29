@@ -1,1 +1,232 @@
-{"SaWalters":{"player_code_id":{"code":"SaWalters","id":"Walters, Sam","ncaa_id":"4683781"},"number":"4","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"The Villages, FL"},"TrUtter":{"player_code_id":{"code":"TrUtter","id":"Utter, Trey","ncaa_id":"5106638"},"number":"31","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Argyle, TX"},"JaPierre":{"player_code_id":{"code":"JaPierre","id":"Pierre Jr., Jaron","ncaa_id":"4703115"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"New Orleans, LA"},"JeO'neal":{"player_code_id":{"code":"JeO'neal","id":"O'Neal, Jr., Jermaine","ncaa_id":"5312289"},"number":"7","pos":"F","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Southlake, TX"},"BiWhite":{"player_code_id":{"code":"BiWhite","id":"White III, Billy","ncaa_id":"5280896"},"number":"8","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Corpus Christi, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Andy Enfield"},"number":"","pos":"","height":"","year_class":"","gp":-1},"NiKalischer-":{"player_code_id":{"code":"NiKalischer-","id":"Kalischer-Stork, Niccolo","ncaa_id":"5238183"},"number":"33","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Los Angeles, CA"},"BjEdwards":{"player_code_id":{"code":"BjEdwards","id":"Edwards, B.J.","ncaa_id":"5105552"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Knoxville, TN"},"BjDavis-ray":{"player_code_id":{"code":"BjDavis-ray","id":"Davis-Ray, B.J.","ncaa_id":"5041938"},"number":"9","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Saint Louis, MO"},"NiWalls":{"player_code_id":{"code":"NiWalls","id":"Walls, Nigel","ncaa_id":"5101828"},"number":"22","pos":"F","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Houston, TX"},"SaYigitoglu":{"player_code_id":{"code":"SaYigitoglu","id":"Yigitoglu, Samet","ncaa_id":"5312290"},"number":"24","pos":"C","height":"7-2","height_in":86,"year_class":"So","gp":0,"origin":"Istanbul, Turkey"},"CoWashington":{"player_code_id":{"code":"CoWashington","id":"Washington, Corey","ncaa_id":"5110039"},"number":"3","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Little Rock, AR"},"MiHolmes":{"player_code_id":{"code":"MiHolmes","id":"Holmes, Mitchell","ncaa_id":"5238182"},"number":"13","pos":"F","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Fort Worth, TX"},"BoMiller":{"player_code_id":{"code":"BoMiller","id":"Miller, Boopie","ncaa_id":"4898283"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Chicago, IL"},"ChPuryear":{"player_code_id":{"code":"ChPuryear","id":"Puryear, Chance","ncaa_id":"5144391"},"number":"1","pos":"G","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Dallas, TX"},"JaToombs":{"player_code_id":{"code":"JaToombs","id":"Toombs, Jaden","ncaa_id":"5101840"},"number":"10","pos":"C","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Amarillo, TX"}}
+{
+   "SaWalters": {
+      "player_code_id": {
+         "code": "SaWalters",
+         "id": "Walters, Sam",
+         "ncaa_id": "4683781"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "The Villages, FL",
+      "role": "S-PF"
+   },
+   "TrUtter": {
+      "player_code_id": {
+         "code": "TrUtter",
+         "id": "Utter, Trey",
+         "ncaa_id": "5106638"
+      },
+      "number": "31",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Argyle, TX"
+   },
+   "JaPierre": {
+      "player_code_id": {
+         "code": "JaPierre",
+         "id": "Pierre Jr., Jaron",
+         "ncaa_id": "4703115"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "New Orleans, LA",
+      "role": "WG"
+   },
+   "JeO'neal": {
+      "player_code_id": {
+         "code": "JeO'neal",
+         "id": "O'Neal, Jr., Jermaine",
+         "ncaa_id": "5312289"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Southlake, TX",
+      "role": "WG"
+   },
+   "BiWhite": {
+      "player_code_id": {
+         "code": "BiWhite",
+         "id": "White III, Billy",
+         "ncaa_id": "5280896"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Corpus Christi, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Andy Enfield"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "NiKalischer-": {
+      "player_code_id": {
+         "code": "NiKalischer-",
+         "id": "Kalischer-Stork, Niccolo",
+         "ncaa_id": "5238183"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "BjEdwards": {
+      "player_code_id": {
+         "code": "BjEdwards",
+         "id": "Edwards, B.J.",
+         "ncaa_id": "5105552"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Knoxville, TN",
+      "role": "s-PG"
+   },
+   "BjDavis-ray": {
+      "player_code_id": {
+         "code": "BjDavis-ray",
+         "id": "Davis-Ray, B.J.",
+         "ncaa_id": "5041938"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "NiWalls": {
+      "player_code_id": {
+         "code": "NiWalls",
+         "id": "Walls, Nigel",
+         "ncaa_id": "5101828"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "PF/C"
+   },
+   "SaYigitoglu": {
+      "player_code_id": {
+         "code": "SaYigitoglu",
+         "id": "Yigitoglu, Samet",
+         "ncaa_id": "5312290"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "7-2",
+      "height_in": 86,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Istanbul, Turkey",
+      "role": "C"
+   },
+   "CoWashington": {
+      "player_code_id": {
+         "code": "CoWashington",
+         "id": "Washington, Corey",
+         "ncaa_id": "5110039"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Little Rock, AR",
+      "role": "S-PF"
+   },
+   "MiHolmes": {
+      "player_code_id": {
+         "code": "MiHolmes",
+         "id": "Holmes, Mitchell",
+         "ncaa_id": "5238182"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Fort Worth, TX"
+   },
+   "BoMiller": {
+      "player_code_id": {
+         "code": "BoMiller",
+         "id": "Miller, Boopie",
+         "ncaa_id": "4898283"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "PG"
+   },
+   "ChPuryear": {
+      "player_code_id": {
+         "code": "ChPuryear",
+         "id": "Puryear, Chance",
+         "ncaa_id": "5144391"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "JaToombs": {
+      "player_code_id": {
+         "code": "JaToombs",
+         "id": "Toombs, Jaden",
+         "ncaa_id": "5101840"
+      },
+      "number": "10",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Amarillo, TX",
+      "role": "C"
+   }
+}

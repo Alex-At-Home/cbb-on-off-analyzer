@@ -1,1 +1,246 @@
-{"RjGreer":{"player_code_id":{"code":"RjGreer","id":"Greer, RJ","ncaa_id":"5311850"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Centerville, OH"},"PhKavu":{"player_code_id":{"code":"PhKavu","id":"Kavu, Phillip","ncaa_id":"5239521"},"number":"14","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Manchester, United Kingdom"},"PaFriedrichs":{"player_code_id":{"code":"PaFriedrichs","id":"Friedrichsen, Parker","ncaa_id":"4845382"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Bixby, OK"},"SeLogan":{"player_code_id":{"code":"SeLogan","id":"Logan, Sean","ncaa_id":"5105866"},"number":"15","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Westfield, NJ"},"JoScovens":{"player_code_id":{"code":"JoScovens","id":"Scovens, Josh","ncaa_id":"5176031"},"number":"4","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Greensboro, NC"},"RoBlums":{"player_code_id":{"code":"RoBlums","id":"Blums, Roberts","ncaa_id":"5239523"},"number":"45","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Riga, Latvia"},"JoHurlburt":{"player_code_id":{"code":"JoHurlburt","id":"Hurlburt, Joe","ncaa_id":"5105613"},"number":"8","pos":"F","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Enderlin, ND"},"IaPlatteeuw":{"player_code_id":{"code":"IaPlatteeuw","id":"Platteeuw, Ian","ncaa_id":"5311851"},"number":"16","pos":"F","height":"7-0","height_in":84,"year_class":"Fr","gp":0,"origin":"Barcelona, Spain"},"BrMatheny":{"player_code_id":{"code":"BrMatheny","id":"Matheny, Brock","ncaa_id":"5105870"},"number":"51","pos":"G","height":"5-10","height_in":70,"year_class":"Sr","gp":0,"origin":"Davidson, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Matt McKillop"},"number":"","pos":"","height":"","year_class":"","gp":-1},"NiCoval":{"player_code_id":{"code":"NiCoval","id":"Coval, Nick","ncaa_id":"5239520"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Orefield, PA"},"DeBrown":{"player_code_id":{"code":"DeBrown","id":"Brown, Devin","ncaa_id":"5311849"},"number":"6","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Lewis Center, OH"},"HuAdam":{"player_code_id":{"code":"HuAdam","id":"Adam, Hunter","ncaa_id":"5174570"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Christchurch, New Zealand"},"SaBrown":{"player_code_id":{"code":"SaBrown","id":"Brown, Sam","ncaa_id":"5182413"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Merion Station, PA"},"JoNowland":{"player_code_id":{"code":"JoNowland","id":"Nowland, John","ncaa_id":"5311852"},"number":"50","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Spokane, WA"},"MaJoses":{"player_code_id":{"code":"MaJoses","id":"Joses, Manie","ncaa_id":"5239519"},"number":"0","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"London, United Kingdom"},"Ja\"jRoberts":{"player_code_id":{"code":"Ja\"jRoberts","id":"\"JQ\" Roberts, JaQualon","ncaa_id":"4848644"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Bloomington, IN"}}
+{
+   "RjGreer": {
+      "player_code_id": {
+         "code": "RjGreer",
+         "id": "Greer, RJ",
+         "ncaa_id": "5311850"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Centerville, OH"
+   },
+   "PhKavu": {
+      "player_code_id": {
+         "code": "PhKavu",
+         "id": "Kavu, Phillip",
+         "ncaa_id": "5239521"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Manchester, United Kingdom"
+   },
+   "PaFriedrichs": {
+      "player_code_id": {
+         "code": "PaFriedrichs",
+         "id": "Friedrichsen, Parker",
+         "ncaa_id": "4845382"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bixby, OK",
+      "role": "WG"
+   },
+   "SeLogan": {
+      "player_code_id": {
+         "code": "SeLogan",
+         "id": "Logan, Sean",
+         "ncaa_id": "5105866"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Westfield, NJ",
+      "role": "C"
+   },
+   "JoScovens": {
+      "player_code_id": {
+         "code": "JoScovens",
+         "id": "Scovens, Josh",
+         "ncaa_id": "5176031"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Greensboro, NC",
+      "role": "WF"
+   },
+   "RoBlums": {
+      "player_code_id": {
+         "code": "RoBlums",
+         "id": "Blums, Roberts",
+         "ncaa_id": "5239523"
+      },
+      "number": "45",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Riga, Latvia",
+      "role": "WG"
+   },
+   "JoHurlburt": {
+      "player_code_id": {
+         "code": "JoHurlburt",
+         "id": "Hurlburt, Joe",
+         "ncaa_id": "5105613"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Enderlin, ND"
+   },
+   "IaPlatteeuw": {
+      "player_code_id": {
+         "code": "IaPlatteeuw",
+         "id": "Platteeuw, Ian",
+         "ncaa_id": "5311851"
+      },
+      "number": "16",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Barcelona, Spain",
+      "role": "C"
+   },
+   "BrMatheny": {
+      "player_code_id": {
+         "code": "BrMatheny",
+         "id": "Matheny, Brock",
+         "ncaa_id": "5105870"
+      },
+      "number": "51",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Davidson, NC"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Matt McKillop"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "NiCoval": {
+      "player_code_id": {
+         "code": "NiCoval",
+         "id": "Coval, Nick",
+         "ncaa_id": "5239520"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Orefield, PA"
+   },
+   "DeBrown": {
+      "player_code_id": {
+         "code": "DeBrown",
+         "id": "Brown, Devin",
+         "ncaa_id": "5311849"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lewis Center, OH"
+   },
+   "HuAdam": {
+      "player_code_id": {
+         "code": "HuAdam",
+         "id": "Adam, Hunter",
+         "ncaa_id": "5174570"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Christchurch, New Zealand",
+      "role": "S-PF"
+   },
+   "SaBrown": {
+      "player_code_id": {
+         "code": "SaBrown",
+         "id": "Brown, Sam",
+         "ncaa_id": "5182413"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Merion Station, PA",
+      "role": "CG"
+   },
+   "JoNowland": {
+      "player_code_id": {
+         "code": "JoNowland",
+         "id": "Nowland, John",
+         "ncaa_id": "5311852"
+      },
+      "number": "50",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Spokane, WA"
+   },
+   "MaJoses": {
+      "player_code_id": {
+         "code": "MaJoses",
+         "id": "Joses, Manie",
+         "ncaa_id": "5239519"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "London, United Kingdom",
+      "role": "WF"
+   },
+   "Ja\"jRoberts": {
+      "player_code_id": {
+         "code": "Ja\"jRoberts",
+         "id": "\"JQ\" Roberts, JaQualon",
+         "ncaa_id": "4848644"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bloomington, IN",
+      "role": "WF"
+   }
+}

@@ -1,1 +1,289 @@
-{"EtRoberts":{"player_code_id":{"code":"EtRoberts","id":"Roberts, Ethan","ncaa_id":"5108811"},"number":"23","pos":"F","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Arlington Heights, IL"},"PaKamin":{"player_code_id":{"code":"PaKamin","id":"Kamin, Payton","ncaa_id":"5314647"},"number":"21","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Chicago, IL"},"ChUbochi":{"player_code_id":{"code":"ChUbochi","id":"Ubochi, Chris","ncaa_id":"5107165"},"number":"34","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Lagos, Nigeria"},"JaJones":{"player_code_id":{"code":"JaJones","id":"Jones, Jay","ncaa_id":"5314644"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Chestnut Hill, MA"},"BrFoster":{"player_code_id":{"code":"BrFoster","id":"Foster, Bradyn","ncaa_id":"5241735"},"number":"15","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Natrona Heights, PA"},"TjPower":{"player_code_id":{"code":"TjPower","id":"Power, TJ","ncaa_id":"4684843"},"number":"12","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Shrewsbury, MA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Fran McCaffery"},"number":"","pos":"","height":"","year_class":"","gp":-1},"RyAltman":{"player_code_id":{"code":"RyAltman","id":"Altman, Ryan","ncaa_id":"5314645"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Chestnut Hill, MA"},"AuGerhart":{"player_code_id":{"code":"AuGerhart","id":"Gerhart, Augustus","ncaa_id":"5182415"},"number":"25","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Denver, PA"},"DyWilliams":{"player_code_id":{"code":"DyWilliams","id":"Williams, Dylan","ncaa_id":"5241734"},"number":"2","pos":"G","height":"5-11","height_in":71,"year_class":"Sr","gp":0,"origin":"Columbia, SC"},"NiPolonowski":{"player_code_id":{"code":"NiPolonowski","id":"Polonowski, Niklas","ncaa_id":"5182416"},"number":"35","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"La Grange, IL"},"AjLevine":{"player_code_id":{"code":"AjLevine","id":"Levine, AJ","ncaa_id":"5241732"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Elmhurst, IL"},"AlMassung":{"player_code_id":{"code":"AlMassung","id":"Massung, Alex","ncaa_id":"5241733"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"West Orange, NJ"},"MiZanoni":{"player_code_id":{"code":"MiZanoni","id":"Zanoni, Michael","ncaa_id":"5108877"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Charlotte, NC"},"MiOberti":{"player_code_id":{"code":"MiOberti","id":"Oberti, Michelangelo","ncaa_id":"5241736"},"number":"33","pos":"C","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Riva di Solto, Italy"},"CaThrower":{"player_code_id":{"code":"CaThrower","id":"Thrower, Cam","ncaa_id":"5107164"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Los Angeles, CA"},"DaScantlebur":{"player_code_id":{"code":"DaScantlebur","id":"Scantlebury, Dalton","ncaa_id":"5314646"},"number":"13","pos":"C","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Chicago, IL"},"WiKruse":{"player_code_id":{"code":"WiKruse","id":"Kruse, William","ncaa_id":"5314649"},"number":"40","pos":"C","height":"6-11","height_in":83,"year_class":"Fr","gp":0,"origin":"Nesbru, Norway"},"LuLueth":{"player_code_id":{"code":"LuLueth","id":"Lueth, Lucas-Allan","ncaa_id":"5314648"},"number":"30","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Ames, IA"},"JoWalter":{"player_code_id":{"code":"JoWalter","id":"Walter, Johnnie","ncaa_id":"5108098"},"number":"3","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Agoura Hills, CA"}}
+{
+   "EtRoberts": {
+      "player_code_id": {
+         "code": "EtRoberts",
+         "id": "Roberts, Ethan",
+         "ncaa_id": "5108811"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Arlington Heights, IL",
+      "role": "WF"
+   },
+   "PaKamin": {
+      "player_code_id": {
+         "code": "PaKamin",
+         "id": "Kamin, Payton",
+         "ncaa_id": "5314647"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "ChUbochi": {
+      "player_code_id": {
+         "code": "ChUbochi",
+         "id": "Ubochi, Chris",
+         "ncaa_id": "5107165"
+      },
+      "number": "34",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lagos, Nigeria"
+   },
+   "JaJones": {
+      "player_code_id": {
+         "code": "JaJones",
+         "id": "Jones, Jay",
+         "ncaa_id": "5314644"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chestnut Hill, MA"
+   },
+   "BrFoster": {
+      "player_code_id": {
+         "code": "BrFoster",
+         "id": "Foster, Bradyn",
+         "ncaa_id": "5241735"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Natrona Heights, PA"
+   },
+   "TjPower": {
+      "player_code_id": {
+         "code": "TjPower",
+         "id": "Power, TJ",
+         "ncaa_id": "4684843"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Shrewsbury, MA",
+      "role": "S-PF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Fran McCaffery"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "RyAltman": {
+      "player_code_id": {
+         "code": "RyAltman",
+         "id": "Altman, Ryan",
+         "ncaa_id": "5314645"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chestnut Hill, MA"
+   },
+   "AuGerhart": {
+      "player_code_id": {
+         "code": "AuGerhart",
+         "id": "Gerhart, Augustus",
+         "ncaa_id": "5182415"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Denver, PA",
+      "role": "C"
+   },
+   "DyWilliams": {
+      "player_code_id": {
+         "code": "DyWilliams",
+         "id": "Williams, Dylan",
+         "ncaa_id": "5241734"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Columbia, SC",
+      "role": "CG"
+   },
+   "NiPolonowski": {
+      "player_code_id": {
+         "code": "NiPolonowski",
+         "id": "Polonowski, Niklas",
+         "ncaa_id": "5182416"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "La Grange, IL",
+      "role": "WF"
+   },
+   "AjLevine": {
+      "player_code_id": {
+         "code": "AjLevine",
+         "id": "Levine, AJ",
+         "ncaa_id": "5241732"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Elmhurst, IL",
+      "role": "s-PG"
+   },
+   "AlMassung": {
+      "player_code_id": {
+         "code": "AlMassung",
+         "id": "Massung, Alex",
+         "ncaa_id": "5241733"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "West Orange, NJ"
+   },
+   "MiZanoni": {
+      "player_code_id": {
+         "code": "MiZanoni",
+         "id": "Zanoni, Michael",
+         "ncaa_id": "5108877"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Charlotte, NC",
+      "role": "WG"
+   },
+   "MiOberti": {
+      "player_code_id": {
+         "code": "MiOberti",
+         "id": "Oberti, Michelangelo",
+         "ncaa_id": "5241736"
+      },
+      "number": "33",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Riva di Solto, Italy",
+      "role": "PF/C"
+   },
+   "CaThrower": {
+      "player_code_id": {
+         "code": "CaThrower",
+         "id": "Thrower, Cam",
+         "ncaa_id": "5107164"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Los Angeles, CA",
+      "role": "WG"
+   },
+   "DaScantlebur": {
+      "player_code_id": {
+         "code": "DaScantlebur",
+         "id": "Scantlebury, Dalton",
+         "ncaa_id": "5314646"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "WiKruse": {
+      "player_code_id": {
+         "code": "WiKruse",
+         "id": "Kruse, William",
+         "ncaa_id": "5314649"
+      },
+      "number": "40",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Nesbru, Norway"
+   },
+   "LuLueth": {
+      "player_code_id": {
+         "code": "LuLueth",
+         "id": "Lueth, Lucas-Allan",
+         "ncaa_id": "5314648"
+      },
+      "number": "30",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ames, IA"
+   },
+   "JoWalter": {
+      "player_code_id": {
+         "code": "JoWalter",
+         "id": "Walter, Johnnie",
+         "ncaa_id": "5108098"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Agoura Hills, CA",
+      "role": "WF"
+   }
+}

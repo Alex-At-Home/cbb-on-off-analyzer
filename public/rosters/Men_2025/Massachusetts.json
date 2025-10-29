@@ -1,1 +1,227 @@
-{"IsPlacide":{"player_code_id":{"code":"IsPlacide","id":"Placide, Isaiah","ncaa_id":"5313353"},"number":"4","pos":"F","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Hampton, GA"},"K'Parker":{"player_code_id":{"code":"K'Parker","id":"Parker, K'Jei","ncaa_id":"5177558"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Lakeland, FL"},"DwWimbley":{"player_code_id":{"code":"DwWimbley","id":"Wimbley, Jr., Dwayne","ncaa_id":"5101843"},"number":"2","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Fort Lauderdale, FL"},"LuDamjanac":{"player_code_id":{"code":"LuDamjanac","id":"Damjanac, Luka","ncaa_id":"5239651"},"number":"13","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Vienna, Austria"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Frank Martin"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaNdjigue":{"player_code_id":{"code":"JaNdjigue","id":"Ndjigue, Jayden","ncaa_id":"5174614"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Ayer, MA"},"JoEngel":{"player_code_id":{"code":"JoEngel","id":"Engel, Josh","ncaa_id":"5239650"},"number":"9","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Manalapan, NJ"},"ChOutlaw":{"player_code_id":{"code":"ChOutlaw","id":"Outlaw, Charles","ncaa_id":"5313355"},"number":"22","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Orlando, FL"},"MaBanks":{"player_code_id":{"code":"MaBanks","id":"Banks, Marcus","ncaa_id":"4897361"},"number":"24","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Hampton, VA"},"RoCastineyra":{"player_code_id":{"code":"RoCastineyra","id":"Castineyra, Rollie","ncaa_id":"5174618"},"number":"44","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Marblehead, MA"},"DaHankins-sa":{"player_code_id":{"code":"DaHankins-sa","id":"Hankins-Sanford, Daniel","ncaa_id":"5105551"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Charlotte, NC"},"DiClerc":{"player_code_id":{"code":"DiClerc","id":"Clerc, Dimitri","ncaa_id":"5313356"},"number":"25","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Lausanne, Switzerland"},"DaCarbuccia":{"player_code_id":{"code":"DaCarbuccia","id":"Carbuccia, Danny","ncaa_id":"5041934"},"number":"0","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"White Plains, NY"},"BiOsman":{"player_code_id":{"code":"BiOsman","id":"Osman, Bilal","ncaa_id":"5313354"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Stockholm, Sweden"},"DoBrown":{"player_code_id":{"code":"DoBrown","id":"Brown, Donovan","ncaa_id":"5257084"},"number":"10","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Bolingbrook, IL"},"LeBettiol":{"player_code_id":{"code":"LeBettiol","id":"Bettiol, Leonardo","ncaa_id":"4896505"},"number":"3","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Roncade, Italy"}}
+{
+   "IsPlacide": {
+      "player_code_id": {
+         "code": "IsPlacide",
+         "id": "Placide, Isaiah",
+         "ncaa_id": "5313353"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hampton, GA"
+   },
+   "K'Parker": {
+      "player_code_id": {
+         "code": "K'Parker",
+         "id": "Parker, K'Jei",
+         "ncaa_id": "5177558"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lakeland, FL"
+   },
+   "DwWimbley": {
+      "player_code_id": {
+         "code": "DwWimbley",
+         "id": "Wimbley, Jr., Dwayne",
+         "ncaa_id": "5101843"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Fort Lauderdale, FL"
+   },
+   "LuDamjanac": {
+      "player_code_id": {
+         "code": "LuDamjanac",
+         "id": "Damjanac, Luka",
+         "ncaa_id": "5239651"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Vienna, Austria"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Frank Martin"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaNdjigue": {
+      "player_code_id": {
+         "code": "JaNdjigue",
+         "id": "Ndjigue, Jayden",
+         "ncaa_id": "5174614"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Ayer, MA",
+      "role": "WG"
+   },
+   "JoEngel": {
+      "player_code_id": {
+         "code": "JoEngel",
+         "id": "Engel, Josh",
+         "ncaa_id": "5239650"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Manalapan, NJ"
+   },
+   "ChOutlaw": {
+      "player_code_id": {
+         "code": "ChOutlaw",
+         "id": "Outlaw, Charles",
+         "ncaa_id": "5313355"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Orlando, FL"
+   },
+   "MaBanks": {
+      "player_code_id": {
+         "code": "MaBanks",
+         "id": "Banks, Marcus",
+         "ncaa_id": "4897361"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hampton, VA",
+      "role": "CG"
+   },
+   "RoCastineyra": {
+      "player_code_id": {
+         "code": "RoCastineyra",
+         "id": "Castineyra, Rollie",
+         "ncaa_id": "5174618"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Marblehead, MA"
+   },
+   "DaHankins-sa": {
+      "player_code_id": {
+         "code": "DaHankins-sa",
+         "id": "Hankins-Sanford, Daniel",
+         "ncaa_id": "5105551"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Charlotte, NC",
+      "role": "PF/C"
+   },
+   "DiClerc": {
+      "player_code_id": {
+         "code": "DiClerc",
+         "id": "Clerc, Dimitri",
+         "ncaa_id": "5313356"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lausanne, Switzerland"
+   },
+   "DaCarbuccia": {
+      "player_code_id": {
+         "code": "DaCarbuccia",
+         "id": "Carbuccia, Danny",
+         "ncaa_id": "5041934"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "White Plains, NY"
+   },
+   "BiOsman": {
+      "player_code_id": {
+         "code": "BiOsman",
+         "id": "Osman, Bilal",
+         "ncaa_id": "5313354"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Stockholm, Sweden"
+   },
+   "DoBrown": {
+      "player_code_id": {
+         "code": "DoBrown",
+         "id": "Brown, Donovan",
+         "ncaa_id": "5257084"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bolingbrook, IL"
+   },
+   "LeBettiol": {
+      "player_code_id": {
+         "code": "LeBettiol",
+         "id": "Bettiol, Leonardo",
+         "ncaa_id": "4896505"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Roncade, Italy",
+      "role": "WF"
+   }
+}

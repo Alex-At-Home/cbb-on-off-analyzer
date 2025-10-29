@@ -1,1 +1,183 @@
-{"JaMorris":{"player_code_id":{"code":"JaMorris","id":"Morris, Jameel","ncaa_id":"5177232"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Willingboro, NJ"},"MiJones":{"player_code_id":{"code":"MiJones","id":"Jones, Mike","ncaa_id":"5313435"},"number":"22","pos":"G","height":"-","year_class":"Fr","gp":0,"origin":"Waldorf, MD"},"OmHamilton":{"player_code_id":{"code":"OmHamilton","id":"Hamilton, Omari","ncaa_id":"5243190"},"number":"12","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Brooklyn, NY"},"TrRoberts":{"player_code_id":{"code":"TrRoberts","id":"Roberts, Travis","ncaa_id":"4684734"},"number":"30","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Waldorf, MD"},"AlHawkins":{"player_code_id":{"code":"AlHawkins","id":"Hawkins, Alex","ncaa_id":"5313434"},"number":"10","pos":"G","height":"-","year_class":"Jr","gp":0,"origin":"Frederick, MD"},"RaGlasgow":{"player_code_id":{"code":"RaGlasgow","id":"Glasgow, Ray","ncaa_id":"5242993"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Bronx, NY"},"NiWoodard":{"player_code_id":{"code":"NiWoodard","id":"Woodard, Nick","ncaa_id":"5242279"},"number":"7","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Oglethorpe, GA"},"ShLancaster":{"player_code_id":{"code":"ShLancaster","id":"Lancaster, Shane","ncaa_id":"5107789"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Bowie, MD"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jake Morton"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JeEllis":{"player_code_id":{"code":"JeEllis","id":"Ellis, Jeremy","ncaa_id":"5313432"},"number":"2","pos":"F","height":"-","year_class":"Jr","gp":0,"origin":"Hamilton Township, NJ"},"BrCalamese":{"player_code_id":{"code":"BrCalamese","id":"Calamese, Bryson","ncaa_id":"5313433"},"number":"4","pos":"G","height":"-","year_class":"Jr","gp":0,"origin":"Little Rock, AR"},"TyMcdaniels":{"player_code_id":{"code":"TyMcdaniels","id":"McDaniels, Tycen","ncaa_id":"5243189"},"number":"8","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Columbus, GA"},"DaWilliams":{"player_code_id":{"code":"DaWilliams","id":"Williams, Davian","ncaa_id":"5243188"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Vicksburg, MS"}}
+{
+   "JaMorris": {
+      "player_code_id": {
+         "code": "JaMorris",
+         "id": "Morris, Jameel",
+         "ncaa_id": "5177232"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Willingboro, NJ",
+      "role": "CG"
+   },
+   "MiJones": {
+      "player_code_id": {
+         "code": "MiJones",
+         "id": "Jones, Mike",
+         "ncaa_id": "5313435"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Waldorf, MD"
+   },
+   "OmHamilton": {
+      "player_code_id": {
+         "code": "OmHamilton",
+         "id": "Hamilton, Omari",
+         "ncaa_id": "5243190"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "WG"
+   },
+   "TrRoberts": {
+      "player_code_id": {
+         "code": "TrRoberts",
+         "id": "Roberts, Travis",
+         "ncaa_id": "4684734"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Waldorf, MD",
+      "role": "S-PF"
+   },
+   "AlHawkins": {
+      "player_code_id": {
+         "code": "AlHawkins",
+         "id": "Hawkins, Alex",
+         "ncaa_id": "5313434"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Frederick, MD"
+   },
+   "RaGlasgow": {
+      "player_code_id": {
+         "code": "RaGlasgow",
+         "id": "Glasgow, Ray",
+         "ncaa_id": "5242993"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "NiWoodard": {
+      "player_code_id": {
+         "code": "NiWoodard",
+         "id": "Woodard, Nick",
+         "ncaa_id": "5242279"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Oglethorpe, GA",
+      "role": "WF"
+   },
+   "ShLancaster": {
+      "player_code_id": {
+         "code": "ShLancaster",
+         "id": "Lancaster, Shane",
+         "ncaa_id": "5107789"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bowie, MD"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jake Morton"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JeEllis": {
+      "player_code_id": {
+         "code": "JeEllis",
+         "id": "Ellis, Jeremy",
+         "ncaa_id": "5313432"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "-",
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Hamilton Township, NJ"
+   },
+   "BrCalamese": {
+      "player_code_id": {
+         "code": "BrCalamese",
+         "id": "Calamese, Bryson",
+         "ncaa_id": "5313433"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   },
+   "TyMcdaniels": {
+      "player_code_id": {
+         "code": "TyMcdaniels",
+         "id": "McDaniels, Tycen",
+         "ncaa_id": "5243189"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Columbus, GA",
+      "role": "WF"
+   },
+   "DaWilliams": {
+      "player_code_id": {
+         "code": "DaWilliams",
+         "id": "Williams, Davian",
+         "ncaa_id": "5243188"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Vicksburg, MS",
+      "role": "CG"
+   }
+}

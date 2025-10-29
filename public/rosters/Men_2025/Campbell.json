@@ -1,1 +1,115 @@
-{"OmHarris":{"player_code_id":{"code":"OmHarris","id":"Harris, Omar","ncaa_id":"5175796"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Plymouth, NC"},"CoDuggan":{"player_code_id":{"code":"CoDuggan","id":"Duggan, Colby","ncaa_id":"4711262"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Monson, MA"},"JaLawton":{"player_code_id":{"code":"JaLawton","id":"Lawton, Jacob","ncaa_id":"5312138"},"number":"10","pos":"G","height":"5-6","height_in":66,"year_class":"So","gp":0,"origin":"Sydney, Australia"},"CaGregory":{"player_code_id":{"code":"CaGregory","id":"Gregory, Cam","ncaa_id":"5106610"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Accokeek, MD"},"__coach__":{"player_code_id":{"code":"__coach__","id":"John Andrzejek"},"number":"","pos":"","height":"","year_class":"","gp":-1},"WeJohnson":{"player_code_id":{"code":"WeJohnson","id":"Johnson, Wesley","ncaa_id":"9334810"},"number":"24","pos":"C","height":"7-0","height_in":84,"year_class":"Sr","gp":0,"origin":"Raleigh, NC"},"BrGudmundsso":{"player_code_id":{"code":"BrGudmundsso","id":"Gudmundsson, Bragi","ncaa_id":"9334803"},"number":"6","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Grindavik, Iceland"},"IsYaw":{"player_code_id":{"code":"IsYaw","id":"Yaw, Israel","ncaa_id":"5178894"},"number":"12","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Georgetown, Guyana"}}
+{
+   "OmHarris": {
+      "player_code_id": {
+         "code": "OmHarris",
+         "id": "Harris, Omar",
+         "ncaa_id": "5175796"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Plymouth, NC",
+      "role": "WG"
+   },
+   "CoDuggan": {
+      "player_code_id": {
+         "code": "CoDuggan",
+         "id": "Duggan, Colby",
+         "ncaa_id": "4711262"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Monson, MA"
+   },
+   "JaLawton": {
+      "player_code_id": {
+         "code": "JaLawton",
+         "id": "Lawton, Jacob",
+         "ncaa_id": "5312138"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Sydney, Australia"
+   },
+   "CaGregory": {
+      "player_code_id": {
+         "code": "CaGregory",
+         "id": "Gregory, Cam",
+         "ncaa_id": "5106610"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Accokeek, MD",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "John Andrzejek"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "WeJohnson": {
+      "player_code_id": {
+         "code": "WeJohnson",
+         "id": "Johnson, Wesley",
+         "ncaa_id": "9334810"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Raleigh, NC"
+   },
+   "BrGudmundsso": {
+      "player_code_id": {
+         "code": "BrGudmundsso",
+         "id": "Gudmundsson, Bragi",
+         "ncaa_id": "9334803"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Grindavik, Iceland",
+      "role": "WG"
+   },
+   "IsYaw": {
+      "player_code_id": {
+         "code": "IsYaw",
+         "id": "Yaw, Israel",
+         "ncaa_id": "5178894"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Georgetown, Guyana",
+      "role": "WF"
+   }
+}

@@ -1,1 +1,255 @@
-{"ZaLamey":{"player_code_id":{"code":"ZaLamey","id":"Lamey, Zach","ncaa_id":"5176194"},"number":"33","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Birmingham, AL"},"WiShaver":{"player_code_id":{"code":"WiShaver","id":"Shaver, Will","ncaa_id":"4684838"},"number":"35","pos":"C","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Birmingham, AL"},"JdGossett":{"player_code_id":{"code":"JdGossett","id":"Gossett, JD","ncaa_id":"5314543"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Huntsville, AL"},"ZiWilburn":{"player_code_id":{"code":"ZiWilburn","id":"Wilburn, Zion","ncaa_id":"5144382"},"number":"8","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Richmond, CA"},"JoHughes":{"player_code_id":{"code":"JoHughes","id":"Hughes, Joshua","ncaa_id":"5107366"},"number":"31","pos":"F","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Woodstock, GA"},"DyFaulkner":{"player_code_id":{"code":"DyFaulkner","id":"Faulkner, Dylan","ncaa_id":"5176193"},"number":"15","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Calhoun, GA"},"DaHumphrey":{"player_code_id":{"code":"DaHumphrey","id":"Humphrey, DaJion","ncaa_id":"4589475"},"number":"1","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Detroit, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Lennie Acuff"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KaMartin":{"player_code_id":{"code":"KaMartin","id":"Martin, Kam","ncaa_id":"5241906"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Washington, DC"},"CoBrown":{"player_code_id":{"code":"CoBrown","id":"Brown, Corey","ncaa_id":"5243239"},"number":"21","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Fairburn, GA"},"JuBjornstad":{"player_code_id":{"code":"JuBjornstad","id":"Bjornstad, Judson","ncaa_id":"5247933"},"number":"4","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Murfreesboro, TN"},"CoDavenport":{"player_code_id":{"code":"CoDavenport","id":"Davenport, Cooper","ncaa_id":"5314544"},"number":"11","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"Henderson, KY"},"CaNorris":{"player_code_id":{"code":"CaNorris","id":"Norris, Cade","ncaa_id":"5241374"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Hilliard, OH"},"IsCampbell-f":{"player_code_id":{"code":"IsCampbell-f","id":"Campbell-Finch, Isaiah","ncaa_id":"5101768"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"Fr","gp":0,"origin":"Palm Harbor, FL"},"CaHarrison":{"player_code_id":{"code":"CaHarrison","id":"Harrison, Caleb","ncaa_id":"5243240"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Huntsville, AL"},"JaPollard":{"player_code_id":{"code":"JaPollard","id":"Pollard, Jaxon","ncaa_id":"5176239"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Cedar Hills, UT"},"JaBooth":{"player_code_id":{"code":"JaBooth","id":"Booth, Jadin","ncaa_id":"4702680"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Omaha, NE"},"KeNorris":{"player_code_id":{"code":"KeNorris","id":"Norris, Keaton","ncaa_id":"4898194"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Hilliard, OH"}}
+{
+   "ZaLamey": {
+      "player_code_id": {
+         "code": "ZaLamey",
+         "id": "Lamey, Zach",
+         "ncaa_id": "5176194"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Birmingham, AL"
+   },
+   "WiShaver": {
+      "player_code_id": {
+         "code": "WiShaver",
+         "id": "Shaver, Will",
+         "ncaa_id": "4684838"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Birmingham, AL"
+   },
+   "JdGossett": {
+      "player_code_id": {
+         "code": "JdGossett",
+         "id": "Gossett, JD",
+         "ncaa_id": "5314543"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Huntsville, AL"
+   },
+   "ZiWilburn": {
+      "player_code_id": {
+         "code": "ZiWilburn",
+         "id": "Wilburn, Zion",
+         "ncaa_id": "5144382"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Richmond, CA"
+   },
+   "JoHughes": {
+      "player_code_id": {
+         "code": "JoHughes",
+         "id": "Hughes, Joshua",
+         "ncaa_id": "5107366"
+      },
+      "number": "31",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Woodstock, GA"
+   },
+   "DyFaulkner": {
+      "player_code_id": {
+         "code": "DyFaulkner",
+         "id": "Faulkner, Dylan",
+         "ncaa_id": "5176193"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Calhoun, GA",
+      "role": "C"
+   },
+   "DaHumphrey": {
+      "player_code_id": {
+         "code": "DaHumphrey",
+         "id": "Humphrey, DaJion",
+         "ncaa_id": "4589475"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Lennie Acuff"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KaMartin": {
+      "player_code_id": {
+         "code": "KaMartin",
+         "id": "Martin, Kam",
+         "ncaa_id": "5241906"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Washington, DC",
+      "role": "CG"
+   },
+   "CoBrown": {
+      "player_code_id": {
+         "code": "CoBrown",
+         "id": "Brown, Corey",
+         "ncaa_id": "5243239"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fairburn, GA"
+   },
+   "JuBjornstad": {
+      "player_code_id": {
+         "code": "JuBjornstad",
+         "id": "Bjornstad, Judson",
+         "ncaa_id": "5247933"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Murfreesboro, TN"
+   },
+   "CoDavenport": {
+      "player_code_id": {
+         "code": "CoDavenport",
+         "id": "Davenport, Cooper",
+         "ncaa_id": "5314544"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Henderson, KY"
+   },
+   "CaNorris": {
+      "player_code_id": {
+         "code": "CaNorris",
+         "id": "Norris, Cade",
+         "ncaa_id": "5241374"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hilliard, OH"
+   },
+   "IsCampbell-f": {
+      "player_code_id": {
+         "code": "IsCampbell-f",
+         "id": "Campbell-Finch, Isaiah",
+         "ncaa_id": "5101768"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Palm Harbor, FL"
+   },
+   "CaHarrison": {
+      "player_code_id": {
+         "code": "CaHarrison",
+         "id": "Harrison, Caleb",
+         "ncaa_id": "5243240"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Huntsville, AL"
+   },
+   "JaPollard": {
+      "player_code_id": {
+         "code": "JaPollard",
+         "id": "Pollard, Jaxon",
+         "ncaa_id": "5176239"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Cedar Hills, UT",
+      "role": "S-PF"
+   },
+   "JaBooth": {
+      "player_code_id": {
+         "code": "JaBooth",
+         "id": "Booth, Jadin",
+         "ncaa_id": "4702680"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Omaha, NE"
+   },
+   "KeNorris": {
+      "player_code_id": {
+         "code": "KeNorris",
+         "id": "Norris, Keaton",
+         "ncaa_id": "4898194"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hilliard, OH"
+   }
+}

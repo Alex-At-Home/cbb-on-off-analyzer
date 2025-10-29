@@ -1,1 +1,232 @@
-{"AlDibba":{"player_code_id":{"code":"AlDibba","id":"Dibba, Ali","ncaa_id":"4896862"},"number":"6","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Stockholm, Sweden"},"ZaClemence":{"player_code_id":{"code":"ZaClemence","id":"Clemence, Zach","ncaa_id":"4683146"},"number":"7","pos":"F","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"San Antonio, TX"},"FeFederiko":{"player_code_id":{"code":"FeFederiko","id":"Federiko, Federiko","ncaa_id":"5105412"},"number":"33","pos":"C","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Helsinki, Finland"},"JaVinson":{"player_code_id":{"code":"JaVinson","id":"Vinson, Jamie","ncaa_id":"5101692"},"number":"4","pos":"F","height":"6-11","height_in":83,"year_class":"So","gp":0,"origin":"Austin, TX"},"RyGriffen":{"player_code_id":{"code":"RyGriffen","id":"Griffen, Rylan","ncaa_id":"4683682"},"number":"3","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Dallas, TX"},"MaMgbako":{"player_code_id":{"code":"MaMgbako","id":"Mgbako, Mackenzie","ncaa_id":"4683779"},"number":"21","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Gladstone, NJ"},"JoHolloway":{"player_code_id":{"code":"JoHolloway","id":"Holloway, Josh","ncaa_id":"5176160"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Memphis, TN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Bucky McMillan"},"number":"","pos":"","height":"","year_class":"","gp":-1},"RaAgee":{"player_code_id":{"code":"RaAgee","id":"Agee, Rashaun","ncaa_id":"4593815"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Chicago, IL"},"RuDominguez":{"player_code_id":{"code":"RuDominguez","id":"Dominguez, Ruben","ncaa_id":"5311530"},"number":"9","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Chiclana De La Frontera, Spain"},"NoShelby":{"player_code_id":{"code":"NoShelby","id":"Shelby, Noah","ncaa_id":"4823977"},"number":"8","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Mckinney, TX"},"MaHill":{"player_code_id":{"code":"MaHill","id":"Hill, Marcus","ncaa_id":"5176153"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Rockford, IL"},"ChMcdermott":{"player_code_id":{"code":"ChMcdermott","id":"McDermott, Chris","ncaa_id":"5061578"},"number":"14","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Houston, TX"},"PoIsaacs":{"player_code_id":{"code":"PoIsaacs","id":"Isaacs, Pop","ncaa_id":"5106285"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Las Vegas, NV"},"JaLane":{"player_code_id":{"code":"JaLane","id":"Lane, Jacari","ncaa_id":"5107078"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Huntsville, AL"},"JeGreen":{"player_code_id":{"code":"JeGreen","id":"Green, Jeremiah","ncaa_id":"5041941"},"number":"10","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Argyle, TX"}}
+{
+   "AlDibba": {
+      "player_code_id": {
+         "code": "AlDibba",
+         "id": "Dibba, Ali",
+         "ncaa_id": "4896862"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Stockholm, Sweden"
+   },
+   "ZaClemence": {
+      "player_code_id": {
+         "code": "ZaClemence",
+         "id": "Clemence, Zach",
+         "ncaa_id": "4683146"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "San Antonio, TX"
+   },
+   "FeFederiko": {
+      "player_code_id": {
+         "code": "FeFederiko",
+         "id": "Federiko, Federiko",
+         "ncaa_id": "5105412"
+      },
+      "number": "33",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Helsinki, Finland",
+      "role": "C"
+   },
+   "JaVinson": {
+      "player_code_id": {
+         "code": "JaVinson",
+         "id": "Vinson, Jamie",
+         "ncaa_id": "5101692"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Austin, TX"
+   },
+   "RyGriffen": {
+      "player_code_id": {
+         "code": "RyGriffen",
+         "id": "Griffen, Rylan",
+         "ncaa_id": "4683682"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dallas, TX",
+      "role": "WG"
+   },
+   "MaMgbako": {
+      "player_code_id": {
+         "code": "MaMgbako",
+         "id": "Mgbako, Mackenzie",
+         "ncaa_id": "4683779"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Gladstone, NJ",
+      "role": "S-PF"
+   },
+   "JoHolloway": {
+      "player_code_id": {
+         "code": "JoHolloway",
+         "id": "Holloway, Josh",
+         "ncaa_id": "5176160"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Memphis, TN",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Bucky McMillan"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "RaAgee": {
+      "player_code_id": {
+         "code": "RaAgee",
+         "id": "Agee, Rashaun",
+         "ncaa_id": "4593815"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "S-PF"
+   },
+   "RuDominguez": {
+      "player_code_id": {
+         "code": "RuDominguez",
+         "id": "Dominguez, Ruben",
+         "ncaa_id": "5311530"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chiclana De La Frontera, Spain"
+   },
+   "NoShelby": {
+      "player_code_id": {
+         "code": "NoShelby",
+         "id": "Shelby, Noah",
+         "ncaa_id": "4823977"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Mckinney, TX",
+      "role": "CG"
+   },
+   "MaHill": {
+      "player_code_id": {
+         "code": "MaHill",
+         "id": "Hill, Marcus",
+         "ncaa_id": "5176153"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rockford, IL",
+      "role": "WG"
+   },
+   "ChMcdermott": {
+      "player_code_id": {
+         "code": "ChMcdermott",
+         "id": "McDermott, Chris",
+         "ncaa_id": "5061578"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "PoIsaacs": {
+      "player_code_id": {
+         "code": "PoIsaacs",
+         "id": "Isaacs, Pop",
+         "ncaa_id": "5106285"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Las Vegas, NV",
+      "role": "s-PG"
+   },
+   "JaLane": {
+      "player_code_id": {
+         "code": "JaLane",
+         "id": "Lane, Jacari",
+         "ncaa_id": "5107078"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Huntsville, AL",
+      "role": "s-PG"
+   },
+   "JeGreen": {
+      "player_code_id": {
+         "code": "JeGreen",
+         "id": "Green, Jeremiah",
+         "ncaa_id": "5041941"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Argyle, TX"
+   }
+}

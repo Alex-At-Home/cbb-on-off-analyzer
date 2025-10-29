@@ -1,1 +1,156 @@
-{"OwDerhmann":{"player_code_id":{"code":"OwDerhmann","id":"Derhmann, Owen","ncaa_id":"5312923"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Bentonville, AR"},"NeTurner":{"player_code_id":{"code":"NeTurner","id":"Turner, Nehemiah","ncaa_id":"5312920"},"number":"4","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Auburndale, FL"},"JaGuy-king":{"player_code_id":{"code":"JaGuy-king","id":"Guy-King, Javion","ncaa_id":"4712848"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Little Rock, AR"},"__coach__":{"player_code_id":{"code":"__coach__","id":"John Shulman"},"number":"","pos":"","height":"","year_class":"","gp":-1},"TyRobinson":{"player_code_id":{"code":"TyRobinson","id":"Robinson, Ty","ncaa_id":"5239780"},"number":"12","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Hot Springs, AR"},"CoMancell":{"player_code_id":{"code":"CoMancell","id":"Mancell, Connor","ncaa_id":"4897558"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Memphis, TN"},"EtThomas":{"player_code_id":{"code":"EtThomas","id":"Thomas, Ethan","ncaa_id":"5239781"},"number":"17","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Lebanon, TN"},"CoMccormick":{"player_code_id":{"code":"CoMccormick","id":"McCormick, Cole","ncaa_id":"5239782"},"number":"24","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Chattanooga, TN"},"BeFox":{"player_code_id":{"code":"BeFox","id":"Fox, Ben","ncaa_id":"5247935"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Little Rock, AR"},"DiSeixas":{"player_code_id":{"code":"DiSeixas","id":"Seixas, Diogo","ncaa_id":"5312924"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Lisbon, Portugal"},"TyLee":{"player_code_id":{"code":"TyLee","id":"Lee, Tyler","ncaa_id":"5239777"},"number":"5","pos":"F","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Chicago, IL"}}
+{
+   "OwDerhmann": {
+      "player_code_id": {
+         "code": "OwDerhmann",
+         "id": "Derhmann, Owen",
+         "ncaa_id": "5312923"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bentonville, AR",
+      "role": "WG"
+   },
+   "NeTurner": {
+      "player_code_id": {
+         "code": "NeTurner",
+         "id": "Turner, Nehemiah",
+         "ncaa_id": "5312920"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Auburndale, FL"
+   },
+   "JaGuy-king": {
+      "player_code_id": {
+         "code": "JaGuy-king",
+         "id": "Guy-King, Javion",
+         "ncaa_id": "4712848"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Little Rock, AR",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "John Shulman"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "TyRobinson": {
+      "player_code_id": {
+         "code": "TyRobinson",
+         "id": "Robinson, Ty",
+         "ncaa_id": "5239780"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hot Springs, AR"
+   },
+   "CoMancell": {
+      "player_code_id": {
+         "code": "CoMancell",
+         "id": "Mancell, Connor",
+         "ncaa_id": "4897558"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Memphis, TN"
+   },
+   "EtThomas": {
+      "player_code_id": {
+         "code": "EtThomas",
+         "id": "Thomas, Ethan",
+         "ncaa_id": "5239781"
+      },
+      "number": "17",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Lebanon, TN"
+   },
+   "CoMccormick": {
+      "player_code_id": {
+         "code": "CoMccormick",
+         "id": "McCormick, Cole",
+         "ncaa_id": "5239782"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chattanooga, TN",
+      "role": "WG"
+   },
+   "BeFox": {
+      "player_code_id": {
+         "code": "BeFox",
+         "id": "Fox, Ben",
+         "ncaa_id": "5247935"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   },
+   "DiSeixas": {
+      "player_code_id": {
+         "code": "DiSeixas",
+         "id": "Seixas, Diogo",
+         "ncaa_id": "5312924"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lisbon, Portugal"
+   },
+   "TyLee": {
+      "player_code_id": {
+         "code": "TyLee",
+         "id": "Lee, Tyler",
+         "ncaa_id": "5239777"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   }
+}

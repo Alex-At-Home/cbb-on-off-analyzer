@@ -1,1 +1,216 @@
-{"IsCeliscar":{"player_code_id":{"code":"IsCeliscar","id":"Celiscar, Isaac","ncaa_id":"5241754"},"number":"8","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Winter Haven, FL"},"DaOgunyemi":{"player_code_id":{"code":"DaOgunyemi","id":"Ogunyemi, Daniel","ncaa_id":"5313389"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Roswell, GA"},"DeArlington":{"player_code_id":{"code":"DeArlington","id":"Arlington, Devon","ncaa_id":"5107175"},"number":"44","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"San Marcos, CA"},"JoBrathwaite":{"player_code_id":{"code":"JoBrathwaite","id":"Brathwaite, Jordan","ncaa_id":"5241753"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Fulton, MD"},"__coach__":{"player_code_id":{"code":"__coach__","id":"James Jones"},"number":"","pos":"","height":"","year_class":"","gp":-1},"RiFox":{"player_code_id":{"code":"RiFox","id":"Fox, Riley","ncaa_id":"5241755"},"number":"9","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"West Hartford, CT"},"AlLoving":{"player_code_id":{"code":"AlLoving","id":"Loving, Alvin","ncaa_id":"5313387"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Berkeley, CA"},"JaTsai":{"player_code_id":{"code":"JaTsai","id":"Tsai, Jacob","ncaa_id":"5313386"},"number":"1","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"La Jolla, CA"},"TrMullin":{"player_code_id":{"code":"TrMullin","id":"Mullin, Trevor","ncaa_id":"5177185"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Wellesley, MA"},"CaSimmons":{"player_code_id":{"code":"CaSimmons","id":"Simmons, Casey","ncaa_id":"4432692"},"number":"14","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Milton, MA"},"SaAletan":{"player_code_id":{"code":"SaAletan","id":"Aletan, Samson","ncaa_id":"5177187"},"number":"10","pos":"C","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Dallas, TX"},"CoWallace":{"player_code_id":{"code":"CoWallace","id":"Wallace Jr., Courtney","ncaa_id":"5313385"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Pittsburgh, PA"},"NiTownsend":{"player_code_id":{"code":"NiTownsend","id":"Townsend, Nick","ncaa_id":"5107174"},"number":"42","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Chappaqua, NY"},"JeBasima":{"player_code_id":{"code":"JeBasima","id":"Basima, Jeannot","ncaa_id":"5177186"},"number":"22","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Goma, DR Congo"},"JaSullivan":{"player_code_id":{"code":"JaSullivan","id":"Sullivan, Jack","ncaa_id":"5313388"},"number":"7","pos":"F","height":"6-11","height_in":83,"year_class":"Fr","gp":0,"origin":"St Augustine, FL"}}
+{
+   "IsCeliscar": {
+      "player_code_id": {
+         "code": "IsCeliscar",
+         "id": "Celiscar, Isaac",
+         "ncaa_id": "5241754"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Winter Haven, FL",
+      "role": "WF"
+   },
+   "DaOgunyemi": {
+      "player_code_id": {
+         "code": "DaOgunyemi",
+         "id": "Ogunyemi, Daniel",
+         "ncaa_id": "5313389"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Roswell, GA"
+   },
+   "DeArlington": {
+      "player_code_id": {
+         "code": "DeArlington",
+         "id": "Arlington, Devon",
+         "ncaa_id": "5107175"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "San Marcos, CA"
+   },
+   "JoBrathwaite": {
+      "player_code_id": {
+         "code": "JoBrathwaite",
+         "id": "Brathwaite, Jordan",
+         "ncaa_id": "5241753"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fulton, MD",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "James Jones"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "RiFox": {
+      "player_code_id": {
+         "code": "RiFox",
+         "id": "Fox, Riley",
+         "ncaa_id": "5241755"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "West Hartford, CT",
+      "role": "WF"
+   },
+   "AlLoving": {
+      "player_code_id": {
+         "code": "AlLoving",
+         "id": "Loving, Alvin",
+         "ncaa_id": "5313387"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Berkeley, CA"
+   },
+   "JaTsai": {
+      "player_code_id": {
+         "code": "JaTsai",
+         "id": "Tsai, Jacob",
+         "ncaa_id": "5313386"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "La Jolla, CA"
+   },
+   "TrMullin": {
+      "player_code_id": {
+         "code": "TrMullin",
+         "id": "Mullin, Trevor",
+         "ncaa_id": "5177185"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Wellesley, MA",
+      "role": "CG"
+   },
+   "CaSimmons": {
+      "player_code_id": {
+         "code": "CaSimmons",
+         "id": "Simmons, Casey",
+         "ncaa_id": "4432692"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Milton, MA",
+      "role": "WG"
+   },
+   "SaAletan": {
+      "player_code_id": {
+         "code": "SaAletan",
+         "id": "Aletan, Samson",
+         "ncaa_id": "5177187"
+      },
+      "number": "10",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dallas, TX",
+      "role": "C"
+   },
+   "CoWallace": {
+      "player_code_id": {
+         "code": "CoWallace",
+         "id": "Wallace Jr., Courtney",
+         "ncaa_id": "5313385"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Pittsburgh, PA"
+   },
+   "NiTownsend": {
+      "player_code_id": {
+         "code": "NiTownsend",
+         "id": "Townsend, Nick",
+         "ncaa_id": "5107174"
+      },
+      "number": "42",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chappaqua, NY",
+      "role": "WF"
+   },
+   "JeBasima": {
+      "player_code_id": {
+         "code": "JeBasima",
+         "id": "Basima, Jeannot",
+         "ncaa_id": "5177186"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Goma, DR Congo"
+   },
+   "JaSullivan": {
+      "player_code_id": {
+         "code": "JaSullivan",
+         "id": "Sullivan, Jack",
+         "ncaa_id": "5313388"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "St Augustine, FL"
+   }
+}

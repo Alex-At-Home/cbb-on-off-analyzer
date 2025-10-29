@@ -1,1 +1,227 @@
-{"RyArchey":{"player_code_id":{"code":"RyArchey","id":"Archey, Ryan","ncaa_id":"5176266"},"number":"10","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Clinton, MD"},"TeCarpenter":{"player_code_id":{"code":"TeCarpenter","id":"Carpenter, Tekao","ncaa_id":"5239749"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Alexandria, VA"},"KhArnold":{"player_code_id":{"code":"KhArnold","id":"Arnold, Khalil","ncaa_id":"5314188"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Simpsonville, SC"},"GaLattimore":{"player_code_id":{"code":"GaLattimore","id":"Lattimore, Gage","ncaa_id":"5314190"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Greensboro, NC"},"RaBattle":{"player_code_id":{"code":"RaBattle","id":"Battle II, Ramondo","ncaa_id":"5241371"},"number":"22","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Mckinney, TX"},"KeOkworogwo":{"player_code_id":{"code":"KeOkworogwo","id":"Okworogwo, Kelechi","ncaa_id":"5106673"},"number":"21","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Bronx, NY"},"KyDavis":{"player_code_id":{"code":"KyDavis","id":"Davis, Kyric","ncaa_id":"5240023"},"number":"1","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Americus, GA"},"DiJohnson":{"player_code_id":{"code":"DiJohnson","id":"Johnson, Dionte","ncaa_id":"5108775"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Bronx, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"LeVelle Moton"},"number":"","pos":"","height":"","year_class":"","gp":-1},"GbOlubi":{"player_code_id":{"code":"GbOlubi","id":"Olubi, Gbenga","ncaa_id":"5179293"},"number":"9","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Corona, CA"},"JaSlack":{"player_code_id":{"code":"JaSlack","id":"Slack, Jae'Daun","ncaa_id":"5314189"},"number":"8","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Fort Worth, TX"},"KhCarvey":{"player_code_id":{"code":"KhCarvey","id":"Carvey, Khouri","ncaa_id":"5242551"},"number":"7","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Wilson, NC"},"CaEllison":{"player_code_id":{"code":"CaEllison","id":"Ellison, Caleb","ncaa_id":"5179290"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Winston Salem, NC"},"JoDunn":{"player_code_id":{"code":"JoDunn","id":"Dunn, Jonathan","ncaa_id":"5107900"},"number":"13","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Florissant, MO"},"JuEdwards":{"player_code_id":{"code":"JuEdwards","id":"Edwards, Justin","ncaa_id":"5258958"},"number":"12","pos":"G","height":"5-9","height_in":69,"year_class":"Sr","gp":0,"origin":"Corona, CA"},"CaDaniels":{"player_code_id":{"code":"CaDaniels","id":"Daniels, Camren","ncaa_id":"5243400"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Durham, NC"}}
+{
+   "RyArchey": {
+      "player_code_id": {
+         "code": "RyArchey",
+         "id": "Archey, Ryan",
+         "ncaa_id": "5176266"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Clinton, MD",
+      "role": "CG"
+   },
+   "TeCarpenter": {
+      "player_code_id": {
+         "code": "TeCarpenter",
+         "id": "Carpenter, Tekao",
+         "ncaa_id": "5239749"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Alexandria, VA"
+   },
+   "KhArnold": {
+      "player_code_id": {
+         "code": "KhArnold",
+         "id": "Arnold, Khalil",
+         "ncaa_id": "5314188"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Simpsonville, SC"
+   },
+   "GaLattimore": {
+      "player_code_id": {
+         "code": "GaLattimore",
+         "id": "Lattimore, Gage",
+         "ncaa_id": "5314190"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Greensboro, NC"
+   },
+   "RaBattle": {
+      "player_code_id": {
+         "code": "RaBattle",
+         "id": "Battle II, Ramondo",
+         "ncaa_id": "5241371"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mckinney, TX"
+   },
+   "KeOkworogwo": {
+      "player_code_id": {
+         "code": "KeOkworogwo",
+         "id": "Okworogwo, Kelechi",
+         "ncaa_id": "5106673"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bronx, NY",
+      "role": "WF"
+   },
+   "KyDavis": {
+      "player_code_id": {
+         "code": "KyDavis",
+         "id": "Davis, Kyric",
+         "ncaa_id": "5240023"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Americus, GA"
+   },
+   "DiJohnson": {
+      "player_code_id": {
+         "code": "DiJohnson",
+         "id": "Johnson, Dionte",
+         "ncaa_id": "5108775"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bronx, NY",
+      "role": "s-PG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "LeVelle Moton"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "GbOlubi": {
+      "player_code_id": {
+         "code": "GbOlubi",
+         "id": "Olubi, Gbenga",
+         "ncaa_id": "5179293"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Corona, CA"
+   },
+   "JaSlack": {
+      "player_code_id": {
+         "code": "JaSlack",
+         "id": "Slack, Jae'Daun",
+         "ncaa_id": "5314189"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Fort Worth, TX"
+   },
+   "KhCarvey": {
+      "player_code_id": {
+         "code": "KhCarvey",
+         "id": "Carvey, Khouri",
+         "ncaa_id": "5242551"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Wilson, NC",
+      "role": "C"
+   },
+   "CaEllison": {
+      "player_code_id": {
+         "code": "CaEllison",
+         "id": "Ellison, Caleb",
+         "ncaa_id": "5179290"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Winston Salem, NC"
+   },
+   "JoDunn": {
+      "player_code_id": {
+         "code": "JoDunn",
+         "id": "Dunn, Jonathan",
+         "ncaa_id": "5107900"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Florissant, MO"
+   },
+   "JuEdwards": {
+      "player_code_id": {
+         "code": "JuEdwards",
+         "id": "Edwards, Justin",
+         "ncaa_id": "5258958"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Corona, CA"
+   },
+   "CaDaniels": {
+      "player_code_id": {
+         "code": "CaDaniels",
+         "id": "Daniels, Camren",
+         "ncaa_id": "5243400"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Durham, NC"
+   }
+}

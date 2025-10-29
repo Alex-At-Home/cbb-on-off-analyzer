@@ -1,1 +1,233 @@
-{"SaFru":{"player_code_id":{"code":"SaFru","id":"Fru, Sananda","ncaa_id":"5311967"},"number":"13","pos":"F","height":"6-11","height_in":83,"year_class":"Jr","gp":0,"origin":"Berlin, Germany"},"CoSherman":{"player_code_id":{"code":"CoSherman","id":"Sherman, Cole","ncaa_id":"5106779"},"number":"4","pos":"G","height":"5-11","height_in":71,"year_class":"Sr","gp":0,"origin":"Louisville, KY"},"AlKhalifa":{"player_code_id":{"code":"AlKhalifa","id":"Khalifa, Aly","ncaa_id":"4702739"},"number":"15","pos":"C","height":"7-0","height_in":84,"year_class":"Sr","gp":0,"origin":"Alexandria, Egypt"},"IsMckneely":{"player_code_id":{"code":"IsMckneely","id":"McKneely, Isaac","ncaa_id":"4712845"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Poca, WV"},"J'Hadley":{"player_code_id":{"code":"J'Hadley","id":"Hadley, J'Vonne","ncaa_id":"4702784"},"number":"1","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Saint Paul, MN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Pat Kelsey"},"number":"","pos":"","height":"","year_class":"","gp":-1},"WiHanke":{"player_code_id":{"code":"WiHanke","id":"Hanke, Will","ncaa_id":"5311968"},"number":"33","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Louisville, KY"},"SpLegg":{"player_code_id":{"code":"SpLegg","id":"Legg, Spencer","ncaa_id":"5105765"},"number":"55","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Washington, DC"},"RyConwell":{"player_code_id":{"code":"RyConwell","id":"Conwell, Ryan","ncaa_id":"5107157"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Indianapolis, IN"},"MiBrown":{"player_code_id":{"code":"MiBrown","id":"Brown Jr., Mikel","ncaa_id":"5101761"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Orlando, FL"},"VaZougris":{"player_code_id":{"code":"VaZougris","id":"Zougris, Vangelis","ncaa_id":"5311969"},"number":"53","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Peristeri, Greece"},"MoCamara":{"player_code_id":{"code":"MoCamara","id":"Camara, Mouhamed","ncaa_id":"5311966"},"number":"12","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Dakar, Senegal"},"KhRooths":{"player_code_id":{"code":"KhRooths","id":"Rooths, Khani","ncaa_id":"4873187"},"number":"9","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Washington, DC"},"AdWooley":{"player_code_id":{"code":"AdWooley","id":"Wooley, Adrian","ncaa_id":"5242127"},"number":"14","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Tuscaloosa, AL"},"KaPryor":{"player_code_id":{"code":"KaPryor","id":"Pryor, Kasean","ncaa_id":"4589481"},"number":"7","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Chicago, IL"},"KoRodgers":{"player_code_id":{"code":"KoRodgers","id":"Rodgers, Kobe","ncaa_id":"5174946"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Cincinnati, OH"}}
+{
+   "SaFru": {
+      "player_code_id": {
+         "code": "SaFru",
+         "id": "Fru, Sananda",
+         "ncaa_id": "5311967"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Berlin, Germany",
+      "role": "PF/C"
+   },
+   "CoSherman": {
+      "player_code_id": {
+         "code": "CoSherman",
+         "id": "Sherman, Cole",
+         "ncaa_id": "5106779"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Louisville, KY"
+   },
+   "AlKhalifa": {
+      "player_code_id": {
+         "code": "AlKhalifa",
+         "id": "Khalifa, Aly",
+         "ncaa_id": "4702739"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Alexandria, Egypt",
+      "role": "PF/C"
+   },
+   "IsMckneely": {
+      "player_code_id": {
+         "code": "IsMckneely",
+         "id": "McKneely, Isaac",
+         "ncaa_id": "4712845"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Poca, WV",
+      "role": "CG"
+   },
+   "J'Hadley": {
+      "player_code_id": {
+         "code": "J'Hadley",
+         "id": "Hadley, J'Vonne",
+         "ncaa_id": "4702784"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Saint Paul, MN",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Pat Kelsey"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "WiHanke": {
+      "player_code_id": {
+         "code": "WiHanke",
+         "id": "Hanke, Will",
+         "ncaa_id": "5311968"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Louisville, KY"
+   },
+   "SpLegg": {
+      "player_code_id": {
+         "code": "SpLegg",
+         "id": "Legg, Spencer",
+         "ncaa_id": "5105765"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Washington, DC"
+   },
+   "RyConwell": {
+      "player_code_id": {
+         "code": "RyConwell",
+         "id": "Conwell, Ryan",
+         "ncaa_id": "5107157"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "CG"
+   },
+   "MiBrown": {
+      "player_code_id": {
+         "code": "MiBrown",
+         "id": "Brown Jr., Mikel",
+         "ncaa_id": "5101761"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Orlando, FL",
+      "role": "PG"
+   },
+   "VaZougris": {
+      "player_code_id": {
+         "code": "VaZougris",
+         "id": "Zougris, Vangelis",
+         "ncaa_id": "5311969"
+      },
+      "number": "53",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Peristeri, Greece"
+   },
+   "MoCamara": {
+      "player_code_id": {
+         "code": "MoCamara",
+         "id": "Camara, Mouhamed",
+         "ncaa_id": "5311966"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dakar, Senegal"
+   },
+   "KhRooths": {
+      "player_code_id": {
+         "code": "KhRooths",
+         "id": "Rooths, Khani",
+         "ncaa_id": "4873187"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Washington, DC",
+      "role": "S-PF"
+   },
+   "AdWooley": {
+      "player_code_id": {
+         "code": "AdWooley",
+         "id": "Wooley, Adrian",
+         "ncaa_id": "5242127"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tuscaloosa, AL",
+      "role": "CG"
+   },
+   "KaPryor": {
+      "player_code_id": {
+         "code": "KaPryor",
+         "id": "Pryor, Kasean",
+         "ncaa_id": "4589481"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "S-PF"
+   },
+   "KoRodgers": {
+      "player_code_id": {
+         "code": "KoRodgers",
+         "id": "Rodgers, Kobe",
+         "ncaa_id": "5174946"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "WG"
+   }
+}

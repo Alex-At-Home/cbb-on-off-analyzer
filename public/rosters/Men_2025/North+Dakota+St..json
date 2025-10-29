@@ -1,1 +1,214 @@
-{"RiSaunders":{"player_code_id":{"code":"RiSaunders","id":"Saunders, Riley","ncaa_id":"5314780"},"number":"13","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"Sandy Springs, GA"},"TrCarson":{"player_code_id":{"code":"TrCarson","id":"Carson, Trevian","ncaa_id":"5314778"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"West Des Moines, IA"},"NoFeddersen":{"player_code_id":{"code":"NoFeddersen","id":"Feddersen, Noah","ncaa_id":"5107278"},"number":"34","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Menomonie, WI"},"CaSchoenrock":{"player_code_id":{"code":"CaSchoenrock","id":"Schoenrock, Caleb","ncaa_id":"5314782"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Cedar, MN"},"CaSmith":{"player_code_id":{"code":"CaSmith","id":"Smith, Carson","ncaa_id":"5241641"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Bountiful, UT"},"__coach__":{"player_code_id":{"code":"__coach__","id":"David Richman"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnStefonowic":{"player_code_id":{"code":"AnStefonowic","id":"Stefonowicz, Andy","ncaa_id":"5241640"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Minnetonka, MN"},"MaMajerle":{"player_code_id":{"code":"MaMajerle","id":"Majerle, Max","ncaa_id":"5108047"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Scottsdale, AZ"},"MaStrickland":{"player_code_id":{"code":"MaStrickland","id":"Strickland, Markhi","ncaa_id":"4432494"},"number":"30","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Miami, FL"},"TaSmith":{"player_code_id":{"code":"TaSmith","id":"Smith, Tay","ncaa_id":"4901166"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Bowling Green, KY"},"EmSkytta":{"player_code_id":{"code":"EmSkytta","id":"Skytta, Emil","ncaa_id":"5108046"},"number":"8","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Helsinki, Finland"},"DaWheeler-th":{"player_code_id":{"code":"DaWheeler-th","id":"Wheeler-Thomas, Damari","ncaa_id":"5107273"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Elgin, IL"},"TrAnderson":{"player_code_id":{"code":"TrAnderson","id":"Anderson, Treyson","ncaa_id":"5241642"},"number":"44","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Lincoln, NE"},"RiMassey":{"player_code_id":{"code":"RiMassey","id":"Massey, Riley","ncaa_id":"5314779"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Shiloh, IL"},"DoClay":{"player_code_id":{"code":"DoClay","id":"Clay, Dom","ncaa_id":"5314781"},"number":"14","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Quincy, IL"}}
+{
+   "RiSaunders": {
+      "player_code_id": {
+         "code": "RiSaunders",
+         "id": "Saunders, Riley",
+         "ncaa_id": "5314780"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Sandy Springs, GA"
+   },
+   "TrCarson": {
+      "player_code_id": {
+         "code": "TrCarson",
+         "id": "Carson, Trevian",
+         "ncaa_id": "5314778"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "West Des Moines, IA"
+   },
+   "NoFeddersen": {
+      "player_code_id": {
+         "code": "NoFeddersen",
+         "id": "Feddersen, Noah",
+         "ncaa_id": "5107278"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Menomonie, WI",
+      "role": "S-PF"
+   },
+   "CaSchoenrock": {
+      "player_code_id": {
+         "code": "CaSchoenrock",
+         "id": "Schoenrock, Caleb",
+         "ncaa_id": "5314782"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cedar, MN"
+   },
+   "CaSmith": {
+      "player_code_id": {
+         "code": "CaSmith",
+         "id": "Smith, Carson",
+         "ncaa_id": "5241641"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bountiful, UT"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "David Richman"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnStefonowic": {
+      "player_code_id": {
+         "code": "AnStefonowic",
+         "id": "Stefonowicz, Andy",
+         "ncaa_id": "5241640"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Minnetonka, MN",
+      "role": "s-PG"
+   },
+   "MaMajerle": {
+      "player_code_id": {
+         "code": "MaMajerle",
+         "id": "Majerle, Max",
+         "ncaa_id": "5108047"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Scottsdale, AZ"
+   },
+   "MaStrickland": {
+      "player_code_id": {
+         "code": "MaStrickland",
+         "id": "Strickland, Markhi",
+         "ncaa_id": "4432494"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Miami, FL",
+      "role": "WG"
+   },
+   "TaSmith": {
+      "player_code_id": {
+         "code": "TaSmith",
+         "id": "Smith, Tay",
+         "ncaa_id": "4901166"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bowling Green, KY"
+   },
+   "EmSkytta": {
+      "player_code_id": {
+         "code": "EmSkytta",
+         "id": "Skytta, Emil",
+         "ncaa_id": "5108046"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Helsinki, Finland",
+      "role": "CG"
+   },
+   "DaWheeler-th": {
+      "player_code_id": {
+         "code": "DaWheeler-th",
+         "id": "Wheeler-Thomas, Damari",
+         "ncaa_id": "5107273"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Elgin, IL",
+      "role": "CG"
+   },
+   "TrAnderson": {
+      "player_code_id": {
+         "code": "TrAnderson",
+         "id": "Anderson, Treyson",
+         "ncaa_id": "5241642"
+      },
+      "number": "44",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Lincoln, NE"
+   },
+   "RiMassey": {
+      "player_code_id": {
+         "code": "RiMassey",
+         "id": "Massey, Riley",
+         "ncaa_id": "5314779"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Shiloh, IL"
+   },
+   "DoClay": {
+      "player_code_id": {
+         "code": "DoClay",
+         "id": "Clay, Dom",
+         "ncaa_id": "5314781"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Quincy, IL"
+   }
+}

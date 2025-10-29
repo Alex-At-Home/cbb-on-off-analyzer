@@ -1,1 +1,213 @@
-{"MaRigsby":{"player_code_id":{"code":"MaRigsby","id":"Rigsby Jr., Marcus","ncaa_id":"5176733"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Fort Worth, TX"},"CaJackson":{"player_code_id":{"code":"CaJackson","id":"Jackson, Cameron","ncaa_id":"5241428"},"number":"34","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Pflugerville, TX"},"JaSmoot":{"player_code_id":{"code":"JaSmoot","id":"Smoot, Jayden","ncaa_id":"5314871"},"number":"11","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Los Angeles, CA"},"MaMccreary":{"player_code_id":{"code":"MaMccreary","id":"McCreary, Marcell","ncaa_id":"5113390"},"number":"42","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Fort Worth, TX"},"MiGoodman":{"player_code_id":{"code":"MiGoodman","id":"Goodman, Miles","ncaa_id":"5061587"},"number":"5","pos":"F","height":"6-11","height_in":83,"year_class":"Fr","gp":0,"origin":"Seattle, WA"},"AlBossinakis":{"player_code_id":{"code":"AlBossinakis","id":"Bossinakis, Alex","ncaa_id":"5252372"},"number":"7","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"N Richland Hills, TX"},"CaChavis":{"player_code_id":{"code":"CaChavis","id":"Chavis, Casmir","ncaa_id":"5183293"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"Fr","gp":0,"origin":"Minneapolis, MN"},"JoLowery":{"player_code_id":{"code":"JoLowery","id":"Lowery, Jordan","ncaa_id":"5144092"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Denton, TX"},"BaLaster":{"player_code_id":{"code":"BaLaster","id":"Laster, Bahsil","ncaa_id":"5314870"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Philadelphia, PA"},"TyMason":{"player_code_id":{"code":"TyMason","id":"Mason, Tyran","ncaa_id":"5240285"},"number":"3","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Plano, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"KT Turner"},"number":"","pos":"","height":"","year_class":"","gp":-1},"RaSeamster":{"player_code_id":{"code":"RaSeamster","id":"Seamster, Raysean","ncaa_id":"5241424"},"number":"2","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Portland, OR"},"AmReed":{"player_code_id":{"code":"AmReed","id":"Reed, Amari","ncaa_id":"5196935"},"number":"33","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Lancaster, TX"},"StHadnot":{"player_code_id":{"code":"StHadnot","id":"Hadnot, Stoney","ncaa_id":"5241453"},"number":"21","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Houston, TX"},"AuYoussef":{"player_code_id":{"code":"AuYoussef","id":"Youssef, Augustine","ncaa_id":"5314872"},"number":"12","pos":"G","height":"6-0","height_in":72,"year_class":"Fr","gp":0,"origin":"Indio, CA"}}
+{
+   "MaRigsby": {
+      "player_code_id": {
+         "code": "MaRigsby",
+         "id": "Rigsby Jr., Marcus",
+         "ncaa_id": "5176733"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Fort Worth, TX",
+      "role": "WG"
+   },
+   "CaJackson": {
+      "player_code_id": {
+         "code": "CaJackson",
+         "id": "Jackson, Cameron",
+         "ncaa_id": "5241428"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Pflugerville, TX"
+   },
+   "JaSmoot": {
+      "player_code_id": {
+         "code": "JaSmoot",
+         "id": "Smoot, Jayden",
+         "ncaa_id": "5314871"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "MaMccreary": {
+      "player_code_id": {
+         "code": "MaMccreary",
+         "id": "McCreary, Marcell",
+         "ncaa_id": "5113390"
+      },
+      "number": "42",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Fort Worth, TX",
+      "role": "WG"
+   },
+   "MiGoodman": {
+      "player_code_id": {
+         "code": "MiGoodman",
+         "id": "Goodman, Miles",
+         "ncaa_id": "5061587"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Seattle, WA"
+   },
+   "AlBossinakis": {
+      "player_code_id": {
+         "code": "AlBossinakis",
+         "id": "Bossinakis, Alex",
+         "ncaa_id": "5252372"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "N Richland Hills, TX"
+   },
+   "CaChavis": {
+      "player_code_id": {
+         "code": "CaChavis",
+         "id": "Chavis, Casmir",
+         "ncaa_id": "5183293"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Minneapolis, MN"
+   },
+   "JoLowery": {
+      "player_code_id": {
+         "code": "JoLowery",
+         "id": "Lowery, Jordan",
+         "ncaa_id": "5144092"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Denton, TX"
+   },
+   "BaLaster": {
+      "player_code_id": {
+         "code": "BaLaster",
+         "id": "Laster, Bahsil",
+         "ncaa_id": "5314870"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Philadelphia, PA"
+   },
+   "TyMason": {
+      "player_code_id": {
+         "code": "TyMason",
+         "id": "Mason, Tyran",
+         "ncaa_id": "5240285"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Plano, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "KT Turner"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "RaSeamster": {
+      "player_code_id": {
+         "code": "RaSeamster",
+         "id": "Seamster, Raysean",
+         "ncaa_id": "5241424"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Portland, OR",
+      "role": "WF"
+   },
+   "AmReed": {
+      "player_code_id": {
+         "code": "AmReed",
+         "id": "Reed, Amari",
+         "ncaa_id": "5196935"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lancaster, TX"
+   },
+   "StHadnot": {
+      "player_code_id": {
+         "code": "StHadnot",
+         "id": "Hadnot, Stoney",
+         "ncaa_id": "5241453"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "WF"
+   },
+   "AuYoussef": {
+      "player_code_id": {
+         "code": "AuYoussef",
+         "id": "Youssef, Augustine",
+         "ncaa_id": "5314872"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Indio, CA"
+   }
+}

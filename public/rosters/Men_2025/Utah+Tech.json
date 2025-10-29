@@ -1,1 +1,214 @@
-{"ChTrujillo":{"player_code_id":{"code":"ChTrujillo","id":"Trujillo, Chance","ncaa_id":"4897982"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Kaysville, UT"},"JuHolt":{"player_code_id":{"code":"JuHolt","id":"Holt, Jusaun","ncaa_id":"4684152"},"number":"4","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Tacoma, WA"},"DaGrant":{"player_code_id":{"code":"DaGrant","id":"Grant, Dallin","ncaa_id":"5176272"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Cedar City, UT"},"NoBolanga":{"player_code_id":{"code":"NoBolanga","id":"Bolanga, Noah","ncaa_id":"5245765"},"number":"66","pos":"G","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Poitiers, France"},"BoHarker":{"player_code_id":{"code":"BoHarker","id":"Harker, Boston","ncaa_id":"5314821"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Raymond, Canada"},"PrVandermyde":{"player_code_id":{"code":"PrVandermyde","id":"Vandermyde, Preston","ncaa_id":"5241401"},"number":"14","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Saint George, UT"},"BrBerrett":{"player_code_id":{"code":"BrBerrett","id":"Berrett, Britton","ncaa_id":"5241402"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Rigby, ID"},"SaAriyibi":{"player_code_id":{"code":"SaAriyibi","id":"Ariyibi, Samuel","ncaa_id":"4898377"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Lagos, Nigeria"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jon Judkins"},"number":"","pos":"","height":"","year_class":"","gp":-1},"EtPotter":{"player_code_id":{"code":"EtPotter","id":"Potter, Ethan","ncaa_id":"5105471"},"number":"35","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Layton, UT"},"MaAllen":{"player_code_id":{"code":"MaAllen","id":"Allen, Marvel","ncaa_id":"4711268"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Fort Lauderdale, FL"},"MaOwona":{"player_code_id":{"code":"MaOwona","id":"Owona, Madiba","ncaa_id":"5241399"},"number":"33","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Bordeaux, France"},"HuSchenck":{"player_code_id":{"code":"HuSchenck","id":"Schenck, Hunter","ncaa_id":"5241398"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Pleasant View, UT"},"TaDavis":{"player_code_id":{"code":"TaDavis","id":"Davis, Tanner","ncaa_id":"5314822"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Smithfield, UT"},"DaDomingos":{"player_code_id":{"code":"DaDomingos","id":"Domingos, Dario","ncaa_id":"5105493"},"number":"52","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Luanda, Angola"}}
+{
+   "ChTrujillo": {
+      "player_code_id": {
+         "code": "ChTrujillo",
+         "id": "Trujillo, Chance",
+         "ncaa_id": "4897982"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Kaysville, UT"
+   },
+   "JuHolt": {
+      "player_code_id": {
+         "code": "JuHolt",
+         "id": "Holt, Jusaun",
+         "ncaa_id": "4684152"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Tacoma, WA"
+   },
+   "DaGrant": {
+      "player_code_id": {
+         "code": "DaGrant",
+         "id": "Grant, Dallin",
+         "ncaa_id": "5176272"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cedar City, UT"
+   },
+   "NoBolanga": {
+      "player_code_id": {
+         "code": "NoBolanga",
+         "id": "Bolanga, Noah",
+         "ncaa_id": "5245765"
+      },
+      "number": "66",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Poitiers, France",
+      "role": "WG"
+   },
+   "BoHarker": {
+      "player_code_id": {
+         "code": "BoHarker",
+         "id": "Harker, Boston",
+         "ncaa_id": "5314821"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Raymond, Canada"
+   },
+   "PrVandermyde": {
+      "player_code_id": {
+         "code": "PrVandermyde",
+         "id": "Vandermyde, Preston",
+         "ncaa_id": "5241401"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Saint George, UT"
+   },
+   "BrBerrett": {
+      "player_code_id": {
+         "code": "BrBerrett",
+         "id": "Berrett, Britton",
+         "ncaa_id": "5241402"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rigby, ID",
+      "role": "WG"
+   },
+   "SaAriyibi": {
+      "player_code_id": {
+         "code": "SaAriyibi",
+         "id": "Ariyibi, Samuel",
+         "ncaa_id": "4898377"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lagos, Nigeria",
+      "role": "S-PF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jon Judkins"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "EtPotter": {
+      "player_code_id": {
+         "code": "EtPotter",
+         "id": "Potter, Ethan",
+         "ncaa_id": "5105471"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Layton, UT",
+      "role": "PF/C"
+   },
+   "MaAllen": {
+      "player_code_id": {
+         "code": "MaAllen",
+         "id": "Allen, Marvel",
+         "ncaa_id": "4711268"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fort Lauderdale, FL"
+   },
+   "MaOwona": {
+      "player_code_id": {
+         "code": "MaOwona",
+         "id": "Owona, Madiba",
+         "ncaa_id": "5241399"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bordeaux, France",
+      "role": "WG"
+   },
+   "HuSchenck": {
+      "player_code_id": {
+         "code": "HuSchenck",
+         "id": "Schenck, Hunter",
+         "ncaa_id": "5241398"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Pleasant View, UT"
+   },
+   "TaDavis": {
+      "player_code_id": {
+         "code": "TaDavis",
+         "id": "Davis, Tanner",
+         "ncaa_id": "5314822"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Smithfield, UT"
+   },
+   "DaDomingos": {
+      "player_code_id": {
+         "code": "DaDomingos",
+         "id": "Domingos, Dario",
+         "ncaa_id": "5105493"
+      },
+      "number": "52",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Luanda, Angola"
+   }
+}

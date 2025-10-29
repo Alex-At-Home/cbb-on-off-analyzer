@@ -1,1 +1,188 @@
-{"CaCrosby":{"player_code_id":{"code":"CaCrosby","id":"Crosby, Cahmai","ncaa_id":"5313375"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Kansas City, KS"},"DaTerrell":{"player_code_id":{"code":"DaTerrell","id":"Terrell Jr., David","ncaa_id":"5177691"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Dallas, TX"},"ReRobinson":{"player_code_id":{"code":"ReRobinson","id":"Robinson, Reece","ncaa_id":"5241610"},"number":"15","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Cleveland, OH"},"WiMcclendon":{"player_code_id":{"code":"WiMcclendon","id":"McClendon, Will","ncaa_id":"4433275"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Sacramento, CA"},"BuHammer":{"player_code_id":{"code":"BuHammer","id":"Hammer Jr., Buddy","ncaa_id":"5313378"},"number":"23","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Westville, OK"},"CuStinson":{"player_code_id":{"code":"CuStinson","id":"Stinson Jr., Curtis","ncaa_id":"5313377"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Bronx, NY"},"CoFranklin":{"player_code_id":{"code":"CoFranklin","id":"Franklin, Cole","ncaa_id":"5241611"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Desoto, TX"},"DeWatson":{"player_code_id":{"code":"DeWatson","id":"Watson, Demarion","ncaa_id":"5106255"},"number":"0","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Maple Grove, MN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Daniyal Robinson"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JeStevenson":{"player_code_id":{"code":"JeStevenson","id":"Stevenson, Je'Shawn","ncaa_id":"5241608"},"number":"4","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Chicago, IL"},"JoShacklefor":{"player_code_id":{"code":"JoShacklefor","id":"Shackleford, Josiah","ncaa_id":"5106682"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Greenville, NC"},"EjHorton":{"player_code_id":{"code":"EjHorton","id":"Horton, EJ","ncaa_id":"5313376"},"number":"6","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Chicago, IL"},"DyArnett":{"player_code_id":{"code":"DyArnett","id":"Arnett, Dylan","ncaa_id":"5106742"},"number":"12","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Chicago, IL"}}
+{
+   "CaCrosby": {
+      "player_code_id": {
+         "code": "CaCrosby",
+         "id": "Crosby, Cahmai",
+         "ncaa_id": "5313375"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Kansas City, KS"
+   },
+   "DaTerrell": {
+      "player_code_id": {
+         "code": "DaTerrell",
+         "id": "Terrell Jr., David",
+         "ncaa_id": "5177691"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dallas, TX",
+      "role": "s-PG"
+   },
+   "ReRobinson": {
+      "player_code_id": {
+         "code": "ReRobinson",
+         "id": "Robinson, Reece",
+         "ncaa_id": "5241610"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cleveland, OH",
+      "role": "S-PF"
+   },
+   "WiMcclendon": {
+      "player_code_id": {
+         "code": "WiMcclendon",
+         "id": "McClendon, Will",
+         "ncaa_id": "4433275"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sacramento, CA",
+      "role": "s-PG"
+   },
+   "BuHammer": {
+      "player_code_id": {
+         "code": "BuHammer",
+         "id": "Hammer Jr., Buddy",
+         "ncaa_id": "5313378"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Westville, OK"
+   },
+   "CuStinson": {
+      "player_code_id": {
+         "code": "CuStinson",
+         "id": "Stinson Jr., Curtis",
+         "ncaa_id": "5313377"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "CoFranklin": {
+      "player_code_id": {
+         "code": "CoFranklin",
+         "id": "Franklin, Cole",
+         "ncaa_id": "5241611"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Desoto, TX",
+      "role": "WG"
+   },
+   "DeWatson": {
+      "player_code_id": {
+         "code": "DeWatson",
+         "id": "Watson, Demarion",
+         "ncaa_id": "5106255"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Maple Grove, MN",
+      "role": "WF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Daniyal Robinson"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JeStevenson": {
+      "player_code_id": {
+         "code": "JeStevenson",
+         "id": "Stevenson, Je'Shawn",
+         "ncaa_id": "5241608"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WG"
+   },
+   "JoShacklefor": {
+      "player_code_id": {
+         "code": "JoShacklefor",
+         "id": "Shackleford, Josiah",
+         "ncaa_id": "5106682"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Greenville, NC"
+   },
+   "EjHorton": {
+      "player_code_id": {
+         "code": "EjHorton",
+         "id": "Horton, EJ",
+         "ncaa_id": "5313376"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "DyArnett": {
+      "player_code_id": {
+         "code": "DyArnett",
+         "id": "Arnett, Dylan",
+         "ncaa_id": "5106742"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "C"
+   }
+}

@@ -1,1 +1,213 @@
-{"HaMashhour":{"player_code_id":{"code":"HaMashhour","id":"Mashhour, Hamoudy","ncaa_id":"5313708"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Dearborn, MI"},"TuNaivalurua":{"player_code_id":{"code":"TuNaivalurua","id":"Naivalurua, Tuburu","ncaa_id":"5177207"},"number":"12","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Sydney, Australia"},"WiBeugreKassi":{"player_code_id":{"code":"WiBeugreKassi","id":"Beugre Kassi, William","ncaa_id":"5313710"},"number":"4","pos":"G","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Saintouenlaumone, France"},"BrRobinson":{"player_code_id":{"code":"BrRobinson","id":"Robinson, Brody","ncaa_id":"5107377"},"number":"55","pos":"G","height":"5-11","height_in":71,"year_class":"Sr","gp":0,"origin":"Houston, TX"},"DoYeager":{"player_code_id":{"code":"DoYeager","id":"Yeager, Donny","ncaa_id":"5313709"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Fr","gp":0,"origin":"Saginaw, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Greg Kampe"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ZiWells":{"player_code_id":{"code":"ZiWells","id":"Wells, Ziare","ncaa_id":"5315124"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Queens Village, NY"},"MjYeager":{"player_code_id":{"code":"MjYeager","id":"Yeager, MJ","ncaa_id":"5313711"},"number":"5","pos":"G","height":"5-10","height_in":70,"year_class":"Fr","gp":0,"origin":"Saginaw, MI"},"NaDeer":{"player_code_id":{"code":"NaDeer","id":"Deer, Nate","ncaa_id":"5240688"},"number":"11","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Adelaide, Australia"},"MiHouge":{"player_code_id":{"code":"MiHouge","id":"Houge, Michael","ncaa_id":"5177149"},"number":"6","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Detroit, MI"},"WaMarshall":{"player_code_id":{"code":"WaMarshall","id":"Marshall IV, Warren","ncaa_id":"5241684"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Auburn Hills, MI"},"KhThurmon":{"player_code_id":{"code":"KhThurmon","id":"Thurmon, Khoi","ncaa_id":"5313713"},"number":"21","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Chicago, IL"},"BrWhite":{"player_code_id":{"code":"BrWhite","id":"White, Brett","ncaa_id":"5313712"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Battle Creek, MI"},"NaMashhour":{"player_code_id":{"code":"NaMashhour","id":"Mashhour, Nassim","ncaa_id":"5241679"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Dearborn, MI"},"IsGarrett":{"player_code_id":{"code":"IsGarrett","id":"Garrett, Isaac","ncaa_id":"5313714"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Pleasant Grove, UT"}}
+{
+   "HaMashhour": {
+      "player_code_id": {
+         "code": "HaMashhour",
+         "id": "Mashhour, Hamoudy",
+         "ncaa_id": "5313708"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dearborn, MI"
+   },
+   "TuNaivalurua": {
+      "player_code_id": {
+         "code": "TuNaivalurua",
+         "id": "Naivalurua, Tuburu",
+         "ncaa_id": "5177207"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sydney, Australia"
+   },
+   "WiBeugreKassi": {
+      "player_code_id": {
+         "code": "WiBeugreKassi",
+         "id": "Beugre Kassi, William",
+         "ncaa_id": "5313710"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Saintouenlaumone, France"
+   },
+   "BrRobinson": {
+      "player_code_id": {
+         "code": "BrRobinson",
+         "id": "Robinson, Brody",
+         "ncaa_id": "5107377"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "PG"
+   },
+   "DoYeager": {
+      "player_code_id": {
+         "code": "DoYeager",
+         "id": "Yeager, Donny",
+         "ncaa_id": "5313709"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Saginaw, MI"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Greg Kampe"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ZiWells": {
+      "player_code_id": {
+         "code": "ZiWells",
+         "id": "Wells, Ziare",
+         "ncaa_id": "5315124"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Queens Village, NY"
+   },
+   "MjYeager": {
+      "player_code_id": {
+         "code": "MjYeager",
+         "id": "Yeager, MJ",
+         "ncaa_id": "5313711"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Saginaw, MI"
+   },
+   "NaDeer": {
+      "player_code_id": {
+         "code": "NaDeer",
+         "id": "Deer, Nate",
+         "ncaa_id": "5240688"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Adelaide, Australia",
+      "role": "C"
+   },
+   "MiHouge": {
+      "player_code_id": {
+         "code": "MiHouge",
+         "id": "Houge, Michael",
+         "ncaa_id": "5177149"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "PF/C"
+   },
+   "WaMarshall": {
+      "player_code_id": {
+         "code": "WaMarshall",
+         "id": "Marshall IV, Warren",
+         "ncaa_id": "5241684"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Auburn Hills, MI"
+   },
+   "KhThurmon": {
+      "player_code_id": {
+         "code": "KhThurmon",
+         "id": "Thurmon, Khoi",
+         "ncaa_id": "5313713"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "BrWhite": {
+      "player_code_id": {
+         "code": "BrWhite",
+         "id": "White, Brett",
+         "ncaa_id": "5313712"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Battle Creek, MI"
+   },
+   "NaMashhour": {
+      "player_code_id": {
+         "code": "NaMashhour",
+         "id": "Mashhour, Nassim",
+         "ncaa_id": "5241679"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Dearborn, MI",
+      "role": "CG"
+   },
+   "IsGarrett": {
+      "player_code_id": {
+         "code": "IsGarrett",
+         "id": "Garrett, Isaac",
+         "ncaa_id": "5313714"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Pleasant Grove, UT"
+   }
+}

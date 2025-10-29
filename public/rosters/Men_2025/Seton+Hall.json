@@ -1,1 +1,71 @@
-{"GoErheriene":{"player_code_id":{"code":"GoErheriene","id":"Erheriene, Godswill","ncaa_id":"5101686"},"number":"54","pos":"C","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Ughelli, Nigeria"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Shaheen Holloway"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DaGabriel":{"player_code_id":{"code":"DaGabriel","id":"Gabriel, David","ncaa_id":"5114229"},"number":"41","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"North Bergen, NJ"},"JaFelton":{"player_code_id":{"code":"JaFelton","id":"Felton, Jahseem","ncaa_id":"4873098"},"number":"15","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Charlotte, NC"},"AsMbaye":{"player_code_id":{"code":"AsMbaye","id":"Mbaye, Assane","ncaa_id":"5240537"},"number":"35","pos":"C","height":"7-2","height_in":86,"year_class":"So","gp":0,"origin":"Mbour, Senegal"}}
+{
+   "GoErheriene": {
+      "player_code_id": {
+         "code": "GoErheriene",
+         "id": "Erheriene, Godswill",
+         "ncaa_id": "5101686"
+      },
+      "number": "54",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ughelli, Nigeria",
+      "role": "C"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Shaheen Holloway"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DaGabriel": {
+      "player_code_id": {
+         "code": "DaGabriel",
+         "id": "Gabriel, David",
+         "ncaa_id": "5114229"
+      },
+      "number": "41",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "North Bergen, NJ"
+   },
+   "JaFelton": {
+      "player_code_id": {
+         "code": "JaFelton",
+         "id": "Felton, Jahseem",
+         "ncaa_id": "4873098"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Charlotte, NC",
+      "role": "WG"
+   },
+   "AsMbaye": {
+      "player_code_id": {
+         "code": "AsMbaye",
+         "id": "Mbaye, Assane",
+         "ncaa_id": "5240537"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "7-2",
+      "height_in": 86,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Mbour, Senegal"
+   }
+}

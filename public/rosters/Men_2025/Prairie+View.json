@@ -1,1 +1,127 @@
-{"ElTerry":{"player_code_id":{"code":"ElTerry","id":"Terry, Elijah","ncaa_id":"4904928"},"number":"13","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Enterprise, AL"},"IsFoster":{"player_code_id":{"code":"IsFoster","id":"Foster, Isaiah","ncaa_id":"5243361"},"number":"5","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Frisco, TX"},"ChGibson":{"player_code_id":{"code":"ChGibson","id":"Gibson, Chauncey","ncaa_id":"9336783"},"number":"8","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Dallas, TX"},"KeMays":{"player_code_id":{"code":"KeMays","id":"Mays, Keddric","ncaa_id":"9336787"},"number":"30","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Cypress, TX"},"OrHorton":{"player_code_id":{"code":"OrHorton","id":"Horton, Jr., Orlando","ncaa_id":"4904931"},"number":"12","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Houston, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Byron Smith"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaBryant":{"player_code_id":{"code":"MaBryant","id":"Bryant, Marcel","ncaa_id":"5177019"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Round Rock, TX"},"NeJohnson":{"player_code_id":{"code":"NeJohnson","id":"Johnson, Nemo","ncaa_id":"5243098"},"number":"15","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Baton Rouge, LA"},"RyBolton":{"player_code_id":{"code":"RyBolton","id":"Bolton Jr., Ryan","ncaa_id":"5176729"},"number":"34","pos":"F","height":"6-11","height_in":83,"year_class":"So","gp":0,"origin":"Waller, TX"}}
+{
+   "ElTerry": {
+      "player_code_id": {
+         "code": "ElTerry",
+         "id": "Terry, Elijah",
+         "ncaa_id": "4904928"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Enterprise, AL"
+   },
+   "IsFoster": {
+      "player_code_id": {
+         "code": "IsFoster",
+         "id": "Foster, Isaiah",
+         "ncaa_id": "5243361"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Frisco, TX"
+   },
+   "ChGibson": {
+      "player_code_id": {
+         "code": "ChGibson",
+         "id": "Gibson, Chauncey",
+         "ncaa_id": "9336783"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "KeMays": {
+      "player_code_id": {
+         "code": "KeMays",
+         "id": "Mays, Keddric",
+         "ncaa_id": "9336787"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Cypress, TX"
+   },
+   "OrHorton": {
+      "player_code_id": {
+         "code": "OrHorton",
+         "id": "Horton, Jr., Orlando",
+         "ncaa_id": "4904931"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Byron Smith"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaBryant": {
+      "player_code_id": {
+         "code": "MaBryant",
+         "id": "Bryant, Marcel",
+         "ncaa_id": "5177019"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Round Rock, TX",
+      "role": "WF"
+   },
+   "NeJohnson": {
+      "player_code_id": {
+         "code": "NeJohnson",
+         "id": "Johnson, Nemo",
+         "ncaa_id": "5243098"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Baton Rouge, LA"
+   },
+   "RyBolton": {
+      "player_code_id": {
+         "code": "RyBolton",
+         "id": "Bolton Jr., Ryan",
+         "ncaa_id": "5176729"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Waller, TX",
+      "role": "C"
+   }
+}

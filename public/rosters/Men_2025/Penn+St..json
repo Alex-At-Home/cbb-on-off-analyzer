@@ -1,1 +1,199 @@
-{"TiMirtic":{"player_code_id":{"code":"TiMirtic","id":"Mirtic, Tibor","ncaa_id":"5312028"},"number":"16","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Ljubljana, Slovenia"},"ChLotito":{"player_code_id":{"code":"ChLotito","id":"Lotito, Chris","ncaa_id":"5312029"},"number":"30","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Upper Saddle River, NJ"},"JoReed":{"player_code_id":{"code":"JoReed","id":"Reed, Josh","ncaa_id":"4838723"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Atlanta, GA"},"IvJuric":{"player_code_id":{"code":"IvJuric","id":"Juric, Ivan","ncaa_id":"5312025"},"number":"3","pos":"F","height":"7-0","height_in":84,"year_class":"Fr","gp":0,"origin":"Zagreb, Croatia"},"FrDilione":{"player_code_id":{"code":"FrDilione","id":"Dilione V, Freddie","ncaa_id":"5125192"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Fayetteville, NC"},"JuHouser":{"player_code_id":{"code":"JuHouser","id":"Houser, Justin","ncaa_id":"5217197"},"number":"21","pos":"F","height":"7-0","height_in":84,"year_class":"Fr","gp":0,"origin":"Camp Hill, PA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mike Rhoades"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ElRice":{"player_code_id":{"code":"ElRice","id":"Rice, Eli","ncaa_id":"5093264"},"number":"11","pos":"G","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Gallatin, TN"},"MaBlackwood":{"player_code_id":{"code":"MaBlackwood","id":"Blackwood, Mason","ncaa_id":"4873144"},"number":"1","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Rochester, NY"},"MeTunca":{"player_code_id":{"code":"MeTunca","id":"Tunca, Melih","ncaa_id":"5312026"},"number":"9","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Ankara, Turkey"},"ReGrodin":{"player_code_id":{"code":"ReGrodin","id":"Grodin, Reggie","ncaa_id":"5312027"},"number":"12","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Larchmont, NY"},"DoStewart":{"player_code_id":{"code":"DoStewart","id":"Stewart, Dominick","ncaa_id":"5173445"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Ocean Springs, MS"},"SaCiani":{"player_code_id":{"code":"SaCiani","id":"Ciani, Sasa","ncaa_id":"5170078"},"number":"22","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Nova Gorica, Slovenia"},"KaMingo":{"player_code_id":{"code":"KaMingo","id":"Mingo, Kayden","ncaa_id":"5144108"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Farmingdale, NY"}}
+{
+   "TiMirtic": {
+      "player_code_id": {
+         "code": "TiMirtic",
+         "id": "Mirtic, Tibor",
+         "ncaa_id": "5312028"
+      },
+      "number": "16",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Ljubljana, Slovenia"
+   },
+   "ChLotito": {
+      "player_code_id": {
+         "code": "ChLotito",
+         "id": "Lotito, Chris",
+         "ncaa_id": "5312029"
+      },
+      "number": "30",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Upper Saddle River, NJ"
+   },
+   "JoReed": {
+      "player_code_id": {
+         "code": "JoReed",
+         "id": "Reed, Josh",
+         "ncaa_id": "4838723"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "WG"
+   },
+   "IvJuric": {
+      "player_code_id": {
+         "code": "IvJuric",
+         "id": "Juric, Ivan",
+         "ncaa_id": "5312025"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Zagreb, Croatia"
+   },
+   "FrDilione": {
+      "player_code_id": {
+         "code": "FrDilione",
+         "id": "Dilione V, Freddie",
+         "ncaa_id": "5125192"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fayetteville, NC",
+      "role": "WG"
+   },
+   "JuHouser": {
+      "player_code_id": {
+         "code": "JuHouser",
+         "id": "Houser, Justin",
+         "ncaa_id": "5217197"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Camp Hill, PA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mike Rhoades"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ElRice": {
+      "player_code_id": {
+         "code": "ElRice",
+         "id": "Rice, Eli",
+         "ncaa_id": "5093264"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Gallatin, TN"
+   },
+   "MaBlackwood": {
+      "player_code_id": {
+         "code": "MaBlackwood",
+         "id": "Blackwood, Mason",
+         "ncaa_id": "4873144"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Rochester, NY"
+   },
+   "MeTunca": {
+      "player_code_id": {
+         "code": "MeTunca",
+         "id": "Tunca, Melih",
+         "ncaa_id": "5312026"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Ankara, Turkey"
+   },
+   "ReGrodin": {
+      "player_code_id": {
+         "code": "ReGrodin",
+         "id": "Grodin, Reggie",
+         "ncaa_id": "5312027"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Larchmont, NY"
+   },
+   "DoStewart": {
+      "player_code_id": {
+         "code": "DoStewart",
+         "id": "Stewart, Dominick",
+         "ncaa_id": "5173445"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ocean Springs, MS",
+      "role": "WG"
+   },
+   "SaCiani": {
+      "player_code_id": {
+         "code": "SaCiani",
+         "id": "Ciani, Sasa",
+         "ncaa_id": "5170078"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Nova Gorica, Slovenia"
+   },
+   "KaMingo": {
+      "player_code_id": {
+         "code": "KaMingo",
+         "id": "Mingo, Kayden",
+         "ncaa_id": "5144108"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Farmingdale, NY",
+      "role": "CG"
+   }
+}

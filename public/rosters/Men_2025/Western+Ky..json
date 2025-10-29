@@ -1,1 +1,245 @@
-{"LeOdiahi":{"player_code_id":{"code":"LeOdiahi","id":"Odiahi, Leeroy","ncaa_id":"5176572"},"number":"21","pos":"C","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Tralee, Ireland"},"LjHackman":{"player_code_id":{"code":"LjHackman","id":"Hackman, LJ","ncaa_id":"5313163"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Columbus, MS"},"KaUnseld":{"player_code_id":{"code":"KaUnseld","id":"Unseld, Kade","ncaa_id":"5242615"},"number":"6","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Bowling Green, KY"},"RyMyers":{"player_code_id":{"code":"RyMyers","id":"Myers, Ryan","ncaa_id":"4703009"},"number":"4","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Brooklyn, NY"},"TeMurdix":{"player_code_id":{"code":"TeMurdix","id":"Murdix, Terrion","ncaa_id":"4897301"},"number":"11","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Springfield, IL"},"TeMoore":{"player_code_id":{"code":"TeMoore","id":"Moore, Teagan","ncaa_id":"5176780"},"number":"30","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Dry Ridge, KY"},"CaStinnett":{"player_code_id":{"code":"CaStinnett","id":"Stinnett, Cade","ncaa_id":"5242616"},"number":"10","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Bowling Green, KY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Hank Plona"},"number":"","pos":"","height":"","year_class":"","gp":-1},"LoSemona":{"player_code_id":{"code":"LoSemona","id":"Semona, Louie","ncaa_id":"5177297"},"number":"33","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Cincinnati, OH"},"ArBoone":{"player_code_id":{"code":"ArBoone","id":"Boone, Armelo","ncaa_id":"5313164"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Lexington, KY"},"BlKeita":{"player_code_id":{"code":"BlKeita","id":"Keita, Blaise","ncaa_id":"5105826"},"number":"1","pos":"F","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Bamako, Mali"},"CaHaffner":{"player_code_id":{"code":"CaHaffner","id":"Haffner, Cam","ncaa_id":"5107700"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Westfield, IN"},"JaEdelen":{"player_code_id":{"code":"JaEdelen","id":"Edelen, Jack","ncaa_id":"5176778"},"number":"5","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Louisville, KY"},"NoBoyde":{"player_code_id":{"code":"NoBoyde","id":"Boyde, Noah","ncaa_id":"5238209"},"number":"7","pos":"F","height":"7-0","height_in":84,"year_class":"Jr","gp":0,"origin":"Monchy, Saint Lucia"},"BrSelebangue":{"player_code_id":{"code":"BrSelebangue","id":"Selebangue, Bryant","ncaa_id":"5106643"},"number":"0","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"LaSalle, Canada"},"GrNewell":{"player_code_id":{"code":"GrNewell","id":"Newell, Grant","ncaa_id":"5105587"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Chicago, IL"},"LaRice":{"player_code_id":{"code":"LaRice","id":"Rice, Lawson","ncaa_id":"5313165"},"number":"24","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Morgantown, KY"}}
+{
+   "LeOdiahi": {
+      "player_code_id": {
+         "code": "LeOdiahi",
+         "id": "Odiahi, Leeroy",
+         "ncaa_id": "5176572"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Tralee, Ireland",
+      "role": "C"
+   },
+   "LjHackman": {
+      "player_code_id": {
+         "code": "LjHackman",
+         "id": "Hackman, LJ",
+         "ncaa_id": "5313163"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Columbus, MS"
+   },
+   "KaUnseld": {
+      "player_code_id": {
+         "code": "KaUnseld",
+         "id": "Unseld, Kade",
+         "ncaa_id": "5242615"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bowling Green, KY"
+   },
+   "RyMyers": {
+      "player_code_id": {
+         "code": "RyMyers",
+         "id": "Myers, Ryan",
+         "ncaa_id": "4703009"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "CG"
+   },
+   "TeMurdix": {
+      "player_code_id": {
+         "code": "TeMurdix",
+         "id": "Murdix, Terrion",
+         "ncaa_id": "4897301"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Springfield, IL"
+   },
+   "TeMoore": {
+      "player_code_id": {
+         "code": "TeMoore",
+         "id": "Moore, Teagan",
+         "ncaa_id": "5176780"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dry Ridge, KY",
+      "role": "WG"
+   },
+   "CaStinnett": {
+      "player_code_id": {
+         "code": "CaStinnett",
+         "id": "Stinnett, Cade",
+         "ncaa_id": "5242616"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bowling Green, KY"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Hank Plona"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "LoSemona": {
+      "player_code_id": {
+         "code": "LoSemona",
+         "id": "Semona, Louie",
+         "ncaa_id": "5177297"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "WF"
+   },
+   "ArBoone": {
+      "player_code_id": {
+         "code": "ArBoone",
+         "id": "Boone, Armelo",
+         "ncaa_id": "5313164"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lexington, KY"
+   },
+   "BlKeita": {
+      "player_code_id": {
+         "code": "BlKeita",
+         "id": "Keita, Blaise",
+         "ncaa_id": "5105826"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bamako, Mali"
+   },
+   "CaHaffner": {
+      "player_code_id": {
+         "code": "CaHaffner",
+         "id": "Haffner, Cam",
+         "ncaa_id": "5107700"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Westfield, IN",
+      "role": "WG"
+   },
+   "JaEdelen": {
+      "player_code_id": {
+         "code": "JaEdelen",
+         "id": "Edelen, Jack",
+         "ncaa_id": "5176778"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Louisville, KY",
+      "role": "s-PG"
+   },
+   "NoBoyde": {
+      "player_code_id": {
+         "code": "NoBoyde",
+         "id": "Boyde, Noah",
+         "ncaa_id": "5238209"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Monchy, Saint Lucia"
+   },
+   "BrSelebangue": {
+      "player_code_id": {
+         "code": "BrSelebangue",
+         "id": "Selebangue, Bryant",
+         "ncaa_id": "5106643"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "LaSalle, Canada",
+      "role": "C"
+   },
+   "GrNewell": {
+      "player_code_id": {
+         "code": "GrNewell",
+         "id": "Newell, Grant",
+         "ncaa_id": "5105587"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WF"
+   },
+   "LaRice": {
+      "player_code_id": {
+         "code": "LaRice",
+         "id": "Rice, Lawson",
+         "ncaa_id": "5313165"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Morgantown, KY"
+   }
+}

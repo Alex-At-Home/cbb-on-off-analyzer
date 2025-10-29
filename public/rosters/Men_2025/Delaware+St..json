@@ -1,1 +1,225 @@
-{"RaMoore":{"player_code_id":{"code":"RaMoore","id":"Moore, Rahmir","ncaa_id":"4592477"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Philadelphia, PA"},"JoClemmons":{"player_code_id":{"code":"JoClemmons","id":"Clemmons, John","ncaa_id":"5243397"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Bear, DE"},"ThPendergras":{"player_code_id":{"code":"ThPendergras","id":"Pendergrass III, Theodore","ncaa_id":"5243398"},"number":"10","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Ardmore, PA"},"DeShepherd":{"player_code_id":{"code":"DeShepherd","id":"Shepherd, Dean","ncaa_id":"5176278"},"number":"22","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"New Castle, DE"},"CoPerkins":{"player_code_id":{"code":"CoPerkins","id":"Perkins, Corey","ncaa_id":"4897761"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Wilmington, DE"},"ZiBethea":{"player_code_id":{"code":"ZiBethea","id":"Bethea, Zion","ncaa_id":"4433577"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"South Orange, NJ"},"CyObasogie":{"player_code_id":{"code":"CyObasogie","id":"Obasogie, Cyril","ncaa_id":"5317274"},"number":"10","pos":"F","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Bryn Mawr, PA"},"MuAdamu":{"player_code_id":{"code":"MuAdamu","id":"Adamu, Muazibini","ncaa_id":"5317275"},"number":"35","pos":"C","height":"-","year_class":"Jr","gp":0,"origin":"Putnam, CT"},"CaShell":{"player_code_id":{"code":"CaShell","id":"Shell, Camian","ncaa_id":"5174995"},"number":"11","pos":"G","height":"5-10","height_in":70,"year_class":"Sr","gp":0,"origin":"Winston Salem, NC"},"BeSaragba":{"player_code_id":{"code":"BeSaragba","id":"Saragba, Bessanty","ncaa_id":"5107879"},"number":"42","pos":"F","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Marseille, France"},"KaWatson":{"player_code_id":{"code":"KaWatson","id":"Watson, Kareem","ncaa_id":"5108720"},"number":"13","pos":"G","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Philadelphia, PA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Stan Waterman"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MiWebb":{"player_code_id":{"code":"MiWebb","id":"Webb, Miles","ncaa_id":"5106611"},"number":"3","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Arlington, VA"},"JaStclair":{"player_code_id":{"code":"JaStclair","id":"StClair, Jalen","ncaa_id":"5317273"},"number":"1","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"Henderson, NV"},"PoJames":{"player_code_id":{"code":"PoJames","id":"James, Ponce","ncaa_id":"5243399"},"number":"15","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Bridgeport, CT"},"AdSantos":{"player_code_id":{"code":"AdSantos","id":"Santos, Ademar","ncaa_id":"5317276"},"number":"37","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Stockholm, Sweden"}}
+{
+   "RaMoore": {
+      "player_code_id": {
+         "code": "RaMoore",
+         "id": "Moore, Rahmir",
+         "ncaa_id": "4592477"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Philadelphia, PA"
+   },
+   "JoClemmons": {
+      "player_code_id": {
+         "code": "JoClemmons",
+         "id": "Clemmons, John",
+         "ncaa_id": "5243397"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bear, DE"
+   },
+   "ThPendergras": {
+      "player_code_id": {
+         "code": "ThPendergras",
+         "id": "Pendergrass III, Theodore",
+         "ncaa_id": "5243398"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ardmore, PA"
+   },
+   "DeShepherd": {
+      "player_code_id": {
+         "code": "DeShepherd",
+         "id": "Shepherd, Dean",
+         "ncaa_id": "5176278"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "New Castle, DE"
+   },
+   "CoPerkins": {
+      "player_code_id": {
+         "code": "CoPerkins",
+         "id": "Perkins, Corey",
+         "ncaa_id": "4897761"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Wilmington, DE"
+   },
+   "ZiBethea": {
+      "player_code_id": {
+         "code": "ZiBethea",
+         "id": "Bethea, Zion",
+         "ncaa_id": "4433577"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "South Orange, NJ"
+   },
+   "CyObasogie": {
+      "player_code_id": {
+         "code": "CyObasogie",
+         "id": "Obasogie, Cyril",
+         "ncaa_id": "5317274"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bryn Mawr, PA"
+   },
+   "MuAdamu": {
+      "player_code_id": {
+         "code": "MuAdamu",
+         "id": "Adamu, Muazibini",
+         "ncaa_id": "5317275"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "-",
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Putnam, CT"
+   },
+   "CaShell": {
+      "player_code_id": {
+         "code": "CaShell",
+         "id": "Shell, Camian",
+         "ncaa_id": "5174995"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Winston Salem, NC"
+   },
+   "BeSaragba": {
+      "player_code_id": {
+         "code": "BeSaragba",
+         "id": "Saragba, Bessanty",
+         "ncaa_id": "5107879"
+      },
+      "number": "42",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Marseille, France"
+   },
+   "KaWatson": {
+      "player_code_id": {
+         "code": "KaWatson",
+         "id": "Watson, Kareem",
+         "ncaa_id": "5108720"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "WF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Stan Waterman"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MiWebb": {
+      "player_code_id": {
+         "code": "MiWebb",
+         "id": "Webb, Miles",
+         "ncaa_id": "5106611"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Arlington, VA",
+      "role": "S-PF"
+   },
+   "JaStclair": {
+      "player_code_id": {
+         "code": "JaStclair",
+         "id": "StClair, Jalen",
+         "ncaa_id": "5317273"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Henderson, NV"
+   },
+   "PoJames": {
+      "player_code_id": {
+         "code": "PoJames",
+         "id": "James, Ponce",
+         "ncaa_id": "5243399"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bridgeport, CT",
+      "role": "s-PG"
+   },
+   "AdSantos": {
+      "player_code_id": {
+         "code": "AdSantos",
+         "id": "Santos, Ademar",
+         "ncaa_id": "5317276"
+      },
+      "number": "37",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Stockholm, Sweden"
+   }
+}

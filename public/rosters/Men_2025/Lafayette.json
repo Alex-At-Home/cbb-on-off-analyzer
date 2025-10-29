@@ -1,1 +1,230 @@
-{"AsWallace":{"player_code_id":{"code":"AsWallace","id":"Wallace, Ashton","ncaa_id":"10805543"},"number":"20","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Lehi, UT"},"CaWilliams":{"player_code_id":{"code":"CaWilliams","id":"Williams, Caleb","ncaa_id":"5243035"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Jacksonville, FL"},"KaMurdock":{"player_code_id":{"code":"KaMurdock","id":"Murdock, KaiMani","ncaa_id":"10805554"},"number":"2","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Mt. Pleasant, SC"},"JoWyche":{"player_code_id":{"code":"JoWyche","id":"Wyche, Joshua","ncaa_id":"5176068"},"number":"23","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Philadelphia, PA"},"MaButler":{"player_code_id":{"code":"MaButler","id":"Butler, Mark","ncaa_id":"5176065"},"number":"10","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Philadelphia, PA"},"BeCurrie":{"player_code_id":{"code":"BeCurrie","id":"Currie, Beckett","ncaa_id":"10805540"},"number":"3","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"Camas, WA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mike McGarvey"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnPhillips":{"player_code_id":{"code":"AnPhillips","id":"Phillips, Andrew","ncaa_id":"5176067"},"number":"21","pos":"F","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Downingtown, PA"},"FoFayemi":{"player_code_id":{"code":"FoFayemi","id":"Fayemi, Folabomi","ncaa_id":"5243037"},"number":"24","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Chicago, IL"},"ShJackson":{"player_code_id":{"code":"ShJackson","id":"Jackson, Shareef","ncaa_id":"10805550"},"number":"44","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Philadelphia, PA"},"ChHumphrey-r":{"player_code_id":{"code":"ChHumphrey-r","id":"Humphrey-Rembert, Christian","ncaa_id":"4897903"},"number":"22","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Grand Rapids, MI"},"MiBednostin":{"player_code_id":{"code":"MiBednostin","id":"Bednostin, Misha","ncaa_id":"5176066"},"number":"13","pos":"C","height":"6-11","height_in":83,"year_class":"Jr","gp":0,"origin":"Dillsburg, PA"},"LuAzzinaro":{"player_code_id":{"code":"LuAzzinaro","id":"Azzinaro, Luke","ncaa_id":"10805542"},"number":"11","pos":"F","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Chatham, NJ"},"RyPettit":{"player_code_id":{"code":"RyPettit","id":"Pettit, Ryan","ncaa_id":"5105678"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Westfield, NJ"},"LuBevilacqua":{"player_code_id":{"code":"LuBevilacqua","id":"Bevilacqua, Luke","ncaa_id":"10805547"},"number":"34","pos":"F","height":"6-11","height_in":83,"year_class":"Fr","gp":0,"origin":"Newfield, NJ"},"MaRasul":{"player_code_id":{"code":"MaRasul","id":"Rasul, Malik","ncaa_id":"4873186"},"number":"14","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Tucson, AZ"}}
+{
+   "AsWallace": {
+      "player_code_id": {
+         "code": "AsWallace",
+         "id": "Wallace, Ashton",
+         "ncaa_id": "10805543"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lehi, UT"
+   },
+   "CaWilliams": {
+      "player_code_id": {
+         "code": "CaWilliams",
+         "id": "Williams, Caleb",
+         "ncaa_id": "5243035"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Jacksonville, FL",
+      "role": "CG"
+   },
+   "KaMurdock": {
+      "player_code_id": {
+         "code": "KaMurdock",
+         "id": "Murdock, KaiMani",
+         "ncaa_id": "10805554"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Mt. Pleasant, SC"
+   },
+   "JoWyche": {
+      "player_code_id": {
+         "code": "JoWyche",
+         "id": "Wyche, Joshua",
+         "ncaa_id": "5176068"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "WF"
+   },
+   "MaButler": {
+      "player_code_id": {
+         "code": "MaButler",
+         "id": "Butler, Mark",
+         "ncaa_id": "5176065"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "s-PG"
+   },
+   "BeCurrie": {
+      "player_code_id": {
+         "code": "BeCurrie",
+         "id": "Currie, Beckett",
+         "ncaa_id": "10805540"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Camas, WA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mike McGarvey"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnPhillips": {
+      "player_code_id": {
+         "code": "AnPhillips",
+         "id": "Phillips, Andrew",
+         "ncaa_id": "5176067"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Downingtown, PA",
+      "role": "WF"
+   },
+   "FoFayemi": {
+      "player_code_id": {
+         "code": "FoFayemi",
+         "id": "Fayemi, Folabomi",
+         "ncaa_id": "5243037"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "ShJackson": {
+      "player_code_id": {
+         "code": "ShJackson",
+         "id": "Jackson, Shareef",
+         "ncaa_id": "10805550"
+      },
+      "number": "44",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Philadelphia, PA"
+   },
+   "ChHumphrey-r": {
+      "player_code_id": {
+         "code": "ChHumphrey-r",
+         "id": "Humphrey-Rembert, Christian",
+         "ncaa_id": "4897903"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Grand Rapids, MI"
+   },
+   "MiBednostin": {
+      "player_code_id": {
+         "code": "MiBednostin",
+         "id": "Bednostin, Misha",
+         "ncaa_id": "5176066"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dillsburg, PA",
+      "role": "C"
+   },
+   "LuAzzinaro": {
+      "player_code_id": {
+         "code": "LuAzzinaro",
+         "id": "Azzinaro, Luke",
+         "ncaa_id": "10805542"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chatham, NJ"
+   },
+   "RyPettit": {
+      "player_code_id": {
+         "code": "RyPettit",
+         "id": "Pettit, Ryan",
+         "ncaa_id": "5105678"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Westfield, NJ",
+      "role": "CG"
+   },
+   "LuBevilacqua": {
+      "player_code_id": {
+         "code": "LuBevilacqua",
+         "id": "Bevilacqua, Luke",
+         "ncaa_id": "10805547"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Newfield, NJ"
+   },
+   "MaRasul": {
+      "player_code_id": {
+         "code": "MaRasul",
+         "id": "Rasul, Malik",
+         "ncaa_id": "4873186"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tucson, AZ",
+      "role": "WF"
+   }
+}

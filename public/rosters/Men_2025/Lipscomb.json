@@ -1,1 +1,116 @@
-{"LuCarter":{"player_code_id":{"code":"LuCarter","id":"Carter, Luke","ncaa_id":"5239795"},"number":"12","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Knoxville, TN"},"RoCandelino":{"player_code_id":{"code":"RoCandelino","id":"Candelino, Ross","ncaa_id":"5105864"},"number":"30","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Jacksonville, FL"},"GrAsman":{"player_code_id":{"code":"GrAsman","id":"Asman, Grant","ncaa_id":"4897583"},"number":"35","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Kimberly, WI"},"KeBoylan":{"player_code_id":{"code":"KeBoylan","id":"Boylan, Kellan","ncaa_id":"5113385"},"number":"23","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Overland Park, KS"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Kevin Carroll"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ChWilliams":{"player_code_id":{"code":"ChWilliams","id":"Williams, Charlie","ncaa_id":"5106738"},"number":"6","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Carmel, IN"},"MiWhite":{"player_code_id":{"code":"MiWhite","id":"White, Miles","ncaa_id":"5239794"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Kansas City, MO"},"LoSuber":{"player_code_id":{"code":"LoSuber","id":"Suber, Logan","ncaa_id":"5176191"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Fredericksburg, VA"}}
+{
+   "LuCarter": {
+      "player_code_id": {
+         "code": "LuCarter",
+         "id": "Carter, Luke",
+         "ncaa_id": "5239795"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Knoxville, TN"
+   },
+   "RoCandelino": {
+      "player_code_id": {
+         "code": "RoCandelino",
+         "id": "Candelino, Ross",
+         "ncaa_id": "5105864"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Jacksonville, FL"
+   },
+   "GrAsman": {
+      "player_code_id": {
+         "code": "GrAsman",
+         "id": "Asman, Grant",
+         "ncaa_id": "4897583"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Kimberly, WI",
+      "role": "PF/C"
+   },
+   "KeBoylan": {
+      "player_code_id": {
+         "code": "KeBoylan",
+         "id": "Boylan, Kellan",
+         "ncaa_id": "5113385"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Overland Park, KS",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Kevin Carroll"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ChWilliams": {
+      "player_code_id": {
+         "code": "ChWilliams",
+         "id": "Williams, Charlie",
+         "ncaa_id": "5106738"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Carmel, IN",
+      "role": "S-PF"
+   },
+   "MiWhite": {
+      "player_code_id": {
+         "code": "MiWhite",
+         "id": "White, Miles",
+         "ncaa_id": "5239794"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Kansas City, MO",
+      "role": "WG"
+   },
+   "LoSuber": {
+      "player_code_id": {
+         "code": "LoSuber",
+         "id": "Suber, Logan",
+         "ncaa_id": "5176191"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Fredericksburg, VA",
+      "role": "s-PG"
+   }
+}

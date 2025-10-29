@@ -1,1 +1,226 @@
-{"JaBrown":{"player_code_id":{"code":"JaBrown","id":"Brown, Jaedyn","ncaa_id":"5176319"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Pullman, WA"},"ChSow":{"player_code_id":{"code":"ChSow","id":"Sow, Cheikh","ncaa_id":"5241282"},"number":"5","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Thiès, Senegal"},"BlDaberkow":{"player_code_id":{"code":"BlDaberkow","id":"Daberkow, Blake","ncaa_id":"5241286"},"number":"32","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Lincoln, NE"},"CoHollenbeck":{"player_code_id":{"code":"CoHollenbeck","id":"Hollenbeck, Connor","ncaa_id":"5313169"},"number":"10","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Rapid City, SD"},"CaDeGriend":{"player_code_id":{"code":"CaDeGriend","id":"Van De Griend, Caleb","ncaa_id":"5313173"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Bridgetown, Australia"},"MaKheil":{"player_code_id":{"code":"MaKheil","id":"Kheil, Martin","ncaa_id":"5313170"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Jindrichuv Hradec, Czechia"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Ryan Looney"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KaCarpenter":{"player_code_id":{"code":"KaCarpenter","id":"Carpenter, Kasen","ncaa_id":"5313172"},"number":"14","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Rupert, ID"},"QuPatterson":{"player_code_id":{"code":"QuPatterson","id":"Patterson, Quin","ncaa_id":"5107151"},"number":"21","pos":"G","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Snoqualmie, WA"},"LoBond":{"player_code_id":{"code":"LoBond","id":"Bond, Louis","ncaa_id":"5313171"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Los Angeles, CA"},"GuEtchison":{"player_code_id":{"code":"GuEtchison","id":"Etchison, Gus","ncaa_id":"4898348"},"number":"0","pos":"G","height":"5-11","height_in":71,"year_class":"Sr","gp":0,"origin":"Arcadia, IN"},"LaBrewer":{"player_code_id":{"code":"LaBrewer","id":"Brewer, Lachlan","ncaa_id":"5241308"},"number":"12","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Tasmania, Australia"},"EvOtten":{"player_code_id":{"code":"EvOtten","id":"Otten, Evan","ncaa_id":"5176324"},"number":"30","pos":"C","height":"6-11","height_in":83,"year_class":"So","gp":0,"origin":"Redmond, OR"},"JaGuerra":{"player_code_id":{"code":"JaGuerra","id":"Guerra, Jamison","ncaa_id":"5313166"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Sherwood, OR"},"LaBirley":{"player_code_id":{"code":"LaBirley","id":"Birley, Landen","ncaa_id":"5313167"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Yakima, WA"},"TrArland":{"player_code_id":{"code":"TrArland","id":"Arland, Trey","ncaa_id":"5313168"},"number":"8","pos":"G","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Kennewick, WA"}}
+{
+   "JaBrown": {
+      "player_code_id": {
+         "code": "JaBrown",
+         "id": "Brown, Jaedyn",
+         "ncaa_id": "5176319"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Pullman, WA"
+   },
+   "ChSow": {
+      "player_code_id": {
+         "code": "ChSow",
+         "id": "Sow, Cheikh",
+         "ncaa_id": "5241282"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Thiès, Senegal"
+   },
+   "BlDaberkow": {
+      "player_code_id": {
+         "code": "BlDaberkow",
+         "id": "Daberkow, Blake",
+         "ncaa_id": "5241286"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lincoln, NE",
+      "role": "S-PF"
+   },
+   "CoHollenbeck": {
+      "player_code_id": {
+         "code": "CoHollenbeck",
+         "id": "Hollenbeck, Connor",
+         "ncaa_id": "5313169"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rapid City, SD"
+   },
+   "CaDeGriend": {
+      "player_code_id": {
+         "code": "CaDeGriend",
+         "id": "Van De Griend, Caleb",
+         "ncaa_id": "5313173"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bridgetown, Australia"
+   },
+   "MaKheil": {
+      "player_code_id": {
+         "code": "MaKheil",
+         "id": "Kheil, Martin",
+         "ncaa_id": "5313170"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Jindrichuv Hradec, Czechia"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Ryan Looney"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KaCarpenter": {
+      "player_code_id": {
+         "code": "KaCarpenter",
+         "id": "Carpenter, Kasen",
+         "ncaa_id": "5313172"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rupert, ID"
+   },
+   "QuPatterson": {
+      "player_code_id": {
+         "code": "QuPatterson",
+         "id": "Patterson, Quin",
+         "ncaa_id": "5107151"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Snoqualmie, WA"
+   },
+   "LoBond": {
+      "player_code_id": {
+         "code": "LoBond",
+         "id": "Bond, Louis",
+         "ncaa_id": "5313171"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "GuEtchison": {
+      "player_code_id": {
+         "code": "GuEtchison",
+         "id": "Etchison, Gus",
+         "ncaa_id": "4898348"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Arcadia, IN"
+   },
+   "LaBrewer": {
+      "player_code_id": {
+         "code": "LaBrewer",
+         "id": "Brewer, Lachlan",
+         "ncaa_id": "5241308"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tasmania, Australia",
+      "role": "WG"
+   },
+   "EvOtten": {
+      "player_code_id": {
+         "code": "EvOtten",
+         "id": "Otten, Evan",
+         "ncaa_id": "5176324"
+      },
+      "number": "30",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Redmond, OR",
+      "role": "C"
+   },
+   "JaGuerra": {
+      "player_code_id": {
+         "code": "JaGuerra",
+         "id": "Guerra, Jamison",
+         "ncaa_id": "5313166"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sherwood, OR"
+   },
+   "LaBirley": {
+      "player_code_id": {
+         "code": "LaBirley",
+         "id": "Birley, Landen",
+         "ncaa_id": "5313167"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Yakima, WA"
+   },
+   "TrArland": {
+      "player_code_id": {
+         "code": "TrArland",
+         "id": "Arland, Trey",
+         "ncaa_id": "5313168"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Kennewick, WA"
+   }
+}

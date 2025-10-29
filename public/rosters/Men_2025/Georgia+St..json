@@ -1,1 +1,226 @@
-{"IsSherrard":{"player_code_id":{"code":"IsSherrard","id":"Sherrard, Isaiah","ncaa_id":"5174974"},"number":"8","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Westlake Vlg, CA"},"ChJones":{"player_code_id":{"code":"ChJones","id":"Jones, Christopher","ncaa_id":"5313072"},"number":"55","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Atlanta, GA"},"JaCooper":{"player_code_id":{"code":"JaCooper","id":"Cooper, James","ncaa_id":"4912212"},"number":"2","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Mauldin, SC"},"ClPeters":{"player_code_id":{"code":"ClPeters","id":"Peters, Clash","ncaa_id":"5239901"},"number":"21","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Long Beach, CA"},"AnEnoh":{"player_code_id":{"code":"AnEnoh","id":"Enoh, Anhtony","ncaa_id":"5180677"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Uyo, Nigeria"},"EmKoveos":{"player_code_id":{"code":"EmKoveos","id":"Koveos, Emmanuel","ncaa_id":"5239900"},"number":"20","pos":"G","height":"5-10","height_in":70,"year_class":"So","gp":0,"origin":"Rhodes, Greece"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jonas Hayes"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JoChappelle":{"player_code_id":{"code":"JoChappelle","id":"Chappelle, Joah","ncaa_id":"5313069"},"number":"6","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Stockbridge, GA"},"MiTucker":{"player_code_id":{"code":"MiTucker","id":"Tucker, Micah","ncaa_id":"5313068"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Alpharetta, GA"},"ChBeam":{"player_code_id":{"code":"ChBeam","id":"Beam, Christian","ncaa_id":"5313071"},"number":"32","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Newell, AL"},"AyBerthe":{"player_code_id":{"code":"AyBerthe","id":"Berthe, Ayouba","ncaa_id":"5313070"},"number":"20","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Minneapolis, MN"},"JaNewton":{"player_code_id":{"code":"JaNewton","id":"Newton, Jakai","ncaa_id":"4895743"},"number":"1","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Covington, GA"},"TrScott":{"player_code_id":{"code":"TrScott","id":"Scott III, Trey","ncaa_id":"5239902"},"number":"24","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Atlanta, GA"},"KwTanic":{"player_code_id":{"code":"KwTanic","id":"Tanic, Kwame","ncaa_id":"5239903"},"number":"32","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Paris, France"},"MaBrown":{"player_code_id":{"code":"MaBrown","id":"Brown, Malachi","ncaa_id":"5164367"},"number":"22","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Buford, GA"},"JeHamilton":{"player_code_id":{"code":"JeHamilton","id":"Hamilton, Jelani","ncaa_id":"4895747"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Marietta, GA"}}
+{
+   "IsSherrard": {
+      "player_code_id": {
+         "code": "IsSherrard",
+         "id": "Sherrard, Isaiah",
+         "ncaa_id": "5174974"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Westlake Vlg, CA"
+   },
+   "ChJones": {
+      "player_code_id": {
+         "code": "ChJones",
+         "id": "Jones, Christopher",
+         "ncaa_id": "5313072"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "JaCooper": {
+      "player_code_id": {
+         "code": "JaCooper",
+         "id": "Cooper, James",
+         "ncaa_id": "4912212"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mauldin, SC"
+   },
+   "ClPeters": {
+      "player_code_id": {
+         "code": "ClPeters",
+         "id": "Peters, Clash",
+         "ncaa_id": "5239901"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Long Beach, CA",
+      "role": "C"
+   },
+   "AnEnoh": {
+      "player_code_id": {
+         "code": "AnEnoh",
+         "id": "Enoh, Anhtony",
+         "ncaa_id": "5180677"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Uyo, Nigeria"
+   },
+   "EmKoveos": {
+      "player_code_id": {
+         "code": "EmKoveos",
+         "id": "Koveos, Emmanuel",
+         "ncaa_id": "5239900"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Rhodes, Greece"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jonas Hayes"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JoChappelle": {
+      "player_code_id": {
+         "code": "JoChappelle",
+         "id": "Chappelle, Joah",
+         "ncaa_id": "5313069"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Stockbridge, GA"
+   },
+   "MiTucker": {
+      "player_code_id": {
+         "code": "MiTucker",
+         "id": "Tucker, Micah",
+         "ncaa_id": "5313068"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Alpharetta, GA"
+   },
+   "ChBeam": {
+      "player_code_id": {
+         "code": "ChBeam",
+         "id": "Beam, Christian",
+         "ncaa_id": "5313071"
+      },
+      "number": "32",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Newell, AL"
+   },
+   "AyBerthe": {
+      "player_code_id": {
+         "code": "AyBerthe",
+         "id": "Berthe, Ayouba",
+         "ncaa_id": "5313070"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Minneapolis, MN"
+   },
+   "JaNewton": {
+      "player_code_id": {
+         "code": "JaNewton",
+         "id": "Newton, Jakai",
+         "ncaa_id": "4895743"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Covington, GA"
+   },
+   "TrScott": {
+      "player_code_id": {
+         "code": "TrScott",
+         "id": "Scott III, Trey",
+         "ncaa_id": "5239902"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "KwTanic": {
+      "player_code_id": {
+         "code": "KwTanic",
+         "id": "Tanic, Kwame",
+         "ncaa_id": "5239903"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Paris, France"
+   },
+   "MaBrown": {
+      "player_code_id": {
+         "code": "MaBrown",
+         "id": "Brown, Malachi",
+         "ncaa_id": "5164367"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Buford, GA",
+      "role": "CG"
+   },
+   "JeHamilton": {
+      "player_code_id": {
+         "code": "JeHamilton",
+         "id": "Hamilton, Jelani",
+         "ncaa_id": "4895747"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Marietta, GA",
+      "role": "WG"
+   }
+}

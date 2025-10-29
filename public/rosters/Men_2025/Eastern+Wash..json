@@ -1,1 +1,228 @@
-{"JoAnderson":{"player_code_id":{"code":"JoAnderson","id":"Anderson, Jojo","ncaa_id":"5241269"},"number":"22","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Spokane, WA"},"ElThomas":{"player_code_id":{"code":"ElThomas","id":"Thomas, Elijah","ncaa_id":"5241164"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Surprise, AZ"},"AnCook":{"player_code_id":{"code":"AnCook","id":"Cook, Andrew","ncaa_id":"4906817"},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Huntington Beach, CA"},"MaMonson":{"player_code_id":{"code":"MaMonson","id":"Monson, Maddox","ncaa_id":"5107191"},"number":"10","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Los Alamitos, CA"},"JoRadford":{"player_code_id":{"code":"JoRadford","id":"Radford, Johnny","ncaa_id":"4708534"},"number":"21","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Hailey, ID"},"IsMoses":{"player_code_id":{"code":"IsMoses","id":"Moses, Isaiah","ncaa_id":"5176412"},"number":"2","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Anchorage, AK"},"AnWinkel":{"player_code_id":{"code":"AnWinkel","id":"Winkel, Angelo","ncaa_id":"5241162"},"number":"0","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Algona, IA"},"AlGballou":{"player_code_id":{"code":"AlGballou","id":"Gballou, Alan","ncaa_id":"5313113"},"number":"55","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Layton, UT"},"AlHamilton":{"player_code_id":{"code":"AlHamilton","id":"Hamilton IV, Alton","ncaa_id":"5313112"},"number":"13","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Fontana, CA"},"CoScherer":{"player_code_id":{"code":"CoScherer","id":"Scherer, Cole","ncaa_id":"5313110"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Littleton, CO"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Dan Monson"},"number":"","pos":"","height":"","year_class":"","gp":-1},"EmMarquardt":{"player_code_id":{"code":"EmMarquardt","id":"Marquardt, Emmett","ncaa_id":"5175374"},"number":"33","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Seattle, WA"},"KiHuie":{"player_code_id":{"code":"KiHuie","id":"Huie, Kiree","ncaa_id":"5176321"},"number":"15","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Grayson, GA"},"ShNgoyi":{"player_code_id":{"code":"ShNgoyi","id":"Ngoyi, Shaumba","ncaa_id":"5107196"},"number":"35","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Kinshasa, DR Congo"},"TyPowell":{"player_code_id":{"code":"TyPowell","id":"Powell, Tyler","ncaa_id":"4684146"},"number":"1","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Los Angeles, CA"},"StRogers":{"player_code_id":{"code":"StRogers","id":"Rogers, Straton","ncaa_id":"5313111"},"number":"12","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Eagle, ID"}}
+{
+   "JoAnderson": {
+      "player_code_id": {
+         "code": "JoAnderson",
+         "id": "Anderson, Jojo",
+         "ncaa_id": "5241269"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Spokane, WA",
+      "role": "CG"
+   },
+   "ElThomas": {
+      "player_code_id": {
+         "code": "ElThomas",
+         "id": "Thomas, Elijah",
+         "ncaa_id": "5241164"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Surprise, AZ",
+      "role": "WG"
+   },
+   "AnCook": {
+      "player_code_id": {
+         "code": "AnCook",
+         "id": "Cook, Andrew",
+         "ncaa_id": "4906817"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Huntington Beach, CA"
+   },
+   "MaMonson": {
+      "player_code_id": {
+         "code": "MaMonson",
+         "id": "Monson, Maddox",
+         "ncaa_id": "5107191"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Los Alamitos, CA"
+   },
+   "JoRadford": {
+      "player_code_id": {
+         "code": "JoRadford",
+         "id": "Radford, Johnny",
+         "ncaa_id": "4708534"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hailey, ID"
+   },
+   "IsMoses": {
+      "player_code_id": {
+         "code": "IsMoses",
+         "id": "Moses, Isaiah",
+         "ncaa_id": "5176412"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Anchorage, AK",
+      "role": "s-PG"
+   },
+   "AnWinkel": {
+      "player_code_id": {
+         "code": "AnWinkel",
+         "id": "Winkel, Angelo",
+         "ncaa_id": "5241162"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Algona, IA",
+      "role": "C"
+   },
+   "AlGballou": {
+      "player_code_id": {
+         "code": "AlGballou",
+         "id": "Gballou, Alan",
+         "ncaa_id": "5313113"
+      },
+      "number": "55",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Layton, UT"
+   },
+   "AlHamilton": {
+      "player_code_id": {
+         "code": "AlHamilton",
+         "id": "Hamilton IV, Alton",
+         "ncaa_id": "5313112"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Fontana, CA"
+   },
+   "CoScherer": {
+      "player_code_id": {
+         "code": "CoScherer",
+         "id": "Scherer, Cole",
+         "ncaa_id": "5313110"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Littleton, CO"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Dan Monson"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "EmMarquardt": {
+      "player_code_id": {
+         "code": "EmMarquardt",
+         "id": "Marquardt, Emmett",
+         "ncaa_id": "5175374"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Seattle, WA",
+      "role": "S-PF"
+   },
+   "KiHuie": {
+      "player_code_id": {
+         "code": "KiHuie",
+         "id": "Huie, Kiree",
+         "ncaa_id": "5176321"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Grayson, GA"
+   },
+   "ShNgoyi": {
+      "player_code_id": {
+         "code": "ShNgoyi",
+         "id": "Ngoyi, Shaumba",
+         "ncaa_id": "5107196"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Kinshasa, DR Congo"
+   },
+   "TyPowell": {
+      "player_code_id": {
+         "code": "TyPowell",
+         "id": "Powell, Tyler",
+         "ncaa_id": "4684146"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "StRogers": {
+      "player_code_id": {
+         "code": "StRogers",
+         "id": "Rogers, Straton",
+         "ncaa_id": "5313111"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Eagle, ID"
+   }
+}

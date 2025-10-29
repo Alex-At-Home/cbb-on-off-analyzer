@@ -1,1 +1,56 @@
-{"ErReader":{"player_code_id":{"code":"ErReader","id":"Reader, Erick","ncaa_id":"5311998"},"number":"12","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Bloomington, MN"},"GrGrove":{"player_code_id":{"code":"GrGrove","id":"Grove, Grayson","ncaa_id":"5239570"},"number":"10","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Alexandria, MN"},"IsAsuma":{"player_code_id":{"code":"IsAsuma","id":"Asuma, Isaac","ncaa_id":"5144165"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Cherry, MN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Niko Medved"},"number":"","pos":"","height":"","year_class":"","gp":-1}}
+{
+   "ErReader": {
+      "player_code_id": {
+         "code": "ErReader",
+         "id": "Reader, Erick",
+         "ncaa_id": "5311998"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bloomington, MN"
+   },
+   "GrGrove": {
+      "player_code_id": {
+         "code": "GrGrove",
+         "id": "Grove, Grayson",
+         "ncaa_id": "5239570"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Alexandria, MN"
+   },
+   "IsAsuma": {
+      "player_code_id": {
+         "code": "IsAsuma",
+         "id": "Asuma, Isaac",
+         "ncaa_id": "5144165"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cherry, MN",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Niko Medved"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   }
+}

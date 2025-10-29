@@ -1,1 +1,232 @@
-{"TaHamilton":{"player_code_id":{"code":"TaHamilton","id":"Hamilton, Tai","ncaa_id":"5176753"},"number":"21","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Charlotte, NC"},"CaChristy":{"player_code_id":{"code":"CaChristy","id":"Christy, Cam","ncaa_id":"5119172"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Walton, KY"},"IsWilson":{"player_code_id":{"code":"IsWilson","id":"Wilson, Isaiah","ncaa_id":"4700973"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Pittsburgh, PA"},"PhBoyogueno":{"player_code_id":{"code":"PhBoyogueno","id":"Boyogueno, Pharell","ncaa_id":"5240416"},"number":"4","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Greenville, SC"},"KaEvans":{"player_code_id":{"code":"KaEvans","id":"Evans, Kaleb","ncaa_id":"5313545"},"number":"0","pos":"","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Lexington, SC"},"KoClouet":{"player_code_id":{"code":"KoClouet","id":"Clouet, Kody","ncaa_id":"4906515"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"San Marcos, CA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mark Prosser"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ToKamarad":{"player_code_id":{"code":"ToKamarad","id":"Kamarad, Tommy","ncaa_id":"5241760"},"number":"15","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Buford, GA"},"BrThomas":{"player_code_id":{"code":"BrThomas","id":"Thomas, Braylhan","ncaa_id":"5239884"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Atlanta, GA"},"HeHarrison":{"player_code_id":{"code":"HeHarrison","id":"Harrison, Henry","ncaa_id":"5177682"},"number":"22","pos":"G","height":"5-11","height_in":71,"year_class":"Jr","gp":0,"origin":"Lewisburg, PA"},"DaBerry":{"player_code_id":{"code":"DaBerry","id":"Berry, Daylen","ncaa_id":"4897458"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Raleigh, NC"},"SeHendawy":{"player_code_id":{"code":"SeHendawy","id":"Hendawy, Seifeldin","ncaa_id":"5239628"},"number":"25","pos":"G","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Cairo, Egypt"},"LoDuncomb":{"player_code_id":{"code":"LoDuncomb","id":"Duncomb, Logan","ncaa_id":"4682856"},"number":"51","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Cincinnati, OH"},"EdNnamoko":{"player_code_id":{"code":"EdNnamoko","id":"Nnamoko, Edward","ncaa_id":"5107220"},"number":"23","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Lagos, Nigeria"},"JoMeo":{"player_code_id":{"code":"JoMeo","id":"Meo, Josh","ncaa_id":"5239866"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Orlando, FL"},"KaRozier":{"player_code_id":{"code":"KaRozier","id":"Rozier, Kareem","ncaa_id":"5105885"},"number":"2","pos":"G","height":"5-9","height_in":69,"year_class":"Sr","gp":0,"origin":"Detroit, MI"}}
+{
+   "TaHamilton": {
+      "player_code_id": {
+         "code": "TaHamilton",
+         "id": "Hamilton, Tai",
+         "ncaa_id": "5176753"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Charlotte, NC",
+      "role": "C"
+   },
+   "CaChristy": {
+      "player_code_id": {
+         "code": "CaChristy",
+         "id": "Christy, Cam",
+         "ncaa_id": "5119172"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Walton, KY"
+   },
+   "IsWilson": {
+      "player_code_id": {
+         "code": "IsWilson",
+         "id": "Wilson, Isaiah",
+         "ncaa_id": "4700973"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Pittsburgh, PA"
+   },
+   "PhBoyogueno": {
+      "player_code_id": {
+         "code": "PhBoyogueno",
+         "id": "Boyogueno, Pharell",
+         "ncaa_id": "5240416"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Greenville, SC",
+      "role": "S-PF"
+   },
+   "KaEvans": {
+      "player_code_id": {
+         "code": "KaEvans",
+         "id": "Evans, Kaleb",
+         "ncaa_id": "5313545"
+      },
+      "number": "0",
+      "pos": "",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lexington, SC"
+   },
+   "KoClouet": {
+      "player_code_id": {
+         "code": "KoClouet",
+         "id": "Clouet, Kody",
+         "ncaa_id": "4906515"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "San Marcos, CA",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mark Prosser"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ToKamarad": {
+      "player_code_id": {
+         "code": "ToKamarad",
+         "id": "Kamarad, Tommy",
+         "ncaa_id": "5241760"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Buford, GA",
+      "role": "S-PF"
+   },
+   "BrThomas": {
+      "player_code_id": {
+         "code": "BrThomas",
+         "id": "Thomas, Braylhan",
+         "ncaa_id": "5239884"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "WG"
+   },
+   "HeHarrison": {
+      "player_code_id": {
+         "code": "HeHarrison",
+         "id": "Harrison, Henry",
+         "ncaa_id": "5177682"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lewisburg, PA"
+   },
+   "DaBerry": {
+      "player_code_id": {
+         "code": "DaBerry",
+         "id": "Berry, Daylen",
+         "ncaa_id": "4897458"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Raleigh, NC",
+      "role": "CG"
+   },
+   "SeHendawy": {
+      "player_code_id": {
+         "code": "SeHendawy",
+         "id": "Hendawy, Seifeldin",
+         "ncaa_id": "5239628"
+      },
+      "number": "25",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cairo, Egypt"
+   },
+   "LoDuncomb": {
+      "player_code_id": {
+         "code": "LoDuncomb",
+         "id": "Duncomb, Logan",
+         "ncaa_id": "4682856"
+      },
+      "number": "51",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "C"
+   },
+   "EdNnamoko": {
+      "player_code_id": {
+         "code": "EdNnamoko",
+         "id": "Nnamoko, Edward",
+         "ncaa_id": "5107220"
+      },
+      "number": "23",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lagos, Nigeria",
+      "role": "C"
+   },
+   "JoMeo": {
+      "player_code_id": {
+         "code": "JoMeo",
+         "id": "Meo, Josh",
+         "ncaa_id": "5239866"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Orlando, FL"
+   },
+   "KaRozier": {
+      "player_code_id": {
+         "code": "KaRozier",
+         "id": "Rozier, Kareem",
+         "ncaa_id": "5105885"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "s-PG"
+   }
+}

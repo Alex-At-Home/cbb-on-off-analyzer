@@ -1,1 +1,246 @@
-{"MiTyne":{"player_code_id":{"code":"MiTyne","id":"Tyne, Mikkel","ncaa_id":"5174629"},"number":"1","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Toronto, Canada"},"JaDaughtry":{"player_code_id":{"code":"JaDaughtry","id":"Daughtry, Jaden","ncaa_id":"5176349"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Richmond, VA"},"AiArgabright":{"player_code_id":{"code":"AiArgabright","id":"Argabright, Aiden","ncaa_id":"5254316"},"number":"3","pos":"G","height":"5-11","height_in":71,"year_class":"Fr","gp":0,"origin":"Burke, VA"},"DaThomas":{"player_code_id":{"code":"DaThomas","id":"Thomas, David","ncaa_id":"5176149"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Mcdonough, GA"},"AjLopez":{"player_code_id":{"code":"AjLopez","id":"Lopez, AJ","ncaa_id":"4897192"},"number":"6","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Brooklyn, NY"},"BrMcglothin":{"player_code_id":{"code":"BrMcglothin","id":"McGlothin, Bryson","ncaa_id":"5239674"},"number":"35","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Plano, TX"},"CoTanner":{"player_code_id":{"code":"CoTanner","id":"Tanner, Collin","ncaa_id":"5174628"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Creedmoor, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Chris Mooney"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ApRoumoglou":{"player_code_id":{"code":"ApRoumoglou","id":"Roumoglou, Apostolos","ncaa_id":"5105566"},"number":"33","pos":"G","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Xanthi, Greece"},"KiMooney":{"player_code_id":{"code":"KiMooney","id":"Mooney, Kirby","ncaa_id":"5239672"},"number":"15","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Warminster, PA"},"JaRobinson":{"player_code_id":{"code":"JaRobinson","id":"Robinson, Jaylen","ncaa_id":"5239673"},"number":"24","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Jacksonville, FL"},"DyHomenick":{"player_code_id":{"code":"DyHomenick","id":"Homenick, Dylan","ncaa_id":"5311870"},"number":"16","pos":"C","height":"6-11","height_in":83,"year_class":"Fr","gp":0,"origin":"Surrey, Canada"},"WiHarper":{"player_code_id":{"code":"WiHarper","id":"Harper III, Will","ncaa_id":"5254321"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Bowie, MD"},"DoRichardson":{"player_code_id":{"code":"DoRichardson","id":"Richardson, Donovan","ncaa_id":"5254319"},"number":"8","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Midlothian, VA"},"WiJohnston":{"player_code_id":{"code":"WiJohnston","id":"Johnston, Will","ncaa_id":"5105481"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Sydney, Australia"},"JoBeagle":{"player_code_id":{"code":"JoBeagle","id":"Beagle, Jonathan","ncaa_id":"5106043"},"number":"9","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Hudson Falls, NY"},"MiWalz":{"player_code_id":{"code":"MiWalz","id":"Walz, Mike","ncaa_id":"5105974"},"number":"21","pos":"C","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Berwyn, PA"}}
+{
+   "MiTyne": {
+      "player_code_id": {
+         "code": "MiTyne",
+         "id": "Tyne, Mikkel",
+         "ncaa_id": "5174629"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Toronto, Canada",
+      "role": "CG"
+   },
+   "JaDaughtry": {
+      "player_code_id": {
+         "code": "JaDaughtry",
+         "id": "Daughtry, Jaden",
+         "ncaa_id": "5176349"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Richmond, VA",
+      "role": "WF"
+   },
+   "AiArgabright": {
+      "player_code_id": {
+         "code": "AiArgabright",
+         "id": "Argabright, Aiden",
+         "ncaa_id": "5254316"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Burke, VA"
+   },
+   "DaThomas": {
+      "player_code_id": {
+         "code": "DaThomas",
+         "id": "Thomas, David",
+         "ncaa_id": "5176149"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Mcdonough, GA",
+      "role": "CG"
+   },
+   "AjLopez": {
+      "player_code_id": {
+         "code": "AjLopez",
+         "id": "Lopez, AJ",
+         "ncaa_id": "4897192"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "WG"
+   },
+   "BrMcglothin": {
+      "player_code_id": {
+         "code": "BrMcglothin",
+         "id": "McGlothin, Bryson",
+         "ncaa_id": "5239674"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Plano, TX"
+   },
+   "CoTanner": {
+      "player_code_id": {
+         "code": "CoTanner",
+         "id": "Tanner, Collin",
+         "ncaa_id": "5174628"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Creedmoor, NC",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Chris Mooney"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ApRoumoglou": {
+      "player_code_id": {
+         "code": "ApRoumoglou",
+         "id": "Roumoglou, Apostolos",
+         "ncaa_id": "5105566"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Xanthi, Greece",
+      "role": "WF"
+   },
+   "KiMooney": {
+      "player_code_id": {
+         "code": "KiMooney",
+         "id": "Mooney, Kirby",
+         "ncaa_id": "5239672"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Warminster, PA"
+   },
+   "JaRobinson": {
+      "player_code_id": {
+         "code": "JaRobinson",
+         "id": "Robinson, Jaylen",
+         "ncaa_id": "5239673"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Jacksonville, FL"
+   },
+   "DyHomenick": {
+      "player_code_id": {
+         "code": "DyHomenick",
+         "id": "Homenick, Dylan",
+         "ncaa_id": "5311870"
+      },
+      "number": "16",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Surrey, Canada"
+   },
+   "WiHarper": {
+      "player_code_id": {
+         "code": "WiHarper",
+         "id": "Harper III, Will",
+         "ncaa_id": "5254321"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bowie, MD"
+   },
+   "DoRichardson": {
+      "player_code_id": {
+         "code": "DoRichardson",
+         "id": "Richardson, Donovan",
+         "ncaa_id": "5254319"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Midlothian, VA"
+   },
+   "WiJohnston": {
+      "player_code_id": {
+         "code": "WiJohnston",
+         "id": "Johnston, Will",
+         "ncaa_id": "5105481"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sydney, Australia",
+      "role": "s-PG"
+   },
+   "JoBeagle": {
+      "player_code_id": {
+         "code": "JoBeagle",
+         "id": "Beagle, Jonathan",
+         "ncaa_id": "5106043"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Hudson Falls, NY",
+      "role": "PF/C"
+   },
+   "MiWalz": {
+      "player_code_id": {
+         "code": "MiWalz",
+         "id": "Walz, Mike",
+         "ncaa_id": "5105974"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Berwyn, PA",
+      "role": "PF/C"
+   }
+}

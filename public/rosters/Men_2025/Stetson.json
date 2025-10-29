@@ -1,1 +1,226 @@
-{"MiMcgowan":{"player_code_id":{"code":"MiMcgowan","id":"McGowan, Miller","ncaa_id":"5314560"},"number":"8","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Atlanta, GA"},"BeGladieux":{"player_code_id":{"code":"BeGladieux","id":"Gladieux, Ben","ncaa_id":"5240020"},"number":"20","pos":"G","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Lakeland, FL"},"IsJones":{"player_code_id":{"code":"IsJones","id":"Jones, Isaac","ncaa_id":"5177676"},"number":"2","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Deland, FL"},"CaSirmans":{"player_code_id":{"code":"CaSirmans","id":"Sirmans III, Calvin","ncaa_id":"5314559"},"number":"3","pos":"G","height":"5-8","height_in":68,"year_class":"Jr","gp":0,"origin":"Lake Worth, FL"},"Leonard":{"player_code_id":{"code":"Leonard","id":"Leonard, J.R.","ncaa_id":"5314561"},"number":"15","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Cobb, GA"},"DaMacgregor":{"player_code_id":{"code":"DaMacgregor","id":"Macgregor, Daniel","ncaa_id":"5240018"},"number":"4","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Clearwater, FL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Donnie Jones"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AlDoyle":{"player_code_id":{"code":"AlDoyle","id":"Doyle, Alex","ncaa_id":"5177677"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Cholet, France"},"MaDiop":{"player_code_id":{"code":"MaDiop","id":"Diop, Matar","ncaa_id":"5174799"},"number":"12","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Dakar, Senegal"},"SeMorgan":{"player_code_id":{"code":"SeMorgan","id":"Morgan, Sean","ncaa_id":"5314563"},"number":"51","pos":"G","height":"-","year_class":"Fr","gp":0,"origin":"Suwannee, GA"},"JaJohnson":{"player_code_id":{"code":"JaJohnson","id":"Johnson, Jake","ncaa_id":"5314562"},"number":"32","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"West Harrison, IN"},"FiSheridan":{"player_code_id":{"code":"FiSheridan","id":"Sheridan, Finley","ncaa_id":"5177678"},"number":"21","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Merrick, NY"},"EtCopeland":{"player_code_id":{"code":"EtCopeland","id":"Copeland, Ethan","ncaa_id":"5314558"},"number":"1","pos":"G","height":"-","year_class":"Jr","gp":0,"origin":"South Jordan, UT"},"JaRatowski":{"player_code_id":{"code":"JaRatowski","id":"Ratowski, Janusz","ncaa_id":"5238231"},"number":"18","pos":"F","height":"6-11","height_in":83,"year_class":"Fr","gp":0,"origin":"Chotomow, Poland"},"JaPhillips":{"player_code_id":{"code":"JaPhillips","id":"Phillips Jr., Jamie","ncaa_id":"5240016"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"So","gp":0,"origin":"Winter Haven, FL"},"CoKuhl":{"player_code_id":{"code":"CoKuhl","id":"Kuhl, Collin","ncaa_id":"5176799"},"number":"9","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Holly Springs, NC"}}
+{
+   "MiMcgowan": {
+      "player_code_id": {
+         "code": "MiMcgowan",
+         "id": "McGowan, Miller",
+         "ncaa_id": "5314560"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "BeGladieux": {
+      "player_code_id": {
+         "code": "BeGladieux",
+         "id": "Gladieux, Ben",
+         "ncaa_id": "5240020"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Lakeland, FL"
+   },
+   "IsJones": {
+      "player_code_id": {
+         "code": "IsJones",
+         "id": "Jones, Isaac",
+         "ncaa_id": "5177676"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Deland, FL"
+   },
+   "CaSirmans": {
+      "player_code_id": {
+         "code": "CaSirmans",
+         "id": "Sirmans III, Calvin",
+         "ncaa_id": "5314559"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lake Worth, FL"
+   },
+   "Leonard": {
+      "player_code_id": {
+         "code": "Leonard",
+         "id": "Leonard, J.R.",
+         "ncaa_id": "5314561"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cobb, GA"
+   },
+   "DaMacgregor": {
+      "player_code_id": {
+         "code": "DaMacgregor",
+         "id": "Macgregor, Daniel",
+         "ncaa_id": "5240018"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Clearwater, FL",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Donnie Jones"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AlDoyle": {
+      "player_code_id": {
+         "code": "AlDoyle",
+         "id": "Doyle, Alex",
+         "ncaa_id": "5177677"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cholet, France",
+      "role": "WF"
+   },
+   "MaDiop": {
+      "player_code_id": {
+         "code": "MaDiop",
+         "id": "Diop, Matar",
+         "ncaa_id": "5174799"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dakar, Senegal"
+   },
+   "SeMorgan": {
+      "player_code_id": {
+         "code": "SeMorgan",
+         "id": "Morgan, Sean",
+         "ncaa_id": "5314563"
+      },
+      "number": "51",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Suwannee, GA"
+   },
+   "JaJohnson": {
+      "player_code_id": {
+         "code": "JaJohnson",
+         "id": "Johnson, Jake",
+         "ncaa_id": "5314562"
+      },
+      "number": "32",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "West Harrison, IN"
+   },
+   "FiSheridan": {
+      "player_code_id": {
+         "code": "FiSheridan",
+         "id": "Sheridan, Finley",
+         "ncaa_id": "5177678"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Merrick, NY",
+      "role": "S-PF"
+   },
+   "EtCopeland": {
+      "player_code_id": {
+         "code": "EtCopeland",
+         "id": "Copeland, Ethan",
+         "ncaa_id": "5314558"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "-",
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "South Jordan, UT"
+   },
+   "JaRatowski": {
+      "player_code_id": {
+         "code": "JaRatowski",
+         "id": "Ratowski, Janusz",
+         "ncaa_id": "5238231"
+      },
+      "number": "18",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chotomow, Poland"
+   },
+   "JaPhillips": {
+      "player_code_id": {
+         "code": "JaPhillips",
+         "id": "Phillips Jr., Jamie",
+         "ncaa_id": "5240016"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Winter Haven, FL",
+      "role": "WG"
+   },
+   "CoKuhl": {
+      "player_code_id": {
+         "code": "CoKuhl",
+         "id": "Kuhl, Collin",
+         "ncaa_id": "5176799"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Holly Springs, NC",
+      "role": "C"
+   }
+}

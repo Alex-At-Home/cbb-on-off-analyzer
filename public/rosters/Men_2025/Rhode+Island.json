@@ -1,1 +1,244 @@
-{"DrTraore":{"player_code_id":{"code":"DrTraore","id":"Traore, Drissa","ncaa_id":"4684303"},"number":"55","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"New York, NY"},"JiBall":{"player_code_id":{"code":"JiBall","id":"Ball, Jimmy","ncaa_id":"5105973"},"number":"30","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Medford, MA"},"JaAponte":{"player_code_id":{"code":"JaAponte","id":"Aponte, Jaymien","ncaa_id":"5239658"},"number":"13","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Cranston, RI"},"AlCrawford":{"player_code_id":{"code":"AlCrawford","id":"Crawford, Alex","ncaa_id":"4897620"},"number":"8","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Chula Vista, CA"},"BaLoer":{"player_code_id":{"code":"BaLoer","id":"Loer, Barrett","ncaa_id":"5254325"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Millis, MA"},"TyCochran":{"player_code_id":{"code":"TyCochran","id":"Cochran, Tyler","ncaa_id":"4431930"},"number":"23","pos":"F","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Bolingbrook, IL"},"JaHarper":{"player_code_id":{"code":"JaHarper","id":"Harper, Jalen","ncaa_id":"5311868"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Philadelphia, PA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Archie Miller"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MoSow":{"player_code_id":{"code":"MoSow","id":"Sow, Mouhamed","ncaa_id":"4898259"},"number":"35","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Dakar, Senegal"},"DaKing":{"player_code_id":{"code":"DaKing","id":"King, Damone","ncaa_id":"5239657"},"number":"21","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Louisville, KY"},"RjJohnson":{"player_code_id":{"code":"RjJohnson","id":"Johnson, RJ","ncaa_id":"5108122"},"number":"22","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Matthews, NC"},"JaPerry":{"player_code_id":{"code":"JaPerry","id":"perry, Javon","ncaa_id":"5311869"},"number":"11","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Springfield, MA"},"JaTripp":{"player_code_id":{"code":"JaTripp","id":"Tripp, Jahmere","ncaa_id":"4848629"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Brooklyn, NY"},"KeItejere":{"player_code_id":{"code":"KeItejere","id":"Itejere, Keeyan","ncaa_id":"4684207"},"number":"40","pos":"","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Knightdale, NC"},"MyCorey":{"player_code_id":{"code":"MyCorey","id":"Corey, Myles","ncaa_id":"4706260"},"number":"20","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Ontario, CA"},"MoIcke":{"player_code_id":{"code":"MoIcke","id":"Icke, Moek","ncaa_id":"5239656"},"number":"17","pos":"C","height":"7-1","height_in":85,"year_class":"Fr","gp":0,"origin":"Purmerend, Netherlands"},"JoHinton":{"player_code_id":{"code":"JoHinton","id":"Hinton, Jonah","ncaa_id":"5239711"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Chicago, IL"}}
+{
+   "DrTraore": {
+      "player_code_id": {
+         "code": "DrTraore",
+         "id": "Traore, Drissa",
+         "ncaa_id": "4684303"
+      },
+      "number": "55",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "New York, NY"
+   },
+   "JiBall": {
+      "player_code_id": {
+         "code": "JiBall",
+         "id": "Ball, Jimmy",
+         "ncaa_id": "5105973"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Medford, MA"
+   },
+   "JaAponte": {
+      "player_code_id": {
+         "code": "JaAponte",
+         "id": "Aponte, Jaymien",
+         "ncaa_id": "5239658"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cranston, RI"
+   },
+   "AlCrawford": {
+      "player_code_id": {
+         "code": "AlCrawford",
+         "id": "Crawford, Alex",
+         "ncaa_id": "4897620"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chula Vista, CA",
+      "role": "WF"
+   },
+   "BaLoer": {
+      "player_code_id": {
+         "code": "BaLoer",
+         "id": "Loer, Barrett",
+         "ncaa_id": "5254325"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Millis, MA"
+   },
+   "TyCochran": {
+      "player_code_id": {
+         "code": "TyCochran",
+         "id": "Cochran, Tyler",
+         "ncaa_id": "4431930"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bolingbrook, IL"
+   },
+   "JaHarper": {
+      "player_code_id": {
+         "code": "JaHarper",
+         "id": "Harper, Jalen",
+         "ncaa_id": "5311868"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Philadelphia, PA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Archie Miller"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MoSow": {
+      "player_code_id": {
+         "code": "MoSow",
+         "id": "Sow, Mouhamed",
+         "ncaa_id": "4898259"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dakar, Senegal",
+      "role": "WF"
+   },
+   "DaKing": {
+      "player_code_id": {
+         "code": "DaKing",
+         "id": "King, Damone",
+         "ncaa_id": "5239657"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Louisville, KY"
+   },
+   "RjJohnson": {
+      "player_code_id": {
+         "code": "RjJohnson",
+         "id": "Johnson, RJ",
+         "ncaa_id": "5108122"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Matthews, NC",
+      "role": "s-PG"
+   },
+   "JaPerry": {
+      "player_code_id": {
+         "code": "JaPerry",
+         "id": "perry, Javon",
+         "ncaa_id": "5311869"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Springfield, MA"
+   },
+   "JaTripp": {
+      "player_code_id": {
+         "code": "JaTripp",
+         "id": "Tripp, Jahmere",
+         "ncaa_id": "4848629"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "WG"
+   },
+   "KeItejere": {
+      "player_code_id": {
+         "code": "KeItejere",
+         "id": "Itejere, Keeyan",
+         "ncaa_id": "4684207"
+      },
+      "number": "40",
+      "pos": "",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Knightdale, NC",
+      "role": "C"
+   },
+   "MyCorey": {
+      "player_code_id": {
+         "code": "MyCorey",
+         "id": "Corey, Myles",
+         "ncaa_id": "4706260"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Ontario, CA",
+      "role": "s-PG"
+   },
+   "MoIcke": {
+      "player_code_id": {
+         "code": "MoIcke",
+         "id": "Icke, Moek",
+         "ncaa_id": "5239656"
+      },
+      "number": "17",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Purmerend, Netherlands"
+   },
+   "JoHinton": {
+      "player_code_id": {
+         "code": "JoHinton",
+         "id": "Hinton, Jonah",
+         "ncaa_id": "5239711"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "CG"
+   }
+}

@@ -1,1 +1,231 @@
-{"MaCourbon":{"player_code_id":{"code":"MaCourbon","id":"Courbon, Mathis","ncaa_id":"5313868"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Francheville, France"},"TrFord":{"player_code_id":{"code":"TrFord","id":"Ford, Tristian","ncaa_id":"5313869"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Rockford, IL"},"DiButler":{"player_code_id":{"code":"DiButler","id":"Butler, Dillon","ncaa_id":"5313871"},"number":"25","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Atoka, TN"},"FrKing":{"player_code_id":{"code":"FrKing","id":"King, Fredrick","ncaa_id":"5105580"},"number":"33","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Mangrove Cay, Bahamas"},"LaTaylor":{"player_code_id":{"code":"LaTaylor","id":"Taylor, Layne","ncaa_id":"5239783"},"number":"9","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Farmington, AR"},"BeShtolzberg":{"player_code_id":{"code":"BeShtolzberg","id":"Shtolzberg, Ben","ncaa_id":"5105578"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Northridge, CA"},"KjTenner":{"player_code_id":{"code":"KjTenner","id":"Tenner, KJ","ncaa_id":"5240511"},"number":"10","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Memphis, TN"},"DyAnderson":{"player_code_id":{"code":"DyAnderson","id":"Anderson, Dylan","ncaa_id":"4432739"},"number":"11","pos":"F","height":"7-0","height_in":84,"year_class":"Jr","gp":0,"origin":"Gilbert, AZ"},"MaMiller":{"player_code_id":{"code":"MaMiller","id":"Miller, Mason","ncaa_id":"4683755"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Germantown, TN"},"LaCrate":{"player_code_id":{"code":"LaCrate","id":"Crate, Lachlan","ncaa_id":"5313870"},"number":"14","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Feilding, New Zealand"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Ryan Miller"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JjTraynor":{"player_code_id":{"code":"JjTraynor","id":"Traynor, JJ","ncaa_id":"4596711"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Bardstown, KY"},"JaJackson":{"player_code_id":{"code":"JaJackson","id":"Jackson, Javon","ncaa_id":"5113534"},"number":"22","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Houston, TX"},"BrShorter":{"player_code_id":{"code":"BrShorter","id":"Shorter, Brayden","ncaa_id":"5313872"},"number":"34","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Springfield, MO"},"BrVice":{"player_code_id":{"code":"BrVice","id":"Vice, Brock","ncaa_id":"5175357"},"number":"6","pos":"F","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Memphis, TN"},"RoDomon":{"player_code_id":{"code":"RoDomon","id":"Domon, Roman","ncaa_id":"5313873"},"number":"77","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Dreuil Les Amiens, France"}}
+{
+   "MaCourbon": {
+      "player_code_id": {
+         "code": "MaCourbon",
+         "id": "Courbon, Mathis",
+         "ncaa_id": "5313868"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Francheville, France"
+   },
+   "TrFord": {
+      "player_code_id": {
+         "code": "TrFord",
+         "id": "Ford, Tristian",
+         "ncaa_id": "5313869"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Rockford, IL"
+   },
+   "DiButler": {
+      "player_code_id": {
+         "code": "DiButler",
+         "id": "Butler, Dillon",
+         "ncaa_id": "5313871"
+      },
+      "number": "25",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Atoka, TN"
+   },
+   "FrKing": {
+      "player_code_id": {
+         "code": "FrKing",
+         "id": "King, Fredrick",
+         "ncaa_id": "5105580"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mangrove Cay, Bahamas",
+      "role": "C"
+   },
+   "LaTaylor": {
+      "player_code_id": {
+         "code": "LaTaylor",
+         "id": "Taylor, Layne",
+         "ncaa_id": "5239783"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Farmington, AR",
+      "role": "s-PG"
+   },
+   "BeShtolzberg": {
+      "player_code_id": {
+         "code": "BeShtolzberg",
+         "id": "Shtolzberg, Ben",
+         "ncaa_id": "5105578"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Northridge, CA",
+      "role": "CG"
+   },
+   "KjTenner": {
+      "player_code_id": {
+         "code": "KjTenner",
+         "id": "Tenner, KJ",
+         "ncaa_id": "5240511"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Memphis, TN",
+      "role": "s-PG"
+   },
+   "DyAnderson": {
+      "player_code_id": {
+         "code": "DyAnderson",
+         "id": "Anderson, Dylan",
+         "ncaa_id": "4432739"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Gilbert, AZ",
+      "role": "WF"
+   },
+   "MaMiller": {
+      "player_code_id": {
+         "code": "MaMiller",
+         "id": "Miller, Mason",
+         "ncaa_id": "4683755"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Germantown, TN",
+      "role": "S-PF"
+   },
+   "LaCrate": {
+      "player_code_id": {
+         "code": "LaCrate",
+         "id": "Crate, Lachlan",
+         "ncaa_id": "5313870"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Feilding, New Zealand"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Ryan Miller"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JjTraynor": {
+      "player_code_id": {
+         "code": "JjTraynor",
+         "id": "Traynor, JJ",
+         "ncaa_id": "4596711"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bardstown, KY",
+      "role": "S-PF"
+   },
+   "JaJackson": {
+      "player_code_id": {
+         "code": "JaJackson",
+         "id": "Jackson, Javon",
+         "ncaa_id": "5113534"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "s-PG"
+   },
+   "BrShorter": {
+      "player_code_id": {
+         "code": "BrShorter",
+         "id": "Shorter, Brayden",
+         "ncaa_id": "5313872"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Springfield, MO"
+   },
+   "BrVice": {
+      "player_code_id": {
+         "code": "BrVice",
+         "id": "Vice, Brock",
+         "ncaa_id": "5175357"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Memphis, TN"
+   },
+   "RoDomon": {
+      "player_code_id": {
+         "code": "RoDomon",
+         "id": "Domon, Roman",
+         "ncaa_id": "5313873"
+      },
+      "number": "77",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dreuil Les Amiens, France"
+   }
+}

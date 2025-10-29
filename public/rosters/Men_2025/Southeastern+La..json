@@ -1,1 +1,232 @@
-{"CoAl-naziat":{"player_code_id":{"code":"CoAl-naziat","id":"Al-naziat, Cody","ncaa_id":"5314565"},"number":"9","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Hammond, LA"},"EtPickett":{"player_code_id":{"code":"EtPickett","id":"Pickett, Ethan","ncaa_id":"5176390"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Pensacola, FL"},"JeElyzee":{"player_code_id":{"code":"JeElyzee","id":"Elyzee, Jeremy","ncaa_id":"5243102"},"number":"0","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Hialeah, FL"},"IsGaines":{"player_code_id":{"code":"IsGaines","id":"Gaines, Isaiah","ncaa_id":"5106865"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Pensacola, FL"},"MaMyles":{"player_code_id":{"code":"MaMyles","id":"Myles, Makhi","ncaa_id":"5240393"},"number":"1","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Starkville, MS"},"AmChaney":{"player_code_id":{"code":"AmChaney","id":"Chaney, Amir","ncaa_id":"5314566"},"number":"11","pos":"G","height":"5-10","height_in":70,"year_class":"Fr","gp":0,"origin":"Springfield, LA"},"JaLawrence":{"player_code_id":{"code":"JaLawrence","id":"Lawrence, Jaiden","ncaa_id":"5243105"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Bowling Green, KY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"David Kiefer"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaForrest":{"player_code_id":{"code":"JaForrest","id":"Forrest, Jalen","ncaa_id":"5107520"},"number":"2","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Decatur, GA"},"PeHemschemei":{"player_code_id":{"code":"PeHemschemei","id":"Hemschemeier, Peter","ncaa_id":"5314564"},"number":"8","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Paderborn, Germany"},"CjBooker":{"player_code_id":{"code":"CjBooker","id":"Booker, C.J.","ncaa_id":"5176658"},"number":"4","pos":"G","height":"5-9","height_in":69,"year_class":"So","gp":0,"origin":"Midlothian, TX"},"UbAbasiEtim":{"player_code_id":{"code":"UbAbasiEtim","id":"Abasi Etim, Ubong","ncaa_id":"5108048"},"number":"6","pos":"C","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Richmond, CA"},"KyEdison":{"player_code_id":{"code":"KyEdison","id":"Edison, Kyle","ncaa_id":"5243104"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"W Plm Bch, FL"},"GaShoemaker":{"player_code_id":{"code":"GaShoemaker","id":"Shoemaker, Garrett","ncaa_id":"5314567"},"number":"33","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Livingston, LA"},"SeJones":{"player_code_id":{"code":"SeJones","id":"Jones, Seth","ncaa_id":"5240906"},"number":"7","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Dickinson, TX"},"AhEssahaty":{"player_code_id":{"code":"AhEssahaty","id":"Essahaty, Ahmed","ncaa_id":"5124659"},"number":"12","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Wellington, New Zealand"}}
+{
+   "CoAl-naziat": {
+      "player_code_id": {
+         "code": "CoAl-naziat",
+         "id": "Al-naziat, Cody",
+         "ncaa_id": "5314565"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Hammond, LA"
+   },
+   "EtPickett": {
+      "player_code_id": {
+         "code": "EtPickett",
+         "id": "Pickett, Ethan",
+         "ncaa_id": "5176390"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Pensacola, FL",
+      "role": "WG"
+   },
+   "JeElyzee": {
+      "player_code_id": {
+         "code": "JeElyzee",
+         "id": "Elyzee, Jeremy",
+         "ncaa_id": "5243102"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hialeah, FL",
+      "role": "WF"
+   },
+   "IsGaines": {
+      "player_code_id": {
+         "code": "IsGaines",
+         "id": "Gaines, Isaiah",
+         "ncaa_id": "5106865"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Pensacola, FL",
+      "role": "PF/C"
+   },
+   "MaMyles": {
+      "player_code_id": {
+         "code": "MaMyles",
+         "id": "Myles, Makhi",
+         "ncaa_id": "5240393"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Starkville, MS"
+   },
+   "AmChaney": {
+      "player_code_id": {
+         "code": "AmChaney",
+         "id": "Chaney, Amir",
+         "ncaa_id": "5314566"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Springfield, LA"
+   },
+   "JaLawrence": {
+      "player_code_id": {
+         "code": "JaLawrence",
+         "id": "Lawrence, Jaiden",
+         "ncaa_id": "5243105"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bowling Green, KY",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "David Kiefer"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaForrest": {
+      "player_code_id": {
+         "code": "JaForrest",
+         "id": "Forrest, Jalen",
+         "ncaa_id": "5107520"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Decatur, GA",
+      "role": "WG"
+   },
+   "PeHemschemei": {
+      "player_code_id": {
+         "code": "PeHemschemei",
+         "id": "Hemschemeier, Peter",
+         "ncaa_id": "5314564"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Paderborn, Germany"
+   },
+   "CjBooker": {
+      "player_code_id": {
+         "code": "CjBooker",
+         "id": "Booker, C.J.",
+         "ncaa_id": "5176658"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Midlothian, TX",
+      "role": "s-PG"
+   },
+   "UbAbasiEtim": {
+      "player_code_id": {
+         "code": "UbAbasiEtim",
+         "id": "Abasi Etim, Ubong",
+         "ncaa_id": "5108048"
+      },
+      "number": "6",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Richmond, CA",
+      "role": "C"
+   },
+   "KyEdison": {
+      "player_code_id": {
+         "code": "KyEdison",
+         "id": "Edison, Kyle",
+         "ncaa_id": "5243104"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "W Plm Bch, FL",
+      "role": "WG"
+   },
+   "GaShoemaker": {
+      "player_code_id": {
+         "code": "GaShoemaker",
+         "id": "Shoemaker, Garrett",
+         "ncaa_id": "5314567"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Livingston, LA"
+   },
+   "SeJones": {
+      "player_code_id": {
+         "code": "SeJones",
+         "id": "Jones, Seth",
+         "ncaa_id": "5240906"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dickinson, TX"
+   },
+   "AhEssahaty": {
+      "player_code_id": {
+         "code": "AhEssahaty",
+         "id": "Essahaty, Ahmed",
+         "ncaa_id": "5124659"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Wellington, New Zealand",
+      "role": "WG"
+   }
+}

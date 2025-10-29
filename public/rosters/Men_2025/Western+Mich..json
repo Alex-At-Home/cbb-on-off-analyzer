@@ -1,1 +1,228 @@
-{"CaVis":{"player_code_id":{"code":"CaVis","id":"Vis, Carson","ncaa_id":"5314285"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Byron Center, MI"},"CaThompson":{"player_code_id":{"code":"CaThompson","id":"Thompson, Camden","ncaa_id":"5314287"},"number":"23","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Whitehall, MI"},"BrSwartz":{"player_code_id":{"code":"BrSwartz","id":"Swartz, Brady","ncaa_id":"5314284"},"number":"4","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Grand Rapids, MI"},"ShBarnes":{"player_code_id":{"code":"ShBarnes","id":"Barnes, Sharod","ncaa_id":"5314283"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Ypsilanti, MI"},"NiErrica":{"player_code_id":{"code":"NiErrica","id":"Errica, Nicholas","ncaa_id":"5264646"},"number":"9","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Cremona, Italy"},"HuWard":{"player_code_id":{"code":"HuWard","id":"Ward, Hudson","ncaa_id":"5239603"},"number":"8","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Leduc, Canada"},"EjRyans":{"player_code_id":{"code":"EjRyans","id":"Ryans, EJ","ncaa_id":"5243096"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Grand Rapids, MI"},"JaGriffith":{"player_code_id":{"code":"JaGriffith","id":"Griffith, Jalen","ncaa_id":"5179286"},"number":"2","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Chicago, IL"},"JuWilliams":{"player_code_id":{"code":"JuWilliams","id":"Williams, Justice","ncaa_id":"4683676"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Philadelphia, PA"},"DePeterson":{"player_code_id":{"code":"DePeterson","id":"Peterson, Declan","ncaa_id":"5314286"},"number":"22","pos":"C","height":"6-11","height_in":83,"year_class":"Sr","gp":0,"origin":"Bentley, Canada"},"TrLewis":{"player_code_id":{"code":"TrLewis","id":"Lewis, Trey","ncaa_id":"5105966"},"number":"1","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Ferndale, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Dwayne Stephens"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaBrewer":{"player_code_id":{"code":"JaBrewer","id":"Brewer, Jayden","ncaa_id":"5106869"},"number":"12","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Indianapolis, IN"},"JuSileu":{"player_code_id":{"code":"JuSileu","id":"Sileu, Junior","ncaa_id":"5243099"},"number":"52","pos":"F","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Douala, Cameroon"},"MaBurton":{"player_code_id":{"code":"MaBurton","id":"Burton, Max","ncaa_id":"5107999"},"number":"10","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Williamston, MI"},"MiSulaka":{"player_code_id":{"code":"MiSulaka","id":"Sulaka, Michael","ncaa_id":"5176248"},"number":"24","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Macomb, MI"}}
+{
+   "CaVis": {
+      "player_code_id": {
+         "code": "CaVis",
+         "id": "Vis, Carson",
+         "ncaa_id": "5314285"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Byron Center, MI"
+   },
+   "CaThompson": {
+      "player_code_id": {
+         "code": "CaThompson",
+         "id": "Thompson, Camden",
+         "ncaa_id": "5314287"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Whitehall, MI"
+   },
+   "BrSwartz": {
+      "player_code_id": {
+         "code": "BrSwartz",
+         "id": "Swartz, Brady",
+         "ncaa_id": "5314284"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Grand Rapids, MI"
+   },
+   "ShBarnes": {
+      "player_code_id": {
+         "code": "ShBarnes",
+         "id": "Barnes, Sharod",
+         "ncaa_id": "5314283"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Ypsilanti, MI"
+   },
+   "NiErrica": {
+      "player_code_id": {
+         "code": "NiErrica",
+         "id": "Errica, Nicholas",
+         "ncaa_id": "5264646"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cremona, Italy"
+   },
+   "HuWard": {
+      "player_code_id": {
+         "code": "HuWard",
+         "id": "Ward, Hudson",
+         "ncaa_id": "5239603"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Leduc, Canada"
+   },
+   "EjRyans": {
+      "player_code_id": {
+         "code": "EjRyans",
+         "id": "Ryans, EJ",
+         "ncaa_id": "5243096"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Grand Rapids, MI",
+      "role": "s-PG"
+   },
+   "JaGriffith": {
+      "player_code_id": {
+         "code": "JaGriffith",
+         "id": "Griffith, Jalen",
+         "ncaa_id": "5179286"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "JuWilliams": {
+      "player_code_id": {
+         "code": "JuWilliams",
+         "id": "Williams, Justice",
+         "ncaa_id": "4683676"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "CG"
+   },
+   "DePeterson": {
+      "player_code_id": {
+         "code": "DePeterson",
+         "id": "Peterson, Declan",
+         "ncaa_id": "5314286"
+      },
+      "number": "22",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bentley, Canada"
+   },
+   "TrLewis": {
+      "player_code_id": {
+         "code": "TrLewis",
+         "id": "Lewis, Trey",
+         "ncaa_id": "5105966"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Ferndale, MI",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Dwayne Stephens"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaBrewer": {
+      "player_code_id": {
+         "code": "JaBrewer",
+         "id": "Brewer, Jayden",
+         "ncaa_id": "5106869"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Indianapolis, IN"
+   },
+   "JuSileu": {
+      "player_code_id": {
+         "code": "JuSileu",
+         "id": "Sileu, Junior",
+         "ncaa_id": "5243099"
+      },
+      "number": "52",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Douala, Cameroon"
+   },
+   "MaBurton": {
+      "player_code_id": {
+         "code": "MaBurton",
+         "id": "Burton, Max",
+         "ncaa_id": "5107999"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Williamston, MI",
+      "role": "PF/C"
+   },
+   "MiSulaka": {
+      "player_code_id": {
+         "code": "MiSulaka",
+         "id": "Sulaka, Michael",
+         "ncaa_id": "5176248"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Macomb, MI",
+      "role": "C"
+   }
+}

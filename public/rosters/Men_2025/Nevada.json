@@ -1,1 +1,201 @@
-{"TaComer":{"player_code_id":{"code":"TaComer","id":"Comer, Tayshawn","ncaa_id":"5106706"},"number":"12","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Indianapolis, IN"},"EtCroley":{"player_code_id":{"code":"EtCroley","id":"Croley, Ethan","ncaa_id":"5313917"},"number":"50","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"San Antonio, TX"},"MyWalker":{"player_code_id":{"code":"MyWalker","id":"Walker, Myles","ncaa_id":"5313913"},"number":"2","pos":"G","height":"5-10","height_in":70,"year_class":"Fr","gp":0,"origin":"Riverside, CA"},"PeWhite":{"player_code_id":{"code":"PeWhite","id":"White, Peyton","ncaa_id":"5313915"},"number":"17","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Encino, CA"},"VaWeems":{"player_code_id":{"code":"VaWeems","id":"Weems, Vaughn","ncaa_id":"5313914"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Federal Way, WA"},"TyRolison":{"player_code_id":{"code":"TyRolison","id":"Rolison, Tyler","ncaa_id":"4845370"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Los Angeles, CA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Steve Alford"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AmRobinson":{"player_code_id":{"code":"AmRobinson","id":"Robinson, Amire","ncaa_id":"5176227"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Akron, OH"},"JoArmotradin":{"player_code_id":{"code":"JoArmotradin","id":"Armotrading, Joel","ncaa_id":"5175170"},"number":"21","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"London, England, United Kingdom"},"CoCamper":{"player_code_id":{"code":"CoCamper","id":"Camper Jr., Corey","ncaa_id":"5177690"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Little Rock, AR"},"ChBailey":{"player_code_id":{"code":"ChBailey","id":"Bailey III, Chuck","ncaa_id":"5177732"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Detroit, MI"},"ChBaudreau":{"player_code_id":{"code":"ChBaudreau","id":"Baudreau, Christopher","ncaa_id":"5313916"},"number":"24","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Las Vegas, NV"},"KaLowery":{"player_code_id":{"code":"KaLowery","id":"Lowery, Kaleb","ncaa_id":"5119063"},"number":"6","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Newhall, CA"},"ElPrice":{"player_code_id":{"code":"ElPrice","id":"Price, Elijah","ncaa_id":"5176317"},"number":"1","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Long Beach, CA"}}
+{
+   "TaComer": {
+      "player_code_id": {
+         "code": "TaComer",
+         "id": "Comer, Tayshawn",
+         "ncaa_id": "5106706"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "s-PG"
+   },
+   "EtCroley": {
+      "player_code_id": {
+         "code": "EtCroley",
+         "id": "Croley, Ethan",
+         "ncaa_id": "5313917"
+      },
+      "number": "50",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "San Antonio, TX"
+   },
+   "MyWalker": {
+      "player_code_id": {
+         "code": "MyWalker",
+         "id": "Walker, Myles",
+         "ncaa_id": "5313913"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Riverside, CA"
+   },
+   "PeWhite": {
+      "player_code_id": {
+         "code": "PeWhite",
+         "id": "White, Peyton",
+         "ncaa_id": "5313915"
+      },
+      "number": "17",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Encino, CA"
+   },
+   "VaWeems": {
+      "player_code_id": {
+         "code": "VaWeems",
+         "id": "Weems, Vaughn",
+         "ncaa_id": "5313914"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Federal Way, WA"
+   },
+   "TyRolison": {
+      "player_code_id": {
+         "code": "TyRolison",
+         "id": "Rolison, Tyler",
+         "ncaa_id": "4845370"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Los Angeles, CA",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Steve Alford"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AmRobinson": {
+      "player_code_id": {
+         "code": "AmRobinson",
+         "id": "Robinson, Amire",
+         "ncaa_id": "5176227"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Akron, OH"
+   },
+   "JoArmotradin": {
+      "player_code_id": {
+         "code": "JoArmotradin",
+         "id": "Armotrading, Joel",
+         "ncaa_id": "5175170"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "London, England, United Kingdom",
+      "role": "C"
+   },
+   "CoCamper": {
+      "player_code_id": {
+         "code": "CoCamper",
+         "id": "Camper Jr., Corey",
+         "ncaa_id": "5177690"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Little Rock, AR",
+      "role": "CG"
+   },
+   "ChBailey": {
+      "player_code_id": {
+         "code": "ChBailey",
+         "id": "Bailey III, Chuck",
+         "ncaa_id": "5177732"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "WG"
+   },
+   "ChBaudreau": {
+      "player_code_id": {
+         "code": "ChBaudreau",
+         "id": "Baudreau, Christopher",
+         "ncaa_id": "5313916"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Las Vegas, NV"
+   },
+   "KaLowery": {
+      "player_code_id": {
+         "code": "KaLowery",
+         "id": "Lowery, Kaleb",
+         "ncaa_id": "5119063"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Newhall, CA"
+   },
+   "ElPrice": {
+      "player_code_id": {
+         "code": "ElPrice",
+         "id": "Price, Elijah",
+         "ncaa_id": "5176317"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Long Beach, CA",
+      "role": "PF/C"
+   }
+}

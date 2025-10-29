@@ -1,1 +1,231 @@
-{"ObAgbim":{"player_code_id":{"code":"ObAgbim","id":"Agbim, Obi","ncaa_id":"5241273"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Aurora, CO"},"JjWhite":{"player_code_id":{"code":"JjWhite","id":"White, JJ","ncaa_id":"5107260"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Lawrenceville, GA"},"AnIguodala":{"player_code_id":{"code":"AnIguodala","id":"Iguodala II, Andre","ncaa_id":"5196940"},"number":"7","pos":"G","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Lafayette, CA"},"MaSoyoye":{"player_code_id":{"code":"MaSoyoye","id":"Soyoye, Mayo","ncaa_id":"5311906"},"number":"15","pos":"C","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Atlanta, GA"},"JuBodoBodo":{"player_code_id":{"code":"JuBodoBodo","id":"Bodo Bodo, Juslin","ncaa_id":"5175662"},"number":"21","pos":"C","height":"6-11","height_in":83,"year_class":"Jr","gp":0,"origin":"Yaoundé, Cameroon"},"DaSkillings":{"player_code_id":{"code":"DaSkillings","id":"Skillings Jr., Dan","ncaa_id":"5105811"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Blackwood, NJ"},"DrPerry":{"player_code_id":{"code":"DrPerry","id":"Perry, Drew","ncaa_id":"5311905"},"number":"3","pos":"G","height":"5-10","height_in":70,"year_class":"Fr","gp":0,"origin":"Dallas, TX"},"CaPowell":{"player_code_id":{"code":"CaPowell","id":"Powell, Caden","ncaa_id":"5107866"},"number":"44","pos":"C","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Waco, TX"},"CaCarr":{"player_code_id":{"code":"CaCarr","id":"Carr, Cameron","ncaa_id":"5113969"},"number":"43","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Eden Prairie, MN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Scott Drew"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MiRataj":{"player_code_id":{"code":"MiRataj","id":"Rataj, Michael","ncaa_id":"5105627"},"number":"12","pos":"G","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Augsburg, Germany"},"ToYessoufou":{"player_code_id":{"code":"ToYessoufou","id":"Yessoufou, Tounde","ncaa_id":"5095152"},"number":"24","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Cotonou, Benin"},"JaGoodis":{"player_code_id":{"code":"JaGoodis","id":"Goodis, James","ncaa_id":"5174781"},"number":"13","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Winter Park, FL"},"IsWilliams":{"player_code_id":{"code":"IsWilliams","id":"Williams, Isaac","ncaa_id":"5243130"},"number":"10","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Oklahoma City, OK"},"MaPerez":{"player_code_id":{"code":"MaPerez","id":"Perez, Maikcol","ncaa_id":"5311907"},"number":"20","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Bassano del Grappa, Italy"},"WiKuykendall":{"player_code_id":{"code":"WiKuykendall","id":"Kuykendall, Will","ncaa_id":"5174953"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Santa Maria, CA"}}
+{
+   "ObAgbim": {
+      "player_code_id": {
+         "code": "ObAgbim",
+         "id": "Agbim, Obi",
+         "ncaa_id": "5241273"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Aurora, CO",
+      "role": "s-PG"
+   },
+   "JjWhite": {
+      "player_code_id": {
+         "code": "JjWhite",
+         "id": "White, JJ",
+         "ncaa_id": "5107260"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lawrenceville, GA",
+      "role": "s-PG"
+   },
+   "AnIguodala": {
+      "player_code_id": {
+         "code": "AnIguodala",
+         "id": "Iguodala II, Andre",
+         "ncaa_id": "5196940"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lafayette, CA"
+   },
+   "MaSoyoye": {
+      "player_code_id": {
+         "code": "MaSoyoye",
+         "id": "Soyoye, Mayo",
+         "ncaa_id": "5311906"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "JuBodoBodo": {
+      "player_code_id": {
+         "code": "JuBodoBodo",
+         "id": "Bodo Bodo, Juslin",
+         "ncaa_id": "5175662"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Yaoundé, Cameroon",
+      "role": "C"
+   },
+   "DaSkillings": {
+      "player_code_id": {
+         "code": "DaSkillings",
+         "id": "Skillings Jr., Dan",
+         "ncaa_id": "5105811"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Blackwood, NJ",
+      "role": "WG"
+   },
+   "DrPerry": {
+      "player_code_id": {
+         "code": "DrPerry",
+         "id": "Perry, Drew",
+         "ncaa_id": "5311905"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "CaPowell": {
+      "player_code_id": {
+         "code": "CaPowell",
+         "id": "Powell, Caden",
+         "ncaa_id": "5107866"
+      },
+      "number": "44",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Waco, TX",
+      "role": "C"
+   },
+   "CaCarr": {
+      "player_code_id": {
+         "code": "CaCarr",
+         "id": "Carr, Cameron",
+         "ncaa_id": "5113969"
+      },
+      "number": "43",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Eden Prairie, MN"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Scott Drew"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MiRataj": {
+      "player_code_id": {
+         "code": "MiRataj",
+         "id": "Rataj, Michael",
+         "ncaa_id": "5105627"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Augsburg, Germany",
+      "role": "WF"
+   },
+   "ToYessoufou": {
+      "player_code_id": {
+         "code": "ToYessoufou",
+         "id": "Yessoufou, Tounde",
+         "ncaa_id": "5095152"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cotonou, Benin",
+      "role": "WG"
+   },
+   "JaGoodis": {
+      "player_code_id": {
+         "code": "JaGoodis",
+         "id": "Goodis, James",
+         "ncaa_id": "5174781"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Winter Park, FL"
+   },
+   "IsWilliams": {
+      "player_code_id": {
+         "code": "IsWilliams",
+         "id": "Williams, Isaac",
+         "ncaa_id": "5243130"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Oklahoma City, OK",
+      "role": "s-PG"
+   },
+   "MaPerez": {
+      "player_code_id": {
+         "code": "MaPerez",
+         "id": "Perez, Maikcol",
+         "ncaa_id": "5311907"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bassano del Grappa, Italy"
+   },
+   "WiKuykendall": {
+      "player_code_id": {
+         "code": "WiKuykendall",
+         "id": "Kuykendall, Will",
+         "ncaa_id": "5174953"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Santa Maria, CA"
+   }
+}

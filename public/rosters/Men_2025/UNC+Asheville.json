@@ -1,1 +1,242 @@
-{"MyMayfield":{"player_code_id":{"code":"MyMayfield","id":"Mayfield, Myles","ncaa_id":"5313542"},"number":"5","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Orlando, FL"},"CoDubsky":{"player_code_id":{"code":"CoDubsky","id":"Dubsky, Connor","ncaa_id":"5174622"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Woodbridge, VA"},"HuMaton":{"player_code_id":{"code":"HuMaton","id":"Maton, Hugo","ncaa_id":"5313543"},"number":"10","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Mol, Belgium"},"DaThomas":{"player_code_id":{"code":"DaThomas","id":"Thomas, Daniel","ncaa_id":"5241247"},"number":"13","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Dallas, TX"},"CoJones":{"player_code_id":{"code":"CoJones","id":"Jones, Corey","ncaa_id":"5176357"},"number":"24","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Wake Forest, NC"},"DjPatrick":{"player_code_id":{"code":"DjPatrick","id":"Patrick, DJ","ncaa_id":"4897129"},"number":"8","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Powder Springs, GA"},"RaBaldwin":{"player_code_id":{"code":"RaBaldwin","id":"Baldwin, Rasheed","ncaa_id":"5176358"},"number":"2","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Charlotte, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mike Morrell"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ToSolomon":{"player_code_id":{"code":"ToSolomon","id":"Solomon, Toyaz","ncaa_id":"5176355"},"number":"0","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Enfield, NC"},"SaTolentino":{"player_code_id":{"code":"SaTolentino","id":"Tolentino, Sage","ncaa_id":"4838724"},"number":"44","pos":"F","height":"7-1","height_in":85,"year_class":"Jr","gp":0,"origin":"Kaneohe, HI"},"JaPowell":{"player_code_id":{"code":"JaPowell","id":"Powell, Jakel","ncaa_id":"5175057"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Raleigh, NC"},"KaTaylor":{"player_code_id":{"code":"KaTaylor","id":"Taylor, Kameron","ncaa_id":"5241756"},"number":"3","pos":"G","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Charlotte, NC"},"DaHermes":{"player_code_id":{"code":"DaHermes","id":"Hermes, David","ncaa_id":"5240406"},"number":"23","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Stockholm, Sweden"},"JuClarke":{"player_code_id":{"code":"JuClarke","id":"Clarke, Julian","ncaa_id":"5241757"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Orlando, FL"},"BrRivers":{"player_code_id":{"code":"BrRivers","id":"Rivers, Brayden","ncaa_id":"5313544"},"number":"14","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Owens Cross Roads, AL"},"MiTaylor":{"player_code_id":{"code":"MiTaylor","id":"Taylor, Mitchell","ncaa_id":"5179095"},"number":"12","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Atlanta, GA"},"JuWright":{"player_code_id":{"code":"JuWright","id":"Wright, Justin","ncaa_id":"4704109"},"number":"55","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Greenville, NC"}}
+{
+   "MyMayfield": {
+      "player_code_id": {
+         "code": "MyMayfield",
+         "id": "Mayfield, Myles",
+         "ncaa_id": "5313542"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Orlando, FL"
+   },
+   "CoDubsky": {
+      "player_code_id": {
+         "code": "CoDubsky",
+         "id": "Dubsky, Connor",
+         "ncaa_id": "5174622"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Woodbridge, VA",
+      "role": "WG"
+   },
+   "HuMaton": {
+      "player_code_id": {
+         "code": "HuMaton",
+         "id": "Maton, Hugo",
+         "ncaa_id": "5313543"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Mol, Belgium"
+   },
+   "DaThomas": {
+      "player_code_id": {
+         "code": "DaThomas",
+         "id": "Thomas, Daniel",
+         "ncaa_id": "5241247"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "CoJones": {
+      "player_code_id": {
+         "code": "CoJones",
+         "id": "Jones, Corey",
+         "ncaa_id": "5176357"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Wake Forest, NC"
+   },
+   "DjPatrick": {
+      "player_code_id": {
+         "code": "DjPatrick",
+         "id": "Patrick, DJ",
+         "ncaa_id": "4897129"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Powder Springs, GA",
+      "role": "WF"
+   },
+   "RaBaldwin": {
+      "player_code_id": {
+         "code": "RaBaldwin",
+         "id": "Baldwin, Rasheed",
+         "ncaa_id": "5176358"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Charlotte, NC"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mike Morrell"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ToSolomon": {
+      "player_code_id": {
+         "code": "ToSolomon",
+         "id": "Solomon, Toyaz",
+         "ncaa_id": "5176355"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Enfield, NC"
+   },
+   "SaTolentino": {
+      "player_code_id": {
+         "code": "SaTolentino",
+         "id": "Tolentino, Sage",
+         "ncaa_id": "4838724"
+      },
+      "number": "44",
+      "pos": "F",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Kaneohe, HI"
+   },
+   "JaPowell": {
+      "player_code_id": {
+         "code": "JaPowell",
+         "id": "Powell, Jakel",
+         "ncaa_id": "5175057"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Raleigh, NC"
+   },
+   "KaTaylor": {
+      "player_code_id": {
+         "code": "KaTaylor",
+         "id": "Taylor, Kameron",
+         "ncaa_id": "5241756"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Charlotte, NC",
+      "role": "WG"
+   },
+   "DaHermes": {
+      "player_code_id": {
+         "code": "DaHermes",
+         "id": "Hermes, David",
+         "ncaa_id": "5240406"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Stockholm, Sweden",
+      "role": "S-PF"
+   },
+   "JuClarke": {
+      "player_code_id": {
+         "code": "JuClarke",
+         "id": "Clarke, Julian",
+         "ncaa_id": "5241757"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Orlando, FL"
+   },
+   "BrRivers": {
+      "player_code_id": {
+         "code": "BrRivers",
+         "id": "Rivers, Brayden",
+         "ncaa_id": "5313544"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Owens Cross Roads, AL"
+   },
+   "MiTaylor": {
+      "player_code_id": {
+         "code": "MiTaylor",
+         "id": "Taylor, Mitchell",
+         "ncaa_id": "5179095"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "s-PG"
+   },
+   "JuWright": {
+      "player_code_id": {
+         "code": "JuWright",
+         "id": "Wright, Justin",
+         "ncaa_id": "4704109"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Greenville, NC"
+   }
+}

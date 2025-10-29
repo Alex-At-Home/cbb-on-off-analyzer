@@ -1,1 +1,228 @@
-{"KeKiel":{"player_code_id":{"code":"KeKiel","id":"Kiel, Kerrington","ncaa_id":"5176731"},"number":"0","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Birmingham, AL"},"ViValdes":{"player_code_id":{"code":"ViValdes","id":"Valdes, Victor","ncaa_id":"5176736"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Monterrey, Mexico"},"ThDowd":{"player_code_id":{"code":"ThDowd","id":"Dowd, Thomas","ncaa_id":"5176732"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"Jr","gp":0,"origin":"Dothan, AL"},"HiAwata":{"player_code_id":{"code":"HiAwata","id":"Awata, Hikaru","ncaa_id":"5313367"},"number":"30","pos":"G","height":"5-7","height_in":67,"year_class":"Fr","gp":0,"origin":"Hachioji, Japan"},"EmClarton":{"player_code_id":{"code":"EmClarton","id":"Clarton, Emmanuel","ncaa_id":"5313364"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"York, AL"},"JaGilgeous-g":{"player_code_id":{"code":"JaGilgeous-g","id":"Gilgeous-Glasgow, Javier","ncaa_id":"5313366"},"number":"7","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Brampton, Canada"},"CoGreen":{"player_code_id":{"code":"CoGreen","id":"Green, Corbin","ncaa_id":"5113386"},"number":"22","pos":"F","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Midlothian, TX"},"CoCampbell":{"player_code_id":{"code":"CoCampbell","id":"Campbell, Cobi","ncaa_id":"5240746"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Puyallup, WA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Scott Cross"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JeBellamy":{"player_code_id":{"code":"JeBellamy","id":"Bellamy, Jerrell","ncaa_id":"5176735"},"number":"10","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Phenix City, AL"},"CrCampbell":{"player_code_id":{"code":"CrCampbell","id":"Campbell, Cooper","ncaa_id":"5240745"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Puyallup, WA"},"AuCross":{"player_code_id":{"code":"AuCross","id":"Cross, Austin","ncaa_id":"5240749"},"number":"95","pos":"G","height":"6-3","height_in":75,"year_class":"Fr","gp":0,"origin":"Troy, AL"},"JaColbert":{"player_code_id":{"code":"JaColbert","id":"Colbert, Javen","ncaa_id":"5313365"},"number":"5","pos":"G","height":"6-1","height_in":73,"year_class":"Fr","gp":0,"origin":"Decatur, TX"},"ThSeng":{"player_code_id":{"code":"ThSeng","id":"Seng, Theo","ncaa_id":"4897957"},"number":"33","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Davis, CA"},"EvGriffin":{"player_code_id":{"code":"EvGriffin","id":"Griffin, Evan","ncaa_id":"5240748"},"number":"25","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Geneva, AL"},"KaMitchell":{"player_code_id":{"code":"KaMitchell","id":"Mitchell, Kameryn","ncaa_id":"5176738"},"number":"14","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Dothan, AL"}}
+{
+   "KeKiel": {
+      "player_code_id": {
+         "code": "KeKiel",
+         "id": "Kiel, Kerrington",
+         "ncaa_id": "5176731"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Birmingham, AL",
+      "role": "WF"
+   },
+   "ViValdes": {
+      "player_code_id": {
+         "code": "ViValdes",
+         "id": "Valdes, Victor",
+         "ncaa_id": "5176736"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Monterrey, Mexico",
+      "role": "WG"
+   },
+   "ThDowd": {
+      "player_code_id": {
+         "code": "ThDowd",
+         "id": "Dowd, Thomas",
+         "ncaa_id": "5176732"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dothan, AL",
+      "role": "S-PF"
+   },
+   "HiAwata": {
+      "player_code_id": {
+         "code": "HiAwata",
+         "id": "Awata, Hikaru",
+         "ncaa_id": "5313367"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Hachioji, Japan"
+   },
+   "EmClarton": {
+      "player_code_id": {
+         "code": "EmClarton",
+         "id": "Clarton, Emmanuel",
+         "ncaa_id": "5313364"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "York, AL"
+   },
+   "JaGilgeous-g": {
+      "player_code_id": {
+         "code": "JaGilgeous-g",
+         "id": "Gilgeous-Glasgow, Javier",
+         "ncaa_id": "5313366"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brampton, Canada"
+   },
+   "CoGreen": {
+      "player_code_id": {
+         "code": "CoGreen",
+         "id": "Green, Corbin",
+         "ncaa_id": "5113386"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Midlothian, TX"
+   },
+   "CoCampbell": {
+      "player_code_id": {
+         "code": "CoCampbell",
+         "id": "Campbell, Cobi",
+         "ncaa_id": "5240746"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Puyallup, WA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Scott Cross"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JeBellamy": {
+      "player_code_id": {
+         "code": "JeBellamy",
+         "id": "Bellamy, Jerrell",
+         "ncaa_id": "5176735"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Phenix City, AL",
+      "role": "C"
+   },
+   "CrCampbell": {
+      "player_code_id": {
+         "code": "CrCampbell",
+         "id": "Campbell, Cooper",
+         "ncaa_id": "5240745"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Puyallup, WA",
+      "role": "CG"
+   },
+   "AuCross": {
+      "player_code_id": {
+         "code": "AuCross",
+         "id": "Cross, Austin",
+         "ncaa_id": "5240749"
+      },
+      "number": "95",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Troy, AL"
+   },
+   "JaColbert": {
+      "player_code_id": {
+         "code": "JaColbert",
+         "id": "Colbert, Javen",
+         "ncaa_id": "5313365"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Decatur, TX"
+   },
+   "ThSeng": {
+      "player_code_id": {
+         "code": "ThSeng",
+         "id": "Seng, Theo",
+         "ncaa_id": "4897957"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Davis, CA"
+   },
+   "EvGriffin": {
+      "player_code_id": {
+         "code": "EvGriffin",
+         "id": "Griffin, Evan",
+         "ncaa_id": "5240748"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Geneva, AL"
+   },
+   "KaMitchell": {
+      "player_code_id": {
+         "code": "KaMitchell",
+         "id": "Mitchell, Kameryn",
+         "ncaa_id": "5176738"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dothan, AL"
+   }
+}

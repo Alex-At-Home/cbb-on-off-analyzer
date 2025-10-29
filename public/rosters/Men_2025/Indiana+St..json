@@ -1,1 +1,243 @@
-{"MaKaupanger":{"player_code_id":{"code":"MaKaupanger","id":"Kaupanger, Martin","ncaa_id":"5313862"},"number":"21","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Gig Harbor, WA"},"MaHarding":{"player_code_id":{"code":"MaHarding","id":"Harding, Markus","ncaa_id":"5108045"},"number":"11","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Toronto, Canada"},"DeVorst":{"player_code_id":{"code":"DeVorst","id":"Vorst, Derek","ncaa_id":"5176350"},"number":"35","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Luckey, OH"},"CaWagner":{"player_code_id":{"code":"CaWagner","id":"Wagner, Camp","ncaa_id":"5175821"},"number":"8","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Dallas, TX"},"JaWalker":{"player_code_id":{"code":"JaWalker","id":"Walker, Jayan","ncaa_id":"5241385"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Raleigh, NC"},"SiNordheim":{"player_code_id":{"code":"SiNordheim","id":"Nordheim, Sivert","ncaa_id":"5313860"},"number":"9","pos":"G","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Oslo, Norway"},"CaHuttenlock":{"player_code_id":{"code":"CaHuttenlock","id":"Huttenlocker, Caden","ncaa_id":"5241386"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Ellettsville, IN"},"JoVaBuggenhout":{"player_code_id":{"code":"JoVaBuggenhout","id":"Van Buggenhout, Jo","ncaa_id":"5313859"},"number":"6","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Hasselt, Belgium"},"CoBean":{"player_code_id":{"code":"CoBean","id":"Bean, Cooper","ncaa_id":"5176348"},"number":"13","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Noblesville, IN"},"HuHarding":{"player_code_id":{"code":"HuHarding","id":"Harding, Hunter","ncaa_id":"5176181"},"number":"7","pos":"C","height":"7-0","height_in":84,"year_class":"So","gp":0,"origin":"Toronto, Canada"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Matthew Graves"},"number":"","pos":"","height":"","year_class":"","gp":-1},"XaHall":{"player_code_id":{"code":"XaHall","id":"Hall, Xavier","ncaa_id":"5190937"},"number":"30","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Shawnee Mission, KS"},"ZyGreene":{"player_code_id":{"code":"ZyGreene","id":"Greene, Zyair","ncaa_id":"5121360"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Atlanta, GA"},"StYoung":{"player_code_id":{"code":"StYoung","id":"Young, Sterling","ncaa_id":"5175049"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Queens Village, NY"},"BrAlocen":{"player_code_id":{"code":"BrAlocen","id":"Alocen, Bruno","ncaa_id":"5241387"},"number":"4","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Barcelona, Spain"},"EnStBernard":{"player_code_id":{"code":"EnStBernard","id":"St. Bernard, Enel","ncaa_id":"5313861"},"number":"10","pos":"F","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Harford Village, Grenada"},"IaScott":{"player_code_id":{"code":"IaScott","id":"Scott, Ian","ncaa_id":"5115354"},"number":"23","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Plainfield, IN"}}
+{
+   "MaKaupanger": {
+      "player_code_id": {
+         "code": "MaKaupanger",
+         "id": "Kaupanger, Martin",
+         "ncaa_id": "5313862"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Gig Harbor, WA"
+   },
+   "MaHarding": {
+      "player_code_id": {
+         "code": "MaHarding",
+         "id": "Harding, Markus",
+         "ncaa_id": "5108045"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Toronto, Canada",
+      "role": "S-PF"
+   },
+   "DeVorst": {
+      "player_code_id": {
+         "code": "DeVorst",
+         "id": "Vorst, Derek",
+         "ncaa_id": "5176350"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Luckey, OH",
+      "role": "PF/C"
+   },
+   "CaWagner": {
+      "player_code_id": {
+         "code": "CaWagner",
+         "id": "Wagner, Camp",
+         "ncaa_id": "5175821"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dallas, TX",
+      "role": "WG"
+   },
+   "JaWalker": {
+      "player_code_id": {
+         "code": "JaWalker",
+         "id": "Walker, Jayan",
+         "ncaa_id": "5241385"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Raleigh, NC",
+      "role": "WG"
+   },
+   "SiNordheim": {
+      "player_code_id": {
+         "code": "SiNordheim",
+         "id": "Nordheim, Sivert",
+         "ncaa_id": "5313860"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Oslo, Norway"
+   },
+   "CaHuttenlock": {
+      "player_code_id": {
+         "code": "CaHuttenlock",
+         "id": "Huttenlocker, Caden",
+         "ncaa_id": "5241386"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Ellettsville, IN"
+   },
+   "JoVaBuggenhout": {
+      "player_code_id": {
+         "code": "JoVaBuggenhout",
+         "id": "Van Buggenhout, Jo",
+         "ncaa_id": "5313859"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Hasselt, Belgium"
+   },
+   "CoBean": {
+      "player_code_id": {
+         "code": "CoBean",
+         "id": "Bean, Cooper",
+         "ncaa_id": "5176348"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Noblesville, IN"
+   },
+   "HuHarding": {
+      "player_code_id": {
+         "code": "HuHarding",
+         "id": "Harding, Hunter",
+         "ncaa_id": "5176181"
+      },
+      "number": "7",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Toronto, Canada"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Matthew Graves"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "XaHall": {
+      "player_code_id": {
+         "code": "XaHall",
+         "id": "Hall, Xavier",
+         "ncaa_id": "5190937"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Shawnee Mission, KS"
+   },
+   "ZyGreene": {
+      "player_code_id": {
+         "code": "ZyGreene",
+         "id": "Greene, Zyair",
+         "ncaa_id": "5121360"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "StYoung": {
+      "player_code_id": {
+         "code": "StYoung",
+         "id": "Young, Sterling",
+         "ncaa_id": "5175049"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Queens Village, NY",
+      "role": "CG"
+   },
+   "BrAlocen": {
+      "player_code_id": {
+         "code": "BrAlocen",
+         "id": "Alocen, Bruno",
+         "ncaa_id": "5241387"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Barcelona, Spain",
+      "role": "CG"
+   },
+   "EnStBernard": {
+      "player_code_id": {
+         "code": "EnStBernard",
+         "id": "St. Bernard, Enel",
+         "ncaa_id": "5313861"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Harford Village, Grenada"
+   },
+   "IaScott": {
+      "player_code_id": {
+         "code": "IaScott",
+         "id": "Scott, Ian",
+         "ncaa_id": "5115354"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Plainfield, IN"
+   }
+}

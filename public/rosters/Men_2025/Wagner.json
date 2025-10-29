@@ -1,1 +1,70 @@
-{"DiHowell-sou":{"player_code_id":{"code":"DiHowell-sou","id":"Howell-South, Di'Andre","ncaa_id":"9324759"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Paterson, NJ"},"MaAnderson":{"player_code_id":{"code":"MaAnderson","id":"Anderson, Makhai","ncaa_id":"5242415"},"number":"15","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Hamden, CT"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Donald Copeland"},"number":"","pos":"","height":"","year_class":"","gp":-1},"RjGreene":{"player_code_id":{"code":"RjGreene","id":"Greene, RJ","ncaa_id":"5317318"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Bronx, NY"},"ZaFitch":{"player_code_id":{"code":"ZaFitch","id":"Fitch, Zavier","ncaa_id":"5242414"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Chicago, IL"}}
+{
+   "DiHowell-sou": {
+      "player_code_id": {
+         "code": "DiHowell-sou",
+         "id": "Howell-South, Di'Andre",
+         "ncaa_id": "9324759"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Paterson, NJ"
+   },
+   "MaAnderson": {
+      "player_code_id": {
+         "code": "MaAnderson",
+         "id": "Anderson, Makhai",
+         "ncaa_id": "5242415"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hamden, CT"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Donald Copeland"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "RjGreene": {
+      "player_code_id": {
+         "code": "RjGreene",
+         "id": "Greene, RJ",
+         "ncaa_id": "5317318"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "ZaFitch": {
+      "player_code_id": {
+         "code": "ZaFitch",
+         "id": "Fitch, Zavier",
+         "ncaa_id": "5242414"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "PF/C"
+   }
+}

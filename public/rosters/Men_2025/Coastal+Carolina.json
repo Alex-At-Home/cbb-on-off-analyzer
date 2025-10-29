@@ -1,1 +1,229 @@
-{"CoMartin":{"player_code_id":{"code":"CoMartin","id":"Martin, Connor","ncaa_id":"5118041"},"number":"20","pos":"F","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Clinton, TN"},"NaPeat":{"player_code_id":{"code":"NaPeat","id":"Peat, Nadjrick","ncaa_id":"5184709"},"number":"4","pos":"C","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Alexandria, Jamaica"},"ChDunlap":{"player_code_id":{"code":"ChDunlap","id":"Dunlap, Charles","ncaa_id":"5239868"},"number":"30","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Columbia, SC"},"JoBeadle":{"player_code_id":{"code":"JoBeadle","id":"Beadle, Joshua","ncaa_id":"4698718"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Columbia, SC"},"BrMacvicar":{"player_code_id":{"code":"BrMacvicar","id":"MacVicar, Braeden","ncaa_id":"5176792"},"number":"3","pos":"F","height":"6-11","height_in":83,"year_class":"Jr","gp":0,"origin":"Halifax, Canada"},"ReHill":{"player_code_id":{"code":"ReHill","id":"Hill, Reggie","ncaa_id":"5108908"},"number":"21","pos":"F","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Melbourne, FL"},"JeNgopot":{"player_code_id":{"code":"JeNgopot","id":"Ngopot, Jerry","ncaa_id":"4898257"},"number":"14","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Bangui, Central African Republic"},"AjDancler":{"player_code_id":{"code":"AjDancler","id":"Dancler, AJ","ncaa_id":"5177247"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Indianapolis, IN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Justin Gray"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DaCraig":{"player_code_id":{"code":"DaCraig","id":"Craig, DaJohn","ncaa_id":"5172339"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Indianapolis, IN"},"DeBrown":{"player_code_id":{"code":"DeBrown","id":"Brown, Devin","ncaa_id":"5312426"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Milwaukee, WI"},"AnMulibea":{"player_code_id":{"code":"AnMulibea","id":"Mulibea, Andre","ncaa_id":"4701246"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Kigoma, Tanzania"},"RaJones":{"player_code_id":{"code":"RaJones","id":"Jones, RaSheed","ncaa_id":"5107346"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Marion, IN"},"JaKeil":{"player_code_id":{"code":"JaKeil","id":"Keil, Jackson","ncaa_id":"5239867"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Sterling, CO"},"DeGreen":{"player_code_id":{"code":"DeGreen","id":"Green, Derrick","ncaa_id":"5312427"},"number":"15","pos":"F","height":"6-9","height_in":81,"year_class":"So","gp":0,"origin":"Fayetteville, NC"},"TrThompson":{"player_code_id":{"code":"TrThompson","id":"Thompson, Tristan","ncaa_id":"5312425"},"number":"1","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Florence, SC"}}
+{
+   "CoMartin": {
+      "player_code_id": {
+         "code": "CoMartin",
+         "id": "Martin, Connor",
+         "ncaa_id": "5118041"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Clinton, TN"
+   },
+   "NaPeat": {
+      "player_code_id": {
+         "code": "NaPeat",
+         "id": "Peat, Nadjrick",
+         "ncaa_id": "5184709"
+      },
+      "number": "4",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Alexandria, Jamaica"
+   },
+   "ChDunlap": {
+      "player_code_id": {
+         "code": "ChDunlap",
+         "id": "Dunlap, Charles",
+         "ncaa_id": "5239868"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Columbia, SC"
+   },
+   "JoBeadle": {
+      "player_code_id": {
+         "code": "JoBeadle",
+         "id": "Beadle, Joshua",
+         "ncaa_id": "4698718"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Columbia, SC",
+      "role": "s-PG"
+   },
+   "BrMacvicar": {
+      "player_code_id": {
+         "code": "BrMacvicar",
+         "id": "MacVicar, Braeden",
+         "ncaa_id": "5176792"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Halifax, Canada",
+      "role": "S-PF"
+   },
+   "ReHill": {
+      "player_code_id": {
+         "code": "ReHill",
+         "id": "Hill, Reggie",
+         "ncaa_id": "5108908"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Melbourne, FL"
+   },
+   "JeNgopot": {
+      "player_code_id": {
+         "code": "JeNgopot",
+         "id": "Ngopot, Jerry",
+         "ncaa_id": "4898257"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bangui, Central African Republic",
+      "role": "S-PF"
+   },
+   "AjDancler": {
+      "player_code_id": {
+         "code": "AjDancler",
+         "id": "Dancler, AJ",
+         "ncaa_id": "5177247"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "s-PG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Justin Gray"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DaCraig": {
+      "player_code_id": {
+         "code": "DaCraig",
+         "id": "Craig, DaJohn",
+         "ncaa_id": "5172339"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Indianapolis, IN"
+   },
+   "DeBrown": {
+      "player_code_id": {
+         "code": "DeBrown",
+         "id": "Brown, Devin",
+         "ncaa_id": "5312426"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Milwaukee, WI"
+   },
+   "AnMulibea": {
+      "player_code_id": {
+         "code": "AnMulibea",
+         "id": "Mulibea, Andre",
+         "ncaa_id": "4701246"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Kigoma, Tanzania",
+      "role": "WG"
+   },
+   "RaJones": {
+      "player_code_id": {
+         "code": "RaJones",
+         "id": "Jones, RaSheed",
+         "ncaa_id": "5107346"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Marion, IN",
+      "role": "WG"
+   },
+   "JaKeil": {
+      "player_code_id": {
+         "code": "JaKeil",
+         "id": "Keil, Jackson",
+         "ncaa_id": "5239867"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sterling, CO"
+   },
+   "DeGreen": {
+      "player_code_id": {
+         "code": "DeGreen",
+         "id": "Green, Derrick",
+         "ncaa_id": "5312427"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fayetteville, NC"
+   },
+   "TrThompson": {
+      "player_code_id": {
+         "code": "TrThompson",
+         "id": "Thompson, Tristan",
+         "ncaa_id": "5312425"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Florence, SC"
+   }
+}

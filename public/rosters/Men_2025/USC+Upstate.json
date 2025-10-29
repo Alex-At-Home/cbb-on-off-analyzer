@@ -1,1 +1,216 @@
-{"MaBendinger":{"player_code_id":{"code":"MaBendinger","id":"Bendinger, Mason","ncaa_id":"5313530"},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"North Salt Lake, UT"},"CaAdkins":{"player_code_id":{"code":"CaAdkins","id":"Adkins, Carmelo","ncaa_id":"5183294"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Lubbock, TX"},"LeDavis":{"player_code_id":{"code":"LeDavis","id":"Davis, Learic","ncaa_id":"5108806"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Milwaukee, WI"},"TjLewis":{"player_code_id":{"code":"TjLewis","id":"Lewis, TJ","ncaa_id":"5313528"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Blythewood, SC"},"BrGarcia":{"player_code_id":{"code":"BrGarcia","id":"Garcia, Breylin","ncaa_id":"5241749"},"number":"10","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"La Romana, Dominican Republic"},"NiBook":{"player_code_id":{"code":"NiBook","id":"Book, Nic","ncaa_id":"5241747"},"number":"8","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Christchurch, New Zealand"},"TySmith":{"player_code_id":{"code":"TySmith","id":"Smith, Tyler","ncaa_id":"5313527"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"South Chicago Heights, IL"},"KaGregory":{"player_code_id":{"code":"KaGregory","id":"Gregory, Karmani","ncaa_id":"5241748"},"number":"1","pos":"G","height":"6-1","height_in":73,"year_class":"Jr","gp":0,"origin":"Palmetto, FL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Marty Richter"},"number":"","pos":"","height":"","year_class":"","gp":-1},"IsSkinner":{"player_code_id":{"code":"IsSkinner","id":"Skinner, Isaiah","ncaa_id":"5241744"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Palm Desert, CA"},"JaMartinez":{"player_code_id":{"code":"JaMartinez","id":"Martinez, Jafeth","ncaa_id":"5313531"},"number":"12","pos":"","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Roatan, Honduras"},"ChJohnson":{"player_code_id":{"code":"ChJohnson","id":"Johnson, Chico","ncaa_id":"4845362"},"number":"24","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Toledo, OH"},"CjRich":{"player_code_id":{"code":"CjRich","id":"Rich, CJ","ncaa_id":"5176345"},"number":"21","pos":"G","height":"5-10","height_in":70,"year_class":"Jr","gp":0,"origin":"Columbia, SC"},"KaJones":{"player_code_id":{"code":"KaJones","id":"Jones, Kanye","ncaa_id":"5108759"},"number":"6","pos":"G","height":"6-5","height_in":77,"year_class":"Jr","gp":0,"origin":"Orlando, FL"},"CoCollier":{"player_code_id":{"code":"CoCollier","id":"Collier, Coen","ncaa_id":"5313529"},"number":"7","pos":"C","height":"7-1","height_in":85,"year_class":"Jr","gp":0,"origin":"Salt Lake Cty, UT"}}
+{
+   "MaBendinger": {
+      "player_code_id": {
+         "code": "MaBendinger",
+         "id": "Bendinger, Mason",
+         "ncaa_id": "5313530"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "North Salt Lake, UT"
+   },
+   "CaAdkins": {
+      "player_code_id": {
+         "code": "CaAdkins",
+         "id": "Adkins, Carmelo",
+         "ncaa_id": "5183294"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Lubbock, TX",
+      "role": "WG"
+   },
+   "LeDavis": {
+      "player_code_id": {
+         "code": "LeDavis",
+         "id": "Davis, Learic",
+         "ncaa_id": "5108806"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Milwaukee, WI",
+      "role": "WG"
+   },
+   "TjLewis": {
+      "player_code_id": {
+         "code": "TjLewis",
+         "id": "Lewis, TJ",
+         "ncaa_id": "5313528"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Blythewood, SC"
+   },
+   "BrGarcia": {
+      "player_code_id": {
+         "code": "BrGarcia",
+         "id": "Garcia, Breylin",
+         "ncaa_id": "5241749"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "La Romana, Dominican Republic",
+      "role": "PF/C"
+   },
+   "NiBook": {
+      "player_code_id": {
+         "code": "NiBook",
+         "id": "Book, Nic",
+         "ncaa_id": "5241747"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Christchurch, New Zealand",
+      "role": "C"
+   },
+   "TySmith": {
+      "player_code_id": {
+         "code": "TySmith",
+         "id": "Smith, Tyler",
+         "ncaa_id": "5313527"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "South Chicago Heights, IL"
+   },
+   "KaGregory": {
+      "player_code_id": {
+         "code": "KaGregory",
+         "id": "Gregory, Karmani",
+         "ncaa_id": "5241748"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Palmetto, FL",
+      "role": "s-PG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Marty Richter"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "IsSkinner": {
+      "player_code_id": {
+         "code": "IsSkinner",
+         "id": "Skinner, Isaiah",
+         "ncaa_id": "5241744"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Palm Desert, CA",
+      "role": "WG"
+   },
+   "JaMartinez": {
+      "player_code_id": {
+         "code": "JaMartinez",
+         "id": "Martinez, Jafeth",
+         "ncaa_id": "5313531"
+      },
+      "number": "12",
+      "pos": "",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Roatan, Honduras"
+   },
+   "ChJohnson": {
+      "player_code_id": {
+         "code": "ChJohnson",
+         "id": "Johnson, Chico",
+         "ncaa_id": "4845362"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Toledo, OH",
+      "role": "WG"
+   },
+   "CjRich": {
+      "player_code_id": {
+         "code": "CjRich",
+         "id": "Rich, CJ",
+         "ncaa_id": "5176345"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Columbia, SC"
+   },
+   "KaJones": {
+      "player_code_id": {
+         "code": "KaJones",
+         "id": "Jones, Kanye",
+         "ncaa_id": "5108759"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Orlando, FL"
+   },
+   "CoCollier": {
+      "player_code_id": {
+         "code": "CoCollier",
+         "id": "Collier, Coen",
+         "ncaa_id": "5313529"
+      },
+      "number": "7",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Salt Lake Cty, UT"
+   }
+}

@@ -1,1 +1,232 @@
-{"MaVokietaiti":{"player_code_id":{"code":"MaVokietaiti","id":"Vokietaitis, Matas","ncaa_id":"5239838"},"number":"8","pos":"C","height":"7-0","height_in":84,"year_class":"So","gp":0,"origin":"Marijampolė, Republic of Lithuania"},"DaSwain":{"player_code_id":{"code":"DaSwain","id":"Swain, Dailyn","ncaa_id":"10801654"},"number":"3","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Columbus, OH"},"JoClark":{"player_code_id":{"code":"JoClark","id":"Clark, John","ncaa_id":"5149079"},"number":"9","pos":"F","height":"6-9","height_in":81,"year_class":"Fr","gp":0,"origin":"Houston, TX"},"DeDuru":{"player_code_id":{"code":"DeDuru","id":"Duru Jr., Declan","ncaa_id":"5311528"},"number":"4","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Munich, Germany"},"ChWeaver":{"player_code_id":{"code":"ChWeaver","id":"Weaver, Chendall","ncaa_id":"5105486"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Arlington, TX"},"BrTaylor":{"player_code_id":{"code":"BrTaylor","id":"Taylor, Brandon","ncaa_id":"5176687"},"number":"44","pos":"G","height":"5-10","height_in":70,"year_class":"Sr","gp":0,"origin":"Coppell, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Sean Miller"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnMcdermott":{"player_code_id":{"code":"AnMcdermott","id":"McDermott, Anthon","ncaa_id":"5191718"},"number":"33","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Longview, TX"},"TrMark":{"player_code_id":{"code":"TrMark","id":"Mark, Tramon","ncaa_id":"4432243"},"number":"12","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Dickinson, TX"},"LaTraore":{"player_code_id":{"code":"LaTraore","id":"Traore, Lassina","ncaa_id":"10801659"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Abidjan, Ivory Coast"},"LeObiorah":{"player_code_id":{"code":"LeObiorah","id":"Obiorah, Lewis","ncaa_id":"5311529"},"number":"14","pos":"C","height":"7-0","height_in":84,"year_class":"Fr","gp":0,"origin":"London, United Kingdom"},"NiCodie":{"player_code_id":{"code":"NiCodie","id":"Codie, Nic","ncaa_id":"5149083"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Dallas, TX"},"CaHeide":{"player_code_id":{"code":"CaHeide","id":"Heide, Camden","ncaa_id":"5105855"},"number":"5","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Wayzata, MN"},"JoPope":{"player_code_id":{"code":"JoPope","id":"Pope, Jordan","ncaa_id":"5105624"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"Sr","gp":0,"origin":"Oakley, CA"},"CoBott":{"player_code_id":{"code":"CoBott","id":"Bott, Cole","ncaa_id":"4897760"},"number":"1","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Highlands Ranch, CO"},"SiWilcher":{"player_code_id":{"code":"SiWilcher","id":"Wilcher, Simeon","ncaa_id":"4683785"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Plainfield, NJ"}}
+{
+   "MaVokietaiti": {
+      "player_code_id": {
+         "code": "MaVokietaiti",
+         "id": "Vokietaitis, Matas",
+         "ncaa_id": "5239838"
+      },
+      "number": "8",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Marijampolė, Republic of Lithuania",
+      "role": "C"
+   },
+   "DaSwain": {
+      "player_code_id": {
+         "code": "DaSwain",
+         "id": "Swain, Dailyn",
+         "ncaa_id": "10801654"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Columbus, OH",
+      "role": "WF"
+   },
+   "JoClark": {
+      "player_code_id": {
+         "code": "JoClark",
+         "id": "Clark, John",
+         "ncaa_id": "5149079"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "C"
+   },
+   "DeDuru": {
+      "player_code_id": {
+         "code": "DeDuru",
+         "id": "Duru Jr., Declan",
+         "ncaa_id": "5311528"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Munich, Germany"
+   },
+   "ChWeaver": {
+      "player_code_id": {
+         "code": "ChWeaver",
+         "id": "Weaver, Chendall",
+         "ncaa_id": "5105486"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Arlington, TX",
+      "role": "WG"
+   },
+   "BrTaylor": {
+      "player_code_id": {
+         "code": "BrTaylor",
+         "id": "Taylor, Brandon",
+         "ncaa_id": "5176687"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Coppell, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Sean Miller"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnMcdermott": {
+      "player_code_id": {
+         "code": "AnMcdermott",
+         "id": "McDermott, Anthon",
+         "ncaa_id": "5191718"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Longview, TX"
+   },
+   "TrMark": {
+      "player_code_id": {
+         "code": "TrMark",
+         "id": "Mark, Tramon",
+         "ncaa_id": "4432243"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dickinson, TX"
+   },
+   "LaTraore": {
+      "player_code_id": {
+         "code": "LaTraore",
+         "id": "Traore, Lassina",
+         "ncaa_id": "10801659"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Abidjan, Ivory Coast",
+      "role": "C"
+   },
+   "LeObiorah": {
+      "player_code_id": {
+         "code": "LeObiorah",
+         "id": "Obiorah, Lewis",
+         "ncaa_id": "5311529"
+      },
+      "number": "14",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "London, United Kingdom"
+   },
+   "NiCodie": {
+      "player_code_id": {
+         "code": "NiCodie",
+         "id": "Codie, Nic",
+         "ncaa_id": "5149083"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Dallas, TX",
+      "role": "PF/C"
+   },
+   "CaHeide": {
+      "player_code_id": {
+         "code": "CaHeide",
+         "id": "Heide, Camden",
+         "ncaa_id": "5105855"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Wayzata, MN",
+      "role": "S-PF"
+   },
+   "JoPope": {
+      "player_code_id": {
+         "code": "JoPope",
+         "id": "Pope, Jordan",
+         "ncaa_id": "5105624"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Oakley, CA",
+      "role": "CG"
+   },
+   "CoBott": {
+      "player_code_id": {
+         "code": "CoBott",
+         "id": "Bott, Cole",
+         "ncaa_id": "4897760"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Highlands Ranch, CO"
+   },
+   "SiWilcher": {
+      "player_code_id": {
+         "code": "SiWilcher",
+         "id": "Wilcher, Simeon",
+         "ncaa_id": "4683785"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Plainfield, NJ",
+      "role": "CG"
+   }
+}

@@ -1,1 +1,230 @@
-{"JaHampton":{"player_code_id":{"code":"JaHampton","id":"Hampton, Jalen","ncaa_id":"5241394"},"number":"12","pos":"G","height":"6-7","height_in":79,"year_class":"Sr","gp":0,"origin":"Saint Louis, MO"},"JoChammaa":{"player_code_id":{"code":"JoChammaa","id":"Chammaa, Joey","ncaa_id":"5176449"},"number":"20","pos":"G","height":"5-11","height_in":71,"year_class":"So","gp":0,"origin":"Los Angeles, CA"},"JaEllingswor":{"player_code_id":{"code":"JaEllingswor","id":"Ellingsworth, Jaxon","ncaa_id":"5106055"},"number":"22","pos":"F","height":"6-9","height_in":81,"year_class":"Sr","gp":0,"origin":"Morehead City, NC"},"WeHoneycutt":{"player_code_id":{"code":"WeHoneycutt","id":"Honeycutt, Weston","ncaa_id":"5312388"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Jonesboro, AR"},"AlTounkara":{"player_code_id":{"code":"AlTounkara","id":"Tounkara, Aly","ncaa_id":"5242438"},"number":"13","pos":"F","height":"7-0","height_in":84,"year_class":"Fr","gp":0,"origin":"Conakry, Guinea"},"ChHarmon":{"player_code_id":{"code":"ChHarmon","id":"Harmon, Christian","ncaa_id":"5312387"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Jr","gp":0,"origin":"Rochester, NY"},"ChJackson":{"player_code_id":{"code":"ChJackson","id":"Jackson, Chandler","ncaa_id":"4712843"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Memphis, TN"},"TiMatthews":{"player_code_id":{"code":"TiMatthews","id":"Matthews, Tim","ncaa_id":"5312389"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Memphis, TN"},"GrBennett":{"player_code_id":{"code":"GrBennett","id":"Bennett, Grayson","ncaa_id":"5312385"},"number":"7","pos":"F","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Weston Lakes, TX"},"RoBlueSmith":{"player_code_id":{"code":"RoBlueSmith","id":"Blue Smith, Royal","ncaa_id":"5312390"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Parkland, FL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Ryan Pannone"},"number":"","pos":"","height":"","year_class":"","gp":-1},"FrSylla":{"player_code_id":{"code":"FrSylla","id":"Sylla, Fredy-Salam","ncaa_id":"5312391"},"number":"21","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Paris, France"},"CjGeathers":{"player_code_id":{"code":"CjGeathers","id":"Geathers, CJ","ncaa_id":"5312386"},"number":"15","pos":"G","height":"6-5","height_in":77,"year_class":"Fr","gp":0,"origin":"Lithia Springs, GA"},"ChDioramma":{"player_code_id":{"code":"ChDioramma","id":"Dioramma, Chudi","ncaa_id":"5175409"},"number":"10","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"London, United Kingdom"},"TjCaldwell":{"player_code_id":{"code":"TjCaldwell","id":"Caldwell, TJ","ncaa_id":"5105545"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"Jr","gp":0,"origin":"Dallas, TX"},"MaHayman":{"player_code_id":{"code":"MaHayman","id":"Hayman, Matt","ncaa_id":"5109782"},"number":"1","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Delhi, LA"}}
+{
+   "JaHampton": {
+      "player_code_id": {
+         "code": "JaHampton",
+         "id": "Hampton, Jalen",
+         "ncaa_id": "5241394"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Saint Louis, MO",
+      "role": "WG"
+   },
+   "JoChammaa": {
+      "player_code_id": {
+         "code": "JoChammaa",
+         "id": "Chammaa, Joey",
+         "ncaa_id": "5176449"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Los Angeles, CA",
+      "role": "s-PG"
+   },
+   "JaEllingswor": {
+      "player_code_id": {
+         "code": "JaEllingswor",
+         "id": "Ellingsworth, Jaxon",
+         "ncaa_id": "5106055"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Morehead City, NC",
+      "role": "S-PF"
+   },
+   "WeHoneycutt": {
+      "player_code_id": {
+         "code": "WeHoneycutt",
+         "id": "Honeycutt, Weston",
+         "ncaa_id": "5312388"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Jonesboro, AR"
+   },
+   "AlTounkara": {
+      "player_code_id": {
+         "code": "AlTounkara",
+         "id": "Tounkara, Aly",
+         "ncaa_id": "5242438"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Conakry, Guinea",
+      "role": "C"
+   },
+   "ChHarmon": {
+      "player_code_id": {
+         "code": "ChHarmon",
+         "id": "Harmon, Christian",
+         "ncaa_id": "5312387"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Rochester, NY"
+   },
+   "ChJackson": {
+      "player_code_id": {
+         "code": "ChJackson",
+         "id": "Jackson, Chandler",
+         "ncaa_id": "4712843"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Memphis, TN",
+      "role": "CG"
+   },
+   "TiMatthews": {
+      "player_code_id": {
+         "code": "TiMatthews",
+         "id": "Matthews, Tim",
+         "ncaa_id": "5312389"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Memphis, TN"
+   },
+   "GrBennett": {
+      "player_code_id": {
+         "code": "GrBennett",
+         "id": "Bennett, Grayson",
+         "ncaa_id": "5312385"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Weston Lakes, TX"
+   },
+   "RoBlueSmith": {
+      "player_code_id": {
+         "code": "RoBlueSmith",
+         "id": "Blue Smith, Royal",
+         "ncaa_id": "5312390"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Parkland, FL"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Ryan Pannone"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "FrSylla": {
+      "player_code_id": {
+         "code": "FrSylla",
+         "id": "Sylla, Fredy-Salam",
+         "ncaa_id": "5312391"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Paris, France"
+   },
+   "CjGeathers": {
+      "player_code_id": {
+         "code": "CjGeathers",
+         "id": "Geathers, CJ",
+         "ncaa_id": "5312386"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lithia Springs, GA"
+   },
+   "ChDioramma": {
+      "player_code_id": {
+         "code": "ChDioramma",
+         "id": "Dioramma, Chudi",
+         "ncaa_id": "5175409"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "London, United Kingdom",
+      "role": "C"
+   },
+   "TjCaldwell": {
+      "player_code_id": {
+         "code": "TjCaldwell",
+         "id": "Caldwell, TJ",
+         "ncaa_id": "5105545"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "MaHayman": {
+      "player_code_id": {
+         "code": "MaHayman",
+         "id": "Hayman, Matt",
+         "ncaa_id": "5109782"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Delhi, LA",
+      "role": "CG"
+   }
+}

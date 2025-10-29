@@ -1,1 +1,242 @@
-{"ErKarakaya":{"player_code_id":{"code":"ErKarakaya","id":"Karakaya, Eren","ncaa_id":"5313930"},"number":"14","pos":"C","height":"6-10","height_in":82,"year_class":"Fr","gp":0,"origin":"Kutahya, Turkey"},"SaNganga":{"player_code_id":{"code":"SaNganga","id":"NgaNga, Sadraque","ncaa_id":"4432749"},"number":"99","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Luanda, Angola"},"DoLangford":{"player_code_id":{"code":"DoLangford","id":"Langford, Douglas","ncaa_id":"5248295"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"Fr","gp":0,"origin":"Dangriga, Belize"},"MaOverstreet":{"player_code_id":{"code":"MaOverstreet","id":"Overstreet, Marcus","ncaa_id":"5243238"},"number":"33","pos":"F","height":"6-9","height_in":81,"year_class":"Jr","gp":0,"origin":"Chicago, IL"},"ChWise":{"player_code_id":{"code":"ChWise","id":"Wise, Christian","ncaa_id":"5176254"},"number":"20","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"San Francisco, CA"},"DaColy":{"player_code_id":{"code":"DaColy","id":"Coly, Damase","ncaa_id":"5313929"},"number":"8","pos":"G","height":"6-2","height_in":74,"year_class":"Fr","gp":0,"origin":"Dublin, CA"},"PaGoodarzi":{"player_code_id":{"code":"PaGoodarzi","id":"Goodarzi, Pasha","ncaa_id":"5176252"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Los Gatos, CA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Tim Miles"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaHannah":{"player_code_id":{"code":"JaHannah","id":"Hannah, JaVaughn","ncaa_id":"5107997"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Mount Clemens, MI"},"JeWashington":{"player_code_id":{"code":"JeWashington","id":"Washington, Jermaine","ncaa_id":"5241251"},"number":"13","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":"Hemet, CA"},"AdMyers":{"player_code_id":{"code":"AdMyers","id":"Myers, Adrian","ncaa_id":"5142584"},"number":"1","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Stephens City, VA"},"JaMoupadele":{"player_code_id":{"code":"JaMoupadele","id":"Moupadele, Japhet","ncaa_id":"5313931"},"number":"21","pos":"F","height":"6-8","height_in":80,"year_class":"Fr","gp":0,"origin":"Lille, France"},"MeBell":{"player_code_id":{"code":"MeBell","id":"Bell Jr., Melvin","ncaa_id":"5101782"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Chicago, IL"},"YaMoundi":{"player_code_id":{"code":"YaMoundi","id":"Moundi, Yaphet","ncaa_id":"5241493"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Paris, France"},"JaGoodall":{"player_code_id":{"code":"JaGoodall","id":"Goodall, Jaden","ncaa_id":"5061574"},"number":"17","pos":"F","height":"6-6","height_in":78,"year_class":"Fr","gp":0,"origin":"Yorba Linda, CA"},"BeRoseboroug":{"player_code_id":{"code":"BeRoseboroug","id":"Roseborough, Ben","ncaa_id":"4873192"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Fr","gp":0,"origin":"Sacramento, CA"},"CoGarland":{"player_code_id":{"code":"CoGarland","id":"Garland, Colby","ncaa_id":"5176315"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Magnolia, AR"}}
+{
+   "ErKarakaya": {
+      "player_code_id": {
+         "code": "ErKarakaya",
+         "id": "Karakaya, Eren",
+         "ncaa_id": "5313930"
+      },
+      "number": "14",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Kutahya, Turkey"
+   },
+   "SaNganga": {
+      "player_code_id": {
+         "code": "SaNganga",
+         "id": "NgaNga, Sadraque",
+         "ncaa_id": "4432749"
+      },
+      "number": "99",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Luanda, Angola"
+   },
+   "DoLangford": {
+      "player_code_id": {
+         "code": "DoLangford",
+         "id": "Langford, Douglas",
+         "ncaa_id": "5248295"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dangriga, Belize"
+   },
+   "MaOverstreet": {
+      "player_code_id": {
+         "code": "MaOverstreet",
+         "id": "Overstreet, Marcus",
+         "ncaa_id": "5243238"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "C"
+   },
+   "ChWise": {
+      "player_code_id": {
+         "code": "ChWise",
+         "id": "Wise, Christian",
+         "ncaa_id": "5176254"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "San Francisco, CA"
+   },
+   "DaColy": {
+      "player_code_id": {
+         "code": "DaColy",
+         "id": "Coly, Damase",
+         "ncaa_id": "5313929"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dublin, CA"
+   },
+   "PaGoodarzi": {
+      "player_code_id": {
+         "code": "PaGoodarzi",
+         "id": "Goodarzi, Pasha",
+         "ncaa_id": "5176252"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Los Gatos, CA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Tim Miles"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaHannah": {
+      "player_code_id": {
+         "code": "JaHannah",
+         "id": "Hannah, JaVaughn",
+         "ncaa_id": "5107997"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mount Clemens, MI",
+      "role": "WG"
+   },
+   "JeWashington": {
+      "player_code_id": {
+         "code": "JeWashington",
+         "id": "Washington, Jermaine",
+         "ncaa_id": "5241251"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hemet, CA",
+      "role": "WG"
+   },
+   "AdMyers": {
+      "player_code_id": {
+         "code": "AdMyers",
+         "id": "Myers, Adrian",
+         "ncaa_id": "5142584"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Stephens City, VA"
+   },
+   "JaMoupadele": {
+      "player_code_id": {
+         "code": "JaMoupadele",
+         "id": "Moupadele, Japhet",
+         "ncaa_id": "5313931"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lille, France"
+   },
+   "MeBell": {
+      "player_code_id": {
+         "code": "MeBell",
+         "id": "Bell Jr., Melvin",
+         "ncaa_id": "5101782"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "YaMoundi": {
+      "player_code_id": {
+         "code": "YaMoundi",
+         "id": "Moundi, Yaphet",
+         "ncaa_id": "5241493"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Paris, France",
+      "role": "C"
+   },
+   "JaGoodall": {
+      "player_code_id": {
+         "code": "JaGoodall",
+         "id": "Goodall, Jaden",
+         "ncaa_id": "5061574"
+      },
+      "number": "17",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Yorba Linda, CA"
+   },
+   "BeRoseboroug": {
+      "player_code_id": {
+         "code": "BeRoseboroug",
+         "id": "Roseborough, Ben",
+         "ncaa_id": "4873192"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Sacramento, CA"
+   },
+   "CoGarland": {
+      "player_code_id": {
+         "code": "CoGarland",
+         "id": "Garland, Colby",
+         "ncaa_id": "5176315"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Magnolia, AR",
+      "role": "s-PG"
+   }
+}

@@ -1,1 +1,100 @@
-{"RoRecasner":{"player_code_id":{"code":"RoRecasner","id":"Recasner, Roy","ncaa_id":"9336428"},"number":"14","pos":"G","height":"6-1","height_in":73,"year_class":"So","gp":0,"origin":""},"TrEnglish":{"player_code_id":{"code":"TrEnglish","id":"English, Trae","ncaa_id":"4897337"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"Sr","gp":0,"origin":"Baltimore, MD"},"EmEllis":{"player_code_id":{"code":"EmEllis","id":"Ellis, Emarion","ncaa_id":"5313592"},"number":"22","pos":"G","height":"6-5","height_in":77,"year_class":"Sr","gp":0,"origin":"Davenport, IA"},"SiMalone":{"player_code_id":{"code":"SiMalone","id":"Malone, Sincere","ncaa_id":"5107701"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"Sr","gp":0,"origin":"Chicago, IL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Tevon Saddler"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DwPerkins":{"player_code_id":{"code":"DwPerkins","id":"Perkins Jr., Dwayne","ncaa_id":"5105625"},"number":"21","pos":"G","height":"6-0","height_in":72,"year_class":"So","gp":0,"origin":"Gulfport, MS"},"ChClark":{"player_code_id":{"code":"ChClark","id":"Clark Jr., Chad","ncaa_id":"5238199"},"number":"8","pos":"G","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Weston, FL"}}
+{
+   "RoRecasner": {
+      "player_code_id": {
+         "code": "RoRecasner",
+         "id": "Recasner, Roy",
+         "ncaa_id": "9336428"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": ""
+   },
+   "TrEnglish": {
+      "player_code_id": {
+         "code": "TrEnglish",
+         "id": "English, Trae",
+         "ncaa_id": "4897337"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Baltimore, MD",
+      "role": "s-PG"
+   },
+   "EmEllis": {
+      "player_code_id": {
+         "code": "EmEllis",
+         "id": "Ellis, Emarion",
+         "ncaa_id": "5313592"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Davenport, IA",
+      "role": "WG"
+   },
+   "SiMalone": {
+      "player_code_id": {
+         "code": "SiMalone",
+         "id": "Malone, Sincere",
+         "ncaa_id": "5107701"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Tevon Saddler"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DwPerkins": {
+      "player_code_id": {
+         "code": "DwPerkins",
+         "id": "Perkins Jr., Dwayne",
+         "ncaa_id": "5105625"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Gulfport, MS"
+   },
+   "ChClark": {
+      "player_code_id": {
+         "code": "ChClark",
+         "id": "Clark Jr., Chad",
+         "ncaa_id": "5238199"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Weston, FL"
+   }
+}

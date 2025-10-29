@@ -1,1 +1,128 @@
-{"AmAllen":{"player_code_id":{"code":"AmAllen","id":"Allen, Amare","ncaa_id":"5239747"},"number":"13","pos":"F","height":"6-7","height_in":79,"year_class":"So","gp":0,"origin":"Ajax, Canada"},"KiGribben":{"player_code_id":{"code":"KiGribben","id":"Gribben, Killian","ncaa_id":"5107810"},"number":"10","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Letterkenny, Ireland"},"CaCrawford":{"player_code_id":{"code":"CaCrawford","id":"Crawford, Caleb","ncaa_id":"5239745"},"number":"4","pos":"G","height":"5-10","height_in":70,"year_class":"So","gp":0,"origin":"Bronx, NY"},"JoShea":{"player_code_id":{"code":"JoShea","id":"Shea, John","ncaa_id":"5107210"},"number":"15","pos":"F","height":"6-6","height_in":78,"year_class":"Sr","gp":0,"origin":"Auburn, ME"},"LoCarey":{"player_code_id":{"code":"LoCarey","id":"Carey, Logan","ncaa_id":"5175690"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Jr","gp":0,"origin":"Shelton, CT"},"KeSteele":{"player_code_id":{"code":"KeSteele","id":"Steele, Keelan","ncaa_id":"5107211"},"number":"25","pos":"F","height":"6-10","height_in":82,"year_class":"Sr","gp":0,"origin":"Altona, Canada"},"IsBonilla":{"player_code_id":{"code":"IsBonilla","id":"Bonilla, Isaac","ncaa_id":"5175691"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"Jr","gp":0,"origin":"Danville, NH"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Chris Markwood"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DaLopes":{"player_code_id":{"code":"DaLopes","id":"Lopes, Darius","ncaa_id":"5239746"},"number":"8","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"West Warwick, RI"}}
+{
+   "AmAllen": {
+      "player_code_id": {
+         "code": "AmAllen",
+         "id": "Allen, Amare",
+         "ncaa_id": "5239747"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ajax, Canada"
+   },
+   "KiGribben": {
+      "player_code_id": {
+         "code": "KiGribben",
+         "id": "Gribben, Killian",
+         "ncaa_id": "5107810"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Letterkenny, Ireland",
+      "role": "C"
+   },
+   "CaCrawford": {
+      "player_code_id": {
+         "code": "CaCrawford",
+         "id": "Crawford, Caleb",
+         "ncaa_id": "5239745"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "JoShea": {
+      "player_code_id": {
+         "code": "JoShea",
+         "id": "Shea, John",
+         "ncaa_id": "5107210"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Auburn, ME"
+   },
+   "LoCarey": {
+      "player_code_id": {
+         "code": "LoCarey",
+         "id": "Carey, Logan",
+         "ncaa_id": "5175690"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Shelton, CT",
+      "role": "s-PG"
+   },
+   "KeSteele": {
+      "player_code_id": {
+         "code": "KeSteele",
+         "id": "Steele, Keelan",
+         "ncaa_id": "5107211"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Altona, Canada",
+      "role": "C"
+   },
+   "IsBonilla": {
+      "player_code_id": {
+         "code": "IsBonilla",
+         "id": "Bonilla, Isaac",
+         "ncaa_id": "5175691"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Danville, NH"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Chris Markwood"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DaLopes": {
+      "player_code_id": {
+         "code": "DaLopes",
+         "id": "Lopes, Darius",
+         "ncaa_id": "5239746"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "West Warwick, RI"
+   }
+}
