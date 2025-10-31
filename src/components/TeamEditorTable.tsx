@@ -777,7 +777,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const playerLeaderboardParams = {
         tier: "All",
         year: "All",
-        filter: `${triple.orig.key}:;`,
+        filter: `${triple.orig.key}:`,
         sortBy: "desc:year",
         showInfoSubHeader: true,
       };
@@ -1988,13 +1988,39 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       };
       const teamTooltip = (
         <Tooltip id={`teamTooltip`}>
-          Open new tab with a detailed analysis view (roster, play style info,
-          on/off) for this team
+          Show in a new tab a table with all these players' stats <i>last</i>{" "}
+          season
         </Tooltip>
       );
+
+      const teamLinkUrl =
+        offSeasonMode && !evalMode
+          ? UrlRouting.getPlayerLeaderboardUrl({
+              tier: "All",
+              filter: _.flatten([
+                pxResults.rosterGuards,
+                pxResults.rosterWings,
+                pxResults.rosterBigs,
+              ])
+                .filter((triple) => triple.orig)
+                .filter((triple) => !disabledPlayers[triple.key])
+                .map((triple) => {
+                  if (triple.orig.roster?.ncaa_id) {
+                    return triple.orig.code
+                      ? `${triple.orig.code}_${triple.orig.roster?.ncaa_id}`
+                      : `${triple.orig.roster?.ncaa_id}`;
+                  } else if (triple.orig.code && triple.orig.team) {
+                    return `_${triple.orig.code}:${triple.orig.team}`;
+                  } else {
+                    return `${triple.orig.key}:`;
+                  }
+                })
+                .join("; "),
+            })
+          : UrlRouting.getGameUrl(teamParams, {}); //(TODO: are there off-season cases we want the Game URL as well?)
       const teamLink = team ? (
         <OverlayTrigger placement="auto" overlay={teamTooltip}>
-          <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+          <a target="_blank" href={teamLinkUrl}>
             <b>Team Totals</b>
           </a>
         </OverlayTrigger>

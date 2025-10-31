@@ -777,9 +777,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         player.team || ""
       }_${player.year || ""}`;
     };
-    return `${player.key || ""}:${usefulFormatBuilder(
-      `${player.code || ""}+${firstName}`
-    )} ${usefulFormatBuilder(player.code || "")}`;
+    return (
+      `${player.key || ""}:${usefulFormatBuilder(
+        `${player.code || ""}+${firstName}`
+      )} ${usefulFormatBuilder(player.code || "")}` +
+      (player.roster?.ncaa_id
+        ? ` ${player.code || ""}_${player.roster?.ncaa_id || ""}`
+        : "")
+    );
   };
 
   /** Builds a list of JSON objects with basic filtering, subsequent phases render */
