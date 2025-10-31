@@ -62,7 +62,7 @@ const timeOnClock = (clock: "1st-Half" | "2nd-Half" | "Stretch") => {
       return [
         {
           query_string: {
-            query: `end_min:<20`,
+            query: `end_min:<=20`,
           },
         },
       ];
@@ -70,7 +70,7 @@ const timeOnClock = (clock: "1st-Half" | "2nd-Half" | "Stretch") => {
       return [
         {
           query_string: {
-            query: `end_min:>=20`,
+            query: `end_min:>20`,
           },
         },
       ];

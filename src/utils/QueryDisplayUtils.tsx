@@ -66,22 +66,22 @@ export class QueryDisplayUtils {
         case "1st-Half":
           return (
             <Tooltip id={`qf${t}`}>
-              First Half only. Use <b>end_min:&lte;20</b>directly in query
+              First Half only. Use <b>end_min:{"<="}20</b> directly in query
               fields(s).
             </Tooltip>
           );
         case "2nd-Half":
           return (
             <Tooltip id={`qf${t}`}>
-              Second half and OT. Use <b>end_min:&gt;20</b>directly in query
+              Second half and OT. Use <b>end_min:{">"}20</b> directly in query
               fields(s).
             </Tooltip>
           );
         case "Stretch":
           return (
             <Tooltip id={`qf${t}`}>
-              Last 8 minutes and OT. Use <b>end_min:&gte;32</b>directly in query
-              fields(s).
+              Last 8 minutes and OT. Use <b>end_min:{">="}32</b> directly in
+              query fields(s).
             </Tooltip>
           );
 

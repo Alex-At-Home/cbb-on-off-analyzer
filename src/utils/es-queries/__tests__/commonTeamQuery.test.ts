@@ -183,12 +183,12 @@ describe("commonTeamQuery", () => {
     expect(test6.bool?.must.slice(2)).toEqual([
       {
         query_string: {
-          query: `end_min:<20`,
+          query: `end_min:<=20`,
         },
       },
       {
         query_string: {
-          query: `end_min:>=20`,
+          query: `end_min:>20`,
         },
       },
       {
