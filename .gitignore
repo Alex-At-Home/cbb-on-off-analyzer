@@ -17,6 +17,7 @@ transfers_2026.json
 public/leaderboards/lineups/*2025*
 leaderboardDebug/*
 enrichedPlayers/*
+enrichedPlayersDebug/*
 
 .vercel
 .metals

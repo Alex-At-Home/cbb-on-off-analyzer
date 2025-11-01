@@ -2,7 +2,7 @@ import _ from "lodash";
 import { RequestUtils } from "../RequestUtils";
 import { promises as fs } from "fs";
 import { DateUtils } from "../DateUtils";
-import { IndivStatSet } from "../StatModels";
+import { CompressedHexZone, IndivStatSet } from "../StatModels";
 import {
   AvailableTeams,
   AvailableTeamMeta,
@@ -11,6 +11,8 @@ import {
   effectivelyHighMajor,
   excludeFromMidMajor,
 } from "../public-data/ConferenceInfo";
+import { PlayTypeUtils } from "../stats/PlayTypeUtils";
+import { PositionUtils } from "../stats/PositionUtils";
 
 type TeamInfo = {
   teams: AvailableTeamMeta[];
@@ -179,5 +181,51 @@ export class BatchMiscUtils {
       teams,
       incompleteConfs: mutableIncompleteConfs,
     };
+  };
+
+  /** Need these to break down play types a bit (in advance of doing it properly) */
+  static readonly extraTotalFields = [
+    "total_off_scramble_fga",
+    "total_off_scramble_to",
+    "total_off_trans_fga",
+    "total_off_trans_to",
+  ];
+
+  /** After writing the full player object, we want to build the cut-down version that we load in bulk */
+  static readonly stripExtraInfo = (p: IndivStatSet): IndivStatSet => {
+    // 1] Remove Hex Data, leaving only zone information
+    const shotInfo = p.shotInfo as CompressedHexZone | undefined;
+    if (shotInfo && shotInfo.data) {
+      delete shotInfo.data;
+    }
+    // 2] Remove extra fields to keep
+    BatchMiscUtils.extraTotalFields.forEach((f) => {
+      if (p[f]) delete p[f];
+    });
+    // 3] Decompress player styles (ignore the type grovelling here!)
+    if (p.style) {
+      (p as any).style = PlayTypeUtils.compressIndivPlayType(p.style as any);
+    }
+    // 4] Remove .rapm, .on, and .off
+    if (p.rapm) delete p.rapm;
+    if (p.on) delete p.on;
+    if (p.off) delete p.off;
+    // 5] Reprocess positional info (see maybeConvertPosInfo in buildLeaderboards): posFreqs and posConfidences
+    if (p.posFreqs) {
+      const expandedPosFreqs = p.posFreqs as any as Record<string, number>;
+      p.posFreqs = PositionUtils.tradPosList.map(
+        (pos) => expandedPosFreqs[pos.substring(4)] || 0
+      );
+    }
+    if (p.posConfidences) {
+      const expandedPosConfs = p.posConfidences as any as Record<
+        string,
+        number
+      >;
+      p.posConfidences = PositionUtils.tradPosList.map(
+        (pos) => expandedPosConfs[pos.substring(4)] || 0
+      );
+    }
+    return p;
   };
 }

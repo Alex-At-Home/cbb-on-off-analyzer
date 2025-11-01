@@ -17,7 +17,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { promises as fs } from "fs";
 
-import _ from "lodash";
+import _, { Dictionary } from "lodash";
 
 // Models
 import {
@@ -201,7 +201,7 @@ if (_.find(commandLine, (p) => _.startsWith(p, "--enrich-rosters"))) {
   console.log("Enriching rosters with positional info due to manual override");
 }
 
-/** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
+/** Enable this to generate an extra version of the file in ./enrichedPlayers with additional info */
 const injectExtraDataForNbaFolks = _.find(commandLine, (p) =>
   _.startsWith(p, "--extra-data")
 );
@@ -233,7 +233,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -251,9 +251,12 @@ if (testTeamFilter) {
 
 const rootFilePath = isDebugMode
   ? "./leaderboardDebug"
-  : injectExtraDataForNbaFolks
-  ? "./enrichedPlayers"
   : "./public/leaderboards/lineups";
+
+/** The path all files with "extra info" go to in "--extra-data" mode  */
+const extraDataFilePath = isDebugMode
+  ? "./enrichedPlayersDebug"
+  : "./enrichedPlayers";
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -492,7 +495,7 @@ export async function main() {
             (__) => {
               if (injectExtraDataForNbaFolks && label == "all") {
                 //(currently only build these %iles for all)
-                const divisionStatsComboPathname = `${rootFilePath}/stats_players_${label}_${inGender}_${inYear.substring(
+                const divisionStatsComboPathname = `${extraDataFilePath}/stats_players_${label}_${inGender}_${inYear.substring(
                   0,
                   4
                 )}_Combo.json`;
@@ -586,7 +589,7 @@ export async function main() {
             playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
               ?.baseline?.player?.buckets || [];
 
-          const rosterShotChartMap = _.chain(
+          const rosterShotChartMap: Dictionary<CompressedHexZone> = _.chain(
             playerShotChartsResponse.getJsonResponse().aggregations?.tri_filter
               ?.buckets?.baseline?.player?.buckets || []
           )
@@ -1032,20 +1035,15 @@ export async function main() {
 
           // Need these to break down play types a bit (in advance of doing it properly)
           const extraTotalFieldsToKeep = injectExtraDataForNbaFolks
-            ? new Set([
-                "total_off_scramble_fga",
-                "total_off_scramble_to",
-                "total_off_trans_fga",
-                "total_off_trans_to",
-              ])
+            ? new Set(BatchMiscUtils.extraTotalFields)
             : new Set();
 
           // Merge ratings and position, and filter based on offensive possessions played
           const enrichAndFilter = (
             playerMap: Record<string, IndivStatSet>,
-            shotChartMap: Record<string, CompressedHexZone[]>,
+            shotChartMap: Record<string, CompressedHexZone>,
             cutdownLowVolume: boolean
-          ) =>
+          ): IndivStatSet[] =>
             _.toPairs(playerMap)
               .filter((kv) => {
                 const minThreshold = cutdownLowVolume ? 0.125 : lowVolThreshold;
@@ -1136,7 +1134,6 @@ export async function main() {
                   .value();
 
                 // Store either directly or in compressed format
-
                 (player as any).style = injectExtraDataForNbaFolks
                   ? playerPlayStyleBreakdowns
                   : PlayTypeUtils.compressIndivPlayType(
@@ -1256,7 +1253,7 @@ export async function main() {
                   posInfo: number[]
                 ): Record<string, number> | number[] => {
                   if (injectExtraDataForNbaFolks) {
-                    return _.chain(posFreqs || [])
+                    return _.chain(posInfo || [])
                       .transform((acc, val, valIndex) => {
                         const posKey = (
                           PositionUtils.tradPosList[valIndex] || "pos_unk"
@@ -2033,6 +2030,17 @@ if (!testMode) {
         );
       })
       .then(async (dummy) => {
+        // In "--extra-data" mode also inject to local path
+        return injectExtraDataForNbaFolks
+          ? BatchGradeUtils.combineDivisionStatsFiles(
+              inGender,
+              inYear,
+              extraDataFilePath,
+              true //(team==false then players==true)
+            )
+          : Promise.resolve();
+      })
+      .then(async (dummy) => {
         console.log("File creation Complete!");
         if (!testMode) {
           //(ie always)
@@ -2089,12 +2097,22 @@ if (!testMode) {
           );
           if (label == "all") savedCastoffs = castOffs;
 
+          const basePlayersObj = {
+            lastUpdated: lastUpdated,
+            confMap: mutableConferenceMap,
+            confs: _.keys(mutableConferenceMap),
+            players: players,
+          };
+          const playersExtraStr = injectExtraDataForNbaFolks
+            ? JSON.stringify(basePlayersObj, BatchMiscUtils.reduceNumberSize)
+            : "";
+          const basePlayers = injectExtraDataForNbaFolks
+            ? players.map(BatchMiscUtils.stripExtraInfo)
+            : players;
           const playersStr = JSON.stringify(
             {
-              lastUpdated: lastUpdated,
-              confMap: mutableConferenceMap,
-              confs: _.keys(mutableConferenceMap),
-              players: players,
+              ...basePlayersObj,
+              players: basePlayers,
             },
             BatchMiscUtils.reduceNumberSize
           );
@@ -2123,6 +2141,13 @@ if (!testMode) {
             `${playersFilename}`,
             playersStr
           );
+          const playersExtraFilename = `${extraDataFilePath}/players_${label}_${inGender}_${inYear.substring(
+            0,
+            4
+          )}_${inTier}.json`;
+          const playersExtraWritePromise = injectExtraDataForNbaFolks
+            ? fs.writeFile(`${playersExtraFilename}`, playersExtraStr)
+            : Promise.resolve();
 
           const teamFilename = `${rootFilePath}/teams_${label}_${inGender}_${inYear.substring(
             0,
@@ -2215,15 +2240,33 @@ if (!testMode) {
               )
             : [Promise.resolve()];
 
+          // In '--extra-data' mode write this file twice so we have a local copy
+          const extraDivisionStatsPromises =
+            writeDivisionStats && injectExtraDataForNbaFolks
+              ? BatchGradeUtils.createTierGradeFiles(
+                  inGender,
+                  inYear,
+                  inTier,
+                  label,
+                  extraDataFilePath,
+                  mutableDivisionStats,
+                  mutablePlayerDivisionStats,
+                  mutablePlayerDivisionStats_byPosGroup
+                )
+              : [Promise.resolve()];
+
           // Wait for all reads to be complete:
 
           return [
             lineupsWritePromise,
             playersWritePromise,
+            playersExtraWritePromise,
             teamWritePromise,
             detailedTeamWritePromise,
             teamWriteStatPromise,
-          ].concat(divisionStatsPromises);
+          ]
+            .concat(divisionStatsPromises)
+            .concat(extraDivisionStatsPromises);
 
           //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
           // zlib.gzip(sortedLineupsStr, (_, result) => {
