@@ -356,6 +356,8 @@ export type PlayerLeaderboardParams = {
   // Shot charts:
   shotCharts?: boolean;
   showPlayerPlayTypes?: boolean;
+  showPlayerPlayTypesAdjPpp?: boolean;
+  showPlayerPlayTypesPlayType?: string;
 };
 
 export type PlayerSeasonComparisonParams = {

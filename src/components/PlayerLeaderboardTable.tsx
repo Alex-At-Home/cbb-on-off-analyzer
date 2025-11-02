@@ -80,7 +80,9 @@ import { Badge } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import StickyRow from "./shared/StickyRow";
 import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
-import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
+import IndivPlayTypeDiagRadar, {
+  PlayerStyleOpts,
+} from "./diags/IndivPlayTypeDiagRadar";
 import { useTheme } from "next-themes";
 import ThemedSelect from "./shared/ThemedSelect";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
@@ -353,6 +355,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? false
       : startingState.showPlayerPlayTypes
   );
+  const [showPlayerPlayTypesAdjPpp, setShowPlayerPlayTypesAdjPpp] =
+    useState<boolean>(startingState.showPlayerPlayTypesAdjPpp ?? true);
+  const [showPlayerPlayTypesPlayType, setShowPlayerPlayTypesPlayType] =
+    useState<string | undefined>(
+      startingState.showPlayerPlayTypesPlayType ??
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+    );
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
@@ -589,6 +598,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       stickyQuickToggle,
       shotCharts: showPlayerShots,
       showPlayerPlayTypes,
+      showPlayerPlayTypesAdjPpp,
+      showPlayerPlayTypesPlayType,
     };
     onChangeState(newState);
   }, [
@@ -614,6 +625,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     stickyQuickToggle,
     showPlayerShots,
     showPlayerPlayTypes,
+    showPlayerPlayTypesAdjPpp,
+    showPlayerPlayTypesPlayType,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -1276,6 +1289,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     showGrades,
                     showInfoSubHeader,
                     showPlayerPlayTypes,
+                    showPlayerPlayTypesAdjPpp,
+                    showPlayerPlayTypesPlayType,
                     playerShotCharts: showPlayerShots,
                     possAsPct,
                   })
@@ -1796,6 +1811,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       grades={divisionStatsCache[player.year || year]}
                       showHelp={showHelp}
                       compressedPlayTypeStats={player.style}
+                      onChangeChartOpts={(opts: PlayerStyleOpts) => {
+                        setShowPlayerPlayTypesPlayType(opts.playType);
+                        setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                      }}
+                      userOpts={{
+                        playType: showPlayerPlayTypesPlayType,
+                        rawPpp: !showPlayerPlayTypesAdjPpp,
+                      }}
                       navigationLinkOverride={
                         <OverlayTrigger
                           placement="auto"

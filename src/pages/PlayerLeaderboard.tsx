@@ -155,6 +155,13 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
         !rawParams.shotCharts ? ["shotCharts"] : [],
         !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
+        rawParams.showPlayerPlayTypesAdjPpp ?? true
+          ? ["showPlayerPlayTypesAdjPpp"]
+          : [],
+        rawParams.showPlayerPlayTypesPlayType ==
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+          ? ["showPlayerPlayTypesPlayType"]
+          : [],
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
