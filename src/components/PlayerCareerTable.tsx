@@ -119,9 +119,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       : playerCareerParams.showPlayerPlayTypes
   );
   const [showPlayerPlayTypesAdjPpp, setShowPlayerPlayTypesAdjPpp] =
-    useState<boolean>(true);
+    useState<boolean>(playerCareerParams.showPlayerPlayTypesAdjPpp ?? true);
   const [showPlayerPlayTypesPlayType, setShowPlayerPlayTypesPlayType] =
-    useState<string | undefined>(undefined);
+    useState<string | undefined>(
+      playerCareerParams.showPlayerPlayTypesPlayType ??
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+    );
   //TODO CSV of yearly quickSwitch options
 
   /** Shot chart config */
@@ -223,6 +226,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ...playerCareerParams,
       showGrades,
       showPlayerPlayTypes,
+      showPlayerPlayTypesAdjPpp,
+      showPlayerPlayTypesPlayType,
       playerShotCharts: showShotCharts,
       playerShotChartsShowZones: shotChartConfig?.buildZones,
       playerShotChartQuickSwitch: shotChartConfig?.quickSwitch,
@@ -241,6 +246,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   }, [
     showGrades,
     showPlayerPlayTypes,
+    showPlayerPlayTypesAdjPpp,
+    showPlayerPlayTypesPlayType,
     showShotCharts,
     shotChartConfig,
     expandedView,

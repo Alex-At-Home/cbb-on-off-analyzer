@@ -121,6 +121,13 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         rawParams.showGrades == "" ? ["showGrades"] : [],
 
         !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
+        rawParams.showPlayerPlayTypesAdjPpp ?? true
+          ? ["showPlayerPlayTypesAdjPpp"]
+          : [],
+        rawParams.showPlayerPlayTypesPlayType ==
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+          ? ["showPlayerPlayTypesPlayType"]
+          : [],
         !rawParams.playerShotCharts ? ["playerShotCharts"] : [],
         rawParams.playerShotChartsShowZones ==
         ParamDefaults.defaultShotChartShowZones

@@ -311,8 +311,10 @@ export type PlayerCareerParams = {
   // Shot charts and style:
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
-  showPlayerPlayTypes?: boolean;
   playerShotChartQuickSwitch?: string;
+  showPlayerPlayTypes?: boolean;
+  showPlayerPlayTypesAdjPpp?: boolean;
+  showPlayerPlayTypesPlayType?: string;
   // Equivalent for similarity table
   similarityParams?: PlayerCareerParams;
   queryVector?: string; //(only used for API interface)
@@ -461,6 +463,8 @@ export class ParamDefaults {
   static readonly defaultTeamShowRoster = false;
   static readonly defaultTeamShowGameInfo = false;
   static readonly defaultPlayerShowPlayTypes = false;
+  static readonly defaultPlayerShowPlayTypesPlayType = "P%le";
+  static readonly defaultPlayerShowPlayTypesAdjPpp = true;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;

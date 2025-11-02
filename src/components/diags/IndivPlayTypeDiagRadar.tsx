@@ -51,6 +51,7 @@ import {
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { useTheme } from "next-themes";
+import { ParamDefaults } from "../../utils/FilterModels";
 
 export type PlayerStyleOpts = {
   rawPpp?: boolean;
@@ -115,7 +116,13 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   );
   const [possFreqType, setPossFreqType] = useState<
     "P%le" | "T%le" | "P%" | "T%"
-  >((userOpts?.playType ?? "P%le") as "P%le" | "T%le" | "P%" | "T%");
+  >(
+    (userOpts?.playType ?? ParamDefaults.defaultPlayerShowPlayTypesPlayType) as
+      | "P%le"
+      | "T%le"
+      | "P%"
+      | "T%"
+  );
 
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
     userOpts?.quickSwitch
@@ -124,7 +131,12 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   useEffect(() => {
     setAdjustForSos(!(userOpts?.rawPpp ?? false));
     setPossFreqType(
-      (userOpts?.playType ?? "P%le") as "P%le" | "T%le" | "P%" | "T%"
+      (userOpts?.playType ??
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType) as
+        | "P%le"
+        | "T%le"
+        | "P%"
+        | "T%"
     );
     // Quick switch isn't currently supported so leave that alone
   }, [userOpts]);
