@@ -1839,13 +1839,18 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
+                      href="/PlayerLeaderboard?filter=MyPowell_4065816%3B%20Freshmen%2C%20Random%3A%3B%20DaMorsell_4277954%3B%20DoScott_4432852%3B%20JaSmith_4397189%3B%20Reese%2C%20Julian%3A%3B%20BrFernando_4277952&incLowVol=true&tier=All&"
                       target="_blank"
                     >
                       <b>
@@ -7590,13 +7595,18 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
+                      href="/PlayerLeaderboard?filter=ErAyala_4397184%3B%20AaWiggins_4397183%3B%20DaMorsell_4277954%3B%20DoScott_4432852%3B%20JaSmith_4397189%3B%20Reese%2C%20Julian%3A%3B%20BrFernando_4277952&incLowVol=true&tier=All&"
                       target="_blank"
                     >
                       <b>
@@ -13039,7 +13049,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
@@ -19466,7 +19481,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
@@ -26102,7 +26122,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
@@ -32692,7 +32717,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
@@ -38843,13 +38873,18 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
+                      href="/PlayerLeaderboard?filter=AnCowan_4066371%3B%20ErAyala_4397184%3B%20AaWiggins_4397183%3B%20DaMorsell_4277954%3B%20DoScott_4432852%3B%20JaSmith_4397189%3B%20Reese%2C%20Julian%3A%3B%20BrFernando_4277952&incLowVol=true&tier=All&"
                       target="_blank"
                     >
                       <b>
@@ -43569,7 +43604,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
+                        Show in a new tab a table with all these players' stats 
+                        <i>
+                          last
+                        </i>
+                         
+                        season
                       </Tooltip>
                     }
                     placement="auto"

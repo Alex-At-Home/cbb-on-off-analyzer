@@ -55342,6 +55342,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </a>
                     </OverlayTrigger>
                   }
+                  onChangeChartOpts={[Function]}
                   player={
                     {
                       code: "AnCowan"
@@ -56182,6 +56183,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   title="On ('A')"
+                  userOpts={
+                    Object {
+                      "playType": "P%le",
+                      "rawPpp": false,
+                    }
+                  }
                 />,
               },
               GenericTableRepeatHeaderRow {
@@ -56842,6 +56849,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </a>
                     </OverlayTrigger>
                   }
+                  onChangeChartOpts={[Function]}
                   player={
                     {
                       code: "AnCowan"
@@ -57682,6 +57690,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   title="Off ('B')"
+                  userOpts={
+                    Object {
+                      "playType": "P%le",
+                      "rawPpp": false,
+                    }
+                  }
                 />,
               },
               GenericTableSeparator {
@@ -58345,6 +58359,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </a>
                     </OverlayTrigger>
                   }
+                  onChangeChartOpts={[Function]}
                   player={
                     {
                       code: "AaWiggins"
@@ -59185,6 +59200,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   title="On ('A')"
+                  userOpts={
+                    Object {
+                      "playType": "P%le",
+                      "rawPpp": false,
+                    }
+                  }
                 />,
               },
               GenericTableSeparator {
@@ -59836,6 +59857,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </a>
                     </OverlayTrigger>
                   }
+                  onChangeChartOpts={[Function]}
                   player={
                     {
                       code: "ReMona"
@@ -60670,6 +60692,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   title="Off ('B')"
+                  userOpts={
+                    Object {
+                      "playType": "P%le",
+                      "rawPpp": false,
+                    }
+                  }
                 />,
               },
               GenericTableSeparator {

@@ -145,6 +145,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           options={
             Array [
               Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
+              Object {
                 "label": "2024/25",
                 "value": "2024/25",
               },
@@ -2229,6 +2233,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           options={
             Array [
               Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
+              Object {
                 "label": "2024/25",
                 "value": "2024/25",
               },
@@ -3367,6 +3375,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           options={
             Array [
               Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
+              Object {
                 "label": "2024/25",
                 "value": "2024/25",
               },
@@ -4423,6 +4435,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           onChange={[Function]}
           options={
             Array [
+              Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
               Object {
                 "label": "2024/25",
                 "value": "2024/25",
