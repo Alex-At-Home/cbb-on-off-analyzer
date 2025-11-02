@@ -11,16 +11,18 @@ if [ "$YEARS" = "all" ] || [ "$YEARS" = "new" ]; then
       npm run build_leaderboards -- --tier=High $ENRICH $EXTRA; 
       npm run build_leaderboards -- --tier=Medium $ENRICH $EXTRA; 
       npm run build_leaderboards -- --tier=Low $ENRICH $EXTRA; 
+      npm run build_leaderboards -- --tier=Combo $EXTRA
    fi
    if [ "$GENDER_FILTER" != "men" ]; then
-      npm run build_leaderboards -- --gender=Women $ENRICH $EXTRA; 
-   fi
-   if [ "$GENDER_FILTER" != "women" ]; then
-      npm run build_leaderboards -- --tier=Combo $EXTRA
+      npm run build_leaderboards -- --gender=Women --tier=High $ENRICH $EXTRA; 
+      npm run build_leaderboards -- --gender=Women --tier=Medium $ENRICH $EXTRA; 
+      npm run build_leaderboards -- --gender=Women --tier=Low $ENRICH $EXTRA; 
+      npm run build_leaderboards -- --gender=Women --tier=Combo $EXTRA; 
    fi
 fi
 if [ "$YEARS" = "all" ] || [ "$YEARS" = "old" ]; then
-   for y in "2023/24" "2022/23" "2021/22" "2020/21"; do
+   # 2025/26 onwards have all tiers for women
+   for y in "2024/25" "2023/24" "2022/23" "2021/22" "2020/21"; do
       if [ "$GENDER_FILTER" != "women" ]; then
          npm run build_leaderboards -- --year=$y --tier=High $ENRICH $EXTRA; 
          npm run build_leaderboards -- --year=$y --tier=Medium $ENRICH $EXTRA; 
