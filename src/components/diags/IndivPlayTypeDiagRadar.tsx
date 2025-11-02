@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import _ from "lodash";
 
@@ -95,6 +95,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const { resolvedTheme } = useTheme();
   const highlightColor = resolvedTheme == "dark" ? "#ffFFff" : "#000000";
 
+  /** TODO: plumb CSV export */
+  const [csvData, setCsvData] = useState<object[]>([]);
+
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
   //   console.log(
@@ -105,14 +108,29 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   //     )
   //   );
   // }
-  const [adjustForSos, setAdjustForSos] = useState<boolean>(true);
+
+  // Configurable settings:
+  const [adjustForSos, setAdjustForSos] = useState<boolean>(
+    !(userOpts?.rawPpp ?? false)
+  );
   const [possFreqType, setPossFreqType] = useState<
     "P%le" | "T%le" | "P%" | "T%"
-  >("P%le");
+  >((userOpts?.playType ?? "P%le") as "P%le" | "T%le" | "P%" | "T%");
 
-  const [csvData, setCsvData] = useState<object[]>([]);
+  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
+    userOpts?.quickSwitch
+  );
 
-  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    setAdjustForSos(!(userOpts?.rawPpp ?? false));
+    setPossFreqType(
+      (userOpts?.playType ?? "P%le") as "P%le" | "T%le" | "P%" | "T%"
+    );
+    // Quick switch isn't currently supported so leave that alone
+  }, [userOpts]);
+
+  // Internal user config state
+
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
@@ -616,12 +634,26 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {PlayTypeDiagUtils.buildAdjustedVsRawControls(
                 mainSosAdjustment,
                 adjustForSos,
-                setAdjustForSos //TODO
+                (useAdjusted) => {
+                  setAdjustForSos(useAdjusted);
+                  onChangeChartOpts?.({
+                    rawPpp: !useAdjusted,
+                    playType: possFreqType,
+                    quickSwitch,
+                  });
+                }
               )}
               {" | "}
               {PlayTypeDiagUtils.buildFrequencyType(
                 possFreqType,
-                setPossFreqType //TODO
+                (newPossFreqType) => {
+                  setPossFreqType(newPossFreqType);
+                  onChangeChartOpts?.({
+                    rawPpp: !adjustForSos,
+                    playType: newPossFreqType,
+                    quickSwitch,
+                  });
+                }
               )}
               {navigationLinkOverride ? " | " : null}
               {navigationLinkOverride}

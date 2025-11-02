@@ -41,7 +41,9 @@ import {
   GradeTableUtils,
   PositionStatsCache,
 } from "../utils/tables/GradeTableUtils";
-import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
+import IndivPlayTypeDiagRadar, {
+  PlayerStyleOpts,
+} from "./diags/IndivPlayTypeDiagRadar";
 import { UrlRouting } from "../utils/UrlRouting";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import { DateUtils } from "../utils/DateUtils";
@@ -116,6 +118,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ? false
       : playerCareerParams.showPlayerPlayTypes
   );
+  const [showPlayerPlayTypesAdjPpp, setShowPlayerPlayTypesAdjPpp] =
+    useState<boolean>(true);
+  const [showPlayerPlayTypesPlayType, setShowPlayerPlayTypesPlayType] =
+    useState<string | undefined>(undefined);
+  //TODO CSV of yearly quickSwitch options
 
   /** Shot chart config */
   const [showShotCharts, setShowShotCharts] = useState<boolean>(
@@ -912,6 +919,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     `${playerCareerParams.gender}_${player.year}`
                   ] || efficiencyAverages.fallback
                 }
+                onChangeChartOpts={(opts: PlayerStyleOpts) => {
+                  setShowPlayerPlayTypesPlayType(opts.playType);
+                  setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                  //TODO quick switch is more complex
+                }}
+                userOpts={{
+                  playType: showPlayerPlayTypesPlayType,
+                  rawPpp: !showPlayerPlayTypesAdjPpp,
+                }}
                 quickSwitchOptions={playStyleQuickSwitchOptions}
                 showGrades={showGrades}
                 grades={divisionStatsCache[player.year || "??"]}
