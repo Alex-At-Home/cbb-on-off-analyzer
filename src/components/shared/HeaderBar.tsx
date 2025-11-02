@@ -35,6 +35,7 @@ import {
   TeamEditorParams,
   OffseasonLeaderboardParams,
   TeamStatsExplorerParams,
+  ParamDefaults,
 } from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from "../../utils/HistoryManager";
@@ -557,6 +558,17 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
+              "Team Style Analysis",
+              baseGameTooltip,
+              getBaseGameUrl({
+                showTeamPlayTypes: true,
+                teamPlayTypeConfig: ParamDefaults.defaultTeamPlayTypeConfig,
+              }),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
               "Advanced Team Analysis",
               baseGameTooltip,
               getBaseGameUrl(teamAnalysisSettings),
@@ -641,6 +653,18 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Roster Analysis",
               baseGameTooltip,
               getBaseGameUrl(),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Roster Style Analysis",
+              baseGameTooltip,
+              getBaseGameUrl({
+                showPlayerPlayTypes: true,
+                showExpanded: true,
+                calcRapm: true,
+              }),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
