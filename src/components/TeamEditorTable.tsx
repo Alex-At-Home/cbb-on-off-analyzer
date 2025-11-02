@@ -1997,6 +1997,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         offSeasonMode && !evalMode
           ? UrlRouting.getPlayerLeaderboardUrl({
               tier: "All",
+              incLowVol: true,
               filter: _.flatten([
                 pxResults.rosterGuards,
                 pxResults.rosterWings,
