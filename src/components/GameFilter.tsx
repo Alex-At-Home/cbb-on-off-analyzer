@@ -153,6 +153,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     possAsPct: startPossAsPct,
     showPosDiag: startShowPosDiag,
     showPlayerPlayTypes: startShowPlayerPlayTypes,
+    showPlayerPlayTypesAdjPpp: startShowPlayerPlayTypesAdjPpp,
+    showPlayerPlayTypesPlayType: startShowPlayerPlayTypesPlayType,
     showInfoSubHeader: startShowInfoSubHeader,
     playerShotCharts: startPlayerShotCharts,
     //these fields affect the query
@@ -200,6 +202,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
       possAsPct: startPossAsPct,
       showPosDiag: startShowPosDiag,
       showPlayerPlayTypes: startShowPlayerPlayTypes,
+      showPlayerPlayTypesAdjPpp: startShowPlayerPlayTypesAdjPpp,
+      showPlayerPlayTypesPlayType: startShowPlayerPlayTypesPlayType,
       showInfoSubHeader: startShowInfoSubHeader,
       playerShotCharts: startPlayerShotCharts,
       //(note doesn't include the actual game query params)

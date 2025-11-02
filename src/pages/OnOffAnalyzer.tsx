@@ -331,6 +331,13 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultPlayerShowPlayTypes
           ? ["showPlayerPlayTypes"]
           : [],
+        rawParams.showPlayerPlayTypesAdjPpp ?? true
+          ? ["showPlayerPlayTypesAdjPpp"]
+          : [],
+        rawParams.showPlayerPlayTypesPlayType ==
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+          ? ["showPlayerPlayTypesPlayType"]
+          : [],
         rawParams.showPlayerManual == false ? ["showPlayerManual"] : [],
         rawParams.showOnBallConfig == false ? ["showOnBallConfig"] : [],
         rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm
@@ -369,6 +376,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "showPosDiag",
       "playerShotChartsShowZones",
       "showInfoSubHeader",
+      "showPlayerPlayTypesPlayType",
+      "showPlayerPlayTypesAdjPpp",
     ];
     const removeFieldsToIgnore = (obj: any) => {
       return _.omit(obj, urlUpdateOnlyFields);

@@ -124,7 +124,7 @@ export type MatchupFilterParams = {
   customDisplayMode?: string; //(write only: CSV list: can be teamStats|playTypes)
 };
 
-/** Combined params for game filtering */
+/** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here */
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
@@ -160,6 +160,8 @@ export type GameFilterParams = {
   showOnOffLuckDiags?: boolean;
   showPlayerOnOffLuckDiags?: boolean;
   showPlayerPlayTypes?: boolean;
+  showPlayerPlayTypesAdjPpp?: boolean;
+  showPlayerPlayTypesPlayType?: string;
   // Misc display:
   showInfoSubHeader?: boolean;
   // Filtering of individual view:

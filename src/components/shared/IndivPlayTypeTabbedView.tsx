@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import PlayerPlayTypeDiagView from "../../components/diags/PlayerPlayTypeDiagView";
-import IndivPlayTypeDiagRadar from "../../components/diags/IndivPlayTypeDiagRadar";
+import IndivPlayTypeDiagRadar, {
+  PlayerStyleOpts,
+} from "../../components/diags/IndivPlayTypeDiagRadar";
 import {
   IndivStatSet,
   RosterStatsByCode,
@@ -26,6 +28,8 @@ export type IndivPlayTypeDiagRadarProps = {
   teamStats: TeamStatSet;
   avgEfficiency: number;
   quickSwitchOptions?: IndivPlayTypeDiagRadarProps[];
+  userOpts?: PlayerStyleOpts;
+  onChangeChartOpts?: (opts: PlayerStyleOpts) => void; //(needs to be optional for quick switch options)
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;

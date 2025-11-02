@@ -23,8 +23,6 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
-//@ts-ignore
-import Select, { components } from "react-select";
 
 // Component imports
 import GenericTable, {
@@ -42,7 +40,6 @@ import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
 import OnBallDefenseModal from "./shared/OnBallDefenseModal";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView";
 import AsyncFormControl from "./shared/AsyncFormControl";
 import StickyRow from "./shared/StickyRow";
 
@@ -74,42 +71,31 @@ import {
   LuckParams,
   ManualOverride,
 } from "../utils/FilterModels";
-import {
-  ORtgDiagnostics,
-  RatingUtils,
-  OnBallDefenseModel,
-} from "../utils/stats/RatingUtils";
+import { OnBallDefenseModel } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
-import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
-import { QueryUtils } from "../utils/QueryUtils";
-import { LineupUtils } from "../utils/stats/LineupUtils";
 import {
   DivisionStatsCache,
   PositionStatsCache,
   GradeTableUtils,
 } from "../utils/tables/GradeTableUtils";
-import { HistoryManager } from "../utils/HistoryManager";
 import { defaultRapmConfig } from "../utils/stats/RapmUtils";
 import TeamRosterStatsConfigModal, {
   TeamRosterStatsConfig,
 } from "./shared/TeamRosterStatsConfigModal";
 import { UrlRouting } from "../utils/UrlRouting";
 import { DateUtils } from "../utils/DateUtils";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import ShotChartDiagView, { UserChartOpts } from "./diags/ShotChartDiagView";
-import ShotZoneChartDiagView from "./diags/ShotZoneChartDiagView";
-import { ShotChartUtils } from "../utils/stats/ShotChartUtils";
-import IndivPlayTypeDiagRadar from "./diags/IndivPlayTypeDiagRadar";
 import IndivPlayTypeTabbedView from "./shared/IndivPlayTypeTabbedView";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { useTheme } from "next-themes";
 import ThemedSelect from "./shared/ThemedSelect";
+import { PlayerStyleOpts } from "./diags/IndivPlayTypeDiagRadar";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -387,6 +373,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultPlayerShowPlayTypes
       : gameFilterParams.showPlayerPlayTypes
   );
+  const [showPlayTypesAdjPpp, setShowPlayTypesAdjPpp] = useState<boolean>(
+    gameFilterParams.showPlayerPlayTypesAdjPpp ?? true
+  );
+  const [showPlayTypesPlayType, setShowPlayTypesPlayType] = useState<
+    string | undefined
+  >(
+    gameFilterParams.showPlayerPlayTypesPlayType ??
+      ParamDefaults.defaultPlayerShowPlayTypesPlayType
+  );
+  //TODO CSV of yearly quickSwitch options
 
   /** (placeholder for positional info)*/
   const [calcRapm, setCalcRapm] = useState(
@@ -422,6 +418,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     );
   }, [gameFilterParams]);
 
+  /** Don't forget need to update GameFilter as well when adding to here */
   useEffect(() => {
     //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
@@ -434,6 +431,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
       showPlayerPlayTypes: showPlayTypes,
+      showPlayerPlayTypesAdjPpp: showPlayTypesAdjPpp,
+      showPlayerPlayTypesPlayType: showPlayTypesPlayType,
       // Overrides:
       manual: manualOverrides,
       // Luck:
@@ -462,6 +461,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     possAsPct,
     showPositionDiags,
     showPlayTypes,
+    showPlayTypesAdjPpp,
+    showPlayTypesPlayType,
     luckConfig,
     adjustForLuck,
     showLuckAdjDiags,
@@ -1257,6 +1258,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 showGrades,
                 showInfoSubHeader,
                 showPlayerPlayTypes: showPlayTypes,
+                showPlayerPlayTypesAdjPpp: showPlayTypesAdjPpp,
+                showPlayerPlayTypesPlayType: showPlayTypesPlayType,
                 playerShotCharts: showShotCharts,
                 possAsPct,
               })}
@@ -1620,6 +1623,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
                           (opt) => opt.title != displayKey
                         )}
+                        onChangeChartOpts={(opts: PlayerStyleOpts) => {
+                          setShowPlayTypesPlayType(opts.playType);
+                          setShowPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                          //TODO quick switch is more complex
+                        }}
+                        userOpts={{
+                          playType: showPlayTypesPlayType,
+                          rawPpp: !showPlayTypesAdjPpp,
+                        }}
                         navigationLinkOverride={
                           <OverlayTrigger
                             placement="auto"
