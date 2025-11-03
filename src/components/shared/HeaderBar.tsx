@@ -562,7 +562,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               baseGameTooltip,
               getBaseGameUrl({
                 showTeamPlayTypes: true,
-                teamPlayTypeConfig: ParamDefaults.defaultTeamPlayTypeConfig,
+                teamPlayTypeConfig: "||||all||multi||",
               }),
               `${ParamPrefixes.game}`
             )}

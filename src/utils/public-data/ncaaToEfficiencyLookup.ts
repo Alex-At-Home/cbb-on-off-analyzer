@@ -13,4 +13,6 @@ export const ncaaToEfficiencyLookup: Record<
   "Women_2023/24": {}, // the upload pipeline already performs the team map
   "Men_2024/25": {}, // the upload pipeline already performs the team map
   "Women_2024/25": {}, // the upload pipeline already performs the team map
+  "Men_2025/26": {}, // the upload pipeline already performs the team map
+  "Women_2025/26": {}, // the upload pipeline already performs the team map
 };

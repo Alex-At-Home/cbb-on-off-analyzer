@@ -24,10 +24,11 @@ export class DateUtils {
   static readonly inSeasonYear: string = "2025/26";
 
   /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season (tbc: June 2023 offseason == 2022/23) */
-  static readonly offseasonYear: string = "2024/25";
+  static readonly offseasonYear: string = "2025/26";
 
   /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
   static readonly coreYears: string[] = [
+    "2025/26",
     "2024/25",
     "2023/24",
     "2022/23",
@@ -77,7 +78,7 @@ export class DateUtils {
   static readonly lastYearWithData = _.first(DateUtils.coreYears)!;
 
   /** Used for defaults for everything but leaderboards (which get updated later) */
-  static readonly mostRecentYearWithData: string = "2024/25";
+  static readonly mostRecentYearWithData: string = "2025/26";
 
   /** The year to use if making off-season predictions
    * To update for the following year in-season: up this, and fix getPrevYear
