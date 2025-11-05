@@ -308,6 +308,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         return _.chain(rapmInfo?.enrichedPlayers || [])
           .flatMap((p) => {
             const statObj = playerInfo[p.playerId];
+            if (!statObj) return []; //(can happen if the player stats are all missing but other stats are present)
+
             const offPoss = statObj.off_team_poss_pct?.value || 0;
             const defPoss = statObj.def_team_poss_pct?.value || 0;
             const playerGames = seasonStats

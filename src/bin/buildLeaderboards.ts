@@ -316,7 +316,8 @@ export async function main() {
 
   // For defensive purposes we grab a cache of the set of players
 
-  const teamDefenseEnabled = true; //(keep this flag for a bit in case we need to pull the feature)
+  // Only had this data between 2020 and 2023
+  const teamDefenseEnabled = inYear > "2019" && inYear < "2024";
 
   const allPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> =
     teamDefenseEnabled
