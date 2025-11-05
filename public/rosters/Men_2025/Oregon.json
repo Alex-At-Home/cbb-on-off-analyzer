@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "WF"
    },
@@ -25,7 +25,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tigard, OR"
    },
    "JaShelstad": {
@@ -97,7 +97,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kaduna, Nigeria"
    },
    "WeLin": {
@@ -111,7 +111,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Xiamen, China"
    },
    "__coach__": {
@@ -136,8 +136,22 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kremenchuk, Ukraine"
+   },
+   "MiJohnson": {
+      "player_code_id": {
+         "code": "MiJohnson",
+         "id": "Johnson, Miles",
+         "ncaa_id": "11198980"
+      },
+      "number": "33",
+      "pos": "",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Sherman Oaks, CA"
    },
    "DeLindsay": {
       "player_code_id": {
@@ -150,7 +164,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, KY"
    },
    "EfVatan": {
@@ -178,7 +192,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Central Point, OR",
       "role": "PF/C"
    },
@@ -207,7 +221,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Windermere, FL",
       "role": "C"
    },
@@ -252,7 +266,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY"
    }
 }

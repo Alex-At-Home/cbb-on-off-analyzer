@@ -10,7 +10,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "MaShrout": {
@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Camden, OH"
    },
    "DaDuffy": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Murray, KY"
    },
    "CoHadnot": {
@@ -52,7 +52,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "CG"
    },
@@ -81,7 +81,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Haifa, Israel"
    },
    "__coach__": {
@@ -106,7 +106,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Wayne, IN",
       "role": "s-PG"
    },
@@ -149,7 +149,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "CG"
    },
@@ -178,7 +178,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "East Orange, NJ"
    },
    "MaNelson": {
@@ -192,7 +192,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Appleton, WI",
       "role": "S-PF"
    },
@@ -221,7 +221,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nassau, Bahamas"
    }
 }

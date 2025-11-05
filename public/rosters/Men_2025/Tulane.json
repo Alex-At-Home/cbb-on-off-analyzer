@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "JaShapiro": {
@@ -53,7 +53,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baton Rouge, LA",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newnan, GA",
       "role": "CG"
    },
@@ -83,7 +83,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baton Rouge, LA",
       "role": "C"
    },
@@ -112,7 +112,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI",
       "role": "WG"
    },
@@ -138,24 +138,9 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "s-PG"
-   },
-   "GrGlenn": {
-      "player_code_id": {
-         "code": "GrGlenn",
-         "id": "Glenn III, Gregg",
-         "ncaa_id": "5105807"
-      },
-      "number": "2",
-      "pos": "F",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Ft Lauderdale, FL",
-      "role": "WF"
    },
    "ScMiddleton": {
       "player_code_id": {
@@ -168,7 +153,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami, FL",
       "role": "WG"
    },
@@ -197,7 +182,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "St. Louis, MO",
       "role": "C"
    },
@@ -226,7 +211,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Leander, TX",
       "role": "WG"
    },

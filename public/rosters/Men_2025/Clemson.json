@@ -10,7 +10,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mission Viejo, CA",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Little Rock, AR",
       "role": "S-PF"
    },
@@ -40,7 +40,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "CG"
    },
@@ -55,7 +55,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Suwanee, GA",
       "role": "PF/C"
    },
@@ -70,7 +70,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntsville, AL",
       "role": "CG"
    },
@@ -85,7 +85,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "ZaFoster": {
@@ -99,7 +99,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "CG"
    },
@@ -125,7 +125,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Provo, UT",
       "role": "S-PF"
    },
@@ -140,7 +140,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntersville, NC"
    },
    "CaWelling": {
@@ -154,7 +154,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Draper, UT",
       "role": "PF/C"
    },
@@ -169,7 +169,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Glenwood, MN"
    },
    "BlDavidson": {
@@ -197,7 +197,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "WG"
    }

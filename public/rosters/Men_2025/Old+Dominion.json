@@ -6,26 +6,12 @@
          "ncaa_id": "5240620"
       },
       "number": "42",
-      "pos": "C",
+      "pos": "F",
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
       "gp": 0,
       "origin": "Virginia Beach, VA"
-   },
-   "DeWare": {
-      "player_code_id": {
-         "code": "DeWare",
-         "id": "Ware, Deion",
-         "ncaa_id": "5313179"
-      },
-      "number": "2",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "New Orleans, LA"
    },
    "RiHellams": {
       "player_code_id": {
@@ -33,27 +19,13 @@
          "id": "Hellams, Rieco",
          "ncaa_id": "5246872"
       },
-      "number": "16",
+      "number": "11",
       "pos": "G",
-      "height": "5-8",
-      "height_in": 68,
+      "height": "5-10",
+      "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
-   },
-   "SeDurugordon": {
-      "player_code_id": {
-         "code": "SeDurugordon",
-         "id": "Durugordon, Sean",
-         "ncaa_id": "4683842"
-      },
-      "number": "6",
-      "pos": "F",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Queens Village, NY"
    },
    "CoJones": {
       "player_code_id": {
@@ -63,11 +35,68 @@
       },
       "number": "30",
       "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
+      "height": "6-2",
+      "height_in": 74,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Williamsburg, VA"
+      "origin": "Lanexa, VA"
+   },
+   "JaTurner": {
+      "player_code_id": {
+         "code": "JaTurner",
+         "id": "Turner, Jared",
+         "ncaa_id": "5106717"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Silver Spring, MD"
+   },
+   "DrMckenna": {
+      "player_code_id": {
+         "code": "DrMckenna",
+         "id": "McKenna, Drew",
+         "ncaa_id": "5197113"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Laurel, MD"
+   },
+   "KeShaw": {
+      "player_code_id": {
+         "code": "KeShaw",
+         "id": "Shaw, Ketron",
+         "ncaa_id": "5243387"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Charlotte, NC",
+      "role": "WG"
+   },
+   "ElFlowers": {
+      "player_code_id": {
+         "code": "ElFlowers",
+         "id": "Flowers, Elijah",
+         "ncaa_id": "5313180"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Washington, DC"
    },
    "RoDavis": {
       "player_code_id": {
@@ -84,6 +113,20 @@
       "origin": "Detroit, MI",
       "role": "CG"
    },
+   "ZaWiggins": {
+      "player_code_id": {
+         "code": "ZaWiggins",
+         "id": "Wiggins, Zacch",
+         "ncaa_id": "5313179"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Greensboro, NC"
+   },
    "CaSwanton-ro": {
       "player_code_id": {
          "code": "CaSwanton-ro",
@@ -91,11 +134,11 @@
          "ncaa_id": "5105804"
       },
       "number": "35",
-      "pos": "C",
+      "pos": "F",
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Calgary, Canada",
       "role": "C"
    },
@@ -105,27 +148,28 @@
          "id": "Hubbard, Scottie",
          "ncaa_id": "5240615"
       },
-      "number": "7",
+      "number": "3",
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    },
-   "JaJenkins": {
+   "JoBattle": {
       "player_code_id": {
-         "code": "JaJenkins",
-         "id": "Jenkins, Jaylen",
-         "ncaa_id": "9336646"
+         "code": "JoBattle",
+         "id": "Battle, Jordan",
+         "ncaa_id": "4896969"
       },
-      "number": "55",
+      "number": "23",
       "pos": "G",
-      "height": "5-9",
-      "height_in": 69,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Hampton, VA"
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Norfolk, VA",
+      "role": "CG"
    },
    "__coach__": {
       "player_code_id": {
@@ -138,6 +182,21 @@
       "year_class": "",
       "gp": -1
    },
+   "LjThomas": {
+      "player_code_id": {
+         "code": "LjThomas",
+         "id": "Thomas, LJ",
+         "ncaa_id": "4683842"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Plant City, FL",
+      "role": "CG"
+   },
    "DoRaymond": {
       "player_code_id": {
          "code": "DoRaymond",
@@ -146,11 +205,11 @@
       },
       "number": "8",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Norcross, GA"
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Charlotte, NC"
    },
    "CjParker": {
       "player_code_id": {
@@ -166,27 +225,13 @@
       "gp": 0,
       "origin": "Norfolk, VA"
    },
-   "VyZygas": {
-      "player_code_id": {
-         "code": "VyZygas",
-         "id": "Zygas, Vytautas",
-         "ncaa_id": "9336653"
-      },
-      "number": "21",
-      "pos": "G",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Kaunas, Republic of Lithuania"
-   },
    "StWalker": {
       "player_code_id": {
          "code": "StWalker",
          "id": "Walker, Stephaun",
          "ncaa_id": "5106791"
       },
-      "number": "0",
+      "number": "1",
       "pos": "F",
       "height": "6-7",
       "height_in": 79,

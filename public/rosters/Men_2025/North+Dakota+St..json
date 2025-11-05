@@ -24,7 +24,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Des Moines, IA"
    },
    "NoFeddersen": {
@@ -38,7 +38,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Menomonie, WI",
       "role": "S-PF"
    },
@@ -67,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bountiful, UT"
    },
    "__coach__": {
@@ -92,7 +92,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minnetonka, MN",
       "role": "s-PG"
    },
@@ -107,7 +107,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scottsdale, AZ"
    },
    "MaStrickland": {
@@ -121,7 +121,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami, FL",
       "role": "WG"
    },
@@ -136,7 +136,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bowling Green, KY"
    },
    "EmSkytta": {
@@ -150,7 +150,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Helsinki, Finland",
       "role": "CG"
    },
@@ -165,7 +165,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elgin, IL",
       "role": "CG"
    },
@@ -180,7 +180,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lincoln, NE"
    },
    "RiMassey": {

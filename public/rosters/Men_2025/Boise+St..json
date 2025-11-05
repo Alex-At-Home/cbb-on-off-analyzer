@@ -10,9 +10,23 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bend, OR",
       "role": "WF"
+   },
+   "SpAhrens": {
+      "player_code_id": {
+         "code": "SpAhrens",
+         "id": "Ahrens, Spencer",
+         "ncaa_id": "5185444"
+      },
+      "number": "16",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Oakville, Canada"
    },
    "AnMeadow": {
       "player_code_id": {
@@ -25,9 +39,51 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santa Clarita, CA",
       "role": "WF"
+   },
+   "RaBergersen": {
+      "player_code_id": {
+         "code": "RaBergersen",
+         "id": "Bergersen, Rayzhon",
+         "ncaa_id": "5191013"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Boise, ID"
+   },
+   "BhBuom": {
+      "player_code_id": {
+         "code": "BhBuom",
+         "id": "Buom, Bhan",
+         "ncaa_id": "5313903"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lincoln, NE"
+   },
+   "AgNeto": {
+      "player_code_id": {
+         "code": "AgNeto",
+         "id": "Neto, Aginaldo",
+         "ncaa_id": "5313902"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Luanda, Angola"
    },
    "BrRamirez": {
       "player_code_id": {
@@ -35,13 +91,28 @@
          "id": "Ramirez, Brennan",
          "ncaa_id": "5252550"
       },
-      "number": "20",
+      "number": "21",
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Sr",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Redding, CA"
+   },
+   "DrFielder": {
+      "player_code_id": {
+         "code": "DrFielder",
+         "id": "Fielder, Drew",
+         "ncaa_id": "5082704"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Boise, ID",
+      "role": "S-PF"
    },
    "JuBowie": {
       "player_code_id": {
@@ -54,7 +125,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pocatello, ID",
       "role": "WG"
    },
@@ -80,9 +151,23 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "The Woodlands, TX",
       "role": "WF"
+   },
+   "NoBendinger": {
+      "player_code_id": {
+         "code": "NoBendinger",
+         "id": "Bendinger, Noah",
+         "ncaa_id": "5313904"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Draper, UT"
    },
    "EtLathan": {
       "player_code_id": {
@@ -90,13 +175,42 @@
          "id": "Lathan, Ethan",
          "ncaa_id": "4873196"
       },
-      "number": "4",
+      "number": "30",
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "So",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Rockford, IL"
+   },
+   "DoParolin": {
+      "player_code_id": {
+         "code": "DoParolin",
+         "id": "Parolin, Dominic",
+         "ncaa_id": "4702518"
+      },
+      "number": "9",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Coquitlam, Canada"
+   },
+   "DyAndrews": {
+      "player_code_id": {
+         "code": "DyAndrews",
+         "id": "Andrews, Dylan",
+         "ncaa_id": "5105636"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Gardena, CA",
+      "role": "s-PG"
    },
    "JaBuchanan": {
       "player_code_id": {
@@ -109,7 +223,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lafayette, IN",
       "role": "WF"
    }

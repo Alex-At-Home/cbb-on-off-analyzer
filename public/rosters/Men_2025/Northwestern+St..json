@@ -1,18 +1,17 @@
 {
-   "JtWarren": {
+   "MoLoum": {
       "player_code_id": {
-         "code": "JtWarren",
-         "id": "Warren, JT",
-         "ncaa_id": "5176415"
+         "code": "MoLoum",
+         "id": "Loum, Moustapha",
+         "ncaa_id": "5314537"
       },
-      "number": "1",
+      "number": "8",
       "pos": "F",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Tifton, GA",
-      "role": "WF"
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Dakar, Senegal"
    },
    "LaJumawan": {
       "player_code_id": {
@@ -25,37 +24,39 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Honolulu, HI",
       "role": "CG"
    },
-   "DoWalker": {
+   "QuBolton": {
       "player_code_id": {
-         "code": "DoWalker",
-         "id": "Walker, Dontae",
-         "ncaa_id": "9336571"
+         "code": "QuBolton",
+         "id": "Bolton Jr., Quentin",
+         "ncaa_id": "5175654"
       },
-      "number": "6",
-      "pos": "G",
+      "number": "33",
+      "pos": "F",
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Bronx, NY"
+      "origin": "Racine, WI",
+      "role": "S-PF"
    },
-   "MiWilliams": {
+   "IzMiles": {
       "player_code_id": {
-         "code": "MiWilliams",
-         "id": "Williams, Mitch",
-         "ncaa_id": "5314536"
+         "code": "IzMiles",
+         "id": "Miles, Izzy",
+         "ncaa_id": "5176781"
       },
-      "number": "4",
+      "number": "0",
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Colleyville, TX"
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Huntsville, AL",
+      "role": "WG"
    },
    "MiThomas": {
       "player_code_id": {
@@ -68,7 +69,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oklahoma City, OK",
       "role": "CG"
    },
@@ -94,14 +95,14 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Snellville, GA",
       "role": "WG"
    },
    "JcRiley": {
       "player_code_id": {
          "code": "JcRiley",
-         "id": "Riley, J.C.",
+         "id": "Riley Jr., J.C.",
          "ncaa_id": "5176673"
       },
       "number": "21",
@@ -109,23 +110,37 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "C"
    },
-   "AyWarren": {
+   "OmAdegbola": {
       "player_code_id": {
-         "code": "AyWarren",
-         "id": "Warren, Ayden",
-         "ncaa_id": "9336573"
+         "code": "OmAdegbola",
+         "id": "Adegbola, Omar",
+         "ncaa_id": "5175026"
       },
-      "number": "12",
+      "number": "25",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Houston, TX"
+   },
+   "SeNed": {
+      "player_code_id": {
+         "code": "SeNed",
+         "id": "Ned, Seth",
+         "ncaa_id": "5314539"
+      },
+      "number": "15",
       "pos": "G",
       "height": "5-10",
       "height_in": 70,
-      "year_class": "So",
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Alexandria, LA"
+      "origin": "Lake Charles, LA"
    },
    "ChMubiru": {
       "player_code_id": {
@@ -138,9 +153,23 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "WG"
+   },
+   "KoTurner": {
+      "player_code_id": {
+         "code": "KoTurner",
+         "id": "Turner, Kordrick",
+         "ncaa_id": "5314538"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Sulphur Springs, TX"
    },
    "WiWilliams": {
       "player_code_id": {
@@ -157,18 +186,32 @@
       "origin": "Houston, TX",
       "role": "C"
    },
-   "JeColonel": {
+   "ChBrunt": {
       "player_code_id": {
-         "code": "JeColonel",
-         "id": "Colonel, Jerald",
-         "ncaa_id": "9336575"
+         "code": "ChBrunt",
+         "id": "Brunt, Chip",
+         "ncaa_id": "5176415"
       },
-      "number": "2",
-      "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
-      "year_class": "Sr",
+      "number": "1",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Savannah, GA"
+      "origin": "Memphis, TN"
+   },
+   "CjLarry": {
+      "player_code_id": {
+         "code": "CjLarry",
+         "id": "Larry, CJ",
+         "ncaa_id": "5314536"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Jonesboro, AR"
    }
 }

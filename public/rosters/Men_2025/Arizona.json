@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Bernardino, CA",
       "role": "CG"
    },
@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rochester, NY",
       "role": "CG"
    },
@@ -39,7 +39,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Jr",
+      "year_class": "So",
       "gp": 0,
       "origin": "Simi Valley, CA"
    },
@@ -54,7 +54,7 @@
       "height": "7-2",
       "height_in": 86,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Siauliai, Republic of Lithuania",
       "role": "C"
    },
@@ -97,7 +97,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, Australia",
       "role": "CG"
    },
@@ -112,7 +112,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Munich, Germany"
    },
    "KoPeat": {
@@ -126,7 +126,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chandler, AZ",
       "role": "S-PF"
    },
@@ -140,8 +140,8 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Hyde Park, NY",
       "role": "C"
    },
@@ -176,11 +176,11 @@
          "id": "Francois, Jackson",
          "ncaa_id": "5105542"
       },
-      "number": "8",
+      "number": "7",
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Jr",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Las Vegas, NV"
    },
@@ -224,7 +224,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lelystad, Netherlands",
       "role": "WF"
    },

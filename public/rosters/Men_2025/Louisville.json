@@ -10,7 +10,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berlin, Germany",
       "role": "PF/C"
    },
@@ -25,7 +25,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, KY"
    },
    "AlKhalifa": {
@@ -39,7 +39,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alexandria, Egypt",
       "role": "PF/C"
    },
@@ -54,7 +54,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Poca, WV",
       "role": "CG"
    },
@@ -69,7 +69,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Paul, MN",
       "role": "WG"
    },
@@ -95,7 +95,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, KY"
    },
    "SpLegg": {
@@ -109,7 +109,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    },
    "RyConwell": {
@@ -123,7 +123,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN",
       "role": "CG"
    },
@@ -138,7 +138,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL",
       "role": "PG"
    },
@@ -153,7 +153,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Peristeri, Greece"
    },
    "MoCamara": {
@@ -181,7 +181,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "S-PF"
    },
@@ -196,7 +196,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tuscaloosa, AL",
       "role": "CG"
    },
@@ -226,7 +226,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "WG"
    }

@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sterling Heights, MI",
       "role": "CG"
    },
@@ -25,7 +25,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Thies, Senegal"
    },
    "AdPatterson": {
@@ -39,23 +39,9 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mississauga, Canada",
       "role": "CG"
-   },
-   "YaIssa": {
-      "player_code_id": {
-         "code": "YaIssa",
-         "id": "Issa, Yaseen",
-         "ncaa_id": "10639226"
-      },
-      "number": "6",
-      "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Ann Arbor, MI"
    },
    "MeEllison": {
       "player_code_id": {
@@ -68,7 +54,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Flint, MI",
       "role": "s-PG"
    },
@@ -83,7 +69,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dearborn, MI"
    },
    "__coach__": {
@@ -108,7 +94,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Southfield, MI",
       "role": "CG"
    },
@@ -123,7 +109,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Anambra State, Nigeria",
       "role": "C"
    },
@@ -152,7 +138,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Flint, MI"
    },
    "CaHart": {
@@ -166,7 +152,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami, FL"
    },
    "JoShanu": {
@@ -180,7 +166,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX"
    },
    "JoSanders": {
@@ -194,7 +180,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI",
       "role": "CG"
    },
@@ -209,7 +195,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saginaw, MI"
    },
    "MeAlderink": {
@@ -223,7 +209,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zeeland, MI"
    }
 }

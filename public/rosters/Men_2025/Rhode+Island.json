@@ -52,7 +52,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chula Vista, CA",
       "role": "WF"
    },
@@ -67,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Millis, MA"
    },
    "TyCochran": {
@@ -81,7 +81,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bolingbrook, IL"
    },
    "JaHarper": {
@@ -95,7 +95,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "__coach__": {
@@ -120,7 +120,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dakar, Senegal",
       "role": "WF"
    },
@@ -135,7 +135,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, KY"
    },
    "RjJohnson": {
@@ -149,7 +149,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Matthews, NC",
       "role": "s-PG"
    },
@@ -178,7 +178,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "WG"
    },
@@ -189,11 +189,11 @@
          "ncaa_id": "4684207"
       },
       "number": "40",
-      "pos": "",
+      "pos": "F",
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knightdale, NC",
       "role": "C"
    },
@@ -208,7 +208,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ontario, CA",
       "role": "s-PG"
    },
@@ -237,7 +237,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "CG"
    }

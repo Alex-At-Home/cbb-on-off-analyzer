@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edinburg, VA",
       "role": "WG"
    },
@@ -40,7 +40,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Apex, NC",
       "role": "WG"
    },
@@ -55,7 +55,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montgomery, AL",
       "role": "CG"
    },
@@ -70,7 +70,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greensboro, NC",
       "role": "WG"
    },
@@ -85,7 +85,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC"
    },
    "JoFullwood": {
@@ -99,7 +99,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Burgaw, NC"
    },
    "__coach__": {
@@ -124,7 +124,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eden, NC"
    },
    "JaLamothe": {
@@ -181,7 +181,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "s-PG"
    },
@@ -211,7 +211,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rumbek, South Sudan"
    },
    "PaWessler": {
@@ -225,7 +225,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Matthews, NC",
       "role": "C"
    }

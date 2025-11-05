@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Franklin, TN"
    },
    "JuTaylor": {
@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlottesville, VA",
       "role": "WG"
    },
@@ -39,7 +39,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clarksville, TN",
       "role": "WF"
    },
@@ -68,7 +68,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hudsonville, MI"
    },
    "IkCornish": {
@@ -111,7 +111,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vernon, CT"
    },
    "PaJones": {
@@ -125,7 +125,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Suffolk, VA",
       "role": "WG"
    },
@@ -151,7 +151,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Woodbridge, VA",
       "role": "CG"
    },
@@ -166,7 +166,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plano, TX",
       "role": "S-PF"
    },
@@ -195,7 +195,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eustis, FL",
       "role": "CG"
    },
@@ -210,7 +210,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Middletown, CT",
       "role": "C"
    },
@@ -225,7 +225,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Thomasville, GA",
       "role": "CG"
    }

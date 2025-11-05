@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Orleans, LA",
       "role": "CG"
    },
@@ -25,7 +25,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nashville, TN",
       "role": "s-PG"
    },
@@ -40,7 +40,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hilliard, FL"
    },
    "AlUdemadu": {
@@ -54,7 +54,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria",
       "role": "C"
    },
@@ -69,7 +69,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jasper, FL"
    },
    "ChCaporaso": {
@@ -97,7 +97,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL"
    },
    "__coach__": {
@@ -136,7 +136,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI"
    },
    "EvSterck": {
@@ -150,7 +150,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gainesville, FL"
    },
    "ChArias": {
@@ -164,7 +164,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL",
       "role": "WG"
    },
@@ -179,7 +179,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Twic Warrap, South Sudan"
    },
    "SiWheeler": {
@@ -193,7 +193,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI"
    },
    "DoRivers": {
@@ -207,7 +207,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbia, SC",
       "role": "C"
    },
@@ -222,7 +222,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springdale, AR"
    },
    "EnBorio": {
@@ -236,7 +236,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Curitiba, Brazil",
       "role": "WF"
    },
@@ -248,7 +248,8 @@
       },
       "number": "12",
       "pos": "G",
-      "height": "-",
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Saint Augustine, FL"

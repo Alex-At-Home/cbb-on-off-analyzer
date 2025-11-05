@@ -1,4 +1,19 @@
 {
+   "KcUgwuakazi": {
+      "player_code_id": {
+         "code": "KcUgwuakazi",
+         "id": "Ugwuakazi, KC",
+         "ncaa_id": "5176686"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Boston, MA",
+      "role": "C"
+   },
    "BrJohnson": {
       "player_code_id": {
          "code": "BrJohnson",
@@ -13,20 +28,6 @@
       "gp": 0,
       "origin": "Pikesville, MD"
    },
-   "LiPrice": {
-      "player_code_id": {
-         "code": "LiPrice",
-         "id": "Price, Liam",
-         "ncaa_id": "9337063"
-      },
-      "number": "25",
-      "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Brookline Village, MA"
-   },
    "TyDorset": {
       "player_code_id": {
          "code": "TyDorset",
@@ -38,9 +39,81 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Laurel, NJ",
       "role": "WG"
+   },
+   "ToBrogna": {
+      "player_code_id": {
+         "code": "ToBrogna",
+         "id": "Brogna, Todd",
+         "ncaa_id": "5177298"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Southborough, MA",
+      "role": "S-PF"
+   },
+   "ErShelton": {
+      "player_code_id": {
+         "code": "ErShelton",
+         "id": "Shelton, Ernest",
+         "ncaa_id": "5314297"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Philadelphia, PA"
+   },
+   "AnMarrero": {
+      "player_code_id": {
+         "code": "AnMarrero",
+         "id": "Marrero, Andres",
+         "ncaa_id": "4897066"
+      },
+      "number": "10",
+      "pos": "",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Caracas, Venezuela",
+      "role": "CG"
+   },
+   "QuKwasniak": {
+      "player_code_id": {
+         "code": "QuKwasniak",
+         "id": "Kwasniak, Quinn",
+         "ncaa_id": "5314300"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chesterland, OH"
+   },
+   "DyVeillette": {
+      "player_code_id": {
+         "code": "DyVeillette",
+         "id": "Veillette, Dylan",
+         "ncaa_id": "5314295"
+      },
+      "number": "0",
+      "pos": "",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Ridgefield, CT"
    },
    "__coach__": {
       "player_code_id": {
@@ -53,19 +126,33 @@
       "year_class": "",
       "gp": -1
    },
-   "ElBlack": {
+   "ClJacobMoore": {
       "player_code_id": {
-         "code": "ElBlack",
-         "id": "Black, Elliott",
-         "ncaa_id": "4897066"
+         "code": "ClJacobMoore",
+         "id": "David Jacob Moore, Clen",
+         "ncaa_id": "5314299"
       },
-      "number": "10",
+      "number": "7",
       "pos": "F",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "Sr",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Washington, DC"
+      "origin": "Hamilton, VA"
+   },
+   "KeKennedy": {
+      "player_code_id": {
+         "code": "KeKennedy",
+         "id": "Kennedy, Kevair",
+         "ncaa_id": "5314298"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Philadelphia, PA"
    },
    "EdQuezada": {
       "player_code_id": {
@@ -75,11 +162,11 @@
       },
       "number": "13",
       "pos": "F",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-6",
+      "height_in": 78,
       "year_class": "Jr",
       "gp": 0,
-      "origin": "Rockland, MA"
+      "origin": "Boston, MA"
    },
    "BrLegris": {
       "player_code_id": {
@@ -95,18 +182,32 @@
       "gp": 0,
       "origin": "Hatfield, PA"
    },
-   "AdClark": {
+   "AlCisse": {
       "player_code_id": {
-         "code": "AdClark",
-         "id": "Clark, Adam",
-         "ncaa_id": "5314295"
+         "code": "AlCisse",
+         "id": "Cisse, Aliou",
+         "ncaa_id": "5314296"
       },
-      "number": "0",
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Yonkers, NY"
+   },
+   "JaStinson": {
+      "player_code_id": {
+         "code": "JaStinson",
+         "id": "Stinson, Jaylen",
+         "ncaa_id": "4897704"
+      },
+      "number": "1",
       "pos": "G",
-      "height": "5-10",
-      "height_in": 70,
-      "year_class": "Jr",
-      "gp": 0,
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "MaEdmead": {
@@ -120,22 +221,22 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Deer Park, NY",
       "role": "s-PG"
    },
-   "ChFoy": {
+   "DaMunro": {
       "player_code_id": {
-         "code": "ChFoy",
-         "id": "Foy, Christian",
-         "ncaa_id": "5314296"
+         "code": "DaMunro",
+         "id": "Munro, David",
+         "ncaa_id": "5314301"
       },
-      "number": "2",
+      "number": "12",
       "pos": "F",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "So",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Huntersville, NC"
+      "origin": "Neptune, NJ"
    }
 }

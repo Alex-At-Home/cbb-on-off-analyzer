@@ -38,7 +38,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marseille, France",
       "role": "S-PF"
    },
@@ -53,7 +53,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Copenhagen, Denmark"
    },
    "JoLake": {
@@ -67,23 +67,9 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tualatin, OR",
       "role": "CG"
-   },
-   "MsSamar": {
-      "player_code_id": {
-         "code": "MsSamar",
-         "id": "Samar, Msatija",
-         "ncaa_id": "5313087"
-      },
-      "number": "26",
-      "pos": "G",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Jesenice, Slovenia"
    },
    "DeWhite": {
       "player_code_id": {
@@ -96,7 +82,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jefferson City, MO",
       "role": "CG"
    },
@@ -122,7 +108,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santa Cruz de Tenerife, Spain",
       "role": "WF"
    },
@@ -151,7 +137,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fredericton, Canada",
       "role": "WG"
    },
@@ -166,7 +152,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Adelaide, Australia"
    },
    "NoAmenhauser": {
@@ -180,7 +166,7 @@
       "height": "7-2",
       "height_in": 86,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Goodyear, AZ",
       "role": "C"
    },
@@ -195,7 +181,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Helsinki, Finland"
    },
    "StOlowoniyi": {
@@ -213,6 +199,20 @@
       "origin": "Melbourne, Australia",
       "role": "C"
    },
+   "MaSamar": {
+      "player_code_id": {
+         "code": "MaSamar",
+         "id": "Samar, Matija",
+         "ncaa_id": "5313087"
+      },
+      "number": "26",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Jesenice, Slovenia"
+   },
    "KeEkissi": {
       "player_code_id": {
          "code": "KeEkissi",
@@ -224,7 +224,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint-Maries-De-La-Mer, France"
    }
 }

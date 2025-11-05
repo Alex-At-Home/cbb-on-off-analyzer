@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "The Villages, FL",
       "role": "S-PF"
    },
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Orleans, LA",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Southlake, TX",
       "role": "WG"
    },
@@ -108,7 +108,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knoxville, TN",
       "role": "s-PG"
    },
@@ -123,7 +123,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO"
    },
    "NiWalls": {
@@ -137,7 +137,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "PF/C"
    },
@@ -152,7 +152,7 @@
       "height": "7-2",
       "height_in": 86,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Istanbul, Turkey",
       "role": "C"
    },
@@ -167,7 +167,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Little Rock, AR",
       "role": "S-PF"
    },
@@ -182,7 +182,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Worth, TX"
    },
    "BoMiller": {
@@ -196,7 +196,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "PG"
    },
@@ -211,7 +211,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "JaToombs": {

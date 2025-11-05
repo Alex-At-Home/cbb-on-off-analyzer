@@ -10,7 +10,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Harrisburg, PA"
    },
    "JuHolloway": {
@@ -38,7 +38,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Juan, Puerto Rico"
    },
    "JoKahn": {
@@ -47,7 +47,7 @@
          "id": "Kahn, Joey",
          "ncaa_id": "5107237"
       },
-      "number": "12",
+      "number": "9",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
@@ -66,7 +66,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Maple Grove, MN"
    },
    "AhRobinson": {
@@ -80,7 +80,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Orange, NJ",
       "role": "s-PG"
    },
@@ -95,7 +95,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Denton, TX"
    },
    "__coach__": {
@@ -120,7 +120,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY",
       "role": "WG"
    },
@@ -149,7 +149,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dayton, OH"
    },
    "SaLondon": {
@@ -163,7 +163,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hoover, AL"
    },
    "JaMeyer": {
@@ -177,7 +177,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Covington, KY",
       "role": "WG"
    },
@@ -192,13 +192,13 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Harker Heights, TX"
    },
    "JoDaChagas": {
       "player_code_id": {
          "code": "JoDaChagas",
-         "id": "Victor Moreira Das Chagas, Joao",
+         "id": "Das Chagas, Joao",
          "ncaa_id": "5105470"
       },
       "number": "3",
@@ -206,7 +206,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Niquelandia, Brazil"
    },
    "LaCarr": {
@@ -220,7 +220,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Desoto, TX"
    }
 }

@@ -24,7 +24,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toronto, Canada",
       "role": "S-PF"
    },
@@ -39,7 +39,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Luckey, OH",
       "role": "PF/C"
    },
@@ -54,7 +54,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "WG"
    },
@@ -69,7 +69,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC",
       "role": "WG"
    },
@@ -84,7 +84,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oslo, Norway"
    },
    "CaHuttenlock": {
@@ -126,7 +126,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Noblesville, IN"
    },
    "HuHarding": {
@@ -165,7 +165,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Shawnee Mission, KS"
    },
    "ZyGreene": {
@@ -179,7 +179,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "StYoung": {
@@ -193,7 +193,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY",
       "role": "CG"
    },
@@ -208,7 +208,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Barcelona, Spain",
       "role": "CG"
    },
@@ -223,7 +223,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Harford Village, Grenada"
    },
    "IaScott": {
@@ -237,7 +237,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plainfield, IN"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY"
    },
    "BrBenjamin": {
@@ -24,7 +24,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newark, NJ"
    },
    "ToWilliams": {
@@ -38,22 +38,8 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ledyard, CT"
-   },
-   "AiMay": {
-      "player_code_id": {
-         "code": "AiMay",
-         "id": "May, Aidan",
-         "ncaa_id": "5241485"
-      },
-      "number": "6",
-      "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Fairfield, CT"
    },
    "MiRogan": {
       "player_code_id": {
@@ -81,7 +67,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New York, NY",
       "role": "WG"
    },
@@ -111,7 +97,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Teaneck, NJ"
    },
    "RyZan": {
@@ -125,7 +111,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Princeton, NJ",
       "role": "WF"
    },
@@ -140,7 +126,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Long Island City, NY"
    },
    "LuDavidson": {
@@ -193,7 +179,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Coatesville, PA",
       "role": "CG"
    },
@@ -223,7 +209,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Villa Rica, GA",
       "role": "CG"
    },
@@ -252,7 +238,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY"
    },
    "TaOstop": {
@@ -280,7 +266,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kinshasa, DR Congo",
       "role": "C"
    }

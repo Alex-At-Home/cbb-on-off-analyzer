@@ -10,7 +10,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Meudon, France",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Palo Alto, CA"
    },
    "HaRouhliadef": {
@@ -39,7 +39,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brisbane, Australia",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "American Fork, UT",
       "role": "PF/C"
    },
@@ -94,7 +94,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint George, UT"
    },
    "DrBullock": {
@@ -108,7 +108,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Franklinton, NC"
    },
    "HuErickson": {
@@ -122,7 +122,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Provo, UT",
       "role": "CG"
    },
@@ -151,7 +151,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wahiawa, HI",
       "role": "s-PG"
    },
@@ -166,7 +166,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntsville, AL",
       "role": "WF"
    },
@@ -196,7 +196,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kaunas, Republic of Lithuania"
    }
 }

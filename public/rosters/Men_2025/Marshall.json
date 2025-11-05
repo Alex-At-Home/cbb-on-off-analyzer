@@ -1,1 +1,226 @@
-{"ErHarding":{"player_code_id":{"code":"ErHarding","id":"Harding, Erich","ncaa_id":"5240547"},"number":"11","pos":"F","height":"6-10","height_in":82,"year_class":"So","gp":0,"origin":"Charlotte, NC"},"KaWhite":{"player_code_id":{"code":"KaWhite","id":"White, Kaiden","ncaa_id":"5240546"},"number":"9","pos":"G","height":"6-3","height_in":75,"year_class":"So","gp":0,"origin":"Orlando, FL"},"WiMoore":{"player_code_id":{"code":"WiMoore","id":"Moore, Will","ncaa_id":"5240548"},"number":"12","pos":"G","height":"6-4","height_in":76,"year_class":"So","gp":0,"origin":"Cumming, GA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Cornelius Jackson"},"number":"","pos":"","height":"","year_class":"","gp":-1},"GrMoore":{"player_code_id":{"code":"GrMoore","id":"Moore, Grant","ncaa_id":"5240549"},"number":"14","pos":"F","height":"6-6","height_in":78,"year_class":"So","gp":0,"origin":"Alpharetta, GA"},"KaSpears":{"player_code_id":{"code":"KaSpears","id":"Spears, Kai","ncaa_id":"5105514"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Jr","gp":0,"origin":"Pittsburgh, PA"}}
+{
+   "CaHollenbeck": {
+      "player_code_id": {
+         "code": "CaHollenbeck",
+         "id": "Hollenbeck, Caleb",
+         "ncaa_id": "5241283"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Rapid City, SD"
+   },
+   "ErHarding": {
+      "player_code_id": {
+         "code": "ErHarding",
+         "id": "Harding, Erich",
+         "ncaa_id": "5240547"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Charlotte, NC"
+   },
+   "DrFuquay": {
+      "player_code_id": {
+         "code": "DrFuquay",
+         "id": "Fuquay, Drew",
+         "ncaa_id": "5313146"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Detroit, MI"
+   },
+   "KaWhite": {
+      "player_code_id": {
+         "code": "KaWhite",
+         "id": "White, Kaiden",
+         "ncaa_id": "5240546"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Orlando, FL"
+   },
+   "BrSlay": {
+      "player_code_id": {
+         "code": "BrSlay",
+         "id": "Slay, Bryce",
+         "ncaa_id": "5313149"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Waxhaw, NC"
+   },
+   "WiMoore": {
+      "player_code_id": {
+         "code": "WiMoore",
+         "id": "Moore, Will",
+         "ncaa_id": "5240548"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cumming, GA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Cornelius Jackson"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ShHugie": {
+      "player_code_id": {
+         "code": "ShHugie",
+         "id": "Hugie, Shamarrie",
+         "ncaa_id": "5313150"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Savannah, GA"
+   },
+   "GrMoore": {
+      "player_code_id": {
+         "code": "GrMoore",
+         "id": "Moore, Grant",
+         "ncaa_id": "5240549"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Alpharetta, GA"
+   },
+   "KaSpears": {
+      "player_code_id": {
+         "code": "KaSpears",
+         "id": "Spears, Kai",
+         "ncaa_id": "5105514"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Pittsburgh, PA"
+   },
+   "NoOtshudi": {
+      "player_code_id": {
+         "code": "NoOtshudi",
+         "id": "Otshudi, Noah",
+         "ncaa_id": "5313147"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Stoney Creek, Canada"
+   },
+   "WiDubinsky": {
+      "player_code_id": {
+         "code": "WiDubinsky",
+         "id": "Dubinsky, Wilson",
+         "ncaa_id": "5179092"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Ottawa, Canada",
+      "role": "CG"
+   },
+   "JaSpeer": {
+      "player_code_id": {
+         "code": "JaSpeer",
+         "id": "Speer, Jalen",
+         "ncaa_id": "4704015"
+      },
+      "number": "50",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Gainesville, FL",
+      "role": "s-PG"
+   },
+   "WyFricks": {
+      "player_code_id": {
+         "code": "WyFricks",
+         "id": "Fricks, Wyatt",
+         "ncaa_id": "4897504"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Winder, GA"
+   },
+   "MaVanKomen": {
+      "player_code_id": {
+         "code": "MaVanKomen",
+         "id": "Van Komen, Matt",
+         "ncaa_id": "4432858"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "7-4",
+      "height_in": 88,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Lehi, UT",
+      "role": "C"
+   },
+   "LaJoseph": {
+      "player_code_id": {
+         "code": "LaJoseph",
+         "id": "Joseph, Landen",
+         "ncaa_id": "5313148"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Sunrise, FL"
+   }
+}

@@ -24,7 +24,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tuxedo Park, NY"
    },
    "FrRoxburgh": {
@@ -38,7 +38,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, Australia",
       "role": "WF"
    },
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens, NY"
    },
    "ErOliver-bus": {
@@ -67,7 +67,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Trenton, NJ"
    },
    "OmMoore": {
@@ -81,7 +81,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plainfield, NJ"
    },
    "DeDinkins": {
@@ -95,7 +95,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "s-PG"
    },
@@ -110,7 +110,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Windsor Mill, MD"
    },
    "JaWinston": {
@@ -124,7 +124,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Laurel, MD",
       "role": "s-PG"
    },
@@ -139,7 +139,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Trenton, NJ",
       "role": "WG"
    },
@@ -168,20 +168,6 @@
       "gp": 0,
       "origin": "San Diego, CA"
    },
-   "LoFairtlough": {
-      "player_code_id": {
-         "code": "LoFairtlough",
-         "id": "Fairtlough, Louis",
-         "ncaa_id": "5241534"
-      },
-      "number": "7",
-      "pos": "G",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Lisbon, Portugal"
-   },
    "MiLawlor": {
       "player_code_id": {
          "code": "MiLawlor",
@@ -193,7 +179,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eastchester, NY"
    },
    "JaDelaney": {
@@ -207,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Suffern, NY"
    },
    "MaLjubicic": {
@@ -221,7 +207,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zagreb, Croatia"
    },
    "AsMiTorrero": {
@@ -235,7 +221,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fuenlabrada, Spain"
    },
    "WiSydnor": {

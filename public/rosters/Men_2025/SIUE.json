@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aalst, Belgium"
    },
    "HaAlexander": {
@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Madison, MS"
    },
    "IwBaganc": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Poznan, Poland"
    },
    "CjHall": {
@@ -52,7 +52,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Killeen, TX"
    },
    "ArSakenis": {
@@ -66,7 +66,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tinley Park, IL",
       "role": "C"
    },
@@ -81,8 +81,8 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Twic, South Sudan",
+      "gp": 1,
+      "origin": "Juba, South Sudan",
       "role": "S-PF"
    },
    "JaCampion": {
@@ -96,7 +96,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milton, WI",
       "role": "PG"
    },
@@ -122,7 +122,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "JoPickett": {
@@ -136,7 +136,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belleville, IL",
       "role": "CG"
    },
@@ -165,7 +165,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX"
    },
    "DaRobinson": {
@@ -179,7 +179,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "CG"
    },
@@ -194,7 +194,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO"
    },
    "MyThompson": {
@@ -223,7 +223,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bolingbrook, IL",
       "role": "C"
    }

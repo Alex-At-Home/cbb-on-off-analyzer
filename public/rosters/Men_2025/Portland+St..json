@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA"
    },
    "KeKensie": {
@@ -24,7 +24,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "WG"
    },
@@ -39,7 +39,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tigard, OR"
    },
    "KeWebb": {
@@ -68,7 +68,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carson, CA",
       "role": "CG"
    },
@@ -83,7 +83,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gilbert, AZ"
    },
    "JaHenderson": {
@@ -97,7 +97,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wichita, KS"
    },
    "TeMiller": {
@@ -111,7 +111,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fresno, CA"
    },
    "ChChukwu": {
@@ -164,7 +164,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gresham, OR"
    },
    "IsBrice": {
@@ -206,7 +206,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, GA"
    },
    "MoDowning-ri": {
@@ -220,7 +220,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lawrence, KS",
       "role": "PG"
    },
@@ -235,7 +235,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada",
       "role": "C"
    },

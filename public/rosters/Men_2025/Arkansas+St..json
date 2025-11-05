@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO",
       "role": "WG"
    },
@@ -25,7 +25,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "s-PG"
    },
@@ -37,10 +37,10 @@
       },
       "number": "22",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Morehead City, NC",
       "role": "S-PF"
    },
@@ -66,10 +66,10 @@
       },
       "number": "13",
       "pos": "F",
-      "height": "7-0",
-      "height_in": 84,
-      "year_class": "Fr",
-      "gp": 0,
+      "height": "7-3",
+      "height_in": 87,
+      "year_class": "So",
+      "gp": 1,
       "origin": "Conakry, Guinea",
       "role": "C"
    },
@@ -84,7 +84,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rochester, NY"
    },
    "ChJackson": {
@@ -98,7 +98,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN",
       "role": "CG"
    },
@@ -124,8 +124,8 @@
       },
       "number": "7",
       "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
+      "height": "6-9",
+      "height_in": 81,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Weston Lakes, TX"
@@ -138,10 +138,10 @@
       },
       "number": "3",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Parkland, FL"
    },
    "__coach__": {
@@ -163,8 +163,8 @@
       },
       "number": "21",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "So",
       "gp": 0,
       "origin": "Paris, France"
@@ -177,8 +177,8 @@
       },
       "number": "15",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Lithia Springs, GA"
@@ -194,7 +194,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, United Kingdom",
       "role": "C"
    },
@@ -209,7 +209,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "MaHayman": {
@@ -223,7 +223,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Delhi, LA",
       "role": "CG"
    }

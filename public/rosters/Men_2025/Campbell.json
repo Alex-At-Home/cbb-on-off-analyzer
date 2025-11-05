@@ -1,46 +1,60 @@
 {
-   "OmHarris": {
+   "MuKalambay": {
       "player_code_id": {
-         "code": "OmHarris",
-         "id": "Harris, Omar",
-         "ncaa_id": "5175796"
+         "code": "MuKalambay",
+         "id": "Kalambay, Mutombo",
+         "ncaa_id": "5176779"
       },
-      "number": "11",
+      "number": "5",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-6",
+      "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Plymouth, NC",
-      "role": "WG"
+      "gp": 1,
+      "origin": "Gatineau, Canada"
    },
-   "CoDuggan": {
+   "ChFields": {
       "player_code_id": {
-         "code": "CoDuggan",
-         "id": "Duggan, Colby",
-         "ncaa_id": "4711262"
+         "code": "ChFields",
+         "id": "Fields Jr., Chris",
+         "ncaa_id": "5176752"
       },
-      "number": "2",
+      "number": "0",
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Monson, MA"
+      "gp": 1,
+      "origin": "Petersburg, VA",
+      "role": "PF/C"
    },
-   "JaLawton": {
+   "KlAmir": {
       "player_code_id": {
-         "code": "JaLawton",
-         "id": "Lawton, Jacob",
+         "code": "KlAmir",
+         "id": "Amir, Klairus",
          "ncaa_id": "5312138"
       },
       "number": "10",
       "pos": "G",
-      "height": "5-6",
-      "height_in": 66,
-      "year_class": "So",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Sydney, Australia"
+      "origin": "Glendale, AZ"
+   },
+   "DaMarcellinu": {
+      "player_code_id": {
+         "code": "DaMarcellinu",
+         "id": "Marcellinus, Daniel",
+         "ncaa_id": "5312139"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Long Branch, NJ"
    },
    "CaGregory": {
       "player_code_id": {
@@ -53,9 +67,24 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Accokeek, MD",
       "role": "CG"
+   },
+   "MuNewton": {
+      "player_code_id": {
+         "code": "MuNewton",
+         "id": "Newton, Muneer",
+         "ncaa_id": "5175796"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Philadelphia, PA",
+      "role": "C"
    },
    "__coach__": {
       "player_code_id": {
@@ -68,34 +97,62 @@
       "year_class": "",
       "gp": -1
    },
-   "WeJohnson": {
+   "BrBidwell": {
       "player_code_id": {
-         "code": "WeJohnson",
-         "id": "Johnson, Wesley",
-         "ncaa_id": "9334810"
+         "code": "BrBidwell",
+         "id": "Bidwell, Broc",
+         "ncaa_id": "4782965"
       },
-      "number": "24",
-      "pos": "C",
-      "height": "7-0",
-      "height_in": 84,
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Raleigh, NC"
+      "origin": "Cumming, GA"
    },
-   "BrGudmundsso": {
+   "DoButka": {
       "player_code_id": {
-         "code": "BrGudmundsso",
-         "id": "Gudmundsson, Bragi",
-         "ncaa_id": "9334803"
+         "code": "DoButka",
+         "id": "Butka, Dovydas",
+         "ncaa_id": "5240935"
       },
-      "number": "6",
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Panevezys, Republic of Lithuania",
+      "role": "WF"
+   },
+   "JeWilliamson": {
+      "player_code_id": {
+         "code": "JeWilliamson",
+         "id": "Williamson-Johnson, Jeremiah",
+         "ncaa_id": "4711262"
+      },
+      "number": "2",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Grindavik, Iceland",
-      "role": "WG"
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Oklahoma City, OK"
+   },
+   "DjSmith": {
+      "player_code_id": {
+         "code": "DjSmith",
+         "id": "Smith, D.J.",
+         "ncaa_id": "4897215"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "North Little Rock, AR"
    },
    "IsYaw": {
       "player_code_id": {
@@ -111,5 +168,33 @@
       "gp": 0,
       "origin": "Georgetown, Guyana",
       "role": "WF"
+   },
+   "DsButka": {
+      "player_code_id": {
+         "code": "DsButka",
+         "id": "Butka, Dominykas",
+         "ncaa_id": "11197446"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Panevezys, Republic of Lithuania"
+   },
+   "TaCook": {
+      "player_code_id": {
+         "code": "TaCook",
+         "id": "Cook, Tasos",
+         "ncaa_id": "4897617"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Westerville, OH"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN",
       "role": "C"
    },
@@ -25,7 +25,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hoover, AL",
       "role": "WG"
    },
@@ -40,7 +40,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Porto Alegre, Brazil"
    },
    "StVaBussel": {
@@ -54,7 +54,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ommel, Netherlands"
    },
    "JoHugley": {
@@ -68,7 +68,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland, OH",
       "role": "S-PF"
    },
@@ -83,7 +83,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Solon, OH",
       "role": "CG"
    },
@@ -98,7 +98,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tampa, FL",
       "role": "CG"
    },
@@ -113,7 +113,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stratford, CT",
       "role": "WG"
    },
@@ -128,7 +128,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA"
    },
    "ArLawson": {
@@ -156,7 +156,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Holland, PA"
    },
    "LaMilosevic": {
@@ -170,7 +170,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bileca, Republika Srpska, Serbia"
    },
    "JaDimichele": {
@@ -213,7 +213,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "__coach__": {
@@ -238,7 +238,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dayton, OH",
       "role": "WF"
    },
@@ -253,7 +253,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, OH"
    },
    "JaNecas": {
@@ -262,12 +262,12 @@
          "id": "Necas, Jakub",
          "ncaa_id": "5311858"
       },
-      "number": "7",
+      "number": "9",
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Blansko, Czechia",
       "role": "S-PF"
    }

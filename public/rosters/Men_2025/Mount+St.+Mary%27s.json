@@ -1,4 +1,18 @@
 {
+   "JuMay": {
+      "player_code_id": {
+         "code": "JuMay",
+         "id": "May, Justin",
+         "ncaa_id": "5314336"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Little Rock, AR"
+   },
    "JaHartman": {
       "player_code_id": {
          "code": "JaHartman",
@@ -13,33 +27,47 @@
       "gp": 0,
       "origin": "Staunton, VA"
    },
-   "JoOgunfuye": {
+   "NoRogers": {
       "player_code_id": {
-         "code": "JoOgunfuye",
-         "id": "Ogunfuye, Jonathan",
-         "ncaa_id": "5314335"
+         "code": "NoRogers",
+         "id": "Rogers, Noah",
+         "ncaa_id": "11200159"
       },
-      "number": "3",
-      "pos": "F",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Houston, TX"
-   },
-   "TrWilson": {
-      "player_code_id": {
-         "code": "TrWilson",
-         "id": "Wilson, Trey",
-         "ncaa_id": "5243013"
-      },
-      "number": "12",
+      "number": "22",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-1",
+      "height_in": 73,
       "year_class": "So",
       "gp": 0,
-      "origin": "Miramar, FL"
+      "origin": "Waldorf, MD"
+   },
+   "XaLipscomb": {
+      "player_code_id": {
+         "code": "XaLipscomb",
+         "id": "Lipscomb, Xavier",
+         "ncaa_id": "4702218"
+      },
+      "number": "45",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Washington, DC"
+   },
+   "MaSo": {
+      "player_code_id": {
+         "code": "MaSo",
+         "id": "So, Mason",
+         "ncaa_id": "5176220"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Burke, VA"
    },
    "PaHaigh": {
       "player_code_id": {
@@ -52,8 +80,23 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Altoona, PA"
+   },
+   "AnArrington": {
+      "player_code_id": {
+         "code": "AnArrington",
+         "id": "Arrington, Anthony",
+         "ncaa_id": "5107325"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "WG"
    },
    "AbKhadreKebe": {
       "player_code_id": {
@@ -70,6 +113,35 @@
       "origin": "Dakar, Senegal",
       "role": "WF"
    },
+   "JuAmadi": {
+      "player_code_id": {
+         "code": "JuAmadi",
+         "id": "Amadi, Justin",
+         "ncaa_id": "4702765"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Greenville, SC",
+      "role": "PF/C"
+   },
+   "JoMiller": {
+      "player_code_id": {
+         "code": "JoMiller",
+         "id": "Miller IV, John",
+         "ncaa_id": "5314335"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Eldersburg, MD"
+   },
    "__coach__": {
       "player_code_id": {
          "code": "__coach__",
@@ -80,6 +152,21 @@
       "height": "",
       "year_class": "",
       "gp": -1
+   },
+   "TrDeveaux": {
+      "player_code_id": {
+         "code": "TrDeveaux",
+         "id": "Deveaux, Trey",
+         "ncaa_id": "5243013"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Lincoln, NE",
+      "role": "WF"
    },
    "ArKeyes": {
       "player_code_id": {
@@ -96,6 +183,34 @@
       "origin": "Florissant, MO",
       "role": "CG"
    },
+   "YaDiop": {
+      "player_code_id": {
+         "code": "YaDiop",
+         "id": "Diop, Yakhya",
+         "ncaa_id": "5314337"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Dakar, Senegal"
+   },
+   "LuMceldon": {
+      "player_code_id": {
+         "code": "LuMceldon",
+         "id": "McEldon, Luke",
+         "ncaa_id": "5176362"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "London, United Kingdom"
+   },
    "ElEspinosa": {
       "player_code_id": {
          "code": "ElEspinosa",
@@ -106,8 +221,22 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Etters, PA"
+   },
+   "AnRozakeas": {
+      "player_code_id": {
+         "code": "AnRozakeas",
+         "id": "Rozakeas, Anastasios",
+         "ncaa_id": "5238163"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Athens, Greece"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Enugu, Nigeria",
       "role": "C"
    },
@@ -25,7 +25,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Colts Neck, NJ"
    },
    "KaCatchings": {
@@ -39,7 +39,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brownsburg, IN",
       "role": "WF"
    },
@@ -54,7 +54,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chesapeake, VA",
       "role": "C"
    },
@@ -69,7 +69,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Coconut Creek, FL",
       "role": "C"
    },
@@ -84,7 +84,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Destin, FL"
    },
    "__coach__": {
@@ -109,7 +109,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Winter Haven, FL",
       "role": "WF"
    },
@@ -123,8 +123,8 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Greer, SC",
       "role": "CG"
    },
@@ -139,7 +139,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Powder Springs, GA",
       "role": "CG"
    },
@@ -154,7 +154,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lilburn, GA",
       "role": "WF"
    },
@@ -169,7 +169,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knoxville, TN",
       "role": "WG"
    },
@@ -184,7 +184,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pleasant Grove, UT",
       "role": "CG"
    },
@@ -227,7 +227,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "s-PG"
    }

@@ -39,7 +39,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Katy, TX"
    },
    "RiMulvey": {
@@ -53,7 +53,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rotterdam, NY"
    },
    "TaJones": {
@@ -96,7 +96,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wilkes Barre Township, PA",
       "role": "s-PG"
    },
@@ -111,7 +111,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lanham, MD"
    },
    "__coach__": {
@@ -133,10 +133,10 @@
       },
       "number": "1",
       "pos": "F",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-6",
+      "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Painted Post, NY"
    },
    "ChTorres": {
@@ -164,7 +164,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fulton, NY",
       "role": "WG"
    },
@@ -179,7 +179,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mechanicsburg, PA"
    },
    "BrCoyle": {
@@ -193,7 +193,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Niskayuna, NY",
       "role": "WF"
    },
@@ -205,8 +205,8 @@
       },
       "number": "24",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "So",
       "gp": 0,
       "origin": "Lake George, NY"
@@ -222,7 +222,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amsterdam, NY",
       "role": "WG"
    },
@@ -237,7 +237,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sydney, Australia"
    },
    "AnChandler": {
@@ -251,7 +251,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Piscataway, NJ"
    }
 }

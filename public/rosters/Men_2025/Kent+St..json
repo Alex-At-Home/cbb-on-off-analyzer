@@ -7,9 +7,10 @@
       },
       "number": "54",
       "pos": "G",
-      "height": "-",
+      "height": "6-2",
+      "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rishon Lzion, Israel"
    },
    "RoWhaley": {
@@ -18,14 +19,28 @@
          "id": "Whaley Jr., Rob",
          "ncaa_id": "5176262"
       },
-      "number": "5",
+      "number": "2",
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Farmington, UT",
       "role": "PF/C"
+   },
+   "MoSafford": {
+      "player_code_id": {
+         "code": "MoSafford",
+         "id": "Safford, Morgan",
+         "ncaa_id": "4593739"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Columbus, OH"
    },
    "LaVanderwark": {
       "player_code_id": {
@@ -35,7 +50,8 @@
       },
       "number": "7",
       "pos": "F",
-      "height": "-",
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Delaware, OH"
@@ -47,11 +63,11 @@
          "ncaa_id": "5176400"
       },
       "number": "25",
-      "pos": "",
+      "pos": "G",
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pickering, Canada",
       "role": "WG"
    },
@@ -66,36 +82,8 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, OH"
-   },
-   "DeLee": {
-      "player_code_id": {
-         "code": "DeLee",
-         "id": "Lee Jr., Derrick",
-         "ncaa_id": "9331823"
-      },
-      "number": "41",
-      "pos": "F",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Novi, MI"
-   },
-   "JaPennicott": {
-      "player_code_id": {
-         "code": "JaPennicott",
-         "id": "Pennicott, Jaiden",
-         "ncaa_id": "9331821"
-      },
-      "number": "31",
-      "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Ajax, Canada"
    },
    "BrMoss": {
       "player_code_id": {
@@ -119,24 +107,11 @@
       },
       "number": "22",
       "pos": "F",
-      "height": "-",
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Marion, IN"
-   },
-   "JoNichols": {
-      "player_code_id": {
-         "code": "JoNichols",
-         "id": "Nichols, Jonas",
-         "ncaa_id": "9331825"
-      },
-      "number": "0",
-      "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Akron, OH"
    },
    "__coach__": {
       "player_code_id": {
@@ -175,7 +150,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Benton Harbor, MI",
       "role": "PF/C"
    },
@@ -185,14 +160,28 @@
          "id": "Medley, Cian",
          "ncaa_id": "5174637"
       },
-      "number": "11",
+      "number": "1",
       "pos": "G",
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sicklerville, NJ",
       "role": "s-PG"
+   },
+   "DyLakatos": {
+      "player_code_id": {
+         "code": "DyLakatos",
+         "id": "Lakatos, Dylan",
+         "ncaa_id": "5315165"
+      },
+      "number": "32",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Broadview Hts, OH"
    },
    "DeBriscoe": {
       "player_code_id": {
@@ -202,9 +191,10 @@
       },
       "number": "11",
       "pos": "C",
-      "height": "-",
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN"
    },
    "QuWoidke": {
@@ -215,9 +205,10 @@
       },
       "number": "6",
       "pos": "G",
-      "height": "-",
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Avon, OH"
    },
    "DrHuffman": {
@@ -259,7 +250,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH"
    }
 }

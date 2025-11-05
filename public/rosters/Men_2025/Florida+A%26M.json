@@ -1,32 +1,59 @@
 {
-   "JaCharles": {
+   "AnKnowles": {
       "player_code_id": {
-         "code": "JaCharles",
-         "id": "Charles, Jamine",
-         "ncaa_id": "9336084"
+         "code": "AnKnowles",
+         "id": "Knowles, Anthony",
+         "ncaa_id": "5313444"
       },
-      "number": "20",
-      "pos": "F",
-      "height": "6-11",
-      "height_in": 83,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "St John's, Antigua and Barbuda",
-      "role": "C"
+      "number": "12",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Fort Lauderdale, FL"
    },
-   "RoCoffee": {
+   "AmRahman": {
       "player_code_id": {
-         "code": "RoCoffee",
-         "id": "Coffee III, Roderick",
-         "ncaa_id": "9336079"
+         "code": "AmRahman",
+         "id": "Rahman, Amir",
+         "ncaa_id": "11200142"
       },
-      "number": "1",
-      "pos": "F",
+      "number": "8",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Brentwood, TN"
+   },
+   "JaSanders": {
+      "player_code_id": {
+         "code": "JaSanders",
+         "id": "Sanders, Jaquan",
+         "ncaa_id": "5105593"
+      },
+      "number": "3",
+      "pos": "G",
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
+      "gp": 1,
+      "origin": "Far Rockaway, NY"
+   },
+   "MiNdalama": {
+      "player_code_id": {
+         "code": "MiNdalama",
+         "id": "Ndalama, Miles",
+         "ncaa_id": "5313446"
+      },
+      "number": "34",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Painesville, OH"
+      "origin": "Ndola, Zambia"
    },
    "KaWashington": {
       "player_code_id": {
@@ -39,9 +66,24 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mableton, GA",
       "role": "WF"
+   },
+   "AnBoldin": {
+      "player_code_id": {
+         "code": "AnBoldin",
+         "id": "Boldin Jr., Anquan",
+         "ncaa_id": "5177189"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Delray Beach, FL",
+      "role": "WG"
    },
    "__coach__": {
       "player_code_id": {
@@ -64,37 +106,52 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Alexandria, VA"
    },
-   "MiHall": {
+   "DePalmer": {
       "player_code_id": {
-         "code": "MiHall",
-         "id": "Hall, Miles",
-         "ncaa_id": "5313444"
+         "code": "DePalmer",
+         "id": "Palmer, Devere",
+         "ncaa_id": "5313445"
       },
-      "number": "12",
+      "number": "13",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
-      "year_class": "Sr",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Windermere, FL"
+      "origin": "Corona, NY"
    },
-   "SaBurnside": {
+   "TyShirley": {
       "player_code_id": {
-         "code": "SaBurnside",
-         "id": "Burnside, Saiyd",
-         "ncaa_id": "9336081"
+         "code": "TyShirley",
+         "id": "Shirley, Tyler",
+         "ncaa_id": "4897175"
       },
-      "number": "35",
+      "number": "22",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Gary, IN"
+   },
+   "MiOctave": {
+      "player_code_id": {
+         "code": "MiOctave",
+         "id": "Octave, Micah",
+         "ncaa_id": "5177530"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Greenville, SC"
+      "gp": 1,
+      "origin": "Boca Raton, FL",
+      "role": "WG"
    },
    "LeTaylor": {
       "player_code_id": {
@@ -107,7 +164,22 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD"
+   },
+   "JoChatman": {
+      "player_code_id": {
+         "code": "JoChatman",
+         "id": "Chatman, Jordan",
+         "ncaa_id": "5107408"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Bessemer, AL",
+      "role": "WG"
    }
 }

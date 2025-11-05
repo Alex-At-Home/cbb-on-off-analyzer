@@ -1,4 +1,18 @@
 {
+   "JaGlover-tos": {
+      "player_code_id": {
+         "code": "JaGlover-tos",
+         "id": "Glover-Toscano, Jaiden",
+         "ncaa_id": "5142608"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Brooklyn, NY"
+   },
    "OwVerna": {
       "player_code_id": {
          "code": "OwVerna",
@@ -38,7 +52,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Laurel, NJ",
       "role": "CG"
    },
@@ -53,7 +67,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "StSolano": {
@@ -67,7 +81,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY"
    },
    "__coach__": {
@@ -92,7 +106,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Benin City, Nigeria"
    },
    "AuWilliford": {
@@ -106,7 +120,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlottesville, VA"
    },
    "AlAmadou": {
@@ -120,7 +134,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "KeKearney": {
@@ -134,7 +148,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY"
    },
    "MeJohnson": {
@@ -148,7 +162,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Upper Marlboro, MD"
    },
    "WiLange": {
@@ -176,7 +190,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "DaHaskins": {
@@ -190,7 +204,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Willingboro, NJ",
       "role": "WF"
    },
@@ -205,24 +219,9 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Trenton, NJ",
       "role": "CG"
-   },
-   "JaGlover": {
-      "player_code_id": {
-         "code": "JaGlover",
-         "id": "Glover, Jaiden",
-         "ncaa_id": "5142608"
-      },
-      "number": "11",
-      "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Brooklyn, NY",
-      "role": "WG"
    },
    "AnFinkley": {
       "player_code_id": {
@@ -235,7 +234,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "WF"
    }

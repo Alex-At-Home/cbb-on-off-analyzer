@@ -24,7 +24,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Winston Salem, NC"
    },
    "LaFelton": {
@@ -52,7 +52,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Potomac, MD",
       "role": "PG"
    },
@@ -67,7 +67,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brentwood, NY"
    },
    "LuDavis": {
@@ -106,7 +106,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New York, NY",
       "role": "WG"
    },
@@ -121,7 +121,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Shipman, VA"
    },
    "TrLabeaux": {
@@ -150,7 +150,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sterling, VA"
    },
    "ReCason": {
@@ -164,7 +164,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kingston, OK"
    },
    "DaQuinn": {
@@ -192,7 +192,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chattanooga, TN"
    },
    "GiEmejuru": {
@@ -206,7 +206,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Leicester, United Kingdom",
       "role": "C"
    },

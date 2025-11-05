@@ -10,7 +10,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Willingboro, NJ",
       "role": "CG"
    },
@@ -22,9 +22,10 @@
       },
       "number": "22",
       "pos": "G",
-      "height": "-",
+      "height": "6-6",
+      "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waldorf, MD"
    },
    "OmHamilton": {
@@ -38,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "WG"
    },
@@ -53,7 +54,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waldorf, MD",
       "role": "S-PF"
    },
@@ -65,24 +66,25 @@
       },
       "number": "10",
       "pos": "G",
-      "height": "-",
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Jr",
       "gp": 0,
       "origin": "Frederick, MD"
    },
-   "RaGlasgow": {
+   "WiHenderson": {
       "player_code_id": {
-         "code": "RaGlasgow",
-         "id": "Glasgow, Ray",
-         "ncaa_id": "5242993"
+         "code": "WiHenderson",
+         "id": "Henderson, William",
+         "ncaa_id": "11195111"
       },
-      "number": "11",
-      "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Bronx, NY"
+      "number": "6",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Richmond, VA"
    },
    "NiWoodard": {
       "player_code_id": {
@@ -95,7 +97,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oglethorpe, GA",
       "role": "WF"
    },
@@ -110,7 +112,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bowie, MD"
    },
    "__coach__": {
@@ -132,9 +134,10 @@
       },
       "number": "2",
       "pos": "F",
-      "height": "-",
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hamilton Township, NJ"
    },
    "BrCalamese": {
@@ -145,7 +148,8 @@
       },
       "number": "4",
       "pos": "G",
-      "height": "-",
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "Jr",
       "gp": 0,
       "origin": "Little Rock, AR"
@@ -161,7 +165,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, GA",
       "role": "WF"
    },
@@ -176,7 +180,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vicksburg, MS",
       "role": "CG"
    }

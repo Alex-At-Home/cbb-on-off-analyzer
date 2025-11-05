@@ -10,7 +10,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tralee, Ireland",
       "role": "C"
    },
@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, MS"
    },
    "KaUnseld": {
@@ -38,8 +38,8 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Bowling Green, KY"
    },
    "RyMyers": {
@@ -53,7 +53,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "CG"
    },
@@ -68,7 +68,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springfield, IL"
    },
    "TeMoore": {
@@ -81,8 +81,8 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "So",
+      "gp": 1,
       "origin": "Dry Ridge, KY",
       "role": "WG"
    },
@@ -97,7 +97,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bowling Green, KY"
    },
    "__coach__": {
@@ -122,7 +122,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "WF"
    },
@@ -137,7 +137,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lexington, KY"
    },
    "BlKeita": {
@@ -151,7 +151,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bamako, Mali"
    },
    "CaHaffner": {
@@ -165,7 +165,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Westfield, IN",
       "role": "WG"
    },
@@ -180,7 +180,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, KY",
       "role": "s-PG"
    },
@@ -194,8 +194,8 @@
       "pos": "F",
       "height": "7-0",
       "height_in": 84,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Monchy, Saint Lucia"
    },
    "BrSelebangue": {
@@ -209,8 +209,8 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "LaSalle, Canada",
+      "gp": 1,
+      "origin": "Montreal, Canada",
       "role": "C"
    },
    "GrNewell": {
@@ -224,7 +224,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WF"
    },

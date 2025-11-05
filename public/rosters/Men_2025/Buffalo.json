@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Walton Beach, FL"
    },
    "KyJones": {
@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Frisco, TX"
    },
    "NoBatchelor": {
@@ -38,7 +38,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Frederick, MD",
       "role": "WG"
    },
@@ -50,9 +50,10 @@
       },
       "number": "10",
       "pos": "G",
-      "height": "-",
+      "height": "5-10",
+      "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Arlington, TX"
    },
    "EvRomano": {
@@ -105,7 +106,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bloomington, MN"
    },
    "MiPocknett": {
@@ -119,7 +120,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wilmington, NC"
    },
    "OmMigues-hib": {
@@ -133,7 +134,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Quebec City, Canada"
    },
    "MaButeliausk": {
@@ -161,7 +162,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "CG"
    },
@@ -176,7 +177,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orpington, United Kingdom",
       "role": "PF/C"
    },
@@ -191,7 +192,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Warrenton, VA",
       "role": "CG"
    },

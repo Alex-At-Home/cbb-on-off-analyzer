@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN"
    },
    "DeRoyal": {
@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pickerington, OH",
       "role": "WF"
    },
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berlin, Germany"
    },
    "IvNjegovan": {
@@ -53,7 +53,7 @@
       "height": "7-1",
       "height_in": 85,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Otocac, Croatia"
    },
    "GaCupps": {
@@ -67,7 +67,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dayton, OH",
       "role": "CG"
    },
@@ -82,7 +82,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fairburn, GA",
       "role": "s-PG"
    },
@@ -108,7 +108,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Omaha, NE"
    },
    "CoWhite": {
@@ -122,7 +122,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ottawa, OH"
    },
    "BrNash": {
@@ -150,7 +150,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lucasville, OH",
       "role": "WF"
    },
@@ -165,7 +165,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Reynoldsburg, OH",
       "role": "CG"
    },
@@ -180,7 +180,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berlin, Germany",
       "role": "PF/C"
    },

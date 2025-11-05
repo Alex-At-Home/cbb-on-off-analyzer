@@ -1,31 +1,45 @@
 {
-   "KeShaw": {
+   "JaCooper": {
       "player_code_id": {
-         "code": "KeShaw",
-         "id": "Shaw, Ketron",
+         "code": "JaCooper",
+         "id": "Cooper, Jaden",
          "ncaa_id": "4898212"
       },
       "number": "0",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Charlotte, NC"
+      "gp": 1,
+      "origin": "Goldsboro, NC"
    },
-   "RaMartino": {
+   "JaThompson": {
       "player_code_id": {
-         "code": "RaMartino",
-         "id": "Martino Jr., Ralph",
-         "ncaa_id": "5314171"
+         "code": "JaThompson",
+         "id": "Thompson, Javoy",
+         "ncaa_id": "5176356"
       },
-      "number": "1",
+      "number": "11",
       "pos": "F",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "So",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Bronx, NY"
+   },
+   "DeThomas": {
+      "player_code_id": {
+         "code": "DeThomas",
+         "id": "Thomas, Devin",
+         "ncaa_id": "5314174"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Lanham, MD"
+      "origin": "Upper Marlboro, MD"
    },
    "__coach__": {
       "player_code_id": {
@@ -38,33 +52,90 @@
       "year_class": "",
       "gp": -1
    },
-   "JoCuello": {
+   "JoLocandro": {
       "player_code_id": {
-         "code": "JoCuello",
-         "id": "Cuello, Jose",
-         "ncaa_id": "5314174"
+         "code": "JoLocandro",
+         "id": "Locandro, Joseph",
+         "ncaa_id": "5314176"
       },
-      "number": "10",
+      "number": "14",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Melbourne, Australia"
+   },
+   "DoStaples": {
+      "player_code_id": {
+         "code": "DoStaples",
+         "id": "Staples, Dorion",
+         "ncaa_id": "5107653"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Fredericksbrg, VA"
+   },
+   "MiTeal": {
+      "player_code_id": {
+         "code": "MiTeal",
+         "id": "Teal, Michael",
+         "ncaa_id": "5179096"
+      },
+      "number": "4",
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Queens Village, NY"
+      "gp": 1,
+      "origin": "Alexandria, VA",
+      "role": "s-PG"
    },
-   "JaLee": {
+   "JaJohnson": {
       "player_code_id": {
-         "code": "JaLee",
-         "id": "Lee, Jaiden",
-         "ncaa_id": "5176356"
+         "code": "JaJohnson",
+         "id": "Johnson, Jaden",
+         "ncaa_id": "5314172"
       },
-      "number": "11",
+      "number": "2",
       "pos": "G",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "Sr",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Chicago, IL"
+      "origin": "Millersville, MD"
+   },
+   "ZiObanla": {
+      "player_code_id": {
+         "code": "ZiObanla",
+         "id": "Obanla, Zion",
+         "ncaa_id": "5314171"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Houston, TX"
+   },
+   "TrBrown": {
+      "player_code_id": {
+         "code": "TrBrown",
+         "id": "Brown, Trey",
+         "ncaa_id": "5314173"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Chandler, AZ"
    },
    "ChFlippin": {
       "player_code_id": {
@@ -77,20 +148,48 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Metairie, LA",
       "role": "C"
    },
-   "KyShaw": {
+   "JuMonden": {
       "player_code_id": {
-         "code": "KyShaw",
-         "id": "Shaw, Kyrell",
-         "ncaa_id": "5179096"
+         "code": "JuMonden",
+         "id": "Monden, Justin",
+         "ncaa_id": "5314175"
       },
-      "number": "4",
+      "number": "12",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Raleigh, NC"
+   },
+   "LeBeckwith": {
+      "player_code_id": {
+         "code": "LeBeckwith",
+         "id": "Beckwith, Levi",
+         "ncaa_id": "5314177"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Knightdale, NC"
+   },
+   "MaHanson": {
+      "player_code_id": {
+         "code": "MaHanson",
+         "id": "Hanson Jr., Maurio",
+         "ncaa_id": "5241693"
+      },
+      "number": "31",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "So",
       "gp": 0,
       "origin": "Charlotte, NC"
@@ -106,8 +205,22 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "C"
+   },
+   "TrHall": {
+      "player_code_id": {
+         "code": "TrHall",
+         "id": "Hall, Trey",
+         "ncaa_id": "4703893"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Willimantic, CT"
    }
 }

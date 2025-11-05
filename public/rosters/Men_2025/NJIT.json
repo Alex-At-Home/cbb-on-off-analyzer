@@ -25,7 +25,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI"
    },
    "RoAwad": {
@@ -39,7 +39,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belle River, Canada"
    },
    "JoKelly": {
@@ -53,7 +53,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hillsborough, NJ",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clarkston, MI"
    },
    "JeAkintolu": {
@@ -137,7 +137,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ridgewood, NJ",
       "role": "WF"
    },
@@ -152,7 +152,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ridgewood, NJ",
       "role": "CG"
    },
@@ -181,7 +181,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fayetteville, NC",
       "role": "WG"
    },
@@ -211,7 +211,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waterbury, CT"
    },
    "MaArrington": {
@@ -225,7 +225,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Somerville, NJ",
       "role": "C"
    }

@@ -10,7 +10,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greeneville, TN",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Paris, France"
    },
    "AmEvans": {
@@ -39,7 +39,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, AL",
       "role": "C"
    },
@@ -69,7 +69,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria",
       "role": "C"
    },
@@ -95,7 +95,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scarborough, ME"
    },
    "GaPaull": {
@@ -137,7 +137,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Southwest Ranches, FL",
       "role": "PF/C"
    },
@@ -149,10 +149,10 @@
       },
       "number": "6",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hoover, AL",
       "role": "C"
    },
@@ -167,7 +167,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "CG"
    },
@@ -182,7 +182,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA"
    },
    "NaAment": {
@@ -193,10 +193,10 @@
       },
       "number": "10",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-10",
+      "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Manassas, VA",
       "role": "S-PF"
    },
@@ -208,10 +208,10 @@
       },
       "number": "77",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Port Arthur, TX",
       "role": "WG"
    },
@@ -226,7 +226,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mishmar HaShiv`a, Israel"
    },
    "CaDuncan": {

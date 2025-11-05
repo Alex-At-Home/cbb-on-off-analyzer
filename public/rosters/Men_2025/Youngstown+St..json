@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Caldwell, ID"
    },
    "BrDawkins": {
@@ -24,7 +24,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dothan, AL",
       "role": "WF"
    },
@@ -39,7 +39,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA",
       "role": "s-PG"
    },
@@ -83,7 +83,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Centerville, OH",
       "role": "S-PF"
    },
@@ -98,7 +98,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tallahassee, FL",
       "role": "WF"
    },
@@ -113,7 +113,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Phoenix, AZ",
       "role": "CG"
    },
@@ -139,7 +139,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Paramaribo, Suriname",
       "role": "C"
    },
@@ -196,7 +196,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Homestead, PA"
    },
    "JaHaynes": {
@@ -224,7 +224,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waco, TX"
    }
 }

@@ -24,7 +24,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Luanda, Angola"
    },
    "DoLangford": {
@@ -38,7 +38,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dangriga, Belize"
    },
    "MaOverstreet": {
@@ -95,7 +95,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Gatos, CA"
    },
    "__coach__": {
@@ -120,7 +120,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Clemens, MI",
       "role": "WG"
    },
@@ -135,7 +135,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hemet, CA",
       "role": "WG"
    },
@@ -150,7 +150,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stephens City, VA"
    },
    "JaMoupadele": {
@@ -178,7 +178,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "YaMoundi": {
@@ -192,7 +192,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Paris, France",
       "role": "C"
    },
@@ -221,7 +221,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sacramento, CA"
    },
    "CoGarland": {
@@ -235,7 +235,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Magnolia, AR",
       "role": "s-PG"
    }

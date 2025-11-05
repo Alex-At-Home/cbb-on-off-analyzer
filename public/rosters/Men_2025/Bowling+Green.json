@@ -1,4 +1,18 @@
 {
+   "ChDedivanaj": {
+      "player_code_id": {
+         "code": "ChDedivanaj",
+         "id": "Dedivanaj, Christian",
+         "ncaa_id": "5312970"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Flint, MI"
+   },
    "TrGlover": {
       "player_code_id": {
          "code": "TrGlover",
@@ -10,13 +24,13 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wheaton, IL"
    },
    "AiGoins": {
       "player_code_id": {
          "code": "AiGoins",
-         "id": "Goins, Aidenn",
+         "id": "Goins, Aiden",
          "ncaa_id": "5312972"
       },
       "number": "34",
@@ -24,7 +38,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knoxville, TN"
    },
    "GrSpurgin": {
@@ -52,7 +66,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baton Rouge, LA",
       "role": "CG"
    },
@@ -67,7 +81,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sanford, FL"
    },
    "CaKarel": {
@@ -81,7 +95,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Byron Center, MI"
    },
    "__coach__": {
@@ -106,7 +120,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Muskogee, OK",
       "role": "s-PG"
    },
@@ -135,7 +149,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, OH"
    },
    "PrSquire": {
@@ -163,8 +177,22 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV"
+   },
+   "MaWol": {
+      "player_code_id": {
+         "code": "MaWol",
+         "id": "Wol, Mayar",
+         "ncaa_id": "5102799"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Raleigh, NC"
    },
    "MoMaxamud": {
       "player_code_id": {
@@ -177,7 +205,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Westerville, OH"
    },
    "JaRuffin": {
@@ -191,7 +219,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Phoenix, AZ",
       "role": "CG"
    },
@@ -206,7 +234,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toledo, OH"
    },
    "JaKimbrough": {
@@ -220,7 +248,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Maricopa, AZ"
    }
 }

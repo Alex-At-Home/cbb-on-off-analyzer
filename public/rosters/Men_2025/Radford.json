@@ -38,7 +38,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knoxville, TN",
       "role": "CG"
    },
@@ -68,7 +68,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Va Beach, VA",
       "role": "C"
    },
@@ -108,7 +108,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA",
       "role": "WF"
    },
@@ -123,7 +123,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "WG"
    },
@@ -138,7 +138,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kongens Lyngby, Denmark"
    },
    "GaFerreira": {
@@ -152,7 +152,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Jose, Brazil"
    },
    "JaJohnson": {
@@ -166,7 +166,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "s-PG"
    },
@@ -181,7 +181,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "De Beque, CO",
       "role": "WG"
    },
@@ -196,7 +196,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Leicester, United Kingdom",
       "role": "S-PF"
    },
@@ -211,7 +211,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Landover, MD",
       "role": "CG"
    }

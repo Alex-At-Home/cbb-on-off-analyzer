@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lazarevac, Serbia"
    },
    "SeHaubro": {
@@ -24,7 +24,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Herlev, Denmark"
    },
    "JoFrancis": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scarborough, Canada"
    },
    "RaJohnson": {
@@ -66,7 +66,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, FL"
    },
    "__coach__": {
@@ -91,7 +91,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Denver, CO",
       "role": "WF"
    },
@@ -149,7 +149,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fayetteville, AR"
    },
    "CyMartynov": {
@@ -163,7 +163,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Barrie, Canada",
       "role": "C"
    },
@@ -192,7 +192,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mississauga, Canada"
    },
    "JoNiesman": {
@@ -206,7 +206,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oswego, IL"
    },
    "TyMcquaid": {
@@ -234,7 +234,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Albany, NY"
    }
 }

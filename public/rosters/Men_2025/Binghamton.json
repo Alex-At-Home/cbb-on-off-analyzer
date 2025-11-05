@@ -10,7 +10,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "East Hampton, CT"
    },
    "JaLemond": {
@@ -39,7 +39,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hollywood, FL"
    },
    "ZyBeverly": {
@@ -53,7 +53,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Spring, TX"
    },
    "JaBlackburn": {
@@ -121,7 +121,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Douglassville, PA"
    },
    "NeIbroci": {
@@ -144,12 +144,12 @@
          "id": "Snagg, Stephan",
          "ncaa_id": "5174814"
       },
-      "number": "15",
+      "number": "13",
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY"
    },
    "JeQuigley": {
@@ -163,7 +163,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Accokeek, MD",
       "role": "s-PG"
    },
@@ -178,7 +178,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "S-PF"
    },
@@ -193,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alexandria, VA",
       "role": "WG"
    },
@@ -208,7 +208,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Arlington, VA"
    }
 }

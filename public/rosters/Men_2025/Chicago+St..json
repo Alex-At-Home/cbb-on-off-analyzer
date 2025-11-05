@@ -1,17 +1,59 @@
 {
-   "TeCole": {
+   "CoSands": {
       "player_code_id": {
-         "code": "TeCole",
-         "id": "Cole, Tehshaundre",
-         "ncaa_id": "9334861"
+         "code": "CoSands",
+         "id": "Sands, Corey",
+         "ncaa_id": "5191591"
       },
-      "number": "24",
-      "pos": "F",
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Nassau, Bahamas"
+   },
+   "DaThomas": {
+      "player_code_id": {
+         "code": "DaThomas",
+         "id": "Thomas, Dakari",
+         "ncaa_id": "5243191"
+      },
+      "number": "25",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Amityville, NY"
+   },
+   "DoCockrill": {
+      "player_code_id": {
+         "code": "DoCockrill",
+         "id": "Cockrill III, Doyel",
+         "ncaa_id": "5247705"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Old Hickory, TN"
+   },
+   "CjRay": {
+      "player_code_id": {
+         "code": "CjRay",
+         "id": "Ray, CJ",
+         "ncaa_id": "5313922"
+      },
+      "number": "23",
+      "pos": "G",
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Toronto, Canada"
+      "gp": 1,
+      "origin": "Four Oaks, NC"
    },
    "CjDelancy": {
       "player_code_id": {
@@ -28,33 +70,76 @@
       "origin": "Jonesboro, AR",
       "role": "C"
    },
-   "GeJones": {
+   "DaBates": {
       "player_code_id": {
-         "code": "GeJones",
-         "id": "Jones III, Gerald",
-         "ncaa_id": "9334865"
+         "code": "DaBates",
+         "id": "Bates, DaJuan",
+         "ncaa_id": "5110433"
       },
-      "number": "32",
-      "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
-      "year_class": "Sr",
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Wolfeboro, NH"
+      "origin": "Chicago, IL"
+   },
+   "LiLarvadain": {
+      "player_code_id": {
+         "code": "LiLarvadain",
+         "id": "Larvadain, Lionel",
+         "ncaa_id": "5313921"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Waggaman, LA"
+   },
+   "ChGibson": {
+      "player_code_id": {
+         "code": "ChGibson",
+         "id": "Gibson, Chauncey",
+         "ncaa_id": "5105446"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "MaTankersley": {
+      "player_code_id": {
+         "code": "MaTankersley",
+         "id": "Tankersley, Marcus",
+         "ncaa_id": "5106744"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Chattanooga, TN",
+      "role": "WG"
    },
    "MaRobinson": {
       "player_code_id": {
          "code": "MaRobinson",
-         "id": "Robinson, Matthew",
-         "ncaa_id": "5191591"
+         "id": "Robinson, Malek",
+         "ncaa_id": "5313920"
       },
-      "number": "10",
+      "number": "9",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Miramar, FL"
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Baton Rouge, LA"
    },
    "__coach__": {
       "player_code_id": {
@@ -81,49 +166,61 @@
       "gp": 0,
       "origin": "Coral Springs, FL"
    },
-   "SaSunderland": {
+   "JoOwens": {
       "player_code_id": {
-         "code": "SaSunderland",
-         "id": "Sunderland, Saxby",
-         "ncaa_id": "5106744"
+         "code": "JoOwens",
+         "id": "Owens, Joseph",
+         "ncaa_id": "5180772"
       },
-      "number": "4",
+      "number": "15",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Dekalb, IL"
+   },
+   "BrBush": {
+      "player_code_id": {
+         "code": "BrBush",
+         "id": "Bush, Braelon",
+         "ncaa_id": "4703637"
+      },
+      "number": "21",
       "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Silsbee, TX"
+   },
+   "StByard": {
+      "player_code_id": {
+         "code": "StByard",
+         "id": "Byard, Stephen",
+         "ncaa_id": "5313919"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Atlantic City, NJ"
+   },
+   "DaZatsepin": {
+      "player_code_id": {
+         "code": "DaZatsepin",
+         "id": "Zatsepin, Daniel",
+         "ncaa_id": "5313918"
+      },
+      "number": "6",
+      "pos": "F",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Arlington, VA"
-   },
-   "NoCrawford": {
-      "player_code_id": {
-         "code": "NoCrawford",
-         "id": "Crawford, Noble",
-         "ncaa_id": "5313921"
-      },
-      "number": "11",
-      "pos": "F",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Orlando, FL",
-      "role": "WF"
-   },
-   "TrMckoy": {
-      "player_code_id": {
-         "code": "TrMckoy",
-         "id": "McKoy, Jr., Troy",
-         "ncaa_id": "9334866"
-      },
-      "number": "1",
-      "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Windsor, CT",
-      "role": "WG"
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Moscow, Russia"
    },
    "DeJean-charl": {
       "player_code_id": {
@@ -131,7 +228,7 @@
          "id": "Jean-Charles, Deshawn",
          "ncaa_id": "5109770"
       },
-      "number": "2",
+      "number": "1",
       "pos": "G",
       "height": "6-7",
       "height_in": 79,
@@ -140,18 +237,18 @@
       "origin": "Miami, FL",
       "role": "WG"
    },
-   "JoSpinelli": {
+   "DaCox": {
       "player_code_id": {
-         "code": "JoSpinelli",
-         "id": "Spinelli, Joe",
-         "ncaa_id": "5247705"
+         "code": "DaCox",
+         "id": "Cox, Dailliss",
+         "ncaa_id": "5241708"
       },
-      "number": "3",
-      "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
+      "number": "22",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Watertown, MA"
+      "gp": 1,
+      "origin": "Louisville, KY"
    }
 }

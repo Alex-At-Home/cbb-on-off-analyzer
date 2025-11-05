@@ -7,10 +7,10 @@
       },
       "number": "21",
       "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
+      "height": "6-10",
+      "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Trogir, Croatia",
       "role": "C"
    },
@@ -36,10 +36,10 @@
       },
       "number": "14",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-6",
+      "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Union, KY"
    },
    "NaBarrantes": {
@@ -50,8 +50,8 @@
       },
       "number": "4",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-10",
+      "height_in": 82,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Des Moines, IA"
@@ -64,11 +64,11 @@
       },
       "number": "1",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
-      "origin": "Buford, GA"
+      "gp": 1,
+      "origin": "Atlanta, GA"
    },
    "MeLowery": {
       "player_code_id": {
@@ -81,7 +81,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bellwood, IL",
       "role": "WF"
    },
@@ -96,7 +96,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dublin, GA"
    },
    "__coach__": {
@@ -118,10 +118,10 @@
       },
       "number": "7",
       "pos": "F",
-      "height": "6-7",
-      "height_in": 79,
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carteret, NJ",
       "role": "C"
    },
@@ -133,10 +133,10 @@
       },
       "number": "0",
       "pos": "G",
-      "height": "5-9",
-      "height_in": 69,
+      "height": "5-10",
+      "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "s-PG"
    },
@@ -148,10 +148,10 @@
       },
       "number": "27",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-2",
+      "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Flossmoor, IL"
    },
    "ElCrawford": {
@@ -162,10 +162,10 @@
       },
       "number": "2",
       "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Augusta, GA",
       "role": "PG"
    },
@@ -180,7 +180,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WG"
    },
@@ -195,7 +195,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Glencoe, IL",
       "role": "WG"
    },
@@ -222,8 +222,8 @@
       },
       "number": "3",
       "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
+      "height": "6-1",
+      "height_in": 73,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Chicago, IL"

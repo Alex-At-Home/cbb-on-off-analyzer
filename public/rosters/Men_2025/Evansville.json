@@ -52,7 +52,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pinetops, NC",
       "role": "WG"
    },
@@ -67,7 +67,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newburgh, IN"
    },
    "JoHughes": {
@@ -81,7 +81,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brisbane, Australia",
       "role": "S-PF"
    },
@@ -96,7 +96,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sydney, Australia"
    },
    "TrHundley": {
@@ -110,7 +110,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Orab, OH"
    },
    "__coach__": {
@@ -135,7 +135,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WF"
    },
@@ -150,7 +150,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scottsdale, AZ"
    },
    "MaBarnes": {
@@ -173,7 +173,7 @@
          "id": "Turnbull, Connor",
          "ncaa_id": "4888885"
       },
-      "number": "21",
+      "number": "22",
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
@@ -193,7 +193,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Whangarei, New Zealand",
       "role": "WG"
    },
@@ -222,7 +222,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wedel, Germany"
    }
 }

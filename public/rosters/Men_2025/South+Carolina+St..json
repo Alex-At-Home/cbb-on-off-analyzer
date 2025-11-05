@@ -1,8 +1,64 @@
 {
-   "D'Wright": {
+   "CaClark": {
       "player_code_id": {
-         "code": "D'Wright",
-         "id": "Wright, D'Shay",
+         "code": "CaClark",
+         "id": "Clark, Cameron",
+         "ncaa_id": "11202970"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": ""
+   },
+   "RaWright": {
+      "player_code_id": {
+         "code": "RaWright",
+         "id": "Wright, Rayniel",
+         "ncaa_id": "11202987"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": ""
+   },
+   "NoTreadwell": {
+      "player_code_id": {
+         "code": "NoTreadwell",
+         "id": "Treadwell, Noah",
+         "ncaa_id": "5317332"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Atlanta, GA"
+   },
+   "OwBronston": {
+      "player_code_id": {
+         "code": "OwBronston",
+         "id": "Bronston, Jr., Owen",
+         "ncaa_id": "11202976"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": ""
+   },
+   "D'KnWright": {
+      "player_code_id": {
+         "code": "D'KnWright",
+         "id": "Knights Wright, D'Shay",
          "ncaa_id": "5317335"
       },
       "number": "23",
@@ -10,7 +66,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ajax, Canada"
    },
    "FlTenebay": {
@@ -21,10 +77,10 @@
       },
       "number": "1",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "So",
-      "gp": 0,
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Decatur, GA",
       "role": "CG"
    },
@@ -39,7 +95,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL"
    },
    "__coach__": {
@@ -53,19 +109,47 @@
       "year_class": "",
       "gp": -1
    },
-   "DrJones": {
+   "TiOkojie": {
       "player_code_id": {
-         "code": "DrJones",
-         "id": "Jones, Drayton",
-         "ncaa_id": "9337177"
+         "code": "TiOkojie",
+         "id": "Okojie, Tim",
+         "ncaa_id": "5317334"
       },
-      "number": "13",
-      "pos": "F",
-      "height": "6-11",
-      "height_in": 83,
+      "number": "15",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Frisco, TX"
+   },
+   "DeHodge": {
+      "player_code_id": {
+         "code": "DeHodge",
+         "id": "Hodge, Derwin",
+         "ncaa_id": "5317333"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Suwanee, GA"
+   },
+   "ChParker": {
+      "player_code_id": {
+         "code": "ChParker",
+         "id": "Parker, Christopher",
+         "ncaa_id": "5317337"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Jr",
       "gp": 0,
-      "origin": "Houston, TX"
+      "origin": "Columbia, SC"
    },
    "JaJohnson": {
       "player_code_id": {
@@ -73,12 +157,12 @@
          "id": "Johnson, Jayden",
          "ncaa_id": "5243405"
       },
-      "number": "5",
+      "number": "10",
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "s-PG"
    },
@@ -93,7 +177,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charleston, SC",
       "role": "CG"
    },
@@ -107,36 +191,36 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "So",
+      "gp": 1,
       "origin": "Lorton, VA"
    },
    "JoSeay-olive": {
       "player_code_id": {
          "code": "JoSeay-olive",
          "id": "Seay-Oliver, John",
-         "ncaa_id": "9337175"
+         "ncaa_id": "11202980"
       },
-      "number": "10",
+      "number": "21",
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
       "gp": 0,
-      "origin": "Atlanta, GA"
+      "origin": ""
    },
-   "LaHunt": {
+   "TeTindal": {
       "player_code_id": {
-         "code": "LaHunt",
-         "id": "Hunt, Laquan",
-         "ncaa_id": "9337179"
+         "code": "TeTindal",
+         "id": "Tindal, Teon",
+         "ncaa_id": "5317336"
       },
-      "number": "31",
+      "number": "32",
       "pos": "F",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Bronx, NY"
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Sumter, SC"
    }
 }

@@ -24,7 +24,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Midland, PA",
       "role": "CG"
    },
@@ -67,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mobile, AL",
       "role": "WG"
    },
@@ -82,7 +82,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "s-PG"
    },
@@ -126,7 +126,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dakar, Senegal"
    },
    "__coach__": {
@@ -165,7 +165,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ypsilanti, MI"
    },
    "RoSiulepa": {
@@ -179,7 +179,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brisbane, Australia"
    },
    "CaCorhen": {
@@ -193,7 +193,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Allen, TX",
       "role": "C"
    },
@@ -208,7 +208,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bowie, MD",
       "role": "CG"
    },
@@ -223,7 +223,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lemont, IL",
       "role": "WG"
    }

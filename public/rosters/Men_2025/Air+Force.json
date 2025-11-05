@@ -2,7 +2,7 @@
    "SaImade": {
       "player_code_id": {
          "code": "SaImade",
-         "id": "Imade, Samuel",
+         "id": "Imade, Sam",
          "ncaa_id": "5313901"
       },
       "number": "33",
@@ -11,7 +11,7 @@
       "height_in": 78,
       "year_class": "Fr",
       "gp": 0,
-      "origin": "Blue Ash, OH"
+      "origin": "Cincinnati, OH"
    },
    "BrMartin": {
       "player_code_id": {
@@ -52,7 +52,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Albany, GA"
    },
    "EtGreenberg": {
@@ -66,7 +66,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Centerville, OH"
    },
    "WeCelichowsk": {
@@ -80,23 +80,9 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Georgetown, IN",
       "role": "PF/C"
-   },
-   "WyBoeker": {
-      "player_code_id": {
-         "code": "WyBoeker",
-         "id": "Boeker, Wyatt",
-         "ncaa_id": "9324041"
-      },
-      "number": "4",
-      "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Tomball, TX"
    },
    "ElRobinson": {
       "player_code_id": {
@@ -109,7 +95,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Monument, CO"
    },
    "CaWalker": {
@@ -123,7 +109,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jefferson City, MO",
       "role": "PF/C"
    },
@@ -138,7 +124,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oyster Bay, NY",
       "role": "WG"
    },
@@ -153,7 +139,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Katy, TX"
    },
    "AjPatterson": {
@@ -206,7 +192,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "JoGatete": {
@@ -220,7 +206,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Granger, IN"
    },
    "JuHinds": {
@@ -234,36 +220,8 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wilmington, DE"
-   },
-   "BrSpiller": {
-      "player_code_id": {
-         "code": "BrSpiller",
-         "id": "Spiller, Bryce",
-         "ncaa_id": "10801266"
-      },
-      "number": "1",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Lake St Louis, MO"
-   },
-   "WiDering": {
-      "player_code_id": {
-         "code": "WiDering",
-         "id": "Dering, William",
-         "ncaa_id": "5313894"
-      },
-      "number": "5",
-      "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Dallas, TX"
    },
    "KeFrisch": {
       "player_code_id": {
@@ -278,5 +236,19 @@
       "year_class": "Fr",
       "gp": 0,
       "origin": "Waunakee, WI"
+   },
+   "RiDering": {
+      "player_code_id": {
+         "code": "RiDering",
+         "id": "Dering, Riley",
+         "ncaa_id": "5313894"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dallas, TX"
    }
 }

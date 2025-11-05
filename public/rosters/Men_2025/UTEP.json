@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD"
    },
    "ElJones": {
@@ -24,7 +24,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pleasantville, NJ",
       "role": "PF/C"
    },
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "C"
    },
@@ -54,7 +54,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oklahoma City, OK"
    },
    "MoMbaye": {
@@ -68,7 +68,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint-Louis, Senegal"
    },
    "JoHernandez": {
@@ -82,7 +82,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "El Paso, TX"
    },
    "TrHorton": {
@@ -111,7 +111,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "__coach__": {
@@ -151,7 +151,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland Hts, OH"
    },
    "DaTubek": {
@@ -165,7 +165,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Juba, South Sudan",
       "role": "WF"
    },
@@ -180,7 +180,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buford, GA"
    },
    "KjThomas": {
@@ -194,7 +194,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amarillo, TX",
       "role": "CG"
    },
@@ -209,7 +209,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    }
 }

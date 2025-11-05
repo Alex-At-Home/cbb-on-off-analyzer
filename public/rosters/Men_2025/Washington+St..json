@@ -24,7 +24,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Olympia, WA",
       "role": "s-PG"
    },
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lapwai, ID",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dundalk, Ireland",
       "role": "C"
    },
@@ -69,7 +69,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jyväskylä, Finland"
    },
    "DiBlakely": {
@@ -97,7 +97,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Winnipeg, Canada",
       "role": "PF/C"
    },
@@ -123,7 +123,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lexington, KY",
       "role": "s-PG"
    },
@@ -138,7 +138,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Thorlakshofn, Iceland",
       "role": "WG"
    },
@@ -182,7 +182,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Upland, CA"
    },
    "AdRodriguez": {
@@ -196,7 +196,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sant Just, Spain"
    },
    "EmUgbo": {
@@ -210,7 +210,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Barendrecht, Netherlands",
       "role": "S-PF"
    }

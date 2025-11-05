@@ -1,31 +1,75 @@
 {
-   "WiSanon": {
+   "PaPapadatos": {
       "player_code_id": {
-         "code": "WiSanon",
-         "id": "Sanon, Wisler",
-         "ncaa_id": "9336941"
+         "code": "PaPapadatos",
+         "id": "Papadatos, Paris",
+         "ncaa_id": "5315063"
       },
-      "number": "23",
+      "number": "7",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Sr",
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Sicklerville, NJ"
+      "origin": "Alimos, Greece"
    },
-   "ZaJones": {
+   "SkWicks": {
       "player_code_id": {
-         "code": "ZaJones",
-         "id": "Jones, Zachary",
-         "ncaa_id": "5315067"
+         "code": "SkWicks",
+         "id": "Wicks, Skylar",
+         "ncaa_id": "4703980"
       },
-      "number": "33",
+      "number": "8",
       "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Jersey City, NJ",
+      "role": "WG"
+   },
+   "MeWeaver": {
+      "player_code_id": {
+         "code": "MeWeaver",
+         "id": "Weaver III, Melvin",
+         "ncaa_id": "5315064"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "So",
       "gp": 0,
-      "origin": "Arlington Hts, OH"
+      "origin": "Unionville, CT"
+   },
+   "KaWylie": {
+      "player_code_id": {
+         "code": "KaWylie",
+         "id": "Wylie, Kameryn",
+         "ncaa_id": "5315065"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Baltimore, MD"
+   },
+   "CaTweedy": {
+      "player_code_id": {
+         "code": "CaTweedy",
+         "id": "Tweedy, Cameron",
+         "ncaa_id": "5106589"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Waldorf, MD",
+      "role": "PF/C"
    },
    "ViPayne": {
       "player_code_id": {
@@ -38,8 +82,23 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cromwell, CT"
+   },
+   "RaMartino": {
+      "player_code_id": {
+         "code": "RaMartino",
+         "id": "Martino Jr., Ralph",
+         "ncaa_id": "5243388"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Lanham, MD",
+      "role": "WF"
    },
    "__coach__": {
       "player_code_id": {
@@ -52,33 +111,34 @@
       "year_class": "",
       "gp": -1
    },
-   "MiWebb": {
+   "KoAsare": {
       "player_code_id": {
-         "code": "MiWebb",
-         "id": "Webb, Miles",
-         "ncaa_id": "5315062"
+         "code": "KoAsare",
+         "id": "Asare, Kofi",
+         "ncaa_id": "5315066"
       },
-      "number": "3",
+      "number": "32",
       "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Sr",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Arlington, VA"
+      "origin": "Clarksburg, MD"
    },
-   "JuCranford": {
+   "ZiRussell": {
       "player_code_id": {
-         "code": "JuCranford",
-         "id": "Cranford, Jr., Juan",
-         "ncaa_id": "5243388"
+         "code": "ZiRussell",
+         "id": "Russell, Zion",
+         "ncaa_id": "4898334"
       },
-      "number": "4",
+      "number": "2",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Dayton, OH"
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Upper Marlboro, MD",
+      "role": "CG"
    },
    "GeLiberis": {
       "player_code_id": {
@@ -91,22 +151,36 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Havertown, PA"
    },
-   "BlAngellotti": {
+   "AhHarrison": {
       "player_code_id": {
-         "code": "BlAngellotti",
-         "id": "Angellotti, Blaze",
-         "ncaa_id": "5315065"
+         "code": "AhHarrison",
+         "id": "Harrison, Ahmad",
+         "ncaa_id": "5247200"
       },
-      "number": "13",
+      "number": "55",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Julian, PA"
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Baltimore, MD"
+   },
+   "KjSwain": {
+      "player_code_id": {
+         "code": "KjSwain",
+         "id": "Swain, KJ",
+         "ncaa_id": "5177291"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Hamilton, IN"
    },
    "RyGresko": {
       "player_code_id": {
@@ -122,6 +196,20 @@
       "gp": 0,
       "origin": "Penn Run, PA"
    },
+   "BrRussell": {
+      "player_code_id": {
+         "code": "BrRussell",
+         "id": "Russell, Brandon",
+         "ncaa_id": "5315062"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Hamilton, NJ"
+   },
    "ChMoncrief": {
       "player_code_id": {
          "code": "ChMoncrief",
@@ -133,23 +221,23 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA",
       "role": "WG"
    },
-   "AcTalbert": {
+   "BrRabish": {
       "player_code_id": {
-         "code": "AcTalbert",
-         "id": "Talbert, Ace",
-         "ncaa_id": "4898334"
+         "code": "BrRabish",
+         "id": "Rabish, Brandon",
+         "ncaa_id": "5315067"
       },
-      "number": "2",
+      "number": "33",
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Jr",
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Wyandanch, NY"
+      "origin": "Gallitzin, PA"
    },
    "CaRhodes": {
       "player_code_id": {

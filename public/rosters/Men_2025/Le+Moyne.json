@@ -25,7 +25,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Duluth, MN"
    },
    "TeRainwater": {
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Davenport, WA",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY"
    },
    "TrMosquera": {
@@ -68,7 +68,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brookline, MA",
       "role": "CG"
    },
@@ -83,7 +83,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elgin, IL",
       "role": "WG"
    },
@@ -109,7 +109,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Binghamton, NY"
    },
    "AmMoss": {
@@ -123,7 +123,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clarksville, TN",
       "role": "s-PG"
    },
@@ -138,7 +138,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN",
       "role": "C"
    },
@@ -153,7 +153,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Snohomish, WA"
    },
    "DeGarang": {
@@ -167,7 +167,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Syracuse, NY",
       "role": "WG"
    },
@@ -182,7 +182,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Syracuse, NY"
    },
    "SaHincapie": {
@@ -210,7 +210,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Centerville, OH"
    },
    "SaDonnelly": {
@@ -224,7 +224,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vernon, NY"
    }
 }

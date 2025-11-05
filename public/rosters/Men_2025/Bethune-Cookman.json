@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yaoundé, Cameroon",
       "role": "C"
    },
@@ -25,7 +25,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV",
       "role": "PF/C"
    },
@@ -54,7 +54,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Palm Beach, FL",
       "role": "WG"
    },
@@ -97,7 +97,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "WF"
    },
@@ -112,7 +112,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WF"
    },
@@ -167,7 +167,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WG"
    },
@@ -182,7 +182,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "ReWard": {
@@ -210,7 +210,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eden Prairie, MN",
       "role": "C"
    },
@@ -225,7 +225,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wyncote, PA",
       "role": "s-PG"
    },
@@ -240,7 +240,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aurora, CO"
    }
 }

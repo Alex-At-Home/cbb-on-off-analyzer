@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nashville, TN"
    },
    "BrHardewig": {
@@ -38,7 +38,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "WG"
    },
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI",
       "role": "WF"
    },
@@ -82,7 +82,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN"
    },
    "KeChime": {
@@ -96,7 +96,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Enugu, Nigeria"
    },
    "__coach__": {
@@ -135,7 +135,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Joseph, MO"
    },
    "NaJones": {
@@ -148,8 +148,8 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "---",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Carrollton, GA"
    },
    "CaMerritt": {
@@ -177,7 +177,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "MaNoel": {
@@ -220,7 +220,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI"
    },
    "ErBaldassarr": {

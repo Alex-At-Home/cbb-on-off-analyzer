@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Koszalin, Poland",
       "role": "WG"
    },
@@ -25,7 +25,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Summit, NJ"
    },
    "CoEmuobor": {
@@ -39,7 +39,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zografou, Greece"
    },
    "RjKennedy": {
@@ -68,7 +68,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fayetteville, GA"
    },
    "__coach__": {
@@ -93,14 +93,14 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Apopka, FL",
       "role": "CG"
    },
    "NiSanford": {
       "player_code_id": {
          "code": "NiSanford",
-         "id": "Sanford, Nicholas",
+         "id": "Sanford, Nick",
          "ncaa_id": "5239769"
       },
       "number": "11",
@@ -122,7 +122,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Roanoke, VA",
       "role": "WF"
    },
@@ -137,7 +137,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kaukauna, WI",
       "role": "C"
    },
@@ -152,7 +152,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Merrimack, NH"
    },
    "JoSquire": {
@@ -166,7 +166,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sausalito, CA"
    },
    "BeElShakery": {
@@ -180,7 +180,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alexandria, Egypt",
       "role": "PF/C"
    },
@@ -195,7 +195,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vittorio Veneto, Italy",
       "role": "WG"
    },
@@ -210,7 +210,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Smithfield, RI"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cecilia, KY"
    },
    "JjHarper": {
@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL"
    },
    "ZaYates": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Germantown, TN",
       "role": "S-PF"
    },
@@ -53,7 +53,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Morgantown, WV",
       "role": "CG"
    },
@@ -68,7 +68,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL"
    },
    "ToSorensen": {
@@ -82,7 +82,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Goode, VA"
    },
    "__coach__": {
@@ -107,7 +107,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Arlington, TX"
    },
    "BrKester": {
@@ -121,7 +121,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntersville, NC"
    },
    "CoPorter": {
@@ -135,7 +135,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ashland, KY",
       "role": "s-PG"
    },
@@ -150,7 +150,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clayton, NC"
    },
    "RyJones": {
@@ -164,7 +164,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gainesville, FL",
       "role": "C"
    },
@@ -174,7 +174,7 @@
          "id": "Smith, Josh",
          "ncaa_id": "4700859"
       },
-      "number": "11",
+      "number": "12",
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
@@ -193,7 +193,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greenup, KY"
    },
    "IsIhnen": {
@@ -222,7 +222,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Normal, IL",
       "role": "WF"
    }

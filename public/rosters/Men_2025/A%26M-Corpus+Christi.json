@@ -10,24 +10,37 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atmore, AL",
       "role": "C"
    },
-   "JaWalker": {
+   "CeHorton": {
       "player_code_id": {
-         "code": "JaWalker",
-         "id": "Walker, Jaden",
-         "ncaa_id": "5314706"
+         "code": "CeHorton",
+         "id": "Horton, Cedric",
+         "ncaa_id": "5314708"
       },
-      "number": "21",
+      "number": "14",
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Richmond, IN"
+   },
+   "FrYetna": {
+      "player_code_id": {
+         "code": "FrYetna",
+         "id": "Yetna, Franck",
+         "ncaa_id": "5111902"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Lawrenceville, GA",
-      "role": "WG"
+      "gp": 1,
+      "origin": "Paris, France"
    },
    "LeTorbor": {
       "player_code_id": {
@@ -35,14 +48,57 @@
          "id": "Torbor, Leo",
          "ncaa_id": "5107813"
       },
-      "number": "0",
+      "number": "2",
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn Center, MN",
       "role": "CG"
+   },
+   "DaMichelini-": {
+      "player_code_id": {
+         "code": "DaMichelini-",
+         "id": "Michelini-Jackson, Daniel",
+         "ncaa_id": "5314705"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Inglewood, CA"
+   },
+   "NiShogbonyo": {
+      "player_code_id": {
+         "code": "NiShogbonyo",
+         "id": "Shogbonyo, Nicholas",
+         "ncaa_id": "5241914"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Arlington, TX",
+      "role": "WG"
+   },
+   "JaHaire": {
+      "player_code_id": {
+         "code": "JaHaire",
+         "id": "Haire, Jaden",
+         "ncaa_id": "5314706"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Hanford, CA"
    },
    "__coach__": {
       "player_code_id": {
@@ -55,33 +111,47 @@
       "year_class": "",
       "gp": -1
    },
-   "KaHargrove": {
+   "JaAmbrose": {
       "player_code_id": {
-         "code": "KaHargrove",
-         "id": "Hargrove, Kalon",
-         "ncaa_id": "5111902"
-      },
-      "number": "22",
-      "pos": "G",
-      "height": "5-10",
-      "height_in": 70,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "San Antonio, TX"
-   },
-   "AaPotter": {
-      "player_code_id": {
-         "code": "AaPotter",
-         "id": "Potter, Aaron",
+         "code": "JaAmbrose",
+         "id": "Ambrose, Jamal",
          "ncaa_id": "5107267"
       },
       "number": "24",
-      "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
-      "year_class": "Sr",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Apple Valley, MN"
+   },
+   "CeEvran": {
+      "player_code_id": {
+         "code": "CeEvran",
+         "id": "Evran, Cenker",
+         "ncaa_id": "5314709"
+      },
+      "number": "99",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Tulsa, OK"
+      "origin": "Adana, Turkey"
+   },
+   "DaHouston": {
+      "player_code_id": {
+         "code": "DaHouston",
+         "id": "Houston, DA",
+         "ncaa_id": "4585602"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Houston, TX"
    },
    "MiOaks": {
       "player_code_id": {
@@ -97,19 +167,19 @@
       "gp": 0,
       "origin": "Houston, TX"
    },
-   "IsWilliams": {
+   "BrWheatfall": {
       "player_code_id": {
-         "code": "IsWilliams",
-         "id": "Williams, Isaac",
-         "ncaa_id": "5314705"
+         "code": "BrWheatfall",
+         "id": "Wheatfall, Bryson",
+         "ncaa_id": "5314704"
       },
-      "number": "10",
+      "number": "8",
       "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
-      "year_class": "So",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Oklahoma City, OK"
+      "origin": "Humble, TX"
    },
    "KaParker": {
       "player_code_id": {
@@ -122,7 +192,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tulsa, OK",
       "role": "s-PG"
    },
@@ -137,7 +207,49 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pflugerville, TX"
+   },
+   "MaGibson": {
+      "player_code_id": {
+         "code": "MaGibson",
+         "id": "Gibson, Mason",
+         "ncaa_id": "4898169"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Allen, TX"
+   },
+   "DeKoPearson": {
+      "player_code_id": {
+         "code": "DeKoPearson",
+         "id": "Kobi Pearson, Devon",
+         "ncaa_id": "5314703"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lancaster, TX"
+   },
+   "TrPane": {
+      "player_code_id": {
+         "code": "TrPane",
+         "id": "Pane, Trenton",
+         "ncaa_id": "5314707"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Allen, TX"
    }
 }

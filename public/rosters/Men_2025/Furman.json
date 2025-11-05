@@ -25,7 +25,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lake Forest, IL"
    },
    "CoBowser": {
@@ -68,7 +68,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Simpsonville, SC"
    },
    "CrBowser": {
@@ -82,7 +82,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Woodbridge, VA"
    },
    "ToHouse": {
@@ -96,7 +96,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dayton, OH",
       "role": "WG"
    },
@@ -136,7 +136,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elmhurst, IL"
    },
    "GuLewis": {
@@ -164,7 +164,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sydney, Australia",
       "role": "PF/C"
    },
@@ -179,7 +179,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mattapan, MA"
    },
    "OwRitger": {
@@ -193,7 +193,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "CoO'neal": {
@@ -207,7 +207,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nashville, TN"
    },
    "EdBronson": {
@@ -221,7 +221,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tampa, FL",
       "role": "CG"
    }

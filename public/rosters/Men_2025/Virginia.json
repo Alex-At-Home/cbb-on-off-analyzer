@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL",
       "role": "WG"
    },
@@ -25,7 +25,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Loningen, Germany"
    },
    "DeTillis": {
@@ -54,7 +54,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Keswick, VA",
       "role": "PG"
    },
@@ -69,7 +69,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlottesville, VA",
       "role": "C"
    },
@@ -84,7 +84,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Owerri, Nigeria",
       "role": "C"
    },
@@ -99,7 +99,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA"
    },
    "MaThomas": {
@@ -113,7 +113,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fontana, CA",
       "role": "CG"
    },
@@ -128,7 +128,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jersey City, NJ"
    },
    "SaLewis": {
@@ -142,7 +142,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WG"
    },
@@ -168,7 +168,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlottesville, VA"
    },
    "ThDeRidder": {
@@ -182,7 +182,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brasschaat, Belgium"
    },
    "MaCarrere": {
@@ -196,7 +196,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pontonx-sur-l'Adour, France"
    },
    "DaHall": {
@@ -210,7 +210,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plain City, UT",
       "role": "PG"
    },

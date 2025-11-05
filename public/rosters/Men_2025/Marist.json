@@ -10,7 +10,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lake Oswego, OR",
       "role": "WF"
    },
@@ -25,7 +25,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY",
       "role": "WF"
    },
@@ -54,7 +54,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plainfield, NJ"
    },
    "JoGabriel": {
@@ -68,7 +68,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mineola, NY"
    },
    "__coach__": {
@@ -93,8 +93,8 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
-      "origin": "Kinshasa, Congo",
+      "gp": 1,
+      "origin": "Kinshasa, DR Congo",
       "role": "S-PF"
    },
    "JaSchofield": {
@@ -107,7 +107,7 @@
       "pos": "C",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Jr",
+      "year_class": "So",
       "gp": 0,
       "origin": "Poughkeepsie, NY",
       "role": "C"
@@ -133,7 +133,7 @@
          "ncaa_id": "4873195"
       },
       "number": "25",
-      "pos": "F",
+      "pos": "C",
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
@@ -152,7 +152,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Watchung, NJ",
       "role": "WG"
    },
@@ -167,7 +167,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edison, NJ",
       "role": "CG"
    },
@@ -182,7 +182,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Higganum, CT",
       "role": "PG"
    },
@@ -197,7 +197,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baldwin, NY"
    },
    "MaKawa": {
@@ -211,7 +211,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stafford, VA",
       "role": "WG"
    }

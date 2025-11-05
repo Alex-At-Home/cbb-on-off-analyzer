@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carmel, IN",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Valparaiso, IN"
    },
    "JaDykstra": {
@@ -39,7 +39,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nashville, TN"
    },
    "WiMiller": {
@@ -53,7 +53,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vestavia Hills, AL",
       "role": "CG"
    },
@@ -68,7 +68,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milledgeville, GA"
    },
    "EoDillon": {
@@ -82,7 +82,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Peoria, IL"
    },
    "TyLundblade": {
@@ -96,7 +96,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "WG"
    },
@@ -111,7 +111,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Woodstock, GA",
       "role": "C"
    },
@@ -126,7 +126,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Covington, GA"
    },
    "__coach__": {
@@ -151,7 +151,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN"
    },
    "DrScharnowsk": {
@@ -165,7 +165,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Burlington, IL",
       "role": "C"
    },
@@ -180,7 +180,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springfield, TN",
       "role": "CG"
    },
@@ -195,7 +195,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV"
    },
    "AiNoyes": {
@@ -209,7 +209,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "WF"
    },
@@ -224,7 +224,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jennings, FL",
       "role": "s-PG"
    }

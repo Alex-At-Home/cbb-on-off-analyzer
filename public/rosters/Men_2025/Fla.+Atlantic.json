@@ -10,9 +10,37 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Laurel, MD",
       "role": "WG"
+   },
+   "LaSmith": {
+      "player_code_id": {
+         "code": "LaSmith",
+         "id": "Smith, Lachlan",
+         "ncaa_id": "5312062"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Palm Harbor, FL"
+   },
+   "XaPintelon": {
+      "player_code_id": {
+         "code": "XaPintelon",
+         "id": "Pintelon, Xander",
+         "ncaa_id": "5312061"
+      },
+      "number": "17",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Oostkamp, Belgium"
    },
    "MaLangenfeld": {
       "player_code_id": {
@@ -24,9 +52,23 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Ulm, Germany"
+   },
+   "YoSissoko": {
+      "player_code_id": {
+         "code": "YoSissoko",
+         "id": "Sissoko, Yohann",
+         "ncaa_id": "5312057"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Paris, France"
    },
    "__coach__": {
       "player_code_id": {
@@ -50,7 +92,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bologna, Italy",
       "role": "s-PG"
    },
@@ -64,7 +106,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "So",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Vancouver, Canada"
    },
@@ -79,7 +121,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "CG"
    },
@@ -93,8 +135,94 @@
       "pos": "G",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Thiès, Senegal"
+   },
+   "DeWilliams": {
+      "player_code_id": {
+         "code": "DeWilliams",
+         "id": "Williams, Devin",
+         "ncaa_id": "4685685"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Riverside, CA"
+   },
+   "ViNeugebauer": {
+      "player_code_id": {
+         "code": "ViNeugebauer",
+         "id": "Neugebauer, Vincent",
+         "ncaa_id": "5312059"
+      },
+      "number": "8",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Oldenburg, Germany"
+   },
+   "JoParker": {
+      "player_code_id": {
+         "code": "JoParker",
+         "id": "Parker, Josiah",
+         "ncaa_id": "5312060"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Huber Heights, OH",
+      "role": "WF"
+   },
+   "IsElohim": {
+      "player_code_id": {
+         "code": "IsElohim",
+         "id": "Elohim, Isaiah",
+         "ncaa_id": "4869767"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "North Hills, CA",
+      "role": "WG"
+   },
+   "MaLogue": {
+      "player_code_id": {
+         "code": "MaLogue",
+         "id": "Logue, Maxim",
+         "ncaa_id": "5240885"
+      },
+      "number": "77",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Lyon, France"
+   },
+   "ZiSampaio": {
+      "player_code_id": {
+         "code": "ZiSampaio",
+         "id": "Sampaio, Zion",
+         "ncaa_id": "5312058"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Coconut Creek, FL"
    }
 }

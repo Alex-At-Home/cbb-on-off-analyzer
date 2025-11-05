@@ -10,7 +10,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN",
       "role": "s-PG"
    },
@@ -39,7 +39,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Riverside, CA"
    },
    "PeWhite": {
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Encino, CA"
    },
    "VaWeems": {
@@ -67,7 +67,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Federal Way, WA"
    },
    "TyRolison": {
@@ -81,7 +81,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "CG"
    },
@@ -107,7 +107,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Akron, OH"
    },
    "JoArmotradin": {
@@ -121,7 +121,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, England, United Kingdom",
       "role": "C"
    },
@@ -136,7 +136,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Little Rock, AR",
       "role": "CG"
    },
@@ -151,7 +151,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI",
       "role": "WG"
    },
@@ -166,7 +166,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV"
    },
    "KaLowery": {
@@ -180,8 +180,22 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newhall, CA"
+   },
+   "JeColeman": {
+      "player_code_id": {
+         "code": "JeColeman",
+         "id": "Coleman, Jeriah",
+         "ncaa_id": "4703196"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Anchorage, AK"
    },
    "ElPrice": {
       "player_code_id": {
@@ -194,7 +208,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Long Beach, CA",
       "role": "PF/C"
    }

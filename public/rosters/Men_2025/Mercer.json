@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brampton, Canada",
       "role": "s-PG"
    },
@@ -40,7 +40,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Petersburg, FL",
       "role": "WG"
    },
@@ -70,7 +70,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eddyville, KY",
       "role": "WG"
    },
@@ -80,7 +80,7 @@
          "id": "Zubac, Pero",
          "ncaa_id": "5314529"
       },
-      "number": "30",
+      "number": "18",
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
@@ -113,7 +113,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "CG"
    },
@@ -128,7 +128,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Harlem, NY",
       "role": "WG"
    },
@@ -143,7 +143,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rowlett, TX"
    },
    "JaCole": {
@@ -196,7 +196,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toronto, Canada"
    },
    "BrCarlsen": {
@@ -210,7 +210,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wauconda, IL"
    },
    "CoServen": {
@@ -224,7 +224,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Prairie City, IL"
    },
    "BePierre": {
@@ -238,7 +238,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Irvington, NJ"
    }
 }

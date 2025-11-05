@@ -10,7 +10,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI",
       "role": "WF"
    },
@@ -25,7 +25,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "PG"
    },
@@ -40,7 +40,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ellenwood, GA"
    },
    "AnAnyang": {
@@ -54,7 +54,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Adelaide, Australia",
       "role": "WF"
    },
@@ -66,9 +66,10 @@
       },
       "number": "4",
       "pos": "G",
-      "height": "-",
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hollywood, FL"
    },
    "__coach__": {
@@ -93,7 +94,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Upper Marlboro, MD",
       "role": "WF"
    },
@@ -108,7 +109,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dadeville, AL"
    },
    "JaCarruth": {
@@ -119,9 +120,10 @@
       },
       "number": "5",
       "pos": "F",
-      "height": "-",
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "JaJackson": {
@@ -132,7 +134,8 @@
       },
       "number": "7",
       "pos": "G",
-      "height": "-",
+      "height": "5-10",
+      "height_in": 70,
       "year_class": "Fr",
       "gp": 0,
       "origin": "West Monroe, LA"
@@ -148,7 +151,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Les Paris, France",
       "role": "CG"
    },
@@ -163,7 +166,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gary, IN"
    },
    "KiDozier": {
@@ -177,7 +180,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lanett, AL",
       "role": "CG"
    },
@@ -217,9 +220,10 @@
       },
       "number": "11",
       "pos": "G",
-      "height": "-",
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tallahassee, FL"
    },
    "JaGraham": {
@@ -233,7 +237,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI"
    }
 }

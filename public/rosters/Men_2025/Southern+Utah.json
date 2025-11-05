@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wilmington, DE"
    },
    "BrJohnson": {
@@ -24,7 +24,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Broken Arrow, OK"
    },
    "LaBinns": {
@@ -38,7 +38,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Paul, MN"
    },
    "IsCottrell": {
@@ -52,7 +52,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV",
       "role": "PF/C"
    },
@@ -67,7 +67,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carlsbad, CA",
       "role": "C"
    },
@@ -96,7 +96,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Barnwell, SC",
       "role": "CG"
    },
@@ -122,7 +122,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Draper, UT"
    },
    "DyJones": {
@@ -136,7 +136,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saratoga Spgs, UT",
       "role": "WG"
    },
@@ -151,7 +151,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Decatur, GA"
    },
    "LoAbellar": {
@@ -165,7 +165,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV",
       "role": "PG"
    },
@@ -180,7 +180,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "WF"
    },
@@ -195,7 +195,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eagle, ID"
    },
    "ChIsitua": {
@@ -209,7 +209,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria"
    },
    "JaFeroah": {
@@ -223,7 +223,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Draper, UT",
       "role": "S-PF"
    },
@@ -238,7 +238,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    }
 }

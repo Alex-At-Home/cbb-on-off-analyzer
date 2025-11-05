@@ -10,7 +10,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "PF/C"
    },
@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Portland, OR"
    },
    "AhNowell": {
@@ -39,7 +39,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "CG"
    },
@@ -54,7 +54,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA",
       "role": "WG"
    },
@@ -69,7 +69,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "PG"
    },
@@ -84,7 +84,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada"
    },
    "ObOkafor": {
@@ -112,7 +112,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, United Kingdom",
       "role": "WF"
    },
@@ -138,7 +138,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gornji Milanovac, Serbia"
    },
    "JoTillery": {
@@ -152,7 +152,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL"
    },
    "BaEvans": {
@@ -166,7 +166,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "WF"
    },
@@ -196,7 +196,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tobyhanna, PA",
       "role": "C"
    },
@@ -211,7 +211,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Myers, FL",
       "role": "WF"
    }

@@ -10,7 +10,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Peoria, IL",
       "role": "PF/C"
    },
@@ -68,7 +68,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Würzburg, Germany"
    },
    "BrTucker": {
@@ -82,7 +82,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bowie, MD",
       "role": "WF"
    },
@@ -97,7 +97,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tacoma, WA",
       "role": "CG"
    },
@@ -112,7 +112,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waimea, HI",
       "role": "PG"
    },
@@ -127,7 +127,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gary, IN",
       "role": "s-PG"
    },
@@ -196,7 +196,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yaoundé, Cameroon"
    },
    "DeClaude": {
@@ -225,7 +225,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Beaumont, TX",
       "role": "CG"
    }

@@ -25,7 +25,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newark, DE"
    },
    "LaPiper": {
@@ -48,12 +48,12 @@
          "id": "Brown, Jameel",
          "ncaa_id": "5105846"
       },
-      "number": "10",
+      "number": "55",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "WG"
    },
@@ -82,7 +82,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Devon, PA",
       "role": "S-PF"
    },
@@ -97,7 +97,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Arlington, VA",
       "role": "WG"
    },
@@ -112,7 +112,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Camp Hill, PA",
       "role": "S-PF"
    },
@@ -138,7 +138,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Whitestone, NY"
    },
    "BoKebe": {
@@ -166,7 +166,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edgewood, MD"
    },
    "AlMcfadden": {
@@ -194,7 +194,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Devon, PA"
    },
    "BrBaffone": {
@@ -222,7 +222,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Morrow, OH"
    }
 }

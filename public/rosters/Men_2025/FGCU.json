@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cherryhill, PA"
    },
    "ChKonieczny": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, United Kingdom",
       "role": "S-PF"
    },
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dubuque, IA",
       "role": "WF"
    },
@@ -68,7 +68,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springboro, OH"
    },
    "Konieczny": {
@@ -82,7 +82,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "South Bend, IN",
       "role": "WG"
    },
@@ -97,7 +97,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scranton, PA"
    },
    "MaMccarthy": {
@@ -111,7 +111,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aston, PA"
    },
    "EvBarlow": {
@@ -164,7 +164,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "s-PG"
    },
@@ -179,7 +179,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newark, DE"
    },
    "TrGuillouett": {
@@ -193,7 +193,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Willingboro, NJ",
       "role": "C"
    },
@@ -208,7 +208,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagrange, IN"
    },
    "JaReddick": {
@@ -222,7 +222,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eddyville, KY",
       "role": "CG"
    },
@@ -237,7 +237,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "WG"
    }

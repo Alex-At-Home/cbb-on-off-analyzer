@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Krasnodar, Russia",
       "role": "WG"
    },
@@ -40,7 +40,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kansas City, MO"
    },
    "BrYoung": {
@@ -68,7 +68,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Beaumont, TX",
       "role": "s-PG"
    },
@@ -111,7 +111,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Murrieta, CA",
       "role": "WG"
    },
@@ -126,7 +126,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pennsauken, NJ",
       "role": "CG"
    },
@@ -152,7 +152,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "C"
    },
@@ -167,7 +167,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mulhouse, France",
       "role": "WG"
    },
@@ -182,7 +182,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn Park, MN",
       "role": "WF"
    },
@@ -197,7 +197,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Duesseldorf, Germany"
    },
    "SaYurasek": {

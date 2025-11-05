@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toronto, Canada",
       "role": "s-PG"
    },
@@ -54,7 +54,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Enugwu-Agidi, Nigeria",
       "role": "C"
    },
@@ -84,7 +84,7 @@
       "height": "7-1",
       "height_in": 85,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lake Norman, NC",
       "role": "C"
    },
@@ -99,7 +99,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Domzale, Slovenia",
       "role": "CG"
    },
@@ -128,7 +128,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL",
       "role": "WG"
    },
@@ -168,7 +168,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newberry, FL",
       "role": "WG"
    },
@@ -183,7 +183,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Perth, Australia",
       "role": "PF/C"
    },
@@ -213,7 +213,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY",
       "role": "PG"
    },
@@ -228,7 +228,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Oxford, PA",
       "role": "S-PF"
    }

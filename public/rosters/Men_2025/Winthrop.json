@@ -10,7 +10,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "C"
    },
@@ -39,7 +39,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA"
    },
    "PhBoyogueno": {
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greenville, SC",
       "role": "S-PF"
    },
@@ -82,7 +82,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Marcos, CA",
       "role": "WG"
    },
@@ -108,7 +108,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buford, GA",
       "role": "S-PF"
    },
@@ -152,7 +152,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC",
       "role": "CG"
    },
@@ -167,7 +167,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cairo, Egypt"
    },
    "LoDuncomb": {
@@ -181,7 +181,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "C"
    },
@@ -196,7 +196,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria",
       "role": "C"
    },
@@ -211,7 +211,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL"
    },
    "KaRozier": {
@@ -225,7 +225,7 @@
       "height": "5-9",
       "height_in": 69,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI",
       "role": "s-PG"
    }

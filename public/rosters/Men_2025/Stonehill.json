@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cranston, RI",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Quebec City, Canada",
       "role": "WG"
    },
@@ -55,7 +55,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kaysville, UT",
       "role": "CG"
    },
@@ -70,7 +70,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI"
    },
    "NoJenpa": {
@@ -84,7 +84,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Prior Lake, MN"
    },
    "ChDiamantis": {
@@ -98,7 +98,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milford, CT"
    },
    "RiTutic": {
@@ -112,7 +112,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Novi Pazar, Serbia",
       "role": "C"
    },
@@ -166,7 +166,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lees Summit, MO"
    },
    "ChStinson": {
@@ -180,7 +180,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "WG"
    },
@@ -195,7 +195,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Havertown, PA"
    },
    "WiBatchelder": {
@@ -209,7 +209,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newburyport, MA",
       "role": "CG"
    },
@@ -224,7 +224,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Porirua, New Zealand"
    },
    "DaHackett": {
@@ -238,7 +238,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brampton, Canada"
    }
 }

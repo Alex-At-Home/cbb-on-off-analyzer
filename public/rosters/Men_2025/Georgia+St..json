@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Westlake Vlg, CA"
    },
    "ChJones": {
@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "JaCooper": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mauldin, SC"
    },
    "ClPeters": {
@@ -67,7 +67,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Uyo, Nigeria"
    },
    "EmKoveos": {
@@ -76,7 +76,7 @@
          "id": "Koveos, Emmanuel",
          "ncaa_id": "5239900"
       },
-      "number": "20",
+      "number": "7",
       "pos": "G",
       "height": "5-10",
       "height_in": 70,
@@ -106,7 +106,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stockbridge, GA"
    },
    "MiTucker": {
@@ -120,7 +120,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alpharetta, GA"
    },
    "ChBeam": {
@@ -134,7 +134,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newell, AL"
    },
    "AyBerthe": {
@@ -148,7 +148,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN"
    },
    "JaNewton": {
@@ -171,12 +171,12 @@
          "id": "Scott III, Trey",
          "ncaa_id": "5239902"
       },
-      "number": "24",
+      "number": "4",
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "KwTanic": {
@@ -185,7 +185,7 @@
          "id": "Tanic, Kwame",
          "ncaa_id": "5239903"
       },
-      "number": "32",
+      "number": "9",
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
@@ -204,7 +204,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buford, GA",
       "role": "CG"
    },
@@ -219,7 +219,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marietta, GA",
       "role": "WG"
    }

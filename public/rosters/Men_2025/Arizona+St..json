@@ -1,1 +1,242 @@
-{"AmAli":{"player_code_id":{"code":"AmAli","id":"Ali, Amier","ncaa_id":"5105457"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"So","gp":0,"origin":"Little Elm, TX"},"TrBest":{"player_code_id":{"code":"TrBest","id":"Best, Trevor","ncaa_id":"5263625"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Wilson, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Bobby Hurley"},"number":"","pos":"","height":"","year_class":"","gp":-1},"QuMccoy":{"player_code_id":{"code":"QuMccoy","id":"McCoy, Quentin","ncaa_id":"5239488"},"number":"22","pos":"G","height":"6-2","height_in":74,"year_class":"So","gp":0,"origin":"Chicago, IL"},"AuNunez":{"player_code_id":{"code":"AuNunez","id":"Nunez, Austin","ncaa_id":"5189257"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Garden Ridge, TX"}}
+{
+   "AnGrbovic": {
+      "player_code_id": {
+         "code": "AnGrbovic",
+         "id": "Grbovic, Andrija",
+         "ncaa_id": "5311900"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Pljevlja, Montenegro",
+      "role": "S-PF"
+   },
+   "AnJohnson": {
+      "player_code_id": {
+         "code": "AnJohnson",
+         "id": "Johnson, Anthony",
+         "ncaa_id": "5189257"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Birmingham, AL"
+   },
+   "TrBest": {
+      "player_code_id": {
+         "code": "TrBest",
+         "id": "Best, Trevor",
+         "ncaa_id": "5263625"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Wilson, NC"
+   },
+   "JoIcitovic": {
+      "player_code_id": {
+         "code": "JoIcitovic",
+         "id": "Icitovic, Jovan",
+         "ncaa_id": "5311904"
+      },
+      "number": "70",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Belgrade, Serbia"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Bobby Hurley"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DaSalane": {
+      "player_code_id": {
+         "code": "DaSalane",
+         "id": "Salane, Dame",
+         "ncaa_id": "5311902"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Biella, Italy"
+   },
+   "QuMccoy": {
+      "player_code_id": {
+         "code": "QuMccoy",
+         "id": "McCoy, Quentin",
+         "ncaa_id": "5239488"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Chicago, IL"
+   },
+   "MaAdams": {
+      "player_code_id": {
+         "code": "MaAdams",
+         "id": "Adams Jr., Marcus",
+         "ncaa_id": "5142326"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Torrance, CA",
+      "role": "WF"
+   },
+   "AdHoliman": {
+      "player_code_id": {
+         "code": "AdHoliman",
+         "id": "Holiman, Adante’",
+         "ncaa_id": "4684620"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mcalester, OK",
+      "role": "s-PG"
+   },
+   "ViWallace": {
+      "player_code_id": {
+         "code": "ViWallace",
+         "id": "Wallace, Vijay",
+         "ncaa_id": "5311899"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "MaDiop": {
+      "player_code_id": {
+         "code": "MaDiop",
+         "id": "Diop, Massamba",
+         "ncaa_id": "5311903"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Rufisque, Senegal"
+   },
+   "NoMeeusen": {
+      "player_code_id": {
+         "code": "NoMeeusen",
+         "id": "Meeusen, Noah",
+         "ncaa_id": "5311901"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Zandvliet, Belgium"
+   },
+   "SaTrouet": {
+      "player_code_id": {
+         "code": "SaTrouet",
+         "id": "Trouet, Santiago",
+         "ncaa_id": "5176444"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Buenos Aires, Argentina",
+      "role": "S-PF"
+   },
+   "AlMukeba": {
+      "player_code_id": {
+         "code": "AlMukeba",
+         "id": "Mukeba, Allen",
+         "ncaa_id": "5109033"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Charleroi, Belgium"
+   },
+   "MaOdum": {
+      "player_code_id": {
+         "code": "MaOdum",
+         "id": "Odum, Maurice",
+         "ncaa_id": "5105457"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Bronx, NY"
+   },
+   "KaPolk": {
+      "player_code_id": {
+         "code": "KaPolk",
+         "id": "Polk, Kash",
+         "ncaa_id": "5144131"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Bartonville, TX"
+   },
+   "BrFord": {
+      "player_code_id": {
+         "code": "BrFord",
+         "id": "Ford, Bryce",
+         "ncaa_id": "5176231"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Scottsdale, AZ",
+      "role": "WG"
+   }
+}

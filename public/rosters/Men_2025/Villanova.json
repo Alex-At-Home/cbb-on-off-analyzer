@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Harrisburg, PA",
       "role": "WF"
    },
@@ -39,7 +39,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chandler, AZ",
       "role": "C"
    },
@@ -54,7 +54,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Limburg, Belgium",
       "role": "S-PF"
    },
@@ -69,7 +69,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "PG"
    },
@@ -84,7 +84,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wellington, New Zealand"
    },
    "WaChiddick": {
@@ -112,7 +112,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "CG"
    },
@@ -127,7 +127,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY"
    },
    "__coach__": {
@@ -152,7 +152,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sacramento, CA",
       "role": "s-PG"
    },
@@ -167,7 +167,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lorton, VA",
       "role": "WG"
    },
@@ -211,7 +211,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Woodstock, GA"
    }
 }

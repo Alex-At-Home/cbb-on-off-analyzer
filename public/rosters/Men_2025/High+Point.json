@@ -10,7 +10,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dakar, Senegal",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN",
       "role": "CG"
    },
@@ -54,7 +54,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bamako, Mali"
    },
    "BrHausen": {
@@ -68,7 +68,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amarillo, TX"
    },
    "MaMiller": {
@@ -121,7 +121,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Granollers, Spain"
    },
    "OwAquino": {
@@ -135,7 +135,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Madrid, Spain",
       "role": "PF/C"
    },
@@ -164,7 +164,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO",
       "role": "s-PG"
    },
@@ -179,7 +179,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH"
    },
    "ScWashington": {
@@ -193,7 +193,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "WG"
    },
@@ -208,7 +208,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Deer Park, TX"
    },
    "ChJohnston": {
@@ -222,7 +222,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Boca Raton, FL"
    },
    "JoIbukunoluw": {
@@ -236,7 +236,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Perth, Australia",
       "role": "PF/C"
    },
@@ -251,7 +251,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO"
    },
    "LiCarney": {

@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montpellier, France"
    },
    "ChJones": {
@@ -24,7 +24,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA"
    },
    "ShJohnson": {
@@ -38,7 +38,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oakland, CA"
    },
    "DeMiXzavierro": {
@@ -52,7 +52,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jakarta, Indonesia",
       "role": "PF/C"
    },
@@ -67,7 +67,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sacramento, CA"
    },
    "JaAlexander": {
@@ -84,21 +84,6 @@
       "gp": 0,
       "origin": "Los Angeles, CA"
    },
-   "GrGondrezick": {
-      "player_code_id": {
-         "code": "GrGondrezick",
-         "id": "Gondrezick II, Grant",
-         "ncaa_id": "5174936"
-      },
-      "number": "8",
-      "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Benton Harbor, MI",
-      "role": "CG"
-   },
    "PeMajstorovi": {
       "player_code_id": {
          "code": "PeMajstorovi",
@@ -110,7 +95,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sombor, Serbia",
       "role": "PF/C"
    },
@@ -136,7 +121,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Redwood City, CA"
    },
    "IsLewis": {
@@ -150,7 +135,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "CG"
    },
@@ -179,7 +164,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "CG"
    },
@@ -194,7 +179,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO",
       "role": "WG"
    },
@@ -209,7 +194,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Long Beach, CA"
    },
    "JjChaikovsky": {

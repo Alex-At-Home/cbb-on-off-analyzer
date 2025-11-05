@@ -10,23 +10,9 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mapleton, IL",
       "role": "WF"
-   },
-   "CaGillus": {
-      "player_code_id": {
-         "code": "CaGillus",
-         "id": "Gillus, Cam",
-         "ncaa_id": "5314503"
-      },
-      "number": "0",
-      "pos": "G",
-      "height": "5-11",
-      "height_in": 71,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Falls Church, VA"
    },
    "JaPike": {
       "player_code_id": {
@@ -39,7 +25,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX"
    },
    "AlAddesa": {
@@ -53,9 +39,23 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Monza, Italy",
       "role": "PF/C"
+   },
+   "JaVazquez": {
+      "player_code_id": {
+         "code": "JaVazquez",
+         "id": "Vazquez, Jalen",
+         "ncaa_id": "5314506"
+      },
+      "number": "31",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Carson, CA"
    },
    "BrReed": {
       "player_code_id": {
@@ -82,6 +82,34 @@
       "year_class": "",
       "gp": -1
    },
+   "CaThomas": {
+      "player_code_id": {
+         "code": "CaThomas",
+         "id": "Thomas, Caleb",
+         "ncaa_id": "5314505"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Atlanta, GA"
+   },
+   "AnUrosevic": {
+      "player_code_id": {
+         "code": "AnUrosevic",
+         "id": "Urosevic, Andrew",
+         "ncaa_id": "5314503"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Kitchener, Canada"
+   },
    "NaWhitlock": {
       "player_code_id": {
          "code": "NaWhitlock",
@@ -93,7 +121,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plymouth, MN",
       "role": "CG"
    },
@@ -123,7 +151,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Metuchen, NJ",
       "role": "WG"
    },
@@ -138,7 +166,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Allison Park, PA"
    },
    "ToConniff": {
@@ -152,7 +180,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Summit, NJ",
       "role": "PF/C"
    },
@@ -167,7 +195,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada",
       "role": "WF"
    },
@@ -184,5 +212,19 @@
       "year_class": "Sr",
       "gp": 0,
       "origin": "Yaoundé, Cameroon"
+   },
+   "CaBurrows": {
+      "player_code_id": {
+         "code": "CaBurrows",
+         "id": "Burrows, Caesar",
+         "ncaa_id": "5314504"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Marietta, GA"
    }
 }

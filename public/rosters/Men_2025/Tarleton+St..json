@@ -10,7 +10,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "KaDouglas": {
@@ -24,21 +24,21 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lancaster, TX"
    },
    "CaMcdowell": {
       "player_code_id": {
          "code": "CaMcdowell",
-         "id": "McDowell, Camron",
+         "id": "McDowell, Cam",
          "ncaa_id": "4896462"
       },
-      "number": "55",
+      "number": "11",
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Griffin, GA"
    },
    "JaJinks": {
@@ -81,7 +81,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plano, TX",
       "role": "CG"
    },
@@ -110,7 +110,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kingston, NY",
       "role": "CG"
    },
@@ -128,7 +128,7 @@
    "CaThomas": {
       "player_code_id": {
          "code": "CaThomas",
-         "id": "Thomas, Cameron",
+         "id": "Thomas, Cam",
          "ncaa_id": "5314857"
       },
       "number": "2",
@@ -153,6 +153,21 @@
       "gp": 0,
       "origin": "Ostrava, Czechia"
    },
+   "FrHicks": {
+      "player_code_id": {
+         "code": "FrHicks",
+         "id": "Hicks, Freddy",
+         "ncaa_id": "11203383"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Searcy, AR",
+      "role": "WG"
+   },
    "OcOwens": {
       "player_code_id": {
          "code": "OcOwens",
@@ -164,7 +179,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL",
       "role": "S-PF"
    },
@@ -179,7 +194,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orleans, France"
    },
    "DaPorter": {
@@ -221,7 +236,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kinshasa, DR Congo"
    },
    "AjDent": {
@@ -235,7 +250,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Thomasville, GA"
    },
    "KaIsaac": {
@@ -249,7 +264,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Christchurch, New Zealand"
    },
    "DjDormu": {
@@ -263,7 +278,7 @@
       "height": "5-9",
       "height_in": 69,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    }
 }

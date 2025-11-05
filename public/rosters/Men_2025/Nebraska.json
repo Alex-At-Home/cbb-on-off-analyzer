@@ -5,12 +5,12 @@
          "id": "Bolis, Justin",
          "ncaa_id": "5239573"
       },
-      "number": "20",
+      "number": "7",
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "So",
+      "gp": 1,
       "origin": "Lincoln, NE"
    },
    "HeBurt": {
@@ -27,6 +27,20 @@
       "gp": 0,
       "origin": "Omaha, NE"
    },
+   "LeCurtis": {
+      "player_code_id": {
+         "code": "LeCurtis",
+         "id": "Curtis, Leo",
+         "ncaa_id": "5263670"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "7-2",
+      "height_in": 86,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Reykjavik, Iceland"
+   },
    "BeBuyuktunce": {
       "player_code_id": {
          "code": "BeBuyuktunce",
@@ -38,7 +52,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bursa, Turkey",
       "role": "S-PF"
    },
@@ -52,8 +66,8 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Lincoln, NE"
    },
    "CoEssegian": {
@@ -67,7 +81,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Wayne, IN",
       "role": "WG"
    },
@@ -82,9 +96,54 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ashland, NE",
       "role": "CG"
+   },
+   "JaGarcia": {
+      "player_code_id": {
+         "code": "JaGarcia",
+         "id": "Garcia, Jared",
+         "ncaa_id": "4702740"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Houston, TX",
+      "role": "PF/C"
+   },
+   "JaLawrence": {
+      "player_code_id": {
+         "code": "JaLawrence",
+         "id": "Lawrence, Jamarques",
+         "ncaa_id": "5105825"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Plainfield, NJ",
+      "role": "CG"
+   },
+   "KeBlue": {
+      "player_code_id": {
+         "code": "KeBlue",
+         "id": "Blue, Kendall",
+         "ncaa_id": "5109018"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Woodbury, MN",
+      "role": "WG"
    },
    "__coach__": {
       "player_code_id": {
@@ -97,19 +156,65 @@
       "year_class": "",
       "gp": -1
    },
-   "JeGrace": {
+   "QuRhymes": {
       "player_code_id": {
-         "code": "JeGrace",
-         "id": "Grace, Jeff",
-         "ncaa_id": "9334715"
+         "code": "QuRhymes",
+         "id": "Rhymes, Quentin",
+         "ncaa_id": "5254162"
       },
-      "number": "8",
+      "number": "11",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Phoenix, AZ",
+      "role": "WG"
+   },
+   "WiCooper": {
+      "player_code_id": {
+         "code": "WiCooper",
+         "id": "Cooper, Will",
+         "ncaa_id": "5248172"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Omaha, NE",
+      "role": "S-PF"
+   },
+   "RiMast": {
+      "player_code_id": {
+         "code": "RiMast",
+         "id": "Mast, Rienk",
+         "ncaa_id": "4592677"
+      },
+      "number": "51",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Groningen, Netherlands",
+      "role": "S-PF"
+   },
+   "UgJarusevici": {
+      "player_code_id": {
+         "code": "UgJarusevici",
+         "id": "Jarusevicius, Ugnius",
+         "ncaa_id": "5108721"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Elmhurst, IL"
+      "origin": "Alytus, Republic of Lithuania",
+      "role": "S-PF"
    },
    "SaHoiberg": {
       "player_code_id": {
@@ -122,8 +227,23 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lincoln, NE",
       "role": "s-PG"
+   },
+   "PrSandfort": {
+      "player_code_id": {
+         "code": "PrSandfort",
+         "id": "Sandfort, Pryce",
+         "ncaa_id": "4858604"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Waukee, IA",
+      "role": "WF"
    }
 }

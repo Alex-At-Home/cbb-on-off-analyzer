@@ -39,7 +39,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vilnius, Republic of Lithuania",
       "role": "S-PF"
    },
@@ -54,7 +54,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Englewood, CO",
       "role": "PF/C"
    },
@@ -69,7 +69,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Killeen, TX"
    },
    "JoPascarelli": {
@@ -83,7 +83,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cambria Heights, NY",
       "role": "CG"
    },
@@ -98,7 +98,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belgrade, Serbia"
    },
    "ChDortch": {
@@ -112,7 +112,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Collins, CO"
    },
    "JeMuniz": {
@@ -126,7 +126,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bethlehem, PA",
       "role": "WG"
    },
@@ -141,7 +141,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eastvale, CA"
    },
    "__coach__": {
@@ -166,7 +166,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN",
       "role": "WF"
    },
@@ -181,7 +181,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eagan, MN"
    },
    "BrRechsteine": {
@@ -195,7 +195,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Acworth, GA",
       "role": "PG"
    },
@@ -210,7 +210,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Anselmo, CA",
       "role": "CG"
    }

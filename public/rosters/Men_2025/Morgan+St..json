@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Myers, FL"
    },
    "DaJames": {
@@ -24,7 +24,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Artesia, CA"
    },
    "WaPeggs": {
@@ -38,7 +38,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jackson, TN"
    },
    "ElDavis": {
@@ -52,7 +52,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Severn, MD"
    },
    "TrEdwards": {
@@ -81,7 +81,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pasadena, CA"
    },
    "__coach__": {
@@ -106,7 +106,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "DaBumpass": {
@@ -120,7 +120,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    },
    "RoLawson": {
@@ -134,7 +134,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Capitol Heights, MD",
       "role": "CG"
    },
@@ -149,7 +149,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Inglewood, CA",
       "role": "C"
    },
@@ -164,7 +164,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hazel Crest, IL"
    },
    "AlWorrell": {
@@ -178,7 +178,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "WG"
    },
@@ -193,7 +193,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL"
    },
    "MaWade": {

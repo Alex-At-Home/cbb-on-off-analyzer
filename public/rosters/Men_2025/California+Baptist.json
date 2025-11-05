@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV",
       "role": "WG"
    },
@@ -39,7 +39,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Medford, OR"
    },
    "MoBowser": {
@@ -56,6 +56,20 @@
       "gp": 0,
       "origin": "Charlotte, NC"
    },
+   "JoMuller": {
+      "player_code_id": {
+         "code": "JoMuller",
+         "id": "Muller, Jordan",
+         "ncaa_id": "5314832"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Neu-ulm, Germany"
+   },
    "JaDollar": {
       "player_code_id": {
          "code": "JaDollar",
@@ -67,7 +81,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Seattle, WA"
    },
    "MoDioum": {
@@ -95,7 +109,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada",
       "role": "S-PF"
    },
@@ -121,7 +135,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Glendale, AZ",
       "role": "C"
    },
@@ -136,7 +150,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Concord, CA"
    },
    "JaJackson": {
@@ -150,7 +164,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI"
    },
    "ReD'amelio": {
@@ -166,20 +180,6 @@
       "year_class": "Fr",
       "gp": 0,
       "origin": "Bollengo, Italy"
-   },
-   "JoMueller": {
-      "player_code_id": {
-         "code": "JoMueller",
-         "id": "Mueller, Jordan",
-         "ncaa_id": "5314832"
-      },
-      "number": "11",
-      "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Neu-ulm, Germany"
    },
    "ChMaHarmon": {
       "player_code_id": {
@@ -206,7 +206,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Compton, CA",
       "role": "s-PG"
    },
@@ -221,13 +221,13 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Caracas, Venezuela"
    },
    "NaGarcia": {
       "player_code_id": {
          "code": "NaGarcia",
-         "id": "Garcia, Nathaniel",
+         "id": "Garcia, Nate",
          "ncaa_id": "5314834"
       },
       "number": "35",

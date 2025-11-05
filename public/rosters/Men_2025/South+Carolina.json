@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vienna, Austria",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hickory, NC",
       "role": "PG"
    },
@@ -54,7 +54,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greenville, SC",
       "role": "PF/C"
    },
@@ -80,7 +80,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tampa, FL",
       "role": "CG"
    },
@@ -95,7 +95,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "S-PF"
    },
@@ -110,7 +110,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clichy, France",
       "role": "PF/C"
    },
@@ -125,7 +125,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greenville, SC"
    },
    "ElSparkman": {
@@ -139,7 +139,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland, TN"
    },
    "GrPolk": {
@@ -153,7 +153,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gainesville, VA"
    },
    "CaScott": {
@@ -182,7 +182,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    },
    "MeJohnson": {
@@ -196,7 +196,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland, OH",
       "role": "CG"
    },
@@ -211,7 +211,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ulaanbaatar, Mongolia",
       "role": "WG"
    },

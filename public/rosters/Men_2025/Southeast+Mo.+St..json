@@ -1,4 +1,18 @@
 {
+   "TrSadler": {
+      "player_code_id": {
+         "code": "TrSadler",
+         "id": "Sadler, Trace",
+         "ncaa_id": "11198319"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Sikeston, MO"
+   },
    "SaHoepker": {
       "player_code_id": {
          "code": "SaHoepker",
@@ -13,6 +27,20 @@
       "gp": 0,
       "origin": "Nashville, IL"
    },
+   "LaBlocker": {
+      "player_code_id": {
+         "code": "LaBlocker",
+         "id": "Blocker, Landren",
+         "ncaa_id": "5242134"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Little Rock, AR"
+   },
    "ElLowndes": {
       "player_code_id": {
          "code": "ElLowndes",
@@ -24,9 +52,24 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Carbondale, IL",
+      "gp": 1,
+      "origin": "Cobden, IL",
       "role": "C"
+   },
+   "BlSagna": {
+      "player_code_id": {
+         "code": "BlSagna",
+         "id": "Sagna, Blaize",
+         "ncaa_id": "5240019"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "London, United Kingdom",
+      "role": "CG"
    },
    "DaIdada": {
       "player_code_id": {
@@ -39,7 +82,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Barendrecht, Netherlands",
       "role": "C"
    },
@@ -51,11 +94,11 @@
       },
       "number": "25",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Cpe Girardeau, MO"
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Cape Girardeau, MO"
    },
    "BjWard": {
       "player_code_id": {
@@ -68,9 +111,23 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO",
       "role": "CG"
+   },
+   "PjFarmer": {
+      "player_code_id": {
+         "code": "PjFarmer",
+         "id": "Farmer, PJ",
+         "ncaa_id": "5314338"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Charleston, MO"
    },
    "BrTerry": {
       "player_code_id": {
@@ -83,7 +140,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santa Monica, CA",
       "role": "WF"
    },
@@ -98,49 +155,34 @@
       "year_class": "",
       "gp": -1
    },
-   "DaWalkup": {
+   "LuAlmodovar": {
       "player_code_id": {
-         "code": "DaWalkup",
-         "id": "Walkup, Damarion",
-         "ncaa_id": "9337226"
+         "code": "LuAlmodovar",
+         "id": "Almodovar, Luke",
+         "ncaa_id": "5314339"
       },
-      "number": "3",
+      "number": "10",
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Bowling Green, KY",
-      "role": "WG"
+      "gp": 1,
+      "origin": "Noblesville, IN"
    },
    "TrCole": {
       "player_code_id": {
          "code": "TrCole",
-         "id": "Cole, Jr., Troy",
+         "id": "Cole Jr., Troy",
          "ncaa_id": "5242973"
       },
       "number": "4",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Donaldsonville, LA",
       "role": "WG"
-   },
-   "MaHanback": {
-      "player_code_id": {
-         "code": "MaHanback",
-         "id": "Hanback, Mason",
-         "ncaa_id": "9337227"
-      },
-      "number": "35",
-      "pos": "C",
-      "height": "7-0",
-      "height_in": 84,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Jackson, TN"
    },
    "BrStacker": {
       "player_code_id": {
@@ -153,7 +195,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fairview Heights, IL",
       "role": "WG"
    },
@@ -168,7 +210,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kansas City, MO",
       "role": "WG"
    }

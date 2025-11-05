@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stockholm, Sweden",
       "role": "WG"
    },
@@ -25,7 +25,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Istanbul, Turkey",
       "role": "CG"
    },
@@ -35,12 +35,12 @@
          "id": "Edmonds III, Branford",
          "ncaa_id": "5314583"
       },
-      "number": "10",
+      "number": "21",
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "La Plata, MD"
    },
    "WaAndrews": {
@@ -54,7 +54,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fincastle, VA"
    },
    "MaTatum": {
@@ -68,7 +68,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edgewood, MD"
    },
    "__coach__": {
@@ -93,7 +93,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belton, TX",
       "role": "WF"
    },
@@ -136,7 +136,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Orleans, LA",
       "role": "WG"
    },
@@ -151,7 +151,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marietta, GA",
       "role": "S-PF"
    },
@@ -181,7 +181,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Suffolk, VA",
       "role": "WG"
    },
@@ -196,7 +196,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buffalo, NY",
       "role": "PF/C"
    },

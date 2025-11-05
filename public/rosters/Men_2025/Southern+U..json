@@ -1,45 +1,30 @@
 {
-   "DeMuon": {
+   "AnNunley": {
       "player_code_id": {
-         "code": "DeMuon",
-         "id": "Muon, Delang",
-         "ncaa_id": "5243371"
+         "code": "AnNunley",
+         "id": "Nunley, Andre",
+         "ncaa_id": "5177597"
       },
-      "number": "35",
-      "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Jr",
+      "number": "9",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
       "gp": 0,
-      "origin": "Frankston, Australia",
-      "role": "C"
-   },
-   "DiThomas": {
-      "player_code_id": {
-         "code": "DiThomas",
-         "id": "Thomas, Dionjahe",
-         "ncaa_id": "5176382"
-      },
-      "number": "8",
-      "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Houma, LA"
+      "origin": "Houston, TX"
    },
    "PjDobuol": {
       "player_code_id": {
          "code": "PjDobuol",
          "id": "Dobuol, PJ",
-         "ncaa_id": "5101848"
+         "ncaa_id": "5243371"
       },
-      "number": "24",
+      "number": "35",
       "pos": "G",
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Cloud, MN"
    },
    "LiBell": {
@@ -53,7 +38,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Orleans, LA"
    },
    "CaAmboree": {
@@ -67,37 +52,38 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pearland, TX",
       "role": "s-PG"
    },
-   "ChSample": {
+   "TeDixon": {
       "player_code_id": {
-         "code": "ChSample",
-         "id": "Sample, Chase",
-         "ncaa_id": "5314838"
+         "code": "TeDixon",
+         "id": "Dixon Jr., Terrance",
+         "ncaa_id": "5175066"
       },
-      "number": "14",
-      "pos": "G",
-      "height": "5-10",
-      "height_in": 70,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Baton Rouge, LA"
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Lawrenceville, GA"
    },
-   "JoJohnson": {
+   "DaJones": {
       "player_code_id": {
-         "code": "JoJohnson",
-         "id": "Johnson, Jordan",
-         "ncaa_id": "4585609"
+         "code": "DaJones",
+         "id": "Jones, DaMariee",
+         "ncaa_id": "4905542"
       },
-      "number": "11",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "West Palm Beach, FL"
+      "number": "1",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Bessemer, AL",
+      "role": "C"
    },
    "JoManning": {
       "player_code_id": {
@@ -114,6 +100,34 @@
       "origin": "Bossier City, LA",
       "role": "s-PG"
    },
+   "KeLamar": {
+      "player_code_id": {
+         "code": "KeLamar",
+         "id": "Lamar, Keith",
+         "ncaa_id": "4585609"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Stockbridge, GA"
+   },
+   "AsMagee": {
+      "player_code_id": {
+         "code": "AsMagee",
+         "id": "Magee, Ashton",
+         "ncaa_id": "5101848"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Ellisville, MS"
+   },
    "AjBarnes": {
       "player_code_id": {
          "code": "AjBarnes",
@@ -128,6 +142,20 @@
       "gp": 0,
       "origin": "Atlanta, GA",
       "role": "WF"
+   },
+   "RoHill": {
+      "player_code_id": {
+         "code": "RoHill",
+         "id": "Hill, Rondae",
+         "ncaa_id": "5314835"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Shreveport, LA"
    },
    "__coach__": {
       "player_code_id": {
@@ -151,8 +179,79 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "White Castle, LA"
+   },
+   "TrShephard": {
+      "player_code_id": {
+         "code": "TrShephard",
+         "id": "Shephard, Trey",
+         "ncaa_id": "5314836"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "MaAbdelgowad": {
+      "player_code_id": {
+         "code": "MaAbdelgowad",
+         "id": "Abdelgowad, Malek",
+         "ncaa_id": "5176382"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Cairo, Egypt",
+      "role": "PF/C"
+   },
+   "FeOlaniyan": {
+      "player_code_id": {
+         "code": "FeOlaniyan",
+         "id": "Olaniyan, Femi",
+         "ncaa_id": "5314837"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Allen, TX"
+   },
+   "BrHardy": {
+      "player_code_id": {
+         "code": "BrHardy",
+         "id": "Hardy, Brandon",
+         "ncaa_id": "5176556"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Zachary, LA"
+   },
+   "FaOshodi": {
+      "player_code_id": {
+         "code": "FaOshodi",
+         "id": "Oshodi, Fazl",
+         "ncaa_id": "5314838"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Swedesboro, NJ"
    },
    "MiJacobs": {
       "player_code_id": {
@@ -165,7 +264,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "s-PG"
    }

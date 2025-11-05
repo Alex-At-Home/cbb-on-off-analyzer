@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ottawa, Canada"
    },
    "AiDisu": {
@@ -24,7 +24,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buda, TX"
    },
    "TiFinau": {
@@ -52,7 +52,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Antonio, TX",
       "role": "WF"
    },
@@ -81,7 +81,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plano, TX",
       "role": "WF"
    },
@@ -107,7 +107,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Beacon, NY",
       "role": "s-PG"
    },
@@ -122,7 +122,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, OH"
    },
    "EtClark": {
@@ -150,7 +150,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Severn, MD",
       "role": "s-PG"
    },
@@ -165,7 +165,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buffalo, NY",
       "role": "WF"
    },
@@ -222,7 +222,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlottesville, VA"
    },
    "JoNugent": {
@@ -236,7 +236,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berkley, MA",
       "role": "WF"
    }

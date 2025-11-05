@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zagreb, Croatia",
       "role": "WF"
    },
@@ -25,7 +25,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Justin, TX"
    },
    "BrGriffith": {
@@ -39,7 +39,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Owensboro, KY"
    },
    "TrWalters": {
@@ -53,7 +53,7 @@
       "height": "5-9",
       "height_in": 69,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Frisco, TX"
    },
    "JuHawkins": {
@@ -67,7 +67,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Willingboro, NJ"
    },
    "AjMcbride": {
@@ -95,7 +95,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Missouri City, TX"
    },
    "GaDaTorresola": {
@@ -134,7 +134,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fort Collins, CO"
    },
    "JuPage": {
@@ -148,7 +148,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "East Peoria, IL",
       "role": "CG"
    },
@@ -163,7 +163,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sydney, Australia",
       "role": "PF/C"
    },
@@ -178,7 +178,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Farmington Hills, MI"
    },
    "JoSabino": {
@@ -192,7 +192,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL"
    }
 }

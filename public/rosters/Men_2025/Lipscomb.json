@@ -1,4 +1,32 @@
 {
+   "JoScott": {
+      "player_code_id": {
+         "code": "JoScott",
+         "id": "Scott, Josh",
+         "ncaa_id": "5313707"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Henagar, AL"
+   },
+   "LuJack": {
+      "player_code_id": {
+         "code": "LuJack",
+         "id": "Jack, Luke",
+         "ncaa_id": "5313703"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Canton, GA"
+   },
    "LuCarter": {
       "player_code_id": {
          "code": "LuCarter",
@@ -10,7 +38,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knoxville, TN"
    },
    "RoCandelino": {
@@ -24,7 +52,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL"
    },
    "GrAsman": {
@@ -38,9 +66,23 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kimberly, WI",
       "role": "PF/C"
+   },
+   "EtDuncan": {
+      "player_code_id": {
+         "code": "EtDuncan",
+         "id": "Duncan, Ethan",
+         "ncaa_id": "4897775"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Lubbock, TX"
    },
    "KeBoylan": {
       "player_code_id": {
@@ -53,7 +95,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Overland Park, KS",
       "role": "WG"
    },
@@ -68,20 +110,48 @@
       "year_class": "",
       "gp": -1
    },
+   "TiSargiunas": {
+      "player_code_id": {
+         "code": "TiSargiunas",
+         "id": "Sargiunas, Titas",
+         "ncaa_id": "5175660"
+      },
+      "number": "26",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Kaunas, Republic of Lithuania"
+   },
    "ChWilliams": {
       "player_code_id": {
          "code": "ChWilliams",
          "id": "Williams, Charlie",
          "ncaa_id": "5106738"
       },
-      "number": "6",
+      "number": "33",
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carmel, IN",
       "role": "S-PF"
+   },
+   "DeMartin": {
+      "player_code_id": {
+         "code": "DeMartin",
+         "id": "Martin, Devyn",
+         "ncaa_id": "5313704"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Knoxville, TN"
    },
    "MiWhite": {
       "player_code_id": {
@@ -112,5 +182,61 @@
       "gp": 0,
       "origin": "Fredericksburg, VA",
       "role": "s-PG"
+   },
+   "KeOkpara": {
+      "player_code_id": {
+         "code": "KeOkpara",
+         "id": "Okpara, Kennedy",
+         "ncaa_id": "5313705"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Chatanooga, TN"
+   },
+   "MaEsmeraldo": {
+      "player_code_id": {
+         "code": "MaEsmeraldo",
+         "id": "Esmeraldo, Mateo",
+         "ncaa_id": "5107530"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Monroe, CT"
+   },
+   "CoMiddleton": {
+      "player_code_id": {
+         "code": "CoMiddleton",
+         "id": "Middleton, Cole",
+         "ncaa_id": "4781728"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Atlanta, GA"
+   },
+   "OrAshkenazi": {
+      "player_code_id": {
+         "code": "OrAshkenazi",
+         "id": "Ashkenazi, Or",
+         "ncaa_id": "5313706"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Eilat, Israel"
    }
 }

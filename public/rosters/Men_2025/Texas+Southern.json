@@ -5,12 +5,12 @@
          "id": "Anderson, Alex",
          "ncaa_id": "9323923"
       },
-      "number": "8",
+      "number": "0",
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN"
    },
    "KeFarooq": {
@@ -28,6 +28,34 @@
       "origin": "Houston, TX",
       "role": "WG"
    },
+   "BrRoberts": {
+      "player_code_id": {
+         "code": "BrRoberts",
+         "id": "Roberts, Bryce",
+         "ncaa_id": "5183379"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bossier City, LA"
+   },
+   "JaWysinger": {
+      "player_code_id": {
+         "code": "JaWysinger",
+         "id": "Wysinger, Jaylen",
+         "ncaa_id": "5177608"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Houston, TX"
+   },
    "KoGranger": {
       "player_code_id": {
          "code": "KoGranger",
@@ -39,9 +67,23 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Missouri City, TX",
       "role": "WG"
+   },
+   "OuKoureissi": {
+      "player_code_id": {
+         "code": "OuKoureissi",
+         "id": "Koureissi, Oumar",
+         "ncaa_id": "5106677"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "New York, NY"
    },
    "__coach__": {
       "player_code_id": {
@@ -54,19 +96,48 @@
       "year_class": "",
       "gp": -1
    },
-   "JaJackson-po": {
+   "DuPosey": {
       "player_code_id": {
-         "code": "JaJackson-po",
-         "id": "Jackson-Posey, Jaylin",
-         "ncaa_id": "5177608"
+         "code": "DuPosey",
+         "id": "Posey, Duane",
+         "ncaa_id": "5107438"
       },
-      "number": "0",
+      "number": "23",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Midland, TX"
+      "gp": 1,
+      "origin": "Memphis, TN"
+   },
+   "JoAkpovwa": {
+      "player_code_id": {
+         "code": "JoAkpovwa",
+         "id": "Akpovwa, Josh",
+         "ncaa_id": "11197467"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Houston, TX",
+      "role": "C"
+   },
+   "JoGorecki": {
+      "player_code_id": {
+         "code": "JoGorecki",
+         "id": "Gorecki, Jordan",
+         "ncaa_id": "11197469"
+      },
+      "number": "34",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Markham, Canada"
    },
    "ZyMortle": {
       "player_code_id": {
@@ -79,9 +150,52 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alexandria, LA",
       "role": "CG"
+   },
+   "ZaHayes": {
+      "player_code_id": {
+         "code": "ZaHayes",
+         "id": "Hayes, Zaire",
+         "ncaa_id": "5185673"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "CaPatterson": {
+      "player_code_id": {
+         "code": "CaPatterson",
+         "id": "Patterson, Cameron",
+         "ncaa_id": "11197471"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Houston, TX"
+   },
+   "TrHupstead": {
+      "player_code_id": {
+         "code": "TrHupstead",
+         "id": "Hupstead, Troy",
+         "ncaa_id": "11197450"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mount Vernon, NY",
+      "role": "S-PF"
    },
    "JoFarmer": {
       "player_code_id": {
@@ -97,5 +211,47 @@
       "gp": 0,
       "origin": "Houston, TX",
       "role": "PF/C"
+   },
+   "JoHamilton": {
+      "player_code_id": {
+         "code": "JoHamilton",
+         "id": "Hamilton, Jordan",
+         "ncaa_id": "11197472"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Memphis, TN"
+   },
+   "AhNeAbdelrahma": {
+      "player_code_id": {
+         "code": "AhNeAbdelrahma",
+         "id": "Nedal Abdelrahman, Ahmed",
+         "ncaa_id": "11197473"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Cairo, GA"
+   },
+   "AnAndrews": {
+      "player_code_id": {
+         "code": "AnAndrews",
+         "id": "Andrews, Anthony",
+         "ncaa_id": "11197465"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Houston, TX"
    }
 }

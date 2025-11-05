@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amityville, NY"
    },
    "YaCueto": {
@@ -52,7 +52,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bamako, Mali"
    },
    "EfKalliontzi": {
@@ -81,7 +81,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springfield, IL"
    },
    "BrVick": {
@@ -95,7 +95,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Deerfield Beach, FL"
    },
    "UcKellman-ni": {
@@ -149,7 +149,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hampton, GA",
       "role": "WG"
    },
@@ -164,7 +164,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, United Kingdom"
    },
    "LuWalker": {
@@ -178,7 +178,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Durham, NC"
    },
    "TrMiddleton": {
@@ -192,7 +192,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "CG"
    },
@@ -222,7 +222,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC"
    },
    "LeWalker": {
@@ -236,7 +236,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Winston Salem, NC"
    }
 }

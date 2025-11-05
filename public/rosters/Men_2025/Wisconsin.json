@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "White Bear Lake, MN",
       "role": "WG"
    },
@@ -25,7 +25,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn Park, MN",
       "role": "WG"
    },
@@ -40,7 +40,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bloomfield Hills, MI",
       "role": "WG"
    },
@@ -81,7 +81,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Garnerville, NY",
       "role": "s-PG"
    },
@@ -96,7 +96,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kaunas, Republic of Lithuania"
    },
    "NoWinter": {
@@ -110,23 +110,8 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lakeville, MN",
-      "role": "S-PF"
-   },
-   "ElGray": {
-      "player_code_id": {
-         "code": "ElGray",
-         "id": "Gray, Elijah",
-         "ncaa_id": "5105894"
-      },
-      "number": "6",
-      "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Charlotte, NC",
       "role": "S-PF"
    },
    "AnRohde": {
@@ -140,7 +125,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI",
       "role": "PG"
    },
@@ -155,7 +140,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nelson, New Zealand"
    },
    "AuRapp": {
@@ -169,7 +154,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, Australia",
       "role": "S-PF"
    },
@@ -184,7 +169,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oregon, WI"
    },
    "RiGreppi": {
@@ -198,7 +183,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lecco, Italy"
    },
    "WiGarlock": {
@@ -212,7 +197,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Middleton, WI"
    },
    "JaRobison": {
@@ -226,7 +211,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lakeville, MN"
    }
 }

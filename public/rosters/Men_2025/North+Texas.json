@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kansas City, KS"
    },
    "DaTerrell": {
@@ -24,7 +24,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "s-PG"
    },
@@ -39,7 +39,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland, OH",
       "role": "S-PF"
    },
@@ -54,7 +54,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sacramento, CA",
       "role": "s-PG"
    },
@@ -83,7 +83,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY"
    },
    "CoFranklin": {
@@ -97,7 +97,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Desoto, TX",
       "role": "WG"
    },
@@ -112,7 +112,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Maple Grove, MN",
       "role": "WF"
    },
@@ -138,7 +138,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WG"
    },
@@ -153,7 +153,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greenville, NC"
    },
    "EjHorton": {
@@ -167,7 +167,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "DyArnett": {
@@ -181,7 +181,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "C"
    }

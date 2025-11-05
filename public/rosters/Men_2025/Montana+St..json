@@ -1,17 +1,31 @@
 {
-   "BrWalker": {
+   "WaMbatch": {
       "player_code_id": {
-         "code": "BrWalker",
-         "id": "Walker, Brandon",
-         "ncaa_id": "5313222"
+         "code": "WaMbatch",
+         "id": "Mbatch, Waka",
+         "ncaa_id": "5174671"
       },
-      "number": "2",
+      "number": "35",
       "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Sr",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Serekunda, Gambia"
+   },
+   "CjPurdie": {
+      "player_code_id": {
+         "code": "CjPurdie",
+         "id": "Purdie, CJ",
+         "ncaa_id": "5313223"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Dallas, TX"
+      "origin": "Davidson, NC"
    },
    "GrGaddis": {
       "player_code_id": {
@@ -23,23 +37,37 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Salt Lake City, UT"
    },
-   "MyMoskowitz": {
+   "HoKeene": {
       "player_code_id": {
-         "code": "MyMoskowitz",
-         "id": "Moskowitz, Myles",
-         "ncaa_id": "5313227"
+         "code": "HoKeene",
+         "id": "Keene, Howie",
+         "ncaa_id": "5313222"
       },
-      "number": "14",
+      "number": "2",
       "pos": "G",
-      "height": "5-11",
-      "height_in": 71,
-      "year_class": "So",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Boulder, CO"
+      "origin": "The Woodlands, TX"
+   },
+   "CaHolden": {
+      "player_code_id": {
+         "code": "CaHolden",
+         "id": "Holden, Cavin",
+         "ncaa_id": "5313224"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Longview, WA"
    },
    "CaRutherfurd": {
       "player_code_id": {
@@ -66,23 +94,23 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Palmer, AK",
       "role": "WG"
    },
-   "BjKolly": {
+   "JaSteppe": {
       "player_code_id": {
-         "code": "BjKolly",
-         "id": "Kolly, BJ",
-         "ncaa_id": "9324548"
+         "code": "JaSteppe",
+         "id": "Steppe, Jaden",
+         "ncaa_id": "5061605"
       },
-      "number": "8",
+      "number": "44",
       "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Mukilteo, WA"
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Tualatin, OR"
    },
    "__coach__": {
       "player_code_id": {
@@ -101,13 +129,13 @@
          "id": "Davis, Jeremiah",
          "ncaa_id": "5241290"
       },
-      "number": "0",
+      "number": "5",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Fountain Valley, CA"
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Compton, CA"
    },
    "JeMiller": {
       "player_code_id": {
@@ -120,8 +148,79 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Agoura Hills, CA",
       "role": "s-PG"
+   },
+   "JaSteward": {
+      "player_code_id": {
+         "code": "JaSteward",
+         "id": "Steward, James",
+         "ncaa_id": "5313227"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chandler, AZ"
+   },
+   "SeAmunrud": {
+      "player_code_id": {
+         "code": "SeAmunrud",
+         "id": "Amunrud, Seth",
+         "ncaa_id": "5313226"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bozeman, MT"
+   },
+   "ChKing": {
+      "player_code_id": {
+         "code": "ChKing",
+         "id": "King, Christian",
+         "ncaa_id": "5313225"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Kirkland, WA",
+      "role": "S-PF"
+   },
+   "DaBrown": {
+      "player_code_id": {
+         "code": "DaBrown",
+         "id": "Brown, Davian",
+         "ncaa_id": "5313221"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Pasadena, CA"
+   },
+   "ChHodges": {
+      "player_code_id": {
+         "code": "ChHodges",
+         "id": "Hodges, Chris",
+         "ncaa_id": "4433615"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Schaumburg, IL"
    }
 }

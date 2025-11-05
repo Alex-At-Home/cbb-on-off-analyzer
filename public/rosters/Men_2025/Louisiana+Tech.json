@@ -10,8 +10,22 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Ysidro, CA"
+   },
+   "LaThompson": {
+      "player_code_id": {
+         "code": "LaThompson",
+         "id": "Thompson, Lachlan",
+         "ncaa_id": "11194127"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Choudrant, LA"
    },
    "KyHowze": {
       "player_code_id": {
@@ -21,10 +35,10 @@
       },
       "number": "10",
       "pos": "F",
-      "height": "6-9",
-      "height_in": 81,
+      "height": "6-10",
+      "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gulfport, MS"
    },
    "A'Williams": {
@@ -52,7 +66,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clarksville, TN",
       "role": "CG"
    },
@@ -67,7 +81,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "CG"
    },
@@ -82,7 +96,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "C"
    },
@@ -97,7 +111,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jackson, MS"
    },
    "__coach__": {
@@ -136,7 +150,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Orleans, LA",
       "role": "C"
    },
@@ -165,7 +179,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ada, OK",
       "role": "WG"
    },
@@ -180,7 +194,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santo Domingo, Dominican Republic"
    },
    "WiJeffress": {
@@ -194,7 +208,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Erie, PA",
       "role": "WF"
    },
@@ -209,7 +223,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Humble, TX"
    }
 }

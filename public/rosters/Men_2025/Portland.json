@@ -24,7 +24,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bolton, Canada"
    },
    "CaWilliams": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cape Girardeau, MO"
    },
    "MiBallew": {
@@ -52,7 +52,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Palmdale, CA",
       "role": "WG"
    },
@@ -67,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bullard, TX"
    },
    "NaLong": {
@@ -81,7 +81,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Livermore, CA"
    },
    "JoFoxwell": {
@@ -95,7 +95,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, Australia"
    },
    "__coach__": {
@@ -120,7 +120,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sydney, Australia",
       "role": "C"
    },
@@ -150,7 +150,7 @@
       "height": "7-1",
       "height_in": 85,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stjaer, Denmark",
       "role": "PF/C"
    },
@@ -165,7 +165,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amsterdam, Netherlands"
    },
    "MaMoreira": {
@@ -193,7 +193,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Laguna Hills, CA"
    },
    "MaHronsky": {
@@ -207,7 +207,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zavazna Poruba, Slovakia",
       "role": "WF"
    },
@@ -222,7 +222,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brewster, WA",
       "role": "WG"
    }

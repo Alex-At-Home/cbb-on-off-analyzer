@@ -6,11 +6,11 @@
          "ncaa_id": "5312320"
       },
       "number": "33",
-      "pos": "G",
+      "pos": "F",
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wildwood, MO"
    },
    "BaNunn": {
@@ -24,7 +24,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, Australia",
       "role": "s-PG"
    },
@@ -39,7 +39,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Antonio, TX",
       "role": "C"
    },
@@ -54,7 +54,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lasalle, Canada",
       "role": "CG"
    },
@@ -83,7 +83,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Phoenix, AZ"
    },
    "KiGarris": {
@@ -97,7 +97,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Roswell, GA"
    },
    "JoWard": {
@@ -111,7 +111,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN"
    },
    "JaHenderson": {
@@ -125,22 +125,8 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sacramento, CA"
-   },
-   "CaSmith": {
-      "player_code_id": {
-         "code": "CaSmith",
-         "id": "Smith, Cameron",
-         "ncaa_id": "5312317"
-      },
-      "number": "11",
-      "pos": "G",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Dallas, TX"
    },
    "__coach__": {
       "player_code_id": {
@@ -164,7 +150,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vacaville, CA"
    },
    "ChWilliams": {
@@ -178,7 +164,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Florissant, MO"
    },
    "BrCofield": {
@@ -192,7 +178,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Reseda, CA"
    },
    "KiTilahun": {
@@ -234,7 +220,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Valencia, CA"
    },
    "YeWarren": {

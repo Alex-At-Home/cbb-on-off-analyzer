@@ -24,7 +24,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pembroke Pines, FL",
       "role": "CG"
    },
@@ -68,7 +68,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berwyn, PA",
       "role": "WF"
    },
@@ -111,7 +111,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greenville, SC"
    },
    "AdSamuels": {
@@ -139,7 +139,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Traverse City, MI",
       "role": "CG"
    },
@@ -193,7 +193,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fairfax, VA"
    },
    "MaCasey": {
@@ -221,7 +221,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC"
    },
    "MaCollins": {
@@ -235,7 +235,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbia, SC"
    },
    "CaMcdonald": {
@@ -249,7 +249,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Denver, CO"
    },
    "JaAnderson": {
@@ -277,7 +277,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alexandria, VA",
       "role": "WF"
    }

@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oklahoma City, OK"
    },
    "PrJohnson": {
@@ -24,7 +24,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bennettsville, SC"
    },
    "NaFisher": {
@@ -38,7 +38,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    },
    "MeWhite": {
@@ -52,7 +52,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louisville, KY"
    },
    "JtElder": {
@@ -80,7 +80,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI"
    },
    "__coach__": {
@@ -105,7 +105,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ellsinore, MO"
    },
    "MaOlafioye": {
@@ -119,7 +119,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ecorse, MI",
       "role": "CG"
    },
@@ -134,7 +134,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rock Rapids, IA"
    },
    "KyLayton": {
@@ -163,7 +163,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sellersburg, IN",
       "role": "S-PF"
    },
@@ -206,7 +206,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Douglasville, GA",
       "role": "WG"
    }

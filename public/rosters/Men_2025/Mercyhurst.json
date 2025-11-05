@@ -1,17 +1,31 @@
 {
-   "ChMcclennaha": {
+   "ChLeman": {
       "player_code_id": {
-         "code": "ChMcclennaha",
-         "id": "McClennahan, Jr., Charles",
-         "ncaa_id": "5315594"
+         "code": "ChLeman",
+         "id": "Leman, Christopher",
+         "ncaa_id": "5315593"
       },
-      "number": "23",
+      "number": "13",
       "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "New Orleans, LA"
+   },
+   "EmButkus": {
+      "player_code_id": {
+         "code": "EmButkus",
+         "id": "Butkus, Emilis",
+         "ncaa_id": "5107162"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Winston Salem, NC"
+      "origin": "Klaipėda, Republic of Lithuania"
    },
    "JaLemelman": {
       "player_code_id": {
@@ -24,9 +38,37 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newton, MA",
       "role": "CG"
+   },
+   "CaJohnson": {
+      "player_code_id": {
+         "code": "CaJohnson",
+         "id": "Johnson, Cameron",
+         "ncaa_id": "5315592"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Shepherdstown, WV"
+   },
+   "KaFuhrmann": {
+      "player_code_id": {
+         "code": "KaFuhrmann",
+         "id": "Fuhrmann, Kaden",
+         "ncaa_id": "5252076"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Liberty Township, OH"
    },
    "ChGamble": {
       "player_code_id": {
@@ -39,23 +81,37 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Silver Spring, MD",
       "role": "CG"
    },
-   "MaJusianiec": {
+   "BrConner": {
       "player_code_id": {
-         "code": "MaJusianiec",
-         "id": "Jusianiec, Max",
-         "ncaa_id": "5107162"
+         "code": "BrConner",
+         "id": "Conner, Brady",
+         "ncaa_id": "5315591"
       },
-      "number": "21",
+      "number": "2",
       "pos": "G",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Klaipeda, Lithuania"
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Bellbrook, OH"
+   },
+   "OrFaFrenkel": {
+      "player_code_id": {
+         "code": "OrFaFrenkel",
+         "id": "Faran Frenkel, Or",
+         "ncaa_id": "5315594"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Givatayim, Israel"
    },
    "__coach__": {
       "player_code_id": {
@@ -68,19 +124,47 @@
       "year_class": "",
       "gp": -1
    },
+   "BeBlunt": {
+      "player_code_id": {
+         "code": "BeBlunt",
+         "id": "Blunt, Bernie",
+         "ncaa_id": "4898243"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Morgantown, PA"
+   },
    "QaMartin": {
       "player_code_id": {
          "code": "QaMartin",
          "id": "Martin, Qadir",
          "ncaa_id": "4873160"
       },
-      "number": "2",
+      "number": "12",
       "pos": "F",
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Staten Island, NY"
+   },
+   "SeLang": {
+      "player_code_id": {
+         "code": "SeLang",
+         "id": "Lang, Sean",
+         "ncaa_id": "4709424"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "New Market, MD"
    },
    "JaThomas": {
       "player_code_id": {
@@ -92,10 +176,24 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Sharpsville, PA",
       "role": "PF/C"
+   },
+   "VlPavlovic": {
+      "player_code_id": {
+         "code": "VlPavlovic",
+         "id": "Pavlovic, Vladimir",
+         "ncaa_id": "5175024"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Herceg Novi, Montenegro"
    },
    "MyIvanauskas": {
       "player_code_id": {
@@ -108,7 +206,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "PF/C"
    },
@@ -118,12 +216,12 @@
          "id": "Jackson Jr., Deshaun",
          "ncaa_id": "5243378"
       },
-      "number": "0",
+      "number": "7",
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Covington, KY",
       "role": "s-PG"
    }

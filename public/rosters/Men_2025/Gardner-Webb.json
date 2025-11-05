@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richardson, TX"
    },
    "AhNdiaye": {
@@ -38,7 +38,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "High Point, NC"
    },
    "NaPeterson": {
@@ -52,7 +52,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL"
    },
    "PaLindberg": {
@@ -80,7 +80,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Beaumont, CA"
    },
    "RiRiek": {
@@ -94,7 +94,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rochester, MN"
    },
    "CoHawkins": {
@@ -108,7 +108,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Colorado Springs, CO",
       "role": "CG"
    },
@@ -134,7 +134,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "CG"
    },
@@ -163,7 +163,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fairhope, AL"
    },
    "JuClark": {
@@ -177,7 +177,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mountain Brook, AL"
    },
    "IsHicks": {
@@ -219,7 +219,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY"
    },
    "AcTalbert": {
@@ -233,7 +233,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wyandanch, NY"
    }
 }

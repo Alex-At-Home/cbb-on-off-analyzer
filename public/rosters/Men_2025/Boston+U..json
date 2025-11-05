@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bridgetown, Barbados",
       "role": "WG"
    },
@@ -25,7 +25,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "North Haven, CT"
    },
    "AzAbdullah": {
@@ -39,7 +39,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cranston, RI",
       "role": "WG"
    },
@@ -121,7 +121,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berlin, Germany",
       "role": "C"
    },
@@ -136,7 +136,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC"
    },
    "MaBaptiste": {
@@ -165,7 +165,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Temecula, CA",
       "role": "WG"
    },
@@ -180,23 +180,8 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yonkers, NY"
-   },
-   "SpJoyner": {
-      "player_code_id": {
-         "code": "SpJoyner",
-         "id": "Joyner, Spencer",
-         "ncaa_id": "5176040"
-      },
-      "number": "25",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Hackensack, NJ",
-      "role": "WG"
    },
    "SaHughes": {
       "player_code_id": {
@@ -209,7 +194,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brookline, MA"
    },
    "OtLandrum": {
@@ -238,7 +223,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Spring Lake, NJ",
       "role": "s-PG"
    }

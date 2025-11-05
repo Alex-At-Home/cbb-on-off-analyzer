@@ -1,4 +1,19 @@
 {
+   "KaMcclain": {
+      "player_code_id": {
+         "code": "KaMcclain",
+         "id": "McClain, Kavion",
+         "ncaa_id": "5177703"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Memphis, TN",
+      "role": "s-PG"
+   },
    "DoMuordar": {
       "player_code_id": {
          "code": "DoMuordar",
@@ -10,7 +25,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rumbek , South Sudan",
       "role": "C"
    },
@@ -25,7 +40,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Manasquan, NJ",
       "role": "WG"
    },
@@ -40,7 +55,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marlton, NJ",
       "role": "WF"
    },
@@ -55,23 +70,23 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Willingboro, NJ",
       "role": "WG"
    },
-   "ChGreen": {
+   "StSpartalis": {
       "player_code_id": {
-         "code": "ChGreen",
-         "id": "Green, Christopher",
-         "ncaa_id": "9334618"
+         "code": "StSpartalis",
+         "id": "Spartalis, Stefanos",
+         "ncaa_id": "5313726"
       },
-      "number": "8",
-      "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Brooklyn, NY"
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Chios, Greece"
    },
    "LuOrchard": {
       "player_code_id": {
@@ -84,22 +99,23 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wayne, PA"
    },
-   "ArDemings": {
+   "JaRivera-tor": {
       "player_code_id": {
-         "code": "ArDemings",
-         "id": "Demings, Aric",
-         "ncaa_id": "9334613"
+         "code": "JaRivera-tor",
+         "id": "Rivera-Torres, Jason",
+         "ncaa_id": "5174288"
       },
-      "number": "11",
+      "number": "1",
       "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Desoto, TX"
+      "gp": 1,
+      "origin": "Bronx, NY",
+      "role": "WF"
    },
    "CoMiller": {
       "player_code_id": {
@@ -112,7 +128,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brick, NJ"
    },
    "__coach__": {
@@ -126,6 +142,48 @@
       "year_class": "",
       "gp": -1
    },
+   "O'Harvey": {
+      "player_code_id": {
+         "code": "O'Harvey",
+         "id": "Harvey, O'Marion",
+         "ncaa_id": "5101818"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Katy, TX"
+   },
+   "JiDobuol": {
+      "player_code_id": {
+         "code": "JiDobuol",
+         "id": "Dobuol, Jinup",
+         "ncaa_id": "5240966"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Saint Cloud, MN"
+   },
+   "ZuGriffin": {
+      "player_code_id": {
+         "code": "ZuGriffin",
+         "id": "Griffin, Zubayr",
+         "ncaa_id": "5312165"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Binghamton, NY"
+   },
    "JaLeahy": {
       "player_code_id": {
          "code": "JaLeahy",
@@ -137,7 +195,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Long Branch, NJ"
    },
    "QuPeters": {
@@ -151,8 +209,22 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Spring Lake, NJ"
+   },
+   "AnMartinez": {
+      "player_code_id": {
+         "code": "AnMartinez",
+         "id": "Martinez, Anthony",
+         "ncaa_id": "5312166"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Le Bouscat, France"
    },
    "JuRay": {
       "player_code_id": {
@@ -165,7 +237,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greer, SC",
       "role": "WG"
    }

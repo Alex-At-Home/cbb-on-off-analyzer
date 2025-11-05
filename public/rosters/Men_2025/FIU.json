@@ -27,6 +27,20 @@
       "gp": 0,
       "origin": "Kaunas, Republic of Lithuania"
    },
+   "JoSantos": {
+      "player_code_id": {
+         "code": "JoSantos",
+         "id": "Santos, Jorge",
+         "ncaa_id": "11192775"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Miami, FL"
+   },
    "JuMackey": {
       "player_code_id": {
          "code": "JuMackey",
@@ -38,7 +52,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grayson, GA",
       "role": "CG"
    },
@@ -53,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bessemer, AL",
       "role": "WG"
    },
@@ -68,7 +82,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stone Mountain, GA",
       "role": "s-PG"
    },
@@ -83,7 +97,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rock Island, IL"
    },
    "__coach__": {
@@ -103,12 +117,12 @@
          "id": "Williamson, Ashton",
          "ncaa_id": "5242116"
       },
-      "number": "3",
+      "number": "4",
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gary, IN",
       "role": "s-PG"
    },
@@ -123,7 +137,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plantation, FL"
    },
    "HaOlayinka": {
@@ -137,9 +151,23 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "C"
+   },
+   "IbOlajuwon": {
+      "player_code_id": {
+         "code": "IbOlajuwon",
+         "id": "Olajuwon, Ibrahim",
+         "ncaa_id": "5242119"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Lagos, Nigeria"
    },
    "ErDibami": {
       "player_code_id": {
@@ -152,7 +180,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yaoundé, Cameroon"
    },
    "ThSucatzky": {
@@ -166,7 +194,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Córdoba, Argentina"
    },
    "BrHarris": {
@@ -180,7 +208,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gary, IN",
       "role": "CG"
    },
@@ -195,21 +223,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
-   },
-   "OlIbrahim": {
-      "player_code_id": {
-         "code": "OlIbrahim",
-         "id": "Ibrahim, Olajuwon",
-         "ncaa_id": "5242119"
-      },
-      "number": "34",
-      "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Lagos, Nigeria"
    }
 }

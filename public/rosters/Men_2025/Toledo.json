@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grand Rapids, MI",
       "role": "PF/C"
    },
@@ -25,7 +25,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Holly Springs, NC"
    },
    "LoPraytor": {
@@ -36,9 +36,10 @@
       },
       "number": "21",
       "pos": "F",
-      "height": "-",
+      "height": "7-0",
+      "height_in": 84,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Colorado Springs, CO"
    },
    "AuParks": {
@@ -52,7 +53,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Marys, OH"
    },
    "LeBlyden": {
@@ -66,7 +67,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI"
    },
    "PhGlassnor": {
@@ -133,7 +134,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Omaha, NE"
    },
    "KyVanderjagt": {
@@ -147,7 +148,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grand Rapids, MI",
       "role": "WG"
    },
@@ -162,7 +163,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sylvania, OH",
       "role": "S-PF"
    },
@@ -177,7 +178,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pontiac, MI",
       "role": "CG"
    },
@@ -192,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saginaw, MI"
    }
 }

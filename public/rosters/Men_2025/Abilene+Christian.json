@@ -10,7 +10,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "State College, PA"
    },
    "JoScott": {
@@ -24,7 +24,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bradenton, FL"
    },
    "RiSmith": {
@@ -38,7 +38,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY",
       "role": "s-PG"
    },
@@ -53,7 +53,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbia, TN"
    },
    "CaHornecker": {
@@ -67,7 +67,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amarillo, TX",
       "role": "PF/C"
    },
@@ -82,7 +82,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tulsa, OK",
       "role": "WF"
    },
@@ -108,7 +108,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN"
    },
    "ChNewton": {
@@ -122,7 +122,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Simsboro, LA",
       "role": "WG"
    },
@@ -137,7 +137,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Midland, TX",
       "role": "WG"
    },
@@ -152,7 +152,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Austin, TX"
    },
    "YaRivera": {
@@ -181,7 +181,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Abilene, TX"
    },
    "ZyWright": {
@@ -195,7 +195,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lincolnton, GA"
    }
 }

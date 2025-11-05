@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belgrade, Serbia",
       "role": "WF"
    },
@@ -52,8 +52,8 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "---",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Wyoming, OH",
       "role": "WG"
    },
@@ -68,7 +68,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ventura, CA"
    },
    "MiWolf": {
@@ -96,7 +96,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Abidjan, Ivory Coast",
       "role": "C"
    },
@@ -111,7 +111,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Durango, Mexico",
       "role": "CG"
    },
@@ -167,7 +167,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Peachtree City, GA",
       "role": "C"
    },
@@ -196,7 +196,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toronto, Canada",
       "role": "S-PF"
    },
@@ -210,8 +210,8 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "---",
-      "gp": 0,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Punta Gorda, FL",
       "role": "S-PF"
    },
@@ -240,7 +240,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntington Beach, CA",
       "role": "CG"
    }

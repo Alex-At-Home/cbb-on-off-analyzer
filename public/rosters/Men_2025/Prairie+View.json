@@ -1,17 +1,74 @@
 {
-   "ElTerry": {
+   "JoMadimba": {
       "player_code_id": {
-         "code": "ElTerry",
-         "id": "Terry, Elijah",
-         "ncaa_id": "4904928"
+         "code": "JoMadimba",
+         "id": "Madimba, Joey",
+         "ncaa_id": "4705371"
       },
-      "number": "13",
-      "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Enterprise, AL"
+      "origin": "Mansfield, TX"
+   },
+   "DoHorne": {
+      "player_code_id": {
+         "code": "DoHorne",
+         "id": "Horne, Dontae",
+         "ncaa_id": "5176727"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Memphis, TN"
+   },
+   "ElMitchell": {
+      "player_code_id": {
+         "code": "ElMitchell",
+         "id": "Mitchell, Elijah",
+         "ncaa_id": "5314805"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Roanoke, VA"
+   },
+   "HaDiallo": {
+      "player_code_id": {
+         "code": "HaDiallo",
+         "id": "Diallo, Hassane",
+         "ncaa_id": "5190922"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "SeLewis": {
+      "player_code_id": {
+         "code": "SeLewis",
+         "id": "Lewis, Seryee",
+         "ncaa_id": "5243098"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Chicago, IL",
+      "role": "C"
    },
    "IsFoster": {
       "player_code_id": {
@@ -19,55 +76,43 @@
          "id": "Foster, Isaiah",
          "ncaa_id": "5243361"
       },
-      "number": "5",
+      "number": "1",
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Sr",
-      "gp": 0,
+      "year_class": "Jr",
+      "gp": 1,
       "origin": "Frisco, TX"
    },
-   "ChGibson": {
+   "TaJoseph": {
       "player_code_id": {
-         "code": "ChGibson",
-         "id": "Gibson, Chauncey",
-         "ncaa_id": "9336783"
+         "code": "TaJoseph",
+         "id": "Joseph, Tai'Reon",
+         "ncaa_id": "4703215"
       },
-      "number": "8",
-      "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Dallas, TX"
-   },
-   "KeMays": {
-      "player_code_id": {
-         "code": "KeMays",
-         "id": "Mays, Keddric",
-         "ncaa_id": "9336787"
-      },
-      "number": "30",
+      "number": "3",
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Cypress, TX"
+      "gp": 1,
+      "origin": "Baton Rouge, LA",
+      "role": "CG"
    },
-   "OrHorton": {
+   "CoWells": {
       "player_code_id": {
-         "code": "OrHorton",
-         "id": "Horton, Jr., Orlando",
-         "ncaa_id": "4904931"
+         "code": "CoWells",
+         "id": "Wells, Cory",
+         "ncaa_id": "4904928"
       },
-      "number": "12",
-      "pos": "G",
-      "height": "5-10",
-      "height_in": 70,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Houston, TX"
+      "number": "13",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Murphy, TX",
+      "role": "WF"
    },
    "__coach__": {
       "player_code_id": {
@@ -80,6 +125,20 @@
       "year_class": "",
       "gp": -1
    },
+   "KeMason": {
+      "player_code_id": {
+         "code": "KeMason",
+         "id": "Mason, Keeshawn",
+         "ncaa_id": "5247621"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Shawnee, OK"
+   },
    "MaBryant": {
       "player_code_id": {
          "code": "MaBryant",
@@ -91,22 +150,65 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Round Rock, TX",
       "role": "WF"
    },
-   "NeJohnson": {
+   "CoDunning": {
       "player_code_id": {
-         "code": "NeJohnson",
-         "id": "Johnson, Nemo",
-         "ncaa_id": "5243098"
+         "code": "CoDunning",
+         "id": "Dunning, Corey",
+         "ncaa_id": "4904924"
       },
-      "number": "15",
+      "number": "4",
       "pos": "F",
-      "height": "6-6",
-      "height_in": 78,
+      "height": "6-9",
+      "height_in": 81,
       "year_class": "Sr",
       "gp": 0,
+      "origin": "Lafayette, LA"
+   },
+   "JaThomas": {
+      "player_code_id": {
+         "code": "JaThomas",
+         "id": "Thomas, Jannoy",
+         "ncaa_id": "5314804"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Scarborough, Canada"
+   },
+   "DoYoung": {
+      "player_code_id": {
+         "code": "DoYoung",
+         "id": "Young, Doug",
+         "ncaa_id": "5177138"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Houston, TX",
+      "role": "CG"
+   },
+   "LaWilliams": {
+      "player_code_id": {
+         "code": "LaWilliams",
+         "id": "Williams, Lance",
+         "ncaa_id": "4904931"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 1,
       "origin": "Baton Rouge, LA"
    },
    "RyBolton": {
@@ -120,7 +222,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waller, TX",
       "role": "C"
    }

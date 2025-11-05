@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waynesville, NC",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charleston, SC",
       "role": "C"
    },
@@ -40,7 +40,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waterbury, CT"
    },
    "JaTaylor": {
@@ -68,7 +68,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elizabethtown, KY"
    },
    "LuWilliams": {
@@ -82,7 +82,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Olathe, KS"
    },
    "ReJones": {
@@ -96,7 +96,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oxon Hill, MD",
       "role": "C"
    },
@@ -111,7 +111,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fresno, CA"
    },
    "JeHafemeiste": {
@@ -125,7 +125,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mendham, NJ"
    },
    "__coach__": {
@@ -208,7 +208,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA"
    },
    "TrColeman": {
@@ -222,7 +222,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ridgeland, MS"
    },
    "EaHupp": {

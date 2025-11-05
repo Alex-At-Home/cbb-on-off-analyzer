@@ -10,7 +10,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Haltom City, TX"
    },
    "MaKilups": {
@@ -24,7 +24,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Riga, Latvia"
    },
    "AlCouto": {
@@ -52,7 +52,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA"
    },
    "YuYamanouchi": {
@@ -66,8 +66,8 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Aizuwakamatsu, Japan"
+      "gp": 1,
+      "origin": "Aizu-Wakamatsu, Japan"
    },
    "OfNaveh": {
       "player_code_id": {
@@ -80,7 +80,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Neot Golan, Israel",
       "role": "WF"
    },
@@ -109,7 +109,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Broken Arrow, OK",
       "role": "WG"
    },
@@ -135,7 +135,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Norcross, GA",
       "role": "CG"
    },
@@ -150,7 +150,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edmond, OK",
       "role": "S-PF"
    },
@@ -165,7 +165,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dillsboro, IN"
    },
    "CaFurnish": {
@@ -179,7 +179,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edmond, OK"
    },
    "ChMartin": {
@@ -193,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jenks, OK",
       "role": "WG"
    },
@@ -208,7 +208,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Austin, TX"
    }
 }

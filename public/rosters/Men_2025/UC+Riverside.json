@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chatsworth, CA"
    },
    "AmMckinney": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newport Beach, CA",
       "role": "S-PF"
    },
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mountain View, CA"
    },
    "TyJones": {
@@ -67,7 +67,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Morgan Hill, CA"
    },
    "EjSpillman": {
@@ -81,7 +81,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Long Beach, CA"
    },
    "DaTobiloba": {
@@ -95,7 +95,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria"
    },
    "GaHaase": {
@@ -123,7 +123,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Traralgon, Australia"
    },
    "DeHines": {
@@ -137,7 +137,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fontana, CA",
       "role": "S-PF"
    },
@@ -152,7 +152,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mukilteo, WA",
       "role": "C"
    },
@@ -167,7 +167,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Anaheim, CA",
       "role": "CG"
    },
@@ -193,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Antioch, CA"
    },
    "OsGrady": {
@@ -207,7 +207,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV",
       "role": "WF"
    },

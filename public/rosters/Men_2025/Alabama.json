@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Green Bay, WI",
       "role": "WF"
    },
@@ -25,7 +25,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Riga, Latvia",
       "role": "PF/C"
    },
@@ -40,9 +40,23 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bloomfield, CT",
       "role": "S-PF"
+   },
+   "KlJames": {
+      "player_code_id": {
+         "code": "KlJames",
+         "id": "James, Klark",
+         "ncaa_id": "11203820"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "New Site, AL"
    },
    "LaWrightsell": {
       "player_code_id": {
@@ -57,6 +71,20 @@
       "year_class": "Sr",
       "gp": 0,
       "origin": "Omaha, NE"
+   },
+   "JaMartin": {
+      "player_code_id": {
+         "code": "JaMartin",
+         "id": "Martin, Jacob",
+         "ncaa_id": "11203483"
+      },
+      "number": "25",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Chapel Hill, NC"
    },
    "PrMurphy": {
       "player_code_id": {
@@ -94,7 +122,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI",
       "role": "WG"
    },
@@ -109,7 +137,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Putnam, CT"
    },
    "JaBethea": {
@@ -138,7 +166,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jericho, VT",
       "role": "S-PF"
    },
@@ -153,7 +181,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alameda, CA",
       "role": "CG"
    },
@@ -168,7 +196,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI",
       "role": "PF/C"
    },
@@ -198,7 +226,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mobile, AL",
       "role": "s-PG"
    },
@@ -216,5 +244,19 @@
       "gp": 0,
       "origin": "Charlotte, NC",
       "role": "CG"
+   },
+   "JaFagan": {
+      "player_code_id": {
+         "code": "JaFagan",
+         "id": "Fagan, Jack",
+         "ncaa_id": "11203817"
+      },
+      "number": "31",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Simpsonville, SC"
    }
 }

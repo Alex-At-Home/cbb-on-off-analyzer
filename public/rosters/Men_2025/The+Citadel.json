@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milton, GA",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "WF"
    },
@@ -54,7 +54,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Honolulu, HI"
    },
    "BrWilliams": {
@@ -68,7 +68,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Thomasville, AL"
    },
    "KeDavis": {
@@ -82,7 +82,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WG"
    },
@@ -97,7 +97,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Almere Buiten, Netherlands"
    },
    "MaGonzales": {
@@ -111,7 +111,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "LoApplegate": {
@@ -125,7 +125,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nevada, MO"
    },
    "__coach__": {
@@ -150,7 +150,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Providence, RI",
       "role": "s-PG"
    },
@@ -165,7 +165,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Pleasant, SC"
    },
    "ChWilliams": {
@@ -179,7 +179,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bladenboro, NC"
    },
    "LoMenefee": {
@@ -193,7 +193,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Missouri City, TX"
    },
    "DaKearse": {
@@ -207,7 +207,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA",
       "role": "WF"
    },
@@ -222,7 +222,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Doral, FL"
    },
    "JaHeck": {
@@ -236,7 +236,7 @@
       "height": "5-7",
       "height_in": 67,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waterville, OH"
    },
    "AiAlexander": {
@@ -250,7 +250,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charleston, SC"
    },
    "CaKingsbury": {
@@ -264,7 +264,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ponca, NE"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Salvador, Brazil"
    },
    "HoGrayson": {
@@ -24,7 +24,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gonzales, LA"
    },
    "TrPerry": {
@@ -38,7 +38,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eddyville, KY",
       "role": "CG"
    },
@@ -53,7 +53,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Orleans, LA",
       "role": "C"
    },
@@ -68,7 +68,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Les Paris, France",
       "role": "CG"
    },
@@ -83,7 +83,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fayetteville, NC",
       "role": "C"
    },
@@ -98,7 +98,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Murfreesboro, TN",
       "role": "S-PF"
    },
@@ -110,10 +110,10 @@
       },
       "number": "6",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-5",
+      "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marseille, France",
       "role": "WG"
    },
@@ -154,7 +154,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Franca SP, Brazil",
       "role": "WG"
    },
@@ -169,7 +169,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Murfreesboro, TN",
       "role": "WG"
    },
@@ -184,7 +184,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rockford, IL",
       "role": "WG"
    },
@@ -199,7 +199,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Seattle, WA",
       "role": "s-PG"
    },
@@ -214,7 +214,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Austin, TX"
    },
    "ZaDay": {
@@ -228,7 +228,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Midland, TX"
    },
    "NiBundalo": {
@@ -242,7 +242,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Canton, OH"
    }
 }

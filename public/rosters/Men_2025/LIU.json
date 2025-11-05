@@ -96,7 +96,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toronto, Canada",
       "role": "WF"
    },
@@ -111,7 +111,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toronto, Canada",
       "role": "s-PG"
    },
@@ -137,7 +137,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Winnipeg, Canada",
       "role": "C"
    },
@@ -152,7 +152,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alachua, FL"
    },
    "GrGordon": {
@@ -166,7 +166,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WG"
    },
@@ -181,7 +181,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pembroke Pines, FL"
    },
    "IsMiranda": {
@@ -195,7 +195,7 @@
       "height": "7-1",
       "height_in": 85,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pawtucket, RI"
    },
    "AjNeal": {
@@ -224,7 +224,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    }
 }

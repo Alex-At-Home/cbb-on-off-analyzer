@@ -10,14 +10,14 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scarborough, Canada",
       "role": "WG"
    },
    "ChKumu": {
       "player_code_id": {
          "code": "ChKumu",
-         "id": "Kumu, Christopher",
+         "id": "Kumu, Chris",
          "ncaa_id": "5311725"
       },
       "number": "0",
@@ -25,7 +25,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada"
    },
    "AnBenard": {
@@ -39,7 +39,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Detroit, MI",
       "role": "s-PG"
    },
@@ -54,7 +54,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chestnut Ridge, NY",
       "role": "PF/C"
    },
@@ -69,7 +69,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alfred, NY",
       "role": "WF"
    },
@@ -95,7 +95,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Liverpool, NY"
    },
    "TrAugustine": {
@@ -109,7 +109,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grand Island, NY"
    },
    "ZaChristian": {
@@ -120,10 +120,10 @@
       },
       "number": "6",
       "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grand Island, NY"
    },
    "BrNdjonga": {
@@ -137,7 +137,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yaoundé, Cameroon",
       "role": "S-PF"
    },
@@ -152,7 +152,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Williamsville, NY"
    },
    "KaSingleton": {
@@ -166,7 +166,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vancouver, WA",
       "role": "WG"
    },
@@ -181,7 +181,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI"
    },
    "EvDerPlas": {
@@ -195,7 +195,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rosmalen, Netherlands",
       "role": "WF"
    },
@@ -210,7 +210,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Orange, NJ"
    },
    "KiIjeoma": {
@@ -224,7 +224,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX"
    },
    "MaNiblack": {

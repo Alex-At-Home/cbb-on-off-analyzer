@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Watertown, MA",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elizabethton, TN"
    },
    "ElParker": {
@@ -39,7 +39,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waterbury, CT"
    },
    "AdFox": {
@@ -53,7 +53,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Silver Spring, MD"
    },
    "JaJones": {
@@ -67,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Britain, CT",
       "role": "WF"
    },
@@ -82,7 +82,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL"
    },
    "AsReynolds": {
@@ -96,7 +96,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New York, NY"
    },
    "RaTibby": {
@@ -124,7 +124,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsboro, NC",
       "role": "C"
    },
@@ -139,7 +139,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tigard, OR"
    },
    "__coach__": {
@@ -164,7 +164,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Diego, CA"
    },
    "DaSmith": {
@@ -178,7 +178,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springfield, MA",
       "role": "WF"
    },
@@ -193,7 +193,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "North Babylon, NY"
    },
    "CoEdwards": {
@@ -221,7 +221,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Midwest City, OK",
       "role": "PF/C"
    },
@@ -236,7 +236,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pickerington, OH"
    }
 }

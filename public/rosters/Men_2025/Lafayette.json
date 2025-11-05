@@ -24,7 +24,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, FL",
       "role": "CG"
    },
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mt. Pleasant, SC"
    },
    "JoWyche": {
@@ -68,7 +68,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "s-PG"
    },
@@ -108,7 +108,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Downingtown, PA",
       "role": "WF"
    },
@@ -137,7 +137,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "ChHumphrey-r": {
@@ -151,7 +151,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grand Rapids, MI"
    },
    "MiBednostin": {
@@ -194,7 +194,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Westfield, NJ",
       "role": "CG"
    },
@@ -209,7 +209,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newfield, NJ"
    },
    "MaRasul": {
@@ -223,7 +223,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tucson, AZ",
       "role": "WF"
    }

@@ -24,7 +24,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Suwanee, GA"
    },
    "NiMachowski": {
@@ -38,7 +38,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Berlin, Germany",
       "role": "WG"
    },
@@ -109,7 +109,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mpls, MN"
    },
    "__coach__": {
@@ -134,7 +134,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stanley, NC"
    },
    "LuFlynn": {
@@ -148,7 +148,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marietta, GA",
       "role": "WG"
    },
@@ -163,7 +163,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "KaHolmes": {
@@ -177,7 +177,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "WG"
    },
@@ -192,7 +192,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Weston, FL"
    },
    "CaVasko": {
@@ -206,7 +206,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lowell, IN",
       "role": "WG"
    },
@@ -221,7 +221,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbia, SC"
    }
 }

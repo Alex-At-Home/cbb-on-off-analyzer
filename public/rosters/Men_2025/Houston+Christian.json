@@ -10,7 +10,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Denver, CO",
       "role": "CG"
    },
@@ -40,7 +40,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sellers, SC",
       "role": "WF"
    },
@@ -55,7 +55,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fresno, CA",
       "role": "WG"
    },
@@ -70,7 +70,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cambridge, Canada"
    },
    "CaGaston": {
@@ -84,7 +84,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Antonio, TX"
    },
    "__coach__": {
@@ -109,7 +109,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "WG"
    },
@@ -124,7 +124,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Conakry, Guinea",
       "role": "S-PF"
    },
@@ -139,7 +139,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Decatur, IL"
    },
    "BrByrd": {
@@ -167,7 +167,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Byron, MN",
       "role": "PF/C"
    },
@@ -196,7 +196,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Austin, TX"
    },
    "BrMonroe": {
@@ -224,7 +224,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "CG"
    }

@@ -1,4 +1,18 @@
 {
+   "TyChristense": {
+      "player_code_id": {
+         "code": "TyChristense",
+         "id": "Christensen, Tyler",
+         "ncaa_id": "5313297"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Eagle Mountain, UT"
+   },
    "DeCutler": {
       "player_code_id": {
          "code": "DeCutler",
@@ -10,7 +24,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vancouver, Canada",
       "role": "C"
    },
@@ -25,8 +39,8 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Seattle, WA",
+      "gp": 1,
+      "origin": "Anchorage, AK",
       "role": "C"
    },
    "JaWhiting": {
@@ -40,7 +54,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Burley, ID",
       "role": "CG"
    },
@@ -55,7 +69,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oakland, CA"
    },
    "TrHennig": {
@@ -69,7 +83,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "North Bend, WA",
       "role": "WG"
    },
@@ -84,7 +98,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Francisco, CA",
       "role": "S-PF"
    },
@@ -110,13 +124,13 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
-      "origin": "Los Angeles, CA"
+      "gp": 1,
+      "origin": "Kinshasa, DR Congo"
    },
    "EdSuarez": {
       "player_code_id": {
          "code": "EdSuarez",
-         "id": "Suarez, Edwin",
+         "id": "Suarez Jr., Edwin",
          "ncaa_id": "5313291"
       },
       "number": "0",
@@ -125,7 +139,7 @@
       "height_in": 78,
       "year_class": "Jr",
       "gp": 0,
-      "origin": "Reading, PA"
+      "origin": "San Juan, PR"
    },
    "AnMoore": {
       "player_code_id": {
@@ -141,6 +155,20 @@
       "gp": 0,
       "origin": "Stockton, CA"
    },
+   "BrSmith": {
+      "player_code_id": {
+         "code": "BrSmith",
+         "id": "Smith, Brady",
+         "ncaa_id": "5240507"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Fargo, ND"
+   },
    "DaHansen": {
       "player_code_id": {
          "code": "DaHansen",
@@ -152,7 +180,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Magrath, Canada"
    },
    "ViVartiainen": {
@@ -166,14 +194,14 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Helsinki, Finland",
       "role": "WF"
    },
    "TiSaine": {
       "player_code_id": {
          "code": "TiSaine",
-         "id": "Saine, Tijan",
+         "id": "Saine Jr., Tijan",
          "ncaa_id": "5313292"
       },
       "number": "3",
@@ -181,7 +209,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Everett, WA"
    },
    "DuPaschal": {
@@ -195,7 +223,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Portland, OR"
    }
 }

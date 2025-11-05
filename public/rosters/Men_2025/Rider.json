@@ -1,17 +1,60 @@
 {
-   "TyWeeks": {
+   "MoDiallo": {
       "player_code_id": {
-         "code": "TyWeeks",
-         "id": "Weeks, Tyriek",
-         "ncaa_id": "9336882"
+         "code": "MoDiallo",
+         "id": "Diallo, Mohamad",
+         "ncaa_id": "5112245"
       },
-      "number": "31",
+      "number": "6",
       "pos": "F",
-      "height": "6-6",
-      "height_in": 78,
+      "height": "7-0",
+      "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Warwick, RI"
+      "gp": 1,
+      "origin": "Decatur, GA"
+   },
+   "DaHelterhoff": {
+      "player_code_id": {
+         "code": "DaHelterhoff",
+         "id": "Helterhoff, Daniel",
+         "ncaa_id": "5116517"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Cologne, Germany",
+      "role": "S-PF"
+   },
+   "AbCoulibaly": {
+      "player_code_id": {
+         "code": "AbCoulibaly",
+         "id": "Coulibaly, AB",
+         "ncaa_id": "5314466"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Philadelphia, PA"
+   },
+   "KrKepezinska": {
+      "player_code_id": {
+         "code": "KrKepezinska",
+         "id": "Kepezinskas, Kristupas",
+         "ncaa_id": "5314468"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Kaunas, Republic of Lithuania"
    },
    "FlBurton": {
       "player_code_id": {
@@ -24,7 +67,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "CG"
    },
@@ -39,23 +82,37 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami Beach, FL",
       "role": "C"
    },
-   "JaMcfadden": {
+   "ShFuller": {
       "player_code_id": {
-         "code": "JaMcfadden",
-         "id": "McFadden, Jack",
-         "ncaa_id": "9336880"
+         "code": "ShFuller",
+         "id": "Fuller, Shemani",
+         "ncaa_id": "4898349"
       },
-      "number": "22",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "number": "3",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Endwell, NY"
+      "gp": 1,
+      "origin": "Bronx, NY"
+   },
+   "CaSmith": {
+      "player_code_id": {
+         "code": "CaSmith",
+         "id": "Smith, Caleb",
+         "ncaa_id": "5314464"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Atlanta, GA"
    },
    "__coach__": {
       "player_code_id": {
@@ -79,7 +136,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Trenton, NJ",
       "role": "WG"
    },
@@ -89,26 +146,69 @@
          "id": "D'Alessandro, Maurizio",
          "ncaa_id": "5242912"
       },
-      "number": "20",
+      "number": "22",
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlottesville, VA"
    },
-   "AlBoutayeb": {
+   "DeWilliams": {
       "player_code_id": {
-         "code": "AlBoutayeb",
-         "id": "Boutayeb, Alaaeddine",
+         "code": "DeWilliams",
+         "id": "Williams, Devean",
+         "ncaa_id": "5107177"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Los Angeles, CA",
+      "role": "CG"
+   },
+   "AnWilson": {
+      "player_code_id": {
+         "code": "AnWilson",
+         "id": "Wilson, Antwan",
          "ncaa_id": "5178893"
       },
       "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Salisbury, MD"
+   },
+   "JaMcneil": {
+      "player_code_id": {
+         "code": "JaMcneil",
+         "id": "McNeil, Jamir",
+         "ncaa_id": "5314465"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Cape May Court House, NJ"
+   },
+   "DaBynum": {
+      "player_code_id": {
+         "code": "DaBynum",
+         "id": "Bynum, Davis",
+         "ncaa_id": "5241869"
+      },
+      "number": "7",
       "pos": "F",
-      "height": "7-2",
-      "height_in": 86,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Casablanca, Morocco"
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "O Fallon, IL"
    }
 }

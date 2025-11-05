@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pullman, WA"
    },
    "ChSow": {
@@ -24,7 +24,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Thiès, Senegal"
    },
    "BlDaberkow": {
@@ -38,7 +38,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lincoln, NE",
       "role": "S-PF"
    },
@@ -53,7 +53,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rapid City, SD"
    },
    "CaDeGriend": {
@@ -67,7 +67,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bridgetown, Australia"
    },
    "MaKheil": {
@@ -120,7 +120,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Snoqualmie, WA"
    },
    "LoBond": {
@@ -148,7 +148,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Arcadia, IN"
    },
    "LaBrewer": {
@@ -162,7 +162,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tasmania, Australia",
       "role": "WG"
    },
@@ -177,7 +177,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Redmond, OR",
       "role": "C"
    },
@@ -192,7 +192,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sherwood, OR"
    },
    "LaBirley": {

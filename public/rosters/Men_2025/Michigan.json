@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "ChMay": {
@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Boca Raton, FL"
    },
    "HoEisley": {
@@ -52,7 +52,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Flint, MI",
       "role": "CG"
    },
@@ -82,7 +82,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Riverdale, IL",
       "role": "C"
    },
@@ -122,7 +122,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Opunake, New Zealand"
    },
    "MaKordel": {
@@ -136,7 +136,7 @@
       "height": "7-2",
       "height_in": 86,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oberhausen, Germany"
    },
    "WiTschetter": {
@@ -150,7 +150,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stewartville, MN"
    },
    "LjCason": {
@@ -179,7 +179,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pennsauken, NJ",
       "role": "PF/C"
    },
@@ -194,7 +194,7 @@
       "height": "7-3",
       "height_in": 87,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zaragoza, Spain",
       "role": "C"
    },
@@ -209,7 +209,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Orange, NJ",
       "role": "PG"
    },
@@ -224,7 +224,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Niagara Falls, NY",
       "role": "WG"
    },

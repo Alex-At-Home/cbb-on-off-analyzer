@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mequon, WI"
    },
    "ToHumphries": {
@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN"
    },
    "RyLafferty": {
@@ -38,7 +38,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Spokane, WA"
    },
    "AuHerro": {
@@ -52,7 +52,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI"
    },
    "AdTauer": {
@@ -66,7 +66,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Paul, MN"
    },
    "NoMinessale": {
@@ -80,7 +80,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brookfield, WI",
       "role": "WG"
    },
@@ -134,7 +134,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Medina, MN"
    },
    "NiJanowski": {
@@ -148,7 +148,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pewaukee, WI"
    },
    "CaBjerke": {
@@ -162,7 +162,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plymouth, MN",
       "role": "S-PF"
    },
@@ -177,7 +177,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waseca, MN"
    },
    "KyCounts": {
@@ -191,7 +191,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wilsonville, OR"
    },
    "IsJohnson-ar": {
@@ -205,7 +205,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN"
    },
    "BeOosterbaan": {
@@ -219,7 +219,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hinsdale, IL",
       "role": "WG"
    },
@@ -234,7 +234,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN"
    }
 }

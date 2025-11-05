@@ -10,7 +10,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Paul, MN",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Grayson, GA",
       "role": "C"
    },
@@ -40,7 +40,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Silver Spring, MD"
    },
    "MiMarcus": {
@@ -54,7 +54,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indian Trail, NC",
       "role": "S-PF"
    },
@@ -69,7 +69,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "CG"
    },
@@ -98,7 +98,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "GrClayton": {
@@ -126,7 +126,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Winterthur, Switzerland"
    },
    "__coach__": {
@@ -165,7 +165,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Augusta, GA",
       "role": "C"
    },
@@ -180,7 +180,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eatonton, GA",
       "role": "CG"
    },

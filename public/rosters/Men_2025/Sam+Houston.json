@@ -1,17 +1,46 @@
 {
-   "DoFinister": {
+   "DaNicholas": {
       "player_code_id": {
-         "code": "DoFinister",
-         "id": "Finister, Dorian",
-         "ncaa_id": "5241724"
+         "code": "DaNicholas",
+         "id": "Nicholas Jr., Damon",
+         "ncaa_id": "4896936"
       },
-      "number": "2",
+      "number": "25",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "Jr",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Duncanville, TX"
+   },
+   "NoBenny": {
+      "player_code_id": {
+         "code": "NoBenny",
+         "id": "Benny, Noah",
+         "ncaa_id": "5314532"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "New Orleans, LA"
+      "origin": "Sugar Land, TX"
+   },
+   "JuBegg": {
+      "player_code_id": {
+         "code": "JuBegg",
+         "id": "Begg, Justin",
+         "ncaa_id": "5060702"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Houston, TX",
+      "role": "s-PG"
    },
    "JaRogers": {
       "player_code_id": {
@@ -27,34 +56,47 @@
       "gp": 0,
       "origin": "Murphy, TX"
    },
-   "BrBurns": {
+   "JaWalker": {
       "player_code_id": {
-         "code": "BrBurns",
-         "id": "Burns, Brennen",
-         "ncaa_id": "5314532"
+         "code": "JaWalker",
+         "id": "Walker, Jacob",
+         "ncaa_id": "5314535"
       },
-      "number": "0",
-      "pos": "G",
-      "height": "5-10",
-      "height_in": 70,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Bethany, OK",
-      "role": "s-PG"
-   },
-   "ErTaylor": {
-      "player_code_id": {
-         "code": "ErTaylor",
-         "id": "Taylor, Erik",
-         "ncaa_id": "5314534"
-      },
-      "number": "12",
+      "number": "55",
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "So",
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Memphis, TN"
+   },
+   "NaNguyen": {
+      "player_code_id": {
+         "code": "NaNguyen",
+         "id": "Nguyen, Nathan",
+         "ncaa_id": "5314533"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Orlando, FL"
+      "origin": "Houston, TX"
+   },
+   "MaDann": {
+      "player_code_id": {
+         "code": "MaDann",
+         "id": "Dann, Matt",
+         "ncaa_id": "5314534"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Oakville, Canada"
    },
    "__coach__": {
       "player_code_id": {
@@ -78,22 +120,66 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Palm Bch, FL"
    },
-   "WaNeyland": {
+   "PoKing": {
       "player_code_id": {
-         "code": "WaNeyland",
-         "id": "Neyland, Wade",
-         "ncaa_id": "5314533"
+         "code": "PoKing",
+         "id": "King, Po'Boigh",
+         "ncaa_id": "5179294"
       },
-      "number": "11",
+      "number": "35",
       "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Centerville, TX"
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Roanoke Rapids, NC",
+      "role": "WG"
+   },
+   "JaColeman": {
+      "player_code_id": {
+         "code": "JaColeman",
+         "id": "Coleman, Jacobe",
+         "ncaa_id": "5241724"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Fort Smith, AR"
+   },
+   "KaNatt": {
+      "player_code_id": {
+         "code": "KaNatt",
+         "id": "Natt, Kashie",
+         "ncaa_id": "5117648"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Rayville, LA"
+   },
+   "VeIlic": {
+      "player_code_id": {
+         "code": "VeIlic",
+         "id": "Ilic, Veljko",
+         "ncaa_id": "4897888"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Gornji Milanovac, Serbia",
+      "role": "C"
    },
    "JaFord": {
       "player_code_id": {
@@ -101,7 +187,7 @@
          "id": "Ford, Jaxson",
          "ncaa_id": "5242606"
       },
-      "number": "6",
+      "number": "10",
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
@@ -109,6 +195,21 @@
       "gp": 0,
       "origin": "Prosper, TX",
       "role": "C"
+   },
+   "IsManning": {
+      "player_code_id": {
+         "code": "IsManning",
+         "id": "Manning, Isaiah",
+         "ncaa_id": "4895786"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Mansfield, TX",
+      "role": "S-PF"
    },
    "ChNdiaye": {
       "player_code_id": {
@@ -121,7 +222,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Louga, Senegal",
       "role": "C"
    }

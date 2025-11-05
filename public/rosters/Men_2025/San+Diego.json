@@ -10,7 +10,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wheeling, WV"
    },
    "BrBenjamin": {
@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yorba Linda, CA"
    },
    "AdMcintyre": {
@@ -38,7 +38,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sylmar, CA"
    },
    "BoGrant": {
@@ -66,7 +66,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santa Monica, CA"
    },
    "ToLane": {
@@ -80,7 +80,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "WG"
    },
@@ -90,12 +90,12 @@
          "id": "Winkowski, Piotr",
          "ncaa_id": "5313160"
       },
-      "number": "44",
+      "number": "23",
       "pos": "C",
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zyradrow, Poland"
    },
    "JuGorosito": {
@@ -109,7 +109,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ceres Santa Fe, Argentina",
       "role": "CG"
    },
@@ -124,7 +124,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV",
       "role": "WG"
    },
@@ -139,7 +139,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brooklyn, NY",
       "role": "s-PG"
    },
@@ -165,7 +165,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dakar, Senegal",
       "role": "WF"
    },
@@ -180,7 +180,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tucson, AZ"
    },
    "KjBradley": {
@@ -209,7 +209,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Garnet Valley, PA"
    },
    "GaRipp": {
@@ -251,7 +251,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "View Park, CA"
    },
    "VuBoskovic": {
@@ -264,8 +264,8 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "---",
-      "gp": 0,
+      "year_class": "Jr",
+      "gp": 1,
       "origin": "Bileca, Bosnia an Herzegovina, Bosnia and Herzegovina"
    },
    "EmCallas": {
@@ -279,7 +279,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oakland, CA"
    },
    "TiMoore": {
@@ -293,7 +293,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "S-PF"
    }

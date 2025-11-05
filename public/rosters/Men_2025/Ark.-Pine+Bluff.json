@@ -10,37 +10,23 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, OH",
       "role": "C"
    },
-   "QuBolton": {
+   "AhJohnson": {
       "player_code_id": {
-         "code": "QuBolton",
-         "id": "Bolton Jr., Quentin",
-         "ncaa_id": "5313439"
+         "code": "AhJohnson",
+         "id": "Johnson, Ahmad",
+         "ncaa_id": "5106662"
       },
-      "number": "33",
-      "pos": "F",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Racine, WI"
-   },
-   "ChMoore": {
-      "player_code_id": {
-         "code": "ChMoore",
-         "id": "Moore, Christian",
-         "ncaa_id": "5259802"
-      },
-      "number": "1",
+      "number": "10",
       "pos": "G",
-      "height": "5-11",
-      "height_in": 71,
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Jacksonville, AR"
+      "gp": 1,
+      "origin": "Punta Gorda, FL"
    },
    "AnSellars": {
       "player_code_id": {
@@ -54,34 +40,48 @@
       "height_in": 79,
       "year_class": "Sr",
       "gp": 0,
-      "origin": "Winston-Salem, NC"
+      "origin": "Winston Salem, NC"
    },
-   "ZaReinhart": {
+   "QuWilliams": {
       "player_code_id": {
-         "code": "ZaReinhart",
-         "id": "Reinhart, Zach",
-         "ncaa_id": "5313436"
+         "code": "QuWilliams",
+         "id": "Williams, Quion",
+         "ncaa_id": "5106274"
       },
-      "number": "2",
+      "number": "13",
       "pos": "G",
-      "height": "6-6",
-      "height_in": 78,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Orlando, FL"
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Jonesboro, AR"
    },
-   "DaSawyer": {
+   "AlMirhossein": {
       "player_code_id": {
-         "code": "DaSawyer",
-         "id": "Sawyer, Dante",
+         "code": "AlMirhossein",
+         "id": "Mirhosseini, Alex",
+         "ncaa_id": "5259802"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Arlington, TX"
+   },
+   "JaScott": {
+      "player_code_id": {
+         "code": "JaScott",
+         "id": "Scott, Jaquan",
          "ncaa_id": "5174317"
       },
       "number": "4",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    },
    "__coach__": {
@@ -95,33 +95,117 @@
       "year_class": "",
       "gp": -1
    },
-   "MaSpears": {
+   "JaHayes": {
       "player_code_id": {
-         "code": "MaSpears",
-         "id": "Spears, Matthew",
-         "ncaa_id": "5313438"
+         "code": "JaHayes",
+         "id": "Hayes, Jai’chaunn",
+         "ncaa_id": "5313436"
       },
-      "number": "23",
-      "pos": "F",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "Sr",
+      "number": "2",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Indianapolis, IN"
+      "origin": "Little Rock, AR"
    },
-   "ChPaljor": {
+   "JaHamilton-b": {
       "player_code_id": {
-         "code": "ChPaljor",
-         "id": "Paljor, Chop",
+         "code": "JaHamilton-b",
+         "id": "Hamilton-Brown, Jahmari",
          "ncaa_id": "5313437"
       },
       "number": "8",
       "pos": "G",
-      "height": "6-8",
-      "height_in": 80,
-      "year_class": "So",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Salem, MA"
+   },
+   "HaPickett": {
+      "player_code_id": {
+         "code": "HaPickett",
+         "id": "Pickett, Harrison",
+         "ncaa_id": "5313438"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Benton, AR"
+   },
+   "MiCharles": {
+      "player_code_id": {
+         "code": "MiCharles",
+         "id": "Charles, Milhan",
+         "ncaa_id": "5313440"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Paris, France"
+   },
+   "RaLloyd": {
+      "player_code_id": {
+         "code": "RaLloyd",
+         "id": "Lloyd Jr., Ramel",
+         "ncaa_id": "5105824"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Long Beach, CA"
+   },
+   "TrWare": {
+      "player_code_id": {
+         "code": "TrWare",
+         "id": "Ware, Trejon",
+         "ncaa_id": "4908501"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Pearland, TD"
+   },
+   "TrPourciau": {
+      "player_code_id": {
+         "code": "TrPourciau",
+         "id": "Pourciau, Travis",
+         "ncaa_id": "5313439"
+      },
+      "number": "33",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Colorado Springs, CO"
+   },
+   "TrPayton": {
+      "player_code_id": {
+         "code": "TrPayton",
+         "id": "Payton, Trevon",
+         "ncaa_id": "5185598"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Snellville, GA"
    },
    "KyBrown": {
       "player_code_id": {
@@ -129,27 +213,13 @@
          "id": "Brown, Kyle",
          "ncaa_id": "5243199"
       },
-      "number": "14",
+      "number": "24",
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plantation, FL",
       "role": "WF"
-   },
-   "CaJones": {
-      "player_code_id": {
-         "code": "CaJones",
-         "id": "Jones, Caleb",
-         "ncaa_id": "5313440"
-      },
-      "number": "55",
-      "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Bristol, CT"
    }
 }

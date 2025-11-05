@@ -7,8 +7,8 @@
       },
       "number": "21",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Sr",
       "gp": 0,
       "origin": "Mission Viejo, CA"
@@ -21,8 +21,8 @@
       },
       "number": "7",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Carson, CA"
@@ -40,20 +40,6 @@
       "year_class": "Fr",
       "gp": 0,
       "origin": "Alamo, CA"
-   },
-   "BeCanAkin": {
-      "player_code_id": {
-         "code": "BeCanAkin",
-         "id": "Can Akin, Berk",
-         "ncaa_id": "9334770"
-      },
-      "number": "10",
-      "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Istanbul, Turkey"
    },
    "AnHenry": {
       "player_code_id": {
@@ -80,7 +66,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Diego, CA",
       "role": "CG"
    },
@@ -92,10 +78,10 @@
       },
       "number": "9",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pasadena, CA"
    },
    "AkMcbirney-g": {
@@ -109,7 +95,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hamilton, New Zealand"
    },
    "__coach__": {
@@ -148,7 +134,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Christchurch, New Zealand"
    },
    "ToLee": {
@@ -159,8 +145,8 @@
       },
       "number": "1",
       "pos": "G",
-      "height": "5-10",
-      "height_in": 70,
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "So",
       "gp": 0,
       "origin": "Surrey, Canada",
@@ -174,10 +160,10 @@
       },
       "number": "13",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
-      "year_class": "Jr",
-      "gp": 0,
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 1,
       "origin": "Istanbul, Turkey",
       "role": "WG"
    },
@@ -192,7 +178,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yaoundé, Cameroon"
    },
    "TiAhir": {
@@ -203,10 +189,10 @@
       },
       "number": "27",
       "pos": "G",
-      "height": "5-11",
-      "height_in": 71,
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "La Canada Flintridge, CA"
    },
    "HaCarrington": {
@@ -219,8 +205,8 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Sr",
-      "gp": 0,
+      "year_class": "Jr",
+      "gp": 1,
       "origin": "Menlo Park, CA",
       "role": "WG"
    },
@@ -235,7 +221,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aliso Viejo, CA",
       "role": "C"
    },
@@ -250,7 +236,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gilbert, AZ"
    },
    "ElChol": {
@@ -261,10 +247,10 @@
       },
       "number": "3",
       "pos": "C",
-      "height": "6-11",
-      "height_in": 83,
+      "height": "7-0",
+      "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cumming, GA"
    },
    "BrGoldman": {

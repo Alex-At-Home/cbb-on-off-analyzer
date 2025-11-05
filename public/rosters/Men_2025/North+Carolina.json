@@ -10,7 +10,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kansas City, MO",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Antonio, TX"
    },
    "JaBrown": {
@@ -39,7 +39,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aurora, IL",
       "role": "C"
    },
@@ -54,7 +54,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Goldsboro, NC",
       "role": "CG"
    },
@@ -69,7 +69,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chapel Hill, NC"
    },
    "__coach__": {
@@ -94,7 +94,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hickory, NC"
    },
    "LuBogavac": {
@@ -107,8 +107,8 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "---",
-      "gp": 0,
+      "year_class": "Jr",
+      "gp": 1,
       "origin": "Mojkovac, Montenegro",
       "role": "WG"
    },
@@ -123,7 +123,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sisak, Croatia"
    },
    "DeDixon": {
@@ -137,7 +137,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Vienna, VA",
       "role": "CG"
    },
@@ -152,7 +152,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dayton, OH",
       "role": "WF"
    },
@@ -167,7 +167,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chapel Hill, NC",
       "role": "S-PF"
    },
@@ -182,7 +182,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "PF/C"
    },
@@ -197,7 +197,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC"
    },
    "SeTrimble": {
@@ -211,7 +211,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Menomonee Falls, WI",
       "role": "WG"
    },
@@ -226,7 +226,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tallinn, Estonia",
       "role": "PF/C"
    },
@@ -241,7 +241,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Concord, NC",
       "role": "CG"
    }

@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA"
    },
    "DoMchenry": {
@@ -24,7 +24,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI",
       "role": "CG"
    },
@@ -39,7 +39,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jyväskylä, Finland"
    },
    "KeDawes": {
@@ -53,7 +53,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN",
       "role": "CG"
    },
@@ -97,7 +97,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New York City, NY",
       "role": "WF"
    },
@@ -137,7 +137,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY",
       "role": "WG"
    },
@@ -159,7 +159,7 @@
    "IbTraore": {
       "player_code_id": {
          "code": "IbTraore",
-         "id": "Traore, Ib",
+         "id": "Traore, Ibrahima",
          "ncaa_id": "5240509"
       },
       "number": "31",
@@ -196,7 +196,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gainesville, FL"
    },
    "BaFaye": {
@@ -225,7 +225,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ludwigsburg, Germany"
    }
 }

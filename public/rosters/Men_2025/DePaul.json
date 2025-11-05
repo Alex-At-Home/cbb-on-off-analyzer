@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hampton, GA",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Little Rock, AR",
       "role": "s-PG"
    },
@@ -40,7 +40,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Coudres, France"
    },
    "IlMilijasevi": {
@@ -54,7 +54,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belgrade, Serbia"
    },
    "AmDelalic": {
@@ -112,7 +112,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Glenview, IL"
    },
    "KhMaker": {
@@ -126,7 +126,7 @@
       "height": "7-1",
       "height_in": 85,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Juba, South Sudan"
    },
    "BrMaclin": {
@@ -140,7 +140,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jackson, TN",
       "role": "WG"
    },
@@ -180,7 +180,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN",
       "role": "WG"
    },
@@ -195,7 +195,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chino, CA",
       "role": "CG"
    },
@@ -210,7 +210,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Westerville, OH"
    },
    "NjBenson": {
@@ -224,7 +224,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Vernon, IL",
       "role": "C"
    },
@@ -239,7 +239,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brillion, WI",
       "role": "S-PF"
    }

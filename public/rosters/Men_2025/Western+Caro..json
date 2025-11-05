@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bermuda Dunes, CA",
       "role": "CG"
    },
@@ -25,7 +25,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Loganville, GA",
       "role": "s-PG"
    },
@@ -54,7 +54,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Paris, France",
       "role": "s-PG"
    },
@@ -98,7 +98,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami, FL"
    },
    "AbFantaKabba": {
@@ -112,7 +112,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kenema City, Sierra Leone",
       "role": "C"
    },
@@ -141,7 +141,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Worcester, MA"
    },
    "__coach__": {
@@ -166,7 +166,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria"
    },
    "MaKell": {
@@ -180,7 +180,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rock Hill, SC",
       "role": "S-PF"
    },
@@ -195,7 +195,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "JuSoumaoro": {
@@ -209,7 +209,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY"
    },
    "TaSmith": {
@@ -237,7 +237,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lewistown, MT",
       "role": "WF"
    }

@@ -24,7 +24,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Glen Burnie, MD"
    },
    "JaSepe": {
@@ -66,7 +66,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Moscow, Russia"
    },
    "LeWeber": {
@@ -80,7 +80,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wiesbaden, Germany"
    },
    "KhWilliams": {
@@ -94,7 +94,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC"
    },
    "JoGreen": {
@@ -133,7 +133,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Worcester, MA"
    },
    "DaAkoue": {
@@ -144,11 +144,11 @@
       },
       "number": "10",
       "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
+      "height": "6-11",
+      "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
-      "origin": "Saly, Senegal"
+      "gp": 1,
+      "origin": "Libreville, Gabon"
    },
    "AaDavis": {
       "player_code_id": {
@@ -161,7 +161,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bay Shore, NY"
    },
    "JaRobinson": {
@@ -175,7 +175,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ossining, NY",
       "role": "WG"
    },
@@ -204,7 +204,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newcastle, Australia"
    },
    "MiDeorsey": {
@@ -232,7 +232,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Silver Spring, MD",
       "role": "S-PF"
    },
@@ -275,7 +275,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Paris, France"
    }
 }

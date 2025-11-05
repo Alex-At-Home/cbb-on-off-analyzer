@@ -24,7 +24,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milwaukee, WI",
       "role": "CG"
    },
@@ -53,7 +53,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Olathe, KS"
    },
    "KaDixon": {
@@ -67,7 +67,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Enfield, United Kingdom"
    },
    "DaStephens": {
@@ -106,7 +106,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Milford, IA"
    },
    "MaPigram": {
@@ -148,7 +148,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Denison, IA"
    },
    "IsGriffin": {
@@ -162,7 +162,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knightdale, NC"
    },
    "JaEdwards": {
@@ -190,7 +190,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Vegas, NV"
    },
    "FrOkwuosah": {
@@ -204,7 +204,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Powder Spgs, GA"
    },
    "MaKvamme": {
@@ -218,7 +218,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    }
 }

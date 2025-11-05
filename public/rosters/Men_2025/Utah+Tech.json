@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kaysville, UT"
    },
    "JuHolt": {
@@ -24,7 +24,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tacoma, WA"
    },
    "DaGrant": {
@@ -52,7 +52,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Poitiers, France",
       "role": "WG"
    },
@@ -67,8 +67,8 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Raymond, Canada"
+      "gp": 1,
+      "origin": "Alberta, Canada"
    },
    "PrVandermyde": {
       "player_code_id": {
@@ -95,7 +95,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rigby, ID",
       "role": "WG"
    },
@@ -110,7 +110,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria",
       "role": "S-PF"
    },
@@ -136,7 +136,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Layton, UT",
       "role": "PF/C"
    },
@@ -194,7 +194,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Smithfield, UT"
    },
    "DaDomingos": {

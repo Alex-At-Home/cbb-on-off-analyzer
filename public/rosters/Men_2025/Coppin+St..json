@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "York, PA"
    },
    "DeHall": {
@@ -24,7 +24,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "HaPerkins": {
@@ -38,7 +38,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wilmington, DE",
       "role": "s-PG"
    },
@@ -81,7 +81,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lynchburg, VA"
    },
    "TaThweatt": {
@@ -95,7 +95,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wildwood, NJ"
    },
    "__coach__": {
@@ -120,7 +120,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Griffin, GA"
    },
    "ToAndrews": {
@@ -134,7 +134,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Palm Beach, FL"
    },
    "FaAire": {
@@ -148,7 +148,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ekpoma, Nigeria"
    },
    "ElTaylor": {
@@ -176,7 +176,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waldwick, NJ"
    },
    "MaNelson": {
@@ -204,7 +204,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "CaSparrow": {
@@ -218,7 +218,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "WG"
    },
@@ -247,7 +247,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Erie, PA",
       "role": "WF"
    }

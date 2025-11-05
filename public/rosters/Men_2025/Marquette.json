@@ -10,7 +10,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Potomac, MD"
    },
    "CaO'malley": {
@@ -24,7 +24,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Omaha, NE"
    },
    "ChRoss": {
@@ -38,7 +38,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "CG"
    },
@@ -53,7 +53,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wellington, New Zealand",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "7-1",
       "height_in": 85,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX"
    },
    "IaMiletic": {
@@ -96,7 +96,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Springfield, MO",
       "role": "WF"
    },
@@ -125,7 +125,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Menasha, WI"
    },
    "TrNorman": {
@@ -139,7 +139,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Boston, MA",
       "role": "WG"
    },
@@ -165,7 +165,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rochester, NY",
       "role": "WF"
    },
@@ -180,7 +180,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santa Maria, CA",
       "role": "PF/C"
    },
@@ -195,7 +195,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntington, NY",
       "role": "PG"
    },
@@ -210,7 +210,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gahanna, OH",
       "role": "s-PG"
    },
@@ -225,7 +225,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "W Lafayette, IN"
    },
    "RoParham": {
@@ -239,7 +239,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA",
       "role": "S-PF"
    },
@@ -254,7 +254,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rolesville, NC"
    }
 }

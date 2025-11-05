@@ -24,7 +24,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bishopville, SC"
    },
    "HaDzellat": {
@@ -38,7 +38,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Blois, France"
    },
    "BaMiller": {
@@ -52,7 +52,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sol de Mallorca, Spain",
       "role": "S-PF"
    },
@@ -67,7 +67,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Canton, OH",
       "role": "WG"
    },
@@ -82,7 +82,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tartu, Estonia",
       "role": "s-PG"
    },
@@ -122,7 +122,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Barcelona, Spain"
    },
    "ShAbaev": {
@@ -136,7 +136,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Coral Springs, FL",
       "role": "WF"
    },
@@ -146,7 +146,7 @@
          "id": "Haynes, Jalen",
          "ncaa_id": "4709151"
       },
-      "number": "11",
+      "number": "3",
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
@@ -166,7 +166,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Albany, NY",
       "role": "PG"
    },
@@ -181,7 +181,7 @@
       "height": "7-2",
       "height_in": 86,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dakar, Senegal",
       "role": "PF/C"
    },
@@ -196,7 +196,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "C"
    },
@@ -211,7 +211,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ajax, Canada",
       "role": "WF"
    },

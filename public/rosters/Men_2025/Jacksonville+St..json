@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lasarte, Spain"
    },
    "JoVick": {
@@ -21,7 +21,8 @@
       },
       "number": "8",
       "pos": "G",
-      "height": "-",
+      "height": "5-10",
+      "height_in": 70,
       "year_class": "Fr",
       "gp": 0,
       "origin": "Bailey, NC"
@@ -37,7 +38,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Memphis, TN"
    },
    "JaFranklin": {
@@ -51,7 +52,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rockledge, FL",
       "role": "WG"
    },
@@ -66,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rabat, Morocco",
       "role": "WG"
    },
@@ -81,7 +82,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Shreveport, LA",
       "role": "WG"
    },
@@ -96,7 +97,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "__coach__": {
@@ -121,20 +122,21 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Nashville, TN"
    },
    "JaHill": {
       "player_code_id": {
          "code": "JaHill",
-         "id": "Hill, JaCoby",
+         "id": "Hill, Jacoby",
          "ncaa_id": "5312340"
       },
       "number": "2",
       "pos": "G",
-      "height": "-",
+      "height": "6-4",
+      "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Phenix City, AL"
    },
    "BeVungo": {
@@ -148,7 +150,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chitato, Angola"
    },
    "ToNnadozie": {
@@ -162,7 +164,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "CG"
    },
@@ -174,9 +176,10 @@
       },
       "number": "14",
       "pos": "G",
-      "height": "-",
+      "height": "5-11",
+      "height_in": 71,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbia, KY"
    },
    "IaNiagu": {
@@ -205,7 +208,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Juba, South Sudan"
    },
    "AiDriggers": {
@@ -214,12 +217,12 @@
          "id": "Driggers, Aidan",
          "ncaa_id": "5242122"
       },
-      "number": "55",
+      "number": "4",
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oneonta, AL"
    }
 }

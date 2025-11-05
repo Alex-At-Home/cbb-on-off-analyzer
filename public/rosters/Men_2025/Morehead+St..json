@@ -1,32 +1,90 @@
 {
-   "BrDingess": {
-      "player_code_id": {
-         "code": "BrDingess",
-         "id": "Dingess, Brady",
-         "ncaa_id": "5247158"
-      },
-      "number": "10",
-      "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
-      "year_class": "Jr",
-      "gp": 0,
-      "origin": "Inez, KY"
-   },
    "GeMarshall": {
       "player_code_id": {
          "code": "GeMarshall",
          "id": "Marshall, George",
          "ncaa_id": "5177360"
       },
-      "number": "12",
+      "number": "3",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jackson, MS",
       "role": "WG"
+   },
+   "JoLegree": {
+      "player_code_id": {
+         "code": "JoLegree",
+         "id": "LeGree, Josiah",
+         "ncaa_id": "5241383"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Baltimore, MD",
+      "role": "s-PG"
+   },
+   "JaPriester": {
+      "player_code_id": {
+         "code": "JaPriester",
+         "id": "Priester, Jaden",
+         "ncaa_id": "5314329"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Augusta, GA"
+   },
+   "JaWilson": {
+      "player_code_id": {
+         "code": "JaWilson",
+         "id": "Wilson, Jacob",
+         "ncaa_id": "5108070"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Baton Rouge, LA",
+      "role": "WG"
+   },
+   "ClParker": {
+      "player_code_id": {
+         "code": "ClParker",
+         "id": "Parker, Clayton",
+         "ncaa_id": "5314330"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Montgomery City, MO"
+   },
+   "JoCarroll": {
+      "player_code_id": {
+         "code": "JoCarroll",
+         "id": "Carroll, Jon",
+         "ncaa_id": "5314326"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Tallahassee, FL"
    },
    "JaWinkleman": {
       "player_code_id": {
@@ -34,27 +92,41 @@
          "id": "Winkleman, Jace",
          "ncaa_id": "5242552"
       },
-      "number": "22",
+      "number": "12",
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "So",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Morehead, KY"
    },
-   "ChDoerr": {
+   "ViDawson": {
       "player_code_id": {
-         "code": "ChDoerr",
-         "id": "Doerr, Christian",
-         "ncaa_id": "5314326"
+         "code": "ViDawson",
+         "id": "Dawson III, Vince",
+         "ncaa_id": "5314327"
       },
-      "number": "4",
+      "number": "5",
       "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Georgetown, KY"
+   },
+   "ChDawson": {
+      "player_code_id": {
+         "code": "ChDawson",
+         "id": "Dawson, Chase",
+         "ncaa_id": "5247158"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
       "year_class": "So",
-      "gp": 0,
-      "origin": "Louisville, KY"
+      "gp": 1,
+      "origin": "Durham, NC"
    },
    "__coach__": {
       "player_code_id": {
@@ -78,22 +150,79 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Amsterdam, Netherlands",
       "role": "PF/C"
    },
-   "JaBreazeale": {
+   "JaWright": {
       "player_code_id": {
-         "code": "JaBreazeale",
-         "id": "Breazeale, Jalen",
-         "ncaa_id": "5241383"
+         "code": "JaWright",
+         "id": "Wright, Jarvis",
+         "ncaa_id": "5314328"
       },
-      "number": "0",
+      "number": "11",
       "pos": "G",
-      "height": "5-11",
-      "height_in": 71,
-      "year_class": "Sr",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
       "gp": 0,
-      "origin": "Greenville, SC"
+      "origin": "Folkston, GA"
+   },
+   "KaWright": {
+      "player_code_id": {
+         "code": "KaWright",
+         "id": "Wright, Kameren",
+         "ncaa_id": "5144120"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Gainesville, FL"
+   },
+   "DaCunningham": {
+      "player_code_id": {
+         "code": "DaCunningham",
+         "id": "Cunningham, Davion",
+         "ncaa_id": "5107477"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Charlotte, NC"
+   },
+   "TaReleford": {
+      "player_code_id": {
+         "code": "TaReleford",
+         "id": "Releford, Tamaury",
+         "ncaa_id": "5240034"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Fort Smith, AR"
+   },
+   "TyFarrell": {
+      "player_code_id": {
+         "code": "TyFarrell",
+         "id": "Farrell, Tyonne",
+         "ncaa_id": "5239660"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Baltimore, MD",
+      "role": "WF"
    }
 }

@@ -10,7 +10,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Riverside, IL"
    },
    "LuVudragovic": {
@@ -23,8 +23,8 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Stari Banovci, Serbia"
    },
    "VlSudar": {
@@ -38,7 +38,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Podgorica, Montenegro"
    },
    "NiRadovanovi": {
@@ -49,10 +49,11 @@
       },
       "number": "33",
       "pos": "F",
-      "height": "-",
+      "height": "6-9",
+      "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
-      "origin": "Nevesinje, Bosnia & Herzegovina"
+      "gp": 1,
+      "origin": "Nevesinje, Bosnia and Herzegovina"
    },
    "TyVirgil": {
       "player_code_id": {
@@ -105,7 +106,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hod HaSharon, Israel",
       "role": "S-PF"
    },
@@ -120,7 +121,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elkhart, IN"
    },
    "StPhipps": {
@@ -134,22 +135,8 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Avondale, AZ"
-   },
-   "YaGharram": {
-      "player_code_id": {
-         "code": "YaGharram",
-         "id": "Gharram, Yassine",
-         "ncaa_id": "4898248"
-      },
-      "number": "2",
-      "pos": "G",
-      "height": "6-3",
-      "height_in": 75,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "San Diego, CA"
    },
    "AaClark": {
       "player_code_id": {
@@ -162,7 +149,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Easton, PA"
    },
    "PaShemirani": {
@@ -190,7 +177,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Englewood, NJ"
    },
    "PaStosic": {
@@ -204,7 +191,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Niš, Serbia"
    },
    "JaCooley": {
@@ -218,7 +205,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "DaDozic": {
@@ -232,7 +219,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Belgrade, Serbia",
       "role": "WF"
    }

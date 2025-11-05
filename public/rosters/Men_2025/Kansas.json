@@ -10,7 +10,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami, FL"
    },
    "PaMbiya": {
@@ -24,7 +24,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kinshasa, Congo Republic"
    },
    "WiEvers": {
@@ -38,7 +38,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Birmingham, AL"
    },
    "FlBidunga": {
@@ -52,7 +52,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "DR Congo, DR Congo",
       "role": "C"
    },
@@ -67,7 +67,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Marlton, NJ",
       "role": "CG"
    },
@@ -82,7 +82,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Canton, OH",
       "role": "CG"
    },
@@ -92,12 +92,12 @@
          "id": "Thengvall, Will",
          "ncaa_id": "5240262"
       },
-      "number": "15",
+      "number": "21",
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wichita, KS"
    },
    "__coach__": {
@@ -122,7 +122,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Omaha, NE",
       "role": "CG"
    },
@@ -151,7 +151,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Espirito Santo, Brazil",
       "role": "WF"
    },
@@ -166,7 +166,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada"
    },
    "JuCross": {
@@ -180,7 +180,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oak Park, IL"
    },
    "MeCouncil": {
@@ -194,7 +194,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rochester, NY",
       "role": "CG"
    },
@@ -209,7 +209,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "WG"
    },
@@ -224,7 +224,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lawrenceville, GA"
    },
    "JaMcdowell": {
@@ -238,7 +238,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Manvel, TX",
       "role": "WG"
    }

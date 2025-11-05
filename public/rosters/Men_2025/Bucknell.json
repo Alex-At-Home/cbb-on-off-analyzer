@@ -24,7 +24,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ellicott City, MD"
    },
    "PaO'brien": {
@@ -52,7 +52,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Malvern, PA",
       "role": "WG"
    },
@@ -67,7 +67,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY",
       "role": "s-PG"
    },
@@ -82,7 +82,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY",
       "role": "WG"
    },
@@ -111,7 +111,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Scarborough, Canada"
    },
    "JaMeachem": {
@@ -164,7 +164,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Waukee, IA",
       "role": "S-PF"
    },
@@ -179,7 +179,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "AmDorries": {
@@ -193,7 +193,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Potsdam, Germany"
    },
    "AcSpadone": {
@@ -207,7 +207,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Geneva, Switzerland",
       "role": "WG"
    },
@@ -222,7 +222,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Zagreb, Croatia",
       "role": "C"
    }

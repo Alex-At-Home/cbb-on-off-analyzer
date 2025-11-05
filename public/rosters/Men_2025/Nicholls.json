@@ -1,17 +1,17 @@
 {
-   "RoRecasner": {
+   "JaSearles": {
       "player_code_id": {
-         "code": "RoRecasner",
-         "id": "Recasner, Roy",
-         "ncaa_id": "9336428"
+         "code": "JaSearles",
+         "id": "Searles, Jaylen",
+         "ncaa_id": "5176646"
       },
-      "number": "14",
-      "pos": "G",
-      "height": "6-1",
-      "height_in": 73,
-      "year_class": "So",
-      "gp": 0,
-      "origin": ""
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Everett, WA"
    },
    "TrEnglish": {
       "player_code_id": {
@@ -24,24 +24,80 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Baltimore, MD",
       "role": "s-PG"
    },
-   "EmEllis": {
+   "KePazmino": {
       "player_code_id": {
-         "code": "EmEllis",
-         "id": "Ellis, Emarion",
-         "ncaa_id": "5313592"
+         "code": "KePazmino",
+         "id": "Pazmino, Kevin",
+         "ncaa_id": "5238199"
       },
-      "number": "22",
+      "number": "8",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Weston, FL"
+   },
+   "DoBetancourt": {
+      "player_code_id": {
+         "code": "DoBetancourt",
+         "id": "Betancourt, Domanic",
+         "ncaa_id": "5190869"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Riverview, FL"
+   },
+   "ChWinborne": {
+      "player_code_id": {
+         "code": "ChWinborne",
+         "id": "Winborne, Christian",
+         "ncaa_id": "5105975"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Davenport, IA",
+      "gp": 1,
+      "origin": "Baltimore, MD"
+   },
+   "NiKrass": {
+      "player_code_id": {
+         "code": "NiKrass",
+         "id": "Krass, Nick",
+         "ncaa_id": "5105625"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Gulfport, MS",
       "role": "WG"
+   },
+   "JoMatthews": {
+      "player_code_id": {
+         "code": "JoMatthews",
+         "id": "Matthews, Jordan",
+         "ncaa_id": "5313590"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Houma, LA"
    },
    "SiMalone": {
       "player_code_id": {
@@ -54,9 +110,23 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "WF"
+   },
+   "ZaCross": {
+      "player_code_id": {
+         "code": "ZaCross",
+         "id": "Cross, Zaiden",
+         "ncaa_id": "5313591"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Scarborough, Canada"
    },
    "__coach__": {
       "player_code_id": {
@@ -69,32 +139,61 @@
       "year_class": "",
       "gp": -1
    },
-   "DwPerkins": {
+   "ZeHamoda": {
       "player_code_id": {
-         "code": "DwPerkins",
-         "id": "Perkins Jr., Dwayne",
-         "ncaa_id": "5105625"
+         "code": "ZeHamoda",
+         "id": "Hamoda, Zee",
+         "ncaa_id": "4897548"
       },
-      "number": "21",
+      "number": "24",
       "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Gulfport, MS"
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Riffa, Bahrain"
    },
-   "ChClark": {
+   "JaDunkley": {
       "player_code_id": {
-         "code": "ChClark",
-         "id": "Clark Jr., Chad",
-         "ncaa_id": "5238199"
+         "code": "JaDunkley",
+         "id": "Dunkley, Jalik",
+         "ncaa_id": "5313592"
       },
-      "number": "8",
+      "number": "22",
       "pos": "G",
-      "height": "6-6",
-      "height_in": 78,
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "So",
-      "gp": 0,
-      "origin": "Weston, FL"
+      "gp": 1,
+      "origin": "Welland, Canada"
+   },
+   "JaRice": {
+      "player_code_id": {
+         "code": "JaRice",
+         "id": "Rice, Jalin",
+         "ncaa_id": "5177699"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Flora, MS",
+      "role": "WG"
+   },
+   "GrSanders": {
+      "player_code_id": {
+         "code": "GrSanders",
+         "id": "Sanders, Grant",
+         "ncaa_id": "5116500"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Mcdonough, GA"
    }
 }

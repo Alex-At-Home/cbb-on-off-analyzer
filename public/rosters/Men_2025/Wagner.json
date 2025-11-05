@@ -1,17 +1,17 @@
 {
-   "DiHowell-sou": {
+   "JaBaker": {
       "player_code_id": {
-         "code": "DiHowell-sou",
-         "id": "Howell-South, Di'Andre",
-         "ncaa_id": "9324759"
+         "code": "JaBaker",
+         "id": "Baker, Jaden",
+         "ncaa_id": "5247448"
       },
-      "number": "2",
+      "number": "9",
       "pos": "G",
-      "height": "6-4",
-      "height_in": 76,
+      "height": "6-2",
+      "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
-      "origin": "Paterson, NJ"
+      "gp": 1,
+      "origin": "Salisbury, MD"
    },
    "MaAnderson": {
       "player_code_id": {
@@ -24,8 +24,50 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hamden, CT"
+   },
+   "MiCooper": {
+      "player_code_id": {
+         "code": "MiCooper",
+         "id": "Cooper, Michael",
+         "ncaa_id": "5317317"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Crystal, MN"
+   },
+   "HuCuevas": {
+      "player_code_id": {
+         "code": "HuCuevas",
+         "id": "Cuevas, Huascar",
+         "ncaa_id": "5317319"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Santo Domingo, Dominican Republic"
+   },
+   "SaSmith": {
+      "player_code_id": {
+         "code": "SaSmith",
+         "id": "Smith, Sam",
+         "ncaa_id": "5317321"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Gurdon, AR"
    },
    "__coach__": {
       "player_code_id": {
@@ -38,19 +80,75 @@
       "year_class": "",
       "gp": -1
    },
-   "RjGreene": {
+   "ElBrown": {
       "player_code_id": {
-         "code": "RjGreene",
-         "id": "Greene, RJ",
+         "code": "ElBrown",
+         "id": "Brown, Elijah",
+         "ncaa_id": "5317315"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Atlantic City, NJ"
+   },
+   "BrAkanamu": {
+      "player_code_id": {
+         "code": "BrAkanamu",
+         "id": "Akanamu, Bryan",
          "ncaa_id": "5317318"
       },
       "number": "10",
-      "pos": "G",
+      "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Sr",
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Lodon, United Kingdom"
+   },
+   "NiJones": {
+      "player_code_id": {
+         "code": "NiJones",
+         "id": "Jones, Nick",
+         "ncaa_id": "5317314"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Dundalk, MD"
+   },
+   "BiBasil": {
+      "player_code_id": {
+         "code": "BiBasil",
+         "id": "Basil, Binael",
+         "ncaa_id": "5317320"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "Ottawa, Canada"
+   },
+   "JoAwoke": {
+      "player_code_id": {
+         "code": "JoAwoke",
+         "id": "Awoke, John",
+         "ncaa_id": "5317316"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
       "gp": 0,
-      "origin": "Bronx, NY"
+      "origin": "Annadale, VA"
    },
    "ZaFitch": {
       "player_code_id": {
@@ -58,13 +156,27 @@
          "id": "Fitch, Zavier",
          "ncaa_id": "5242414"
       },
-      "number": "11",
+      "number": "1",
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "PF/C"
+   },
+   "EdPlacer": {
+      "player_code_id": {
+         "code": "EdPlacer",
+         "id": "Placer, Eddie",
+         "ncaa_id": "5176342"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Orlando, FL"
    }
 }

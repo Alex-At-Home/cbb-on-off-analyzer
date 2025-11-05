@@ -14,6 +14,35 @@
       "origin": "Chicago, IL",
       "role": "WG"
    },
+   "MaGreen": {
+      "player_code_id": {
+         "code": "MaGreen",
+         "id": "Green, Max",
+         "ncaa_id": "5242943"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 1,
+      "origin": "La Grange, KY",
+      "role": "WG"
+   },
+   "JaWest": {
+      "player_code_id": {
+         "code": "JaWest",
+         "id": "West, Jake",
+         "ncaa_id": "5221322"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Philadelphia, PA"
+   },
    "GuHurlburt": {
       "player_code_id": {
          "code": "GuHurlburt",
@@ -28,6 +57,20 @@
       "gp": 0,
       "origin": "Enderlin, ND"
    },
+   "PhGill": {
+      "player_code_id": {
+         "code": "PhGill",
+         "id": "Gill, Phoenix",
+         "ncaa_id": "5254158"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Chicago, IL"
+   },
    "__coach__": {
       "player_code_id": {
          "code": "__coach__",
@@ -39,19 +82,20 @@
       "year_class": "",
       "gp": -1
    },
-   "BlBarkley": {
+   "ArPage": {
       "player_code_id": {
-         "code": "BlBarkley",
-         "id": "Barkley, Blake",
-         "ncaa_id": "4895746"
+         "code": "ArPage",
+         "id": "Page, Arrinten",
+         "ncaa_id": "5060696"
       },
-      "number": "4",
+      "number": "22",
       "pos": "F",
-      "height": "6-7",
-      "height_in": 79,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Morgantown, WV"
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Atlanta, GA",
+      "role": "PF/C"
    },
    "NiMartinelli": {
       "player_code_id": {
@@ -64,7 +108,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Glenview, IL",
       "role": "WF"
    },
@@ -79,9 +123,24 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Medford, MA",
       "role": "CG"
+   },
+   "TrSingleton": {
+      "player_code_id": {
+         "code": "TrSingleton",
+         "id": "Singleton, Tre",
+         "ncaa_id": "5226071"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Jeffersonville, IN",
+      "role": "S-PF"
    },
    "BlSmith": {
       "player_code_id": {
@@ -108,9 +167,52 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oak Park, IL",
       "role": "WG"
+   },
+   "CaBennerman": {
+      "player_code_id": {
+         "code": "CaBennerman",
+         "id": "Bennerman, Cade",
+         "ncaa_id": "5196943"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Nashville, TN"
+   },
+   "JaReid": {
+      "player_code_id": {
+         "code": "JaReid",
+         "id": "Reid, Jayden",
+         "ncaa_id": "4895746"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Westbury, NY",
+      "role": "s-PG"
+   },
+   "TyKropp": {
+      "player_code_id": {
+         "code": "TyKropp",
+         "id": "Kropp, Tyler",
+         "ncaa_id": "5144141"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Powell, OH"
    },
    "KjWindham": {
       "player_code_id": {
@@ -123,7 +225,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Indianapolis, IN",
       "role": "s-PG"
    }

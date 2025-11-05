@@ -10,9 +10,23 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Auburn, WA",
       "role": "WG"
+   },
+   "AiSevilla": {
+      "player_code_id": {
+         "code": "AiSevilla",
+         "id": "Sevilla, Aidan",
+         "ncaa_id": "4902201"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "San Ramon, CA"
    },
    "BiJohnson": {
       "player_code_id": {
@@ -25,7 +39,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carson, CA"
    },
    "JaPayne": {
@@ -39,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Boise, ID",
       "role": "WG"
    },
@@ -69,7 +83,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orchard Park, NY",
       "role": "S-PF"
    },
@@ -84,7 +98,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Eagle, ID"
    },
    "EwSteele": {
@@ -152,7 +166,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Meridian, ID",
       "role": "PF/C"
    },
@@ -167,7 +181,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Coeur D Alene, ID",
       "role": "s-PG"
    },
@@ -211,7 +225,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chula Vista, CA",
       "role": "WG"
    },

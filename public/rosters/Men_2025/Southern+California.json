@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clinton, MD"
    },
    "JaCofie": {
@@ -24,7 +24,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Seattle, WA",
       "role": "S-PF"
    },
@@ -39,7 +39,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Francisco, CA",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "7-5",
       "height_in": 89,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Independence, KY",
       "role": "C"
    },
@@ -83,7 +83,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clinton, MD",
       "role": "CG"
    },
@@ -98,7 +98,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sandy, UT",
       "role": "S-PF"
    },
@@ -153,7 +153,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Potomac, MD",
       "role": "CG"
    },
@@ -168,7 +168,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA",
       "role": "PF/C"
    },
@@ -183,7 +183,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Monroe, NC",
       "role": "s-PG"
    },
@@ -198,7 +198,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Santo Domingo, Dominican Republic",
       "role": "WG"
    },
@@ -213,7 +213,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Toledo, OH",
       "role": "CG"
    },
@@ -228,7 +228,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland, OH",
       "role": "PF/C"
    },

@@ -1,4 +1,18 @@
 {
+   "DeCampbell": {
+      "player_code_id": {
+         "code": "DeCampbell",
+         "id": "Campbell, DeJuan",
+         "ncaa_id": "5107343"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hampton, VA"
+   },
    "DhManyielDut": {
       "player_code_id": {
          "code": "DhManyielDut",
@@ -10,7 +24,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rumbek, South Sudan"
    },
    "NoDorsey": {
@@ -24,23 +38,9 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Knightdale, NC",
       "role": "WG"
-   },
-   "SeCarr": {
-      "player_code_id": {
-         "code": "SeCarr",
-         "id": "Carr, Semetri",
-         "ncaa_id": "5164560"
-      },
-      "number": "3",
-      "pos": "G",
-      "height": "6-0",
-      "height_in": 72,
-      "year_class": "Fr",
-      "gp": 0,
-      "origin": "Mill Valley, CA"
    },
    "JoClark": {
       "player_code_id": {
@@ -67,7 +67,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gornji Milanovac, Serbia",
       "role": "PF/C"
    },
@@ -82,7 +82,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX",
       "role": "C"
    },
@@ -97,7 +97,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Arlington, TX",
       "role": "WF"
    },
@@ -112,7 +112,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "s-PG"
    },
@@ -127,7 +127,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Concord, CA",
       "role": "WF"
    },
@@ -181,7 +181,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Austin, TX"
    },
    "MaKocanas": {
@@ -195,7 +195,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Karciupis, Lithuania, Republic of Lithuania"
    },
    "JuPippen": {
@@ -209,7 +209,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "CG"
    },
@@ -224,7 +224,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Purchase, NY"
    },
    "JoCamden": {
@@ -238,24 +238,23 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Downingtown, PA",
       "role": "WF"
    },
-   "DjCampbell": {
+   "Se(tt)Carr": {
       "player_code_id": {
-         "code": "DjCampbell",
-         "id": "Campbell, DJ",
-         "ncaa_id": "5107343"
+         "code": "Se(tt)Carr",
+         "id": " Carr, Semetri (TT)",
+         "ncaa_id": "5164560"
       },
-      "number": "1",
+      "number": "3",
       "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
-      "year_class": "Sr",
-      "gp": 0,
-      "origin": "Hampton, VA",
-      "role": "CG"
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Mill Valley, CA"
    },
    "BjFisher": {
       "player_code_id": {
@@ -268,7 +267,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ross, CA"
    }
 }

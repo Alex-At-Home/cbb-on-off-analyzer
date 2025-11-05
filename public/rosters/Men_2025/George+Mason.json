@@ -10,7 +10,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "East Point, GA",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "CG"
    },
@@ -68,7 +68,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Saint Louis, MO",
       "role": "C"
    },
@@ -111,7 +111,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "PF/C"
    },
@@ -126,7 +126,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Celje, Slovenia"
    },
    "__coach__": {
@@ -151,7 +151,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Frederick, MD",
       "role": "WG"
    },
@@ -166,7 +166,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "San Marcos, TX",
       "role": "WF"
    },
@@ -181,7 +181,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA"
    },
    "EmKanga": {
@@ -190,12 +190,12 @@
          "id": "Kanga, Emmanuel",
          "ncaa_id": "5196954"
       },
-      "number": "21",
+      "number": "10",
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Libreville, Gabon"
    },
    "DoAdebayo": {
@@ -209,7 +209,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ocala, FL",
       "role": "S-PF"
    },
@@ -238,7 +238,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ottawa, Canada",
       "role": "CG"
    }

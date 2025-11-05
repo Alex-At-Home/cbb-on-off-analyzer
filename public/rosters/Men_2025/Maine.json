@@ -1,4 +1,18 @@
 {
+   "BaN'galang": {
+      "player_code_id": {
+         "code": "BaN'galang",
+         "id": "N'Galang, Bashir",
+         "ncaa_id": "5313109"
+      },
+      "number": "64",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Saint Laurent, Canada"
+   },
    "AmAllen": {
       "player_code_id": {
          "code": "AmAllen",
@@ -39,8 +53,37 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bronx, NY"
+   },
+   "MeGray": {
+      "player_code_id": {
+         "code": "MeGray",
+         "id": "Gray, Mekhi",
+         "ncaa_id": "4701160"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Montrose, NY",
+      "role": "WG"
+   },
+   "EmByther": {
+      "player_code_id": {
+         "code": "EmByther",
+         "id": "Byther, Emmitt",
+         "ncaa_id": "5313107"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Old Town, ME"
    },
    "JoShea": {
       "player_code_id": {
@@ -67,9 +110,23 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Shelton, CT",
       "role": "s-PG"
+   },
+   "JoOjuri": {
+      "player_code_id": {
+         "code": "JoOjuri",
+         "id": "Ojuri, Joshua",
+         "ncaa_id": "5313108"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Providence, RI"
    },
    "KeSteele": {
       "player_code_id": {
@@ -82,9 +139,23 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Altona, Canada",
       "role": "C"
+   },
+   "AcFlagg": {
+      "player_code_id": {
+         "code": "AcFlagg",
+         "id": "Flagg, Ace",
+         "ncaa_id": "5093143"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Newport, ME"
    },
    "IsBonilla": {
       "player_code_id": {
@@ -97,8 +168,37 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Danville, NH"
+   },
+   "YaBamba": {
+      "player_code_id": {
+         "code": "YaBamba",
+         "id": "Bamba, Yanis",
+         "ncaa_id": "5175745"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Laval, Canada"
+   },
+   "RyMabrey": {
+      "player_code_id": {
+         "code": "RyMabrey",
+         "id": "Mabrey, Ryan",
+         "ncaa_id": "5108029"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Belmar, NJ",
+      "role": "CG"
    },
    "__coach__": {
       "player_code_id": {
@@ -110,6 +210,21 @@
       "height": "",
       "year_class": "",
       "gp": -1
+   },
+   "TjBiel": {
+      "player_code_id": {
+         "code": "TjBiel",
+         "id": "Biel, TJ",
+         "ncaa_id": "5177368"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Calgary, Canada",
+      "role": "WF"
    },
    "DaLopes": {
       "player_code_id": {

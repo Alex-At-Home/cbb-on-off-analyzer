@@ -10,7 +10,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Crestview Hills, KY",
       "role": "s-PG"
    },
@@ -25,7 +25,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Liberty Township, OH"
    },
    "AlAtlason": {
@@ -39,7 +39,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Reykjavik, Iceland",
       "role": "S-PF"
    },
@@ -68,7 +68,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Elmhurst, IL"
    },
    "LeStowers": {
@@ -96,7 +96,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Broadview Heights, OH",
       "role": "s-PG"
    },
@@ -150,7 +150,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cleveland, OH",
       "role": "PF/C"
    },
@@ -193,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Carmel, IN",
       "role": "CG"
    },
@@ -208,7 +208,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA"
    },
    "JuKirby": {
@@ -217,7 +217,7 @@
          "id": "Kirby, Justin",
          "ncaa_id": "5313370"
       },
-      "number": "12",
+      "number": "6",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
@@ -236,7 +236,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH",
       "role": "WF"
    },
@@ -251,7 +251,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chambersburg, PA",
       "role": "WF"
    }

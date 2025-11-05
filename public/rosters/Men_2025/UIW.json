@@ -5,7 +5,7 @@
          "id": "Kortas, Isaiah",
          "ncaa_id": "5242569"
       },
-      "number": "15",
+      "number": "11",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
@@ -24,9 +24,38 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "C"
+   },
+   "TySimon": {
+      "player_code_id": {
+         "code": "TySimon",
+         "id": "Simon, Tyler",
+         "ncaa_id": "4683939"
+      },
+      "number": "93",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Houston, TX"
+   },
+   "LoBettis": {
+      "player_code_id": {
+         "code": "LoBettis",
+         "id": "Bettis, Love",
+         "ncaa_id": "5106711"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Pensacola, FL",
+      "role": "s-PG"
    },
    "HaReede": {
       "player_code_id": {
@@ -39,8 +68,23 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aberdeen, SD"
+   },
+   "TaStaveskie": {
+      "player_code_id": {
+         "code": "TaStaveskie",
+         "id": "Staveskie, Tahj",
+         "ncaa_id": "4896368"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Sandusky, OH",
+      "role": "CG"
    },
    "__coach__": {
       "player_code_id": {
@@ -53,6 +97,21 @@
       "year_class": "",
       "gp": -1
    },
+   "HaWoods": {
+      "player_code_id": {
+         "code": "HaWoods",
+         "id": "Woods, Harold",
+         "ncaa_id": "5106716"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Hammond, IN",
+      "role": "WG"
+   },
    "MaGlover": {
       "player_code_id": {
          "code": "MaGlover",
@@ -64,9 +123,23 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "C"
+   },
+   "LeRowe": {
+      "player_code_id": {
+         "code": "LeRowe",
+         "id": "Rowe, Lewis",
+         "ncaa_id": "4897366"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Adelaide, Australia"
    },
    "JoPyke": {
       "player_code_id": {
@@ -79,9 +152,65 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greensboro, NC",
       "role": "WG"
+   },
+   "MiTomic": {
+      "player_code_id": {
+         "code": "MiTomic",
+         "id": "Tomic, Mihael",
+         "ncaa_id": "5313507"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Veliko Trgovisce, Croatia"
+   },
+   "DrBarbee": {
+      "player_code_id": {
+         "code": "DrBarbee",
+         "id": "Barbee, Drew",
+         "ncaa_id": "5176183"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Mount Pleasant, MI"
+   },
+   "EsMann": {
+      "player_code_id": {
+         "code": "EsMann",
+         "id": "Mann, Esteban",
+         "ncaa_id": "5313506"
+      },
+      "number": "0",
+      "pos": "",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "DaBailey": {
+      "player_code_id": {
+         "code": "DaBailey",
+         "id": "Bailey, Davion",
+         "ncaa_id": "5176164"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Indianapolis, IN"
    },
    "AmDrummond": {
       "player_code_id": {

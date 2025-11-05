@@ -25,7 +25,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wyckoff, NJ"
    },
    "FaGueye": {
@@ -39,7 +39,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Raleigh, NC",
       "role": "CG"
    },
@@ -54,7 +54,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hartford, CT",
       "role": "WG"
    },
@@ -69,7 +69,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Crowley, TX",
       "role": "WF"
    },
@@ -95,7 +95,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Philadelphia, PA",
       "role": "S-PF"
    },
@@ -110,7 +110,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bay Shore, NY"
    },
    "MoGittens": {
@@ -138,7 +138,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "New Haven, CT",
       "role": "PG"
    },
@@ -153,7 +153,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "New York, NY"
    },
    "MaSheppard": {
@@ -162,12 +162,12 @@
          "id": "Sheppard, Malik",
          "ncaa_id": "5243022"
       },
-      "number": "11",
+      "number": "55",
       "pos": "G",
       "height": "5-10",
       "height_in": 70,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Edgewater, NJ"
    },
    "KePikiell": {
@@ -195,7 +195,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY"
    },
    "NyRalph-beye": {
@@ -209,7 +209,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "West Chester, PA",
       "role": "WG"
    },
@@ -224,7 +224,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dakar, Senegal"
    },
    "JaSlaughter": {
@@ -238,7 +238,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Buffalo, NY"
    }
 }

@@ -24,13 +24,13 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sydney, Australia"
    },
-   "WiBeugreKassi": {
+   "WiKassi": {
       "player_code_id": {
-         "code": "WiBeugreKassi",
-         "id": "Beugre Kassi, William",
+         "code": "WiKassi",
+         "id": "Kassi, William",
          "ncaa_id": "5313710"
       },
       "number": "4",
@@ -52,7 +52,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Houston, TX",
       "role": "PG"
    },
@@ -92,7 +92,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY"
    },
    "MjYeager": {
@@ -120,7 +120,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Adelaide, Australia",
       "role": "C"
    },
@@ -164,7 +164,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    },
    "BrWhite": {
@@ -178,7 +178,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Battle Creek, MI"
    },
    "NaMashhour": {
@@ -192,7 +192,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dearborn, MI",
       "role": "CG"
    },
@@ -207,7 +207,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pleasant Grove, UT"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, United Kingdom",
       "role": "S-PF"
    },
@@ -25,7 +25,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charles Town, WV"
    },
    "AmHansberry": {
@@ -39,7 +39,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Silver Spring, MD",
       "role": "S-PF"
    },
@@ -54,7 +54,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hutto, TX",
       "role": "WG"
    },
@@ -69,7 +69,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL",
       "role": "WG"
    },
@@ -92,11 +92,11 @@
       },
       "number": "17",
       "pos": "G",
-      "height": "6-8",
-      "height_in": 80,
+      "height": "6-9",
+      "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
-      "origin": "Athens, Greece",
+      "gp": 1,
+      "origin": "Kalamata, Greece",
       "role": "WF"
    },
    "SoDavis": {
@@ -124,7 +124,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Harrisburg, PA",
       "role": "CG"
    },
@@ -167,7 +167,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Manassas, VA",
       "role": "s-PG"
    },
@@ -182,7 +182,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yorkville, IL",
       "role": "WG"
    },
@@ -197,7 +197,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Portsmouth, VA"
    },
    "BrFreeman": {

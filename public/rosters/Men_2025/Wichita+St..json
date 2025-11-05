@@ -24,7 +24,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Concord, NC",
       "role": "WF"
    },
@@ -39,7 +39,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Fredericksburg, VA",
       "role": "WG"
    },
@@ -54,7 +54,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chesapeake, VA",
       "role": "CG"
    },
@@ -69,7 +69,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Los Angeles, CA",
       "role": "WG"
    },
@@ -84,7 +84,7 @@
       "height": "7-2",
       "height_in": 86,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Stockholm, Sweden"
    },
    "__coach__": {
@@ -109,7 +109,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lagos, Nigeria",
       "role": "C"
    },
@@ -139,7 +139,7 @@
       "height": "5-11",
       "height_in": 71,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cincinnati, OH"
    },
    "TjWilliams": {
@@ -153,7 +153,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wichita, KS"
    },
    "PiCouisnard": {
@@ -181,7 +181,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mckinney, TX"
    },
    "TyRathan-may": {
@@ -223,7 +223,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dallas, TX"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Rome, GA"
    },
    "JaCooper": {
@@ -24,7 +24,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pike Road, AL",
       "role": "CG"
    },
@@ -39,7 +39,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Surrey, Canada"
    },
    "HaLouisJeune": {
@@ -53,7 +53,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lake Worth, FL"
    },
    "RaBrady": {
@@ -67,7 +67,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chattanooga, TN",
       "role": "CG"
    },
@@ -82,7 +82,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Jacksonville, AL",
       "role": "WG"
    },
@@ -97,7 +97,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Shawnee, KS"
    },
    "SaShoptaw": {
@@ -164,7 +164,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bedford, OH"
    },
    "StWilliams": {
@@ -178,7 +178,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atmore, AL"
    },
    "JjWheat": {
@@ -192,7 +192,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Clarksville, TN",
       "role": "s-PG"
    }

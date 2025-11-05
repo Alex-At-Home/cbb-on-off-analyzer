@@ -38,7 +38,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Charlotte, NC",
       "role": "WG"
    },
@@ -53,7 +53,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Round Rock, TX"
    },
    "EtKizer": {
@@ -67,7 +67,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Metamora, IL",
       "role": "WF"
    },
@@ -82,7 +82,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Willowbrook, IL"
    },
    "CaKizer": {
@@ -135,7 +135,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Dubuque, IA",
       "role": "C"
    },
@@ -164,7 +164,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "North Sioux City, SD",
       "role": "WG"
    },
@@ -208,7 +208,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Melbourne, Australia"
    },
    "ShEberwein": {
@@ -222,7 +222,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "The Woodlands, TX",
       "role": "WG"
    },
@@ -237,7 +237,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Onalaska, WI"
    },
    "JaBrack": {
@@ -251,7 +251,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Omaha, NE",
       "role": "WF"
    }

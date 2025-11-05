@@ -1,4 +1,18 @@
 {
+   "LuMoore": {
+      "player_code_id": {
+         "code": "LuMoore",
+         "id": "Moore, Luke",
+         "ncaa_id": "5312926"
+      },
+      "number": "32",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Little Rock, AR"
+   },
    "OwDerhmann": {
       "player_code_id": {
          "code": "OwDerhmann",
@@ -10,23 +24,37 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bentonville, AR",
       "role": "WG"
    },
-   "NeTurner": {
+   "JoShulman": {
       "player_code_id": {
-         "code": "NeTurner",
-         "id": "Turner, Nehemiah",
+         "code": "JoShulman",
+         "id": "Shulman, John",
          "ncaa_id": "5312920"
       },
       "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Chattanooga, TN"
+   },
+   "ChMason": {
+      "player_code_id": {
+         "code": "ChMason",
+         "id": "Mason, Chris",
+         "ncaa_id": "5312924"
+      },
+      "number": "23",
       "pos": "F",
-      "height": "6-10",
-      "height_in": 82,
+      "height": "6-7",
+      "height_in": 79,
       "year_class": "So",
-      "gp": 0,
-      "origin": "Auburndale, FL"
+      "gp": 1,
+      "origin": "Tulsa, OK"
    },
    "JaGuy-king": {
       "player_code_id": {
@@ -39,7 +67,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Little Rock, AR",
       "role": "WG"
    },
@@ -54,6 +82,20 @@
       "year_class": "",
       "gp": -1
    },
+   "RyMarshall": {
+      "player_code_id": {
+         "code": "RyMarshall",
+         "id": "Marshall, Rylie",
+         "ncaa_id": "5111680"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Beebe, AR"
+   },
    "TyRobinson": {
       "player_code_id": {
          "code": "TyRobinson",
@@ -65,22 +107,22 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hot Springs, AR"
    },
-   "CoMancell": {
+   "RaBolden": {
       "player_code_id": {
-         "code": "CoMancell",
-         "id": "Mancell, Connor",
+         "code": "RaBolden",
+         "id": "Bolden, Rashad",
          "ncaa_id": "4897558"
       },
       "number": "11",
       "pos": "G",
-      "height": "6-2",
-      "height_in": 74,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Memphis, TN"
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Jackson, MS"
    },
    "EtThomas": {
       "player_code_id": {
@@ -93,7 +135,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lebanon, TN"
    },
    "CoMccormick": {
@@ -107,37 +149,93 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chattanooga, TN",
       "role": "WG"
    },
-   "BeFox": {
+   "CaHunter": {
       "player_code_id": {
-         "code": "BeFox",
-         "id": "Fox, Ben",
+         "code": "CaHunter",
+         "id": "Hunter, Camren",
+         "ncaa_id": "4897018"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Bryant, AR"
+   },
+   "MaMarable": {
+      "player_code_id": {
+         "code": "MaMarable",
+         "id": "Marable, Malchiah",
+         "ncaa_id": "5312925"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Washington, DC"
+   },
+   "RoNewton": {
+      "player_code_id": {
+         "code": "RoNewton",
+         "id": "Newton, Roderick",
+         "ncaa_id": "5312921"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Benton, AR"
+   },
+   "HaBeauchamp": {
+      "player_code_id": {
+         "code": "HaBeauchamp",
+         "id": "Beauchamp, Harrison",
+         "ncaa_id": "5312922"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Kew, Australia"
+   },
+   "PaApplegate": {
+      "player_code_id": {
+         "code": "PaApplegate",
+         "id": "Applegate, Parker",
          "ncaa_id": "5247935"
       },
       "number": "13",
       "pos": "G",
-      "height": "6-5",
-      "height_in": 77,
-      "year_class": "So",
-      "gp": 0,
-      "origin": "Little Rock, AR"
-   },
-   "DiSeixas": {
-      "player_code_id": {
-         "code": "DiSeixas",
-         "id": "Seixas, Diogo",
-         "ncaa_id": "5312924"
-      },
-      "number": "23",
-      "pos": "F",
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
-      "origin": "Lisbon, Portugal"
+      "gp": 1,
+      "origin": "Murfreesboro, TN"
+   },
+   "TrByrne": {
+      "player_code_id": {
+         "code": "TrByrne",
+         "id": "Byrne, Truman",
+         "ncaa_id": "5312919"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Melbourne, Australia"
    },
    "TyLee": {
       "player_code_id": {
@@ -150,7 +248,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL"
    }
 }

@@ -10,7 +10,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Montreal, Canada",
       "role": "WF"
    },
@@ -39,7 +39,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Helsinki, Finland"
    },
    "__coach__": {
@@ -64,7 +64,7 @@
       "height": "6-11",
       "height_in": 83,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Las Cruces, NM",
       "role": "C"
    },
@@ -79,7 +79,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Blue Springs, MO",
       "role": "WG"
    },
@@ -94,7 +94,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tuscola, IL",
       "role": "s-PG"
    },
@@ -109,7 +109,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Aurora, IL",
       "role": "WG"
    },
@@ -124,7 +124,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sioux Falls, SD"
    },
    "AnAlia": {
@@ -138,7 +138,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Kenosha, WI"
    },
    "ElShetlar": {
@@ -152,7 +152,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Wichita, KS"
    },
    "BrBahl": {

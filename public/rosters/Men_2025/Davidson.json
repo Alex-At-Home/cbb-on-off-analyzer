@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Centerville, OH"
    },
    "PhKavu": {
@@ -24,7 +24,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Manchester, United Kingdom"
    },
    "PaFriedrichs": {
@@ -38,7 +38,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bixby, OK",
       "role": "WG"
    },
@@ -53,7 +53,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Westfield, NJ",
       "role": "C"
    },
@@ -68,7 +68,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Greensboro, NC",
       "role": "WF"
    },
@@ -83,7 +83,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Riga, Latvia",
       "role": "WG"
    },
@@ -127,7 +127,7 @@
       "height": "5-10",
       "height_in": 70,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Davidson, NC"
    },
    "__coach__": {
@@ -152,7 +152,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orefield, PA"
    },
    "DeBrown": {
@@ -166,7 +166,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lewis Center, OH"
    },
    "HuAdam": {
@@ -180,7 +180,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Christchurch, New Zealand",
       "role": "S-PF"
    },
@@ -195,7 +195,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Merion Station, PA",
       "role": "CG"
    },
@@ -210,7 +210,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Spokane, WA"
    },
    "MaJoses": {
@@ -224,7 +224,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "London, United Kingdom",
       "role": "WF"
    },

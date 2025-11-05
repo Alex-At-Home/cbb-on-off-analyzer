@@ -1,1 +1,212 @@
-{"EmMcdonald":{"player_code_id":{"code":"EmMcdonald","id":"McDonald, Emareyon","ncaa_id":"5112181"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Sr","gp":0,"origin":"Coushatta, LA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Patrick Crarey II"},"number":"","pos":"","height":"","year_class":"","gp":-1},"EmNnaji":{"player_code_id":{"code":"EmNnaji","id":"Nnaji, Emeka","ncaa_id":"9324607"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Jr","gp":0,"origin":"Hopkins, MN"},"MiStevenson":{"player_code_id":{"code":"MiStevenson","id":"Stevenson, Mikale","ncaa_id":"5175742"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr","gp":0,"origin":"Fort Wayne, IN"},"PjEdwards":{"player_code_id":{"code":"PjEdwards","id":"Edwards, PJ","ncaa_id":"4710427"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Sr","gp":0,"origin":"Springfield, IL"},"DuFletcher":{"player_code_id":{"code":"DuFletcher","id":"Fletcher, Dupree","ncaa_id":"5177557"},"number":"1","pos":"G","height":"5-10","height_in":70,"year_class":"So","gp":0,"origin":"Milwaukee, WI"},"SoRay":{"player_code_id":{"code":"SoRay","id":"Ray, Solomon","ncaa_id":"9324613"},"number":"12","pos":"F","height":"6-10","height_in":82,"year_class":"Jr","gp":0,"origin":"Atlanta, GA"}}
+{
+   "RiAmaefule": {
+      "player_code_id": {
+         "code": "RiAmaefule",
+         "id": "Amaefule, Richard",
+         "ncaa_id": "5255709"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "London, United Kingdom"
+   },
+   "DeWard": {
+      "player_code_id": {
+         "code": "DeWard",
+         "id": "Ward, Derrius",
+         "ncaa_id": "4700968"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Philadelphia, PA",
+      "role": "WG"
+   },
+   "RoCoffee": {
+      "player_code_id": {
+         "code": "RoCoffee",
+         "id": "Coffee III, Roderick",
+         "ncaa_id": "5177557"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Painesville, OH",
+      "role": "WG"
+   },
+   "NaMahmoud": {
+      "player_code_id": {
+         "code": "NaMahmoud",
+         "id": "Mahmoud, Nazar",
+         "ncaa_id": "5175742"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Leander, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Patrick Crarey II"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MeFitts": {
+      "player_code_id": {
+         "code": "MeFitts",
+         "id": "Fitts, Mekhi",
+         "ncaa_id": "5314748"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Hueytown, AL"
+   },
+   "AnMunoz": {
+      "player_code_id": {
+         "code": "AnMunoz",
+         "id": "Munoz, Antonio",
+         "ncaa_id": "5314746"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Chicago, IL"
+   },
+   "DeFranklin": {
+      "player_code_id": {
+         "code": "DeFranklin",
+         "id": "Franklin, Devyn",
+         "ncaa_id": "5259011"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Terrell, TX"
+   },
+   "JiLane": {
+      "player_code_id": {
+         "code": "JiLane",
+         "id": "Lane, Jimel",
+         "ncaa_id": "5112187"
+      },
+      "number": "5",
+      "pos": "",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Miami, FL"
+   },
+   "JaMuttilib": {
+      "player_code_id": {
+         "code": "JaMuttilib",
+         "id": "Muttilib, Jamil",
+         "ncaa_id": "5239582"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Houston, TX"
+   },
+   "PjEdwards": {
+      "player_code_id": {
+         "code": "PjEdwards",
+         "id": "Edwards, PJ",
+         "ncaa_id": "4710427"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Springfield, IL"
+   },
+   "RiBallard": {
+      "player_code_id": {
+         "code": "RiBallard",
+         "id": "Ballard, Rickey",
+         "ncaa_id": "5112181"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Coral Springs, FL"
+   },
+   "ChPerkins": {
+      "player_code_id": {
+         "code": "ChPerkins",
+         "id": "Perkins, Chancellor",
+         "ncaa_id": "5314747"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 1,
+      "origin": "Woodbridge, VA"
+   },
+   "RaJones": {
+      "player_code_id": {
+         "code": "RaJones",
+         "id": "Jones, Randarius",
+         "ncaa_id": "5176741"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 1,
+      "origin": "Monroe, LA"
+   },
+   "SaSeye": {
+      "player_code_id": {
+         "code": "SaSeye",
+         "id": "Seye, Saliou",
+         "ncaa_id": "5176661"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dakar, Senegal",
+      "role": "PF/C"
+   }
+}

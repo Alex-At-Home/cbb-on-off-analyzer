@@ -10,7 +10,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hoosick Falls, NY"
    },
    "MaHall": {
@@ -24,7 +24,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Schofield, WI",
       "role": "WF"
    },
@@ -38,7 +38,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Fortville, IN"
    },
@@ -53,7 +53,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Ljubljana, Slovenia"
    },
    "RaBethea": {
@@ -62,12 +62,12 @@
          "id": "Bethea, Ramel",
          "ncaa_id": "5313193"
       },
-      "number": "24",
+      "number": "0",
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oceanside, CA"
    },
    "PrRuedinger": {
@@ -81,7 +81,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Oshkosh, WI",
       "role": "s-PG"
    },
@@ -96,7 +96,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Sacramento, CA"
    },
    "TrSchachter": {
@@ -148,8 +148,8 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Jr",
-      "gp": 0,
+      "year_class": "So",
+      "gp": 1,
       "origin": "Hartland, WI",
       "role": "WG"
    },
@@ -164,7 +164,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Bishopville, SC"
    },
    "CjO'hara": {
@@ -178,7 +178,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minneapolis, MN",
       "role": "WG"
    },
@@ -193,7 +193,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Danville, IL"
    },
    "JuAllen": {
@@ -202,12 +202,12 @@
          "id": "Allen, Justin",
          "ncaa_id": "5313196"
       },
-      "number": "6",
+      "number": "7",
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Mount Kisco, NY"
    },
    "KeVaKauwenberg": {
@@ -234,8 +234,8 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "So",
-      "gp": 0,
+      "year_class": "Fr",
+      "gp": 1,
       "origin": "Bettendorf, IA"
    }
 }

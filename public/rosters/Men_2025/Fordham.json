@@ -10,7 +10,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Brisbane, Australia"
    },
    "RyPettis": {
@@ -24,7 +24,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "East Palo Alto, CA",
       "role": "CG"
    },
@@ -95,7 +95,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Gilroy, CA",
       "role": "CG"
    },
@@ -124,7 +124,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Chicago, IL",
       "role": "CG"
    },
@@ -150,7 +150,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Yokohama, Japan",
       "role": "S-PF"
    },
@@ -180,7 +180,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Miami, FL",
       "role": "WG"
    },
@@ -195,7 +195,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Munster, Germany",
       "role": "S-PF"
    },
@@ -224,7 +224,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Syracuse, NY",
       "role": "CG"
    },
@@ -239,7 +239,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Newark, NJ",
       "role": "WF"
    },
@@ -254,7 +254,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Paris, France",
       "role": "WG"
    }

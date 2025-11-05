@@ -24,7 +24,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Birmingham, AL"
    },
    "JdGossett": {
@@ -52,7 +52,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, CA"
    },
    "JoHughes": {
@@ -80,7 +80,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Calhoun, GA",
       "role": "C"
    },
@@ -121,7 +121,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Washington, DC",
       "role": "CG"
    },
@@ -150,7 +150,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Murfreesboro, TN"
    },
    "CoDavenport": {
@@ -178,7 +178,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hilliard, OH"
    },
    "IsCampbell-f": {
@@ -192,7 +192,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Palm Harbor, FL"
    },
    "CaHarrison": {
@@ -220,7 +220,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Cedar Hills, UT",
       "role": "S-PF"
    },
@@ -235,7 +235,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Omaha, NE"
    },
    "KeNorris": {
@@ -249,7 +249,7 @@
       "height": "6-0",
       "height_in": 72,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hilliard, OH"
    }
 }

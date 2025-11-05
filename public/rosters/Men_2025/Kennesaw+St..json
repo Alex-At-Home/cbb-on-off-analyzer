@@ -39,7 +39,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Evergreen, AL"
    },
    "DaCosby": {
@@ -68,7 +68,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Columbus, GA"
    },
    "PeSmith": {
@@ -82,7 +82,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Augusta, GA",
       "role": "C"
    },
@@ -97,7 +97,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Atlanta, GA"
    },
    "ErHolland": {
@@ -111,7 +111,7 @@
       "height": "5-8",
       "height_in": 68,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tifton, GA"
    },
    "BrLue": {
@@ -125,7 +125,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Douglasville, GA",
       "role": "S-PF"
    },
@@ -140,7 +140,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Madison, AL"
    },
    "SiCottle": {
@@ -154,7 +154,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "College Park, GA",
       "role": "s-PG"
    },
@@ -194,7 +194,7 @@
       "height": "6-4",
       "height_in": 76,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Huntsville, AL",
       "role": "CG"
    },
@@ -209,7 +209,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Orlando, FL"
    },
    "FrSherman": {
@@ -223,7 +223,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lincolnton, GA",
       "role": "S-PF"
    },
@@ -238,7 +238,7 @@
       "height": "6-6",
       "height_in": 78,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Tampa, FL"
    },
    "DoOnyirimba": {
@@ -252,7 +252,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Powder Springs, GA"
    },
    "NiThomas": {
@@ -280,7 +280,7 @@
       "height": "6-9",
       "height_in": 81,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Pittsburgh, PA"
    }
 }

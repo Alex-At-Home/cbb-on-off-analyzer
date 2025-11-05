@@ -10,7 +10,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Hamden, CT"
    },
    "AmWilliams": {
@@ -38,7 +38,7 @@
       "height": "6-8",
       "height_in": 80,
       "year_class": "So",
-      "gp": 0,
+      "gp": 1,
       "origin": "Queens Village, NY",
       "role": "WF"
    },
@@ -67,7 +67,7 @@
       "height": "6-10",
       "height_in": 82,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Alhaurin El Grande, Spain"
    },
    "AlTsynkevich": {
@@ -95,7 +95,7 @@
       "height": "6-1",
       "height_in": 73,
       "year_class": "Fr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Deer Park, NY"
    },
    "BiPatterson": {
@@ -109,7 +109,7 @@
       "height": "6-7",
       "height_in": 79,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA"
    },
    "__coach__": {
@@ -134,7 +134,7 @@
       "height": "6-3",
       "height_in": 75,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Plano, TX",
       "role": "s-PG"
    },
@@ -149,7 +149,7 @@
       "height": "6-2",
       "height_in": 74,
       "year_class": "Jr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Richmond, VA",
       "role": "s-PG"
    },
@@ -164,7 +164,7 @@
       "height": "6-5",
       "height_in": 77,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Minsk, Belarus"
    },
    "TrBoyd": {
@@ -192,7 +192,7 @@
       "height": "7-0",
       "height_in": 84,
       "year_class": "Sr",
-      "gp": 0,
+      "gp": 1,
       "origin": "Lucan, Ireland",
       "role": "C"
    },
