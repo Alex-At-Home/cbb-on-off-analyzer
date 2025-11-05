@@ -12,7 +12,7 @@ export class DateUtils {
   //////////////////////////////////////
 
   /** Set this to true to show the off-season leaderboard as the site front page */
-  static readonly frontPageIsOffseasonLeaderboard: Boolean = true;
+  static readonly frontPageIsOffseasonLeaderboard: Boolean = false;
 
   /** During portal mania show the off-season leaderboard with extra in/out metrics
    *

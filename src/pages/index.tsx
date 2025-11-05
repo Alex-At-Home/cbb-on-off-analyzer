@@ -2033,54 +2033,6 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
-          hide={gender == "Women"}
-          topics={["Details", "Off-Season", "Teams", "Leaderboards"]}
-        >
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Off-Season Predictions / Analysis</Card.Title>
-                <Card.Text>
-                  Check out Hoop Explorer's very simple off-season predictions{" "}
-                  <small>(please don't be mad at me.)</small>
-                  <br />
-                  <br />A key point is that I show in detail how they are
-                  constructed and let you play with them to fix the bits you
-                  don't like.
-                </Card.Text>
-                {maybeMoreDetails(
-                  getCardIdFromTitle("Offseason Predictions / Analysis")
-                )}
-                {buildCardLink(<b>Tier List!</b>, (year, gender, team) => {
-                  const nextYear = DateUtils.getNextYear(year);
-                  const teamInfo =
-                    _.find(
-                      AvailableTeams.byName[team],
-                      (t) => t.year == nextYear
-                    ) ||
-                    _.find(AvailableTeams.byName[team], (t) => t.year == year);
-                  const confFromTeam =
-                    IndexTemplateToNickname[teamInfo?.index_template || "???"];
-                  return UrlRouting.getOffseasonTierList({
-                    gender,
-                    confs: confFromTeam,
-                    year: nextYear,
-                  });
-                })}
-                <Card.Link
-                  href={UrlRouting.getOffseasonLeaderboard({
-                    year: DateUtils.getNextYear(year),
-                    gender,
-                  })}
-                  target="_blank"
-                >
-                  <span>Predictions</span>
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard
           topics={[
             "Play Types",
             "Players",
@@ -2592,6 +2544,54 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   target="_blank"
                 >
                   Blog Post
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard
+          hide={gender == "Women"}
+          topics={["Details", "Off-Season", "Teams", "Leaderboards"]}
+        >
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Off-Season Predictions / Analysis</Card.Title>
+                <Card.Text>
+                  Check out Hoop Explorer's very simple off-season predictions{" "}
+                  <small>(please don't be mad at me.)</small>
+                  <br />
+                  <br />A key point is that I show in detail how they are
+                  constructed and let you play with them to fix the bits you
+                  don't like.
+                </Card.Text>
+                {maybeMoreDetails(
+                  getCardIdFromTitle("Offseason Predictions / Analysis")
+                )}
+                {buildCardLink(<b>Tier List!</b>, (year, gender, team) => {
+                  const nextYear = DateUtils.getNextYear(year);
+                  const teamInfo =
+                    _.find(
+                      AvailableTeams.byName[team],
+                      (t) => t.year == nextYear
+                    ) ||
+                    _.find(AvailableTeams.byName[team], (t) => t.year == year);
+                  const confFromTeam =
+                    IndexTemplateToNickname[teamInfo?.index_template || "???"];
+                  return UrlRouting.getOffseasonTierList({
+                    gender,
+                    confs: confFromTeam,
+                    year: nextYear,
+                  });
+                })}
+                <Card.Link
+                  href={UrlRouting.getOffseasonLeaderboard({
+                    year: DateUtils.getNextYear(year),
+                    gender,
+                  })}
+                  target="_blank"
+                >
+                  <span>Predictions</span>
                 </Card.Link>
               </Card.Body>
             </Card>
