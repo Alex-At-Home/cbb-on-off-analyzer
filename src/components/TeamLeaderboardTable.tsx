@@ -1635,9 +1635,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
           <ThemedSelect
             value={stringToOption(year)}
-            options={DateUtils.lboardYearListWithNextYear(tier == "High").map(
-              (r) => stringToOption(r)
-            )}
+            options={DateUtils.coreYears.map((r) => stringToOption(r))}
             isSearchable={false}
             onChange={(option: any) => {
               if ((option as any)?.value) {

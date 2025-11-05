@@ -85,7 +85,7 @@ export class DateUtils {
    * Also don't forget to ensure "transfer_${prev_season}.json" is copied from GCS to public/leaderboards/roster_movement
    *
    */
-  static readonly offseasonPredictionYear: string = "2025/26";
+  static readonly offseasonPredictionYear: string = "2026/27";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
   static readonly mostRecentYearWithLboardData: string = "2024/25";
@@ -101,6 +101,9 @@ export class DateUtils {
 
   /** Don't have player geo before here */
   static readonly firstYearWithRosterGeoData: string = "2023/24";
+
+  /** Before here only collected High tier women's data */
+  static readonly firstYearWithAllWomenData: string = "2025/26";
 
   /** Can't export lineups before here */
   static readonly firstYearWithImprovedLineupLboards: string = "2018/19";

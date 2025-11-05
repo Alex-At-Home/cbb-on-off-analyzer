@@ -2032,6 +2032,38 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             </Card>
           </Col>
         </TopicFilteredCard>
+        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
+          <Col className="mt-2">
+            <Card>
+              <Card.Body>
+                <Card.Title>Build Your Own T25</Card.Title>
+                <Card.Text>
+                  The only team ranking <b>you</b> control! What matters to you
+                  most - Wins? Efficiency? Dominance? Recency?
+                  <br />
+                  <br />
+                  Pick the weights you want and see how the teams stack up...
+                </Card.Text>
+                {maybeMoreDetails(getCardIdFromTitle("Build Your Own T25"))}
+                <Card.Link
+                  href={UrlRouting.getTeamLeaderboardUrl({
+                    gender,
+                    year,
+                  })}
+                  target="_blank"
+                >
+                  <b>Just take me to the leaderboard!</b>
+                </Card.Link>
+                <Card.Link
+                  href={`https://hoop-explorer.blogspot.com/2019/12/a-very-simple-and-transparent-ncaa-seed.html?view=classic`}
+                  target="_blank"
+                >
+                  Blog Post
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
         <TopicFilteredCard
           topics={[
             "Play Types",
@@ -2513,38 +2545,6 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       {}
                     )
                 )}
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Build Your Own T25</Card.Title>
-                <Card.Text>
-                  The only team ranking <b>you</b> control! What matters to you
-                  most - Wins? Efficiency? Dominance? Recency?
-                  <br />
-                  <br />
-                  Pick the weights you want and see how the teams stack up...
-                </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Build Your Own T25"))}
-                <Card.Link
-                  href={UrlRouting.getTeamLeaderboardUrl({
-                    gender,
-                    year,
-                  })}
-                  target="_blank"
-                >
-                  <b>Just take me to the leaderboard!</b>
-                </Card.Link>
-                <Card.Link
-                  href={`https://hoop-explorer.blogspot.com/2019/12/a-very-simple-and-transparent-ncaa-seed.html?view=classic`}
-                  target="_blank"
-                >
-                  Blog Post
-                </Card.Link>
               </Card.Body>
             </Card>
           </Col>

@@ -138,7 +138,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
     const paramObj = teamStatsExplorerParams;
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = paramObj.year || DateUtils.mostRecentYearWithLboardData;
+    const fullYear = paramObj.year || DateUtils.mostRecentYearWithData; //(don't use lboard data, we have team data immediately)
 
     if (paramObj.secretQuery) {
       const reqObj = {
@@ -231,8 +231,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
   }, [dataSubEvent]);
 
   const gender = teamStatsExplorerParams.gender || ParamDefaults.defaultGender;
-  const year =
-    teamStatsExplorerParams.year || DateUtils.mostRecentYearWithLboardData;
+  const year = teamStatsExplorerParams.year || DateUtils.mostRecentYearWithData; //(don't use lboard data, we have team data immediately)
 
   const thumbnailUrl = `${
     server != "localhost" ? `https://${server}` : "http://localhost:3000"

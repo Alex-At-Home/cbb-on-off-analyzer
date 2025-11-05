@@ -130,7 +130,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     lastUpdated: 0,
   } as TeamLeaderboardStatsModel);
   const [currYear, setCurrYear] = useState(
-    ParamDefaults.defaultLeaderboardYear
+    ParamDefaults.defaultYear //(don't use leaderboard year, we have team info immediately)
   );
   const [currGender, setCurrGender] = useState("Men");
 
@@ -208,7 +208,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     const dataSubEventKey = "all";
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = paramObj.year || ParamDefaults.defaultLeaderboardYear;
+    const fullYear = paramObj.year || ParamDefaults.defaultYear; //(get teams immediately, no need for full year)
     const year = fullYear.substring(0, 4);
     const tier: string = "All"; //(paramObj.tier || "All"); //(in this page, tier is really a diag param)
 
@@ -217,7 +217,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
       const years = _.filter(
-        DateUtils.lboardYearListWithExtra,
+        DateUtils.coreYears,
         (inYear) => year == "All" || inYear == fullYear
       );
       const tiers = _.filter(
