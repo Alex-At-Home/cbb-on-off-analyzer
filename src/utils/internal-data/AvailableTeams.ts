@@ -14485,6 +14485,24 @@ export class AvailableTeams {
         source_id: "160",
       },
     ],
+    "New Haven": [
+      {
+        team: "New Haven",
+        year: "2025/26",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+        source_id: "999",
+      },
+      {
+        team: "New Haven",
+        year: "2025/26",
+        gender: "Women",
+        index_template: "women_nec",
+        category: "low",
+        source_id: "999",
+      },
+    ],
     "New Mexico": [
       {
         team: "New Mexico",
