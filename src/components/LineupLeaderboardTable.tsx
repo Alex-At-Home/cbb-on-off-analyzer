@@ -185,7 +185,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
   // Data source
   const [confs, setConfs] = useState(startingState.conf || "");
   const [year, setYear] = useState(
-    startingState.year || ParamDefaults.defaultYear
+    startingState.year || ParamDefaults.defaultLeaderboardYear
   );
   const [gender, setGender] = useState(
     startingState.gender || ParamDefaults.defaultGender
