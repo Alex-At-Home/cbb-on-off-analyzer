@@ -113,7 +113,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   );
 
   const [year, setYear] = useState(
-    startingState.year || ParamDefaults.defaultLeaderboardYear
+    startingState.year || ParamDefaults.defaultYear
   );
   const [gender, setGender] = useState(
     startingState.gender || ParamDefaults.defaultGender
