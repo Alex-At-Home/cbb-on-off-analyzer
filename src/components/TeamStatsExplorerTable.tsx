@@ -612,141 +612,143 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     if (advancedFilterStr.length > 0)
       setAdvancedFilterError(tmpAvancedFilterError);
 
-    const rowsForEachTeam = teamsPhase2.map((team, teamIndex) => {
-      const teamTooltip = (
-        <Tooltip id={`team_${teamIndex}`}>
-          {AvailableTeams.teamAliases[team.team_name] ? (
-            <>
-              Other names over the years:{" "}
-              {AvailableTeams.teamAliases[team.team_name].join("; ")}
-              <br />
-              <br />
-            </>
-          ) : undefined}
-          Open new tab with a detailed analysis view (roster, play style info,
-          on/off) for this team
-        </Tooltip>
-      );
-      const teamParams = {
-        team: team.team_name,
-        gender: gender,
-        year: team.year,
-        minRank: "0",
-        maxRank: isT100 ? "100" : "400",
-        queryFilters: isConfOnly ? "Conf" : undefined,
-        showExpanded: true,
-        calcRapm: true,
-        showTeamPlayTypes: showPlayStyles,
-        showGrades: "rank:Combo",
-        showExtraInfo,
-        showRoster: true,
-      };
-      const confTooltip = (
-        <Tooltip id={`teamConf_${teamIndex}`}>
-          Filter the table to only teams from this conference
-        </Tooltip>
-      );
-      const conferenceSelector = (
-        <OverlayTrigger placement="auto" overlay={confTooltip}>
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              setConfs(team.conf_nick);
-            }}
-          >
-            {team.conf_nick}
-          </a>
-        </OverlayTrigger>
-      );
-
-      const yearSuffix = _.thru(team.year || "??????", (effYear) => {
-        return effYear < "2019/20"
-          ? "1" + effYear.substring(5)
-          : effYear.substring(5);
-      });
-      team.combo_title = (
-        <p>
-          <OverlayTrigger placement="auto" overlay={teamTooltip}>
-            <span>
-              <sup>
-                <small>{teamIndex + 1}</small>
-              </sup>
-              &nbsp;
-              <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
-                <b>
-                  {team.team_name}
-                  {year == "All" ? ` '${yearSuffix}` : ""}
-                </b>
-              </a>
-            </span>
-          </OverlayTrigger>
-          <br />
-          <small>
-            <i>
-              {conferenceSelector} / {team.wins}-{team.losses} (
-              {team.wab >= 0 ? "+" : ""}
-              {team.wab.toFixed(2)})
-            </i>
-          </small>
-        </p>
-      );
-
-      const tableInfo = TeamStatsTableUtils.buildRows(
-        {
+    const rowsForEachTeam = teamsPhase2
+      .filter((team) => team?.off_poss?.value)
+      .map((team, teamIndex) => {
+        const teamTooltip = (
+          <Tooltip id={`team_${teamIndex}`}>
+            {AvailableTeams.teamAliases[team.team_name] ? (
+              <>
+                Other names over the years:{" "}
+                {AvailableTeams.teamAliases[team.team_name].join("; ")}
+                <br />
+                <br />
+              </>
+            ) : undefined}
+            Open new tab with a detailed analysis view (roster, play style info,
+            on/off) for this team
+          </Tooltip>
+        );
+        const teamParams = {
           team: team.team_name,
+          gender: gender,
           year: team.year,
-          gender,
           minRank: "0",
           maxRank: isT100 ? "100" : "400",
           queryFilters: isConfOnly ? "Conf" : undefined,
-        },
-        {
-          baseline: team,
-          global: team,
-          on: StatModels.emptyTeam(),
-          off: StatModels.emptyTeam(),
-        },
-        { on: [], off: [], baseline: [], other: [], global: [] },
+          showExpanded: true,
+          calcRapm: true,
+          showTeamPlayTypes: showPlayStyles,
+          showGrades: "rank:Combo",
+          showExtraInfo,
+          showRoster: true,
+        };
+        const confTooltip = (
+          <Tooltip id={`teamConf_${teamIndex}`}>
+            Filter the table to only teams from this conference
+          </Tooltip>
+        );
+        const conferenceSelector = (
+          <OverlayTrigger placement="auto" overlay={confTooltip}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setConfs(team.conf_nick);
+              }}
+            >
+              {team.conf_nick}
+            </a>
+          </OverlayTrigger>
+        );
 
-        {
-          on: { off: {}, def: {} },
-          off: { off: {}, def: {} },
-          other: [],
-          baseline: { off: {}, def: {} },
-        },
-        [],
+        const yearSuffix = _.thru(team.year || "??????", (effYear) => {
+          return effYear < "2019/20"
+            ? "1" + effYear.substring(5)
+            : effYear.substring(5);
+        });
+        team.combo_title = (
+          <p>
+            <OverlayTrigger placement="auto" overlay={teamTooltip}>
+              <span>
+                <sup>
+                  <small>{teamIndex + 1}</small>
+                </sup>
+                &nbsp;
+                <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+                  <b>
+                    {team.team_name}
+                    {year == "All" ? ` '${yearSuffix}` : ""}
+                  </b>
+                </a>
+              </span>
+            </OverlayTrigger>
+            <br />
+            <small>
+              <i>
+                {conferenceSelector} / {team.wins}-{team.losses} (
+                {team.wab >= 0 ? "+" : ""}
+                {team.wab.toFixed(2)})
+              </i>
+            </small>
+          </p>
+        );
 
-        // Page control
-        {
-          showPlayTypes: showPlayStyles && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
-          playTypeConfig: {
-            off: playStyleConfig.includes("off"),
-            def: playStyleConfig.includes("def"),
+        const tableInfo = TeamStatsTableUtils.buildRows(
+          {
+            team: team.team_name,
+            year: team.year,
+            gender,
+            minRank: "0",
+            maxRank: isT100 ? "100" : "400",
+            queryFilters: isConfOnly ? "Conf" : undefined,
           },
-          showRoster: false, //(won't work without more data)
-          adjustForLuck: false, //(won't work without more data)
-          showDiffs: false, //(NA for this view)
-          showGameInfo: false,
-          showShotCharts: false, //(won't work without more data)
-          shotChartConfig: undefined, //(won't work without more data)
-          showExtraInfo: showExtraInfo && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
-          showGrades,
-          showLuckAdjDiags: false, //(won't work without more data)
-          showHelp,
-          //(playStyleConfigStr currently undefined)
-        },
-        {
-          setShowGrades: (showGrades: string) => setShowGrades(showGrades),
-          setShotChartConfig: (config: any) => {},
-          setPlayStyleConfigStr: (config: any) => {},
-        },
+          {
+            baseline: team,
+            global: team,
+            on: StatModels.emptyTeam(),
+            off: StatModels.emptyTeam(),
+          },
+          { on: [], off: [], baseline: [], other: [], global: [] },
 
-        luckConfig,
-        divisionStatsCache[team.year] || {}
-      );
-      return tableInfo;
-    });
+          {
+            on: { off: {}, def: {} },
+            off: { off: {}, def: {} },
+            other: [],
+            baseline: { off: {}, def: {} },
+          },
+          [],
+
+          // Page control
+          {
+            showPlayTypes: showPlayStyles && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
+            playTypeConfig: {
+              off: playStyleConfig.includes("off"),
+              def: playStyleConfig.includes("def"),
+            },
+            showRoster: false, //(won't work without more data)
+            adjustForLuck: false, //(won't work without more data)
+            showDiffs: false, //(NA for this view)
+            showGameInfo: false,
+            showShotCharts: false, //(won't work without more data)
+            shotChartConfig: undefined, //(won't work without more data)
+            showExtraInfo: showExtraInfo && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
+            showGrades,
+            showLuckAdjDiags: false, //(won't work without more data)
+            showHelp,
+            //(playStyleConfigStr currently undefined)
+          },
+          {
+            setShowGrades: (showGrades: string) => setShowGrades(showGrades),
+            setShotChartConfig: (config: any) => {},
+            setPlayStyleConfigStr: (config: any) => {},
+          },
+
+          luckConfig,
+          divisionStatsCache[team.year] || {}
+        );
+        return tableInfo;
+      });
 
     const tableRows = _.chain(rowsForEachTeam)
       .take(parseInt(maxTableSize))
