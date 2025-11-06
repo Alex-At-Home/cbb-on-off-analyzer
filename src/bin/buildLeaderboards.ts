@@ -225,7 +225,8 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 //TODO: move to BatchMiscUtils
 const onlyHasTopConferences =
-  inGender != "Men" || inYear < DateUtils.yearFromWhichAllMenD1Imported;
+  (inGender == "Women" && inYear < DateUtils.firstYearWithAllWomenData) ||
+  inYear < DateUtils.yearFromWhichAllMenD1Imported;
 
 var testTeamFilter = undefined as Set<string> | undefined;
 const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
@@ -316,8 +317,11 @@ export async function main() {
 
   // For defensive purposes we grab a cache of the set of players
 
-  // Only had this data between 2020 and 2023
-  const teamDefenseEnabled = inYear > "2019" && inYear < "2024";
+  /** On ball defense - Only had this data between 2020 and 2023 */
+  const onBallDefenseEnabled = inYear > "2019" && inYear < "2024";
+
+  /** (Note this is team defense not player defense - just in case we need to pull this for some reason) */
+  const teamDefenseEnabled = true;
 
   const allPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> =
     teamDefenseEnabled
@@ -960,7 +964,7 @@ export async function main() {
 
           // Read in on-ball defense if it exists
           var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
-          if ("all" == label && inGender == "Men") {
+          if ("all" == label && inGender == "Men" && onBallDefenseEnabled) {
             const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);
             const onBallDefenseText = await fs
               .readFile(onBallDefenseLoc)
