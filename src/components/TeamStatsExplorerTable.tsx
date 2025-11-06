@@ -227,7 +227,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   );
 
   const [year, setYear] = useState(
-    startingState.year || DateUtils.mostRecentYearWithLboardData
+    startingState.year || DateUtils.mostRecentYearWithData
   );
 
   const [gender, setGender] = useState(
