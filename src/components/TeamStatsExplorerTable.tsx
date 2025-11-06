@@ -251,9 +251,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     }
   );
 
-  /**/
-  console.log(teamList.filter((p) => p == "NIU"));
-
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(startingState.showGrades) ? "" : startingState.showGrades

@@ -1894,7 +1894,6 @@ export class TeamEditorUtils {
               defCurrReg(adjPrevYear.def_adj_rapm?.value || 0, true)
             );
 
-            /**/
             // if (prevYear)
             //   console.log(
             //     `${player.key}: [${thisYearWeight}]*[${maxDefRapm}] + [${lastYearWeight}]*[${minDefRapm}]`
