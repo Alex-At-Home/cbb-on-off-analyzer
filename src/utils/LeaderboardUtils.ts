@@ -215,7 +215,7 @@ export class LeaderboardUtils {
     const year = fullYear.substring(0, 4);
 
     const years = _.filter(
-      DateUtils.lboardYearListWithExtra,
+      DateUtils.coreYears, //(for teams unlike players/lineups we can fetch the data immediately)
       (inYear) =>
         year == "All" ||
         inYear == fullYear ||
