@@ -49,6 +49,9 @@ export class DateUtils {
     "2024/25": false,
     "Men_2024/25": false,
     "Women_2024/25": false,
+    "2025/26": true,
+    "Men_2025/26": true,
+    "Women_2025/26": true,
   };
 
   /** Up this once the portal gets active, even if it's before the season ends
