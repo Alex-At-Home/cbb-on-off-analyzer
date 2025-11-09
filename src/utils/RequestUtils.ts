@@ -18,6 +18,7 @@ import { AvailableTeams } from "./internal-data/AvailableTeams";
 import fetch from "isomorphic-unfetch";
 import { GameInfoStatSet, IndivStatSet } from "./StatModels";
 import { LineupUtils } from "./stats/LineupUtils";
+import { DateUtils } from "./DateUtils";
 
 const debugLogResponses = false;
 
@@ -112,22 +113,26 @@ export class RequestUtils {
 
       const newParamsStr = QueryUtils.stringify(req.paramsObj);
 
-      const bypassCache = Number.isNaN(currentJsonEpoch);
+      // Check if it's in the cache:
+      const bypassCache =
+        Number.isNaN(currentJsonEpoch) ||
+        (DateUtils.seasonNotFinished[
+          req.paramsObj?.year || ParamDefaults.defaultYear
+        ] &&
+          Math.abs(Date.now() / 1000 - currentJsonEpoch) >= 24 * 3600); //(during the season, if the data is >24h old then always refresh)
       if (isDebug && !bypassCache) {
         console.log(
           `Looking for cache entry for [${index}][${req.context}][${newParamsStr}]`
         );
       }
-
-      // Check if it's in the cache:
-      const cachedJson = !bypassCache
-        ? ClientRequestCache.decacheResponse(
+      const cachedJson = bypassCache
+        ? null
+        : ClientRequestCache.decacheResponse(
             newParamsStr,
             req.context,
             currentJsonEpoch,
             isDebug
-          )
-        : null;
+          );
       const jsonExistsButEmpty = !_.isNil(cachedJson) && _.isEmpty(cachedJson);
 
       if (cachedJson && !jsonExistsButEmpty) {
@@ -275,12 +280,28 @@ export class RequestUtils {
       };
       const paramStr = QueryUtils.stringify(query);
       // Check if it's in the cache:
-      const cachedJson = ClientRequestCache.decacheResponse(
-        paramStr,
-        ParamPrefixes.gameInfo,
-        currentJsonEpoch,
-        isDebug
-      );
+      const bypassCache =
+        Number.isNaN(currentJsonEpoch) ||
+        (DateUtils.seasonNotFinished[genderYear] &&
+          Math.abs(Date.now() / 1000 - currentJsonEpoch) >= 24 * 3600); //(during the season, if the data is >24h old then always refresh)
+      const cachedJson = bypassCache
+        ? null
+        : ClientRequestCache.decacheResponse(
+            paramStr,
+            ParamPrefixes.gameInfo,
+            currentJsonEpoch,
+            isDebug
+          );
+
+      // Cache debugging:
+      // console.log(
+      //   `[${Date.now() / 1000}] [${currentJsonEpoch}] season_ongoing=[${
+      //     DateUtils.seasonNotFinished[genderYear]
+      //   }] = [${bypassCache}] ([${Math.abs(
+      //     (Date.now() / 1000 - currentJsonEpoch) / (24 * 3600)
+      //   ).toFixed(4)}])`
+      // );
+
       const makeUnique = (gameInfoObjs: Array<GameInfoStatSet>) => {
         //TODO: should actually combine inside the LineupUtils call, but this will do for now
         return _.sortedUniqBy(
@@ -396,12 +417,18 @@ export class RequestUtils {
       };
       const paramStr = QueryUtils.stringify(query);
       // Check if it's in the cache:
-      const cachedJson = ClientRequestCache.decacheResponse(
-        paramStr,
-        ParamPrefixes.roster,
-        currentJsonEpoch,
-        false /* This gets called every keypress, so even in debug mode it's a huge pain */
-      );
+      const bypassCache =
+        Number.isNaN(currentJsonEpoch) ||
+        (DateUtils.seasonNotFinished[genderYear] &&
+          Math.abs(Date.now() / 1000 - currentJsonEpoch) >= 24 * 3600); //(during the season, if the data is >24h old then always refresh)
+      const cachedJson = bypassCache
+        ? null
+        : ClientRequestCache.decacheResponse(
+            paramStr,
+            ParamPrefixes.roster,
+            currentJsonEpoch,
+            false /* This gets called every keypress, so even in debug mode it's a huge pain */
+          );
       if (cachedJson && !_.isEmpty(cachedJson)) {
         //(ignore placeholders here)
         resultCallback(jsonToIndivs(cachedJson));
