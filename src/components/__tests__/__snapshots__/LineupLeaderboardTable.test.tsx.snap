@@ -61,6 +61,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           options={
             Array [
               Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
+              Object {
                 "label": "2024/25",
                 "value": "2024/25",
               },
@@ -13810,6 +13814,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           onChange={[Function]}
           options={
             Array [
+              Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
               Object {
                 "label": "2024/25",
                 "value": "2024/25",
@@ -33833,6 +33841,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           onChange={[Function]}
           options={
             Array [
+              Object {
+                "label": "2025/26",
+                "value": "2025/26",
+              },
               Object {
                 "label": "2024/25",
                 "value": "2024/25",

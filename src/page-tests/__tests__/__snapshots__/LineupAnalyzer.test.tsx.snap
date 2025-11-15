@@ -35,7 +35,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
       helpLink="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
       minimizeMargin={false}
       screenSize="medium_screen"
-      summary="Lineups: 2024/25  (M): query:'' (max:50, min-poss:5)"
+      summary="Lineups: 2025/26  (M): query:'' (max:50, min-poss:5)"
       title="Team and Game Filter"
     >
       <LineupFilter

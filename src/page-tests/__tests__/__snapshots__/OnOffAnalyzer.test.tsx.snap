@@ -35,7 +35,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       helpLink="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
       minimizeMargin={false}
       screenSize="medium_screen"
-      summary="On/Off: 2024/25  (M): on:'', auto-off, base:''"
+      summary="On/Off: 2025/26  (M): on:'', auto-off, base:''"
       title="Team and Game Filter"
     >
       <GameFilter

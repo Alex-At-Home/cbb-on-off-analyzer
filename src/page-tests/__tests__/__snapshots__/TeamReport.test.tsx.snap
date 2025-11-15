@@ -34,7 +34,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
     <GenericCollapsibleCard
       minimizeMargin={false}
       screenSize="medium_screen"
-      summary="On/Off Report: 2024/25  (M): query:'' (sort:desc:off_poss, filter:'', show:[])"
+      summary="On/Off Report: 2025/26  (M): query:'' (sort:desc:off_poss, filter:'', show:[])"
       title="Team Report Filter"
     >
       <TeamReportFilter

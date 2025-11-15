@@ -189,8 +189,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           }
           value={
             Object {
-              "label": "2024/25",
-              "value": "2024/25",
+              "label": "2025/26",
+              "value": "2025/26",
             }
           }
         />
@@ -1001,6 +1001,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "New Hampshire",
                 "value": "New Hampshire",
+              },
+              Object {
+                "label": "New Haven",
+                "value": "New Haven",
               },
               Object {
                 "label": "New Mexico",
@@ -1917,7 +1921,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 placeholder="eg 'Player1 AND NOT (WalkOn1)'"
                 readOnly={false}
                 team=""
-                year="2024/25"
+                year="2025/26"
               />
               <InputGroupAppend>
                 <QueryFilterDropdown

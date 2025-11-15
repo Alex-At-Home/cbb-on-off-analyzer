@@ -94,7 +94,8 @@ export class RequestUtils {
     ) => Promise<[any, boolean, fetch.IsomorphicResponse]>,
     /** if NaN then bypass cache */
     currentJsonEpoch: number,
-    isDebug: boolean
+    isDebug: boolean,
+    testNow?: number
   ): Promise<any>[] {
     return RequestUtils.buildRequestList(
       primaryRequest,
@@ -119,7 +120,8 @@ export class RequestUtils {
         (DateUtils.seasonNotFinished[
           req.paramsObj?.year || ParamDefaults.defaultYear
         ] &&
-          Math.abs(Date.now() / 1000 - currentJsonEpoch) >= 24 * 3600); //(during the season, if the data is >24h old then always refresh)
+          (testNow ?? Math.abs(Date.now() / 1000) - currentJsonEpoch) >=
+            24 * 3600); //(during the season, if the data is >24h old then always refresh)
       if (isDebug && !bypassCache) {
         console.log(
           `Looking for cache entry for [${index}][${req.context}][${newParamsStr}]`

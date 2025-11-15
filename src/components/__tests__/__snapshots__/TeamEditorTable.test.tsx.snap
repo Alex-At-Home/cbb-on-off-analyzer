@@ -56,6 +56,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         options={
           Array [
             Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
+            Object {
               "label": "2025/26",
               "value": "2025/26",
             },
@@ -5812,6 +5816,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         options={
           Array [
             Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
+            Object {
               "label": "2025/26",
               "value": "2025/26",
             },
@@ -11257,6 +11265,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
         onChange={[Function]}
         options={
           Array [
+            Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
             Object {
               "label": "2025/26",
               "value": "2025/26",
@@ -17689,6 +17701,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         onChange={[Function]}
         options={
           Array [
+            Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
             Object {
               "label": "2025/26",
               "value": "2025/26",
@@ -24331,6 +24347,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         options={
           Array [
             Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
+            Object {
               "label": "2025/26",
               "value": "2025/26",
             },
@@ -30926,6 +30946,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         options={
           Array [
             Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
+            Object {
               "label": "2025/26",
               "value": "2025/26",
             },
@@ -37090,6 +37114,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         options={
           Array [
             Object {
+              "label": "2026/27",
+              "value": "2026/27",
+            },
+            Object {
               "label": "2025/26",
               "value": "2025/26",
             },
@@ -41834,6 +41862,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         options={
           Array [
             Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
+            Object {
               "label": "2024/25",
               "value": "2024/25",
             },
@@ -46108,6 +46140,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         options={
           Array [
             Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
+            Object {
               "label": "2024/25",
               "value": "2024/25",
             },
@@ -49480,6 +49516,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
         onChange={[Function]}
         options={
           Array [
+            Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
             Object {
               "label": "2024/25",
               "value": "2024/25",

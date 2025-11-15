@@ -36,7 +36,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
       common={
         Object {
           "gender": "Men",
-          "year": "2024/25",
+          "year": "2025/26",
         }
       }
       thisPage="team-_leaderboard"
