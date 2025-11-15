@@ -91,7 +91,7 @@ export class DateUtils {
   static readonly offseasonPredictionYear: string = "2026/27";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
-  static readonly mostRecentYearWithLboardData: string = "2024/25";
+  static readonly mostRecentYearWithLboardData: string = "2025/26";
 
   /** Don't bother trying to display NET after this year */
   static readonly mostRecentYearWithNetAvailable: string = "2024/25";
