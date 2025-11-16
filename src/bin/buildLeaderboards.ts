@@ -287,6 +287,9 @@ const getOnBallDefenseFilename = (team: string, teamYear: string) => {
   ).substring(0, 4)}/${BatchMiscUtils.getTeamFilename(team)}.txt`;
 };
 
+/** On ball defense - Only had this data between 2020 and 2023 */
+const onBallDefenseEnabled = inYear > "2019" && inYear < "2024";
+
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
   // Step 1: Retrieve lookup tables from various external sources
@@ -316,9 +319,6 @@ export async function main() {
   rosterGeoMap = rosterGeoMapTmp;
 
   // For defensive purposes we grab a cache of the set of players
-
-  /** On ball defense - Only had this data between 2020 and 2023 */
-  const onBallDefenseEnabled = inYear > "2019" && inYear < "2024";
 
   /** (Note this is team defense not player defense - just in case we need to pull this for some reason) */
   const teamDefenseEnabled = true;
@@ -2007,13 +2007,15 @@ if (!testMode) {
           await fs.readFile(rosterInfoFile).catch((err: any) => {
             console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
           });
-          const onBallDefenseFile = getOnBallDefenseFilename(
-            team.team,
-            team.year
-          );
-          await fs.readFile(onBallDefenseFile).catch((err: any) => {
-            console.log(`Couldn't load [${onBallDefenseFile}]: [${err}]`);
-          });
+          if (onBallDefenseEnabled) {
+            const onBallDefenseFile = getOnBallDefenseFilename(
+              team.team,
+              team.year
+            );
+            await fs.readFile(onBallDefenseFile).catch((err: any) => {
+              console.log(`Couldn't load [${onBallDefenseFile}]: [${err}]`);
+            });
+          }
         }
       })
       .value();
