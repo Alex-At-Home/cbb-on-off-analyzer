@@ -470,7 +470,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           (acc, game) => {
             const isWin = (game.team_scored || 0) >= (game.oppo_scored || 0);
             acc.wab += isWin ? game.wab || 0 : (game.wab || 0) - 1;
-            acc.wab += isWin ? game.wae || 0 : (game.wae || 0) - 1;
+            acc.wae += isWin ? game.wae || 0 : (game.wae || 0) - 1;
             acc.wins += isWin ? 1 : 0;
             acc.losses += isWin ? 0 : 1;
           },
