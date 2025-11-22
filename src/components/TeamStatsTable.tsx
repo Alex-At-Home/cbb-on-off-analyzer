@@ -350,7 +350,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showShotCharts,
       shotChartConfig, //(do need to re-render on this since is applied to on/off/baseline shot charts)
       stickyQuickToggle,
-      //(not playTypeConfigStr, we only surface that to set it as one of the URLs)
+      playTypeConfigStr,
     ]
   );
 

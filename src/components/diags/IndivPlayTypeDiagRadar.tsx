@@ -138,7 +138,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         | "P%"
         | "T%"
     );
-    // Quick switch isn't currently supported so leave that alone
+    // Quick switch isn't currently changeable dynamically so leave that alone
   }, [userOpts]);
 
   // Internal user config state

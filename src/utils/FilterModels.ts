@@ -463,7 +463,8 @@ export class ParamDefaults {
   static readonly defaultOnOffLuckAdjust = false;
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultTeamShowPlayTypes = false;
-  static readonly defaultTeamPlayTypeConfig = "||||||||"; //(4 params, all blank)
+  static readonly defaultTeamPlayTypeConfig = "||||||||||"; //(5 params, all blank)
+  static readonly defaultTeamShowPlayTypesPlayType = "P%le";
   static readonly defaultTeamShowRoster = false;
   static readonly defaultTeamShowGameInfo = false;
   static readonly defaultPlayerShowPlayTypes = false;

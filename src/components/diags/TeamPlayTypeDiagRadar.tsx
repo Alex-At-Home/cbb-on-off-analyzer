@@ -1,5 +1,5 @@
 // React imports:
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import _ from "lodash";
 
@@ -56,6 +56,7 @@ import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 import AsyncFormControl from "../shared/AsyncFormControl";
 import { UrlRouting } from "../../utils/UrlRouting";
 import { useTheme } from "next-themes";
+import { ParamDefaults } from "../../utils/FilterModels";
 
 const indivPlayTypeBreakdownFields = (
   adjustForSos: boolean,
@@ -114,6 +115,7 @@ type TeamPlayTypeDiagRadarConfig = {
   selectedPlayTypes: Set<TopLevelPlayType> | "all";
   multiMode: boolean;
   quickSwitch?: string;
+  possFreqType: "P%le" | "P%";
   //(can add extra params but never change the above)
 };
 const quickSwitchTitleDelim = ":_:";
@@ -148,6 +150,9 @@ const radarConfigToStr = (
         return newQuickSwitch; //(don't store temp switches between graphs)
       } else return "";
     }),
+    config.possFreqType == ParamDefaults.defaultTeamShowPlayTypesPlayType
+      ? ""
+      : config.possFreqType || "",
     //(can add extra params but never change the above)
   ].join("||"); //TODO maybe remove trailing "||"?
 
@@ -172,6 +177,9 @@ const configStrToConfig = (
             ),
       multiMode: arr[3] == "multi",
       quickSwitch: arr[4],
+      possFreqType:
+        (arr[5] as "P%le" | "P%") ||
+        ParamDefaults.defaultTeamShowPlayTypesPlayType,
     };
   } else {
     return {
@@ -179,6 +187,7 @@ const configStrToConfig = (
       filterStr: "",
       selectedPlayTypes: new Set(),
       multiMode: false,
+      possFreqType: ParamDefaults.defaultTeamShowPlayTypesPlayType,
     };
   }
 };
@@ -260,7 +269,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     incomingConfig.adjustForSos
   );
 
-  const [possFreqType, setPossFreqType] = useState<"P%le" | "P%">("P%le");
+  const [possFreqType, setPossFreqType] = useState<"P%le" | "P%">(incomingConfig.possFreqType);
 
   /** Which players to filter */
   const [filterStr, setFilterStr] = useState(incomingConfig.filterStr);
@@ -285,6 +294,19 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       }
     })
   );
+  /** Support configStr getting changed externally */
+  useEffect(() => {
+    const newConfig = configStrToConfig(configStr, startWithRaw || false);
+    setIncomingConfig(newConfig);
+    setAdjustForSos(newConfig.adjustForSos);
+    setPossFreqType(
+      (newConfig?.possFreqType ??
+        ParamDefaults.defaultTeamShowPlayTypesPlayType) as
+        | "P%le"
+        | "P%"
+    );
+  }, [configStr]);
+
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
@@ -994,6 +1016,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {PlayTypeDiagUtils.buildTeamFreqType(
                 possFreqType,
                 (newPossFreqType) => {
+                  updateConfig({ ...incomingConfig, possFreqType: newPossFreqType });
                   setPossFreqType(newPossFreqType);
                 }
               )}
