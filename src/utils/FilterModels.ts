@@ -269,6 +269,7 @@ export type TeamStatsExplorerParams = {
   showGrades?: string;
   showPlayStyles?: boolean;
   playStyleConfig?: string; //currently "off"/"def"/"offdef"
+  playStyleConfigStr?: string; //(chart configuration string)
   showExtraInfo?: boolean;
   luck?: LuckParams; //(missing iff default)
   maxTableSize?: string;

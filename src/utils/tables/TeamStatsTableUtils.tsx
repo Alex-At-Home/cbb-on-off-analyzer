@@ -842,6 +842,8 @@ export class TeamStatsTableUtils {
                             avgEfficiency={avgEfficiency}
                             showGrades={showGrades}
                             grades={divisionStatsCache}
+                            configStr={playStyleConfigStr}
+                            updateConfig={persistNewState.setPlayStyleConfigStr}
                             showHelp={showHelp}
                             quickSwitchOptions={
                               playTypeConfig?.def &&
@@ -945,6 +947,10 @@ export class TeamStatsTableUtils {
                               avgEfficiency={avgEfficiency}
                               showGrades={showGrades}
                               grades={divisionStatsCache}
+                              configStr={playStyleConfigStr}
+                              updateConfig={
+                                persistNewState.setPlayStyleConfigStr
+                              }
                               showHelp={showHelp}
                               quickSwitchOverride={undefined}
                             />,

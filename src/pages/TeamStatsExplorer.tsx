@@ -111,6 +111,9 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
         ParamDefaults.defaultTeamExplorerPlayStyleConfig
           ? ["playStyleConfig"]
           : [],
+        rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
+          ? ["playStyleConfigStr"]
+          : [],
 
         !rawParams.showGrades ? ["showGrades"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],

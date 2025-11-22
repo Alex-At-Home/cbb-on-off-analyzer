@@ -160,6 +160,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     startingState.playStyleConfig ||
       ParamDefaults.defaultTeamExplorerPlayStyleConfig
   );
+  const [playStyleConfigStr, setPlayStyleConfigStr] = useState(
+    startingState.playStyleConfigStr ||
+      ParamDefaults.defaultTeamPlayTypeConfig
+  );
 
   /** Whether to make the quick toggle bar stick (default: on) */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
@@ -334,6 +338,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       showExtraInfo,
       showPlayStyles,
       playStyleConfig,
+      playStyleConfigStr,
       sortBy: sortBy,
       queryFilters: queryFilters,
       advancedFilter: advancedFilterStr,
@@ -353,6 +358,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     showExtraInfo,
     showPlayStyles,
     playStyleConfig,
+    playStyleConfigStr,
     queryFilters,
     advancedFilterStr,
     isT100,
@@ -736,12 +742,22 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             showGrades,
             showLuckAdjDiags: false, //(won't work without more data)
             showHelp,
-            //(playStyleConfigStr currently undefined)
+            playStyleConfigStr,
           },
           {
             setShowGrades: (showGrades: string) => setShowGrades(showGrades),
             setShotChartConfig: (config: any) => {},
-            setPlayStyleConfigStr: (config: any) => {},
+            setPlayStyleConfigStr: (config: string) => {
+              //(if there's lots of teams then hide updates behind a spinner)
+              if (Math.min(parseInt(maxTableSize), teamsPhase2.length) > 10) {
+                friendlyChange(
+                  () =>
+                    setPlayStyleConfigStr(config),
+                  true,
+                  100
+                );
+              } else setPlayStyleConfigStr(config)
+            },
           },
 
           luckConfig,
@@ -801,6 +817,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     showExtraInfo,
     showPlayStyles,
     playStyleConfig,
+    playStyleConfigStr,
   ]);
 
   // 3] View
