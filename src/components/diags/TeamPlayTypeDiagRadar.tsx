@@ -260,6 +260,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     incomingConfig.adjustForSos
   );
 
+  const [possFreqType, setPossFreqType] = useState<"P%le" | "P%">("P%le");
+
   /** Which players to filter */
   const [filterStr, setFilterStr] = useState(incomingConfig.filterStr);
 
@@ -437,6 +439,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         true
       )
     : undefined;
+
+  // In this case we just use the raw freq, but we do want the efficiency %s
+  if (possFreqType == "P%") {
+    _.forEach(mainTopLevelPlayTypeStyles, (val, key) => {
+      const toAdjust = mainTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
+      if (toAdjust) {
+        toAdjust.possPct = val.possPct;
+      }
+    });
+  }
   const mainData = mainTopLevelPlayTypeStylesPctile
     ? _.map(mainTopLevelPlayTypeStylesPctile, (stat, playType) => {
         const rawVal = (
@@ -449,7 +461,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         return {
           name: PlayTypeDiagUtils.getPlayTypeName(playType).replace("-", " - "),
           playType: playType,
-          pct: rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
+          pct: rawPct == 0 
+            ? 0 
+            : possFreqType == "P%" 
+              ? (stat.possPct?.value || 0) * 100
+              : Math.min(100, (stat.possPct.value || 0) * 100),
           pts: Math.min(100, (stat.pts.value || 0) * 100),
           rawPct,
           rawPts: rawVal?.pts?.value || 0,
@@ -492,6 +508,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             true
           )
         : undefined;
+
+      // In this case we just use the raw freq, but we do want the efficiency %s
+      if (possFreqType == "P%") {
+        _.forEach(extraTopLevelPlayTypeStyles, (val, key) => {
+          const toAdjust = extraTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
+          if (toAdjust) {
+            toAdjust.possPct = val.possPct;
+          }
+        });
+      }
       extraData = extraTopLevelPlayTypeStylesPctile
         ? _.map(extraTopLevelPlayTypeStylesPctile, (stat, playType) => {
             const rawVal = (
@@ -510,7 +536,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               pct:
                 rawPct == 0
                   ? 0
-                  : Math.min(100, (stat.possPct.value || 0) * 100),
+                  : possFreqType == "P%" 
+                    ? (stat.possPct?.value || 0) * 100
+                    : Math.min(100, (stat.possPct.value || 0) * 100),
               pts: Math.min(100, (stat.pts.value || 0) * 100),
               rawPct,
               rawPts: rawVal?.pts?.value || 0,
@@ -750,12 +778,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <YAxis
                 type="number"
                 stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
-                domain={[0, 100]}
-                ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+                domain={possFreqType == "P%" ? undefined : [0, 100]}
+                ticks={possFreqType == "P%" ? undefined : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
               >
                 <Label
                   angle={-90}
-                  value={`Frequency %ile in D1`}
+                  value={
+                    possFreqType == "P%"
+                      ? `Frequency %`
+                      : `Frequency %ile in D1`
+                  }
                   fill={resolvedTheme == "dark" ? "#CCC" : undefined}
                   position="insideLeft"
                   style={{ textAnchor: "middle", fontWeight: "bold" }}
@@ -941,6 +973,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                   });
                 }
               )}
+              {" | "}
+              {PlayTypeDiagUtils.buildTeamFreqType(
+                possFreqType,
+                (newPossFreqType) => {
+                  setPossFreqType(newPossFreqType);
+                }
+              )}
               {supportPlayerBreakdown ? (
                 <>
                   &nbsp;|&nbsp;
@@ -1102,6 +1141,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     selectedPlayTypes,
     multiMode,
     filterStr,
+    possFreqType,
     resolvedTheme,
   ]);
 };

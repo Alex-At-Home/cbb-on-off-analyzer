@@ -656,7 +656,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 }
               )}
               {" | "}
-              {PlayTypeDiagUtils.buildFrequencyType(
+              {PlayTypeDiagUtils.buildIndivFreqType(
                 possFreqType,
                 (newPossFreqType) => {
                   setPossFreqType(newPossFreqType);
