@@ -443,9 +443,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   // In this case we just use the raw freq, but we do want the efficiency %s
   if (possFreqType == "P%") {
     _.forEach(mainTopLevelPlayTypeStyles, (val, key) => {
-      const toAdjust = mainTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
+      const toAdjust =
+        mainTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
       if (toAdjust) {
+        const pctle = toAdjust.possPct?.value || 0;
         toAdjust.possPct = val.possPct;
+        if (toAdjust.possPct) {
+          toAdjust.possPct!.old_value = pctle;
+        }
       }
     });
   }
@@ -458,14 +463,20 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           >
         )[playType];
         const rawPct = rawVal?.possPct?.value || 0;
+        const pctle = Math.min(100, (stat.possPct?.value || 0) * 100);
         return {
           name: PlayTypeDiagUtils.getPlayTypeName(playType).replace("-", " - "),
           playType: playType,
-          pct: rawPct == 0 
-            ? 0 
-            : possFreqType == "P%" 
+          pct:
+            rawPct == 0
+              ? 0
+              : possFreqType == "P%"
               ? (stat.possPct?.value || 0) * 100
-              : Math.min(100, (stat.possPct.value || 0) * 100),
+              : pctle,
+          pctile:
+            possFreqType == "P%"
+              ? Math.min(100, (stat.possPct?.old_value || 0) * 100)
+              : pctle, // Always store percentile
           pts: Math.min(100, (stat.pts.value || 0) * 100),
           rawPct,
           rawPts: rawVal?.pts?.value || 0,
@@ -512,7 +523,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       // In this case we just use the raw freq, but we do want the efficiency %s
       if (possFreqType == "P%") {
         _.forEach(extraTopLevelPlayTypeStyles, (val, key) => {
-          const toAdjust = extraTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
+          const toAdjust =
+            extraTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
           if (toAdjust) {
             toAdjust.possPct = val.possPct;
           }
@@ -536,9 +548,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               pct:
                 rawPct == 0
                   ? 0
-                  : possFreqType == "P%" 
-                    ? (stat.possPct?.value || 0) * 100
-                    : Math.min(100, (stat.possPct.value || 0) * 100),
+                  : possFreqType == "P%"
+                  ? (stat.possPct?.value || 0) * 100
+                  : Math.min(100, (stat.possPct.value || 0) * 100),
+              pctile: Math.min(100, (stat.possPct.value || 0) * 100), // Always store percentile
               pts: Math.min(100, (stat.pts.value || 0) * 100),
               rawPct,
               rawPts: rawVal?.pts?.value || 0,
@@ -693,7 +706,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             Frequency: [<b>{(100 * data.rawPct).toFixed(1)}</b>] / 100&nbsp;
             plays
             <br />
-            Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]
+            Frequency Pctile: [<b>{data.pctile.toFixed(1)}%</b>]
             {_.isNumber(playCountToUse) ? <br /> : null}
             {_.isNumber(playCountToUse) ? (
               <span>(Label shows value for {playCountToUse} play game)</span>
@@ -779,7 +792,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 type="number"
                 stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 domain={possFreqType == "P%" ? undefined : [0, 100]}
-                ticks={possFreqType == "P%" ? undefined : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+                ticks={
+                  possFreqType == "P%"
+                    ? undefined
+                    : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+                }
               >
                 <Label
                   angle={-90}
