@@ -122,6 +122,7 @@ export type MatchupFilterParams = {
   breakdownConfig?: string; //(currently: [off|def];[off|def])
   shotChartsShowZones?: boolean;
   customDisplayMode?: string; //(write only: CSV list: can be teamStats|playTypes)
+  playStyleConfigStr?: string; //(chart configuration string)
 };
 
 /** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here */

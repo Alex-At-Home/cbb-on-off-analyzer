@@ -218,6 +218,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       ? ParamDefaults.defaultShotChartShowZones
       : startingMatchupFilterParams.shotChartsShowZones
   );
+
+  const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
+    startingMatchupFilterParams.playStyleConfigStr ||
+      ParamDefaults.defaultTeamPlayTypeConfig
+  );
+
   const [csvData, setCsvData] = useState<object[]>([]);
 
   function getRootUrl(params: MatchupFilterParams) {
@@ -249,6 +255,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           ? ["breakdownConfig"]
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
+        rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
+          ? ["playStyleConfigStr"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -272,8 +281,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       ...matchupFilterParamsRef.current,
       breakdownConfig: breakdownView,
       shotChartsShowZones: shotChartsShowZones,
+      playStyleConfigStr: playStyleConfigStr,
     });
-  }, [breakdownView, shotChartsShowZones]);
+  }, [breakdownView, shotChartsShowZones, playStyleConfigStr]);
 
   // Load team grades, needed for play recap view
 
@@ -576,7 +586,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     false,
                     breakdownViewArr?.[0] == "def"
                       ? defensiveBreakdownA
-                      : undefined
+                      : undefined,
+                    undefined,
+                    playStyleConfigStr,
+                    (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
                   )
                 )}
               </Col>
@@ -605,7 +618,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     false,
                     matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
                       ? defensiveBreakdownA
-                      : defensiveBreakdownB
+                      : defensiveBreakdownB,
+                    undefined,
+                    playStyleConfigStr,
+                    (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
                   )
                 )}
               </Col>
@@ -630,6 +646,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     allPlayerStatsCache,
     breakdownView,
     csvData,
+    playStyleConfigStr
   ]);
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */

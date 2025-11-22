@@ -462,7 +462,10 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                           avgEfficiency,
                           divisionStatsCache,
                           showHelp,
-                          true
+                          true,
+                          undefined,
+                          undefined,
+                          undefined
                         )
                       )}
                     </Col>
@@ -484,7 +487,10 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                           avgEfficiency,
                           divisionStatsCache,
                           showHelp,
-                          true
+                          true,
+                          undefined,
+                          undefined,
+                          undefined
                         )
                       )}
                     </Col>

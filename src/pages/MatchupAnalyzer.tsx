@@ -207,6 +207,11 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       : startingMatchupFilterParams.shotChartsShowZones
   );
 
+  const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
+    startingMatchupFilterParams.playStyleConfigStr ||
+      ParamDefaults.defaultTeamPlayTypeConfig
+  );
+
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupUrl(params);
   }
@@ -249,6 +254,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           ? ["iconType"]
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
+        rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
+          ? ["playStyleConfigStr"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -292,8 +300,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     onMatchupFilterParamsChange({
       ...matchupFilterParamsRef.current,
       shotChartsShowZones: shotChartsShowZones,
+      playStyleConfigStr: playStyleConfigStr,
     });
-  }, [shotChartsShowZones]);
+  }, [shotChartsShowZones, playStyleConfigStr]);
 
   // View
 
@@ -404,7 +413,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           invertTeamAndOppo: false,
           singleGameMode: true,
           jsonMode,
-        }
+        },
+        playStyleConfigStr,
+        (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
       );
 
     const buildTeamB = () =>
@@ -423,7 +434,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           invertTeamAndOppo: true,
           singleGameMode: true,
           jsonMode,
-        }
+        },
+        playStyleConfigStr,
+        (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
       );
     return jsonMode ? (
       <span>
@@ -480,7 +493,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, divisionStatsCache, csvData]);
+  }, [dataEvent, divisionStatsCache, csvData, playStyleConfigStr]);
 
   const shotChart = React.useMemo(() => {
     return (

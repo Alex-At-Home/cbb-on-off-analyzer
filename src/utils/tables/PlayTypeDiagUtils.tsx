@@ -492,7 +492,9 @@ export class PlayTypeDiagUtils {
       invertTeamAndOppo?: boolean;
       singleGameMode?: boolean;
       jsonMode?: boolean;
-    }
+    },
+    configStr?: string,
+    updateConfig?: (configStr: string) => void
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -544,6 +546,8 @@ export class PlayTypeDiagUtils {
           defensiveOverride={defensiveOverride}
           startWithRaw={singleGameMode}
           exportOptions={exportOptions}
+          configStr={configStr}
+          updateConfig={updateConfig}
         />
       </div>
     );
