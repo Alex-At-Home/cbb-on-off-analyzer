@@ -20,6 +20,7 @@ import HexMap from "../shared/HexMap";
 import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 import { UserChartOpts } from "./ShotChartDiagView";
+import { useTheme } from "next-themes";
 
 ///////////////////// UI element + control
 
@@ -41,6 +42,7 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
   const [useEfg, setUseEfg] = useState<boolean>(
     chartOpts?.useEfg ?? false
   );
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (chartOpts) {
@@ -66,7 +68,7 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
               </Col>
             </Row>
             <Row>
-              <Col xs={12}>
+              <Col xs={12} style={{ position: "relative" }}>
                 <HexMap
                   data={[]}
                   zones={offZones}
@@ -78,6 +80,48 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                   buildZones={true}
                   useEfg={useEfg}
                 />
+                {onChangeChartOpts ? (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "10px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      zIndex: 1000,
+                      backgroundColor: resolvedTheme === "dark" ? "rgba(39, 43, 48, 0.25)" : "rgba(255, 255, 255, 0.25)",
+                      borderRadius: "4px",
+                      padding: "4px",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <ToggleButtonGroup
+                      items={[
+                        {
+                          label: "FG%",
+                          tooltip: "Show regular field goal percentage",
+                          toggled: !useEfg,
+                          onClick: () => {
+                            onChangeChartOpts?.({
+                              useEfg: false,
+                            });
+                            setUseEfg(false);
+                          },
+                        },
+                        {
+                          label: "eFG%",
+                          tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
+                          toggled: useEfg,
+                          onClick: () => {
+                            onChangeChartOpts?.({
+                              useEfg: true,
+                            });
+                            setUseEfg(true);
+                          },
+                        },
+                      ]}
+                    />
+                  </div>
+                ) : undefined}
               </Col>
             </Row>
           </Container>
@@ -88,43 +132,11 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
           <p>
             Each circle shows the {useEfg ? "eFG%" : "FG%"} {useEfg ? "(FG% where 3pt shots count more)" : ""},
             colored by their efficiency relative to D1 average in that zone.
-            The color of the zone is the shot frequency relative to the D1
+            The color of the zone is the shot frequency relative to D1
             average.
           </p>
         </Col>
       </Row>
-      {onChangeChartOpts ? (
-        <Row>
-          <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
-            <ToggleButtonGroup
-              items={[
-                {
-                  label: "FG%",
-                  tooltip: "Show regular field goal percentage",
-                  toggled: !useEfg,
-                  onClick: () => {
-                    onChangeChartOpts?.({
-                      useEfg: false,
-                    });
-                    setUseEfg(false);
-                  },
-                },
-                {
-                  label: "eFG%",
-                  tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
-                  toggled: useEfg,
-                  onClick: () => {
-                    onChangeChartOpts?.({
-                      useEfg: true,
-                    });
-                    setUseEfg(true);
-                  },
-                },
-              ]}
-            />
-          </Col>
-        </Row>
-      ) : undefined}
     </Container>
   );
 };
