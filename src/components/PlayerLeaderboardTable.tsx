@@ -628,6 +628,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     geoCenterInfo,
     stickyQuickToggle,
     showPlayerShots,
+    shotChartsUseEfg,
     showPlayerPlayTypes,
     showPlayerPlayTypesAdjPpp,
     showPlayerPlayTypesPlayType,
@@ -1795,7 +1796,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       off={player.shotInfo}
                       chartOpts={{ useEfg: shotChartsUseEfg }}
                       onChangeChartOpts={(newOpts) => {
-                        setShotChartsUseEfg(newOpts.useEfg ?? false);
+                        const numPlayersDisplayed = Math.min(
+                          players.length,
+                          parseInt(maxTableSize)
+                        );
+                        const changeTo = newOpts.useEfg ?? false;
+                        if (numPlayersDisplayed > 10) {
+                          friendlyChange(
+                            () => setShotChartsUseEfg(changeTo),
+                            changeTo != shotChartsUseEfg
+                          );
+                        } else {
+                          setShotChartsUseEfg(changeTo);
+                        }
                       }}
                     />,
                     "small"
@@ -1820,8 +1833,21 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       showHelp={showHelp}
                       compressedPlayTypeStats={player.style}
                       onChangeChartOpts={(opts: PlayerStyleOpts) => {
-                        setShowPlayerPlayTypesPlayType(opts.playType);
-                        setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                        const numPlayersDisplayed = Math.min(
+                          players.length,
+                          parseInt(maxTableSize)
+                        );
+                        if (numPlayersDisplayed > 10) {
+                          friendlyChange(() => {
+                            setShowPlayerPlayTypesPlayType(opts.playType);
+                            setShowPlayerPlayTypesAdjPpp(
+                              !(opts.rawPpp ?? false)
+                            );
+                          }, true);
+                        } else {
+                          setShowPlayerPlayTypesPlayType(opts.playType);
+                          setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                        }
                       }}
                       userOpts={{
                         playType: showPlayerPlayTypesPlayType,
@@ -2005,6 +2031,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     geoBoundsChecker,
     geoCenterInfo,
     showPlayerShots,
+    shotChartsUseEfg,
     resolvedTheme,
   ]);
 
