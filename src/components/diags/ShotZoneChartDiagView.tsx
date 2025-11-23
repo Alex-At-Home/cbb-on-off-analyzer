@@ -18,6 +18,7 @@ const HEX_WIDTH = 520;
 import { CompressedHexZone } from "../../utils/StatModels";
 import HexMap from "../shared/HexMap";
 import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
+import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 
 ///////////////////// UI element + control
 
@@ -32,6 +33,7 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
   gender,
   off,
 }) => {
+  const [useEfg, setUseEfg] = useState<boolean>(false);
   const diffDataSet =
     gender == "Men" ? ShotChartAvgs_Men_2024 : ShotChartAvgs_Women_2024;
 
@@ -61,10 +63,41 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                   width={HEX_WIDTH}
                   height={HEX_HEIGHT}
                   buildZones={true}
+                  useEfg={useEfg}
                 />
               </Col>
             </Row>
           </Container>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} className="small text-center pt-1">
+          <p>
+            Each circle shows the {useEfg ? "eFG%" : "FG%"} {useEfg ? "(FG% where 3pt shots count more)" : ""},
+            colored by their efficiency relative to D1 average in that zone.
+            The color of the zone is the shot frequency relative to the D1
+            average.
+          </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
+          <ToggleButtonGroup
+            items={[
+              {
+                label: "FG%",
+                tooltip: "Show regular field goal percentage",
+                toggled: !useEfg,
+                onClick: () => setUseEfg(false),
+              },
+              {
+                label: "eFG%",
+                tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
+                toggled: useEfg,
+                onClick: () => setUseEfg(true),
+              },
+            ]}
+          />
         </Col>
       </Row>
     </Container>

@@ -34,6 +34,7 @@ interface HexMapProps {
     { avg_freq: number; avg_ppp: number; loc: number[] }
   >;
   buildZones: boolean;
+  useEfg?: boolean;
 }
 const HexMap: React.FC<HexMapProps> = ({
   data,
@@ -45,6 +46,7 @@ const HexMap: React.FC<HexMapProps> = ({
   splitZones,
   d1Zones,
   buildZones,
+  useEfg = true,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -345,19 +347,38 @@ const HexMap: React.FC<HexMapProps> = ({
         ? d1Zone.intensity
         : ppp;
 
+      // Always calculate eFG for colors (to keep colors consistent)
+      const efgPct = ppp * 50;
+      const compEfgPct = compPpp * 50;
+
+      // Calculate FG% based on zone distance
+      const isThreePointZone = zone.minDist >= 21;
+      const pointValue = isThreePointZone ? 3 : 2;
+      const fgPct = Math.min(100, (ppp / pointValue) * 100);
+      const compFgPct = Math.min(100, (compPpp / pointValue) * 100);
+
+      // Create display text based on useEfg setting
+      const displayPct = useEfg ? efgPct : fgPct;
+      const compDisplayPct = useEfg ? compEfgPct : compFgPct;
+
       const maybeSplitText = splitZone
-        ? `${ppp > compPpp ? "+" : ""}${((ppp - compPpp) * 50).toFixed(0)}%`
+        ? `${displayPct > compDisplayPct ? "+" : ""}${(displayPct - compDisplayPct).toFixed(0)}%`
         : undefined;
 
       const toolTipTextBuilder = (zoneToUse: HexZone) => {
-        const zoneTooltip = `[${zoneToUse.frequency}] shots, [${(
-          100 *
-          (zoneToUse.frequency / (zoneToUse.total_freq || 1))
-        ).toFixed(1)}]% of total, [${zoneToUse.intensity}]pts, eFG=[${(
-          (50 * zoneToUse.intensity) /
-          (zoneToUse.frequency || 1)
-        ).toFixed(1)}]%`;
-        return zoneTooltip;
+        const shotsPercentage = (100 * (zoneToUse.frequency / (zoneToUse.total_freq || 1))).toFixed(1);
+        const pointsPerShot = zoneToUse.intensity / (zoneToUse.frequency || 1);
+        
+        if (useEfg) {
+          const efgPercentage = (50 * pointsPerShot).toFixed(1);
+          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, eFG=[${efgPercentage}]%`;
+        } else {
+          // Calculate FG% based on zone distance
+          const isThreePointZone = zone.minDist >= 21;
+          const pointValue = isThreePointZone ? 3 : 2;
+          const fgPercentage = Math.min(100, (pointsPerShot / pointValue) * 100).toFixed(1);
+          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, FG=[${fgPercentage}]%`;
+        }
       };
       const tooltipHandler = () => {
         const zoneTooltip = toolTipTextBuilder(zone);
@@ -368,7 +389,10 @@ const HexMap: React.FC<HexMapProps> = ({
         const d1Tooltip = d1Zone
           ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
               1
-            )}]% of shots, ` + `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
+            )}]% of shots, ` + 
+            (useEfg 
+              ? `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
+              : `FG=[${Math.min(100, (d1Zone.intensity / pointValue) * 100).toFixed(1)}]%`)
           : "(D1 averages no available)";
 
         tooltip
@@ -418,7 +442,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .style("fill", "black")
         .text(
           zone.frequency > 0 && (!splitZone || splitZone.frequency > 0)
-            ? maybeSplitText || `${(ppp * 50).toFixed(0)}%`
+            ? maybeSplitText || `${displayPct.toFixed(0)}%`
             : "-"
         )
         .on("mouseover", (event, d) => {
