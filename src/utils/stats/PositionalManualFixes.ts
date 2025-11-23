@@ -186,6 +186,14 @@ export const absolutePositionFixes: Record<
     "Allen, Ryanne": { position: "WF" },
     "Webber, Maddie": { position: "CG" },
   },
+  "Women_Villanova_2025/26": {
+    //(discussion by email)
+    "Bascoe, Jasmine": { position: "s-PG" },
+    "Ceseretti, Dani": { position: "CG" },
+    "Allen, Ryanne": { position: "WF" },
+    "McCurry, Brynn": { position: "PF/C" },
+    "Watson, Kylee": { position: "C" },
+  },
 };
 
 export type RelativePositionFixRule = {
