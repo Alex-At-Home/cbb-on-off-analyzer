@@ -348,6 +348,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [showPlayerShots, setShowPlayerShots] = useState(
     _.isNil(startingState.shotCharts) ? false : startingState.shotCharts
   );
+  const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
+    startingState.shotChartsUseEfg ?? false
+  );
 
   /** Show simplified player play style breakdown */
   const [showPlayerPlayTypes, setShowPlayerPlayTypes] = useState(
@@ -597,6 +600,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       geoZoom: geoCenterInfo?.zoom?.toString(),
       stickyQuickToggle,
       shotCharts: showPlayerShots,
+      shotChartsUseEfg: shotChartsUseEfg,
       showPlayerPlayTypes,
       showPlayerPlayTypesAdjPpp,
       showPlayerPlayTypesPlayType,
@@ -1789,6 +1793,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     <ShotZoneChartDiagView
                       gender={gender as "Men" | "Women"}
                       off={player.shotInfo}
+                      chartOpts={{ useEfg: shotChartsUseEfg }}
+                      onChangeChartOpts={(newOpts) => {
+                        setShotChartsUseEfg(newOpts.useEfg ?? false);
+                      }}
                     />,
                     "small"
                   ),

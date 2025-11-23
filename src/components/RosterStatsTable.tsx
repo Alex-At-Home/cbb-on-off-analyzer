@@ -210,7 +210,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   >(
     _.isNil(gameFilterParams.playerShotChartsShowZones)
       ? undefined
-      : { buildZones: gameFilterParams.playerShotChartsShowZones }
+      : { 
+          buildZones: gameFilterParams.playerShotChartsShowZones,
+          useEfg: gameFilterParams.playerShotChartsUseEfg ?? false
+        }
   );
 
   /** Splits out offensive and defensive metrics into separate rows */
@@ -440,6 +443,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       calcRapm: calcRapm,
       playerShotCharts: showShotCharts,
       playerShotChartsShowZones: shotChartConfig?.buildZones,
+      playerShotChartsUseEfg: shotChartConfig?.useEfg,
       rapmPriorMode: rapmPriorMode.toString(),
       rapmRegressMode: rapmRegressMode.toString(),
       factorMins: factorMins,

@@ -299,11 +299,13 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultShotChartShowZones
           ? ["teamShotChartsShowZones"]
           : [],
+        !rawParams.teamShotChartsUseEfg ? ["teamShotChartsUseEfg"] : [],
         !rawParams.playerShotCharts ? ["playerShotCharts"] : [],
         rawParams.playerShotChartsShowZones ==
         ParamDefaults.defaultShotChartShowZones
           ? ["playerShotChartsShowZones"]
           : [],
+        !rawParams.playerShotChartsUseEfg ? ["playerShotChartsUseEfg"] : [],
         rawParams.showGrades == "" ? ["showGrades"] : [],
         // RosterStatsTable
         rawParams.sortBy == ParamDefaults.defaultPlayerSortBy ? ["sortBy"] : [],
@@ -364,6 +366,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "showExtraInfo",
       "teamPlayTypeConfig",
       "teamShotChartsShowZones",
+      "teamShotChartsUseEfg",
       "showOnOffLuckDiags",
       "teamDiffs",
       // Player info:
@@ -375,6 +378,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "factorMins",
       "showPosDiag",
       "playerShotChartsShowZones",
+      "playerShotChartsUseEfg",
       "showInfoSubHeader",
       "showPlayerPlayTypesPlayType",
       "showPlayerPlayTypesAdjPpp",

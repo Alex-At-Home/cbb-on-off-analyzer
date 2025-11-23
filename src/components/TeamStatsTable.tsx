@@ -172,7 +172,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   >(
     _.isNil(gameFilterParams.teamShotChartsShowZones)
       ? undefined
-      : { buildZones: gameFilterParams.teamShotChartsShowZones }
+      : { 
+          buildZones: gameFilterParams.teamShotChartsShowZones,
+          useEfg: gameFilterParams.teamShotChartsUseEfg ?? false
+        }
   );
 
   /** Whether we are showing the luck config modal */
@@ -248,6 +251,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showGrades: showGrades,
       teamShotCharts: showShotCharts,
       teamShotChartsShowZones: shotChartConfig?.buildZones,
+      teamShotChartsUseEfg: shotChartConfig?.useEfg,
       stickyQuickToggle,
       teamPlayTypeConfig: playTypeConfigStr,
     };

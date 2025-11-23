@@ -121,6 +121,7 @@ export type MatchupFilterParams = {
   lockAspect?: boolean; //(force x to be correct proportions to y)
   breakdownConfig?: string; //(currently: [off|def];[off|def])
   shotChartsShowZones?: boolean;
+  shotChartsUseEfg?: boolean;
   customDisplayMode?: string; //(write only: CSV list: can be teamStats|playTypes)
   playStyleConfigStr?: string; //(chart configuration string)
 };
@@ -183,8 +184,10 @@ export type GameFilterParams = {
   // Shot chart params:
   teamShotCharts?: boolean;
   teamShotChartsShowZones?: boolean;
+  teamShotChartsUseEfg?: boolean;
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
+  playerShotChartsUseEfg?: boolean;
 };
 
 /** Params for lineup filtering */
@@ -315,6 +318,7 @@ export type PlayerCareerParams = {
   // Shot charts and style:
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
+  playerShotChartsUseEfg?: boolean;
   playerShotChartQuickSwitch?: string;
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
@@ -359,6 +363,7 @@ export type PlayerLeaderboardParams = {
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
   // Shot charts:
   shotCharts?: boolean;
+  shotChartsUseEfg?: boolean;
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
   showPlayerPlayTypesPlayType?: string;

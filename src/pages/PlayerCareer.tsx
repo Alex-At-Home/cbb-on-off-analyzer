@@ -133,6 +133,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         ParamDefaults.defaultShotChartShowZones
           ? ["playerShotChartsShowZones"]
           : [],
+        !rawParams.playerShotChartsUseEfg ? ["playerShotChartsUseEfg"] : [],
         !rawParams.playerShotChartQuickSwitch
           ? ["playerShotChartQuickSwitch"]
           : [],

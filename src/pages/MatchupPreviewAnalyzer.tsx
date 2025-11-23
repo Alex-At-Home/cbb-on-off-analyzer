@@ -218,6 +218,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       ? ParamDefaults.defaultShotChartShowZones
       : startingMatchupFilterParams.shotChartsShowZones
   );
+  const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
+    startingMatchupFilterParams.shotChartsUseEfg ?? false
+  );
 
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
     startingMatchupFilterParams.playStyleConfigStr ||
@@ -255,6 +258,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           ? ["breakdownConfig"]
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
+        !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["playStyleConfigStr"]
           : [],
@@ -281,9 +285,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       ...matchupFilterParamsRef.current,
       breakdownConfig: breakdownView,
       shotChartsShowZones: shotChartsShowZones,
+      shotChartsUseEfg: shotChartsUseEfg,
       playStyleConfigStr: playStyleConfigStr,
     });
-  }, [breakdownView, shotChartsShowZones, playStyleConfigStr]);
+  }, [breakdownView, shotChartsShowZones, shotChartsUseEfg, playStyleConfigStr]);
 
   // Load team grades, needed for play recap view
 
@@ -712,9 +717,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                   }
                   gender={matchupFilterParams.gender as "Men" | "Women"}
                   quickSwitchOptions={[]}
-                  chartOpts={{ buildZones: shotChartsShowZones }}
+                  chartOpts={{ buildZones: shotChartsShowZones, useEfg: shotChartsUseEfg }}
                   onChangeChartOpts={(newOpts) => {
                     setShotChartsShowZones(newOpts.buildZones || false);
+                    setShotChartsUseEfg(newOpts.useEfg ?? false);
                   }}
                   labelOverrides={[
                     breakdownViewArr?.[0] == "off"
@@ -750,7 +756,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     }
                     gender={matchupFilterParams.gender as "Men" | "Women"}
                     quickSwitchOptions={[]}
-                    chartOpts={{ buildZones: shotChartsShowZones }}
+                    chartOpts={{ buildZones: shotChartsShowZones, useEfg: shotChartsUseEfg }}
                     onChangeChartOpts={undefined}
                     labelOverrides={[
                       breakdownViewArr?.[0] == "off"
@@ -785,7 +791,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, breakdownView, shotChartsShowZones]);
+  }, [dataEvent, breakdownView, shotChartsShowZones, shotChartsUseEfg]);
 
   return (
     <Container>

@@ -206,6 +206,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       ? ParamDefaults.defaultShotChartShowZones
       : startingMatchupFilterParams.shotChartsShowZones
   );
+  const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
+    startingMatchupFilterParams.shotChartsUseEfg ?? false
+  );
 
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
     startingMatchupFilterParams.playStyleConfigStr ||
@@ -254,6 +257,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           ? ["iconType"]
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
+        !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["playStyleConfigStr"]
           : [],
@@ -300,9 +304,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     onMatchupFilterParamsChange({
       ...matchupFilterParamsRef.current,
       shotChartsShowZones: shotChartsShowZones,
+      shotChartsUseEfg: shotChartsUseEfg,
       playStyleConfigStr: playStyleConfigStr,
     });
-  }, [shotChartsShowZones, playStyleConfigStr]);
+  }, [shotChartsShowZones, shotChartsUseEfg, playStyleConfigStr]);
 
   // View
 
@@ -540,9 +545,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                       gender: matchupFilterParams.gender as "Men" | "Women",
                     },
                   ]}
-                  chartOpts={{ buildZones: shotChartsShowZones }}
+                  chartOpts={{ buildZones: shotChartsShowZones, useEfg: shotChartsUseEfg }}
                   onChangeChartOpts={(newOpts) => {
                     setShotChartsShowZones(newOpts.buildZones || false);
+                    setShotChartsUseEfg(newOpts.useEfg ?? false);
                   }}
                   labelOverrides={[
                     `${matchupFilterParams.team} Shots:`,
@@ -568,7 +574,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, shotChartsShowZones]);
+  }, [dataEvent, shotChartsShowZones, shotChartsUseEfg]);
 
   /** In JSON mode display the view until the request is submitted and data has returned */
   const jsonModeAndAllDataLoaded =

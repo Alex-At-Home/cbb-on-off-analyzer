@@ -139,6 +139,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   >({
     buildZones: playerCareerParams.playerShotChartsShowZones,
     quickSwitch: playerCareerParams.playerShotChartQuickSwitch,
+    useEfg: playerCareerParams.playerShotChartsUseEfg ?? false,
   });
 
   /** Splits out offensive and defensive metrics into separate rows */
@@ -230,6 +231,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       showPlayerPlayTypesPlayType,
       playerShotCharts: showShotCharts,
       playerShotChartsShowZones: shotChartConfig?.buildZones,
+      playerShotChartsUseEfg: shotChartConfig?.useEfg,
       playerShotChartQuickSwitch: shotChartConfig?.quickSwitch,
       factorMins,
       possAsPct,
@@ -908,6 +910,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         ParamDefaults.defaultGender) as "Men" | "Women"
                     }
                     off={player.shotInfo as any}
+                    chartOpts={shotChartConfig}
+                    onChangeChartOpts={(newOpts: any) => {
+                      setShotChartConfig(newOpts);
+                    }}
                   />,
                   "small"
                 ),
