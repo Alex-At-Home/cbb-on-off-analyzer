@@ -19,6 +19,7 @@ import { CompressedHexZone } from "../../utils/StatModels";
 import HexMap from "../shared/HexMap";
 import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 import ToggleButtonGroup from "../shared/ToggleButtonGroup";
+import { UserChartOpts } from "./ShotChartDiagView";
 
 ///////////////////// UI element + control
 
@@ -26,14 +27,26 @@ type Props = {
   title?: string;
   gender: "Men" | "Women";
   off: CompressedHexZone;
+  onChangeChartOpts?: (opts: UserChartOpts) => void;
+  chartOpts?: UserChartOpts;
 };
 
 const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
   title,
   gender,
   off,
+  onChangeChartOpts,
+  chartOpts,
 }) => {
-  const [useEfg, setUseEfg] = useState<boolean>(false);
+  const [useEfg, setUseEfg] = useState<boolean>(
+    chartOpts?.useEfg ?? false
+  );
+
+  useEffect(() => {
+    if (chartOpts) {
+      setUseEfg(chartOpts?.useEfg ?? false);
+    }
+  }, [chartOpts]);
   const diffDataSet =
     gender == "Men" ? ShotChartAvgs_Men_2024 : ShotChartAvgs_Women_2024;
 
@@ -80,26 +93,38 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
           </p>
         </Col>
       </Row>
-      <Row>
-        <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
-          <ToggleButtonGroup
-            items={[
-              {
-                label: "FG%",
-                tooltip: "Show regular field goal percentage",
-                toggled: !useEfg,
-                onClick: () => setUseEfg(false),
-              },
-              {
-                label: "eFG%",
-                tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
-                toggled: useEfg,
-                onClick: () => setUseEfg(true),
-              },
-            ]}
-          />
-        </Col>
-      </Row>
+      {onChangeChartOpts ? (
+        <Row>
+          <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
+            <ToggleButtonGroup
+              items={[
+                {
+                  label: "FG%",
+                  tooltip: "Show regular field goal percentage",
+                  toggled: !useEfg,
+                  onClick: () => {
+                    onChangeChartOpts?.({
+                      useEfg: false,
+                    });
+                    setUseEfg(false);
+                  },
+                },
+                {
+                  label: "eFG%",
+                  tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
+                  toggled: useEfg,
+                  onClick: () => {
+                    onChangeChartOpts?.({
+                      useEfg: true,
+                    });
+                    setUseEfg(true);
+                  },
+                },
+              ]}
+            />
+          </Col>
+        </Row>
+      ) : undefined}
     </Container>
   );
 };

@@ -229,6 +229,7 @@ const buildQuickSwitchOptions = (
 export type UserChartOpts = {
   buildZones?: boolean;
   quickSwitch?: string;
+  useEfg?: boolean;
 };
 
 type Props = {
@@ -267,7 +268,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultShotChartShowZones
       : chartOpts.buildZones
   );
-  const [useEfg, setUseEfg] = useState<boolean>(false);
+  const [useEfg, setUseEfg] = useState<boolean>(
+    chartOpts?.useEfg ?? false
+  );
 
   useEffect(() => {
     if (chartOpts) {
@@ -276,8 +279,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           ? ParamDefaults.defaultShotChartShowZones
           : chartOpts.buildZones
       );
+      setUseEfg(chartOpts?.useEfg ?? false);
     }
-  }, [chartOpts]); //(handle external changes to zone)
+  }, [chartOpts]); //(handle external changes to zone and useEfg)
 
   const diffDataSet =
     gender == "Men" ? ShotChartAvgs_Men_2024 : ShotChartAvgs_Women_2024;
@@ -486,6 +490,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   onChangeChartOpts?.({
                     buildZones: buildZones,
                     quickSwitch: newSetting,
+                    useEfg: useEfg,
                   });
                   setQuickSwitch(newSetting);
                 }
@@ -669,6 +674,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                     onChangeChartOpts?.({
                       buildZones: !buildZones,
                       quickSwitch: quickSwitch,
+                      useEfg: useEfg,
                     });
                     setBuildZones(!buildZones);
                   },
@@ -681,6 +687,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                     onChangeChartOpts?.({
                       buildZones: !buildZones,
                       quickSwitch: quickSwitch,
+                      useEfg: useEfg,
                     });
                     setBuildZones(!buildZones);
                   },
@@ -695,13 +702,27 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   label: "FG%",
                   tooltip: "Show regular field goal percentage",
                   toggled: !useEfg,
-                  onClick: () => setUseEfg(false),
+                  onClick: () => {
+                    onChangeChartOpts?.({
+                      buildZones: buildZones,
+                      quickSwitch: quickSwitch,
+                      useEfg: false,
+                    });
+                    setUseEfg(false);
+                  },
                 },
                 {
                   label: "eFG%",
                   tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
                   toggled: useEfg,
-                  onClick: () => setUseEfg(true),
+                  onClick: () => {
+                    onChangeChartOpts?.({
+                      buildZones: buildZones,
+                      quickSwitch: quickSwitch,
+                      useEfg: true,
+                    });
+                    setUseEfg(true);
+                  },
                 },
               ]}
             />
