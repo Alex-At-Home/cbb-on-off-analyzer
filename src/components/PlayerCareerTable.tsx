@@ -31,7 +31,9 @@ import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import {
   Button,
+  Col,
   Container,
+  Form,
   OverlayTrigger,
   Row,
   Tooltip,
@@ -105,6 +107,29 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     []
   );
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
+
+  // Similarity controls state
+  const [playStyleWeight, setPlayStyleWeight] = useState<number>(0.25);
+  const [scoringEfficiencyWeight, setScoringEfficiencyWeight] = useState<number>(0.25);
+  const [defenseWeight, setDefenseWeight] = useState<number>(0.25);
+  const [classWeight, setClassWeight] = useState<number>(0.25);
+  const [showSimilaritySettings, setShowSimilaritySettings] = useState<boolean>(false);
+
+  // Temporary state for smooth slider updates
+  const [tmpPlayStyleWeight, setTmpPlayStyleWeight] = useState<number | undefined>(undefined);
+  const [tmpScoringEfficiencyWeight, setTmpScoringEfficiencyWeight] = useState<number | undefined>(undefined);
+  const [tmpDefenseWeight, setTmpDefenseWeight] = useState<number | undefined>(undefined);
+  const [tmpClassWeight, setTmpClassWeight] = useState<number | undefined>(undefined);
+
+  // Mouse handling for sliders (similar to TeamLeaderboardTable)
+  const onMouseDown = () => {
+    // Start dragging - placeholder for potential future logic
+  };
+  
+  const onMouseUp = (callback: () => void) => {
+    // End dragging and execute callback
+    callback();
+  };
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
@@ -1041,38 +1066,332 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       }
     }
   };
+
+  // Similarity controls component (separate variable but will be used in table)
+  const similarityControlsComponent = (
+    <div className="similarity-controls mt-2 mb-2">
+      <Row>
+        <Col xs={6} md={3}>
+          <Form>
+            <Form.Group controlId="playStyleRange">
+              <Form.Label>
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip id="play-style-tooltip">
+                      How much to weight the scoring breakdown of the player (do they drive? post-up? cut? find cutters and rollers? etc)
+                    </Tooltip>
+                  }
+                >
+                  <small>
+                    <b>Play Style</b> [
+                    {_.isNil(tmpPlayStyleWeight) ? (
+                      <b>{(playStyleWeight * 100).toFixed(0)}</b>
+                    ) : (
+                      <i>{(tmpPlayStyleWeight * 100).toFixed(0)}</i>
+                    )}
+                    %]
+                  </small>
+                </OverlayTrigger>
+              </Form.Label>
+              <Form.Control
+                type="range"
+                custom
+                value={_.isNil(tmpPlayStyleWeight) ? playStyleWeight : tmpPlayStyleWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpPlayStyleWeight)) onMouseDown();
+                  setTmpPlayStyleWeight(newVal);
+                }}
+                onClick={(ev: any) =>
+                  onMouseUp(() => {
+                    const newVal = parseFloat(ev.target.value);
+                    setPlayStyleWeight(newVal);
+                    setTmpPlayStyleWeight(undefined);
+                  })
+                }
+                onTouchEnd={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpPlayStyleWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setPlayStyleWeight(newVal);
+                      setTmpPlayStyleWeight(undefined);
+                    }
+                  })
+                }
+                onMouseUp={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpPlayStyleWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setPlayStyleWeight(newVal);
+                      setTmpPlayStyleWeight(undefined);
+                    }
+                  })
+                }
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>
+        </Col>
+        <Col xs={6} md={3}>
+          <Form>
+            <Form.Group controlId="scoringEfficiencyRange">
+              <Form.Label>
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip id="scoring-efficiency-tooltip">
+                      How good is the player at actually scoring in the various play types covered by "Play Style"?
+                    </Tooltip>
+                  }
+                >
+                  <small>
+                    <b>Scoring Efficiency</b> [
+                    {_.isNil(tmpScoringEfficiencyWeight) ? (
+                      <b>{(scoringEfficiencyWeight * 100).toFixed(0)}</b>
+                    ) : (
+                      <i>{(tmpScoringEfficiencyWeight * 100).toFixed(0)}</i>
+                    )}
+                    %]
+                  </small>
+                </OverlayTrigger>
+              </Form.Label>
+              <Form.Control
+                type="range"
+                custom
+                value={_.isNil(tmpScoringEfficiencyWeight) ? scoringEfficiencyWeight : tmpScoringEfficiencyWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpScoringEfficiencyWeight)) onMouseDown();
+                  setTmpScoringEfficiencyWeight(newVal);
+                }}
+                onClick={(ev: any) =>
+                  onMouseUp(() => {
+                    const newVal = parseFloat(ev.target.value);
+                    setScoringEfficiencyWeight(newVal);
+                    setTmpScoringEfficiencyWeight(undefined);
+                  })
+                }
+                onTouchEnd={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpScoringEfficiencyWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setScoringEfficiencyWeight(newVal);
+                      setTmpScoringEfficiencyWeight(undefined);
+                    }
+                  })
+                }
+                onMouseUp={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpScoringEfficiencyWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setScoringEfficiencyWeight(newVal);
+                      setTmpScoringEfficiencyWeight(undefined);
+                    }
+                  })
+                }
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>
+        </Col>
+        <Col xs={6} md={3}>
+          <Form>
+            <Form.Group controlId="defenseRange">
+              <Form.Label>
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip id="defense-tooltip">
+                      How well (within the framework of their team's defense) does the player defend, and in what measurable ways (steals, fouls, blocks, rebounds)
+                    </Tooltip>
+                  }
+                >
+                  <small>
+                    <b>Defense</b> [
+                    {_.isNil(tmpDefenseWeight) ? (
+                      <b>{(defenseWeight * 100).toFixed(0)}</b>
+                    ) : (
+                      <i>{(tmpDefenseWeight * 100).toFixed(0)}</i>
+                    )}
+                    %]
+                  </small>
+                </OverlayTrigger>
+              </Form.Label>
+              <Form.Control
+                type="range"
+                custom
+                value={_.isNil(tmpDefenseWeight) ? defenseWeight : tmpDefenseWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpDefenseWeight)) onMouseDown();
+                  setTmpDefenseWeight(newVal);
+                }}
+                onClick={(ev: any) =>
+                  onMouseUp(() => {
+                    const newVal = parseFloat(ev.target.value);
+                    setDefenseWeight(newVal);
+                    setTmpDefenseWeight(undefined);
+                  })
+                }
+                onTouchEnd={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpDefenseWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setDefenseWeight(newVal);
+                      setTmpDefenseWeight(undefined);
+                    }
+                  })
+                }
+                onMouseUp={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpDefenseWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setDefenseWeight(newVal);
+                      setTmpDefenseWeight(undefined);
+                    }
+                  })
+                }
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>
+        </Col>
+        <Col xs={6} md={3}>
+          <Form>
+            <Form.Group controlId="classRange">
+              <Form.Label>
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip id="class-tooltip">
+                      Add a bonus for players in the same or nearby class (Fr, Soph, Jr, Sr)
+                    </Tooltip>
+                  }
+                >
+                  <small>
+                    <b>Class</b> [
+                    {_.isNil(tmpClassWeight) ? (
+                      <b>{(classWeight * 100).toFixed(0)}</b>
+                    ) : (
+                      <i>{(tmpClassWeight * 100).toFixed(0)}</i>
+                    )}
+                    %]
+                  </small>
+                </OverlayTrigger>
+              </Form.Label>
+              <Form.Control
+                type="range"
+                custom
+                value={_.isNil(tmpClassWeight) ? classWeight : tmpClassWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpClassWeight)) onMouseDown();
+                  setTmpClassWeight(newVal);
+                }}
+                onClick={(ev: any) =>
+                  onMouseUp(() => {
+                    const newVal = parseFloat(ev.target.value);
+                    setClassWeight(newVal);
+                    setTmpClassWeight(undefined);
+                  })
+                }
+                onTouchEnd={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpClassWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setClassWeight(newVal);
+                      setTmpClassWeight(undefined);
+                    }
+                  })
+                }
+                onMouseUp={(ev: any) =>
+                  onMouseUp(() => {
+                    if (!_.isNil(tmpClassWeight)) {
+                      const newVal = parseFloat(ev.target.value);
+                      setClassWeight(newVal);
+                      setTmpClassWeight(undefined);
+                    }
+                  })
+                }
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+    </div>
+  );
+
+  // Convert to table row
+  const similarityControlsRow = GenericTableOps.buildTextRow(
+    similarityControlsComponent,
+    "text-center"
+  );
+
   const tableData = _.thru(playerSimilarityMode, (__) => {
     if (playerSimilarityMode) {
-      //TODO: only show one of these
-      const similarityRow = GenericTableOps.buildTextRow(
-        <span>
-          <i>
-            Similar Players: (
-            <a href="#" onClick={() => setSimilarPlayers([])}>
-              clear
-            </a>
-            )
-          </i>
-        </span>,
-        "text-center"
-      );
-      const similaritySetUpRow = GenericTableOps.buildTextRow(
-        <Button onClick={() => requestSimilarPlayers()}>
-          Find Similar Players
-        </Button>,
-        "text-center"
-      );
+      const hasPlayers = !_.isEmpty(similarPlayers);
+      
+      if (!hasPlayers) {
+        // Case 1 & 2: No similar players - show button with controls below
+        const buttonRow = GenericTableOps.buildTextRow(
+          <Button onClick={() => requestSimilarPlayers()}>
+            Find Similar Players
+          </Button>,
+          "text-center"
+        );
+        
+        return tableDataPhase1Chain
+          .concat([buttonRow])
+          .concat([similarityControlsRow])
+          .value();
+      } else {
+        // Case 3 & 4: Has similar players - show header with experiment/hide settings link
+        const experimentLink = showSimilaritySettings ? "hide settings" : "experiment";
+        const similarityRow = GenericTableOps.buildTextRow(
+          <span>
+            <i>
+              Similar Players: (
+              <a href="#" onClick={() => setSimilarPlayers([])}>
+                clear
+              </a>
+              ) | (
+              <a href="#" onClick={() => setShowSimilaritySettings(!showSimilaritySettings)}>
+                {experimentLink}
+              </a>
+              )
+            </i>
+          </span>,
+          "text-center"
+        );
 
-      return tableDataPhase1Chain
-        .concat([
-          _.isEmpty(similarPlayers) ? similaritySetUpRow : similarityRow,
-        ])
-        .concat(
-          _.flatMap(similarPlayers, (p, i) => {
-            return playerRowBuilder(p, p.year || "????", i == 0);
-          })
-        )
-        .value();
+        const experimentButtonRow = showSimilaritySettings ? GenericTableOps.buildTextRow(
+          <Button onClick={() => requestSimilarPlayers()}>
+            Find Similar Players
+          </Button>,
+          "text-center"
+        ) : null;
+
+        return tableDataPhase1Chain
+          .concat([similarityRow])
+          .concat(showSimilaritySettings ? [similarityControlsRow] : [])
+          .concat(experimentButtonRow ? [experimentButtonRow] : [])
+          .concat(
+            _.flatMap(similarPlayers, (p, i) => {
+              return playerRowBuilder(p, p.year || "????", i == 0);
+            })
+          )
+          .value();
+      }
     } else {
       return tableDataPhase1Chain.value();
     }
