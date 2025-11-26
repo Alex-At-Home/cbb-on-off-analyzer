@@ -51,6 +51,8 @@ import { DateUtils } from "../utils/DateUtils";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import PageAnnotationSystem from "../components/shared/PageAnnotationSystem";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -596,7 +598,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />
-          <h3>Match-up Analysis Tool</h3>
+          <h3>Match-up Analysis Tool{FeatureFlags.isActiveWindow(FeatureFlags.pageAnnotationSystem) ? <PageAnnotationSystem /> : undefined}</h3>
         </Col>
       </Row>
       <Row>
