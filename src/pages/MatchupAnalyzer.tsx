@@ -51,7 +51,6 @@ import { DateUtils } from "../utils/DateUtils";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
-import PageAnnotationSystem from "../components/shared/PageAnnotationSystem";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
@@ -598,7 +597,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       <Row ref={topRef} className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />
-          <h3>Match-up Analysis Tool{FeatureFlags.isActiveWindow(FeatureFlags.pageAnnotationSystem) ? <PageAnnotationSystem /> : undefined}</h3>
+          <h3>Match-up Analysis Tool</h3>
         </Col>
       </Row>
       <Row>
@@ -620,7 +619,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <InternalNavBarInRow refs={navigationRefs} />
+      <InternalNavBarInRow refs={navigationRefs} showAnnotations={true} />
       <Row ref={playerImpactRef}>{chart}</Row>
       <Row ref={timelineViewRef}>{lineupStintTable}</Row>
       <Row ref={playTypesRef}>{playStyleChart}</Row>

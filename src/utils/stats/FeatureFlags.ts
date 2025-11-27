@@ -31,6 +31,4 @@ export class FeatureFlags {
   /** For WIP on the similar scoring */
   static readonly playerSimilarityScoring = true;
 
-  /** For WIP on the page annotation system */
-  static readonly pageAnnotationSystem = true;
 }

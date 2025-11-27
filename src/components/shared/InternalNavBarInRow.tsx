@@ -1,6 +1,7 @@
 // Lodash:
 import _ from "lodash";
 import { Col, Row } from "react-bootstrap";
+import PageAnnotationSystem from "./PageAnnotationSystem";
 
 type Props = {
   refs: Record<
@@ -12,9 +13,10 @@ type Props = {
       offset?: number;
     }
   >;
+  showAnnotations?: boolean;
 };
 
-const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs }) => {
+const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs, showAnnotations = false }) => {
   return (
     <Row
       className="mt-2 sticky-top small pb-1 internal-sticky-overlay"
@@ -23,7 +25,7 @@ const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs }) => {
         zIndex: 1,
       }}
     >
-      <Col xs={12} className="text-center">
+      <Col xs={showAnnotations ? 10 : 12} className="text-center">
         <div>
           Jump to:{" "}
           {_.map(
@@ -72,6 +74,11 @@ const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs }) => {
           )}
         </div>
       </Col>
+      {showAnnotations && (
+        <Col xs={2} className="text-right">
+          <PageAnnotationSystem />
+        </Col>
+      )}
     </Row>
   );
 };
