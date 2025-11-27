@@ -1,6 +1,6 @@
 // React imports:
-import React from 'react';
-import html2canvas from 'html2canvas';
+import React from "react";
+import html2canvas from "html2canvas";
 
 export class AnnotationUtils {
   // Create fullscreen spinner overlay
@@ -21,7 +21,7 @@ export class AnnotationUtils {
       color: white;
       font-size: 18px;
     `;
-    
+
     overlay.innerHTML = `
       <div style="text-align: center;">
         <div style="
@@ -42,7 +42,7 @@ export class AnnotationUtils {
         }
       </style>
     `;
-    
+
     document.body.appendChild(overlay);
     return overlay;
   };
@@ -56,7 +56,9 @@ export class AnnotationUtils {
   };
 
   // Show save/copy dialog
-  static showSaveDialog = (dataUrl: string): Promise<'save' | 'copy' | 'cancel'> => {
+  static showSaveDialog = (
+    dataUrl: string
+  ): Promise<"save" | "copy" | "cancel"> => {
     return new Promise((resolve) => {
       // Create modal backdrop
       const backdrop = document.createElement("div");
@@ -126,13 +128,13 @@ export class AnnotationUtils {
       `;
 
       // Add hover effects
-      const buttons = dialog.querySelectorAll('button');
-      buttons.forEach(btn => {
-        btn.addEventListener('mouseenter', () => {
-          (btn as HTMLElement).style.opacity = '0.8';
+      const buttons = dialog.querySelectorAll("button");
+      buttons.forEach((btn) => {
+        btn.addEventListener("mouseenter", () => {
+          (btn as HTMLElement).style.opacity = "0.8";
         });
-        btn.addEventListener('mouseleave', () => {
-          (btn as HTMLElement).style.opacity = '1';
+        btn.addEventListener("mouseleave", () => {
+          (btn as HTMLElement).style.opacity = "1";
         });
       });
 
@@ -144,39 +146,98 @@ export class AnnotationUtils {
       };
 
       // Event handlers
-      dialog.querySelector('#save-btn')?.addEventListener('click', () => {
+      dialog.querySelector("#save-btn")?.addEventListener("click", () => {
         cleanup();
-        resolve('save');
+        resolve("save");
       });
 
-      dialog.querySelector('#copy-btn')?.addEventListener('click', () => {
+      dialog.querySelector("#copy-btn")?.addEventListener("click", () => {
         cleanup();
-        resolve('copy');
+        resolve("copy");
       });
 
-      dialog.querySelector('#cancel-btn')?.addEventListener('click', () => {
+      dialog.querySelector("#cancel-btn")?.addEventListener("click", () => {
         cleanup();
-        resolve('cancel');
+        resolve("cancel");
       });
 
       // Close on backdrop click
-      backdrop.addEventListener('click', (e) => {
+      backdrop.addEventListener("click", (e) => {
         if (e.target === backdrop) {
           cleanup();
-          resolve('cancel');
+          resolve("cancel");
         }
       });
 
       // Close on Escape key
       const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          document.removeEventListener('keydown', handleEscape);
+        if (e.key === "Escape") {
+          document.removeEventListener("keydown", handleEscape);
           cleanup();
-          resolve('cancel');
+          resolve("cancel");
         }
       };
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
     });
+  };
+
+  // Customize editor buttons after it renders
+  static customizeEditorButtons = (editor: any): void => {
+    // Wait for the editor to fully render in the shadow DOM
+    setTimeout(() => {
+      try {
+        const shadowRoot = editor.shadowRoot;
+        if (shadowRoot) {
+          // Look for button with title="OK" or similar patterns
+          const okButton =
+            shadowRoot.querySelector('button[title="OK"]') ||
+            shadowRoot.querySelector('button[title="Save"]') ||
+            shadowRoot.querySelector('button[aria-label="OK"]') ||
+            shadowRoot.querySelector(".mjs-toolbar button:last-child") ||
+            shadowRoot.querySelector('mjsui-icon-button[title="OK"]');
+
+          if (okButton) {
+            // Replace the button content with "SAVE" text
+            okButton.innerHTML = `
+              <span style="
+                font-weight: 600;
+                font-size: 13px;
+                color: white;
+                text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+              ">Export</span>
+            `;
+            okButton.title = "Export annotated image";
+
+            // Style the button to look better with text
+            okButton.style.cssText += `
+              min-width: 60px !important;
+              padding: 8px 12px !important;
+              background: #28a745 !important;
+              border-radius: 4px !important;
+              border: none !important;
+            `;
+
+            console.log("✅ Customized OK button to SAVE");
+          } else {
+            console.log("❌ Could not find OK button in shadow DOM");
+
+            // Debug: Log all buttons to help identify the structure
+            const buttons = shadowRoot.querySelectorAll("button");
+            console.log(
+              "Available buttons:",
+              Array.from(buttons).map((btn) => ({
+                title: (btn as HTMLElement).title,
+                textContent: (btn as HTMLElement).textContent?.trim(),
+                className: (btn as HTMLElement).className,
+                tagName: (btn as HTMLElement).tagName,
+              }))
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Failed to customize editor buttons:", error);
+      }
+    }, 500); // Wait for shadow DOM to fully render
   };
 
   // Capture visible screen only
@@ -322,28 +383,27 @@ export class AnnotationUtils {
               const dataUrl = event.detail.dataUrl;
               if (dataUrl) {
                 const choice = await AnnotationUtils.showSaveDialog(dataUrl);
-                
-                if (choice === 'save') {
+
+                if (choice === "save") {
                   // Download to file
                   const link = document.createElement("a");
                   link.href = dataUrl;
                   link.download = "annotation.png";
                   link.click();
-                  
-                } else if (choice === 'copy') {
+                } else if (choice === "copy") {
                   // Copy to clipboard
                   try {
                     const response = await fetch(dataUrl);
                     const blob = await response.blob();
-                    
+
                     await navigator.clipboard.write([
                       new ClipboardItem({
-                        [blob.type]: blob
-                      })
+                        [blob.type]: blob,
+                      }),
                     ]);
-                    
+
                     console.log("Image copied to clipboard!");
-                    
+
                     // Show brief success feedback
                     const feedback = document.createElement("div");
                     feedback.style.cssText = `
@@ -360,17 +420,18 @@ export class AnnotationUtils {
                     `;
                     feedback.textContent = "📋 Copied to clipboard!";
                     document.body.appendChild(feedback);
-                    
+
                     setTimeout(() => {
                       if (document.body.contains(feedback)) {
                         document.body.removeChild(feedback);
                       }
                     }, 3000);
-                    
                   } catch (error) {
                     console.error("Failed to copy to clipboard:", error);
-                    alert("Failed to copy to clipboard. The image has been downloaded instead.");
-                    
+                    alert(
+                      "Failed to copy to clipboard. The image has been downloaded instead."
+                    );
+
                     // Fallback to download
                     const link = document.createElement("a");
                     link.href = dataUrl;
@@ -385,6 +446,9 @@ export class AnnotationUtils {
             // Add the editor to container
             container.appendChild(editor);
 
+            // ✨ Customize the editor buttons
+            AnnotationUtils.customizeEditorButtons(editor);
+
             // Scroll to top-left to show full page view initially
             container.scrollTop = 0;
             container.scrollLeft = 0;
@@ -392,7 +456,10 @@ export class AnnotationUtils {
             AnnotationUtils.hideSpinner();
             setIsCapturing?.(false);
           } catch (markerError) {
-            console.error("AnnotationEditor initialization failed:", markerError);
+            console.error(
+              "AnnotationEditor initialization failed:",
+              markerError
+            );
             AnnotationUtils.hideSpinner();
             alert("Failed to load annotation editor. Please try again.");
             setIsCapturing?.(false);
