@@ -55,6 +55,130 @@ export class AnnotationUtils {
     }
   };
 
+  // Show save/copy dialog
+  static showSaveDialog = (dataUrl: string): Promise<'save' | 'copy' | 'cancel'> => {
+    return new Promise((resolve) => {
+      // Create modal backdrop
+      const backdrop = document.createElement("div");
+      backdrop.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `;
+
+      // Create modal dialog
+      const dialog = document.createElement("div");
+      dialog.style.cssText = `
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        min-width: 400px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      `;
+
+      dialog.innerHTML = `
+        <h3 style="margin: 0 0 20px 0; color: #333; text-align: center;">
+          Save Annotation
+        </h3>
+        <p style="margin: 0 0 30px 0; color: #666; text-align: center;">
+          How would you like to save your annotated image?
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+          <button id="save-btn" style="
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+          ">💾 Save to Downloads</button>
+          <button id="copy-btn" style="
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+          ">📋 Copy to Clipboard</button>
+          <button id="cancel-btn" style="
+            padding: 12px 24px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+          ">❌ Cancel</button>
+        </div>
+      `;
+
+      // Add hover effects
+      const buttons = dialog.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+          (btn as HTMLElement).style.opacity = '0.8';
+        });
+        btn.addEventListener('mouseleave', () => {
+          (btn as HTMLElement).style.opacity = '1';
+        });
+      });
+
+      backdrop.appendChild(dialog);
+      document.body.appendChild(backdrop);
+
+      const cleanup = () => {
+        document.body.removeChild(backdrop);
+      };
+
+      // Event handlers
+      dialog.querySelector('#save-btn')?.addEventListener('click', () => {
+        cleanup();
+        resolve('save');
+      });
+
+      dialog.querySelector('#copy-btn')?.addEventListener('click', () => {
+        cleanup();
+        resolve('copy');
+      });
+
+      dialog.querySelector('#cancel-btn')?.addEventListener('click', () => {
+        cleanup();
+        resolve('cancel');
+      });
+
+      // Close on backdrop click
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+          cleanup();
+          resolve('cancel');
+        }
+      });
+
+      // Close on Escape key
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          document.removeEventListener('keydown', handleEscape);
+          cleanup();
+          resolve('cancel');
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+    });
+  };
+
   // Capture visible screen only
   static captureVisibleScreen = async (): Promise<string> => {
     const canvas = await html2canvas(document.documentElement, {
@@ -193,14 +317,68 @@ export class AnnotationUtils {
               setIsCapturing?.(false);
             });
 
-            // Save handler
-            editor.addEventListener("editorsave", (event: any) => {
+            // Save handler with dialog
+            editor.addEventListener("editorsave", async (event: any) => {
               const dataUrl = event.detail.dataUrl;
               if (dataUrl) {
-                const link = document.createElement("a");
-                link.href = dataUrl;
-                link.download = "annotation.png";
-                link.click();
+                const choice = await AnnotationUtils.showSaveDialog(dataUrl);
+                
+                if (choice === 'save') {
+                  // Download to file
+                  const link = document.createElement("a");
+                  link.href = dataUrl;
+                  link.download = "annotation.png";
+                  link.click();
+                  
+                } else if (choice === 'copy') {
+                  // Copy to clipboard
+                  try {
+                    const response = await fetch(dataUrl);
+                    const blob = await response.blob();
+                    
+                    await navigator.clipboard.write([
+                      new ClipboardItem({
+                        [blob.type]: blob
+                      })
+                    ]);
+                    
+                    console.log("Image copied to clipboard!");
+                    
+                    // Show brief success feedback
+                    const feedback = document.createElement("div");
+                    feedback.style.cssText = `
+                      position: fixed;
+                      top: 20px;
+                      right: 20px;
+                      background: #28a745;
+                      color: white;
+                      padding: 12px 20px;
+                      border-radius: 4px;
+                      z-index: 10001;
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    `;
+                    feedback.textContent = "📋 Copied to clipboard!";
+                    document.body.appendChild(feedback);
+                    
+                    setTimeout(() => {
+                      if (document.body.contains(feedback)) {
+                        document.body.removeChild(feedback);
+                      }
+                    }, 3000);
+                    
+                  } catch (error) {
+                    console.error("Failed to copy to clipboard:", error);
+                    alert("Failed to copy to clipboard. The image has been downloaded instead.");
+                    
+                    // Fallback to download
+                    const link = document.createElement("a");
+                    link.href = dataUrl;
+                    link.download = "annotation.png";
+                    link.click();
+                  }
+                }
+                // If choice === 'cancel', do nothing
               }
             });
 
