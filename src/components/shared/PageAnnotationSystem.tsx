@@ -81,11 +81,13 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
 
   // Capture visible screen only
   const captureVisibleScreen = async (): Promise<string> => {
-    const canvas = await html2canvas(document.body, {
+    const canvas = await html2canvas(document.documentElement, {
       useCORS: true,
       allowTaint: true,
       scale: 1,
       logging: false,
+      x: window.scrollX,
+      y: window.scrollY,
       width: window.innerWidth,
       height: window.innerHeight,
       ignoreElements: (element) => {
@@ -94,7 +96,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
       },
     });
 
-    console.log("Visible screen captured:", canvas.width, "x", canvas.height);
+    console.log("Visible screen captured from viewport:", window.scrollX, window.scrollY, "to", window.scrollX + window.innerWidth, window.scrollY + window.innerHeight, "- size:", canvas.width, "x", canvas.height);
     return canvas.toDataURL("image/png");
   };
 
