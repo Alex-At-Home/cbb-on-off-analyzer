@@ -595,7 +595,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <InternalNavBarInRow refs={navigationRefs(gameFilterParamsRef.current)} />
+      <InternalNavBarInRow
+        refs={navigationRefs(gameFilterParamsRef.current)}
+        showAnnotations={true}
+      />
       <Row ref={teamAnalysisRef}>{teamStatsTable}</Row>
       <Row ref={indivAnalysisRef}>{rosterStatsTable}</Row>
       <Row ref={lineupComparisonRef}>

@@ -288,7 +288,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       shotChartsUseEfg: shotChartsUseEfg,
       playStyleConfigStr: playStyleConfigStr,
     });
-  }, [breakdownView, shotChartsShowZones, shotChartsUseEfg, playStyleConfigStr]);
+  }, [
+    breakdownView,
+    shotChartsShowZones,
+    shotChartsUseEfg,
+    playStyleConfigStr,
+  ]);
 
   // Load team grades, needed for play recap view
 
@@ -594,7 +599,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                       : undefined,
                     undefined,
                     playStyleConfigStr,
-                    (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
+                    (newConfigStr: string) =>
+                      setPlayStyleConfigStr(newConfigStr)
                   )
                 )}
               </Col>
@@ -626,7 +632,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                       : defensiveBreakdownB,
                     undefined,
                     playStyleConfigStr,
-                    (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
+                    (newConfigStr: string) =>
+                      setPlayStyleConfigStr(newConfigStr)
                   )
                 )}
               </Col>
@@ -651,7 +658,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     allPlayerStatsCache,
     breakdownView,
     csvData,
-    playStyleConfigStr
+    playStyleConfigStr,
   ]);
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
@@ -717,7 +724,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                   }
                   gender={matchupFilterParams.gender as "Men" | "Women"}
                   quickSwitchOptions={[]}
-                  chartOpts={{ buildZones: shotChartsShowZones, useEfg: shotChartsUseEfg }}
+                  chartOpts={{
+                    buildZones: shotChartsShowZones,
+                    useEfg: shotChartsUseEfg,
+                  }}
                   onChangeChartOpts={(newOpts) => {
                     setShotChartsShowZones(newOpts.buildZones || false);
                     setShotChartsUseEfg(newOpts.useEfg ?? false);
@@ -756,7 +766,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     }
                     gender={matchupFilterParams.gender as "Men" | "Women"}
                     quickSwitchOptions={[]}
-                    chartOpts={{ buildZones: shotChartsShowZones, useEfg: shotChartsUseEfg }}
+                    chartOpts={{
+                      buildZones: shotChartsShowZones,
+                      useEfg: shotChartsUseEfg,
+                    }}
                     onChangeChartOpts={undefined}
                     labelOverrides={[
                       breakdownViewArr?.[0] == "off"
@@ -822,7 +835,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <InternalNavBarInRow refs={navigationRefs} />
+      <InternalNavBarInRow refs={navigationRefs} showAnnotations={true} />
       <Row ref={playTypesRef}>{playStyleChart}</Row>
       <Row ref={playerImpactRef}>{chart}</Row>
       {showShotCharts ? <Row ref={shotChartsRef}>{shotChart}</Row> : undefined}

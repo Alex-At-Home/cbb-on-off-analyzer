@@ -29,8 +29,8 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
 
   // Create fullscreen spinner overlay
   const showSpinner = () => {
-    const overlay = document.createElement('div');
-    overlay.id = 'annotation-spinner-overlay';
+    const overlay = document.createElement("div");
+    overlay.id = "annotation-spinner-overlay";
     overlay.style.cssText = `
       position: fixed;
       top: 0;
@@ -45,7 +45,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
       color: white;
       font-size: 18px;
     `;
-    
+
     overlay.innerHTML = `
       <div style="text-align: center;">
         <div style="
@@ -66,14 +66,14 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         }
       </style>
     `;
-    
+
     document.body.appendChild(overlay);
     return overlay;
   };
 
   // Remove spinner overlay
   const hideSpinner = () => {
-    const overlay = document.getElementById('annotation-spinner-overlay');
+    const overlay = document.getElementById("annotation-spinner-overlay");
     if (overlay) {
       document.body.removeChild(overlay);
     }
@@ -92,11 +92,22 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
       height: window.innerHeight,
       ignoreElements: (element) => {
         // Exclude spinner overlay from capture
-        return element.id === 'annotation-spinner-overlay';
+        return element.id === "annotation-spinner-overlay";
       },
     });
 
-    console.log("Visible screen captured from viewport:", window.scrollX, window.scrollY, "to", window.scrollX + window.innerWidth, window.scrollY + window.innerHeight, "- size:", canvas.width, "x", canvas.height);
+    console.log(
+      "Visible screen captured from viewport:",
+      window.scrollX,
+      window.scrollY,
+      "to",
+      window.scrollX + window.innerWidth,
+      window.scrollY + window.innerHeight,
+      "- size:",
+      canvas.width,
+      "x",
+      canvas.height
+    );
     return canvas.toDataURL("image/png");
   };
 
@@ -130,7 +141,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         // Don't constrain width/height - let html2canvas capture full document
         ignoreElements: (element) => {
           // Exclude spinner overlay from capture
-          return element.id === 'annotation-spinner-overlay';
+          return element.id === "annotation-spinner-overlay";
         },
       });
 
@@ -146,7 +157,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
   // (could at least try applying their styling to see if it fixes Safari)
 
   // Main annotation handler with spinner
-  const handleAnnotation = async (captureType: 'visible' | 'fullpage') => {
+  const handleAnnotation = async (captureType: "visible" | "fullpage") => {
     if (isCapturing) return;
 
     setIsCapturing(true);
@@ -154,35 +165,36 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
 
     // Use setTimeout to ensure spinner renders before starting processing
     setTimeout(async () => {
-
-    const isDebug = false;
+      const isDebug = false;
       try {
         // Capture screenshot based on selected option
-        const imageData = await (captureType === 'visible' ? captureVisibleScreen() : captureFullPage());
+        const imageData = await (captureType === "visible"
+          ? captureVisibleScreen()
+          : captureFullPage());
 
-      // Create a temporary image element for marker.js
-      const img = document.createElement("img");
-      img.src = imageData;
-      //(demo image)
-      //img.src = "https://react-demos.markerjs.com/sample-images/phone-modules.jpg";
+        // Create a temporary image element for marker.js
+        const img = document.createElement("img");
+        img.src = imageData;
+        //(demo image)
+        //img.src = "https://react-demos.markerjs.com/sample-images/phone-modules.jpg";
 
-      const container = document.createElement("div");
+        const container = document.createElement("div");
 
-      //(note in demo container has inherited this style from somewhere:
-      //       :not(svg),
-      //       :not(foreignObject) > svg {
-      //         transform-origin-x: 0px !important;
-      //         transform-origin-y: 0px !important;
-      //         transform-box: view-box !important;
-      //       }
-      // (but this doesn't fix Safari and isn't needed in Chrome)
+        //(note in demo container has inherited this style from somewhere:
+        //       :not(svg),
+        //       :not(foreignObject) > svg {
+        //         transform-origin-x: 0px !important;
+        //         transform-origin-y: 0px !important;
+        //         transform-box: view-box !important;
+        //       }
+        // (but this doesn't fix Safari and isn't needed in Chrome)
 
-      document.body.appendChild(container);
+        document.body.appendChild(container);
 
-      // Wait for image to load
-      img.onload = async () => {
-        // Now set container size based on image height/width
-        container.style.cssText = `
+        // Wait for image to load
+        img.onload = async () => {
+          // Now set container size based on image height/width
+          container.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
@@ -196,24 +208,24 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         padding: 0;
       `;
 
-        try {
-          // Dynamic import to avoid SSR issues
-          const { AnnotationEditor } = await import("@markerjs/markerjs-ui");
+          try {
+            // Dynamic import to avoid SSR issues
+            const { AnnotationEditor } = await import("@markerjs/markerjs-ui");
 
-          // Log dimensions for debugging
-          if (isDebug) {
-            console.log(
-              "Image natural size:",
-              img.naturalWidth,
-              "x",
-              img.naturalHeight
-            );
-          }
+            // Log dimensions for debugging
+            if (isDebug) {
+              console.log(
+                "Image natural size:",
+                img.naturalWidth,
+                "x",
+                img.naturalHeight
+              );
+            }
 
-          // Display image at EXACT native size for accurate coordinates
-          // marker.js expects 1:1 pixel mapping between image and coordinates
-          // (in practice this doesn't seem to do anything?)
-          img.style.cssText = `
+            // Display image at EXACT native size for accurate coordinates
+            // marker.js expects 1:1 pixel mapping between image and coordinates
+            // (in practice this doesn't seem to do anything?)
+            img.style.cssText = `
             display: block;
             margin: 0;
             padding: 0;
@@ -224,64 +236,67 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
             max-height: none;
           `;
 
-          // Create the annotation editor using the correct v3 API
-          const editor = new AnnotationEditor();
+            // Create the annotation editor using the correct v3 API
+            const editor = new AnnotationEditor();
 
-          editor.targetImage = img;
+            editor.targetImage = img;
 
-          // Close:
-          editor.addEventListener("editorclose", (event) => {
-            document.body.removeChild(container);
-            hideSpinner();
-            setIsCapturing(false);
-          });
+            // Close:
+            editor.addEventListener("editorclose", (event) => {
+              document.body.removeChild(container);
+              hideSpinner();
+              setIsCapturing(false);
+            });
 
-          // Save:
-          editor.addEventListener("editorsave", (event) => {
-            const link = document.createElement("a");
-            const annotation = event.detail.state;
-            const dataUrl = event.detail.dataUrl;
-            if (dataUrl) {
-              link.href = dataUrl;
-              link.download = "annotation.png";
-              link.click();
+            // Save:
+            editor.addEventListener("editorsave", (event) => {
+              const link = document.createElement("a");
+              const annotation = event.detail.state;
+              const dataUrl = event.detail.dataUrl;
+              if (dataUrl) {
+                link.href = dataUrl;
+                link.download = "annotation.png";
+                link.click();
+              }
+            });
+
+            // Add the editor, instructions, and close button to container
+            container.appendChild(editor);
+
+            // Scroll to top-left to show full page view initially
+            container.scrollTop = 0;
+            container.scrollLeft = 0;
+
+            if (isDebug) {
+              console.log(
+                "Image natural:",
+                img.naturalWidth,
+                "x",
+                img.naturalHeight
+              );
+              console.log(
+                "Image display:",
+                img.offsetWidth,
+                "x",
+                img.offsetHeight
+              );
+              console.log(
+                "Container size:",
+                container.offsetWidth,
+                "x",
+                container.offsetHeight
+              );
             }
-          });
-
-          // Add the editor, instructions, and close button to container
-          container.appendChild(editor);
-
-          // Scroll to top-left to show full page view initially
-          container.scrollTop = 0;
-          container.scrollLeft = 0;
-
-          if (isDebug) {
-            console.log(
-              "Image natural:",
-              img.naturalWidth,
-              "x",
-              img.naturalHeight
+          } catch (markerError) {
+            console.error(
+              "AnnotationEditor initialization failed:",
+              markerError
             );
-            console.log(
-              "Image display:",
-              img.offsetWidth,
-              "x",
-              img.offsetHeight
-            );
-            console.log(
-              "Container size:",
-              container.offsetWidth,
-              "x",
-              container.offsetHeight
-            );
+            hideSpinner();
+            alert("Failed to load annotation editor. Please try again.");
+            setIsCapturing(false);
           }
-        } catch (markerError) {
-          console.error("AnnotationEditor initialization failed:", markerError);
-          hideSpinner();
-          alert("Failed to load annotation editor. Please try again.");
-          setIsCapturing(false);
-        }
-      };
+        };
       } catch (error) {
         console.error("Screenshot capture failed:", error);
         hideSpinner();
@@ -299,40 +314,42 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
   return (
     <Dropdown
       className={className}
-      style={{ display: 'inline-block', marginLeft: '8px', ...style }}
+      style={{ display: "inline-block", marginLeft: "8px", ...style }}
       drop="down"
     >
       <Dropdown.Toggle
-        variant="link" 
+        variant="link"
         size="sm"
-        className={`p-0 border-0 ${isCapturing ? "text-muted" : "text-primary"}`}
+        className={`p-0 border-0 ${
+          isCapturing ? "text-muted" : "text-primary"
+        }`}
         style={{
           cursor: isCapturing ? "not-allowed" : "pointer",
-          textDecoration: 'none'
+          textDecoration: "none",
         }}
         disabled={isCapturing}
         title={isCapturing ? "Processing..." : "Annotate this page"}
       >
-        <FontAwesomeIcon icon={faEdit} size="sm"/>
+        <FontAwesomeIcon icon={faEdit} size="sm" />
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Dropdown.Item
-          onClick={() => handleAnnotation('visible')}
+          onClick={() => handleAnnotation("visible")}
           disabled={isCapturing}
         >
           📱 Annotate visible screen
         </Dropdown.Item>
-        
+
         <Dropdown.Item
-          onClick={() => handleAnnotation('fullpage')}
+          onClick={() => handleAnnotation("fullpage")}
           disabled={isCapturing}
         >
           📄 Annotate full page (can be slow)
         </Dropdown.Item>
-        
+
         <Dropdown.Item disabled className="text-muted font-italic small">
-          Note: doesn't work well in Safari
+          Note: doesn't work well in Safari or Mobile
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
