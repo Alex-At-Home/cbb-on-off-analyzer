@@ -93,6 +93,7 @@ import AsyncFormControl from "./shared/AsyncFormControl";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import StickyRow from "./shared/StickyRow";
 import ThemedSelect from "./shared/ThemedSelect";
+import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -161,8 +162,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       ParamDefaults.defaultTeamExplorerPlayStyleConfig
   );
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState(
-    startingState.playStyleConfigStr ||
-      ParamDefaults.defaultTeamPlayTypeConfig
+    startingState.playStyleConfigStr || ParamDefaults.defaultTeamPlayTypeConfig
   );
 
   /** Whether to make the quick toggle bar stick (default: on) */
@@ -750,13 +750,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             setPlayStyleConfigStr: (config: string) => {
               //(if there's lots of teams then hide updates behind a spinner)
               if (Math.min(parseInt(maxTableSize), teamsPhase2.length) > 10) {
-                friendlyChange(
-                  () =>
-                    setPlayStyleConfigStr(config),
-                  true,
-                  100
-                );
-              } else setPlayStyleConfigStr(config)
+                friendlyChange(() => setPlayStyleConfigStr(config), true, 100);
+              } else setPlayStyleConfigStr(config);
             },
           },
 
@@ -1026,6 +1021,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const fullHelpDropdown = (
     <GenericTogglingMenu>
+      <AnnotationMenuItems />
       <GenericTogglingMenuItem
         text={
           <span>

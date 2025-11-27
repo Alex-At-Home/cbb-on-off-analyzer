@@ -57,6 +57,7 @@ import {
 import { PlayerLeaderboardTracking } from "../utils/internal-data/LeaderboardTrackingLists";
 
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import { IndivStatSet, Statistic, TeamStatSet } from "../utils/StatModels";
 import { TransferModel } from "../utils/LeaderboardUtils";
@@ -2707,6 +2708,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   }, true);
                 }}
               />
+              <AnnotationMenuItems />
               <Dropdown.Divider />
               <GenericTogglingMenuItem
                 text={

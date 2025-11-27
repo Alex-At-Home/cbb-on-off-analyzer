@@ -16,13 +16,16 @@ type Props = {
   showAnnotations?: boolean;
 };
 
-const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs, showAnnotations = false }) => {
+const InternalNavBarInRow: React.FunctionComponent<Props> = ({
+  refs,
+  showAnnotations = false,
+}) => {
   return (
     <Row
       className="mt-2 sticky-top small pb-1 internal-sticky-overlay"
       style={{
         opacity: "85%",
-        zIndex: 1,
+        zIndex: 10,
       }}
     >
       <Col xs={showAnnotations ? 10 : 12} className="text-center">
