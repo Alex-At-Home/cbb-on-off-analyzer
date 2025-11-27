@@ -7,6 +7,8 @@ import html2canvas from "html2canvas";
 // Bootstrap imports:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { Dropdown } from "react-bootstrap";
+// import LoadingOverlay from "@ronchalant/react-loading-overlay"; // Using custom DOM spinner instead
 
 type Props = {
   className?: string;
@@ -25,6 +27,78 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
     setIsClient(true);
   }, []);
 
+  // Create fullscreen spinner overlay
+  const showSpinner = () => {
+    const overlay = document.createElement('div');
+    overlay.id = 'annotation-spinner-overlay';
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 18px;
+    `;
+    
+    overlay.innerHTML = `
+      <div style="text-align: center;">
+        <div style="
+          width: 40px;
+          height: 40px;
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid #3498db;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 20px auto;
+        "></div>
+        <div>Rendering annotable image...</div>
+      </div>
+      <style>
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+    `;
+    
+    document.body.appendChild(overlay);
+    return overlay;
+  };
+
+  // Remove spinner overlay
+  const hideSpinner = () => {
+    const overlay = document.getElementById('annotation-spinner-overlay');
+    if (overlay) {
+      document.body.removeChild(overlay);
+    }
+  };
+
+  // Capture visible screen only
+  const captureVisibleScreen = async (): Promise<string> => {
+    const canvas = await html2canvas(document.body, {
+      useCORS: true,
+      allowTaint: true,
+      scale: 1,
+      logging: false,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      ignoreElements: (element) => {
+        // Exclude spinner overlay from capture
+        return element.id === 'annotation-spinner-overlay';
+      },
+    });
+
+    console.log("Visible screen captured:", canvas.width, "x", canvas.height);
+    return canvas.toDataURL("image/png");
+  };
+
+  // Capture full page
   const captureFullPage = async (): Promise<string> => {
     // Save current scroll position
     const originalScrollX = window.scrollX;
@@ -37,12 +111,11 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     try {
-      // Use minimal options for most reliable capture
+      // Use minimal options for most reliable capture - capture FULL document dimensions
       const canvas = await html2canvas(document.documentElement, {
         useCORS: true,
         allowTaint: true,
         scale: 1,
-        logging: true,
         width: window.innerWidth,
         height: Math.max(
           document.body.scrollHeight,
@@ -51,17 +124,15 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
           document.documentElement.scrollHeight,
           document.documentElement.offsetHeight
         ),
+        logging: false,
+        // Don't constrain width/height - let html2canvas capture full document
+        ignoreElements: (element) => {
+          // Exclude spinner overlay from capture
+          return element.id === 'annotation-spinner-overlay';
+        },
       });
 
-      console.log("Canvas dimensions:", canvas.width, "x", canvas.height);
-      console.log(
-        "Document dimensions:",
-        document.documentElement.scrollWidth,
-        "x",
-        document.documentElement.scrollHeight
-      );
-      console.log("Device pixel ratio:", window.devicePixelRatio || 1);
-
+      console.log("Full page captured:", canvas.width, "x", canvas.height);
       return canvas.toDataURL("image/png");
     } finally {
       // Restore original scroll position
@@ -72,15 +143,20 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
   //TODO: should move to https://github.com/ailon/markerjs-ui-quick-starts/blob/main/mjsui-quickstart-react-ts/src/Editor.tsx
   // (could at least try applying their styling to see if it fixes Safari)
 
-  const handleAnnotationClick = async () => {
+  // Main annotation handler with spinner
+  const handleAnnotation = async (captureType: 'visible' | 'fullpage') => {
     if (isCapturing) return;
 
     setIsCapturing(true);
+    const overlay = showSpinner();
+
+    // Use setTimeout to ensure spinner renders before starting processing
+    setTimeout(async () => {
 
     const isDebug = false;
-    try {
-      // Capture the full page screenshot
-      const imageData = await captureFullPage();
+      try {
+        // Capture screenshot based on selected option
+        const imageData = await (captureType === 'visible' ? captureVisibleScreen() : captureFullPage());
 
       // Create a temporary image element for marker.js
       const img = document.createElement("img");
@@ -108,8 +184,8 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         position: fixed;
         top: 0;
         left: 0;
-        width: ${img.naturalWidth}px;
-        height: ${img.naturalHeight}px;
+        width: 100vw;
+        height: 100vh;
         background: #f8f9fa;
         z-index: 9999;
         box-sizing: border-box;
@@ -154,6 +230,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
           // Close:
           editor.addEventListener("editorclose", (event) => {
             document.body.removeChild(container);
+            hideSpinner();
             setIsCapturing(false);
           });
 
@@ -198,15 +275,18 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
           }
         } catch (markerError) {
           console.error("AnnotationEditor initialization failed:", markerError);
-          alert("Failed to capture screenshot (code: err1). Please try again.");
+          hideSpinner();
+          alert("Failed to load annotation editor. Please try again.");
           setIsCapturing(false);
         }
       };
-    } catch (error) {
-      console.error("Screenshot capture failed:", error);
-      alert("Failed to capture screenshot (code: err2). Please try again.");
-      setIsCapturing(false);
-    }
+      } catch (error) {
+        console.error("Screenshot capture failed:", error);
+        hideSpinner();
+        alert("Failed to capture screenshot. Please try again.");
+        setIsCapturing(false);
+      }
+    }, 100);
   };
 
   // Don't render anything during SSR
@@ -215,18 +295,45 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <span
-      className={`${className} ${isCapturing ? "text-muted" : "text-primary"}`}
-      style={{
-        cursor: isCapturing ? "not-allowed" : "pointer",
-        marginLeft: "8px",
-        ...style,
-      }}
-      onClick={handleAnnotationClick}
-      title={isCapturing ? "Capturing screenshot..." : "Annotate this page"}
+    <Dropdown
+      className={className}
+      style={{ display: 'inline-block', marginLeft: '8px', ...style }}
+      drop="down"
     >
-      <FontAwesomeIcon icon={faEdit} size="sm" spin={isCapturing} />
-    </span>
+      <Dropdown.Toggle
+        variant="link" 
+        size="sm"
+        className={`p-0 border-0 ${isCapturing ? "text-muted" : "text-primary"}`}
+        style={{
+          cursor: isCapturing ? "not-allowed" : "pointer",
+          textDecoration: 'none'
+        }}
+        disabled={isCapturing}
+        title={isCapturing ? "Processing..." : "Annotate this page"}
+      >
+        <FontAwesomeIcon icon={faEdit} size="sm"/>
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item
+          onClick={() => handleAnnotation('visible')}
+          disabled={isCapturing}
+        >
+          📱 Annotate visible screen
+        </Dropdown.Item>
+        
+        <Dropdown.Item
+          onClick={() => handleAnnotation('fullpage')}
+          disabled={isCapturing}
+        >
+          📄 Annotate full page (can be slow)
+        </Dropdown.Item>
+        
+        <Dropdown.Item disabled className="text-muted font-italic small">
+          Note: doesn't work well in Safari
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 
