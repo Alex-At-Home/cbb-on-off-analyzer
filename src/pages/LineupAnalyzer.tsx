@@ -161,6 +161,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
             ? ["presetGroup"]
             : [],
           !rawParams.advancedMode ? ["advancedMode"] : [],
+          rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
         ])
       )
       .value();

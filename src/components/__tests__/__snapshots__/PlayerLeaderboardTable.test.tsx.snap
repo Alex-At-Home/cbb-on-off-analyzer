@@ -1228,6 +1228,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <AnnotationMenuItems />
           <DropdownDivider
             role="separator"
           />
@@ -9815,6 +9816,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <AnnotationMenuItems />
           <DropdownDivider
             role="separator"
           />
@@ -18412,6 +18414,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <AnnotationMenuItems />
           <DropdownDivider
             role="separator"
           />
@@ -30443,6 +30446,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <AnnotationMenuItems />
           <DropdownDivider
             role="separator"
           />
@@ -38982,6 +38986,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <AnnotationMenuItems />
           <DropdownDivider
             role="separator"
           />
@@ -40798,6 +40803,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <AnnotationMenuItems />
           <DropdownDivider
             role="separator"
           />

@@ -60,6 +60,9 @@ import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { PlayerSimilarityUtils } from "../utils/stats/PlayerSimilarityUtils";
 //@ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
+import StickyRow from "./shared/StickyRow";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -110,22 +113,32 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   // Similarity controls state
   const [playStyleWeight, setPlayStyleWeight] = useState<number>(0.25);
-  const [scoringEfficiencyWeight, setScoringEfficiencyWeight] = useState<number>(0.25);
+  const [scoringEfficiencyWeight, setScoringEfficiencyWeight] =
+    useState<number>(0.25);
   const [defenseWeight, setDefenseWeight] = useState<number>(0.25);
   const [classWeight, setClassWeight] = useState<number>(0.25);
-  const [showSimilaritySettings, setShowSimilaritySettings] = useState<boolean>(false);
+  const [showSimilaritySettings, setShowSimilaritySettings] =
+    useState<boolean>(false);
 
   // Temporary state for smooth slider updates
-  const [tmpPlayStyleWeight, setTmpPlayStyleWeight] = useState<number | undefined>(undefined);
-  const [tmpScoringEfficiencyWeight, setTmpScoringEfficiencyWeight] = useState<number | undefined>(undefined);
-  const [tmpDefenseWeight, setTmpDefenseWeight] = useState<number | undefined>(undefined);
-  const [tmpClassWeight, setTmpClassWeight] = useState<number | undefined>(undefined);
+  const [tmpPlayStyleWeight, setTmpPlayStyleWeight] = useState<
+    number | undefined
+  >(undefined);
+  const [tmpScoringEfficiencyWeight, setTmpScoringEfficiencyWeight] = useState<
+    number | undefined
+  >(undefined);
+  const [tmpDefenseWeight, setTmpDefenseWeight] = useState<number | undefined>(
+    undefined
+  );
+  const [tmpClassWeight, setTmpClassWeight] = useState<number | undefined>(
+    undefined
+  );
 
   // Mouse handling for sliders (similar to TeamLeaderboardTable)
   const onMouseDown = () => {
     // Start dragging - placeholder for potential future logic
   };
-  
+
   const onMouseUp = (callback: () => void) => {
     // End dragging and execute callback
     callback();
@@ -1079,7 +1092,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   placement="auto"
                   overlay={
                     <Tooltip id="play-style-tooltip">
-                      How much to weight the scoring breakdown of the player (do they drive? post-up? cut? find cutters and rollers? etc)
+                      How much to weight the scoring breakdown of the player (do
+                      they drive? post-up? cut? find cutters and rollers? etc)
                     </Tooltip>
                   }
                 >
@@ -1097,7 +1111,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               <Form.Control
                 type="range"
                 custom
-                value={_.isNil(tmpPlayStyleWeight) ? playStyleWeight : tmpPlayStyleWeight}
+                value={
+                  _.isNil(tmpPlayStyleWeight)
+                    ? playStyleWeight
+                    : tmpPlayStyleWeight
+                }
                 onChange={(ev: any) => {
                   const newVal = parseFloat(ev.target.value);
                   if (_.isNil(tmpPlayStyleWeight)) onMouseDown();
@@ -1143,7 +1161,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   placement="auto"
                   overlay={
                     <Tooltip id="scoring-efficiency-tooltip">
-                      How good is the player at actually scoring in the various play types covered by "Play Style"?
+                      How good is the player at actually scoring in the various
+                      play types covered by "Play Style"?
                     </Tooltip>
                   }
                 >
@@ -1161,7 +1180,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               <Form.Control
                 type="range"
                 custom
-                value={_.isNil(tmpScoringEfficiencyWeight) ? scoringEfficiencyWeight : tmpScoringEfficiencyWeight}
+                value={
+                  _.isNil(tmpScoringEfficiencyWeight)
+                    ? scoringEfficiencyWeight
+                    : tmpScoringEfficiencyWeight
+                }
                 onChange={(ev: any) => {
                   const newVal = parseFloat(ev.target.value);
                   if (_.isNil(tmpScoringEfficiencyWeight)) onMouseDown();
@@ -1207,7 +1230,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   placement="auto"
                   overlay={
                     <Tooltip id="defense-tooltip">
-                      How well (within the framework of their team's defense) does the player defend, and in what measurable ways (steals, fouls, blocks, rebounds)
+                      How well (within the framework of their team's defense)
+                      does the player defend, and in what measurable ways
+                      (steals, fouls, blocks, rebounds)
                     </Tooltip>
                   }
                 >
@@ -1225,7 +1250,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               <Form.Control
                 type="range"
                 custom
-                value={_.isNil(tmpDefenseWeight) ? defenseWeight : tmpDefenseWeight}
+                value={
+                  _.isNil(tmpDefenseWeight) ? defenseWeight : tmpDefenseWeight
+                }
                 onChange={(ev: any) => {
                   const newVal = parseFloat(ev.target.value);
                   if (_.isNil(tmpDefenseWeight)) onMouseDown();
@@ -1271,7 +1298,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   placement="auto"
                   overlay={
                     <Tooltip id="class-tooltip">
-                      Add a bonus for players in the same or nearby class (Fr, Soph, Jr, Sr)
+                      Add a bonus for players in the same or nearby class (Fr,
+                      Soph, Jr, Sr)
                     </Tooltip>
                   }
                 >
@@ -1340,7 +1368,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const tableData = _.thru(playerSimilarityMode, (__) => {
     if (playerSimilarityMode) {
       const hasPlayers = !_.isEmpty(similarPlayers);
-      
+
       if (!hasPlayers) {
         // Case 1 & 2: No similar players - show button with controls below
         const buttonRow = GenericTableOps.buildTextRow(
@@ -1349,14 +1377,16 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           </Button>,
           "text-center"
         );
-        
+
         return tableDataPhase1Chain
           .concat([buttonRow])
           .concat([similarityControlsRow])
           .value();
       } else {
         // Case 3 & 4: Has similar players - show header with experiment/hide settings link
-        const experimentLink = showSimilaritySettings ? "hide settings" : "experiment";
+        const experimentLink = showSimilaritySettings
+          ? "hide settings"
+          : "experiment";
         const similarityRow = GenericTableOps.buildTextRow(
           <span>
             <i>
@@ -1365,7 +1395,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 clear
               </a>
               ) | (
-              <a href="#" onClick={() => setShowSimilaritySettings(!showSimilaritySettings)}>
+              <a
+                href="#"
+                onClick={() =>
+                  setShowSimilaritySettings(!showSimilaritySettings)
+                }
+              >
                 {experimentLink}
               </a>
               )
@@ -1374,12 +1409,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           "text-center"
         );
 
-        const experimentButtonRow = showSimilaritySettings ? GenericTableOps.buildTextRow(
-          <Button onClick={() => requestSimilarPlayers()}>
-            Find Similar Players
-          </Button>,
-          "text-center"
-        ) : null;
+        const experimentButtonRow = showSimilaritySettings
+          ? GenericTableOps.buildTextRow(
+              <Button onClick={() => requestSimilarPlayers()}>
+                Find Similar Players
+              </Button>,
+              "text-center"
+            )
+          : null;
 
         return tableDataPhase1Chain
           .concat([similarityRow])
@@ -1598,7 +1635,24 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     />
   );
 
-  const optionsDropdown = <GenericTogglingMenu></GenericTogglingMenu>;
+  const optionsDropdown = (
+    <GenericTogglingMenu>
+      <AnnotationMenuItems />
+      <GenericTogglingMenuItem
+        className="d-none d-md-flex"
+        text="'Quick Select' Bar Is Sticky"
+        truthVal={stickyQuickToggle}
+        onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+      />
+      <GenericTogglingMenuItem
+        className="d-md-none"
+        disabled={true}
+        text="Sticky 'Quick Select' Bar Disabled"
+        truthVal={false}
+        onSelect={() => {}}
+      />
+    </GenericTogglingMenu>
+  );
 
   return (
     <Container fluid>
@@ -1607,7 +1661,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         active={retrievingPlayers}
         text={"Finding similar players..."}
       >
-        <Row className="mb-2">{quickToggleBar}</Row>
+        <StickyRow className="mb-2" stickyEnabled={stickyQuickToggle}>
+          <Col sm="11">{quickToggleBar}</Col>
+          <Form.Group as={Col} sm="1" className="mb-0">
+            {optionsDropdown}
+          </Form.Group>
+        </StickyRow>
         <Row>{table}</Row>
       </LoadingOverlay>
     </Container>

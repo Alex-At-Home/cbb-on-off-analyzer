@@ -84,6 +84,8 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import ThemedSelect from "./shared/ThemedSelect";
+import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
+import StickyRow from "./shared/StickyRow";
 
 /** Convert from LineupStatsModel into this via LineupUtils */
 export type TeamReportStatsModel = {
@@ -917,6 +919,139 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
   }
 
   // 4] View
+
+  const quickToggleBar = (
+    <ToggleButtonGroup
+      items={[
+        {
+          label: "On/Off",
+          tooltip: showOnOff
+            ? "Hide Basic On/Off Stats"
+            : "Show Basic On/Off Stats",
+          toggled: showOnOff,
+          onClick: () => setShowOnOff(!showOnOff),
+        },
+        {
+          label: "Same-4",
+          tooltip: incReplacementOnOff
+            ? "Hide Replacement ('Same-4') On-Off"
+            : "Show Replacement ('Same-4') On-Off",
+          toggled: incReplacementOnOff,
+          onClick: () => setIncReplacementOnOff(!incReplacementOnOff),
+        },
+        {
+          label: "RAPM",
+          tooltip: incRapm ? "Hide Player RAPM" : "Show Player RAPM",
+          toggled: incRapm,
+          onClick: () => setIncRapm(!incRapm),
+        },
+        {
+          label: "Luck",
+          tooltip: adjustForLuck
+            ? "Remove luck adjustments"
+            : "Adjust statistics for luck",
+          toggled: adjustForLuck,
+          onClick: () => setAdjustForLuck(!adjustForLuck),
+        },
+      ]}
+    />
+  );
+
+  /** Whether to make the quick toggle bar stick (default: on) - TODO: unused currently */
+  const [stickyQuickToggle, setStickyQuickToggle] = useState(
+    _.isNil(startingState.stickyQuickToggle)
+      ? true
+      : startingState.stickyQuickToggle
+  );
+
+  const optionsDropdown = (
+    <GenericTogglingMenu>
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            Show replacement On-Off{" "}
+            <span className="badge badge-pill badge-info">alpha</span>
+          </span>
+        }
+        truthVal={incReplacementOnOff}
+        onSelect={() => setIncReplacementOnOff(!incReplacementOnOff)}
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
+            : undefined
+        }
+      />
+      <GenericTogglingMenuItem
+        text={<span>Show RAPM</span>}
+        truthVal={incRapm}
+        onSelect={() => setIncRapm(!incRapm)}
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
+            : undefined
+        }
+      />
+      <GenericTogglingMenuItem
+        text="Show lineup compositions"
+        truthVal={showLineupCompositions}
+        onSelect={() => setShowLineupCompositions(!showLineupCompositions)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text={<span>Adjust for Luck</span>}
+        truthVal={adjustForLuck}
+        onSelect={() => setAdjustForLuck(!adjustForLuck)}
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            : undefined
+        }
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="Configure Luck Adjustments..."
+        truthVal={false}
+        onSelect={() => setShowLuckConfig(true)}
+      />
+      <GenericTogglingMenuItem
+        text="Configure Advanced Stats..."
+        truthVal={false}
+        onSelect={() => setShowTeamRosterStatsConfig(true)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="'r:On-Off' diagnostic mode"
+        truthVal={repOnOffDiagMode != "0"}
+        onSelect={() =>
+          setRepOnOffDiagMode(
+            repOnOffDiagMode != "0" //(only set the lineup size if the other are the defaults)
+              ? "0"
+              : ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[0]
+          )
+        }
+      />
+      <GenericTogglingMenuItem
+        text="'RAPM diagnostic mode"
+        truthVal={rapmDiagMode != ""}
+        onSelect={() => setRapmDiagMode(rapmDiagMode != "" ? "" : "base")}
+      />
+      <AnnotationMenuItems />
+      <GenericTogglingMenuItem
+        className="d-none d-md-flex"
+        text="'Quick Select' Bar Is Sticky"
+        truthVal={stickyQuickToggle}
+        onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+      />
+      <GenericTogglingMenuItem
+        className="d-md-none"
+        disabled={true}
+        text="Sticky 'Quick Select' Bar Disabled"
+        truthVal={false}
+        onSelect={() => {}}
+      />
+    </GenericTogglingMenu>
+  );
+
   return (
     <Container fluid>
       <div ref={topRef}>
@@ -984,123 +1119,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
                 />
               </InputGroup>
             </Form.Group>
-            <Form.Group as={Col} sm="1">
-              <GenericTogglingMenu>
-                <GenericTogglingMenuItem
-                  text={
-                    <span>
-                      Show replacement On-Off{" "}
-                      <span className="badge badge-pill badge-info">alpha</span>
-                    </span>
-                  }
-                  truthVal={incReplacementOnOff}
-                  onSelect={() => setIncReplacementOnOff(!incReplacementOnOff)}
-                  helpLink={
-                    showHelp
-                      ? "https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
-                      : undefined
-                  }
-                />
-                <GenericTogglingMenuItem
-                  text={<span>Show RAPM</span>}
-                  truthVal={incRapm}
-                  onSelect={() => setIncRapm(!incRapm)}
-                  helpLink={
-                    showHelp
-                      ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
-                      : undefined
-                  }
-                />
-                <GenericTogglingMenuItem
-                  text="Show lineup compositions"
-                  truthVal={showLineupCompositions}
-                  onSelect={() =>
-                    setShowLineupCompositions(!showLineupCompositions)
-                  }
-                />
-                <Dropdown.Divider />
-                <GenericTogglingMenuItem
-                  text={<span>Adjust for Luck</span>}
-                  truthVal={adjustForLuck}
-                  onSelect={() => setAdjustForLuck(!adjustForLuck)}
-                  helpLink={
-                    showHelp
-                      ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-                      : undefined
-                  }
-                />
-                <Dropdown.Divider />
-                <GenericTogglingMenuItem
-                  text="Configure Luck Adjustments..."
-                  truthVal={false}
-                  onSelect={() => setShowLuckConfig(true)}
-                />
-                <GenericTogglingMenuItem
-                  text="Configure Advanced Stats..."
-                  truthVal={false}
-                  onSelect={() => setShowTeamRosterStatsConfig(true)}
-                />
-                <Dropdown.Divider />
-                <GenericTogglingMenuItem
-                  text="'r:On-Off' diagnostic mode"
-                  truthVal={repOnOffDiagMode != "0"}
-                  onSelect={() =>
-                    setRepOnOffDiagMode(
-                      repOnOffDiagMode != "0" //(only set the lineup size if the other are the defaults)
-                        ? "0"
-                        : ParamDefaults
-                            .defaultTeamReportRepOnOffDiagModeIfEnabled[0]
-                    )
-                  }
-                />
-                <GenericTogglingMenuItem
-                  text="'RAPM diagnostic mode"
-                  truthVal={rapmDiagMode != ""}
-                  onSelect={() =>
-                    setRapmDiagMode(rapmDiagMode != "" ? "" : "base")
-                  }
-                />
-              </GenericTogglingMenu>
+          </Form.Row>
+          <StickyRow className="mb-2" stickyEnabled={stickyQuickToggle}>
+            <Col sm="11">{quickToggleBar}</Col>
+            <Form.Group as={Col} sm="1" className="mb-0">
+              {optionsDropdown}
             </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Col>
-              <ToggleButtonGroup
-                items={[
-                  {
-                    label: "On/Off",
-                    tooltip: showOnOff
-                      ? "Hide Basic On/Off Stats"
-                      : "Show Basic On/Off Stats",
-                    toggled: showOnOff,
-                    onClick: () => setShowOnOff(!showOnOff),
-                  },
-                  {
-                    label: "Same-4",
-                    tooltip: incReplacementOnOff
-                      ? "Hide Replacement ('Same-4') On-Off"
-                      : "Show Replacement ('Same-4') On-Off",
-                    toggled: incReplacementOnOff,
-                    onClick: () => setIncReplacementOnOff(!incReplacementOnOff),
-                  },
-                  {
-                    label: "RAPM",
-                    tooltip: incRapm ? "Hide Player RAPM" : "Show Player RAPM",
-                    toggled: incRapm,
-                    onClick: () => setIncRapm(!incRapm),
-                  },
-                  {
-                    label: "Luck",
-                    tooltip: adjustForLuck
-                      ? "Remove luck adjustments"
-                      : "Adjust statistics for luck",
-                    toggled: adjustForLuck,
-                    onClick: () => setAdjustForLuck(!adjustForLuck),
-                  },
-                ]}
-              />
-            </Col>
-          </Form.Row>
+          </StickyRow>
           <Row className="mt-2">
             <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
               {table}

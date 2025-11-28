@@ -144,6 +144,7 @@ const TeamReportPage: NextPage<{}> = () => {
           ? ["luck"]
           : [],
         !rawParams.teamLuck ? ["teamLuck"] : [],
+        rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
       ])
     );
 

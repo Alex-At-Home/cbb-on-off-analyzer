@@ -217,6 +217,7 @@ export type LineupFilterParams = {
   aggByPos?: string;
   onOffPlayerSel?: string;
   showGameInfo?: boolean;
+  stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
 };
 
 export type LineupLeaderboardParams = {
@@ -439,6 +440,7 @@ export type TeamReportFilterParams = {
   luck?: LuckParams; //(missing iff default)
   teamLuck?: boolean;
   //(there's no luck diags here because we're applying at the lineup level)
+  stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */

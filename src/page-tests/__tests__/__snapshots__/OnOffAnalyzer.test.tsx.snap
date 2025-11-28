@@ -74,6 +74,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         },
       }
     }
+    showAnnotations={true}
   />
   <Row
     noGutters={false}

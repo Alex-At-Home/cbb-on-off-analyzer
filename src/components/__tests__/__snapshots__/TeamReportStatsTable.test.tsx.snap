@@ -1257,6 +1257,45 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
             />
           </InputGroup>
         </FormGroup>
+      </FormRow>
+      <StickyRow
+        className="mb-2"
+        stickyEnabled={true}
+      >
+        <Col
+          sm="11"
+        >
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
         <FormGroup
           as={
             Object {
@@ -1264,6 +1303,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               "render": [Function],
             }
           }
+          className="mb-0"
           sm="1"
         >
           <GenericTogglingMenu>
@@ -1337,43 +1377,23 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               text="'RAPM diagnostic mode"
               truthVal={false}
             />
+            <AnnotationMenuItems />
+            <GenericTogglingMenuItem
+              className="d-none d-md-flex"
+              onSelect={[Function]}
+              text="'Quick Select' Bar Is Sticky"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              className="d-md-none"
+              disabled={true}
+              onSelect={[Function]}
+              text="Sticky 'Quick Select' Bar Disabled"
+              truthVal={false}
+            />
           </GenericTogglingMenu>
         </FormGroup>
-      </FormRow>
-      <FormRow>
-        <Col>
-          <ToggleButtonGroup
-            items={
-              Array [
-                Object {
-                  "label": "On/Off",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Basic On/Off Stats",
-                },
-                Object {
-                  "label": "Same-4",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Replacement ('Same-4') On-Off",
-                },
-                Object {
-                  "label": "RAPM",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Player RAPM",
-                },
-                Object {
-                  "label": "Luck",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Adjust statistics for luck",
-                },
-              ]
-            }
-          />
-        </Col>
-      </FormRow>
+      </StickyRow>
       <Row
         className="mt-2"
         noGutters={false}
@@ -12119,6 +12139,45 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
           </InputGroup>
         </FormGroup>
+      </FormRow>
+      <StickyRow
+        className="mb-2"
+        stickyEnabled={true}
+      >
+        <Col
+          sm="11"
+        >
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Remove luck adjustments",
+                },
+              ]
+            }
+          />
+        </Col>
         <FormGroup
           as={
             Object {
@@ -12126,6 +12185,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               "render": [Function],
             }
           }
+          className="mb-0"
           sm="1"
         >
           <GenericTogglingMenu>
@@ -12199,43 +12259,23 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text="'RAPM diagnostic mode"
               truthVal={false}
             />
+            <AnnotationMenuItems />
+            <GenericTogglingMenuItem
+              className="d-none d-md-flex"
+              onSelect={[Function]}
+              text="'Quick Select' Bar Is Sticky"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              className="d-md-none"
+              disabled={true}
+              onSelect={[Function]}
+              text="Sticky 'Quick Select' Bar Disabled"
+              truthVal={false}
+            />
           </GenericTogglingMenu>
         </FormGroup>
-      </FormRow>
-      <FormRow>
-        <Col>
-          <ToggleButtonGroup
-            items={
-              Array [
-                Object {
-                  "label": "On/Off",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Basic On/Off Stats",
-                },
-                Object {
-                  "label": "Same-4",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Replacement ('Same-4') On-Off",
-                },
-                Object {
-                  "label": "RAPM",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Player RAPM",
-                },
-                Object {
-                  "label": "Luck",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Remove luck adjustments",
-                },
-              ]
-            }
-          />
-        </Col>
-      </FormRow>
+      </StickyRow>
       <Row
         className="mt-2"
         noGutters={false}
@@ -27565,6 +27605,45 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
           </InputGroup>
         </FormGroup>
+      </FormRow>
+      <StickyRow
+        className="mb-2"
+        stickyEnabled={true}
+      >
+        <Col
+          sm="11"
+        >
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
         <FormGroup
           as={
             Object {
@@ -27572,6 +27651,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               "render": [Function],
             }
           }
+          className="mb-0"
           sm="1"
         >
           <GenericTogglingMenu>
@@ -27645,43 +27725,23 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text="'RAPM diagnostic mode"
               truthVal={false}
             />
+            <AnnotationMenuItems />
+            <GenericTogglingMenuItem
+              className="d-none d-md-flex"
+              onSelect={[Function]}
+              text="'Quick Select' Bar Is Sticky"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              className="d-md-none"
+              disabled={true}
+              onSelect={[Function]}
+              text="Sticky 'Quick Select' Bar Disabled"
+              truthVal={false}
+            />
           </GenericTogglingMenu>
         </FormGroup>
-      </FormRow>
-      <FormRow>
-        <Col>
-          <ToggleButtonGroup
-            items={
-              Array [
-                Object {
-                  "label": "On/Off",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Basic On/Off Stats",
-                },
-                Object {
-                  "label": "Same-4",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Replacement ('Same-4') On-Off",
-                },
-                Object {
-                  "label": "RAPM",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Player RAPM",
-                },
-                Object {
-                  "label": "Luck",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Adjust statistics for luck",
-                },
-              ]
-            }
-          />
-        </Col>
-      </FormRow>
+      </StickyRow>
       <Row
         className="mt-2"
         noGutters={false}
@@ -41871,6 +41931,45 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
           </InputGroup>
         </FormGroup>
+      </FormRow>
+      <StickyRow
+        className="mb-2"
+        stickyEnabled={true}
+      >
+        <Col
+          sm="11"
+        >
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
         <FormGroup
           as={
             Object {
@@ -41878,6 +41977,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               "render": [Function],
             }
           }
+          className="mb-0"
           sm="1"
         >
           <GenericTogglingMenu>
@@ -41951,43 +42051,23 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text="'RAPM diagnostic mode"
               truthVal={false}
             />
+            <AnnotationMenuItems />
+            <GenericTogglingMenuItem
+              className="d-none d-md-flex"
+              onSelect={[Function]}
+              text="'Quick Select' Bar Is Sticky"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              className="d-md-none"
+              disabled={true}
+              onSelect={[Function]}
+              text="Sticky 'Quick Select' Bar Disabled"
+              truthVal={false}
+            />
           </GenericTogglingMenu>
         </FormGroup>
-      </FormRow>
-      <FormRow>
-        <Col>
-          <ToggleButtonGroup
-            items={
-              Array [
-                Object {
-                  "label": "On/Off",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Basic On/Off Stats",
-                },
-                Object {
-                  "label": "Same-4",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Replacement ('Same-4') On-Off",
-                },
-                Object {
-                  "label": "RAPM",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Player RAPM",
-                },
-                Object {
-                  "label": "Luck",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Adjust statistics for luck",
-                },
-              ]
-            }
-          />
-        </Col>
-      </FormRow>
+      </StickyRow>
       <Row
         className="mt-2"
         noGutters={false}
@@ -61487,6 +61567,45 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
           </InputGroup>
         </FormGroup>
+      </FormRow>
+      <StickyRow
+        className="mb-2"
+        stickyEnabled={true}
+      >
+        <Col
+          sm="11"
+        >
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
         <FormGroup
           as={
             Object {
@@ -61494,6 +61613,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               "render": [Function],
             }
           }
+          className="mb-0"
           sm="1"
         >
           <GenericTogglingMenu>
@@ -61567,43 +61687,23 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text="'RAPM diagnostic mode"
               truthVal={false}
             />
+            <AnnotationMenuItems />
+            <GenericTogglingMenuItem
+              className="d-none d-md-flex"
+              onSelect={[Function]}
+              text="'Quick Select' Bar Is Sticky"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              className="d-md-none"
+              disabled={true}
+              onSelect={[Function]}
+              text="Sticky 'Quick Select' Bar Disabled"
+              truthVal={false}
+            />
           </GenericTogglingMenu>
         </FormGroup>
-      </FormRow>
-      <FormRow>
-        <Col>
-          <ToggleButtonGroup
-            items={
-              Array [
-                Object {
-                  "label": "On/Off",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Basic On/Off Stats",
-                },
-                Object {
-                  "label": "Same-4",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Replacement ('Same-4') On-Off",
-                },
-                Object {
-                  "label": "RAPM",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Player RAPM",
-                },
-                Object {
-                  "label": "Luck",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Adjust statistics for luck",
-                },
-              ]
-            }
-          />
-        </Col>
-      </FormRow>
+      </StickyRow>
       <Row
         className="mt-2"
         noGutters={false}
@@ -65750,6 +65850,45 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
           </InputGroup>
         </FormGroup>
+      </FormRow>
+      <StickyRow
+        className="mb-2"
+        stickyEnabled={true}
+      >
+        <Col
+          sm="11"
+        >
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
         <FormGroup
           as={
             Object {
@@ -65757,6 +65896,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               "render": [Function],
             }
           }
+          className="mb-0"
           sm="1"
         >
           <GenericTogglingMenu>
@@ -65830,43 +65970,23 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               text="'RAPM diagnostic mode"
               truthVal={false}
             />
+            <AnnotationMenuItems />
+            <GenericTogglingMenuItem
+              className="d-none d-md-flex"
+              onSelect={[Function]}
+              text="'Quick Select' Bar Is Sticky"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              className="d-md-none"
+              disabled={true}
+              onSelect={[Function]}
+              text="Sticky 'Quick Select' Bar Disabled"
+              truthVal={false}
+            />
           </GenericTogglingMenu>
         </FormGroup>
-      </FormRow>
-      <FormRow>
-        <Col>
-          <ToggleButtonGroup
-            items={
-              Array [
-                Object {
-                  "label": "On/Off",
-                  "onClick": [Function],
-                  "toggled": true,
-                  "tooltip": "Hide Basic On/Off Stats",
-                },
-                Object {
-                  "label": "Same-4",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Replacement ('Same-4') On-Off",
-                },
-                Object {
-                  "label": "RAPM",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Show Player RAPM",
-                },
-                Object {
-                  "label": "Luck",
-                  "onClick": [Function],
-                  "toggled": false,
-                  "tooltip": "Adjust statistics for luck",
-                },
-              ]
-            }
-          />
-        </Col>
-      </FormRow>
+      </StickyRow>
       <Row
         className="mt-2"
         noGutters={false}

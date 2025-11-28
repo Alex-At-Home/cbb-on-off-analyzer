@@ -601,8 +601,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         </InputGroup>
       </FormGroup>
     </FormRow>
-    <FormRow>
-      <Col>
+    <StickyRow
+      className="mb-2"
+      stickyEnabled={true}
+    >
+      <Col
+        sm="11"
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -715,7 +720,34 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           }
         />
       </Col>
-    </FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <AnnotationMenuItems />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </StickyRow>
     <Row
       className="mt-2"
       noGutters={false}
@@ -4632,8 +4664,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
         </InputGroup>
       </FormGroup>
     </FormRow>
-    <FormRow>
-      <Col>
+    <StickyRow
+      className="mb-2"
+      stickyEnabled={true}
+    >
+      <Col
+        sm="11"
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -4746,7 +4783,34 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
           }
         />
       </Col>
-    </FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <AnnotationMenuItems />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </StickyRow>
     <Row
       className="mt-2"
       noGutters={false}
@@ -8143,8 +8207,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         </InputGroup>
       </FormGroup>
     </FormRow>
-    <FormRow>
-      <Col>
+    <StickyRow
+      className="mb-2"
+      stickyEnabled={true}
+    >
+      <Col
+        sm="11"
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -8257,7 +8326,34 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           }
         />
       </Col>
-    </FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <AnnotationMenuItems />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </StickyRow>
     <Row
       className="mt-2"
       noGutters={false}
@@ -11352,8 +11448,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         </InputGroup>
       </FormGroup>
     </FormRow>
-    <FormRow>
-      <Col>
+    <StickyRow
+      className="mb-2"
+      stickyEnabled={true}
+    >
+      <Col
+        sm="11"
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -11466,7 +11567,34 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           }
         />
       </Col>
-    </FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <AnnotationMenuItems />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </StickyRow>
     <Row
       className="mt-2"
       noGutters={false}
@@ -14582,8 +14710,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         </InputGroup>
       </FormGroup>
     </FormRow>
-    <FormRow>
-      <Col>
+    <StickyRow
+      className="mb-2"
+      stickyEnabled={true}
+    >
+      <Col
+        sm="11"
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -14696,7 +14829,34 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           }
         />
       </Col>
-    </FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <AnnotationMenuItems />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </StickyRow>
     <Row
       className="mt-2"
       noGutters={false}
@@ -18697,8 +18857,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         </InputGroup>
       </FormGroup>
     </FormRow>
-    <FormRow>
-      <Col>
+    <StickyRow
+      className="mb-2"
+      stickyEnabled={true}
+    >
+      <Col
+        sm="11"
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -18811,7 +18976,34 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           }
         />
       </Col>
-    </FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        className="mb-0"
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <AnnotationMenuItems />
+          <GenericTogglingMenuItem
+            className="d-none d-md-flex"
+            onSelect={[Function]}
+            text="'Quick Select' Bar Is Sticky"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            className="d-md-none"
+            disabled={true}
+            onSelect={[Function]}
+            text="Sticky 'Quick Select' Bar Disabled"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </StickyRow>
     <Row
       className="mt-2"
       noGutters={false}

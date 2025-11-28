@@ -59,6 +59,8 @@ import {
 } from "../utils/FilterModels";
 import PlayerSelector from "./shared/PlayerSelector";
 import ThemedSelect from "./shared/ThemedSelect";
+import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
+import StickyRow from "./shared/StickyRow";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -982,6 +984,242 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
   // 4] View
 
+  const quickToggleBar = (
+    <ToggleButtonGroup
+      items={[
+        {
+          label: "Totals",
+          tooltip: showTotals
+            ? "Hide Weighted Combo of All Lineups"
+            : "Show Weighted Combo of All Lineups",
+          toggled: showTotals,
+          onClick: () => friendlyChange(() => setShowTotals(!showTotals), true),
+        },
+        {
+          label: "Off",
+          tooltip: showDropped
+            ? "Hide Weighted Combo of All Filtered-Out Lineups"
+            : "Show Weighted Combo of All Filtered-Out Lineups",
+          toggled: showDropped,
+          onClick: () =>
+            friendlyChange(() => setShowDropped(!showDropped), true),
+        },
+        {
+          label: "Luck",
+          tooltip: adjustForLuck
+            ? "Remove luck adjustments"
+            : "Adjust statistics for luck",
+          toggled: adjustForLuck,
+          onClick: () =>
+            friendlyChange(() => setAdjustForLuck(!adjustForLuck), true),
+        },
+        {
+          label: "Pts",
+          tooltip: showRawPts
+            ? "Show raw pts stats as P/100"
+            : "Show raw pts stats as Pts",
+          toggled: showRawPts,
+          onClick: () => friendlyChange(() => setShowRawPts(!showRawPts), true),
+        },
+        {
+          label: "Games",
+          tooltip: showGameInfo
+            ? "Hide per-lineup game info"
+            : "Show per-lineup game info",
+          toggled: showGameInfo,
+          onClick: () =>
+            friendlyChange(() => setShowGameInfo(!showGameInfo), true),
+        },
+        {
+          label: "| Combos: ",
+          tooltip:
+            "Aggregate lineups over the specified position/position group combos",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
+          label: "PG",
+          tooltip:
+            aggregateByPos == "PG"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different PG combos",
+          toggled: aggregateByPos == "PG",
+          onClick: () =>
+            friendlyChange(
+              () => setAggregateByPos(aggregateByPos == "PG" ? "" : "PG"),
+              true
+            ),
+        },
+        {
+          label: "Backcourt",
+          tooltip:
+            aggregateByPos == "Backcourt"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different Backcourt combos",
+          toggled: aggregateByPos == "Backcourt",
+          onClick: () =>
+            friendlyChange(
+              () =>
+                setAggregateByPos(
+                  aggregateByPos == "Backcourt" ? "" : "Backcourt"
+                ),
+              true
+            ),
+        },
+        {
+          label: "PG+C",
+          tooltip:
+            aggregateByPos == "PG+C"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different PG/C pairs",
+          toggled: aggregateByPos == "PG+C",
+          onClick: () =>
+            friendlyChange(
+              () => setAggregateByPos(aggregateByPos == "PG+C" ? "" : "PG+C"),
+              true
+            ),
+        },
+        {
+          label: "Frontcourt",
+          tooltip:
+            aggregateByPos == "Frontcourt"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different Frontcourt combos",
+          toggled: aggregateByPos == "Frontcourt",
+          onClick: () =>
+            friendlyChange(
+              () =>
+                setAggregateByPos(
+                  aggregateByPos == "Frontcourt" ? "" : "Frontcourt"
+                ),
+              true
+            ),
+        },
+        {
+          label: "C",
+          tooltip:
+            aggregateByPos == "C"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different C combos",
+          toggled: aggregateByPos == "C",
+          onClick: () =>
+            friendlyChange(
+              () => setAggregateByPos(aggregateByPos == "C" ? "" : "C"),
+              true
+            ),
+        },
+        {
+          label: "/ ",
+          tooltip: "Aggregate lineups by combinations of 2/3/4 players",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
+          label: "2",
+          tooltip:
+            aggregateByPos == "Pairs"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different 2-player combos",
+          toggled: aggregateByPos == "Pairs",
+          onClick: () =>
+            friendlyChange(
+              () => setAggregateByPos(aggregateByPos == "Pairs" ? "" : "Pairs"),
+              true
+            ),
+        },
+        {
+          label: "3",
+          tooltip:
+            aggregateByPos == "Triples"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different 3-player combos",
+          toggled: aggregateByPos == "Triples",
+          onClick: () =>
+            friendlyChange(
+              () =>
+                setAggregateByPos(aggregateByPos == "Triples" ? "" : "Triples"),
+              true
+            ),
+        },
+        {
+          label: "4",
+          tooltip:
+            aggregateByPos == "Quads"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different 4-player combos",
+          toggled: aggregateByPos == "Quads",
+          onClick: () =>
+            friendlyChange(
+              () => setAggregateByPos(aggregateByPos == "Quads" ? "" : "Quads"),
+              true
+            ),
+        },
+        {
+          label: "/ ",
+          tooltip: "Other combination features",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
+          label: "On/Off",
+          tooltip:
+            aggregateByPos == "On-Off"
+              ? "Clear combo aggregation"
+              : "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+          toggled: aggregateByPos == "On-Off",
+          onClick: () =>
+            friendlyChange(() => {
+              setAggregateByPos(aggregateByPos == "On-Off" ? "" : "On-Off");
+              // If we're turning it on and there is no selection, then inject the top lineup:
+              if (aggregateByPos != "On-Off" && !onOffPlayerSel) {
+                setOnOffPlayerSel(
+                  _.thru(
+                    dataEvent?.lineupStats?.lineups?.[0],
+                    (maybeLineup) => {
+                      return maybeLineup
+                        ? LineupTableUtils.buildCodesAndIds(maybeLineup)
+                            .map((p) => p.code)
+                            .join(";")
+                        : "";
+                    }
+                  )
+                );
+              }
+              //(otherwise leave player selection so can toggle easily)
+            }, true),
+        },
+      ]}
+    />
+  );
+
+  /** Whether to make the quick toggle bar stick (default: on) - TODO: unused currently */
+  const [stickyQuickToggle, setStickyQuickToggle] = useState(
+    _.isNil(startingState.stickyQuickToggle)
+      ? true
+      : startingState.stickyQuickToggle
+  );
+
+  const optionsDropdown = (
+    <GenericTogglingMenu>
+      <AnnotationMenuItems />
+      <GenericTogglingMenuItem
+        className="d-none d-md-flex"
+        text="'Quick Select' Bar Is Sticky"
+        truthVal={stickyQuickToggle}
+        onSelect={() => setStickyQuickToggle(!stickyQuickToggle)}
+      />
+      <GenericTogglingMenuItem
+        className="d-md-none"
+        disabled={true}
+        text="Sticky 'Quick Select' Bar Disabled"
+        truthVal={false}
+        onSelect={() => {}}
+      />
+    </GenericTogglingMenu>
+  );
   const comboLabel: String | undefined = (() => {
     switch (aggregateByPos) {
       case "Pairs":
@@ -1149,237 +1387,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             </InputGroup>
           </Form.Group>
         </Form.Row>
-        <Form.Row>
-          <Col>
-            <ToggleButtonGroup
-              items={[
-                {
-                  label: "Totals",
-                  tooltip: showTotals
-                    ? "Hide Weighted Combo of All Lineups"
-                    : "Show Weighted Combo of All Lineups",
-                  toggled: showTotals,
-                  onClick: () =>
-                    friendlyChange(() => setShowTotals(!showTotals), true),
-                },
-                {
-                  label: "Off",
-                  tooltip: showDropped
-                    ? "Hide Weighted Combo of All Filtered-Out Lineups"
-                    : "Show Weighted Combo of All Filtered-Out Lineups",
-                  toggled: showDropped,
-                  onClick: () =>
-                    friendlyChange(() => setShowDropped(!showDropped), true),
-                },
-                {
-                  label: "Luck",
-                  tooltip: adjustForLuck
-                    ? "Remove luck adjustments"
-                    : "Adjust statistics for luck",
-                  toggled: adjustForLuck,
-                  onClick: () =>
-                    friendlyChange(
-                      () => setAdjustForLuck(!adjustForLuck),
-                      true
-                    ),
-                },
-                {
-                  label: "Pts",
-                  tooltip: showRawPts
-                    ? "Show raw pts stats as P/100"
-                    : "Show raw pts stats as Pts",
-                  toggled: showRawPts,
-                  onClick: () =>
-                    friendlyChange(() => setShowRawPts(!showRawPts), true),
-                },
-                {
-                  label: "Games",
-                  tooltip: showGameInfo
-                    ? "Hide per-lineup game info"
-                    : "Show per-lineup game info",
-                  toggled: showGameInfo,
-                  onClick: () =>
-                    friendlyChange(() => setShowGameInfo(!showGameInfo), true),
-                },
-                {
-                  label: "| Combos: ",
-                  tooltip:
-                    "Aggregate lineups over the specified position/position group combos",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-                {
-                  label: "PG",
-                  tooltip:
-                    aggregateByPos == "PG"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different PG combos",
-                  toggled: aggregateByPos == "PG",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(aggregateByPos == "PG" ? "" : "PG"),
-                      true
-                    ),
-                },
-                {
-                  label: "Backcourt",
-                  tooltip:
-                    aggregateByPos == "Backcourt"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different Backcourt combos",
-                  toggled: aggregateByPos == "Backcourt",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "Backcourt" ? "" : "Backcourt"
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "PG+C",
-                  tooltip:
-                    aggregateByPos == "PG+C"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different PG/C pairs",
-                  toggled: aggregateByPos == "PG+C",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "PG+C" ? "" : "PG+C"
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "Frontcourt",
-                  tooltip:
-                    aggregateByPos == "Frontcourt"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different Frontcourt combos",
-                  toggled: aggregateByPos == "Frontcourt",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "Frontcourt" ? "" : "Frontcourt"
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "C",
-                  tooltip:
-                    aggregateByPos == "C"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different C combos",
-                  toggled: aggregateByPos == "C",
-                  onClick: () =>
-                    friendlyChange(
-                      () => setAggregateByPos(aggregateByPos == "C" ? "" : "C"),
-                      true
-                    ),
-                },
-                {
-                  label: "/ ",
-                  tooltip: "Aggregate lineups by combinations of 2/3/4 players",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-                {
-                  label: "2",
-                  tooltip:
-                    aggregateByPos == "Pairs"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different 2-player combos",
-                  toggled: aggregateByPos == "Pairs",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "Pairs" ? "" : "Pairs"
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "3",
-                  tooltip:
-                    aggregateByPos == "Triples"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different 3-player combos",
-                  toggled: aggregateByPos == "Triples",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "Triples" ? "" : "Triples"
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "4",
-                  tooltip:
-                    aggregateByPos == "Quads"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different 4-player combos",
-                  toggled: aggregateByPos == "Quads",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "Quads" ? "" : "Quads"
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "/ ",
-                  tooltip: "Other combination features",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-                {
-                  label: "On/Off",
-                  tooltip:
-                    aggregateByPos == "On-Off"
-                      ? "Clear combo aggregation"
-                      : "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
-                  toggled: aggregateByPos == "On-Off",
-                  onClick: () =>
-                    friendlyChange(() => {
-                      setAggregateByPos(
-                        aggregateByPos == "On-Off" ? "" : "On-Off"
-                      );
-                      // If we're turning it on and there is no selection, then inject the top lineup:
-                      if (aggregateByPos != "On-Off" && !onOffPlayerSel) {
-                        setOnOffPlayerSel(
-                          _.thru(
-                            dataEvent?.lineupStats?.lineups?.[0],
-                            (maybeLineup) => {
-                              return maybeLineup
-                                ? LineupTableUtils.buildCodesAndIds(maybeLineup)
-                                    .map((p) => p.code)
-                                    .join(";")
-                                : "";
-                            }
-                          )
-                        );
-                      }
-                      //(otherwise leave player selection so can toggle easily)
-                    }, true),
-                },
-              ]}
-            />
-          </Col>
-        </Form.Row>
+        <StickyRow className="mb-2" stickyEnabled={stickyQuickToggle}>
+          <Col sm="11">{quickToggleBar}</Col>
+          <Form.Group as={Col} sm="1" className="mb-0">
+            {optionsDropdown}
+          </Form.Group>
+        </StickyRow>
         {aggregateByPos == "On-Off" && !_.isEmpty(rosterStats.global) ? (
           <Form.Group as={Row} className="mt-3">
             <Form.Group as={Col} xs={10}>
