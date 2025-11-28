@@ -90,7 +90,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
           disabled={isCapturing}
           style={{ zIndex: 2001, position: 'relative' }}
         >
-          📱 Annotate visible screen
+          Annotate visible screen
         </Dropdown.Item>
 
         <Dropdown.Item
@@ -98,7 +98,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
           disabled={isCapturing}
           style={{ zIndex: 2001, position: 'relative' }}
         >
-          📄 Annotate full page (can be slow)
+          Annotate full page (can be slow)
         </Dropdown.Item>
 
         <Dropdown.Item disabled className="text-muted font-italic small">

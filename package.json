@@ -58,7 +58,7 @@
     "fflate": "^0.8.2",
     "get-input-selection": "^1.1.4",
     "hosted-git-info": "^2.8.9",
-    "html2canvas": "^1.4.1",
+    "html2canvas-pro": "^1.5.13",
     "isomorphic-unfetch": "^3.0.0",
     "jquery": "^3.6.0",
     "js-base64": "^2.6.4",
