@@ -543,7 +543,29 @@ const GenericTable: React.FunctionComponent<Props> = ({
         row.tableFieldsOverride?.[key] || keyVal[1];
       const actualKey = row.prefixFn(key);
       const tmpVal = row.dataObj[actualKey] || colProp.missingData;
-      const style = getRowStyle(key, tmpVal, colProp, row);
+      const rankOrPctile = _.thru(false, (enabled) => {
+        if (enabled) {
+          if (!_.isNil(tmpVal?.rank)) {
+            return `T${tmpVal.rank}`;
+          } else if (
+            !_.isNil(tmpVal?.pctile) &&
+            (tmpVal.pctile <= 0.2 || tmpVal.pctile >= 0.8)
+          ) {
+            return `${(tmpVal.pctile * 100).toFixed(0)}%`;
+          } else {
+            return undefined;
+          }
+        } else {
+          return undefined;
+        }
+      });
+      const style = getRowStyle(
+        key,
+        tmpVal,
+        colProp,
+        row,
+        !_.isNil(rankOrPctile)
+      );
       const valBuilder = (inVal: any) => {
         try {
           return colProp.formatter(inVal);
@@ -658,6 +680,17 @@ const GenericTable: React.FunctionComponent<Props> = ({
             //(if not string must be element)
             val
           )}
+          {rankOrPctile && (
+            <div
+              style={{
+                textAlign: "center",
+                fontSize: "0.6em",
+                marginTop: "2px",
+              }}
+            >
+              {rankOrPctile}
+            </div>
+          )}
         </td>
       ) : null;
     });
@@ -723,7 +756,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
     key: string,
     val: any | null | undefined,
     colProps: GenericTableColProps,
-    row: GenericTableDataRow
+    row: GenericTableDataRow,
+    hasRank: boolean
   ) {
     const backgroundColorFn = () => {
       if (!_.isNil(val)) {
@@ -757,6 +791,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
       verticalAlign: "middle",
       ...rowStyleOverride,
       color: colorOverride || (resolvedTheme == "dark" ? "#ebebeb" : "#525252"),
+      // Reduce bottom padding when showing percentile
+      ...(hasRank && { paddingBottom: "2px" }),
     };
   }
   const isResponsive = _.isNil(responsive) ? true : responsive;
