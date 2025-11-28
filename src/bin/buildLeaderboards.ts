@@ -234,7 +234,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -346,7 +346,11 @@ export async function main() {
   //console.log("Number of teams = " + teams.length);
   //throw "done";
 
-  async function handleTeam(teamObj: AvailableTeamMeta, retry: number) {
+  async function handleTeam(
+    teamObj: AvailableTeamMeta,
+    retry: number,
+    retryInputCase?: "all" | "t100" | "conf"
+  ) {
     const team = teamObj.team;
     const teamYear = teamObj.year;
     const genderYearLookup = `${inGender}_${teamYear}`;
@@ -415,7 +419,7 @@ export async function main() {
       ? (mutableConferenceMap[conference] || []).concat([buildTeamAbbr(team)])
       : [];
 
-    const inputCases: Array<[string, any, any]> = [
+    const inputCases: Array<["all" | "conf" | "t100", any, any]> = [
       ["all", fullRequestModel, fullTeamRequestModelWithRecency],
       ["conf", requestModelConfOnly, undefined],
       ["t100", requestModelT100, undefined],
@@ -426,1223 +430,836 @@ export async function main() {
     if (!testMode) console.log("Asking Elasticsearch:");
 
     const getAllDataPromise = Promise.all(
-      inputCases.map(
-        async ([label, requestModel, teamRequestModel]: [string, any, any]) => {
-          const requestParams = QueryUtils.stringify(requestModel);
-          const teamRequestParms = teamRequestModel
-            ? QueryUtils.stringify({ ...teamRequestModel, getGames: true })
-            : QueryUtils.stringify({ ...requestModel, getGames: true });
+      inputCases
+        .filter(
+          //(if retry due to failure we only want to process the failed case)
+          (inputCase) => !retryInputCase || inputCase[0] == retryInputCase
+        )
+        .map(
+          async ([label, requestModel, teamRequestModel]: [
+            "all" | "conf" | "t100",
+            any,
+            any
+          ]) => {
+            const requestParams = QueryUtils.stringify(requestModel);
+            const teamRequestParms = teamRequestModel
+              ? QueryUtils.stringify({ ...teamRequestModel, getGames: true })
+              : QueryUtils.stringify({ ...requestModel, getGames: true });
 
-          const lineupResponse = new MutableAsyncResponse();
-          const teamResponse = new MutableAsyncResponse();
-          const playerResponse = new MutableAsyncResponse();
-          const playerShotChartsResponse = new MutableAsyncResponse();
-          const teamDefenseResponse = new MutableAsyncResponse();
+            const lineupResponse = new MutableAsyncResponse();
+            const teamResponse = new MutableAsyncResponse();
+            const playerResponse = new MutableAsyncResponse();
+            const playerShotChartsResponse = new MutableAsyncResponse();
+            const teamDefenseResponse = new MutableAsyncResponse();
 
-          const isCalculatingShotCharts =
-            inYear >= DateUtils.firstYearWithShotChartData;
-          const isCalculatingTeamDefense =
-            teamDefenseEnabled &&
-            inNaturalTier &&
-            !_.isEmpty(allPlayerStatsCacheByTeam);
+            const isCalculatingShotCharts =
+              inYear >= DateUtils.firstYearWithShotChartData;
+            const isCalculatingTeamDefense =
+              teamDefenseEnabled &&
+              inNaturalTier &&
+              !_.isEmpty(allPlayerStatsCacheByTeam);
 
-          await Promise.all(
-            [
-              calculateLineupStats(
-                {
-                  url: `https://hoop-explorer.com/?${requestParams}`,
-                } as unknown as NextApiRequest,
-                lineupResponse as unknown as NextApiResponse
-              ),
-              calculateOnOffStats(
-                {
-                  url: `https://hoop-explorer.com/?${teamRequestParms}`,
-                } as unknown as NextApiRequest,
-                teamResponse as unknown as NextApiResponse
-              ),
-              calculateOnOffPlayerStats(
-                {
-                  url: `https://hoop-explorer.com/?${requestParams}`,
-                } as unknown as NextApiRequest,
-                playerResponse as unknown as NextApiResponse
-              ),
-            ]
-              .concat(
-                isCalculatingShotCharts
-                  ? [
-                      calculatePlayerShotStats(
-                        {
-                          url: `https://hoop-explorer.com/?${requestParams}`,
-                        } as unknown as NextApiRequest,
-                        playerShotChartsResponse as unknown as NextApiResponse
-                      ),
-                    ]
-                  : []
-              )
-              .concat(
-                isCalculatingTeamDefense
-                  ? [
-                      calculateTeamDefenseStats(
-                        {
-                          url: `https://hoop-explorer.com/?${requestParams}`,
-                        } as unknown as NextApiRequest,
-                        teamDefenseResponse as unknown as NextApiResponse
-                      ),
-                    ]
-                  : []
-              )
-          );
+            await Promise.all(
+              [
+                calculateLineupStats(
+                  {
+                    url: `https://hoop-explorer.com/?${requestParams}`,
+                  } as unknown as NextApiRequest,
+                  lineupResponse as unknown as NextApiResponse
+                ),
+                calculateOnOffStats(
+                  {
+                    url: `https://hoop-explorer.com/?${teamRequestParms}`,
+                  } as unknown as NextApiRequest,
+                  teamResponse as unknown as NextApiResponse
+                ),
+                calculateOnOffPlayerStats(
+                  {
+                    url: `https://hoop-explorer.com/?${requestParams}`,
+                  } as unknown as NextApiRequest,
+                  playerResponse as unknown as NextApiResponse
+                ),
+              ]
+                .concat(
+                  isCalculatingShotCharts
+                    ? [
+                        calculatePlayerShotStats(
+                          {
+                            url: `https://hoop-explorer.com/?${requestParams}`,
+                          } as unknown as NextApiRequest,
+                          playerShotChartsResponse as unknown as NextApiResponse
+                        ),
+                      ]
+                    : []
+                )
+                .concat(
+                  isCalculatingTeamDefense
+                    ? [
+                        calculateTeamDefenseStats(
+                          {
+                            url: `https://hoop-explorer.com/?${requestParams}`,
+                          } as unknown as NextApiRequest,
+                          teamDefenseResponse as unknown as NextApiResponse
+                        ),
+                      ]
+                    : []
+                )
+            );
 
-          // In NBA mode we're going to grab the player percentiles from the previous run
+            // In NBA mode we're going to grab the player percentiles from the previous run
 
-          const playerGradesJson: DivisionStatistics | undefined = await _.thru(
-            injectExtraDataForNbaFolks,
-            (__) => {
-              if (injectExtraDataForNbaFolks && label == "all") {
-                //(currently only build these %iles for all)
-                const divisionStatsComboPathname = `${extraDataFilePath}/stats_players_${label}_${inGender}_${inYear.substring(
-                  0,
-                  4
-                )}_Combo.json`;
+            const playerGradesJson: DivisionStatistics | undefined =
+              await _.thru(injectExtraDataForNbaFolks, (__) => {
+                if (injectExtraDataForNbaFolks && label == "all") {
+                  //(currently only build these %iles for all)
+                  const divisionStatsComboPathname = `${extraDataFilePath}/stats_players_${label}_${inGender}_${inYear.substring(
+                    0,
+                    4
+                  )}_Combo.json`;
 
-                return fs
-                  .readFile(divisionStatsComboPathname)
-                  .then((s: any) => JSON.parse(s) as DivisionStatistics)
-                  .catch((err: any) => {
-                    console.log(
-                      `WARNING: Couldn't load player grades [${inGender}][${teamYear}][${label}]: [${err}]`
-                    );
-                    return undefined;
-                  });
-              } else {
+                  return fs
+                    .readFile(divisionStatsComboPathname)
+                    .then((s: any) => JSON.parse(s) as DivisionStatistics)
+                    .catch((err: any) => {
+                      console.log(
+                        `WARNING: Couldn't load player grades [${inGender}][${teamYear}][${label}]: [${err}]`
+                      );
+                      return undefined;
+                    });
+                } else {
+                  return undefined;
+                }
+              });
+
+            // Also we're going to try fetching the roster
+
+            const rosterInfoFile = getRosterFilename(team, teamYear);
+            const rosterInfoJson = await fs
+              .readFile(rosterInfoFile)
+              .then((s: any) => JSON.parse(s))
+              .catch((err: any) => {
+                console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
                 return undefined;
-              }
+              });
+            // From 2024/25 the year_class has a "." at the end of it, we'll remove that:
+            if (rosterInfoJson) {
+              _.forEach(
+                rosterInfoJson as Record<PlayerCode, RosterEntry>,
+                (rosterEntry) => {
+                  if (rosterEntry.year_class) {
+                    rosterEntry.year_class = rosterEntry.year_class.replace(
+                      ".",
+                      ""
+                    );
+                  }
+                }
+              );
             }
-          );
+            // Build a structured model of the roster info from disk - later we will add
+            // the positional info based on stats
+            const rosterInfoJsonToWrite = _.cloneDeep(rosterInfoJson) as Record<
+              PlayerCode,
+              RosterEntry
+            >;
 
-          // Also we're going to try fetching the roster
+            //Mutate the version we use in the processing (don't use height_in for women)
+            RequestUtils.mutateRosterJsonForWomen(rosterInfoJson, inGender);
 
-          const rosterInfoFile = getRosterFilename(team, teamYear);
-          const rosterInfoJson = await fs
-            .readFile(rosterInfoFile)
-            .then((s: any) => JSON.parse(s))
-            .catch((err: any) => {
-              console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
-              return undefined;
-            });
-          // From 2024/25 the year_class has a "." at the end of it, we'll remove that:
-          if (rosterInfoJson) {
-            _.forEach(
-              rosterInfoJson as Record<PlayerCode, RosterEntry>,
-              (rosterEntry) => {
-                if (rosterEntry.year_class) {
-                  rosterEntry.year_class = rosterEntry.year_class.replace(
-                    ".",
-                    ""
+            // Check for errors:
+
+            if (
+              retry < 10 &&
+              (lineupResponse.statusCode >= 500 ||
+                teamResponse.statusCode >= 500 ||
+                playerResponse.statusCode >= 500)
+            ) {
+              console.log(
+                `RETRYABLE ERROR [${team} ${label}]: ${JSON.stringify(
+                  lineupResponse
+                )} ${JSON.stringify(teamResponse)} ${JSON.stringify(
+                  playerResponse
+                )}`
+              );
+
+              await sleep(10000); //(wait 10s and try again)
+              handleTeam(teamObj, retry + 1, label);
+            } else if (
+              lineupResponse.statusCode >= 400 ||
+              teamResponse.statusCode >= 400 ||
+              playerResponse.statusCode >= 400
+            ) {
+              // Not retry-able, or run out of attempts
+              console.log(
+                `ERROR #[${retry}] [${team} ${label}]: ${JSON.stringify(
+                  lineupResponse
+                )} ${JSON.stringify(teamResponse)} ${JSON.stringify(
+                  playerResponse
+                )}`
+              );
+              process.exit(-1);
+            }
+
+            // Received all data, now do post-Processing:
+
+            const rosterBaseline =
+              playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
+                ?.baseline?.player?.buckets || [];
+
+            const rosterShotChartMap: Dictionary<CompressedHexZone> = _.chain(
+              playerShotChartsResponse.getJsonResponse().aggregations
+                ?.tri_filter?.buckets?.baseline?.player?.buckets || []
+            )
+              .map((playerShotChartInfo) => [
+                playerShotChartInfo.key || "???",
+                ShotChartUtils.compressHexZones(
+                  ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones,
+                  injectExtraDataForNbaFolks ? playerShotChartInfo : undefined
+                ),
+              ])
+              .fromPairs()
+              .value();
+
+            const rosterGlobalButActuallyBaseline = rosterBaseline;
+            // playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
+            //   ?.baseline?.player?.buckets || [];
+            //using baseline instead of global here:
+            // has no effect on luck since using "baseline" not "season" for luck adjustments
+            // will have a small impact on ORtg and position calcs, in on/off they use season-wide
+
+            const lineups =
+              lineupResponse.getJsonResponse().aggregations?.lineups?.buckets ||
+              [];
+
+            const teamGlobal =
+              teamResponse.getJsonResponse().aggregations?.global?.only?.buckets
+                ?.team || {};
+
+            const teamBaseline =
+              teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets
+                ?.baseline || {};
+
+            const teamRecent =
+              teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets
+                ?.on || {};
+
+            /** Largest sample of player stats, by player key - use for ORtg calcs */
+            const globalRosterStatsByCode =
+              RosterTableUtils.buildRosterTableByCode(
+                rosterGlobalButActuallyBaseline,
+                rosterInfoJson,
+                true //(injects positional info into the player stats, needed for play style analysis below)
+              );
+
+            // Inject the better positional info into the roster file:
+            if ("all" == label) {
+              const rosterChanges = _.transform(
+                rosterInfoJsonToWrite,
+                (acc, rosterEntry, playerCode) => {
+                  const playerInfoFromStats =
+                    globalRosterStatsByCode[playerCode];
+                  if (playerInfoFromStats?.role) {
+                    // (if we already have a role then don't overwrite until we have a decent number of possessions)
+                    const usage = playerInfoFromStats?.off_usage?.value || 0;
+                    const poss = playerInfoFromStats?.off_team_poss?.value || 0;
+                    const effectivePoss = poss * usage;
+
+                    const currRoleFromStats = rosterEntry.role;
+                    if (effectivePoss > 40.0 || !rosterEntry.role) {
+                      //(40 is a pretty arbitrary stat, but if we have a role_from_stats from the prev season or HS analysis it's probably decent)
+                      rosterEntry.role = playerInfoFromStats.role;
+                    }
+                    const roleHasChanged =
+                      currRoleFromStats != rosterEntry.role;
+                    if (roleHasChanged) {
+                      console.log(
+                        `Should update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`
+                      );
+                    }
+                    return acc.push(playerCode);
+                  } else {
+                    return acc;
+                  }
+                },
+                [] as Array<PlayerCode>
+              );
+
+              if (!_.isEmpty(rosterChanges)) {
+                // Write a new roster file
+                if (!ignoreRosterEnrichment) {
+                  console.log(
+                    `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
+                  );
+                  //(don't currently need this, the plan was to use it for positional info in PbP)
+                  await fs.writeFile(
+                    rosterInfoFile,
+                    JSON.stringify(rosterInfoJsonToWrite)
                   );
                 }
               }
-            );
-          }
-          // Build a structured model of the roster info from disk - later we will add
-          // the positional info based on stats
-          const rosterInfoJsonToWrite = _.cloneDeep(rosterInfoJson) as Record<
-            PlayerCode,
-            RosterEntry
-          >;
+            }
 
-          //Mutate the version we use in the processing (don't use height_in for women)
-          RequestUtils.mutateRosterJsonForWomen(rosterInfoJson, inGender);
+            // Team info, for "Build your own T25" and Team Stats Explorer
+            // (Do this for all labels, but only do grades / T25 if "all")
+            if (completedEfficiencyInfo?.[team]) {
+              const teamAdjOff =
+                completedEfficiencyInfo?.[team]?.["stats.adj_off.value"] || 0.0;
+              const teamAdjDef =
+                completedEfficiencyInfo?.[team]?.["stats.adj_def.value"] || 0.0;
 
-          // Check for errors:
+              const teamCalcAdjEffOff =
+                teamBaseline.off_adj_ppp?.value || teamAdjOff;
+              const teamCalcAdjEffDef =
+                teamBaseline.def_adj_ppp?.value || teamAdjDef;
+              const teamCalcAdjEffOffRecent =
+                teamRecent.off_adj_ppp?.value || teamCalcAdjEffOff;
+              const teamCalcAdjEffDefRecent =
+                teamRecent.def_adj_ppp?.value || teamCalcAdjEffDef;
 
-          if (
-            retry < 10 &&
-            (lineupResponse.statusCode >= 500 ||
-              teamResponse.statusCode >= 500 ||
-              playerResponse.statusCode >= 500)
-          ) {
-            console.log(
-              `RETRYABLE ERROR [${team} ${label}]: ${JSON.stringify(
-                lineupResponse
-              )} ${JSON.stringify(teamResponse)} ${JSON.stringify(
-                playerResponse
-              )}`
-            );
+              // Add net if the data is available:
+              if (teamBaseline.off_adj_ppp && teamBaseline.def_adj_ppp) {
+                teamBaseline.off_net = {
+                  value: teamCalcAdjEffOff - teamCalcAdjEffDef,
+                };
+              }
+              if (teamBaseline.off_ppp && teamBaseline.def_ppp) {
+                teamBaseline.def_net = {
+                  value:
+                    (teamBaseline.off_ppp?.value || 100) -
+                    (teamBaseline.def_ppp?.value || 100),
+                };
+              }
 
-            await sleep(10000); //(wait 10s and try again)
-            handleTeam(teamObj, retry + 1);
-          } else if (
-            lineupResponse.statusCode >= 400 ||
-            teamResponse.statusCode >= 400 ||
-            playerResponse.statusCode >= 400
-          ) {
-            // Not retry-able, or run out of attempts
-            console.log(
-              `ERROR #[${retry}] [${team} ${label}]: ${JSON.stringify(
-                lineupResponse
-              )} ${JSON.stringify(teamResponse)} ${JSON.stringify(
-                playerResponse
-              )}`
-            );
-            process.exit(-1);
-          }
+              // Add other derived stats:
+              const extraFields = DerivedStatsUtils.injectTeamDerivedStats(
+                teamBaseline,
+                {}
+              );
 
-          // Received all data, now do post-Processing:
-
-          const rosterBaseline =
-            playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
-              ?.baseline?.player?.buckets || [];
-
-          const rosterShotChartMap: Dictionary<CompressedHexZone> = _.chain(
-            playerShotChartsResponse.getJsonResponse().aggregations?.tri_filter
-              ?.buckets?.baseline?.player?.buckets || []
-          )
-            .map((playerShotChartInfo) => [
-              playerShotChartInfo.key || "???",
-              ShotChartUtils.compressHexZones(
-                ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones,
-                injectExtraDataForNbaFolks ? playerShotChartInfo : undefined
-              ),
-            ])
-            .fromPairs()
-            .value();
-
-          const rosterGlobalButActuallyBaseline = rosterBaseline;
-          // playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
-          //   ?.baseline?.player?.buckets || [];
-          //using baseline instead of global here:
-          // has no effect on luck since using "baseline" not "season" for luck adjustments
-          // will have a small impact on ORtg and position calcs, in on/off they use season-wide
-
-          const lineups =
-            lineupResponse.getJsonResponse().aggregations?.lineups?.buckets ||
-            [];
-
-          const teamGlobal =
-            teamResponse.getJsonResponse().aggregations?.global?.only?.buckets
-              ?.team || {};
-
-          const teamBaseline =
-            teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets
-              ?.baseline || {};
-
-          const teamRecent =
-            teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets
-              ?.on || {};
-
-          /** Largest sample of player stats, by player key - use for ORtg calcs */
-          const globalRosterStatsByCode =
-            RosterTableUtils.buildRosterTableByCode(
-              rosterGlobalButActuallyBaseline,
-              rosterInfoJson,
-              true //(injects positional info into the player stats, needed for play style analysis below)
-            );
-
-          // Inject the better positional info into the roster file:
-          if ("all" == label) {
-            const rosterChanges = _.transform(
-              rosterInfoJsonToWrite,
-              (acc, rosterEntry, playerCode) => {
-                const playerInfoFromStats = globalRosterStatsByCode[playerCode];
-                if (playerInfoFromStats?.role) {
-                  // (if we already have a role then don't overwrite until we have a decent number of possessions)
-                  const usage = playerInfoFromStats?.off_usage?.value || 0;
-                  const poss = playerInfoFromStats?.off_team_poss?.value || 0;
-                  const effectivePoss = poss * usage;
-
-                  const currRoleFromStats = rosterEntry.role;
-                  if (effectivePoss > 40.0 || !rosterEntry.role) {
-                    //(40 is a pretty arbitrary stat, but if we have a role_from_stats from the prev season or HS analysis it's probably decent)
-                    rosterEntry.role = playerInfoFromStats.role;
-                  }
-                  const roleHasChanged = currRoleFromStats != rosterEntry.role;
-                  if (roleHasChanged) {
-                    console.log(
-                      `Should update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`
-                    );
-                  }
-                  return acc.push(playerCode);
-                } else {
-                  return acc;
-                }
-              },
-              [] as Array<PlayerCode>
-            );
-
-            if (!_.isEmpty(rosterChanges)) {
-              // Write a new roster file
-              if (!ignoreRosterEnrichment) {
-                console.log(
-                  `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
+              // Build all the samples ready for percentiles:
+              // (only do this for full season stats)
+              if ("all" == label) {
+                GradeUtils.buildAndInjectTeamDivisionStats(
+                  teamBaseline,
+                  extraFields,
+                  mutableDivisionStats,
+                  inNaturalTier
                 );
-                //(don't currently need this, the plan was to use it for positional info in PbP)
-                await fs.writeFile(
-                  rosterInfoFile,
-                  JSON.stringify(rosterInfoJsonToWrite)
+              }
+
+              // And yet more derived stats!
+              const topLevelPlayTypeStyles =
+                PlayTypeUtils.buildTopLevelPlayStyles(
+                  rosterGlobalButActuallyBaseline,
+                  globalRosterStatsByCode,
+                  teamBaseline
+                );
+
+              const defSos = teamBaseline?.def_adj_opp?.value || avgEfficiency;
+              const topLevelPlayTypeStylesAdj: TopLevelPlayAnalysis = _.chain(
+                topLevelPlayTypeStyles
+              )
+                .mapValues((stat) => {
+                  return {
+                    ...stat,
+                    adj_pts: {
+                      value: ((stat.pts?.value || 0) * avgEfficiency) / defSos,
+                    },
+                  };
+                })
+                .value();
+
+              // Also calculate defense
+              const topLevelDefensePlayTypeStyles = isCalculatingTeamDefense
+                ? _.chain(
+                    PlayTypeUtils.buildTeamDefenseBreakdown(
+                      PlayTypeUtils.parseTeamDefenseResponse([
+                        teamDefenseResponse.getJsonResponse(0),
+                        teamDefenseResponse.getJsonResponse(1),
+                      ]),
+                      allPlayerStatsCacheByTeam
+                    )
+                  ) //(adj_pts gets injected by buildTeamDefenseBreakdown but not buildTopLevelPlayStyles)
+                    .mapValues((stat) => _.omit(stat, "adj_pts"))
+                    .value()
+                : undefined;
+
+              const offSos = teamBaseline?.off_adj_opp?.value || avgEfficiency;
+              const topLevelDefensePlayTypeStylesAdj =
+                topLevelDefensePlayTypeStyles
+                  ? _.chain(topLevelDefensePlayTypeStyles)
+                      .mapValues((stat) => {
+                        return {
+                          ...stat,
+                          adj_pts: {
+                            value:
+                              ((stat.pts?.value || 0) * avgEfficiency) / offSos,
+                          },
+                        };
+                      })
+                      .value()
+                  : undefined;
+
+              // (only do this for full season stats)
+              if ("all" == label) {
+                GradeUtils.buildAndInjectPlayStyleStats(
+                  topLevelPlayTypeStylesAdj,
+                  topLevelDefensePlayTypeStylesAdj,
+                  mutableDivisionStats,
+                  inNaturalTier
+                );
+              }
+
+              // Apply luck so we have both lucky and non-luck versions
+              const teamBaselineWithLuck = _.cloneDeep(teamBaseline);
+              const defLuckInfo = LuckUtils.calcDefTeamLuckAdj(
+                teamBaselineWithLuck,
+                teamBaseline,
+                avgEfficiency
+              );
+              LuckUtils.injectLuck(
+                teamBaselineWithLuck,
+                undefined,
+                defLuckInfo
+              );
+              //(currently injectTeamDerivedStats does not support luck)
+
+              // TODO: not actually sure what this is used for ..
+              // can I replace it with detailedTeamStats?
+              // (only do this for full season stats)
+              if ("all" == label) {
+                teamStatInfo.push({
+                  team_name: fullRequestModel.team,
+                  gender: fullRequestModel.gender,
+                  year: fullRequestModel.year,
+                  conf: conference,
+
+                  stats: {
+                    // Subset of baseline team stats
+                    ..._.pick(
+                      teamBaselineWithLuck,
+                      _.flatMap(["off", "def"], (prefix) => {
+                        const fields = [
+                          "adj_ppp",
+                          "ppp",
+                          "to",
+                          "3p",
+                          "2p",
+                          "3pr",
+                          "ftr",
+                          "sos",
+                        ];
+                        return fields.map((field) => `${prefix}_${field}`);
+                      }).concat(["tempo"])
+                    ),
+
+                    // Derived stats
+                    ...extraFields,
+                  },
+                });
+              }
+
+              const oppoInfo = _.chain(teamBaseline.game_info?.buckets || [])
+                .flatMap((l) => l?.game_info?.buckets || [])
+                .map((l) => {
+                  // Let's do some marshalling:
+                  const retVal = l?.end_of_game?.hits?.hits?.[0]?._source || {};
+                  retVal.offPoss = l?.off_poss?.value || 0;
+                  retVal.defPoss = l?.def_poss?.value || 0;
+                  retVal.avgLead =
+                    (l?.avg_lead?.value || 0) /
+                    (0.5 * (retVal.offPoss + retVal.defPoss) || 1);
+                  return retVal;
+                })
+                .sortBy((g) => g.date)
+                .flatMap((g) => {
+                  // Get efficiency
+                  const oppoEff = completedEfficiencyInfo?.[g.opponent?.team];
+                  const gameDate = Date.parse(g.date);
+
+                  const isValid =
+                    g.score_info?.end?.scored &&
+                    g.score_info?.end?.allowed &&
+                    oppoEff &&
+                    !Number.isNaN(gameDate);
+
+                  const teamOff = oppoEff?.["stats.adj_off.value"] || 0.0;
+                  const teamDef = oppoEff?.["stats.adj_def.value"] || 0.0;
+                  const locationType = g.location_type as
+                    | "Home"
+                    | "Away"
+                    | "Neutral";
+                  const baseHca = CommonApiUtils.getHca(fullRequestModel);
+                  const actualHca =
+                    locationType == "Home"
+                      ? baseHca
+                      : locationType == "Away"
+                      ? -baseHca
+                      : 0;
+
+                  return isValid
+                    ? [
+                        {
+                          oppo_name: g.opponent?.team || "Unknown",
+                          date_str: (g.date || "").substring(0, 16),
+                          date: Math.floor(gameDate / 1000),
+                          team_scored: g.score_info?.end?.scored || 0,
+                          oppo_scored: g.score_info?.end?.allowed || 0,
+                          off_poss: g.offPoss,
+                          def_poss: g.defPoss,
+                          avg_lead: g.avgLead,
+                          location_type: locationType,
+
+                          rank: oppoEff?.["stats.adj_margin.rank"] || 400,
+                          adj_off: teamOff,
+                          adj_def: teamDef,
+
+                          wae: TeamEvalUtils.calcWinsAbove(
+                            teamOff,
+                            teamDef,
+                            eliteOffenseInfo,
+                            eliteDefenseInfo,
+                            actualHca
+                          ),
+                          wab: TeamEvalUtils.calcWinsAbove(
+                            teamOff,
+                            teamDef,
+                            bubbleOffenseInfo,
+                            bubbleDefenseInfo,
+                            actualHca
+                          ),
+                        },
+                      ]
+                    : [];
+                })
+                .value();
+
+              if (inNaturalTier) {
+                //(only store detailed stats for each team once, regardless of tier overlaps)
+                const detailedTeamElement = {
+                  team_name: fullRequestModel.team,
+                  gender: fullRequestModel.gender,
+                  year: fullRequestModel.year,
+                  conf: conference,
+                  opponents: oppoInfo,
+                  ...teamBaselineWithLuck,
+                  ...extraFields,
+                  style: topLevelPlayTypeStyles,
+                  def_style: topLevelDefensePlayTypeStyles,
+                  game_info: undefined, //(unset game_info, it's already covered more efficiently via oppoInfo)
+                };
+                switch (label) {
+                  case "conf":
+                    detailedTeamInfoConfOnly.push(detailedTeamElement);
+                    break;
+                  case "t100":
+                    detailedTeamInfoT100.push(detailedTeamElement);
+                    break;
+                  default:
+                    detailedTeamInfo.push(detailedTeamElement);
+                    break;
+                }
+              }
+              // "T25 / bubble" leaderboard
+              // (only do this for full season stats)
+              if ("all" == label) {
+                teamInfo.push({
+                  team_name: fullRequestModel.team,
+                  gender: fullRequestModel.gender,
+                  year: fullRequestModel.year,
+                  conf: conference,
+                  adj_off: teamAdjOff,
+                  adj_def: teamAdjDef,
+                  adj_off_calc: teamCalcAdjEffOff,
+                  adj_def_calc: teamCalcAdjEffDef,
+                  adj_off_calc_30d: teamCalcAdjEffOffRecent,
+                  adj_def_calc_30d: teamCalcAdjEffDefRecent,
+
+                  opponents: oppoInfo,
+                });
+              }
+            }
+
+            // Read in on-ball defense if it exists
+            var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
+            if ("all" == label && inGender == "Men" && onBallDefenseEnabled) {
+              const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);
+              const onBallDefenseText = await fs
+                .readFile(onBallDefenseLoc)
+                .then((s: any) => s.toString())
+                .catch((err: any) => {
+                  console.log(`Couldn't load [${onBallDefenseLoc}]: [${err}]`);
+                  return undefined;
+                });
+              if (onBallDefenseText && !testMode) {
+                // Players need code added first, normally happens in buildBaselinePlayerInfo but is needed for "OnBallDefenseUtils.parseContents":
+                (rosterBaseline || []).forEach((mutableP: IndivStatSet) => {
+                  // Code:
+                  mutableP.code = (mutableP.player_array?.hits?.hits?.[0]
+                    ?._source?.player?.code || mutableP.key) as PlayerCode;
+                });
+
+                //Full diag
+                //console.log(`Loaded on-ball defense [${onBallDefenseLoc}]: [${onBallDefenseText}]`)
+
+                onBallDefenseByCode = _.chain(
+                  OnBallDefenseUtils.parseContents(
+                    rosterBaseline,
+                    onBallDefenseText
+                  ).matchedPlayerStats
+                )
+                  .groupBy((p) => p.code)
+                  .mapValues((l) => l[0]!)
+                  .value();
+
+                console.log(
+                  `Incorporated on-ball defense from [${onBallDefenseLoc}] into [${_.size(
+                    onBallDefenseByCode
+                  )}] players`
                 );
               }
             }
-          }
+            //(end on ball defense logic)
 
-          // Team info, for "Build your own T25" and Team Stats Explorer
-          // (Do this for all labels, but only do grades / T25 if "all")
-          if (completedEfficiencyInfo?.[team]) {
-            const teamAdjOff =
-              completedEfficiencyInfo?.[team]?.["stats.adj_off.value"] || 0.0;
-            const teamAdjDef =
-              completedEfficiencyInfo?.[team]?.["stats.adj_def.value"] || 0.0;
-
-            const teamCalcAdjEffOff =
-              teamBaseline.off_adj_ppp?.value || teamAdjOff;
-            const teamCalcAdjEffDef =
-              teamBaseline.def_adj_ppp?.value || teamAdjDef;
-            const teamCalcAdjEffOffRecent =
-              teamRecent.off_adj_ppp?.value || teamCalcAdjEffOff;
-            const teamCalcAdjEffDefRecent =
-              teamRecent.def_adj_ppp?.value || teamCalcAdjEffDef;
-
-            // Add net if the data is available:
-            if (teamBaseline.off_adj_ppp && teamBaseline.def_adj_ppp) {
-              teamBaseline.off_net = {
-                value: teamCalcAdjEffOff - teamCalcAdjEffDef,
-              };
-            }
-            if (teamBaseline.off_ppp && teamBaseline.def_ppp) {
-              teamBaseline.def_net = {
-                value:
-                  (teamBaseline.off_ppp?.value || 100) -
-                  (teamBaseline.def_ppp?.value || 100),
-              };
-            }
-
-            // Add other derived stats:
-            const extraFields = DerivedStatsUtils.injectTeamDerivedStats(
+            const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+              rosterBaseline,
+              globalRosterStatsByCode,
               teamBaseline,
-              {}
+              avgEfficiency,
+              true,
+              "baseline",
+              {},
+              onBallDefenseByCode //(always adjust for luck)
+            );
+            const positionFromPlayerKey =
+              LineupTableUtils.buildPositionPlayerMap(
+                rosterGlobalButActuallyBaseline,
+                teamSeasonLookup,
+                undefined,
+                rosterGeoMap
+              );
+
+            // Using positional info, get the %s the players have at each position:
+            const rosterPositionalInfo = LineupTableUtils.getPositionalInfo(
+              lineups,
+              positionFromPlayerKey,
+              teamSeasonLookup
             );
 
-            // Build all the samples ready for percentiles:
-            // (only do this for full season stats)
-            if ("all" == label) {
-              GradeUtils.buildAndInjectTeamDivisionStats(
-                teamBaseline,
-                extraFields,
-                mutableDivisionStats,
-                inNaturalTier
-              );
-            }
-
-            // And yet more derived stats!
-            const topLevelPlayTypeStyles =
-              PlayTypeUtils.buildTopLevelPlayStyles(
-                rosterGlobalButActuallyBaseline,
-                globalRosterStatsByCode,
-                teamBaseline
+            const [sortedLineups, ignoreDroppedLineups] =
+              LineupTableUtils.buildFilteredLineups(
+                lineups,
+                "",
+                "desc:off_poss",
+                "0",
+                "500", //take all players (sorted by off_pos) with no min poss - will filter later
+                teamSeasonLookup,
+                positionFromPlayerKey
               );
 
-            const defSos = teamBaseline?.def_adj_opp?.value || avgEfficiency;
-            const topLevelPlayTypeStylesAdj: TopLevelPlayAnalysis = _.chain(
-              topLevelPlayTypeStyles
-            )
-              .mapValues((stat) => {
-                return {
-                  ...stat,
-                  adj_pts: {
-                    value: ((stat.pts?.value || 0) * avgEfficiency) / defSos,
-                  },
-                };
-              })
-              .value();
+            // Need these to break down play types a bit (in advance of doing it properly)
+            const extraTotalFieldsToKeep = injectExtraDataForNbaFolks
+              ? new Set(BatchMiscUtils.extraTotalFields)
+              : new Set();
 
-            // Also calculate defense
-            const topLevelDefensePlayTypeStyles = isCalculatingTeamDefense
-              ? _.chain(
-                  PlayTypeUtils.buildTeamDefenseBreakdown(
-                    PlayTypeUtils.parseTeamDefenseResponse([
-                      teamDefenseResponse.getJsonResponse(0),
-                      teamDefenseResponse.getJsonResponse(1),
-                    ]),
-                    allPlayerStatsCacheByTeam
+            // Merge ratings and position, and filter based on offensive possessions played
+            const enrichAndFilter = (
+              playerMap: Record<string, IndivStatSet>,
+              shotChartMap: Record<string, CompressedHexZone>,
+              cutdownLowVolume: boolean
+            ): IndivStatSet[] =>
+              _.toPairs(playerMap)
+                .filter((kv) => {
+                  const minThreshold = cutdownLowVolume
+                    ? 0.125
+                    : lowVolThreshold;
+                  const maxThreshold = cutdownLowVolume ? lowVolThreshold : 2.0; //(10 is effectively infinity)
+
+                  const player = kv[1];
+
+                  const extraPossFactor = (() => {
+                    if (label == "conf") {
+                      return 0.5;
+                    } else if (label == "t100") {
+                      return 0.5;
+                    } else {
+                      return 1;
+                    }
+                  })();
+
+                  const playerPossPct = player.off_team_poss_pct?.value || 0;
+                  const playerPoss = player.off_team_poss?.value || 0; //(despite its name this is the player possessions, not team possessions)
+
+                  // For teams that have played fewer possessions than others we still have a lower limit
+                  //TODO: fix the secondary filter _during_ the year
+                  const secondaryFilter =
+                    !DateUtils.isSeasonFinished(teamYear) ||
+                    playerPoss >
+                      minThreshold *
+                        averagePossInCompletedYear *
+                        extraPossFactor;
+
+                  return (
+                    secondaryFilter &&
+                    playerPossPct > minThreshold &&
+                    playerPossPct < maxThreshold
+                  ); //(>10mpg)
+                })
+                .map((kv: [PlayerId, IndivStatSet]) => {
+                  const posInfo = positionFromPlayerKey[kv[0]] || {};
+                  const player = kv[1];
+
+                  // Apply different criteria depending on how far through the season we are
+                  const offPoss = teamBaseline.off_poss?.value || 2000;
+                  const criteriaMult =
+                    offPoss < 500
+                      ? 0.25
+                      : offPoss < 1000
+                      ? 0.5
+                      : offPoss < 1500
+                      ? 0.75
+                      : 1;
+
+                  // Calculate the % of the time they spend at each position
+                  const countsPerPos = rosterPositionalInfo.map(
+                    (playersPerPos) => {
+                      return _.sumBy(playersPerPos, (posInfo) =>
+                        posInfo.id == kv[0] ? posInfo.numPoss : 0
+                      );
+                    }
+                  );
+                  const totalPositionedPoss = _.sum(countsPerPos);
+                  const posFreqs = countsPerPos.map(
+                    (count) => count / (totalPositionedPoss || 1)
+                  );
+
+                  // For each player we're going to calculate two different play type analyzes:
+                  // what % of their own possessions
+                  // Their per 100 while on the floor
+                  // And then we'll calculate %iles for each
+
+                  const playerDefSos =
+                    player?.def_adj_opp?.value || avgEfficiency;
+
+                  const playerPlayStyleBreakdowns = _.chain(
+                    PlayTypeUtils.buildTopLevelIndivPlayStyles(
+                      player,
+                      globalRosterStatsByCode,
+                      teamBaseline,
+                      false
+                    )
                   )
-                ) //(adj_pts gets injected by buildTeamDefenseBreakdown but not buildTopLevelPlayStyles)
-                  .mapValues((stat) => _.omit(stat, "adj_pts"))
-                  .value()
-              : undefined;
-
-            const offSos = teamBaseline?.off_adj_opp?.value || avgEfficiency;
-            const topLevelDefensePlayTypeStylesAdj =
-              topLevelDefensePlayTypeStyles
-                ? _.chain(topLevelDefensePlayTypeStyles)
                     .mapValues((stat) => {
                       return {
                         ...stat,
                         adj_pts: {
                           value:
-                            ((stat.pts?.value || 0) * avgEfficiency) / offSos,
+                            ((stat.pts?.value || 0) * avgEfficiency) /
+                            playerDefSos,
                         },
                       };
                     })
-                    .value()
-                : undefined;
+                    .value();
 
-            // (only do this for full season stats)
-            if ("all" == label) {
-              GradeUtils.buildAndInjectPlayStyleStats(
-                topLevelPlayTypeStylesAdj,
-                topLevelDefensePlayTypeStylesAdj,
-                mutableDivisionStats,
-                inNaturalTier
-              );
-            }
+                  // Store either directly or in compressed format
+                  (player as any).style = injectExtraDataForNbaFolks
+                    ? playerPlayStyleBreakdowns
+                    : PlayTypeUtils.compressIndivPlayType(
+                        playerPlayStyleBreakdowns
+                      );
 
-            // Apply luck so we have both lucky and non-luck versions
-            const teamBaselineWithLuck = _.cloneDeep(teamBaseline);
-            const defLuckInfo = LuckUtils.calcDefTeamLuckAdj(
-              teamBaselineWithLuck,
-              teamBaseline,
-              avgEfficiency
-            );
-            LuckUtils.injectLuck(teamBaselineWithLuck, undefined, defLuckInfo);
-            //(currently injectTeamDerivedStats does not support luck)
+                  // And write to grade file:
 
-            // TODO: not actually sure what this is used for ..
-            // can I replace it with detailedTeamStats?
-            // (only do this for full season stats)
-            if ("all" == label) {
-              teamStatInfo.push({
-                team_name: fullRequestModel.team,
-                gender: fullRequestModel.gender,
-                year: fullRequestModel.year,
-                conf: conference,
-
-                stats: {
-                  // Subset of baseline team stats
-                  ..._.pick(
-                    teamBaselineWithLuck,
-                    _.flatMap(["off", "def"], (prefix) => {
-                      const fields = [
-                        "adj_ppp",
-                        "ppp",
-                        "to",
-                        "3p",
-                        "2p",
-                        "3pr",
-                        "ftr",
-                        "sos",
-                      ];
-                      return fields.map((field) => `${prefix}_${field}`);
-                    }).concat(["tempo"])
-                  ),
-
-                  // Derived stats
-                  ...extraFields,
-                },
-              });
-            }
-
-            const oppoInfo = _.chain(teamBaseline.game_info?.buckets || [])
-              .flatMap((l) => l?.game_info?.buckets || [])
-              .map((l) => {
-                // Let's do some marshalling:
-                const retVal = l?.end_of_game?.hits?.hits?.[0]?._source || {};
-                retVal.offPoss = l?.off_poss?.value || 0;
-                retVal.defPoss = l?.def_poss?.value || 0;
-                retVal.avgLead =
-                  (l?.avg_lead?.value || 0) /
-                  (0.5 * (retVal.offPoss + retVal.defPoss) || 1);
-                return retVal;
-              })
-              .sortBy((g) => g.date)
-              .flatMap((g) => {
-                // Get efficiency
-                const oppoEff = completedEfficiencyInfo?.[g.opponent?.team];
-                const gameDate = Date.parse(g.date);
-
-                const isValid =
-                  g.score_info?.end?.scored &&
-                  g.score_info?.end?.allowed &&
-                  oppoEff &&
-                  !Number.isNaN(gameDate);
-
-                const teamOff = oppoEff?.["stats.adj_off.value"] || 0.0;
-                const teamDef = oppoEff?.["stats.adj_def.value"] || 0.0;
-                const locationType = g.location_type as
-                  | "Home"
-                  | "Away"
-                  | "Neutral";
-                const baseHca = CommonApiUtils.getHca(fullRequestModel);
-                const actualHca =
-                  locationType == "Home"
-                    ? baseHca
-                    : locationType == "Away"
-                    ? -baseHca
-                    : 0;
-
-                return isValid
-                  ? [
-                      {
-                        oppo_name: g.opponent?.team || "Unknown",
-                        date_str: (g.date || "").substring(0, 16),
-                        date: Math.floor(gameDate / 1000),
-                        team_scored: g.score_info?.end?.scored || 0,
-                        oppo_scored: g.score_info?.end?.allowed || 0,
-                        off_poss: g.offPoss,
-                        def_poss: g.defPoss,
-                        avg_lead: g.avgLead,
-                        location_type: locationType,
-
-                        rank: oppoEff?.["stats.adj_margin.rank"] || 400,
-                        adj_off: teamOff,
-                        adj_def: teamDef,
-
-                        wae: TeamEvalUtils.calcWinsAbove(
-                          teamOff,
-                          teamDef,
-                          eliteOffenseInfo,
-                          eliteDefenseInfo,
-                          actualHca
-                        ),
-                        wab: TeamEvalUtils.calcWinsAbove(
-                          teamOff,
-                          teamDef,
-                          bubbleOffenseInfo,
-                          bubbleDefenseInfo,
-                          actualHca
-                        ),
-                      },
-                    ]
-                  : [];
-              })
-              .value();
-
-            if (inNaturalTier) {
-              //(only store detailed stats for each team once, regardless of tier overlaps)
-              const detailedTeamElement = {
-                team_name: fullRequestModel.team,
-                gender: fullRequestModel.gender,
-                year: fullRequestModel.year,
-                conf: conference,
-                opponents: oppoInfo,
-                ...teamBaselineWithLuck,
-                ...extraFields,
-                style: topLevelPlayTypeStyles,
-                def_style: topLevelDefensePlayTypeStyles,
-                game_info: undefined, //(unset game_info, it's already covered more efficiently via oppoInfo)
-              };
-              switch (label) {
-                case "conf":
-                  detailedTeamInfoConfOnly.push(detailedTeamElement);
-                  break;
-                case "t100":
-                  detailedTeamInfoT100.push(detailedTeamElement);
-                  break;
-                default:
-                  detailedTeamInfo.push(detailedTeamElement);
-                  break;
-              }
-            }
-            // "T25 / bubble" leaderboard
-            // (only do this for full season stats)
-            if ("all" == label) {
-              teamInfo.push({
-                team_name: fullRequestModel.team,
-                gender: fullRequestModel.gender,
-                year: fullRequestModel.year,
-                conf: conference,
-                adj_off: teamAdjOff,
-                adj_def: teamAdjDef,
-                adj_off_calc: teamCalcAdjEffOff,
-                adj_def_calc: teamCalcAdjEffDef,
-                adj_off_calc_30d: teamCalcAdjEffOffRecent,
-                adj_def_calc_30d: teamCalcAdjEffDefRecent,
-
-                opponents: oppoInfo,
-              });
-            }
-          }
-
-          // Read in on-ball defense if it exists
-          var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
-          if ("all" == label && inGender == "Men" && onBallDefenseEnabled) {
-            const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);
-            const onBallDefenseText = await fs
-              .readFile(onBallDefenseLoc)
-              .then((s: any) => s.toString())
-              .catch((err: any) => {
-                console.log(`Couldn't load [${onBallDefenseLoc}]: [${err}]`);
-                return undefined;
-              });
-            if (onBallDefenseText && !testMode) {
-              // Players need code added first, normally happens in buildBaselinePlayerInfo but is needed for "OnBallDefenseUtils.parseContents":
-              (rosterBaseline || []).forEach((mutableP: IndivStatSet) => {
-                // Code:
-                mutableP.code = (mutableP.player_array?.hits?.hits?.[0]?._source
-                  ?.player?.code || mutableP.key) as PlayerCode;
-              });
-
-              //Full diag
-              //console.log(`Loaded on-ball defense [${onBallDefenseLoc}]: [${onBallDefenseText}]`)
-
-              onBallDefenseByCode = _.chain(
-                OnBallDefenseUtils.parseContents(
-                  rosterBaseline,
-                  onBallDefenseText
-                ).matchedPlayerStats
-              )
-                .groupBy((p) => p.code)
-                .mapValues((l) => l[0]!)
-                .value();
-
-              console.log(
-                `Incorporated on-ball defense from [${onBallDefenseLoc}] into [${_.size(
-                  onBallDefenseByCode
-                )}] players`
-              );
-            }
-          }
-          //(end on ball defense logic)
-
-          const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterBaseline,
-            globalRosterStatsByCode,
-            teamBaseline,
-            avgEfficiency,
-            true,
-            "baseline",
-            {},
-            onBallDefenseByCode //(always adjust for luck)
-          );
-          const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(
-            rosterGlobalButActuallyBaseline,
-            teamSeasonLookup,
-            undefined,
-            rosterGeoMap
-          );
-
-          // Using positional info, get the %s the players have at each position:
-          const rosterPositionalInfo = LineupTableUtils.getPositionalInfo(
-            lineups,
-            positionFromPlayerKey,
-            teamSeasonLookup
-          );
-
-          const [sortedLineups, ignoreDroppedLineups] =
-            LineupTableUtils.buildFilteredLineups(
-              lineups,
-              "",
-              "desc:off_poss",
-              "0",
-              "500", //take all players (sorted by off_pos) with no min poss - will filter later
-              teamSeasonLookup,
-              positionFromPlayerKey
-            );
-
-          // Need these to break down play types a bit (in advance of doing it properly)
-          const extraTotalFieldsToKeep = injectExtraDataForNbaFolks
-            ? new Set(BatchMiscUtils.extraTotalFields)
-            : new Set();
-
-          // Merge ratings and position, and filter based on offensive possessions played
-          const enrichAndFilter = (
-            playerMap: Record<string, IndivStatSet>,
-            shotChartMap: Record<string, CompressedHexZone>,
-            cutdownLowVolume: boolean
-          ): IndivStatSet[] =>
-            _.toPairs(playerMap)
-              .filter((kv) => {
-                const minThreshold = cutdownLowVolume ? 0.125 : lowVolThreshold;
-                const maxThreshold = cutdownLowVolume ? lowVolThreshold : 2.0; //(10 is effectively infinity)
-
-                const player = kv[1];
-
-                const extraPossFactor = (() => {
-                  if (label == "conf") {
-                    return 0.5;
-                  } else if (label == "t100") {
-                    return 0.5;
-                  } else {
-                    return 1;
-                  }
-                })();
-
-                const playerPossPct = player.off_team_poss_pct?.value || 0;
-                const playerPoss = player.off_team_poss?.value || 0; //(despite its name this is the player possessions, not team possessions)
-
-                // For teams that have played fewer possessions than others we still have a lower limit
-                //TODO: fix the secondary filter _during_ the year
-                const secondaryFilter =
-                  !DateUtils.isSeasonFinished(teamYear) ||
-                  playerPoss >
-                    minThreshold * averagePossInCompletedYear * extraPossFactor;
-
-                return (
-                  secondaryFilter &&
-                  playerPossPct > minThreshold &&
-                  playerPossPct < maxThreshold
-                ); //(>10mpg)
-              })
-              .map((kv: [PlayerId, IndivStatSet]) => {
-                const posInfo = positionFromPlayerKey[kv[0]] || {};
-                const player = kv[1];
-
-                // Apply different criteria depending on how far through the season we are
-                const offPoss = teamBaseline.off_poss?.value || 2000;
-                const criteriaMult =
-                  offPoss < 500
-                    ? 0.25
-                    : offPoss < 1000
-                    ? 0.5
-                    : offPoss < 1500
-                    ? 0.75
-                    : 1;
-
-                // Calculate the % of the time they spend at each position
-                const countsPerPos = rosterPositionalInfo.map(
-                  (playersPerPos) => {
-                    return _.sumBy(playersPerPos, (posInfo) =>
-                      posInfo.id == kv[0] ? posInfo.numPoss : 0
-                    );
-                  }
-                );
-                const totalPositionedPoss = _.sum(countsPerPos);
-                const posFreqs = countsPerPos.map(
-                  (count) => count / (totalPositionedPoss || 1)
-                );
-
-                // For each player we're going to calculate two different play type analyzes:
-                // what % of their own possessions
-                // Their per 100 while on the floor
-                // And then we'll calculate %iles for each
-
-                const playerDefSos =
-                  player?.def_adj_opp?.value || avgEfficiency;
-
-                const playerPlayStyleBreakdowns = _.chain(
-                  PlayTypeUtils.buildTopLevelIndivPlayStyles(
-                    player,
-                    globalRosterStatsByCode,
-                    teamBaseline,
-                    false
-                  )
-                )
-                  .mapValues((stat) => {
-                    return {
-                      ...stat,
-                      adj_pts: {
-                        value:
-                          ((stat.pts?.value || 0) * avgEfficiency) /
-                          playerDefSos,
-                      },
-                    };
-                  })
-                  .value();
-
-                // Store either directly or in compressed format
-                (player as any).style = injectExtraDataForNbaFolks
-                  ? playerPlayStyleBreakdowns
-                  : PlayTypeUtils.compressIndivPlayType(
+                  if (label == "all") {
+                    // (these stats have too few to grade)
+                    // TODO; move this into GradeUtils
+                    const playStyleBreakdownsTypesToIgnore = _.chain(
                       playerPlayStyleBreakdowns
-                    );
-
-                // And write to grade file:
-
-                if (label == "all") {
-                  // (these stats have too few to grade)
-                  // TODO; move this into GradeUtils
-                  const playStyleBreakdownsTypesToIgnore = _.chain(
-                    playerPlayStyleBreakdowns
-                  )
-                    .flatMap((stat, val) => {
-                      const teamPossForStyle =
-                        (stat.possPctUsg?.value || 0) *
-                        (player.off_team_poss?.value || 0);
-                      return teamPossForStyle >= 10 * criteriaMult //(arbtirary number)
-                        ? []
-                        : ([val] as TopLevelIndivPlayType[]);
-                    })
-                    .value();
-
-                  // DIAG FOR OMITTING
-                  // console.log(
-                  //   `${player.code} [${
-                  //     player.off_team_poss?.value || 0
-                  //   }]: OMIT [${playStyleBreakdownsTypesToIgnore}] (${playStyleBreakdownsTypesToIgnore.map(
-                  //     (t) =>
-                  //       playerPlayStyleBreakdowns[t]?.possPctUsg?.value || -1
-                  //   )})`
-                  // );
-
-                  GradeUtils.buildAndInjectIndivPlayStyleStats(
-                    _.omit(
-                      playerPlayStyleBreakdowns,
-                      playStyleBreakdownsTypesToIgnore
-                    ) as TopLevelIndivPlayAnalysis,
-                    undefined, //(no defence currently)
-                    mutablePlayerDivisionStats,
-                    inNaturalTier
-                  );
-                  // Also per position grouping:
-                  (
-                    PositionUtils.positionsToGroup[posInfo.posClass] || []
-                  ).forEach((posGroup) => {
-                    const mutablePosGroupDivStats =
-                      mutablePlayerDivisionStats_byPosGroup[posGroup];
-                    if (mutablePosGroupDivStats) {
-                      GradeUtils.buildAndInjectIndivPlayStyleStats(
-                        _.omit(
-                          playerPlayStyleBreakdowns,
-                          playStyleBreakdownsTypesToIgnore
-                        ) as TopLevelIndivPlayAnalysis,
-                        undefined, //(no defence currently)
-                        mutablePosGroupDivStats,
-                        inNaturalTier
-                      );
-                    }
-                  });
-                }
-
-                // Remove offensive luck apart from RAPM (everything else is normalized to data set)
-                [
-                  "off_rtg",
-                  "off_adj_rtg",
-                  "off_adj_prod",
-                  "off_efg",
-                  "off_3p",
-                ].forEach((field) => {
-                  if (!_.isNil(player[field]?.old_value))
-                    delete player[field]?.old_value;
-                  if (!_.isNil(player[field]?.override))
-                    delete player[field]?.override;
-                });
-
-                // Improving wording of explanation of def rtg improvements
-                if (player.diag_def_rtg?.onBallDef) {
-                  ["def_rtg", "def_adj_rtg", "def_adj_prod"].forEach(
-                    (field) => {
-                      //Note: also copied into RAPM below
-                      if (!_.isNil(player[field]))
-                        player[field].extraInfo = "PREPROCESSING_WARNING"; //(used in PlayerLeaderboardTable)
-                    }
-                  );
-                }
-                if ("all" == label) {
-                  // Everything except RAPM (we do it here because we need total_*, which get removed below)
-                  GradeUtils.buildAndInjectPlayerDivisionStats(
-                    player,
-                    mutablePlayerDivisionStats,
-                    inNaturalTier,
-                    undefined,
-                    criteriaMult
-                  );
-                  // Also per position grouping:
-                  (
-                    PositionUtils.positionsToGroup[posInfo.posClass] || []
-                  ).forEach((posGroup) => {
-                    const mutablePosGroupDivStats =
-                      mutablePlayerDivisionStats_byPosGroup[posGroup];
-                    if (mutablePosGroupDivStats) {
-                      GradeUtils.buildAndInjectPlayerDivisionStats(
-                        player,
-                        mutablePosGroupDivStats,
-                        inNaturalTier,
-                        undefined,
-                        criteriaMult
-                      );
-                    }
-                  });
-                }
-
-                /** From eg [0, 1, 2, 3, 4] to { pg: 0, sg: 1, etc } */
-                const maybeConvertPosInfo = (
-                  posInfo: number[]
-                ): Record<string, number> | number[] => {
-                  if (injectExtraDataForNbaFolks) {
-                    return _.chain(posInfo || [])
-                      .transform((acc, val, valIndex) => {
-                        const posKey = (
-                          PositionUtils.tradPosList[valIndex] || "pos_unk"
-                        ).substring(4); //(skip over pos_)
-                        acc[posKey] = val;
-                      }, {} as Record<string, number>)
+                    )
+                      .flatMap((stat, val) => {
+                        const teamPossForStyle =
+                          (stat.possPctUsg?.value || 0) *
+                          (player.off_team_poss?.value || 0);
+                        return teamPossForStyle >= 10 * criteriaMult //(arbtirary number)
+                          ? []
+                          : ([val] as TopLevelIndivPlayType[]);
+                      })
                       .value();
-                  } else {
-                    return posInfo;
-                  }
-                };
 
-                return {
-                  /** _id used for indexing purposes, will mostly use NCAA id */
-                  _id: `${
-                    rosterInfoJson?.[player.code || ""]?.player_code_id
-                      ?.ncaa_id ||
-                    `${player.code || kv[0]}${player.team || ""}`.replace(
-                      /[^A-Z]/gi,
-                      ""
-                    )
-                  }_${inGender}_${inYear.substring(0, 4)}_${label}`,
-                  key: kv[0],
-                  conf: conference,
-                  team: team,
-                  year: teamYear,
-                  shotInfo: shotChartMap[kv[0]],
-                  style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this
-                  posFreqs: maybeConvertPosInfo(posFreqs),
-                  ...(_.chain(player) //(for lowvol players (cutdownLowVolume) we used to just call lowVolumeStripPlayerInfo instead, but trying with all info)
-                    .toPairs()
-                    .filter(
-                      (
-                        t2 //Reduce down to the field we'll actually need
-                      ) =>
-                        t2[0] == "off_team_poss" ||
-                        t2[0] == "off_team_poss_pct" ||
-                        t2[0] == "def_team_poss" ||
-                        t2[0] == "def_team_poss_pct" ||
-                        (t2[0] != "diag_off_rtg" &&
-                          t2[0] != "diag_def_rtg" &&
-                          t2[0] != "off_luck" &&
-                          t2[0] != "def_luck" &&
-                          !_.startsWith(t2[0], "off_team_") &&
-                          !_.startsWith(t2[0], "def_team_") &&
-                          !_.startsWith(t2[0], "off_oppo_") &&
-                          !_.startsWith(t2[0], "def_oppo_") &&
-                          !_.startsWith(t2[0], "team_") &&
-                          !_.startsWith(t2[0], "oppo_") &&
-                          !(
-                            _.startsWith(t2[0], "total_") &&
-                            !GradeUtils.playerTotalsToKeep.has(t2[0]) &&
-                            !extraTotalFieldsToKeep.has(t2[0])
-                          ) &&
-                          !_.endsWith(t2[0], "_target") &&
-                          !_.endsWith(t2[0], "_source") &&
-                          t2[0] != "player_array" &&
-                          t2[0] != "role" &&
-                          t2[0] != "roster")
-                    )
-                    .fromPairs()
-                    .value() as PureStatSet),
-                  ...posInfo,
-                  posConfidences: maybeConvertPosInfo(posInfo.posConfidences),
-                } as IndivStatSet;
-              });
+                    // DIAG FOR OMITTING
+                    // console.log(
+                    //   `${player.code} [${
+                    //     player.off_team_poss?.value || 0
+                    //   }]: OMIT [${playStyleBreakdownsTypesToIgnore}] (${playStyleBreakdownsTypesToIgnore.map(
+                    //     (t) =>
+                    //       playerPlayStyleBreakdowns[t]?.possPctUsg?.value || -1
+                    //   )})`
+                    // );
 
-          const enrichedAndFilteredPlayers = enrichAndFilter(
-            baselinePlayerInfo,
-            rosterShotChartMap,
-            false
-          );
-          // In "all" mode (ie for predictions) we keep a list of players with fewer minutes but who are still noteworthy
-          const cutdownEnrichedPlayers =
-            label == "all" ? enrichAndFilter(baselinePlayerInfo, {}, true) : [];
-
-          const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
-            sortedLineups,
-            teamGlobal,
-            rosterGlobalButActuallyBaseline,
-            teamBaseline,
-            true,
-            "baseline",
-            avgEfficiency,
-            false,
-            teamSeasonLookup,
-            positionFromPlayerKey,
-            baselinePlayerInfo
-          );
-
-          // Now do all the RAPM work (after luck has been adjusted)
-          if (!ignoreRapm) {
-            //(TODO: test data isn't big enough to calc RAPM so ignore for now in unit test)
-            const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
-              preRapmTableData,
-              baselinePlayerInfo,
-              true, //<-always adjust for luck
-              avgEfficiency,
-              genderYearLookup
-            );
-            const enrichedAndFilteredPlayersMap = _.fromPairs(
-              enrichedAndFilteredPlayers.map((p) => [p.key, p])
-            );
-            const cutdownEnrichedPlayersMap = _.fromPairs(
-              cutdownEnrichedPlayers.map((p) => [p.key, p])
-            );
-            (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
-              const player = (enrichedAndFilteredPlayersMap[rapmP.playerId] ||
-                cutdownEnrichedPlayersMap[rapmP.playerId]) as Record<
-                string,
-                any
-              >;
-
-              // RAPM (rating + productions)
-              if (player && rapmP.rapm) {
-                player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
-                player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
-
-                const cutdownMode = _.isNil(
-                  enrichedAndFilteredPlayersMap[rapmP.playerId]
-                );
-
-                if (injectExtraDataForNbaFolks) {
-                  player.rapm = _.omit(rapmP.rapm, [
-                    "key",
-                    "off_sep2-1",
-                    "off_sep2-2",
-                    "def_sep2-1",
-                    "def_sep2-2",
-                  ]);
-                  // Also let's create an on/off net inside "rapm" since someone asked for that
-                  player.on = _.chain(rapmP.on)
-                    .toPairs()
-                    .filter(
-                      ([key, val]) =>
-                        _.startsWith(key, "off_") || _.startsWith(key, "def")
-                    )
-                    .filter(
-                      (
-                        [key, val] //(remove scramble and transition stats, which don't seem to be included)
-                      ) =>
-                        !_.includes(key, "f_scramble_") &&
-                        !_.includes(key, "f_trans_") &&
-                        !_.endsWith(key, "_luck_diags")
-                    )
-                    .fromPairs()
-                    .value();
-                  player.off = _.chain(rapmP.off)
-                    .toPairs()
-                    .filter(
-                      ([key, val]) =>
-                        _.startsWith(key, "off_") || _.startsWith(key, "def")
-                    )
-                    .filter(
-                      (
-                        [key, val] //(remove scramble and transition stats, which don't seem to be included)
-                      ) =>
-                        !_.includes(key, "f_scramble_") &&
-                        !_.includes(key, "f_trans_") &&
-                        !_.endsWith(key, "_luck_diags")
-                    )
-                    .fromPairs()
-                    .value();
-                }
-
-                if (cutdownMode) {
-                  //(cutdown mode, pare down RAPM still further)
-                  if (player.off_adj_rapm) {
-                    (player.off_adj_rapm as Statistic).old_value = undefined;
-                    (player.off_adj_rapm as Statistic).override = undefined;
-                  }
-                  if (player.def_adj_rapm) {
-                    (player.def_adj_rapm as Statistic).old_value = undefined;
-                    (player.def_adj_rapm as Statistic).override = undefined;
-                  }
-                } else {
-                  //(normal mode, bunch of other stats)
-                  player.off_adj_rapm_prod = {
-                    value:
-                      rapmP.rapm!.off_adj_ppp!.value! *
-                      player.off_team_poss_pct!.value!,
-                  };
-                  if (player.def_adj_rapm && player.def_adj_rtg?.extraInfo) {
-                    player.def_adj_rapm.extraInfo =
-                      player.def_adj_rtg?.extraInfo; //(on-ball defense context, def_adj_rtg is a prior for RAPM)
-                  }
-                  player.def_adj_rapm_prod = {
-                    value:
-                      rapmP.rapm!.def_adj_ppp!.value! *
-                      player.def_team_poss_pct!.value!,
-                    old_value:
-                      (rapmP.rapm?.def_adj_ppp?.old_value || 0) *
-                      player.def_team_poss_pct!.value!,
-                    override: rapmP.rapm?.def_adj_ppp?.override,
-                    extraInfo: player.def_adj_prod?.extraInfo, //(on-ball defense context, def_adj_rtg is a prior for RAPM)
-                  };
-                  const simpleRapmFieldsToGrade = _.flatMap(
-                    ["adj_rapm", "adj_rapm_prod"],
-                    (k) => [`off_${k}`, `def_${k}`]
-                  );
-                  const derivedRapmFieldsToGrade = [
-                    "off_adj_rapm_margin",
-                    "off_adj_rapm_prod_margin",
-                  ];
-
-                  //(for advanced NBA stats)
-                  const onOffFieldsToGrade = _.chain(["on_", "off_", "diff_"])
-                    .flatMap((prefix) => {
-                      return [`${prefix}off_`, `${prefix}def_`];
-                    })
-                    .flatMap((prefix) => {
-                      return [
-                        "ppp", //(TODO: surely this a list somewhere, it's the "base table set of stats")
-                        "adj_ppp",
-                        "efg",
-                        "assist",
-                        "to",
-                        "orb",
-                        "ftr",
-                        "3p",
-                        "3pr",
-                        "2pmidr",
-                        "2pmid",
-                        "2primr",
-                        "2prim",
-                      ].map((k) => `${prefix}${k}`);
-                    })
-                    .value();
-
-                  //(for advanced NBA stats)
-                  const onOffStatAccessor = (dataSet: any, field: string) => {
-                    if (field.startsWith("on_")) {
-                      return dataSet.on?.[`${field.substring(3)}`]?.value;
-                    } else if (field.startsWith("off_")) {
-                      return dataSet.off?.[`${field.substring(4)}`]?.value;
-                    } else if (field.startsWith("diff_")) {
-                      const valOn =
-                        dataSet.on?.[`${field.substring(5)}`]?.value;
-                      const valOff =
-                        dataSet.off?.[`${field.substring(5)}`]?.value;
-                      if (!_.isNil(valOn) && !_.isNil(valOff)) {
-                        return valOn - valOff;
-                      } else {
-                        return undefined;
+                    GradeUtils.buildAndInjectIndivPlayStyleStats(
+                      _.omit(
+                        playerPlayStyleBreakdowns,
+                        playStyleBreakdownsTypesToIgnore
+                      ) as TopLevelIndivPlayAnalysis,
+                      undefined, //(no defence currently)
+                      mutablePlayerDivisionStats,
+                      inNaturalTier
+                    );
+                    // Also per position grouping:
+                    (
+                      PositionUtils.positionsToGroup[posInfo.posClass] || []
+                    ).forEach((posGroup) => {
+                      const mutablePosGroupDivStats =
+                        mutablePlayerDivisionStats_byPosGroup[posGroup];
+                      if (mutablePosGroupDivStats) {
+                        GradeUtils.buildAndInjectIndivPlayStyleStats(
+                          _.omit(
+                            playerPlayStyleBreakdowns,
+                            playStyleBreakdownsTypesToIgnore
+                          ) as TopLevelIndivPlayAnalysis,
+                          undefined, //(no defence currently)
+                          mutablePosGroupDivStats,
+                          inNaturalTier
+                        );
                       }
-                    } else {
-                      return dataSet[field]?.value;
-                    }
-                  };
+                    });
+                  }
 
+                  // Remove offensive luck apart from RAPM (everything else is normalized to data set)
+                  [
+                    "off_rtg",
+                    "off_adj_rtg",
+                    "off_adj_prod",
+                    "off_efg",
+                    "off_3p",
+                  ].forEach((field) => {
+                    if (!_.isNil(player[field]?.old_value))
+                      delete player[field]?.old_value;
+                    if (!_.isNil(player[field]?.override))
+                      delete player[field]?.override;
+                  });
+
+                  // Improving wording of explanation of def rtg improvements
+                  if (player.diag_def_rtg?.onBallDef) {
+                    ["def_rtg", "def_adj_rtg", "def_adj_prod"].forEach(
+                      (field) => {
+                        //Note: also copied into RAPM below
+                        if (!_.isNil(player[field]))
+                          player[field].extraInfo = "PREPROCESSING_WARNING"; //(used in PlayerLeaderboardTable)
+                      }
+                    );
+                  }
                   if ("all" == label) {
+                    // Everything except RAPM (we do it here because we need total_*, which get removed below)
                     GradeUtils.buildAndInjectPlayerDivisionStats(
                       player,
                       mutablePlayerDivisionStats,
                       inNaturalTier,
-                      simpleRapmFieldsToGrade
+                      undefined,
+                      criteriaMult
                     );
-                    const otherRapmValues = {
-                      off_team_poss_pct: {
-                        value: player.off_team_poss_pct?.value || 0,
-                      },
-                      off_adj_rapm_margin: {
-                        value:
-                          (player.off_adj_rapm?.value || 0) -
-                          (player.def_adj_rapm?.value || 0),
-                      },
-                      off_adj_rapm_prod_margin: {
-                        value:
-                          (player.off_adj_rapm_prod?.value || 0) -
-                          (player.def_adj_rapm_prod?.value || 0),
-                      },
-                    };
-                    GradeUtils.buildAndInjectPlayerDivisionStats(
-                      otherRapmValues,
-                      mutablePlayerDivisionStats,
-                      inNaturalTier,
-                      derivedRapmFieldsToGrade
-                    );
-
-                    // When creating extra data for NBA folks, add on/off percentiles
-                    if (injectExtraDataForNbaFolks) {
-                      GradeUtils.buildAndInjectPlayerDivisionStats(
-                        player,
-                        mutablePlayerDivisionStats,
-                        inNaturalTier,
-                        onOffFieldsToGrade,
-                        1.0,
-                        onOffStatAccessor
-                      );
-
-                      // Also in "extra NBA mode" we'll add player percentiles if they exist:
-                      if (playerGradesJson) {
-                        const nbaPercentiles =
-                          GradeUtils.buildPlayerPercentiles(
-                            playerGradesJson,
-                            player,
-                            simpleRapmFieldsToGrade,
-                            false //(percentile not rank)
-                          );
-                        const nbaPercentilesExtraRapm =
-                          GradeUtils.buildPlayerPercentiles(
-                            playerGradesJson,
-                            otherRapmValues,
-                            derivedRapmFieldsToGrade,
-                            false //(percentile not rank)
-                          );
-                        const nbaPercentilesOnOff = GradeUtils.buildPercentiles(
-                          playerGradesJson,
-                          player,
-                          onOffFieldsToGrade,
-                          _.chain(onOffFieldsToGrade)
-                            .filter((field) => field.includes("def_"))
-                            .map((field) => [field, true])
-                            .fromPairs()
-                            .value(),
-                          false,
-                          false,
-                          onOffStatAccessor
-                        );
-                        _.chain(nbaPercentiles)
-                          .toPairs()
-                          .concat(_.toPairs(nbaPercentilesExtraRapm))
-                          .concat(_.toPairs(nbaPercentilesOnOff))
-                          .forEach((kv) => {
-                            const field = kv[0];
-                            const statVal = kv[1];
-                            if (field.startsWith("on_")) {
-                              const subField = field.substring(3);
-                              if (
-                                player.on?.[subField] &&
-                                !_.isNil(statVal?.value)
-                              ) {
-                                player.on[subField].pctile = statVal.value;
-                              }
-                            } else if (
-                              field.startsWith("off_off_") ||
-                              field.startsWith("off_def_")
-                            ) {
-                              const subField = field.substring(4);
-                              if (
-                                player.off?.[subField] &&
-                                !_.isNil(statVal?.value)
-                              ) {
-                                player.off[subField].pctile = statVal.value;
-                              }
-                            } else if (field.startsWith("diff_")) {
-                              const subField = field.substring(5);
-                              if (
-                                player.on?.[subField] &&
-                                !_.isNil(statVal?.value)
-                              ) {
-                                player.on[subField].diff_pctile = statVal.value;
-                              }
-                            } else if (field == "off_adj_rapm_margin") {
-                              const placeholderField = "off_adj_rapm";
-                              if (
-                                player[placeholderField] &&
-                                !_.isNil(statVal?.value)
-                              ) {
-                                player[placeholderField].diff_pctile =
-                                  kv[1].value;
-                              }
-                            } else {
-                              if (player[field] && !_.isNil(statVal?.value)) {
-                                player[field].pctile = statVal.value;
-                              }
-                            }
-                          })
-                          .value();
-
-                        //TODO: more complex on/off fields
-
-                        //DEBUG:
-                        // console.log(
-                        //   `[${player.key}]: [${JSON.stringify(
-                        //     nbaPercentilesOnOff
-                        //   )}]`
-                        // );
-                      }
-                    }
-
-                    // Again, per position grouping:
+                    // Also per position grouping:
                     (
-                      PositionUtils.positionsToGroup[player.posClass] || []
+                      PositionUtils.positionsToGroup[posInfo.posClass] || []
                     ).forEach((posGroup) => {
                       const mutablePosGroupDivStats =
                         mutablePlayerDivisionStats_byPosGroup[posGroup];
@@ -1651,140 +1268,550 @@ export async function main() {
                           player,
                           mutablePosGroupDivStats,
                           inNaturalTier,
-                          simpleRapmFieldsToGrade
-                        );
-                        GradeUtils.buildAndInjectPlayerDivisionStats(
-                          otherRapmValues,
-                          mutablePosGroupDivStats,
-                          inNaturalTier,
-                          derivedRapmFieldsToGrade
+                          undefined,
+                          criteriaMult
                         );
                       }
                     });
                   }
 
-                  // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
-                  ["off_adj_rapm", "off_adj_rapm_prod"].forEach((field) => {
-                    const maybeRapm = player[field];
-                    if (
-                      !DateUtils.lineupsHavePlayerShotInfo(genderYearLookup)
-                    ) {
-                      if (maybeRapm?.old_value) {
-                        maybeRapm.value = maybeRapm.old_value;
-                        delete maybeRapm.override;
-                      }
-                    } else if (maybeRapm?.override) {
-                      // Improve wording of luck override if we're keeping it
-                      maybeRapm.override =
-                        "Adjusted from per-lineup 3P% luck adjustments";
+                  /** From eg [0, 1, 2, 3, 4] to { pg: 0, sg: 1, etc } */
+                  const maybeConvertPosInfo = (
+                    posInfo: number[]
+                  ): Record<string, number> | number[] => {
+                    if (injectExtraDataForNbaFolks) {
+                      return _.chain(posInfo || [])
+                        .transform((acc, val, valIndex) => {
+                          const posKey = (
+                            PositionUtils.tradPosList[valIndex] || "pos_unk"
+                          ).substring(4); //(skip over pos_)
+                          acc[posKey] = val;
+                        }, {} as Record<string, number>)
+                        .value();
+                    } else {
+                      return posInfo;
                     }
-                  });
-                }
-              }
-            });
-          } //(end RAPM)
+                  };
 
-          //TODO: start with all players
-          // one have attached RAPM, _then_ remove players but keeping "hidden gems" (5mpg vs 0.25, RAPM above some tier-based threshold)
-          // TO DECIDE: could put that in separate file where we massively cut down on the fields we keep
-          // (since we only need off/def rtg/adj rtg/rapm)
-          // ^ fair bit of this is done now... still need to manage the filter by RAPM
+                  return {
+                    /** _id used for indexing purposes, will mostly use NCAA id */
+                    _id: `${
+                      rosterInfoJson?.[player.code || ""]?.player_code_id
+                        ?.ncaa_id ||
+                      `${player.code || kv[0]}${player.team || ""}`.replace(
+                        /[^A-Z]/gi,
+                        ""
+                      )
+                    }_${inGender}_${inYear.substring(0, 4)}_${label}`,
+                    key: kv[0],
+                    conf: conference,
+                    team: team,
+                    year: teamYear,
+                    shotInfo: shotChartMap[kv[0]],
+                    style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this
+                    posFreqs: maybeConvertPosInfo(posFreqs),
+                    ...(_.chain(player) //(for lowvol players (cutdownLowVolume) we used to just call lowVolumeStripPlayerInfo instead, but trying with all info)
+                      .toPairs()
+                      .filter(
+                        (
+                          t2 //Reduce down to the field we'll actually need
+                        ) =>
+                          t2[0] == "off_team_poss" ||
+                          t2[0] == "off_team_poss_pct" ||
+                          t2[0] == "def_team_poss" ||
+                          t2[0] == "def_team_poss_pct" ||
+                          (t2[0] != "diag_off_rtg" &&
+                            t2[0] != "diag_def_rtg" &&
+                            t2[0] != "off_luck" &&
+                            t2[0] != "def_luck" &&
+                            !_.startsWith(t2[0], "off_team_") &&
+                            !_.startsWith(t2[0], "def_team_") &&
+                            !_.startsWith(t2[0], "off_oppo_") &&
+                            !_.startsWith(t2[0], "def_oppo_") &&
+                            !_.startsWith(t2[0], "team_") &&
+                            !_.startsWith(t2[0], "oppo_") &&
+                            !(
+                              _.startsWith(t2[0], "total_") &&
+                              !GradeUtils.playerTotalsToKeep.has(t2[0]) &&
+                              !extraTotalFieldsToKeep.has(t2[0])
+                            ) &&
+                            !_.endsWith(t2[0], "_target") &&
+                            !_.endsWith(t2[0], "_source") &&
+                            t2[0] != "player_array" &&
+                            t2[0] != "role" &&
+                            t2[0] != "roster")
+                      )
+                      .fromPairs()
+                      .value() as PureStatSet),
+                    ...posInfo,
+                    posConfidences: maybeConvertPosInfo(posInfo.posConfidences),
+                  } as IndivStatSet;
+                });
 
-          const tableData = _.take(preRapmTableData, 5).map((tmpLineup) => {
-            // (removes unused fields from the JSON, to save space)
-            const lineup = _.chain(tmpLineup)
-              .toPairs()
-              .filter((kv) => {
-                return (
-                  !_.startsWith(kv[0], "shot_info") &&
-                  !_.startsWith(kv[0], "off_luck_diags") &&
-                  !_.startsWith(kv[0], "def_luck_diags") &&
-                  (!_.startsWith(kv[0], "total_") || //(need to keep scramble and transition counts for now, used in the interim play category tooltips)
-                    _.endsWith(kv[0], "_poss") ||
-                    _.endsWith(kv[0], "_ppp"))
-                );
-              })
-              .fromPairs()
-              .value() as LineupStatSet; //(we trust it has required fields)
-            // Add conference:
-            lineup.conf = conference;
-            lineup.team = team;
-            lineup.year = teamYear;
-            lineup.team_off_adj_ppp = teamBaseline.off_adj_ppp || {
-              value: 100,
-            };
-            lineup.team_def_adj_ppp = teamBaseline.def_adj_ppp || {
-              value: 100,
-            };
-            // Add minimal player info:
-            const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-            lineup.player_info = _.fromPairs(
-              codesAndIds.map((cid) => {
-                const fullPlayer = baselinePlayerInfo[cid.id] || {};
-                const playerSubset = _.pick(fullPlayer, [
-                  //These are the fields required for lineup display enrichment
-                  "off_rtg",
-                  "off_usage",
-                  "def_orb",
-                  "key",
-                  "off_adj_rtg",
-                  "def_adj_rtg",
-                  "off_3pr",
-                  "off_ftr",
-                  "off_assist",
-                ]) as any;
-                playerSubset.height_in = fullPlayer.roster?.height_in;
-                playerSubset.year_class = fullPlayer.roster?.year_class;
-                playerSubset.ncaa_id =
-                  fullPlayer.roster?.player_code_id?.ncaa_id;
-                return [
-                  cid.id,
-                  {
-                    ...playerSubset,
-                    code: cid.code,
-                    // Both these are needed to order the players within the lineup
-                    posClass: positionFromPlayerKey[playerSubset.key]?.posClass,
-                    posConfidences:
-                      positionFromPlayerKey[playerSubset.key]?.posConfidences,
-                  } as IndivStatSet & IndivPosInfo,
-                ];
-              })
+            const enrichedAndFilteredPlayers = enrichAndFilter(
+              baselinePlayerInfo,
+              rosterShotChartMap,
+              false
             );
-            //(now don't need this:)
-            delete lineup.players_array;
-            return lineup;
-          });
+            // In "all" mode (ie for predictions) we keep a list of players with fewer minutes but who are still noteworthy
+            const cutdownEnrichedPlayers =
+              label == "all"
+                ? enrichAndFilter(baselinePlayerInfo, {}, true)
+                : [];
 
-          switch (label) {
-            case "all":
-              //(Lineup table doesn't have a single view so we duplcate)
-              savedLineups.push(...tableData);
-              //(Originally we did the same for players but now we have a combo view, we can avoid the hassle)
-              if (inNaturalTier) {
-                savedPlayers.push(...enrichedAndFilteredPlayers);
-                savedLowVolumePlayers.push(
-                  ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)
-                );
-              }
-              break;
-            case "conf":
-              savedConfOnlyLineups.push(...tableData);
-              if (inNaturalTier) {
-                savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
-              }
-              break;
-            case "t100":
-              savedT100Lineups.push(...tableData);
-              if (inNaturalTier) {
-                savedT100Players.push(...enrichedAndFilteredPlayers);
-              }
-              break;
+            const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
+              sortedLineups,
+              teamGlobal,
+              rosterGlobalButActuallyBaseline,
+              teamBaseline,
+              true,
+              "baseline",
+              avgEfficiency,
+              false,
+              teamSeasonLookup,
+              positionFromPlayerKey,
+              baselinePlayerInfo
+            );
 
-            default:
-              console.log(`WARNING unexpected label: ${label}`);
+            // Now do all the RAPM work (after luck has been adjusted)
+            if (!ignoreRapm) {
+              //(TODO: test data isn't big enough to calc RAPM so ignore for now in unit test)
+              const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
+                preRapmTableData,
+                baselinePlayerInfo,
+                true, //<-always adjust for luck
+                avgEfficiency,
+                genderYearLookup
+              );
+              const enrichedAndFilteredPlayersMap = _.fromPairs(
+                enrichedAndFilteredPlayers.map((p) => [p.key, p])
+              );
+              const cutdownEnrichedPlayersMap = _.fromPairs(
+                cutdownEnrichedPlayers.map((p) => [p.key, p])
+              );
+              (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
+                const player = (enrichedAndFilteredPlayersMap[rapmP.playerId] ||
+                  cutdownEnrichedPlayersMap[rapmP.playerId]) as Record<
+                  string,
+                  any
+                >;
+
+                // RAPM (rating + productions)
+                if (player && rapmP.rapm) {
+                  player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
+                  player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
+
+                  const cutdownMode = _.isNil(
+                    enrichedAndFilteredPlayersMap[rapmP.playerId]
+                  );
+
+                  if (injectExtraDataForNbaFolks) {
+                    player.rapm = _.omit(rapmP.rapm, [
+                      "key",
+                      "off_sep2-1",
+                      "off_sep2-2",
+                      "def_sep2-1",
+                      "def_sep2-2",
+                    ]);
+                    // Also let's create an on/off net inside "rapm" since someone asked for that
+                    player.on = _.chain(rapmP.on)
+                      .toPairs()
+                      .filter(
+                        ([key, val]) =>
+                          _.startsWith(key, "off_") || _.startsWith(key, "def")
+                      )
+                      .filter(
+                        (
+                          [key, val] //(remove scramble and transition stats, which don't seem to be included)
+                        ) =>
+                          !_.includes(key, "f_scramble_") &&
+                          !_.includes(key, "f_trans_") &&
+                          !_.endsWith(key, "_luck_diags")
+                      )
+                      .fromPairs()
+                      .value();
+                    player.off = _.chain(rapmP.off)
+                      .toPairs()
+                      .filter(
+                        ([key, val]) =>
+                          _.startsWith(key, "off_") || _.startsWith(key, "def")
+                      )
+                      .filter(
+                        (
+                          [key, val] //(remove scramble and transition stats, which don't seem to be included)
+                        ) =>
+                          !_.includes(key, "f_scramble_") &&
+                          !_.includes(key, "f_trans_") &&
+                          !_.endsWith(key, "_luck_diags")
+                      )
+                      .fromPairs()
+                      .value();
+                  }
+
+                  if (cutdownMode) {
+                    //(cutdown mode, pare down RAPM still further)
+                    if (player.off_adj_rapm) {
+                      (player.off_adj_rapm as Statistic).old_value = undefined;
+                      (player.off_adj_rapm as Statistic).override = undefined;
+                    }
+                    if (player.def_adj_rapm) {
+                      (player.def_adj_rapm as Statistic).old_value = undefined;
+                      (player.def_adj_rapm as Statistic).override = undefined;
+                    }
+                  } else {
+                    //(normal mode, bunch of other stats)
+                    player.off_adj_rapm_prod = {
+                      value:
+                        rapmP.rapm!.off_adj_ppp!.value! *
+                        player.off_team_poss_pct!.value!,
+                    };
+                    if (player.def_adj_rapm && player.def_adj_rtg?.extraInfo) {
+                      player.def_adj_rapm.extraInfo =
+                        player.def_adj_rtg?.extraInfo; //(on-ball defense context, def_adj_rtg is a prior for RAPM)
+                    }
+                    player.def_adj_rapm_prod = {
+                      value:
+                        rapmP.rapm!.def_adj_ppp!.value! *
+                        player.def_team_poss_pct!.value!,
+                      old_value:
+                        (rapmP.rapm?.def_adj_ppp?.old_value || 0) *
+                        player.def_team_poss_pct!.value!,
+                      override: rapmP.rapm?.def_adj_ppp?.override,
+                      extraInfo: player.def_adj_prod?.extraInfo, //(on-ball defense context, def_adj_rtg is a prior for RAPM)
+                    };
+                    const simpleRapmFieldsToGrade = _.flatMap(
+                      ["adj_rapm", "adj_rapm_prod"],
+                      (k) => [`off_${k}`, `def_${k}`]
+                    );
+                    const derivedRapmFieldsToGrade = [
+                      "off_adj_rapm_margin",
+                      "off_adj_rapm_prod_margin",
+                    ];
+
+                    //(for advanced NBA stats)
+                    const onOffFieldsToGrade = _.chain(["on_", "off_", "diff_"])
+                      .flatMap((prefix) => {
+                        return [`${prefix}off_`, `${prefix}def_`];
+                      })
+                      .flatMap((prefix) => {
+                        return [
+                          "ppp", //(TODO: surely this a list somewhere, it's the "base table set of stats")
+                          "adj_ppp",
+                          "efg",
+                          "assist",
+                          "to",
+                          "orb",
+                          "ftr",
+                          "3p",
+                          "3pr",
+                          "2pmidr",
+                          "2pmid",
+                          "2primr",
+                          "2prim",
+                        ].map((k) => `${prefix}${k}`);
+                      })
+                      .value();
+
+                    //(for advanced NBA stats)
+                    const onOffStatAccessor = (dataSet: any, field: string) => {
+                      if (field.startsWith("on_")) {
+                        return dataSet.on?.[`${field.substring(3)}`]?.value;
+                      } else if (field.startsWith("off_")) {
+                        return dataSet.off?.[`${field.substring(4)}`]?.value;
+                      } else if (field.startsWith("diff_")) {
+                        const valOn =
+                          dataSet.on?.[`${field.substring(5)}`]?.value;
+                        const valOff =
+                          dataSet.off?.[`${field.substring(5)}`]?.value;
+                        if (!_.isNil(valOn) && !_.isNil(valOff)) {
+                          return valOn - valOff;
+                        } else {
+                          return undefined;
+                        }
+                      } else {
+                        return dataSet[field]?.value;
+                      }
+                    };
+
+                    if ("all" == label) {
+                      GradeUtils.buildAndInjectPlayerDivisionStats(
+                        player,
+                        mutablePlayerDivisionStats,
+                        inNaturalTier,
+                        simpleRapmFieldsToGrade
+                      );
+                      const otherRapmValues = {
+                        off_team_poss_pct: {
+                          value: player.off_team_poss_pct?.value || 0,
+                        },
+                        off_adj_rapm_margin: {
+                          value:
+                            (player.off_adj_rapm?.value || 0) -
+                            (player.def_adj_rapm?.value || 0),
+                        },
+                        off_adj_rapm_prod_margin: {
+                          value:
+                            (player.off_adj_rapm_prod?.value || 0) -
+                            (player.def_adj_rapm_prod?.value || 0),
+                        },
+                      };
+                      GradeUtils.buildAndInjectPlayerDivisionStats(
+                        otherRapmValues,
+                        mutablePlayerDivisionStats,
+                        inNaturalTier,
+                        derivedRapmFieldsToGrade
+                      );
+
+                      // When creating extra data for NBA folks, add on/off percentiles
+                      if (injectExtraDataForNbaFolks) {
+                        GradeUtils.buildAndInjectPlayerDivisionStats(
+                          player,
+                          mutablePlayerDivisionStats,
+                          inNaturalTier,
+                          onOffFieldsToGrade,
+                          1.0,
+                          onOffStatAccessor
+                        );
+
+                        // Also in "extra NBA mode" we'll add player percentiles if they exist:
+                        if (playerGradesJson) {
+                          const nbaPercentiles =
+                            GradeUtils.buildPlayerPercentiles(
+                              playerGradesJson,
+                              player,
+                              simpleRapmFieldsToGrade,
+                              false //(percentile not rank)
+                            );
+                          const nbaPercentilesExtraRapm =
+                            GradeUtils.buildPlayerPercentiles(
+                              playerGradesJson,
+                              otherRapmValues,
+                              derivedRapmFieldsToGrade,
+                              false //(percentile not rank)
+                            );
+                          const nbaPercentilesOnOff =
+                            GradeUtils.buildPercentiles(
+                              playerGradesJson,
+                              player,
+                              onOffFieldsToGrade,
+                              _.chain(onOffFieldsToGrade)
+                                .filter((field) => field.includes("def_"))
+                                .map((field) => [field, true])
+                                .fromPairs()
+                                .value(),
+                              false,
+                              false,
+                              onOffStatAccessor
+                            );
+                          _.chain(nbaPercentiles)
+                            .toPairs()
+                            .concat(_.toPairs(nbaPercentilesExtraRapm))
+                            .concat(_.toPairs(nbaPercentilesOnOff))
+                            .forEach((kv) => {
+                              const field = kv[0];
+                              const statVal = kv[1];
+                              if (field.startsWith("on_")) {
+                                const subField = field.substring(3);
+                                if (
+                                  player.on?.[subField] &&
+                                  !_.isNil(statVal?.value)
+                                ) {
+                                  player.on[subField].pctile = statVal.value;
+                                }
+                              } else if (
+                                field.startsWith("off_off_") ||
+                                field.startsWith("off_def_")
+                              ) {
+                                const subField = field.substring(4);
+                                if (
+                                  player.off?.[subField] &&
+                                  !_.isNil(statVal?.value)
+                                ) {
+                                  player.off[subField].pctile = statVal.value;
+                                }
+                              } else if (field.startsWith("diff_")) {
+                                const subField = field.substring(5);
+                                if (
+                                  player.on?.[subField] &&
+                                  !_.isNil(statVal?.value)
+                                ) {
+                                  player.on[subField].diff_pctile =
+                                    statVal.value;
+                                }
+                              } else if (field == "off_adj_rapm_margin") {
+                                const placeholderField = "off_adj_rapm";
+                                if (
+                                  player[placeholderField] &&
+                                  !_.isNil(statVal?.value)
+                                ) {
+                                  player[placeholderField].diff_pctile =
+                                    kv[1].value;
+                                }
+                              } else {
+                                if (player[field] && !_.isNil(statVal?.value)) {
+                                  player[field].pctile = statVal.value;
+                                }
+                              }
+                            })
+                            .value();
+
+                          //TODO: more complex on/off fields
+
+                          //DEBUG:
+                          // console.log(
+                          //   `[${player.key}]: [${JSON.stringify(
+                          //     nbaPercentilesOnOff
+                          //   )}]`
+                          // );
+                        }
+                      }
+
+                      // Again, per position grouping:
+                      (
+                        PositionUtils.positionsToGroup[player.posClass] || []
+                      ).forEach((posGroup) => {
+                        const mutablePosGroupDivStats =
+                          mutablePlayerDivisionStats_byPosGroup[posGroup];
+                        if (mutablePosGroupDivStats) {
+                          GradeUtils.buildAndInjectPlayerDivisionStats(
+                            player,
+                            mutablePosGroupDivStats,
+                            inNaturalTier,
+                            simpleRapmFieldsToGrade
+                          );
+                          GradeUtils.buildAndInjectPlayerDivisionStats(
+                            otherRapmValues,
+                            mutablePosGroupDivStats,
+                            inNaturalTier,
+                            derivedRapmFieldsToGrade
+                          );
+                        }
+                      });
+                    }
+
+                    // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
+                    ["off_adj_rapm", "off_adj_rapm_prod"].forEach((field) => {
+                      const maybeRapm = player[field];
+                      if (
+                        !DateUtils.lineupsHavePlayerShotInfo(genderYearLookup)
+                      ) {
+                        if (maybeRapm?.old_value) {
+                          maybeRapm.value = maybeRapm.old_value;
+                          delete maybeRapm.override;
+                        }
+                      } else if (maybeRapm?.override) {
+                        // Improve wording of luck override if we're keeping it
+                        maybeRapm.override =
+                          "Adjusted from per-lineup 3P% luck adjustments";
+                      }
+                    });
+                  }
+                }
+              });
+            } //(end RAPM)
+
+            //TODO: start with all players
+            // one have attached RAPM, _then_ remove players but keeping "hidden gems" (5mpg vs 0.25, RAPM above some tier-based threshold)
+            // TO DECIDE: could put that in separate file where we massively cut down on the fields we keep
+            // (since we only need off/def rtg/adj rtg/rapm)
+            // ^ fair bit of this is done now... still need to manage the filter by RAPM
+
+            const tableData = _.take(preRapmTableData, 5).map((tmpLineup) => {
+              // (removes unused fields from the JSON, to save space)
+              const lineup = _.chain(tmpLineup)
+                .toPairs()
+                .filter((kv) => {
+                  return (
+                    !_.startsWith(kv[0], "shot_info") &&
+                    !_.startsWith(kv[0], "off_luck_diags") &&
+                    !_.startsWith(kv[0], "def_luck_diags") &&
+                    (!_.startsWith(kv[0], "total_") || //(need to keep scramble and transition counts for now, used in the interim play category tooltips)
+                      _.endsWith(kv[0], "_poss") ||
+                      _.endsWith(kv[0], "_ppp"))
+                  );
+                })
+                .fromPairs()
+                .value() as LineupStatSet; //(we trust it has required fields)
+              // Add conference:
+              lineup.conf = conference;
+              lineup.team = team;
+              lineup.year = teamYear;
+              lineup.team_off_adj_ppp = teamBaseline.off_adj_ppp || {
+                value: 100,
+              };
+              lineup.team_def_adj_ppp = teamBaseline.def_adj_ppp || {
+                value: 100,
+              };
+              // Add minimal player info:
+              const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+              lineup.player_info = _.fromPairs(
+                codesAndIds.map((cid) => {
+                  const fullPlayer = baselinePlayerInfo[cid.id] || {};
+                  const playerSubset = _.pick(fullPlayer, [
+                    //These are the fields required for lineup display enrichment
+                    "off_rtg",
+                    "off_usage",
+                    "def_orb",
+                    "key",
+                    "off_adj_rtg",
+                    "def_adj_rtg",
+                    "off_3pr",
+                    "off_ftr",
+                    "off_assist",
+                  ]) as any;
+                  playerSubset.height_in = fullPlayer.roster?.height_in;
+                  playerSubset.year_class = fullPlayer.roster?.year_class;
+                  playerSubset.ncaa_id =
+                    fullPlayer.roster?.player_code_id?.ncaa_id;
+                  return [
+                    cid.id,
+                    {
+                      ...playerSubset,
+                      code: cid.code,
+                      // Both these are needed to order the players within the lineup
+                      posClass:
+                        positionFromPlayerKey[playerSubset.key]?.posClass,
+                      posConfidences:
+                        positionFromPlayerKey[playerSubset.key]?.posConfidences,
+                    } as IndivStatSet & IndivPosInfo,
+                  ];
+                })
+              );
+              //(now don't need this:)
+              delete lineup.players_array;
+              return lineup;
+            });
+
+            switch (label) {
+              case "all":
+                //(Lineup table doesn't have a single view so we duplcate)
+                savedLineups.push(...tableData);
+                //(Originally we did the same for players but now we have a combo view, we can avoid the hassle)
+                if (inNaturalTier) {
+                  savedPlayers.push(...enrichedAndFilteredPlayers);
+                  savedLowVolumePlayers.push(
+                    ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)
+                  );
+                }
+                break;
+              case "conf":
+                savedConfOnlyLineups.push(...tableData);
+                if (inNaturalTier) {
+                  savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
+                }
+                break;
+              case "t100":
+                savedT100Lineups.push(...tableData);
+                if (inNaturalTier) {
+                  savedT100Players.push(...enrichedAndFilteredPlayers);
+                }
+                break;
+
+              default:
+                console.log(`WARNING unexpected label: ${label}`);
+            }
           }
-        }
-      )
+        )
     ); //(end loop over leaderboards)
 
     await getAllDataPromise;
