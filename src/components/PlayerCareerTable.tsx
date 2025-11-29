@@ -1491,8 +1491,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       integratedGrades={
         FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
           ? {
-              topPctle: 0.25,
-              bottomPctle: 0.75,
+              hybridMode: true,
             }
           : undefined
       }

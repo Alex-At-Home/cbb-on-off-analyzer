@@ -94,6 +94,7 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import StickyRow from "./shared/StickyRow";
 import ThemedSelect from "./shared/ThemedSelect";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -796,6 +797,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             : tableRows
         }
         cellTooltipMode="none"
+        integratedGrades={
+          FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
+            ? {
+                hybridMode: false,
+              }
+            : undefined
+        }
       />
     );
   }, [

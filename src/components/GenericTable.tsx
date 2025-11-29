@@ -67,11 +67,10 @@ export class GenericTableColProps {
   readonly className: string;
 }
 class GenericTableDataRow {
-  //TODO: remove generic table
   constructor(
     dataObj: any,
     prefixFn: (key: string) => string,
-    cellMetaFn: (key: string, value: any) => string, //TODO: make this a generic
+    cellMetaFn: (key: string, value: any) => string,
     tableFieldsOverride: Record<string, GenericTableColProps> | undefined,
     colSpanOverride: undefined | ((key: string) => number)
   ) {
@@ -177,8 +176,8 @@ export class GenericTableOps {
       return GenericTableOps.htmlFormatter(val as React.ReactNode);
     } else if (val.samples) {
       const numSamples = val.samples || 0;
-      const pcile = val.value || 0;
-      const rank = 1 + Math.round((1 - pcile) * numSamples); //(+1, since 100% is rank==1)
+      const pctile = val.value || 0;
+      const rank = 1 + Math.round((1 - pctile) * numSamples); //(+1, since 100% is rank==1)
       return GenericTableOps.rankFormatter({ value: rank });
     } else {
       return GenericTableOps.percentFormatter(val);
@@ -189,8 +188,8 @@ export class GenericTableOps {
       return GenericTableOps.htmlFormatter(val as React.ReactNode);
     } else if (val.samples) {
       const numSamples = val.samples || 0;
-      const pcile = val.value || 0;
-      const rank = 1 + Math.round((1 - pcile) * numSamples); //(+1, since 100% is rank==1)
+      const pctile = val.value || 0;
+      const rank = 1 + Math.round((1 - pctile) * numSamples); //(+1, since 100% is rank==1)
 
       // How granular we are depends on how highly ranked we are:
       const approxRank = _.thru(rank, (r) => {
@@ -365,9 +364,9 @@ const nextLockMode: Record<LockModes, LockModes> = {
   missing: "missing",
 };
 type IntegratedGradeSettings = {
-  topPctle: number;
-  bottomPctle: number;
-  //TODO: other grade settings
+  topPctle?: number;
+  bottomPctle?: number;
+  hybridMode?: boolean;
 };
 type Props = {
   responsive?: boolean;
@@ -552,31 +551,37 @@ const GenericTable: React.FunctionComponent<Props> = ({
       const tmpVal = row.dataObj[actualKey] || colProp.missingData;
       const rankOrPctile = _.thru(integratedGrades, (gradeSettings) => {
         //TODO: have 3 modes - cutdown / full / separate
-        // port across the logic to render in truncated format
         // have Tx and Bx if low
         // get the direction correct
         // add color scheme
+        // TODO: more control over rank-pctile hybrid
 
         if (gradeSettings) {
           const tmpGrade = row.dataObj?.grades?.[actualKey];
-          const pctile = tmpGrade?.value;
+          const maybePctile = tmpGrade?.value;
+          const pctile = maybePctile || 0;
           const samples = tmpGrade?.samples * pctile;
-          const pcile = pctile || 0;
-          const rank = 1 + Math.round((1 - pcile) * samples); //(+1, since 100% is rank==1)
-
+          const topPctle = gradeSettings.topPctle || 0.75;
+          const bottomPctle = gradeSettings.bottomPctle || 0.25;
           if (
             samples > 0 &&
-            !_.isNil(pctile) &&
-            (pctile >= gradeSettings.bottomPctle ||
-              pctile <= gradeSettings.topPctle)
+            !_.isNil(maybePctile) &&
+            pctile >= topPctle &&
+            gradeSettings.hybridMode
           ) {
-            return `T${rank.toFixed(0)}`;
+            return GenericTableOps.approxRankOrHtmlFormatter(tmpGrade);
           } else if (
-            !_.isNil(pctile) &&
-            (pctile >= gradeSettings.bottomPctle ||
-              pctile <= gradeSettings.topPctle)
+            samples > 0 &&
+            !_.isNil(maybePctile) &&
+            (pctile >= topPctle || pctile <= bottomPctle) &&
+            !gradeSettings.hybridMode
           ) {
-            return `${(pctile * 100).toFixed(0)}%`;
+            return GenericTableOps.rankFormatter(tmpGrade);
+          } else if (
+            !_.isNil(maybePctile) &&
+            (pctile >= topPctle || pctile <= bottomPctle)
+          ) {
+            return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
           } else {
             return undefined;
           }
@@ -709,8 +714,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
             <div
               style={{
                 textAlign: "center",
-                fontSize: "0.6em",
-                marginTop: "2px",
+                fontSize: "0.8em",
+                marginTop: "0px",
               }}
             >
               {rankOrPctile}
