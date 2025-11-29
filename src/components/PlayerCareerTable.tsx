@@ -63,6 +63,8 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import StickyRow from "./shared/StickyRow";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
+import { GradeUtils } from "../utils/stats/GradeUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -872,6 +874,33 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       </div>
     );
 
+    // If we're in short form grades mode then build those:
+
+    if (showGrades) {
+      //TODO: make this a generic feature so can re-use in one line:
+      const { tierToUse, gradeFormat, ...unused } =
+        GradeTableUtils.buildPlayerTierInfo(
+          showGrades || "rank:Combo",
+          {
+            comboTier: divisionStatsCacheByYear.Combo,
+            highTier: divisionStatsCacheByYear.High,
+            mediumTier: divisionStatsCacheByYear.Medium,
+            lowTier: divisionStatsCacheByYear.Low,
+          },
+          positionalStatsCache[player.year || ParamDefaults.defaultYear] || {}
+        );
+
+      const predictedGrades = tierToUse
+        ? GradeUtils.buildPlayerPercentiles(
+            tierToUse,
+            player,
+            _.keys(GradeUtils.playerFields),
+            gradeFormat == "rank"
+          )
+        : {};
+      player.grades = predictedGrades;
+    }
+
     // Finally build rows
 
     return _.flatten([
@@ -1459,6 +1488,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         PREPROCESSING_WARNING:
           "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
       }}
+      integratedGrades={
+        FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
+          ? {
+              topPctle: 0.25,
+              bottomPctle: 0.75,
+            }
+          : undefined
+      }
     />
   );
   // 4] Views

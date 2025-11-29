@@ -31,4 +31,6 @@ export class FeatureFlags {
   /** For WIP on the similar scoring */
   static readonly playerSimilarityScoring = true;
 
+  /** Building a more integrated grade view */
+  static readonly integratedGradeView = true;
 }

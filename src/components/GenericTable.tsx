@@ -364,6 +364,11 @@ const nextLockMode: Record<LockModes, LockModes> = {
   row: "none",
   missing: "missing",
 };
+type IntegratedGradeSettings = {
+  topPctle: number;
+  bottomPctle: number;
+  //TODO: other grade settings
+};
 type Props = {
   responsive?: boolean;
   tableFields: Record<string, GenericTableColProps>;
@@ -373,6 +378,7 @@ type Props = {
   bordered?: boolean;
   rowStyleOverride?: Record<string, any>;
   extraInfoLookups?: Record<string, string>; //(lets us use codes for common strings)
+  integratedGrades?: IntegratedGradeSettings;
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
@@ -383,6 +389,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   bordered,
   rowStyleOverride,
   extraInfoLookups,
+  integratedGrades,
 }) => {
   const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
@@ -543,15 +550,33 @@ const GenericTable: React.FunctionComponent<Props> = ({
         row.tableFieldsOverride?.[key] || keyVal[1];
       const actualKey = row.prefixFn(key);
       const tmpVal = row.dataObj[actualKey] || colProp.missingData;
-      const rankOrPctile = _.thru(false, (enabled) => {
-        if (enabled) {
-          if (!_.isNil(tmpVal?.rank)) {
-            return `T${tmpVal.rank}`;
-          } else if (
-            !_.isNil(tmpVal?.pctile) &&
-            (tmpVal.pctile <= 0.2 || tmpVal.pctile >= 0.8)
+      const rankOrPctile = _.thru(integratedGrades, (gradeSettings) => {
+        //TODO: have 3 modes - cutdown / full / separate
+        // port across the logic to render in truncated format
+        // have Tx and Bx if low
+        // get the direction correct
+        // add color scheme
+
+        if (gradeSettings) {
+          const tmpGrade = row.dataObj?.grades?.[actualKey];
+          const pctile = tmpGrade?.value;
+          const samples = tmpGrade?.samples * pctile;
+          const pcile = pctile || 0;
+          const rank = 1 + Math.round((1 - pcile) * samples); //(+1, since 100% is rank==1)
+
+          if (
+            samples > 0 &&
+            !_.isNil(pctile) &&
+            (pctile >= gradeSettings.bottomPctle ||
+              pctile <= gradeSettings.topPctle)
           ) {
-            return `${(tmpVal.pctile * 100).toFixed(0)}%`;
+            return `T${rank.toFixed(0)}`;
+          } else if (
+            !_.isNil(pctile) &&
+            (pctile >= gradeSettings.bottomPctle ||
+              pctile <= gradeSettings.topPctle)
+          ) {
+            return `${(pctile * 100).toFixed(0)}%`;
           } else {
             return undefined;
           }
