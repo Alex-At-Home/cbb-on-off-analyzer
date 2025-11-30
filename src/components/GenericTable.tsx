@@ -563,27 +563,32 @@ const GenericTable: React.FunctionComponent<Props> = ({
           const samples = tmpGrade?.samples * pctile;
           const topPctle = gradeSettings.topPctle || 0.75;
           const bottomPctle = gradeSettings.bottomPctle || 0.25;
-          if (
-            samples > 0 &&
-            !_.isNil(maybePctile) &&
-            pctile >= topPctle &&
-            gradeSettings.hybridMode
-          ) {
-            return GenericTableOps.approxRankOrHtmlFormatter(tmpGrade);
-          } else if (
-            samples > 0 &&
-            !_.isNil(maybePctile) &&
-            (pctile >= topPctle || pctile <= bottomPctle) &&
-            !gradeSettings.hybridMode
-          ) {
-            return GenericTableOps.rankFormatter(tmpGrade);
-          } else if (
-            !_.isNil(maybePctile) &&
-            (pctile >= topPctle || pctile <= bottomPctle)
-          ) {
-            return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+          if (gradeSettings.hybridMode) {
+            //(in rank mode still shows %les for the bad %iles)
+            if (samples > 0 && !_.isNil(maybePctile) && pctile >= topPctle) {
+              return GenericTableOps.approxRankOrHtmlFormatter(tmpGrade);
+            } else if (
+              samples > 0 &&
+              !_.isNil(maybePctile) &&
+              pctile <= bottomPctle
+            ) {
+              return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+            } else if (
+              !_.isNil(maybePctile) &&
+              (pctile >= topPctle || pctile <= bottomPctle)
+            ) {
+              return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+            } else {
+              return undefined;
+            }
           } else {
-            return undefined;
+            if (samples > 0 && !_.isNil(maybePctile)) {
+              return GenericTableOps.approxRankOrHtmlFormatter(tmpGrade);
+            } else if (!_.isNil(maybePctile)) {
+              return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+            } else {
+              return undefined;
+            }
           }
         } else {
           return undefined;

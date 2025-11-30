@@ -1489,9 +1489,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
       }}
       integratedGrades={
+        showGrades &&
         FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
           ? {
-              hybridMode: true,
+              hybridMode: !showGrades.includes(":Integrated"),
             }
           : undefined
       }
@@ -1505,8 +1506,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     buildTopLevelGradeControls,
     (__) => {
       if (buildTopLevelGradeControls) {
-        //TODO: for some reason
-        // use highest year and have param to add "eg" if num years >1
         const yearToUseForTopLevelGradeControls =
           (!_.isEmpty(yearsToShow)
             ? Array.from(yearsToShow)
@@ -1514,19 +1513,26 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         const divisionStatsCacheByYear: DivisionStatsCache = showGrades
           ? divisionStatsCache[yearToUseForTopLevelGradeControls] || {}
           : {};
-        return GradeTableUtils.buildPlayerGradeControlState("", {
-          selectionTitle: "Grades",
-          config: showGrades,
-          setConfig: (newConfig: string) => setShowGrades(newConfig),
-          playerStats: {
-            comboTier: divisionStatsCacheByYear.Combo,
-            highTier: divisionStatsCacheByYear.High,
-            mediumTier: divisionStatsCacheByYear.Medium,
-            lowTier: divisionStatsCacheByYear.Low,
+        return GradeTableUtils.buildPlayerGradeControlState(
+          "",
+          {
+            selectionTitle: "Grades",
+            config: showGrades,
+            setConfig: (newConfig: string) => setShowGrades(newConfig),
+            playerStats: {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            playerPosStats:
+              positionalStatsCache[yearToUseForTopLevelGradeControls] || {},
           },
-          playerPosStats:
-            positionalStatsCache[yearToUseForTopLevelGradeControls] || {},
-        });
+          {
+            countsAreExample:
+              (_.size(yearsToShow) || _.size(playerSeasonInfo)) > 1,
+          }
+        );
       } else {
         return { controlRow: undefined };
       }
