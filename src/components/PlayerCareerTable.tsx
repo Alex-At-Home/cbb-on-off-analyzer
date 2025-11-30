@@ -1499,6 +1499,40 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
   // 4] Views
 
+  const buildTopLevelGradeControls =
+    showGrades && FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView);
+  const { controlRow: topLevelGradeControls } = _.thru(
+    buildTopLevelGradeControls,
+    (__) => {
+      if (buildTopLevelGradeControls) {
+        //TODO: for some reason
+        // use highest year and have param to add "eg" if num years >1
+        const yearToUseForTopLevelGradeControls =
+          (!_.isEmpty(yearsToShow)
+            ? Array.from(yearsToShow)
+            : playerSeasonInfo.map((s) => s[0]))?.[0] || "??";
+        const divisionStatsCacheByYear: DivisionStatsCache = showGrades
+          ? divisionStatsCache[yearToUseForTopLevelGradeControls] || {}
+          : {};
+        return GradeTableUtils.buildPlayerGradeControlState("", {
+          selectionTitle: "Grades",
+          config: showGrades,
+          setConfig: (newConfig: string) => setShowGrades(newConfig),
+          playerStats: {
+            comboTier: divisionStatsCacheByYear.Combo,
+            highTier: divisionStatsCacheByYear.High,
+            mediumTier: divisionStatsCacheByYear.Medium,
+            lowTier: divisionStatsCacheByYear.Low,
+          },
+          playerPosStats:
+            positionalStatsCache[yearToUseForTopLevelGradeControls] || {},
+        });
+      } else {
+        return { controlRow: undefined };
+      }
+    }
+  );
+
   const quickToggleBar = (
     <ToggleButtonGroup
       items={playerSeasonInfo
@@ -1698,7 +1732,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         text={"Finding similar players..."}
       >
         <StickyRow className="mb-2" stickyEnabled={stickyQuickToggle}>
-          <Col sm="11">{quickToggleBar}</Col>
+          <Col sm="11">
+            {quickToggleBar}
+            {topLevelGradeControls ? (
+              <div className="pt-1">{topLevelGradeControls}</div>
+            ) : undefined}
+          </Col>
           <Form.Group as={Col} sm="1" className="mb-0">
             {optionsDropdown}
           </Form.Group>

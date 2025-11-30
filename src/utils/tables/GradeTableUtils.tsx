@@ -311,6 +311,176 @@ export class GradeTableUtils {
     });
   };
 
+  /** Builds a grade controller element */
+  static readonly buildTeamGradeControls: (title: string, p: TeamProps) => any =
+    (
+      title,
+      {
+        selectionType,
+        config,
+        setConfig,
+        teamStats: { comboTier, highTier, mediumTier, lowTier },
+      }
+    ) => {
+      const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, "");
+      const tiers = {
+        //(handy LUT)
+        High: highTier,
+        Medium: mediumTier,
+        Low: lowTier,
+        Combo: comboTier,
+      } as Record<string, DivisionStatistics | undefined>;
+
+      // (Unused because the OverlayTrigger doesn't work, see below)
+      // const tooltipMap = {
+      //   Combo: (
+      //     <Tooltip id={`comboTooltip${nameAsId}`}>
+      //       Compare each stat against the set of all available D1 teams
+      //     </Tooltip>
+      //   ),
+      //   High: (
+      //     <Tooltip id={`highTooltip${nameAsId}`}>
+      //       Compare each stat against the "high tier" of D1 (high majors,
+      //       mid-high majors, any team in the T150)
+      //     </Tooltip>
+      //   ),
+      //   Medium: (
+      //     <Tooltip id={`mediumTooltip${nameAsId}`}>
+      //       Compare each stat against the "medium tier" of D1
+      //       (mid/mid-high/mid-low majors, if in the T275)
+      //     </Tooltip>
+      //   ),
+      //   Low: (
+      //     <Tooltip id={`lowTooltip${nameAsId}`}>
+      //       Compare each stat against the "low tier" of D1 (low/mid-low majors,
+      //       if outside the T250)
+      //     </Tooltip>
+      //   ),
+      // } as Record<string, any>;
+
+      const configStr = config.split(":");
+      const gradeFormat = configStr[0];
+      const tierStrTmp = configStr?.[1] || "Combo";
+      const tierStr = tiers[tierStrTmp]
+        ? tierStrTmp
+        : tiers["Combo"]
+        ? "Combo"
+        : tiers["High"]
+        ? "High"
+        : tierStrTmp;
+      //(if set tier doesn't exist just fallback)
+      const posGroup = configStr?.[2] || "All";
+
+      const configParams = (newTier: string) => {
+        const configParamBase = `${gradeFormat}:${newTier}`;
+        if (posGroup == "All") {
+          return configParamBase;
+        } else {
+          return `${configParamBase}:${posGroup}`;
+        }
+      };
+      const tierLinkTmp = (tier: string) => (
+        <a
+          href={tiers[tier] ? "#" : undefined}
+          onClick={(event) => {
+            event.preventDefault();
+            setConfig(configParams(tier));
+          }}
+        >
+          {tier == "Combo" ? "D1" : tier}
+          {tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
+        </a>
+      );
+      const tierLink = (tier: string) =>
+        tier == tierStr ? <b>{tierLinkTmp(tier)}</b> : tierLinkTmp(tier);
+      //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now
+      //      <OverlayTrigger placement="auto" overlay={tooltipMap[tier]!}>
+      //         {(tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier)}
+      //      </OverlayTrigger>;
+
+      const topLine = (
+        <span className="small">
+          {tierLink("Combo")} | {tierLink("High")} | {tierLink("Medium")} |{" "}
+          {tierLink("Low")}
+        </span>
+      );
+
+      // (Unused because the OverlayTrigger doesn't work, see below)
+      // const eqRankShowTooltip = (
+      //   <Tooltip id={`eqRankShowTooltip${nameAsId}`}>
+      //     Show the approximate rank for each stat against the "tier"
+      //     (D1/High/etc) as if it were over the entire season
+      //   </Tooltip>
+      // );
+      // const percentileShowTooltip = (
+      //   <Tooltip id={`percentileShowTooltip${nameAsId}`}>
+      //     Show the percentile of each stat against the "tier" (D1/High/etc){" "}
+      //   </Tooltip>
+      // );
+
+      //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now
+      const maybeBold = (bold: boolean, html: React.ReactNode) =>
+        bold ? <b>{html}</b> : html;
+      const bottomLine = (
+        <span className="small">
+          {maybeBold(
+            gradeFormat == "rank",
+            //            <OverlayTrigger placement="auto" overlay={eqRankShowTooltip}>
+            <a
+              href={"#"}
+              onClick={(event) => {
+                event.preventDefault();
+                setConfig(`rank:${tierStrTmp}`);
+              }}
+            >
+              Ranks
+            </a>
+            //            </OverlayTrigger>
+          )}
+          &nbsp;|{" "}
+          {maybeBold(
+            gradeFormat == "pct",
+            //           <OverlayTrigger placement="auto" overlay={percentileShowTooltip}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setConfig(`pct:${tierStrTmp}`);
+              }}
+            >
+              Pctiles
+            </a>
+            //           </OverlayTrigger>
+          )}
+        </span>
+      );
+
+      const helpTooltip = (
+        <Tooltip id={`helpTooltip${nameAsId}`}>
+          High Tier: high majors, mid-high majors, plus any team in the T150
+          <br />
+          Medium Tier: mid/mid-high/mid-low majors, if in the T275
+          <br />
+          Low Tier: low/mid-low majors, or if outside the T250
+        </Tooltip>
+      );
+      const helpOverlay = (
+        <OverlayTrigger placement="auto" overlay={helpTooltip}>
+          <b>(?)</b>
+        </OverlayTrigger>
+      );
+
+      return (
+        <span>
+          <small>
+            {title}
+            {title ? " " : ""}Team Grades {helpOverlay}
+          </small>
+          : {topLine} {"//"} {bottomLine}
+        </span>
+      );
+    };
+
   /** Build the rows containing the grade information for a team
    * TODO: merge common code between this and buildPlayerControlState (mostly just unused tooltips?)
    *  and also merge any common logic this and buildPlayerGradeTableRows and buildProjectedPlayerGradeTableRows
@@ -319,17 +489,15 @@ export class GradeTableUtils {
   static readonly buildTeamGradeTableRows: (
     rowLetter: string,
     p: TeamProps
-  ) => GenericTableRow[] = (
-    rowLetter,
-    {
+  ) => GenericTableRow[] = (rowLetter, p) => {
+    const {
       isFullSelection,
       selectionType,
       config,
       setConfig,
       teamStats: { comboTier, highTier, mediumTier, lowTier },
       team,
-    }
-  ) => {
+    } = p;
     const maybeEquiv = isFullSelection ? "" : "Equiv ";
     const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, "");
     const title =
@@ -346,33 +514,6 @@ export class GradeTableUtils {
       Combo: comboTier,
     } as Record<string, DivisionStatistics | undefined>;
 
-    // (Unused because the OverlayTrigger doesn't work, see below)
-    // const tooltipMap = {
-    //   Combo: (
-    //     <Tooltip id={`comboTooltip${nameAsId}`}>
-    //       Compare each stat against the set of all available D1 teams
-    //     </Tooltip>
-    //   ),
-    //   High: (
-    //     <Tooltip id={`highTooltip${nameAsId}`}>
-    //       Compare each stat against the "high tier" of D1 (high majors,
-    //       mid-high majors, any team in the T150)
-    //     </Tooltip>
-    //   ),
-    //   Medium: (
-    //     <Tooltip id={`mediumTooltip${nameAsId}`}>
-    //       Compare each stat against the "medium tier" of D1
-    //       (mid/mid-high/mid-low majors, if in the T275)
-    //     </Tooltip>
-    //   ),
-    //   Low: (
-    //     <Tooltip id={`lowTooltip${nameAsId}`}>
-    //       Compare each stat against the "low tier" of D1 (low/mid-low majors,
-    //       if outside the T250)
-    //     </Tooltip>
-    //   ),
-    // } as Record<string, any>;
-
     const configStr = config.split(":");
     const gradeFormat = configStr[0];
     const tierStrTmp = configStr?.[1] || "Combo";
@@ -386,105 +527,6 @@ export class GradeTableUtils {
     //(if set tier doesn't exist just fallback)
     const tierToUse = tiers[tierStr];
     const posGroup = configStr?.[2] || "All";
-
-    const configParams = (newTier: string) => {
-      const configParamBase = `${gradeFormat}:${newTier}`;
-      if (posGroup == "All") {
-        return configParamBase;
-      } else {
-        return `${configParamBase}:${posGroup}`;
-      }
-    };
-    const tierLinkTmp = (tier: string) => (
-      <a
-        href={tiers[tier] ? "#" : undefined}
-        onClick={(event) => {
-          event.preventDefault();
-          setConfig(configParams(tier));
-        }}
-      >
-        {tier == "Combo" ? "D1" : tier}
-        {tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
-      </a>
-    );
-    const tierLink = (tier: string) =>
-      tier == tierStr ? <b>{tierLinkTmp(tier)}</b> : tierLinkTmp(tier);
-    //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now
-    //      <OverlayTrigger placement="auto" overlay={tooltipMap[tier]!}>
-    //         {(tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier)}
-    //      </OverlayTrigger>;
-
-    const topLine = (
-      <span className="small">
-        {tierLink("Combo")} | {tierLink("High")} | {tierLink("Medium")} |{" "}
-        {tierLink("Low")}
-      </span>
-    );
-
-    // (Unused because the OverlayTrigger doesn't work, see below)
-    // const eqRankShowTooltip = (
-    //   <Tooltip id={`eqRankShowTooltip${nameAsId}`}>
-    //     Show the approximate rank for each stat against the "tier"
-    //     (D1/High/etc) as if it were over the entire season
-    //   </Tooltip>
-    // );
-    // const percentileShowTooltip = (
-    //   <Tooltip id={`percentileShowTooltip${nameAsId}`}>
-    //     Show the percentile of each stat against the "tier" (D1/High/etc){" "}
-    //   </Tooltip>
-    // );
-
-    //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now
-    const maybeBold = (bold: boolean, html: React.ReactNode) =>
-      bold ? <b>{html}</b> : html;
-    const bottomLine = (
-      <span className="small">
-        {maybeBold(
-          gradeFormat == "rank",
-          //            <OverlayTrigger placement="auto" overlay={eqRankShowTooltip}>
-          <a
-            href={"#"}
-            onClick={(event) => {
-              event.preventDefault();
-              setConfig(`rank:${tierStrTmp}`);
-            }}
-          >
-            Ranks
-          </a>
-          //            </OverlayTrigger>
-        )}
-        &nbsp;|{" "}
-        {maybeBold(
-          gradeFormat == "pct",
-          //           <OverlayTrigger placement="auto" overlay={percentileShowTooltip}>
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              setConfig(`pct:${tierStrTmp}`);
-            }}
-          >
-            Pctiles
-          </a>
-          //           </OverlayTrigger>
-        )}
-      </span>
-    );
-
-    const helpTooltip = (
-      <Tooltip id={`helpTooltip${nameAsId}`}>
-        High Tier: high majors, mid-high majors, plus any team in the T150
-        <br />
-        Medium Tier: mid/mid-high/mid-low majors, if in the T275
-        <br />
-        Low Tier: low/mid-low majors, or if outside the T250
-      </Tooltip>
-    );
-    const helpOverlay = (
-      <OverlayTrigger placement="auto" overlay={helpTooltip}>
-        <b>(?)</b>
-      </OverlayTrigger>
-    );
 
     const teamPercentiles = tierToUse
       ? GradeUtils.buildTeamPercentiles(
@@ -609,12 +651,7 @@ export class GradeTableUtils {
       ),
       //(for some reason the snapshot build repeats bottomLine if the "//" aren't represented like this):
       GenericTableOps.buildTextRow(
-        <span>
-          <small>
-            {title} Team Grades {helpOverlay}
-          </small>
-          : {topLine} {"//"} {bottomLine}
-        </span>,
+        GradeTableUtils.buildTeamGradeControls(title, p),
         ""
       ),
     ];
@@ -717,7 +754,7 @@ export class GradeTableUtils {
     controlRowId: string,
     p: CommonPlayerProps
   ) => {
-    controlRow: GenericTableRow;
+    controlRow: React.ReactNode;
     tierToUse: DivisionStatistics | undefined;
     gradeFormat: string;
   } = (
@@ -887,14 +924,13 @@ export class GradeTableUtils {
 
     return {
       //(for some reason the snapshot build repeats the xxxLine if the "//" aren't represented like this):
-      controlRow: GenericTableOps.buildTextRow(
+      controlRow: (
         <span>
           <small>
             {selectionTitle} {helpOverlay}
           </small>
           : {topLine} {"//"} {midLine} {"//"} {bottomLine}
-        </span>,
-        ""
+        </span>
       ),
       tierToUse,
       gradeFormat,
@@ -1158,7 +1194,7 @@ export class GradeTableUtils {
             )
           : []
       )
-      .concat([controlRow])
+      .concat([GenericTableOps.buildTextRow(controlRow, "")])
       .concat(leaderboardMode ? [] : [GenericTableOps.buildRowSeparator()]);
     return tableData;
   };
@@ -1305,7 +1341,7 @@ export class GradeTableUtils {
         GenericTableOps.defaultCellMeta,
         tableConfig
       ),
-      controlRow,
+      GenericTableOps.buildTextRow(controlRow, ""),
     ];
     return tableData;
   };
