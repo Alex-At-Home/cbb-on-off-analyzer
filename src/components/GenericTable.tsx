@@ -363,10 +363,16 @@ const nextLockMode: Record<LockModes, LockModes> = {
   row: "none",
   missing: "missing",
 };
-type IntegratedGradeSettings = {
+export type IntegratedGradeSettingsColorChoice = {
+  valToTest: number;
+  expectedResult: string;
+  gradeColor: (pctile: number) => string;
+};
+export type IntegratedGradeSettings = {
   topPctle?: number;
   bottomPctle?: number;
   hybridMode?: boolean;
+  colorChooser: IntegratedGradeSettingsColorChoice[];
 };
 type Props = {
   responsive?: boolean;
@@ -550,12 +556,6 @@ const GenericTable: React.FunctionComponent<Props> = ({
       const actualKey = row.prefixFn(key);
       const tmpVal = row.dataObj[actualKey] || colProp.missingData;
       const rankOrPctile = _.thru(integratedGrades, (gradeSettings) => {
-        //TODO: have 3 modes - cutdown / full / separate
-        // have Tx and Bx if low
-        // get the direction correct
-        // add color scheme
-        // TODO: more control over rank-pctile hybrid
-
         if (gradeSettings) {
           const tmpGrade = row.dataObj?.grades?.[actualKey];
           const maybePctile = tmpGrade?.value;
@@ -594,12 +594,35 @@ const GenericTable: React.FunctionComponent<Props> = ({
           return undefined;
         }
       });
+      const gradeColorOverride = _.thru(
+        row.dataObj?.grades?.[actualKey]?.value,
+        (pctileToUse) => {
+          if (integratedGrades && !_.isNil(pctileToUse)) {
+            const colorChoice = _.find(
+              integratedGrades.colorChooser,
+              (choice: IntegratedGradeSettingsColorChoice) => {
+                const cellMeta = row.cellMetaFn(key, tmpVal);
+                const actualResult = colProp.colorPicker(
+                  { value: choice.valToTest },
+                  cellMeta
+                );
+                const matches = choice.expectedResult == actualResult;
+                return matches;
+              }
+            );
+            return colorChoice?.gradeColor(pctileToUse);
+          } else {
+            return undefined;
+          }
+        }
+      );
       const style = getRowStyle(
         key,
         tmpVal,
         colProp,
         row,
-        !_.isNil(rankOrPctile)
+        !_.isNil(rankOrPctile),
+        gradeColorOverride
       );
       const valBuilder = (inVal: any) => {
         try {
@@ -792,7 +815,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
     val: any | null | undefined,
     colProps: GenericTableColProps,
     row: GenericTableDataRow,
-    hasRank: boolean
+    hasRank: boolean,
+    gradeColorOverride?: string
   ) {
     const backgroundColorFn = () => {
       if (!_.isNil(val)) {
@@ -800,7 +824,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         return colProps.colorPicker(val, cellMeta);
       } else return undefined;
     };
-    const colorToUse = backgroundColorFn();
+    const colorToUse = gradeColorOverride ?? backgroundColorFn();
     // I wanted some clever code that used the background color to decide on black vs white
     // but actually can do something cheaper, since background color override doesn't currently change with
     // theme, and was designed to work black text:

@@ -1493,6 +1493,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
           ? {
               hybridMode: !showGrades.includes(":Integrated"),
+              colorChooser: CbbColors.integratedColorsDefault,
             }
           : undefined
       }

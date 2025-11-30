@@ -95,6 +95,7 @@ import StickyRow from "./shared/StickyRow";
 import ThemedSelect from "./shared/ThemedSelect";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { CbbColors } from "../utils/CbbColors";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -801,6 +802,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
             ? {
                 hybridMode: false,
+                colorChooser: CbbColors.integratedColorsDefault,
               }
             : undefined
         }

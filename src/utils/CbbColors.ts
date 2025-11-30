@@ -1,5 +1,6 @@
 import chroma from "chroma-js";
 import _ from "lodash";
+import { IntegratedGradeSettingsColorChoice } from "../components/GenericTable";
 
 type CbbColorTuple = [
   (val: number) => string | undefined,
@@ -570,4 +571,25 @@ export class CbbColors {
     CbbColors.greenGreyRed
       .domain(CbbColors.pp100Domain)(val * 100)
       .toString();
+
+  ////////////////////////
+
+  public static readonly integratedColorsDefault: IntegratedGradeSettingsColorChoice[] =
+    [
+      {
+        valToTest: 1000,
+        expectedResult: CbbColors.blueToOrange(1).toString(),
+        gradeColor: CbbColors.all_pctile_freq,
+      },
+      {
+        valToTest: 1000,
+        expectedResult: CbbColors.greenToRed(1).toString(),
+        gradeColor: CbbColors.off_pctile_qual,
+      },
+      {
+        valToTest: 1000,
+        expectedResult: CbbColors.redToGreen(1).toString(),
+        gradeColor: CbbColors.off_pctile_qual,
+      },
+    ];
 }
