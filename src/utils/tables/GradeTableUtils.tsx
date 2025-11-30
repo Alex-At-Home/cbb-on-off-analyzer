@@ -767,6 +767,7 @@ export class GradeTableUtils {
     p: CommonPlayerProps,
     globalSettings?: {
       countsAreExample: boolean;
+      onHide: () => void;
     }
   ) => {
     controlRow: React.ReactNode;
