@@ -373,6 +373,7 @@ export type IntegratedGradeSettings = {
   bottomPctle?: number;
   hybridMode?: boolean;
   colorChooser: IntegratedGradeSettingsColorChoice[];
+  customKeyMappings?: Record<string, string>;
 };
 type Props = {
   responsive?: boolean;
@@ -557,7 +558,9 @@ const GenericTable: React.FunctionComponent<Props> = ({
       const tmpVal = row.dataObj[actualKey] || colProp.missingData;
       const rankOrPctile = _.thru(integratedGrades, (gradeSettings) => {
         if (gradeSettings) {
-          const tmpGrade = row.dataObj?.grades?.[actualKey];
+          const gradeKey =
+            gradeSettings.customKeyMappings?.[actualKey] || actualKey;
+          const tmpGrade = row.dataObj?.grades?.[gradeKey];
           const maybePctile = tmpGrade?.value;
           const pctile = maybePctile || 0;
           const samples = tmpGrade?.samples * pctile;

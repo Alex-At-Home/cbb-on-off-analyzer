@@ -1494,6 +1494,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           ? {
               hybridMode: !showGrades.includes(":Integrated"),
               colorChooser: CbbColors.integratedColorsDefault,
+              customKeyMappings: {
+                def_3pr: "off_3p_ast",
+                def_2primr: "off_2prim_ast",
+              },
             }
           : undefined
       }
@@ -1532,6 +1536,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           {
             countsAreExample:
               (_.size(yearsToShow) || _.size(playerSeasonInfo)) > 1,
+            onHide: () => {
+              //TODO add a useState here
+            },
           }
         );
       } else {
