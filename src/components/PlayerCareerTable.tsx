@@ -150,6 +150,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showGrades, setShowGrades] = useState(
     _.isNil(playerCareerParams.showGrades) ? "" : playerCareerParams.showGrades
   );
+  const showStandaloneGrades =
+    (showGrades &&
+      !FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)) ||
+    (showGrades && showGrades.includes(":Integrated"));
 
   /** Play style config */
   /** Show simplified player play style breakdown */
@@ -469,7 +473,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // Some layouting information
   const multipleRowsPerYear =
     (showAll && (showT100 || showConf)) || (showT100 && showConf);
-  const extraCharts = showGrades || showPlayerPlayTypes || showShotCharts;
+  const extraCharts =
+    showStandaloneGrades || showPlayerPlayTypes || showShotCharts;
   const showEveryYear = multipleRowsPerYear || extraCharts;
 
   const playerRowBuilder = (
@@ -922,7 +927,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           rosterInfoSpanCalculator
         ),
       ],
-      showGrades
+      showStandaloneGrades
         ? GradeTableUtils.buildPlayerGradeTableRows({
             isFullSelection: !titleSuffix,
             selectionTitle: `Grades`,

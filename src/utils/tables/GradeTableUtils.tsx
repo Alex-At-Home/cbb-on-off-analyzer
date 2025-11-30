@@ -761,6 +761,7 @@ export class GradeTableUtils {
 
   /** Common logic for all grade building - returns the interactive control row and some required metadata
    * TODO: merge common code between this and buildTeamGradeTableRows (mostly just unused tooltips?)
+   * TODO: do need a hide button here
    */
   static readonly buildPlayerGradeControlState: (
     controlRowId: string,
