@@ -152,10 +152,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(false);
-  const showStandaloneGrades =
-    (showGrades &&
-      !FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)) ||
-    (showGrades && showGrades.includes(":Standalone"));
+  const showStandaloneGrades = showGrades && showGrades.includes(":Standalone");
 
   /** Play style config */
   /** Show simplified player play style breakdown */
@@ -1526,9 +1523,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
       }}
       integratedGrades={
-        showGrades &&
-        !showStandaloneGrades &&
-        FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
+        showGrades && !showStandaloneGrades
           ? {
               hybridMode: !showGrades.includes(":Integrated"),
               colorChooser: CbbColors.integratedColorsDefault,
@@ -1543,10 +1538,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
   // 4] Views
 
-  const buildTopLevelGradeControls =
-    showGrades &&
-    FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView) &&
-    !hideGlobalGradeSettings;
+  const buildTopLevelGradeControls = showGrades && !hideGlobalGradeSettings;
   const { controlRow: topLevelGradeControls } = _.thru(
     buildTopLevelGradeControls,
     (__) => {
