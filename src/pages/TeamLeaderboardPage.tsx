@@ -102,7 +102,6 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
     return (
       <Container>
-        <SiteModeDropdown />
         <Row className="mt-3 mb-3">
           <Col xs={12} className="text-center">
             <span>
@@ -330,6 +329,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   }/thumbnails/team_leaderboard_thumbnail.png`;
   return (
     <Container>
+      <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
         <meta name="twitter:image" content={thumbnailUrl} />

@@ -530,14 +530,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               )}
             </Dropdown.Item>
           ) : null}
-          <Dropdown.Item>
-            {buildNavItem(
-              "Build your own off-season roster!",
-              teamBuilderTooltip,
-              getTeamBuilderUrl(),
-              `${ParamPrefixes.team}_editor`
-            )}
-          </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
@@ -593,6 +585,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
+          <Dropdown.Item>
+            {buildNavItem(
+              "Build your own off-season roster!",
+              teamBuilderTooltip,
+              getTeamBuilderUrl(),
+              `${ParamPrefixes.team}_editor`
+            )}
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     );

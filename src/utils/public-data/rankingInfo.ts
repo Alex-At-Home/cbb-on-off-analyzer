@@ -272,6 +272,53 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
     })
     .value();
 
+/** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
+const apPollMen_2025_26: () => Record<string, number> = () =>
+  _.chain(
+    `
+1	Purdue (40)	7-0	1494	1
+2	Arizona (6)	7-0	1442	2
+3	Michigan (15)	7-0	1417	7
+4	Duke	8-0	1355	4
+5	UConn	6-1	1244	5
+6	Louisville	7-0	1177	6
+7	Michigan State	7-0	1095	11
+8	Houston	7-1	1070	3
+9	BYU	6-1	1037	9
+10	Iowa State	7-0	975	15
+11	Gonzaga	7-1	934	12
+12	Alabama	5-2	869	8
+13	Tennessee	7-1	771	17
+14	Illinois	6-2	657	13
+15	Florida	5-2	568	10
+16	North Carolina	6-1	519	16
+17	Vanderbilt	8-0	475	24
+18	Kentucky	5-2	451	19
+19	Texas Tech	6-2	387	20
+20	Auburn	6-2	376	21
+21	Kansas	6-2	340	NR
+22	Indiana	7-0	313	25
+23	St. John's	4-3	200	14
+24	Southern Cal	7-0	145	NR
+25	Arkansas	5-2	127	22
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 4,
+    })
+    .value();
+
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
 const apPollWomen_2021_22: () => Record<string, number> = () =>
   _.chain(
@@ -455,6 +502,53 @@ const apPollWomen_2024_25: () => Record<string, number> = () =>
     })
     .value();
 
+/** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
+const apPollWomen_2025_26: () => Record<string, number> = () =>
+  _.chain(
+    `
+1	UConn (22)	7-0	790	1
+2	Texas (10)	8-0	777	4
+3	South Carolina	7-1	719	2
+4	UCLA	8-1	713	3
+5	LSU	8-0	652	5
+6	Michigan	6-1	629	6
+7	Maryland	9-0	599	7
+8	TCU	8-0	561	8
+9	Oklahoma	7-1	546	9
+10	Iowa State	9-0	502	10
+11	North Carolina	8-1	463	12
+12	Iowa	8-0	452	11
+13	Ole Miss	7-0	396	13
+14	Baylor	7-1	355	15
+15	Vanderbilt	8-0	335	17
+16	USC	5-2	288	18
+17	Kentucky	8-1	284	16
+18	Notre Dame	5-1	276	19
+19	Tennessee	5-2	245	14
+20	Michigan State	8-0	233	20
+21	Washington	7-0	171	22
+22	Louisville	7-2	105	23
+23	Ohio State	6-1	84	23
+24	Oklahoma State	8-1	83	24
+25	West Virginia	6-1	64	21
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 3,
+    })
+    .value();
+
 /** Contains NCAA/KP lookups for gender/years where we want to retrieve efficiency from the cache (current year only) */
 export const apPolls: Record<string, () => Record<string, number>> = {
   "Women_2020/21": _.memoize(apPollWomen_2020_21),
@@ -462,12 +556,14 @@ export const apPolls: Record<string, () => Record<string, number>> = {
   "Women_2022/23": _.memoize(apPollWomen_2022_23),
   "Women_2023/24": _.memoize(apPollWomen_2023_24),
   "Women_2024/25": _.memoize(apPollWomen_2024_25),
+  "Women_2025/26": _.memoize(apPollWomen_2025_26),
 
   "Men_2020/21": _.memoize(apPollMen_2020_21),
   "Men_2021/22": _.memoize(apPollMen_2021_22),
   "Men_2022/23": _.memoize(apPollMen_2022_23),
   "Men_2023/24": _.memoize(apPollMen_2023_24),
   "Men_2024/25": _.memoize(apPollMen_2024_25),
+  "Men_2025/26": _.memoize(apPollMen_2025_26),
 };
 
 ////////////////////////////////////////////////////////////////

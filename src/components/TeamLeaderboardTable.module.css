@@ -1,3 +1,24 @@
+[data-theme='dark'] 
+a.bigwin {
+  color: lightgreen; 
+  background-color: transparent; 
+  text-decoration: none;
+}
+
+[data-theme='dark'] 
+a.bigwin:hover {
+  color: lightgreen;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+[data-theme='dark'] 
+a.bigwin:active {
+  color: lightgreen;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 a.bigwin {
   color: green; 
   background-color: transparent; 
@@ -15,6 +36,27 @@ a.bigwin:active {
   background-color: transparent;
   text-decoration: underline;
 }
+
+[data-theme='dark'] 
+a.win {
+   color: lightgrey; 
+   background-color: transparent; 
+   text-decoration: none;
+ }
+
+[data-theme='dark'] 
+  a.win:hover {
+   color: lightgrey;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+[data-theme='dark'] 
+ a.win:active {
+   color: lightgrey;
+   background-color: transparent;
+   text-decoration: underline;
+ }
 
 a.win {
    color: black; 
@@ -34,7 +76,28 @@ a.win {
    text-decoration: underline;
  }
 
+[data-theme='dark'] 
  a.loss {
+   color: orange; 
+   background-color: transparent; 
+   text-decoration: none;
+ }
+ 
+[data-theme='dark'] 
+ a.loss:hover {
+   color: orange;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+[data-theme='dark'] 
+ a.loss:active {
+   color: orange;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+  a.loss {
    color: darkorange; 
    background-color: transparent; 
    text-decoration: none;
@@ -52,7 +115,28 @@ a.win {
    text-decoration: underline;
  }
  
+[data-theme='dark'] 
  a.bigloss {
+   color: #FE5B3B; 
+   background-color: transparent; 
+   text-decoration: none;
+ }
+ 
+[data-theme='dark'] 
+ a.bigloss:hover {
+   color: #FE5B3B;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+[data-theme='dark'] 
+ a.bigloss:active {
+   color: #FE5B3B;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+
+  a.bigloss {
    color: red; 
    background-color: transparent; 
    text-decoration: none;
