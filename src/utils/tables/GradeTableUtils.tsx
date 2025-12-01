@@ -761,7 +761,6 @@ export class GradeTableUtils {
 
   /** Common logic for all grade building - returns the interactive control row and some required metadata
    * TODO: merge common code between this and buildTeamGradeTableRows (mostly just unused tooltips?)
-   * TODO: do need a hide button here
    */
   static readonly buildPlayerGradeControlState: (
     controlRowId: string,
@@ -1020,6 +1019,48 @@ export class GradeTableUtils {
     };
   };
 
+  static readonly buildPlayerNetGrade = (
+    rapmMargin: Statistic | undefined,
+    gradeFormat: string,
+    leaderboardMode: boolean,
+    integratedMode: boolean
+  ) => {
+    const maybeSmall = (node: React.ReactNode) => {
+      return gradeFormat == "pct" ? <small>{node}</small> : node;
+    };
+    if (rapmMargin) {
+      const shadow = CommonTableDefs.getTextShadow(
+        rapmMargin,
+        CbbColors.off_pctile_qual,
+        "20px",
+        4
+      );
+      return (
+        <span>
+          {integratedMode ? undefined : (
+            <small>
+              <b>net</b>:{" "}
+            </small>
+          )}
+          {maybeSmall(
+            <span style={shadow}>
+              {GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}
+              {gradeFormat == "pct" ? "%" : ""}
+            </span>
+          )}
+        </span>
+      );
+    } else {
+      return leaderboardMode ? null : (
+        <small>
+          <i>
+            (net rank: NA)<sup>*</sup>
+          </i>
+        </small>
+      );
+    }
+  };
+
   /** Build the rows containing the grade information for a team
    * TODO: merge any common logic this and buildTeamGradeTableRows and buildProjectedPlayerGradeTableRows
    * (but I'm actually not sure it's worth it)
@@ -1194,30 +1235,11 @@ export class GradeTableUtils {
 
     const netInfo = _.thru(expandedView, (__) => {
       if (expandedView) {
-        const shadow = CommonTableDefs.getTextShadow(
+        return GradeTableUtils.buildPlayerNetGrade(
           rapmMargin,
-          CbbColors.off_pctile_qual,
-          "20px",
-          4
-        );
-        return rapmMargin ? (
-          <span>
-            <small>
-              <b>net</b>:{" "}
-            </small>
-            {maybeSmall(
-              <span style={shadow}>
-                {GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}
-                {gradeFormat == "pct" ? "%" : ""}
-              </span>
-            )}
-          </span>
-        ) : leaderboardMode ? null : (
-          <small>
-            <i>
-              (net rank: NA)<sup>*</sup>
-            </i>
-          </small>
+          gradeFormat,
+          leaderboardMode || false,
+          false
         );
       }
     });

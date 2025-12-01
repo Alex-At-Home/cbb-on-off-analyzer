@@ -153,7 +153,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const showStandaloneGrades =
     (showGrades &&
       !FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)) ||
-    (showGrades && showGrades.includes(":Integrated"));
+    (showGrades && showGrades.includes(":Standalone"));
 
   /** Play style config */
   /** Show simplified player play style breakdown */
@@ -739,6 +739,33 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         };
       });
 
+    // If we're in short form grades mode then build those:
+
+    if (showGrades && !showStandaloneGrades) {
+      //TODO: make this a generic feature so can re-use in one line:
+      const { tierToUse, gradeFormat, ...unused } =
+        GradeTableUtils.buildPlayerTierInfo(
+          showGrades || "rank:Combo",
+          {
+            comboTier: divisionStatsCacheByYear.Combo,
+            highTier: divisionStatsCacheByYear.High,
+            mediumTier: divisionStatsCacheByYear.Medium,
+            lowTier: divisionStatsCacheByYear.Low,
+          },
+          positionalStatsCache[player.year || ParamDefaults.defaultYear] || {}
+        );
+
+      const predictedGrades = tierToUse
+        ? GradeUtils.buildPlayerPercentiles(
+            tierToUse,
+            player,
+            _.keys(GradeUtils.playerFields),
+            gradeFormat == "rank"
+          )
+        : {};
+      player.grades = predictedGrades;
+    }
+
     // Title
 
     const shortTitle =
@@ -772,9 +799,39 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           </Tooltip>
         }
       >
-        <b style={adjMarginShadow}>
-          [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
-        </b>
+        <>
+          <span>
+            <b>net: </b>
+            <b style={adjMarginShadow}>
+              [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
+            </b>
+            {_.thru(
+              showGrades && !showStandaloneGrades,
+              (showInlineRapmNetGrade) => {
+                if (showInlineRapmNetGrade) {
+                  const netRapmField = factorMins
+                    ? "off_adj_rapm_prod_margin"
+                    : "off_adj_rapm_margin";
+                  return (
+                    <div>
+                      {" "}
+                      {GradeTableUtils.buildPlayerNetGrade(
+                        (player?.grades as Record<string, Statistic>)?.[
+                          netRapmField
+                        ],
+                        showGrades.startsWith("rank:") ? "rank" : "pct",
+                        false,
+                        true
+                      )}
+                    </div>
+                  );
+                } else {
+                  return undefined;
+                }
+              }
+            )}
+          </span>
+        </>
       </OverlayTrigger>
     );
 
@@ -878,33 +935,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         </div>
       </div>
     );
-
-    // If we're in short form grades mode then build those:
-
-    if (showGrades) {
-      //TODO: make this a generic feature so can re-use in one line:
-      const { tierToUse, gradeFormat, ...unused } =
-        GradeTableUtils.buildPlayerTierInfo(
-          showGrades || "rank:Combo",
-          {
-            comboTier: divisionStatsCacheByYear.Combo,
-            highTier: divisionStatsCacheByYear.High,
-            mediumTier: divisionStatsCacheByYear.Medium,
-            lowTier: divisionStatsCacheByYear.Low,
-          },
-          positionalStatsCache[player.year || ParamDefaults.defaultYear] || {}
-        );
-
-      const predictedGrades = tierToUse
-        ? GradeUtils.buildPlayerPercentiles(
-            tierToUse,
-            player,
-            _.keys(GradeUtils.playerFields),
-            gradeFormat == "rank"
-          )
-        : {};
-      player.grades = predictedGrades;
-    }
 
     // Finally build rows
 
@@ -1495,6 +1525,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       }}
       integratedGrades={
         showGrades &&
+        !showStandaloneGrades &&
         FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
           ? {
               hybridMode: !showGrades.includes(":Integrated"),
