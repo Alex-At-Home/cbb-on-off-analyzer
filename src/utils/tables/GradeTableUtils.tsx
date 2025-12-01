@@ -977,8 +977,8 @@ export class GradeTableUtils {
     const endLine = (
       <span className="small">
         {viewGroupLink("Hybrid")} |&nbsp;
-        {viewGroupLink("Standalone")} |&nbsp;
-        {viewGroupLink("Integrated")}
+        {viewGroupLink("Rows")} |&nbsp;
+        {viewGroupLink("Inline")}
       </span>
     );
 
@@ -988,10 +988,10 @@ export class GradeTableUtils {
         25%). In "Ranks" mode, B25% stats are shown as %les.
         <br />
         <br />
-        Standalone: Ranks/%les shown as separate rows in the table
+        Rows: Ranks/%les shown as separate rows in the table
         <br />
         <br />
-        Integrated: Ranks/%les shown in same row as stats, all stats shown
+        Inline: Ranks/%les shown in same row as stats, all stats shown
         <br />
         <br />
         ("Hide" temporarily hides the global grade control settings. Will

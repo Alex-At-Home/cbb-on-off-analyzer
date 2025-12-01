@@ -152,7 +152,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(false);
-  const showStandaloneGrades = showGrades && showGrades.includes(":Standalone");
+  const showStandaloneGrades = showGrades && showGrades.includes(":Row");
 
   /** Play style config */
   /** Show simplified player play style breakdown */
@@ -1525,7 +1525,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       integratedGrades={
         showGrades && !showStandaloneGrades
           ? {
-              hybridMode: !showGrades.includes(":Integrated"),
+              hybridMode: !showGrades.includes(":Inline"), //(:Hybrid is default so can be represented by no entry)
               colorChooser: CbbColors.integratedColorsDefault,
               customKeyMappings: {
                 def_3pr: "off_3p_ast",
@@ -1754,7 +1754,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
 
   const optionsDropdown = (
-    <GenericTogglingMenu>
+    <GenericTogglingMenu size="sm">
       <AnnotationMenuItems />
       <GenericTogglingMenuItem
         className="d-none d-md-flex"
@@ -1779,16 +1779,16 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         active={retrievingPlayers}
         text={"Finding similar players..."}
       >
-        <StickyRow className="mb-2" stickyEnabled={stickyQuickToggle}>
-          <Col sm="11">
-            {quickToggleBar}
-            {topLevelGradeControls ? (
-              <div className="pt-1">{topLevelGradeControls}</div>
-            ) : undefined}
-          </Col>
+        <StickyRow className="mb-2 w-100" stickyEnabled={stickyQuickToggle}>
+          <Col sm="11">{quickToggleBar}</Col>
           <Form.Group as={Col} sm="1" className="mb-0">
             {optionsDropdown}
           </Form.Group>
+          {topLevelGradeControls ? (
+            <Col xs="12" className="pt-1">
+              <div>{topLevelGradeControls}</div>
+            </Col>
+          ) : undefined}
         </StickyRow>
         <Row>{table}</Row>
       </LoadingOverlay>
