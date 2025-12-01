@@ -761,6 +761,7 @@ export class GradeTableUtils {
 
   /** Common logic for all grade building - returns the interactive control row and some required metadata
    * TODO: merge common code between this and buildTeamGradeTableRows (mostly just unused tooltips?)
+   * TODO: need to plumb in hide button here
    */
   static readonly buildPlayerGradeControlState: (
     controlRowId: string,
@@ -991,13 +992,42 @@ export class GradeTableUtils {
         <br />
         <br />
         Integrated: Ranks/%les shown in same row as stats, all stats shown
+        <br />
+        <br />
+        ("Hide" temporarily hides the global grade control settings. Will
+        re-appear on page refresh or when toggling grades on/off above.)
       </Tooltip>
     );
-    const helpOverlayView = (
+    const helpTooltipOvelay = (
       <OverlayTrigger placement="auto" overlay={helpTooltipView}>
         <b>(?)</b>
       </OverlayTrigger>
     );
+
+    const hideTooltipTier = (
+      <Tooltip id={`hideTooltip${controlRowId}`}>
+        Temporarily hides the global grade control settings. Will re-appear on
+        page refresh or when toggling grades on/off above.
+      </Tooltip>
+    );
+    const hideGradeSettings = //(TODO: doesn't work same as other overlays, not sure why but related to the <a>)
+      (
+        <OverlayTrigger placement="auto" overlay={hideTooltipTier}>
+          <>
+            [
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                globalSettings?.onHide();
+              }}
+            >
+              Hide
+            </a>
+            ]
+          </>
+        </OverlayTrigger>
+      );
 
     return {
       //(for some reason the snapshot build repeats the xxxLine if the "//" aren't represented like this):
@@ -1008,9 +1038,10 @@ export class GradeTableUtils {
           </small>
           : {topLine} {"//"} {midLine} {"//"} {bottomLine}
           {globalSettings ? (
-            <>
-              &nbsp;{"//"} {endLine} <small>{helpOverlayView}</small>
-            </>
+            <span>
+              &nbsp;{"//"} {endLine} <small>{helpTooltipOvelay}</small>
+              &nbsp;&nbsp;&nbsp;{hideGradeSettings}
+            </span>
           ) : undefined}
         </span>
       ),

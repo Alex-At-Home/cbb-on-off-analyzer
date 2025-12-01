@@ -150,6 +150,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showGrades, setShowGrades] = useState(
     _.isNil(playerCareerParams.showGrades) ? "" : playerCareerParams.showGrades
   );
+  const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
+    useState<boolean>(false);
   const showStandaloneGrades =
     (showGrades &&
       !FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)) ||
@@ -1542,7 +1544,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // 4] Views
 
   const buildTopLevelGradeControls =
-    showGrades && FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView);
+    showGrades &&
+    FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView) &&
+    !hideGlobalGradeSettings;
   const { controlRow: topLevelGradeControls } = _.thru(
     buildTopLevelGradeControls,
     (__) => {
@@ -1573,7 +1577,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             countsAreExample:
               (_.size(yearsToShow) || _.size(playerSeasonInfo)) > 1,
             onHide: () => {
-              //TODO add a useState here
+              setHideGlobalGradeSettings(true);
             },
           }
         );
@@ -1710,10 +1714,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               ? "Hide player ranks/percentiles"
               : "Show player ranks/percentiles",
             toggled: showGrades != "",
-            onClick: () =>
+            onClick: () => {
               setShowGrades(
                 showGrades ? "" : ParamDefaults.defaultEnabledGrade
-              ),
+              );
+              setHideGlobalGradeSettings(false); //(reset)
+            },
           },
           {
             label: "Shots",
