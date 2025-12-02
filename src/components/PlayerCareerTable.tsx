@@ -762,6 +762,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             gradeFormat == "rank"
           )
         : {};
+
+      GradeTableUtils.injectPlayerSampleSizeDisclaimers(
+        //(adds "extraInfo" to predicted grades)
+        player,
+        predictedGrades
+      );
       player.grades = predictedGrades;
     }
 
@@ -819,7 +825,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           netRapmField
                         ],
                         showGrades.startsWith("rank:") ? "rank" : "pct",
-                        false,
+                        true,
                         true
                       )}
                     </div>

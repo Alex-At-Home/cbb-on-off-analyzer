@@ -566,29 +566,69 @@ const GenericTable: React.FunctionComponent<Props> = ({
           const samples = tmpGrade?.samples * pctile;
           const topPctle = gradeSettings.topPctle || 0.75;
           const bottomPctle = gradeSettings.bottomPctle || 0.25;
+          const maybeAddWarning = (extraInfo: string | undefined) => {
+            if (extraInfo) {
+              const tooltipId = `gradeTooltip_${rowIndex}_${prefixType}`;
+              const tooltip = (
+                <Tooltip id={tooltipId}>
+                  <span>{extraInfoLookups?.[extraInfo] || extraInfo}</span>
+                </Tooltip>
+              );
+              return (
+                <OverlayTrigger placement="auto" overlay={tooltip}>
+                  <sup className={styles.infoBadge}></sup>
+                </OverlayTrigger>
+              );
+            } else {
+              return undefined;
+            }
+          };
           if (gradeSettings.hybridMode) {
             //(in rank mode still shows %les for the bad %iles)
             if (samples > 0 && !_.isNil(maybePctile) && pctile >= topPctle) {
-              return GenericTableOps.approxRankOrHtmlFormatter(tmpGrade);
+              <>
+                {GenericTableOps.approxRankOrHtmlFormatter(tmpGrade)}
+                <small>{maybeAddWarning(tmpGrade?.extraInfo)}</small>
+              </>;
             } else if (
               samples > 0 &&
               !_.isNil(maybePctile) &&
               pctile <= bottomPctle
             ) {
-              return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+              return (
+                <small>
+                  {`${(pctile * 100).toFixed(0)}%`}
+                  {maybeAddWarning(tmpGrade?.extraInfo)}
+                </small>
+              );
             } else if (
               !_.isNil(maybePctile) &&
               (pctile >= topPctle || pctile <= bottomPctle)
             ) {
-              return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+              return (
+                <small>
+                  {`${(pctile * 100).toFixed(0)}%`}
+                  {maybeAddWarning(tmpGrade?.extraInfo)}
+                </small>
+              );
             } else {
               return undefined;
             }
           } else {
             if (samples > 0 && !_.isNil(maybePctile)) {
-              return GenericTableOps.approxRankOrHtmlFormatter(tmpGrade);
+              return (
+                <>
+                  {GenericTableOps.approxRankOrHtmlFormatter(tmpGrade)}
+                  <small>{maybeAddWarning(tmpGrade?.extraInfo)}</small>
+                </>
+              );
             } else if (!_.isNil(maybePctile)) {
-              return <small>{`${(pctile * 100).toFixed(0)}%`}</small>;
+              return (
+                <small>
+                  {`${(pctile * 100).toFixed(0)}%`}
+                  {maybeAddWarning(tmpGrade?.extraInfo)}
+                </small>
+              );
             } else {
               return undefined;
             }

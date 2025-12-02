@@ -1092,6 +1092,55 @@ export class GradeTableUtils {
     }
   };
 
+  /** Adds extra info with sample size warnings  */
+  static readonly injectPlayerSampleSizeDisclaimers = (
+    player: PureStatSet,
+    playerPercentiles: PureStatSet
+  ) => {
+    // Check whether fields have sufficient info to be displayed without a warning
+    const possPct = player.off_team_poss_pct?.value || 0;
+    if (
+      playerPercentiles.off_team_poss_pct &&
+      possPct < GradeUtils.minPossPctForInclusion
+    ) {
+      playerPercentiles.off_team_poss_pct.extraInfo =
+        `Player poss% sits under qualifying criteria of [${(
+          100 * GradeUtils.minPossPctForInclusion
+        ).toFixed(0)}%], ` +
+        `treat all fields' ranks/percentiles as unreliable.`;
+    }
+    GradeUtils.playerFieldsWithExtraCriteria.forEach((field) => {
+      const criteriaInfo = GradeUtils.playerFields[field];
+      const playerPercentile = playerPercentiles[field];
+      if (
+        criteriaInfo &&
+        playerPercentile &&
+        !GradeUtils.meetsExtraCriterion(player, criteriaInfo)
+      ) {
+        const hasAnySamplesAtAll = (player[criteriaInfo[0]]?.value || 0) > 0;
+        if (hasAnySamplesAtAll) {
+          const criteriaField = criteriaInfo[0];
+          const criteriaVal = criteriaInfo[1];
+          const actualVal = player[criteriaField]?.value || 0;
+          const criteriaIsPct = criteriaVal <= 1.0;
+          const criteriaValStr =
+            (criteriaIsPct ? criteriaVal * 100 : criteriaVal).toFixed(0) +
+            (criteriaIsPct ? "%" : "");
+          const actualValStr =
+            (criteriaIsPct ? actualVal * 100 : actualVal).toFixed(0) +
+            (criteriaIsPct ? "%" : "");
+          playerPercentile.extraInfo = `This grade is based on insufficient data ([${criteriaField}]: [${actualValStr}] < [${criteriaValStr}]), treat as unreliable.`;
+        } else {
+          delete playerPercentiles[field]; //(no data at all, just show nothing)
+        }
+      } else if (playerPercentile) {
+        //(do nothing)
+      } else {
+        delete playerPercentiles[field]; //(nothing worth showing)
+      }
+    });
+  };
+
   /** Build the rows containing the grade information for a team
    * TODO: merge any common logic this and buildTeamGradeTableRows and buildProjectedPlayerGradeTableRows
    * (but I'm actually not sure it's worth it)
@@ -1136,48 +1185,10 @@ export class GradeTableUtils {
         )
       : {};
 
-    // Check whether fields have sufficient info to be displayed without a warning
-    const possPct = player.off_team_poss_pct?.value || 0;
-    if (
-      playerPercentiles.off_team_poss_pct &&
-      possPct < GradeUtils.minPossPctForInclusion
-    ) {
-      playerPercentiles.off_team_poss_pct.extraInfo =
-        `Player poss% sits under qualifying criteria of [${(
-          100 * GradeUtils.minPossPctForInclusion
-        ).toFixed(0)}%], ` +
-        `treat all fields' ranks/percentiles as unreliable.`;
-    }
-    GradeUtils.playerFieldsWithExtraCriteria.forEach((field) => {
-      const criteriaInfo = GradeUtils.playerFields[field];
-      const playerPercentile = playerPercentiles[field];
-      if (
-        criteriaInfo &&
-        playerPercentile &&
-        !GradeUtils.meetsExtraCriterion(player, criteriaInfo)
-      ) {
-        const hasAnySamplesAtAll = (player[criteriaInfo[0]]?.value || 0) > 0;
-        if (hasAnySamplesAtAll) {
-          const criteriaField = criteriaInfo[0];
-          const criteriaVal = criteriaInfo[1];
-          const actualVal = player[criteriaField]?.value || 0;
-          const criteriaIsPct = criteriaVal <= 1.0;
-          const criteriaValStr =
-            (criteriaIsPct ? criteriaVal * 100 : criteriaVal).toFixed(0) +
-            (criteriaIsPct ? "%" : "");
-          const actualValStr =
-            (criteriaIsPct ? actualVal * 100 : actualVal).toFixed(0) +
-            (criteriaIsPct ? "%" : "");
-          playerPercentile.extraInfo = `This grade is based on insufficient data ([${criteriaField}]: [${actualValStr}] < [${criteriaValStr}]), treat as unreliable.`;
-        } else {
-          delete playerPercentiles[field]; //(no data at all, just show nothing)
-        }
-      } else if (playerPercentile) {
-        //(do nothing)
-      } else {
-        delete playerPercentiles[field]; //(nothing worth showing)
-      }
-    });
+    GradeTableUtils.injectPlayerSampleSizeDisclaimers(
+      player,
+      playerPercentiles
+    );
 
     const maybeSmall = (node: React.ReactNode) => {
       return gradeFormat == "pct" ? <small>{node}</small> : node;
