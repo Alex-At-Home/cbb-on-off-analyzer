@@ -148,7 +148,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(playerCareerParams.showGrades) ? "" : playerCareerParams.showGrades
+    _.isNil(playerCareerParams.showGrades)
+      ? ParamDefaults.defaultEnabledGrade
+      : playerCareerParams.showGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(false);

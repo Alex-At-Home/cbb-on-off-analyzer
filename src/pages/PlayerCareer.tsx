@@ -118,7 +118,9 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct
           ? ["possAsPct"]
           : [],
-        rawParams.showGrades == "" ? ["showGrades"] : [],
+        rawParams.showGrades == ParamDefaults.defaultEnabledGrade
+          ? ["showGrades"]
+          : [],
 
         !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
         rawParams.showPlayerPlayTypesAdjPpp ?? true
