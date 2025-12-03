@@ -586,10 +586,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
           if (gradeSettings.hybridMode) {
             //(in rank mode still shows %les for the bad %iles)
             if (samples > 0 && !_.isNil(maybePctile) && pctile >= topPctle) {
-              <>
-                {GenericTableOps.approxRankOrHtmlFormatter(tmpGrade)}
-                <small>{maybeAddWarning(tmpGrade?.extraInfo)}</small>
-              </>;
+              return (
+                <>
+                  {GenericTableOps.approxRankOrHtmlFormatter(tmpGrade)}
+                  <small>{maybeAddWarning(tmpGrade?.extraInfo)}</small>
+                </>
+              );
             } else if (
               samples > 0 &&
               !_.isNil(maybePctile) &&
