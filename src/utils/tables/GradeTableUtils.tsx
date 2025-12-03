@@ -230,6 +230,28 @@ export class GradeTableUtils {
     }
   };
 
+  /** Are we showing grades in their own rows? (Utility encapsulating some of the show grades config format complexity) */
+  static readonly showingStandaloneGrades = (
+    showGrades: string | undefined
+  ) => {
+    return showGrades && showGrades.includes(":Row");
+  };
+
+  /** Are we showing grades inline in "hybrid mode"? (Utility encapsulating some of the show grades config format complexity) */
+  static readonly showingHybridOrStandaloneGrades = (showGrades: string) => {
+    return !showGrades.includes(":Inline"); //(:Hybrid is default so can be represented by no entry)
+  };
+
+  /** Are we filtering by position? (Utility encapsulating some of the show grades config format complexity) */
+  static readonly getPlayerGradesPosGroup = (showGrades: string) => {
+    return showGrades.split(":")[2]; //(rank[:tier[:pos]])
+  };
+
+  /** Showing grades as ranks or %les? (Utility encapsulating some of the show grades config format complexity) */
+  static readonly getGradeType = (showGrades: string): "rank" | "pct" => {
+    return showGrades.startsWith("rank:") ? "rank" : "pct";
+  };
+
   /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
   static readonly populateTeamDivisionStatsCache = (
     filterParams: CommonFilterParams,
@@ -1050,6 +1072,7 @@ export class GradeTableUtils {
     };
   };
 
+  /** Builds an element showing the player's net RAPM grade with a color-coded backdrop */
   static readonly buildPlayerNetGrade = (
     rapmMargin: Statistic | undefined,
     gradeFormat: string,

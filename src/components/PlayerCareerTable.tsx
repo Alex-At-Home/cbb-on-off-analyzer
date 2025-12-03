@@ -154,7 +154,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(false);
-  const showStandaloneGrades = showGrades && showGrades.includes(":Row");
+  const showStandaloneGrades =
+    GradeTableUtils.showingStandaloneGrades(showGrades);
 
   /** Play style config */
   /** Show simplified player play style breakdown */
@@ -382,7 +383,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
           if (showGrades) {
             //(these are no use if we're just predicted transfer performance)
-            const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
+            const maybePosGroup =
+              GradeTableUtils.getPlayerGradesPosGroup(showGrades);
             if (maybePosGroup && maybePosGroup != "All") {
               const posGroupStats = currPosCacheForThisYear[maybePosGroup];
               if (yearOrGenderChanged || !posGroupStats) {
@@ -826,7 +828,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         (player?.grades as Record<string, Statistic>)?.[
                           netRapmField
                         ],
-                        showGrades.startsWith("rank:") ? "rank" : "pct",
+                        GradeTableUtils.getGradeType(showGrades),
                         true,
                         true
                       )}
@@ -1533,7 +1535,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       integratedGrades={
         showGrades && !showStandaloneGrades
           ? {
-              hybridMode: !showGrades.includes(":Inline"), //(:Hybrid is default so can be represented by no entry)
+              hybridMode:
+                GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
               colorChooser: CbbColors.integratedColorsDefault,
               customKeyMappings: {
                 def_3pr: "off_3p_ast",
