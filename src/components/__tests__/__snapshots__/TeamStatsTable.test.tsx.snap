@@ -3834,7 +3834,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <small>
                         'A' Lineups
-                         Team Grades 
+                         
+                        Team Grades 
                         <div>
                           <b>
                             (?)
@@ -6433,7 +6434,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <small>
                         'B' Lineups
-                         Team Grades 
+                         
+                        Team Grades 
                         <div>
                           <b>
                             (?)
@@ -9032,7 +9034,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <small>
                         Baseline
-                         Team Grades 
+                         
+                        Team Grades 
                         <div>
                           <b>
                             (?)
@@ -11922,7 +11925,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <span>
                       <small>
                         'A' Lineups
-                         Team Grades 
+                         
+                        Team Grades 
                         <div>
                           <b>
                             (?)
@@ -13199,7 +13203,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <span>
                       <small>
                         'B' Lineups
-                         Team Grades 
+                         
+                        Team Grades 
                         <div>
                           <b>
                             (?)
@@ -14490,7 +14495,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <span>
                       <small>
                         Baseline
-                         Team Grades 
+                         
+                        Team Grades 
                         <div>
                           <b>
                             (?)

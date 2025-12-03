@@ -342,8 +342,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(startingState.showGrades) ? "" : startingState.showGrades
+    _.isNil(startingState.showGrades)
+      ? ParamDefaults.defaultEnabledGrade
+      : startingState.showGrades
   );
+  const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
+    useState<boolean>(false);
+  const showStandaloneGrades =
+    GradeTableUtils.showingStandaloneGrades(showGrades);
 
   /** Show simplified player shot chart */
   const [showPlayerShots, setShowPlayerShots] = useState(
@@ -650,6 +656,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
    */
   const [divisionStatsRefresh, setDivisionStatsRefresh] = useState<number>(0);
 
+  /** Store this so that we can grab the extra grades when enabled */
+  const [includePrevYear, setIncludePrevYear] = useState<boolean>(
+    startingState.includePrevYear || false
+  );
+
+  /** (Update includePrevYear which can trigger fetching another year of grades) */
+  useEffect(() => {
+    setIncludePrevYear(startingState.includePrevYear || false);
+  }, [startingState]);
+
   useEffect(() => {
     if (
       showGrades ||
@@ -760,7 +776,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         }
       });
     }
-  }, [year, gender, showGrades, showPlayerPlayTypes]);
+  }, [year, gender, showGrades, showPlayerPlayTypes, includePrevYear]);
 
   // 3] Utils
 
@@ -1098,6 +1114,64 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       const divisionStatsCacheByYear: DivisionStatsCache =
         divisionStatsCache[player.year || year] || {};
 
+      if (showGrades) {
+        // Always show the overall grade, even though it's spurious in some cases - it's too hard
+        // to figure out when (eg even with totally default view - and there's a bunch of ways the user can add
+        // various filters - you still have H/M/L players)
+
+        const adjRapmMargin: Statistic | undefined =
+          player.off_adj_rapm && player.def_adj_rapm
+            ? {
+                value:
+                  (player.off_adj_rapm?.value || 0) -
+                  (player.def_adj_rapm?.value || 0),
+              }
+            : undefined;
+
+        if (adjRapmMargin) {
+          player.off_adj_rapm_margin = adjRapmMargin;
+          player.off_adj_rapm_prod_margin = {
+            value: adjRapmMargin.value! * player.off_team_poss_pct.value!,
+            override: adjRapmMargin.override,
+          };
+        }
+      } else {
+        player.off_adj_rapm_margin = undefined;
+        player.off_adj_rapm_prod_margin = undefined;
+      }
+
+      // If we're in short form grades mode then build those:
+      if (showGrades && !showStandaloneGrades) {
+        //TODO: make this a generic feature so can re-use in one line:
+        const { tierToUse, gradeFormat, ...unused } =
+          GradeTableUtils.buildPlayerTierInfo(
+            showGrades || "rank:Combo",
+            {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            positionalStatsCache[player.year || year] || {}
+          );
+
+        const predictedGrades = tierToUse
+          ? GradeUtils.buildPlayerPercentiles(
+              tierToUse,
+              player,
+              _.keys(GradeUtils.playerFields),
+              gradeFormat == "rank"
+            )
+          : {};
+
+        GradeTableUtils.injectPlayerSampleSizeDisclaimers(
+          //(adds "extraInfo" to predicted grades)
+          player,
+          predictedGrades
+        );
+        player.grades = predictedGrades;
+      }
+
       const isDup =
         tier == "All" &&
         playerIndex > 0 &&
@@ -1164,6 +1238,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       );
 
       const getRankings = () => {
+        if (!isT100 && !isConfOnly && showGrades && !showStandaloneGrades) {
+          return (
+            <span>
+              <i>(#{playerIndex + 1 - playerDuplicates})</i>&nbsp;
+            </span>
+          );
+        }
         const rtg = useRapm
           ? factorMins
             ? "rapm_prod"
@@ -1401,23 +1482,53 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         4
       );
 
+      const netGradeEl = _.thru(
+        showGrades && !showStandaloneGrades,
+        (showInlineRapmNetGrade) => {
+          if (showInlineRapmNetGrade) {
+            const netRapmField = factorMins
+              ? "off_adj_rapm_prod_margin"
+              : "off_adj_rapm_margin";
+            return GradeTableUtils.buildPlayerNetGrade(
+              (player?.grades as Record<string, Statistic>)?.[netRapmField],
+              GradeTableUtils.getGradeType(showGrades),
+              true,
+              true
+            );
+          } else {
+            return undefined;
+          }
+        }
+      );
+
       const adjMarginStr = teamEditorMode ? (
-        <b>{`${adjMargin > 0.0 ? "+" : ""}${adjMargin.toFixed(1)}`}</b>
+        <>
+          <span>
+            <b>net: </b> [
+            <b>{`${adjMargin > 0.0 ? "+" : ""}${adjMargin.toFixed(1)}`}</b>]{" "}
+            {netGradeEl}
+          </span>
+        </>
       ) : (
         <OverlayTrigger
           placement="auto"
           overlay={useRapm ? rapmTooltip : playerTooltip}
         >
-          <a
-            target="_blank"
-            href={
-              useRapm
-                ? UrlRouting.getTeamReportUrl(rapmAnalysisParams)
-                : UrlRouting.getGameUrl(playerAnalysisParams, {})
-            }
-          >
-            <b>{`${adjMargin > 0.0 ? "+" : ""}${adjMargin.toFixed(1)}`}</b>
-          </a>
+          <span>
+            <b>net:</b> [
+            <a
+              style={adjMarginShadow}
+              target="_blank"
+              href={
+                useRapm
+                  ? UrlRouting.getTeamReportUrl(rapmAnalysisParams)
+                  : UrlRouting.getGameUrl(playerAnalysisParams, {})
+              }
+            >
+              <b>{`${adjMargin > 0.0 ? "+" : ""}${adjMargin.toFixed(1)}`}</b>
+            </a>
+            ] <div>{netGradeEl}</div>
+          </span>
         </OverlayTrigger>
       );
 
@@ -1677,7 +1788,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 {teamEl}&nbsp;(<span>{confNickname}</span>){txfeEl}
               </span>
             </span>{" "}
-            <span style={adjMarginShadow}>[{adjMarginStr}]</span>
+            <span>{adjMarginStr}</span>
           </div>
         </div>
       );
@@ -1694,9 +1805,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         startingState.includePrevYear || false,
         (includePrevYear) => {
           if (includePrevYear) {
-            return showGrades ? 1 : 2;
+            return showStandaloneGrades ? 1 : 2;
           } else {
-            return showGrades ? 2 : 5;
+            return showStandaloneGrades ? 2 : 5;
           }
         }
       );
@@ -1705,37 +1816,21 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         0 == (playerIndex - playerDuplicates) % showGradesFactor;
       //TODO: this will inject in the wrong place if we are showing prevYear data
 
-      if (showGrades) {
-        // Always show the overall grade, even though it's spurious in some cases - it's too hard
-        // to figure out when (eg even with totally default view - and there's a bunch of ways the user can add
-        // various filters - you still have H/M/L players)
-
-        const adjRapmMargin: Statistic | undefined =
-          player.off_adj_rapm && player.def_adj_rapm
-            ? {
-                value:
-                  (player.off_adj_rapm?.value || 0) -
-                  (player.def_adj_rapm?.value || 0),
-              }
-            : undefined;
-
-        if (adjRapmMargin) {
-          player.off_adj_rapm_margin = adjRapmMargin;
-          player.off_adj_rapm_prod_margin = {
-            value: adjRapmMargin.value! * player.off_team_poss_pct.value!,
-            override: adjRapmMargin.override,
-          };
-        }
-      } else {
-        player.off_adj_rapm_margin = undefined;
-        player.off_adj_rapm_prod_margin = undefined;
-      }
+      const showingStyleChart =
+        showPlayerPlayTypes && playerIndex < 50 && player.style;
+      const showingShotChart =
+        showPlayerShots &&
+        playerIndex < 50 &&
+        (player.year || year >= DateUtils.firstYearWithShotChartData) &&
+        player.shotInfo;
+      const showingStandaloneGradesInTable =
+        showStandaloneGrades && playerIndex < 50;
 
       return isDup
         ? _.flatten([[GenericTableOps.buildTextRow(rankings, "small")]])
         : _.flatten([
             playerIndex > 0 && firstRowForPlayer
-              ? [GenericTableOps.buildRowSeparator()]
+              ? [GenericTableOps.buildRowSeparator("1px")]
               : [],
             shouldInjectSubheader && showRepeatingHeader && firstRowForPlayer
               ? [
@@ -1759,7 +1854,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             predictionLine
               ? [GenericTableOps.buildTextRow(predictionLine, "")]
               : [],
-            showGrades && playerIndex < 50
+            showingStandaloneGradesInTable
               ? GradeTableUtils.buildPlayerGradeTableRows({
                   isFullSelection: !isT100 && !isConfOnly,
                   selectionTitle: `Grades`,
@@ -1786,10 +1881,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   leaderboardMode: true,
                 })
               : [],
-            showPlayerShots &&
-            playerIndex < 50 &&
-            (player.year || year >= DateUtils.firstYearWithShotChartData) &&
-            player.shotInfo
+            showingShotChart
               ? [
                   GenericTableOps.buildTextRow(
                     <ShotZoneChartDiagView
@@ -1816,7 +1908,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   ),
                 ]
               : [],
-            showPlayerPlayTypes && playerIndex < 50 && player.style
+            showingStyleChart
               ? [
                   GenericTableOps.buildTextRow(
                     <IndivPlayTypeDiagRadar
@@ -1947,6 +2039,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             PREPROCESSING_WARNING:
               "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
           }}
+          integratedGrades={
+            showGrades && !showStandaloneGrades
+              ? {
+                  hybridMode:
+                    GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+                  colorChooser: CbbColors.integratedColorsDefault,
+                  customKeyMappings: {
+                    def_3pr: "off_3p_ast",
+                    def_2primr: "off_2prim_ast",
+                  },
+                }
+              : undefined
+          }
         />
       ),
       maybeMap: geoMode ? (
@@ -2063,6 +2168,45 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   }
 
   // 4] View
+
+  const buildTopLevelGradeControls = showGrades && !hideGlobalGradeSettings;
+  const { controlRow: topLevelGradeControls } = _.thru(
+    buildTopLevelGradeControls,
+    (__) => {
+      if (buildTopLevelGradeControls) {
+        const yearToUseForTopLevelGradeControls = !year.startsWith("2")
+          ? DateUtils.inSeasonYear
+          : year;
+        const divisionStatsCacheByYear: DivisionStatsCache = showGrades
+          ? divisionStatsCache[yearToUseForTopLevelGradeControls] || {}
+          : {};
+        return GradeTableUtils.buildPlayerGradeControlState(
+          "",
+          {
+            selectionTitle: "Grades",
+            config: showGrades,
+            setConfig: (newConfig: string) => setShowGrades(newConfig),
+            playerStats: {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            playerPosStats:
+              positionalStatsCache[yearToUseForTopLevelGradeControls] || {},
+          },
+          {
+            countsAreExample: !year.startsWith("2"),
+            onHide: () => {
+              setHideGlobalGradeSettings(true);
+            },
+          }
+        );
+      } else {
+        return { controlRow: undefined };
+      }
+    }
+  );
 
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
@@ -2574,15 +2718,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                         : "Show player ranks/percentiles",
                       toggled: showGrades != "",
                       onClick: () =>
-                        friendlyChange(
-                          () =>
-                            setShowGrades(
-                              showGrades
-                                ? ""
-                                : ParamDefaults.defaultEnabledGrade
-                            ),
-                          true
-                        ),
+                        friendlyChange(() => {
+                          setShowGrades(
+                            showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                          );
+                          setHideGlobalGradeSettings(false); //(reset)
+                        }, true),
                     },
                   ])
                   .concat(
@@ -2821,6 +2962,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </GenericTogglingMenu>
           </Form.Group>
+          {topLevelGradeControls ? (
+            <Col xs="12" className="pt-1">
+              <div>{topLevelGradeControls}</div>
+            </Col>
+          ) : undefined}
         </StickyRow>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>

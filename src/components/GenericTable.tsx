@@ -91,7 +91,11 @@ class GenericTableDataRow {
   navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 class GenericTableSeparator {
+  constructor(padding?: string) {
+    this.padding = padding;
+  }
   readonly kind: string = "separator";
+  readonly padding: string | undefined;
   navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 class GenericTableTextRow {
@@ -130,7 +134,8 @@ export type GenericTableRow =
   | GenericTableDataRow
   | GenericTableSeparator
   | GenericTableTextRow
-  | GenericTableSubHeaderRow;
+  | GenericTableSubHeaderRow
+  | GenericTableRepeatHeaderRow;
 export class GenericTableOps {
   static readonly defaultFormatter = (val: any) => "" + val;
   static readonly htmlFormatter = (val: React.ReactNode) => val;
@@ -247,8 +252,8 @@ export class GenericTableOps {
   ): GenericTableRow {
     return new GenericTableTextRow(text, className);
   }
-  static buildRowSeparator(): GenericTableRow {
-    return new GenericTableSeparator();
+  static buildRowSeparator(padding?: string): GenericTableRow {
+    return new GenericTableSeparator(padding);
   }
   static buildSubHeaderRow(
     cols: [React.ReactNode, number][],
@@ -833,6 +838,15 @@ const GenericTable: React.FunctionComponent<Props> = ({
         );
       } else if (row instanceof GenericTableRepeatHeaderRow) {
         return <tr ref={row.navigationRef}>{renderTableHeaders(row)}</tr>;
+      } else if (row instanceof GenericTableSeparator && row.padding) {
+        //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)
+        return (
+          <tr className="divider" key={"" + index}>
+            {_.range(totalTableCols).map((i, j) => (
+              <td key={"" + j} style={{ padding: row.padding }}></td>
+            ))}
+          </tr>
+        );
       } else {
         //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)
         return (

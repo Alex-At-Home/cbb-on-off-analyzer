@@ -4182,6 +4182,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -9655,6 +9656,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -15509,6 +15511,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -22131,6 +22134,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -28590,6 +28594,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -35843,6 +35848,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -41337,6 +41343,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -44550,6 +44557,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -47950,6 +47958,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -51327,6 +51336,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",

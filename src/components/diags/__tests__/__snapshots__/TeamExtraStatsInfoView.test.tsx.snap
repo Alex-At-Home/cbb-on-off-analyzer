@@ -140,6 +140,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],

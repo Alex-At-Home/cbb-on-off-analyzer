@@ -6828,6 +6828,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -7125,6 +7126,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -7422,6 +7424,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -11627,6 +11630,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -12018,6 +12022,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -18105,6 +18110,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -18530,6 +18536,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -18955,6 +18962,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -26020,6 +26028,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -26759,6 +26768,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -26782,6 +26792,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -27501,6 +27512,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -27524,6 +27536,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -28243,6 +28256,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -28266,6 +28280,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -35040,6 +35055,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -36392,6 +36408,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -36415,6 +36432,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -37747,6 +37765,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -37770,6 +37789,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -39102,6 +39122,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableTextRow {
                 "className": "small",
@@ -39125,6 +39146,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -46820,6 +46842,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -47436,6 +47459,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -48052,6 +48076,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -57700,6 +57725,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -59210,6 +59236,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -60702,6 +60729,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }
@@ -68210,6 +68238,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -68810,6 +68839,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -69410,6 +69440,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
             ]
           }

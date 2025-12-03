@@ -151,7 +151,9 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct
           ? ["possAsPct"]
           : [],
-        rawParams.showGrades == "" ? ["showGrades"] : [],
+        rawParams.showGrades == ParamDefaults.defaultEnabledGrade
+          ? ["showGrades"]
+          : [],
 
         !rawParams.shotCharts ? ["shotCharts"] : [],
         !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],

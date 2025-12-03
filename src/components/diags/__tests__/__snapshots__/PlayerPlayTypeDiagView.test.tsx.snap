@@ -175,6 +175,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableSeparator {
               "kind": "separator",
+              "padding": undefined,
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
@@ -508,6 +509,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableSeparator {
               "kind": "separator",
+              "padding": undefined,
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
@@ -982,6 +984,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableSeparator {
               "kind": "separator",
+              "padding": undefined,
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
@@ -1315,6 +1318,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableSeparator {
               "kind": "separator",
+              "padding": undefined,
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],

@@ -1093,7 +1093,26 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               "vs T100"
             )
           : [];
-      return _.flatten([seasonRows, confRows, t100Rows]);
+
+      const seasonRowIsTopRow = topYear;
+      const confRowIsTopRow = _.isEmpty(seasonRows) && topYear;
+      const t100RowIsTopRow =
+        _.isEmpty(seasonRows) && _.isEmpty(confRows) && topYear;
+
+      return _.flatten([
+        seasonRowIsTopRow || _.isEmpty(seasonRows)
+          ? []
+          : [GenericTableOps.buildRowSeparator("1px")],
+        seasonRows,
+        confRowIsTopRow || _.isEmpty(confRows)
+          ? []
+          : [GenericTableOps.buildRowSeparator("1px")],
+        confRows,
+        t100RowIsTopRow || _.isEmpty(t100Rows)
+          ? []
+          : [GenericTableOps.buildRowSeparator("1px")],
+        t100Rows,
+      ]);
     });
 
   const requestSimilarPlayers = () => {

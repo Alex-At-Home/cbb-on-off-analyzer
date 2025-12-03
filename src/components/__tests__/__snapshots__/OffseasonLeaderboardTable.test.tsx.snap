@@ -627,6 +627,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
               },
               GenericTableSeparator {
                 "kind": "separator",
+                "padding": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],

@@ -2861,6 +2861,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -4312,6 +4313,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -5763,6 +5765,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -7252,6 +7255,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -8741,6 +8745,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -10230,6 +10235,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
               ]
             }
@@ -14393,6 +14399,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -16494,6 +16501,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -18595,6 +18603,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -20962,6 +20971,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -23329,6 +23339,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -25696,6 +25707,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
               ]
             }
@@ -29767,6 +29779,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -31776,6 +31789,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -33785,6 +33799,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -35864,6 +35879,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -37943,6 +37959,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -40022,6 +40039,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
               ]
             }
@@ -44593,6 +44611,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -47102,6 +47121,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -49611,6 +49631,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -52960,6 +52981,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -56309,6 +56331,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -59658,6 +59681,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
               ]
             }
@@ -64229,6 +64253,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableTextRow {
                   "className": "",
@@ -64325,6 +64350,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
               ]
             }
@@ -67454,6 +67480,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -68905,6 +68932,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -70356,6 +70384,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -71845,6 +71874,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -73334,6 +73364,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
@@ -74823,6 +74854,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableSeparator {
                   "kind": "separator",
+                  "padding": undefined,
                 },
               ]
             }
