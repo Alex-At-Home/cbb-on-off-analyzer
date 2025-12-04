@@ -196,9 +196,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(gameFilterParams.showGrades)
-      ? "" //TODO: enable like this: ParamDefaults.defaultEnabledGrade
-      : gameFilterParams.showGrades
+    _.isNil(gameFilterParams.showPlayerGrades)
+      ? ParamDefaults.defaultEnabledGrade
+      : gameFilterParams.showPlayerGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(false);
@@ -217,9 +217,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   >(
     _.isNil(gameFilterParams.playerShotChartsShowZones)
       ? undefined
-      : { 
+      : {
           buildZones: gameFilterParams.playerShotChartsShowZones,
-          useEfg: gameFilterParams.playerShotChartsUseEfg ?? false
+          useEfg: gameFilterParams.playerShotChartsUseEfg ?? false,
         }
   );
 
@@ -415,9 +415,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       _.isNil(gameFilterParams.luck)
         ? ParamDefaults.defaultLuckConfig
         : gameFilterParams.luck
-    );
-    setShowGrades(
-      _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
     );
     setManualOverrides(gameFilterParams.manual || []);
 
@@ -1267,7 +1264,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       ? "off_adj_rapm_prod_margin"
                       : "off_adj_rapm_margin";
                     return GradeTableUtils.buildPlayerNetGrade(
-                      (stat?.grades as Record<string, Statistic>)?.[netRapmField],
+                      (stat?.grades as Record<string, Statistic>)?.[
+                        netRapmField
+                      ],
                       GradeTableUtils.getGradeType(showGrades),
                       true,
                       true
@@ -1292,7 +1291,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   <span>
                     <b>net: </b>
                     <b style={adjMarginShadow}>
-                      [{(rapmMarginVal > 0 ? "+" : "") + rapmMarginVal.toFixed(1)}
+                      [
+                      {(rapmMarginVal > 0 ? "+" : "") +
+                        rapmMarginVal.toFixed(1)}
                       ]
                     </b>
                     {netGradeEl && <span> {netGradeEl}</span>}
@@ -1981,9 +1982,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     buildTopLevelGradeControls,
     (__) => {
       if (buildTopLevelGradeControls) {
-        const yearToUseForTopLevelGradeControls = !gameFilterParams.year?.startsWith("2")
-          ? DateUtils.inSeasonYear
-          : gameFilterParams.year;
         const divisionStatsCacheByYear: DivisionStatsCache = showGrades
           ? divisionStatsCache || {}
           : {};
@@ -2002,7 +2000,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             playerPosStats: positionalStatsCache || {},
           },
           {
-            countsAreExample: !gameFilterParams.year?.startsWith("2"),
+            countsAreExample: false,
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
@@ -2372,7 +2370,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 showGrades && !showStandaloneGrades
                   ? {
                       hybridMode:
-                        GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+                        GradeTableUtils.showingHybridOrStandaloneGrades(
+                          showGrades
+                        ),
                       colorChooser: CbbColors.integratedColorsDefault,
                       customKeyMappings: {
                         def_3pr: "off_3p_ast",

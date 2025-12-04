@@ -142,7 +142,6 @@ export type GameFilterParams = {
   offQueryFilters?: string; //(missing iff empty)
   otherQueries?: QueryWithFilters[]; // In addition to A-on/B-off, allows for C+ queries
   autoOffQuery?: boolean;
-  showGrades?: string;
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
   // Team view
   teamDiffs?: boolean;
@@ -151,6 +150,9 @@ export type GameFilterParams = {
   teamPlayTypeConfig?: string;
   showRoster?: boolean;
   showGameInfo?: boolean;
+  showGrades?: string;
+  // Indiv view
+  showPlayerGrades?: string;
   // Manual override:
   manual?: ManualOverride[];
   showPlayerManual?: boolean;

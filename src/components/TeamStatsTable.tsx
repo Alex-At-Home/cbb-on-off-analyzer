@@ -172,9 +172,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   >(
     _.isNil(gameFilterParams.teamShotChartsShowZones)
       ? undefined
-      : { 
+      : {
           buildZones: gameFilterParams.teamShotChartsShowZones,
-          useEfg: gameFilterParams.teamShotChartsUseEfg ?? false
+          useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
         }
   );
 
@@ -199,9 +199,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       _.isNil(gameFilterParams.luck)
         ? ParamDefaults.defaultLuckConfig
         : gameFilterParams.luck
-    );
-    setShowGrades(
-      _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
     );
     setStickyQuickToggle(
       _.isNil(gameFilterParams.stickyQuickToggle)

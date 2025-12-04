@@ -95,7 +95,7 @@ describe("RosterStatsTable", () => {
     const { container } = render(
       <RosterStatsTable
         testMode={true}
-        gameFilterParams={{ showExpanded: false }}
+        gameFilterParams={{ year: testYear, showExpanded: false }}
         dataEvent={{
           teamStats: {
             on: StatModels.emptyTeam(),
@@ -142,7 +142,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
       <RosterStatsTable
         testMode={true}
-        gameFilterParams={{ showExpanded: true }}
+        gameFilterParams={{ year: testYear, showExpanded: true }}
         dataEvent={{
           teamStats: {
             on: StatModels.emptyTeam(),
@@ -184,7 +184,11 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
       <RosterStatsTable
         testMode={true}
-        gameFilterParams={{ onQuery: "testQon", offQuery: `testQoff` }}
+        gameFilterParams={{
+          year: testYear,
+          onQuery: "testQon",
+          offQuery: `testQoff`,
+        }}
         dataEvent={{
           teamStats: {
             on: StatModels.emptyTeam(),
@@ -226,7 +230,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
       <RosterStatsTable
         testMode={true}
-        gameFilterParams={{ showExpanded: true }}
+        gameFilterParams={{ year: testYear, showExpanded: true }}
         dataEvent={{
           teamStats: {
             on: StatModels.emptyTeam(),
@@ -269,6 +273,7 @@ describe("RosterStatsTable", () => {
       <RosterStatsTable
         testMode={true}
         gameFilterParams={{
+          year: testYear,
           onOffLuck: true,
           showPlayerOnOffLuckDiags: true,
           showDiag: true,
@@ -316,6 +321,7 @@ describe("RosterStatsTable", () => {
       <RosterStatsTable
         testMode={true}
         gameFilterParams={{
+          year: testYear,
           onOffLuck: false,
           showPlayerOnOffLuckDiags: true,
           showDiag: true,
@@ -372,6 +378,7 @@ describe("RosterStatsTable", () => {
       <RosterStatsTable
         testMode={true}
         gameFilterParams={{
+          year: testYear,
           onOffLuck: true,
           showPlayerOnOffLuckDiags: true,
           showDiag: true,
@@ -448,6 +455,7 @@ describe("RosterStatsTable", () => {
       <RosterStatsTable
         testMode={true}
         gameFilterParams={{
+          year: testYear,
           onOffLuck: false,
           showPlayerOnOffLuckDiags: false,
           showDiag: true,
@@ -499,6 +507,7 @@ describe("RosterStatsTable", () => {
       <RosterStatsTable
         testMode={true}
         gameFilterParams={{
+          year: testYear,
           onOffLuck: false,
           showPlayerOnOffLuckDiags: false,
           showDiag: true,
