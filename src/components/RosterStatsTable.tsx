@@ -84,6 +84,7 @@ import {
   PositionStatsCache,
   GradeTableUtils,
 } from "../utils/tables/GradeTableUtils";
+import { GradeUtils } from "../utils/stats/GradeUtils";
 import { defaultRapmConfig } from "../utils/stats/RapmUtils";
 import TeamRosterStatsConfigModal, {
   TeamRosterStatsConfig,
@@ -195,8 +196,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
+    _.isNil(gameFilterParams.showGrades)
+      ? "" //TODO: enable like this: ParamDefaults.defaultEnabledGrade
+      : gameFilterParams.showGrades
   );
+  const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
+    useState<boolean>(false);
+  const showStandaloneGrades =
+    GradeTableUtils.showingStandaloneGrades(showGrades);
 
   /** Shot chart config */
   const [showShotCharts, setShowShotCharts] = useState<boolean>(
@@ -1206,6 +1213,38 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 override: adjRapmMargin.override,
               };
             }
+
+            // If we're in short form grades mode then build those:
+            if (showGrades && !showStandaloneGrades) {
+              //TODO: make this a generic feature so can re-use in one line:
+              const { tierToUse, gradeFormat, ...unused } =
+                GradeTableUtils.buildPlayerTierInfo(
+                  showGrades || "rank:Combo",
+                  {
+                    comboTier: divisionStatsCache.Combo,
+                    highTier: divisionStatsCache.High,
+                    mediumTier: divisionStatsCache.Medium,
+                    lowTier: divisionStatsCache.Low,
+                  },
+                  positionalStatsCache || {}
+                );
+
+              const predictedGrades = tierToUse
+                ? GradeUtils.buildPlayerPercentiles(
+                    tierToUse,
+                    stat,
+                    _.keys(GradeUtils.playerFields),
+                    gradeFormat == "rank"
+                  )
+                : {};
+
+              GradeTableUtils.injectPlayerSampleSizeDisclaimers(
+                //(adds "extraInfo" to predicted grades)
+                stat,
+                predictedGrades
+              );
+              stat.grades = predictedGrades;
+            }
           }
         }
         const maybeRapm = _.thru(
@@ -1219,6 +1258,26 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 "20px",
                 4
               );
+
+              const netGradeEl = _.thru(
+                showGrades && !showStandaloneGrades,
+                (showInlineRapmNetGrade) => {
+                  if (showInlineRapmNetGrade) {
+                    const netRapmField = factorMins
+                      ? "off_adj_rapm_prod_margin"
+                      : "off_adj_rapm_margin";
+                    return GradeTableUtils.buildPlayerNetGrade(
+                      (stat?.grades as Record<string, Statistic>)?.[netRapmField],
+                      GradeTableUtils.getGradeType(showGrades),
+                      true,
+                      true
+                    );
+                  } else {
+                    return undefined;
+                  }
+                }
+              );
+
               const adjMarginEl = (
                 <OverlayTrigger
                   placement="auto"
@@ -1230,10 +1289,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     </Tooltip>
                   }
                 >
-                  <b style={adjMarginShadow}>
-                    [{(rapmMarginVal > 0 ? "+" : "") + rapmMarginVal.toFixed(1)}
-                    ]
-                  </b>
+                  <span>
+                    <b>net: </b>
+                    <b style={adjMarginShadow}>
+                      [{(rapmMarginVal > 0 ? "+" : "") + rapmMarginVal.toFixed(1)}
+                      ]
+                    </b>
+                    {netGradeEl && <span> {netGradeEl}</span>}
+                  </span>
                 </OverlayTrigger>
               );
               return adjMarginEl;
@@ -1368,7 +1431,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         (_.isNil(p.on?.off_title) ? 0 : 1) +
         (_.isNil(p.off?.off_title) ? 0 : 1) +
         (skipBaseline || _.isNil(p.baseline?.off_title) ? 0 : 1);
-      const gradesMult = showGrades ? (expandedView ? 2 : 3) : 1;
+      const gradesMult = showStandaloneGrades ? (expandedView ? 2 : 3) : 1;
       const currentRowInc =
         gradesMult * entriesPerPlayer * (expandedView ? 2 : 1); //(row or pair-of-rows)
       if (currentRowCount < 10 && currentRowCount + currentRowInc >= 10) {
@@ -1511,7 +1574,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       CommonTableDefs.repeatingOnOffIndivHeaderFields,
                       "small"
                     ),
-                    GenericTableOps.buildRowSeparator(),
+                    GenericTableOps.buildRowSeparator("1px"),
                   ]
                 : [],
               [
@@ -1533,7 +1596,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   ]
                 : [],
 
-              showGrades && player
+              showStandaloneGrades && player
                 ? GradeTableUtils.buildPlayerGradeTableRows({
                     isFullSelection: isBaseline
                       ? !gameFilterParams.baseQuery &&
@@ -1741,7 +1804,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               firstRowIsBaseline,
               tenthRowIsBaseline
             ),
-        [GenericTableOps.buildRowSeparator()],
+        [GenericTableOps.buildRowSeparator("1px")],
       ]);
     })
     .value();
@@ -1913,6 +1976,44 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // 4] View
 
+  const buildTopLevelGradeControls = showGrades && !hideGlobalGradeSettings;
+  const { controlRow: topLevelGradeControls } = _.thru(
+    buildTopLevelGradeControls,
+    (__) => {
+      if (buildTopLevelGradeControls) {
+        const yearToUseForTopLevelGradeControls = !gameFilterParams.year?.startsWith("2")
+          ? DateUtils.inSeasonYear
+          : gameFilterParams.year;
+        const divisionStatsCacheByYear: DivisionStatsCache = showGrades
+          ? divisionStatsCache || {}
+          : {};
+        return GradeTableUtils.buildPlayerGradeControlState(
+          "",
+          {
+            selectionTitle: "Grades",
+            config: showGrades,
+            setConfig: (newConfig: string) => setShowGrades(newConfig),
+            playerStats: {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            playerPosStats: positionalStatsCache || {},
+          },
+          {
+            countsAreExample: !gameFilterParams.year?.startsWith("2"),
+            onHide: () => {
+              setHideGlobalGradeSettings(true);
+            },
+          }
+        );
+      } else {
+        return { controlRow: undefined };
+      }
+    }
+  );
+
   const quickToggleBar = (
     <ToggleButtonGroup
       items={[
@@ -1945,8 +2046,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ? "Hide player ranks/percentiles"
             : "Show player ranks/percentiles",
           toggled: showGrades != "",
-          onClick: () =>
-            setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade),
+          onClick: () => {
+            setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade);
+            setHideGlobalGradeSettings(false); //(reset)
+          },
         },
         {
           label: "RAPM",
@@ -2252,6 +2355,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} sm="1" className="mb-0">
             {optionsDropdown}
           </Form.Group>
+          {topLevelGradeControls ? (
+            <Col xs="12" className="pt-1">
+              <div>{topLevelGradeControls}</div>
+            </Col>
+          ) : undefined}
         </StickyRow>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
@@ -2260,6 +2368,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               tableFields={tableFields}
               tableData={maybeSubheaderRow.concat(tableData)}
               cellTooltipMode="none"
+              integratedGrades={
+                showGrades && !showStandaloneGrades
+                  ? {
+                      hybridMode:
+                        GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+                      colorChooser: CbbColors.integratedColorsDefault,
+                      customKeyMappings: {
+                        def_3pr: "off_3p_ast",
+                        def_2primr: "off_2prim_ast",
+                      },
+                    }
+                  : undefined
+              }
             />
           </Col>
         </Row>
