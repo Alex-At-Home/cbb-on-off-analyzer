@@ -459,14 +459,13 @@ const CommonFilter: CommonFilterI = ({
     if (pageJustLoaded && (!propKey || propKey == 0)) {
       // Only do this once the team list has loaded
       if (
-        !_.isEmpty(gameSelection.games) ||
-        !_.isEmpty(rosterNames) ||
+        (!_.isEmpty(gameSelection.games) && !_.isEmpty(rosterNames)) ||
         (tablePrefix != ParamPrefixes.game &&
           tablePrefix != ParamPrefixes.lineup)
       ) {
         if (isDebug)
           console.log(
-            `Auto-reloading query on page reload ([${gameSelection.games.length} games])`
+            `Auto-reloading query on page reload ([${gameSelection.games.length} games][${rosterNames.length} roster entries])`
           );
         setPageJustLoaded(false); //(ensures this code only gets called once)
         // Load the data if it's cached
