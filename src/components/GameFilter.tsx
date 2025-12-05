@@ -365,6 +365,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   const [showOnDateRangeModal, setOnShowDateRangeModal] = useState(false);
   const [showOffDateRangeModal, setOffShowDateRangeModal] = useState(false);
+  const [showPresetSelectorModal, setPresetGameSelectorModal] = useState(false);
   const [showOnGameSelectorModal, setOnShowGameSelectorModal] = useState(false);
   const [showOffGameSelectorModal, setOffShowGameSelectorModal] =
     useState(false);
@@ -396,16 +397,38 @@ const GameFilter: React.FunctionComponent<Props> = ({
   ): [string | undefined, string | undefined] => {
     // Switching back to simple mode
     // Let's figure out if we can re-use existing modes/splits
-    const maybeMode = _.findKey(
-      FilterPresetUtils.commonFilterPresets,
-      (preset, key) => {
+
+    const maybeMode =
+      _.findKey(FilterPresetUtils.commonFilterPresets, (preset, key) => {
         return _.isEqual(commonParamsIn, {
           ...commonParamsIn,
           ...FilterPresetUtils.basePresetQuery,
           ...(preset.commonParams || {}),
         });
-      }
-    );
+      }) ||
+      _.thru(
+        // Is it a games filter?
+        // TODO: add this in one place, used in both GamesFlter and LineupFilter (same for modal?)
+        QueryUtils.parseFilter(
+          commonParamsIn.queryFilters || "",
+          commonParamsIn.year || ParamDefaults.defaultYear
+        ),
+        (currBaseFilter) => {
+          const games =
+            currBaseFilter.length == 1
+              ? QueryUtils.buildGameSelectionModel(currBaseFilter)
+              : undefined;
+
+          if (!_.isEmpty(games)) {
+            return (
+              FilterPresetUtils.commonFilterSelectedGamesPrefix +
+              QueryUtils.buildFilterStrForQuery(currBaseFilter, [])
+            );
+          } else {
+            return undefined;
+          }
+        }
+      );
     const autoOffQueryIn = _.isNil(queryParamsIn.autoOffQuery)
       ? true
       : queryParamsIn.autoOffQuery;
@@ -1293,7 +1316,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
       ...commonParams,
       ...FilterPresetUtils.basePresetQuery,
       ...(FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ||
-        {}),
+        (newPresetMode.startsWith(
+          FilterPresetUtils.commonFilterSelectedGamesPrefix
+        )
+          ? {
+              queryFilters: newPresetMode.substring(
+                FilterPresetUtils.commonFilterSelectedGamesPrefix.length
+              ),
+            }
+          : {})),
     };
 
     const newParams = _.thru(
@@ -1567,14 +1598,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
       onGameSelectionChange={(newGameSelection) => {
         // Reset any game-based filters:
         if (
-          gameSelectionRef.current?.filter &&
-          newGameSelection.filter &&
-          (gameSelectionRef.current.filter.team !=
-            newGameSelection.filter.team ||
-            gameSelectionRef.current.filter.year !=
-              newGameSelection.filter.year ||
-            gameSelectionRef.current.filter.gender !=
-              newGameSelection.filter.gender)
+          _.isEmpty(newGameSelection.games) ||
+          (gameSelectionRef.current?.filter &&
+            newGameSelection.filter &&
+            (gameSelectionRef.current.filter.team !=
+              newGameSelection.filter.team ||
+              gameSelectionRef.current.filter.year !=
+                newGameSelection.filter.year ||
+              gameSelectionRef.current.filter.gender !=
+                newGameSelection.filter.gender))
         ) {
           setOnQueryFilters(
             QueryUtils.setCustomGameSelection(onQueryFilters, undefined)
@@ -1591,6 +1623,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
             );
             return newOtherQueryFilters;
           });
+          if (
+            presetMode.startsWith(
+              FilterPresetUtils.commonFilterSelectedGamesPrefix
+            )
+          ) {
+            applyPresetConfig(
+              ParamDefaults.defaultPresetMode,
+              presetSplit,
+              true
+            );
+          }
         }
       }}
       hideSemiAdvancedOptions={!advancedView}
@@ -1624,6 +1667,26 @@ const GameFilter: React.FunctionComponent<Props> = ({
               }
               onHide={() => setOffShowDateRangeModal(false)}
               year={startingState.year || ParamDefaults.defaultYear}
+            />
+            <GameSelectorModal
+              queryType="Base Filter"
+              games={gameSelectionRef.current?.games || []}
+              selectedGames={QueryUtils.buildGameSelectionModel([])}
+              show={showPresetSelectorModal}
+              onClose={() => setPresetGameSelectorModal(false)}
+              onSubmit={(selectedGame) => {
+                const queryFilterStr = QueryUtils.buildFilterStrForQuery(
+                  [QueryUtils.buildGameSelectionFilter(selectedGame)],
+                  []
+                );
+                applyPresetConfig(
+                  FilterPresetUtils.commonFilterSelectedGamesPrefix +
+                    queryFilterStr,
+                  presetSplit,
+                  true
+                );
+                setPresetGameSelectorModal(false);
+              }}
             />
             <GameSelectorModal
               queryType={
@@ -1745,14 +1808,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     }}
                     value={
                       presetMode
-                        ? { label: presetMode, value: presetMode }
+                        ? presetMode.startsWith(
+                            FilterPresetUtils.commonFilterSelectedGamesPrefix
+                          )
+                          ? {
+                              label: `${
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix
+                              } [${presetMode.split("|").length}]`,
+                              value:
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                            }
+                          : { label: presetMode, value: presetMode }
                         : undefined
                     }
                     options={groupedPresetModeOptions}
                     formatGroupLabel={formatGroupLabel}
                     onChange={(option: any) => {
                       const newPreset = option.value || "";
-                      applyPresetConfig(newPreset, presetSplit, true);
+                      if (
+                        newPreset ===
+                        FilterPresetUtils.commonFilterSelectedGamesPrefix
+                      ) {
+                        setPresetGameSelectorModal(true);
+                      } else {
+                        applyPresetConfig(newPreset, presetSplit, true);
+                      }
                     }}
                   />
                 </Col>

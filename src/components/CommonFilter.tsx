@@ -208,6 +208,17 @@ const CommonFilter: CommonFilterI = ({
   };
 
   useEffect(() => {
+    // If something has legit changed then notify clients:
+    if (
+      onGameSelectionChange &&
+      gameSelection.filter &&
+      (gameSelection.filter.team != team ||
+        gameSelection.filter.year != year ||
+        gameSelection.filter.gender != gender)
+    ) {
+      onGameSelectionChange({ games: [] });
+    }
+    // Update state:
     setRosterNames([]);
     setGameSelection({ games: [] }); //(changes to team season so unset games)
     if (team && year && gender) {

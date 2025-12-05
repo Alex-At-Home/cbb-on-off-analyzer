@@ -35,6 +35,7 @@ export class FilterPresetUtils {
 
   // Game Preset Utils
 
+  static readonly commonFilterSelectedGamesPrefix = "Selected Games...";
   static readonly gameFilterOnOffPrefix = "On/Off: ";
 
   /** Handy constant for preset-calcs */
@@ -50,6 +51,7 @@ export class FilterPresetUtils {
   /** Filter/Query presets */
   static readonly commonFilterPresets: Record<string, CommonFilterPresets> = {
     [ParamDefaults.defaultPresetMode]: {},
+    [FilterPresetUtils.commonFilterSelectedGamesPrefix]: {}, //(these are injected)
     "Season Stats vs T50ish": {
       phrase: "T50",
       commonParams: {
@@ -202,6 +204,11 @@ export class FilterPresetUtils {
 
   /** Encapsulation over commonFilterPresets */
   static getPresetFilterPhrase(presetMode: string): string | undefined {
+    if (
+      presetMode.startsWith(FilterPresetUtils.commonFilterSelectedGamesPrefix)
+    ) {
+      return `[${presetMode.split("|").length}]-G`;
+    }
     return FilterPresetUtils.commonFilterPresets[presetMode]?.phrase;
   }
 

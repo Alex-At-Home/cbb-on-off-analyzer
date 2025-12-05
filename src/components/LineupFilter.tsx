@@ -30,7 +30,7 @@ import {
 
 // Utils
 import { StatModels } from "../utils/StatModels";
-import { QueryUtils } from "../utils/QueryUtils";
+import { FilteredGameSelection, QueryUtils } from "../utils/QueryUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 //@ts-ignore
 import Select, { components } from "react-select";
@@ -42,6 +42,7 @@ import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import ThemedSelect from "./shared/ThemedSelect";
 import { RequestUtils } from "../utils/RequestUtils";
+import GameSelectorModal from "./shared/GameSelectorModal";
 
 type Props = {
   onStats: (
@@ -127,6 +128,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     startingCommonFilterParams as CommonFilterParams
   );
 
+  // Support for game selection:
+  const [showPresetSelectorModal, setPresetGameSelectorModal] = useState(false);
+  /** Reference from CommonFilter */
+  const gameSelectionRef = useRef<FilteredGameSelection | undefined>();
+
   /** All the game-specific viz options, ie not query/filter */
   const [newParamsOnSubmit, setNewParamsOnSubmit] =
     useState<LineupFilterParams>(rebuildFullState());
@@ -185,9 +191,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   ): [string | undefined, string | undefined] => {
     // Switching back to simple mode
     // Let's figure out if we can re-use existing modes/groups
-    const maybeMode = _.findKey(
-      FilterPresetUtils.commonFilterPresets,
-      (preset, key) => {
+
+    const maybeMode =
+      _.findKey(FilterPresetUtils.commonFilterPresets, (preset, key) => {
         return _.isEqual(
           {
             ...commonParamsIn,
@@ -199,8 +205,29 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             ...(preset.commonParams || {}),
           }
         );
-      }
-    );
+      }) ||
+      _.thru(
+        // Is it a games filter?
+        // TODO: add this in one place, used in both GamesFlter and LineupFilter (same for modal?)
+        QueryUtils.parseFilter(
+          commonParamsIn.queryFilters || "",
+          commonParamsIn.year || ParamDefaults.defaultYear
+        ),
+        (currBaseFilter) => {
+          const games =
+            currBaseFilter.length == 1
+              ? QueryUtils.buildGameSelectionModel(currBaseFilter)
+              : undefined;
+          if (!_.isEmpty(games)) {
+            return (
+              FilterPresetUtils.commonFilterSelectedGamesPrefix +
+              QueryUtils.buildFilterStrForQuery(currBaseFilter, [])
+            );
+          } else {
+            return undefined;
+          }
+        }
+      );
     //(for simplicity we make this code very specific to the one aggByPos case)
     return [
       maybeMode,
@@ -509,7 +536,15 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       ...commonParams,
       ...FilterPresetUtils.basePresetQuery,
       ...(FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ||
-        {}),
+        (newPresetMode.startsWith(
+          FilterPresetUtils.commonFilterSelectedGamesPrefix
+        )
+          ? {
+              queryFilters: newPresetMode.substring(
+                FilterPresetUtils.commonFilterSelectedGamesPrefix.length
+              ),
+            }
+          : {})),
     };
 
     const newParams = _.thru(
@@ -620,6 +655,33 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}
+      gameSelectionRef={gameSelectionRef}
+      onGameSelectionChange={(newGameSelection) => {
+        if (
+          _.isEmpty(newGameSelection.games) ||
+          (gameSelectionRef.current?.filter &&
+            newGameSelection.filter &&
+            (gameSelectionRef.current.filter.team !=
+              newGameSelection.filter.team ||
+              gameSelectionRef.current.filter.year !=
+                newGameSelection.filter.year ||
+              gameSelectionRef.current.filter.gender !=
+                newGameSelection.filter.gender))
+        ) {
+          // Reset any game-based filters:
+          if (
+            presetMode.startsWith(
+              FilterPresetUtils.commonFilterSelectedGamesPrefix
+            )
+          ) {
+            applyPresetConfig(
+              ParamDefaults.defaultPresetMode,
+              presetGroup,
+              true
+            );
+          }
+        }
+      }}
       hideSemiAdvancedOptions={!advancedView}
       rosterRef={rosterRef}
       extraButton={
@@ -632,6 +694,25 @@ const LineupFilter: React.FunctionComponent<Props> = ({
         </GenericTogglingMenu>
       }
     >
+      <GameSelectorModal
+        queryType="Base Filter"
+        games={gameSelectionRef.current?.games || []}
+        selectedGames={QueryUtils.buildGameSelectionModel([])}
+        show={showPresetSelectorModal}
+        onClose={() => setPresetGameSelectorModal(false)}
+        onSubmit={(selectedGame) => {
+          const queryFilterStr = QueryUtils.buildFilterStrForQuery(
+            [QueryUtils.buildGameSelectionFilter(selectedGame)],
+            []
+          );
+          applyPresetConfig(
+            FilterPresetUtils.commonFilterSelectedGamesPrefix + queryFilterStr,
+            presetGroup,
+            true
+          );
+          setPresetGameSelectorModal(false);
+        }}
+      />
       {!advancedView ? (
         <Form.Group as={Row}>
           <Form.Label column xs={12} lg={12} xl={2}>
@@ -645,14 +726,31 @@ const LineupFilter: React.FunctionComponent<Props> = ({
               }}
               value={
                 presetMode
-                  ? { label: presetMode, value: presetMode }
+                  ? presetMode.startsWith(
+                      FilterPresetUtils.commonFilterSelectedGamesPrefix
+                    )
+                    ? {
+                        label: `${
+                          FilterPresetUtils.commonFilterSelectedGamesPrefix
+                        } [${presetMode.split("|").length}]`,
+                        value:
+                          FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                      }
+                    : { label: presetMode, value: presetMode }
                   : undefined
               }
               options={groupedPresetModeOptions}
               formatGroupLabel={formatGroupLabel}
               onChange={(option: any) => {
                 const newPreset = option.value || "";
-                applyPresetConfig(newPreset, presetGroup, true);
+                if (
+                  newPreset ===
+                  FilterPresetUtils.commonFilterSelectedGamesPrefix
+                ) {
+                  setPresetGameSelectorModal(true);
+                } else {
+                  applyPresetConfig(newPreset, presetGroup, true);
+                }
               }}
             />
           </Col>
