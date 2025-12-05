@@ -493,14 +493,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     useState<DivisionStatsCache>({});
   const [positionalStatsCache, setPositionalStatsCache] =
     useState<PositionStatsCache>({});
+
   useEffect(() => {
     if (showGrades || showPlayTypes) {
       const yearOrGenderChanged =
         gameFilterParams.year != divisionStatsCache.year ||
         gameFilterParams.gender != divisionStatsCache.gender;
 
-      if (yearOrGenderChanged || _.isEmpty(divisionStatsCache)) {
-        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+      if (
+        !divisionStatsCache.inFlight &&
+        (yearOrGenderChanged || _.isEmpty(divisionStatsCache))
+      ) {
+        setDivisionStatsCache({ inFlight: true }); //clear cache except for noting the request is in-flight
         if (!_.isEmpty(positionalStatsCache)) setPositionalStatsCache({}); //unset if set
         GradeTableUtils.populatePlayerDivisionStatsCache(
           gameFilterParams,

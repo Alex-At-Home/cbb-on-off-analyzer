@@ -260,6 +260,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         yearTeamGenderChange(rawParams, gameFilterParamsRef.current || {})
           ? ["manual"]
           : [],
+        _.isEmpty(rawParams.otherQueries || []) ? ["otherQueries"] : [],
+        _.isEmpty(rawParams.manual || []) ? ["manual"] : [],
         _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig)
           ? ["luck"]
           : [],
@@ -387,11 +389,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "showPlayerPlayTypesAdjPpp",
     ];
     const removeFieldsToIgnore = (obj: any) => {
-      return _.omit(obj, urlUpdateOnlyFields);
+      const updatedObj = _.omit(obj, urlUpdateOnlyFields);
+      return JSON.parse(JSON.stringify(updatedObj));
     };
     const checkUrlUpdateFields = (obj: any) => {
-      return _.pick(obj, urlUpdateOnlyFields);
+      const updatedObj = _.pick(obj, urlUpdateOnlyFields);
+      return JSON.parse(JSON.stringify(updatedObj));
     };
+
+    const cleanedNewParams = removeFieldsToIgnore(params);
+    const cleanedCurrParams = removeFieldsToIgnore(gameFilterParamsRef.current);
 
     // DIAGNOSTICS:
     const isDebug = false;
@@ -421,13 +428,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           );
       });
     }
-
-    if (
-      !_.isEqual(
-        removeFieldsToIgnore(params),
-        removeFieldsToIgnore(gameFilterParamsRef.current)
-      )
-    ) {
+    if (!_.isEqual(cleanedNewParams, cleanedCurrParams)) {
       //(to avoid recursion)
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {

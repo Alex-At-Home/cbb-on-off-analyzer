@@ -193,6 +193,7 @@ const projectedPlayerBuilderInfo = {
 };
 
 export type DivisionStatsCache = {
+  inFlight?: boolean;
   year?: string;
   gender?: string;
   Combo?: DivisionStatistics;
@@ -321,16 +322,21 @@ export class GradeTableUtils {
         }
       );
     });
-    Promise.all(fetchAll).then((jsons: any[]) => {
-      setCache({
-        year: inYear,
-        gender: inGender, //(so know when to refresh cache)
-        Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0], //(if using tierOverride, it goes in here)
-        High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
-        Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
-        Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
+    Promise.all(fetchAll)
+      .then((jsons: any[]) => {
+        setCache({
+          year: inYear,
+          gender: inGender, //(so know when to refresh cache)
+          Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0], //(if using tierOverride, it goes in here)
+          High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
+          Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
+          Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
+        });
+      })
+      .catch((err: any) => {
+        //(ensure we empty the cache rather than leave it stale)
+        setCache({});
       });
-    });
   };
 
   /** Builds a grade controller element */
