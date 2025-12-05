@@ -1215,102 +1215,70 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               };
             }
           }
-          const maybeRapm = _.thru(
-            factorMins
-              ? stat.off_adj_rapm_prod_margin
-              : stat.off_adj_rapm_margin,
-            (rapmMargin) => {
-              if (rapmMargin && calcRapm && expandedView) {
-                const rapmMarginVal = rapmMargin.value ?? 0;
-                const adjMarginShadow = CommonTableDefs.getTextShadow(
-                  rapmMargin,
-                  CbbColors.diff10_p100_redGreen[0],
-                  "20px",
-                  4
-                );
-
-                const netGradeEl = _.thru(
-                  showGrades && !showStandaloneGrades,
-                  (showInlineRapmNetGrade) => {
-                    if (showInlineRapmNetGrade) {
-                      const netRapmField = factorMins
-                        ? "off_adj_rapm_prod_margin"
-                        : "off_adj_rapm_margin";
-                      return GradeTableUtils.buildPlayerNetGrade(
-                        (stat?.grades as Record<string, Statistic>)?.[
-                          netRapmField
-                        ],
-                        GradeTableUtils.getGradeType(showGrades),
-                        true,
-                        true
-                      );
-                    } else {
-                      return undefined;
-                    }
-                  }
-                );
-
-                const adjMarginEl = (
-                  <OverlayTrigger
-                    placement="auto"
-                    overlay={
-                      <Tooltip
-                        id={`${stat.code}${queryKey}${otherQueryIndex}rapmMargin`}
-                      >
-                        Overall player RAPM impact, in pts/100 above average.
-                      </Tooltip>
-                    }
-                  >
-                    <span>
-                      <b>net: </b>
-                      <b style={adjMarginShadow}>
-                        [
-                        {(rapmMarginVal > 0 ? "+" : "") +
-                          rapmMarginVal.toFixed(1)}
-                        ]
-                      </b>
-                      {netGradeEl && <span> {netGradeEl}</span>}
-                    </span>
-                  </OverlayTrigger>
-                );
-                return adjMarginEl;
-              } else {
-                return undefined;
-              }
-            }
-          );
-          // If we're in short form grades mode then build those:
-          if (showGrades && !showStandaloneGrades) {
-            //TODO: make this a generic feature so can re-use in one line:
-            const { tierToUse, gradeFormat, ...unused } =
-              GradeTableUtils.buildPlayerTierInfo(
-                showGrades || "rank:Combo",
-                {
-                  comboTier: divisionStatsCache.Combo,
-                  highTier: divisionStatsCache.High,
-                  mediumTier: divisionStatsCache.Medium,
-                  lowTier: divisionStatsCache.Low,
-                },
-                positionalStatsCache || {}
+        }
+        const maybeRapm = _.thru(
+          factorMins ? stat.off_adj_rapm_prod_margin : stat.off_adj_rapm_margin,
+          (rapmMargin) => {
+            if (rapmMargin && calcRapm && expandedView) {
+              const rapmMarginVal = rapmMargin.value ?? 0;
+              const adjMarginShadow = CommonTableDefs.getTextShadow(
+                rapmMargin,
+                CbbColors.diff10_p100_redGreen[0],
+                "20px",
+                4
               );
 
-            const predictedGrades = tierToUse
-              ? GradeUtils.buildPlayerPercentiles(
-                  tierToUse,
-                  stat,
-                  _.keys(GradeUtils.playerFields),
-                  gradeFormat == "rank"
-                )
-              : {};
+              const netGradeEl = _.thru(
+                showGrades && !showStandaloneGrades,
+                (showInlineRapmNetGrade) => {
+                  if (showInlineRapmNetGrade) {
+                    const netRapmField = factorMins
+                      ? "off_adj_rapm_prod_margin"
+                      : "off_adj_rapm_margin";
+                    return GradeTableUtils.buildPlayerNetGrade(
+                      (stat?.grades as Record<string, Statistic>)?.[
+                        netRapmField
+                      ],
+                      GradeTableUtils.getGradeType(showGrades),
+                      true,
+                      true
+                    );
+                  } else {
+                    return undefined;
+                  }
+                }
+              );
 
-            GradeTableUtils.injectPlayerSampleSizeDisclaimers(
-              //(adds "extraInfo" to predicted grades)
-              stat,
-              predictedGrades
-            );
-            stat.grades = predictedGrades;
+              const adjMarginEl = (
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip
+                      id={`${stat.code}${queryKey}${otherQueryIndex}rapmMargin`}
+                    >
+                      Overall player RAPM impact, in pts/100 above average.
+                    </Tooltip>
+                  }
+                >
+                  <span>
+                    <b>net: </b>
+                    <b style={adjMarginShadow}>
+                      [
+                      {(rapmMarginVal > 0 ? "+" : "") +
+                        rapmMarginVal.toFixed(1)}
+                      ]
+                    </b>
+                    {netGradeEl && <span> {netGradeEl}</span>}
+                  </span>
+                </OverlayTrigger>
+              );
+              return adjMarginEl;
+            } else {
+              return undefined;
+            }
           }
-        }
+        );
+
         const playElToUse = stat.roster?.player_code_id?.ncaa_id ? (
           <OverlayTrigger
             placement="auto"
@@ -1342,6 +1310,38 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         ) : (
           stat.key
         );
+
+        // If we're in short form grades mode then build those:
+        if (showGrades && !showStandaloneGrades) {
+          //TODO: make this a generic feature so can re-use in one line:
+          const { tierToUse, gradeFormat, ...unused } =
+            GradeTableUtils.buildPlayerTierInfo(
+              showGrades || "rank:Combo",
+              {
+                comboTier: divisionStatsCache.Combo,
+                highTier: divisionStatsCache.High,
+                mediumTier: divisionStatsCache.Medium,
+                lowTier: divisionStatsCache.Low,
+              },
+              positionalStatsCache || {}
+            );
+
+          const predictedGrades = tierToUse
+            ? GradeUtils.buildPlayerPercentiles(
+                tierToUse,
+                stat,
+                _.keys(GradeUtils.playerFields),
+                gradeFormat == "rank"
+              )
+            : {};
+
+          GradeTableUtils.injectPlayerSampleSizeDisclaimers(
+            //(adds "extraInfo" to predicted grades)
+            stat,
+            predictedGrades
+          );
+          stat.grades = predictedGrades;
+        }
 
         // Now we have the position we can build the titles:
         stat.off_title = insertTitle(
