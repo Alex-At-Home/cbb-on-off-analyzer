@@ -571,7 +571,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
           const samples = tmpGrade?.samples * pctile;
           const topPctle = gradeSettings.topPctle || 0.75;
           const bottomPctle = gradeSettings.bottomPctle || 0.25;
-          const maybeAddWarning = (extraInfo: string | undefined) => {
+          const maybeAddWarning = (
+            el: React.ReactNode,
+            extraInfo: string | undefined
+          ) => {
             if (extraInfo) {
               const tooltipId = `gradeTooltip_${rowIndex}_${prefixType}`;
               const tooltip = (
@@ -581,60 +584,55 @@ const GenericTable: React.FunctionComponent<Props> = ({
               );
               return (
                 <OverlayTrigger placement="auto" overlay={tooltip}>
-                  <sup className={styles.infoBadge}></sup>
+                  <div>
+                    {el}
+                    <small>
+                      <sup className={styles.infoBadge}></sup>
+                    </small>
+                  </div>
                 </OverlayTrigger>
               );
             } else {
-              return undefined;
+              return el;
             }
           };
           if (gradeSettings.hybridMode) {
             //(in rank mode still shows %les for the bad %iles)
             if (samples > 0 && !_.isNil(maybePctile) && pctile >= topPctle) {
-              return (
-                <>
-                  {GenericTableOps.approxRankOrHtmlFormatter(tmpGrade)}
-                  <small>{maybeAddWarning(tmpGrade?.extraInfo)}</small>
-                </>
+              return maybeAddWarning(
+                GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
+                tmpGrade?.extraInfo
               );
             } else if (
               samples > 0 &&
               !_.isNil(maybePctile) &&
               pctile <= bottomPctle
             ) {
-              return (
-                <small>
-                  {`${(pctile * 100).toFixed(0)}%`}
-                  {maybeAddWarning(tmpGrade?.extraInfo)}
-                </small>
+              return maybeAddWarning(
+                <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
+                tmpGrade?.extraInfo
               );
             } else if (
               !_.isNil(maybePctile) &&
               (pctile >= topPctle || pctile <= bottomPctle)
             ) {
-              return (
-                <small>
-                  {`${(pctile * 100).toFixed(0)}%`}
-                  {maybeAddWarning(tmpGrade?.extraInfo)}
-                </small>
+              return maybeAddWarning(
+                <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
+                tmpGrade?.extraInfo
               );
             } else {
               return undefined;
             }
           } else {
             if (samples > 0 && !_.isNil(maybePctile)) {
-              return (
-                <>
-                  {GenericTableOps.approxRankOrHtmlFormatter(tmpGrade)}
-                  <small>{maybeAddWarning(tmpGrade?.extraInfo)}</small>
-                </>
+              return maybeAddWarning(
+                GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
+                tmpGrade?.extraInfo
               );
             } else if (!_.isNil(maybePctile)) {
-              return (
-                <small>
-                  {`${(pctile * 100).toFixed(0)}%`}
-                  {maybeAddWarning(tmpGrade?.extraInfo)}
-                </small>
+              return maybeAddWarning(
+                <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
+                tmpGrade?.extraInfo
               );
             } else {
               return undefined;
