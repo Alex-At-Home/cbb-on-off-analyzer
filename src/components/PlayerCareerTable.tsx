@@ -808,39 +808,37 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           </Tooltip>
         }
       >
-        <>
-          <span>
-            <b>net: </b>
-            <b style={adjMarginShadow}>
-              [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
-            </b>
-            {_.thru(
-              showGrades && !showStandaloneGrades,
-              (showInlineRapmNetGrade) => {
-                if (showInlineRapmNetGrade) {
-                  const netRapmField = factorMins
-                    ? "off_adj_rapm_prod_margin"
-                    : "off_adj_rapm_margin";
-                  return (
-                    <div>
-                      {" "}
-                      {GradeTableUtils.buildPlayerNetGrade(
-                        (player?.grades as Record<string, Statistic>)?.[
-                          netRapmField
-                        ],
-                        GradeTableUtils.getGradeType(showGrades),
-                        true,
-                        true
-                      )}
-                    </div>
-                  );
-                } else {
-                  return undefined;
-                }
+        <span>
+          <b>net: </b>
+          <b style={adjMarginShadow}>
+            [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
+          </b>
+          {_.thru(
+            showGrades && !showStandaloneGrades,
+            (showInlineRapmNetGrade) => {
+              if (showInlineRapmNetGrade) {
+                const netRapmField = factorMins
+                  ? "off_adj_rapm_prod_margin"
+                  : "off_adj_rapm_margin";
+                return (
+                  <div>
+                    {" "}
+                    {GradeTableUtils.buildPlayerNetGrade(
+                      (player?.grades as Record<string, Statistic>)?.[
+                        netRapmField
+                      ],
+                      GradeTableUtils.getGradeType(showGrades),
+                      true,
+                      true
+                    )}
+                  </div>
+                );
+              } else {
+                return undefined;
               }
-            )}
-          </span>
-        </>
+            }
+          )}
+        </span>
       </OverlayTrigger>
     );
 

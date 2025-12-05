@@ -1020,10 +1020,6 @@ export class GradeTableUtils {
         <br />
         <br />
         Inline: Ranks/%les shown in same row as stats, all stats shown
-        <br />
-        <br />
-        ("Hide" temporarily hides the global grade control settings. Will
-        re-appear on page refresh or when toggling grades on/off above.)
       </Tooltip>
     );
     const helpTooltipOvelay = (
@@ -1038,24 +1034,23 @@ export class GradeTableUtils {
         page refresh or when toggling grades on/off above.
       </Tooltip>
     );
-    const hideGradeSettings = //(TODO: doesn't work same as other overlays, not sure why but related to the <a>)
-      (
-        <OverlayTrigger placement="auto" overlay={hideTooltipTier}>
-          <>
-            [
-            <a
-              href="#"
-              onClick={(event) => {
-                event.preventDefault();
-                globalSettings?.onHide();
-              }}
-            >
-              Hide
-            </a>
-            ]
-          </>
-        </OverlayTrigger>
-      );
+    const hideGradeSettings = (
+      <OverlayTrigger placement="auto" overlay={hideTooltipTier}>
+        <span>
+          [
+          <a
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              globalSettings?.onHide();
+            }}
+          >
+            Hide
+          </a>
+          ]
+        </span>
+      </OverlayTrigger>
+    );
 
     return {
       //(for some reason the snapshot build repeats the xxxLine if the "//" aren't represented like this):
