@@ -109,6 +109,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtgPlus": 5.48668761954373
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -395,6 +397,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtg": 138.95490038126016,
                "adjORtgPlus": 7.7909800762520325
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -683,6 +687,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -929,6 +935,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtg": 101.3392967833375,
                "adjORtgPlus": 0.2678593566675005
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -1217,6 +1225,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtgPlus": 0.7658411088804172
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           33% assisted
@@ -1463,6 +1473,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -1764,6 +1776,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtgPlus": 5.84853167361543
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -2017,6 +2031,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 129.24265836807714,
                    "adjORtgPlus": 5.84853167361543
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -2273,6 +2289,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -2567,6 +2585,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -2864,6 +2884,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtgPlus": 5.48668761954373
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -3157,6 +3179,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 127.43343809771865,
                    "adjORtgPlus": 5.48668761954373
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -3454,6 +3478,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   100% assisted
@@ -3747,6 +3773,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -4044,6 +4072,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtgPlus": 0.7658411088804172
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   33% assisted
@@ -4297,6 +4327,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 103.82920554440209,
                    "adjORtgPlus": 0.7658411088804172
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -4553,6 +4585,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -4847,6 +4881,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -5177,6 +5213,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -5423,6 +5461,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -6373,6 +6413,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                      "adjORtgPlus": 5.48668761954373
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -6666,6 +6708,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                      "adjORtg": 138.95490038126016,
                      "adjORtgPlus": 7.7909800762520325
                   }
+
+                  grades: Object {}
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -6965,6 +7009,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                      "adjORtgPlus": 0.2678593566675005
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       31% assisted
@@ -7262,6 +7308,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                      "adjORtg": 173.34115342635553,
                      "adjORtgPlus": 14.668230685271107
                   }
+
+                  grades: Object {}
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -9209,6 +9257,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -9395,6 +9445,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -9596,6 +9648,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                    "adjORtgPlus": 5.84853167361543
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -9789,6 +9843,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                    "adjORtg": 129.24265836807714,
                    "adjORtgPlus": 5.84853167361543
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -9986,6 +10042,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                    "adjORtgPlus": 0.7658411088804172
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -10179,6 +10237,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                    "adjORtg": 103.82920554440209,
                    "adjORtgPlus": 0.7658411088804172
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -10409,6 +10469,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -10595,6 +10657,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -11501,6 +11565,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                      "adjORtgPlus": 5.84853167361543
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -11694,6 +11760,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                      "adjORtg": 129.24265836807714,
                      "adjORtgPlus": 5.84853167361543
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -11893,6 +11961,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                      "adjORtgPlus": 0.7658411088804172
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -12086,6 +12156,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                      "adjORtg": 103.82920554440209,
                      "adjORtgPlus": 0.7658411088804172
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -12619,6 +12691,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtgPlus": 5.48668761954373
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -12822,6 +12896,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtg": 138.95490038126016,
                "adjORtgPlus": 7.7909800762520325
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -13027,6 +13103,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -13230,6 +13308,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtg": 101.3392967833375,
                "adjORtgPlus": 0.2678593566675005
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -13435,6 +13515,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtgPlus": 0.7658411088804172
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -13638,6 +13720,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -13856,6 +13940,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtgPlus": 5.84853167361543
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -14066,6 +14152,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtg": 129.24265836807714,
                    "adjORtgPlus": 5.84853167361543
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -14280,6 +14368,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtgPlus": 7.7909800762520325
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -14490,6 +14580,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -14704,6 +14796,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtgPlus": 5.48668761954373
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -14914,6 +15008,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtg": 127.43343809771865,
                    "adjORtgPlus": 5.48668761954373
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -15128,6 +15224,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -15338,6 +15436,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -15552,6 +15652,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtgPlus": 0.7658411088804172
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -15762,6 +15864,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtg": 103.82920554440209,
                    "adjORtgPlus": 0.7658411088804172
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -15976,6 +16080,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtgPlus": 0.2678593566675005
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -16186,6 +16292,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -16433,6 +16541,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -16636,6 +16746,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -17559,6 +17671,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtgPlus": 5.48668761954373
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -17770,6 +17884,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtgPlus": 5.48668761954373
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -17981,6 +18097,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtgPlus": 7.7909800762520325
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -18192,6 +18310,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtgPlus": 7.7909800762520325
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -18407,6 +18527,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtgPlus": 0.2678593566675005
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -18617,6 +18739,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtg": 101.3392967833375,
                      "adjORtgPlus": 0.2678593566675005
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -18833,6 +18957,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtgPlus": 14.668230685271107
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -19043,6 +19169,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                      "adjORtg": 173.34115342635553,
                      "adjORtgPlus": 14.668230685271107
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -19599,6 +19727,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtgPlus": 5.48668761954373
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -19859,6 +19989,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtg": 138.95490038126016,
                "adjORtgPlus": 7.7909800762520325
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -20121,6 +20253,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -20381,6 +20515,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtg": 101.3392967833375,
                "adjORtgPlus": 0.2678593566675005
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -20643,6 +20779,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtgPlus": 0.7658411088804172
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           33% assisted
@@ -20903,6 +21041,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -21178,6 +21318,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtgPlus": 5.84853167361543
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -21445,6 +21587,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtg": 129.24265836807714,
                    "adjORtgPlus": 5.84853167361543
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -21716,6 +21860,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtgPlus": 7.7909800762520325
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -21983,6 +22129,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -22254,6 +22402,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtgPlus": 5.48668761954373
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -22521,6 +22671,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtg": 127.43343809771865,
                    "adjORtgPlus": 5.48668761954373
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -22792,6 +22944,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   100% assisted
@@ -23059,6 +23213,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -23330,6 +23486,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtgPlus": 0.7658411088804172
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   33% assisted
@@ -23597,6 +23755,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtg": 103.82920554440209,
                    "adjORtgPlus": 0.7658411088804172
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -23868,6 +24028,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtgPlus": 0.2678593566675005
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   31% assisted
@@ -24135,6 +24297,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -24439,6 +24603,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -24699,6 +24865,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -25663,6 +25831,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                      "adjORtgPlus": 5.48668761954373
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -25968,6 +26138,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                      "adjORtg": 138.95490038126016,
                      "adjORtgPlus": 7.7909800762520325
                   }
+
+                  grades: Object {}
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -26279,6 +26451,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                      "adjORtgPlus": 0.2678593566675005
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       31% assisted
@@ -26588,6 +26762,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                      "adjORtg": 173.34115342635553,
                      "adjORtgPlus": 14.668230685271107
                   }
+
+                  grades: Object {}
 
                   off_2pmidr: Object {
                                     "extraInfo": <span>
@@ -27155,6 +27331,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtgPlus": 5.501095655491344
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -27372,6 +27550,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtg": 138.95490038126016,
                "adjORtgPlus": 7.7909800762520325
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -27591,6 +27771,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtgPlus": 5.825221329428388
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -27808,6 +27990,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtg": 101.3392967833375,
                "adjORtgPlus": 0.2678593566675005
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -28027,6 +28211,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtgPlus": 0.7658411088804172
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -28244,6 +28430,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -28476,6 +28664,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtgPlus": 5.825221329428388
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -28700,6 +28890,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtg": 129.12610664714194,
                    "adjORtgPlus": 5.825221329428388
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -28928,6 +29120,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtgPlus": 7.7909800762520325
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -29152,6 +29346,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -29380,6 +29576,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtgPlus": 5.501095655491344
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -29604,6 +29802,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtg": 127.50547827745672,
                    "adjORtgPlus": 5.501095655491344
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -29832,6 +30032,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -30056,6 +30258,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -30284,6 +30488,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtgPlus": 0.7658411088804172
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -30508,6 +30714,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtg": 103.82920554440209,
                    "adjORtgPlus": 0.7658411088804172
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -30736,6 +30944,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtgPlus": 0.2678593566675005
                 }
 
+                grades: Object {}
+
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
@@ -30960,6 +31170,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_adj_prod: Object {
                                 "old_value": 0,
@@ -31221,6 +31433,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtgPlus": 5.825221329428388
             }
 
+            grades: Object {}
+
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
@@ -31438,6 +31652,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_adj_prod: Object {
                         "old_value": 0,
@@ -32375,6 +32591,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtgPlus": 5.501095655491344
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -32599,6 +32817,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtg": 127.50547827745672,
                      "adjORtgPlus": 5.501095655491344
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -32863,6 +33083,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtgPlus": 7.7909800762520325
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -33087,6 +33309,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtg": 138.95490038126016,
                      "adjORtgPlus": 7.7909800762520325
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -33355,6 +33579,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtgPlus": 0.2678593566675005
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -33579,6 +33805,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtg": 101.3392967833375,
                      "adjORtgPlus": 0.2678593566675005
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -33847,6 +34075,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtgPlus": 14.668230685271107
                   }
 
+                  grades: Object {}
+
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
@@ -34071,6 +34301,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                      "adjORtg": 173.34115342635553,
                      "adjORtgPlus": 14.668230685271107
                   }
+
+                  grades: Object {}
 
                   off_adj_prod: Object {
                                     "old_value": 0,
@@ -34655,6 +34887,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtgPlus": 5.48668761954373
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -34921,6 +35155,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtg": 138.95490038126016,
                "adjORtgPlus": 7.7909800762520325
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -35189,6 +35425,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -35455,6 +35693,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtg": 101.3392967833375,
                "adjORtgPlus": 0.2678593566675005
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -35723,6 +35963,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtgPlus": 0.7658411088804172
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           33% assisted
@@ -35989,6 +36231,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -36270,6 +36514,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtgPlus": 5.84853167361543
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -36543,6 +36789,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtg": 129.24265836807714,
                    "adjORtgPlus": 5.84853167361543
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -36820,6 +37068,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtgPlus": 7.7909800762520325
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -37093,6 +37343,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -37370,6 +37622,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtgPlus": 5.48668761954373
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -37643,6 +37897,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtg": 127.43343809771865,
                    "adjORtgPlus": 5.48668761954373
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -37920,6 +38176,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   100% assisted
@@ -38193,6 +38451,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -38470,6 +38730,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtgPlus": 0.7658411088804172
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   33% assisted
@@ -38743,6 +39005,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtg": 103.82920554440209,
                    "adjORtgPlus": 0.7658411088804172
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -39020,6 +39284,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtgPlus": 0.2678593566675005
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   31% assisted
@@ -39293,6 +39559,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -39603,6 +39871,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtgPlus": 5.84853167361543
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -39869,6 +40139,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                "adjORtg": 103.82920554440209,
                "adjORtgPlus": 0.7658411088804172
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -40839,6 +41111,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                      "adjORtgPlus": 5.48668761954373
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -41134,6 +41408,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                          "adjORtg": 127.43343809771865,
                          "adjORtgPlus": 5.48668761954373
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -41452,6 +41728,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                      "adjORtgPlus": 7.7909800762520325
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -41747,6 +42025,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                          "adjORtg": 138.95490038126016,
                          "adjORtgPlus": 7.7909800762520325
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -42069,6 +42349,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                      "adjORtgPlus": 0.2678593566675005
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       31% assisted
@@ -42364,6 +42646,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                          "adjORtg": 101.3392967833375,
                          "adjORtgPlus": 0.2678593566675005
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -42686,6 +42970,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                      "adjORtgPlus": 14.668230685271107
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       100% assisted
@@ -42981,6 +43267,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                          "adjORtg": 173.34115342635553,
                          "adjORtgPlus": 14.668230685271107
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -43559,6 +43847,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtgPlus": 5.445516601536508
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -43833,6 +44123,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtg": 140.45096552982474,
                "adjORtgPlus": 8.090193105964948
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -44109,6 +44401,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtgPlus": 9.175892602376786
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -44384,6 +44678,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtgPlus": 0.5231329130613148
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           31% assisted
@@ -44658,6 +44954,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtg": 133.4815685510607,
                "adjORtgPlus": 6.696313710212138
             }
+
+            grades: Object {}
 
             off_2p: Object {
                         "old_value": 0.45112781954887216,
@@ -44945,6 +45243,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -45255,6 +45555,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtgPlus": 9.175892602376786
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -45536,6 +45838,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 145.87946301188393,
                    "adjORtgPlus": 9.175892602376786
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -45821,6 +46125,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtgPlus": 8.090193105964948
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -46102,6 +46408,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 140.45096552982474,
                    "adjORtgPlus": 8.090193105964948
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -46387,6 +46695,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtgPlus": 5.445516601536508
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -46668,6 +46978,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 127.22758300768254,
                    "adjORtgPlus": 5.445516601536508
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -46953,6 +47265,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   100% assisted
@@ -47228,6 +47542,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -47506,6 +47822,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 133.4815685510607,
                    "adjORtgPlus": 6.696313710212138
                 }
+
+                grades: Object {}
 
                 off_2p: Object {
                                 "old_value": 0.45112781954887216,
@@ -47800,6 +48118,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 133.4815685510607,
                    "adjORtgPlus": 6.696313710212138
                 }
+
+                grades: Object {}
 
                 off_2p: Object {
                                 "old_value": 0.45112781954887216,
@@ -48097,6 +48417,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtgPlus": 0.5231329130613148
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   31% assisted
@@ -48378,6 +48700,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                    "adjORtg": 102.61566456530657,
                    "adjORtgPlus": 0.5231329130613148
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -48696,6 +49020,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtgPlus": 9.175892602376786
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -48970,6 +49296,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                "adjORtg": 133.4815685510607,
                "adjORtgPlus": 6.696313710212138
             }
+
+            grades: Object {}
 
             off_2p: Object {
                         "old_value": 0.45112781954887216,
@@ -49968,6 +50296,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                      "adjORtgPlus": 5.445516601536508
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -50271,6 +50601,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtg": 127.22758300768254,
                          "adjORtgPlus": 5.445516601536508
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -50607,6 +50939,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtgPlus": 5.445516601536508
                       }
 
+                      grades: Object {}
+
                       off_2pmidr: Object {
                                             "extraInfo": <span>
                                               0% assisted
@@ -50886,6 +51220,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtgPlus": 0.7199092719085058
                         }
 
+                        grades: Object {}
+
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
                                                   33% assisted
@@ -51154,6 +51490,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtg": 145.87946301188393,
                            "adjORtgPlus": 9.175892602376786
                         }
+
+                        grades: Object {}
 
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
@@ -51475,6 +51813,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                      "adjORtgPlus": 8.090193105964948
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -51778,6 +52118,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtg": 140.45096552982474,
                          "adjORtgPlus": 8.090193105964948
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -52114,6 +52456,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtgPlus": 8.090193105964948
                       }
 
+                      grades: Object {}
+
                       off_2pmidr: Object {
                                             "extraInfo": <span>
                                               0% assisted
@@ -52393,6 +52737,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtgPlus": 0.7199092719085058
                         }
 
+                        grades: Object {}
+
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
                                                   33% assisted
@@ -52661,6 +53007,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtg": 145.87946301188393,
                            "adjORtgPlus": 9.175892602376786
                         }
+
+                        grades: Object {}
 
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
@@ -52986,6 +53334,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                      "adjORtgPlus": 0.5231329130613148
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       31% assisted
@@ -53289,6 +53639,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtg": 102.61566456530657,
                          "adjORtgPlus": 0.5231329130613148
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -53625,6 +53977,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtgPlus": 0.5231329130613148
                       }
 
+                      grades: Object {}
+
                       off_2pmidr: Object {
                                             "extraInfo": <span>
                                               31% assisted
@@ -53904,6 +54258,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtgPlus": 0.7199092719085058
                         }
 
+                        grades: Object {}
+
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
                                                   33% assisted
@@ -54172,6 +54528,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtg": 145.87946301188393,
                            "adjORtgPlus": 9.175892602376786
                         }
+
+                        grades: Object {}
 
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
@@ -54497,6 +54855,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                      "adjORtgPlus": 14.668230685271107
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       100% assisted
@@ -54794,6 +55154,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtg": 173.34115342635553,
                          "adjORtgPlus": 14.668230685271107
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -55124,6 +55486,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                          "adjORtgPlus": 14.668230685271107
                       }
 
+                      grades: Object {}
+
                       off_2pmidr: Object {
                                             "extraInfo": <span>
                                               100% assisted
@@ -55397,6 +55761,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtgPlus": 0.7199092719085058
                         }
 
+                        grades: Object {}
+
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
                                                   33% assisted
@@ -55665,6 +56031,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                            "adjORtg": 145.87946301188393,
                            "adjORtgPlus": 9.175892602376786
                         }
+
+                        grades: Object {}
 
                         off_2pmidr: Object {
                                                 "extraInfo": <span>
@@ -56246,6 +56614,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtgPlus": 5.48668761954373
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -56505,6 +56875,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtgPlus": 7.7909800762520325
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -56763,6 +57135,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtg": 145.87946301188393,
                "adjORtgPlus": 9.175892602376786
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -57035,6 +57409,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtgPlus": 0.2678593566675005
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           31% assisted
@@ -57294,6 +57670,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtgPlus": 0.7199092719085058
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           33% assisted
@@ -57552,6 +57930,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtg": 173.34115342635553,
                "adjORtgPlus": 14.668230685271107
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -57834,6 +58214,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtgPlus": 9.175892602376786
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -58111,6 +58493,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtg": 145.87946301188393,
                    "adjORtgPlus": 9.175892602376786
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -58392,6 +58776,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtgPlus": 7.7909800762520325
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -58657,6 +59043,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtg": 138.95490038126016,
                    "adjORtgPlus": 7.7909800762520325
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -58926,6 +59314,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtgPlus": 5.48668761954373
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   0% assisted
@@ -59191,6 +59581,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtg": 127.43343809771865,
                    "adjORtgPlus": 5.48668761954373
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -59460,6 +59852,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtgPlus": 14.668230685271107
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   100% assisted
@@ -59725,6 +60119,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtg": 173.34115342635553,
                    "adjORtgPlus": 14.668230685271107
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -59994,6 +60390,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtgPlus": 0.7199092719085058
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   33% assisted
@@ -60259,6 +60657,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtg": 103.59954635954253,
                    "adjORtgPlus": 0.7199092719085058
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -60528,6 +60928,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtgPlus": 0.2678593566675005
                 }
 
+                grades: Object {}
+
                 off_2pmidr: Object {
                                 "extraInfo": <span>
                                   31% assisted
@@ -60793,6 +61195,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                    "adjORtg": 101.3392967833375,
                    "adjORtgPlus": 0.2678593566675005
                 }
+
+                grades: Object {}
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -61095,6 +61499,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtgPlus": 9.175892602376786
             }
 
+            grades: Object {}
+
             off_2pmidr: Object {
                         "extraInfo": <span>
                           0% assisted
@@ -61365,6 +61771,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                "adjORtg": 103.59954635954253,
                "adjORtgPlus": 0.7199092719085058
             }
+
+            grades: Object {}
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -62335,6 +62743,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                      "adjORtgPlus": 5.48668761954373
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -62622,6 +63032,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                          "adjORtg": 127.43343809771865,
                          "adjORtgPlus": 5.48668761954373
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -62932,6 +63344,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                      "adjORtgPlus": 7.7909800762520325
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       0% assisted
@@ -63219,6 +63633,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                          "adjORtg": 138.95490038126016,
                          "adjORtgPlus": 7.7909800762520325
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -63533,6 +63949,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                      "adjORtgPlus": 0.2678593566675005
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       31% assisted
@@ -63820,6 +64238,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                          "adjORtg": 101.3392967833375,
                          "adjORtgPlus": 0.2678593566675005
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
@@ -64134,6 +64554,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                      "adjORtgPlus": 14.668230685271107
                   }
 
+                  grades: Object {}
+
                   off_2pmidr: Object {
                                     "extraInfo": <span>
                                       100% assisted
@@ -64421,6 +64843,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                          "adjORtg": 173.34115342635553,
                          "adjORtgPlus": 14.668230685271107
                       }
+
+                      grades: Object {}
 
                       off_2pmidr: Object {
                                             "extraInfo": <span>
