@@ -153,7 +153,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       : playerCareerParams.showGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const showStandaloneGrades =
     GradeTableUtils.showingStandaloneGrades(showGrades);
 
@@ -1733,8 +1733,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           {
             label: "Grades",
             tooltip: showGrades
-              ? "Hide player ranks/percentiles"
-              : "Show player ranks/percentiles",
+              ? "Hide player ranks/percentiles" +
+                (hideGlobalGradeSettings
+                  ? " (grade controls accessed via the advanced options menu to the right)"
+                  : "")
+              : "Show player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
             toggled: showGrades != "",
             onClick: () => {
               setShowGrades(
@@ -1785,6 +1788,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const optionsDropdown = (
     <GenericTogglingMenu size="sm">
+      <GenericTogglingMenuItem
+        text="Show grade controls"
+        truthVal={!hideGlobalGradeSettings}
+        onSelect={() => setHideGlobalGradeSettings(!hideGlobalGradeSettings)}
+      />
       <AnnotationMenuItems />
       <GenericTogglingMenuItem
         className="d-none d-md-flex"

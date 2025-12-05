@@ -201,7 +201,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       : gameFilterParams.showPlayerGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const showStandaloneGrades =
     GradeTableUtils.showingStandaloneGrades(showGrades);
 
@@ -452,7 +452,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       rapmRegressMode: rapmRegressMode.toString(),
       factorMins: factorMins,
       onOffLuck: adjustForLuck,
-      showGrades: showGrades,
+      showPlayerGrades: showGrades,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
       showPlayerManual: showManualOverrides,
       showOnBallConfig: showOnBallConfig,
@@ -2045,8 +2045,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         {
           label: "Grades",
           tooltip: showGrades
-            ? "Hide player ranks/percentiles"
-            : "Show player ranks/percentiles",
+            ? "Hide player ranks/percentiles" +
+              (hideGlobalGradeSettings
+                ? " (grade controls accessed via the advanced options menu to the right)"
+                : "")
+            : "Show player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
           toggled: showGrades != "",
           onClick: () => {
             setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade);
@@ -2125,6 +2128,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const optionsDropdown = (
     <GenericTogglingMenu>
+      <GenericTogglingMenuItem
+        text="Show grade controls"
+        truthVal={!hideGlobalGradeSettings}
+        onSelect={() => setHideGlobalGradeSettings(!hideGlobalGradeSettings)}
+      />
+      <Dropdown.Divider />
       <GenericTogglingMenuItem
         text="Always show baseline statistics"
         truthVal={alwaysShowBaseline}

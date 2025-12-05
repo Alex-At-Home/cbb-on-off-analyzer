@@ -18,6 +18,7 @@ public/leaderboards/lineups/*2025*
 leaderboardDebug/*
 enrichedPlayers/*
 enrichedPlayersDebug/*
+*.diff
 
 .vercel
 .metals

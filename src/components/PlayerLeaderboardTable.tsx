@@ -347,7 +347,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       : startingState.showGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const showStandaloneGrades =
     GradeTableUtils.showingStandaloneGrades(showGrades);
 
@@ -2714,8 +2714,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     {
                       label: "Grades",
                       tooltip: showGrades
-                        ? "Hide player ranks/percentiles"
-                        : "Show player ranks/percentiles",
+                        ? "Hide player ranks/percentiles" +
+                          (hideGlobalGradeSettings
+                            ? " (grade controls accessed via the advanced options menu to the right)"
+                            : "")
+                        : "Show player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
                       toggled: showGrades != "",
                       onClick: () =>
                         friendlyChange(() => {
@@ -2818,15 +2821,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} xs={1} sm={1} className="mb-1">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
-                text={<i className="text-secondary">Adjust for Luck</i>}
-                truthVal={true}
-                onSelect={() => {}}
-                helpLink={
-                  showHelp
-                    ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-                    : undefined
+                text="Show grade controls"
+                truthVal={!hideGlobalGradeSettings}
+                onSelect={() =>
+                  setHideGlobalGradeSettings(!hideGlobalGradeSettings)
                 }
               />
+              <Dropdown.Divider />
               <GenericTogglingMenuItem
                 text={
                   <span>Use RAPM (vs Adj Rtg) when displaying rankings</span>

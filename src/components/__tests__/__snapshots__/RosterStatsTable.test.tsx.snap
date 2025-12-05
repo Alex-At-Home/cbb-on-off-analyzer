@@ -6055,7 +6055,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -6111,6 +6111,14 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -6220,222 +6228,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -8212,160 +8004,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             </div>
           </div>
         </div>
-        <div
-          class="pt-1 col-12"
-        >
-          <div>
-            <span>
-              <small>
-                Grades
-                 
-                <div>
-                  <b>
-                    (?)
-                  </b>
-                </div>
-              </small>
-              : 
-              <span
-                class="small"
-              >
-                <b>
-                  <a>
-                    D1
-                    
-                  </a>
-                </b>
-                 | 
-                <a>
-                  High
-                  
-                </a>
-                 | 
-                <a>
-                  Medium
-                  
-                </a>
-                 |
-                 
-                <a>
-                  Low
-                  
-                </a>
-              </span>
-               
-              //
-               
-              <span
-                class="small"
-              >
-                <b>
-                  <a
-                    href="#"
-                  >
-                    All
-                    
-                  </a>
-                </b>
-                 | 
-                <a>
-                  Handlers
-                  
-                </a>
-                 | 
-                <a>
-                  Guards
-                  
-                </a>
-                 |
-                 
-                <a>
-                  Wings
-                  
-                </a>
-                 | 
-                <a>
-                  PFs
-                  
-                </a>
-                 | 
-                <a>
-                  Centers
-                  
-                </a>
-                 |
-                 
-                <a>
-                  Frontcourt
-                  
-                </a>
-              </span>
-               
-              //
-               
-              <span
-                class="small"
-              >
-                <b>
-                  <a
-                    href="#"
-                  >
-                    Ranks
-                  </a>
-                </b>
-                 |
-                 
-                <a
-                  href="#"
-                >
-                  Pctiles
-                </a>
-              </span>
-              <span>
-                 
-                //
-                 
-                <span
-                  class="small"
-                >
-                  <a
-                    href="#"
-                  >
-                    <b>
-                      Hybrid
-                    </b>
-                  </a>
-                   | 
-                  <a>
-                    Rows
-                  </a>
-                   | 
-                  <a>
-                    Inline
-                  </a>
-                </span>
-                 
-                <small>
-                  <div>
-                    <b>
-                      (?)
-                    </b>
-                  </div>
-                </small>
-                   
-                <div>
-                  [
-                  <a
-                    href="#"
-                  >
-                    Hide
-                  </a>
-                  ]
-                </div>
-              </span>
-            </span>
-          </div>
-        </div>
       </div>
       <div
         class="pt-1 d-md-none form-row"
@@ -8524,160 +8162,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 </svg>
               </button>
             </div>
-          </div>
-        </div>
-        <div
-          class="pt-1 col-12"
-        >
-          <div>
-            <span>
-              <small>
-                Grades
-                 
-                <div>
-                  <b>
-                    (?)
-                  </b>
-                </div>
-              </small>
-              : 
-              <span
-                class="small"
-              >
-                <b>
-                  <a>
-                    D1
-                    
-                  </a>
-                </b>
-                 | 
-                <a>
-                  High
-                  
-                </a>
-                 | 
-                <a>
-                  Medium
-                  
-                </a>
-                 |
-                 
-                <a>
-                  Low
-                  
-                </a>
-              </span>
-               
-              //
-               
-              <span
-                class="small"
-              >
-                <b>
-                  <a
-                    href="#"
-                  >
-                    All
-                    
-                  </a>
-                </b>
-                 | 
-                <a>
-                  Handlers
-                  
-                </a>
-                 | 
-                <a>
-                  Guards
-                  
-                </a>
-                 |
-                 
-                <a>
-                  Wings
-                  
-                </a>
-                 | 
-                <a>
-                  PFs
-                  
-                </a>
-                 | 
-                <a>
-                  Centers
-                  
-                </a>
-                 |
-                 
-                <a>
-                  Frontcourt
-                  
-                </a>
-              </span>
-               
-              //
-               
-              <span
-                class="small"
-              >
-                <b>
-                  <a
-                    href="#"
-                  >
-                    Ranks
-                  </a>
-                </b>
-                 |
-                 
-                <a
-                  href="#"
-                >
-                  Pctiles
-                </a>
-              </span>
-              <span>
-                 
-                //
-                 
-                <span
-                  class="small"
-                >
-                  <a
-                    href="#"
-                  >
-                    <b>
-                      Hybrid
-                    </b>
-                  </a>
-                   | 
-                  <a>
-                    Rows
-                  </a>
-                   | 
-                  <a>
-                    Inline
-                  </a>
-                </span>
-                 
-                <small>
-                  <div>
-                    <b>
-                      (?)
-                    </b>
-                  </div>
-                </small>
-                   
-                <div>
-                  [
-                  <a
-                    href="#"
-                  >
-                    Hide
-                  </a>
-                  ]
-                </div>
-              </span>
-            </span>
           </div>
         </div>
       </div>
@@ -11699,7 +11183,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -11755,6 +11239,14 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -11864,222 +11356,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -17965,7 +17241,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -18021,6 +17297,14 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -18130,222 +17414,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -26271,7 +25339,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -26327,6 +25395,14 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -26436,222 +25512,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -33191,7 +32051,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -33247,6 +32107,14 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -33356,222 +32224,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -41863,7 +40515,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -41919,6 +40571,14 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -42028,222 +40688,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -51192,7 +49636,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -51256,6 +49700,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -51365,222 +49817,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
@@ -63767,7 +62003,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "label": "Grades",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
+                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -63831,6 +62067,14 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show grade controls"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
@@ -63940,222 +62184,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
         </GenericTogglingMenu>
       </FormGroup>
-      <Col
-        className="pt-1"
-        xs="12"
-      >
-        <div>
-          <span>
-            <small>
-              Grades
-               
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="helpTooltip"
-                    placement="right"
-                  >
-                    High Tier: high majors, mid-high majors, plus any team in the T150
-                    <br />
-                    Medium Tier: mid/mid-high/mid-low majors, if in the T275
-                    <br />
-                    Low Tier: low/mid-low majors, or if outside the T250
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                <b>
-                  (?)
-                </b>
-              </OverlayTrigger>
-            </small>
-            : 
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  onClick={[Function]}
-                >
-                  D1
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                High
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Medium
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Low
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  All
-                </a>
-              </b>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Handlers
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Guards
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Wings
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                PFs
-              </a>
-               | 
-              <a
-                onClick={[Function]}
-              >
-                Centers
-              </a>
-               |
-               
-              <a
-                onClick={[Function]}
-              >
-                Frontcourt
-              </a>
-            </span>
-             
-            //
-             
-            <span
-              className="small"
-            >
-              <b>
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Ranks
-                </a>
-              </b>
-               |
-               
-              <a
-                href="#"
-                onClick={[Function]}
-              >
-                Pctiles
-              </a>
-            </span>
-            <span>
-               
-              //
-               
-              <span
-                className="small"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  <b>
-                    Hybrid
-                  </b>
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Rows
-                </a>
-                 | 
-                <a
-                  onClick={[Function]}
-                >
-                  Inline
-                </a>
-              </span>
-               
-              <small>
-                <OverlayTrigger
-                  overlay={
-                    <Tooltip
-                      id="helpTooltipView"
-                      placement="right"
-                    >
-                      Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B 25%). In "Ranks" mode, B25% stats are shown as %les.
-                      <br />
-                      <br />
-                      Rows: Ranks/%les shown as separate rows in the table
-                      <br />
-                      <br />
-                      Inline: Ranks/%les shown in same row as stats, all stats shown
-                      <br />
-                      <br />
-                      ("Hide" temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.)
-                    </Tooltip>
-                  }
-                  placement="auto"
-                >
-                  <b>
-                    (?)
-                  </b>
-                </OverlayTrigger>
-              </small>
-                 
-              <OverlayTrigger
-                overlay={
-                  <Tooltip
-                    id="hideTooltip"
-                    placement="right"
-                  >
-                    Temporarily hides the global grade control settings. Will re-appear on page refresh or when toggling grades on/off above.
-                  </Tooltip>
-                }
-                placement="auto"
-              >
-                [
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Hide
-                </a>
-                ]
-              </OverlayTrigger>
-            </span>
-          </span>
-        </div>
-      </Col>
     </StickyRow>
     <Row
       className="mt-2"
