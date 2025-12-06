@@ -365,7 +365,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   const [showOnDateRangeModal, setOnShowDateRangeModal] = useState(false);
   const [showOffDateRangeModal, setOffShowDateRangeModal] = useState(false);
-  const [showPresetSelectorModal, setPresetGameSelectorModal] = useState(false);
+  const [showPresetModeSelectorModal, setPresetModeSelectorModal] =
+    useState(false);
+  const [showPresetSplitSelectorModal, setPresetSplitSelectorModal] =
+    useState(false);
   const [showOnGameSelectorModal, setOnShowGameSelectorModal] = useState(false);
   const [showOffGameSelectorModal, setOffShowGameSelectorModal] =
     useState(false);
@@ -476,18 +479,38 @@ const GameFilter: React.FunctionComponent<Props> = ({
             )}`
           : undefined;
       } else {
-        return _.findKey(FilterPresetUtils.gameSplitPresets, (preset) => {
-          const toTest = {
-            ...testSplit,
-            ...FilterPresetUtils.basePresetOnOffQuery,
-            ...(preset.gameParams || {}),
-          };
-          //DIAG:
-          // console.log(`A ${JSON.stringify(testSplit)}`, testSplit);
-          // console.log(`B ${JSON.stringify(toTest)}`, toTest);
+        const maybePresetSplit = _.findKey(
+          FilterPresetUtils.gameSplitPresets,
+          (preset) => {
+            const toTest = {
+              ...testSplit,
+              ...FilterPresetUtils.basePresetOnOffQuery,
+              ...(preset.gameParams || {}),
+            };
+            //DIAG:
+            // console.log(`A ${JSON.stringify(testSplit)}`, testSplit);
+            // console.log(`B ${JSON.stringify(toTest)}`, toTest);
 
-          return _.isEqual(testSplit, toTest);
-        });
+            return _.isEqual(testSplit, toTest);
+          }
+        );
+        if (maybePresetSplit) {
+          return maybePresetSplit;
+        } else if (onQueryFilters.length == 1 && autoOffQuery) {
+          // Finally - check if it's a game on/off
+          const games = QueryUtils.buildGameSelectionModel(onQueryFilters);
+
+          if (!_.isEmpty(games)) {
+            return (
+              FilterPresetUtils.commonFilterSelectedGamesPrefix +
+              QueryUtils.buildFilterStrForQuery(onQueryFilters, [])
+            );
+          } else {
+            return undefined;
+          }
+        } else {
+          return undefined;
+        }
       }
     });
 
@@ -1349,6 +1372,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
               FilterPresetUtils.gameFilterOnOffPrefix.length
             )}"`,
           };
+        } else if (
+          newPresetSplit.startsWith(
+            FilterPresetUtils.commonFilterSelectedGamesPrefix
+          )
+        ) {
+          return {
+            ...newParamsOnSubmit,
+            ...FilterPresetUtils.basePresetOnOffQuery,
+            onQueryFilters: newPresetSplit.substring(
+              FilterPresetUtils.commonFilterSelectedGamesPrefix.length
+            ),
+            //(offQueryFilters gets set by default unless autoOffQuery===false)
+          };
         }
       }
     );
@@ -1672,8 +1708,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
               queryType="Base Filter"
               games={gameSelectionRef.current?.games || []}
               selectedGames={QueryUtils.buildGameSelectionModel([])}
-              show={showPresetSelectorModal}
-              onClose={() => setPresetGameSelectorModal(false)}
+              show={showPresetModeSelectorModal}
+              onClose={() => setPresetModeSelectorModal(false)}
               onSubmit={(selectedGame) => {
                 const queryFilterStr = QueryUtils.buildFilterStrForQuery(
                   [QueryUtils.buildGameSelectionFilter(selectedGame)],
@@ -1685,7 +1721,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
                   presetSplit,
                   true
                 );
-                setPresetGameSelectorModal(false);
+                setPresetModeSelectorModal(false);
+              }}
+            />
+            <GameSelectorModal
+              queryType="Split Filter"
+              games={gameSelectionRef.current?.games || []}
+              selectedGames={QueryUtils.buildGameSelectionModel([])}
+              show={showPresetSplitSelectorModal}
+              onClose={() => setPresetSplitSelectorModal(false)}
+              onSubmit={(selectedGame) => {
+                const queryFilterStr = QueryUtils.buildFilterStrForQuery(
+                  [QueryUtils.buildGameSelectionFilter(selectedGame)],
+                  []
+                );
+                applyPresetConfig(
+                  presetMode,
+                  FilterPresetUtils.commonFilterSelectedGamesPrefix +
+                    queryFilterStr,
+                  true
+                );
+                setPresetSplitSelectorModal(false);
               }}
             />
             <GameSelectorModal
@@ -1794,7 +1850,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 }}
               />
             ))}
-
             {!advancedView ? (
               <Form.Group as={Row}>
                 <Form.Label column xs={12} lg={12} xl={2}>
@@ -1829,7 +1884,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         newPreset ===
                         FilterPresetUtils.commonFilterSelectedGamesPrefix
                       ) {
-                        setPresetGameSelectorModal(true);
+                        setPresetModeSelectorModal(true);
                       } else {
                         applyPresetConfig(newPreset, presetSplit, true);
                       }
@@ -1844,14 +1899,31 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     }}
                     value={
                       presetSplit
-                        ? { label: presetSplit, value: presetSplit }
+                        ? presetSplit.startsWith(
+                            FilterPresetUtils.commonFilterSelectedGamesPrefix
+                          )
+                          ? {
+                              label: `${
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix
+                              } [${presetSplit.split("|").length}]`,
+                              value:
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                            }
+                          : { label: presetSplit, value: presetSplit }
                         : undefined
                     }
                     options={groupedPresetSplitOptions}
                     formatGroupLabel={formatGroupLabel}
                     onChange={(option: any) => {
                       const newPreset = option.value || "";
-                      applyPresetConfig(presetMode, newPreset, true);
+                      if (
+                        newPreset ===
+                        FilterPresetUtils.commonFilterSelectedGamesPrefix
+                      ) {
+                        setPresetSplitSelectorModal(true);
+                      } else {
+                        applyPresetConfig(presetMode, newPreset, true);
+                      }
                     }}
                   />
                 </Col>

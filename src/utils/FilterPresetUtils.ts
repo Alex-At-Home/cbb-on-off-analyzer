@@ -96,6 +96,9 @@ export class FilterPresetUtils {
     [ParamDefaults.defaultPresetSplit]: {
       label: "Misc Splits",
     },
+    [FilterPresetUtils.commonFilterSelectedGamesPrefix]: {
+      label: "Misc Splits",
+    }, //(other fields are injected)
     "Home vs Away/Neutral": {
       label: "Misc Splits",
       splitPhrases: ["H", "A/N"],
@@ -216,6 +219,11 @@ export class FilterPresetUtils {
   static getPresetPhrase(presetSplit: string): string[] | undefined {
     if (presetSplit.startsWith(FilterPresetUtils.gameFilterOnOffPrefix)) {
       return ["ON", "OFF"];
+    } else if (
+      presetSplit.startsWith(FilterPresetUtils.commonFilterSelectedGamesPrefix)
+    ) {
+      const numGames = presetSplit.split("|").length;
+      return [`[${numGames}]-G`, `NOT-G`];
     } else {
       const radical = FilterPresetUtils.gameSplitPresets[presetSplit || "??"];
       return radical?.splitPhrases;
