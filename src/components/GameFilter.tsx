@@ -1885,6 +1885,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         FilterPresetUtils.commonFilterSelectedGamesPrefix
                       ) {
                         setPresetModeSelectorModal(true);
+                      } else if (
+                        newPreset == FilterPresetUtils.switchToAdvancedFilter
+                      ) {
+                        // switch to advanced mode
+                        toggleAdvancedMode();
                       } else {
                         applyPresetConfig(newPreset, presetSplit, true);
                       }
@@ -1921,6 +1926,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         FilterPresetUtils.commonFilterSelectedGamesPrefix
                       ) {
                         setPresetSplitSelectorModal(true);
+                      } else if (
+                        newPreset == FilterPresetUtils.switchToAdvancedSplit
+                      ) {
+                        // switch to advanced mode
+                        toggleAdvancedMode();
                       } else {
                         applyPresetConfig(presetMode, newPreset, true);
                       }

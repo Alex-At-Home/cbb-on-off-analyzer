@@ -748,6 +748,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({
                   FilterPresetUtils.commonFilterSelectedGamesPrefix
                 ) {
                   setPresetGameSelectorModal(true);
+                } else if (
+                  newPreset == FilterPresetUtils.switchToAdvancedFilter
+                ) {
+                  // switch to advanced mode
+                  toggleAdvancedMode();
                 } else {
                   applyPresetConfig(newPreset, presetGroup, true);
                 }

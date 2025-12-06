@@ -37,6 +37,8 @@ export class FilterPresetUtils {
 
   static readonly commonFilterSelectedGamesPrefix = "Selected Games...";
   static readonly gameFilterOnOffPrefix = "On/Off: ";
+  static readonly switchToAdvancedFilter = "Manual Filters...";
+  static readonly switchToAdvancedSplit = "Manual Splits...";
 
   /** Handy constant for preset-calcs */
   static readonly basePresetOnOffQuery: GameFilterParams = {
@@ -82,6 +84,7 @@ export class FilterPresetUtils {
         queryFilters: "Last-30d",
       },
     },
+    [FilterPresetUtils.switchToAdvancedFilter]: {}, //(not a real option, handled in code)
   };
 
   static readonly gameSplitLabelSortOrder: string[] = [
@@ -202,6 +205,9 @@ export class FilterPresetUtils {
           { queryFilters: "Date:03.01-04.30" },
         ],
       },
+    },
+    [FilterPresetUtils.switchToAdvancedSplit]: {
+      label: "Misc Splits",
     },
   };
 
