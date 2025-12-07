@@ -2,7 +2,7 @@ import _ from "lodash";
 import { RequestUtils } from "../RequestUtils";
 import { promises as fs } from "fs";
 import { DateUtils } from "../DateUtils";
-import { CompressedHexZone, IndivStatSet } from "../StatModels";
+import { CompressedHexZone, IndivStatSet, TeamInfo as StatsTeamInfo } from "../StatModels";
 import {
   AvailableTeams,
   AvailableTeamMeta,
@@ -227,5 +227,201 @@ export class BatchMiscUtils {
       );
     }
     return p;
+  };
+
+  /** Validates team vs opponent game matrix symmetry across tiers with location tracking */
+  static readonly validateTeamOpponentMatrix = async (
+    inGender: string,
+    inYear: string,
+    rootFilePath: string
+  ): Promise<{ 
+    simple: Array<{ bad_team: string; oppo: string; location: string }>;
+    complex: Array<{ team: string; opponent: string; team_vs_oppo: Record<string, number>; oppo_vs_team: Record<string, number> }>
+  }> => {
+    const simpleCases: Array<{ bad_team: string; oppo: string; location: string }> = [];
+    const complexCases: Array<{ team: string; opponent: string; team_vs_oppo: Record<string, number>; oppo_vs_team: Record<string, number> }> = [];
+    const subYear = inYear.substring(0, 4);
+    
+    // Determine which tiers exist for this year
+    const tiersForThisYear = inYear < DateUtils.yearFromWhichAllMenD1Imported 
+      ? ["High"] 
+      : ["High", "Medium", "Low"];
+
+    // Matrix to store team vs opponent game counts by location
+    const gameMatrix: Record<string, Record<string, Record<string, number>>> = {};
+
+    // Read all team files for each tier
+    for (const tier of tiersForThisYear) {
+      const teamFilename = `${rootFilePath}/teams_all_${inGender}_${subYear}_${tier}.json`;
+      
+      try {
+        const fileContent = await fs.readFile(teamFilename);
+        const teamData = JSON.parse(fileContent.toString());
+        const teams = teamData.teams as StatsTeamInfo[];
+
+        // Process each team's opponents
+        teams.forEach((team) => {
+          if (!gameMatrix[team.team_name]) {
+            gameMatrix[team.team_name] = {};
+          }
+
+          team.opponents.forEach((opponent) => {
+            const opponentName = opponent.oppo_name;
+            const location = opponent.location_type;
+            
+            // Initialize opponent record if needed
+            if (!gameMatrix[team.team_name][opponentName]) {
+              gameMatrix[team.team_name][opponentName] = {};
+            }
+            
+            // Count games by location
+            if (!gameMatrix[team.team_name][opponentName][location]) {
+              gameMatrix[team.team_name][opponentName][location] = 0;
+            }
+            gameMatrix[team.team_name][opponentName][location]++;
+          });
+        });
+      } catch (err) {
+        console.log(`Could not load team file [${teamFilename}]: [${err}]`);
+      }
+    }
+
+    // Helper function to get expected opponent location
+    const getExpectedOpponentLocation = (teamLocation: string): string => {
+      switch (teamLocation) {
+        case "Home": return "Away";
+        case "Away": return "Home";
+        case "Neutral": return "Neutral";
+        default: return teamLocation;
+      }
+    };
+
+    // Check matrix symmetry with location switching
+    Object.keys(gameMatrix).forEach((team) => {
+      Object.keys(gameMatrix[team]).forEach((opponent) => {
+        const teamVsOppo = gameMatrix[team][opponent];
+        const oppoVsTeam = gameMatrix[opponent]?.[team] || {};
+        
+        // Check if this is a simple mismatch (one side has data, other is empty/missing)
+        const teamLocations = Object.keys(teamVsOppo);
+        const oppoLocations = Object.keys(oppoVsTeam);
+        const teamTotalGames = teamLocations.reduce((sum, loc) => sum + teamVsOppo[loc], 0);
+        const oppoTotalGames = oppoLocations.reduce((sum, loc) => sum + oppoVsTeam[loc], 0);
+        
+        // Simple case: one team has games, other has none
+        if (teamTotalGames > 0 && oppoTotalGames === 0) {
+          // Team has data but opponent doesn't - opponent is the bad team
+          teamLocations.forEach((location) => {
+            const expectedOpponentLocation = getExpectedOpponentLocation(location);
+            for (let i = 0; i < teamVsOppo[location]; i++) {
+              simpleCases.push({
+                bad_team: opponent,
+                oppo: team,
+                location: expectedOpponentLocation
+              });
+            }
+          });
+        } else if (teamTotalGames === 0 && oppoTotalGames > 0) {
+          // Opponent has data but team doesn't - team is the bad team
+          oppoLocations.forEach((opponentLocation) => {
+            const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
+            for (let i = 0; i < oppoVsTeam[opponentLocation]; i++) {
+              simpleCases.push({
+                bad_team: team,
+                oppo: opponent,
+                location: expectedTeamLocation
+              });
+            }
+          });
+        } else if (teamTotalGames > 0 || oppoTotalGames > 0) {
+          // Check if there are any mismatches
+          let hasMismatch = false;
+          
+          // Check each location for this team vs opponent
+          teamLocations.forEach((location) => {
+            const teamGames = teamVsOppo[location];
+            const expectedOpponentLocation = getExpectedOpponentLocation(location);
+            const opponentGames = oppoVsTeam[expectedOpponentLocation] || 0;
+            
+            if (teamGames !== opponentGames) {
+              hasMismatch = true;
+            }
+          });
+          
+          // Also check if opponent has extra locations not accounted for
+          oppoLocations.forEach((opponentLocation) => {
+            const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
+            if (!teamVsOppo[expectedTeamLocation]) {
+              hasMismatch = true;
+            }
+          });
+
+          if (hasMismatch) {
+            // Check if it's a simple mismatch within locations
+            let isSimpleMismatch = true;
+            const allMismatches: Array<{ bad_team: string; oppo: string; location: string }> = [];
+            
+            // Check team vs opponent mismatches
+            teamLocations.forEach((location) => {
+              const teamGames = teamVsOppo[location];
+              const expectedOpponentLocation = getExpectedOpponentLocation(location);
+              const opponentGames = oppoVsTeam[expectedOpponentLocation] || 0;
+              
+              if (teamGames > opponentGames) {
+                // Team has more games - opponent is missing some
+                const missing = teamGames - opponentGames;
+                for (let i = 0; i < missing; i++) {
+                  allMismatches.push({
+                    bad_team: opponent,
+                    oppo: team,
+                    location: expectedOpponentLocation
+                  });
+                }
+              } else if (opponentGames > teamGames) {
+                // Opponent has more games - team is missing some
+                const missing = opponentGames - teamGames;
+                for (let i = 0; i < missing; i++) {
+                  allMismatches.push({
+                    bad_team: team,
+                    oppo: opponent,
+                    location: location
+                  });
+                }
+              }
+            });
+            
+            // Check opponent vs team mismatches not already covered
+            oppoLocations.forEach((opponentLocation) => {
+              const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
+              if (!teamVsOppo[expectedTeamLocation] && oppoVsTeam[opponentLocation] > 0) {
+                const missing = oppoVsTeam[opponentLocation];
+                for (let i = 0; i < missing; i++) {
+                  allMismatches.push({
+                    bad_team: team,
+                    oppo: opponent,
+                    location: expectedTeamLocation
+                  });
+                }
+              }
+            });
+            
+            // If we can explain all mismatches as simple missing games, use simple format
+            if (allMismatches.length > 0) {
+              simpleCases.push(...allMismatches);
+            } else {
+              // Complex mismatch - fall back to JSON
+              complexCases.push({
+                team,
+                opponent,
+                team_vs_oppo: teamVsOppo,
+                oppo_vs_team: oppoVsTeam
+              });
+            }
+          }
+        }
+      });
+    });
+
+    return { simple: simpleCases, complex: complexCases };
   };
 }

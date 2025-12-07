@@ -234,7 +234,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -2047,14 +2047,61 @@ if (!testMode) {
       })
       .value();
 
-    // Now actual processing:
-    console.log(`(Combining different tiers' stats)`);
-    BatchGradeUtils.combineDivisionStatsFiles(
-      inGender,
-      inYear,
-      rootFilePath,
-      false
-    )
+    // Validate team vs opponent matrix symmetry:
+    console.log(`(Validating team vs opponent matrix symmetry)`);
+    BatchMiscUtils.validateTeamOpponentMatrix(inGender, inYear, rootFilePath)
+      .then(async (result) => {
+        // Log simple mismatches in the format for reupload script
+        const mutableTeamFix: Record<string, boolean> = {};
+        result.simple.forEach((problem, problemIndex) => {
+          const teamMeta = _.find(
+            AvailableTeams.byName[problem.bad_team],
+            (t) => t.year == inYear && t.gender == inGender
+          );
+          console.log(
+            `MISMATCH ERROR: bad_team=[${problem.bad_team}] conf=[${teamMeta?.index_template}] [${inGender}] [${inYear}] / oppo=[${problem.oppo}] / loc=[${problem.location}]`
+          );
+          // Don't like this because we're not sure if it handled
+          if (teamMeta) {
+            console.log(
+              `#NOT_RECOMMENDED PING="lping" DOWNLOAD=no PARSE=yes UPLOAD=yes CURR_TIME=$(date +"%s") CONFS=${
+                teamMeta.index_template || "FAIL"
+              } TEAM_FILTER="${problem.bad_team}" OPPO_FILTER="${
+                problem.location
+              }:${
+                problem.oppo
+              }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
+            );
+          }
+          if (teamMeta && !mutableTeamFix[problem.bad_team]) {
+            mutableTeamFix[problem.bad_team] = true;
+            console.log(
+              `DRY_RUN=no PING="lping" CURR_YEAR_STR=${inYear} REDOWNLOAD=no REPROCESS=yes CURR_TIME=${
+                100 + problemIndex
+              } CONF=${teamMeta.index_template || "FAIL"} TEAM_NAME="${
+                problem.bad_team
+              }" ../../cbb-explorer/artefacts/scripts/replace_team.sh && sleep 2`
+            );
+          }
+        });
+
+        // Log complex mismatches as JSON for manual investigation
+        result.complex.forEach((problem) => {
+          console.log(
+            `[ERROR] complex game mismatch [${problem.team}][${
+              problem.opponent
+            }]: ${JSON.stringify(problem)}`
+          );
+        });
+        // Now actual processing:
+        console.log(`(Combining different tiers' stats)`);
+        BatchGradeUtils.combineDivisionStatsFiles(
+          inGender,
+          inYear,
+          rootFilePath,
+          false
+        );
+      })
       .then(async (dummy) => {
         return BatchGradeUtils.combineDivisionStatsFiles(
           inGender,
