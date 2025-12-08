@@ -2061,27 +2061,77 @@ if (!testMode) {
           console.log(
             `MISMATCH ERROR: bad_team=[${problem.bad_team}] conf=[${teamMeta?.index_template}] [${inGender}] [${inYear}] / oppo=[${problem.oppo}] / loc=[${problem.location}]`
           );
-          // Don't like this because we're not sure if it handled
+          const currTimeOffset = 10;
           if (teamMeta) {
+            const urlName = RequestUtils.fixLocalhostRosterUrl(
+              problem.bad_team,
+              false
+            );
+            // 1] File exists but corrupt
+            if (!mutableTeamFix[problem.bad_team]) {
+              console.log(`Case 1a] File exists, but corrupt check`);
+              console.log(
+                `OVERRIDE_DIR=$PBP_CRAWL_PATH/${
+                  teamMeta.index_template
+                }/${inYear.substring(
+                  0,
+                  4
+                )}/${urlName} DRY_RUN=yes sh artefacts/scripts/analyze_ncaa_crawls.sh` //TODO: need to URL-ify name?
+              );
+              console.log(
+                `Case 1b] If that's the issue then delete and re-process`
+              );
+              console.log(
+                `OVERRIDE_DIR=$PBP_CRAWL_PATH/${
+                  teamMeta.index_template
+                }/${inYear.substring(
+                  0,
+                  4
+                )}/${urlName} DRY_RUN=no sh artefacts/scripts/analyze_ncaa_crawls.sh` //TODO: need to URL-ify name?
+              );
+              console.log(
+                `PING="lping" DOWNLOAD=yes PARSE=yes UPLOAD=yes CURR_TIME=$(date +"%s") CONFS=${
+                  teamMeta.index_template || "FAIL"
+                } TEAM_URL_FILTER="${urlName}" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
+              );
+            }
+            // 2] File exists, but the processing failed (this gets one line per failure)
             console.log(
-              `#NOT_RECOMMENDED PING="lping" DOWNLOAD=no PARSE=yes UPLOAD=yes CURR_TIME=$(date +"%s") CONFS=${
-                teamMeta.index_template || "FAIL"
-              } TEAM_FILTER="${problem.bad_team}" OPPO_FILTER="${
-                problem.location
-              }:${
+              `Case 2a] File exists, but the processing failed (check)`
+            );
+            console.log(
+              `PING="lping" DOWNLOAD=no PARSE=yes UPLOAD=no CURR_TIME=${
+                problemIndex + currTimeOffset
+              } CONFS=${teamMeta.index_template || "FAIL"} TEAM_FILTER="${
+                problem.bad_team
+              }" OPPO_FILTER="${problem.location}:${
                 problem.oppo
               }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
             );
-          }
-          if (teamMeta && !mutableTeamFix[problem.bad_team]) {
-            mutableTeamFix[problem.bad_team] = true;
             console.log(
-              `DRY_RUN=no PING="lping" CURR_YEAR_STR=${inYear} REDOWNLOAD=no REPROCESS=yes CURR_TIME=${
-                100 + problemIndex
-              } CONF=${teamMeta.index_template || "FAIL"} TEAM_NAME="${
-                problem.bad_team
-              }" ../../cbb-explorer/artefacts/scripts/replace_team.sh && sleep 2`
+              `Case 2b] File exists, but the processing failed (fix if so)`
             );
+            console.log(
+              `PING="lping" DOWNLOAD=no PARSE=yes UPLOAD=yes CURR_TIME=${
+                problemIndex + currTimeOffset
+              } CONFS=${teamMeta.index_template || "FAIL"} TEAM_FILTER="${
+                problem.bad_team
+              }" OPPO_FILTER="${problem.location}:${
+                problem.oppo
+              }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
+            );
+            if (!mutableTeamFix[problem.bad_team]) {
+              // 3] File failed to upload
+              console.log(`Case 3] File failed to upload`);
+              console.log(
+                `DRY_RUN=no PING="lping" CURR_YEAR_STR=${inYear} REDOWNLOAD=no REPROCESS=yes CURR_TIME=${
+                  2 * currTimeOffset + problemIndex
+                } CONF=${teamMeta.index_template || "FAIL"} TEAM_NAME="${
+                  problem.bad_team
+                }" ../../cbb-explorer/artefacts/scripts/replace_team.sh && sleep 2`
+              );
+            }
+            mutableTeamFix[problem.bad_team] = true;
           }
         });
 
