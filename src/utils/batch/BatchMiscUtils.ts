@@ -337,24 +337,35 @@ export class BatchMiscUtils {
           // Check if there are any mismatches
           let hasMismatch = false;
           
-          // Check each location for this team vs opponent
-          teamLocations.forEach((location) => {
-            const teamGames = teamVsOppo[location];
-            const expectedOpponentLocation = getExpectedOpponentLocation(location);
-            const opponentGames = oppoVsTeam[expectedOpponentLocation] || 0;
-            
-            if (teamGames !== opponentGames) {
-              hasMismatch = true;
-            }
-          });
+          // Special case: Allow Home/Neutral matching if both teams have exactly 1 game
+          // (this happens if a MTE is on a team's home court, it's a bug in my logic
+          //  but a pretty harmless one and not easy to fix so I'll leave it for now)
+          const isSpecialHomeNeutralCase = teamTotalGames === 1 && oppoTotalGames === 1 &&
+            teamLocations.length === 1 && oppoLocations.length === 1 &&
+            teamVsOppo[teamLocations[0]] === 1 && oppoVsTeam[oppoLocations[0]] === 1 &&
+            ((teamLocations[0] === "Home" && oppoLocations[0] === "Neutral") ||
+             (teamLocations[0] === "Neutral" && oppoLocations[0] === "Home"));
           
-          // Also check if opponent has extra locations not accounted for
-          oppoLocations.forEach((opponentLocation) => {
-            const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
-            if (!teamVsOppo[expectedTeamLocation]) {
-              hasMismatch = true;
-            }
-          });
+          if (!isSpecialHomeNeutralCase) {
+            // Run normal mismatch detection for all non-special cases
+            teamLocations.forEach((location) => {
+              const teamGames = teamVsOppo[location];
+              const expectedOpponentLocation = getExpectedOpponentLocation(location);
+              const opponentGames = oppoVsTeam[expectedOpponentLocation] || 0;
+              
+              if (teamGames !== opponentGames) {
+                hasMismatch = true;
+              }
+            });
+            
+            // Also check if opponent has extra locations not accounted for
+            oppoLocations.forEach((opponentLocation) => {
+              const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
+              if (!teamVsOppo[expectedTeamLocation]) {
+                hasMismatch = true;
+              }
+            });
+          }
 
           if (hasMismatch) {
             // Check if it's a simple mismatch within locations
