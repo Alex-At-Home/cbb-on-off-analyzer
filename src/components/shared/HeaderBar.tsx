@@ -458,9 +458,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
 
   const buildTeamDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
-      advancedMode: true,
       showTeamPlayTypes: true,
-      showGrades: "rank:Combo",
       showRoster: true,
       calcRapm: true,
       showExtraInfo: true,
@@ -550,20 +548,20 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
+              "Detailed Team Analysis",
+              baseGameTooltip,
+              getBaseGameUrl(teamAnalysisSettings),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
               "Team Style Analysis",
               baseGameTooltip,
               getBaseGameUrl({
                 showTeamPlayTypes: true,
                 teamPlayTypeConfig: "||||all||multi||",
               }),
-              `${ParamPrefixes.game}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Advanced Team Analysis",
-              baseGameTooltip,
-              getBaseGameUrl(teamAnalysisSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
@@ -600,7 +598,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
 
   const buildPlayerDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
-      advancedMode: true,
       showRoster: true,
       calcRapm: true,
       showExpanded: true,
@@ -658,6 +655,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
+              "Detailed Roster Analysis",
+              baseGameTooltip,
+              getBaseGameUrl(teamAnalysisSettings),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
               "Roster Style Analysis",
               baseGameTooltip,
               getBaseGameUrl({
@@ -665,14 +670,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 showExpanded: true,
                 calcRapm: true,
               }),
-              `${ParamPrefixes.game}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Advanced Roster Analysis",
-              baseGameTooltip,
-              getBaseGameUrl(teamAnalysisSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
