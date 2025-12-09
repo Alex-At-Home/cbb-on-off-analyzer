@@ -1981,10 +1981,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // 4] View
 
-  const buildTopLevelGradeControls = showGrades && !hideGlobalGradeSettings;
   const { controlRow: topLevelGradeControls } = _.thru(
-    buildTopLevelGradeControls,
-    (__) => {
+    showGrades && !hideGlobalGradeSettings,
+    (buildTopLevelGradeControls) => {
       if (buildTopLevelGradeControls) {
         const divisionStatsCacheByYear: DivisionStatsCache = showGrades
           ? divisionStatsCache || {}

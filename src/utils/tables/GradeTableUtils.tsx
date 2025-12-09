@@ -234,8 +234,8 @@ export class GradeTableUtils {
   /** Are we showing grades in their own rows? (Utility encapsulating some of the show grades config format complexity) */
   static readonly showingStandaloneGrades = (
     showGrades: string | undefined
-  ) => {
-    return showGrades && showGrades.includes(":Row");
+  ): boolean => {
+    return Boolean(showGrades && showGrades.includes(":Row"));
   };
 
   /** Are we showing grades inline in "hybrid mode"? (Utility encapsulating some of the show grades config format complexity) */
@@ -342,7 +342,11 @@ export class GradeTableUtils {
   /** Builds a grade controller element */
   static readonly buildTeamGradeControlState: (
     title: string,
-    p: TeamProps
+    p: TeamProps,
+    globalSettings?: {
+      countsAreExample: boolean;
+      onHide: () => void;
+    }
   ) => any = (
     title,
     {
@@ -350,7 +354,8 @@ export class GradeTableUtils {
       config,
       setConfig,
       teamStats: { comboTier, highTier, mediumTier, lowTier },
-    }
+    },
+    globalSettings
   ) => {
     const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, "");
     const tiers = {
@@ -398,27 +403,28 @@ export class GradeTableUtils {
       : tiers["High"]
       ? "High"
       : tierStrTmp;
-    //(if set tier doesn't exist just fallback)
-    const posGroup = configStr?.[2] || "All";
+    //(defaults to hybrid)
+    const gradeView = configStr?.[2] || "Hybrid"; //Hybrid / Standalone / Integrated
 
-    const configParams = (newTier: string) => {
-      const configParamBase = `${gradeFormat}:${newTier}`;
-      if (posGroup == "All") {
-        return configParamBase;
-      } else {
-        return `${configParamBase}:${posGroup}`;
-      }
+    const configParams = (
+      newGradeFormat: string,
+      newTier: string,
+      newGradeView: string
+    ) => {
+      return [`${newGradeFormat}:${newTier}`]
+        .concat(newGradeView == "Hybrid" ? [] : [`:${newGradeView}`])
+        .join("");
     };
-    const tierLinkTmp = (tier: string) => (
+    const tierLinkTmp = (newTier: string) => (
       <a
-        href={tiers[tier] ? "#" : undefined}
+        href={tiers[newTier] ? "#" : undefined}
         onClick={(event) => {
           event.preventDefault();
-          setConfig(configParams(tier));
+          setConfig(configParams(gradeFormat, newTier, gradeView));
         }}
       >
-        {tier == "Combo" ? "D1" : tier}
-        {tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
+        {newTier == "Combo" ? "D1" : newTier}
+        {tiers[newTier] ? ` (${tiers[newTier]?.tier_sample_size})` : ""}
       </a>
     );
     const tierLink = (tier: string) =>
@@ -460,7 +466,7 @@ export class GradeTableUtils {
             href={"#"}
             onClick={(event) => {
               event.preventDefault();
-              setConfig(`rank:${tierStrTmp}`);
+              setConfig(configParams("rank", tierStrTmp, gradeView));
             }}
           >
             Ranks
@@ -475,7 +481,7 @@ export class GradeTableUtils {
             href="#"
             onClick={(event) => {
               event.preventDefault();
-              setConfig(`pct:${tierStrTmp}`);
+              setConfig(configParams("pct", tierStrTmp, gradeView));
             }}
           >
             Pctiles
@@ -485,7 +491,7 @@ export class GradeTableUtils {
       </span>
     );
 
-    const helpTooltip = (
+    const helpTierTooltip = (
       <Tooltip id={`helpTooltip${nameAsId}`}>
         High Tier: high majors, mid-high majors, plus any team in the T150
         <br />
@@ -494,26 +500,93 @@ export class GradeTableUtils {
         Low Tier: low/mid-low majors, or if outside the T250
       </Tooltip>
     );
-    const helpOverlay = (
-      <OverlayTrigger placement="auto" overlay={helpTooltip}>
+    const helpTierOverlay = (
+      <OverlayTrigger placement="auto" overlay={helpTierTooltip}>
         <b>(?)</b>
       </OverlayTrigger>
     );
 
+    const viewGroupLink = (newGradeView: string) => (
+      <a
+        href={newGradeView == "Hybrid" || tiers[tierStr] ? "#" : undefined}
+        onClick={(event) => {
+          event.preventDefault();
+          setConfig(configParams(gradeFormat, tierStr, newGradeView));
+        }}
+      >
+        {maybeBold(gradeView == newGradeView, newGradeView)}
+      </a>
+    );
+
+    const endLine = (
+      <span className="small">
+        {viewGroupLink("Hybrid")} |&nbsp;
+        {viewGroupLink("Rows")} |&nbsp;
+        {viewGroupLink("Inline")}
+      </span>
+    );
+
+    const helpTooltipView = (
+      <Tooltip id={`helpTooltip${nameAsId}View`}>
+        Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B
+        25%). In "Ranks" mode, B25% stats are shown as %les.
+        <br />
+        <br />
+        Rows: Ranks/%les shown as separate rows in the table
+        <br />
+        <br />
+        Inline: Ranks/%les shown in same row as stats, all stats shown
+      </Tooltip>
+    );
+    const helpTooltipOvelay = (
+      <OverlayTrigger placement="auto" overlay={helpTooltipView}>
+        <b>(?)</b>
+      </OverlayTrigger>
+    );
+
+    const hideTooltipTier = (
+      <Tooltip id={`hideTooltip${nameAsId}`}>
+        Temporarily hides the global grade control settings. Will re-appear on
+        page refresh or when toggling grades on/off above.
+      </Tooltip>
+    );
+    const hideGradeSettings = (
+      <OverlayTrigger placement="auto" overlay={hideTooltipTier}>
+        <span>
+          [
+          <a
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              globalSettings?.onHide();
+            }}
+          >
+            Hide
+          </a>
+          ]
+        </span>
+      </OverlayTrigger>
+    );
     return (
       <span>
         <small>
           {title}
-          {title ? " " : ""}Team Grades {helpOverlay}
+          {title ? " " : ""}Team Grades {helpTierOverlay}
         </small>
         : {topLine} {"//"} {bottomLine}
+        {globalSettings ? (
+          <span>
+            &nbsp;{"//"} {endLine} <small>{helpTooltipOvelay}</small>
+            &nbsp;&nbsp;&nbsp;{hideGradeSettings}
+          </span>
+        ) : undefined}
       </span>
     );
   };
 
   /** Build the rows containing the grade information for a team
    * TODO: merge common code between this and buildPlayerControlState (mostly just unused tooltips?)
-   *  and also merge any common logic this and buildPlayerGradeTableRows and buildProjectedPlayerGradeTableRows
+   *  and also merge any common logic this and ControlState and buildProjectedPlayerGradeTableRows
    * (but I'm actually not sure it's worth it)
    */
   static readonly buildTeamGradeTableRows: (
@@ -772,7 +845,7 @@ export class GradeTableUtils {
     };
   };
 
-  /** Builds a text element with a shadow - TODO: apply to code in buildPlayerGradeTableRows */
+  /** Builds a text element with a shadow - TODO: apply to code in ControlState */
   static readonly buildPlayerGradeTextElement = (
     stat: Statistic,
     gradeFormat: string,
@@ -931,18 +1004,6 @@ export class GradeTableUtils {
       </span>
     );
 
-    const viewGroupLink = (newGradeView: string) => (
-      <a
-        href={newGradeView == "Hybrid" || tiers[tierStr] ? "#" : undefined}
-        onClick={(event) => {
-          event.preventDefault();
-          setConfig(configParams(gradeFormat, tierStr, posGroup, newGradeView));
-        }}
-      >
-        {maybeBold(gradeView == newGradeView, newGradeView)}
-      </a>
-    );
-
     // (Unused because the OverlayTrigger doesn't work, see below)
     //    const eqRankShowTooltip = (
     //    <Tooltip id={`eqRankShowTooltip${controlRowId}`}>
@@ -1001,7 +1062,18 @@ export class GradeTableUtils {
       </OverlayTrigger>
     );
 
-    //TODO: add help text
+    const viewGroupLink = (newGradeView: string) => (
+      <a
+        href={newGradeView == "Hybrid" || tiers[tierStr] ? "#" : undefined}
+        onClick={(event) => {
+          event.preventDefault();
+          setConfig(configParams(gradeFormat, tierStr, posGroup, newGradeView));
+        }}
+      >
+        {maybeBold(gradeView == newGradeView, newGradeView)}
+      </a>
+    );
+
     const endLine = (
       <span className="small">
         {viewGroupLink("Hybrid")} |&nbsp;

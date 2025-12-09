@@ -75,6 +75,7 @@ export type TeamStatsReadOnlyState = {
   shotChartConfig: UserChartOpts | undefined;
   showExtraInfo: boolean;
   showGrades: string;
+  showStandaloneGrades: boolean;
   showLuckAdjDiags: boolean;
   showHelp: boolean;
   playStyleConfigStr?: string;
@@ -157,6 +158,7 @@ export class TeamStatsTableUtils {
       showGameInfo,
       showExtraInfo,
       showGrades,
+      showStandaloneGrades,
       showShotCharts,
       shotChartConfig,
       showLuckAdjDiags,
@@ -614,7 +616,7 @@ export class TeamStatsTableUtils {
     /** If true, then repeat the table headers */
     const showingSomeDiags =
       showExtraInfo ||
-      showGrades ||
+      showStandaloneGrades ||
       showRoster ||
       showGameInfo ||
       showPlayTypes ||
@@ -755,7 +757,7 @@ export class TeamStatsTableUtils {
               defCellMetaFn
             ),
           ],
-          showGrades != ""
+          showStandaloneGrades
             ? GradeTableUtils.buildTeamGradeTableRows(
                 onOffBaseToShortPhrase(queryKey, otherQueryIndex),
                 {
