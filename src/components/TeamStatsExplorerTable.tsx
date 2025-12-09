@@ -742,6 +742,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             shotChartConfig: undefined, //(won't work without more data)
             showExtraInfo: showExtraInfo && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
             showGrades,
+            showStandaloneGrades: showGrades != "",
             showLuckAdjDiags: false, //(won't work without more data)
             showHelp,
             playStyleConfigStr,
