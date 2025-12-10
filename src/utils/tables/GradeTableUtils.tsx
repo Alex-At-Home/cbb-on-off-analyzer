@@ -404,7 +404,7 @@ export class GradeTableUtils {
       ? "High"
       : tierStrTmp;
     //(defaults to hybrid)
-    const gradeView = configStr?.[2] || "Hybrid"; //Hybrid / Standalone / Integrated
+    const gradeView = configStr?.[2] || "Hybrid"; //Hybrid / Standalone / Inline
 
     const configParams = (
       newGradeFormat: string,
@@ -528,8 +528,7 @@ export class GradeTableUtils {
 
     const helpTooltipView = (
       <Tooltip id={`helpTooltip${nameAsId}View`}>
-        Hybrid: Ranks/%les shown in same row as stats, only for extremes (T/B
-        25%). In "Ranks" mode, B25% stats are shown as %les.
+        Hybrid: Ranks/%les shown in same row as stats, only for top/bottom 25%.
         <br />
         <br />
         Rows: Ranks/%les shown as separate rows in the table
@@ -629,8 +628,6 @@ export class GradeTableUtils {
       : tierStrTmp;
     //(if set tier doesn't exist just fallback)
     const tierToUse = tiers[tierStr];
-    const posGroup = configStr?.[2] || "All";
-
     const teamPercentiles = tierToUse
       ? GradeUtils.buildTeamPercentiles(
           tierToUse,

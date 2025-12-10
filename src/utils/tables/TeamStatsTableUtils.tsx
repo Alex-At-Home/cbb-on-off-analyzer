@@ -47,6 +47,7 @@ import TeamPlayTypeTabbedView from "../../components/shared/TeamPlayTypeTabbedVi
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { UrlRouting } from "../UrlRouting";
 import { FilterPresetUtils } from "../FilterPresetUtils";
+import { GradeUtils } from "../stats/GradeUtils";
 
 // Data model
 
@@ -497,12 +498,34 @@ export class TeamStatsTableUtils {
       : ([undefined, undefined, undefined] as [any, any, any]);
 
     modelKeys.forEach(([k, otherQueryIndex]) => {
+      const teamStatSet = getTeamStats(k, teamStats, otherQueryIndex);
       TableDisplayUtils.injectPlayTypeInfo(
-        getTeamStats(k, teamStats, otherQueryIndex),
+        teamStatSet,
         false,
         false,
         teamSeasonLookup
       );
+      // Grades
+      if (showGrades && !showStandaloneGrades) {
+        //TODO: make this generic:
+
+        const { tierToUse, gradeFormat, ...unused } =
+          GradeTableUtils.buildTeamTierInfo(showGrades || "rank:Combo", {
+            comboTier: divisionStatsCache.Combo,
+            highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium,
+            lowTier: divisionStatsCache.Low,
+          });
+
+        if (tierToUse) {
+          teamStatSet.grades = GradeUtils.buildTeamPercentiles(
+            tierToUse,
+            teamStatSet,
+            GradeUtils.teamFieldsToRecord,
+            gradeFormat == "rank"
+          );
+        }
+      }
     });
 
     // Show game info logic:
