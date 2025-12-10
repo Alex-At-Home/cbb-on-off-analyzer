@@ -115,7 +115,9 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
           ? ["playStyleConfigStr"]
           : [],
 
-        !rawParams.showGrades ? ["showGrades"] : [],
+        rawParams.showGrades == ParamDefaults.defaultEnabledGrade
+          ? ["showGrades"]
+          : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
         _.isNil(rawParams.showAdvancedFilter) || rawParams.showAdvancedFilter
           ? ["showAdvancedFilter"]

@@ -94,7 +94,6 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import StickyRow from "./shared/StickyRow";
 import ThemedSelect from "./shared/ThemedSelect";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { CbbColors } from "../utils/CbbColors";
 
 export type TeamStatsExplorerModel = {
@@ -284,8 +283,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(startingState.showGrades) ? "" : startingState.showGrades
+    _.isNil(startingState.showGrades)
+      ? ParamDefaults.defaultEnabledGrade
+      : startingState.showGrades
   );
+  const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
+    useState<boolean>(true);
+  const showStandaloneGrades =
+    GradeTableUtils.showingStandaloneGrades(showGrades);
 
   /** The settings to use for luck adjustment */
   const [luckConfig, setLuckConfig] = useState(
@@ -786,7 +791,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             shotChartConfig: undefined, //(won't work without more data)
             showExtraInfo: showExtraInfo && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
             showGrades,
-            showStandaloneGrades: showGrades != "",
+            showStandaloneGrades,
             showLuckAdjDiags: false, //(won't work without more data)
             showHelp,
             playStyleConfigStr,
@@ -844,10 +849,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         }
         cellTooltipMode="none"
         integratedGrades={
-          FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
+          showGrades && !showStandaloneGrades
             ? {
-                hybridMode: false,
+                hybridMode:
+                  GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+                exactRanks: true,
                 colorChooser: CbbColors.integratedColorsDefault,
+                customKeyMappings: {
+                  def_net: "off_raw_net",
+                },
               }
             : undefined
         }
@@ -942,6 +952,43 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     <span>Linq</span>
   );
 
+  const topLevelGradeControls = _.thru(
+    showGrades && !hideGlobalGradeSettings,
+    (buildTopLevelGradeControls) => {
+      if (buildTopLevelGradeControls) {
+        const yearToUseForTopLevelGradeControls = !year.startsWith("2")
+          ? DateUtils.inSeasonYear
+          : year;
+        const divisionStatsCacheByYear: DivisionStatsCache = showGrades
+          ? divisionStatsCache[yearToUseForTopLevelGradeControls] || {}
+          : {};
+        return GradeTableUtils.buildTeamGradeControlState(
+          "",
+          {
+            config: showGrades,
+            setConfig: (newConfig: string) => setShowGrades(newConfig),
+            selectionType: "baseline",
+            teamStats: {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            team: StatModels.emptyTeam(),
+          },
+          {
+            countsAreExample: !year.startsWith("2"),
+            onHide: () => {
+              setHideGlobalGradeSettings(true);
+            },
+          }
+        );
+      } else {
+        return undefined;
+      }
+    }
+  );
+
   const quickToggleBar = (
     <ToggleButtonGroup
       items={_.flatten([
@@ -976,13 +1023,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               : "Show team ranks/percentiles",
             toggled: showGrades != "",
             onClick: () =>
-              friendlyChange(
-                () =>
-                  setShowGrades(
-                    showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                  ),
-                true
-              ),
+              friendlyChange(() => {
+                setShowGrades(
+                  showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                );
+                setHideGlobalGradeSettings(false); //(reset)
+              }, true),
           },
           {
             label: "Extra",
@@ -1076,6 +1122,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const fullHelpDropdown = (
     <GenericTogglingMenu>
+      <GenericTogglingMenuItem
+        text="Show grade controls"
+        truthVal={!hideGlobalGradeSettings}
+        onSelect={() => setHideGlobalGradeSettings(!hideGlobalGradeSettings)}
+      />
+      <Dropdown.Divider />
       <AnnotationMenuItems />
       <GenericTogglingMenuItem
         text={
@@ -1364,6 +1416,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <StickyRow stickyEnabled={stickyQuickToggle} className="pt-1 pb-1">
         <Col xs={12} sm={12} md={8} lg={8} className="pt-1 pb-1">
           {quickToggleBar}
+          {topLevelGradeControls ? (
+            <Col xs="12" className="pt-1">
+              <div>{topLevelGradeControls}</div>
+            </Col>
+          ) : undefined}
         </Col>
         <Form.Group as={Col} xs={8} lg={3} className="mb-1">
           {maxTeamsInput}
