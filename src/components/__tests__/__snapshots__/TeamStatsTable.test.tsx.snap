@@ -10230,10 +10230,20 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 172, 172); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 172, 172); vertical-align: middle; color: black; padding-bottom: 2px;"
                   >
                     <div>
                       10.5
+                    </div>
+                    <div
+                      style="text-align: center; font-size: 0.8em; margin-top: 0px;"
+                    >
+                      <small>
+                        54
+                        <sup>
+                          th
+                        </sup>
+                      </small>
                     </div>
                   </td>
                   <td
@@ -10257,10 +10267,20 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 134, 134); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 134, 134); vertical-align: middle; color: black; padding-bottom: 2px;"
                   >
                     <div>
                       106.6
+                    </div>
+                    <div
+                      style="text-align: center; font-size: 0.8em; margin-top: 0px;"
+                    >
+                      <small>
+                        60
+                        <sup>
+                          th
+                        </sup>
+                      </small>
                     </div>
                   </td>
                   <td
@@ -10661,10 +10681,20 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(185, 220, 185); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(185, 220, 185); vertical-align: middle; color: black; padding-bottom: 2px;"
                   >
                     <div>
                       96.1
+                    </div>
+                    <div
+                      style="text-align: center; font-size: 0.8em; margin-top: 0px;"
+                    >
+                      <small>
+                        30
+                        <sup>
+                          th
+                        </sup>
+                      </small>
                     </div>
                   </td>
                   <td
@@ -11019,12 +11049,22 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(147, 201, 147); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(147, 201, 147); vertical-align: middle; color: black; padding-bottom: 2px;"
                   >
                     <div>
                       <u>
                         25.4
                       </u>
+                    </div>
+                    <div
+                      style="text-align: center; font-size: 0.8em; margin-top: 0px;"
+                    >
+                      <small>
+                        24
+                        <sup>
+                          th
+                        </sup>
+                      </small>
                     </div>
                   </td>
                   <td
@@ -11050,12 +11090,22 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(179, 217, 179); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(179, 217, 179); vertical-align: middle; color: black; padding-bottom: 2px;"
                   >
                     <div>
                       <u>
                         116.9
                       </u>
+                    </div>
+                    <div
+                      style="text-align: center; font-size: 0.8em; margin-top: 0px;"
+                    >
+                      <small>
+                        29
+                        <sup>
+                          th
+                        </sup>
+                      </small>
                     </div>
                   </td>
                   <td

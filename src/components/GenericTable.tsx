@@ -380,6 +380,7 @@ export type IntegratedGradeSettings = {
   exactRanks?: boolean;
   colorChooser: IntegratedGradeSettingsColorChoice[];
   customKeyMappings?: Record<string, string>;
+  alwaysShow?: Record<string, boolean>;
 };
 type Props = {
   responsive?: boolean;
@@ -599,7 +600,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
           };
           if (gradeSettings.hybridMode && gradeSettings.exactRanks) {
             // show top/bottom as exact ranks or %iles
-            if (pctile >= topPctle || pctile <= bottomPctle) {
+            if (
+              pctile >= topPctle ||
+              pctile <= bottomPctle ||
+              gradeSettings.alwaysShow?.[gradeKey]
+            ) {
               if (samples > 0 && !_.isNil(maybePctile)) {
                 return maybeAddWarning(
                   GenericTableOps.gradeOrHtmlFormatter(tmpGrade),
@@ -619,7 +624,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
           } else if (gradeSettings.hybridMode) {
             // show top as ranks, bottom as %iles
             //(in rank mode still shows %les for the bad %iles)
-            if (samples > 0 && !_.isNil(maybePctile) && pctile >= topPctle) {
+            if (
+              samples > 0 &&
+              !_.isNil(maybePctile) &&
+              (pctile >= topPctle || gradeSettings.alwaysShow?.[gradeKey])
+            ) {
               return maybeAddWarning(
                 GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
                 tmpGrade?.extraInfo
@@ -627,7 +636,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             } else if (
               samples > 0 &&
               !_.isNil(maybePctile) &&
-              pctile <= bottomPctle
+              (pctile <= bottomPctle || gradeSettings.alwaysShow?.[gradeKey])
             ) {
               return maybeAddWarning(
                 <small>{`${(pctile * 100).toFixed(0)}%`}</small>,

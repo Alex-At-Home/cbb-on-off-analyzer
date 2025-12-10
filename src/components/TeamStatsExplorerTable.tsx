@@ -858,6 +858,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 customKeyMappings: {
                   def_net: "off_raw_net",
                 },
+                alwaysShow: {
+                  off_net: true,
+                  off_adj_ppp: true,
+                  def_adj_ppp: true,
+                },
               }
             : undefined
         }
