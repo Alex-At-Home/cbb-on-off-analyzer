@@ -192,11 +192,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
       } else if (teamName != "") {
         const teams = [teamName].concat(AvailableTeams.teamAliases[teamName]);
-        teams.forEach(
-          (team) =>
-            (acc.queryFiltersAsMap[team] =
-              1 + ii - acc.queryFilterRowBreaks.size)
-        );
+        teams.forEach((team) => {
+          if (team) {
+            acc.queryFiltersAsMap[team] =
+              1 + ii - acc.queryFilterRowBreaks.size;
+          }
+        });
       }
     },
     {
@@ -242,20 +243,44 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
 
-  const teamList = _.flatMap(
+  const teamList =
     year == "All"
-      ? _.keys(AvailableTeams.byName)
-      : _.flatMap(AvailableTeams.byName, (teams, __) => {
-          const maybeTeam = teams.find(
-            (t) => t.year == year && t.gender == gender
-          );
-          return maybeTeam ? [maybeTeam.team] : [];
-        }),
-    (team) => {
-      // Add aliases in:
-      return [team].concat(AvailableTeams.teamAliases[team] || []);
-    }
-  );
+      ? _.chain(
+          _.flatMap(AvailableTeams.byName, (teams, teamName) => {
+            return [teamName].concat(
+              // Just do "ADD_SEASON" and let user fill it in
+              `${teamName}:ADD_SEASON`
+              // Not doing: add every year, more intuitive but doesn't scale
+              // teams
+              //   .filter((t) => t.year && t.gender == gender)
+              //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
+            );
+          })
+        )
+          .flatMap((team) => {
+            const teamFrags = team.split(`:`);
+            // Add aliases in:
+            return [team].concat(
+              (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
+                teamFrags[1] ? `${s}:${teamFrags[1]}` : s
+              )
+            );
+          })
+          .uniq()
+          .value()
+      : _.chain(
+          _.flatMap(AvailableTeams.byName, (teams, __) => {
+            const maybeTeam = teams.find(
+              (t) => t.year == year && t.gender == gender
+            );
+            return maybeTeam ? [maybeTeam.team] : [];
+          })
+        )
+          .flatMap((team) => {
+            // Add aliases in:
+            return [team].concat(AvailableTeams.teamAliases[team] || []);
+          })
+          .value();
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
@@ -457,10 +482,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   // 2] Processing
 
   /** Handy util to filter teams by conference */
-  const confFilter = (t: { team: string; conf: string }) => {
+  const confFilter = (t: { team: string; conf: string; year: string }) => {
     const manualFilterInUse = !_.isEmpty(queryFiltersAsMap);
     return manualFilterInUse
-      ? !_.isNil(queryFiltersAsMap[t.team])
+      ? year == "All"
+        ? !_.isNil(
+            queryFiltersAsMap[t.team] ||
+              queryFiltersAsMap[`${t.team}:${t.year}`] ||
+              queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`]
+          )
+        : !_.isNil(queryFiltersAsMap[t.team])
       : confs == "" ||
           confs.indexOf(t.conf) >= 0 ||
           (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
@@ -541,12 +572,25 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           ? confFilter({
               team: team.team_name,
               conf: team.conf_nick || "???",
+              year: team.year || "????",
             })
           : true;
       })
       .sortBy((team) => {
         if (manualFilterSelected) {
-          return queryFiltersAsMap[team.team_name] || 1000;
+          if (year == "All") {
+            //few different formats
+            return (
+              queryFiltersAsMap[team.team_name] ||
+              queryFiltersAsMap[`${team.team_name}:${team.year}`] ||
+              queryFiltersAsMap[
+                `${team.team_name}:${(team.year || "").substring(0, 4)}`
+              ] ||
+              1000
+            );
+          } else {
+            return queryFiltersAsMap[team.team_name] || 1000;
+          }
         } else if (secretQuery?.length) {
           return -(team.off_net?.value || 0);
         } else {
