@@ -244,6 +244,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     showGrades,
     grades
   );
+  const showStandaloneGrades =
+    GradeTableUtils.showingStandaloneGrades(showGrades);
+  const showInlineGrades = showGrades && !showStandaloneGrades;
 
   // Build derived stats and inject into extraStats
   const extraStats = {
@@ -291,6 +294,37 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
   const offCellMetaFn = (key: string, val: any) => "off";
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
+
+  const buildPlayTypeGrades = (
+    offDef: "off" | "def",
+    playType: "trans" | "scramble"
+  ) => {
+    const isTrans = playType == "trans";
+    const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
+    return {
+      [`${offDef}_title`]: (
+        <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>
+      ),
+      [`${offDef}_pct`]: teamPercentiles[`${offDef}_${playType}`],
+      [`${offDef}_pct_orbs`]: isTrans
+        ? undefined
+        : teamPercentiles[`${offDef}_scramble_per_orb`],
+      [`${offDef}_ppp`]:
+        pct > 0 ? teamPercentiles[`${offDef}_${playType}_ppp`] : undefined,
+      [`${offDef}_delta_ppp`]:
+        pct > 0
+          ? teamPercentiles[`${offDef}_${playType}_delta_ppp`]
+          : undefined,
+
+      [`${offDef}_to`]: teamPercentiles[`${offDef}_${playType}_to`],
+      [`${offDef}_ftr`]: teamPercentiles[`${offDef}_${playType}_ftr`],
+      [`${offDef}_3pr`]: teamPercentiles[`${offDef}_${playType}_3pr`],
+
+      [`${offDef}_3p`]: teamPercentiles[`${offDef}_${playType}_3p`],
+      [`${offDef}_2p`]: teamPercentiles[`${offDef}_${playType}_2p`],
+    };
+  };
+
   const buildPlayTypeDataRow = (
     offDef: "off" | "def",
     playType: "trans" | "scramble"
@@ -325,11 +359,21 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
 
         [`${offDef}_3p`]: extraStats[`${offDef}_${playType}_3p`],
         [`${offDef}_2p`]: extraStats[`${offDef}_${playType}_2p`],
+        grades: showInlineGrades
+          ? buildPlayTypeGrades(offDef, playType)
+          : undefined,
       },
       offNotDef ? offPrefixFn : defPrefixFn,
       offNotDef ? offCellMetaFn : defCellMetaFn,
-      isTrans
-        ? undefined
+      isTrans || (showInlineGrades && !_.isEmpty(teamPercentiles))
+        ? //(^ in this case, doesn't matter what the color is, it will be overridden)
+          {
+            pct_orbs: GenericTableOps.addPctCol(
+              "%ORB",
+              "Percentage of Off rebounds resulting in a scramble play type",
+              CbbColors.varPicker(CbbColors.all_pctile_freq)
+            ),
+          }
         : {
             pct: GenericTableOps.addPctCol(
               "%",
@@ -339,39 +383,13 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
           }
     );
   };
-  const buildPlayTypeGrade = (
+  const buildPlayTypeGradeRow = (
     offDef: "off" | "def",
     playType: "trans" | "scramble"
   ) => {
     const offNotDef = offDef == "off";
-    const isTrans = playType == "trans";
-    const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
-
     return GenericTableOps.buildDataRow(
-      {
-        [`${offDef}_title`]: (
-          <small>
-            Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}
-          </small>
-        ),
-        [`${offDef}_pct`]: teamPercentiles[`${offDef}_${playType}`],
-        [`${offDef}_pct_orbs`]: isTrans
-          ? undefined
-          : teamPercentiles[`${offDef}_scramble_per_orb`],
-        [`${offDef}_ppp`]:
-          pct > 0 ? teamPercentiles[`${offDef}_${playType}_ppp`] : undefined,
-        [`${offDef}_delta_ppp`]:
-          pct > 0
-            ? teamPercentiles[`${offDef}_${playType}_delta_ppp`]
-            : undefined,
-
-        [`${offDef}_to`]: teamPercentiles[`${offDef}_${playType}_to`],
-        [`${offDef}_ftr`]: teamPercentiles[`${offDef}_${playType}_ftr`],
-        [`${offDef}_3pr`]: teamPercentiles[`${offDef}_${playType}_3pr`],
-
-        [`${offDef}_3p`]: teamPercentiles[`${offDef}_${playType}_3p`],
-        [`${offDef}_2p`]: teamPercentiles[`${offDef}_${playType}_2p`],
-      },
+      buildPlayTypeGrades(offDef, playType),
       offNotDef ? offPrefixFn : defPrefixFn,
       offNotDef ? offCellMetaFn : defCellMetaFn,
       playTypeTableGrades
@@ -379,31 +397,58 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
   };
   const playTypeTableData = _.flatten([
     [buildPlayTypeDataRow("off", "trans")],
-    tierToUse
+    tierToUse && showStandaloneGrades
       ? [
-          buildPlayTypeGrade("off", "trans"),
+          buildPlayTypeGradeRow("off", "trans"),
           GenericTableOps.buildRowSeparator(),
         ]
       : [],
     [buildPlayTypeDataRow("off", "scramble")],
-    tierToUse
+    tierToUse && showStandaloneGrades
       ? [
-          buildPlayTypeGrade("off", "scramble"),
+          buildPlayTypeGradeRow("off", "scramble"),
           GenericTableOps.buildRowSeparator(),
         ]
       : [],
     [GenericTableOps.buildRowSeparator()],
     [buildPlayTypeDataRow("def", "trans")],
-    tierToUse
+    tierToUse && showStandaloneGrades
       ? [
-          buildPlayTypeGrade("def", "trans"),
+          buildPlayTypeGradeRow("def", "trans"),
           GenericTableOps.buildRowSeparator(),
         ]
       : [],
     [buildPlayTypeDataRow("def", "scramble")],
-    tierToUse ? [buildPlayTypeGrade("def", "scramble")] : [],
+    tierToUse && showStandaloneGrades
+      ? [buildPlayTypeGradeRow("def", "scramble")]
+      : [],
   ]);
 
+  const buildAssistGrades = (offDef: "off" | "def") => {
+    return {
+      [`${offDef}_title`]: (
+        <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>
+      ),
+
+      ..._.chain(["3p", "rim"])
+        .flatMap((field) => {
+          return [
+            [
+              `${offDef}_${field}_ast`,
+              teamPercentiles[`${offDef}_ast_${field}`],
+            ],
+            [
+              `${offDef}_ast_${field}`,
+              teamPercentiles[
+                `${offDef}_${field == "3p" ? field : `2p${field}`}_ast`
+              ],
+            ],
+          ];
+        })
+        .fromPairs()
+        .value(),
+    };
+  };
   const buildAssistDataRow = (offDef: "off" | "def") => {
     const offNotDef = offDef == "off";
     return GenericTableOps.buildDataRow(
@@ -426,6 +471,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
           })
           .fromPairs()
           .value(),
+        grades: showInlineGrades ? buildAssistGrades(offDef) : undefined,
       },
       offNotDef ? offPrefixFn : defPrefixFn,
       offNotDef ? offCellMetaFn : defCellMetaFn
@@ -434,31 +480,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
   const buildAssistGradeRow = (offDef: "off" | "def") => {
     const offNotDef = offDef == "off";
     return GenericTableOps.buildDataRow(
-      {
-        [`${offDef}_title`]: (
-          <small>
-            Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}
-          </small>
-        ),
-
-        ..._.chain(["3p", "rim"])
-          .flatMap((field) => {
-            return [
-              [
-                `${offDef}_${field}_ast`,
-                teamPercentiles[`${offDef}_ast_${field}`],
-              ],
-              [
-                `${offDef}_ast_${field}`,
-                teamPercentiles[
-                  `${offDef}_${field == "3p" ? field : `2p${field}`}_ast`
-                ],
-              ],
-            ];
-          })
-          .fromPairs()
-          .value(),
-      },
+      buildAssistGrades(offDef),
       offNotDef ? offPrefixFn : defPrefixFn,
       offNotDef ? offCellMetaFn : defCellMetaFn,
       assistDetailGradesTable
@@ -478,11 +500,11 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       ),
     ],
     [buildAssistDataRow("off")],
-    tierToUse
+    tierToUse && showStandaloneGrades
       ? [buildAssistGradeRow("off"), GenericTableOps.buildRowSeparator()]
       : [],
     [buildAssistDataRow("def")],
-    tierToUse
+    tierToUse && showStandaloneGrades
       ? [buildAssistGradeRow("def"), GenericTableOps.buildRowSeparator()]
       : [],
   ]);
@@ -604,6 +626,15 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       </span>
     ) : null;
 
+  const integratedGrades = showInlineGrades
+    ? {
+        hybridMode: GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+        exactRanks: true,
+        colorChooser: CbbColors.integratedColorsDefault,
+        customKeyMappings: {},
+      }
+    : undefined;
+
   return (
     <span>
       <b>Extra stats info for [{name}]</b>
@@ -617,6 +648,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
               tableCopyId={`playTypeStats_${nameAsId}`}
               tableFields={playTypeTable}
               tableData={playTypeTableData}
+              integratedGrades={integratedGrades}
             />
           </Col>
           <Col xs={8} sm={12} lg={8} xl={6}>
@@ -627,6 +659,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
                   tableCopyId={`assistStats_${nameAsId}`}
                   tableFields={assistDetailsTable}
                   tableData={assistTableData}
+                  integratedGrades={integratedGrades}
                 />
               </Row>
               <Row>Misc other stats:</Row>

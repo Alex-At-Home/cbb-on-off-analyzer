@@ -377,6 +377,7 @@ export type IntegratedGradeSettings = {
   topPctle?: number;
   bottomPctle?: number;
   hybridMode?: boolean;
+  exactRanks?: boolean;
   colorChooser: IntegratedGradeSettingsColorChoice[];
   customKeyMappings?: Record<string, string>;
 };
@@ -596,7 +597,27 @@ const GenericTable: React.FunctionComponent<Props> = ({
               return el;
             }
           };
-          if (gradeSettings.hybridMode) {
+          if (gradeSettings.hybridMode && gradeSettings.exactRanks) {
+            // show top/bottom as exact ranks or %iles
+            if (pctile >= topPctle || pctile <= bottomPctle) {
+              if (samples > 0 && !_.isNil(maybePctile)) {
+                return maybeAddWarning(
+                  GenericTableOps.gradeOrHtmlFormatter(tmpGrade),
+                  tmpGrade?.extraInfo
+                );
+              } else if (!_.isNil(maybePctile)) {
+                return maybeAddWarning(
+                  <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
+                  tmpGrade?.extraInfo
+                );
+              } else {
+                return undefined;
+              }
+            } else {
+              return undefined;
+            }
+          } else if (gradeSettings.hybridMode) {
+            // show top as ranks, bottom as %iles
             //(in rank mode still shows %les for the bad %iles)
             if (samples > 0 && !_.isNil(maybePctile) && pctile >= topPctle) {
               return maybeAddWarning(
@@ -624,9 +645,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
               return undefined;
             }
           } else {
+            // show all
             if (samples > 0 && !_.isNil(maybePctile)) {
               return maybeAddWarning(
-                GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
+                gradeSettings.exactRanks
+                  ? GenericTableOps.gradeOrHtmlFormatter(tmpGrade)
+                  : GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
                 tmpGrade?.extraInfo
               );
             } else if (!_.isNil(maybePctile)) {

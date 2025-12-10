@@ -521,8 +521,8 @@ export class GradeTableUtils {
     const endLine = (
       <span className="small">
         {viewGroupLink("Hybrid")} |&nbsp;
-        {viewGroupLink("Rows")} |&nbsp;
-        {viewGroupLink("Inline")}
+        {viewGroupLink("Inline")} |&nbsp;
+        {viewGroupLink("Rows")}
       </span>
     );
 
@@ -531,10 +531,10 @@ export class GradeTableUtils {
         Hybrid: Ranks/%les shown in same row as stats, only for top/bottom 25%.
         <br />
         <br />
-        Rows: Ranks/%les shown as separate rows in the table
-        <br />
-        <br />
         Inline: Ranks/%les shown in same row as stats, all stats shown
+        <br />
+        <br />
+        Rows: Ranks/%les shown as separate rows in the table
       </Tooltip>
     );
     const helpTooltipOvelay = (
@@ -1074,8 +1074,8 @@ export class GradeTableUtils {
     const endLine = (
       <span className="small">
         {viewGroupLink("Hybrid")} |&nbsp;
-        {viewGroupLink("Rows")} |&nbsp;
-        {viewGroupLink("Inline")}
+        {viewGroupLink("Inline")} |&nbsp;
+        {viewGroupLink("Rows")}
       </span>
     );
 
@@ -1085,10 +1085,10 @@ export class GradeTableUtils {
         25%). In "Ranks" mode, B25% stats are shown as %les.
         <br />
         <br />
-        Rows: Ranks/%les shown as separate rows in the table
-        <br />
-        <br />
         Inline: Ranks/%les shown in same row as stats, all stats shown
+        <br />
+        <br />
+        Rows: Ranks/%les shown as separate rows in the table
       </Tooltip>
     );
     const helpTooltipOvelay = (

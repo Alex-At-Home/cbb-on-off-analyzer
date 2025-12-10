@@ -308,7 +308,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["playerShotChartsShowZones"]
           : [],
         !rawParams.playerShotChartsUseEfg ? ["playerShotChartsUseEfg"] : [],
-        rawParams.showGrades == "" ? ["showGrades"] : [],
+        rawParams.showGrades == ParamDefaults.defaultEnabledGrade
+          ? ["showGrades"]
+          : [],
         // RosterStatsTable
         rawParams.showPlayerGrades == ParamDefaults.defaultEnabledGrade
           ? ["showPlayerGrades"]

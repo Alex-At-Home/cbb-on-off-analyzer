@@ -50,7 +50,6 @@ import {
 } from "../utils/tables/TeamStatsTableUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { UserChartOpts } from "./diags/ShotChartDiagView";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 export type TeamStatsModel = {
   on: TeamStatSet;
@@ -146,16 +145,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(gameFilterParams.showPlayerGrades)
-      ? FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView)
-        ? ParamDefaults.defaultEnabledGrade
-        : ""
+      ? ParamDefaults.defaultEnabledGrade
       : gameFilterParams.showPlayerGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);
   const showStandaloneGrades =
-    (!FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView) &&
-      Boolean(showGrades)) ||
     GradeTableUtils.showingStandaloneGrades(showGrades);
 
   /** Show team and individual grades */
@@ -377,16 +372,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // 4] View
 
   const topLevelGradeControls = _.thru(
-    showGrades &&
-      !hideGlobalGradeSettings &&
-      FeatureFlags.isActiveWindow(FeatureFlags.integratedGradeView),
+    showGrades && !hideGlobalGradeSettings,
     (buildTopLevelGradeControls) => {
       if (buildTopLevelGradeControls) {
         const divisionStatsCacheByYear: DivisionStatsCache = showGrades
           ? divisionStatsCache || {}
           : {};
         return GradeTableUtils.buildTeamGradeControlState(
-          "Grades",
+          "",
           {
             config: showGrades,
             setConfig: (newConfig: string) => setShowGrades(newConfig),
@@ -441,8 +434,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         {
           label: "Grades",
           tooltip: showGrades
-            ? "Hide team ranks/percentiles"
-            : "Show team ranks/percentiles",
+            ? "Hide team ranks/percentiles" +
+              (hideGlobalGradeSettings
+                ? " (grade controls accessed via the advanced options menu to the right)"
+                : "")
+            : "Show team ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
           toggled: showGrades != "",
           onClick: () => {
             setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade);
@@ -588,11 +584,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               integratedGrades={
                 showGrades && !showStandaloneGrades
                   ? {
-                      hybridMode: false, // Teams don't have hybrid mode
+                      hybridMode:
+                        GradeTableUtils.showingHybridOrStandaloneGrades(
+                          showGrades
+                        ),
+                      exactRanks: true,
                       colorChooser: CbbColors.integratedColorsDefault,
                       customKeyMappings: {
-                        def_3pr: "off_3p_ast",
-                        def_2primr: "off_2prim_ast",
+                        def_net: "off_raw_net",
                       },
                     }
                   : undefined
