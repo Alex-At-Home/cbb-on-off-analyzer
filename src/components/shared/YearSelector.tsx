@@ -115,10 +115,8 @@ const YearSelector: React.FunctionComponent<Props> = ({
             // If no years left, exit multi-year mode
             if (yearsList.length === 0) {
               onYearChange(yearOptions[0] || "");
-            } else if (yearsList.length === 1 && !userSelectedMulti) {
-              // If only one year left and user didn't select Multi, exit multi mode
-              onYearChange(yearsList[0]);
             } else {
+              // Stay in multi-year mode even with just one year
               const newYearStr = `${
                 YearSelectorConstants.multiName
               }:${yearsList.join(",")}`;
