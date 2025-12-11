@@ -186,7 +186,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamDetails(
         paramObj.t100 ? "t100" : paramObj.confOnly ? "conf" : "all",
         gender,
-        fullYear, //(can be All)
+        fullYear, //(can be All, or Multi:)
         "All",
         []
       );

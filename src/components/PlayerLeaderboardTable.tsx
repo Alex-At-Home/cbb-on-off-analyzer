@@ -303,7 +303,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const isMultiYr = teamEditorMode
     ? startingState.year == DateUtils.AllYears
     : startingState.year == DateUtils.ExtraYears ||
-      startingState.year == DateUtils.AllYears;
+      startingState.year == DateUtils.AllYears ||
+      startingState.year?.startsWith(DateUtils.MultiYearPrefix);
 
   const [tier, setTier] = useState(
     startingState.tier || ParamDefaults.defaultTier
@@ -514,7 +515,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           .pick(mostUsefulSubset)
           .values()
           .value()
-          .concat(startingState.year == DateUtils.AllYears ? [yearOpt] : [])
+          .concat(
+            startingState.year == DateUtils.AllYears ||
+              startingState.year?.startsWith(DateUtils.MultiYearPrefix)
+              ? [yearOpt]
+              : []
+          )
       ),
     },
     {
@@ -682,6 +688,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         (includePrevYear) => {
           if (year == DateUtils.AllYears) {
             return DateUtils.coreYears;
+          } else if (year.startsWith(DateUtils.MultiYearPrefix)) {
+            return DateUtils.getMultiYearSelection(year);
           } else if (includePrevYear) {
             return [DateUtils.getPrevYear(year), year];
           } else {
@@ -871,6 +879,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
     const skipSort =
       (year != DateUtils.AllYears &&
+        !year.startsWith(DateUtils.MultiYearPrefix) &&
         tier != "All" &&
         sortBy ==
           ParamDefaults.defaultPlayerLboardSortBy(
@@ -1094,7 +1103,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       usefulSortCombo ||
       !_.isNil(dataEvent.transfers) ||
       isFiltered ||
-      year == DateUtils.AllYears;
+      year == DateUtils.AllYears ||
+      year.startsWith(DateUtils.MultiYearPrefix);
 
     /** Compresses number/height/year into 1 double-width column */
     const rosterInfoSpanCalculator = (key: string) =>
@@ -1278,7 +1288,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           ) : (
             `#${player[`def_adj_${rtg}_rank`]}`
           );
-        return (year == "All" && !fullDataSetSeasons.has(player.year)) ||
+        return ((year == DateUtils.AllYears ||
+          year.startsWith(DateUtils.MultiYearPrefix)) &&
+          !fullDataSetSeasons.has(player.year)) ||
           _.isUndefined(player.off_adj_rtg_rank) ? (
           <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
             <span>
@@ -2381,7 +2393,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       >
         {dataEvent.syntheticData ? null : (
           <Form.Group as={Row}>
-            <Col xs={6} sm={6} md={3} lg={2}>
+            <Col xs={6} sm={6} md={6} lg={2}>
               <ThemedSelect
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(genderUnreliable)}
@@ -2400,7 +2412,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 }}
               />
             </Col>
-            <Col xs={6} sm={6} md={3} lg={2}>
+            <Col
+              xs={6}
+              sm={6}
+              md={6}
+              lg={yearUnreliable.startsWith(DateUtils.MultiYearPrefix) ? 3 : 2}
+            >
               <YearSelector
                 yearOptions={DateUtils.lboardYearList(tier).filter((r) => {
                   return geoMode
@@ -2412,10 +2429,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 onYearChange={(newYear) => {
                   friendlyChange(() => setYear(newYear), newYear != year);
                 }}
+                allowMultiYear={true}
               />
             </Col>
             <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-            <Col xs={11} sm={11} md={6} lg={6}>
+            <Col
+              xs={11}
+              sm={11}
+              md={11}
+              lg={yearUnreliable.startsWith(DateUtils.MultiYearPrefix) ? 5 : 6}
+            >
               <ConferenceSelector
                 emptyLabel={`All ${
                   !_.isEmpty(transferInfoSplit[0]) ? "Transfers" : "Teams"
@@ -2726,7 +2749,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   ])
                   .concat(
                     (year >= DateUtils.firstYearWithShotChartData ||
-                      year == "All") &&
+                      year == DateUtils.AllYears ||
+                      year.startsWith(DateUtils.MultiYearPrefix)) &&
                       !dataEvent.syntheticData
                       ? [
                           {

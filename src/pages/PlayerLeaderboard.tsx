@@ -225,7 +225,12 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       playerLeaderboardParams.advancedFilter || ""
     ).includes("team_stats.");
 
-    if (year == "All" || tier == "All" || transferModeUrlParam) {
+    if (
+      year.startsWith(DateUtils.MultiYearPrefix) ||
+      year == DateUtils.AllYears ||
+      tier == "All" ||
+      transferModeUrlParam
+    ) {
       //TODO: why aren't I checking before re-fetching all the info here?
       //TODO: oh I think it's because I wanted to avoid caching all years for the sub-key - see LineupLeaderboard for how I fixed that
       //(note the transferModeUrlParam means we use this slightly less efficient construct with single tier transfers)
@@ -256,16 +261,15 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         transferYearIn,
         []
       );
-      const teamStatsPromise =
-        needsTeamStats && year != "All"
-          ? LeaderboardUtils.getMultiYearTeamDetails(
-              "all", //(too restrictive to force team queries to be the same as player filter)
-              gender,
-              fullYear,
-              tier,
-              [] //TODO: support "All"
-            )
-          : Promise.resolve([]);
+      const teamStatsPromise = needsTeamStats
+        ? LeaderboardUtils.getMultiYearTeamDetails(
+            "all", //(too restrictive to force team queries to be the same as player filter)
+            gender,
+            fullYear,
+            tier,
+            []
+          )
+        : Promise.resolve([]);
 
       Promise.all([fetchAll, teamStatsPromise]).then((fetchResults) => {
         const [jsonsIn, teamStats] = fetchResults;

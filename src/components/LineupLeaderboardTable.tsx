@@ -854,6 +854,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               yearOptions={DateUtils.lboardYearList(tier)}
               selectedYear={year}
               onYearChange={(newYear) => setYear(newYear)}
+              allowMultiYear={false}
             />
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />

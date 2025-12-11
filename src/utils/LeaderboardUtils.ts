@@ -64,13 +64,15 @@ export class LeaderboardUtils {
   ): Promise<any[]> {
     const year = fullYear.substring(0, 4);
 
-    const years = _.filter(
-      DateUtils.lboardYearListWithExtra,
-      (inYear) =>
-        year == "All" ||
-        inYear == fullYear ||
-        _.some(otherYears, (y) => y == inYear)
-    );
+    const years = fullYear.startsWith(DateUtils.MultiYearPrefix)
+      ? DateUtils.getMultiYearSelection(fullYear)
+      : _.filter(
+          DateUtils.lboardYearListWithExtra,
+          (inYear) =>
+            year == DateUtils.AllYears ||
+            inYear == fullYear ||
+            _.some(otherYears, (y) => y == inYear)
+        );
     const tiers = _.filter(
       ["High", "Medium", "Low"],
       (inTier) => tier == "All" || inTier == tier
@@ -168,13 +170,15 @@ export class LeaderboardUtils {
   ): Promise<any[]> {
     const year = fullYear.substring(0, 4);
 
-    const years = _.filter(
-      DateUtils.lboardYearListWithExtra,
-      (inYear) =>
-        year == "All" ||
-        inYear == fullYear ||
-        _.some(otherYears, (y) => y == inYear)
-    );
+    const years = fullYear.startsWith(DateUtils.MultiYearPrefix)
+      ? DateUtils.getMultiYearSelection(fullYear)
+      : _.filter(
+          DateUtils.lboardYearListWithExtra,
+          (inYear) =>
+            year == DateUtils.AllYears ||
+            inYear == fullYear ||
+            _.some(otherYears, (y) => y == inYear)
+        );
     const tiers = _.filter(
       ["High", "Medium", "Low"],
       (inTier) => tier == "All" || inTier == tier
@@ -214,13 +218,15 @@ export class LeaderboardUtils {
   ): Promise<any[]> {
     const year = fullYear.substring(0, 4);
 
-    const years = _.filter(
-      DateUtils.coreYears, //(for teams unlike players/lineups we can fetch the data immediately)
-      (inYear) =>
-        year == "All" ||
-        inYear == fullYear ||
-        _.some(otherYears, (y) => y == inYear)
-    );
+    const years = fullYear.startsWith(DateUtils.MultiYearPrefix)
+      ? DateUtils.getMultiYearSelection(fullYear)
+      : _.filter(
+          DateUtils.coreYears, //(for teams unlike players/lineups we can fetch the data immediately)
+          (inYear) =>
+            year == DateUtils.AllYears ||
+            inYear == fullYear ||
+            _.some(otherYears, (y) => y == inYear)
+        );
     const tiers = _.filter(
       ["High", "Medium", "Low"],
       (inTier) => tier == "All" || inTier == tier

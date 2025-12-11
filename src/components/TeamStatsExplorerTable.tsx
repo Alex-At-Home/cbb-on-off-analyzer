@@ -244,7 +244,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
 
   const teamList =
-    year == "All"
+    year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
       ? _.chain(
           _.flatMap(AvailableTeams.byName, (teams, teamName) => {
             return [teamName].concat(
@@ -321,6 +321,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       const yearsToCheck = _.thru(undefined, (__) => {
         if (year == DateUtils.AllYears) {
           return DateUtils.coreYears;
+        } else if (year.startsWith(DateUtils.MultiYearPrefix)) {
+          return DateUtils.getMultiYearSelection(year);
         } else {
           return [year];
         }
@@ -491,7 +493,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const confFilter = (t: { team: string; conf: string; year: string }) => {
     const manualFilterInUse = !_.isEmpty(queryFiltersAsMap);
     return manualFilterInUse
-      ? year == "All"
+      ? year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
         ? !_.isNil(
             queryFiltersAsMap[t.team] ||
               queryFiltersAsMap[`${t.team}:${t.year}`] ||
@@ -584,7 +586,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       })
       .sortBy((team) => {
         if (manualFilterSelected) {
-          if (year == "All") {
+          if (
+            year == DateUtils.AllYears ||
+            year.startsWith(DateUtils.MultiYearPrefix)
+          ) {
             //few different formats
             return (
               queryFiltersAsMap[team.team_name] ||
@@ -736,7 +741,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
                   <b>
                     {team.team_name}
-                    {year == "All" ? ` '${yearSuffix}` : ""}
+                    {year == DateUtils.AllYears ||
+                    year.startsWith(DateUtils.MultiYearPrefix)
+                      ? ` '${yearSuffix}`
+                      : ""}
                   </b>
                 </a>
               </span>
@@ -1254,7 +1262,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   return (
     <Container className="medium_screen">
       <Form.Group as={Row}>
-        <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
+        <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
           <ThemedSelect
             value={stringToOption(gender)}
             options={["Men", "Women"].map((g) => stringToOption(g))}
@@ -1267,17 +1275,30 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             }}
           />
         </Col>
-        <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
+        <Col
+          xs={6}
+          sm={6}
+          md={6}
+          lg={year.startsWith(DateUtils.MultiYearPrefix) ? 3 : 2}
+          style={{ zIndex: 11 }}
+        >
           <YearSelector
-            yearOptions={DateUtils.coreYears.concat("All")}
+            yearOptions={DateUtils.coreYears.concat(DateUtils.AllYears)}
             selectedYear={year}
             onYearChange={(newYear) => {
               friendlyChange(() => setYear(newYear), newYear != year);
             }}
+            allowMultiYear={true}
           />
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-        <Col xs={11} sm={11} md={5} lg={5} style={{ zIndex: 10 }}>
+        <Col
+          xs={11}
+          sm={11}
+          md={11}
+          lg={year.startsWith(DateUtils.MultiYearPrefix) ? 4 : 5}
+          style={{ zIndex: 10 }}
+        >
           <ConferenceSelector
             emptyLabel={
               year < DateUtils.yearFromWhichAllMenD1Imported

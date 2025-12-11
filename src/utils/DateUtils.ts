@@ -7,6 +7,7 @@ export class DateUtils {
   // Constants
 
   static readonly AllYears = "All";
+  static readonly MultiYearPrefix = "Multi:";
   static readonly ExtraYears = "Extra";
 
   //////////////////////////////////////
@@ -40,6 +41,9 @@ export class DateUtils {
 
   static fullYearFromShortYear = (year: string) =>
     _.find(this.coreYears, (longYear) => _.startsWith(longYear, year));
+
+  static getMultiYearSelection = (multiYearSel: string) =>
+    multiYearSel.substring(DateUtils.MultiYearPrefix.length).split(",");
 
   /** Note should include all 3 formats $date, Men_$date, Women_$date */
   static readonly seasonNotFinished: Record<string, boolean> = {
