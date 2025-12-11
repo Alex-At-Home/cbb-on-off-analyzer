@@ -697,7 +697,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       <GameSelectorModal
         queryType="Base Filter"
         games={gameSelectionRef.current?.games || []}
-        selectedGames={QueryUtils.buildGameSelectionModel([])}
+        selectedGames={QueryUtils.buildGameSelectionModel(
+          QueryUtils.parseFilter(
+            commonParams.queryFilters || "",
+            startingState.year || ParamDefaults.defaultYear
+          )
+        )}
         show={showPresetSelectorModal}
         onClose={() => setPresetGameSelectorModal(false)}
         onSubmit={(selectedGame) => {
