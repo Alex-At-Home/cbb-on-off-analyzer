@@ -75,6 +75,7 @@ import ConferenceSelector from "./shared/ConferenceSelector";
 import { line } from "d3";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import ThemedSelect from "./shared/ThemedSelect";
+import YearSelector from "./shared/YearSelector";
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>;
@@ -849,15 +850,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col xs={6} sm={6} md={3} lg={2}>
-            <ThemedSelect
-              value={stringToOption(year)}
-              options={DateUtils.lboardYearList(tier).map((r) =>
-                stringToOption(r)
-              )}
-              isSearchable={false}
-              onChange={(option: any) => {
-                if ((option as any)?.value) setYear((option as any).value);
-              }}
+            <YearSelector
+              yearOptions={DateUtils.lboardYearList(tier)}
+              selectedYear={year}
+              onYearChange={(newYear) => setYear(newYear)}
             />
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />

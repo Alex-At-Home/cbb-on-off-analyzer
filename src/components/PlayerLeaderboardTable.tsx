@@ -63,6 +63,7 @@ import { IndivStatSet, Statistic, TeamStatSet } from "../utils/StatModels";
 import { TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import ConferenceSelector from "./shared/ConferenceSelector";
+import YearSelector from "./shared/YearSelector";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -2400,23 +2401,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </Col>
             <Col xs={6} sm={6} md={3} lg={2}>
-              <ThemedSelect
-                styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
-                value={stringToOption(yearUnreliable)}
-                options={DateUtils.lboardYearList(tier)
-                  .filter((r) => {
-                    return geoMode
-                      ? r >= DateUtils.firstYearWithRosterGeoData &&
-                          r.startsWith("2")
-                      : true;
-                  })
-                  .map((r) => stringToOption(r))}
-                isSearchable={false}
-                onChange={(option: any) => {
-                  if ((option as any)?.value) {
-                    const newYear = (option as any).value;
-                    friendlyChange(() => setYear(newYear), newYear != year);
-                  }
+              <YearSelector
+                yearOptions={DateUtils.lboardYearList(tier).filter((r) => {
+                  return geoMode
+                    ? r >= DateUtils.firstYearWithRosterGeoData &&
+                        r.startsWith("2")
+                    : true;
+                })}
+                selectedYear={yearUnreliable}
+                onYearChange={(newYear) => {
+                  friendlyChange(() => setYear(newYear), newYear != year);
                 }}
               />
             </Col>

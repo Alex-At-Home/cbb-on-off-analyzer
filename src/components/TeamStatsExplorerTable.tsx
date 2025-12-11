@@ -93,6 +93,7 @@ import AsyncFormControl from "./shared/AsyncFormControl";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import StickyRow from "./shared/StickyRow";
 import ThemedSelect from "./shared/ThemedSelect";
+import YearSelector from "./shared/YearSelector";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { CbbColors } from "../utils/CbbColors";
 
@@ -1267,18 +1268,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <ThemedSelect
-            isDisabled={false}
-            value={stringToOption(year)}
-            options={DateUtils.coreYears
-              .concat("All")
-              .map((r) => stringToOption(r))}
-            isSearchable={false}
-            onChange={(option: any) => {
-              if ((option as any)?.value) {
-                const newYear = (option as any)?.value;
-                friendlyChange(() => setYear(newYear), newYear != year);
-              }
+          <YearSelector
+            yearOptions={DateUtils.coreYears.concat("All")}
+            selectedYear={year}
+            onYearChange={(newYear) => {
+              friendlyChange(() => setYear(newYear), newYear != year);
             }}
           />
         </Col>
