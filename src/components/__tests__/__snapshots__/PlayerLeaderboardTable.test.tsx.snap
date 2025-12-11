@@ -22,7 +22,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
@@ -56,67 +56,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
-        <ThemedSelect
-          isSearchable={false}
-          onChange={[Function]}
-          options={
+        <YearSelector
+          allowMultiYear={true}
+          onYearChange={[Function]}
+          selectedYear="2019/20"
+          yearOptions={
             Array [
-              Object {
-                "label": "2025/26",
-                "value": "2025/26",
-              },
-              Object {
-                "label": "2024/25",
-                "value": "2024/25",
-              },
-              Object {
-                "label": "2023/24",
-                "value": "2023/24",
-              },
-              Object {
-                "label": "2022/23",
-                "value": "2022/23",
-              },
-              Object {
-                "label": "2021/22",
-                "value": "2021/22",
-              },
-              Object {
-                "label": "2020/21",
-                "value": "2020/21",
-              },
-              Object {
-                "label": "2019/20",
-                "value": "2019/20",
-              },
-              Object {
-                "label": "2018/9",
-                "value": "2018/9",
-              },
-              Object {
-                "label": "All",
-                "value": "All",
-              },
-              Object {
-                "label": "Extra",
-                "value": "Extra",
-              },
+              "2025/26",
+              "2024/25",
+              "2023/24",
+              "2022/23",
+              "2021/22",
+              "2020/21",
+              "2019/20",
+              "2018/9",
+              "All",
+              "Extra",
             ]
-          }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            }
           }
         />
       </Col>
@@ -126,7 +86,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       />
       <Col
         lg={6}
-        md={6}
+        md={11}
         sm={11}
         xs={11}
       >
@@ -8202,7 +8162,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
@@ -8236,67 +8196,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
-        <ThemedSelect
-          isSearchable={false}
-          onChange={[Function]}
-          options={
+        <YearSelector
+          allowMultiYear={true}
+          onYearChange={[Function]}
+          selectedYear="2019/20"
+          yearOptions={
             Array [
-              Object {
-                "label": "2025/26",
-                "value": "2025/26",
-              },
-              Object {
-                "label": "2024/25",
-                "value": "2024/25",
-              },
-              Object {
-                "label": "2023/24",
-                "value": "2023/24",
-              },
-              Object {
-                "label": "2022/23",
-                "value": "2022/23",
-              },
-              Object {
-                "label": "2021/22",
-                "value": "2021/22",
-              },
-              Object {
-                "label": "2020/21",
-                "value": "2020/21",
-              },
-              Object {
-                "label": "2019/20",
-                "value": "2019/20",
-              },
-              Object {
-                "label": "2018/9",
-                "value": "2018/9",
-              },
-              Object {
-                "label": "All",
-                "value": "All",
-              },
-              Object {
-                "label": "Extra",
-                "value": "Extra",
-              },
+              "2025/26",
+              "2024/25",
+              "2023/24",
+              "2022/23",
+              "2021/22",
+              "2020/21",
+              "2019/20",
+              "2018/9",
+              "All",
+              "Extra",
             ]
-          }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            }
           }
         />
       </Col>
@@ -8306,7 +8226,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       />
       <Col
         lg={6}
-        md={6}
+        md={11}
         sm={11}
         xs={11}
       >
@@ -16382,7 +16302,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
@@ -16416,67 +16336,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
-        <ThemedSelect
-          isSearchable={false}
-          onChange={[Function]}
-          options={
+        <YearSelector
+          allowMultiYear={true}
+          onYearChange={[Function]}
+          selectedYear="All"
+          yearOptions={
             Array [
-              Object {
-                "label": "2025/26",
-                "value": "2025/26",
-              },
-              Object {
-                "label": "2024/25",
-                "value": "2024/25",
-              },
-              Object {
-                "label": "2023/24",
-                "value": "2023/24",
-              },
-              Object {
-                "label": "2022/23",
-                "value": "2022/23",
-              },
-              Object {
-                "label": "2021/22",
-                "value": "2021/22",
-              },
-              Object {
-                "label": "2020/21",
-                "value": "2020/21",
-              },
-              Object {
-                "label": "2019/20",
-                "value": "2019/20",
-              },
-              Object {
-                "label": "2018/9",
-                "value": "2018/9",
-              },
-              Object {
-                "label": "All",
-                "value": "All",
-              },
-              Object {
-                "label": "Extra",
-                "value": "Extra",
-              },
+              "2025/26",
+              "2024/25",
+              "2023/24",
+              "2022/23",
+              "2021/22",
+              "2020/21",
+              "2019/20",
+              "2018/9",
+              "All",
+              "Extra",
             ]
-          }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "All",
-              "value": "All",
-            }
           }
         />
       </Col>
@@ -16486,7 +16366,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       />
       <Col
         lg={6}
-        md={6}
+        md={11}
         sm={11}
         xs={11}
       >
@@ -27642,7 +27522,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
@@ -27676,67 +27556,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
-        <ThemedSelect
-          isSearchable={false}
-          onChange={[Function]}
-          options={
+        <YearSelector
+          allowMultiYear={true}
+          onYearChange={[Function]}
+          selectedYear="2019/20"
+          yearOptions={
             Array [
-              Object {
-                "label": "2025/26",
-                "value": "2025/26",
-              },
-              Object {
-                "label": "2024/25",
-                "value": "2024/25",
-              },
-              Object {
-                "label": "2023/24",
-                "value": "2023/24",
-              },
-              Object {
-                "label": "2022/23",
-                "value": "2022/23",
-              },
-              Object {
-                "label": "2021/22",
-                "value": "2021/22",
-              },
-              Object {
-                "label": "2020/21",
-                "value": "2020/21",
-              },
-              Object {
-                "label": "2019/20",
-                "value": "2019/20",
-              },
-              Object {
-                "label": "2018/9",
-                "value": "2018/9",
-              },
-              Object {
-                "label": "All",
-                "value": "All",
-              },
-              Object {
-                "label": "Extra",
-                "value": "Extra",
-              },
+              "2025/26",
+              "2024/25",
+              "2023/24",
+              "2022/23",
+              "2021/22",
+              "2020/21",
+              "2019/20",
+              "2018/9",
+              "All",
+              "Extra",
             ]
-          }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            }
           }
         />
       </Col>
@@ -27746,7 +27586,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       />
       <Col
         lg={6}
-        md={6}
+        md={11}
         sm={11}
         xs={11}
       >
@@ -35802,7 +35642,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
@@ -35836,67 +35676,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
-        <ThemedSelect
-          isSearchable={false}
-          onChange={[Function]}
-          options={
+        <YearSelector
+          allowMultiYear={true}
+          onYearChange={[Function]}
+          selectedYear="2019/20"
+          yearOptions={
             Array [
-              Object {
-                "label": "2025/26",
-                "value": "2025/26",
-              },
-              Object {
-                "label": "2024/25",
-                "value": "2024/25",
-              },
-              Object {
-                "label": "2023/24",
-                "value": "2023/24",
-              },
-              Object {
-                "label": "2022/23",
-                "value": "2022/23",
-              },
-              Object {
-                "label": "2021/22",
-                "value": "2021/22",
-              },
-              Object {
-                "label": "2020/21",
-                "value": "2020/21",
-              },
-              Object {
-                "label": "2019/20",
-                "value": "2019/20",
-              },
-              Object {
-                "label": "2018/9",
-                "value": "2018/9",
-              },
-              Object {
-                "label": "All",
-                "value": "All",
-              },
-              Object {
-                "label": "Extra",
-                "value": "Extra",
-              },
+              "2025/26",
+              "2024/25",
+              "2023/24",
+              "2022/23",
+              "2021/22",
+              "2020/21",
+              "2019/20",
+              "2018/9",
+              "All",
+              "Extra",
             ]
-          }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            }
           }
         />
       </Col>
@@ -35906,7 +35706,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       />
       <Col
         lg={6}
-        md={6}
+        md={11}
         sm={11}
         xs={11}
       >
@@ -37613,7 +37413,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
     >
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
@@ -37647,67 +37447,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </Col>
       <Col
         lg={2}
-        md={3}
+        md={6}
         sm={6}
         xs={6}
       >
-        <ThemedSelect
-          isSearchable={false}
-          onChange={[Function]}
-          options={
+        <YearSelector
+          allowMultiYear={true}
+          onYearChange={[Function]}
+          selectedYear="2019/20"
+          yearOptions={
             Array [
-              Object {
-                "label": "2025/26",
-                "value": "2025/26",
-              },
-              Object {
-                "label": "2024/25",
-                "value": "2024/25",
-              },
-              Object {
-                "label": "2023/24",
-                "value": "2023/24",
-              },
-              Object {
-                "label": "2022/23",
-                "value": "2022/23",
-              },
-              Object {
-                "label": "2021/22",
-                "value": "2021/22",
-              },
-              Object {
-                "label": "2020/21",
-                "value": "2020/21",
-              },
-              Object {
-                "label": "2019/20",
-                "value": "2019/20",
-              },
-              Object {
-                "label": "2018/9",
-                "value": "2018/9",
-              },
-              Object {
-                "label": "All",
-                "value": "All",
-              },
-              Object {
-                "label": "Extra",
-                "value": "Extra",
-              },
+              "2025/26",
+              "2024/25",
+              "2023/24",
+              "2022/23",
+              "2021/22",
+              "2020/21",
+              "2019/20",
+              "2018/9",
+              "All",
+              "Extra",
             ]
-          }
-          styles={
-            Object {
-              "menu": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            }
           }
         />
       </Col>
@@ -37717,7 +37477,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       />
       <Col
         lg={6}
-        md={6}
+        md={11}
         sm={11}
         xs={11}
       >

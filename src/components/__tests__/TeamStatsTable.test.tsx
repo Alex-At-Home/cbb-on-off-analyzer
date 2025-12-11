@@ -79,7 +79,9 @@ describe("TeamStatsTable", () => {
     const { container } = render(
       <TeamStatsTable
         testMode={true}
-        gameFilterParams={{}}
+        gameFilterParams={{
+          showGrades: "", //(avoids needing to download grades, which are enabled by default)
+        }}
         dataEvent={{
           teamStats: testData,
           rosterStats: { on: [], off: [], baseline: [], global: [], other: [] },

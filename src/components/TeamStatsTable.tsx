@@ -144,9 +144,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(gameFilterParams.showPlayerGrades)
+    _.isNil(gameFilterParams.showGrades)
       ? ParamDefaults.defaultEnabledGrade
-      : gameFilterParams.showPlayerGrades
+      : gameFilterParams.showGrades
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);

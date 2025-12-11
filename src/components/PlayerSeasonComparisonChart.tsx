@@ -98,6 +98,7 @@ import { ScatterChartUtils } from "../utils/charts/ScatterChartUtils";
 import GenericCollapsibleCard from "./shared/GenericCollapsibleCard";
 import PlayerLeaderboardTable from "./PlayerLeaderboardTable";
 import ThemedSelect from "./shared/ThemedSelect";
+import ChartConfigContainer from "./shared/ChartConfigContainer";
 import { useTheme } from "next-themes";
 
 type Props = {
@@ -283,8 +284,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   );
 
   // All the complex config:
-
-  const [linqExpressionSync, setLinqExpressionSync] = useState<number>(0);
 
   // If there's a title show that, otherwise show the config
   const [showConfigOptions, setShowConfigOptions] = useState<boolean>(
@@ -1462,34 +1461,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
   // Advanced filter text
 
-  const editingAdvFilterTooltip = (
-    <Tooltip id="editingAdvFilterTooltip">
-      Press enter to apply this Linq filter
-    </Tooltip>
-  );
-  const doneAdvFilterTooltip = (
-    <Tooltip id="doneAdvFilterTooltip">Filter successfully applied</Tooltip>
-  );
-  const errorAdvFilterTooltip = (
-    <Tooltip id="errorAdvFilterTooltip">
-      Malformed Linq query: [{datasetFilterError || ""}]
-    </Tooltip>
-  );
-  const editingAdvFilterText = (
-    <OverlayTrigger placement="auto" overlay={editingAdvFilterTooltip}>
-      <div>...</div>
-    </OverlayTrigger>
-  );
-  const doneAdvFilterText = datasetFilterError ? (
-    <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}>
-      <FontAwesomeIcon icon={faExclamation} />
-    </OverlayTrigger>
-  ) : (
-    <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}>
-      <FontAwesomeIcon icon={faCheck} />
-    </OverlayTrigger>
-  );
-
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
     return (
@@ -1635,391 +1606,253 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
   // Label strategy
 
-  const labelStrategyTooltip = (
-    <Tooltip id="labelStrategyTooltip">
-      Label the top/bottom entries based on a SORT BY clause in either the
-      'Filter' or 'Highlight' Linq expressions
-    </Tooltip>
-  );
-  const buildLabelStrategy = (name: string) => {
-    return (
-      <GenericTogglingMenuItem
-        text={name}
-        truthVal={name == labelStrategy}
-        onSelect={() => {
-          friendlyChange(() => {
-            setLabelStrategy(name);
-          }, true);
-        }}
-      />
-    );
+  // Chart config container callbacks
+  const handleFilterChange = (newVal: string) => {
+    friendlyChange(() => setAdvancedFilterStr(newVal), true);
+  };
+
+  const handleHighlightChange = (newVal: string) => {
+    friendlyChange(() => setHighlightFilterStr(newVal), true);
+  };
+
+  const handleXAxisChange = (newVal: string) => {
+    friendlyChange(() => setXAxis(newVal), true);
+  };
+
+  const handleYAxisChange = (newVal: string) => {
+    friendlyChange(() => setYAxis(newVal), true);
+  };
+
+  const handleDotColorChange = (newVal: string) => {
+    friendlyChange(() => setDotColor(newVal), true);
+  };
+
+  const handleDotSizeChange = (newVal: string) => {
+    friendlyChange(() => setDotSize(newVal), true);
+  };
+
+  const handleLabelStrategyChange = (name: string) => {
+    friendlyChange(() => {
+      setLabelStrategy(name);
+    }, true);
+  };
+
+  const handleDotColorMapChange = (newColorMap: string) => {
+    friendlyChange(() => {
+      setDotColorMap(newColorMap);
+    }, newColorMap != dotColorMap);
   };
 
   return (
-    <Container className="medium_screen">
-      <Form.Row>
-        <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
-          <ThemedSelect
-            isDisabled={true}
-            value={stringToOption("Men")}
-            options={["Men"].map((gender) => stringToOption(gender))}
-            isSearchable={false}
-            onChange={(option: any) => {
-              if ((option as any)?.value) {
-                /* currently only support Men */
-              }
-            }}
-          />
-        </Col>
-        <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-          <ThemedSelect
-            value={stringToOption(year)}
-            options={supportedYears
-              .concat(_.keys(multiYearScenarios))
-              .map(stringToOption)}
-            isSearchable={false}
-            onChange={(option: any) => {
-              const maybeYear = (option as any)?.value;
-              if (maybeYear) {
-                friendlyChange(() => setYear(maybeYear), maybeYear != year);
-              }
-            }}
-          />
-        </Col>
-        <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-        <Col xs={12} sm={12} md={5} lg={5} style={{ zIndex: 10 }}>
-          <ConferenceSelector
-            emptyLabel={
-              year < DateUtils.yearFromWhichAllMenD1Imported
-                ? `All High Tier Teams`
-                : `All Teams`
-            }
-            confStr={confs}
-            confs={_.chain(dataEvent)
-              .values()
-              .flatMap((d) => d.confs || [])
-              .uniq()
-              .value()}
-            onChangeConf={(confStr) =>
-              friendlyChange(() => setConfs(confStr), confs != confStr)
-            }
-          />
-        </Col>
-        <Form.Group as={Col} xs={1} className="mt-1">
-          {getCopyLinkButton()}
-        </Form.Group>
-        <Form.Group as={Col} xs={6} sm={6} md={6} lg={2} className="mt-2">
-          <Form.Check
-            className="float-left"
-            type="switch"
-            id="configOptions"
-            checked={!showConfigOptions}
-            onChange={() => {
-              const isCurrentlySet = showConfigOptions;
-              setShowConfigOptions(!showConfigOptions);
-            }}
-            label="Hide Config"
-          />
-        </Form.Group>
-      </Form.Row>
-      {hasCustomFilter ? (
+    <>
+      <Container className="medium_screen">
         <Form.Row>
-          {hasCustomFilter ? (
-            <Col xs={12} sm={12} md={8} lg={8}>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text id="filter">Filter:</InputGroup.Text>
-                </InputGroup.Prepend>
-                <AsyncFormControl
-                  startingVal={queryFilters}
-                  onChange={(t: string) => {
-                    const newStr = t.endsWith(";") ? t : t + ";";
-                    friendlyChange(
-                      () => setQueryFilters(newStr),
-                      newStr != queryFilters
-                    );
-                  }}
-                  timeout={500}
-                  placeholder=";-separated list of teams"
-                />
-              </InputGroup>
-            </Col>
-          ) : null}
-        </Form.Row>
-      ) : null}
-      <Form.Row>
-        <Form.Group as={Col} xs="12">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="filter">Chart Title</InputGroup.Text>
-            </InputGroup.Prepend>
-            <AsyncFormControl
-              startingVal={title}
-              onChange={(newStr: string) => {
-                if (newStr != title) setTitle(newStr);
-              }}
-              timeout={500}
-              placeholder="Enter a title for this chart or select a preset"
-              allowExternalChange={true}
-            />
-            <InputGroup.Append>
-              {getoverallPlayerChartPresets()}
-            </InputGroup.Append>
-          </InputGroup>
-        </Form.Group>
-      </Form.Row>
-      {showConfigOptions ? (
-        <Form.Row className="mb-2">
-          <Col xs={12} sm={12} md={12} lg={12}>
-            <LinqExpressionBuilder
-              label="Filter"
-              prompt="Enter Linq: remove non-matching players (see presets for ideas - just type 'next_off_poss' to get all players)"
-              value={datasetFilterStr}
-              error={datasetFilterError}
-              autocomplete={
-                AdvancedFilterUtils.playerSeasonComparisonAutocomplete
-              }
-              presets={datasetFilterPresets}
-              syncEvent={linqExpressionSync}
-              callback={(newVal: string, onSync?: boolean) => {
-                if (!onSync) setLinqExpressionSync((n) => n + 1);
-                friendlyChange(() => setAdvancedFilterStr(newVal), true);
-              }}
-              showHelp={showHelp}
-            />
-          </Col>
-        </Form.Row>
-      ) : null}
-      {showConfigOptions ? (
-        <Form.Row className="mb-2">
-          <Col xs={11} sm={11} md={11} lg={11}>
-            <LinqExpressionBuilder
-              label="Highlight"
-              prompt="Enter Linq: non-matching players from 'Filter' are faded into the background"
-              value={highlightFilterStr}
-              error={highlightFilterError}
-              autocomplete={
-                AdvancedFilterUtils.playerSeasonComparisonAutocomplete
-              }
-              presets={datasetFilterPresets}
-              syncEvent={linqExpressionSync}
-              callback={(newVal: string, onSync?: boolean) => {
-                if (!onSync) setLinqExpressionSync((n) => n + 1);
-                friendlyChange(() => setHighlightFilterStr(newVal), true);
-              }}
-              showHelp={showHelp}
-            />
-          </Col>
-          <Col xs={1} sm={1} md={1} lg={1}>
-            <Dropdown alignRight style={{ maxHeight: "2.4rem" }}>
-              <Dropdown.Toggle variant="outline-secondary">
-                <OverlayTrigger placement="auto" overlay={labelStrategyTooltip}>
-                  <FontAwesomeIcon icon={faTags} />
-                </OverlayTrigger>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {[
-                  "None",
-                  "Top 5",
-                  "Top 10",
-                  "Top 25",
-                  "Top/Bottom 5",
-                  "Top/Bottom 10",
-                  "Top/Bottom 25",
-                ].map(buildLabelStrategy)}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        </Form.Row>
-      ) : null}
-      {showConfigOptions ? (
-        <Form.Row className="mb-2">
-          <Col xs={12} sm={12} md={6} lg={6}>
-            <LinqExpressionBuilder
-              label="X-Axis"
-              prompt="Linq //LABEL //LIMITS //TICKS"
-              value={xAxis}
-              error={datasetFilterError}
-              autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(
-                extraAxisDecompKeywords
-              )}
-              presets={axisPresets}
-              presetsIcon={faList}
-              syncEvent={linqExpressionSync}
-              callback={(newVal: string, onSync?: boolean) => {
-                if (!onSync) setLinqExpressionSync((n) => n + 1);
-                friendlyChange(() => setXAxis(newVal), true);
-              }}
-              showHelp={showHelp}
-            />
-          </Col>
-          <Col xs={12} sm={12} md={6} lg={6}>
-            <LinqExpressionBuilder
-              label="Y-Axis"
-              prompt="Linq //LABEL //LIMITS //TICKS"
-              value={yAxis}
-              error={datasetFilterError}
-              autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(
-                extraAxisDecompKeywords
-              )}
-              presets={axisPresets}
-              presetsIcon={faList}
-              syncEvent={linqExpressionSync}
-              callback={(newVal: string, onSync?: boolean) => {
-                if (!onSync) setLinqExpressionSync((n) => n + 1);
-                friendlyChange(() => setYAxis(newVal), true);
-              }}
-              showHelp={showHelp}
-            />
-          </Col>
-        </Form.Row>
-      ) : null}
-      {showConfigOptions ? (
-        <Form.Row className="mb-2">
-          <Col xs={6} sm={6} md={5} lg={5}>
-            <LinqExpressionBuilder
-              label="Color"
-              prompt="Linq expression for color vs colormap selected to right"
-              value={dotColor}
-              error={datasetFilterError}
-              autocomplete={
-                AdvancedFilterUtils.playerSeasonComparisonAutocomplete
-              }
-              presets={axisPresets}
-              presetsIcon={faList}
-              syncEvent={linqExpressionSync}
-              callback={(newVal: string, onSync?: boolean) => {
-                if (!onSync) setLinqExpressionSync((n) => n + 1);
-                friendlyChange(() => setDotColor(newVal), true);
-              }}
-              showHelp={showHelp}
-            />
-          </Col>
-          <Col xs={6} sm={6} md={2} lg={2}>
+          <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
             <ThemedSelect
-              value={stringToOption(dotColorMap)}
-              options={_.keys(colorMapOptions).map((colorMap) =>
-                stringToOption(colorMap)
-              )}
-              components={
-                //@ts-ignore
-                { SingleValue: ColorMapSingleValue }
-              }
-              styles={{
-                singleValue: (provided: any, __: any) => ({
-                  ...provided,
-                  width: "100%",
-                }),
-              }}
+              isDisabled={true}
+              value={stringToOption("Men")}
+              options={["Men"].map((gender) => stringToOption(gender))}
               isSearchable={false}
               onChange={(option: any) => {
-                const newColorMap = (option as any)?.value || "Default";
-                friendlyChange(() => {
-                  setDotColorMap(newColorMap);
-                }, newColorMap != dotColorMap);
+                if ((option as any)?.value) {
+                  /* currently only support Men */
+                }
               }}
             />
           </Col>
-          <Col xs={12} sm={12} md={5} lg={5}>
-            <LinqExpressionBuilder
-              label="Size"
-              prompt="Linq expression for datapoint size"
-              value={dotSize}
-              error={datasetFilterError}
-              autocomplete={
-                AdvancedFilterUtils.playerSeasonComparisonAutocomplete
+          <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
+            <ThemedSelect
+              value={stringToOption(year)}
+              options={supportedYears
+                .concat(_.keys(multiYearScenarios))
+                .map(stringToOption)}
+              isSearchable={false}
+              onChange={(option: any) => {
+                const maybeYear = (option as any)?.value;
+                if (maybeYear) {
+                  friendlyChange(() => setYear(maybeYear), maybeYear != year);
+                }
+              }}
+            />
+          </Col>
+          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
+          <Col xs={12} sm={12} md={5} lg={5} style={{ zIndex: 10 }}>
+            <ConferenceSelector
+              emptyLabel={
+                year < DateUtils.yearFromWhichAllMenD1Imported
+                  ? `All High Tier Teams`
+                  : `All Teams`
               }
-              presets={axisPresets}
-              presetsIcon={faList}
-              syncEvent={linqExpressionSync}
-              callback={(newVal: string, onSync?: boolean) => {
-                if (!onSync) setLinqExpressionSync((n) => n + 1);
-                friendlyChange(() => setDotSize(newVal), true);
-              }}
-              showHelp={showHelp}
+              confStr={confs}
+              confs={_.chain(dataEvent)
+                .values()
+                .flatMap((d) => d.confs || [])
+                .uniq()
+                .value()}
+              onChangeConf={(confStr) =>
+                friendlyChange(() => setConfs(confStr), confs != confStr)
+              }
             />
           </Col>
-        </Form.Row>
-      ) : null}
-      <Row>
-        <Col>
-          {(xAxis && yAxis) || loadingOverride ? (
-            <LoadingOverlay
-              active={needToLoadQuery()}
-              spinner
-              text={"Loading Player Comparison Chart..."}
-              styles={{
-                overlay: (base: any) => ({
-                  ...base,
-                  zIndex: 2000,
-                }),
+          <Form.Group as={Col} xs={1} className="mt-1">
+            {getCopyLinkButton()}
+          </Form.Group>
+          <Form.Group as={Col} xs={6} sm={6} md={6} lg={2} className="mt-2">
+            <Form.Check
+              className="float-left"
+              type="switch"
+              id="configOptions"
+              checked={!showConfigOptions}
+              onChange={() => {
+                const isCurrentlySet = showConfigOptions;
+                setShowConfigOptions(!showConfigOptions);
               }}
-            >
-              {chart}
-            </LoadingOverlay>
-          ) : (
-            <LoadingOverlay
-              active={true}
-              text={`Configure chart or select a preset from "Chart Title"`}
-            >
-              {chart}
-            </LoadingOverlay>
-          )}
-        </Col>
-      </Row>
-      <Row>
-        <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
-          <GenericCollapsibleCard
-            screenSize="medium_screen"
-            minimizeMargin={true}
-            title="Player Stats"
-            helpLink={undefined}
-            startClosed={!showTable}
-            onShowHide={(nowShown: boolean) => setShowTable(nowShown)}
-          >
-            <Container className="medium_screen">
-              <Row>
-                <Form.Group as={Col} className="mt-2">
-                  <Form.Check
-                    className="float-left"
-                    type="switch"
-                    id="showPrevNextInTable"
-                    checked={showPrevNextInTable}
-                    onChange={() => {
+              label="Hide Config"
+            />
+          </Form.Group>
+        </Form.Row>
+        {hasCustomFilter ? (
+          <Form.Row>
+            {hasCustomFilter ? (
+              <Col xs={12} sm={12} md={8} lg={8}>
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="filter">Filter:</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <AsyncFormControl
+                    startingVal={queryFilters}
+                    onChange={(t: string) => {
+                      const newStr = t.endsWith(";") ? t : t + ";";
                       friendlyChange(
-                        () => setShowPrevNextInTable(!showPrevNextInTable),
-                        true
+                        () => setQueryFilters(newStr),
+                        newStr != queryFilters
                       );
                     }}
-                    label="Show Both Years' Stats"
+                    timeout={500}
+                    placeholder=";-separated list of teams"
                   />
-                </Form.Group>
-                <Form.Group as={Col} className="mt-2">
-                  <Form.Check
-                    className="float-left"
-                    type="switch"
-                    id="showOnlyHandSelectedInTable"
-                    disabled={_.isEmpty(toggledPlayers)}
-                    checked={showOnlyHandSelectedInTable}
-                    onChange={() => {
-                      friendlyChange(
-                        () =>
-                          setShowOnlyHandSelectedInTable(
-                            !showOnlyHandSelectedInTable
-                          ),
-                        true
-                      );
-                    }}
-                    label="Show only hand-selected players"
-                  />
-                </Form.Group>
-              </Row>
-              <Row>{playerLeaderboard}</Row>
-            </Container>
-          </GenericCollapsibleCard>
-        </Col>
-      </Row>
-    </Container>
+                </InputGroup>
+              </Col>
+            ) : null}
+          </Form.Row>
+        ) : null}
+      </Container>
+      <ChartConfigContainer
+        title={title}
+        onTitleChange={setTitle}
+        chartPresets={getoverallPlayerChartPresets()}
+        showConfigOptions={showConfigOptions}
+        filterValue={datasetFilterStr}
+        filterError={datasetFilterError}
+        filterPlaceholder="Enter Linq: remove non-matching players (see presets for ideas - just type 'next_off_poss' to get all players)"
+        filterPresets={datasetFilterPresets}
+        onFilterChange={handleFilterChange}
+        highlightValue={highlightFilterStr}
+        highlightError={highlightFilterError}
+        highlightPlaceholder="Enter Linq: non-matching players from 'Filter' are faded into the background"
+        highlightPresets={datasetFilterPresets}
+        onHighlightChange={handleHighlightChange}
+        labelStrategy={labelStrategy}
+        onLabelStrategyChange={handleLabelStrategyChange}
+        xAxis={xAxis}
+        yAxis={yAxis}
+        onXAxisChange={handleXAxisChange}
+        onYAxisChange={handleYAxisChange}
+        axisPresets={axisPresets}
+        dotColor={dotColor}
+        onDotColorChange={handleDotColorChange}
+        dotColorMap={dotColorMap}
+        colorMapOptions={colorMapOptions}
+        onDotColorMapChange={handleDotColorMapChange}
+        ColorMapSingleValue={ColorMapSingleValue}
+        dotSize={dotSize}
+        onDotSizeChange={handleDotSizeChange}
+        autocompleteOptions={
+          AdvancedFilterUtils.playerSeasonComparisonAutocomplete
+        }
+        showHelp={showHelp}
+      />
+      <Container className="medium_screen">
+        <Row>
+          <Col>
+            {(xAxis && yAxis) || loadingOverride ? (
+              <LoadingOverlay
+                active={needToLoadQuery()}
+                spinner
+                text={"Loading Player Comparison Chart..."}
+                styles={{
+                  overlay: (base: any) => ({
+                    ...base,
+                    zIndex: 2000,
+                  }),
+                }}
+              >
+                {chart}
+              </LoadingOverlay>
+            ) : (
+              <LoadingOverlay
+                active={true}
+                text={`Configure chart or select a preset from "Chart Title"`}
+              >
+                {chart}
+              </LoadingOverlay>
+            )}
+          </Col>
+        </Row>
+        <Row>
+          <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+            <GenericCollapsibleCard
+              screenSize="medium_screen"
+              minimizeMargin={true}
+              title="Player Stats"
+              helpLink={undefined}
+              startClosed={!showTable}
+              onShowHide={(nowShown: boolean) => setShowTable(nowShown)}
+            >
+              <Container className="medium_screen">
+                <Row>
+                  <Form.Group as={Col} className="mt-2">
+                    <Form.Check
+                      className="float-left"
+                      type="switch"
+                      id="showPrevNextInTable"
+                      checked={showPrevNextInTable}
+                      onChange={() => {
+                        friendlyChange(
+                          () => setShowPrevNextInTable(!showPrevNextInTable),
+                          true
+                        );
+                      }}
+                      label="Show Both Years' Stats"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} className="mt-2">
+                    <Form.Check
+                      className="float-left"
+                      type="switch"
+                      id="showOnlyHandSelectedInTable"
+                      disabled={_.isEmpty(toggledPlayers)}
+                      checked={showOnlyHandSelectedInTable}
+                      onChange={() => {
+                        friendlyChange(
+                          () =>
+                            setShowOnlyHandSelectedInTable(
+                              !showOnlyHandSelectedInTable
+                            ),
+                          true
+                        );
+                      }}
+                      label="Show only hand-selected players"
+                    />
+                  </Form.Group>
+                </Row>
+                <Row>{playerLeaderboard}</Row>
+              </Container>
+            </GenericCollapsibleCard>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 export default PlayerSeasonComparisonChart;
