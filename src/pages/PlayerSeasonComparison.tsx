@@ -316,7 +316,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
     server != "localhost" ? `https://${server}` : "http://localhost:3000"
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
-    <Container>
+    <Container className="medium_screen">
       <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />

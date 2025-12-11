@@ -1656,7 +1656,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Container>
+    <Container className="medium_screen">
       <Form.Row>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
           <ThemedSelect
@@ -1773,7 +1773,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           <Col xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
               label="Filter"
-              prompt="Enter Linq: remove non-matching players (see presets for ideas)"
+              prompt="Enter Linq: remove non-matching players (see presets for ideas - just type 'next_off_poss' to get all players)"
               value={datasetFilterStr}
               error={datasetFilterError}
               autocomplete={
@@ -1970,13 +1970,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       <Row>
         <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
           <GenericCollapsibleCard
+            screenSize="medium_screen"
             minimizeMargin={true}
             title="Player Stats"
             helpLink={undefined}
             startClosed={!showTable}
             onShowHide={(nowShown: boolean) => setShowTable(nowShown)}
           >
-            <Container>
+            <Container className="medium_screen">
               <Row>
                 <Form.Group as={Col} className="mt-2">
                   <Form.Check
@@ -2013,24 +2014,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                   />
                 </Form.Group>
               </Row>
-              <Row>
-                {(xAxis && yAxis) || loadingOverride ? (
-                  <LoadingOverlay
-                    active={needToLoadQuery()}
-                    spinner
-                    text={"Loading Player Comparison Chart..."}
-                  >
-                    {playerLeaderboard}
-                  </LoadingOverlay>
-                ) : (
-                  <LoadingOverlay
-                    active={true}
-                    text={`Configure chart or select a preset from "Chart Title"`}
-                  >
-                    {playerLeaderboard}
-                  </LoadingOverlay>
-                )}
-              </Row>
+              <Row>{playerLeaderboard}</Row>
             </Container>
           </GenericCollapsibleCard>
         </Col>

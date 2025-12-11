@@ -2155,7 +2155,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   function needToLoadQuery() {
     return (
       !dataEvent.error &&
-      (loadingOverride || (dataEvent?.players || []).length == 0)
+      (loadingOverride ||
+        (!dataEvent.syntheticData && (dataEvent?.players || []).length == 0))
     );
   }
 
