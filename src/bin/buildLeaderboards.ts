@@ -86,6 +86,7 @@ import { BatchGeoUtils } from "../utils/batch/BatchGeoUtils";
 import { BatchMiscUtils } from "../utils/batch/BatchMiscUtils";
 import { BatchGradeUtils } from "../utils/batch/BatchGradeUtils";
 import { root } from "cheerio";
+import ThemedSelect from "../components/shared/ThemedSelect";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -279,6 +280,10 @@ const getRosterFilename = (team: string, teamYear: string) => {
     0,
     4
   )}/${BatchMiscUtils.getTeamFilename(team)}.json`;
+};
+/** Handy filename util - logos */
+const getLogoFilename = (team: string, theme: "dark" | "normal") => {
+  return `./public/logos/${theme}/${team}.png`;
 };
 /** TODO: move to BatchOnBallDefenseUtils */
 const getOnBallDefenseFilename = (team: string, teamYear: string) => {
@@ -2026,9 +2031,8 @@ export function completeLineupLeaderboard(
 if (!testMode) {
   if (inTier == "Combo") {
     // Check files:
-    const checkOnBall = true; //(normally false because we don't always expect it)
     console.log(
-      `(Checking roster and maybe [${checkOnBall}] on-ball filenames)`
+      `(Checking roster and maybe [${onBallDefenseEnabled}] on-ball filenames)`
     );
     BatchMiscUtils.getBaseTeamList(inYear, inGender, testTeamFilter)
       .forEach(async (team: AvailableTeamMeta, index: number) => {
@@ -2037,6 +2041,19 @@ if (!testMode) {
           const rosterInfoFile = getRosterFilename(team.team, team.year);
           await fs.readFile(rosterInfoFile).catch((err: any) => {
             console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
+          });
+          // Logos:
+          const logoFileNormal = getLogoFilename(team.team, "normal");
+          await fs.lstat(logoFileNormal).catch((err: any) => {
+            console.log(
+              `ERROR LOGO Couldn't load icon file [${logoFileNormal}]: [${err}]`
+            );
+          });
+          const logoFileDark = getLogoFilename(team.team, "dark");
+          await fs.lstat(logoFileDark).catch((err: any) => {
+            console.log(
+              `ERROR LOGO Couldn't load icon file [${logoFileDark}]: [${err}]`
+            );
           });
           if (onBallDefenseEnabled) {
             const onBallDefenseFile = getOnBallDefenseFilename(

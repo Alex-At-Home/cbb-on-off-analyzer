@@ -116,7 +116,7 @@ export type MatchupFilterParams = {
   posClasses?: string; // which position classes to show
   showTeam?: boolean;
   showOppo?: boolean;
-  iconType?: string; // "icon" / "jersey" / "pos"
+  iconType?: string; // "logo" / "icon" / "jersey" / "pos"
   factorMins?: boolean; //impact vs /100 (defaults to true)
   lockAspect?: boolean; //(force x to be correct proportions to y)
   breakdownConfig?: string; //(currently: [off|def];[off|def])
@@ -560,7 +560,7 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisShowPpp = true;
   static readonly defaultMatchupAnalysisShowLabels = true;
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
-  static readonly defaultMatchupAnalysisIconType = "icon";
+  static readonly defaultMatchupAnalysisIconType = "logo";
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
 }
 

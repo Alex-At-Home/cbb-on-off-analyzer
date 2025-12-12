@@ -18,6 +18,7 @@ public/leaderboards/lineups/*2025*
 leaderboardDebug/*
 enrichedPlayers/*
 enrichedPlayersDebug/*
+public/logos/*
 *.diff
 
 .vercel

@@ -137,8 +137,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       ? CbbColors.off_diff10_p100_redGreen_darkMode
       : CbbColors.off_diff10_p100_redBlackGreen;
 
-  const [iconType, setIconType] = useState<"icon" | "pos" | "jersey">(
+  const [iconType, setIconType] = useState<"logo" | "icon" | "pos" | "jersey">(
     (startingState.iconType || ParamDefaults.defaultMatchupAnalysisIconType) as
+      | "logo"
       | "icon"
       | "pos"
       | "jersey"
@@ -464,11 +465,73 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   // Chart:
 
+  const CustomPngPoint = (props: any) => {
+    const { color, seriesId, cx, cy, payload } = props;
+    const imageSize = 20; // Adjust the size as needed
+
+    // cx, cy are the calculated center coordinates from Recharts
+    // Adjust x and y to center the image on the data point
+    const x = cx - imageSize / 2;
+    const y = cy - imageSize / 2;
+    const opacity = _.isNumber(props.opacity || 0)
+      ? props.opacity || 0
+      : 0.01 * parseInt(props.opacity || 0);
+    const fillOpacity = _.isNumber(props.fillOpacity || 0)
+      ? props.fillOpacity || 0
+      : 0.01 * parseInt(props.fillOpacity || 0);
+    const totalOpacity = (props.opacity || 0) * (fillOpacity || 0);
+
+    return (
+      <svg
+        x={x}
+        y={y}
+        width={imageSize}
+        height={imageSize}
+        opacity={totalOpacity}
+        overflow="visible"
+      >
+        <image
+          href={`logos/${
+            resolvedTheme == "dark" ? "dark" : "normal"
+          }/${seriesId}.png`} // Use the imageUrl from your data
+          width={imageSize}
+          height={imageSize}
+        />
+      </svg>
+    );
+  };
+
   function stringToOption(s: string) {
     return { label: s, value: s };
   }
   const labelState = ScatterChartUtils.buildEmptyLabelState();
 
+  const renderCustomizedLegend = (props: any) => {
+    const { payload } = props;
+    return (
+      <div>
+        {payload.map((entry: any, index: number) => {
+          return (
+            <>
+              <span
+                className="pl-3"
+                key={`item-${index}`}
+                style={{ color: entry.color }}
+              >
+                <img
+                  style={{ width: "16px", height: "16px" }}
+                  src={`logos/${resolvedTheme == "dark" ? "dark" : "normal"}/${
+                    entry.value || "Unknown"
+                  }.png`} // Use the imageUrl from your data
+                />{" "}
+                {entry.value}
+              </span>
+            </>
+          );
+        })}
+      </div>
+    );
+  };
   return _.isEmpty(cachedStats.ab) ? (
     <Col className="text-center w-100">
       <i>(No Data)</i>
@@ -510,6 +573,15 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               {
                 label: _.thru(iconType, (__) => {
                   switch (iconType) {
+                    case "logo":
+                      return (
+                        <img
+                          style={{ width: "16px", height: "16px" }}
+                          src={`logos/${
+                            resolvedTheme == "dark" ? "dark" : "normal"
+                          }/${startingState.team || "Unknown"}.png`} // Use the imageUrl from your data
+                        />
+                      );
                     case "icon":
                       return (
                         <small>
@@ -522,10 +594,13 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       return "#00";
                   }
                 }),
-                tooltip: `Toggle through team icon / jersey number / positional role`,
+                tooltip: `Toggle through team logo / icon / jersey number / positional role`,
                 toggled: false,
                 onClick: () => {
                   switch (iconType) {
+                    case "logo":
+                      setIconType("icon");
+                      return;
                     case "icon":
                       setIconType("pos");
                       return;
@@ -533,7 +608,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       setIconType("jersey");
                       return;
                     default:
-                      setIconType("icon");
+                      setIconType("logo");
                       return;
                   }
                 },
@@ -646,7 +721,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 />
               </ReferenceArea>
 
-              <Legend verticalAlign="bottom" align="center" iconSize={8} />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                iconSize={8}
+                content={
+                  iconType == "logo" ? renderCustomizedLegend : undefined
+                }
+              />
               <XAxis
                 type="number"
                 stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
@@ -689,9 +771,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               <Scatter
                 data={cachedStats.ab}
                 fill={teamAColor}
-                fillOpacity={iconType == "icon" ? "100%" : "0%"}
-                shape="triangle"
+                fillOpacity={
+                  iconType == "icon" || iconType == "logo" ? "100%" : "0%"
+                }
                 name={commonParams.team!}
+                shape={iconType == "logo" ? <CustomPngPoint /> : "triangle"}
                 legendType="triangle"
               >
                 {iconType == "pos" ? (
@@ -731,8 +815,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               <Scatter
                 data={cachedStats.ab}
                 fill={teamBColor}
-                fillOpacity={iconType == "icon" ? "100%" : "0%"}
-                shape="circle"
+                fillOpacity={
+                  iconType == "icon" || iconType == "logo" ? "100%" : "0%"
+                }
+                shape={iconType == "logo" ? <CustomPngPoint /> : "circle"}
                 name={opponent}
                 legendType="circle"
               >
