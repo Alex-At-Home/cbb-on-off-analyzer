@@ -356,6 +356,10 @@ export async function main() {
     const genderYearLookup = `${inGender}_${teamYear}`;
     const avgEfficiency =
       efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+    const maybeTeamEfficiencyInfo = completedEfficiencyInfo?.[team];
+    if (!maybeTeamEfficiencyInfo || _.isEmpty(maybeTeamEfficiencyInfo)) {
+      console.log(`TEAM_NAME ERROR: no efficiency for [${team}][${teamYear}]`);
+    }
     const rank =
       completedEfficiencyInfo?.[team]?.["stats.adj_margin.rank"] || 400;
 
