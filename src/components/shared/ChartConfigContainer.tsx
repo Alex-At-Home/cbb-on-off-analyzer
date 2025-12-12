@@ -17,19 +17,26 @@ import Tooltip from "react-bootstrap/Tooltip";
 // Additional components:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTags, faList } from "@fortawesome/free-solid-svg-icons";
+//@ts-ignore
+import { components } from "react-select";
 
 // Component imports
 import AsyncFormControl from "./AsyncFormControl";
 import LinqExpressionBuilder from "./LinqExpressionBuilder";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import ThemedSelect from "./ThemedSelect";
+import { CbbColors } from "../../utils/CbbColors";
 
 export type ChartConfigProps = {
   // Chart title
   title: string;
   onTitleChange: (newTitle: string) => void;
   titlePlaceholder?: string;
-  chartPresets?: React.ReactNode; // The presets dropdown component
+
+  // Chart presets
+  chartPresets?: Array<[string, any]>; // Array of [name, preset] tuples
+  onApplyPreset?: (preset: any) => void;
+  onClearPreset?: () => void;
 
   // Visibility control
   showConfigOptions: boolean;
@@ -68,7 +75,7 @@ export type ChartConfigProps = {
   dotColorMap: string;
   colorMapOptions?: Record<string, any>;
   onDotColorMapChange: (newColorMap: string) => void;
-  ColorMapSingleValue: React.ComponentType<any>;
+  contrastForegroundBuilder?: (val: number) => string;
   dotSize: string;
   onDotSizeChange: (newValue: string) => void;
 
@@ -104,6 +111,8 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   onTitleChange,
   titlePlaceholder = defaultTitlePlaceholder,
   chartPresets,
+  onApplyPreset,
+  onClearPreset,
   showConfigOptions,
   filterValue,
   filterError,
@@ -130,7 +139,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   dotColorMap,
   colorMapOptions,
   onDotColorMapChange,
-  ColorMapSingleValue,
+  contrastForegroundBuilder,
   dotSize,
   onDotSizeChange,
   autocompleteOptions,
@@ -175,6 +184,37 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
     return { label: s, value: s };
   }
 
+  // Color map single value component for select dropdown
+  const ColorMapSingleValue = (props: any) => {
+    const label = props.data.label || "Default";
+    const labelToRender = label.replace(/[A-Za-z]+[/][A-Za-z]+\s+/, ""); //(remove leading colors)
+    const colorMapPicker =
+      (colorMapOptions || {})[label] || contrastForegroundBuilder;
+    const leftColorStr = CbbColors.toRgba(
+      colorMapPicker?.(-Number.MAX_SAFE_INTEGER) || "#000000",
+      0.75
+    );
+    const rightColorStr = CbbColors.toRgba(
+      colorMapPicker?.(Number.MAX_SAFE_INTEGER) || "#000000",
+      0.75
+    );
+    return (
+      <components.SingleValue {...props}>
+        <div
+          style={{
+            textAlign: "center",
+            background:
+              label == "Default"
+                ? undefined
+                : `linear-gradient(to right, ${leftColorStr}, 20%, white, 80%, ${rightColorStr})`,
+          }}
+        >
+          {labelToRender}
+        </div>
+      </components.SingleValue>
+    );
+  };
+
   const buildLabelStrategy = (name: string) => {
     return (
       <GenericTogglingMenuItem
@@ -182,6 +222,71 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
         truthVal={name == labelStrategy}
         onSelect={() => onLabelStrategyChange(name)}
       />
+    );
+  };
+
+  // Preset functions
+  const isPresetSelected = (preset: any) => {
+    return (
+      (filterPresets.find((t) => t[0] == preset.datasetFilter)?.[1] ||
+        preset.datasetFilter ||
+        "") == filterValue &&
+      (highlightPresets.find((t) => t[0] == preset.highlightFilter)?.[1] ||
+        preset.highlightFilter ||
+        "") == highlightValue &&
+      (axisPresets.find((t) => t[0] == preset.xAxis)?.[1] ||
+        preset.xAxis ||
+        "") == xAxis &&
+      (axisPresets.find((t) => t[0] == preset.yAxis)?.[1] ||
+        preset.yAxis ||
+        "") == yAxis &&
+      (axisPresets.find((t) => t[0] == preset.dotColor)?.[1] ||
+        preset.dotColor ||
+        "") == dotColor &&
+      (axisPresets.find((t) => t[0] == preset.dotSize)?.[1] ||
+        preset.dotSize ||
+        "") == dotSize &&
+      labelStrategy == preset.labelStrategy &&
+      dotColorMap == preset.dotColorMap
+    );
+  };
+
+  const buildPresetMenuItem = (name: string, preset: any) => {
+    return (
+      <GenericTogglingMenuItem
+        text={name}
+        truthVal={isPresetSelected(preset)}
+        onSelect={() => onApplyPreset?.(preset)}
+      />
+    );
+  };
+
+  const getChartPresets = () => {
+    if (!chartPresets) return null;
+
+    const tooltipForFilterPresets = (
+      <Tooltip id="overallFilterPresets">Preset charts</Tooltip>
+    );
+    return (
+      <Dropdown alignRight>
+        <Dropdown.Toggle
+          variant={title == "" ? "warning" : "outline-secondary"}
+        >
+          <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}>
+            <FontAwesomeIcon icon={faList} />
+          </OverlayTrigger>
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <GenericTogglingMenuItem
+            text={<i>Clear selection</i>}
+            truthVal={false}
+            onSelect={() => onClearPreset?.()}
+          />
+          {chartPresets.map((preset) =>
+            buildPresetMenuItem(preset[0], preset[1])
+          )}
+        </Dropdown.Menu>
+      </Dropdown>
     );
   };
 
@@ -203,7 +308,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               allowExternalChange={true}
             />
             {chartPresets && (
-              <InputGroup.Append>{chartPresets}</InputGroup.Append>
+              <InputGroup.Append>{getChartPresets()}</InputGroup.Append>
             )}
           </InputGroup>
         </Form.Group>

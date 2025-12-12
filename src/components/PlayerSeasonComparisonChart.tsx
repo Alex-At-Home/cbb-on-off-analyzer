@@ -99,47 +99,14 @@ import GenericCollapsibleCard from "./shared/GenericCollapsibleCard";
 import PlayerLeaderboardTable from "./PlayerLeaderboardTable";
 import ThemedSelect from "./shared/ThemedSelect";
 import ChartConfigContainer from "./shared/ChartConfigContainer";
+import ExplorerChart from "./shared/ExplorerChart";
+import { decompAxis } from "../utils/ExplorerChartUtils";
 import { useTheme } from "next-themes";
 
 type Props = {
   startingState: PlayerSeasonComparisonParams;
   dataEvent: Record<string, TeamEditorStatsModel>;
   onChangeState: (newParams: PlayerSeasonComparisonParams) => void;
-};
-
-type AxisDecomposition = {
-  linq: string;
-  label?: string;
-  limits?: [string | number, string | number];
-  ticks?: (string | number)[];
-};
-const extraAxisDecompKeywords = ["//LABEL", "//LIMITS", "//TICKS"];
-const decompAxis = (axis: string): AxisDecomposition => {
-  const decomp = axis.split("//");
-  const postAxis = _.drop(decomp, 1);
-  return {
-    linq: decomp[0],
-    label: _.filter(postAxis, (l) => _.startsWith(l, "LABEL ")).map((l) =>
-      _.trim(l.substring(6))
-    )[0],
-    limits: _.filter(postAxis, (l) => _.startsWith(l, "LIMITS ")).map(
-      (l) =>
-        _.trim(l.substring(7))
-          .split(",")
-          .map((numOrStr) => {
-            const maybeNum = parseFloat(numOrStr);
-            return isNaN(maybeNum) ? numOrStr : maybeNum;
-          }) as [string | number, string | number]
-    )[0],
-    ticks: _.filter(postAxis, (l) => _.startsWith(l, "TICKS ")).map((l) =>
-      _.trim(l.substring(6))
-        .split(",")
-        .map((numOrStr) => {
-          const maybeNum = parseFloat(numOrStr);
-          return isNaN(maybeNum) ? numOrStr : maybeNum;
-        })
-    )[0],
-  };
 };
 
 /** The list of pre-built player charts, exported so that other elements can list them */
@@ -397,52 +364,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const [dotColorMap, setDotColorMap] = useState(
     startingState.dotColorMap || "Default"
   );
-  const colorMapOptions: Record<string, undefined | ((val: number) => string)> =
-    resolvedTheme == "dark"
-      ? {
-          Default: undefined,
-          "Red/Green Auto": CbbColors.percentile_brightRedToBrightGreen,
-          "Green/Red Auto": CbbColors.percentile_brightGreenToBrightRed,
-          "Blue/Orange Auto": CbbColors.percentile_brightBlueToBrightOrange,
-          "Off Rtg": CbbColors.off_pp100_redGreen_darkMode,
-          "Def Rtg": CbbColors.def_pp100_redGreen_darkMode,
-          RAPM: CbbColors.off_diff10_p100_redGreen_darkMode,
-          oRAPM: CbbColors.off_diff10_p100_redGreen_darkMode,
-          dRAPM: CbbColors.def_diff10_p100_redGreen_darkMode,
-          "Adj oRtg+": CbbColors.off_diff10_p100_redGreen_darkMode,
-          "Adj dRtg+": CbbColors.def_diff10_p100_redGreen_darkMode,
-          Usage: CbbColors.usg_offDef_blueBlackOrange_darkMode,
-          "Red/Green -10:+10": CbbColors.off_diff10_p100_redGreen_darkMode,
-          "Green/Red -10:+10": CbbColors.def_diff10_p100_redGreen_darkMode,
-          "Red/Green 80:120": CbbColors.off_pp100_redGreen_darkMode,
-          "Green/Red 80:120": CbbColors.def_pp100_redGreen_darkMode,
-          "Blue/Orange 10%:30%": CbbColors.usg_offDef_blueBlackOrange_darkMode,
-          "Red/Green %ile": CbbColors.percentile_brightRedToBrightGreen,
-          "Green/Red %ile": CbbColors.percentile_brightGreenToBrightRed,
-          "Blue/Orange %ile": CbbColors.percentile_brightBlueToBrightOrange,
-        }
-      : {
-          Default: undefined,
-          "Red/Green Auto": CbbColors.percentile_redBlackGreen,
-          "Green/Red Auto": CbbColors.percentile_greenBlackRed,
-          "Blue/Orange Auto": CbbColors.percentile_blueBlackOrange,
-          "Off Rtg": CbbColors.off_pp100_redBlackGreen,
-          "Def Rtg": CbbColors.def_pp100_redBlackGreen,
-          RAPM: CbbColors.off_diff10_p100_redBlackGreen,
-          oRAPM: CbbColors.off_diff10_p100_redBlackGreen,
-          dRAPM: CbbColors.def_diff10_p100_redBlackGreen,
-          "Adj oRtg+": CbbColors.off_diff10_p100_redBlackGreen,
-          "Adj dRtg+": CbbColors.def_diff10_p100_redBlackGreen,
-          Usage: CbbColors.usg_offDef_blueBlackOrange,
-          "Red/Green -10:+10": CbbColors.off_diff10_p100_redBlackGreen,
-          "Green/Red -10:+10": CbbColors.def_diff10_p100_redBlackGreen,
-          "Red/Green 80:120": CbbColors.off_pp100_redBlackGreen,
-          "Green/Red 80:120": CbbColors.def_pp100_redBlackGreen,
-          "Blue/Orange 10%:30%": CbbColors.usg_offDef_blueBlackOrange,
-          "Red/Green %ile": CbbColors.percentile_redBlackGreen,
-          "Green/Red %ile": CbbColors.percentile_greenBlackRed,
-          "Blue/Orange %ile": CbbColors.percentile_blueBlackOrange,
-        };
+  const colorMapOptions = CbbColors.colorMapOptions(resolvedTheme);
 
   const [labelStrategy, setLabelStrategy] = useState(
     startingState.labelStrategy || "None"
@@ -883,7 +805,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const [chart, playerLeaderboard] = React.useMemo(() => {
     if (_.isEmpty(dataEvent)) {
       // If we don't have players we're not done loading yet, so put up a loading screen:
-      return [<div></div>, <div></div>];
+      return [<div style={{ height: "200px" }}></div>, <div></div>];
     } else {
       setLoadingOverride(false);
     }
@@ -942,30 +864,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       )
       .value();
 
-    const extractTitle = (fieldDef: string) => {
-      const decomp = decompAxis(fieldDef);
-      return (
-        decomp.label ||
-        axisPresets.find((kv) => kv[1] == decomp.linq)?.[0] ||
-        decomp.linq
-      );
-    };
-
-    const hasCustomFilter =
-      confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
-    const specialCases = {
-      P6: Power6Conferences,
-      MM: NonP6Conferences,
-    } as Record<string, any>;
-    const confSet = confs
-      ? new Set(
-          _.flatMap(
-            (confs || "").split(","),
-            (c) => specialCases[c] || [NicknameToConference[c] || c]
-          )
-        )
-      : undefined;
-
     const dataToFilter = _.flatMap(teamRanks, (t) => {
       // Inject transfers from this season
       const offseasonYear = DateUtils.getNextYear(t.year);
@@ -994,7 +892,28 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           : chain
       ).value();
     });
-    const [filteredData, tmpAvancedFilterError] = datasetFilterStr
+    const handlePlayerToggle = (playerKey: string) => {
+      friendlyChange(
+        () => {
+          if (playerKey === "") {
+            // Clear all selections
+            setToggledPlayers({});
+          } else if (toggledPlayers[playerKey]) {
+            setToggledPlayers(_.omit(toggledPlayers, [playerKey]));
+          } else {
+            setToggledPlayers({
+              ...toggledPlayers,
+              [playerKey]: true,
+            });
+          }
+        },
+        true,
+        250
+      ); //(i experimented with making this shorter but it tended not to appear a bit too often)
+    };
+
+    // Apply filtering to the data
+    const [filteredData, tmpAdvancedFilterError] = datasetFilterStr
       ? AdvancedFilterUtils.applyPlayerFilter(
           dataToFilter,
           datasetFilterStr,
@@ -1009,7 +928,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           true
         )
       : [[], undefined];
-    setAdvancedFilterError(tmpAvancedFilterError);
+    setAdvancedFilterError(tmpAdvancedFilterError);
 
     const [highlightData, tmpHighlightFilterError] = highlightFilterStr
       ? AdvancedFilterUtils.applyPlayerFilter(
@@ -1023,24 +942,54 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       : [undefined, undefined];
     setHighlightFilterError(tmpHighlightFilterError);
 
-    //TODO:
-    // some of the entries seem like nonsense when displaying the JSON in applyFilter, plus entry far left is
-    // undefined, wut
+    // Build chart data for leaderboard table
+    const hasCustomFilter =
+      confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
+    const specialCases = {
+      P6: Power6Conferences,
+      MM: NonP6Conferences,
+    } as Record<string, any>;
+    const confSet = confs
+      ? new Set(
+          _.flatMap(
+            (confs || "").split(","),
+            (c) => specialCases[c] || [NicknameToConference[c] || c]
+          )
+        )
+      : undefined;
 
-    const subChart =
+    const chartToReturn = (
+      <ExplorerChart
+        filteredData={filteredData}
+        highlightData={highlightData}
+        CustomTooltip={CustomTooltip}
+        xAxis={xAxis}
+        yAxis={yAxis}
+        dotColor={dotColor}
+        dotSize={dotSize}
+        dotColorMap={dotColorMap}
+        labelStrategy={labelStrategy}
+        confs={confs}
+        queryFilters={queryFilters}
+        axisPresets={axisPresets}
+        colorMapOptions={colorMapOptions}
+        contrastForegroundBuilder={contrastForegroundBuilder}
+        screenHeight={screenHeight}
+        screenWidth={screenWidth}
+        height={height}
+        toggledPlayers={toggledPlayers}
+        onPlayerToggle={handlePlayerToggle}
+      />
+    );
+    const dataIsAlreadySorted =
+      datasetFilterStr.includes("SORT_BY") ||
+      highlightFilterStr.includes("SORT_BY");
+
+    const subChartData =
       _.isEmpty(confs) && !highlightData
         ? undefined
         : _.chain(highlightData || filteredData)
-            // .map((p, ii) => {
-            //    //Debug:
-            //    if (ii < 100) {
-            //       console.log(`??? ${JSON.stringify(p)}`);
-            //       // console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`);
-            //       // console.log(`??? CONF = ${p.actualResults?.conf} TEAM=${p.actualResults?.team}`);
-            //    }
-            //    return p;
-            // })
-            .filter((p) => {
+            .filter((p: any) => {
               return _.isEmpty(confs)
                 ? true
                 : confSet?.has(p.actualResults?.conf || "???") ||
@@ -1050,348 +999,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                         `${p.actualResults?.team || ""};`
                       ) >= 0);
             })
-            .map((p) => {
-              return {
-                x: p.x,
-                y: p.y,
-                z: p.z,
-                label: p.actualResults?.code || "Unknown player",
-                showTooltips: true,
-                p: p,
-              };
-            })
             .value();
 
-    var minColor = Number.MAX_SAFE_INTEGER;
-    var maxColor = -Number.MAX_SAFE_INTEGER;
-    const mainChart = _.chain(filteredData)
-      .map((p) => {
-        if ((p.color || 0) < minColor) minColor = p.color || 0;
-        if ((p.color || 0) > maxColor) maxColor = p.color || 0;
-        return {
-          x: p.x,
-          y: p.y,
-          z: p.z,
-          label: p.actualResults?.code || "Unknown player",
-          showTooltips: subChart == undefined,
-          p: p,
-        };
-      })
-      .value();
-
-    // Labelling logic
-    const [maxLabels, topAndBottom]: [number, boolean] = _.thru(
-      labelStrategy,
-      () => {
-        if (labelStrategy == "None") return [0, true];
-        else {
-          return [
-            parseInt(labelStrategy.replace(/^[^0-9]*([0-9]+)$/, "$1")),
-            labelStrategy.indexOf("Bottom") >= 0,
-          ];
-        }
-      }
-    );
-
-    //TODO: move this below calc of mutable state and then allow "outlier option" for labelling
-    const chartToUseForLabels = subChart || mainChart;
-    const dataPointsToLabelPhase1 =
-      maxLabels > 0
-        ? (_.thru(topAndBottom, () => {
-            if (topAndBottom) {
-              if (2 * maxLabels > _.size(chartToUseForLabels)) {
-                return chartToUseForLabels;
-              } else {
-                return _.take(chartToUseForLabels, maxLabels).concat(
-                  _.takeRight(chartToUseForLabels, maxLabels)
-                );
-              }
-            } else {
-              return _.take(chartToUseForLabels, maxLabels);
-            }
-          }) as any[])
-        : undefined;
-
-    const dataPointsToLabel = _.isEmpty(toggledPlayers)
-      ? dataPointsToLabelPhase1
-      : (dataPointsToLabelPhase1 || []).concat(
-          mainChart.filter(
-            (p) => toggledPlayers[p.p.actualResults?.code || "??"]
-          )
-        );
-
-    // (Some util logic associated with building averages and limits)
-    const mutAvgState = {
-      avgX: 0,
-      avgY: 0,
-      weightAvgX: 0,
-      weightAvgY: 0,
-      varX: 0,
-      varY: 0,
-      weightVarX: 0,
-      weightVarY: 0,
-      avgCount: 0,
-      avgWeightX: 0,
-      avgWeightY: 0,
-    };
-    const xHasNext = xAxis.indexOf("next_") >= 0;
-    const yHasNext = yAxis.indexOf("next_") >= 0;
-    const updateAvgState = (p: any) => {
-      mutAvgState.avgX += p.x || 0;
-      mutAvgState.avgY += p.y || 0;
-      mutAvgState.varX += (p.x || 0) * (p.x || 0);
-      mutAvgState.varY += (p.y || 0) * (p.y || 0);
-      const weightX = xHasNext
-        ? p.p?.actualResults?.off_team_poss_pct?.value || 0
-        : p.p?.orig?.off_team_poss_pct?.value || 0;
-      const weightY = yHasNext
-        ? p.p?.actualResults?.off_team_poss_pct?.value || 0
-        : p.p?.orig?.off_team_poss_pct?.value || 0;
-      mutAvgState.weightAvgX += (p.x || 0) * weightX;
-      mutAvgState.weightAvgY += (p.y || 0) * weightY;
-      mutAvgState.weightVarX += (p.x || 0) * (p.x || 0) * weightX;
-      mutAvgState.weightVarY += (p.y || 0) * (p.y || 0) * weightY;
-      mutAvgState.avgWeightX += weightX;
-      mutAvgState.avgWeightY += weightY;
-      mutAvgState.avgCount += 1;
-    };
-    const completeAvgState = () => {
-      mutAvgState.avgX = mutAvgState.avgX / (mutAvgState.avgCount || 1);
-      mutAvgState.avgY = mutAvgState.avgY / (mutAvgState.avgCount || 1);
-      const avgX2 = mutAvgState.varX / (mutAvgState.avgCount || 1);
-      const avgY2 = mutAvgState.varY / (mutAvgState.avgCount || 1);
-      mutAvgState.varX = Math.sqrt(
-        Math.abs(avgX2 - mutAvgState.avgX * mutAvgState.avgX)
-      );
-      mutAvgState.varY = Math.sqrt(
-        Math.abs(avgY2 - mutAvgState.avgY * mutAvgState.avgY)
-      );
-      const avgWeightX2 =
-        mutAvgState.weightVarX / (mutAvgState.avgWeightX || 1);
-      const avgWeightY2 =
-        mutAvgState.weightVarY / (mutAvgState.avgWeightY || 1);
-      mutAvgState.weightAvgX =
-        mutAvgState.weightAvgX / (mutAvgState.avgWeightX || 1);
-      mutAvgState.weightAvgY =
-        mutAvgState.weightAvgY / (mutAvgState.avgWeightY || 1);
-      mutAvgState.weightVarX = Math.sqrt(
-        Math.abs(avgWeightX2 - mutAvgState.weightAvgX * mutAvgState.weightAvgX)
-      );
-      mutAvgState.weightVarY = Math.sqrt(
-        Math.abs(avgWeightY2 - mutAvgState.weightAvgY * mutAvgState.weightAvgY)
-      );
-    };
-    if (subChart) {
-      subChart.forEach((el) => updateAvgState(el));
-    } else {
-      mainChart.forEach((el) => updateAvgState(el));
-    }
-    //TODO: if the axis are the same except for next/prev then force the domains to be the same
-    completeAvgState();
-    const renderAvgState = () => {
-      return (
-        <div>
-          Average: [({mutAvgState.avgX.toFixed(2)},{" "}
-          {mutAvgState.avgY.toFixed(2)})]&nbsp; (std: [
-          {mutAvgState.varX.toFixed(2)}], [{mutAvgState.varY.toFixed(2)}])
-          //&nbsp; Weighted: [({mutAvgState.weightAvgX.toFixed(2)},{" "}
-          {mutAvgState.weightAvgY.toFixed(2)})]&nbsp; (std: [
-          {mutAvgState.weightVarX.toFixed(2)}], [
-          {mutAvgState.weightVarY.toFixed(2)}]) //&nbsp; sample count=[
-          {mutAvgState.avgCount}]
-        </div>
-      );
-    };
-    //(end averages and limits)
-
-    const colorMapPicker =
-      colorMapOptions[dotColorMap] || contrastForegroundBuilder;
-    const isAutoColorMap = dotColorMap.indexOf("Auto") >= 0;
-    const deltaColorInv = 1 / (maxColor - minColor || 1);
-    const colorMapTransformer = (n: number) => {
-      if (isAutoColorMap) {
-        return (n - minColor) * deltaColorInv;
-      } else return n;
-    };
-
-    const handlePlayerToggle = (playerKey: string) => {
-      friendlyChange(
-        () => {
-          globalScatterChartRef.current.handleItemMouseLeave();
-          if (toggledPlayers[playerKey]) {
-            setToggledPlayers(_.omit(toggledPlayers, [playerKey]));
-          } else {
-            setToggledPlayers({
-              ...toggledPlayers,
-              [playerKey]: true,
-            });
-          }
-        },
-        true,
-        250
-      ); //(i experimented with making this shorter but it tended not to appear a bit too often)
-    };
-
-    const labelState = ScatterChartUtils.buildEmptyLabelState();
-    const xAxisDecom = decompAxis(xAxis);
-    const yAxisDecom = decompAxis(yAxis);
-    const chartToReturn = (
-      <div>
-        <ResponsiveContainer width={"100%"} height={0.75 * height}>
-          <ScatterChart
-            onMouseLeave={() =>
-              globalScatterChartRef.current.handleItemMouseLeave()
-            }
-            ref={globalScatterChartRef}
-          >
-            <CartesianGrid />
-            <XAxis
-              type="number"
-              dataKey="x"
-              ticks={xAxisDecom.ticks}
-              domain={xAxisDecom.limits || ["auto", "auto"]}
-              allowDataOverflow={!_.isNil(xAxisDecom.limits)}
-            >
-              <Label
-                value={extractTitle(xAxis)}
-                position="top"
-                style={{ textAnchor: "middle" }}
-              />
-            </XAxis>
-            <YAxis
-              type="number"
-              dataKey="y"
-              ticks={yAxisDecom.ticks}
-              domain={yAxisDecom.limits || ["auto", "auto"]}
-              allowDataOverflow={!_.isNil(yAxisDecom.limits)}
-            >
-              <Label
-                angle={-90}
-                value={extractTitle(yAxis)}
-                position="insideLeft"
-                style={{ textAnchor: "middle" }}
-              />
-            </YAxis>
-            <ZAxis type="number" dataKey="z" range={[10, 100]} />
-            <Scatter
-              data={mainChart}
-              fill="green"
-              opacity={subChart ? 0.25 : 1.0}
-            >
-              {subChart
-                ? undefined
-                : ScatterChartUtils.buildLabelColliders("mainChart", {
-                    maxHeight: screenHeight,
-                    maxWidth: screenWidth,
-                    mutableState: labelState,
-                    dataKey: "label",
-                    series: mainChart,
-                  })}
-              {mainChart.map((p, index) => {
-                return (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={colorMapPicker(colorMapTransformer(p.p.color))}
-                    onClick={(e) => handlePlayerToggle(p.label)}
-                  />
-                );
-              })}
-              ;
-            </Scatter>
-            {subChart ? (
-              <Scatter data={subChart} fill="green">
-                {ScatterChartUtils.buildLabelColliders("subChart", {
-                  maxHeight: screenHeight,
-                  maxWidth: screenWidth,
-                  mutableState: labelState,
-                  dataKey: "label",
-                  series: subChart,
-                })}
-
-                {subChart.map((p, index) => {
-                  return (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={colorMapPicker(colorMapTransformer(p.p.color))}
-                      onClick={(e) => handlePlayerToggle(p.label)}
-                    />
-                  );
-                })}
-              </Scatter>
-            ) : null}
-            ;
-            {dataPointsToLabel ? (
-              <Scatter data={dataPointsToLabel} fill="green">
-                {ScatterChartUtils.buildTidiedLabelList({
-                  maxHeight: screenHeight,
-                  maxWidth: screenWidth,
-                  mutableState: labelState,
-                  dataKey: "label",
-                  series: dataPointsToLabel,
-                })}
-
-                {dataPointsToLabel.map((p, index) => {
-                  return <Cell key={`cell-${index}`} opacity={0} />;
-                })}
-              </Scatter>
-            ) : null}
-            ;
-            {/* Repeat the label subset again, to ensure that the labels get rendered, see buildTidiedLabelList docs */}
-            {dataPointsToLabel ? (
-              <Scatter data={dataPointsToLabel} fill="green">
-                {ScatterChartUtils.buildTidiedLabelList({
-                  maxHeight: screenHeight,
-                  maxWidth: screenWidth,
-                  mutableState: labelState,
-                  dataKey: "label",
-                  series: dataPointsToLabel,
-                  underlinedLabels: toggledPlayers,
-                })}
-
-                {dataPointsToLabel.map((p, index) => {
-                  return (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={colorMapPicker(colorMapTransformer(p.p.color))}
-                      onClick={(e) => handlePlayerToggle(p.label)}
-                    />
-                  );
-                })}
-              </Scatter>
-            ) : null}
-            ;
-            <RechartTooltip
-              content={<CustomTooltip />}
-              wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
-              allowEscapeViewBox={{ x: true, y: false }}
-              itemSorter={(item: any) => item.value}
-            />
-          </ScatterChart>
-        </ResponsiveContainer>
-        <i>
-          <small>
-            <p>
-              {renderAvgState()}
-              {_.isEmpty(toggledPlayers) ? null : (
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    friendlyChange(() => setToggledPlayers({}), true);
-                  }}
-                >
-                  [{_.size(toggledPlayers)}] player(s) manually selected. Click
-                  to clear selection
-                </a>
-              )}
-            </p>
-          </small>
-        </i>
-      </div>
-    );
-    const dataIsAlreadySorted =
-      datasetFilterStr.includes("SORT_BY") ||
-      highlightFilterStr.includes("SORT_BY");
     const playerLeaderboardToReturn = (
       <PlayerLeaderboardTable
         startingState={{
@@ -1403,12 +1012,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           minPoss: incLowVol ? "0" : undefined,
         }}
         dataEvent={{
-          players: (subChart || mainChart)
+          players: (subChartData || filteredData)
             .map((p) => {
-              if (showPrevNextInTable && p.p.actualResults && p.p.orig) {
-                p.p.actualResults.prevYear = p.p.orig;
+              if (showPrevNextInTable && p.actualResults && p.orig) {
+                p.actualResults.prevYear = p.orig;
               }
-              return p.p.actualResults;
+              return p.actualResults;
             })
             .filter((p) => {
               return _.isEmpty(toggledPlayers) || !showOnlyHandSelectedInTable
@@ -1497,112 +1106,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
   // Overall presets
 
-  const isoverallPlayerChartPresetselected = (
-    preset: PlayerSeasonComparisonParams
-  ) => {
-    return (
-      (datasetFilterPresets.find((t) => t[0] == preset.datasetFilter)?.[1] ||
-        preset.datasetFilter ||
-        "") == datasetFilterStr &&
-      (datasetFilterPresets.find((t) => t[0] == preset.highlightFilter)?.[1] ||
-        preset.highlightFilter ||
-        "") == highlightFilterStr &&
-      (axisPresets.find((t) => t[0] == preset.xAxis)?.[1] ||
-        preset.xAxis ||
-        "") == xAxis &&
-      (axisPresets.find((t) => t[0] == preset.yAxis)?.[1] ||
-        preset.yAxis ||
-        "") == yAxis &&
-      (axisPresets.find((t) => t[0] == preset.dotColor)?.[1] ||
-        preset.dotColor ||
-        "") == dotColor &&
-      (axisPresets.find((t) => t[0] == preset.dotSize)?.[1] ||
-        preset.dotColor ||
-        "") == dotSize &&
-      labelStrategy == preset.labelStrategy &&
-      dotColorMap == preset.dotColorMap
-    );
-  };
-  const buildOverallPresetMenuItem = (
-    name: string,
-    preset: PlayerSeasonComparisonParams
-  ) => {
-    return (
-      <GenericTogglingMenuItem
-        text={name}
-        truthVal={isoverallPlayerChartPresetselected(preset)}
-        onSelect={() => applyPresetChart(preset)}
-      />
-    );
-  };
-  const getoverallPlayerChartPresets = () => {
-    const tooltipForFilterPresets = (
-      <Tooltip id="overallFilterPresets">Preset charts</Tooltip>
-    );
-    return (
-      <Dropdown alignRight>
-        <Dropdown.Toggle
-          variant={title == "" ? "warning" : "outline-secondary"}
-        >
-          <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}>
-            <FontAwesomeIcon icon={faList} />
-          </OverlayTrigger>
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <GenericTogglingMenuItem
-            text={<i>Clear selection</i>}
-            truthVal={false}
-            onSelect={() => {
-              friendlyChange(() => {
-                setTitle("");
-                setAdvancedFilterStr("");
-                setHighlightFilterStr("");
-                setXAxis("");
-                setYAxis("");
-                setDotColor("Default");
-                setDotSize("");
-                setLabelStrategy("None");
-              }, true);
-            }}
-          />
-          {overallPlayerChartPresets.map((preset) =>
-            buildOverallPresetMenuItem(preset[0], preset[1])
-          )}
-        </Dropdown.Menu>
-      </Dropdown>
-    );
-  };
-
   // Color selector
-
-  const ColorMapSingleValue = (props: any) => {
-    const label = props.data.label || "Default";
-    const labelToRender = label.replace(/[A-Za-z]+[/][A-Za-z]+\s+/, ""); //(remove leading colors)
-    const colorMapPicker = colorMapOptions[label] || contrastForegroundBuilder;
-    const leftColorStr = CbbColors.toRgba(
-      colorMapPicker(-Number.MAX_SAFE_INTEGER),
-      0.75
-    );
-    const rightColorStr = CbbColors.toRgba(
-      colorMapPicker(Number.MAX_SAFE_INTEGER),
-      0.75
-    );
-    return (
-      <components.SingleValue {...props}>
-        <div
-          style={{
-            textAlign: "center",
-            background:
-              label == "Default"
-                ? undefined
-                : `linear-gradient(to right, ${leftColorStr}, 20%, white, 80%, ${rightColorStr})`,
-          }}
-        >
-          {labelToRender}
-        </div>
-      </components.SingleValue>
-    );
-  };
 
   // Label strategy
 
@@ -1740,7 +1244,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       <ChartConfigContainer
         title={title}
         onTitleChange={setTitle}
-        chartPresets={getoverallPlayerChartPresets()}
+        chartPresets={overallPlayerChartPresets}
+        onApplyPreset={applyPresetChart}
+        onClearPreset={() => {
+          applyPresetChart({});
+        }}
         showConfigOptions={showConfigOptions}
         filterValue={datasetFilterStr}
         filterError={datasetFilterError}
@@ -1764,7 +1272,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         dotColorMap={dotColorMap}
         colorMapOptions={colorMapOptions}
         onDotColorMapChange={handleDotColorMapChange}
-        ColorMapSingleValue={ColorMapSingleValue}
+        contrastForegroundBuilder={contrastForegroundBuilder}
         dotSize={dotSize}
         onDotSizeChange={handleDotSizeChange}
         autocompleteOptions={

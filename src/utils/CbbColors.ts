@@ -592,4 +592,54 @@ export class CbbColors {
         gradeColor: CbbColors.off_pctile_qual,
       },
     ];
-}
+
+  ////////////////////////
+
+  public static readonly colorMapOptions = (resolvedTheme?: string): Record<string, undefined | ((val: number) => string)> =>
+  resolvedTheme == "dark"
+    ? {
+        Default: undefined,
+        "Red/Green Auto": CbbColors.percentile_brightRedToBrightGreen,
+        "Green/Red Auto": CbbColors.percentile_brightGreenToBrightRed,
+        "Blue/Orange Auto": CbbColors.percentile_brightBlueToBrightOrange,
+        "Off Rtg": CbbColors.off_pp100_redGreen_darkMode,
+        "Def Rtg": CbbColors.def_pp100_redGreen_darkMode,
+        RAPM: CbbColors.off_diff10_p100_redGreen_darkMode,
+        oRAPM: CbbColors.off_diff10_p100_redGreen_darkMode,
+        dRAPM: CbbColors.def_diff10_p100_redGreen_darkMode,
+        "Adj oRtg+": CbbColors.off_diff10_p100_redGreen_darkMode,
+        "Adj dRtg+": CbbColors.def_diff10_p100_redGreen_darkMode,
+        Usage: CbbColors.usg_offDef_blueBlackOrange_darkMode,
+        "Red/Green -10:+10": CbbColors.off_diff10_p100_redGreen_darkMode,
+        "Green/Red -10:+10": CbbColors.def_diff10_p100_redGreen_darkMode,
+        "Red/Green 80:120": CbbColors.off_pp100_redGreen_darkMode,
+        "Green/Red 80:120": CbbColors.def_pp100_redGreen_darkMode,
+        "Blue/Orange 10%:30%": CbbColors.usg_offDef_blueBlackOrange_darkMode,
+        "Red/Green %ile": CbbColors.percentile_brightRedToBrightGreen,
+        "Green/Red %ile": CbbColors.percentile_brightGreenToBrightRed,
+        "Blue/Orange %ile": CbbColors.percentile_brightBlueToBrightOrange,
+      }
+    : {
+        Default: undefined,
+        "Red/Green Auto": CbbColors.percentile_redBlackGreen,
+        "Green/Red Auto": CbbColors.percentile_greenBlackRed,
+        "Blue/Orange Auto": CbbColors.percentile_blueBlackOrange,
+        "Off Rtg": CbbColors.off_pp100_redBlackGreen,
+        "Def Rtg": CbbColors.def_pp100_redBlackGreen,
+        RAPM: CbbColors.off_diff10_p100_redBlackGreen,
+        oRAPM: CbbColors.off_diff10_p100_redBlackGreen,
+        dRAPM: CbbColors.def_diff10_p100_redBlackGreen,
+        "Adj oRtg+": CbbColors.off_diff10_p100_redBlackGreen,
+        "Adj dRtg+": CbbColors.def_diff10_p100_redBlackGreen,
+        Usage: CbbColors.usg_offDef_blueBlackOrange,
+        "Red/Green -10:+10": CbbColors.off_diff10_p100_redBlackGreen,
+        "Green/Red -10:+10": CbbColors.def_diff10_p100_redBlackGreen,
+        "Red/Green 80:120": CbbColors.off_pp100_redBlackGreen,
+        "Green/Red 80:120": CbbColors.def_pp100_redBlackGreen,
+        "Blue/Orange 10%:30%": CbbColors.usg_offDef_blueBlackOrange,
+        "Red/Green %ile": CbbColors.percentile_redBlackGreen,
+        "Green/Red %ile": CbbColors.percentile_greenBlackRed,
+        "Blue/Orange %ile": CbbColors.percentile_blueBlackOrange,
+      };
+  
+  }
