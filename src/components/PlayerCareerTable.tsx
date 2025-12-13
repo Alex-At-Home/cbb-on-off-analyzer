@@ -555,12 +555,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       divisionStatsCache[player.year || "??"] || {};
 
     const adjMarginPer100 =
-      ((player.off_adj_rapm_prod as Statistic)?.value || 0) -
-      ((player.def_adj_rapm_prod as Statistic)?.value || 0);
-    const adjMarginProd =
       ((player.off_adj_rapm as Statistic)?.value || 0) -
       ((player.def_adj_rapm as Statistic)?.value || 0);
-    const adjMargin = factorMins ? adjMarginPer100 : adjMarginProd;
+    const adjMarginProd =
+      ((player.off_adj_rapm_prod as Statistic)?.value || 0) -
+      ((player.def_adj_rapm_prod as Statistic)?.value || 0);
+    const adjMargin = factorMins ? adjMarginProd : adjMarginPer100;
     player.off_adj_rapm_margin = {
       value: adjMarginPer100,
     };
