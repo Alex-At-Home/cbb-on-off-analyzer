@@ -842,6 +842,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}
+        hasLogos={true}
         server={server}
       />
     </Container>

@@ -546,7 +546,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                       gender: matchupFilterParams.gender as "Men" | "Women",
                     },
                   ]}
-                  chartOpts={{ buildZones: shotChartsShowZones, useEfg: shotChartsUseEfg }}
+                  chartOpts={{
+                    buildZones: shotChartsShowZones,
+                    useEfg: shotChartsUseEfg,
+                  }}
                   onChangeChartOpts={(newOpts) => {
                     setShotChartsShowZones(newOpts.buildZones || false);
                     setShotChartsUseEfg(newOpts.useEfg ?? false);
@@ -627,6 +630,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}
+        hasLogos={true}
         server={server}
       />
     </Container>

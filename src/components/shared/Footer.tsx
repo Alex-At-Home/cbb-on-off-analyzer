@@ -23,6 +23,7 @@ type Props = {
   readonly year?: string;
   readonly gender?: string;
   readonly dateOverride?: number;
+  readonly hasLogos?: boolean;
 };
 
 const Footer: React.FunctionComponent<Props> = ({
@@ -30,6 +31,7 @@ const Footer: React.FunctionComponent<Props> = ({
   gender,
   year,
   dateOverride,
+  hasLogos,
 }) => {
   const emailAddress = "bWFpbHRvOmhvb3AuZXhwbG9yZXJAZ21haWwuY29t";
   const twitterAddress = "aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI=";
@@ -177,6 +179,26 @@ const Footer: React.FunctionComponent<Props> = ({
           </span>
         </Col>
       </Row>
+      {hasLogos ? (
+        <Row>
+          <Col></Col>
+          <Col>
+            <span className="float-right">
+              <i>
+                <small>
+                  Team logos with kind permission from{" "}
+                  <a
+                    href="https://github.com/andreweatherman/cbbplotR"
+                    target="_blank"
+                  >
+                    cbbplotR
+                  </a>
+                </small>
+              </i>
+            </span>
+          </Col>
+        </Row>
+      ) : undefined}
     </Container>
   );
 };
