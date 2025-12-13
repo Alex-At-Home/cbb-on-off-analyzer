@@ -155,7 +155,9 @@ const CommonFilter: CommonFilterI = ({
     startingState.team || ParamDefaults.defaultTeam
   );
   const [year, setYear] = useState(
-    startingState.year || ParamDefaults.defaultYear
+    DateUtils.cleanYear(startingState.year, ParamDefaults.defaultYear, [
+      DateUtils.ExtraYears,
+    ])
   );
   const [gender, setGender] = useState(
     startingState.gender || ParamDefaults.defaultGender

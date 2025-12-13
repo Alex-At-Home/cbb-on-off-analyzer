@@ -9,6 +9,7 @@ export class DateUtils {
   static readonly AllYears = "All";
   static readonly MultiYearPrefix = "Multi:";
   static readonly ExtraYears = "Extra";
+  static readonly YearsFollowingPortal = "2021+";
 
   //////////////////////////////////////
 
@@ -128,6 +129,35 @@ export class DateUtils {
 
   /** Eg estimated possession counts are smaller this season */
   static readonly covidSeason: string = "2020/21";
+
+  static readonly cleanYear = (
+    year: string | undefined | null,
+    fallback: string,
+    allowed: ("All" | "Multi:" | "Extra" | "2021+")[] = []
+  ) => {
+    if (!year) return fallback; //(short circuit)
+    const specialCases = _.find(allowed, (check) => {
+      if (check == DateUtils.AllYears && year == DateUtils.AllYears) {
+        return true;
+      } else if (
+        check == DateUtils.MultiYearPrefix &&
+        year.startsWith(DateUtils.MultiYearPrefix)
+      ) {
+        return true;
+      } else if (
+        check == DateUtils.YearsFollowingPortal &&
+        year == DateUtils.YearsFollowingPortal
+      ) {
+        return true;
+      } else if (check == DateUtils.ExtraYears) {
+        return _.find(DateUtils.olderYears, (y) => y == year);
+      }
+      return false;
+    });
+    return specialCases
+      ? year
+      : _.find(DateUtils.coreYears, (y) => y == year) || fallback;
+  };
 
   //////////////////////////////////////
 
@@ -275,4 +305,7 @@ export class DateUtils {
       return false;
     }
   };
+
+  /** If adding an Extra year then these are the allowable ones */
+  static readonly olderYears = ["2014/5", "2015/6", "2016/7", "2017/8"];
 }

@@ -288,7 +288,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   // Data source
   const [confs, setConfs] = useState(startingState.conf || "");
   const [yearUnreliable, setYear] = useState(
-    startingState.year || DateUtils.mostRecentYearWithLboardData
+    DateUtils.cleanYear(
+      startingState.year,
+      DateUtils.mostRecentYearWithLboardData,
+      [DateUtils.AllYears, DateUtils.MultiYearPrefix, DateUtils.ExtraYears]
+    )
   );
   const year = startingState.year || DateUtils.mostRecentYearWithLboardData;
   //(changing year changes data which triggers a reload of this page, so startingState is always right ...
