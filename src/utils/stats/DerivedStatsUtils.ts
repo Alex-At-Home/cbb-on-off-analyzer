@@ -6,20 +6,23 @@ export class DerivedStatsUtils {
     stat: PureStatSet,
     toMutate: PureStatSet
   ) => {
-    const totalPoss = stat[`total_def_poss`]?.value || 1;
-    const total2pAttempts = stat[`total_def_2p_attempts`]?.value || 1;
-    const totalStls = stat[`total_off_stl`]?.value || 0; //(confusing! but "total_off" just means _our_ stats)
-    const totalBlks = stat[`total_off_blk`]?.value || 0; //(confusing! but "total_off" just means _our_ stats)
-    const totalTos = stat[`total_def_to`]?.value || 0;
-    const totalNonStlTos = Math.max(0, totalTos - totalStls);
+    ["def", "off"].forEach((offOrDef) => {
+      const defNotOff = offOrDef == "off" ? "def" : "off";
+      const totalPoss = stat[`total_${offOrDef}_poss`]?.value || 1;
+      const total2pAttempts = stat[`total_${offOrDef}_2p_attempts`]?.value || 1;
+      const totalStls = stat[`total_${defNotOff}_stl`]?.value || 0; //(confusing! but "total_off" just means _our_ stats)
+      const totalBlks = stat[`total_${defNotOff}_blk`]?.value || 0; //(confusing! but "total_off" just means _our_ stats)
+      const totalTos = stat[`total_${offOrDef}_to`]?.value || 0;
+      const totalNonStlTos = Math.max(0, totalTos - totalStls);
 
-    toMutate[`def_stl`] = { value: totalStls / totalPoss };
-    toMutate[`def_blk`] = { value: totalBlks / total2pAttempts };
-    toMutate[`def_stk`] = {
-      value:
-        (0.5 * totalStls) / totalPoss + (0.5 * totalBlks) / total2pAttempts,
-    };
-    toMutate[`def_to_nonstl`] = { value: totalNonStlTos / totalPoss };
+      toMutate[`${offOrDef}_stl`] = { value: totalStls / totalPoss };
+      toMutate[`${offOrDef}_blk`] = { value: totalBlks / total2pAttempts };
+      toMutate[`${offOrDef}_stk`] = {
+        value:
+          (0.5 * totalStls) / totalPoss + (0.5 * totalBlks) / total2pAttempts,
+      };
+      toMutate[`${offOrDef}_to_nonstl`] = { value: totalNonStlTos / totalPoss };
+    });
   };
 
   /** "Scramble" (Post ORB) stats - note only valid for team

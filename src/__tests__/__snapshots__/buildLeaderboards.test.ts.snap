@@ -3391,6 +3391,9 @@ Array [
     "off_ast_rim": Object {
       "value": 0.43765281173594134,
     },
+    "off_blk": Object {
+      "value": 0.10901883052527254,
+    },
     "off_efg": Object {
       "value": 0.48647125140924463,
     },
@@ -3474,8 +3477,17 @@ Array [
     "off_scramble_to": Object {
       "value": 0.12057984260228126,
     },
+    "off_stk": Object {
+      "value": 0.09543382546966564,
+    },
+    "off_stl": Object {
+      "value": 0.08184882041405873,
+    },
     "off_to": Object {
       "value": 0.16947520462205104,
+    },
+    "off_to_nonstl": Object {
+      "value": 0.08762638420799229,
     },
     "off_trans": Object {
       "value": 0.24058738565238325,
@@ -4085,6 +4097,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -4095,6 +4110,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -4246,6 +4270,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -4256,6 +4283,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -4407,6 +4443,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -4417,6 +4456,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -4568,6 +4616,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -4578,6 +4629,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -4729,6 +4789,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -4739,6 +4802,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -4890,6 +4962,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -4900,6 +4975,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -5051,6 +5135,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -5061,6 +5148,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -5212,6 +5308,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -5222,6 +5321,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -5373,6 +5481,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -5383,6 +5494,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -5534,6 +5654,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -5544,6 +5667,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -5695,6 +5827,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -5705,6 +5840,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -5856,6 +6000,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -5866,6 +6013,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6017,6 +6173,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6027,6 +6186,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6178,6 +6346,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6188,6 +6359,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6339,6 +6519,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6349,6 +6532,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6500,6 +6692,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6510,6 +6705,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6661,6 +6865,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6671,6 +6878,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6822,6 +7038,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6832,6 +7051,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -6983,6 +7211,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -6993,6 +7224,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -7144,6 +7384,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -7154,6 +7397,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -7305,6 +7557,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -7315,6 +7570,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -7466,6 +7730,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -7476,6 +7743,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -7627,6 +7903,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -7637,6 +7916,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -7788,6 +8076,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -7798,6 +8089,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -7949,6 +8249,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -7959,6 +8262,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -8110,6 +8422,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -8120,6 +8435,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -8271,6 +8595,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -8281,6 +8608,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -8432,6 +8768,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -8442,6 +8781,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -8593,6 +8941,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -8603,6 +8954,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -8754,6 +9114,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -8764,6 +9127,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -8915,6 +9287,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -8925,6 +9300,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -9076,6 +9460,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -9086,6 +9473,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -9237,6 +9633,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -9247,6 +9646,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -9398,6 +9806,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -9408,6 +9819,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -9559,6 +9979,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -9569,6 +9992,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -9720,6 +10152,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -9730,6 +10165,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -9881,6 +10325,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -9891,6 +10338,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -10042,6 +10498,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -10052,6 +10511,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -10203,6 +10671,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -10213,6 +10684,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -10364,6 +10844,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -10374,6 +10857,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -10525,6 +11017,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -10535,6 +11030,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -10686,6 +11190,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -10696,6 +11203,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -10847,6 +11363,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -10857,6 +11376,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11008,6 +11536,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11018,6 +11549,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11169,6 +11709,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11179,6 +11722,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11330,6 +11882,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11340,6 +11895,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11491,6 +12055,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11501,6 +12068,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11652,6 +12228,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11662,6 +12241,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11813,6 +12401,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11823,6 +12414,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -11974,6 +12574,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -11984,6 +12587,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -12135,6 +12747,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -12145,6 +12760,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -12296,6 +12920,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -12306,6 +12933,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -12457,6 +13093,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -12467,6 +13106,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -12618,6 +13266,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -12628,6 +13279,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -12779,6 +13439,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -12789,6 +13452,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -12940,6 +13612,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -12950,6 +13625,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -13101,6 +13785,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -13111,6 +13798,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -13262,6 +13958,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -13272,6 +13971,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -13423,6 +14131,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -13433,6 +14144,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -13584,6 +14304,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -13594,6 +14317,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -13745,6 +14477,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -13755,6 +14490,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -13906,6 +14650,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -13916,6 +14663,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -14067,6 +14823,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -14077,6 +14836,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -14228,6 +14996,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -14238,6 +15009,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -14389,6 +15169,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -14399,6 +15182,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -14550,6 +15342,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -14560,6 +15355,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -14711,6 +15515,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -14721,6 +15528,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -14872,6 +15688,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -14882,6 +15701,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15033,6 +15861,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -15043,6 +15874,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15194,6 +16034,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -15204,6 +16047,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15355,6 +16207,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -15365,6 +16220,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15516,6 +16380,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -15526,6 +16393,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15677,6 +16553,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -15687,6 +16566,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15838,6 +16726,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -15848,6 +16739,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -15999,6 +16899,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -16009,6 +16912,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -16160,6 +17072,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -16170,6 +17085,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -16321,6 +17245,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -16331,6 +17258,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -16482,6 +17418,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -16492,6 +17431,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -16643,6 +17591,9 @@ Array [
     },
     "game_info": undefined,
     "gender": "Men",
+    "off_blk": Object {
+      "value": 0,
+    },
     "off_scramble": Object {
       "value": 0,
     },
@@ -16653,6 +17604,15 @@ Array [
       "value": 0,
     },
     "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_stk": Object {
+      "value": 0,
+    },
+    "off_stl": Object {
+      "value": 0,
+    },
+    "off_to_nonstl": Object {
       "value": 0,
     },
     "off_trans": Object {
@@ -21769,6 +22729,88 @@ Object {
     "off_ast_rim": Array [
       0.43765281173594134,
     ],
+    "off_blk": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10901883052527254,
+    ],
     "off_efg": Array [
       0.48647125140924463,
     ],
@@ -22130,8 +23172,254 @@ Object {
     "off_scramble_to": Array [
       0.12057984260228126,
     ],
+    "off_stk": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09543382546966564,
+    ],
+    "off_stl": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.08184882041405873,
+    ],
     "off_to": Array [
       0.16947520462205104,
+    ],
+    "off_to_nonstl": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.08762638420799229,
     ],
     "off_trans": Array [
       0,
@@ -27333,6 +28621,100 @@ Object {
       "min": 0.43765281173594134,
       "size": 1,
     },
+    "off_blk": Object {
+      "isPct": true,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "11": Array [
+          79,
+          0.10901883052527254,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
     "off_efg": Object {
       "isPct": true,
       "lut": Object {
@@ -27841,6 +29223,194 @@ Object {
       "min": 0.12057984260228126,
       "size": 1,
     },
+    "off_stk": Object {
+      "isPct": true,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "10": Array [
+          79,
+          0.09543382546966564,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
+    "off_stl": Object {
+      "isPct": true,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "8": Array [
+          79,
+          0.08184882041405873,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
     "off_to": Object {
       "isPct": true,
       "lut": Object {
@@ -27852,6 +29422,100 @@ Object {
       "lutMult": undefined,
       "min": 0.16947520462205104,
       "size": 1,
+    },
+    "off_to_nonstl": Object {
+      "isPct": true,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "9": Array [
+          79,
+          0.08762638420799229,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
     },
     "off_trans": Object {
       "isPct": true,

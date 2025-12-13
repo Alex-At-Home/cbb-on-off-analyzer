@@ -65,6 +65,9 @@ Object {
   "def_trans_to": Object {
     "value": 0.18867924528301885,
   },
+  "off_blk": Object {
+    "value": 0.10901883052527254,
+  },
   "off_scramble": Object {
     "value": 0.10780838866433026,
   },
@@ -91,6 +94,15 @@ Object {
   },
   "off_scramble_to": Object {
     "value": 0.12057984260228126,
+  },
+  "off_stk": Object {
+    "value": 0.09543382546966564,
+  },
+  "off_stl": Object {
+    "value": 0.08184882041405873,
+  },
+  "off_to_nonstl": Object {
+    "value": 0.08762638420799229,
   },
   "off_trans": Object {
     "value": 0.24058738565238325,

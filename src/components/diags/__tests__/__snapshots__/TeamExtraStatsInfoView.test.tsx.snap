@@ -444,9 +444,9 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <Row
             noGutters={false}
           >
-            <p>
+            <span>
               More assist stats:
-            </p>
+            </span>
             <GenericTable
               tableCopyId="assistStats_test"
               tableData={
@@ -639,108 +639,492 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <Row
             noGutters={false}
           >
-            Misc other stats:
+            <span>
+              Misc other stats:
+            </span>
+            <GenericTable
+              tableCopyId="otherStats_test"
+              tableData={
+                Array [
+                  GenericTableDataRow {
+                    "cellMetaFn": [Function],
+                    "colSpanOverride": undefined,
+                    "dataObj": Object {
+                      "def_2prim_ast": Object {
+                        "value": 0.4507462686567164,
+                      },
+                      "def_3p_ast": Object {
+                        "value": 0.8546255506607929,
+                      },
+                      "def_3p_opp": Object {
+                        "value": 32.98939828080229,
+                      },
+                      "def_ast_3p": Object {
+                        "value": 0.485,
+                      },
+                      "def_ast_rim": Object {
+                        "value": 0.3775,
+                      },
+                      "def_blk": Object {
+                        "value": 0.11827007943512798,
+                      },
+                      "def_ft": Object {
+                        "value": 0.6981981981981982,
+                      },
+                      "def_scramble": Object {
+                        "value": 0.08527071563674632,
+                      },
+                      "def_scramble_2p": Object {
+                        "value": 0.4766355140186916,
+                      },
+                      "def_scramble_3p": Object {
+                        "value": 0.42857142857142855,
+                      },
+                      "def_scramble_3pr": Object {
+                        "value": 0.24647887323943662,
+                      },
+                      "def_scramble_delta_ppp": Object {
+                        "value": 8.196096883864556,
+                      },
+                      "def_scramble_ftr": Object {
+                        "value": 0.4507042253521127,
+                      },
+                      "def_scramble_per_orb": Object {
+                        "value": 0.583711708026543,
+                      },
+                      "def_scramble_ppp": Object {
+                        "value": 104.25568362101016,
+                      },
+                      "def_scramble_to": Object {
+                        "value": 0.14088605894731104,
+                      },
+                      "def_stk": Object {
+                        "value": 0.09325325211544962,
+                      },
+                      "def_stl": Object {
+                        "value": 0.06823642479577126,
+                      },
+                      "def_to_nonstl": Object {
+                        "value": 0.10619894281595386,
+                      },
+                      "def_trans": Object {
+                        "value": 0.19610764055742433,
+                      },
+                      "def_trans_2p": Object {
+                        "value": 0.5286624203821656,
+                      },
+                      "def_trans_3p": Object {
+                        "value": 0.35294117647058826,
+                      },
+                      "def_trans_3pr": Object {
+                        "value": 0.4311594202898551,
+                      },
+                      "def_trans_delta_ppp": Object {
+                        "value": -5.395533808941735,
+                      },
+                      "def_trans_ftr": Object {
+                        "value": 0.42028985507246375,
+                      },
+                      "def_trans_ppp": Object {
+                        "value": 90.66405292820387,
+                      },
+                      "def_trans_to": Object {
+                        "value": 0.18867924528301885,
+                      },
+                      "grades": undefined,
+                      "off_2prim_ast": Object {
+                        "value": 0.4430693069306931,
+                      },
+                      "off_3p_ast": Object {
+                        "value": 0.8487394957983193,
+                      },
+                      "off_ast_3p": Object {
+                        "value": 0.4938875305623472,
+                      },
+                      "off_ast_rim": Object {
+                        "value": 0.43765281173594134,
+                      },
+                      "off_blk": Object {
+                        "value": 0.10901883052527254,
+                      },
+                      "off_ft": Object {
+                        "value": 0.7473841554559043,
+                      },
+                      "off_scramble": Object {
+                        "value": 0.10780838866433026,
+                      },
+                      "off_scramble_2p": Object {
+                        "value": 0.5755395683453237,
+                      },
+                      "off_scramble_3p": Object {
+                        "value": 0.28888888888888886,
+                      },
+                      "off_scramble_3pr": Object {
+                        "value": 0.24456521739130435,
+                      },
+                      "off_scramble_delta_ppp": Object {
+                        "value": 8.046930109156818,
+                      },
+                      "off_scramble_ftr": Object {
+                        "value": 0.47282608695652173,
+                      },
+                      "off_scramble_per_orb": Object {
+                        "value": 0.6415989205037649,
+                      },
+                      "off_scramble_ppp": Object {
+                        "value": 115.22073848662431,
+                      },
+                      "off_scramble_to": Object {
+                        "value": 0.12057984260228126,
+                      },
+                      "off_stk": Object {
+                        "value": 0.09543382546966564,
+                      },
+                      "off_stl": Object {
+                        "value": 0.08184882041405873,
+                      },
+                      "off_tempo": Object {
+                        "value": 83.16,
+                      },
+                      "off_title": "Offense",
+                      "off_to_nonstl": Object {
+                        "value": 0.08762638420799229,
+                      },
+                      "off_trans": Object {
+                        "value": 0.24058738565238325,
+                      },
+                      "off_trans_2p": Object {
+                        "value": 0.6779661016949152,
+                      },
+                      "off_trans_3p": Object {
+                        "value": 0.30935251798561153,
+                      },
+                      "off_trans_3pr": Object {
+                        "value": 0.439873417721519,
+                      },
+                      "off_trans_delta_ppp": Object {
+                        "value": 0.0905502377016063,
+                      },
+                      "off_trans_ftr": Object {
+                        "value": 0.6708860759493671,
+                      },
+                      "off_trans_ppp": Object {
+                        "value": 107.2643586151691,
+                      },
+                      "off_trans_to": Object {
+                        "value": 0.16609965979587754,
+                      },
+                      "tempo": Object {
+                        "value": 83.16,
+                      },
+                    },
+                    "kind": "data-row",
+                    "prefixFn": [Function],
+                    "tableFieldsOverride": undefined,
+                  },
+                  GenericTableDataRow {
+                    "cellMetaFn": [Function],
+                    "colSpanOverride": undefined,
+                    "dataObj": Object {
+                      "def_2prim_ast": Object {
+                        "value": 0.4507462686567164,
+                      },
+                      "def_3p_ast": Object {
+                        "value": 0.8546255506607929,
+                      },
+                      "def_3p_opp": Object {
+                        "value": 32.98939828080229,
+                      },
+                      "def_ast_3p": Object {
+                        "value": 0.485,
+                      },
+                      "def_ast_rim": Object {
+                        "value": 0.3775,
+                      },
+                      "def_blk": Object {
+                        "value": 0.11827007943512798,
+                      },
+                      "def_ft": Object {
+                        "value": 0.6981981981981982,
+                      },
+                      "def_scramble": Object {
+                        "value": 0.08527071563674632,
+                      },
+                      "def_scramble_2p": Object {
+                        "value": 0.4766355140186916,
+                      },
+                      "def_scramble_3p": Object {
+                        "value": 0.42857142857142855,
+                      },
+                      "def_scramble_3pr": Object {
+                        "value": 0.24647887323943662,
+                      },
+                      "def_scramble_delta_ppp": Object {
+                        "value": 8.196096883864556,
+                      },
+                      "def_scramble_ftr": Object {
+                        "value": 0.4507042253521127,
+                      },
+                      "def_scramble_per_orb": Object {
+                        "value": 0.583711708026543,
+                      },
+                      "def_scramble_ppp": Object {
+                        "value": 104.25568362101016,
+                      },
+                      "def_scramble_to": Object {
+                        "value": 0.14088605894731104,
+                      },
+                      "def_stk": Object {
+                        "value": 0.09325325211544962,
+                      },
+                      "def_stl": Object {
+                        "value": 0.06823642479577126,
+                      },
+                      "def_tempo": undefined,
+                      "def_title": "Defense",
+                      "def_to_nonstl": Object {
+                        "value": 0.10619894281595386,
+                      },
+                      "def_trans": Object {
+                        "value": 0.19610764055742433,
+                      },
+                      "def_trans_2p": Object {
+                        "value": 0.5286624203821656,
+                      },
+                      "def_trans_3p": Object {
+                        "value": 0.35294117647058826,
+                      },
+                      "def_trans_3pr": Object {
+                        "value": 0.4311594202898551,
+                      },
+                      "def_trans_delta_ppp": Object {
+                        "value": -5.395533808941735,
+                      },
+                      "def_trans_ftr": Object {
+                        "value": 0.42028985507246375,
+                      },
+                      "def_trans_ppp": Object {
+                        "value": 90.66405292820387,
+                      },
+                      "def_trans_to": Object {
+                        "value": 0.18867924528301885,
+                      },
+                      "grades": undefined,
+                      "off_2prim_ast": Object {
+                        "value": 0.4430693069306931,
+                      },
+                      "off_3p_ast": Object {
+                        "value": 0.8487394957983193,
+                      },
+                      "off_ast_3p": Object {
+                        "value": 0.4938875305623472,
+                      },
+                      "off_ast_rim": Object {
+                        "value": 0.43765281173594134,
+                      },
+                      "off_blk": Object {
+                        "value": 0.10901883052527254,
+                      },
+                      "off_ft": Object {
+                        "value": 0.7473841554559043,
+                      },
+                      "off_scramble": Object {
+                        "value": 0.10780838866433026,
+                      },
+                      "off_scramble_2p": Object {
+                        "value": 0.5755395683453237,
+                      },
+                      "off_scramble_3p": Object {
+                        "value": 0.28888888888888886,
+                      },
+                      "off_scramble_3pr": Object {
+                        "value": 0.24456521739130435,
+                      },
+                      "off_scramble_delta_ppp": Object {
+                        "value": 8.046930109156818,
+                      },
+                      "off_scramble_ftr": Object {
+                        "value": 0.47282608695652173,
+                      },
+                      "off_scramble_per_orb": Object {
+                        "value": 0.6415989205037649,
+                      },
+                      "off_scramble_ppp": Object {
+                        "value": 115.22073848662431,
+                      },
+                      "off_scramble_to": Object {
+                        "value": 0.12057984260228126,
+                      },
+                      "off_stk": Object {
+                        "value": 0.09543382546966564,
+                      },
+                      "off_stl": Object {
+                        "value": 0.08184882041405873,
+                      },
+                      "off_to_nonstl": Object {
+                        "value": 0.08762638420799229,
+                      },
+                      "off_trans": Object {
+                        "value": 0.24058738565238325,
+                      },
+                      "off_trans_2p": Object {
+                        "value": 0.6779661016949152,
+                      },
+                      "off_trans_3p": Object {
+                        "value": 0.30935251798561153,
+                      },
+                      "off_trans_3pr": Object {
+                        "value": 0.439873417721519,
+                      },
+                      "off_trans_delta_ppp": Object {
+                        "value": 0.0905502377016063,
+                      },
+                      "off_trans_ftr": Object {
+                        "value": 0.6708860759493671,
+                      },
+                      "off_trans_ppp": Object {
+                        "value": 107.2643586151691,
+                      },
+                      "off_trans_to": Object {
+                        "value": 0.16609965979587754,
+                      },
+                      "tempo": Object {
+                        "value": 83.16,
+                      },
+                    },
+                    "kind": "data-row",
+                    "prefixFn": [Function],
+                    "tableFieldsOverride": undefined,
+                  },
+                ]
+              }
+              tableFields={
+                Object {
+                  "3p_opp": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P% SoS",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "How good the team's opponents were at shooting 3 over their season",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
+                    "widthUnits": 2,
+                  },
+                  "sep1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep3": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep4": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "tempo": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pace",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Raw tempo (possessions per game)",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 8,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
+                }
+              }
+            />
           </Row>
-          <Row
-            noGutters={false}
-          >
-            <ul>
-              <li>
-                FTs: off=[
-                <b
-                  style={
-                    Object {
-                      "textShadow": "0px 0px 15px #fff8f8,0px 0px 15px #fff8f8,0px 0px 15px #fff8f8",
-                    }
-                  }
-                >
-                  74.7
-                </b>
-                ]% def=[
-                <b
-                  style={
-                    Object {
-                      "textShadow": "0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b",
-                    }
-                  }
-                >
-                  69.8
-                </b>
-                ]%
-              </li>
-              <li>
-                Defensive Steals: [
-                <b
-                  style={
-                    Object {
-                      "textShadow": "0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b",
-                    }
-                  }
-                >
-                  6.8
-                </b>
-                ]%
-              </li>
-              <li>
-                Defensive Non-Steal TOs: [
-                <b
-                  style={
-                    Object {
-                      "textShadow": "0px 0px 15px #209020,0px 0px 15px #209020,0px 0px 15px #209020",
-                    }
-                  }
-                >
-                  10.6
-                </b>
-                ]%
-              </li>
-              <li>
-                Defensive Blocks: [
-                <b
-                  style={
-                    Object {
-                      "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                    }
-                  }
-                >
-                  11.8
-                </b>
-                ]%
-              </li>
-              <li>
-                3P Defensive SoS: [
-                <b
-                  style={
-                    Object {
-                      "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                    }
-                  }
-                >
-                  33.0
-                </b>
-                ]%
-              </li>
-              <li>
-                Raw tempo: 
-                <span>
-                  <b
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    [
-                    83.2
-                    ]
-                  </b>
-                   
-                  poss/g
-                </span>
-              </li>
-            </ul>
-          </Row>
-           
         </Container>
       </Col>
     </Row>

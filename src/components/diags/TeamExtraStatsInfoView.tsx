@@ -225,6 +225,98 @@ const assistDetailGradesTable = {
     GenericTableOps.gradeOrHtmlFormatter
   ),
 };
+const miscDetailsTable = {
+  title: GenericTableOps.addTitle(
+    "",
+    "",
+    GenericTableOps.defaultRowSpanCalculator,
+    "",
+    GenericTableOps.htmlFormatter
+  ),
+  sep1: GenericTableOps.addColSeparator(),
+  ft: GenericTableOps.addPctCol(
+    "FT%",
+    "Free throw %",
+    CommonTableDefs.picker(...CbbColors.ft)
+  ),
+  sep2: GenericTableOps.addColSeparator(),
+  stl: GenericTableOps.addPctCol(
+    "Stl%",
+    "Steal %",
+    CommonTableDefs.picker(...CbbColors.TO_comp)
+  ),
+  to_nonstl: GenericTableOps.addPctCol(
+    "Non-Stl%",
+    "Non-Steal TO%",
+    CommonTableDefs.picker(...CbbColors.TO_comp)
+  ),
+  blk: GenericTableOps.addPctCol(
+    "Blk%",
+    "Block %",
+    CommonTableDefs.picker(...CbbColors.TO_comp)
+  ),
+  sep3: GenericTableOps.addColSeparator(),
+  "3p_opp": GenericTableOps.addPtsCol(
+    "3P% SoS",
+    "How good the team's opponents were at shooting 3 over their season",
+    CommonTableDefs.picker(...CbbColors.fg3P)
+  ),
+  sep4: GenericTableOps.addColSeparator(),
+  tempo: GenericTableOps.addPtsCol(
+    "Pace",
+    "Raw tempo (possessions per game)",
+    CbbColors.varPicker(CbbColors.p_tempo)
+  ),
+};
+const miscDetailsGradesTable = {
+  title: GenericTableOps.addTitle(
+    "",
+    "",
+    GenericTableOps.defaultRowSpanCalculator,
+    "",
+    GenericTableOps.htmlFormatter
+  ),
+  sep1: GenericTableOps.addColSeparator(),
+  ft: GenericTableOps.addDataCol(
+    "FT%",
+    "Free throw %",
+    CbbColors.varPicker(CbbColors.off_pctile_qual),
+    GenericTableOps.gradeOrHtmlFormatter
+  ),
+  sep2: GenericTableOps.addColSeparator(),
+  stl: GenericTableOps.addDataCol(
+    "Stl%",
+    "Steal %",
+    CbbColors.varPicker(CbbColors.off_pctile_qual),
+    GenericTableOps.gradeOrHtmlFormatter
+  ),
+  to_nonstl: GenericTableOps.addDataCol(
+    "Non-Stl%",
+    "Non-Steal TO%",
+    CbbColors.varPicker(CbbColors.off_pctile_qual),
+    GenericTableOps.gradeOrHtmlFormatter
+  ),
+  blk: GenericTableOps.addDataCol(
+    "Blk%",
+    "Block %",
+    CbbColors.varPicker(CbbColors.off_pctile_qual),
+    GenericTableOps.gradeOrHtmlFormatter
+  ),
+  sep3: GenericTableOps.addColSeparator(),
+  "3p_opp": GenericTableOps.addDataCol(
+    "3P% SoS",
+    "How good the team's opponents were at shooting 3 over their season",
+    CbbColors.varPicker(CbbColors.off_pctile_qual),
+    GenericTableOps.gradeOrHtmlFormatter
+  ),
+  sep4: GenericTableOps.addColSeparator(),
+  tempo: GenericTableOps.addDataCol(
+    "Pace",
+    "Raw tempo (possessions per game)",
+    CbbColors.varPicker(CbbColors.all_pctile_freq),
+    GenericTableOps.gradeOrHtmlFormatter
+  ),
+};
 
 type Props = {
   name: string;
@@ -509,122 +601,48 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       : [],
   ]);
 
-  const possPer40 = extraStats[`tempo`]?.value || 0;
-  const tempoHtml =
-    possPer40 > 0 ? (
-      <span>
-        <b
-          style={CommonTableDefs.getTextShadow(
-            { value: possPer40 },
-            CbbColors.p_tempo
-          )}
-        >
-          [{possPer40.toFixed(1)}]
-        </b>{" "}
-        poss/g
-      </span>
-    ) : undefined;
-  const off_ft = teamStatSet[`off_ft`]?.value || 0;
-  const def_ft = teamStatSet[`def_ft`]?.value || 0;
-  const def_3p_SoS = extraStats[`def_3p_opp`]?.value || 0;
-  const def_stl = extraStats[`def_stl`]?.value || 0;
-  const def_blk = extraStats[`def_blk`]?.value || 0;
-  const def_to_nonstl = extraStats[`def_to_nonstl`]?.value || 0;
+  const buildOtherStatsGrades = (offDef: "off" | "def") => {
+    return {
+      [`${offDef}_title`]: (
+        <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>
+      ),
+      ...teamPercentiles,
+    };
+  };
 
-  const offdefFtHtml =
-    tierToUse && teamPercentiles.off_ft && teamPercentiles.def_ft ? (
-      <span>
-        {" "}
-        (<b>{gradeFormat == "rank" ? "Ranks" : "Pctiles"}</b>: off=[
-        <span
-          style={CommonTableDefs.getTextShadow(
-            teamPercentiles.off_ft,
-            CbbColors.off_pctile_qual
-          )}
-        >
-          {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.off_ft)}
-        </span>
-        ]{gradeFormat == "rank" ? "" : "%"}
-        def=[
-        <span
-          style={CommonTableDefs.getTextShadow(
-            teamPercentiles.def_ft,
-            CbbColors.def_pctile_qual
-          )}
-        >
-          {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_ft)}
-        </span>
-        ]{gradeFormat == "rank" ? "" : "%"} )
-      </span>
-    ) : null;
-
-  const defStlHtml =
-    tierToUse && teamPercentiles.def_stl ? (
-      <span>
-        {" "}
-        (<b>{gradeFormat == "rank" ? "Rank" : "Pctile"}</b>: [
-        <span
-          style={CommonTableDefs.getTextShadow(
-            teamPercentiles.def_stl,
-            CbbColors.off_pctile_qual //(see GradeUtils.teamFieldsToInvert)
-          )}
-        >
-          {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_stl)}
-        </span>
-        ]{gradeFormat == "rank" ? "" : "%"})
-      </span>
-    ) : null;
-
-  const defBlkHtml =
-    tierToUse && teamPercentiles.def_blk ? (
-      <span>
-        {" "}
-        (<b>{gradeFormat == "rank" ? "Rank" : "Pctile"}</b>: [
-        <span
-          style={CommonTableDefs.getTextShadow(
-            teamPercentiles.def_blk,
-            CbbColors.off_pctile_qual //(see GradeUtils.teamFieldsToInvert)
-          )}
-        >
-          {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_blk)}
-        </span>
-        ]{gradeFormat == "rank" ? "" : "%"})
-      </span>
-    ) : null;
-
-  const defToNonStlHtml =
-    tierToUse && teamPercentiles.def_to_nonstl ? (
-      <span>
-        {" "}
-        (<b>{gradeFormat == "rank" ? "Rank" : "Pctile"}</b>: [
-        <span
-          style={CommonTableDefs.getTextShadow(
-            teamPercentiles.def_to_nonstl,
-            CbbColors.off_pctile_qual //(see GradeUtils.teamFieldsToInvert)
-          )}
-        >
-          {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_to_nonstl)}
-        </span>
-        ]{gradeFormat == "rank" ? "" : "%"})
-      </span>
-    ) : null;
-
-  const def3pRankHtml =
-    tierToUse && teamPercentiles.def_3p_opp ? (
-      <span>
-        {" "}
-        (<b>{gradeFormat == "rank" ? "Rank" : "Pctile"}</b>: [
-        <span
-          style={CommonTableDefs.getTextShadow(
-            teamPercentiles.def_3p_opp,
-            CbbColors.def_pctile_qual
-          )}
-        >
-          {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_3p_opp)}
-        </span>
-        ]{gradeFormat == "rank" ? "" : "%"})
-      </span>
-    ) : null;
+  // miscDetailsTables: title, stl, to_nonstl, blk, 3p_sos, tempo
+  const buildOtherStats = (offDef: "off" | "def") => {
+    const offNotDef = offDef == "off";
+    return GenericTableOps.buildDataRow(
+      {
+        [`${offDef}_title`]: `${offNotDef ? "Offense" : "Defense"}`,
+        [`${offDef}_tempo`]: offDef == "off" ? extraStats[`tempo`] : undefined,
+        ...extraStats,
+        grades: showInlineGrades ? buildOtherStatsGrades(offDef) : undefined,
+      },
+      offNotDef ? offPrefixFn : defPrefixFn,
+      offNotDef ? offCellMetaFn : defCellMetaFn
+    );
+  };
+  const buildOtherStatsGradeRow = (offDef: "off" | "def") => {
+    const offNotDef = offDef == "off";
+    return GenericTableOps.buildDataRow(
+      buildOtherStatsGrades(offDef),
+      offNotDef ? offPrefixFn : defPrefixFn,
+      offNotDef ? offCellMetaFn : defCellMetaFn,
+      miscDetailsGradesTable
+    );
+  };
+  const otherStatsTableData = _.flatten([
+    [buildOtherStats("off")],
+    tierToUse && showStandaloneGrades
+      ? [buildOtherStatsGradeRow("off"), GenericTableOps.buildRowSeparator()]
+      : [],
+    [buildOtherStats("def")],
+    tierToUse && showStandaloneGrades
+      ? [buildOtherStatsGradeRow("def"), GenericTableOps.buildRowSeparator()]
+      : [],
+  ]);
 
   const integratedGrades = showInlineGrades
     ? {
@@ -654,7 +672,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
           <Col xs={8} sm={12} lg={8} xl={6}>
             <Container fluid>
               <Row>
-                <p>More assist stats:</p>
+                <span>More assist stats:</span>
                 <GenericTable
                   tableCopyId={`assistStats_${nameAsId}`}
                   tableFields={assistDetailsTable}
@@ -662,86 +680,15 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
                   integratedGrades={integratedGrades}
                 />
               </Row>
-              <Row>Misc other stats:</Row>
               <Row>
-                <ul>
-                  <li>
-                    FTs: off=[
-                    <b
-                      style={CommonTableDefs.getTextShadow(
-                        { value: off_ft },
-                        (val: number) => CbbColors.off_FT(val)
-                      )}
-                    >
-                      {(100 * off_ft).toFixed(1)}
-                    </b>
-                    ]% def=[
-                    <b
-                      style={CommonTableDefs.getTextShadow(
-                        { value: def_ft },
-                        (val: number) => CbbColors.def_FT(val)
-                      )}
-                    >
-                      {(100 * def_ft).toFixed(1)}
-                    </b>
-                    ]%
-                    {offdefFtHtml}
-                  </li>
-                  <li>
-                    Defensive Steals: [
-                    <b
-                      style={CommonTableDefs.getTextShadow(
-                        { value: def_stl },
-                        (val: number) => CbbColors.def_TO(val * 2)
-                      )}
-                    >
-                      {(100 * def_stl).toFixed(1)}
-                    </b>
-                    ]%
-                    {defStlHtml}
-                  </li>
-                  <li>
-                    Defensive Non-Steal TOs: [
-                    <b
-                      style={CommonTableDefs.getTextShadow(
-                        { value: def_to_nonstl },
-                        (val: number) => CbbColors.def_TO(val * 2)
-                      )}
-                    >
-                      {(100 * def_to_nonstl).toFixed(1)}
-                    </b>
-                    ]%
-                    {defToNonStlHtml}
-                  </li>
-                  <li>
-                    Defensive Blocks: [
-                    <b
-                      style={CommonTableDefs.getTextShadow(
-                        { value: def_blk },
-                        (val: number) => CbbColors.def_TO(val * 2)
-                      )}
-                    >
-                      {(100 * def_blk).toFixed(1)}
-                    </b>
-                    ]%
-                    {defBlkHtml}
-                  </li>
-                  <li>
-                    3P Defensive SoS: [
-                    <b
-                      style={CommonTableDefs.getTextShadow(
-                        { value: 0.01 * def_3p_SoS },
-                        CbbColors.def_3P
-                      )}
-                    >
-                      {def_3p_SoS.toFixed(1)}
-                    </b>
-                    ]%
-                    {def3pRankHtml}
-                  </li>
-                  <li>Raw tempo: {tempoHtml}</li>
-                </ul>
-              </Row>{" "}
+                <span>Misc other stats:</span>
+                <GenericTable
+                  tableCopyId={`otherStats_${nameAsId}`}
+                  tableFields={miscDetailsTable}
+                  tableData={otherStatsTableData}
+                  integratedGrades={integratedGrades}
+                />
+              </Row>
             </Container>
           </Col>
         </Row>
