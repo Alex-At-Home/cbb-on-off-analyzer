@@ -19,7 +19,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
 //@ts-ignore
-import Select from "react-select";
+import { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLink,
@@ -896,6 +896,18 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   // 3] View
 
+  /** Let the user know that he might need to change */
+  const MenuList = (props: any) => {
+    return (
+      <components.MenuList {...props}>
+        {props.children}
+        <p className="text-secondary text-center">
+          (For other sorting options, use 'SORT_BY' below)
+        </p>
+      </components.MenuList>
+    );
+  };
+
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
     return (
@@ -1372,6 +1384,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           <ThemedSelect
             styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
             value={sortByOptions[sortBy]}
+            components={{ MenuList }}
             options={_.values(sortByOptions)}
             isSearchable={false}
             onChange={(option: any) => {
