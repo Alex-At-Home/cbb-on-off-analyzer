@@ -370,7 +370,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     ? GradeUtils.buildTeamPercentiles(
         tierToUse,
         extraStats,
-        GradeUtils.teamDerivedFields.concat(extraOriginalFields),
+        GradeUtils.teamDerivedFields
+          .concat(extraOriginalFields)
+          .concat("tempo"),
         gradeFormat == "rank"
       )
     : {};
@@ -606,6 +608,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       [`${offDef}_title`]: (
         <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>
       ),
+      [`${offDef}_tempo`]:
+        offDef == "off" ? teamPercentiles[`tempo`] : undefined,
       ...teamPercentiles,
     };
   };

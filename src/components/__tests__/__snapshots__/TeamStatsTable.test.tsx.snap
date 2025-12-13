@@ -4078,9 +4078,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <div
                                   class="row"
                                 >
-                                  <p>
+                                  <span>
                                     More assist stats:
-                                  </p>
+                                  </span>
                                   <div
                                     class="table-responsive"
                                   >
@@ -4382,80 +4382,319 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <div
                                   class="row"
                                 >
-                                  Misc other stats:
+                                  <span>
+                                    Misc other stats:
+                                  </span>
+                                  <div
+                                    class="table-responsive"
+                                  >
+                                    <table
+                                      class="table table-sm"
+                                      id="otherStats_OnA"
+                                    >
+                                      <thead>
+                                        <tr>
+                                          <th
+                                            style="text-align: right; width: 36.4%; font-weight: bold;"
+                                          >
+                                            
+                                            <div>
+                                              <button
+                                                class="float-left btn btn-outline-secondary btn-sm"
+                                                id="otherStats_OnA_copy"
+                                                type="button"
+                                              >
+                                                <svg
+                                                  aria-hidden="true"
+                                                  class="svg-inline--fa fa-clipboard fa-w-12 "
+                                                  data-icon="clipboard"
+                                                  data-prefix="fas"
+                                                  focusable="false"
+                                                  role="img"
+                                                  viewBox="0 0 384 512"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                  <path
+                                                    d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                                                    fill="currentColor"
+                                                  />
+                                                </svg>
+                                              </button>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              FT%
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Stl%
+                                            </th>
+                                          </div>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Non-Stl%
+                                            </th>
+                                          </div>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Blk%
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              3P% SoS
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Pace
+                                            </th>
+                                          </div>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div>
+                                              Offense
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(250, 253, 250); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              75.2
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 203, 203); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              8.6
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 213, 213); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              8.5
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 83, 83); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              10.0
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 165, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              79.8
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div>
+                                              Defense
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(102, 179, 102); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              69.0
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 178, 178); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              7.1
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(81, 168, 81); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              10.1
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(0, 128, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              11.4
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              33.2
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </div>
-                                <div
-                                  class="row"
-                                >
-                                  <ul>
-                                    <li>
-                                      FTs: off=[
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #fafdfa,0px 0px 15px #fafdfa,0px 0px 15px #fafdfa;"
-                                      >
-                                        75.2
-                                      </b>
-                                      ]% def=[
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #66b366,0px 0px 15px #66b366,0px 0px 15px #66b366;"
-                                      >
-                                        69.0
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Steals: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #ffb2b2,0px 0px 15px #ffb2b2,0px 0px 15px #ffb2b2;"
-                                      >
-                                        7.1
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Non-Steal TOs: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851;"
-                                      >
-                                        10.1
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Blocks: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
-                                      >
-                                        11.4
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      3P Defensive SoS: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #fff7f7,0px 0px 15px #fff7f7,0px 0px 15px #fff7f7;"
-                                      >
-                                        33.2
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Raw tempo: 
-                                      <span>
-                                        <b
-                                          style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
-                                        >
-                                          [
-                                          79.8
-                                          ]
-                                        </b>
-                                         
-                                        poss/g
-                                      </span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                 
                               </div>
                             </div>
                           </div>
@@ -6179,9 +6418,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <div
                                   class="row"
                                 >
-                                  <p>
+                                  <span>
                                     More assist stats:
-                                  </p>
+                                  </span>
                                   <div
                                     class="table-responsive"
                                   >
@@ -6483,80 +6722,319 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <div
                                   class="row"
                                 >
-                                  Misc other stats:
+                                  <span>
+                                    Misc other stats:
+                                  </span>
+                                  <div
+                                    class="table-responsive"
+                                  >
+                                    <table
+                                      class="table table-sm"
+                                      id="otherStats_OffB"
+                                    >
+                                      <thead>
+                                        <tr>
+                                          <th
+                                            style="text-align: right; width: 36.4%; font-weight: bold;"
+                                          >
+                                            
+                                            <div>
+                                              <button
+                                                class="float-left btn btn-outline-secondary btn-sm"
+                                                id="otherStats_OffB_copy"
+                                                type="button"
+                                              >
+                                                <svg
+                                                  aria-hidden="true"
+                                                  class="svg-inline--fa fa-clipboard fa-w-12 "
+                                                  data-icon="clipboard"
+                                                  data-prefix="fas"
+                                                  focusable="false"
+                                                  role="img"
+                                                  viewBox="0 0 384 512"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                  <path
+                                                    d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                                                    fill="currentColor"
+                                                  />
+                                                </svg>
+                                              </button>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              FT%
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Stl%
+                                            </th>
+                                          </div>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Non-Stl%
+                                            </th>
+                                          </div>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Blk%
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              3P% SoS
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Pace
+                                            </th>
+                                          </div>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div>
+                                              Offense
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 211, 211); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              73.3
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(148, 202, 148); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              6.7
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 112, 112); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              9.7
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              13.9
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 165, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              77.1
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div>
+                                              Defense
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(197, 226, 197); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              72.7
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 79, 79); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              5.9
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(0, 128, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              12.5
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(0, 128, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              13.2
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              32.3
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </div>
-                                <div
-                                  class="row"
-                                >
-                                  <ul>
-                                    <li>
-                                      FTs: off=[
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3;"
-                                      >
-                                        73.3
-                                      </b>
-                                      ]% def=[
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5;"
-                                      >
-                                        72.7
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Steals: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #ff4f4f,0px 0px 15px #ff4f4f,0px 0px 15px #ff4f4f;"
-                                      >
-                                        5.9
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Non-Steal TOs: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
-                                      >
-                                        12.5
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Blocks: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
-                                      >
-                                        13.2
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      3P Defensive SoS: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #e4f1e4,0px 0px 15px #e4f1e4,0px 0px 15px #e4f1e4;"
-                                      >
-                                        32.3
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Raw tempo: 
-                                      <span>
-                                        <b
-                                          style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
-                                        >
-                                          [
-                                          77.1
-                                          ]
-                                        </b>
-                                         
-                                        poss/g
-                                      </span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                 
                               </div>
                             </div>
                           </div>
@@ -8280,9 +8758,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <div
                                   class="row"
                                 >
-                                  <p>
+                                  <span>
                                     More assist stats:
-                                  </p>
+                                  </span>
                                   <div
                                     class="table-responsive"
                                   >
@@ -8584,80 +9062,319 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <div
                                   class="row"
                                 >
-                                  Misc other stats:
+                                  <span>
+                                    Misc other stats:
+                                  </span>
+                                  <div
+                                    class="table-responsive"
+                                  >
+                                    <table
+                                      class="table table-sm"
+                                      id="otherStats_Baseset"
+                                    >
+                                      <thead>
+                                        <tr>
+                                          <th
+                                            style="text-align: right; width: 36.4%; font-weight: bold;"
+                                          >
+                                            
+                                            <div>
+                                              <button
+                                                class="float-left btn btn-outline-secondary btn-sm"
+                                                id="otherStats_Baseset_copy"
+                                                type="button"
+                                              >
+                                                <svg
+                                                  aria-hidden="true"
+                                                  class="svg-inline--fa fa-clipboard fa-w-12 "
+                                                  data-icon="clipboard"
+                                                  data-prefix="fas"
+                                                  focusable="false"
+                                                  role="img"
+                                                  viewBox="0 0 384 512"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                  <path
+                                                    d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                                                    fill="currentColor"
+                                                  />
+                                                </svg>
+                                              </button>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              FT%
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Stl%
+                                            </th>
+                                          </div>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Non-Stl%
+                                            </th>
+                                          </div>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Blk%
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              3P% SoS
+                                            </th>
+                                          </div>
+                                          <th
+                                            style="text-align: center; width: 2.3%; font-weight: bold;"
+                                          >
+                                            
+                                          </th>
+                                          <div>
+                                            <th
+                                              style="text-align: center; width: 9.1%; font-weight: bold;"
+                                            >
+                                              Pace
+                                            </th>
+                                          </div>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div>
+                                              Offense
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 248, 248); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              74.7
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 239, 239); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              8.2
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 190, 190); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              8.8
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 8, 8); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              10.9
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 165, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              83.2
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div>
+                                              Defense
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(123, 189, 123); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              69.8
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 155, 155); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              6.8
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(32, 144, 32); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              10.6
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(0, 128, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              11.8
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
+                                          >
+                                            <div>
+                                              33.0
+                                            </div>
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                          <td
+                                            class=""
+                                            colspan="1"
+                                            rowspan="1"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                                          >
+                                            <div />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </div>
-                                <div
-                                  class="row"
-                                >
-                                  <ul>
-                                    <li>
-                                      FTs: off=[
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #fff8f8,0px 0px 15px #fff8f8,0px 0px 15px #fff8f8;"
-                                      >
-                                        74.7
-                                      </b>
-                                      ]% def=[
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b,0px 0px 15px #7bbd7b;"
-                                      >
-                                        69.8
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Steals: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b,0px 0px 15px #ff9b9b;"
-                                      >
-                                        6.8
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Non-Steal TOs: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #209020,0px 0px 15px #209020,0px 0px 15px #209020;"
-                                      >
-                                        10.6
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Defensive Blocks: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000;"
-                                      >
-                                        11.8
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      3P Defensive SoS: [
-                                      <b
-                                        style="text-shadow: 0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff;"
-                                      >
-                                        33.0
-                                      </b>
-                                      ]%
-                                    </li>
-                                    <li>
-                                      Raw tempo: 
-                                      <span>
-                                        <b
-                                          style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
-                                        >
-                                          [
-                                          83.2
-                                          ]
-                                        </b>
-                                         
-                                        poss/g
-                                      </span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                 
                               </div>
                             </div>
                           </div>
