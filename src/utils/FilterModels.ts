@@ -372,15 +372,12 @@ export type PlayerLeaderboardParams = {
   showPlayerPlayTypesPlayType?: string;
 };
 
-export type PlayerSeasonComparisonParams = {
-  [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
-} & {
+export type ChartControlParams = {
   year?: string;
   gender?: string;
   confs?: string;
   showConfig?: boolean; //(whether to show all the config for the axis etc)
   showTable?: boolean;
-  showPrevNextInTable?: boolean; //(if showing table, show prev and next stats)
   showOnlyHandSelectedInTable?: boolean; //(if enabled, and any players hand selected, show only those players)
   title?: string;
   datasetFilter?: string;
@@ -392,8 +389,22 @@ export type PlayerSeasonComparisonParams = {
   dotColor?: string;
   dotColorMap?: string;
   labelStrategy?: string;
-  toggledPlayers?: string;
+  toggledEntities?: string;
+};
+
+export type PlayerSeasonComparisonParams = {
+  [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
+} & {
+  [C in keyof ChartControlParams]?: ChartControlParams[C];
+} & {
+  showPrevNextInTable?: boolean; //(if showing table, show prev and next stats)
   incLowVol?: boolean;
+};
+
+export type TeamStatsExplorerChartParams = {
+  [T in keyof TeamStatsExplorerParams]?: TeamStatsExplorerParams[T];
+} & {
+  [C in keyof ChartControlParams]?: ChartControlParams[C];
 };
 
 export type LandingPageParams = {

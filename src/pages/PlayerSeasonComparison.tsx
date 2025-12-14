@@ -99,7 +99,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
 
         !rawParams.confs ? ["confs"] : [],
         !rawParams.queryFilters ? ["queryFilters"] : [],
-        !rawParams.toggledPlayers ? ["toggledPlayers"] : [],
+        !rawParams.toggledEntities ? ["toggledEntities"] : [],
         !rawParams.showTable ? ["showTable"] : [],
         !rawParams.showPrevNextInTable ? ["showPrevNextInTable"] : [],
         _.isNil(rawParams.showOnlyHandSelectedInTable) ||

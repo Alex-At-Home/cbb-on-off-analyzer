@@ -61,7 +61,7 @@ export type ExplorerChartProps = {
   height: number;
 
   // Player toggle state and handler
-  toggledPlayers: Record<string, boolean>;
+  toggledEntities: Record<string, boolean>;
   onPlayerToggle: (playerKey: string) => void;
 };
 
@@ -83,7 +83,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   screenHeight,
   screenWidth,
   height,
-  toggledPlayers,
+  toggledEntities,
   onPlayerToggle,
 }) => {
   const globalScatterChartRef = useRef<any>();
@@ -187,10 +187,12 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
         }) as any[])
       : undefined;
 
-  const dataPointsToLabel = _.isEmpty(toggledPlayers)
+  const dataPointsToLabel = _.isEmpty(toggledEntities)
     ? dataPointsToLabelPhase1
     : (dataPointsToLabelPhase1 || []).concat(
-        mainChart.filter((p) => toggledPlayers[p.p.actualResults?.code || "??"])
+        mainChart.filter(
+          (p) => toggledEntities[p.p.actualResults?.code || "??"]
+        )
       );
 
   // (Some util logic associated with building averages and limits)
@@ -402,7 +404,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                 mutableState: labelState,
                 dataKey: "label",
                 series: dataPointsToLabel,
-                underlinedLabels: toggledPlayers,
+                underlinedLabels: toggledEntities,
               })}
 
               {dataPointsToLabel.map((p, index) => {
@@ -429,7 +431,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
         <small>
           <p>
             {renderAvgState()}
-            {_.isEmpty(toggledPlayers) ? null : (
+            {_.isEmpty(toggledEntities) ? null : (
               <a
                 href="#"
                 onClick={(e) => {
@@ -437,8 +439,8 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                   onPlayerToggle(""); // Clear all selections - parent will handle this
                 }}
               >
-                [{_.size(toggledPlayers)}] player(s) manually selected. Click to
-                clear selection
+                [{_.size(toggledEntities)}] player(s) manually selected. Click
+                to clear selection
               </a>
             )}
           </p>

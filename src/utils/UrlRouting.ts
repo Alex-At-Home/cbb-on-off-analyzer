@@ -116,6 +116,12 @@ export class UrlRouting {
     })}`;
   }
   /** The URL to use to view the "Offseason Leaderboard" page */
+  static TeamStatsExplorerChart(params: TeamStatsExplorerParams) {
+    return `/TeamStatsChartPage?${UrlRouting.getUrl({
+      [UrlRouting.noPrefix]: params,
+    })}`;
+  }
+  /** The URL to use to view the "Offseason Leaderboard" page */
   static getOffseasonLeaderboard(params: OffseasonLeaderboardParams) {
     return `/OffseasonLeaderboard?${UrlRouting.getUrl({
       [UrlRouting.noPrefix]: params,

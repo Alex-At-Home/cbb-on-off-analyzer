@@ -47,6 +47,8 @@ import {
   PlayerSeasonComparisonParams,
   ParamDefaults,
   PlayerLeaderboardParams,
+  TeamStatsExplorerChartParams,
+  TeamStatsExplorerParams,
 } from "../utils/FilterModels";
 
 import { Statistic, RosterEntry, PureStatSet } from "../utils/StatModels";
@@ -102,92 +104,32 @@ import ChartConfigContainer from "./shared/ChartConfigContainer";
 import ExplorerChart from "./shared/ExplorerChart";
 import { decompAxis } from "../utils/ExplorerChartUtils";
 import { useTheme } from "next-themes";
+import { TeamStatsExplorerModel } from "./TeamStatsExplorerTable";
+import { LuckUtils } from "../utils/stats/LuckUtils";
+import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
+import YearSelector from "./shared/YearSelector";
 
 type Props = {
-  startingState: PlayerSeasonComparisonParams;
-  dataEvent: Record<string, TeamEditorStatsModel>;
-  onChangeState: (newParams: PlayerSeasonComparisonParams) => void;
+  startingState: TeamStatsExplorerChartParams;
+  dataEvent: TeamStatsExplorerModel;
+  onChangeState: (newParams: TeamStatsExplorerChartParams) => void;
 };
 
-/** The list of pre-built player charts, exported so that other elements can list them */
-export const overallPlayerChartPresets = [
-  [
-    "Transfer predictions",
-    {
-      title: "How transfers fared compared to their predicted RAPM",
-      datasetFilter: "Transfers",
-      xAxis: "Off RAPM: actual - predicted",
-      yAxis: "Def RAPM: actual - predicted",
-      dotColor: "RAPM margin",
-      dotSize: "Possession% (off)",
-      dotColorMap: "RAPM",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Freshmen vs Rankings",
-    {
-      title:
-        "How Freshmen fared compared to a prediction based on their HS ranking",
-      datasetFilter: "Ranked Freshmen",
-      xAxis: "Off RAPM: actual - predicted",
-      yAxis: "Def RAPM: actual - predicted",
-      dotColor: "RAPM margin",
-      dotSize: "Possession% (off)",
-      dotColorMap: "RAPM",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Fr to Soph Jumps",
-    {
-      title: "Increase in production from Freshman to Soph years",
-      datasetFilter: `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
-      xAxis: "prev_adj_rapm_margin",
-      yAxis: "next_adj_rapm_margin",
-      dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
-      dotSize: "Possession% (off)",
-      dotColorMap: "RAPM",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Jr -> Sr Off Rating Jump",
-    {
-      title: "How the Jr->Sr Off Rating changes vs the Jr Off Rtg",
-      datasetFilter: `(prev_team == next_team) SORT_BY (next_off_rtg - prev_off_rtg)  DESC`,
-      highlightFilter: `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" `,
-      xAxis: `prev_off_rtg  //LABEL Previous Season Off Rating`,
-      yAxis: "next_off_rtg - prev_off_rtg //LABEL Off Rating Jump",
-      dotColor: "next_off_rtg",
-      dotSize: "Possession% (off)",
-      dotColorMap: "Off Rtg",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Super Senior Offense",
-    {
-      title: "Super Senior Off Rtg/Usage, ranked by offensive RAPM production",
-      datasetFilter: `ALL SORT_BY next_off_adj_rapm* next_off_team_poss_pct DESC`,
-      highlightFilter: `prev_roster.year_class == "Sr"`,
-      xAxis: `next_off_rtg //LABEL Off Rating //LIMITS auto,135`,
-      yAxis: "next_off_usage*100 //LABEL Usage%",
-      dotColor: "next_off_adj_rapm*next_off_team_poss_pct",
-      dotSize: "Possession% (off)",
-      dotColorMap: "oRAPM",
-      labelStrategy: "Top 25",
-    },
-  ],
-] as Array<[string, PlayerSeasonComparisonParams]>;
+/** The list of pre-built team charts, exported so that other elements can list them */
+export const overallTeamChartPresets = [] as Array<
+  [string, TeamStatsExplorerChartParams]
+>;
 
-/** Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparison) */
-const supportedYears = DateUtils.coreYears.filter((y) => y >= "2021/22");
-export const multiYearScenarios = {
-  "2021+": supportedYears,
-} as Record<string, string[]>;
+/** A sensible looking set of bubble offenses for the hypo where the actual year is not available */
+const fallbackBubbleOffense = [
+  115.9, 113.2, 114.7, 113.4, 114.3, 114.1, 117.8, 114.6, 115.2, 113.1,
+];
+/** A sensible looking set of bubble offenses for the hypo where the actual year is not available */
+const fallbackBubbleDefense = [
+  99.5, 96.9, 98.7, 97.4, 98.4, 98.4, 102.1, 99.2, 100, 98.1,
+];
 
-const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
+const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   startingState,
   dataEvent,
   onChangeState,
@@ -209,8 +151,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   // 1] Data model
 
   //(controlling the leaderboard table)
-  const [lboardParams, setLboardParams] = useState(
-    startingState as PlayerLeaderboardParams
+  const [statsExplorerParams, setStatsExplorerParams] = useState(
+    startingState as TeamStatsExplorerParams
   );
 
   // (don't support tier changes)
@@ -226,13 +168,55 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     startingState.year || DateUtils.mostRecentYearWithData
   );
 
-  const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
-
-  const [queryFilters, setQueryFilters] = useState(
-    startingState.queryFilters || ""
+  const [gender, setGender] = useState(
+    startingState.gender || ParamDefaults.defaultGender
   );
 
   const [title, setTitle] = useState(startingState.title || "");
+
+  // TODO: support for manual filter at the chart stage:
+  // Basic filter:
+  const manualFilterSelected =
+    confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0; //(if so this will override the ordering)
+  const [queryFilters, setQueryFilters] = useState(
+    startingState.queryFilters || ""
+  );
+  const [tmpQueryFilters, setTmpQueryFilters] = useState(
+    startingState.queryFilters || ""
+  );
+  const separatorKeyword = "BREAK"; //(not used but leave the logic in here in case we change our mind later)
+  const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
+    queryFilters.split(";"),
+    (acc, v, ii) => {
+      const teamName = _.trim(v);
+      if (teamName == separatorKeyword) {
+        acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
+      } else if (teamName != "") {
+        const teams = [teamName].concat(AvailableTeams.teamAliases[teamName]);
+        teams.forEach((team) => {
+          if (team) {
+            acc.queryFiltersAsMap[team] =
+              1 + ii - acc.queryFilterRowBreaks.size;
+          }
+        });
+      }
+    },
+    {
+      queryFiltersAsMap: {} as Record<string, number>,
+      queryFilterRowBreaks: new Set<number>(),
+    }
+  );
+  const maybeFilterPromptTooltip = (
+    <Tooltip id="maybeFilterPromptTooltip">
+      Press Enter to apply this filter (current filter [{queryFilters}])
+    </Tooltip>
+  );
+  const maybeFilterPrompt =
+    queryFilters != tmpQueryFilters ? (
+      <OverlayTrigger placement="auto" overlay={maybeFilterPromptTooltip}>
+        <span>&nbsp;(*)</span>
+      </OverlayTrigger>
+    ) : null;
 
   // Chart magic:
 
@@ -248,10 +232,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   );
   const globalScatterChartRef = React.createRef<any>();
 
-  const [incLowVol, setIncLowVol] = useState<boolean>(
-    startingState.incLowVol || false
-  );
-
   // All the complex config:
 
   // If there's a title show that, otherwise show the config
@@ -262,11 +242,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   // If there's a title show that, otherwise show the config
   const [showTable, setShowTable] = useState<boolean>(
     startingState.showTable || false
-  );
-
-  // Whether to show prev and next seasons for each player
-  const [showPrevNextInTable, setShowPrevNextInTable] = useState<boolean>(
-    startingState.showPrevNextInTable || false
   );
 
   // Whether to show only manually selected players in the table (if there are any)
@@ -284,41 +259,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const [datasetFilterError, setAdvancedFilterError] = useState(
     undefined as string | undefined
   );
-  const datasetFilterPresets = [
-    ["All players", "ALL"],
-    [
-      "Transfers",
-      "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC",
-    ],
-    [
-      "Ranked Freshmen",
-      `!prev_team AND next_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Freshmen -> Sophomores",
-      `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Sophomores -> Juniors",
-      `prev_roster.year_class == "So" AND next_roster.year_class == "Jr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Juniors -> Seniors",
-      `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Seniors -> Super-Seniors",
-      `prev_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Rotation+ caliber previous year",
-      `prev_adj_rapm_margin >= 2 SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Starter+ caliber previous year",
-      `prev_adj_rapm_margin >= 3.5 SORT_BY next_adj_rapm_margin DESC`,
-    ],
-  ] as Array<[string, string]>;
+  const datasetFilterPresets = [["All teams", "ALL"]] as Array<
+    [string, string]
+  >;
 
   // Highlight text (show/hide):
   const [highlightFilterStr, setHighlightFilterStr] = useState(
@@ -333,36 +276,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const [yAxis, setYAxis] = useState(startingState.yAxis || "");
   const [dotColor, setDotColor] = useState(startingState.dotColor || "");
   const [dotSize, setDotSize] = useState(startingState.dotSize || "");
-  const axisPresets = [
-    [
-      "Off RAPM: actual - predicted",
-      "next_off_adj_rapm  - pred_ok_off_adj_rapm",
-    ],
-    [
-      "Def RAPM: actual - predicted",
-      "pred_ok_def_adj_rapm - next_def_adj_rapm",
-    ],
-    ["Off RAPM (prev)", "prev_off_adj_rapm"],
-    ["Off RAPM", "next_off_adj_rapm"],
-    ["Off RAPM Production (prev)", "prev_off_adj_rapm*prev_off_team_poss_pct"],
-    ["Off RAPM Production", "next_off_adj_rapm*next_off_team_poss_pct"],
-    ["Def RAPM (prev)", "prev_def_adj_rapm"],
-    ["Def RAPM", "next_def_adj_rapm"],
-    ["Def RAPM Production (prev)", "prev_def_adj_rapm*prev_def_team_poss_pct"],
-    ["Def RAPM Production", "next_def_adj_rapm*next_def_team_poss_pct"],
-    ["Off Rtg (prev)", "prev_off_rtg"],
-    ["Off Rtg", "next_off_rtg"],
-    ["Usage (prev)", "prev_off_usage"],
-    ["Usage", "next_off_usage"],
-    ["RAPM margin (prev)", "prev_adj_rapm_margin"],
-    ["RAPM margin", "next_adj_rapm_margin"],
-    ["RAPM production (prev)", "prev_adj_rapm_margin*prev_off_team_poss_pct"],
-    ["RAPM production", "next_adj_rapm_margin*next_off_team_poss_pct"],
-    ["Min/game (prev)", "40*prev_off_team_poss_pct"],
-    ["Min/game", "40*next_off_team_poss_pct"],
-    ["Possession% (off, prev)", "prev_off_team_poss_pct"],
-    ["Possession% (off)", "next_off_team_poss_pct"],
-  ] as Array<[string, string]>;
+  const axisPresets = [] as Array<[string, string]>;
   const [dotColorMap, setDotColorMap] = useState(
     startingState.dotColorMap || "Default"
   );
@@ -373,7 +287,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   );
 
   // On page load, if title is specified and the other params aren't then pre-load
-  const applyPresetChart = (preset: PlayerSeasonComparisonParams) => {
+  const applyPresetChart = (preset: TeamStatsExplorerChartParams) => {
     friendlyChange(() => {
       setTitle(preset.title || "");
       setAdvancedFilterStr(
@@ -409,7 +323,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   useEffect(() => {
     if (title && !xAxis && !yAxis) {
       const maybePreset = _.find(
-        overallPlayerChartPresets,
+        overallTeamChartPresets,
         (kv) => kv[0] == title
       );
       if (maybePreset) applyPresetChart(maybePreset[1]);
@@ -419,7 +333,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   /** When the params change */
   useEffect(() => {
     onChangeState({
-      ...lboardParams,
+      ...statsExplorerParams,
       year: year,
       confs,
       queryFilters: queryFilters,
@@ -435,9 +349,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       labelStrategy: labelStrategy,
       toggledEntities: _.keys(toggledEntities).join(";"),
       showTable: showTable,
-      showPrevNextInTable: showPrevNextInTable,
       showOnlyHandSelectedInTable: showOnlyHandSelectedInTable,
-      incLowVol,
     });
   }, [
     confs,
@@ -453,12 +365,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     dotSize,
     showConfigOptions,
     labelStrategy,
-    lboardParams,
+    statsExplorerParams,
     toggledEntities,
-    showPrevNextInTable,
     showOnlyHandSelectedInTable,
     showTable,
-    incLowVol,
   ]);
 
   /** Set this to be true on expensive operations */
@@ -563,111 +473,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       }
     };
   };
-  const extractBubbleAttr = (fieldDef: string) => {
-    const typeAndField = fieldDef.split(":");
-    const fieldType =
-      typeAndField.length > 1 ? typeAndField[0] : "actualResults";
-    const field = typeAndField.length > 1 ? typeAndField[1] : typeAndField[0];
-
-    const fieldExtractor = fieldValExtractor(field);
-    return (p: GoodBadOkTriple) => {
-      const tripleAsMap = p as unknown as Record<
-        string,
-        Record<string, Statistic>
-      >;
-      if (fieldType == "delta") {
-        return fieldExtractor(p.actualResults) - fieldExtractor(p.ok);
-      } else if (fieldType == "deltaHistory") {
-        return fieldExtractor(p.actualResults) - fieldExtractor(p.orig);
-      } else {
-        return fieldExtractor(tripleAsMap[fieldType]);
-      }
-    };
-  };
-  const bOrW = (f: number) => {
-    return `${Math.abs(f).toFixed(1)} ${
-      f > 0 ? "better" : "worse"
-    } than expected`;
-  };
-  const genericExtraInfo = (field: string, factor: number = 1.0) => {
-    const has = (target: string) => {
-      return _.find(
-        [xAxis, yAxis, dotColor, dotSize],
-        (axis) => axis.indexOf(target) >= 0
-      );
-    };
-    const prevSeasonExtractor = extractBubbleAttr(`orig:${field}`);
-    const predictedSeasonExtractor = extractBubbleAttr(`ok:${field}`);
-    const predDeltaExtractor = extractBubbleAttr(`delta:${field}`);
-    const isFrPredictedField =
-      _.endsWith(field, "adj_rapm") || _.endsWith(field, "off_team_poss_pct");
-    const careAboutOffPrediction =
-      has(`next_off_adj_rapm`) && has(`pred_ok_off_adj_rapm`);
-    const careAboutDefPrediction =
-      has(`next_def_adj_rapm`) && has(`pred_ok_def_adj_rapm`);
-    const offOrDefRapmSpecialCase = // user cares about predicted vs actual delta specifically
-      (_.startsWith(field, "off_") && careAboutOffPrediction) ||
-      (_.startsWith(field, "def_") && careAboutDefPrediction);
-    const rapmMarginSpecialCase = // user cares about predicted vs actual delta for both off and def
-      field == "adj_rapm" && careAboutOffPrediction && careAboutDefPrediction;
-    const rapmSpecialCase = offOrDefRapmSpecialCase || rapmMarginSpecialCase;
-
-    return (data: any) => {
-      const triple = data.p;
-      const isFreshman = !triple.orig.off_rtg; //(filters out take Fr "prev" stats)
-      if (
-        (rapmSpecialCase && !isFreshman) ||
-        has(`next_${field} - pred_ok_${field}`)
-      ) {
-        //(special case)
-        return <i>({bOrW(factor * predDeltaExtractor(triple))})</i>;
-      } else {
-        const isRapmMargin = field == "adj_rapm";
-        const hasPrev = isRapmMargin || (triple.orig[field] && !isFreshman);
-        const hasPred =
-          isRapmMargin ||
-          (triple.ok[field] && (!isFreshman || isFrPredictedField));
-        const shortForm = hasPrev && hasPrev;
-        const prev = hasPrev ? (
-          <i>
-            {shortForm ? "Prev." : "Previous"} [
-            {(factor * prevSeasonExtractor(triple)).toFixed(1)}]
-          </i>
-        ) : undefined;
-        const pred = hasPred ? (
-          <i>
-            {shortForm ? "Pred." : "Predicted"} [
-            {(factor * predictedSeasonExtractor(triple)).toFixed(1)}]
-          </i>
-        ) : undefined;
-
-        return prev || pred ? (
-          <span>
-            {prev}
-            {prev && pred ? <i> / </i> : undefined}
-            {pred}
-          </span>
-        ) : undefined;
-      }
-    };
-  };
-  const netRapmExtraInfoExtractor = genericExtraInfo("adj_rapm"); //(special case handled in the fieldExtractor)
-  const getNetRapmExtraInfo = (data: any) => netRapmExtraInfoExtractor(data);
-
-  const offRapmExtraInfoExtractor = genericExtraInfo("off_adj_rapm");
-  const getOffRapmExtraInfo = (data: any) => offRapmExtraInfoExtractor(data);
-
-  const defRapmExtraInfoExtractor = genericExtraInfo("def_adj_rapm");
-  const getDefRapmExtraInfo = (data: any) => defRapmExtraInfoExtractor(data);
-
-  const offRtgExtraInfoExtractor = genericExtraInfo("off_rtg");
-  const getOffRtgExtraInfo = (data: any) => offRtgExtraInfoExtractor(data);
-
-  const offUsgExtraInfoExtractor = genericExtraInfo("off_usage", 100);
-  const getUsgExtraInfo = (data: any) => offUsgExtraInfoExtractor(data);
-
-  const mpgExtraInfoExtractor = genericExtraInfo("off_team_poss_pct", 40);
-  const getMpgExtraInfo = (data: any) => mpgExtraInfoExtractor(data);
 
   type CustomTooltipProps = {
     active?: boolean;
@@ -683,17 +488,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       const data = payload?.[0].payload || {};
       if (!data.showTooltips) return null; //(if showing sub-chart don't show tooltips for main chart)
 
-      const triple = data.p;
-      const roster = triple.actualResults?.roster || triple.orig?.roster;
-      const maybePrevSchool =
-        data?.p?.orig.team &&
-        data?.p?.orig.team != data?.p?.actualResults.team ? (
-          <i>(Previous school: {data?.p?.orig.team})</i>
-        ) : undefined;
+      //TODO: come up with some team tooltip info
 
-      // these 2 can be null:
-      const offRtgExtraInfo = getOffRtgExtraInfo(data);
-      const usageExtraInfo = getUsgExtraInfo(data);
+      const teamObj = data.p;
 
       return (
         <div
@@ -707,20 +504,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         >
           <small>
             <p className="label">
-              <b>
-                {`${triple.actualResults?.key}`}
-                <br />
-                {`${triple.actualResults?.team}`}
-              </b>{" "}
-              (<i>{ConferenceToNickname[triple.actualResults.conf] || "??"}</i>)
+              <b>{`${teamObj?.team || "??"}`}</b> (
+              <i>{ConferenceToNickname[teamObj.conf] || "??"}</i>)
               <br />
-              <i>
-                {`${triple.actualResults?.posClass}`}
-                {` ${roster?.height || "?-?"}`}
-                {` ${roster?.year_class || ""}`}
-              </i>
             </p>
             <p className="desc">
+              {/*
               <span>
                 Net RAPM:{" "}
                 <b>
@@ -731,70 +520,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 pts/100
               </span>
               <br />
-              <span>{getNetRapmExtraInfo(data)}</span>
-              <br />
-              <span>
-                Off RAPM:{" "}
-                <b>
-                  {fieldValExtractor("off_adj_rapm")(
-                    data?.p?.actualResults
-                  ).toFixed(1)}
-                </b>{" "}
-                pts/100
-              </span>
-              <br />
-              <span>{getOffRapmExtraInfo(data)}</span>
-              <br />
-              <span>
-                Def RAPM:{" "}
-                <b>
-                  {fieldValExtractor("def_adj_rapm")(
-                    data?.p?.actualResults
-                  ).toFixed(1)}
-                </b>{" "}
-                pts/100
-              </span>
-              <br />
-              <span>{getDefRapmExtraInfo(data)}</span>
-              <br />
-              <span>
-                Off Rtg:{" "}
-                <b>
-                  {fieldValExtractor("off_rtg")(data?.p?.actualResults).toFixed(
-                    1
-                  )}
-                </b>
-              </span>
-              <br />
-              {offRtgExtraInfo ? <span>{offRtgExtraInfo}</span> : undefined}
-              {offRtgExtraInfo ? <br /> : undefined}
-              <span>
-                Usage:{" "}
-                <b>
-                  {(
-                    fieldValExtractor("off_usage")(data?.p?.actualResults) * 100
-                  ).toFixed(1)}
-                </b>
-                %
-              </span>
-              <br />
-              {usageExtraInfo ? <span>{usageExtraInfo}</span> : undefined}
-              {usageExtraInfo ? <br /> : undefined}
-              <span>
-                Mpg:{" "}
-                <b>
-                  {(
-                    fieldValExtractor("off_team_poss_pct")(
-                      data?.p?.actualResults
-                    ) * 40
-                  ).toFixed(1)}
-                </b>
-              </span>
-              <br />
-              <span>{getMpgExtraInfo(data)}</span>
-              <br />
-              <br />
-              <span>{maybePrevSchool}</span>
+              */}
             </p>
           </small>
         </div>
@@ -804,108 +530,150 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   };
   // (end chart tooltip)
 
-  const [chart, playerLeaderboard] = React.useMemo(() => {
-    if (_.isEmpty(dataEvent)) {
+  // Processing primitives
+
+  /** Handy util to filter teams by conference */
+  const confFilter = (t: { team: string; conf: string; year: string }) => {
+    const manualFilterInUse = !_.isEmpty(queryFiltersAsMap);
+    return manualFilterInUse
+      ? year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
+        ? !_.isNil(
+            queryFiltersAsMap[t.team] ||
+              queryFiltersAsMap[`${t.team}:${t.year}`] ||
+              queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`]
+          )
+        : !_.isNil(queryFiltersAsMap[t.team])
+      : confs == "" ||
+          confs.indexOf(t.conf) >= 0 ||
+          (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
+            ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
+          (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
+            ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
+  };
+  /** Builds a list of JSON objects with basic filtering, subsequent phases render */
+  const phase1Processing = (teams: any[], applyConfFilter: boolean = true) => {
+    return _.chain(teams)
+      .map((team, teamIndex) => {
+        const confNick = ConferenceToNickname[team.conf || ""] || "???";
+        const { wab, wae, wins, losses } = _.transform(
+          team.opponents || [],
+          (acc, game) => {
+            const isWin = (game.team_scored || 0) >= (game.oppo_scored || 0);
+            acc.wab += isWin ? game.wab || 0 : (game.wab || 0) - 1;
+            acc.wae += isWin ? game.wae || 0 : (game.wae || 0) - 1;
+            acc.wins += isWin ? 1 : 0;
+            acc.losses += isWin ? 0 : 1;
+          },
+          { wab: 0.0, wae: 0.0, wins: 0, losses: 0 }
+        );
+        team.conf_nick = confNick;
+        team.wab = wab;
+        team.wae = wae;
+        team.wins = wins;
+        team.losses = losses;
+
+        // Bonus step: get the source_id and inject an _id
+        team._id = _.find(
+          [team.team_name]
+            .concat(AvailableTeams.teamAliases[team.team_name] || [])
+            .map(
+              (teamAlias) => AvailableTeams.byName[teamAlias]?.[0]?.source_id
+            ),
+          (sourceId) => !_.isEmpty(sourceId)
+        );
+
+        // Ugh, so some fields are luck adjusted but we don't want that
+        // TODO: longer term provide a "Luck" toggle, though it's not ideal because some stats
+        // (eg style) aren't luck adjusted so it will be a little bit inconsistent
+        // (note that the fields get overwritten/lost in TeamStatsTableUtils.buildRows below because
+        //  adjustForLuck is hard-coded to false but need to do it here so the correct value
+        //  is used in the sort/filter and exp. WAB)
+        LuckUtils.injectLuck(team, undefined, undefined);
+
+        // this is a bit horrible but this field gets overwritten by some React node for visual
+        // purposes, so we re-create it here every time for sorting / filtering / clipboard
+        team.off_raw_net = {
+          value: (team.off_ppp?.value || 100) - (team.def_ppp?.value || 100),
+        };
+        if (!team.off_net) {
+          //(SECRET_QUERY mode doesn't include this so calculate)
+          team.off_net = {
+            value:
+              (team.off_adj_ppp?.value || 100) -
+              (team.def_adj_ppp?.value || 100),
+          };
+        }
+
+        const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
+          team.off_adj_ppp?.value || 100,
+          team.def_adj_ppp?.value || 100,
+          dataEvent.bubbleOffenses[team.year] || fallbackBubbleOffense,
+          dataEvent.bubbleDefenses[team.year] || fallbackBubbleDefense,
+          0.0
+        );
+        const expWab = (expWinPctVsBubble - 0.5) * (wins + losses);
+        team.exp_wab = expWab;
+        team.power = 0.5 * wab + 0.5 * expWab;
+        //(to get a proper ranking would need to normalize games played, but this is fine for this power ranking)
+
+        return team;
+      })
+      .filter((team) => {
+        return applyConfFilter
+          ? confFilter({
+              team: team.team_name,
+              conf: team.conf_nick || "???",
+              year: team.year || "????",
+            })
+          : true;
+      })
+      .sortBy((team) => {
+        if (manualFilterSelected) {
+          if (
+            year == DateUtils.AllYears ||
+            year.startsWith(DateUtils.MultiYearPrefix)
+          ) {
+            //few different formats
+            return (
+              queryFiltersAsMap[team.team_name] ||
+              queryFiltersAsMap[`${team.team_name}:${team.year}`] ||
+              queryFiltersAsMap[
+                `${team.team_name}:${(team.year || "").substring(0, 4)}`
+              ] ||
+              1000
+            );
+          } else {
+            return queryFiltersAsMap[team.team_name] || 1000;
+          }
+        } else {
+          return -(team.power || 0);
+        }
+      })
+      .value();
+  };
+
+  const [chart, teamStatsExplorerTable] = React.useMemo(() => {
+    if (_.isEmpty(dataEvent.teams)) {
       // If we don't have players we're not done loading yet, so put up a loading screen:
       return [<div style={{ height: "200px" }}></div>, <div></div>];
     } else {
       setLoadingOverride(false);
     }
 
-    //TODO Some ideas here:
-    // 1] For un-ranked Fr give them 2*/3*/3*+ expectations (ie if actualResults exists but no orig)
-    // 2] Allow a 23/24 season just showing the predictions
-    // 4] (here and in PlayerLeaderboardTable, always enrich currently with transfer info once it exists)
-    // 5] Copy to clipboard
+    const teamObjs = phase1Processing(dataEvent.teams, false);
 
-    // Team stats generation business logic:
-
-    const yearsToProcess = multiYearScenarios[year] || [year];
-
-    const { teamRanks } = _.chain(yearsToProcess)
-      .filter((y) => !_.isNil(dataEvent[y]))
-      .transform(
-        (acc, thisYear) => {
-          const yearWithStats = DateUtils.getPrevYear(thisYear);
-
-          // The avgEff based on which the stats were calc'd (yearWithStats) and what actually happened (year)
-          const avgEff =
-            efficiencyAverages[`${gender}_${yearWithStats}`] ||
-            efficiencyAverages.fallback;
-          const actualResultsAvgEff =
-            efficiencyAverages[`${gender}_${year}`] ||
-            efficiencyAverages.fallback;
-
-          const {
-            derivedDivisionStats,
-            teamRanks: teamRanksPerYear,
-            numTeams,
-            netEffToRankMap,
-            actualNetEffToRankMap,
-            offEffToRankMap,
-            defEffToRankMap,
-          } = OffseasonLeaderboardUtils.buildAllTeamStats(
-            dataEvent[thisYear],
-            {
-              confs,
-              year: thisYear,
-              gender,
-              sortBy: "",
-              evalMode: true,
-              diagnosticCompareWithRosters: false,
-            },
-            {},
-            {},
-            avgEff,
-            actualResultsAvgEff,
-            true
-          );
-          acc.teamRanks = acc.teamRanks.concat(teamRanksPerYear);
-        },
-        { teamRanks: [] as OffseasonTeamInfo[] }
-      )
-      .value();
-
-    const dataToFilter = _.flatMap(teamRanks, (t) => {
-      // Inject transfers from this season
-      const offseasonYear = DateUtils.getNextYear(t.year);
-      const offseasonTransfers = dataEvent[offseasonYear]?.transfers?.[0];
-      const chain = _.chain(t.players).filter(
-        (p) => !_.isNil(p?.actualResults)
-      );
-      return (
-        offseasonTransfers
-          ? chain.map((p) => {
-              const actualResults = p?.actualResults;
-              if (actualResults) {
-                const maybeTransfers =
-                  offseasonTransfers[actualResults.code || "???"] || [];
-                const maybeTransfer = _.find(
-                  maybeTransfers,
-                  (txfer) => txfer.f == actualResults.team
-                );
-                if (maybeTransfer) {
-                  (actualResults as any).transfer_src = actualResults.team;
-                  (actualResults as any).transfer_dest = maybeTransfer.t;
-                }
-                return p;
-              }
-            })
-          : chain
-      ).value();
-    });
-    const handlePlayerToggle = (playerKey: string) => {
+    const handleTeamToggle = (teamKey: string) => {
       friendlyChange(
         () => {
-          if (playerKey === "") {
+          if (teamKey === "") {
             // Clear all selections
             settoggledEntities({});
-          } else if (toggledEntities[playerKey]) {
-            settoggledEntities(_.omit(toggledEntities, [playerKey]));
+          } else if (toggledEntities[teamKey]) {
+            settoggledEntities(_.omit(toggledEntities, [teamKey]));
           } else {
             settoggledEntities({
               ...toggledEntities,
-              [playerKey]: true,
+              [teamKey]: true,
             });
           }
         },
@@ -916,30 +684,26 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
     // Apply filtering to the data
     const [filteredData, tmpAdvancedFilterError] = datasetFilterStr
-      ? AdvancedFilterUtils.applyPlayerFilter(
-          dataToFilter,
+      ? AdvancedFilterUtils.applyTeamExplorerFilter(
+          teamObjs,
           datasetFilterStr,
-          (year: string) => undefined, //(player rank queries not yet supported)
           (year: string) => undefined, //(team rank queries not yet supported)
           {
             x: decompAxis(xAxis).linq,
             y: decompAxis(yAxis).linq,
             z: dotSize,
             color: dotColor,
-          },
-          true
+          }
         )
       : [[], undefined];
     setAdvancedFilterError(tmpAdvancedFilterError);
 
     const [highlightData, tmpHighlightFilterError] = highlightFilterStr
-      ? AdvancedFilterUtils.applyPlayerFilter(
+      ? AdvancedFilterUtils.applyTeamExplorerFilter(
           filteredData,
           highlightFilterStr,
-          (year: string) => undefined, //(player rank queries not yet supported)
           (year: string) => undefined, //(team rank queries not yet supported)
-          {},
-          true
+          {}
         )
       : [undefined, undefined];
     setHighlightFilterError(tmpHighlightFilterError);
@@ -980,7 +744,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         screenWidth={screenWidth}
         height={height}
         toggledEntities={toggledEntities}
-        onPlayerToggle={handlePlayerToggle}
+        onPlayerToggle={handleTeamToggle}
       />
     );
     const dataIsAlreadySorted =
@@ -1003,50 +767,51 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             })
             .value();
 
-    const playerLeaderboardToReturn = (
-      <PlayerLeaderboardTable
-        startingState={{
-          ...startingState,
-          includePrevYear: showPrevNextInTable,
-          sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
-          year: multiYearScenarios[year] ? DateUtils.AllYears : year,
-          tier: "All",
-          minPoss: incLowVol ? "0" : undefined,
-        }}
-        dataEvent={{
-          players: (subChartData || filteredData)
-            .map((p) => {
-              if (showPrevNextInTable && p.actualResults && p.orig) {
-                p.actualResults.prevYear = p.orig;
-              }
-              return p.actualResults;
-            })
-            .filter((p) => {
-              return _.isEmpty(toggledEntities) || !showOnlyHandSelectedInTable
-                ? true
-                : toggledEntities[p?.code || "??"];
-            }),
-          confs: _.chain(dataEvent)
-            .values()
-            .flatMap((d) => d.confs || [])
-            .uniq()
-            .value(),
-          //(don't need confMap because the conference selector isn't shown, it's just inherited)
-          error: _.chain(dataEvent)
-            .values()
-            .flatMap((d) => (d.error ? [d.error] : []))
-            .value()
-            .join("/"),
-          transfers: undefined, //(we've already injected transfer_src and transfer_dest where possible)
-          syntheticData: true,
-        }}
-        onChangeState={(newParams: PlayerLeaderboardParams) => {
-          setLboardParams(newParams);
-        }}
-      />
+    const teamStatsExplorerTableToReturn = (
+      <div />
+      // <PlayerLeaderboardTable
+      //   startingState={{
+      //     ...startingState,
+      //     includePrevYear: showPrevNextInTable,
+      //     sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
+      //     year: multiYearScenarios[year] ? DateUtils.AllYears : year,
+      //     tier: "All",
+      //     minPoss: incLowVol ? "0" : undefined,
+      //   }}
+      //   dataEvent={{
+      //     players: (subChartData || filteredData)
+      //       .map((p) => {
+      //         if (showPrevNextInTable && p.actualResults && p.orig) {
+      //           p.actualResults.prevYear = p.orig;
+      //         }
+      //         return p.actualResults;
+      //       })
+      //       .filter((p) => {
+      //         return _.isEmpty(toggledEntities) || !showOnlyHandSelectedInTable
+      //           ? true
+      //           : toggledEntities[p?.code || "??"];
+      //       }),
+      //     confs: _.chain(dataEvent)
+      //       .values()
+      //       .flatMap((d) => d.confs || [])
+      //       .uniq()
+      //       .value(),
+      //     //(don't need confMap because the conference selector isn't shown, it's just inherited)
+      //     error: _.chain(dataEvent)
+      //       .values()
+      //       .flatMap((d) => (d.error ? [d.error] : []))
+      //       .value()
+      //       .join("/"),
+      //     transfers: undefined, //(we've already injected transfer_src and transfer_dest where possible)
+      //     syntheticData: true,
+      //   }}
+      //   onChangeState={(newParams: PlayerLeaderboardParams) => {
+      //     setLboardParams(newParams);
+      //   }}
+      // />
     );
 
-    return [chartToReturn, playerLeaderboardToReturn];
+    return [chartToReturn, teamStatsExplorerTableToReturn];
   }, [
     confs,
     dataEvent,
@@ -1063,7 +828,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     screenHeight,
     screenWidth,
     toggledEntities,
-    showPrevNextInTable,
     showOnlyHandSelectedInTable,
     resolvedTheme,
   ]);
@@ -1074,13 +838,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (
-      loadingOverride ||
-      _.chain(dataEvent)
-        .map((d) => _.size(d.players || []))
-        .sum()
-        .value() == 0
-    );
+    return loadingOverride || _.size(dataEvent.teams) == 0;
   }
 
   /** Copy to clipboard button */
@@ -1153,36 +911,47 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     <>
       <Container className="medium_screen">
         <Form.Row>
-          <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
+          <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
             <ThemedSelect
               isDisabled={true}
-              value={stringToOption("Men")}
-              options={["Men"].map((gender) => stringToOption(gender))}
+              value={stringToOption(gender)}
+              options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
               onChange={(option: any) => {
                 if ((option as any)?.value) {
-                  /* currently only support Men */
+                  const maybeGender = (option as any)?.value;
+                  friendlyChange(
+                    () => setGender(maybeGender),
+                    maybeGender != gender
+                  );
                 }
               }}
             />
           </Col>
-          <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 11 }}>
-            <ThemedSelect
-              value={stringToOption(year)}
-              options={supportedYears
-                .concat(_.keys(multiYearScenarios))
-                .map(stringToOption)}
-              isSearchable={false}
-              onChange={(option: any) => {
-                const maybeYear = (option as any)?.value;
-                if (maybeYear) {
-                  friendlyChange(() => setYear(maybeYear), maybeYear != year);
-                }
+          <Col
+            xs={6}
+            sm={6}
+            md={6}
+            lg={year.startsWith(DateUtils.MultiYearPrefix) ? 3 : 2}
+            style={{ zIndex: 11 }}
+          >
+            <YearSelector
+              yearOptions={DateUtils.coreYears.concat(DateUtils.AllYears)}
+              selectedYear={year}
+              onYearChange={(newYear) => {
+                friendlyChange(() => setYear(newYear), newYear != year);
               }}
+              allowMultiYear={true}
             />
           </Col>
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-          <Col xs={12} sm={12} md={5} lg={5} style={{ zIndex: 10 }}>
+          <Col
+            xs={11}
+            sm={11}
+            md={11}
+            lg={year.startsWith(DateUtils.MultiYearPrefix) ? 4 : 5}
+            style={{ zIndex: 10 }}
+          >
             <ConferenceSelector
               emptyLabel={
                 year < DateUtils.yearFromWhichAllMenD1Imported
@@ -1190,11 +959,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                   : `All Teams`
               }
               confStr={confs}
-              confs={_.chain(dataEvent)
-                .values()
-                .flatMap((d) => d.confs || [])
-                .uniq()
-                .value()}
+              confs={dataEvent.confs}
               onChangeConf={(confStr) =>
                 friendlyChange(() => setConfs(confStr), confs != confStr)
               }
@@ -1246,7 +1011,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       <ChartConfigContainer
         title={title}
         onTitleChange={setTitle}
-        chartPresets={overallPlayerChartPresets}
+        chartPresets={overallTeamChartPresets}
         onApplyPreset={applyPresetChart}
         onClearPreset={() => {
           applyPresetChart({});
@@ -1289,7 +1054,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
               <LoadingOverlay
                 active={needToLoadQuery()}
                 spinner
-                text={"Loading Player Comparison Chart..."}
+                text={"Loading Team Stats Explorer Chart..."}
                 styles={{
                   overlay: (base: any) => ({
                     ...base,
@@ -1314,28 +1079,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             <GenericCollapsibleCard
               screenSize="medium_screen"
               minimizeMargin={true}
-              title="Player Stats"
+              title="Team Stats"
               helpLink={undefined}
               startClosed={!showTable}
               onShowHide={(nowShown: boolean) => setShowTable(nowShown)}
             >
               <Container className="medium_screen">
                 <Row>
-                  <Form.Group as={Col} className="mt-2">
-                    <Form.Check
-                      className="float-left"
-                      type="switch"
-                      id="showPrevNextInTable"
-                      checked={showPrevNextInTable}
-                      onChange={() => {
-                        friendlyChange(
-                          () => setShowPrevNextInTable(!showPrevNextInTable),
-                          true
-                        );
-                      }}
-                      label="Show Both Years' Stats"
-                    />
-                  </Form.Group>
                   <Form.Group as={Col} className="mt-2">
                     <Form.Check
                       className="float-left"
@@ -1356,7 +1106,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                     />
                   </Form.Group>
                 </Row>
-                <Row>{playerLeaderboard}</Row>
+                <Row>{teamStatsExplorerTable}</Row>
               </Container>
             </GenericCollapsibleCard>
           </Col>
@@ -1365,4 +1115,4 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     </>
   );
 };
-export default PlayerSeasonComparisonChart;
+export default TeamStatsExplorerChart;
