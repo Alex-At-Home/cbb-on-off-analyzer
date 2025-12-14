@@ -44,11 +44,13 @@ export type ExplorerChartProps = {
   dotColor: string;
   dotSize: string;
   dotColorMap: string;
+
+  // Labels
   labelStrategy: string;
+  labelBuilder: (dataObj: any) => string;
 
   // Conference/query filtering (for visual highlighting)
-  confs: string;
-  queryFilters: string;
+  confFilter?: (dataObj: any) => boolean;
 
   // Presets and options
   axisPresets: Array<[string, string]>;
@@ -60,9 +62,10 @@ export type ExplorerChartProps = {
   screenWidth: number;
   height: number;
 
-  // Player toggle state and handler
+  // Player/Team toggle state and handler
   toggledEntities: Record<string, boolean>;
-  onPlayerToggle: (playerKey: string) => void;
+  onEntityToggle: (entityKey: string) => void;
+  entityType: string;
 };
 
 const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
@@ -75,8 +78,8 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   dotSize,
   dotColorMap,
   labelStrategy,
-  confs,
-  queryFilters,
+  labelBuilder,
+  confFilter,
   axisPresets,
   colorMapOptions,
   contrastForegroundBuilder,
@@ -84,7 +87,8 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   screenWidth,
   height,
   toggledEntities,
-  onPlayerToggle,
+  onEntityToggle,
+  entityType,
 }) => {
   const globalScatterChartRef = useRef<any>();
 
@@ -97,41 +101,17 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
     );
   };
 
-  const hasCustomFilter =
-    confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
-  const specialCases = {
-    P6: Power6Conferences,
-    MM: NonP6Conferences,
-  } as Record<string, any>;
-  const confSet = confs
-    ? new Set(
-        _.flatMap(
-          (confs || "").split(","),
-          (c) => specialCases[c] || [NicknameToConference[c] || c]
-        )
-      )
-    : undefined;
-
   const subChart =
-    _.isEmpty(confs) && !highlightData
+    _.isNil(confFilter) && !highlightData
       ? undefined
       : _.chain(highlightData || filteredData)
-          .filter((p) => {
-            return _.isEmpty(confs)
-              ? true
-              : confSet?.has(p.actualResults?.conf || "???") ||
-                  false ||
-                  (hasCustomFilter &&
-                    (queryFilters || "").indexOf(
-                      `${p.actualResults?.team || ""};`
-                    ) >= 0);
-          })
+          .filter((p) => !confFilter || confFilter(p))
           .map((p) => {
             return {
               x: p.x,
               y: p.y,
               z: p.z,
-              label: p.actualResults?.code || "Unknown player",
+              label: labelBuilder(p),
               showTooltips: true,
               p: p,
             };
@@ -148,7 +128,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
         x: p.x,
         y: p.y,
         z: p.z,
-        label: p.actualResults?.code || "Unknown player",
+        label: labelBuilder(p),
         showTooltips: subChart == undefined,
         p: p,
       };
@@ -285,9 +265,9 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
     } else return n;
   };
 
-  const handlePlayerToggle = (playerKey: string) => {
+  const handleEntityToggle = (entityKey: string) => {
     globalScatterChartRef.current.handleItemMouseLeave();
-    onPlayerToggle(playerKey);
+    onEntityToggle(entityKey);
   };
 
   const labelState = ScatterChartUtils.buildEmptyLabelState();
@@ -351,7 +331,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                 <Cell
                   key={`cell-${index}`}
                   fill={colorMapPicker(colorMapTransformer(p.p.color))}
-                  onClick={(e) => handlePlayerToggle(p.label)}
+                  onClick={(e) => handleEntityToggle(p.label)}
                 />
               );
             })}
@@ -372,7 +352,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                   <Cell
                     key={`cell-${index}`}
                     fill={colorMapPicker(colorMapTransformer(p.p.color))}
-                    onClick={(e) => handlePlayerToggle(p.label)}
+                    onClick={(e) => handleEntityToggle(p.label)}
                   />
                 );
               })}
@@ -412,7 +392,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                   <Cell
                     key={`cell-${index}`}
                     fill={colorMapPicker(colorMapTransformer(p.p.color))}
-                    onClick={(e) => handlePlayerToggle(p.label)}
+                    onClick={(e) => handleEntityToggle(p.label)}
                   />
                 );
               })}
@@ -436,11 +416,11 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  onPlayerToggle(""); // Clear all selections - parent will handle this
+                  onEntityToggle(""); // Clear all selections - parent will handle this
                 }}
               >
-                [{_.size(toggledEntities)}] player(s) manually selected. Click
-                to clear selection
+                [{_.size(toggledEntities)}] {entityType}(s) manually selected.
+                Click to clear selection
               </a>
             )}
           </p>

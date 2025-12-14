@@ -504,7 +504,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         >
           <small>
             <p className="label">
-              <b>{`${teamObj?.team || "??"}`}</b> (
+              <b>{`${teamObj?.team_name || "??"}`}</b> (
               <i>{ConferenceToNickname[teamObj.conf] || "??"}</i>)
               <br />
             </p>
@@ -551,7 +551,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
             ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
   };
   /** Builds a list of JSON objects with basic filtering, subsequent phases render */
-  const phase1Processing = (teams: any[], applyConfFilter: boolean = true) => {
+  const phase1Processing = (teams: any[]) => {
     return _.chain(teams)
       .map((team, teamIndex) => {
         const confNick = ConferenceToNickname[team.conf || ""] || "???";
@@ -618,15 +618,6 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
 
         return team;
       })
-      .filter((team) => {
-        return applyConfFilter
-          ? confFilter({
-              team: team.team_name,
-              conf: team.conf_nick || "???",
-              year: team.year || "????",
-            })
-          : true;
-      })
       .sortBy((team) => {
         if (manualFilterSelected) {
           if (
@@ -660,7 +651,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       setLoadingOverride(false);
     }
 
-    const teamObjs = phase1Processing(dataEvent.teams, false);
+    const teamObjs = phase1Processing(dataEvent.teams);
 
     const handleTeamToggle = (teamKey: string) => {
       friendlyChange(
@@ -708,22 +699,6 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       : [undefined, undefined];
     setHighlightFilterError(tmpHighlightFilterError);
 
-    // Build chart data for leaderboard table
-    const hasCustomFilter =
-      confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
-    const specialCases = {
-      P6: Power6Conferences,
-      MM: NonP6Conferences,
-    } as Record<string, any>;
-    const confSet = confs
-      ? new Set(
-          _.flatMap(
-            (confs || "").split(","),
-            (c) => specialCases[c] || [NicknameToConference[c] || c]
-          )
-        )
-      : undefined;
-
     const chartToReturn = (
       <ExplorerChart
         filteredData={filteredData}
@@ -735,8 +710,18 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         dotSize={dotSize}
         dotColorMap={dotColorMap}
         labelStrategy={labelStrategy}
-        confs={confs}
-        queryFilters={queryFilters}
+        labelBuilder={(p) => p.team_name || "Unknown team"}
+        confFilter={
+          _.isEmpty(confs) && !hasCustomFilter
+            ? undefined
+            : (t) => {
+                return confFilter({
+                  team: t.team_name,
+                  conf: t.conf_nick || "???",
+                  year: t.year || "????",
+                });
+              }
+        }
         axisPresets={axisPresets}
         colorMapOptions={colorMapOptions}
         contrastForegroundBuilder={contrastForegroundBuilder}
@@ -744,9 +729,12 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         screenWidth={screenWidth}
         height={height}
         toggledEntities={toggledEntities}
-        onPlayerToggle={handleTeamToggle}
+        onEntityToggle={handleTeamToggle}
+        entityType="team"
       />
     );
+
+    // Build chart data for leaderboard table
     const dataIsAlreadySorted =
       datasetFilterStr.includes("SORT_BY") ||
       highlightFilterStr.includes("SORT_BY");
@@ -755,15 +743,12 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       _.isEmpty(confs) && !highlightData
         ? undefined
         : _.chain(highlightData || filteredData)
-            .filter((p: any) => {
-              return _.isEmpty(confs)
-                ? true
-                : confSet?.has(p.actualResults?.conf || "???") ||
-                    false ||
-                    (hasCustomFilter &&
-                      (queryFilters || "").indexOf(
-                        `${p.actualResults?.team || ""};`
-                      ) >= 0);
+            .filter((team) => {
+              return confFilter({
+                team: team.team_name,
+                conf: team.conf_nick || "???",
+                year: team.year || "????",
+              });
             })
             .value();
 
@@ -1019,12 +1004,12 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         showConfigOptions={showConfigOptions}
         filterValue={datasetFilterStr}
         filterError={datasetFilterError}
-        filterPlaceholder="Enter Linq: remove non-matching players (see presets for ideas - just type 'next_off_poss' to get all players)"
+        filterPlaceholder="Enter Linq: remove non-matching teams (see presets for ideas - just type 'ALL' to get all teams)"
         filterPresets={datasetFilterPresets}
         onFilterChange={handleFilterChange}
         highlightValue={highlightFilterStr}
         highlightError={highlightFilterError}
-        highlightPlaceholder="Enter Linq: non-matching players from 'Filter' are faded into the background"
+        highlightPlaceholder="Enter Linq: non-matching teams from 'Filter' are faded into the background"
         highlightPresets={datasetFilterPresets}
         onHighlightChange={handleHighlightChange}
         labelStrategy={labelStrategy}
@@ -1042,9 +1027,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         contrastForegroundBuilder={contrastForegroundBuilder}
         dotSize={dotSize}
         onDotSizeChange={handleDotSizeChange}
-        autocompleteOptions={
-          AdvancedFilterUtils.playerSeasonComparisonAutocomplete
-        }
+        autocompleteOptions={AdvancedFilterUtils.teamExplorerAutocomplete}
         showHelp={showHelp}
       />
       <Container className="medium_screen">

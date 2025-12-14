@@ -960,6 +960,15 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         )
       : undefined;
 
+    const confFilter = (p: any) => {
+      return (
+        confSet?.has(p.actualResults?.conf || "???") ||
+        false ||
+        (hasCustomFilter &&
+          (queryFilters || "").indexOf(`${p.actualResults?.team || ""};`) >= 0)
+      );
+    };
+
     const chartToReturn = (
       <ExplorerChart
         filteredData={filteredData}
@@ -971,8 +980,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         dotSize={dotSize}
         dotColorMap={dotColorMap}
         labelStrategy={labelStrategy}
-        confs={confs}
-        queryFilters={queryFilters}
+        labelBuilder={(p) => p.actualResults?.code || "Unknown player"}
+        confFilter={
+          _.isEmpty(confs) && !hasCustomFilter ? undefined : confFilter
+        }
         axisPresets={axisPresets}
         colorMapOptions={colorMapOptions}
         contrastForegroundBuilder={contrastForegroundBuilder}
@@ -980,7 +991,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         screenWidth={screenWidth}
         height={height}
         toggledEntities={toggledEntities}
-        onPlayerToggle={handlePlayerToggle}
+        onEntityToggle={handlePlayerToggle}
+        entityType="player"
       />
     );
     const dataIsAlreadySorted =
@@ -992,14 +1004,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         ? undefined
         : _.chain(highlightData || filteredData)
             .filter((p: any) => {
-              return _.isEmpty(confs)
-                ? true
-                : confSet?.has(p.actualResults?.conf || "???") ||
-                    false ||
-                    (hasCustomFilter &&
-                      (queryFilters || "").indexOf(
-                        `${p.actualResults?.team || ""};`
-                      ) >= 0);
+              return _.isEmpty(confs) && !hasCustomFilter ? true : confFilter;
             })
             .value();
 
@@ -1254,7 +1259,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         showConfigOptions={showConfigOptions}
         filterValue={datasetFilterStr}
         filterError={datasetFilterError}
-        filterPlaceholder="Enter Linq: remove non-matching players (see presets for ideas - just type 'next_off_poss' to get all players)"
+        filterPlaceholder="Enter Linq: remove non-matching players (see presets for ideas - just type 'ALL' to get all players)"
         filterPresets={datasetFilterPresets}
         onFilterChange={handleFilterChange}
         highlightValue={highlightFilterStr}
