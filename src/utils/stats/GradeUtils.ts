@@ -182,7 +182,7 @@ export class GradeUtils {
     "trans_3p",
     "trans_2p",
 
-    // Defensive only, but the code should handle that
+    // Defensive only, but the code should handle that (actually now they have off_ values for teams)
     "stl",
     "to_nonstl", //(non-steal TO)
     "blk",
@@ -743,6 +743,10 @@ export class GradeUtils {
 
   static readonly teamFieldsToInvert = {
     off_to: true,
+    off_to_nonstl: true,
+    off_stl: true,
+    off_blk: true,
+    off_stk: true,
     def_to: true,
     def_to_nonstl: true,
     def_stl: true,
