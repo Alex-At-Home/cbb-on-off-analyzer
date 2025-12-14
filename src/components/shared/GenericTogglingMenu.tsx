@@ -15,6 +15,8 @@ type Props = {
   label?: React.ReactElement;
   drop?: "up" | "left" | "right" | "down";
   alwaysOpen?: boolean;
+  tooltip?: React.JSX.Element;
+  style?: any;
 };
 
 const GenericTogglingMenu: React.FunctionComponent<Props> = ({
@@ -23,6 +25,8 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   drop,
   children,
   alwaysOpen,
+  tooltip,
+  ...props
 }) => {
   // Some extra logic for the config dropdown:
   const [configDropdownOpen, setConfigDropdownOpen] = useState(
@@ -47,6 +51,7 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
       drop={drop || "up"}
       onToggle={handleToggle}
       show={configDropdownOpen}
+      {...props}
     >
       {label ? (
         <Dropdown.Toggle
@@ -57,7 +62,10 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
           {label}
         </Dropdown.Toggle>
       ) : (
-        <OverlayTrigger placement="bottom" overlay={advancedSettingsTooltip}>
+        <OverlayTrigger
+          placement={drop ? "auto" : "bottom"}
+          overlay={tooltip || advancedSettingsTooltip}
+        >
           <Dropdown.Toggle
             size={size}
             variant="outline-secondary"

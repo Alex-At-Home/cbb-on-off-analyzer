@@ -108,6 +108,7 @@ import { TeamStatsExplorerModel } from "./TeamStatsExplorerTable";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import YearSelector from "./shared/YearSelector";
+import TeamFilterAutoSuggestText from "./shared/TeamFilterAutoSuggestText";
 
 type Props = {
   startingState: TeamStatsExplorerChartParams;
@@ -174,7 +175,6 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
 
   const [title, setTitle] = useState(startingState.title || "");
 
-  // TODO: support for manual filter at the chart stage:
   // Basic filter:
   const manualFilterSelected =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0; //(if so this will override the ordering)
@@ -185,6 +185,47 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     startingState.queryFilters || ""
   );
   const separatorKeyword = "BREAK"; //(not used but leave the logic in here in case we change our mind later)
+
+  //TODO: make this generic, it's used in 3 places
+  const teamList =
+    year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
+      ? _.chain(
+          _.flatMap(AvailableTeams.byName, (teams, teamName) => {
+            return [teamName].concat(
+              // Just do "ADD_SEASON" and let user fill it in
+              `${teamName}:ADD_SEASON`
+              // Not doing: add every year, more intuitive but doesn't scale
+              // teams
+              //   .filter((t) => t.year && t.gender == gender)
+              //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
+            );
+          })
+        )
+          .flatMap((team) => {
+            const teamFrags = team.split(`:`);
+            // Add aliases in:
+            return [team].concat(
+              (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
+                teamFrags[1] ? `${s}:${teamFrags[1]}` : s
+              )
+            );
+          })
+          .uniq()
+          .value()
+      : _.chain(
+          _.flatMap(AvailableTeams.byName, (teams, __) => {
+            const maybeTeam = teams.find(
+              (t) => t.year == year && t.gender == gender
+            );
+            return maybeTeam ? [maybeTeam.team] : [];
+          })
+        )
+          .flatMap((team) => {
+            // Add aliases in:
+            return [team].concat(AvailableTeams.teamAliases[team] || []);
+          })
+          .value();
+
   const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
     queryFilters.split(";"),
     (acc, v, ii) => {
@@ -276,7 +317,58 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   const [yAxis, setYAxis] = useState(startingState.yAxis || "");
   const [dotColor, setDotColor] = useState(startingState.dotColor || "");
   const [dotSize, setDotSize] = useState(startingState.dotSize || "");
-  const axisPresets = [] as Array<[string, string]>;
+  const axisPresets = [
+    // Top level
+    ["Adjusted Margin", "adj_net"],
+    ["Adjusted Margin (%ile)", "pctile_adj_net"],
+    ["Adjusted Offense", "off_adj_ppp"],
+    ["Adjusted Offense (%ile)", "pctile_off_adj_ppp"],
+    ["Adjusted Defense", "def_adj_ppp"],
+    ["Adjusted Defense (%ile)", "pctile_def_adj_ppp"],
+    // Four factors
+    ["eFG%", "off_efg"],
+    ["eFG% (%ile)", "pctile_off_efg"],
+    ["Opponent eFG%", "def_efg"],
+    ["Opponent eFG% (%ile)", "pctile_def_efg"],
+    ["TO%", "off_to"],
+    ["TO% (%ile)", "pctile_off_to"],
+    ["Defensive TO%", "def_to"],
+    ["Defensive TO% (%ile)", "pctile_def_to"],
+    ["ORB%", "off_orb"],
+    ["ORB% (%ile)", "pctile_off_orb"],
+    ["DRB%", "1 - def_orb"],
+    ["DRB% (%ile)", "pctile_def_orb"],
+    ["Opponent ORB%", "def_orb"],
+    ["Opponent ORB% (%ile)", "pctile_def_orb"],
+    ["Free Throw Rate", "off_ftr"],
+    ["Free Throw Rate (%ile)", "pctile_off_ftr"],
+    ["Opponent Free Throw Rate", "def_ftr"],
+    ["Opponent Free Throw Rate (%ile)", "pctile_def_ftr"],
+    // Shooting
+    ["3P%", "off_threep"],
+    ["3P% (%ile)", "pctile_off_threep"],
+    ["Opponent 3P%", "def_threep"],
+    ["Opponent 3P% (%ile)", "pctile_def_threep"],
+    ["2P%", "off_twop"],
+    ["2P% (%ile)", "pctile_off_twop"],
+    ["Opponent 2P%", "def_twop"],
+    ["Opponent 2P% (%ile)", "pctile_def_twop"],
+    ["Rim 2P%", "off_twoprim"],
+    ["Rim 2P% (%ile)", "pctile_off_twoprim"],
+    ["Opponent Rim 2P%", "def_twoprim"],
+    ["Opponent Rim 2P% (%ile)", "pctile_def_twoprim"],
+    ["Mid 2P%", "off_twopmid"],
+    ["Mid 2P% (%ile)", "pctile_off_twopmid"],
+    ["Opponent Mid 2P%", "def_twopmid"],
+    ["Opponent Mid 2P% (%ile)", "pctile_def_twopmid"],
+    ["FT%", "off_ft"],
+    ["FT% (%ile)", "pctile_off_ft"],
+    ["Opponent FT%", "def_ft"],
+    ["Opponent FT% (%ile)", "pctile_def_ft"],
+    // Basic Style
+    //TODO: assist rate, 3PR etc
+    // Basic Play Types
+  ] as Array<[string, string]>;
   const [dotColorMap, setDotColorMap] = useState(
     startingState.dotColorMap || "Default"
   );
@@ -946,7 +1038,11 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
               confStr={confs}
               confs={dataEvent.confs}
               onChangeConf={(confStr) =>
-                friendlyChange(() => setConfs(confStr), confs != confStr)
+                friendlyChange(() => {
+                  setConfs(confStr);
+                  setTmpQueryFilters("");
+                  setQueryFilters("");
+                }, confs != confStr)
               }
             />
           </Col>
@@ -968,28 +1064,31 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
           </Form.Group>
         </Form.Row>
         {hasCustomFilter ? (
-          <Form.Row>
-            {hasCustomFilter ? (
-              <Col xs={12} sm={12} md={8} lg={8}>
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id="filter">Filter:</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <AsyncFormControl
-                    startingVal={queryFilters}
-                    onChange={(t: string) => {
-                      const newStr = t.endsWith(";") ? t : t + ";";
-                      friendlyChange(
-                        () => setQueryFilters(newStr),
-                        newStr != queryFilters
-                      );
-                    }}
-                    timeout={500}
-                    placeholder=";-separated list of teams"
+          <Form.Row className="mb-2">
+            <Col xs={12} sm={12} md={8} lg={8}>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="filter">Filter:</InputGroup.Text>
+                </InputGroup.Prepend>
+                <div className="flex-fill">
+                  <TeamFilterAutoSuggestText
+                    readOnly={false}
+                    placeholder={`;-separated list of teams"`}
+                    autocomplete={teamList
+                      .concat([separatorKeyword])
+                      .map((s) => s + ";")}
+                    value={tmpQueryFilters}
+                    onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                    onSelectionChanged={(newStr: string) =>
+                      friendlyChange(() => {
+                        setQueryFilters(newStr);
+                      }, newStr != queryFilters)
+                    }
+                    onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
                   />
-                </InputGroup>
-              </Col>
-            ) : null}
+                </div>
+              </InputGroup>
+            </Col>
           </Form.Row>
         ) : null}
       </Container>

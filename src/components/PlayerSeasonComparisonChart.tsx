@@ -102,6 +102,7 @@ import ChartConfigContainer from "./shared/ChartConfigContainer";
 import ExplorerChart from "./shared/ExplorerChart";
 import { decompAxis } from "../utils/ExplorerChartUtils";
 import { useTheme } from "next-themes";
+import TeamFilterAutoSuggestText from "./shared/TeamFilterAutoSuggestText";
 
 type Props = {
   startingState: PlayerSeasonComparisonParams;
@@ -231,6 +232,50 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const [queryFilters, setQueryFilters] = useState(
     startingState.queryFilters || ""
   );
+  const [tmpQueryFilters, setTmpQueryFilters] = useState(
+    startingState.queryFilters || ""
+  );
+  const separatorKeyword = "BREAK"; //(not used but leave the logic in here in case we change our mind later)
+
+  //TODO: make this generic, it's used in 3 places
+  const teamList =
+    year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
+      ? _.chain(
+          _.flatMap(AvailableTeams.byName, (teams, teamName) => {
+            return [teamName].concat(
+              // Just do "ADD_SEASON" and let user fill it in
+              `${teamName}:ADD_SEASON`
+              // Not doing: add every year, more intuitive but doesn't scale
+              // teams
+              //   .filter((t) => t.year && t.gender == gender)
+              //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
+            );
+          })
+        )
+          .flatMap((team) => {
+            const teamFrags = team.split(`:`);
+            // Add aliases in:
+            return [team].concat(
+              (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
+                teamFrags[1] ? `${s}:${teamFrags[1]}` : s
+              )
+            );
+          })
+          .uniq()
+          .value()
+      : _.chain(
+          _.flatMap(AvailableTeams.byName, (teams, __) => {
+            const maybeTeam = teams.find(
+              (t) => t.year == year && t.gender == gender
+            );
+            return maybeTeam ? [maybeTeam.team] : [];
+          })
+        )
+          .flatMap((team) => {
+            // Add aliases in:
+            return [team].concat(AvailableTeams.teamAliases[team] || []);
+          })
+          .value();
 
   const [title, setTitle] = useState(startingState.title || "");
 
@@ -1201,7 +1246,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 .uniq()
                 .value()}
               onChangeConf={(confStr) =>
-                friendlyChange(() => setConfs(confStr), confs != confStr)
+                friendlyChange(() => {
+                  setConfs(confStr);
+                  setTmpQueryFilters("");
+                  setQueryFilters("");
+                }, confs != confStr)
               }
             />
           </Col>
@@ -1223,28 +1272,31 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           </Form.Group>
         </Form.Row>
         {hasCustomFilter ? (
-          <Form.Row>
-            {hasCustomFilter ? (
-              <Col xs={12} sm={12} md={8} lg={8}>
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id="filter">Filter:</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <AsyncFormControl
-                    startingVal={queryFilters}
-                    onChange={(t: string) => {
-                      const newStr = t.endsWith(";") ? t : t + ";";
-                      friendlyChange(
-                        () => setQueryFilters(newStr),
-                        newStr != queryFilters
-                      );
-                    }}
-                    timeout={500}
-                    placeholder=";-separated list of teams"
+          <Form.Row className="mb-2">
+            <Col xs={12} sm={12} md={8} lg={8}>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="filter">Filter:</InputGroup.Text>
+                </InputGroup.Prepend>
+                <div className="flex-fill">
+                  <TeamFilterAutoSuggestText
+                    readOnly={false}
+                    placeholder={`;-separated list of teams"`}
+                    autocomplete={teamList
+                      .concat([separatorKeyword])
+                      .map((s) => s + ";")}
+                    value={tmpQueryFilters}
+                    onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                    onSelectionChanged={(newStr: string) =>
+                      friendlyChange(() => {
+                        setQueryFilters(newStr);
+                      }, newStr != queryFilters)
+                    }
+                    onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
                   />
-                </InputGroup>
-              </Col>
-            ) : null}
+                </div>
+              </InputGroup>
+            </Col>
           </Form.Row>
         ) : null}
       </Container>

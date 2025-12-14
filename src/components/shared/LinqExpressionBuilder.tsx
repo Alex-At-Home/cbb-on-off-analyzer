@@ -24,6 +24,7 @@ import {
   faFilter,
 } from "@fortawesome/free-solid-svg-icons";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import GenericTogglingMenu from "./GenericTogglingMenu";
 
 type Props = {
   readonly label?: string;
@@ -175,29 +176,24 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
       </div>
       {presets ? (
         <InputGroup.Append>
-          <Dropdown alignRight style={{ maxHeight: "2.4rem" }}>
-            <Dropdown.Toggle variant="outline-secondary">
-              <OverlayTrigger
-                placement="auto"
-                overlay={tooltipForFilterPresets}
-              >
-                <FontAwesomeIcon icon={presetsIcon || faFilter} />
-              </OverlayTrigger>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <GenericTogglingMenuItem
-                text={<i>Clear selection</i>}
-                truthVal={false}
-                onSelect={() => {
-                  if (value != "") {
-                    setTmpAdvancedFilterStr("");
-                    callback("");
-                  }
-                }}
-              />
-              {presets.map((preset) => buildFilterPresetMenuItem(...preset))}
-            </Dropdown.Menu>
-          </Dropdown>
+          <GenericTogglingMenu
+            style={{ maxHeight: "2.4rem" }}
+            label={<FontAwesomeIcon icon={presetsIcon || faFilter} />}
+            drop="down"
+            tooltip={tooltipForFilterPresets}
+          >
+            <GenericTogglingMenuItem
+              text={<i>Clear selection</i>}
+              truthVal={false}
+              onSelect={() => {
+                if (value != "") {
+                  setTmpAdvancedFilterStr("");
+                  callback("");
+                }
+              }}
+            />
+            {presets.map((preset) => buildFilterPresetMenuItem(...preset))}
+          </GenericTogglingMenu>
         </InputGroup.Append>
       ) : null}
     </InputGroup>

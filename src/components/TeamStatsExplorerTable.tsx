@@ -1360,11 +1360,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             <div className="flex-fill">
               <TeamFilterAutoSuggestText
                 readOnly={false}
-                placeholder={
-                  manualFilterSelected
-                    ? `;-separated list of teams"` //(don't support BREAK, we already add row separators between teams)
-                    : `;-separated list of teams`
-                }
+                placeholder={`;-separated list of teams`}
                 autocomplete={teamList
                   .concat([separatorKeyword])
                   .map((s) => s + ";")}
