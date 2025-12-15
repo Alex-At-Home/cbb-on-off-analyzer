@@ -1305,6 +1305,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   }, [
     confs,
     dataEvent,
+    divisionStatsCache,
     queryFilters,
     height,
     datasetFilterStr,

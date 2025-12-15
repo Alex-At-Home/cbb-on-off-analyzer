@@ -4,6 +4,7 @@ import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
 import { PlayTypeUtils } from "./stats/PlayTypeUtils";
 import { ShotChartUtils } from "./stats/ShotChartUtils";
+import values from "lodash";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -903,6 +904,8 @@ export class AdvancedFilterUtils {
         /(_id|team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)/g,
         "$.p.$1"
       )
+      .replace(/ALL/g, "($.p.team_name)")
+      .replace(/tempo/g, "$.p.tempo?.value")
       .replace(
         /(off|def)_style_([0-9a-zA-Z_]+)_(pct|ppp)/g,
         (substr: string, offDef: string, styleType: string, pctPpp: string) =>
@@ -1068,16 +1071,23 @@ export class AdvancedFilterUtils {
   /** A common accessor for both Linq filter/sort and CSV building */
   private static buildTeamExplorerRows(
     filterStr: string,
+    extraParams: Record<string, string>,
     divStats: (year: string) => DivisionStatistics | undefined
   ): (p: any, index: number) => any {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
       "rank_",
+      extraParams,
       false
     );
     const [pctileFields, stylePctileFields] =
-      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile_", false);
+      AdvancedFilterUtils.buildGradeQueries(
+        filterStr,
+        "pctile_",
+        extraParams,
+        false
+      );
 
     //DIAG:
     // console.log(
@@ -1141,7 +1151,11 @@ export class AdvancedFilterUtils {
       extraParams,
       false, //(multi-year ... not supported for teams)
       AdvancedFilterUtils.tidyTeamExplorerClauses,
-      AdvancedFilterUtils.buildTeamExplorerRows(filterStr, divStats)
+      AdvancedFilterUtils.buildTeamExplorerRows(
+        filterStr,
+        extraParams,
+        divStats
+      )
     );
   }
 
@@ -1165,26 +1179,35 @@ export class AdvancedFilterUtils {
     filterStr: string,
     playerDivStats: (year: string) => DivisionStatistics | undefined,
     teamDivStats: (year: string) => DivisionStatistics | undefined,
+    extraParams: Record<string, string>,
     multiYear: boolean
   ): (p: any, index: number) => any {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
       "rank_",
+      extraParams,
       true
     );
     const [teamRankFields, teamStyleRankFields] =
       AdvancedFilterUtils.buildGradeQueries(
         filterStr,
         "rank_team_stats[.]",
+        extraParams,
         true
       );
     const [pctileFields, stylePctileFields] =
-      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile_", true);
+      AdvancedFilterUtils.buildGradeQueries(
+        filterStr,
+        "pctile_",
+        extraParams,
+        true
+      );
     const [teamPctileFields, teamStylePctileFields] =
       AdvancedFilterUtils.buildGradeQueries(
         filterStr,
         "pctile_team_stats[.]",
+        extraParams,
         true
       );
 
@@ -1330,6 +1353,7 @@ export class AdvancedFilterUtils {
         filterStr,
         playerDivStats,
         teamDivStats,
+        extraParams,
         multiYear
       )
     );
@@ -1503,6 +1527,7 @@ export class AdvancedFilterUtils {
     const divStatsWithFallback = divStats || ((y: string) => undefined);
     const rowBuilder = AdvancedFilterUtils.buildTeamExplorerRows(
       rawExpressionString,
+      {},
       divStatsWithFallback
     );
     const enumData = Enumerable.from(inData.map(rowBuilder));
@@ -1584,6 +1609,7 @@ export class AdvancedFilterUtils {
       rawExpressionString,
       playerDivStatsWithFallback,
       teamDivStatsWithFallback,
+      {},
       false
     );
     const enumData = Enumerable.from(inData.map(rowBuilder));
@@ -1664,10 +1690,11 @@ export class AdvancedFilterUtils {
   private static buildGradeQueries = (
     filterStrIn: string,
     prefix: string,
+    extraParams: Record<string, string>,
     isPlayer: boolean
   ): [string[], string[]] => {
     const allGradeQueries =
-      filterStrIn.match(
+      (filterStrIn + _.values(extraParams).join(" ")).match(
         new RegExp(`${prefix}(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
       ) || [];
 
