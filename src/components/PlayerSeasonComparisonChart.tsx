@@ -1038,6 +1038,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         toggledEntities={toggledEntities}
         onEntityToggle={handlePlayerToggle}
         entityType="player"
+        incWeightedSummary={true}
       />
     );
     const dataIsAlreadySorted =

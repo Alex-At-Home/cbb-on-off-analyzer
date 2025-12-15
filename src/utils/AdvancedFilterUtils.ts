@@ -228,6 +228,9 @@ export class AdvancedFilterUtils {
     "off_adj_opp",
     "def_adj_opp",
 
+    // Misc
+    "tempo",
+
     // Four factors
     "off_efg",
     "off_to",
@@ -275,6 +278,10 @@ export class AdvancedFilterUtils {
     "def_twoprim_ast",
 
     // Extra defensive info
+    "off_stl",
+    "off_blk",
+    "off_to_nonstl",
+    "off_stk",
     "def_stl",
     "def_blk",
     "def_to_nonstl",

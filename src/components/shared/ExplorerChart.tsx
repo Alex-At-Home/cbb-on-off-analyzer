@@ -66,6 +66,9 @@ export type ExplorerChartProps = {
   toggledEntities: Record<string, boolean>;
   onEntityToggle: (entityKey: string) => void;
   entityType: string;
+
+  // For players, we can weight stats by minute
+  incWeightedSummary?: boolean;
 };
 
 const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
@@ -89,6 +92,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   toggledEntities,
   onEntityToggle,
   entityType,
+  incWeightedSummary,
 }) => {
   const globalScatterChartRef = useRef<any>();
 
@@ -246,10 +250,17 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
       <div>
         Average: [({mutAvgState.avgX.toFixed(2)}, {mutAvgState.avgY.toFixed(2)}
         )]&nbsp; (std: [{mutAvgState.varX.toFixed(2)}], [
-        {mutAvgState.varY.toFixed(2)}]) //&nbsp; Weighted: [(
-        {mutAvgState.weightAvgX.toFixed(2)}, {mutAvgState.weightAvgY.toFixed(2)}
-        )]&nbsp; (std: [{mutAvgState.weightVarX.toFixed(2)}], [
-        {mutAvgState.weightVarY.toFixed(2)}]) //&nbsp; sample count=[
+        {mutAvgState.varY.toFixed(2)}])
+        {incWeightedSummary ? (
+          <span>
+            &nbsp;//&nbsp; Weighted: [(
+            {mutAvgState.weightAvgX.toFixed(2)},{" "}
+            {mutAvgState.weightAvgY.toFixed(2)}
+            )]&nbsp; (std: [{mutAvgState.weightVarX.toFixed(2)}], [
+            {mutAvgState.weightVarY.toFixed(2)}])
+          </span>
+        ) : undefined}{" "}
+        //&nbsp; sample count=[
         {mutAvgState.avgCount}]
       </div>
     );
