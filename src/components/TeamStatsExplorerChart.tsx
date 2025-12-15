@@ -306,9 +306,13 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   const [datasetFilterError, setAdvancedFilterError] = useState(
     undefined as string | undefined
   );
-  const datasetFilterPresets = [["All teams", "ALL"]] as Array<
-    [string, string]
-  >;
+  const datasetFilterPresets = [
+    ["All teams", "ALL"],
+    ["T75 Adj Net", "rank_adj_net <= 75"],
+    ["T75 Adj Offense", "rank_off_adj_ppp <= 75"],
+    ["T75 Adj Defense", "rank_def_adj_ppp <= 75"],
+    ["T75 Tempo", "rank_tempo <= 75"],
+  ] as Array<[string, string]>;
 
   // Highlight text (show/hide):
   const [highlightFilterStr, setHighlightFilterStr] = useState(

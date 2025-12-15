@@ -1695,7 +1695,10 @@ export class AdvancedFilterUtils {
   ): [string[], string[]] => {
     const allGradeQueries =
       (filterStrIn + _.values(extraParams).join(" ")).match(
-        new RegExp(`${prefix}(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
+        new RegExp(
+          `${prefix}(?:off|def|adj|raw)_[a-zA-Z_0-9]+|${prefix}tempo`,
+          "g"
+        )
       ) || [];
 
     const gradeFieldsIncStyle = isPlayer
@@ -1716,7 +1719,9 @@ export class AdvancedFilterUtils {
           AdvancedFilterUtils.tidyTeamExplorerClauses(
             preField.substring(_.startsWith(prefix, "rank") ? 5 : 7),
             false
-          ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+          )
+            .replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+            .replace(/[$][.]p[.](tempo).*/, "$1")
         );
 
     //DEBUG
