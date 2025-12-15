@@ -104,6 +104,7 @@ export type TeamStatsExplorerModel = {
   bubbleDefenses: Record<string, number[]>;
   lastUpdated: number;
   error?: string;
+  syntheticData?: boolean; //(if true, can't use T100 and conf sub-filters)
 };
 
 type Props = {
@@ -912,7 +913,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   function needToLoadQuery() {
     return (
       !dataEvent.error &&
-      (loadingOverride || (dataEvent?.teams || []).length == 0)
+      (loadingOverride ||
+        (!dataEvent.syntheticData && (dataEvent?.teams || []).length == 0))
     );
   }
 
@@ -941,7 +943,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const sortByOptions: Record<string, { label: string; value: string }> = {
     power: {
       label: _.thru(undefined, (__) => {
-        if (advancedFilterStr.includes("SORT_BY")) {
+        if (advancedFilterStr.includes("SORT_BY") || dataEvent.syntheticData) {
           return "Custom Ranking";
         } else if (manualFilterSelected) {
           return "Manual Ordering";
@@ -1273,82 +1275,87 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   );
   return (
     <Container className="medium_screen">
-      <Form.Group as={Row}>
-        <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
-          <ThemedSelect
-            value={stringToOption(gender)}
-            options={["Men", "Women"].map((g) => stringToOption(g))}
-            isSearchable={false}
-            onChange={(option: any) => {
-              if ((option as any)?.value) {
-                const newGender = (option as any)?.value;
-                friendlyChange(() => setGender(newGender), newGender != gender);
+      {dataEvent.syntheticData ? null : (
+        <Form.Group as={Row}>
+          <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
+            <ThemedSelect
+              value={stringToOption(gender)}
+              options={["Men", "Women"].map((g) => stringToOption(g))}
+              isSearchable={false}
+              onChange={(option: any) => {
+                if ((option as any)?.value) {
+                  const newGender = (option as any)?.value;
+                  friendlyChange(
+                    () => setGender(newGender),
+                    newGender != gender
+                  );
+                }
+              }}
+            />
+          </Col>
+          <Col
+            xs={6}
+            sm={6}
+            md={6}
+            lg={year.startsWith(DateUtils.MultiYearPrefix) ? 3 : 2}
+            style={{ zIndex: 11 }}
+          >
+            <YearSelector
+              yearOptions={DateUtils.coreYears.concat(DateUtils.AllYears)}
+              selectedYear={year}
+              onYearChange={(newYear) => {
+                friendlyChange(() => setYear(newYear), newYear != year);
+              }}
+              allowMultiYear={true}
+            />
+          </Col>
+          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
+          <Col
+            xs={11}
+            sm={11}
+            md={11}
+            lg={year.startsWith(DateUtils.MultiYearPrefix) ? 4 : 5}
+            style={{ zIndex: 10 }}
+          >
+            <ConferenceSelector
+              emptyLabel={
+                year < DateUtils.yearFromWhichAllMenD1Imported
+                  ? `All High Tier Teams`
+                  : `All Teams`
               }
-            }}
-          />
-        </Col>
-        <Col
-          xs={6}
-          sm={6}
-          md={6}
-          lg={year.startsWith(DateUtils.MultiYearPrefix) ? 3 : 2}
-          style={{ zIndex: 11 }}
-        >
-          <YearSelector
-            yearOptions={DateUtils.coreYears.concat(DateUtils.AllYears)}
-            selectedYear={year}
-            onYearChange={(newYear) => {
-              friendlyChange(() => setYear(newYear), newYear != year);
-            }}
-            allowMultiYear={true}
-          />
-        </Col>
-        <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-        <Col
-          xs={11}
-          sm={11}
-          md={11}
-          lg={year.startsWith(DateUtils.MultiYearPrefix) ? 4 : 5}
-          style={{ zIndex: 10 }}
-        >
-          <ConferenceSelector
-            emptyLabel={
-              year < DateUtils.yearFromWhichAllMenD1Imported
-                ? `All High Tier Teams`
-                : `All Teams`
-            }
-            confStr={confs}
-            confMap={undefined}
-            confs={dataEvent?.confs}
-            onChangeConf={(confStr) =>
-              friendlyChange(() => setConfs(confStr), confs != confStr)
-            }
-          />
-        </Col>
-        <Col xs={2} lg={2} className="mt-1">
-          {getCopyLinkButton()}
-          <span className="float-left pl-2">
-            <OverlayTrigger
-              placement="auto"
-              overlay={
-                <Tooltip id={"playerDocsTooltip"}>
-                  Go to an article describing for the contents of the table
-                  below
-                </Tooltip>
+              confStr={confs}
+              confMap={undefined}
+              confs={dataEvent?.confs}
+              onChangeConf={(confStr) =>
+                friendlyChange(() => setConfs(confStr), confs != confStr)
               }
-            >
-              <a
-                target="_blank"
-                href={
-                  "https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html"
+            />
+          </Col>
+          <Col xs={2} lg={2} className="mt-1">
+            {getCopyLinkButton()}
+            <span className="float-left pl-2">
+              <OverlayTrigger
+                placement="auto"
+                overlay={
+                  <Tooltip id={"playerDocsTooltip"}>
+                    Go to an article describing for the contents of the table
+                    below
+                  </Tooltip>
                 }
               >
-                (?)
-              </a>
-            </OverlayTrigger>
-          </span>
-        </Col>
-      </Form.Group>
+                <a
+                  target="_blank"
+                  href={
+                    "https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html"
+                  }
+                >
+                  (?)
+                </a>
+              </OverlayTrigger>
+            </span>
+          </Col>
+        </Form.Group>
+      )}
       <Row>
         <Col xs={12} sm={12} md={7} lg={7}>
           <InputGroup>

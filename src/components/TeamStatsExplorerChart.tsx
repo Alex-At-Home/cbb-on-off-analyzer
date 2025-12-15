@@ -104,7 +104,9 @@ import ChartConfigContainer from "./shared/ChartConfigContainer";
 import ExplorerChart from "./shared/ExplorerChart";
 import { decompAxis } from "../utils/ExplorerChartUtils";
 import { useTheme } from "next-themes";
-import { TeamStatsExplorerModel } from "./TeamStatsExplorerTable";
+import TeamStatsExplorerTable, {
+  TeamStatsExplorerModel,
+} from "./TeamStatsExplorerTable";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import YearSelector from "./shared/YearSelector";
@@ -1004,6 +1006,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
                 </span>
               )}
             </p>
+            <p>Click to add to filter in table below.</p>
           </small>
         </div>
       );
@@ -1193,6 +1196,17 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       : [undefined, undefined];
     setHighlightFilterError(tmpHighlightFilterError);
 
+    const labelBuilder = (t: any) =>
+      `${t.team_name}${
+        year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
+          ? ` '${_.thru(t.year || "??????", (effYear) => {
+              return effYear < "2019/20"
+                ? "1" + effYear.substring(5)
+                : effYear.substring(5);
+            })}`
+          : ""
+      }` || "Unknown team";
+
     const chartToReturn = (
       <ExplorerChart
         filteredData={filteredData}
@@ -1204,18 +1218,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         dotSize={dotSize}
         dotColorMap={dotColorMap}
         labelStrategy={labelStrategy}
-        labelBuilder={(t) =>
-          `${t.team_name}${
-            year == DateUtils.AllYears ||
-            year.startsWith(DateUtils.MultiYearPrefix)
-              ? ` '${_.thru(t.year || "??????", (effYear) => {
-                  return effYear < "2019/20"
-                    ? "1" + effYear.substring(5)
-                    : effYear.substring(5);
-                })}`
-              : ""
-          }` || "Unknown team"
-        }
+        labelBuilder={labelBuilder}
         confFilter={
           _.isEmpty(confs) && !hasCustomFilter
             ? undefined
@@ -1258,47 +1261,33 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
             .value();
 
     const teamStatsExplorerTableToReturn = (
-      <div />
-      // <PlayerLeaderboardTable
-      //   startingState={{
-      //     ...startingState,
-      //     includePrevYear: showPrevNextInTable,
-      //     sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
-      //     year: multiYearScenarios[year] ? DateUtils.AllYears : year,
-      //     tier: "All",
-      //     minPoss: incLowVol ? "0" : undefined,
-      //   }}
-      //   dataEvent={{
-      //     players: (subChartData || filteredData)
-      //       .map((p) => {
-      //         if (showPrevNextInTable && p.actualResults && p.orig) {
-      //           p.actualResults.prevYear = p.orig;
-      //         }
-      //         return p.actualResults;
-      //       })
-      //       .filter((p) => {
-      //         return _.isEmpty(toggledEntities) || !showOnlyHandSelectedInTable
-      //           ? true
-      //           : toggledEntities[p?.code || "??"];
-      //       }),
-      //     confs: _.chain(dataEvent)
-      //       .values()
-      //       .flatMap((d) => d.confs || [])
-      //       .uniq()
-      //       .value(),
-      //     //(don't need confMap because the conference selector isn't shown, it's just inherited)
-      //     error: _.chain(dataEvent)
-      //       .values()
-      //       .flatMap((d) => (d.error ? [d.error] : []))
-      //       .value()
-      //       .join("/"),
-      //     transfers: undefined, //(we've already injected transfer_src and transfer_dest where possible)
-      //     syntheticData: true,
-      //   }}
-      //   onChangeState={(newParams: PlayerLeaderboardParams) => {
-      //     setLboardParams(newParams);
-      //   }}
-      // />
+      <TeamStatsExplorerTable
+        startingState={{
+          ...startingState,
+          sortBy: "power", //(should improve this logic)
+          year: year,
+        }}
+        dataEvent={{
+          teams: (subChartData || filteredData).filter((t) => {
+            return _.isEmpty(toggledEntities) || !showOnlyHandSelectedInTable
+              ? true
+              : toggledEntities[labelBuilder(t)] || false;
+          }),
+          confs: dataEvent?.confs || [],
+          bubbleOffenses: dataEvent?.bubbleOffenses || {},
+          bubbleDefenses: dataEvent?.bubbleDefenses || {},
+          lastUpdated: dataEvent?.lastUpdated || 0,
+          error: dataEvent?.error,
+          syntheticData: true,
+        }}
+        onChangeState={(newParams: TeamStatsExplorerParams) => {
+          // Update any relevant params if needed
+          onChangeState({
+            ...startingState,
+            ...newParams,
+          });
+        }}
+      />
     );
 
     return [chartToReturn, teamStatsExplorerTableToReturn];
@@ -1430,7 +1419,14 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
               yearOptions={DateUtils.coreYears.concat(DateUtils.AllYears)}
               selectedYear={year}
               onYearChange={(newYear) => {
-                friendlyChange(() => setYear(newYear), newYear != year);
+                friendlyChange(() => {
+                  setYear(newYear);
+                  const currYearExact = _.startsWith(year, "2");
+                  const newYearExact = _.startsWith(newYear, "2");
+                  if (currYearExact != newYearExact) {
+                    settoggledEntities({});
+                  }
+                }, newYear != year);
               }}
               allowMultiYear={true}
             />
@@ -1598,7 +1594,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
                           true
                         );
                       }}
-                      label="Show only hand-selected players"
+                      label="Show only hand-selected teams"
                     />
                   </Form.Group>
                 </Row>
