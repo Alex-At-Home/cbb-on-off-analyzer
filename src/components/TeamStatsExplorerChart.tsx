@@ -109,6 +109,10 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import YearSelector from "./shared/YearSelector";
 import TeamFilterAutoSuggestText from "./shared/TeamFilterAutoSuggestText";
+import {
+  DivisionStatsCache,
+  GradeTableUtils,
+} from "../utils/tables/GradeTableUtils";
 
 type Props = {
   startingState: TeamStatsExplorerChartParams;
@@ -716,6 +720,57 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     }
   }, []);
 
+  // Grades:
+
+  const [divisionStatsCache, setDivisionStatsCache] = useState<
+    Record<string, DivisionStatsCache>
+  >({});
+  /** TODO: this is used to trigger the memoized table, but not sure it works since the caches could be stale
+   * since I'm not using a ref? Maybe it's OK because it's in a memo not an effect?
+   */
+  const [divisionStatsRefresh, setDivisionStatsRefresh] = useState<number>(0);
+
+  const showGrades = ParamDefaults.defaultEnabledGrade;
+
+  // Events that trigger building or rebuilding the division stats cache
+  useEffect(() => {
+    // (could make it only do this if a style / rank / %ile is mentioned, but doesn't seem worth it)
+    const yearsToCheck = _.thru(undefined, (__) => {
+      if (year == DateUtils.AllYears) {
+        return DateUtils.coreYears;
+      } else if (year.startsWith(DateUtils.MultiYearPrefix)) {
+        return DateUtils.getMultiYearSelection(year);
+      } else {
+        return [year];
+      }
+    });
+    yearsToCheck.forEach((yearToCheck) => {
+      const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
+      const yearOrGenderChanged =
+        yearToCheck != currCacheForThisYear.year ||
+        gender != currCacheForThisYear.gender;
+
+      if (_.isEmpty(currCacheForThisYear) || yearOrGenderChanged) {
+        if (!_.isEmpty(currCacheForThisYear)) {
+          setDivisionStatsCache((currCache) => ({
+            ...currCache,
+            [yearToCheck]: {},
+          })); //unset if set
+        }
+        GradeTableUtils.populateTeamDivisionStatsCache(
+          { year: yearToCheck, gender },
+          (newCache) => {
+            setDivisionStatsCache((currCache) => ({
+              ...currCache,
+              [yearToCheck]: newCache,
+            }));
+            setDivisionStatsRefresh((curr) => curr + 1);
+          }
+        );
+      }
+    });
+  }, [year, gender]);
+
   /** When the params change */
   useEffect(() => {
     onChangeState({
@@ -848,18 +903,6 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
 
   // Tooltip builder (doesn't need to be closed in React.useMemo below)
 
-  const fieldValExtractor = (field: string) => {
-    return (p: PureStatSet | undefined) => {
-      if (field[0] == "o" || field[0] == "d") {
-        return p?.[field]?.value || 0;
-      } else {
-        return (
-          (p?.[`off_${field}`]?.value || 0) - (p?.[`def_${field}`]?.value || 0)
-        );
-      }
-    };
-  };
-
   type CustomTooltipProps = {
     active?: boolean;
     payload?: any;
@@ -874,10 +917,27 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       const data = payload?.[0].payload || {};
       if (!data.showTooltips) return null; //(if showing sub-chart don't show tooltips for main chart)
 
-      //TODO: come up with some team tooltip info
-
       const teamObj = data.p;
 
+      // Helper function to get field value safely
+      const getFieldValue = (field: string) => {
+        return teamObj?.[field]?.value ?? teamObj?.[field] ?? 0;
+      };
+
+      // Helper function to get rank safely
+      //TODO: this doesn't work but will leave for now
+      const getRank = (field: string) => {
+        const rankField = `rank_${field}`;
+        return teamObj?.[rankField]?.value ?? teamObj?.[rankField];
+      };
+
+      // Get axis values
+      const xValue = data.x;
+      const yValue = data.y;
+      const sizeValue = data.z;
+      const colorValue = data.p.color;
+
+      // Get axis labels
       return (
         <div
           className="custom-tooltip"
@@ -893,20 +953,56 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
               <b>{`${teamObj?.team_name || "??"}`}</b> (
               <i>{ConferenceToNickname[teamObj.conf] || "??"}</i>)
               <br />
-            </p>
-            <p className="desc">
-              {/*
+              <span>{teamObj?.year || "????"}</span>
+              <br />
               <span>
-                Net RAPM:{" "}
                 <b>
-                  {fieldValExtractor("adj_rapm")(
-                    data?.p?.actualResults
-                  ).toFixed(1)}
+                  {getFieldValue("wins")}-{getFieldValue("losses")}
                 </b>{" "}
-                pts/100
+                (WAB: <b>{getFieldValue("wab")?.toFixed(1) || "??"}</b>)
               </span>
               <br />
-              */}
+              <br />
+              <span>
+                Adj Margin:{" "}
+                <b>
+                  {(
+                    getFieldValue("off_adj_ppp") - getFieldValue("def_adj_ppp")
+                  )?.toFixed(1) || "??"}
+                </b>{" "}
+                pts/100
+                {getRank("adj_net") ? ` (${getRank("adj_net")})` : ""}
+              </span>
+              <br />
+              <span>
+                Adj Off:{" "}
+                <b>{getFieldValue("off_adj_ppp")?.toFixed(1) || "??"}</b>{" "}
+                pts/100
+                {getRank("off_adj_ppp") ? ` (${getRank("off_adj_ppp")})` : ""}
+              </span>
+              <br />
+              <span>
+                Adj Def:{" "}
+                <b>{getFieldValue("def_adj_ppp")?.toFixed(1) || "??"}</b>{" "}
+                pts/100
+                {getRank("def_adj_ppp") ? ` (${getRank("def_adj_ppp")})` : ""}
+              </span>
+              <br />
+              <br />
+              <span>
+                (x, y): (<b>{xValue?.toFixed(2) || "??"}</b>,{" "}
+                <b>{yValue?.toFixed(2) || "??"}</b>)
+              </span>
+              <br />
+              {(sizeValue !== undefined || colorValue !== undefined) && (
+                <span>
+                  (size, color): (<b>{sizeValue?.toFixed(2) || "??"}</b>,
+                  <b style={{ color: data.colorRgb || "inherit" }}>
+                    {colorValue?.toFixed(2) || "??"}
+                  </b>
+                  )
+                </span>
+              )}
             </p>
           </small>
         </div>
@@ -1064,7 +1160,13 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       ? AdvancedFilterUtils.applyTeamExplorerFilter(
           teamObjs,
           datasetFilterStr,
-          (year: string) => undefined, //(team rank queries not yet supported)
+          (year: string) =>
+            GradeTableUtils.pickDivisonStats(
+              divisionStatsCache,
+              year,
+              gender,
+              showGrades
+            ),
           {
             x: decompAxis(xAxis).linq,
             y: decompAxis(yAxis).linq,
@@ -1079,7 +1181,13 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       ? AdvancedFilterUtils.applyTeamExplorerFilter(
           filteredData,
           highlightFilterStr,
-          (year: string) => undefined, //(team rank queries not yet supported)
+          (year: string) =>
+            GradeTableUtils.pickDivisonStats(
+              divisionStatsCache,
+              year,
+              gender,
+              showGrades
+            ),
           {}
         )
       : [undefined, undefined];
@@ -1096,7 +1204,18 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         dotSize={dotSize}
         dotColorMap={dotColorMap}
         labelStrategy={labelStrategy}
-        labelBuilder={(p) => p.team_name || "Unknown team"}
+        labelBuilder={(t) =>
+          `${t.team_name}${
+            year == DateUtils.AllYears ||
+            year.startsWith(DateUtils.MultiYearPrefix)
+              ? ` '${_.thru(t.year || "??????", (effYear) => {
+                  return effYear < "2019/20"
+                    ? "1" + effYear.substring(5)
+                    : effYear.substring(5);
+                })}`
+              : ""
+          }` || "Unknown team"
+        }
         confFilter={
           _.isEmpty(confs) && !hasCustomFilter
             ? undefined

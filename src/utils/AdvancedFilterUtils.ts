@@ -1419,7 +1419,12 @@ export class AdvancedFilterUtils {
     try {
       const enumData = Enumerable.from(
         inData.map((p, index) => {
-          return buildRetVal(p, index);
+          const tidiedData = buildRetVal(p, index);
+          // DIAGNOSTIC
+          // if (index == 0) {
+          //   console.log(tidiedData);
+          // }
+          return tidiedData;
         })
       );
       const filteredData =

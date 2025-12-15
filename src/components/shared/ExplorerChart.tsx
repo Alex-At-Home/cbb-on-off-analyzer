@@ -117,6 +117,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
               z: p.z,
               label: labelBuilder(p),
               showTooltips: true,
+              colorRgb: p.colorRgb,
               p: p,
             };
           })
@@ -134,6 +135,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
         z: p.z,
         label: labelBuilder(p),
         showTooltips: subChart == undefined,
+        colorRgb: p.colorRgb,
         p: p,
       };
     })
@@ -338,10 +340,11 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
                   series: mainChart,
                 })}
             {mainChart.map((p, index) => {
+              p.colorRgb = colorMapPicker(colorMapTransformer(p.p.color));
               return (
                 <Cell
                   key={`cell-${index}`}
-                  fill={colorMapPicker(colorMapTransformer(p.p.color))}
+                  fill={p.colorRgb}
                   onClick={(e) => handleEntityToggle(p.label)}
                 />
               );
@@ -359,6 +362,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
               })}
 
               {subChart.map((p, index) => {
+                p.colorRgb = colorMapPicker(colorMapTransformer(p.p.color));
                 return (
                   <Cell
                     key={`cell-${index}`}
