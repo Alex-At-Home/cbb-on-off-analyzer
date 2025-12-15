@@ -38,6 +38,7 @@ type Props = {
   readonly syncEvent?: number; //(1-up this to apply the temp contents)
   readonly callback: (newExpr: string, onSync?: boolean) => void; //(if onSync shouldn't set any sync events)
   readonly showHelp?: boolean;
+  readonly searchBar?: boolean;
 };
 
 const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
@@ -52,6 +53,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
   syncEvent,
   callback,
   showHelp,
+  searchBar,
 }) => {
   const [tmpAdvancedFilterStr, setTmpAdvancedFilterStr] = useState(value);
 
@@ -180,7 +182,10 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
             style={{ maxHeight: "2.4rem" }}
             label={<FontAwesomeIcon icon={presetsIcon || faFilter} />}
             drop="down"
+            closeOnSelect={true}
             tooltip={tooltipForFilterPresets}
+            searchBar={searchBar || false}
+            allowlist={["Clear selection"]}
           >
             <GenericTogglingMenuItem
               text={<i>Clear selection</i>}

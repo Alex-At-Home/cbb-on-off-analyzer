@@ -375,6 +375,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               syncEvent={linqExpressionSync}
               callback={handleXAxisChange}
               showHelp={showHelp}
+              searchBar={true}
             />
           </Col>
           <Col xs={12} sm={12} md={6} lg={6}>
@@ -391,6 +392,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               syncEvent={linqExpressionSync}
               callback={handleYAxisChange}
               showHelp={showHelp}
+              searchBar={true}
             />
           </Col>
         </Form.Row>
@@ -409,6 +411,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               syncEvent={linqExpressionSync}
               callback={handleDotColorChange}
               showHelp={showHelp}
+              searchBar={true}
             />
           </Col>
           <Col xs={6} sm={6} md={2} lg={2}>
@@ -446,6 +449,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               syncEvent={linqExpressionSync}
               callback={handleDotSizeChange}
               showHelp={showHelp}
+              searchBar={true}
             />
           </Col>
         </Form.Row>
