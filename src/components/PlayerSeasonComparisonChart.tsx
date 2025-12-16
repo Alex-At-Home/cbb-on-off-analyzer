@@ -17,25 +17,11 @@ import Button from "react-bootstrap/Button";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
-//@ts-ignore
-import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLink,
-  faPen,
-  faEye,
-  faExclamation,
-  faCheck,
-  faFilter,
-  faList,
-  faTags,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
 // Component imports
-import GenericTable, { GenericTableOps } from "./GenericTable";
-import GenericTogglingMenu from "./shared/GenericTogglingMenu";
-import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ConferenceSelector, {
   ConfSelectorConstants,
 } from "./shared/ConferenceSelector";
@@ -43,46 +29,23 @@ import ConferenceSelector, {
 // Table building
 // Util imports
 import {
-  TeamEditorParams,
   PlayerSeasonComparisonParams,
-  ParamDefaults,
   PlayerLeaderboardParams,
 } from "../utils/FilterModels";
 
 import { Statistic, RosterEntry, PureStatSet } from "../utils/StatModels";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
-import { GradeUtils } from "../utils/stats/GradeUtils";
-import { UrlRouting } from "../utils/UrlRouting";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import TeamEditorTable, { TeamEditorStatsModel } from "./TeamEditorTable";
 import { DateUtils } from "../utils/DateUtils";
 import { Dropdown, InputGroup, ModalTitle } from "react-bootstrap";
-import AsyncFormControl from "./shared/AsyncFormControl";
 
 // Library imports:
-import fetch from "isomorphic-unfetch";
-import { RequestUtils } from "../utils/RequestUtils";
 import {
   OffseasonLeaderboardUtils,
   OffseasonTeamInfo,
 } from "../utils/stats/OffseasonLeaderboardUtils";
 
-// Recharts imports:
-//@ts-ignore
-import {
-  ReferenceArea,
-  ResponsiveContainer,
-  Tooltip as RechartTooltip,
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  ZAxis,
-  CartesianGrid,
-  Label,
-  Cell,
-  LabelList,
-} from "recharts";
 import { GoodBadOkTriple } from "../utils/stats/TeamEditorUtils";
 import { CbbColors } from "../utils/CbbColors";
 import {
@@ -92,9 +55,6 @@ import {
   Power6Conferences,
 } from "../utils/public-data/ConferenceInfo";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
-import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
-import { ScatterChartUtils } from "../utils/charts/ScatterChartUtils";
 import GenericCollapsibleCard from "./shared/GenericCollapsibleCard";
 import PlayerLeaderboardTable from "./PlayerLeaderboardTable";
 import ThemedSelect from "./shared/ThemedSelect";

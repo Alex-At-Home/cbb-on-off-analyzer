@@ -104,7 +104,7 @@ const TeamStatsChartPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.confs ? ["confs"] : [],
         !rawParams.queryFilters ? ["queryFilters"] : [],
         rawParams.sortBy == "net" ? ["sortBy"] : [],
-        rawParams.maxTableSize == ParamDefaults.defaultTeamExplorerMaxTableSize
+        rawParams.maxTableSize == "10" //(use smaller size)
           ? ["maxTableSize"]
           : [],
         !rawParams.showExtraInfo ? ["showExtraInfo"] : [],
