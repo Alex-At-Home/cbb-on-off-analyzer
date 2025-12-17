@@ -22,13 +22,7 @@ import {
 // Utils
 import { ScatterChartUtils } from "../../utils/charts/ScatterChartUtils";
 import { decompAxis } from "../../utils/ExplorerChartUtils";
-import {
-  ConferenceToNickname,
-  NicknameToConference,
-  Power6Conferences,
-  NonP6Conferences,
-} from "../../utils/public-data/ConferenceInfo";
-import { ConfSelectorConstants } from "./ConferenceSelector";
+import { useTheme } from "next-themes";
 
 export type ExplorerChartProps = {
   // Data (already filtered)
@@ -47,6 +41,7 @@ export type ExplorerChartProps = {
 
   // Labels
   labelStrategy: string;
+  pointMarkerType: string;
   labelBuilder: (dataObj: any) => string;
 
   // Conference/query filtering (for visual highlighting)
@@ -81,6 +76,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   dotSize,
   dotColorMap,
   labelStrategy,
+  pointMarkerType,
   labelBuilder,
   confFilter,
   axisPresets,
@@ -94,6 +90,8 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   entityType,
   incWeightedSummary,
 }) => {
+  const { resolvedTheme } = useTheme();
+
   const globalScatterChartRef = useRef<any>();
 
   const extractTitle = (fieldDef: string) => {
@@ -114,7 +112,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
             return {
               x: p.x,
               y: p.y,
-              z: p.z,
+              z: p.z ?? 10, //(arbitrary number just to avoid being undefined)
               label: labelBuilder(p),
               showTooltips: true,
               colorRgb: p.colorRgb,
@@ -132,7 +130,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
       return {
         x: p.x,
         y: p.y,
-        z: p.z,
+        z: p.z ?? 10, //(arbitrary number just to avoid being undefined)
         label: labelBuilder(p),
         showTooltips: subChart == undefined,
         colorRgb: p.colorRgb,
@@ -176,9 +174,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   const dataPointsToLabel = _.isEmpty(toggledEntities)
     ? dataPointsToLabelPhase1
     : (dataPointsToLabelPhase1 || []).concat(
-        mainChart.filter(
-          (p) => toggledEntities[p.p.actualResults?.code || "??"]
-        )
+        mainChart.filter((p) => toggledEntities[labelBuilder(p)])
       );
 
   // (Some util logic associated with building averages and limits)
@@ -287,6 +283,50 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   const xAxisDecom = decompAxis(xAxis);
   const yAxisDecom = decompAxis(yAxis);
 
+  const maybeIconSquareSize = (mult: number = 1.0) => {
+    if (pointMarkerType == "Team Logo (large)") {
+      return 40 * mult;
+    } else if (pointMarkerType == "Team Logo (small)") {
+      return 20 * mult;
+    } else {
+      return undefined;
+    }
+  };
+
+  const CustomPngPoint = (props: any) => {
+    const { color, cx, cy, payload } = props;
+    const entityObj = payload.p;
+
+    const imageSize = maybeIconSquareSize() ?? 16;
+
+    // cx, cy are the calculated center coordinates from Recharts
+    // Adjust x and y to center the image on the data point
+    const x = cx - imageSize / 2;
+    const y = cy - imageSize / 2;
+    const opacity = _.isNumber(props.opacity || 1)
+      ? props.opacity || 1
+      : 0.01 * parseInt(props.opacity || 1);
+
+    return (
+      <svg
+        x={x}
+        y={y}
+        width={imageSize}
+        height={imageSize}
+        opacity={opacity}
+        overflow="visible"
+      >
+        <image
+          href={`logos/${resolvedTheme == "dark" ? "dark" : "normal"}/${
+            entityObj?.team_name || entityObj?.actualResults?.team || "Unknown"
+          }.png`} // Use the imageUrl from your data
+          width={imageSize}
+          height={imageSize}
+        />
+      </svg>
+    );
+  };
+
   return (
     <div>
       <ResponsiveContainer width={"100%"} height={0.75 * height}>
@@ -295,6 +335,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
             globalScatterChartRef.current.handleItemMouseLeave()
           }
           ref={globalScatterChartRef}
+          margin={{ top: 0, bottom: 20 }}
         >
           <CartesianGrid />
           <XAxis
@@ -306,8 +347,10 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
           >
             <Label
               value={extractTitle(xAxis)}
-              position="top"
+              position="inside"
               style={{ textAnchor: "middle" }}
+              dy={20}
+              fill={resolvedTheme == "dark" ? "#CCC" : undefined}
             />
           </XAxis>
           <YAxis
@@ -322,6 +365,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
               value={extractTitle(yAxis)}
               position="insideLeft"
               style={{ textAnchor: "middle" }}
+              fill={resolvedTheme == "dark" ? "#CCC" : undefined}
             />
           </YAxis>
           <ZAxis type="number" dataKey="z" range={[10, 100]} />
@@ -329,12 +373,20 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
             data={mainChart}
             fill="green"
             opacity={subChart ? 0.25 : 1.0}
+            shape={
+              !subChart && pointMarkerType.startsWith("Team") ? (
+                <CustomPngPoint />
+              ) : undefined
+            }
           >
             {subChart
               ? undefined
               : ScatterChartUtils.buildLabelColliders("mainChart", {
                   maxHeight: screenHeight,
                   maxWidth: screenWidth,
+                  chartRef: globalScatterChartRef,
+                  iconHeightOverride: maybeIconSquareSize(),
+                  iconWidthOverride: maybeIconSquareSize(),
                   mutableState: labelState,
                   dataKey: "label",
                   series: mainChart,
@@ -352,10 +404,21 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
             ;
           </Scatter>
           {subChart ? (
-            <Scatter data={subChart} fill="green">
+            <Scatter
+              data={subChart}
+              fill="green"
+              shape={
+                pointMarkerType.startsWith("Team") ? (
+                  <CustomPngPoint />
+                ) : undefined
+              }
+            >
               {ScatterChartUtils.buildLabelColliders("subChart", {
                 maxHeight: screenHeight,
                 maxWidth: screenWidth,
+                chartRef: globalScatterChartRef,
+                iconHeightOverride: maybeIconSquareSize(),
+                iconWidthOverride: maybeIconSquareSize(),
                 mutableState: labelState,
                 dataKey: "label",
                 series: subChart,
@@ -379,6 +442,9 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
               {ScatterChartUtils.buildTidiedLabelList({
                 maxHeight: screenHeight,
                 maxWidth: screenWidth,
+                chartRef: globalScatterChartRef,
+                iconHeightOverride: maybeIconSquareSize(),
+                iconWidthOverride: maybeIconSquareSize(),
                 mutableState: labelState,
                 dataKey: "label",
                 series: dataPointsToLabel,
@@ -392,10 +458,21 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
           ;
           {/* Repeat the label subset again, to ensure that the labels get rendered, see buildTidiedLabelList docs */}
           {dataPointsToLabel ? (
-            <Scatter data={dataPointsToLabel} fill="green">
+            <Scatter
+              data={dataPointsToLabel}
+              fill="green"
+              shape={
+                pointMarkerType.startsWith("Team") ? (
+                  <CustomPngPoint />
+                ) : undefined
+              }
+            >
               {ScatterChartUtils.buildTidiedLabelList({
                 maxHeight: screenHeight,
                 maxWidth: screenWidth,
+                chartRef: globalScatterChartRef,
+                iconHeightOverride: maybeIconSquareSize(),
+                iconWidthOverride: maybeIconSquareSize(),
                 mutableState: labelState,
                 dataKey: "label",
                 series: dataPointsToLabel,

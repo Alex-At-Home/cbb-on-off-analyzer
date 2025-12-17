@@ -26,6 +26,7 @@ import LinqExpressionBuilder from "./LinqExpressionBuilder";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import ThemedSelect from "./ThemedSelect";
 import { CbbColors } from "../../utils/CbbColors";
+import { useTheme } from "next-themes";
 
 export type ChartConfigProps = {
   // Chart title
@@ -60,6 +61,12 @@ export type ChartConfigProps = {
   labelStrategyOptions?: string[];
   onLabelStrategyChange: (strategy: string) => void;
   labelStrategyTooltip?: React.JSX.Element;
+
+  // Point marker type
+  pointMarkerType: string;
+  pointMarkerTypeOptions?: string[];
+  onPointMarkerTypeChange: (type: string) => void;
+  pointMarkerTypeTooltip?: React.JSX.Element;
 
   // Axis configuration
   xAxis: string;
@@ -103,6 +110,16 @@ const defaultLabelStrategyTooltip = (
     'Filter' or 'Highlight' Linq expressions
   </Tooltip>
 );
+const defaultPointMarkerTypeOptions = [
+  "Colored Dot",
+  "Team Logo (small)",
+  "Team Logo (large)",
+];
+const defaultPointMarkerTypeTooltip = (
+  <Tooltip id="pointMarkerTypeTooltip">
+    Choose how data points are displayed on the chart
+  </Tooltip>
+);
 const defaultAxisPlaceholder = "Linq //LABEL //LIMITS //TICKS";
 const defaultExtraAxisAutocompleteOptions = ["//LABEL", "//LIMITS", "//TICKS"];
 
@@ -128,6 +145,10 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   labelStrategyOptions = defaultLabelStrategyOptions,
   onLabelStrategyChange,
   labelStrategyTooltip = defaultLabelStrategyTooltip,
+  pointMarkerType,
+  pointMarkerTypeOptions = defaultPointMarkerTypeOptions,
+  onPointMarkerTypeChange,
+  pointMarkerTypeTooltip = defaultPointMarkerTypeTooltip,
   xAxis,
   yAxis,
   onXAxisChange,
@@ -146,6 +167,8 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   extraAxisAutocompleteOptions = defaultExtraAxisAutocompleteOptions,
   showHelp,
 }) => {
+  const { resolvedTheme } = useTheme();
+
   // Internal sync state
   const [linqExpressionSync, setLinqExpressionSync] = useState<number>(0);
 
@@ -225,6 +248,16 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
     );
   };
 
+  const buildPointMarkerType = (name: string) => {
+    return (
+      <GenericTogglingMenuItem
+        text={name}
+        truthVal={name == pointMarkerType}
+        onSelect={() => onPointMarkerTypeChange(name)}
+      />
+    );
+  };
+
   // Preset functions
   const isPresetSelected = (preset: any) => {
     return (
@@ -247,7 +280,8 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
         preset.dotSize ||
         "") == dotSize &&
       labelStrategy == preset.labelStrategy &&
-      dotColorMap == preset.dotColorMap
+      dotColorMap == preset.dotColorMap &&
+      pointMarkerType == preset.pointMarkerType
     );
   };
 
@@ -315,7 +349,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
       </Form.Row>
       {showConfigOptions ? (
         <Form.Row className="mb-2">
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={11} sm={11} md={11} lg={11}>
             <LinqExpressionBuilder
               label="Filter"
               prompt={filterPlaceholder}
@@ -327,6 +361,30 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               callback={handleFilterChange}
               showHelp={showHelp}
             />
+          </Col>
+          <Col xs={1} sm={1} md={1} lg={1}>
+            <Dropdown alignRight style={{ maxHeight: "2.4rem" }}>
+              <Dropdown.Toggle variant="outline-secondary">
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={pointMarkerTypeTooltip}
+                >
+                  <small>
+                    &#9679;/
+                    <img
+                      style={{ width: "16px", height: "16px" }}
+                      src={`logos/${
+                        resolvedTheme == "dark" ? "dark" : "normal"
+                      }/Maryland.png`}
+                      alt="Point Marker"
+                    />
+                  </small>
+                </OverlayTrigger>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {pointMarkerTypeOptions.map(buildPointMarkerType)}
+              </Dropdown.Menu>
+            </Dropdown>
           </Col>
         </Form.Row>
       ) : null}
@@ -440,7 +498,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
           <Col xs={12} sm={12} md={5} lg={5}>
             <LinqExpressionBuilder
               label="Size"
-              prompt="Linq expression for datapoint size"
+              prompt="Optional Linq expression for datapoint size"
               value={dotSize}
               error={filterError}
               autocomplete={autocompleteOptions}

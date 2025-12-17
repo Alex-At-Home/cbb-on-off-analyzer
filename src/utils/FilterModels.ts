@@ -389,6 +389,7 @@ export type ChartControlParams = {
   dotColor?: string;
   dotColorMap?: string;
   labelStrategy?: string;
+  pointMarkerType?: string;
   toggledEntities?: string;
 };
 

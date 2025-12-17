@@ -79,6 +79,7 @@ export const overallTeamChartPresets = [
       dotSize: "wab",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 10",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -94,6 +95,7 @@ export const overallTeamChartPresets = [
       dotSize: "Adjusted Margin",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -109,6 +111,7 @@ export const overallTeamChartPresets = [
       dotSize: "wab",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -122,6 +125,7 @@ export const overallTeamChartPresets = [
       dotSize: "power",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -135,6 +139,7 @@ export const overallTeamChartPresets = [
       dotSize: "power",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -148,6 +153,7 @@ export const overallTeamChartPresets = [
       dotSize: "3P% (%ile)",
       dotColorMap: "Blue/Orange Auto",
       labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Colored Dot",
     },
   ],
 ] as Array<[string, TeamStatsExplorerChartParams]>;
@@ -716,6 +722,10 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     startingState.labelStrategy || "None"
   );
 
+  const [pointMarkerType, setPointMarkerType] = useState(
+    startingState.pointMarkerType || "Team Logo (small)"
+  );
+
   // On page load, if title is specified and the other params aren't then pre-load
   const applyPresetChart = (preset: TeamStatsExplorerChartParams) => {
     friendlyChange(() => {
@@ -748,6 +758,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       );
       setDotColorMap(preset.dotColorMap || "Default");
       setLabelStrategy(preset.labelStrategy || "None");
+      setPointMarkerType(preset.pointMarkerType || "Team Logo (small)");
     }, true);
   };
   useEffect(() => {
@@ -828,6 +839,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       showConfig: showConfigOptions,
       dotColorMap: dotColorMap,
       labelStrategy: labelStrategy,
+      pointMarkerType: pointMarkerType,
       toggledEntities: _.keys(toggledEntities).join(";"),
       showTable: showTable,
       showOnlyHandSelectedInTable: showOnlyHandSelectedInTable,
@@ -846,6 +858,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     dotSize,
     showConfigOptions,
     labelStrategy,
+    pointMarkerType,
     statsExplorerParams,
     toggledEntities,
     showOnlyHandSelectedInTable,
@@ -1256,6 +1269,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         dotSize={dotSize}
         dotColorMap={dotColorMap}
         labelStrategy={labelStrategy}
+        pointMarkerType={pointMarkerType}
         labelBuilder={labelBuilder}
         confFilter={
           _.isEmpty(confs) && !hasCustomFilter
@@ -1344,6 +1358,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     dotColor,
     dotColorMap,
     labelStrategy,
+    pointMarkerType,
     screenHeight,
     screenWidth,
     toggledEntities,
@@ -1424,6 +1439,12 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     friendlyChange(() => {
       setDotColorMap(newColorMap);
     }, newColorMap != dotColorMap);
+  };
+
+  const handlePointMarkerTypeChange = (type: string) => {
+    friendlyChange(() => {
+      setPointMarkerType(type);
+    }, type != pointMarkerType);
   };
 
   return (
@@ -1562,6 +1583,8 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         onHighlightChange={handleHighlightChange}
         labelStrategy={labelStrategy}
         onLabelStrategyChange={handleLabelStrategyChange}
+        pointMarkerType={pointMarkerType}
+        onPointMarkerTypeChange={handlePointMarkerTypeChange}
         xAxis={xAxis}
         yAxis={yAxis}
         onXAxisChange={handleXAxisChange}

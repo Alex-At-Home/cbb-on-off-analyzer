@@ -20,10 +20,15 @@ export interface LabelMoveState {
   labels: Rectangle[];
   dataPointSet: Record<string, Rectangle>;
   blockers: Record<string, number>;
+  approxMaxWidth: number; //(emergency inferred limits - only used in last resort)
+  approxMaxHeight: number;
 }
 export type TidyLabelListProps = LabelListProps<Record<string, any>> & {
   maxHeight: number;
   maxWidth: number;
+  chartRef?: React.MutableRefObject<any>;
+  iconWidthOverride?: number;
+  iconHeightOverride?: number;
   mutableState: LabelMoveState;
   underlinedLabels?: Record<string, boolean>;
   /** This is _all_ the series in the scatter chart, differentiated by labelColor property
@@ -37,6 +42,8 @@ export class ScatterChartUtils {
     labels: [],
     dataPointSet: {},
     blockers: {},
+    approxMaxWidth: 0,
+    approxMaxHeight: 0,
   });
 
   /** Allows unlabelled points to act as blocking rectangles for the labelled points */
@@ -45,7 +52,10 @@ export class ScatterChartUtils {
     props: TidyLabelListProps
   ) => {
     const insertLabelOfRectangle = (labelProps: any, state: LabelMoveState) => {
-      const { index, x, y, cx, cy, width, height, value, fill } = labelProps;
+      const { index, x, y, cx, cy, tmpWidth, tmpHeight, value, fill } =
+        labelProps;
+      const width = props.iconWidthOverride ?? tmpWidth;
+      const height = props.iconHeightOverride ?? tmpHeight;
 
       const blocker = props.mutableState.blockers[seriesName] || -1;
       if (index <= blocker) {
@@ -90,31 +100,92 @@ export class ScatterChartUtils {
     const xOrigin = 60 + 0.5 * (props.maxWidth - 60);
     const yOrigin = 0.5 * (props.maxHeight - 60);
 
+    // The child uses of this below are async because this returns a component
+    // so awful though it is, we make it a var
+    // (usually can get aroud this by passing chart ref in)
+    var varEffectiveMaxWidth = props.maxWidth;
+    var varEffectiveMaxHeight = props.maxHeight;
+
     const renderCustomizedLabel = (labelProps: any, state: LabelMoveState) => {
       // console.log(labelProps);
       // console.log(`${labelProps.value} vs ${props.series[labelProps.index]?.name}`);
 
-      const { index, x, y, cx, cy, width, height, value, fill } = labelProps;
-      const dataPointObj = props.series[labelProps.index];
+      const labelPadding = 16;
+      const {
+        index,
+        x,
+        y,
+        cx,
+        cy,
+        width: tmpWidth,
+        height: tmpHeight,
+        value,
+        fill,
+      } = labelProps;
 
-      //console.log(`LABEL ${value} vs state: [${_.size(state.labels)}]: (${cx},${cy})+(${width},${height})`);
+      // (We need this if we can't calulate the actual chart dimensions via a ref)
+      if (!props.chartRef && 0 == index) {
+        varEffectiveMaxWidth =
+          props.mutableState.approxMaxWidth || props.maxWidth;
+        varEffectiveMaxHeight =
+          props.mutableState.approxMaxHeight || props.maxHeight;
+      } else if (0 == index) {
+        const chartState = props.chartRef?.current?.state;
+        if (chartState) {
+          varEffectiveMaxWidth =
+            (chartState.offset?.left || 0) +
+            (chartState.offset?.width || varEffectiveMaxWidth);
+          varEffectiveMaxHeight -
+            (chartState.offset?.bottom || 0) +
+            (chartState.offset?.height || varEffectiveMaxHeight);
+        }
+      }
+
+      const dataPointObj = props.series[labelProps.index];
+      const width = props.iconWidthOverride ?? Math.max(labelPadding, tmpWidth);
+      const height =
+        props.iconHeightOverride ?? Math.max(labelPadding, tmpHeight);
 
       const approxTextWidth = 6 * value.length; //(1 + 0.8*value.length)*width;
       const approxTextHeight = 14; //2.5*height;
-      const boxHeight = height + approxTextHeight; //(add width/height padding)
-      const boxWidth = width + approxTextWidth;
-      const offRightOfScreen = x + approxTextWidth > props.maxWidth;
+      const boxHeight = labelPadding + approxTextHeight; //(add width/height padding)
+      const boxWidth = labelPadding + approxTextWidth;
+      const offRightOfScreen =
+        x + approxTextWidth + labelPadding >= varEffectiveMaxWidth;
       const toLeftMiddleOfScreen =
-        x >= 0.25 * props.maxWidth && x <= 0.5 * props.maxWidth;
+        x >= 0.25 * varEffectiveMaxWidth && x <= 0.5 * varEffectiveMaxWidth;
       const leftJustifyLabel = offRightOfScreen || toLeftMiddleOfScreen;
-      const offTopOfScreen = y < approxTextHeight + 0.5 * height;
+      const offTopOfScreen = y < approxTextHeight + 0.5 * labelPadding;
+
+      // console.log(
+      //   `LABEL [${value}] (${approxTextWidth},${approxTextHeight}}) vs state: [${_.size(
+      //     state.labels
+      //   )}]: (${x.toFixed(2)}/${cx.toFixed(2)},${y.toFixed(2)}/${cy.toFixed(
+      //     2
+      //   )})+(${width.toFixed(2)},${height.toFixed(2)}) max=[${
+      //     props.maxWidth
+      //   }|${state.approxMaxWidth.toFixed(2)}=${varEffectiveMaxWidth.toFixed(
+      //     2
+      //   )}, ${props.maxHeight}|${state.approxMaxHeight.toFixed(
+      //     2
+      //   )}=${varEffectiveMaxHeight.toFixed(
+      //     2
+      //   )}]?[left=${leftJustifyLabel}][top=${offTopOfScreen}]`
+      // );
+
       const labelRectangle = {
         name: value,
-        left: leftJustifyLabel ? x - approxTextWidth - 0.5 * width : x,
-        right: leftJustifyLabel ? x + 0.5 * width : x + approxTextWidth + width,
+        left: leftJustifyLabel ? x - approxTextWidth - 0.5 * labelPadding : x,
+        right: leftJustifyLabel
+          ? x + 0.5 * labelPadding
+          : x + approxTextWidth + labelPadding,
 
-        top: offTopOfScreen ? y + approxTextHeight + height : y + 0.5 * height,
-        bottom: offTopOfScreen ? y : y - (approxTextHeight + 0.5 * height),
+        top: offTopOfScreen //(top here is larger y, confusingly)
+          ? y + approxTextHeight + labelPadding
+          : y + 0.5 * labelPadding,
+        bottom: offTopOfScreen
+          ? y
+          : y - (approxTextHeight + 0.5 * labelPadding),
       };
       const rectangleOfIcon = {
         name: `${value}-dot`,
@@ -133,12 +204,30 @@ export class ScatterChartUtils {
           return rect;
         } else if (rect) {
           //(second time through)
-          // Double check placement now we've placed both teams
+          // Double check placement now we've placed all labels once
           const iconRect = state.labels.find((rect1) => {
             return `${rect.name}-dot` == rect1.name;
           });
+
+          // Check if this rectangle is now off screen, if so
+          // start again using labelRectangle (which can change from eg right to left justification)
+          const rectToUse =
+            rect.right >= varEffectiveMaxWidth ||
+            rect.top >= varEffectiveMaxHeight
+              ? labelRectangle
+              : rect;
+
+          // if (
+          //   rect.right >= varEffectiveMaxWidth ||
+          //   rect.top >= varEffectiveMaxWidth
+          // ) {
+          //   console.log(
+          //     `RE-JUSITFY RECT: ${rect.name} to [${JSON.stringify(labelRectangle)}]`
+          //   );
+          // }
+
           const adjustedRect = moveRectangle(
-            rect,
+            rectToUse,
             state.labels.filter((rect1) => {
               return rect1.name != iconRect?.name;
             }),
@@ -159,8 +248,16 @@ export class ScatterChartUtils {
           const adjustedRect = moveRectangle(labelRectangle, state.labels, [
             rectangleOfIcon,
           ]);
+          // Also calculate effective screen limits (since props.maxWidth/maxHeigh is in screen pixels not SVG pixels)
+          // (emergency case, we're not actually using this unless we can't get the chart ref)
+          if (state.approxMaxWidth < rectangleOfIcon.right) {
+            state.approxMaxWidth = rectangleOfIcon.right;
+          }
+          if (state.approxMaxHeight < rectangleOfIcon.top) {
+            state.approxMaxHeight = rectangleOfIcon.top;
+          }
 
-          // Mutuate the state
+          // Mutate the state
           state.labels.push(adjustedRect);
           state.labels.push(rectangleOfIcon);
           state.dataPointSet[cacheKey] = adjustedRect;
@@ -370,8 +467,8 @@ export class ScatterChartUtils {
           const isOnScreen =
             rect.left + dx >= 0 &&
             rect.bottom + dy >= 0 &&
-            rect.right + dx <= props.maxWidth &&
-            rect.top + dy <= props.maxHeight;
+            rect.right + dx <= varEffectiveMaxWidth &&
+            rect.top + dy <= varEffectiveMaxHeight;
 
           // if (rect.name == "XXX") console.log(`name=[${rect.name}] DX=[${dx}]+[${rect.right}] DY=[${dy}]+[${rect.top}] vs w=[${props.maxWidth}] h=[${props.maxHeight}], ONSCREEN=${isOnScreen}`)
 

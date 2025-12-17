@@ -83,6 +83,7 @@ export const overallPlayerChartPresets = [
       dotSize: "Possession% (off)",
       dotColorMap: "RAPM",
       labelStrategy: "Top/Bottom 10",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -97,6 +98,7 @@ export const overallPlayerChartPresets = [
       dotSize: "Possession% (off)",
       dotColorMap: "RAPM",
       labelStrategy: "Top/Bottom 10",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -110,6 +112,7 @@ export const overallPlayerChartPresets = [
       dotSize: "Possession% (off)",
       dotColorMap: "RAPM",
       labelStrategy: "Top/Bottom 10",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -124,6 +127,7 @@ export const overallPlayerChartPresets = [
       dotSize: "Possession% (off)",
       dotColorMap: "Off Rtg",
       labelStrategy: "Top/Bottom 10",
+      pointMarkerType: "Colored Dot",
     },
   ],
   [
@@ -138,6 +142,7 @@ export const overallPlayerChartPresets = [
       dotSize: "Possession% (off)",
       dotColorMap: "oRAPM",
       labelStrategy: "Top 25",
+      pointMarkerType: "Colored Dot",
     },
   ],
 ] as Array<[string, PlayerSeasonComparisonParams]>;
@@ -377,6 +382,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     startingState.labelStrategy || "None"
   );
 
+  const [pointMarkerType, setPointMarkerType] = useState(
+    startingState.pointMarkerType || "Colored Dot"
+  );
+
   // On page load, if title is specified and the other params aren't then pre-load
   const applyPresetChart = (preset: PlayerSeasonComparisonParams) => {
     friendlyChange(() => {
@@ -409,6 +418,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       );
       setDotColorMap(preset.dotColorMap || "Default");
       setLabelStrategy(preset.labelStrategy || "None");
+      setPointMarkerType(preset.pointMarkerType || "Colored Dot");
     }, true);
   };
   useEffect(() => {
@@ -438,6 +448,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       showConfig: showConfigOptions,
       dotColorMap: dotColorMap,
       labelStrategy: labelStrategy,
+      pointMarkerType: pointMarkerType,
       toggledEntities: _.keys(toggledEntities).join(";"),
       showTable: showTable,
       showPrevNextInTable: showPrevNextInTable,
@@ -458,6 +469,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     dotSize,
     showConfigOptions,
     labelStrategy,
+    pointMarkerType,
     lboardParams,
     toggledEntities,
     showPrevNextInTable,
@@ -985,6 +997,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         dotSize={dotSize}
         dotColorMap={dotColorMap}
         labelStrategy={labelStrategy}
+        pointMarkerType={pointMarkerType}
         labelBuilder={(p) => p.actualResults?.code || "Unknown player"}
         confFilter={
           _.isEmpty(confs) && !hasCustomFilter ? undefined : confFilter
@@ -1071,6 +1084,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     dotColor,
     dotColorMap,
     labelStrategy,
+    pointMarkerType,
     screenHeight,
     screenWidth,
     toggledEntities,
@@ -1158,6 +1172,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     friendlyChange(() => {
       setDotColorMap(newColorMap);
     }, newColorMap != dotColorMap);
+  };
+
+  const handlePointMarkerTypeChange = (type: string) => {
+    friendlyChange(() => {
+      setPointMarkerType(type);
+    }, type != pointMarkerType);
   };
 
   return (
@@ -1282,6 +1302,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         onHighlightChange={handleHighlightChange}
         labelStrategy={labelStrategy}
         onLabelStrategyChange={handleLabelStrategyChange}
+        pointMarkerType={pointMarkerType}
+        onPointMarkerTypeChange={handlePointMarkerTypeChange}
         xAxis={xAxis}
         yAxis={yAxis}
         onXAxisChange={handleXAxisChange}

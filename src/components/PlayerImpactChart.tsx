@@ -1,6 +1,6 @@
 // React imports:
 import _ from "lodash";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 //@ts-ignore
 import Select, { components } from "react-select";
@@ -75,6 +75,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     teamStatsB,
     rosterStatsB,
   } = dataEvent;
+
+  const globalScatterChartRef = useRef<any>();
 
   // Model
 
@@ -465,9 +467,17 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   // Chart:
 
+  const maybeIconSquareSize = (mult: number = 1.0) => {
+    if (iconType == "logo") {
+      return 20 * mult;
+    } else {
+      return undefined;
+    }
+  };
+
   const CustomPngPoint = (props: any) => {
     const { color, seriesId, cx, cy, payload } = props;
-    const imageSize = 20; // Adjust the size as needed
+    const imageSize = maybeIconSquareSize() || 20; // Adjust the size as needed
 
     // cx, cy are the calculated center coordinates from Recharts
     // Adjust x and y to center the image on the data point
@@ -659,7 +669,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       <Row>
         <Col>
           <ResponsiveContainer width={screenWidth} height={screenHeight}>
-            <ScatterChart>
+            <ScatterChart ref={globalScatterChartRef}>
               <defs>
                 <linearGradient
                   id="xAxisGradient"
@@ -795,6 +805,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight,
                   maxWidth: screenWidth,
+                  chartRef: globalScatterChartRef,
+                  iconHeightOverride: maybeIconSquareSize(),
+                  iconWidthOverride: maybeIconSquareSize(),
                   mutableState: labelState,
                   dataKey: "name",
                   series: cachedStats.ab,
@@ -839,6 +852,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight,
                   maxWidth: screenWidth,
+                  chartRef: globalScatterChartRef,
+                  iconHeightOverride: maybeIconSquareSize(),
+                  iconWidthOverride: maybeIconSquareSize(),
                   mutableState: labelState,
                   dataKey: "name",
                   series: cachedStats.ab,
