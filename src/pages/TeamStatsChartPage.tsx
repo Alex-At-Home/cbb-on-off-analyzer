@@ -266,7 +266,7 @@ const TeamStatsChartPage: NextPage<Props> = ({ testMode }) => {
         />
       </Row>
       <Row className="mt-3">{table}</Row>
-      <Footer year={year} gender={gender} server={server} />
+      <Footer year={year} gender={gender} server={server} hasLogos={true} />
     </Container>
   );
 };

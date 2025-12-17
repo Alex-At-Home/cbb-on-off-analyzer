@@ -359,6 +359,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         year={year}
         gender={gender}
         server={server}
+        hasLogos={true}
       />
     </Container>
   );
