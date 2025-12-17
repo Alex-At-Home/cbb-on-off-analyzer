@@ -79,7 +79,21 @@ export const overallTeamChartPresets = [
       dotSize: "wab",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 10",
-      pointMarkerType: "Colored Dot",
+      pointMarkerType: "Team Logo (small)",
+    },
+  ],
+  [
+    "WAB vs Efficiency",
+    {
+      title: "Wins Above Bubble vs Efficiency (outliers labelled)",
+      datasetFilter: "rank_adj_net <= 75 SORT_BY wab - exp_wab",
+      xAxis: "Adjusted Margin",
+      yAxis: "wab",
+      dotColor: "wab - exp_wab",
+      dotSize: "wab",
+      dotColorMap: "Red/Green Auto",
+      labelStrategy: "Top/Bottom 10",
+      pointMarkerType: "Team Logo (small)",
     },
   ],
   [
@@ -88,25 +102,38 @@ export const overallTeamChartPresets = [
       title:
         "Is there a correlation between assist rate and good offense? (P5 highlighted)",
       datasetFilter: "ALL SORT_BY off_adj_ppp",
-      highlightFilter: `conf_nick == "B1G" OR conf_nick == "SEC" OR conf_nick == "BE" OR conf_nick == "ACC" OR conf_nick == "B12"`,
+      highlightFilter: `P5 (2024+)`,
       xAxis: "off_adj_ppp //LIMITS 90,140 //LABEL Adjusted Offense",
       yAxis: "off_assist*100 //LIMITS 40,75 //LABEL Assist rate",
       dotColor: "Adjusted Off",
       dotSize: "Adjusted Margin",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
-      pointMarkerType: "Colored Dot",
+      pointMarkerType: "Team Logo (small)",
+    },
+  ],
+  [
+    "Offensive Style",
+    {
+      title: "Offensive Style (Pace is part tempo part transition frequency)",
+      datasetFilter: "SORT_BY off_adj_ppp",
+      xAxis: "Off-Ball Frequency",
+      yAxis:
+        "0.5*pctile_tempo + 0.5*pctile_off_style_transition_pct //LABEL Pace Stat",
+      dotColor: "Adjusted Off",
+      dotSize: "wab",
+      dotColorMap: "Red/Green Auto",
+      labelStrategy: "None",
+      pointMarkerType: "Team Logo (small)",
     },
   ],
   [
     "On-Ball vs Off-Ball (T75)",
     {
       title: "Half-Court On-Ball vs Off-Ball frequency",
-      datasetFilter: "rank_adj_net <= 75 SORT_BY off_adj_ppp ",
-      xAxis:
-        "100*(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct)/(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct   + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_up_pct + off_style_high_low_pct) //LABEL On-Ball frequency",
-      yAxis:
-        "100*(off_style_attack_kick_pct   + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_up_pct + off_style_high_low_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct   + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_up_pct + off_style_high_low_pct) //LABEL Off-Ball frequency",
+      datasetFilter: "rank_adj_net <= 75 SORT_BY off_adj_ppp",
+      xAxis: "On-Ball Frequency",
+      yAxis: "Off-Ball Frequency",
       dotColor: "Adjusted Off",
       dotSize: "wab",
       dotColorMap: "Red/Green Auto",
@@ -115,13 +142,55 @@ export const overallTeamChartPresets = [
     },
   ],
   [
-    "Shooting Proximity",
+    "On-Ball Frequency vs Efficiency (T75)",
+    {
+      title: "Half-Court On-Ball frequency vs efficiency",
+      datasetFilter: "rank_adj_net <= 75 SORT_BY off_adj_ppp",
+      xAxis: "On-Ball Frequency",
+      yAxis: "On-Ball Efficiency",
+      dotColor: "Adjusted Off",
+      dotSize: "wab",
+      dotColorMap: "Red/Green Auto",
+      labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Team Logo (small)",
+    },
+  ],
+  [
+    "Off-Ball Frequency vs Efficiency (T75)",
+    {
+      title: "Half-Court Off-Ball frequency vs efficiency",
+      datasetFilter: "rank_adj_net <= 75 SORT_BY off_adj_ppp",
+      xAxis: "Off-Ball Frequency",
+      yAxis: "Off-Ball Efficiency",
+      dotColor: "Adjusted Off",
+      dotSize: "wab",
+      dotColorMap: "Red/Green Auto",
+      labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Team Logo (small)",
+    },
+  ],
+  [
+    "Shooting Proximity (Off/Def)",
     {
       title: "Shooting Proximity - Off vs Def (T75)",
-      datasetFilter: "rank_adj_net <= 75 SORT_BY adj_net",
+      datasetFilter: "T75 Adj Net",
       xAxis: "Shooting Proximity",
       yAxis: "Oppo Shooting Proximity",
       dotColor: "Adjusted Margin (%ile)",
+      dotSize: "power",
+      dotColorMap: "Red/Green Auto",
+      labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Team Logo (small)",
+    },
+  ],
+  [
+    "Shooting Proximity (Off)",
+    {
+      title: "Shooting Proximity vs Offensive Efficency (T75)",
+      datasetFilter: "T75 Adj Net",
+      xAxis: "Shooting Proximity",
+      yAxis: "Adjusted Off",
+      dotColor: "Adjusted Off",
       dotSize: "power",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
@@ -132,14 +201,14 @@ export const overallTeamChartPresets = [
     "3P Shooting",
     {
       title: "3P Attempt Rate vs 3P Percentage (T75)",
-      datasetFilter: "rank_adj_net <= 75 SORT_BY adj_net",
+      datasetFilter: "T75 Adj Net",
       xAxis: "3P Rate",
       yAxis: "3P%",
       dotColor: "Adjusted Off",
       dotSize: "power",
       dotColorMap: "Red/Green Auto",
       labelStrategy: "Top/Bottom 25",
-      pointMarkerType: "Colored Dot",
+      pointMarkerType: "Team Logo (small)",
     },
   ],
   [
@@ -154,6 +223,20 @@ export const overallTeamChartPresets = [
       dotColorMap: "Blue/Orange Auto",
       labelStrategy: "Top/Bottom 25",
       pointMarkerType: "Colored Dot",
+    },
+  ],
+  [
+    "Benefit of 3P% on Post-Up efficiency",
+    {
+      title: "T50 frequency post-up teams: 3P% vs Post-Up pts/100",
+      datasetFilter: "rank_off_style_post_up_pct <= 50",
+      xAxis: "3P%",
+      yAxis: "100*off_style_post_up_ppp //LABEL Post-Up Pts/100",
+      dotColor: "pctile_off_style_post_up_pct",
+      dotSize: "3P Rate",
+      dotColorMap: "Blue/Orange Auto",
+      labelStrategy: "Top/Bottom 25",
+      pointMarkerType: "Team Logo (small)",
     },
   ],
 ] as Array<[string, TeamStatsExplorerChartParams]>;
@@ -339,10 +422,18 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   );
   const datasetFilterPresets = [
     ["All teams", "ALL"],
-    ["T75 Adj Net", "rank_adj_net <= 75"],
-    ["T75 Adj Offense", "rank_off_adj_ppp <= 75"],
-    ["T75 Adj Defense", "rank_def_adj_ppp <= 75"],
+    ["T75 Adj Net", "rank_adj_net <= 75 SORT_BY rank_adj_net"],
+    ["T75 Adj Offense", "rank_off_adj_ppp <= 75 SORT_BY rank_off_adj_ppp"],
+    ["T75 Adj Defense", "rank_def_adj_ppp <= 75 SORT_BY rank_def_adj_ppp"],
     ["T75 Tempo", "rank_tempo <= 75"],
+    [
+      "P5 (2024+)",
+      `conf_nick == "B1G" OR conf_nick == "SEC" OR conf_nick == "BE" OR conf_nick == "ACC" OR conf_nick == "B12"`,
+    ],
+    [
+      "P6 (2023-)",
+      `conf_nick == "B1G" OR conf_nick == "SEC" OR conf_nick == "BE" OR conf_nick == "ACC" OR conf_nick == "B12" OR conf_nick == "P12"`,
+    ],
   ] as Array<[string, string]>;
 
   // Highlight text (show/hide):
@@ -376,10 +467,30 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     ["SoS (%ile)", "100*pctile_off_adj_opp"],
     ["Tempo", "tempo"],
     ["Tempo (%ile)", "100*pctile_tempo"],
+
+    // Team power stats
     ["WABubble", "wab"],
     ["WAElite", "wae"],
     ["Margin-as-WAB", "exp_wab"],
     ["Power", "power"],
+
+    // Some advanced derived style stats:
+    [
+      "On-Ball Frequency",
+      "100*(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct)",
+    ],
+    [
+      "On-Ball Efficiency",
+      "(off_style_rim_attack_pct*off_style_rim_attack_ppp + off_style_dribble_jumper_pct*off_style_dribble_jumper_ppp + off_style_mid_range_pct*off_style_mid_range_ppp + off_style_post_up_pct*off_style_post_up_ppp)/(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct)",
+    ],
+    [
+      "Off-Ball Frequency",
+      "100*(off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct)",
+    ],
+    [
+      "Off-Ball Efficiency",
+      "(off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp  + off_style_post_kick_pct*off_style_post_kick_ppp + off_style_high_low_pct*off_style_high_low_ppp) / (off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct)",
+    ],
 
     // Four factors
     ["eFG%", "100*off_efg"],
@@ -759,13 +870,14 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
       setDotColorMap(preset.dotColorMap || "Default");
       setLabelStrategy(preset.labelStrategy || "None");
       setPointMarkerType(preset.pointMarkerType || "Team Logo (small)");
-    }, true);
+    }, preset.title != title);
   };
+  // Load presets on page startup
   useEffect(() => {
     if (title && !xAxis && !yAxis) {
       const maybePreset = _.find(
         overallTeamChartPresets,
-        (kv) => kv[0] == title
+        (kv) => kv[0] == title || kv[1]?.title == title
       );
       if (maybePreset) applyPresetChart(maybePreset[1]);
     }

@@ -20,7 +20,7 @@ export class DateUtils {
    *
    * TODO: don't forget to also update ConferenceInfo.latestConfChanges
    */
-  static readonly showOffseasonMetrics: Boolean = true;
+  static readonly showOffseasonMetrics: Boolean = false;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
   static readonly inSeasonYear: string = "2025/26";

@@ -42,6 +42,7 @@ import { HistoryManager } from "../../utils/HistoryManager";
 import { DateUtils } from "../../utils/DateUtils";
 import { useTheme } from "next-themes";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import PlayerFinderTextBox from "./PlayerFinderTextBox";
 
 type Props = {
   thisPage: string;
@@ -291,6 +292,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       Compare, sort, and filter stats for all D1 teams
     </Tooltip>
   );
+
+  const teamStatsExplorerChartTooltip = (
+    <Tooltip id={"teamStatsExplorerChartTooltip"}>
+      Build team scatter charts from 100s of stats and analytics
+    </Tooltip>
+  );
   // const playerLeaderboardTooltipNba2021 = (
   //   <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
   // );
@@ -537,6 +544,17 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               `${ParamPrefixes.team}_statsExplorer`
             )}
           </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Team Stat Charts",
+              teamStatsExplorerChartTooltip,
+              UrlRouting.TeamStatsExplorerChart({
+                year: DateUtils.mostRecentYearWithLboardData,
+                title: "Efficiency Landscape",
+              }),
+              `${ParamPrefixes.team}_chart`
+            )}
+          </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
@@ -597,7 +615,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   };
 
   const buildPlayerDropdown = (highlight: Boolean) => {
-    const teamAnalysisSettings: GameFilterParams = {
+    const basicAnalysisSettings: GameFilterParams = {
       showRoster: true,
       calcRapm: true,
       showExpanded: true,
@@ -645,19 +663,23 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
+          <div className="px-3 py-2">
+            <PlayerFinderTextBox
+              playerCurrSelected={false}
+              onSelectPlayer={function (ncaaId: string, gender: string): void {
+                window.location.href = UrlRouting.getPlayerCareer({
+                  ncaaId,
+                  showInfoSubHeader: true,
+                });
+              }}
+            />
+          </div>
+          <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
               "Roster Analysis",
               baseGameTooltip,
-              getBaseGameUrl(),
-              `${ParamPrefixes.game}`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Detailed Roster Analysis",
-              baseGameTooltip,
-              getBaseGameUrl(teamAnalysisSettings),
+              getBaseGameUrl(basicAnalysisSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
@@ -685,7 +707,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
-              "Multi-Season Player Analysis",
+              "Cross-Season Player Stat Charts",
               playerSeasonAnalysisTooltip,
               UrlRouting.getPlayerSeasonComparisonUrl({
                 year: DateUtils.mostRecentYearWithLboardData,

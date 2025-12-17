@@ -27,6 +27,7 @@ import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import ThemedSelect from "./ThemedSelect";
 import { CbbColors } from "../../utils/CbbColors";
 import { useTheme } from "next-themes";
+import { ClientRequestCache } from "../../utils/ClientRequestCache";
 
 export type ChartConfigProps = {
   // Chart title
@@ -168,6 +169,10 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   showHelp,
 }) => {
   const { resolvedTheme } = useTheme();
+  const [favTeam, setFavTeam] = useState<string>(
+    ClientRequestCache.decacheResponse("landing_show_team", "", undefined)
+      ?.value || "Maryland"
+  );
 
   // Internal sync state
   const [linqExpressionSync, setLinqExpressionSync] = useState<number>(0);
@@ -375,7 +380,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
                       style={{ width: "16px", height: "16px" }}
                       src={`logos/${
                         resolvedTheme == "dark" ? "dark" : "normal"
-                      }/Maryland.png`}
+                      }/${favTeam}.png`}
                       alt="Point Marker"
                     />
                   </small>

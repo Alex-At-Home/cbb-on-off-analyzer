@@ -419,13 +419,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       setDotColorMap(preset.dotColorMap || "Default");
       setLabelStrategy(preset.labelStrategy || "None");
       setPointMarkerType(preset.pointMarkerType || "Colored Dot");
-    }, true);
+    }, preset.title != title);
   };
+  // Load presets on page startup
   useEffect(() => {
     if (title && !xAxis && !yAxis) {
       const maybePreset = _.find(
         overallPlayerChartPresets,
-        (kv) => kv[0] == title
+        (kv) => kv[0] == title || kv[1]?.title == title
       );
       if (maybePreset) applyPresetChart(maybePreset[1]);
     }

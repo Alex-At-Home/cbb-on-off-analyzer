@@ -15,6 +15,7 @@ import {
   PlayerLeaderboardParams,
   TeamEditorParams,
   TeamReportFilterParams,
+  TeamStatsExplorerChartParams,
   TeamStatsExplorerParams,
 } from "../utils/FilterModels";
 import {
@@ -116,7 +117,7 @@ export class UrlRouting {
     })}`;
   }
   /** The URL to use to view the "Offseason Leaderboard" page */
-  static TeamStatsExplorerChart(params: TeamStatsExplorerParams) {
+  static TeamStatsExplorerChart(params: TeamStatsExplorerChartParams) {
     return `/TeamStatsChartPage?${UrlRouting.getUrl({
       [UrlRouting.noPrefix]: params,
     })}`;

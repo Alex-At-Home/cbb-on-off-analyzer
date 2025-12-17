@@ -25,5 +25,7 @@ module.exports = {
     "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",
     "^chroma-js$": "<rootDir>/node_modules/chroma-js/dist/chroma.cjs",
     "^d3$": "<rootDir>/node_modules/d3/dist/d3.min.js",
+    "^@elastic/search-ui-elasticsearch-connector/api-proxy$": "<rootDir>/__mocks__/@elastic/search-ui-elasticsearch-connector/api-proxy.js",
+    "^@elastic/react-search-ui$": "<rootDir>/__mocks__/@elastic/react-search-ui.js",
   },
 };
