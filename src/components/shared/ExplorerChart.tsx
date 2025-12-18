@@ -174,7 +174,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   const dataPointsToLabel = _.isEmpty(toggledEntities)
     ? dataPointsToLabelPhase1
     : (dataPointsToLabelPhase1 || []).concat(
-        mainChart.filter((p) => toggledEntities[labelBuilder(p)])
+        mainChart.filter((p) => toggledEntities[labelBuilder(p.p)])
       );
 
   // (Some util logic associated with building averages and limits)
@@ -315,6 +315,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
         height={imageSize}
         opacity={opacity}
         overflow="visible"
+        onClick={(e) => handleEntityToggle(payload.label)}
       >
         <image
           href={`logos/${resolvedTheme == "dark" ? "dark" : "normal"}/${
