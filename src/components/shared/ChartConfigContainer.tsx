@@ -123,8 +123,13 @@ const defaultPointMarkerTypeTooltip = (
     Choose how data points are displayed on the chart
   </Tooltip>
 );
-const defaultAxisPlaceholder = "Linq //LABEL //LIMITS //TICKS";
-const defaultExtraAxisAutocompleteOptions = ["//LABEL", "//LIMITS", "//TICKS"];
+const defaultAxisPlaceholder = "Linq //LABEL //LIMITS //TICKS //INVERT";
+const defaultExtraAxisAutocompleteOptions = [
+  "//LABEL",
+  "//LIMITS",
+  "//TICKS",
+  "//INVERT",
+];
 
 const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   title,
@@ -549,7 +554,7 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
           <Col xs={6} sm={6} md={5} lg={5}>
             <LinqExpressionBuilder
               label="Color"
-              prompt="Linq expression for color vs colormap selected to right"
+              prompt="Linq expression for color vs colormap (right)"
               value={dotColor}
               error={filterError}
               autocomplete={autocompleteOptions}

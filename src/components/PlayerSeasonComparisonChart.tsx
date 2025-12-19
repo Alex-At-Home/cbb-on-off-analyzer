@@ -401,11 +401,17 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           preset.highlightFilter ||
           ""
       );
+      const xAxisFrags = (preset.xAxis || "").split("//", 2).map(_.trim);
       setXAxis(
-        axisPresets.find((t) => t[0] == preset.xAxis)?.[1] || preset.xAxis || ""
+        (axisPresets.find((t) => t[0] == xAxisFrags[0])?.[1] ||
+          xAxisFrags[0] ||
+          "") + (xAxisFrags.length > 1 ? ` //${xAxisFrags[1]}` : "")
       );
+      const yAxisFrags = (preset.yAxis || "").split("//", 2).map(_.trim);
       setYAxis(
-        axisPresets.find((t) => t[0] == preset.yAxis)?.[1] || preset.yAxis || ""
+        (axisPresets.find((t) => t[0] == yAxisFrags[0])?.[1] ||
+          yAxisFrags[0] ||
+          "") + (yAxisFrags.length > 1 ? ` //${yAxisFrags[1]}` : "")
       );
       setDotColor(
         axisPresets.find((t) => t[0] == preset.dotColor)?.[1] ||
