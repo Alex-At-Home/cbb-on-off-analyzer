@@ -75,7 +75,7 @@ export const overallTeamChartPresets = [
         "'Efficiency Landscape' - adjusted offensive vs defensive efficiency",
       datasetFilter: "ALL SORT_BY adj_net",
       xAxis: "Adjusted Off",
-      yAxis: "-def_adj_ppp //LABEL Adjusted Def",
+      yAxis: "def_adj_ppp //LABEL Adjusted Def //INVERT true",
       dotColor: "Adjusted Margin",
       dotSize: "wab",
       dotColorMap: "Red/Green Auto",

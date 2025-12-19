@@ -16,7 +16,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 
 // Additional components:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTags, faList } from "@fortawesome/free-solid-svg-icons";
+import { faTags, faList, faCog } from "@fortawesome/free-solid-svg-icons";
 //@ts-ignore
 import { components } from "react-select";
 
@@ -25,9 +25,11 @@ import AsyncFormControl from "./AsyncFormControl";
 import LinqExpressionBuilder from "./LinqExpressionBuilder";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import ThemedSelect from "./ThemedSelect";
+import AxisConfigModal from "./AxisConfigModal";
 import { CbbColors } from "../../utils/CbbColors";
 import { useTheme } from "next-themes";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
+import { AxisDecomposition } from "../../utils/ExplorerChartUtils";
 
 export type ChartConfigProps = {
   // Chart title
@@ -176,6 +178,10 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   // Internal sync state
   const [linqExpressionSync, setLinqExpressionSync] = useState<number>(0);
 
+  // Axis config modal state
+  const [showXAxisModal, setShowXAxisModal] = useState<boolean>(false);
+  const [showYAxisModal, setShowYAxisModal] = useState<boolean>(false);
+
   // Internal callback handlers
   const handleFilterChange = (newVal: string, onSync?: boolean) => {
     if (!onSync) setLinqExpressionSync((n) => n + 1);
@@ -195,6 +201,21 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   const handleYAxisChange = (newVal: string, onSync?: boolean) => {
     if (!onSync) setLinqExpressionSync((n) => n + 1);
     onYAxisChange(newVal);
+  };
+
+  // Axis config modal handlers
+  const handleXAxisConfigSave = (
+    decomp: AxisDecomposition,
+    rawString: string
+  ) => {
+    handleXAxisChange(rawString);
+  };
+
+  const handleYAxisConfigSave = (
+    decomp: AxisDecomposition,
+    rawString: string
+  ) => {
+    handleYAxisChange(rawString);
   };
 
   const handleDotColorChange = (newVal: string, onSync?: boolean) => {
@@ -424,38 +445,102 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
       {showConfigOptions ? (
         <Form.Row className="mb-2">
           <Col xs={12} sm={12} md={6} lg={6}>
-            <LinqExpressionBuilder
-              label="X-Axis"
-              prompt={axisPlaceholder}
-              value={xAxis}
-              error={filterError}
-              autocomplete={autocompleteOptions.concat(
-                extraAxisAutocompleteOptions
-              )}
-              presets={axisPresets}
-              presetsIcon={faList}
-              syncEvent={linqExpressionSync}
-              callback={handleXAxisChange}
-              showHelp={showHelp}
-              searchBar={true}
-            />
+            <div className="d-flex">
+              <div className="flex-grow-1">
+                <LinqExpressionBuilder
+                  label="X-Axis"
+                  prompt={axisPlaceholder}
+                  value={xAxis}
+                  error={filterError}
+                  autocomplete={autocompleteOptions.concat(
+                    extraAxisAutocompleteOptions
+                  )}
+                  presets={axisPresets}
+                  presetsIcon={faList}
+                  presetsTooltip={
+                    <Tooltip id="axisPresetsTooltip">
+                      If using a single stat, pick from one of the available
+                      presets
+                    </Tooltip>
+                  }
+                  syncEvent={linqExpressionSync}
+                  callback={handleXAxisChange}
+                  showHelp={showHelp}
+                  searchBar={true}
+                />
+              </div>
+              <div
+                style={{ marginLeft: "1px" }}
+                className="d-flex align-items-end"
+              >
+                <OverlayTrigger
+                  placement="top"
+                  overlay={
+                    <Tooltip id="xAxisConfigTooltip">
+                      Advanced axis configuration
+                    </Tooltip>
+                  }
+                >
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary"
+                    style={{ height: "2.4rem" }}
+                    onClick={() => setShowXAxisModal(true)}
+                  >
+                    <FontAwesomeIcon icon={faCog} />
+                  </button>
+                </OverlayTrigger>
+              </div>
+            </div>
           </Col>
           <Col xs={12} sm={12} md={6} lg={6}>
-            <LinqExpressionBuilder
-              label="Y-Axis"
-              prompt={axisPlaceholder}
-              value={yAxis}
-              error={filterError}
-              autocomplete={autocompleteOptions.concat(
-                extraAxisAutocompleteOptions
-              )}
-              presets={axisPresets}
-              presetsIcon={faList}
-              syncEvent={linqExpressionSync}
-              callback={handleYAxisChange}
-              showHelp={showHelp}
-              searchBar={true}
-            />
+            <div className="d-flex">
+              <div className="flex-grow-1">
+                <LinqExpressionBuilder
+                  label="Y-Axis"
+                  prompt={axisPlaceholder}
+                  value={yAxis}
+                  error={filterError}
+                  autocomplete={autocompleteOptions.concat(
+                    extraAxisAutocompleteOptions
+                  )}
+                  presets={axisPresets}
+                  presetsIcon={faList}
+                  presetsTooltip={
+                    <Tooltip id="axisPresetsTooltip">
+                      If using a single stat, pick from one of the available
+                      presets
+                    </Tooltip>
+                  }
+                  syncEvent={linqExpressionSync}
+                  callback={handleYAxisChange}
+                  showHelp={showHelp}
+                  searchBar={true}
+                />
+              </div>
+              <div
+                style={{ marginLeft: "1px" }}
+                className="d-flex align-items-end"
+              >
+                <OverlayTrigger
+                  placement="top"
+                  overlay={
+                    <Tooltip id="yAxisConfigTooltip">
+                      Advanced axis configuration
+                    </Tooltip>
+                  }
+                >
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary"
+                    style={{ height: "2.4rem" }}
+                    onClick={() => setShowYAxisModal(true)}
+                  >
+                    <FontAwesomeIcon icon={faCog} />
+                  </button>
+                </OverlayTrigger>
+              </div>
+            </div>
           </Col>
         </Form.Row>
       ) : null}
@@ -516,6 +601,26 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
           </Col>
         </Form.Row>
       ) : null}
+
+      {/* Axis Configuration Modals */}
+      <AxisConfigModal
+        show={showXAxisModal}
+        onHide={() => setShowXAxisModal(false)}
+        onSave={handleXAxisConfigSave}
+        axisString={xAxis}
+        colorMapOptions={colorMapOptions}
+        contrastForegroundBuilder={contrastForegroundBuilder}
+        showHelp={showHelp}
+      />
+      <AxisConfigModal
+        show={showYAxisModal}
+        onHide={() => setShowYAxisModal(false)}
+        onSave={handleYAxisConfigSave}
+        axisString={yAxis}
+        colorMapOptions={colorMapOptions}
+        contrastForegroundBuilder={contrastForegroundBuilder}
+        showHelp={showHelp}
+      />
     </Container>
   );
 };

@@ -35,6 +35,7 @@ type Props = {
   readonly richTextReplacements?: Record<string, { renderTo: ReactNode }>;
   readonly presets?: Array<[string, string]>;
   readonly presetsIcon?: IconDefinition;
+  readonly presetsTooltip?: React.JSX.Element;
   readonly syncEvent?: number; //(1-up this to apply the temp contents)
   readonly callback: (newExpr: string, onSync?: boolean) => void; //(if onSync shouldn't set any sync events)
   readonly showHelp?: boolean;
@@ -50,6 +51,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
   richTextReplacements,
   presets,
   presetsIcon,
+  presetsTooltip,
   syncEvent,
   callback,
   showHelp,
@@ -183,7 +185,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
             label={<FontAwesomeIcon icon={presetsIcon || faFilter} />}
             drop="down"
             closeOnSelect={true}
-            tooltip={tooltipForFilterPresets}
+            tooltip={presetsTooltip || tooltipForFilterPresets}
             searchBar={searchBar || false}
             allowlist={["Clear selection"]}
           >

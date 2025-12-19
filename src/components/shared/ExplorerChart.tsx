@@ -344,6 +344,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
             dataKey="x"
             ticks={xAxisDecom.ticks}
             domain={xAxisDecom.limits || ["auto", "auto"]}
+            reversed={xAxisDecom.invert || false}
             allowDataOverflow={!_.isNil(xAxisDecom.limits)}
           >
             <Label
@@ -359,6 +360,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
             dataKey="y"
             ticks={yAxisDecom.ticks}
             domain={yAxisDecom.limits || ["auto", "auto"]}
+            reversed={yAxisDecom.invert || false}
             allowDataOverflow={!_.isNil(yAxisDecom.limits)}
           >
             <Label
