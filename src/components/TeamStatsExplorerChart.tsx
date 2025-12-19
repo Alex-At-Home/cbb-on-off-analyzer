@@ -58,6 +58,7 @@ import {
   DivisionStatsCache,
   GradeTableUtils,
 } from "../utils/tables/GradeTableUtils";
+import PageAnnotationSystem from "./shared/PageAnnotationSystem";
 
 type Props = {
   startingState: TeamStatsExplorerChartParams;
@@ -1643,6 +1644,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
               }}
               label="Hide Config"
             />
+            <PageAnnotationSystem className="float-right" />
           </Form.Group>
         </Form.Row>
         {hasCustomFilter ? (

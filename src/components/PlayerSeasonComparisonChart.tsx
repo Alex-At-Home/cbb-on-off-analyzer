@@ -63,6 +63,7 @@ import ExplorerChart from "./shared/ExplorerChart";
 import { decompAxis } from "../utils/ExplorerChartUtils";
 import { useTheme } from "next-themes";
 import TeamFilterAutoSuggestText from "./shared/TeamFilterAutoSuggestText";
+import PageAnnotationSystem from "./shared/PageAnnotationSystem";
 
 type Props = {
   startingState: PlayerSeasonComparisonParams;
@@ -1251,6 +1252,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
               }}
               label="Hide Config"
             />
+            <PageAnnotationSystem className="float-right" />
           </Form.Group>
         </Form.Row>
         {hasCustomFilter ? (
