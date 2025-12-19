@@ -71,6 +71,7 @@ import { DateUtils } from "../utils/DateUtils";
 import { Badge } from "react-bootstrap";
 import GameSelectorModal from "./shared/GameSelectorModal";
 import ThemedSelect from "./shared/ThemedSelect";
+import { ClientRequestCache } from "../utils/ClientRequestCache";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -152,15 +153,21 @@ const CommonFilter: CommonFilterI = ({
 
   // Data source
   const [team, setTeam] = useState(
-    startingState.team || ParamDefaults.defaultTeam
+    startingState.team ||
+      ClientRequestCache.getSavedTeam() ||
+      ParamDefaults.defaultTeam
   );
   const [year, setYear] = useState(
-    DateUtils.cleanYear(startingState.year, ParamDefaults.defaultYear, [
-      DateUtils.ExtraYears,
-    ])
+    DateUtils.cleanYear(
+      startingState.year,
+      ClientRequestCache.getSavedYear() || ParamDefaults.defaultYear,
+      [DateUtils.ExtraYears]
+    )
   );
   const [gender, setGender] = useState(
-    startingState.gender || ParamDefaults.defaultGender
+    startingState.gender ||
+      ClientRequestCache.getSavedGender() ||
+      ParamDefaults.defaultGender
   );
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);

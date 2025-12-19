@@ -1498,13 +1498,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         setYear(yearParam);
       } else {
         // Try to load from cache
-        const cachedYear = ClientRequestCache.decacheResponse(
-          "landing_show_year",
-          "",
-          undefined
-        );
-        if (cachedYear !== null && cachedYear.value) {
-          setYear(cachedYear.value as string);
+        const cachedYear = ClientRequestCache.getSavedYear();
+        if (cachedYear) {
+          setYear(cachedYear as string);
         }
       }
 
@@ -1514,13 +1510,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         setGender(genderParam);
       } else {
         // Try to load from cache
-        const cachedGender = ClientRequestCache.decacheResponse(
-          "landing_show_gender",
-          "",
-          undefined
-        );
-        if (cachedGender !== null && cachedGender.value) {
-          setGender(cachedGender.value as string);
+        const cachedGender = ClientRequestCache.getSavedGender();
+        if (cachedGender) {
+          setGender(cachedGender as string);
         }
       }
 
@@ -1530,13 +1522,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         setTeam(teamParam);
       } else {
         // Try to load from cache
-        const cachedTeam = ClientRequestCache.decacheResponse(
-          "landing_show_team",
-          "",
-          undefined
-        );
-        if (cachedTeam !== null && cachedTeam.value) {
-          setTeam(cachedTeam.value as string);
+        const cachedTeam = ClientRequestCache.getSavedTeam();
+        if (cachedTeam) {
+          setTeam(cachedTeam as string);
         }
       }
     }
@@ -1682,30 +1670,43 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     newGender: string,
     newTeam: string
   ) => {
-    // Update state
-    setYear(newYear);
-    setGender(newGender);
-    setTeam(newTeam);
-    setShowTeamModal(false);
+    if (newTeam && newGender && newYear) {
+      // Update state
+      setYear(newYear);
+      setGender(newGender);
+      setTeam(newTeam);
+      setShowTeamModal(false);
 
-    // Update cache entries
-    if (typeof window !== "undefined") {
-      ClientRequestCache.cacheResponse(
-        "landing_show_year",
-        "",
-        { value: newYear },
-        undefined
-      );
+      // Update cache entries
+      if (typeof window !== "undefined") {
+        ClientRequestCache.cacheResponse(
+          "landing_show_year",
+          "",
+          { value: newYear },
+          undefined
+        );
+        ClientRequestCache.cacheResponse(
+          "landing_show_gender",
+          "",
+          { value: newGender },
+          undefined
+        );
+        ClientRequestCache.cacheResponse(
+          "landing_show_team",
+          "",
+          { value: newTeam },
+          undefined
+        );
+      }
+    } else if (newGender) {
+      setGender(newGender);
+      setShowTeamModal(false);
+
+      // Special mode just save Gender
       ClientRequestCache.cacheResponse(
         "landing_show_gender",
         "",
         { value: newGender },
-        undefined
-      );
-      ClientRequestCache.cacheResponse(
-        "landing_show_team",
-        "",
-        { value: newTeam },
         undefined
       );
     }

@@ -169,9 +169,8 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
   showHelp,
 }) => {
   const { resolvedTheme } = useTheme();
-  const [favTeam, setFavTeam] = useState<string>(
-    ClientRequestCache.decacheResponse("landing_show_team", "", undefined)
-      ?.value || "Maryland"
+  const [favTeam, UNUSED_setFavTeam] = useState<string>(
+    ClientRequestCache.getSavedTeam() || "Maryland"
   );
 
   // Internal sync state

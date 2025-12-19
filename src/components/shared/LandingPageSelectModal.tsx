@@ -188,23 +188,44 @@ const LandingPageSelectModal: React.FunctionComponent<Props> = ({
           </Button>
         )}
         {visitOnSave ? (
-          <Button
-            variant="primary"
-            disabled={!selectedYear || !selectedGender || !selectedTeam}
-            href={visitOnSave(selectedYear, selectedGender, selectedTeam)}
-            target="_blank"
-            onClick={handleSave}
-          >
-            Open...
-          </Button>
+          <>
+            <Button
+              variant="primary"
+              disabled={!selectedYear || !selectedGender || !selectedTeam}
+              href={visitOnSave(selectedYear, selectedGender, selectedTeam)}
+              target="_blank"
+              onClick={handleSave}
+              title="Continues to the selected page, and saves the team-season as a default"
+            >
+              Save & Open...
+            </Button>
+            <Button
+              variant="primary"
+              disabled={!selectedYear || !selectedGender || !selectedTeam}
+              href={visitOnSave(selectedYear, selectedGender, selectedTeam)}
+              title="Continues to the selected page, does NOT save the team-season as a default"
+              target="_blank"
+            >
+              Open...
+            </Button>
+          </>
         ) : (
-          <Button
-            variant="primary"
-            onClick={handleSave}
-            disabled={!selectedYear || !selectedGender || !selectedTeam}
-          >
-            Save
-          </Button>
+          <>
+            <Button
+              variant="primary"
+              onClick={() => onSave("", selectedGender, "")}
+              disabled={!selectedGender}
+            >
+              Set Default Gender
+            </Button>
+            <Button
+              variant="primary"
+              onClick={handleSave}
+              disabled={!selectedYear || !selectedGender || !selectedTeam}
+            >
+              Save
+            </Button>
+          </>
         )}
       </Modal.Footer>
     </Modal>
