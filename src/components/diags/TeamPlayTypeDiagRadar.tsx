@@ -689,9 +689,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         />
         <rect
           x={x - 5}
-          y={y - 4 * textHeight - extraTextSpace}
+          y={y - 4 * textHeight - extraTextSpace + 1}
           width={width + 10}
-          height={4 * textHeight + extraTextSpace}
+          height={4 * textHeight + extraTextSpace - 2}
           fill={resolvedTheme == "dark" ? "#222222" : "#dddddd"}
           opacity={0.5}
         />
@@ -717,7 +717,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           textAnchor="middle"
           dominantBaseline="middle"
         >
-          <tspan>{(pts || 0).toFixed(1)}%ile</tspan>
+          <tspan>
+            {(pts || 0).toFixed(1)}
+            <tspan fontSize="smaller">%ile</tspan>
+          </tspan>
         </text>
         {!showCircle && (
           <text
@@ -727,7 +730,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
+            <tspan>
+              {(100 * (rawPct || 0)).toFixed(1)}
+              <tspan fontSize={"60%"}>/100</tspan>
+            </tspan>
           </text>
         )}
         {showCircle && (
@@ -743,12 +749,24 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         {showCircle && (
           <text
             x={x + width / 2}
-            y={y + (height + textHeight) / 2}
+            y={y + height / 2 - 2}
             fill={contrastingColor}
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
+            {(100 * (rawPct || 0)).toFixed(1)}
+          </text>
+        )}
+        {showCircle && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 + textHeight + 2}
+            fontSize={"60%"}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            <tspan dy={-1}>/</tspan>100
           </text>
         )}
       </g>
