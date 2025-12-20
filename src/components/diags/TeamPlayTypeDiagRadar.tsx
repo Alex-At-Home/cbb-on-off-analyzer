@@ -462,8 +462,18 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       )
     : undefined;
 
+  const showingRawFreq = possFreqType == "P%";
+  const maxPlayFreq = //(if showing raw values we want the max to make some chart building bits easier)
+    showingRawFreq
+      ? _.max(
+          _.values(mainTopLevelPlayTypeStyles).map(
+            (playInfo) => playInfo.possPct?.value || 0
+          )
+        ) || 0
+      : 0;
+
   // In this case we just use the raw freq, but we do want the efficiency %s
-  if (possFreqType == "P%") {
+  if (showingRawFreq) {
     _.forEach(mainTopLevelPlayTypeStyles, (val, key) => {
       const toAdjust =
         mainTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
@@ -614,6 +624,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       height,
       rawPct,
       rawPts,
+      pctile,
       pct,
       pts,
       playType,
@@ -648,8 +659,12 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
     const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
-    const showCircle = pct > 20;
+
+    const showCircle = showingRawFreq ? pct > 20 * maxPlayFreq : pct > 20;
     const extraTextSpace = showCircle ? 0 : textHeight + 6;
+
+    /**/
+    console.log(`${pct} vs ${maxPlayFreq}`);
 
     // Check if this play type is currently selected
     const isSelected = selectedPlayTypes.has(playType);
@@ -722,7 +737,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             <tspan fontSize="smaller">%ile</tspan>
           </tspan>
         </text>
-        {!showCircle && (
+        {!showCircle && !showingRawFreq && (
           <text
             x={x + width / 2}
             y={y - textHeight + 3}
@@ -731,8 +746,24 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             dominantBaseline="middle"
           >
             <tspan>
+              <tspan fontSize={"smaller"}>&#402;</tspan>{" "}
               {(100 * (rawPct || 0)).toFixed(1)}
               <tspan fontSize={"60%"}>/100</tspan>
+            </tspan>
+          </text>
+        )}
+        {!showCircle && showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y - textHeight + 3}
+            fill={highlightColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            <tspan>
+              <tspan fontSize={"smaller"}>&#402;</tspan>{" "}
+              {(pctile || 0).toFixed(1)}
+              <tspan fontSize={"60%"}>%ile</tspan>
             </tspan>
           </text>
         )}
@@ -746,7 +777,30 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             strokeWidth={outlineWidth}
           />
         )}
-        {showCircle && (
+        {showCircle && showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 - 2}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            {(pctile || 0).toFixed(1)}
+          </text>
+        )}
+        {showCircle && showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 + textHeight + 2}
+            fontSize={"60%"}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            &#402; %ile
+          </text>
+        )}{" "}
+        {showCircle && !showingRawFreq && (
           <text
             x={x + width / 2}
             y={y + height / 2 - 2}
@@ -757,7 +811,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             {(100 * (rawPct || 0)).toFixed(1)}
           </text>
         )}
-        {showCircle && (
+        {showCircle && !showingRawFreq && (
           <text
             x={x + width / 2}
             y={y + height / 2 + textHeight + 2}
@@ -766,7 +820,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             textAnchor="middle"
             dominantBaseline="middle"
           >
-            <tspan dy={-1}>/</tspan>100
+            &#402;/100
           </text>
         )}
       </g>
