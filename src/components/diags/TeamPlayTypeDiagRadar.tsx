@@ -269,7 +269,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     incomingConfig.adjustForSos
   );
 
-  const [possFreqType, setPossFreqType] = useState<"P%le" | "P%">(incomingConfig.possFreqType);
+  const [possFreqType, setPossFreqType] = useState<"P%le" | "P%">(
+    incomingConfig.possFreqType
+  );
 
   /** Which players to filter */
   const [filterStr, setFilterStr] = useState(incomingConfig.filterStr);
@@ -301,9 +303,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     setAdjustForSos(newConfig.adjustForSos);
     setPossFreqType(
       (newConfig?.possFreqType ??
-        ParamDefaults.defaultTeamShowPlayTypesPlayType) as
-        | "P%le"
-        | "P%"
+        ParamDefaults.defaultTeamShowPlayTypesPlayType) as "P%le" | "P%"
     );
   }, [configStr]);
 
@@ -647,6 +647,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const rawColor = themedRawColorBuilder(
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
+    const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
+    const showCircle = pct > 20;
+    const extraTextSpace = showCircle ? 0 : textHeight + 6;
 
     // Check if this play type is currently selected
     const isSelected = selectedPlayTypes.has(playType);
@@ -675,20 +678,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             opacity={0.5}
           />
         )}
-        <text
-          x={x + width / 2}
-          y={y - textHeight + 3}
-          fill={highlightColor}
-          textAnchor="middle"
-          dominantBaseline="middle"
-        >
-          <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
-          {rawPct > 0 ? (
-            <tspan fill={rawColor}>
-              {((rawPts || 0) * adjustment).toFixed(2)}
-            </tspan>
-          ) : undefined}
-        </text>
         <path
           stroke={highlightColor}
           strokeWidth={outlineWidth}
@@ -698,6 +687,70 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             x + xAdj
           },${y} h ${widthToUse} v ${height} h ${-widthToUse} Z`}
         />
+        <rect
+          x={x - 5}
+          y={y - 4 * textHeight - extraTextSpace}
+          width={width + 10}
+          height={4 * textHeight + extraTextSpace}
+          fill={resolvedTheme == "dark" ? "#222222" : "#dddddd"}
+          opacity={0.5}
+        />
+        <text
+          x={x + width / 2}
+          y={y - 2 * textHeight - 4 - extraTextSpace}
+          fill={highlightColor}
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {rawPct > 0 ? (
+            <tspan fill={rawColor}>
+              {((rawPts || 0) * adjustment).toFixed(2)}
+            </tspan>
+          ) : undefined}
+          <tspan> ppp</tspan>
+        </text>
+        <text
+          x={x + width / 2}
+          y={y - textHeight + 3 - extraTextSpace}
+          fill={highlightColor}
+          fontSize={"smaller"}
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          <tspan>{(pts || 0).toFixed(1)}%ile</tspan>
+        </text>
+        {!showCircle && (
+          <text
+            x={x + width / 2}
+            y={y - textHeight + 3}
+            fill={highlightColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
+          </text>
+        )}
+        {showCircle && (
+          <circle
+            cx={x + width / 2}
+            cy={y + height / 2}
+            r={width / 2}
+            fill={fill}
+            stroke={contrastingColor}
+            strokeWidth={outlineWidth}
+          />
+        )}
+        {showCircle && (
+          <text
+            x={x + width / 2}
+            y={y + (height + textHeight) / 2}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
+          </text>
+        )}
       </g>
     );
   };
@@ -795,10 +848,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ) : null}
           <ResponsiveContainer minWidth={800} width="100%" height={400}>
             <BarChart
-              height={400}
+              height={410}
               data={data}
               margin={{
-                top: 20,
+                top: 35,
                 right: 30,
                 left: 20,
                 bottom: 30,
@@ -1016,7 +1069,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {PlayTypeDiagUtils.buildTeamFreqType(
                 possFreqType,
                 (newPossFreqType) => {
-                  updateConfig({ ...incomingConfig, possFreqType: newPossFreqType });
+                  updateConfig({
+                    ...incomingConfig,
+                    possFreqType: newPossFreqType,
+                  });
                   setPossFreqType(newPossFreqType);
                 }
               )}
