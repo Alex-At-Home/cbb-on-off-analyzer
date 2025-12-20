@@ -663,9 +663,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const showCircle = showingRawFreq ? pct > 20 * maxPlayFreq : pct > 20;
     const extraTextSpace = showCircle ? 0 : textHeight + 6;
 
-    /**/
-    console.log(`${pct} vs ${maxPlayFreq}`);
-
     // Check if this play type is currently selected
     const isSelected = selectedPlayTypes.has(playType);
 
@@ -856,7 +853,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             Frequency Pctile: [<b>{data.pctile.toFixed(1)}%</b>]
             {_.isNumber(playCountToUse) ? <br /> : null}
             {_.isNumber(playCountToUse) ? (
-              <span>(Label shows value for {playCountToUse} play game)</span>
+              <span>
+                [<b>{(playCountToUse * data.rawPct).toFixed(1)}</b>] plays in
+                this game ([{playCountToUse}] plays)
+              </span>
             ) : null}
           </p>
           <p className="desc pl-1 pr-1">
