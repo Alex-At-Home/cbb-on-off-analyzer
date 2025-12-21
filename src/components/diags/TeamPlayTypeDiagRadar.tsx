@@ -332,7 +332,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     ((mainDefensiveOverride
       ? mainTeamStats.off_adj_opp?.value
       : mainTeamStats.def_adj_opp?.value) || avgEfficiency);
-  const mainTopLevelPlayTypeStyles =
+  const mainTopLevelPlayTypeStyles: TopLevelPlayAnalysis =
     mainDefensiveOverride ||
     (mainTeamStats.style as TopLevelPlayAnalysis) ||
     PlayTypeUtils.buildTopLevelPlayStyles(
@@ -515,6 +515,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   let extraData: any[] = [];
   let extraDefOverride: any = undefined;
   let extraSosAdjustment: number | undefined = undefined;
+  let commonMaxBetweenMainAndExtra: number | undefined;
+  let commonNumTicksToUse: number | undefined = undefined;
+  let extraTopLevelPlayTypeStyles: TopLevelPlayAnalysis | undefined = undefined;
   if (quickSwitchBase && quickSwitchOptions) {
     const extraOpt = _.find(
       quickSwitchOptions,
@@ -529,7 +532,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         ((extraDefOverride
           ? extraTeamStats.off_adj_opp?.value
           : extraTeamStats.def_adj_opp?.value) || avgEfficiency);
-      const extraTopLevelPlayTypeStyles =
+      extraTopLevelPlayTypeStyles =
         extraDefOverride ||
         (extraTeamStats.style as TopLevelPlayAnalysis) ||
         PlayTypeUtils.buildTopLevelPlayStyles(
@@ -540,7 +543,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
       extraTopLevelPlayTypeStylesPctile = mainTierToUse
         ? GradeUtils.getPlayStyleStats(
-            extraTopLevelPlayTypeStyles,
+            extraTopLevelPlayTypeStyles!,
             mainTierToUse,
             extraSosAdjustment,
             true
@@ -596,6 +599,32 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           })
         : [];
     }
+  }
+
+  // Calculate the tick strategy if showing raw numbers
+  if (possFreqType == "P%") {
+    const tmpMax =
+      100 *
+      _.chain([
+        _.values(mainTopLevelPlayTypeStyles),
+        extraTopLevelPlayTypeStyles
+          ? _.values(extraTopLevelPlayTypeStyles)
+          : [],
+      ])
+        .flatten()
+        .map((playTypeStat) => {
+          return playTypeStat.possPct?.value || 0;
+        })
+        .max()
+        .value();
+
+    commonNumTicksToUse =
+      _.minBy([10, 9, 8], (ticks) =>
+        Math.abs(tmpMax - ticks * Math.ceil(tmpMax / ticks))
+      ) || 10;
+
+    commonMaxBetweenMainAndExtra =
+      commonNumTicksToUse * Math.ceil(tmpMax / commonNumTicksToUse);
   }
 
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
@@ -936,8 +965,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     sosAdj: number,
     rowTitle?: string,
     cellKeyPrefix: string = "cell-"
-  ) =>
-    pctile ? (
+  ) => {
+    return pctile ? (
       <Row>
         <Col xs={11}>
           {rowTitle ? (
@@ -965,10 +994,23 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <YAxis
                 type="number"
                 stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
-                domain={possFreqType == "P%" ? undefined : [0, 100]}
+                domain={
+                  possFreqType == "P%"
+                    ? commonMaxBetweenMainAndExtra
+                      ? [0, Math.round(commonMaxBetweenMainAndExtra)]
+                      : undefined
+                    : [0, 100]
+                }
+                tickCount={commonNumTicksToUse}
                 ticks={
                   possFreqType == "P%"
-                    ? undefined
+                    ? commonMaxBetweenMainAndExtra && commonNumTicksToUse
+                      ? _.range(
+                          0,
+                          commonMaxBetweenMainAndExtra + 1,
+                          commonMaxBetweenMainAndExtra / commonNumTicksToUse
+                        )
+                      : undefined
                     : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                 }
               >
@@ -1051,6 +1093,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         </Col>
       </Row>
     ) : null;
+  };
 
   // --- TOP/BOTTOM CHART LOGIC ---
   // Top chart: show mainData if !quickSwitchBase or quickSwitchExtra === 'extra', otherwise show extraData
