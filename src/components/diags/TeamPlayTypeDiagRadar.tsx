@@ -764,7 +764,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           dominantBaseline="middle"
         >
           <tspan>
-            {(pts || 0).toFixed(1)}
+            {(mainDefensiveOverride ? 100 - (pts || 0) : pts || 0).toFixed(1)}
             <tspan fontSize="smaller">%ile</tspan>
           </tspan>
         </text>
