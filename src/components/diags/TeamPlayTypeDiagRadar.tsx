@@ -463,14 +463,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     : undefined;
 
   const showingRawFreq = possFreqType == "P%";
-  const maxPlayFreq = //(if showing raw values we want the max to make some chart building bits easier)
-    showingRawFreq
-      ? _.max(
-          _.values(mainTopLevelPlayTypeStyles).map(
-            (playInfo) => playInfo.possPct?.value || 0
-          )
-        ) || 0
-      : 0;
 
   // In this case we just use the raw freq, but we do want the efficiency %s
   if (showingRawFreq) {
@@ -500,12 +492,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           name: PlayTypeDiagUtils.getPlayTypeName(playType).replace("-", " - "),
           playType: playType,
           pct:
+            //(the height of the bar chart, %ile or raw value)
             rawPct == 0
               ? 0
               : possFreqType == "P%"
               ? (stat.possPct?.value || 0) * 100
               : pctle,
           pctile:
+            //(always the %ile)
             possFreqType == "P%"
               ? Math.min(100, (stat.possPct?.old_value || 0) * 100)
               : pctle, // Always store percentile
@@ -543,6 +537,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           rosterStatsByCode,
           extraTeamStats
         );
+
       extraTopLevelPlayTypeStylesPctile = mainTierToUse
         ? GradeUtils.getPlayStyleStats(
             extraTopLevelPlayTypeStyles,
@@ -557,8 +552,12 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         _.forEach(extraTopLevelPlayTypeStyles, (val, key) => {
           const toAdjust =
             extraTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
+          const pctle = toAdjust.possPct?.value || 0;
           if (toAdjust) {
             toAdjust.possPct = val.possPct;
+            if (toAdjust.possPct) {
+              toAdjust.possPct.old_value = pctle;
+            }
           }
         });
       }
@@ -571,6 +570,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               >
             )[playType];
             const rawPct = rawVal?.possPct?.value || 0;
+            const pctle = Math.min(100, (stat.possPct?.value || 0) * 100);
             return {
               name: PlayTypeDiagUtils.getPlayTypeName(playType).replace(
                 "-",
@@ -578,12 +578,17 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               ),
               playType: playType,
               pct:
+                //(the height of the bar chart, %ile or raw value)
                 rawPct == 0
                   ? 0
                   : possFreqType == "P%"
                   ? (stat.possPct?.value || 0) * 100
-                  : Math.min(100, (stat.possPct.value || 0) * 100),
-              pctile: Math.min(100, (stat.possPct.value || 0) * 100), // Always store percentile
+                  : pctle,
+              pctile:
+                //(always the %ile)
+                possFreqType == "P%"
+                  ? Math.min(100, (stat.possPct?.old_value || 0) * 100)
+                  : pctle, // Always store percentile
               pts: Math.min(100, (stat.pts.value || 0) * 100),
               rawPct,
               rawPts: rawVal?.pts?.value || 0,
@@ -660,7 +665,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     );
     const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
 
-    const showCircle = showingRawFreq ? pct > 20 * maxPlayFreq : pct > 20;
+    const showCircle = height > 1.1 * width;
     const extraTextSpace = showCircle ? 0 : textHeight + 6;
 
     // Check if this play type is currently selected
@@ -796,7 +801,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           >
             &#402; %ile
           </text>
-        )}{" "}
+        )}
         {showCircle && !showingRawFreq && (
           <text
             x={x + width / 2}
@@ -826,13 +831,35 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomTooltip: React.FunctionComponent<any> = (props: any) => {
-    const { active, payload, label } = props;
+    const { active, payload, label, coordinate } = props;
     if (active) {
       const data = payload?.[0].payload || {};
+
+      // Avoid the labels going off the end:
+      const tooltipOffset = _.thru(label, (playName) => {
+        switch (playName) {
+          case "Transition":
+            return 250;
+          case "Rebound & Scramble":
+            return 200;
+          case "High - Low":
+            return 150;
+          case "Pick & Pop":
+            return 100;
+          case "Inside Out":
+            return 50;
+          default:
+            return 0;
+        }
+      });
+
       return (
         <div
           className="custom-tooltip"
           style={{
+            position: "absolute",
+            left: coordinate.x - tooltipOffset,
+            width: 350,
             background:
               resolvedTheme == "dark"
                 ? "rgba(0, 0, 0, 0.9)"
@@ -912,7 +939,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   ) =>
     pctile ? (
       <Row>
-        <Col xs={10}>
+        <Col xs={11}>
           {rowTitle ? (
             <div style={{ fontWeight: "bold", marginBottom: 4 }}>
               {rowTitle}

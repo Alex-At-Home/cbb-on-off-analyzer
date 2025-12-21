@@ -187,6 +187,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     }
   );
   const possFactor = _.isNumber(playCountToUse) ? playCountToUse / 100 : 1.0;
+  const showingRawFreq = possFreqType == "P%" || possFreqType == "T%";
 
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
     const { x, y, payload } = props;
@@ -206,7 +207,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomLabelledWidthBar = (props: any) => {
-    const { fill, x, y, width, height, rawPct, rawPts, pct, pts } = props;
+    const { fill, x, y, width, height, rawPct, rawPts, pct, pts, pctile } =
+      props;
 
     // Bar:
 
@@ -239,23 +241,13 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const rawColor = themedRawColorBuilder(
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
+    const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
 
-    return (
+    const showCircle = height > 1.1 * width;
+    const extraTextSpace = showCircle ? 0 : textHeight + 6;
+
+    return rawPct >= 0.001 ? (
       <g>
-        <text
-          x={x + width / 2}
-          y={y - textHeight + 3}
-          fill={highlightColor}
-          textAnchor="middle"
-          dominantBaseline="middle"
-        >
-          <tspan>{(100 * (rawPct || 0) * possFactor).toFixed(1)}x </tspan>
-          {rawPct > 0 ? (
-            <tspan fill={rawColor}>
-              {((rawPts || 0) * adjustment).toFixed(2)}
-            </tspan>
-          ) : undefined}
-        </text>
         <path
           stroke={highlightColor}
           strokeWidth={outlineWidth}
@@ -265,19 +257,164 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             x + xAdj
           },${y} h ${widthToUse} v ${height} h ${-widthToUse} Z`}
         />
+        <rect
+          x={x - 5}
+          y={y - 4 * textHeight - extraTextSpace + 1}
+          width={width + 10}
+          height={4 * textHeight + extraTextSpace - 2}
+          fill={resolvedTheme == "dark" ? "#222222" : "#dddddd"}
+          opacity={0.5}
+        />
+        <text
+          x={x + width / 2}
+          y={y - 2 * textHeight - 4 - extraTextSpace}
+          fill={highlightColor}
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {rawPct > 0 ? (
+            <tspan fill={rawColor}>
+              {((rawPts || 0) * adjustment).toFixed(2)}
+            </tspan>
+          ) : undefined}
+          <tspan> ppp</tspan>
+        </text>
+        <text
+          x={x + width / 2}
+          y={y - textHeight + 3 - extraTextSpace}
+          fill={highlightColor}
+          fontSize={"smaller"}
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          <tspan>
+            {(pts || 0).toFixed(1)}
+            <tspan fontSize="smaller">%ile</tspan>
+          </tspan>
+        </text>
+        {!showCircle && !showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y - textHeight + 3}
+            fill={highlightColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            <tspan>
+              <tspan fontSize={"smaller"}>&#402;</tspan>{" "}
+              {(100 * (rawPct || 0)).toFixed(1)}
+              <tspan fontSize={"60%"}>/100</tspan>
+            </tspan>
+          </text>
+        )}
+        {!showCircle && showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y - textHeight + 3}
+            fill={highlightColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            <tspan>
+              <tspan fontSize={"smaller"}>&#402;</tspan>{" "}
+              {(pctile || 0).toFixed(1)}
+              <tspan fontSize={"60%"}>%ile</tspan>
+            </tspan>
+          </text>
+        )}
+        {showCircle && (
+          <circle
+            cx={x + width / 2}
+            cy={y + height / 2}
+            r={width / 2}
+            fill={fill}
+            stroke={contrastingColor}
+            strokeWidth={outlineWidth}
+          />
+        )}
+        {showCircle && showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 - 2}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            {(pctile || 0).toFixed(1)}
+          </text>
+        )}
+        {showCircle && showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 + textHeight + 2}
+            fontSize={"60%"}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            &#402; %ile
+          </text>
+        )}
+        {showCircle && !showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 - 2}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            {(100 * (rawPct || 0)).toFixed(1)}
+          </text>
+        )}
+        {showCircle && !showingRawFreq && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2 + textHeight + 2}
+            fontSize={"60%"}
+            fill={contrastingColor}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            &#402;/100
+          </text>
+        )}
       </g>
+    ) : (
+      <div />
     );
   };
 
   //TODO: is mainDefensiveOveride correct here, or should this be the defOverride passed into renderBarChartRow
   const CustomTooltip: React.FunctionComponent<any> = (props: any) => {
-    const { active, payload, label } = props;
+    const { active, payload, label, coordinate } = props;
     if (active) {
       const data = payload?.[0].payload || {};
+
+      // Avoid the labels going off the end:
+      const tooltipOffset = _.thru(label, (playName) => {
+        switch (playName) {
+          case "Transition":
+            return 250;
+          case "Reb. & Scramble":
+            return 200;
+          case "High - Low":
+            return 150;
+          case "Pick & Pop":
+            return 100;
+          case "Inside Out":
+            return 50;
+          default:
+            return 0;
+        }
+      });
+
       return (
         <div
           className="custom-tooltip"
           style={{
+            position: "absolute",
+            left: coordinate.x - tooltipOffset,
+            width: 300,
             background:
               resolvedTheme == "dark"
                 ? "rgba(0, 0, 0, 0.9)"
@@ -294,10 +431,13 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             Frequency: [<b>{(100 * data.rawPct).toFixed(1)}</b>] / 100&nbsp;
             plays
             <br />
-            Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]
+            Frequency Pctile: [<b>{data.pctile.toFixed(1)}%</b>]
             {_.isNumber(playCountToUse) ? <br /> : null}
             {_.isNumber(playCountToUse) ? (
-              <span>(Label shows value for {playCountToUse} play game)</span>
+              <span>
+                [<b>{(playCountToUse * data.rawPct).toFixed(1)}</b>] plays in
+                this game ([{playCountToUse}] plays)
+              </span>
             ) : null}
           </p>
           <p className="desc pl-1 pr-1">
@@ -344,7 +484,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   ) =>
     pctile ? (
       <Row>
-        <Col xs={10}>
+        <Col xs={12}>
           {rowTitle ? (
             <div style={{ fontWeight: "bold", marginBottom: 4 }}>
               {rowTitle}
@@ -352,10 +492,10 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ) : null}
           <ResponsiveContainer minWidth={800} width="100%" height={400}>
             <BarChart
-              height={400}
+              height={410}
               data={data}
               margin={{
-                top: 20,
+                top: 35,
                 right: 30,
                 left: 20,
                 bottom: 30,
@@ -449,18 +589,23 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           mainTopLevelPlayTypeStyles,
           mainTierToUse,
           mainSosAdjustment,
-          possFreqType == "T%le",
+          possFreqType == "T%le" || possFreqType == "T%",
           true
         )
       : undefined;
 
     // In this case we just use the raw freq, but we do want the efficiency %s
-    if (possFreqType == "P%" || possFreqType == "T%") {
+    if (showingRawFreq) {
       _.forEach(mainTopLevelPlayTypeStyles, (val, key) => {
         const toAdjust =
           mainTopLevelPlayTypeStylesPctile?.[key as TopLevelIndivPlayType];
         if (toAdjust) {
+          const pctle = toAdjust.possPct?.value || 0;
+          //(this is always the %ile, coming from either raw possPct or possPctUsg)
           toAdjust.possPct = val.possPct;
+          if (toAdjust.possPct) {
+            toAdjust.possPct.old_value = pctle;
+          }
           toAdjust.possPctUsg = val.possPctUsg;
         }
       });
@@ -484,14 +629,21 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             name: getPlayTypeName(playType).replace("-", " - "),
             playType: playType,
             pct:
+              //(the height of the bar chart, %ile or raw value)
               rawPct == 0
                 ? 0
                 : Math.min(
                     100,
                     (possFreqType == "T%"
                       ? stat.possPctUsg?.value || 0
-                      : stat.possPct.value || 0) * 100
+                      : //(this only exists as a raw value, when a %tle it's ALWAYS called possPct)
+                        stat.possPct.value || 0) * 100
                   ),
+            pctile:
+              //(always the %ile)
+              showingRawFreq
+                ? Math.min(100, (stat.possPct?.old_value || 0) * 100)
+                : Math.min(100, (stat.possPct?.value || 0) * 100),
             pts: Math.min(100, (stat.pts.value || 0) * 100),
             rawPct,
             rawPts: rawVal?.pts?.value || 0,
@@ -534,18 +686,23 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               extraTopLevelPlayTypeStyles,
               mainTierToUse,
               extraSosAdjustment,
-              possFreqType == "T%le",
+              possFreqType == "T%le" || possFreqType == "T%",
               true
             )
           : undefined;
 
         // In this case we just use the raw freq, but we do want the efficiency %s
-        if (possFreqType == "P%" || possFreqType == "T%") {
+        if (showingRawFreq) {
           _.forEach(extraTopLevelPlayTypeStyles, (val, key) => {
             const toAdjust =
               extraTopLevelPlayTypeStylesPctile?.[key as TopLevelIndivPlayType];
             if (toAdjust) {
+              const pctle = toAdjust.possPct?.value || 0;
+              //(this is always the %ile, coming from either raw possPct or possPctUsg)
               toAdjust.possPct = val.possPct;
+              if (toAdjust.possPct) {
+                toAdjust.possPct.old_value = pctle;
+              }
               toAdjust.possPctUsg = val.possPctUsg;
             }
           });
@@ -571,16 +728,23 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 ),
                 playType: playType,
                 pct:
+                  //(the height of the bar chart, %ile or raw value)
                   rawPct == 0
                     ? 0
                     : Math.min(
                         100,
                         (possFreqType == "T%"
                           ? stat.possPctUsg?.value || 0
-                          : stat.possPct.value || 0) * 100
+                          : //(this only exists as a raw value, when a %tle it's ALWAYS called possPct)
+                            stat.possPct.value || 0) * 100
                       ),
                 pts: Math.min(100, (stat.pts.value || 0) * 100),
                 rawPct,
+                pctile:
+                  //(always the %ile)
+                  showingRawFreq
+                    ? Math.min(100, (stat.possPct?.old_value || 0) * 100)
+                    : Math.min(100, (stat.possPct?.value || 0) * 100),
                 rawPts: rawVal?.pts?.value || 0,
               };
             })
