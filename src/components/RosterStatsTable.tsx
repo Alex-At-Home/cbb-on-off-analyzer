@@ -1693,7 +1693,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         grades={divisionStatsCache}
                         showHelp={showHelp}
                         quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
-                          (opt) => opt.title != displayKey
+                          (opt) =>
+                            opt.title != onOffBaseToLongerPhrase(queryKey)
                         )}
                         onChangeChartOpts={(opts: PlayerStyleOpts) => {
                           setShowPlayTypesPlayType(opts.playType);
