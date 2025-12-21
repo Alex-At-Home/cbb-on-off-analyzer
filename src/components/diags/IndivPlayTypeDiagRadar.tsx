@@ -479,6 +479,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     pctile: any,
     defOverride: any,
     sosAdj: number,
+    maxRawFreq: number | undefined,
+    ticksToUse: number | undefined,
     rowTitle?: string,
     cellKeyPrefix: string = "cell-"
   ) =>
@@ -512,13 +514,18 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 type="number"
                 stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 domain={
-                  possFreqType == "P%" || possFreqType == "T%"
-                    ? undefined
+                  showingRawFreq
+                    ? maxRawFreq
+                      ? [0, Math.round(maxRawFreq)]
+                      : undefined
                     : [0, 100]
                 }
+                tickCount={ticksToUse}
                 ticks={
-                  possFreqType == "P%" || possFreqType == "T%"
-                    ? undefined
+                  showingRawFreq
+                    ? maxRawFreq && ticksToUse
+                      ? _.range(0, maxRawFreq + 1, maxRawFreq / ticksToUse)
+                      : undefined
                     : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                 }
               >
@@ -653,6 +660,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     // Compute the 'extra' (was 'base') chart data (from quickSwitchBase)
     let extraTopLevelPlayTypeStylesPctile: any = undefined;
+    let extraTopLevelPlayTypeStyles: TopLevelPlayAnalysis | undefined =
+      undefined;
     let extraData: any[] = [];
     let extraDefOverride: any = undefined;
     let extraSosAdjustment: number | undefined = undefined;
@@ -671,7 +680,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ((extraDefOverride
             ? extraPlayer.off_adj_opp?.value
             : extraPlayer.def_adj_opp?.value) || avgEfficiency);
-        const extraTopLevelPlayTypeStyles = extraCompressedPlayTypeStats
+        extraTopLevelPlayTypeStyles = extraCompressedPlayTypeStats
           ? PlayTypeUtils.decompressIndivPlayType(extraCompressedPlayTypeStats)
           : extraDefOverride ||
             (extraTeamStats.style as TopLevelPlayAnalysis) ||
@@ -683,7 +692,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
         extraTopLevelPlayTypeStylesPctile = mainTierToUse
           ? GradeUtils.getIndivPlayStyleStats(
-              extraTopLevelPlayTypeStyles,
+              extraTopLevelPlayTypeStyles!,
               mainTierToUse,
               extraSosAdjustment,
               possFreqType == "T%le" || possFreqType == "T%",
@@ -772,6 +781,42 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const showBottom =
       quickSwitchExtra === "extra" && quickSwitchBase && quickSwitchOptions;
 
+    // Calculate the tick strategy if showing raw numbers
+    let commonMaxBetweenMainAndExtra: number | undefined;
+    let commonNumTicksToUse: number | undefined = undefined;
+    if (showingRawFreq) {
+      const tmpMax =
+        100 *
+        _.chain([
+          _.values(mainTopLevelPlayTypeStyles),
+          extraTopLevelPlayTypeStyles
+            ? _.values(extraTopLevelPlayTypeStyles)
+            : [],
+        ])
+          .flatten()
+          .map((playTypeStat) => {
+            return (
+              (possFreqType == "P%"
+                ? playTypeStat.possPct?.value
+                : playTypeStat.possPctUsg?.value) || 0
+            );
+          })
+          .max()
+          .value();
+
+      const smallestNumTicks =
+        tmpMax < 7 ? [Math.ceil(Math.max(4, tmpMax))] : [];
+      //(for indiv players they might not be doing much so handle low freq charts sensibly)
+
+      commonNumTicksToUse =
+        _.minBy(smallestNumTicks.concat([10, 9, 8]), (ticks) =>
+          Math.abs(tmpMax - ticks * Math.ceil(tmpMax / ticks))
+        ) || 10;
+
+      commonMaxBetweenMainAndExtra =
+        commonNumTicksToUse * Math.ceil(tmpMax / commonNumTicksToUse);
+    }
+
     return (
       <span>
         {
@@ -840,6 +885,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             topPctile,
             topDefOverride,
             topSosAdjustment,
+            commonMaxBetweenMainAndExtra,
+            commonNumTicksToUse,
             topTitle,
             topCellPrefix
           )}
@@ -849,6 +896,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 extraTopLevelPlayTypeStylesPctile,
                 extraDefOverride,
                 extraSosAdjustment ?? 1.0,
+                commonMaxBetweenMainAndExtra,
+                commonNumTicksToUse,
                 `Compare vs [${quickSwitchBase}]`,
                 "cell-extra-"
               )

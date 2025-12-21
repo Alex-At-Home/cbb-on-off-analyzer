@@ -602,7 +602,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   }
 
   // Calculate the tick strategy if showing raw numbers
-  if (possFreqType == "P%") {
+  if (showingRawFreq) {
     const tmpMax =
       100 *
       _.chain([
@@ -995,7 +995,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 type="number"
                 stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
                 domain={
-                  possFreqType == "P%"
+                  showingRawFreq
                     ? commonMaxBetweenMainAndExtra
                       ? [0, Math.round(commonMaxBetweenMainAndExtra)]
                       : undefined
@@ -1003,7 +1003,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 }
                 tickCount={commonNumTicksToUse}
                 ticks={
-                  possFreqType == "P%"
+                  showingRawFreq
                     ? commonMaxBetweenMainAndExtra && commonNumTicksToUse
                       ? _.range(
                           0,
