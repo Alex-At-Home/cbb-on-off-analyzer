@@ -693,9 +693,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
     );
     const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
+    const selectedBarColor = resolvedTheme == "dark" ? "#666666" : "#aaaaaa";
 
-    const showCircle = height > 1.1 * width;
-    const extraTextSpace = showCircle ? 0 : textHeight + 6;
+    const showCircleInBar = height > 1.1 * width;
+    const extraTextSpace = showCircleInBar ? 0 : width;
 
     // Check if this play type is currently selected
     const isSelected = selectedPlayTypes.has(playType);
@@ -718,7 +719,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             height={
               y + height - 20
             } /* Extend all the way to the bottom (x-axis) */
-            fill={resolvedTheme == "dark" ? "#666666" : "#aaaaaa"}
+            fill={selectedBarColor}
             rx={2}
             ry={2}
             opacity={0.5}
@@ -737,7 +738,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           x={x - 5}
           y={y - 4 * textHeight - extraTextSpace + 1}
           width={width + 10}
-          height={4 * textHeight + extraTextSpace - 2}
+          height={4 * textHeight - 2}
           fill={resolvedTheme == "dark" ? "#222222" : "#dddddd"}
           opacity={0.5}
         />
@@ -768,86 +769,65 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             <tspan fontSize="smaller">%ile</tspan>
           </tspan>
         </text>
-        {!showCircle && !showingRawFreq && (
-          <text
-            x={x + width / 2}
-            y={y - textHeight + 3}
-            fill={highlightColor}
-            textAnchor="middle"
-            dominantBaseline="middle"
-          >
-            <tspan>
-              <tspan fontSize={"smaller"}>&#402;</tspan>{" "}
-              {(100 * (rawPct || 0)).toFixed(1)}
-              <tspan fontSize={"60%"}>/100</tspan>
-            </tspan>
-          </text>
-        )}
-        {!showCircle && showingRawFreq && (
-          <text
-            x={x + width / 2}
-            y={y - textHeight + 3}
-            fill={highlightColor}
-            textAnchor="middle"
-            dominantBaseline="middle"
-          >
-            <tspan>
-              <tspan fontSize={"smaller"}>&#402;</tspan>{" "}
-              {(pctile || 0).toFixed(1)}
-              <tspan fontSize={"60%"}>%ile</tspan>
-            </tspan>
-          </text>
-        )}
-        {showCircle && (
+        {
           <circle
             cx={x + width / 2}
-            cy={y + height / 2}
+            cy={showCircleInBar ? y + height / 2 : y - width / 2}
             r={width / 2}
-            fill={fill}
-            stroke={contrastingColor}
-            strokeWidth={outlineWidth}
+            fill={showCircleInBar ? fill : selectedBarColor}
+            stroke={showCircleInBar ? contrastingColor : highlightColor}
+            opacity={showCircleInBar ? 1.0 : 0.33}
+            strokeWidth={showCircleInBar ? outlineWidth : 0.5}
           />
-        )}
-        {showCircle && showingRawFreq && (
+        }
+        {showingRawFreq && (
           <text
             x={x + width / 2}
-            y={y + height / 2 - 2}
-            fill={contrastingColor}
+            y={showCircleInBar ? y + height / 2 - 2 : y - width / 2 - 2}
+            fill={showCircleInBar ? contrastingColor : highlightColor}
             textAnchor="middle"
             dominantBaseline="middle"
           >
             {(pctile || 0).toFixed(1)}
           </text>
         )}
-        {showCircle && showingRawFreq && (
+        {showingRawFreq && (
           <text
             x={x + width / 2}
-            y={y + height / 2 + textHeight + 2}
+            y={
+              showCircleInBar
+                ? y + height / 2 + textHeight + 2
+                : y - width / 2 + textHeight + 2
+            }
             fontSize={"60%"}
-            fill={contrastingColor}
+            fill={showCircleInBar ? contrastingColor : highlightColor}
             textAnchor="middle"
             dominantBaseline="middle"
           >
             &#402; %ile
           </text>
         )}
-        {showCircle && !showingRawFreq && (
+        {!showingRawFreq && (
           <text
             x={x + width / 2}
-            y={y + height / 2 - 2}
-            fill={contrastingColor}
+            y={showCircleInBar ? y + height / 2 - 2 : y - width / 2 - 2}
+            fill={showCircleInBar ? contrastingColor : highlightColor}
             textAnchor="middle"
             dominantBaseline="middle"
           >
             {(100 * (rawPct || 0)).toFixed(1)}
           </text>
         )}
-        {showCircle && !showingRawFreq && (
+        {!showingRawFreq && (
           <text
             x={x + width / 2}
-            y={y + height / 2 + textHeight + 2}
+            y={
+              showCircleInBar
+                ? y + height / 2 + textHeight + 2
+                : y - width / 2 + textHeight + 2
+            }
             fontSize={"60%"}
-            fill={contrastingColor}
+            fill={showCircleInBar ? contrastingColor : highlightColor}
             textAnchor="middle"
             dominantBaseline="middle"
           >
