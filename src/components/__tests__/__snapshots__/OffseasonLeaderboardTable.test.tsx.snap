@@ -276,7 +276,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
       sm={12}
       xs={12}
     >
-      <InputGroup>
+      <InputGroup
+        className="flex-nowrap"
+      >
         <InputGroupPrepend>
           <InputGroupText
             id="filter"
@@ -48923,7 +48925,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       sm={12}
       xs={12}
     >
-      <InputGroup>
+      <InputGroup
+        className="flex-nowrap"
+      >
         <InputGroupPrepend>
           <InputGroupText
             id="filter"

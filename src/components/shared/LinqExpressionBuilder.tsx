@@ -143,7 +143,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
   );
 
   return (
-    <InputGroup>
+    <InputGroup className="flex-nowrap">
       <InputGroup.Prepend>
         {label ? (
           <InputGroup.Text style={{ maxHeight: "2.4rem" }}>

@@ -1358,7 +1358,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       )}
       <Row>
         <Col xs={12} sm={12} md={7} lg={7}>
-          <InputGroup>
+          <InputGroup className="flex-nowrap">
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">
                 Filter{maybeFilterPrompt}:

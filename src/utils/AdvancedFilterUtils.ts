@@ -19,6 +19,7 @@ export class AdvancedFilterUtils {
     "&&",
     "||",
     "SORT_BY",
+    "LIMIT",
     "ASC",
     "DESC",
     "AND",
@@ -1385,7 +1386,9 @@ export class AdvancedFilterUtils {
     tidyClauses: (s: string, multiYear: boolean) => string,
     buildRetVal: (p: any, index: number) => any
   ): [any[], string | undefined] {
-    const filterFrags = filterStr.split("SORT_BY");
+    const filterFrags = filterStr
+      .split("SORT_BY")
+      .map((frag) => frag.split("LIMIT", 2)[0]); //(remove any instances of LIMIT)
     const where = tidyClauses(filterFrags[0], multiYear);
 
     //DEBUG
@@ -1469,7 +1472,15 @@ export class AdvancedFilterUtils {
               })
               .thenBy((p: any) => p.p?.key) //(ensure player duplicates follow each other)
           : filteredData;
-      return [sortedData.toArray().map((p: any) => p.p), undefined];
+
+      // Limits:
+      const limitFrags = _.drop(filterStr.split("LIMIT"), 1);
+      const limit = limitFrags.length > 0 ? parseInt(limitFrags[0]) : 0;
+
+      const sortedLimitedData =
+        _.isNumber(limit) && limit > 0 ? sortedData.take(limit) : sortedData;
+
+      return [sortedLimitedData.toArray().map((p: any) => p.p), undefined];
     } catch (err: unknown) {
       if (_.isEmpty(extraParams)) {
         return [

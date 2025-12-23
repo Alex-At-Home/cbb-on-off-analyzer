@@ -1264,7 +1264,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         {hasCustomFilter ? (
           <Form.Row className="mb-2">
             <Col xs={12} sm={12} md={8} lg={8}>
-              <InputGroup>
+              <InputGroup className="flex-nowrap">
                 <InputGroup.Prepend>
                   <InputGroup.Text id="filter">Filter:</InputGroup.Text>
                 </InputGroup.Prepend>

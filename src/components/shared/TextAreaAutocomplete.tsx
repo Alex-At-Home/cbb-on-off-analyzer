@@ -9,11 +9,12 @@ import type {
   ChangeEvent,
   ComponentProps,
   ForwardRefExoticComponent,
+  MutableRefObject,
   ReactElement,
   ReactNode,
   RefObject,
 } from "react";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 //@ts-ignore
 import getCaretCoordinates from "textarea-caret";
 //@ts-ignore
@@ -107,8 +108,9 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
 
     const recentValue = useRef(defaultValue);
     const enableSpaceRemovers = useRef(false);
-    const internalRefInput = useRef<HTMLInputElement>(null);
-    const refInput = (ref as RefObject<HTMLInputElement>) || internalRefInput;
+    const internalRefInput = useRef<HTMLInputElement | null>(null);
+    const refInput =
+      (ref as MutableRefObject<HTMLInputElement | null>) || internalRefInput;
     const refCurrent = useRef<HTMLLIElement>(null);
     const refParent = useRef<HTMLUListElement>(null);
 
@@ -122,9 +124,12 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       useEffect(() => {
         if (richRenderTimeoutId == -1) {
           setRichRenderTimeoutId(
-            window.setTimeout(() => {
-              setRichRenderTimeoutId(-1);
-            }, 100) //(arbitrary 100ms max render rate)
+            (currTimeoutId) =>
+              currTimeoutId != -1
+                ? currTimeoutId
+                : window.setTimeout(() => {
+                    setRichRenderTimeoutId(-1);
+                  }, 100) //(arbitrary 100ms max render rate)
           );
         }
       }, [value, defaultValue]);
@@ -443,6 +448,10 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     const handleBlur = (e: KeyboardEvent) => {
       setIsEditing(false);
       resetHelper();
+      if (refInput.current) {
+        refInput.current.style.height = rest.style?.height || "2.4rem"; //(reset back to single line)
+      }
+
       onBlur?.(e);
     };
 
@@ -717,6 +726,17 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
             onBlur={handleBlur}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
+            onFocus={(e: any) => {
+              if (refInput.current) {
+                refInput.current.selectionStart = (val || "").length;
+
+                refInput.current.style.height = "auto"; // reset
+                refInput.current.style.height = `${refInput.current.scrollHeight}px`;
+                if (refRenderedInput.current?.scrollHeight)
+                  refInput.current.height =
+                    refRenderedInput.current?.scrollHeight;
+              }
+            }}
             ref={refInput}
             value={val}
             {...rest}
@@ -732,8 +752,10 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               if (!(disabled || rest.readOnly)) setIsEditing(true);
               setTimeout(() => {
                 refInput.current?.focus();
-                if (refInput.current)
+                refInput.current?.focus();
+                if (refInput.current) {
                   refInput.current.selectionStart = (val || "").length;
+                }
               }, 0);
             }}
             {...rest}
@@ -748,7 +770,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               border: "1px solid #ccc",
               borderRadius: ".25rem",
               cursor: "text",
-              width: refInput.current?.scrollWidth,
             }}
           >
             {val ? (

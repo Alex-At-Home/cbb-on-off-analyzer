@@ -2165,7 +2165,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 <Col sm="8">
                   <Container>
                     <Row>
-                      <InputGroup>
+                      <InputGroup className="flex-nowrap">
                         <LineupQueryAutoSuggestText
                           readOnly={false}
                           placeholder="eg 'Player1 AND (Player2 OR Player3)'"

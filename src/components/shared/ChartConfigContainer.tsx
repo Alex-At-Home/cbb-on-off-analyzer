@@ -30,6 +30,8 @@ import { CbbColors } from "../../utils/CbbColors";
 import { useTheme } from "next-themes";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
 import { AxisDecomposition } from "../../utils/ExplorerChartUtils";
+import { Badge } from "react-bootstrap";
+import { AdvancedFilterUtils } from "../../utils/AdvancedFilterUtils";
 
 export type ChartConfigProps = {
   // Chart title
@@ -390,6 +392,12 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               syncEvent={linqExpressionSync}
               callback={handleFilterChange}
               showHelp={showHelp}
+              richTextReplacements={_.fromPairs(
+                AdvancedFilterUtils.operators.map((option) => [
+                  option,
+                  { renderTo: <Badge variant="info">{option}</Badge> },
+                ])
+              )}
             />
           </Col>
           <Col xs={1} sm={1} md={1} lg={1}>
@@ -431,6 +439,12 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
               syncEvent={linqExpressionSync}
               callback={handleHighlightChange}
               showHelp={showHelp}
+              richTextReplacements={_.fromPairs(
+                AdvancedFilterUtils.operators.map((option) => [
+                  option,
+                  { renderTo: <Badge variant="info">{option}</Badge> },
+                ])
+              )}
             />
           </Col>
           <Col xs={1} sm={1} md={1} lg={1}>
@@ -472,6 +486,12 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
                   callback={handleXAxisChange}
                   showHelp={showHelp}
                   searchBar={true}
+                  richTextReplacements={_.fromPairs(
+                    extraAxisAutocompleteOptions.map((option) => [
+                      option,
+                      { renderTo: <Badge variant="info">{option}</Badge> },
+                    ])
+                  )}
                 />
               </div>
               <div
@@ -521,6 +541,12 @@ const ChartConfigContainer: React.FunctionComponent<ChartConfigProps> = ({
                   callback={handleYAxisChange}
                   showHelp={showHelp}
                   searchBar={true}
+                  richTextReplacements={_.fromPairs(
+                    extraAxisAutocompleteOptions.map((option) => [
+                      option,
+                      { renderTo: <Badge variant="info">{option}</Badge> },
+                    ])
+                  )}
                 />
               </div>
               <div
