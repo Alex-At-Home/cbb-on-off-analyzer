@@ -848,15 +848,15 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       const tooltipOffset = _.thru(label, (playName) => {
         switch (playName) {
           case "Transition":
-            return 250;
+            return 350;
           case "Rebound & Scramble":
-            return 200;
+            return 350;
           case "High - Low":
-            return 150;
+            return 350;
           case "Pick & Pop":
-            return 100;
+            return 350;
           case "Inside Out":
-            return 50;
+            return 350;
           default:
             return 0;
         }

@@ -374,15 +374,15 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       const tooltipOffset = _.thru(label, (playName) => {
         switch (playName) {
           case "Transition":
-            return 250;
+            return 300;
           case "Reb. & Scramble":
-            return 200;
+            return 300;
           case "High - Low":
-            return 150;
+            return 300;
           case "Pick & Pop":
-            return 100;
+            return 300;
           case "Inside Out":
-            return 50;
+            return 300;
           default:
             return 0;
         }
