@@ -81,7 +81,7 @@ export class DerivedStatsUtils {
   static readonly injectStatBreakdowns = (
     stat: PureStatSet,
     offDef: "off" | "def",
-    playType: "scramble" | "trans",
+    playType: "scramble" | "trans" | "half",
     toMutate: PureStatSet
   ) => {
     const totalPoss = stat[`total_${offDef}_${playType}_poss`]?.value || 0;
@@ -107,6 +107,78 @@ export class DerivedStatsUtils {
       toMutate[`${offDef}_${playType}_3p`] = { value: threePct };
       toMutate[`${offDef}_${playType}_2p`] = { value: twoPct };
     }
+    return toMutate;
+  };
+
+  /** Use the scramble / transition totals to build half court ("everything else") totals */
+  static readonly buildHalfCourtStats = (
+    stat: PureStatSet,
+    offDef: "off" | "def",
+    toMutate: PureStatSet
+  ) => {
+    const buildTotal = (statName: string) => {
+      return (
+        (stat[`total_${offDef}_${statName}`]?.value || 0) -
+        (stat[`total_${offDef}_scramble_${statName}`]?.value || 0) -
+        (stat[`total_${offDef}_trans_${statName}`]?.value || 0)
+      );
+    };
+    const playType = "half";
+
+    // a play starts half-court OR transition, then is nx (half-court OR scramble)
+    // what trans_poss means is % of possessions that _START_ as a transition%
+    // what scramble_poss means is approx % of possessions that include a "put-back"
+    // (it's only approx because currently it uses the "all" ORB%)
+
+    // As a result you need to build the half court possession stats from scratch:
+
+    const allPlayPoss = stat[`total_${offDef}_poss`]?.value || 0;
+    const allPlayPpp = stat[`${offDef}_ppp`]?.value || 0; //TODO: depends on player vs team/lineup
+
+    const totalTos = buildTotal("to");
+    const totalFtas = buildTotal("fta");
+    const totalFtms = buildTotal("ftm");
+    const totalFgas = buildTotal("fga");
+    const totalFgms = buildTotal("fgm");
+    const total2pms = buildTotal("2p_made");
+    const total3pms = buildTotal("3p_made");
+    const totalFgMs = totalFgas - totalFgms;
+
+    // See also LineupUtils.recalculatePlayTypePoss
+    const defOrbPct = stat[`${offDef}_orb`]?.value || 0;
+    const totalPoss =
+      totalTos + totalFgms + totalFgMs * (1 - defOrbPct) + totalFtas * 0.475;
+
+    toMutate[`${offDef}_${playType}`] = {
+      value: totalPoss / (allPlayPoss || 1),
+    };
+    toMutate[`total_${offDef}_${playType}_poss`] = { value: totalPoss };
+    const halfCourtPpp =
+      (100 * (totalFtms + 2 * total2pms + 3 * total3pms)) / (totalPoss || 1);
+    toMutate[`${offDef}_${playType}_ppp`] = {
+      value: halfCourtPpp,
+    };
+    toMutate[`${offDef}_${playType}_delta_ppp`] = {
+      value: halfCourtPpp - allPlayPpp,
+    };
+
+    toMutate[`total_${offDef}_${playType}_to`] = { value: totalTos };
+    toMutate[`total_${offDef}_${playType}_fta`] = { value: totalFtas };
+    toMutate[`total_${offDef}_${playType}_fga`] = { value: totalFgas };
+    toMutate[`total_${offDef}_${playType}_3p`] = { value: buildTotal("3p") };
+    toMutate[`total_${offDef}_${playType}_3p_made`] = {
+      value: total3pms,
+    };
+    toMutate[`total_${offDef}_${playType}_3p_attempts`] = {
+      value: buildTotal("3p_attempts"),
+    };
+    toMutate[`total_${offDef}_${playType}_2p_made`] = {
+      value: total2pms,
+    };
+    toMutate[`total_${offDef}_${playType}_2p_attempts`] = {
+      value: buildTotal("2p_attempts"),
+    };
+
     return toMutate;
   };
 
@@ -144,6 +216,12 @@ export class DerivedStatsUtils {
     DerivedStatsUtils.injectTransitionStats(stat, "def", toMutate);
     DerivedStatsUtils.injectStatBreakdowns(stat, "off", "trans", toMutate);
     DerivedStatsUtils.injectStatBreakdowns(stat, "def", "trans", toMutate);
+
+    DerivedStatsUtils.buildHalfCourtStats(stat, "off", toMutate);
+    DerivedStatsUtils.buildHalfCourtStats(stat, "def", toMutate);
+    DerivedStatsUtils.injectStatBreakdowns(toMutate, "off", "half", toMutate);
+    DerivedStatsUtils.injectStatBreakdowns(toMutate, "def", "half", toMutate);
+
     DerivedStatsUtils.injectPaceStats(stat, toMutate, false);
     return toMutate;
   };

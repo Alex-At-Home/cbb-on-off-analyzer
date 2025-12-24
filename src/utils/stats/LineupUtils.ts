@@ -496,6 +496,7 @@ export class LineupUtils {
   /** For scramble and transition plays we recalculate the off/def poss from the totals
    *  otherwise, because of the "complex ORB" term in commonLineupAggregations.`total_${dstPrefix}_${typePrefix}poss`
    *  the numbers end up too different. The source of truth is considered to be commonLineupAggregations
+   *  See also DerivedStatsUtils.buildHalfCourtStats
    */
   private static recalculatePlayTypePoss(mutableStats: LineupStatSet) {
     // Written this weird way to keep the code as similar as possible

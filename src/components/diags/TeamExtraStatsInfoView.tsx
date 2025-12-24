@@ -23,6 +23,7 @@ import { DerivedStatsUtils } from "../../utils/stats/DerivedStatsUtils";
 import { GradeUtils, GradeProps } from "../../utils/stats/GradeUtils";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { GradeTableUtils } from "../../utils/tables/GradeTableUtils";
+import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 
 const playTypeTable = {
   title: GenericTableOps.addTitle(
@@ -391,18 +392,19 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
 
   const buildPlayTypeGrades = (
     offDef: "off" | "def",
-    playType: "trans" | "scramble"
+    playType: "trans" | "scramble" | "half"
   ) => {
     const isTrans = playType == "trans";
+    const isScramble = playType == "scramble";
     const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
     return {
       [`${offDef}_title`]: (
         <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>
       ),
       [`${offDef}_pct`]: teamPercentiles[`${offDef}_${playType}`],
-      [`${offDef}_pct_orbs`]: isTrans
-        ? undefined
-        : teamPercentiles[`${offDef}_scramble_per_orb`],
+      [`${offDef}_pct_orbs`]: isScramble
+        ? teamPercentiles[`${offDef}_scramble_per_orb`]
+        : undefined,
       [`${offDef}_ppp`]:
         pct > 0 ? teamPercentiles[`${offDef}_${playType}_ppp`] : undefined,
       [`${offDef}_delta_ppp`]:
@@ -421,27 +423,30 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
 
   const buildPlayTypeDataRow = (
     offDef: "off" | "def",
-    playType: "trans" | "scramble"
+    playType: "trans" | "scramble" | "half"
   ) => {
     const offNotDef = offDef == "off";
     const isTrans = playType == "trans";
+    const isScramble = playType == "scramble";
     const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
     return GenericTableOps.buildDataRow(
       {
         [`${offDef}_title`]: isTrans ? (
           `Transition ${offNotDef ? "Offense" : "Defense"}`
-        ) : (
+        ) : isScramble ? (
           <OverlayTrigger placement="auto" overlay={scrambleTooltip}>
             <b>
               Scramble {offNotDef ? "Offense" : "Defense"}
               <sup>*</sup>
             </b>
           </OverlayTrigger>
+        ) : (
+          `Half-Court ${offNotDef ? "Offense" : "Defense"}`
         ),
         [`${offDef}_pct`]: extraStats[`${offDef}_${playType}`],
-        [`${offDef}_pct_orbs`]: isTrans
-          ? undefined
-          : extraStats[`${offDef}_scramble_per_orb`],
+        [`${offDef}_pct_orbs`]: isScramble
+          ? extraStats[`${offDef}_scramble_per_orb`]
+          : undefined,
         [`${offDef}_ppp`]:
           pct > 0 ? extraStats[`${offDef}_${playType}_ppp`] : undefined,
         [`${offDef}_delta_ppp`]:
@@ -460,8 +465,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       offNotDef ? offPrefixFn : defPrefixFn,
       offNotDef ? offCellMetaFn : defCellMetaFn,
       isTrans || (showInlineGrades && !_.isEmpty(teamPercentiles))
-        ? //(^ in this case, doesn't matter what the color is, it will be overridden)
+        ? //(^ in this second clause, we'll always override the color so doesn't matter what is returned)
           {
+            // (For transition % we come up with a generic color if we don't have grades
             pct_orbs: GenericTableOps.addPctCol(
               "%ORB",
               "Percentage of Off rebounds resulting in a scramble play type",
@@ -469,6 +475,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
             ),
           }
         : {
+            // For scramble we don't color the ORB% so no entry here, and % is just the background
+            // (not sure why for either!)
             pct: GenericTableOps.addPctCol(
               "%",
               "Percentage of possessions this play type occurs",
@@ -479,7 +487,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
   };
   const buildPlayTypeGradeRow = (
     offDef: "off" | "def",
-    playType: "trans" | "scramble"
+    playType: "trans" | "scramble" | "half"
   ) => {
     const offNotDef = offDef == "off";
     return GenericTableOps.buildDataRow(
@@ -490,6 +498,17 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     );
   };
   const playTypeTableData = _.flatten([
+    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory)
+      ? [buildPlayTypeDataRow("off", "half")]
+      : [],
+    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory) &&
+    tierToUse &&
+    showStandaloneGrades
+      ? [
+          buildPlayTypeGradeRow("off", "half"),
+          GenericTableOps.buildRowSeparator(),
+        ]
+      : [],
     [buildPlayTypeDataRow("off", "trans")],
     tierToUse && showStandaloneGrades
       ? [
@@ -505,6 +524,17 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
         ]
       : [],
     [GenericTableOps.buildRowSeparator()],
+    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory)
+      ? [buildPlayTypeDataRow("def", "half")]
+      : [],
+    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory) &&
+    tierToUse &&
+    showStandaloneGrades
+      ? [
+          buildPlayTypeGradeRow("def", "half"),
+          GenericTableOps.buildRowSeparator(),
+        ]
+      : [],
     [buildPlayTypeDataRow("def", "trans")],
     tierToUse && showStandaloneGrades
       ? [

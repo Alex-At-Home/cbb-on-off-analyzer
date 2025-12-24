@@ -171,6 +171,9 @@ export class GradeUtils {
     "trans",
     "trans_ppp",
     "trans_delta_ppp",
+    "half",
+    "half_ppp",
+    "half_delta_ppp",
     "scramble_to",
     "scramble_ftr",
     "scramble_3pr",
@@ -181,6 +184,11 @@ export class GradeUtils {
     "trans_3pr",
     "trans_3p",
     "trans_2p",
+    "half_to",
+    "half_ftr",
+    "half_3pr",
+    "half_3p",
+    "half_2p",
 
     // Defensive only, but the code should handle that (actually now they have off_ values for teams)
     "stl",
