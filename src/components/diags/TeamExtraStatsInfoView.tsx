@@ -23,7 +23,6 @@ import { DerivedStatsUtils } from "../../utils/stats/DerivedStatsUtils";
 import { GradeUtils, GradeProps } from "../../utils/stats/GradeUtils";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { GradeTableUtils } from "../../utils/tables/GradeTableUtils";
-import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 
 const playTypeTable = {
   title: GenericTableOps.addTitle(
@@ -498,12 +497,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     );
   };
   const playTypeTableData = _.flatten([
-    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory)
-      ? [buildPlayTypeDataRow("off", "half")]
-      : [],
-    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory) &&
-    tierToUse &&
-    showStandaloneGrades
+    [buildPlayTypeDataRow("off", "half")],
+    tierToUse && showStandaloneGrades
       ? [
           buildPlayTypeGradeRow("off", "half"),
           GenericTableOps.buildRowSeparator(),
@@ -524,12 +519,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
         ]
       : [],
     [GenericTableOps.buildRowSeparator()],
-    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory)
-      ? [buildPlayTypeDataRow("def", "half")]
-      : [],
-    FeatureFlags.isActiveWindow(FeatureFlags.halfCourtStatCategory) &&
-    tierToUse &&
-    showStandaloneGrades
+    [buildPlayTypeDataRow("def", "half")],
+    tierToUse && showStandaloneGrades
       ? [
           buildPlayTypeGradeRow("def", "half"),
           GenericTableOps.buildRowSeparator(),
