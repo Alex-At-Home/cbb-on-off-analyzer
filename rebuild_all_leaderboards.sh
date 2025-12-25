@@ -1,6 +1,6 @@
 #!/bin/bash
 # Use ENRICH=--enrich-rosters to update the rosters with positional info
-# Use EXTRA=--extra-data to run in NBA analysis mode (writes to ./enrichedPlayers)
+# Use EXTRA=--extra-data to run in NBA analysis mode (writes to ./enrichedPlayers) (or --debug)
 # Use GENDER_FILTER="men" || GENDER_FILTER="women" if you want only one gender
 if [ -z "$YEARS" ]; then
    echo "Specify YEARS=all|old|new|YYYY/YY, currently [$YEARS]"

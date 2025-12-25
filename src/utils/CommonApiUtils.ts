@@ -315,7 +315,8 @@ export class CommonApiUtils {
           console.log(
             `Error parsing response [${
               err instanceof Error ? err.message : err
-            }]`
+            }]`,
+            err
           );
           onRequestError(resHandle);
         }

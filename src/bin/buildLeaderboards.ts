@@ -233,9 +233,17 @@ var testTeamFilter = undefined as Set<string> | undefined;
 const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 
 //(generic test set for debugging)
-//testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
+// testTeamFilter = new Set([
+//   "Maryland",
+//   "Iowa",
+//   "Michigan",
+//   "Dayton",
+//   "Rutgers",
+//   "Fordham",
+//   "Coppin St.",
+// ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -387,7 +395,10 @@ export async function main() {
       return;
     }
 
-    if (!testMode) console.log(`Processing ${inGender} ${team} ${teamYear}`);
+    if (!testMode)
+      console.log(
+        `Processing [${inGender}] [${team}] [${teamYear}] [${retryInputCase}]?`
+      );
 
     const fullRequestModel = {
       gender: inGender,
@@ -576,34 +587,42 @@ export async function main() {
 
             // Check for errors:
 
-            if (
-              retry < 10 &&
-              (lineupResponse.statusCode >= 500 ||
-                teamResponse.statusCode >= 500 ||
-                playerResponse.statusCode >= 500)
-            ) {
+            const errs = (minCode: number, maxCode: number) =>
+              [lineupResponse, teamResponse, playerResponse]
+                .concat(
+                  isCalculatingShotCharts ? [playerShotChartsResponse] : []
+                )
+                .concat(isCalculatingTeamDefense ? [teamDefenseResponse] : [])
+                .filter(
+                  (p) => p.statusCode >= minCode && p.statusCode < maxCode
+                )
+                .map((p) => JSON.stringify(p));
+
+            const errs400 = errs(400, 500);
+            const errs500 = errs(500, 600);
+            const errsOther = errs(500, 10000); //(dup handling of 500-600 to handle retry==10 case)
+
+            if (errs400.length > 0) {
               console.log(
-                `RETRYABLE ERROR [${team} ${label}]: ${JSON.stringify(
-                  lineupResponse
-                )} ${JSON.stringify(teamResponse)} ${JSON.stringify(
-                  playerResponse
-                )}`
+                `TERMINATING ERROR #[${retry}] [${team} ${label}]: [${errs400.join(
+                  "+"
+                )}]`
+              );
+              process.exit(-1);
+            } else if (retry < 10 && errs500.length > 0) {
+              console.log(
+                `RETRYABLE ERROR #[${retry}] [${team} ${label}]: [${errs500.join(
+                  "+"
+                )}]`
               );
 
               await sleep(10000); //(wait 10s and try again)
-              handleTeam(teamObj, retry + 1, label);
-            } else if (
-              lineupResponse.statusCode >= 400 ||
-              teamResponse.statusCode >= 400 ||
-              playerResponse.statusCode >= 400
-            ) {
-              // Not retry-able, or run out of attempts
+              await handleTeam(teamObj, retry + 1, label);
+            } else if (errsOther.length > 0) {
               console.log(
-                `ERROR #[${retry}] [${team} ${label}]: ${JSON.stringify(
-                  lineupResponse
-                )} ${JSON.stringify(teamResponse)} ${JSON.stringify(
-                  playerResponse
-                )}`
+                `MAX_OR_UNKNOWN ERROR #[${retry}] [${team} ${label}]: [${errsOther.join(
+                  "+"
+                )}]`
               );
               process.exit(-1);
             }
