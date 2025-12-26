@@ -793,7 +793,9 @@ export class GradeTableUtils {
     globalStats: StatsCaches,
     playerPosStats: PositionStatsCache
   ) => {
-    const configStr = gradeConfig.split(":");
+    const configStr = (gradeConfig || ParamDefaults.defaultEnabledGrade).split(
+      ":"
+    );
     const gradeFormat = configStr[0];
     const tierStrTmp = configStr?.[1] || "Combo";
     //(if set tier doesn't exist just fallback)
@@ -940,13 +942,13 @@ export class GradeTableUtils {
     };
     const tierLinkTmp = (tier: string, showCount: boolean = false) => (
       <a
-        href={globalTiers[tier] ? "#" : undefined}
+        href={config == "" || globalTiers[tier] ? "#" : undefined}
         onClick={(event) => {
           event.preventDefault();
           setConfig(configParams(gradeFormat, tier, posGroup, gradeView));
         }}
       >
-        {tier == "Combo" ? "D1" : tier}
+        {tier == "Combo" ? "D1" : tier.substring(0, 1)}
         {showCount && globalTiers[tier]
           ? ` (${globalSettings?.countsAreExample ? `eg ` : ``}${
               globalTiers[tier]?.tier_sample_size
@@ -970,7 +972,11 @@ export class GradeTableUtils {
       showCount: boolean = false
     ) => (
       <a
-        href={newPosGroup == "All" || tiers[tierStr] ? "#" : undefined}
+        href={
+          config == "" || newPosGroup == "All" || tiers[tierStr]
+            ? "#"
+            : undefined
+        }
         onClick={(event) => {
           event.preventDefault();
           setConfig(configParams(gradeFormat, tierStr, newPosGroup, gradeView));
@@ -1038,7 +1044,7 @@ export class GradeTableUtils {
               setConfig(configParams("pct", tierStr, posGroup, gradeView));
             }}
           >
-            Pctiles
+            %iles
           </a>
         )}
       </span>
@@ -1061,13 +1067,26 @@ export class GradeTableUtils {
 
     const viewGroupLink = (newGradeView: string) => (
       <a
-        href={newGradeView == "Hybrid" || tiers[tierStr] ? "#" : undefined}
+        href={
+          config == "" || newGradeView == "Hybrid" || tiers[tierStr]
+            ? "#"
+            : undefined
+        }
         onClick={(event) => {
           event.preventDefault();
-          setConfig(configParams(gradeFormat, tierStr, posGroup, newGradeView));
+          if (newGradeView == "None") {
+            setConfig("");
+          } else {
+            setConfig(
+              configParams(gradeFormat, tierStr, posGroup, newGradeView)
+            );
+          }
         }}
       >
-        {maybeBold(gradeView == newGradeView, newGradeView)}
+        {maybeBold(
+          config == "" ? newGradeView == "None" : gradeView == newGradeView,
+          newGradeView
+        )}
       </a>
     );
 
@@ -1075,7 +1094,8 @@ export class GradeTableUtils {
       <span className="small">
         {viewGroupLink("Hybrid")} |&nbsp;
         {viewGroupLink("Inline")} |&nbsp;
-        {viewGroupLink("Rows")}
+        {viewGroupLink("Rows")} |&nbsp;
+        {viewGroupLink("None")}
       </span>
     );
 
@@ -1114,7 +1134,7 @@ export class GradeTableUtils {
               globalSettings?.onHide();
             }}
           >
-            Hide
+            x
           </a>
           ]
         </span>

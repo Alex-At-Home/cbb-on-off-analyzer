@@ -1983,7 +1983,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   // 4] View
 
   const { controlRow: topLevelGradeControls } = _.thru(
-    showGrades && !hideGlobalGradeSettings,
+    !hideGlobalGradeSettings,
     (buildTopLevelGradeControls) => {
       if (buildTopLevelGradeControls) {
         const divisionStatsCacheByYear: DivisionStatsCache = showGrades
@@ -2041,20 +2041,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
           toggled: factorMins,
           onClick: () => toggleFactorMins(),
-        },
-        {
-          label: "Grades",
-          tooltip: showGrades
-            ? "Hide player ranks/percentiles" +
-              (hideGlobalGradeSettings
-                ? " (grade controls accessed via the advanced options menu to the right)"
-                : "")
-            : "Show player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-          toggled: showGrades != "",
-          onClick: () => {
-            setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade);
-            setHideGlobalGradeSettings(false); //(reset)
-          },
         },
         {
           label: "RAPM",

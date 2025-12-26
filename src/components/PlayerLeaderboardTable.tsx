@@ -2187,7 +2187,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   // 4] View
 
-  const buildTopLevelGradeControls = showGrades && !hideGlobalGradeSettings;
+  const buildTopLevelGradeControls = !hideGlobalGradeSettings;
   const { controlRow: topLevelGradeControls } = _.thru(
     buildTopLevelGradeControls,
     (__) => {
@@ -2732,23 +2732,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       toggled: true,
                       onClick: () => {},
                       isLabelOnly: true,
-                    },
-                    {
-                      label: "Grades",
-                      tooltip: showGrades
-                        ? "Hide player ranks/percentiles" +
-                          (hideGlobalGradeSettings
-                            ? " (grade controls accessed via the advanced options menu to the right)"
-                            : "")
-                        : "Show player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-                      toggled: showGrades != "",
-                      onClick: () =>
-                        friendlyChange(() => {
-                          setShowGrades(
-                            showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                          );
-                          setHideGlobalGradeSettings(false); //(reset)
-                        }, true),
                     },
                   ])
                   .concat(

@@ -1566,7 +1566,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
   // 4] Views
 
-  const buildTopLevelGradeControls = showGrades && !hideGlobalGradeSettings;
+  const buildTopLevelGradeControls = !hideGlobalGradeSettings;
   const { controlRow: topLevelGradeControls } = _.thru(
     buildTopLevelGradeControls,
     (__) => {
@@ -1727,22 +1727,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             isLabelOnly: true,
             toggled: true,
             onClick: () => null,
-          },
-          {
-            label: "Grades",
-            tooltip: showGrades
-              ? "Hide player ranks/percentiles" +
-                (hideGlobalGradeSettings
-                  ? " (grade controls accessed via the advanced options menu to the right)"
-                  : "")
-              : "Show player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-            toggled: showGrades != "",
-            onClick: () => {
-              setShowGrades(
-                showGrades ? "" : ParamDefaults.defaultEnabledGrade
-              );
-              setHideGlobalGradeSettings(false); //(reset)
-            },
           },
           {
             label: "Shots",
