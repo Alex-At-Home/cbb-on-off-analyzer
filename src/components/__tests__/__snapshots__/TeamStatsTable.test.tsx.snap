@@ -3373,9 +3373,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             <div
                               class="col-xl-6 col-lg-8 col-sm-12 col-8"
                             >
-                              <p>
+                              <span>
                                 Play type stats:
-                              </p>
+                              </span>
                               <div
                                 class="table-responsive"
                               >
@@ -5961,9 +5961,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             <div
                               class="col-xl-6 col-lg-8 col-sm-12 col-8"
                             >
-                              <p>
+                              <span>
                                 Play type stats:
-                              </p>
+                              </span>
                               <div
                                 class="table-responsive"
                               >
@@ -8549,9 +8549,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             <div
                               class="col-xl-6 col-lg-8 col-sm-12 col-8"
                             >
-                              <p>
+                              <span>
                                 Play type stats:
-                              </p>
+                              </span>
                               <div
                                 class="table-responsive"
                               >

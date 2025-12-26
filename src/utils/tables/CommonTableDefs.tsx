@@ -299,6 +299,18 @@ export class CommonTableDefs {
             GenericTableOps.htmlFormatter
           ),
       sep0: GenericTableOps.addColSeparator(),
+      team_poss: GenericTableOps.addDataCol(
+        "Poss",
+        "Total number of team possessions for selected lineups",
+        GenericTableOps.defaultColorPicker,
+        GenericTableOps.offHighlightFormatter(GenericTableOps.intFormatter)
+      ),
+      team_poss_pct: GenericTableOps.addDataCol(
+        "Poss%",
+        "% of team possessions in selected lineups that player was on the floor",
+        GenericTableOps.defaultColorPicker,
+        GenericTableOps.offHighlightFormatter(GenericTableOps.percentFormatter)
+      ),
       rtg: GenericTableOps.addPtsCol(
         "Box Rtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
@@ -452,16 +464,6 @@ export class CommonTableDefs {
         CbbColors.picker(...CbbColors.p_fg2P_rim)
       ),
       sep4: GenericTableOps.addColSeparator(),
-      team_poss: GenericTableOps.addIntCol(
-        "Poss",
-        "Total number of team possessions for selected lineups",
-        GenericTableOps.defaultColorPicker
-      ),
-      team_poss_pct: GenericTableOps.addPctCol(
-        "Poss%",
-        "% of team possessions in selected lineups that player was on the floor",
-        GenericTableOps.defaultColorPicker
-      ),
       adj_opp: GenericTableOps.addPtsCol(
         "SoS",
         "Weighted average of the offensive or defensive efficiencies of the player's opponents",
@@ -480,7 +482,7 @@ export class CommonTableDefs {
     return _.omit(
       CommonTableDefs.onOffIndividualTableAllFields(expandedView),
       _.flatten([
-        [expandedView ? "drb" : "adj_opp"],
+        expandedView ? ["drb"] : ["adj_opp", "sep4"],
         [possAsPct ? "team_poss" : "team_poss_pct"],
         [factorMins ? "adj_rtg" : "adj_prod"],
         includeRapm

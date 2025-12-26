@@ -27,6 +27,7 @@ import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
+import ReactNode from "react";
 
 type GenericTableColorPickerFn = (
   val: any,
@@ -39,7 +40,8 @@ export class GenericTableColProps {
     widthUnits: number,
     isTitle: boolean = false,
     formatter: (
-      val: any
+      val: any,
+      key?: string
     ) => string | React.ReactNode = GenericTableOps.defaultFormatter,
     colorPicker: GenericTableColorPickerFn = GenericTableOps.defaultColorPicker,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
@@ -60,7 +62,7 @@ export class GenericTableColProps {
   readonly toolTip: string;
   readonly widthUnits: number;
   readonly isTitle: boolean;
-  readonly formatter: (val: any) => string | React.ReactNode;
+  readonly formatter: (val: any, key?: string) => string | React.ReactNode;
   readonly colorPicker: GenericTableColorPickerFn;
   readonly rowSpan: (key: string) => number;
   readonly missingData: any | undefined;
@@ -138,6 +140,17 @@ export type GenericTableRow =
   | GenericTableRepeatHeaderRow;
 export class GenericTableOps {
   static readonly defaultFormatter = (val: any) => "" + val;
+  static readonly offHighlightFormatter = (
+    formatter: (val: any) => string | React.ReactNode
+  ) => {
+    return (val: any, key?: string) => {
+      return _.startsWith(key, "off_") ? (
+        <span style={{ opacity: 0.75 }}>{formatter(val)}</span>
+      ) : (
+        <span style={{ opacity: 0.33 }}>{formatter(val)}</span>
+      );
+    };
+  };
   static readonly htmlFormatter = (val: React.ReactNode) => val;
   static readonly intFormatter = (val: any) =>
     "" + (val.value as number).toFixed(0);
@@ -322,7 +335,7 @@ export class GenericTableOps {
     colName: string | React.ReactNode,
     toolTip: string,
     colorPicker: GenericTableColorPickerFn,
-    formatter: (val: any) => string | React.ReactNode
+    formatter: (val: any, key?: string) => string | React.ReactNode
   ) {
     return new GenericTableColProps(
       colName,
@@ -707,7 +720,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
       );
       const valBuilder = (inVal: any) => {
         try {
-          return colProp.formatter(inVal);
+          return colProp.formatter(inVal, actualKey);
         } catch (err: unknown) {
           //handle formatting errors by making it return blank
           return "";

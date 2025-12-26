@@ -449,6 +449,38 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
                       "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
@@ -751,38 +783,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Blk% (Asc. / Defensive)",
                       "value": "asc:def_2prim",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Defensive)",
-                      "value": "desc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Defensive)",
-                      "value": "asc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Offensive)",
-                      "value": "desc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Offensive)",
-                      "value": "asc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Defensive)",
-                      "value": "desc:def_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Defensive)",
-                      "value": "asc:def_team_poss_pct",
                     },
                     Object {
                       "label": "SoS (Desc. / Offensive)",
@@ -8583,6 +8583,38 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
                       "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
@@ -8885,38 +8917,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Blk% (Asc. / Defensive)",
                       "value": "asc:def_2prim",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Defensive)",
-                      "value": "desc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Defensive)",
-                      "value": "asc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Offensive)",
-                      "value": "desc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Offensive)",
-                      "value": "asc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Defensive)",
-                      "value": "desc:def_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Defensive)",
-                      "value": "asc:def_team_poss_pct",
                     },
                     Object {
                       "label": "SoS (Desc. / Offensive)",
@@ -16721,6 +16721,38 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
                       "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
@@ -17023,38 +17055,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Blk% (Asc. / Defensive)",
                       "value": "asc:def_2prim",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Defensive)",
-                      "value": "desc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Defensive)",
-                      "value": "asc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Offensive)",
-                      "value": "desc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Offensive)",
-                      "value": "asc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Defensive)",
-                      "value": "desc:def_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Defensive)",
-                      "value": "asc:def_team_poss_pct",
                     },
                     Object {
                       "label": "SoS (Desc. / Offensive)",
@@ -27931,6 +27931,38 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
                       "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
@@ -28233,38 +28265,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Blk% (Asc. / Defensive)",
                       "value": "asc:def_2prim",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Defensive)",
-                      "value": "desc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Defensive)",
-                      "value": "asc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Offensive)",
-                      "value": "desc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Offensive)",
-                      "value": "asc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Defensive)",
-                      "value": "desc:def_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Defensive)",
-                      "value": "asc:def_team_poss_pct",
                     },
                     Object {
                       "label": "SoS (Desc. / Offensive)",
@@ -36017,6 +36017,38 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
                       "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
@@ -36319,38 +36351,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Blk% (Asc. / Defensive)",
                       "value": "asc:def_2prim",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Defensive)",
-                      "value": "desc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Defensive)",
-                      "value": "asc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Offensive)",
-                      "value": "desc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Offensive)",
-                      "value": "asc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Defensive)",
-                      "value": "desc:def_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Defensive)",
-                      "value": "asc:def_team_poss_pct",
                     },
                     Object {
                       "label": "SoS (Desc. / Offensive)",
@@ -37810,6 +37810,38 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
                       "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
@@ -38112,38 +38144,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Blk% (Asc. / Defensive)",
                       "value": "asc:def_2prim",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Desc. / Defensive)",
-                      "value": "desc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss (Asc. / Defensive)",
-                      "value": "asc:def_team_poss",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Offensive)",
-                      "value": "desc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Offensive)",
-                      "value": "asc:off_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Desc. / Defensive)",
-                      "value": "desc:def_team_poss_pct",
-                    },
-                    Object {
-                      "label": "Poss% (Asc. / Defensive)",
-                      "value": "asc:def_team_poss_pct",
                     },
                     Object {
                       "label": "SoS (Desc. / Offensive)",
