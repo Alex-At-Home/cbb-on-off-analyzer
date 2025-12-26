@@ -243,7 +243,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //   "Coppin St.",
 // ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -617,7 +617,7 @@ export async function main() {
               );
 
               await sleep(10000); //(wait 10s and try again)
-              await handleTeam(teamObj, retry + 1, label);
+              return await handleTeam(teamObj, retry + 1, label);
             } else if (errsOther.length > 0) {
               console.log(
                 `MAX_OR_UNKNOWN ERROR #[${retry}] [${team} ${label}]: [${errsOther.join(
