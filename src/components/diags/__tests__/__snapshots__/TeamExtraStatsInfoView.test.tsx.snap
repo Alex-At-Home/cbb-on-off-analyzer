@@ -22,9 +22,9 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         xl={6}
         xs={8}
       >
-        <p>
+        <span>
           Play type stats:
-        </p>
+        </span>
         <GenericTable
           tableCopyId="playTypeStats_test"
           tableData={

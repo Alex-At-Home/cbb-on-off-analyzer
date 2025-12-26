@@ -686,7 +686,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       <Container fluid className="float-left">
         <Row>
           <Col xs={8} sm={12} lg={8} xl={6}>
-            <p>Play type stats:</p>
+            <span>Play type stats:</span>
             <GenericTable
               tableCopyId={`playTypeStats_${nameAsId}`}
               tableFields={playTypeTable}
