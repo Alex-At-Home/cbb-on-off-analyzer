@@ -5,6 +5,30 @@ Object {
   "def_blk": Object {
     "value": 0.11827007943512798,
   },
+  "def_half": Object {
+    "value": 0.7545500494232297,
+  },
+  "def_half_2p": Object {
+    "value": 0.42577675489067895,
+  },
+  "def_half_3p": Object {
+    "value": 0.3125,
+  },
+  "def_half_3pr": Object {
+    "value": 0.38499646142958244,
+  },
+  "def_half_delta_ppp": Object {
+    "value": -4.097871890660414,
+  },
+  "def_half_ftr": Object {
+    "value": 0.18683651804670912,
+  },
+  "def_half_ppp": Object {
+    "value": 91.9617148464852,
+  },
+  "def_half_to": Object {
+    "value": 0.16621888902307919,
+  },
   "def_scramble": Object {
     "value": 0.08527071563674632,
   },
@@ -68,6 +92,30 @@ Object {
   "off_blk": Object {
     "value": 0.10901883052527254,
   },
+  "off_half": Object {
+    "value": 0.6963835534084439,
+  },
+  "off_half_2p": Object {
+    "value": 0.44155844155844154,
+  },
+  "off_half_3p": Object {
+    "value": 0.3132530120481928,
+  },
+  "off_half_3pr": Object {
+    "value": 0.45604395604395603,
+  },
+  "off_half_delta_ppp": Object {
+    "value": -8.168606042987534,
+  },
+  "off_half_ftr": Object {
+    "value": 0.2904238618524333,
+  },
+  "off_half_ppp": Object {
+    "value": 99.00520233447996,
+  },
+  "off_half_to": Object {
+    "value": 0.16731326092838095,
+  },
   "off_scramble": Object {
     "value": 0.10780838866433026,
   },
@@ -130,6 +178,60 @@ Object {
   },
   "tempo": Object {
     "value": 83.16,
+  },
+  "total_def_half_2p_attempts": Object {
+    "value": 869,
+  },
+  "total_def_half_2p_made": Object {
+    "value": 370,
+  },
+  "total_def_half_3p": Object {
+    "value": 0,
+  },
+  "total_def_half_3p_attempts": Object {
+    "value": 544,
+  },
+  "total_def_half_3p_made": Object {
+    "value": 170,
+  },
+  "total_def_half_fga": Object {
+    "value": 1413,
+  },
+  "total_def_half_fta": Object {
+    "value": 264,
+  },
+  "total_def_half_poss": Object {
+    "value": 1570.218652849741,
+  },
+  "total_def_half_to": Object {
+    "value": 261,
+  },
+  "total_off_half_2p_attempts": Object {
+    "value": 693,
+  },
+  "total_off_half_2p_made": Object {
+    "value": 306,
+  },
+  "total_off_half_3p": Object {
+    "value": 0,
+  },
+  "total_off_half_3p_attempts": Object {
+    "value": 581,
+  },
+  "total_off_half_3p_made": Object {
+    "value": 182,
+  },
+  "total_off_half_fga": Object {
+    "value": 1274,
+  },
+  "total_off_half_fta": Object {
+    "value": 370,
+  },
+  "total_off_half_poss": Object {
+    "value": 1446.388640429338,
+  },
+  "total_off_half_to": Object {
+    "value": 242,
   },
 }
 `;
