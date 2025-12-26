@@ -781,6 +781,10 @@ export class GradeUtils {
     def_trans: true,
     def_scramble: true,
     def_scramble_per_orb: true,
+    def_3p_ast: true,
+    def_2prim_ast: true,
+    def_ast_3p: true,
+    def_ast_rim: true,
   } as Record<string, boolean>;
 
   static readonly playerFieldsToInvert = {
