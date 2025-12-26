@@ -56,7 +56,7 @@ const App = ({ Component, pageProps }) => {
           content="Open analytics web-site for college basketball"
         />
       </Head>
-      <ThemeProvider enableSystem={theme == "system"} defaultTheme="light">
+      <ThemeProvider enableSystem={theme == "system"} defaultTheme="dark">
         <Component {...pageProps} />
       </ThemeProvider>
     </>
