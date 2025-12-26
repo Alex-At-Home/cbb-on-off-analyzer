@@ -64,6 +64,28 @@ jest.mock("../pages/api/calculateOnOffPlayerStats", () =>
     }
   })
 );
+jest.mock("../pages/api/calculatePlayerShotStats", () =>
+  jest.fn().mockImplementation((req: NextApiRequest, res: NextApiResponse) => {
+    const mockRes = res as unknown as MutableAsyncResponse;
+    mockRes.statusCode = 200;
+    if ((req.url || "").indexOf("Maryland") >= 0) {
+      mockRes.resultJson = {};
+    } else {
+      mockRes.resultJson = {};
+    }
+  })
+);
+jest.mock("../pages/api/calculateTeamDefenseStats", () =>
+  jest.fn().mockImplementation((req: NextApiRequest, res: NextApiResponse) => {
+    const mockRes = res as unknown as MutableAsyncResponse;
+    mockRes.statusCode = 200;
+    if ((req.url || "").indexOf("Maryland") >= 0) {
+      mockRes.resultJson = {};
+    } else {
+      mockRes.resultJson = {};
+    }
+  })
+);
 
 // seeing intermittent: "Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error:"
 jest.setTimeout(60000);

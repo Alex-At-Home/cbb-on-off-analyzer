@@ -3190,6 +3190,30 @@ Array [
     "def_ftr": Object {
       "value": 0.24249044238121245,
     },
+    "def_half": Object {
+      "value": 0.7545500494232297,
+    },
+    "def_half_2p": Object {
+      "value": 0.42577675489067895,
+    },
+    "def_half_3p": Object {
+      "value": 0.3125,
+    },
+    "def_half_3pr": Object {
+      "value": 0.38499646142958244,
+    },
+    "def_half_delta_ppp": Object {
+      "value": -4.097871890660414,
+    },
+    "def_half_ftr": Object {
+      "value": 0.18683651804670912,
+    },
+    "def_half_ppp": Object {
+      "value": 91.9617148464852,
+    },
+    "def_half_to": Object {
+      "value": 0.16621888902307919,
+    },
     "def_net": Object {
       "value": 11.114221640321887,
     },
@@ -3402,6 +3426,30 @@ Array [
     },
     "off_ftr": Object {
       "value": 0.37711386696730553,
+    },
+    "off_half": Object {
+      "value": 0.6963835534084439,
+    },
+    "off_half_2p": Object {
+      "value": 0.44155844155844154,
+    },
+    "off_half_3p": Object {
+      "value": 0.3132530120481928,
+    },
+    "off_half_3pr": Object {
+      "value": 0.45604395604395603,
+    },
+    "off_half_delta_ppp": Object {
+      "value": -8.168606042987534,
+    },
+    "off_half_ftr": Object {
+      "value": 0.2904238618524333,
+    },
+    "off_half_ppp": Object {
+      "value": 99.00520233447996,
+    },
+    "off_half_to": Object {
+      "value": 0.16731326092838095,
     },
     "off_net": Object {
       "old_value": 21.655669059664973,
@@ -3718,6 +3766,33 @@ Array [
     "total_def_ftm": Object {
       "value": 310,
     },
+    "total_def_half_2p_attempts": Object {
+      "value": 869,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 370,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 544,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 170,
+    },
+    "total_def_half_fga": Object {
+      "value": 1413,
+    },
+    "total_def_half_fta": Object {
+      "value": 264,
+    },
+    "total_def_half_poss": Object {
+      "value": 1570.218652849741,
+    },
+    "total_def_half_to": Object {
+      "value": 261,
+    },
     "total_def_orb": Object {
       "value": 304,
     },
@@ -3922,6 +3997,33 @@ Array [
     "total_off_ftm": Object {
       "value": 500,
     },
+    "total_off_half_2p_attempts": Object {
+      "value": 693,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 306,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 581,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 182,
+    },
+    "total_off_half_fga": Object {
+      "value": 1274,
+    },
+    "total_off_half_fta": Object {
+      "value": 370,
+    },
+    "total_off_half_poss": Object {
+      "value": 1446.388640429338,
+    },
+    "total_off_half_to": Object {
+      "value": 242,
+    },
     "total_off_orb": Object {
       "value": 349,
     },
@@ -4064,6 +4166,15 @@ Array [
     "def_blk": Object {
       "value": 0,
     },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
+      "value": 0,
+    },
     "def_scramble": Object {
       "value": 0,
     },
@@ -4098,6 +4209,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -4230,11 +4350,74 @@ Array [
       },
     },
     "team_name": "Alabama",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -4271,6 +4454,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -4403,11 +4595,74 @@ Array [
       },
     },
     "team_name": "Arizona",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -4444,6 +4699,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -4576,11 +4840,74 @@ Array [
       },
     },
     "team_name": "Arizona St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -4617,6 +4944,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -4749,11 +5085,74 @@ Array [
       },
     },
     "team_name": "Arkansas",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -4790,6 +5189,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -4922,11 +5330,74 @@ Array [
       },
     },
     "team_name": "Auburn",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -4963,6 +5434,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -5095,11 +5575,74 @@ Array [
       },
     },
     "team_name": "Baylor",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -5136,6 +5679,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -5268,11 +5820,74 @@ Array [
       },
     },
     "team_name": "Boston College",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -5309,6 +5924,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -5441,11 +6065,74 @@ Array [
       },
     },
     "team_name": "Butler",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -5482,6 +6169,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -5614,11 +6310,74 @@ Array [
       },
     },
     "team_name": "California",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "American Athletic Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -5655,6 +6414,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -5787,11 +6555,74 @@ Array [
       },
     },
     "team_name": "Cincinnati",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -5828,6 +6659,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -5960,11 +6800,74 @@ Array [
       },
     },
     "team_name": "Clemson",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -6001,6 +6904,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -6133,11 +7045,74 @@ Array [
       },
     },
     "team_name": "Colorado",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -6174,6 +7149,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -6306,11 +7290,74 @@ Array [
       },
     },
     "team_name": "Creighton",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -6347,6 +7394,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -6479,11 +7535,74 @@ Array [
       },
     },
     "team_name": "DePaul",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -6520,6 +7639,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -6652,11 +7780,74 @@ Array [
       },
     },
     "team_name": "Duke",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -6693,6 +7884,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -6825,11 +8025,74 @@ Array [
       },
     },
     "team_name": "Florida",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -6866,6 +8129,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -6998,11 +8270,74 @@ Array [
       },
     },
     "team_name": "Florida St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -7039,6 +8374,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -7171,11 +8515,74 @@ Array [
       },
     },
     "team_name": "Georgetown",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -7212,6 +8619,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -7344,11 +8760,74 @@ Array [
       },
     },
     "team_name": "Georgia",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -7385,6 +8864,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -7517,11 +9005,74 @@ Array [
       },
     },
     "team_name": "Georgia Tech",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "West Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -7558,6 +9109,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -7690,11 +9250,74 @@ Array [
       },
     },
     "team_name": "Gonzaga",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -7731,6 +9354,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -7863,11 +9495,74 @@ Array [
       },
     },
     "team_name": "Illinois",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -7904,6 +9599,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -8036,11 +9740,74 @@ Array [
       },
     },
     "team_name": "Indiana",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -8077,6 +9844,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -8209,11 +9985,74 @@ Array [
       },
     },
     "team_name": "Iowa",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -8250,6 +10089,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -8382,11 +10230,74 @@ Array [
       },
     },
     "team_name": "Iowa St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -8423,6 +10334,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -8555,11 +10475,74 @@ Array [
       },
     },
     "team_name": "Kansas",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -8596,6 +10579,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -8728,11 +10720,74 @@ Array [
       },
     },
     "team_name": "Kansas St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -8769,6 +10824,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -8901,11 +10965,74 @@ Array [
       },
     },
     "team_name": "Kentucky",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -8942,6 +11069,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -9074,11 +11210,74 @@ Array [
       },
     },
     "team_name": "LSU",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -9115,6 +11314,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -9247,11 +11455,74 @@ Array [
       },
     },
     "team_name": "Louisville",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -9288,6 +11559,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -9420,11 +11700,74 @@ Array [
       },
     },
     "team_name": "Marquette",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "American Athletic Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -9461,6 +11804,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -9593,11 +11945,74 @@ Array [
       },
     },
     "team_name": "Memphis",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -9634,6 +12049,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -9766,11 +12190,74 @@ Array [
       },
     },
     "team_name": "Miami (FL)",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -9807,6 +12294,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -9939,11 +12435,74 @@ Array [
       },
     },
     "team_name": "Michigan",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -9980,6 +12539,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -10112,11 +12680,74 @@ Array [
       },
     },
     "team_name": "Michigan St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -10153,6 +12784,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -10285,11 +12925,74 @@ Array [
       },
     },
     "team_name": "Minnesota",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -10326,6 +13029,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -10458,11 +13170,74 @@ Array [
       },
     },
     "team_name": "Mississippi St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -10499,6 +13274,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -10631,11 +13415,74 @@ Array [
       },
     },
     "team_name": "Missouri",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -10672,6 +13519,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -10804,11 +13660,74 @@ Array [
       },
     },
     "team_name": "NC State",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -10845,6 +13764,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -10977,11 +13905,74 @@ Array [
       },
     },
     "team_name": "Nebraska",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -11018,6 +14009,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -11150,11 +14150,74 @@ Array [
       },
     },
     "team_name": "North Carolina",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -11191,6 +14254,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -11323,11 +14395,74 @@ Array [
       },
     },
     "team_name": "Northwestern",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -11364,6 +14499,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -11496,11 +14640,74 @@ Array [
       },
     },
     "team_name": "Notre Dame",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -11537,6 +14744,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -11669,11 +14885,74 @@ Array [
       },
     },
     "team_name": "Ohio St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -11710,6 +14989,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -11842,11 +15130,74 @@ Array [
       },
     },
     "team_name": "Oklahoma",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -11883,6 +15234,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -12015,11 +15375,74 @@ Array [
       },
     },
     "team_name": "Oklahoma St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -12056,6 +15479,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -12188,11 +15620,74 @@ Array [
       },
     },
     "team_name": "Ole Miss",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -12229,6 +15724,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -12361,11 +15865,74 @@ Array [
       },
     },
     "team_name": "Oregon",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -12402,6 +15969,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -12534,11 +16110,74 @@ Array [
       },
     },
     "team_name": "Oregon St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -12575,6 +16214,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -12707,11 +16355,74 @@ Array [
       },
     },
     "team_name": "Penn St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -12748,6 +16459,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -12880,11 +16600,74 @@ Array [
       },
     },
     "team_name": "Pittsburgh",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -12921,6 +16704,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -13053,11 +16845,74 @@ Array [
       },
     },
     "team_name": "Providence",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -13094,6 +16949,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -13226,11 +17090,74 @@ Array [
       },
     },
     "team_name": "Purdue",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -13267,6 +17194,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -13399,11 +17335,74 @@ Array [
       },
     },
     "team_name": "Rutgers",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -13440,6 +17439,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -13572,11 +17580,74 @@ Array [
       },
     },
     "team_name": "Seton Hall",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -13613,6 +17684,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -13745,11 +17825,74 @@ Array [
       },
     },
     "team_name": "South Carolina",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -13786,6 +17929,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -13918,11 +18070,74 @@ Array [
       },
     },
     "team_name": "Southern California",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -13959,6 +18174,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -14091,11 +18315,74 @@ Array [
       },
     },
     "team_name": "St. John's (NY)",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -14132,6 +18419,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -14264,11 +18560,74 @@ Array [
       },
     },
     "team_name": "Stanford",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -14305,6 +18664,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -14437,11 +18805,74 @@ Array [
       },
     },
     "team_name": "Syracuse",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -14478,6 +18909,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -14610,11 +19050,74 @@ Array [
       },
     },
     "team_name": "TCU",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -14651,6 +19154,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -14783,11 +19295,74 @@ Array [
       },
     },
     "team_name": "Tennessee",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -14824,6 +19399,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -14956,11 +19540,74 @@ Array [
       },
     },
     "team_name": "Texas",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -14997,6 +19644,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -15129,11 +19785,74 @@ Array [
       },
     },
     "team_name": "Texas A&M",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -15170,6 +19889,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -15302,11 +20030,74 @@ Array [
       },
     },
     "team_name": "Texas Tech",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -15343,6 +20134,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -15475,11 +20275,74 @@ Array [
       },
     },
     "team_name": "UCLA",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -15516,6 +20379,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -15648,11 +20520,74 @@ Array [
       },
     },
     "team_name": "UConn",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -15689,6 +20624,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -15821,11 +20765,74 @@ Array [
       },
     },
     "team_name": "Utah",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Southeastern Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -15862,6 +20869,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -15994,11 +21010,74 @@ Array [
       },
     },
     "team_name": "Vanderbilt",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -16035,6 +21114,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -16167,11 +21255,74 @@ Array [
       },
     },
     "team_name": "Villanova",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -16208,6 +21359,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -16340,11 +21500,74 @@ Array [
       },
     },
     "team_name": "Virginia",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -16381,6 +21604,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -16513,11 +21745,74 @@ Array [
       },
     },
     "team_name": "Virginia Tech",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Atlantic Coast Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -16554,6 +21849,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -16686,11 +21990,74 @@ Array [
       },
     },
     "team_name": "Wake Forest",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -16727,6 +22094,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -16859,11 +22235,74 @@ Array [
       },
     },
     "team_name": "Washington",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Pac 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -16900,6 +22339,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -17032,11 +22480,74 @@ Array [
       },
     },
     "team_name": "Washington St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big 12 Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -17073,6 +22584,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -17205,11 +22725,74 @@ Array [
       },
     },
     "team_name": "West Virginia",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "American Athletic Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -17246,6 +22829,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -17378,11 +22970,74 @@ Array [
       },
     },
     "team_name": "Wichita St.",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big Ten Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -17419,6 +23074,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -17551,11 +23215,74 @@ Array [
       },
     },
     "team_name": "Wisconsin",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
   Object {
     "conf": "Big East Conference",
     "def_blk": Object {
+      "value": 0,
+    },
+    "def_half": Object {
+      "value": 0,
+    },
+    "def_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_half_ppp": Object {
       "value": 0,
     },
     "def_scramble": Object {
@@ -17592,6 +23319,15 @@ Array [
     "game_info": undefined,
     "gender": "Men",
     "off_blk": Object {
+      "value": 0,
+    },
+    "off_half": Object {
+      "value": 0,
+    },
+    "off_half_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_half_ppp": Object {
       "value": 0,
     },
     "off_scramble": Object {
@@ -17724,6 +23460,60 @@ Array [
       },
     },
     "team_name": "Xavier",
+    "total_def_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_3p": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_def_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_def_half_fga": Object {
+      "value": 0,
+    },
+    "total_def_half_fta": Object {
+      "value": 0,
+    },
+    "total_def_half_poss": Object {
+      "value": 0,
+    },
+    "total_def_half_to": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_2p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_3p": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_attempts": Object {
+      "value": 0,
+    },
+    "total_off_half_3p_made": Object {
+      "value": 0,
+    },
+    "total_off_half_fga": Object {
+      "value": 0,
+    },
+    "total_off_half_fta": Object {
+      "value": 0,
+    },
+    "total_off_half_poss": Object {
+      "value": 0,
+    },
+    "total_off_half_to": Object {
+      "value": 0,
+    },
     "year": "2020/21",
   },
 ]
@@ -21825,6 +27615,267 @@ Object {
     "def_ftr": Array [
       0.24249044238121245,
     ],
+    "def_half": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.7545500494232297,
+    ],
+    "def_half_2p": Array [
+      0.42577675489067895,
+    ],
+    "def_half_3p": Array [
+      0.3125,
+    ],
+    "def_half_3pr": Array [
+      0.38499646142958244,
+    ],
+    "def_half_delta_ppp": Array [
+      -4.097871890660414,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ],
+    "def_half_ftr": Array [
+      0.18683651804670912,
+    ],
+    "def_half_ppp": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      91.9617148464852,
+    ],
+    "def_half_to": Array [
+      0.16621888902307919,
+    ],
     "def_net": Array [
       11.114221640321887,
     ],
@@ -22819,6 +28870,267 @@ Object {
     ],
     "off_ftr": Array [
       0.37711386696730553,
+    ],
+    "off_half": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.6963835534084439,
+    ],
+    "off_half_2p": Array [
+      0.44155844155844154,
+    ],
+    "off_half_3p": Array [
+      0.3132530120481928,
+    ],
+    "off_half_3pr": Array [
+      0.45604395604395603,
+    ],
+    "off_half_delta_ppp": Array [
+      -8.168606042987534,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ],
+    "off_half_ftr": Array [
+      0.2904238618524333,
+    ],
+    "off_half_ppp": Array [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      99.00520233447996,
+    ],
+    "off_half_to": Array [
+      0.16731326092838095,
     ],
     "off_net": Array [
       21.655669059664973,
@@ -27345,6 +33657,348 @@ Object {
       "min": 0.24249044238121245,
       "size": 1,
     },
+    "def_half": Object {
+      "isPct": true,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "75": Array [
+          79,
+          0.7545500494232297,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
+    "def_half_2p": Object {
+      "isPct": true,
+      "lut": Object {
+        "43": Array [
+          0,
+          0.42577675489067895,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.42577675489067895,
+      "size": 1,
+    },
+    "def_half_3p": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.3125,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.3125,
+      "size": 1,
+    },
+    "def_half_3pr": Object {
+      "isPct": true,
+      "lut": Object {
+        "38": Array [
+          0,
+          0.38499646142958244,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.38499646142958244,
+      "size": 1,
+    },
+    "def_half_delta_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "-4": Array [
+          0,
+          -4.097871890660414,
+        ],
+        "0": Array [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+      },
+      "lutMult": undefined,
+      "min": -4.097871890660414,
+      "size": 80,
+    },
+    "def_half_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "19": Array [
+          0,
+          0.18683651804670912,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.18683651804670912,
+      "size": 1,
+    },
+    "def_half_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "92": Array [
+          79,
+          91.9617148464852,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
+    "def_half_to": Object {
+      "isPct": true,
+      "lut": Object {
+        "17": Array [
+          0,
+          0.16621888902307919,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.16621888902307919,
+      "size": 1,
+    },
     "def_net": Object {
       "isPct": false,
       "lut": Object {
@@ -28749,6 +35403,348 @@ Object {
       },
       "lutMult": undefined,
       "min": 0.37711386696730553,
+      "size": 1,
+    },
+    "off_half": Object {
+      "isPct": true,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "70": Array [
+          79,
+          0.6963835534084439,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
+    "off_half_2p": Object {
+      "isPct": true,
+      "lut": Object {
+        "44": Array [
+          0,
+          0.44155844155844154,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.44155844155844154,
+      "size": 1,
+    },
+    "off_half_3p": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.3132530120481928,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.3132530120481928,
+      "size": 1,
+    },
+    "off_half_3pr": Object {
+      "isPct": true,
+      "lut": Object {
+        "46": Array [
+          0,
+          0.45604395604395603,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.45604395604395603,
+      "size": 1,
+    },
+    "off_half_delta_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "-8": Array [
+          0,
+          -8.168606042987534,
+        ],
+        "0": Array [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+      },
+      "lutMult": undefined,
+      "min": -8.168606042987534,
+      "size": 80,
+    },
+    "off_half_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "29": Array [
+          0,
+          0.2904238618524333,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.2904238618524333,
+      "size": 1,
+    },
+    "off_half_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "0": Array [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+        ],
+        "99": Array [
+          79,
+          99.00520233447996,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0,
+      "size": 80,
+    },
+    "off_half_to": Object {
+      "isPct": true,
+      "lut": Object {
+        "17": Array [
+          0,
+          0.16731326092838095,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.16731326092838095,
       "size": 1,
     },
     "off_net": Object {
