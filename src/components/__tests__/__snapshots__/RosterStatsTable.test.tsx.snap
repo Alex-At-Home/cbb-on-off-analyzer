@@ -6092,12 +6092,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-              },
-              Object {
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
@@ -7940,17 +7934,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             <span>
               <div>
                 <button
-                  class="btn btn-dark btn-sm"
-                  type="button"
-                >
-                  Grades
-                </button>
-              </div>
-                
-            </span>
-            <span>
-              <div>
-                <button
                   class="btn btn-outline-secondary btn-sm"
                   type="button"
                 >
@@ -8093,17 +8076,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                   type="button"
                 >
                   * Mins%
-                </button>
-              </div>
-                
-            </span>
-            <span>
-              <div>
-                <button
-                  class="btn btn-dark btn-sm"
-                  type="button"
-                >
-                  Grades
                 </button>
               </div>
                 
@@ -11242,12 +11214,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -17348,12 +17314,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -25504,12 +25464,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               },
               Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-              },
-              Object {
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
@@ -32262,12 +32216,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -40782,12 +40730,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -49959,12 +49901,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",
@@ -62406,12 +62342,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "RAPM",

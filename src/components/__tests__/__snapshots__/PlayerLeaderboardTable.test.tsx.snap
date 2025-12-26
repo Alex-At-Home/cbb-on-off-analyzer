@@ -1094,12 +1094,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "",
               },
               Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-              },
-              Object {
                 "label": "Style",
                 "onClick": [Function],
                 "toggled": false,
@@ -9232,12 +9226,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "Style",
@@ -17376,12 +17364,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "Shots",
@@ -28594,12 +28576,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "",
               },
               Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-              },
-              Object {
                 "label": "Style",
                 "onClick": [Function],
                 "toggled": false,
@@ -36686,12 +36662,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "tooltip": "",
               },
               Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
-              },
-              Object {
                 "label": "Style",
                 "onClick": [Function],
                 "toggled": false,
@@ -38483,12 +38453,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles (grade controls accessed via the advanced options menu to the right)",
               },
               Object {
                 "label": "Style",
