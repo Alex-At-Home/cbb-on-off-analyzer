@@ -981,7 +981,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   );
 
   const topLevelGradeControls = _.thru(
-    showGrades && !hideGlobalGradeSettings,
+    !hideGlobalGradeSettings,
     (buildTopLevelGradeControls) => {
       if (buildTopLevelGradeControls) {
         const yearToUseForTopLevelGradeControls = !year.startsWith("2")
@@ -1044,20 +1044,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           // },
         ],
         [
-          {
-            label: "Grades",
-            tooltip: showGrades
-              ? "Hide team ranks/percentiles"
-              : "Show team ranks/percentiles",
-            toggled: showGrades != "",
-            onClick: () =>
-              friendlyChange(() => {
-                setShowGrades(
-                  showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                );
-                setHideGlobalGradeSettings(false); //(reset)
-              }, true),
-          },
           {
             label: "Extra",
             tooltip: showExtraInfo

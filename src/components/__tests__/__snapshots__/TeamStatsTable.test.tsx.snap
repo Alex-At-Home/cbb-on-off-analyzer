@@ -63,17 +63,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Grades
-                    </button>
-                  </div>
-                    
-                </span>
-                <span>
-                  <div>
-                    <button
-                      class="btn btn-outline-secondary btn-sm"
-                      type="button"
-                    >
                       Style
                     </button>
                   </div>
@@ -196,17 +185,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       type="button"
                     >
                       Extra
-                    </button>
-                  </div>
-                    
-                </span>
-                <span>
-                  <div>
-                    <button
-                      class="btn btn-outline-secondary btn-sm"
-                      type="button"
-                    >
-                      Grades
                     </button>
                   </div>
                     
@@ -2350,17 +2328,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <span>
                   <div>
                     <button
-                      class="btn btn-dark btn-sm"
-                      type="button"
-                    >
-                      Grades
-                    </button>
-                  </div>
-                    
-                </span>
-                <span>
-                  <div>
-                    <button
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
@@ -2486,17 +2453,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       type="button"
                     >
                       Extra
-                    </button>
-                  </div>
-                    
-                </span>
-                <span>
-                  <div>
-                    <button
-                      class="btn btn-dark btn-sm"
-                      type="button"
-                    >
-                      Grades
                     </button>
                   </div>
                     
@@ -10427,17 +10383,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                 <span>
                   <div>
                     <button
-                      class="btn btn-dark btn-sm"
-                      type="button"
-                    >
-                      Grades
-                    </button>
-                  </div>
-                    
-                </span>
-                <span>
-                  <div>
-                    <button
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
@@ -10563,17 +10508,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       type="button"
                     >
                       Extra
-                    </button>
-                  </div>
-                    
-                </span>
-                <span>
-                  <div>
-                    <button
-                      class="btn btn-dark btn-sm"
-                      type="button"
-                    >
-                      Grades
                     </button>
                   </div>
                     

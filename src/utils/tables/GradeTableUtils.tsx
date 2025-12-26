@@ -393,7 +393,7 @@ export class GradeTableUtils {
     //   ),
     // } as Record<string, any>;
 
-    const configStr = config.split(":");
+    const configStr = (config || ParamDefaults.defaultEnabledGrade).split(":");
     const gradeFormat = configStr[0];
     const tierStrTmp = configStr?.[1] || "Combo";
     const tierStr = tiers[tierStrTmp]
@@ -417,13 +417,13 @@ export class GradeTableUtils {
     };
     const tierLinkTmp = (newTier: string) => (
       <a
-        href={tiers[newTier] ? "#" : undefined}
+        href={config == "" || tiers[newTier] ? "#" : undefined}
         onClick={(event) => {
           event.preventDefault();
           setConfig(configParams(gradeFormat, newTier, gradeView));
         }}
       >
-        {newTier == "Combo" ? "D1" : newTier}
+        {newTier == "Combo" ? "D1" : newTier.substring(0, 1)}
         {tiers[newTier] ? ` (${tiers[newTier]?.tier_sample_size})` : ""}
       </a>
     );
@@ -484,7 +484,7 @@ export class GradeTableUtils {
               setConfig(configParams("pct", tierStrTmp, gradeView));
             }}
           >
-            Pctiles
+            %iles
           </a>
           //           </OverlayTrigger>
         )}
@@ -508,13 +508,24 @@ export class GradeTableUtils {
 
     const viewGroupLink = (newGradeView: string) => (
       <a
-        href={newGradeView == "Hybrid" || tiers[tierStr] ? "#" : undefined}
+        href={
+          config == "" || newGradeView == "Hybrid" || tiers[tierStr]
+            ? "#"
+            : undefined
+        }
         onClick={(event) => {
           event.preventDefault();
-          setConfig(configParams(gradeFormat, tierStr, newGradeView));
+          if (newGradeView == "None") {
+            setConfig("");
+          } else {
+            setConfig(configParams(gradeFormat, tierStr, newGradeView));
+          }
         }}
       >
-        {maybeBold(gradeView == newGradeView, newGradeView)}
+        {maybeBold(
+          config == "" ? newGradeView == "None" : gradeView == newGradeView,
+          newGradeView
+        )}
       </a>
     );
 
@@ -522,7 +533,8 @@ export class GradeTableUtils {
       <span className="small">
         {viewGroupLink("Hybrid")} |&nbsp;
         {viewGroupLink("Inline")} |&nbsp;
-        {viewGroupLink("Rows")}
+        {viewGroupLink("Rows")} |&nbsp;
+        {viewGroupLink("None")}
       </span>
     );
 
@@ -560,7 +572,7 @@ export class GradeTableUtils {
               globalSettings?.onHide();
             }}
           >
-            Hide
+            x
           </a>
           ]
         </span>
