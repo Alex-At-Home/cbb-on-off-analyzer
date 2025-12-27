@@ -263,9 +263,12 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     return (
       <PlayerCareerTable
         playerSeasons={dataEvent}
-        playerCareerParams={
-          playerCareerParamsRef?.current?.similarityParams || {}
-        }
+        playerCareerParams={{
+          ...(playerCareerParamsRef?.current?.similarityParams || {}),
+          gender:
+            playerCareerParamsRef.current?.gender ||
+            ParamDefaults.defaultGender,
+        }}
         onPlayerCareerParamsChange={(params: PlayerCareerParams) =>
           onPlayerCareerParamsChange(params, true)
         }

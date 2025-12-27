@@ -114,11 +114,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
 
   // Similarity controls state
-  const [playStyleWeight, setPlayStyleWeight] = useState<number>(0.25);
+  const [playStyleWeight, setPlayStyleWeight] = useState<number>(0.5);
   const [scoringEfficiencyWeight, setScoringEfficiencyWeight] =
-    useState<number>(0.25);
-  const [defenseWeight, setDefenseWeight] = useState<number>(0.25);
-  const [classWeight, setClassWeight] = useState<number>(0.25);
+    useState<number>(0.5);
+  const [defenseWeight, setDefenseWeight] = useState<number>(0.5);
+  const [classWeight, setClassWeight] = useState<number>(0.5);
   const [showSimilaritySettings, setShowSimilaritySettings] =
     useState<boolean>(false);
 
@@ -1115,10 +1115,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const requestSimilarPlayers = () => {
     {
-      const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
-
       //TODO: make similarity query index
       if (currPlayerSelected) {
+        const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
+
         setRetrievingPlayers(true);
         const allPromises = Promise.all(
           RequestUtils.requestHandlingLogic(
