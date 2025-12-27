@@ -32,5 +32,5 @@ export class FeatureFlags {
   static readonly playerSimilarityScoring = true;
 
   /** Adding top-level half court stats */
-  static readonly halfCourtStatCategory = true;
+  static readonly tableConfigOptions = true;
 }

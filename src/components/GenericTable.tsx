@@ -27,7 +27,15 @@ import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import ReactNode from "react";
+
+import ColumnConfigModal, {
+  TableColumnConfig,
+} from "./shared/ColumnConfigModal";
+
+// Re-export for consumers
+export type { TableColumnConfig };
 
 type GenericTableColorPickerFn = (
   val: any,
@@ -405,10 +413,18 @@ type Props = {
   rowStyleOverride?: Record<string, any>;
   extraInfoLookups?: Record<string, string>; //(lets us use codes for common strings)
   integratedGrades?: IntegratedGradeSettings;
+  /** Extra column sets that can be added via the column config modal */
+  extraColSets?: Record<string, Record<string, GenericTableColProps>>;
+  /** Callback when column configuration changes */
+  onColumnConfigChange?: (config: TableColumnConfig) => void;
+  /** Initial column configuration to apply */
+  initialColumnConfig?: TableColumnConfig;
+  /** Whether to show the column configuration button (default: false) */
+  showConfigureColumns?: boolean;
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
-  tableFields,
+  tableFields: tableFieldsIn,
   tableData,
   tableCopyId,
   cellTooltipMode,
@@ -416,6 +432,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
   rowStyleOverride,
   extraInfoLookups,
   integratedGrades,
+  extraColSets,
+  onColumnConfigChange,
+  initialColumnConfig,
+  showConfigureColumns = false,
 }) => {
   const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
@@ -424,6 +444,52 @@ const GenericTable: React.FunctionComponent<Props> = ({
   const [cellOverlayShowStates, setCellOverlayShowStates] = useState(
     {} as Record<string, boolean>
   );
+  const [showColumnConfig, setShowColumnConfig] = useState(false);
+  const [columnConfig, setColumnConfig] = useState<TableColumnConfig | undefined>(
+    initialColumnConfig
+  );
+
+  // Build tableFields from config or use the input tableFields
+  const tableFields = React.useMemo(() => {
+    if (!columnConfig || columnConfig.newCol.length === 0) {
+      return tableFieldsIn;
+    }
+
+    // Build custom tableFields from config
+    const result: Record<string, GenericTableColProps> = {};
+
+    // First, add all title columns from the original (they are not configurable)
+    Object.entries(tableFieldsIn).forEach(([key, colProps]) => {
+      if (colProps.isTitle) {
+        result[key] = colProps;
+      }
+    });
+
+    // Then add columns from config in order
+    columnConfig.newCol.forEach((colKey) => {
+      if (colKey.includes(".")) {
+        // Extra column set
+        const [setName, actualKey] = colKey.split(".", 2);
+        const colProps = extraColSets?.[setName]?.[actualKey];
+        if (colProps) {
+          result[colKey] = colProps;
+        }
+      } else {
+        // Regular tableFields column
+        const colProps = tableFieldsIn[colKey];
+        if (colProps && !colProps.isTitle) {
+          result[colKey] = colProps;
+        }
+      }
+    });
+
+    return result;
+  }, [tableFieldsIn, extraColSets, columnConfig]);
+
+  const handleColumnConfigSave = (config: TableColumnConfig) => {
+    setColumnConfig(config);
+    onColumnConfigChange?.(config);
+  };
 
   const tableId: string =
     tableCopyId || Math.random().toString(36).substring(8);
@@ -473,6 +539,26 @@ const GenericTable: React.FunctionComponent<Props> = ({
               size="sm"
             >
               <FontAwesomeIcon icon={faClipboard} />
+            </Button>
+          </OverlayTrigger>
+        );
+      }
+    }
+    function insertConfigureButton(insert: boolean) {
+      if (!isRepeatingHeaderRow && insert && showConfigureColumns) {
+        const tooltip = (
+          <Tooltip id={`${toolTipId}-config`}>Configure columns</Tooltip>
+        );
+        return (
+          <OverlayTrigger placement="top" overlay={tooltip}>
+            <Button
+              className="float-left"
+              variant="outline-secondary"
+              size="sm"
+              onClick={() => setShowColumnConfig(true)}
+              style={{ marginLeft: "4px" }}
+            >
+              <FontAwesomeIcon icon={faCog} />
             </Button>
           </OverlayTrigger>
         );
@@ -546,6 +632,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         >
           {maybeFormatColName(colProp.colName)}
           {insertCopyButton(index == 0)}
+          {insertConfigureButton(index == 0)}
           {index == 0 ? insertTooltipLockMode() : null}
         </th>
       );
@@ -960,17 +1047,27 @@ const GenericTable: React.FunctionComponent<Props> = ({
   const isResponsive = _.isNil(responsive) ? true : responsive;
   const isBordered = _.isNil(bordered) ? false : bordered;
   return (
-    <Table
-      bordered={isBordered}
-      responsive={isResponsive && lockMode != "row"}
-      id={tableId}
-      size="sm"
-    >
-      <thead>
-        <tr>{renderTableHeaders()}</tr>
-      </thead>
-      <tbody>{renderTableRows()}</tbody>
-    </Table>
+    <>
+      <Table
+        bordered={isBordered}
+        responsive={isResponsive && lockMode != "row"}
+        id={tableId}
+        size="sm"
+      >
+        <thead>
+          <tr>{renderTableHeaders()}</tr>
+        </thead>
+        <tbody>{renderTableRows()}</tbody>
+      </Table>
+      <ColumnConfigModal
+        show={showColumnConfig}
+        onHide={() => setShowColumnConfig(false)}
+        onSave={handleColumnConfigSave}
+        tableFields={tableFieldsIn}
+        extraColSets={extraColSets}
+        currentConfig={columnConfig}
+      />
+    </>
   );
 };
 export default GenericTable;

@@ -1535,6 +1535,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const table = (
     <GenericTable
+      showConfigureColumns={FeatureFlags.isActiveWindow(
+        FeatureFlags.tableConfigOptions
+      )}
       tableCopyId="playerLeaderboardTable"
       tableFields={CommonTableDefs.onOffIndividualTable(
         true,
