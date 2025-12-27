@@ -242,8 +242,9 @@ export class FilterPresetUtils {
 
   static readonly lineupLabelSortOrder: string[] = [
     "No Groupings",
+    "Manual Groupings",
     "Positional Groupings",
-    "Player Groupings",
+    "Combo Groupings",
   ];
 
   /** Filter/Query presets */
@@ -254,8 +255,14 @@ export class FilterPresetUtils {
         aggByPos: "",
       },
     },
-    "Grouped by On/Off Combos": {
-      label: "Player Groupings",
+    "With-Or-Without-You (manual mode)": {
+      label: "Manual Groupings",
+      lineupParams: {
+        aggByPos: "WOWY",
+      },
+    },
+    "With-Or-Without-You (auto mode)": {
+      label: "Manual Groupings",
       lineupParams: {
         aggByPos: "On-Off",
       },
@@ -291,19 +298,19 @@ export class FilterPresetUtils {
       },
     },
     "Grouped by Pairs": {
-      label: "Player Groupings",
+      label: "Combo Groupings",
       lineupParams: {
         aggByPos: "Pairs",
       },
     },
     "Grouped by Triples": {
-      label: "Player Groupings",
+      label: "Combo Groupings",
       lineupParams: {
         aggByPos: "Triples",
       },
     },
     "Grouped by Quads": {
-      label: "Player Groupings",
+      label: "Combo Groupings",
       lineupParams: {
         aggByPos: "Quads",
       },

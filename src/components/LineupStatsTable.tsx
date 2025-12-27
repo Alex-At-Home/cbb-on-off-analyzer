@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { NextPage } from "next";
 
 // Lodash:
-import _ from "lodash";
+import _, { truncate } from "lodash";
 
 // Bootstrap imports:
 
@@ -15,12 +15,20 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
 //@ts-ignore
 import Select, { components } from "react-select";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHandPointUp,
+  faMinusSquare,
+} from "@fortawesome/free-regular-svg-icons";
 
 // Component imports
 import GenericTable, { GenericTableOps } from "./GenericTable";
@@ -61,6 +69,7 @@ import PlayerSelector from "./shared/PlayerSelector";
 import ThemedSelect from "./shared/ThemedSelect";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import StickyRow from "./shared/StickyRow";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -251,9 +260,39 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultLineupAggByPos
       : startingState.aggByPos
   );
+  const [transAggregateByPos, setTransAggregateByPos] = useState(
+    _.isNil(startingState.aggByPos)
+      ? ParamDefaults.defaultLineupAggByPos
+      : startingState.aggByPos
+  );
+  useEffect(() => {
+    friendlyChange(() => {
+      setAggregateByPos(transAggregateByPos);
+      // If we're turning it on and there is no selection, then inject the top lineup:
+      if (aggregateByPos != "On-Off" && !onOffPlayerSel) {
+        setOnOffPlayerSel(
+          _.thru(dataEvent?.lineupStats?.lineups?.[0], (maybeLineup) => {
+            return maybeLineup
+              ? LineupTableUtils.buildCodesAndIds(maybeLineup)
+                  .map((p) => p.code)
+                  .join(";")
+              : "";
+          })
+        );
+      }
+      //(otherwise leave player selection so can toggle easily)
+    }, transAggregateByPos != aggregateByPos);
+  }, [transAggregateByPos]);
+
   const [onOffPlayerSel, setOnOffPlayerSel] = useState(
     startingState.onOffPlayerSel || ""
   );
+  const [wowyPlayerSel, setWowyPlayerSel] = useState(
+    startingState.wowyPlayerSel || ""
+  );
+
+  const [wowyOnPlayerSel, setWowyOnPlayerSel] = useState("");
+  const [wowyOffPlayerSel, setWowyOffPlayerSel] = useState("");
 
   const [showGameInfo, setShowGameInfo] = useState(
     _.isNil(startingState.showGameInfo)
@@ -286,6 +325,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       sortBy: sortBy,
       filter: filterStr,
       onOffPlayerSel,
+      wowyPlayerSel,
     };
     onChangeState(newState);
   }, [
@@ -303,6 +343,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     showGameInfo,
     showRawPts,
     onOffPlayerSel,
+    wowyPlayerSel,
   ]);
 
   // 3] Utils
@@ -579,6 +620,36 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         varStarterOnOffInfo = getStarterOnOff(
           varStartingLineup.map((p) => p.id)
         );
+      } else if (aggregateByPos == "WOWY") {
+        varStarterOnOffInfo = _.map(
+          wowyPlayerSel.split("|").filter((str) => str != ""),
+          (maybeOnOffSelStr) => {
+            const onOffFrags = maybeOnOffSelStr.split("^");
+            const onSelSet = new Set(
+              onOffFrags[0].split(";").filter((str) => str != "")
+            );
+            const offSelSet = new Set(
+              (onOffFrags[1] || "").split(";").filter((str) => str != "")
+            );
+            return [onSelSet, offSelSet];
+          }
+        );
+        const filteredCodes = (rosterStats.global || []).flatMap((p) => {
+          const codeId = p.player_array?.hits?.hits?.[0]?._source?.player;
+          return codeId &&
+            _.find(
+              varStarterOnOffInfo,
+              ([on, off]) => on.has(codeId.code) || off.has(codeId.code)
+            )
+            ? [codeId as PlayerCodeId]
+            : [];
+        });
+
+        varStartingLineup = PositionUtils.orderLineup(
+          filteredCodes,
+          positionFromPlayerKey,
+          teamSeasonLookup
+        );
       }
 
       const enrichedLineupsPhase1 = _.chain(
@@ -651,6 +722,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 return getTriples((sortedCodesAndIds || []).map((p) => p.id));
               case "Quads":
                 return getQuads((sortedCodesAndIds || []).map((p) => p.id));
+              case "WOWY":
+                const wowy = getStarterOnOffDiff(
+                  (sortedCodesAndIds || []).map((p) => p.code), //(works with codes instead of ids!)
+                  varStarterOnOffInfo
+                );
+                return wowy;
               case "On-Off":
                 return getStarterOnOffDiff(
                   (sortedCodesAndIds || []).map((p) => p.id),
@@ -676,6 +753,24 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   };
                 }
               });
+            } else if (aggregateByPos == "WOWY") {
+              //(works with codes unlike On-Off which uses ids)
+              const keySet = new Set(keys);
+              const wowy = _.flatMap(varStartingLineup, (codeId) => {
+                if (keySet.has(codeId.code)) {
+                  return [codeId];
+                } else if (keySet.has(`-${codeId.code}`)) {
+                  return [
+                    {
+                      ...codeId,
+                      id: `-${codeId.id}`,
+                    },
+                  ];
+                } else {
+                  return [];
+                }
+              });
+              return wowy;
             } else {
               return keys.flatMap((keyPos) =>
                 (sortedCodesAndIds || []).filter(
@@ -779,12 +874,94 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               }
             : {
                 ...LineupUtils.calculateAggregatedLineupStats(lineups),
-                off_title: (
-                  <div>
-                    Lineups with [<b>{aggregateByPos}</b>]: {maybeLineBreak}
-                    <b>{title}</b>
-                  </div>
-                ),
+                off_title:
+                  aggregateByPos == "WOWY" ? (
+                    <div>
+                      <OverlayTrigger
+                        placement="auto"
+                        overlay={
+                          <Tooltip id={`${posKey}Inject`}>
+                            Set on/off dropdowns based on this lineup combo
+                          </Tooltip>
+                        }
+                      >
+                        <small>
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const strs = (posKey || "").split(" / ");
+                              const [onStr, offStr] = _.partition(
+                                strs,
+                                (str) => !_.startsWith(str, "-")
+                              );
+                              const onEntry = onStr.join(";");
+                              const offEntry = offStr
+                                .map((str) => str.substring(1)) //(remove leading -)
+                                .join(";");
+                              setWowyOnPlayerSel(onEntry);
+                              setWowyOffPlayerSel(offEntry);
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faHandPointUp} />
+                          </a>
+                        </small>
+                      </OverlayTrigger>{" "}
+                      <OverlayTrigger
+                        placement="auto"
+                        overlay={
+                          <Tooltip id={`${posKey}Remove`}>
+                            Remove this lineup combo [{posKey}]
+                          </Tooltip>
+                        }
+                      >
+                        <small>
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const strs = (posKey || "").split(" / ");
+                              const [onStr, offStr] = _.partition(
+                                strs,
+                                (str) => !_.startsWith(str, "-")
+                              );
+                              const entry =
+                                onStr.join(";") +
+                                "^" +
+                                offStr
+                                  .map((str) => str.substring(1)) //(remove leading -)
+                                  .join(";");
+                              const wowyEntries = wowyPlayerSel.split("|");
+                              const newWowyEntries = wowyEntries.filter(
+                                (e) => e != entry
+                              );
+                              if (wowyEntries.length != newWowyEntries.length) {
+                                friendlyChange(
+                                  () =>
+                                    setWowyPlayerSel(newWowyEntries.join("|")),
+                                  true
+                                );
+                              }
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faMinusSquare} />
+                          </a>
+                        </small>
+                      </OverlayTrigger>{" "}
+                      Lineups with: {maybeLineBreak}
+                      <b>{title}</b>
+                    </div>
+                  ) : aggregateByPos == "On-Off" ? (
+                    <div>
+                      Lineups with: {maybeLineBreak}
+                      <b>{title}</b>
+                    </div>
+                  ) : (
+                    <div>
+                      Lineups with [<b>{aggregateByPos}</b>]: {maybeLineBreak}
+                      <b>{title}</b>
+                    </div>
+                  ),
                 def_title: undefined,
               };
         })
@@ -814,59 +991,83 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         .reduce((acc, offPoss) => (offPoss > acc ? offPoss : acc))
         .value();
 
-      const tableData = refilteredLineups.flatMap((stats, index) => {
-        // Re-enrich if not total
-        if (stats.posKey != LineupTableUtils.totalLineupId) {
-          TableDisplayUtils.injectPlayTypeInfo(
-            stats,
-            false,
-            false,
-            teamSeasonLookup
-          ); //(inject assist numbers)
-        }
-        if (showRawPts) {
-          TableDisplayUtils.turnPppIntoRawPts(stats, adjustForLuck);
-        }
+      const tableData = refilteredLineups
+        .flatMap((stats, index) => {
+          // Re-enrich if not total
+          if (stats.posKey != LineupTableUtils.totalLineupId) {
+            TableDisplayUtils.injectPlayTypeInfo(
+              stats,
+              false,
+              false,
+              teamSeasonLookup
+            ); //(inject assist numbers)
+          }
+          if (showRawPts) {
+            TableDisplayUtils.turnPppIntoRawPts(stats, adjustForLuck);
+          }
 
-        const showRepeatingHeaderThisLine =
-          showRepeatingHeader && !showGameInfo && index > 0 && 0 == index % 5;
+          const showRepeatingHeaderThisLine =
+            showRepeatingHeader && !showGameInfo && index > 0 && 0 == index % 5;
 
-        return _.flatten([
-          showGameInfo && showRepeatingHeader
-            ? [
-                GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingLineupHeaderFields,
-                  "small"
-                ),
-              ]
-            : [],
-          showRepeatingHeaderThisLine
-            ? [
-                GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingLineupHeaderFields,
-                  "small"
-                ),
-                GenericTableOps.buildRowSeparator(),
-              ]
-            : [],
-          [GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn)],
-          [GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn)],
-          showGameInfo
+          return _.flatten([
+            showGameInfo && showRepeatingHeader
+              ? [
+                  GenericTableOps.buildHeaderRepeatRow(
+                    CommonTableDefs.repeatingLineupHeaderFields,
+                    "small"
+                  ),
+                ]
+              : [],
+            showRepeatingHeaderThisLine
+              ? [
+                  GenericTableOps.buildHeaderRepeatRow(
+                    CommonTableDefs.repeatingLineupHeaderFields,
+                    "small"
+                  ),
+                  GenericTableOps.buildRowSeparator(),
+                ]
+              : [],
+            [GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn)],
+            [GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn)],
+            showGameInfo
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <GameInfoDiagView
+                      oppoList={stats.game_info || []}
+                      orderedOppoList={_.clone(orderedMutableOppoList)}
+                      params={startingState}
+                      maxOffPoss={comboGlobalMaxPoss}
+                    />,
+                    "small"
+                  ),
+                ]
+              : [],
+            [GenericTableOps.buildRowSeparator()],
+          ]);
+        })
+        .concat(
+          aggregateByPos == "WOWY"
             ? [
                 GenericTableOps.buildTextRow(
-                  <GameInfoDiagView
-                    oppoList={stats.game_info || []}
-                    orderedOppoList={_.clone(orderedMutableOppoList)}
-                    params={startingState}
-                    maxOffPoss={comboGlobalMaxPoss}
-                  />,
-                  "small"
+                  <span>
+                    WOWY: add entries to the table with the '+' button.{" "}
+                    {_.isEmpty(refilteredLineups) ? undefined : (
+                      <a
+                        href=""
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setWowyPlayerSel("");
+                        }}
+                      >
+                        Clear all
+                      </a>
+                    )}
+                  </span>,
+                  "small text-center"
                 ),
               ]
-            : [],
-          [GenericTableOps.buildRowSeparator()],
-        ]);
-      });
+            : []
+        );
 
       return (
         <GenericTable
@@ -893,6 +1094,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     showGameInfo,
     showRepeatingHeader,
     onOffPlayerSel,
+    wowyPlayerSel,
     dataEvent,
   ]);
 
@@ -1164,31 +1366,19 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           isLabelOnly: true,
         },
         {
-          label: "On/Off",
+          label: "WOWY",
           tooltip:
             aggregateByPos == "On-Off"
               ? "Clear combo aggregation"
-              : "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
-          toggled: aggregateByPos == "On-Off",
+              : "Aggregate lineups by different hand-selected combinations of players",
+          toggled: aggregateByPos == "On-Off" || aggregateByPos == "WOWY",
           onClick: () =>
             friendlyChange(() => {
-              setAggregateByPos(aggregateByPos == "On-Off" ? "" : "On-Off");
-              // If we're turning it on and there is no selection, then inject the top lineup:
-              if (aggregateByPos != "On-Off" && !onOffPlayerSel) {
-                setOnOffPlayerSel(
-                  _.thru(
-                    dataEvent?.lineupStats?.lineups?.[0],
-                    (maybeLineup) => {
-                      return maybeLineup
-                        ? LineupTableUtils.buildCodesAndIds(maybeLineup)
-                            .map((p) => p.code)
-                            .join(";")
-                        : "";
-                    }
-                  )
-                );
-              }
-              //(otherwise leave player selection so can toggle easily)
+              setAggregateByPos(
+                aggregateByPos == "On-Off" || aggregateByPos == "WOWY"
+                  ? ""
+                  : "WOWY"
+              );
             }, true),
         },
       ]}
@@ -1393,9 +1583,120 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             {optionsDropdown}
           </Form.Group>
         </StickyRow>
+        {aggregateByPos == "WOWY" && !_.isEmpty(rosterStats.global) ? (
+          <Form.Group as={Row} className="mt-3">
+            <Form.Group as={Col} xs={12}>
+              <div
+                className="d-flex flex-wrap align-items-center"
+                style={{ gap: "0.5rem" }}
+              >
+                <InputGroup className="flex-nowrap" style={{ width: "auto" }}>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="wowyOn">
+                      <small>On</small>
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <PlayerSelector
+                    emptyLabel={"Pick 'on' players"}
+                    playerSelectionStr={wowyOnPlayerSel}
+                    players={(rosterStats.global || []).flatMap((p) => {
+                      const codeId =
+                        p.player_array?.hits?.hits?.[0]?._source?.player;
+                      return codeId ? [codeId as PlayerCodeId] : [];
+                    })}
+                    onChangePlayerSelection={(
+                      newPlayerSelectionStr: string
+                    ) => {
+                      setWowyOnPlayerSel(newPlayerSelectionStr);
+                    }}
+                  />
+                </InputGroup>
+                <InputGroup className="flex-nowrap" style={{ width: "auto" }}>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="wowyOff">
+                      <small>Off</small>
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <PlayerSelector
+                    emptyLabel={"Pick 'off' players"}
+                    playerSelectionStr={wowyOffPlayerSel}
+                    players={(rosterStats.global || []).flatMap((p) => {
+                      const codeId =
+                        p.player_array?.hits?.hits?.[0]?._source?.player;
+                      return codeId ? [codeId as PlayerCodeId] : [];
+                    })}
+                    onChangePlayerSelection={(
+                      newPlayerSelectionStr: string
+                    ) => {
+                      setWowyOffPlayerSel(newPlayerSelectionStr);
+                    }}
+                  />
+                  <InputGroup.Append className="pl-2">
+                    <Button
+                      variant="outline-secondary"
+                      disabled={!wowyOnPlayerSel && !wowyOffPlayerSel}
+                      onClick={() => {
+                        const newSelStr = `${wowyOnPlayerSel}^${wowyOffPlayerSel}`;
+                        const newWowyPlayerSel = wowyPlayerSel
+                          .split("|")
+                          .filter((str) => str && str != newSelStr)
+                          .concat([newSelStr])
+                          .join("|");
+
+                        if (newWowyPlayerSel != wowyPlayerSel) {
+                          friendlyChange(() => {
+                            setWowyPlayerSel(newWowyPlayerSel);
+                            setWowyOnPlayerSel("");
+                            setWowyOffPlayerSel("");
+                          }, true);
+                        }
+                      }}
+                    >
+                      <OverlayTrigger
+                        placement="auto"
+                        overlay={
+                          <Tooltip id="wowyAdd">
+                            {!wowyOnPlayerSel && !wowyOffPlayerSel
+                              ? "Pick on/off players first, then add them to table"
+                              : "Add this on/off combo to the table"}
+                          </Tooltip>
+                        }
+                      >
+                        <FontAwesomeIcon icon={faPlusCircle} />
+                      </OverlayTrigger>
+                    </Button>
+                  </InputGroup.Append>
+                  <InputGroup.Append className="pl-2 pt-2">
+                    <Form.Check
+                      type="switch"
+                      id="wowyAutoMode"
+                      checked={transAggregateByPos == "On-Off"}
+                      onChange={() => {
+                        setTransAggregateByPos("On-Off");
+                      }}
+                      label={
+                        <OverlayTrigger
+                          placement="auto"
+                          overlay={
+                            <Tooltip id="wowyAutoSwitch">
+                              Switch to automatic mode (you pick the players and
+                              the table entries are auto-generated)
+                            </Tooltip>
+                          }
+                        >
+                          <span>Auto Mode</span>
+                        </OverlayTrigger>
+                      }
+                    />
+                  </InputGroup.Append>
+                </InputGroup>
+              </div>
+            </Form.Group>
+          </Form.Group>
+        ) : null}
         {aggregateByPos == "On-Off" && !_.isEmpty(rosterStats.global) ? (
           <Form.Group as={Row} className="mt-3">
-            <Form.Group as={Col} xs={10}>
+            <Form.Group as={Col} xs={12}>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text id="onOff">
@@ -1414,6 +1715,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                     setOnOffPlayerSel(newPlayerSelectionStr);
                   }}
                 />
+                <InputGroup.Append className="pl-4 pt-2">
+                  <Form.Check
+                    type="switch"
+                    id="wowyAutoMode"
+                    checked={transAggregateByPos == "On-Off"}
+                    onChange={() => {
+                      setTransAggregateByPos("WOWY");
+                    }}
+                    label={
+                      <OverlayTrigger
+                        placement="auto"
+                        overlay={
+                          <Tooltip id="wowyManauSwitch">
+                            Switch to manual mode (you pick the on and off
+                            players and add to the table)
+                          </Tooltip>
+                        }
+                      >
+                        <span>Auto Mode</span>
+                      </OverlayTrigger>
+                    }
+                  />
+                </InputGroup.Append>
               </InputGroup>
             </Form.Group>
           </Form.Group>

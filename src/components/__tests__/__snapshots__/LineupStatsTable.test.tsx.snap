@@ -711,10 +711,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "tooltip": "Other combination features",
               },
               Object {
-                "label": "On/Off",
+                "label": "WOWY",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                "tooltip": "Aggregate lineups by different hand-selected combinations of players",
               },
             ]
           }
@@ -4777,10 +4777,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "tooltip": "Other combination features",
               },
               Object {
-                "label": "On/Off",
+                "label": "WOWY",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                "tooltip": "Aggregate lineups by different hand-selected combinations of players",
               },
             ]
           }
@@ -8323,10 +8323,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Other combination features",
               },
               Object {
-                "label": "On/Off",
+                "label": "WOWY",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                "tooltip": "Aggregate lineups by different hand-selected combinations of players",
               },
             ]
           }
@@ -11567,10 +11567,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Other combination features",
               },
               Object {
-                "label": "On/Off",
+                "label": "WOWY",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                "tooltip": "Aggregate lineups by different hand-selected combinations of players",
               },
             ]
           }
@@ -14832,10 +14832,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Other combination features",
               },
               Object {
-                "label": "On/Off",
+                "label": "WOWY",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                "tooltip": "Aggregate lineups by different hand-selected combinations of players",
               },
             ]
           }
@@ -18982,10 +18982,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Other combination features",
               },
               Object {
-                "label": "On/Off",
+                "label": "WOWY",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                "tooltip": "Aggregate lineups by different hand-selected combinations of players",
               },
             ]
           }

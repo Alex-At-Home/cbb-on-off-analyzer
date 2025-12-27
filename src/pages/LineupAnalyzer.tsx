@@ -153,6 +153,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
             ? ["showGameInfo"]
             : [],
           !rawParams.onOffPlayerSel ? ["onOffPlayerSel"] : [],
+          !rawParams.wowyPlayerSel ? ["wowyPlayerSel"] : [],
           rawParams.presetMode == ParamDefaults.defaultPresetMode
             ? ["presetMode"]
             : [],

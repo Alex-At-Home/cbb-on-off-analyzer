@@ -218,6 +218,7 @@ export type LineupFilterParams = {
   // Other features:
   aggByPos?: string;
   onOffPlayerSel?: string;
+  wowyPlayerSel?: string; //on^off| where on/off are ;-sep-lists
   showGameInfo?: boolean;
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
 };

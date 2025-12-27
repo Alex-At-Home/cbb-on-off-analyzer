@@ -96,6 +96,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     filter: startFilter,
     showOff: startShowOff,
     showRawPts: startShowRawPts,
+    onOffPlayerSel: startOnOffPlayerSel,
+    wowyPlayerSel: startWowyPlayerSel,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -116,6 +118,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       filter: startFilter,
       showOff: startShowOff,
       showRawPts: startShowRawPts,
+      onOffPlayerSel: startOnOffPlayerSel,
+      wowyPlayerSel: startWowyPlayerSel,
       //(note doesn't include the actual game query params)
     };
   };
