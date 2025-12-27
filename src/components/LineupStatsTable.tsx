@@ -1631,6 +1631,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       setWowyOffPlayerSel(newPlayerSelectionStr);
                     }}
                   />
+                </InputGroup>
+                <InputGroup className="flex-nowrap" style={{ width: "auto" }}>
                   <InputGroup.Append className="pl-2">
                     <Button
                       variant="outline-secondary"
