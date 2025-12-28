@@ -10,11 +10,29 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
 
+// Drag and drop
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 // Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowAltCircleUp,
-  faArrowAltCircleDown,
+  faGripVertical,
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
@@ -24,8 +42,10 @@ import styles from "./ColumnConfigModal.module.css";
 
 /** Serializable config that can be used to reconstruct column layout */
 export type TableColumnConfig = {
-  /** Array of column keys: either "colKey" for tableFields, or "setName.colKey" for extraColSets */
+  /** Array of column keys in order: either "colKey" for tableFields, or "setName.colKey" for extraColSets */
   newCol: Array<string>;
+  /** Optional array of disabled column keys (if not present, all columns in newCol are enabled) */
+  disabledCols?: Array<string>;
 };
 
 type ColumnEntry = {
@@ -44,6 +64,108 @@ type Props = {
   tableFields: Record<string, GenericTableColProps>;
   extraColSets?: Record<string, Record<string, GenericTableColProps>>;
   currentConfig?: TableColumnConfig;
+};
+
+// Sortable row component - defined outside to prevent recreation on every render
+type SortableColumnRowProps = {
+  entry: ColumnEntry;
+  index: number;
+  onToggleEnabled: (index: number) => void;
+  onRemoveExtraColumn: (index: number) => void;
+  getDisplayName: (entry: ColumnEntry) => string;
+};
+
+const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
+  entry,
+  index,
+  onToggleEnabled,
+  onRemoveExtraColumn,
+  getDisplayName,
+}) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: entry.key });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  const isSeparator =
+    entry.colProps.colName === "" && entry.colProps.toolTip === "";
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`${styles.columnRow} ${
+        !entry.enabled ? styles.columnRowDisabled : ""
+      } ${isDragging ? styles.dragging : ""}`}
+    >
+      {/* Switch (enabled/disabled) */}
+      <div className={styles.switchCell}>
+        <Form.Check
+          type="switch"
+          id={`column-switch-${entry.key}`}
+          checked={entry.enabled}
+          onChange={() => {
+            onToggleEnabled(index);
+          }}
+        />
+      </div>
+
+      {/* Drag handle */}
+      <div className={styles.dragHandle} {...attributes} {...listeners}>
+        <FontAwesomeIcon icon={faGripVertical} />
+      </div>
+
+      {/* Old checkbox - kept for reference
+      <div className={styles.checkboxCell}>
+        <Form.Check
+          type="checkbox"
+          checked={entry.enabled}
+          onChange={() => onToggleEnabled(index)}
+        />
+      </div>
+      */}
+
+      {/* Column name - also grabbable */}
+      <div
+        className={`${styles.nameCell} ${styles.grabbable} ${
+          isSeparator ? styles.separatorName : ""
+        }`}
+        {...attributes}
+        {...listeners}
+      >
+        {getDisplayName(entry)}
+      </div>
+
+      {/* Tooltip/Description */}
+      <div className={styles.descriptionCell}>{entry.colProps.toolTip}</div>
+
+      {/* Delete button for extra columns */}
+      <div
+        className={styles.deleteCell}
+        onPointerDown={(e) => e.stopPropagation()}
+      >
+        {entry.isFromExtraSet && (
+          <Button
+            variant="outline-danger"
+            size="sm"
+            onClick={() => onRemoveExtraColumn(index)}
+            style={{ padding: "2px 6px" }}
+          >
+            <FontAwesomeIcon icon={faTrash} size="sm" />
+          </Button>
+        )}
+      </div>
+    </div>
+  );
 };
 
 const ColumnConfigModal: React.FunctionComponent<Props> = ({
@@ -85,22 +207,26 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     let separatorCount = 0;
     const entries: ColumnEntry[] = [];
     const usedKeys = new Set(config.newCol);
+    const disabledKeys = new Set(config.disabledCols || []);
 
     // First, add columns from config in order
     config.newCol.forEach((colKey) => {
+      const isEnabled = !disabledKeys.has(colKey);
+
       if (colKey.includes(".")) {
         // Extra column set
         const [setName, actualKey] = colKey.split(".", 2);
         const colProps = extraColSets?.[setName]?.[actualKey];
         if (colProps) {
-          const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+          const isSeparator =
+            colProps.colName === "" && colProps.toolTip === "";
           if (isSeparator) separatorCount++;
 
           entries.push({
             key: colKey,
             displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
             colProps,
-            enabled: true,
+            enabled: isEnabled,
             isFromExtraSet: true,
             extraSetName: setName,
           });
@@ -109,14 +235,15 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         // Regular tableFields column
         const colProps = tableFields[colKey];
         if (colProps && !colProps.isTitle) {
-          const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+          const isSeparator =
+            colProps.colName === "" && colProps.toolTip === "";
           if (isSeparator) separatorCount++;
 
           entries.push({
             key: colKey,
             displayKey: isSeparator ? `Separator ${separatorCount}` : colKey,
             colProps,
-            enabled: true,
+            enabled: isEnabled,
             isFromExtraSet: false,
           });
         }
@@ -164,36 +291,41 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     }
   }, [show, tableFields, extraColSets, currentConfig]);
 
-  const handleMoveUp = (index: number) => {
-    if (index <= 0) return;
-    const newColumns = [...columns];
-    [newColumns[index - 1], newColumns[index]] = [
-      newColumns[index],
-      newColumns[index - 1],
-    ];
-    setColumns(newColumns);
+  // Drag and drop sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8, // 8px movement required before drag starts
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      const oldIndex = columns.findIndex((c) => c.key === active.id);
+      const newIndex = columns.findIndex((c) => c.key === over.id);
+      setColumns(arrayMove(columns, oldIndex, newIndex));
+    }
   };
 
-  const handleMoveDown = (index: number) => {
-    if (index >= columns.length - 1) return;
-    const newColumns = [...columns];
-    [newColumns[index], newColumns[index + 1]] = [
-      newColumns[index + 1],
-      newColumns[index],
-    ];
-    setColumns(newColumns);
-  };
+  const handleToggleEnabled = React.useCallback((index: number) => {
+    setColumns((prevColumns) => {
+      const newColumns = [...prevColumns];
+      newColumns[index] = {
+        ...newColumns[index],
+        enabled: !newColumns[index].enabled,
+      };
+      return newColumns;
+    });
+  }, []);
 
-  const handleToggleEnabled = (index: number) => {
-    const newColumns = [...columns];
-    newColumns[index] = { ...newColumns[index], enabled: !newColumns[index].enabled };
-    setColumns(newColumns);
-  };
-
-  const handleRemoveExtraColumn = (index: number) => {
-    const newColumns = columns.filter((_, i) => i !== index);
-    setColumns(newColumns);
-  };
+  const handleRemoveExtraColumn = React.useCallback((index: number) => {
+    setColumns((prevColumns) => prevColumns.filter((_, i) => i !== index));
+  }, []);
 
   const handleAddExtraColumn = (setName: string, colKey: string) => {
     const colProps = extraColSets?.[setName]?.[colKey];
@@ -229,8 +361,10 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   };
 
   const handleSave = () => {
+    const disabledCols = columns.filter((c) => !c.enabled).map((c) => c.key);
     const config: TableColumnConfig = {
-      newCol: columns.filter((c) => c.enabled).map((c) => c.key),
+      newCol: columns.map((c) => c.key), // All columns in order
+      ...(disabledCols.length > 0 ? { disabledCols } : {}), // Only include if there are disabled columns
     };
     onSave(config);
     onHide();
@@ -293,80 +427,33 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         <div className={styles.columnList}>
           {/* Header row */}
           <div className={styles.headerRow}>
-            <div className={styles.headerSpacer1}></div>
-            <div className={styles.headerSpacer2}></div>
+            <div className={styles.headerSwitchSpacer}></div>
+            <div className={styles.headerDragSpacer}></div>
             <div className={styles.headerName}>Name</div>
             <div className={styles.headerDescription}>Description</div>
             <div className={styles.headerDeleteSpacer}></div>
           </div>
-          {columns.map((entry, index) => {
-            const isSeparator =
-              entry.colProps.colName === "" && entry.colProps.toolTip === "";
-
-            return (
-              <div
-                key={entry.key + index}
-                className={`${styles.columnRow} ${!entry.enabled ? styles.columnRowDisabled : ""}`}
-              >
-                {/* Move buttons */}
-                <div className={styles.moveButtons}>
-                  <Button
-                    variant="outline-secondary"
-                    size="sm"
-                    disabled={index === 0}
-                    onClick={() => handleMoveUp(index)}
-                    style={{ padding: "2px 6px" }}
-                  >
-                    <FontAwesomeIcon icon={faArrowAltCircleUp} size="sm" />
-                  </Button>
-                  <Button
-                    variant="outline-secondary"
-                    size="sm"
-                    disabled={index === columns.length - 1}
-                    onClick={() => handleMoveDown(index)}
-                    style={{ padding: "2px 6px" }}
-                  >
-                    <FontAwesomeIcon icon={faArrowAltCircleDown} size="sm" />
-                  </Button>
-                </div>
-
-                {/* Checkbox */}
-                <div className={styles.checkboxCell}>
-                  <Form.Check
-                    type="checkbox"
-                    checked={entry.enabled}
-                    onChange={() => handleToggleEnabled(index)}
-                  />
-                </div>
-
-                {/* Column name */}
-                <div
-                  className={`${styles.nameCell} ${isSeparator ? styles.separatorName : ""}`}
-                >
-                  {getColumnDisplayName(entry)}
-                </div>
-
-                {/* Tooltip/Description */}
-                <div className={styles.descriptionCell}>
-                  {entry.colProps.toolTip}
-                </div>
-
-                {/* Delete button for extra columns */}
-                <div className={styles.deleteCell}>
-                  {entry.isFromExtraSet && (
-                    <Button
-                      variant="outline-danger"
-                      size="sm"
-                      onClick={() => handleRemoveExtraColumn(index)}
-                      style={{ padding: "2px 6px" }}
-                    >
-                      <FontAwesomeIcon icon={faTrash} size="sm" />
-                    </Button>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={columns.map((c) => c.key)}
+              strategy={verticalListSortingStrategy}
+            >
+              {columns.map((entry, index) => (
+                <SortableColumnRow
+                  key={entry.key}
+                  entry={entry}
+                  index={index}
+                  onToggleEnabled={handleToggleEnabled}
+                  onRemoveExtraColumn={handleRemoveExtraColumn}
+                  getDisplayName={getColumnDisplayName}
+                />
+              ))}
+            </SortableContext>
+          </DndContext>
         </div>
 
         {/* Extra Column Sets */}
@@ -453,4 +540,3 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 };
 
 export default ColumnConfigModal;
-

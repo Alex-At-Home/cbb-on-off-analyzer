@@ -53,22 +53,67 @@
   background-color: #333333;
 }
 
-.moveButtons {
-  width: 80px;
+.dragHandle {
+  width: 32px;
   display: flex;
-  gap: 2px;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  cursor: grab;
+  color: #adb5bd;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
 }
 
-.checkboxCell {
-  width: 32px;
+.dragHandle:hover {
+  color: #495057;
+  background-color: #e9ecef;
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+}
+
+[data-theme='dark'] .dragHandle {
+  color: #6c757d;
+}
+
+[data-theme='dark'] .dragHandle:hover {
+  color: #e5e5e5;
+  background-color: #525252;
+}
+
+.dragging {
+  opacity: 0.5;
+  background-color: #e3f2fd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .dragging {
+  background-color: #2d3748;
+}
+
+.switchCell {
+  width: 48px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nameCell {
   flex: 0 0 150px;
   min-width: 150px;
   font-weight: 500;
+}
+
+.grabbable {
+  cursor: grab;
+}
+
+.grabbable:active {
+  cursor: grabbing;
 }
 
 .separatorName {
@@ -97,11 +142,11 @@
   flex-shrink: 0;
 }
 
-.headerSpacer1 {
-  width: 80px;
+.headerSwitchSpacer {
+  width: 48px;
 }
 
-.headerSpacer2 {
+.headerDragSpacer {
   width: 32px;
 }
 

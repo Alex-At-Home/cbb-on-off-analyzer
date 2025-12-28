@@ -457,6 +457,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
 
     // Build custom tableFields from config
     const result: Record<string, GenericTableColProps> = {};
+    const disabledKeys = new Set(columnConfig.disabledCols || []);
 
     // First, add all title columns from the original (they are not configurable)
     Object.entries(tableFieldsIn).forEach(([key, colProps]) => {
@@ -465,8 +466,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
       }
     });
 
-    // Then add columns from config in order
+    // Then add enabled columns from config in order
     columnConfig.newCol.forEach((colKey) => {
+      // Skip disabled columns
+      if (disabledKeys.has(colKey)) return;
+
       if (colKey.includes(".")) {
         // Extra column set
         const [setName, actualKey] = colKey.split(".", 2);
