@@ -132,17 +132,19 @@ function getStarterOnOff(
     new Set(ids),
     new Set<string>(),
   ];
-  return (ids.length > 4 ? [startingPair] : []).concat(
-    all.map((combo) => {
-      const comboBreakdown = new Set(combo.split(" / "));
-      const missing = ids.filter((id) => !comboBreakdown.has(id));
-      const retVal: [Set<string>, Set<string>] = [
-        comboBreakdown,
-        new Set(missing),
-      ];
-      return retVal;
-    })
-  );
+  return (ids.length > 4 ? [startingPair] : [])
+    .concat(
+      all.map((combo) => {
+        const comboBreakdown = new Set(combo.split(" / "));
+        const missing = ids.filter((id) => !comboBreakdown.has(id));
+        const retVal: [Set<string>, Set<string>] = [
+          comboBreakdown,
+          new Set(missing),
+        ];
+        return retVal;
+      })
+    )
+    .concat([[startingPair[1], startingPair[0]]]); //(all off!)
 }
 
 /** For a given lineup, figures out which starter-on-off combos it matches */
@@ -1071,10 +1073,47 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : []
+        )
+        .concat(
+          aggregateByPos == "On-Off"
+            ? [
+                GenericTableOps.buildTextRow(
+                  <span>
+                    WOWY, auto mode:{" "}
+                    {_.isEmpty(refilteredLineups) ? undefined : (
+                      <a
+                        href=""
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const buildStr = getStarterOnOff(
+                            varStartingLineup.map((p) => p.code)
+                          )
+                            .map(([on, off]) => {
+                              const fragOn = Array.from(on).join(";");
+                              const fragOff = Array.from(off).join(";");
+                              return `${fragOn}^${fragOff}`;
+                            })
+                            .join("|");
+
+                          setWowyPlayerSel(buildStr);
+                          setTransAggregateByPos("WOWY");
+                        }}
+                      >
+                        Convert entries to manual
+                      </a>
+                    )}
+                  </span>,
+                  "small text-center"
+                ),
+              ]
+            : []
         );
 
       return (
         <GenericTable
+          showConfigureColumns={FeatureFlags.isActiveWindow(
+            FeatureFlags.tableConfigOptions
+          )}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
           tableData={tableData}
