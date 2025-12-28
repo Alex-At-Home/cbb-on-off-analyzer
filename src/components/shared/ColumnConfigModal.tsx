@@ -9,8 +9,6 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 
 // Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { GenericTableColProps } from "../GenericTable";
+import styles from "./ColumnConfigModal.module.css";
 
 /** Serializable config that can be used to reconstruct column layout */
 export type TableColumnConfig = {
@@ -237,27 +236,42 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     onHide();
   };
 
-  const getColumnDisplayName = (entry: ColumnEntry): React.ReactNode => {
+  // Extract text from React nodes, handling nested elements
+  const extractTextFromNode = (node: React.ReactNode): string => {
+    if (typeof node === "string") return node;
+    if (typeof node === "number") return String(node);
+    if (!node) return "";
+    if (Array.isArray(node)) return node.map(extractTextFromNode).join("");
+    if (React.isValidElement(node)) {
+      const children = node.props?.children;
+      return extractTextFromNode(children);
+    }
+    return "";
+  };
+
+  const getColumnDisplayName = (entry: ColumnEntry): string => {
     const { colProps, displayKey, isFromExtraSet, extraSetName } = entry;
     const isSeparator = colProps.colName === "" && colProps.toolTip === "";
 
     if (isSeparator) {
-      return <em className="text-muted">{displayKey}</em>;
+      return displayKey;
     }
 
-    const name =
-      typeof colProps.colName === "string"
-        ? colProps.colName
-        : displayKey;
+    let name: string;
+    if (typeof colProps.colName === "string") {
+      name = colProps.colName;
+    } else {
+      // Extract text from React element and replace line separators
+      const extractedText = extractTextFromNode(colProps.colName);
+      // Replace common line separator patterns with " | "
+      name = extractedText.replace(/\s*\n\s*/g, " | ").trim() || displayKey;
+    }
 
-    return (
-      <span>
-        {name}
-        {isFromExtraSet && (
-          <small className="text-muted ml-1"> ({extraSetName})</small>
-        )}
-      </span>
-    );
+    if (isFromExtraSet && extraSetName) {
+      return `${name} (${extraSetName})`;
+    }
+
+    return name;
   };
 
   const extraSetNames = Object.keys(extraColSets || {});
@@ -276,37 +290,26 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       </Modal.Header>
       <Modal.Body>
         {/* Column List */}
-        <div
-          style={{
-            maxHeight: "400px",
-            overflowY: "auto",
-            border: "1px solid #dee2e6",
-            borderRadius: "4px",
-            padding: "8px",
-          }}
-        >
+        <div className={styles.columnList}>
+          {/* Header row */}
+          <div className={styles.headerRow}>
+            <div className={styles.headerSpacer1}></div>
+            <div className={styles.headerSpacer2}></div>
+            <div className={styles.headerName}>Name</div>
+            <div className={styles.headerDescription}>Description</div>
+            <div className={styles.headerDeleteSpacer}></div>
+          </div>
           {columns.map((entry, index) => {
             const isSeparator =
               entry.colProps.colName === "" && entry.colProps.toolTip === "";
-            const hasTooltip = entry.colProps.toolTip !== "";
 
-            const rowContent = (
+            return (
               <div
                 key={entry.key + index}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "6px 8px",
-                  borderBottom:
-                    index < columns.length - 1
-                      ? "1px solid #eee"
-                      : "none",
-                  backgroundColor: entry.enabled ? "transparent" : "#f8f9fa",
-                  opacity: entry.enabled ? 1 : 0.6,
-                }}
+                className={`${styles.columnRow} ${!entry.enabled ? styles.columnRowDisabled : ""}`}
               >
                 {/* Move buttons */}
-                <div style={{ marginRight: "8px", display: "flex", gap: "2px" }}>
+                <div className={styles.moveButtons}>
                   <Button
                     variant="outline-secondary"
                     size="sm"
@@ -328,58 +331,51 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                 </div>
 
                 {/* Checkbox */}
-                <Form.Check
-                  type="checkbox"
-                  checked={entry.enabled}
-                  onChange={() => handleToggleEnabled(index)}
-                  style={{ marginRight: "8px" }}
-                />
+                <div className={styles.checkboxCell}>
+                  <Form.Check
+                    type="checkbox"
+                    checked={entry.enabled}
+                    onChange={() => handleToggleEnabled(index)}
+                  />
+                </div>
 
                 {/* Column name */}
-                <span style={{ flex: 1 }}>{getColumnDisplayName(entry)}</span>
+                <div
+                  className={`${styles.nameCell} ${isSeparator ? styles.separatorName : ""}`}
+                >
+                  {getColumnDisplayName(entry)}
+                </div>
+
+                {/* Tooltip/Description */}
+                <div className={styles.descriptionCell}>
+                  {entry.colProps.toolTip}
+                </div>
 
                 {/* Delete button for extra columns */}
-                {entry.isFromExtraSet && (
-                  <Button
-                    variant="outline-danger"
-                    size="sm"
-                    onClick={() => handleRemoveExtraColumn(index)}
-                    style={{ padding: "2px 6px", marginLeft: "8px" }}
-                  >
-                    <FontAwesomeIcon icon={faTrash} size="sm" />
-                  </Button>
-                )}
+                <div className={styles.deleteCell}>
+                  {entry.isFromExtraSet && (
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
+                      onClick={() => handleRemoveExtraColumn(index)}
+                      style={{ padding: "2px 6px" }}
+                    >
+                      <FontAwesomeIcon icon={faTrash} size="sm" />
+                    </Button>
+                  )}
+                </div>
               </div>
             );
-
-            // Wrap with tooltip if available
-            if (hasTooltip) {
-              return (
-                <OverlayTrigger
-                  key={entry.key + index}
-                  placement="right"
-                  overlay={
-                    <Tooltip id={`col-tooltip-${index}`}>
-                      {entry.colProps.toolTip}
-                    </Tooltip>
-                  }
-                >
-                  {rowContent}
-                </OverlayTrigger>
-              );
-            }
-
-            return rowContent;
           })}
         </div>
 
         {/* Extra Column Sets */}
         {extraSetNames.length > 0 && (
-          <div style={{ marginTop: "16px" }}>
-            <Form.Label>
-              <strong>Add columns from:</strong>
+          <div className={styles.extraSetsSection}>
+            <Form.Label className={styles.extraSetsLabel}>
+              Add columns from:
             </Form.Label>
-            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            <div className={styles.extraSetsDropdowns}>
               <Dropdown>
                 <Dropdown.Toggle variant="outline-primary" size="sm">
                   {selectedExtraSet || "Select column set..."}
