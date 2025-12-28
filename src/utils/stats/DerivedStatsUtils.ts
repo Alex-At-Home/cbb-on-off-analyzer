@@ -60,6 +60,8 @@ export class DerivedStatsUtils {
     offDef: "off" | "def",
     toMutate: PureStatSet
   ) => {
+    const defOff = offDef == "off" ? "def" : "off";
+    const totalOppoOrbPct = stat[`${defOff}_orb`]?.value || 1;
     const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
     const transPct =
       (stat[`total_${offDef}_trans_poss`]?.value || 0) / totalPoss;
@@ -71,6 +73,9 @@ export class DerivedStatsUtils {
       toMutate[`${offDef}_trans`] = { value: transPct };
       toMutate[`${offDef}_trans_ppp`] = { value: transPpp };
       toMutate[`${offDef}_trans_delta_ppp`] = { value: transPppDelta };
+      toMutate[`${offDef}_trans_per_orb`] = {
+        value: transPct / (totalOppoOrbPct || 1),
+      };
     }
     return toMutate;
   };

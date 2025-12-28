@@ -40,7 +40,7 @@ const playTypeTable = {
   ),
   pct_orbs: GenericTableOps.addPctCol(
     "%ORB",
-    "Percentage of Off rebounds resulting in a scramble play type",
+    "Scramble: Percentage of Off rebounds resulting in a scramble play type / Transition: Ratio of Transition% to ORB%",
     CbbColors.applyThemedBackground
   ),
   ppp: GenericTableOps.addPtsCol(
@@ -393,16 +393,15 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     offDef: "off" | "def",
     playType: "trans" | "scramble" | "half"
   ) => {
-    const isTrans = playType == "trans";
-    const isScramble = playType == "scramble";
+    const isHalfCourt = playType == "half";
     const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
     return {
       [`${offDef}_title`]: (
         <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>
       ),
       [`${offDef}_pct`]: teamPercentiles[`${offDef}_${playType}`],
-      [`${offDef}_pct_orbs`]: isScramble
-        ? teamPercentiles[`${offDef}_scramble_per_orb`]
+      [`${offDef}_pct_orbs`]: !isHalfCourt
+        ? teamPercentiles[`${offDef}_${playType}_per_orb`]
         : undefined,
       [`${offDef}_ppp`]:
         pct > 0 ? teamPercentiles[`${offDef}_${playType}_ppp`] : undefined,
@@ -427,6 +426,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     const offNotDef = offDef == "off";
     const isTrans = playType == "trans";
     const isScramble = playType == "scramble";
+    const isHalfCourt = playType == "half";
     const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
     return GenericTableOps.buildDataRow(
       {
@@ -443,8 +443,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
           `Half-Court ${offNotDef ? "Offense" : "Defense"}`
         ),
         [`${offDef}_pct`]: extraStats[`${offDef}_${playType}`],
-        [`${offDef}_pct_orbs`]: isScramble
-          ? extraStats[`${offDef}_scramble_per_orb`]
+        [`${offDef}_pct_orbs`]: !isHalfCourt
+          ? extraStats[`${offDef}_${playType}_per_orb`]
           : undefined,
         [`${offDef}_ppp`]:
           pct > 0 ? extraStats[`${offDef}_${playType}_ppp`] : undefined,
@@ -465,14 +465,22 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       offNotDef ? offCellMetaFn : defCellMetaFn,
       isTrans || (showInlineGrades && !_.isEmpty(teamPercentiles))
         ? //(^ in this second clause, we'll always override the color so doesn't matter what is returned)
-          {
-            // (For transition % we come up with a generic color if we don't have grades
-            pct_orbs: GenericTableOps.addPctCol(
-              "%ORB",
-              "Percentage of Off rebounds resulting in a scramble play type",
-              CbbColors.varPicker(CbbColors.all_pctile_freq)
-            ),
-          }
+          isScramble
+          ? {
+              // (For transition % we come up with a generic color if we don't have grades
+              pct_orbs: GenericTableOps.addPctCol(
+                "%ORB",
+                "Percentage of Off rebounds resulting in a scramble play type",
+                CbbColors.varPicker(CbbColors.all_pctile_freq)
+              ),
+            }
+          : {
+              pct_orbs: GenericTableOps.addPctCol(
+                "%ORB",
+                "Percentage of Off rebounds resulting in a scramble play type",
+                CbbColors.applyThemedBackground
+              ),
+            }
         : {
             // For scramble we don't color the ORB% so no entry here, and % is just the background
             // (not sure why for either!)
