@@ -37,7 +37,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GenericTableColProps } from "../GenericTable";
+import { GenericTableColProps, ExtraColSet } from "../GenericTable";
 import styles from "./ColumnConfigModal.module.css";
 
 /** Serializable config that can be used to reconstruct column layout */
@@ -62,7 +62,7 @@ type Props = {
   onHide: () => void;
   onSave: (config: TableColumnConfig) => void;
   tableFields: Record<string, GenericTableColProps>;
-  extraColSets?: Record<string, Record<string, GenericTableColProps>>;
+  extraColSets?: Record<string, ExtraColSet>;
   currentConfig?: TableColumnConfig;
 };
 
@@ -216,7 +216,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       if (colKey.includes(".")) {
         // Extra column set
         const [setName, actualKey] = colKey.split(".", 2);
-        const colProps = extraColSets?.[setName]?.[actualKey];
+        const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
         if (colProps) {
           const isSeparator =
             colProps.colName === "" && colProps.toolTip === "";
@@ -328,7 +328,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   }, []);
 
   const handleAddExtraColumn = (setName: string, colKey: string) => {
-    const colProps = extraColSets?.[setName]?.[colKey];
+    const colProps = extraColSets?.[setName]?.colSet?.[colKey];
     if (!colProps) return;
 
     const fullKey = `${setName}.${colKey}`;
@@ -479,7 +479,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                 </Dropdown.Menu>
               </Dropdown>
 
-              {selectedExtraSet && extraColSets?.[selectedExtraSet] && (
+              {selectedExtraSet && extraColSets?.[selectedExtraSet]?.colSet && (
                 <Dropdown>
                   <Dropdown.Toggle variant="outline-secondary" size="sm">
                     <FontAwesomeIcon icon={faPlus} /> Add column
@@ -487,7 +487,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                   <Dropdown.Menu
                     style={{ maxHeight: "300px", overflowY: "auto" }}
                   >
-                    {Object.entries(extraColSets[selectedExtraSet])
+                    {Object.entries(extraColSets[selectedExtraSet].colSet)
                       .filter(([_, colProps]) => !colProps.isTitle)
                       .map(([colKey, colProps]) => {
                         const fullKey = `${selectedExtraSet}.${colKey}`;

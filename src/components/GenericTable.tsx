@@ -19,6 +19,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Dropdown from "react-bootstrap/Dropdown";
 
 // Libary imports
 import ClipboardJS from "clipboard";
@@ -403,6 +404,15 @@ export type IntegratedGradeSettings = {
   customKeyMappings?: Record<string, string>;
   alwaysShow?: Record<string, boolean>;
 };
+/** Extra column set with metadata */
+export type ExtraColSet = {
+  /** Whether this can be used as a standalone table preset */
+  isPreset?: boolean;
+  /** Description of this column set */
+  description?: string;
+  /** The column definitions */
+  colSet: Record<string, GenericTableColProps>;
+};
 type Props = {
   responsive?: boolean;
   tableFields: Record<string, GenericTableColProps>;
@@ -414,13 +424,17 @@ type Props = {
   extraInfoLookups?: Record<string, string>; //(lets us use codes for common strings)
   integratedGrades?: IntegratedGradeSettings;
   /** Extra column sets that can be added via the column config modal */
-  extraColSets?: Record<string, Record<string, GenericTableColProps>>;
+  extraColSets?: Record<string, ExtraColSet>;
   /** Callback when column configuration changes */
   onColumnConfigChange?: (config: TableColumnConfig) => void;
   /** Initial column configuration to apply */
   initialColumnConfig?: TableColumnConfig;
   /** Whether to show the column configuration button (default: false) */
   showConfigureColumns?: boolean;
+  /** If set, use this preset from extraColSets instead of tableFields */
+  presetOverride?: string;
+  /** Callback when preset selection changes */
+  onPresetChange?: (presetKey: string | undefined) => void;
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
@@ -436,6 +450,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
   onColumnConfigChange,
   initialColumnConfig,
   showConfigureColumns = false,
+  presetOverride,
+  onPresetChange,
 }) => {
   const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
@@ -449,10 +465,18 @@ const GenericTable: React.FunctionComponent<Props> = ({
     initialColumnConfig
   );
 
-  // Build tableFields from config or use the input tableFields
+  // Determine base columns (preset or default tableFields)
+  const baseTableFields = React.useMemo(() => {
+    if (presetOverride && extraColSets?.[presetOverride]) {
+      return extraColSets[presetOverride].colSet;
+    }
+    return tableFieldsIn;
+  }, [tableFieldsIn, extraColSets, presetOverride]);
+
+  // Build tableFields from config or use the base tableFields
   const tableFields = React.useMemo(() => {
     if (!columnConfig || columnConfig.newCol.length === 0) {
-      return tableFieldsIn;
+      return baseTableFields;
     }
 
     // Build custom tableFields from config
@@ -460,7 +484,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
     const disabledKeys = new Set(columnConfig.disabledCols || []);
 
     // First, add all title columns from the original (they are not configurable)
-    Object.entries(tableFieldsIn).forEach(([key, colProps]) => {
+    Object.entries(baseTableFields).forEach(([key, colProps]) => {
       if (colProps.isTitle) {
         result[key] = colProps;
       }
@@ -474,13 +498,13 @@ const GenericTable: React.FunctionComponent<Props> = ({
       if (colKey.includes(".")) {
         // Extra column set
         const [setName, actualKey] = colKey.split(".", 2);
-        const colProps = extraColSets?.[setName]?.[actualKey];
+        const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
         if (colProps) {
           result[colKey] = colProps;
         }
       } else {
         // Regular tableFields column
-        const colProps = tableFieldsIn[colKey];
+        const colProps = baseTableFields[colKey];
         if (colProps && !colProps.isTitle) {
           result[colKey] = colProps;
         }
@@ -488,7 +512,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
     });
 
     return result;
-  }, [tableFieldsIn, extraColSets, columnConfig]);
+  }, [baseTableFields, extraColSets, columnConfig]);
 
   const handleColumnConfigSave = (config: TableColumnConfig) => {
     setColumnConfig(config);
@@ -548,27 +572,85 @@ const GenericTable: React.FunctionComponent<Props> = ({
         );
       }
     }
-    function insertConfigureButton(insert: boolean) {
+    function insertConfigureDropdown(insert: boolean) {
       if (!isRepeatingHeaderRow && insert && showConfigureColumns) {
-        const tooltip = (
-          <Tooltip id={`${toolTipId}-config`}>Configure columns</Tooltip>
-        );
+        // Get preset options
+        const presetOptions = Object.entries(extraColSets || {})
+          .filter(([_, colSet]) => colSet.isPreset)
+          .map(([key, colSet]) => ({
+            key,
+            label: key,
+            description: colSet.description,
+          }));
+
+        // Lock mode options
+        const lockModeOptions: { mode: LockModes; label: string }[] = [
+          { mode: "none", label: "No locking" },
+          { mode: "col", label: "Lock by column" },
+          { mode: "row", label: "Lock by row" },
+        ];
+
         return (
-          <OverlayTrigger placement="top" overlay={tooltip}>
-            <Button
-              className="float-left"
+          <Dropdown className="float-left" style={{ marginLeft: "4px" }}>
+            <Dropdown.Toggle
               variant="outline-secondary"
               size="sm"
-              onClick={() => setShowColumnConfig(true)}
-              style={{ marginLeft: "4px" }}
+              id={`${tableId}-config-dropdown`}
             >
               <FontAwesomeIcon icon={faCog} />
-            </Button>
-          </OverlayTrigger>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => setShowColumnConfig(true)}>
+                Configure...
+              </Dropdown.Item>
+
+              {presetOptions.length > 0 && <Dropdown.Divider />}
+              {presetOptions.length > 0 && (
+                <>
+                  <Dropdown.Item
+                    onClick={() => onPresetChange?.(undefined)}
+                    active={!presetOverride}
+                  >
+                    Default columns
+                  </Dropdown.Item>
+                  {presetOptions.map((preset) => (
+                    <Dropdown.Item
+                      key={preset.key}
+                      onClick={() => onPresetChange?.(preset.key)}
+                      active={presetOverride === preset.key}
+                    >
+                      {preset.label}
+                    </Dropdown.Item>
+                  ))}
+                </>
+              )}
+
+              {cellTooltipMode && cellTooltipMode !== "missing" && (
+                <>
+                  <Dropdown.Divider />
+                  {lockModeOptions.map((opt) => (
+                    <Dropdown.Item
+                      key={opt.mode}
+                      onClick={() => {
+                        setLockMode(opt.mode);
+                        setCellOverlayShowStates({});
+                      }}
+                      active={lockMode === opt.mode}
+                    >
+                      {opt.label}
+                    </Dropdown.Item>
+                  ))}
+                </>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
         );
       }
     }
     function insertTooltipLockMode() {
+      // Only show standalone lock mode button if showConfigureColumns is false
+      if (showConfigureColumns) return null;
+
       function getTooltipLockModeIcon() {
         switch (lockMode) {
           case "missing":
@@ -636,7 +718,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         >
           {maybeFormatColName(colProp.colName)}
           {insertCopyButton(index == 0)}
-          {insertConfigureButton(index == 0)}
+          {insertConfigureDropdown(index == 0)}
           {index == 0 ? insertTooltipLockMode() : null}
         </th>
       );
@@ -1067,7 +1149,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         show={showColumnConfig}
         onHide={() => setShowColumnConfig(false)}
         onSave={handleColumnConfigSave}
-        tableFields={tableFieldsIn}
+        tableFields={baseTableFields}
         extraColSets={extraColSets}
         currentConfig={columnConfig}
       />
