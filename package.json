@@ -23,6 +23,9 @@
   "homepage": "https://github.com/Alex-At-Home/cbb-on-off-analyzer#readme",
   "dependencies": {
     "@collectable/red-black-tree": "^5.1.1",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@elastic/react-search-ui": "^1.24.2",
     "@elastic/react-search-ui-views": "^1.24.2",
     "@elastic/search-ui": "^1.24.2",
