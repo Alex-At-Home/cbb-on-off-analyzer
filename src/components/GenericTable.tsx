@@ -29,6 +29,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import ReactNode from "react";
 
 import ColumnConfigModal, {
@@ -604,30 +605,28 @@ const GenericTable: React.FunctionComponent<Props> = ({
                 Configure...
               </Dropdown.Item>
 
-              {presetOptions.length > 0 && <Dropdown.Divider />}
-              {presetOptions.length > 0 && (
-                <>
-                  <Dropdown.Item
-                    onClick={() => onPresetChange?.(undefined)}
-                    active={!presetOverride}
-                  >
-                    Default columns
-                  </Dropdown.Item>
-                  {presetOptions.map((preset) => (
-                    <Dropdown.Item
-                      key={preset.key}
-                      onClick={() => onPresetChange?.(preset.key)}
-                      active={presetOverride === preset.key}
-                    >
-                      {preset.label}
-                    </Dropdown.Item>
-                  ))}
-                </>
-              )}
+              <Dropdown.Header style={{ fontSize: "0.75em", fontWeight: "normal" }}>TABLE PRESETS</Dropdown.Header>
+              <Dropdown.Item onClick={() => onPresetChange?.(undefined)}>
+                Default Layout
+                {!presetOverride && (
+                  <span>&nbsp;&nbsp;<FontAwesomeIcon icon={faCheck} /></span>
+                )}
+              </Dropdown.Item>
+              {presetOptions.map((preset) => (
+                <Dropdown.Item
+                  key={preset.key}
+                  onClick={() => onPresetChange?.(preset.key)}
+                >
+                  {preset.label}
+                  {presetOverride === preset.key && (
+                    <span>&nbsp;&nbsp;<FontAwesomeIcon icon={faCheck} /></span>
+                  )}
+                </Dropdown.Item>
+              ))}
 
               {cellTooltipMode && cellTooltipMode !== "missing" && (
                 <>
-                  <Dropdown.Divider />
+                  <Dropdown.Header style={{ fontSize: "0.75em", fontWeight: "normal" }}>TOOLTIP MODE</Dropdown.Header>
                   {lockModeOptions.map((opt) => (
                     <Dropdown.Item
                       key={opt.mode}
@@ -635,9 +634,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
                         setLockMode(opt.mode);
                         setCellOverlayShowStates({});
                       }}
-                      active={lockMode === opt.mode}
                     >
                       {opt.label}
+                      {lockMode === opt.mode && (
+                        <span>&nbsp;&nbsp;<FontAwesomeIcon icon={faCheck} /></span>
+                      )}
                     </Dropdown.Item>
                   ))}
                 </>
