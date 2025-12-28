@@ -96,6 +96,7 @@ import ThemedSelect from "./shared/ThemedSelect";
 import YearSelector from "./shared/YearSelector";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { CbbColors } from "../utils/CbbColors";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -850,6 +851,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
     return (
       <GenericTable
+        showConfigureColumns={FeatureFlags.isActiveWindow(
+          FeatureFlags.tableConfigOptions
+        )}
         tableCopyId="teamStatsTable"
         tableFields={CommonTableDefs.onOffTable(true)}
         tableData={

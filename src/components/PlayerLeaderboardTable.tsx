@@ -2031,6 +2031,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     return {
       table: (
         <GenericTable
+          showConfigureColumns={FeatureFlags.isActiveWindow(
+            FeatureFlags.tableConfigOptions
+          )}
           tableCopyId="playerLeaderboardTable"
           tableFields={
             showExpanded

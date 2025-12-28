@@ -70,6 +70,7 @@ import ThemedSelect from "./shared/ThemedSelect";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import StickyRow from "./shared/StickyRow";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -562,6 +563,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       });
       return (
         <GenericTable
+          showConfigureColumns={FeatureFlags.isActiveWindow(
+            FeatureFlags.tableConfigOptions
+          )}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
           tableData={tableData}

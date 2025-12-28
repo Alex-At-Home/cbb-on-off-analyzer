@@ -97,6 +97,7 @@ import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { useTheme } from "next-themes";
 import ThemedSelect from "./shared/ThemedSelect";
 import { PlayerStyleOpts } from "./diags/IndivPlayTypeDiagRadar";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -2361,6 +2362,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
+              showConfigureColumns={FeatureFlags.isActiveWindow(
+                FeatureFlags.tableConfigOptions
+              )}
               tableCopyId="rosterStatsTable"
               tableFields={tableFields}
               tableData={maybeSubheaderRow.concat(tableData)}

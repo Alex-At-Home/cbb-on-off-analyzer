@@ -50,6 +50,7 @@ import {
 } from "../utils/tables/TeamStatsTableUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { UserChartOpts } from "./diags/ShotChartDiagView";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 export type TeamStatsModel = {
   on: TeamStatSet;
@@ -563,6 +564,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
+              showConfigureColumns={FeatureFlags.isActiveWindow(
+                FeatureFlags.tableConfigOptions
+              )}
               tableCopyId="teamStatsTable"
               tableFields={CommonTableDefs.onOffTable()}
               tableData={tableData}
