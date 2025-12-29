@@ -2250,6 +2250,15 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 >
                   <b>Straight to the page!</b>
                 </Card.Link>
+                <Card.Link
+                  href={UrlRouting.TeamStatsExplorerChart({
+                    year,
+                    gender,
+                  })}
+                  target="_blank"
+                >
+                  Scatter Chart
+                </Card.Link>
               </Card.Body>
             </Card>
           </Col>

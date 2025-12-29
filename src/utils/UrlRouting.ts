@@ -110,7 +110,7 @@ export class UrlRouting {
       [UrlRouting.noPrefix]: params,
     })}`;
   }
-  /** The URL to use to view the "Offseason Leaderboard" page */
+  /** The URL to use to view the "Team Stats Explorer" page (identical to fn above) */
   static getTeamStatsExplorer(params: TeamStatsExplorerParams) {
     return `/TeamStatsExplorer?${UrlRouting.getUrl({
       [UrlRouting.noPrefix]: params,
