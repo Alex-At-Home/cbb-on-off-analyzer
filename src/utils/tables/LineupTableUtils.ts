@@ -302,7 +302,7 @@ export class LineupTableUtils {
             return separator == "!!!";
           });
           // Basic decomposition:
-          return orFrag
+          const andFrags = orFrag
             .split(separator)
             .map((fragment) => _.trim(fragment))
             .filter(
@@ -311,6 +311,12 @@ export class LineupTableUtils {
             .map((frag) => frag.substring(1, frag.length - 1))
             .map((fragment) => _.trim(fragment))
             .filter((fragment) => (fragment ? true : false));
+
+          const [pveAndFrags, nveAndFrags] = _.partition(
+            andFrags,
+            (frag) => frag[0] != "-"
+          );
+          return [pveAndFrags, nveAndFrags.map((frag) => frag.substring(1))];
         })
       : [];
 
@@ -319,18 +325,30 @@ export class LineupTableUtils {
       : (keys: PlayerCodeId[]) => {
           return Boolean(
             _.find(orFragments, (andFrags) => {
+              const [pveAndFrags, nveAndFrags] = andFrags;
               return (
-                andFrags.length == 0 ||
-                (_.every(andFrags, (fragment) =>
-                  _.find(
-                    keys,
-                    (key) =>
-                      key.code.indexOf(fragment) >= 0 ||
-                      key.id.indexOf(fragment) >= 0
+                (pveAndFrags.length == 0 ||
+                  (_.every(pveAndFrags, (fragment) =>
+                    _.find(
+                      keys,
+                      (key) =>
+                        key.code.indexOf(fragment) >= 0 ||
+                        key.id.indexOf(fragment) >= 0
+                    )
                   )
-                )
-                  ? true
-                  : false)
+                    ? true
+                    : false)) &&
+                (nveAndFrags.length == 0 ||
+                  (_.find(nveAndFrags, (fragment) =>
+                    _.find(
+                      keys,
+                      (key) =>
+                        key.code.indexOf(fragment) >= 0 ||
+                        key.id.indexOf(fragment) >= 0
+                    )
+                  )
+                    ? false
+                    : true))
               );
             })
           );
