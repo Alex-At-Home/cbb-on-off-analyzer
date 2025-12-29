@@ -1508,7 +1508,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} xs={10}>
             <InputGroup>
               <InputGroup.Prepend>
-                <InputGroup.Text id="filter">Filter</InputGroup.Text>
+                <InputGroup.Text id="filter">
+                  {aggregateByPos ? "Raw Lineup Filter" : "Filter"}
+                </InputGroup.Text>
               </InputGroup.Prepend>
               <AsyncFormControl
                 startingVal={filterStr}
@@ -1752,11 +1754,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text id="onOff">
-                    <small>On/Off</small>
+                    <small>Build Combos From</small>
                   </InputGroup.Text>
                 </InputGroup.Prepend>
                 <PlayerSelector
-                  emptyLabel={"Default (Top Unfiltered Lineup)"}
+                  emptyLabel={"Pick players (Default: Top Lineup)"}
                   playerSelectionStr={onOffPlayerSel}
                   players={(rosterStats.global || []).flatMap((p) => {
                     const codeId =

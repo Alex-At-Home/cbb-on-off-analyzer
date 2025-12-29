@@ -255,13 +255,13 @@ export class FilterPresetUtils {
         aggByPos: "",
       },
     },
-    "With-Or-Without-You (manual mode)": {
+    "With-Or-Without-You": {
       label: "Manual Groupings",
       lineupParams: {
         aggByPos: "WOWY",
       },
     },
-    "With-Or-Without-You (auto mode)": {
+    "With-Or-Without-You (automatic)": {
       label: "Manual Groupings",
       lineupParams: {
         aggByPos: "On-Off",
