@@ -58,6 +58,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   // Team selection state - will be initialized properly in useEffect
   const [year, setYear] = useState<string>(ParamDefaults.defaultYear);
   const [gender, setGender] = useState<string>(ParamDefaults.defaultGender);
+  const [specificGender, setSpecificGender] = useState<string | undefined>(
+    undefined
+  );
   const [team, setTeam] = useState<string>("");
   const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
   const [visitOnExitTeamModal, setVisitOnExitTeamModal] = useState<
@@ -1556,11 +1559,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       const genderParam = urlParams.get("gender");
       if (genderParam) {
         setGender(genderParam);
+        setSpecificGender(genderParam);
       } else {
         // Try to load from cache
         const cachedGender = ClientRequestCache.getSavedGender();
         if (cachedGender) {
           setGender(cachedGender as string);
+          setSpecificGender(cachedGender as string);
         }
       }
 
@@ -1635,7 +1640,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             urlParams.delete("year");
           }
 
-          if (gender) {
+          if (specificGender) {
             urlParams.set("gender", gender);
           } else {
             urlParams.delete("gender");
@@ -1722,6 +1727,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       // Update state
       setYear(newYear);
       setGender(newGender);
+      setSpecificGender(newGender);
       setTeam(newTeam);
       setShowTeamModal(false);
 
@@ -1748,6 +1754,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       }
     } else if (newGender) {
       setGender(newGender);
+      setSpecificGender(newGender);
       setShowTeamModal(false);
 
       // Special mode just save Gender
@@ -1763,7 +1770,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const handleTeamClear = () => {
     // Update state
     setTeam("");
-    setGender("Men");
+    setGender(ParamDefaults.defaultGender);
+    setSpecificGender(undefined);
+
     setShowTeamModal(false);
 
     // Clear cache entries
@@ -2135,7 +2144,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   <PlayerFinderTextBox
                     playerCurrSelected={false}
-                    currGender={gender}
+                    currGender={specificGender}
                     onSelectPlayer={function (
                       ncaaId: string,
                       gender: string
@@ -2143,6 +2152,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       window.open(
                         UrlRouting.getPlayerCareer({
                           ncaaId,
+                          gender,
                           showInfoSubHeader: true,
                         }),
                         "_blank",

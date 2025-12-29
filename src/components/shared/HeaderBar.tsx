@@ -669,6 +669,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               onSelectPlayer={function (ncaaId: string, gender: string): void {
                 window.location.href = UrlRouting.getPlayerCareer({
                   ncaaId,
+                  gender,
                   showInfoSubHeader: true,
                 });
               }}
