@@ -288,6 +288,55 @@ export class LineupTableUtils {
     return positionFromPlayerKey;
   }
 
+  /** Builds a filter that ignores aggregation keys we don't want */
+  static buildFilteredLineupKeys(
+    filterStr: string
+  ): undefined | ((inKeys: PlayerCodeId[]) => boolean) {
+    const orFragments = filterStr
+      ? filterStr.split("||").map((orFrag) => {
+          var separator = "!!!";
+          _.takeWhile([";", "/", ","], (sep) => {
+            if (filterStr.indexOf(sep) >= 0) {
+              separator = sep;
+            }
+            return separator == "!!!";
+          });
+          // Basic decomposition:
+          return orFrag
+            .split(separator)
+            .map((fragment) => _.trim(fragment))
+            .filter(
+              (fragment) => fragment?.[0] == "[" && _.last(fragment) == "]"
+            ) //(use [key] to filter on aggregation keys instead of raw lineups)
+            .map((frag) => frag.substring(1, frag.length - 1))
+            .map((fragment) => _.trim(fragment))
+            .filter((fragment) => (fragment ? true : false));
+        })
+      : [];
+
+    return orFragments.length == 0
+      ? undefined
+      : (keys: PlayerCodeId[]) => {
+          return Boolean(
+            _.find(orFragments, (andFrags) => {
+              return (
+                andFrags.length == 0 ||
+                (_.every(andFrags, (fragment) =>
+                  _.find(
+                    keys,
+                    (key) =>
+                      key.code.indexOf(fragment) >= 0 ||
+                      key.id.indexOf(fragment) >= 0
+                  )
+                )
+                  ? true
+                  : false)
+              );
+            })
+          );
+        };
+  }
+
   /** Builds a filtered sorted list of lineups */
   static buildFilteredLineups(
     lineups: LineupStatSet[],

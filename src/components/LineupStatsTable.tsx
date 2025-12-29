@@ -663,6 +663,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         );
       }
 
+      const maybeKeyTester =
+        LineupTableUtils.buildFilteredLineupKeys(filterStr);
+
       const enrichedLineupsPhase1 = _.chain(
         LineupTableUtils.buildEnrichedLineups(
           filteredLineups,
@@ -750,7 +753,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           else return [LineupTableUtils.totalLineupId];
         };
 
-        return getKeys(lineup).map((key) => {
+        return _.flatMap(getKeys(lineup), (key) => {
           const comboCodeAndIds = _.thru(key.split(" / "), (keys) => {
             if (aggregateByPos == "On-Off") {
               const keySet = new Set(keys);
@@ -795,7 +798,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             posKey: key,
             codesAndIds: comboCodeAndIds,
           } as LineupStatSet;
-          return stats;
+          return !maybeKeyTester || maybeKeyTester(comboCodeAndIds)
+            ? [stats]
+            : [];
         });
       });
 

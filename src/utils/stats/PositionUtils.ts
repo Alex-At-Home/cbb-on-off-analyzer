@@ -811,6 +811,7 @@ export class PositionUtils {
     const filterFragments = filterStr
       .split(separator)
       .map((fragment) => _.trim(fragment))
+      .filter((fragment) => fragment?.[0] != "[") //(use [key] to filter on aggregation keys instead of raw lineups)
       .filter((fragment) => (fragment ? true : false));
     const filterFragmentsPve = filterFragments.filter(
       (fragment) => fragment[0] != "-"
