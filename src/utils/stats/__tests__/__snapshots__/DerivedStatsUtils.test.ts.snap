@@ -83,6 +83,9 @@ Object {
   "def_trans_ftr": Object {
     "value": 0.42028985507246375,
   },
+  "def_trans_per_orb": Object {
+    "value": 0.6282187453959897,
+  },
   "def_trans_ppp": Object {
     "value": 90.66405292820387,
   },
@@ -169,6 +172,9 @@ Object {
   },
   "off_trans_ftr": Object {
     "value": 0.6708860759493671,
+  },
+  "off_trans_per_orb": Object {
+    "value": 0.9164480019258545,
   },
   "off_trans_ppp": Object {
     "value": 107.2643586151691,
