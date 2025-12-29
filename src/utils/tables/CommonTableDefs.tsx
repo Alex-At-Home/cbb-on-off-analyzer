@@ -761,7 +761,7 @@ export class CommonTableDefs {
           CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
           GenericTableOps.pointsOrHtmlFormatter
         ),
-        raw_ppp: GenericTableOps.addDataCol(
+        raw_pts: GenericTableOps.addDataCol(
           "Pts",
           "Points scored/conceded by this lineup",
           CbbColors.applyThemedBackground,
@@ -853,8 +853,40 @@ export class CommonTableDefs {
           GenericTableOps.defaultColorPicker
         ),
       },
-      rawPts ? ["ppp"] : ["raw_ppp"]
+      rawPts ? ["ppp"] : ["raw_pts"]
     );
+
+  // Extra lineup table presets:
+
+  static readonly lineupsExtraColSet = (
+    expanded: boolean,
+    rawPts: boolean
+  ) => ({
+    "Extra Fields": {
+      isPreset: false,
+      description: "Useful additional fields",
+      colSet: {
+        raw_pts: GenericTableOps.addDataCol(
+          "Pts",
+          "Points scored/conceded by this lineup",
+          CbbColors.applyThemedBackground,
+          GenericTableOps.pointsOrHtmlFormatter
+        ),
+      },
+    },
+    "Mobile Friendly": {
+      isPreset: true,
+      description: "Mobile friendly view of basic off/def view",
+      colSet: _.pick(CommonTableDefs.lineupTable(rawPts), [
+        "title",
+        "net",
+        "raw_pts",
+        "ppp",
+        "3p",
+        "poss",
+      ]),
+    },
+  });
 
   // ON/OFF REPORT
 

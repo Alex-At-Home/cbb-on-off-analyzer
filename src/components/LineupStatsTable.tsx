@@ -71,6 +71,7 @@ import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import StickyRow from "./shared/StickyRow";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { CbbColors } from "../utils/CbbColors";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -307,6 +308,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     true as boolean
   ); //(always start as true)
 
+  /** Currently selected table preset */
+  const [tablePreset, setTablePreset] = useState<string | undefined>(undefined);
+
   useEffect(() => {
     //(this ensures that the filter component is up to date with the union of these fields)
 
@@ -446,9 +450,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         ); //(inject assist numbers)
 
         // Create (off_/def_)raw_net and raw_ppp if needed
-        if (showRawPts) {
-          TableDisplayUtils.turnPppIntoRawPts(lineup, adjustForLuck);
-        }
+        TableDisplayUtils.turnPppIntoRawPts(lineup, showRawPts, adjustForLuck);
 
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         const sortedCodesAndIds =
@@ -570,8 +572,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           )}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
+          extraColSets={CommonTableDefs.lineupsExtraColSet(true, showRawPts)}
           tableData={tableData}
           cellTooltipMode="none"
+          presetOverride={tablePreset}
+          onPresetChange={setTablePreset}
         />
       );
     } else {
@@ -1008,9 +1013,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               teamSeasonLookup
             ); //(inject assist numbers)
           }
-          if (showRawPts) {
-            TableDisplayUtils.turnPppIntoRawPts(stats, adjustForLuck);
-          }
+          TableDisplayUtils.turnPppIntoRawPts(stats, showRawPts, adjustForLuck);
 
           const showRepeatingHeaderThisLine =
             showRepeatingHeader && !showGameInfo && index > 0 && 0 == index % 5;
@@ -1116,8 +1119,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           )}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
+          extraColSets={CommonTableDefs.lineupsExtraColSet(true, showRawPts)}
           tableData={tableData}
           cellTooltipMode="none"
+          presetOverride={tablePreset}
+          onPresetChange={setTablePreset}
         />
       );
     }
@@ -1139,6 +1145,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     onOffPlayerSel,
     wowyPlayerSel,
     dataEvent,
+    tablePreset,
   ]);
 
   // 3.2] Sorting utils

@@ -8,7 +8,7 @@ export class FeatureFlags {
         typeof window === `undefined` //(ensures SSR code still compiles)
           ? "server"
           : window.location.hostname;
-      return server == "localhost";
+      return server == "localhost" || server?.startsWith("192.168.");
     }
   }
   // Feature flags themselves:

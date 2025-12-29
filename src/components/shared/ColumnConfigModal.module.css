@@ -163,6 +163,18 @@
   width: 40px;
 }
 
+.headerAddSpacer {
+  width: 48px;
+}
+
+.addButtonCell {
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 /* Extra column sets section */
 .extraSetsSection {
   margin-top: 16px;

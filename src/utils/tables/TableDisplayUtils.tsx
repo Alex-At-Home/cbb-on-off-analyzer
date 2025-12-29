@@ -715,6 +715,7 @@ export class TableDisplayUtils {
   /** Mutates a lineup stat set in order to display raw pts (for smaller displays) */
   static turnPppIntoRawPts = (
     mutableLineup: LineupStatSet,
+    overwritePpp: boolean,
     adjustForLuck: boolean
   ) => {
     const granularity = adjustForLuck ? 1 : 0;
@@ -728,7 +729,7 @@ export class TableDisplayUtils {
       (mutableLineup.def_ppp?.value || 0) *
       (mutableLineup.def_poss?.value || 0);
 
-    (mutableLineup as any).off_raw_ppp = {
+    (mutableLineup as any).off_raw_pts = {
       ...mutableLineup.off_ppp,
       value: (
         <text
@@ -742,7 +743,7 @@ export class TableDisplayUtils {
       ),
     };
 
-    (mutableLineup as any).def_raw_ppp = {
+    (mutableLineup as any).def_raw_pts = {
       ...mutableLineup.def_ppp,
       value: (
         <text
@@ -756,7 +757,7 @@ export class TableDisplayUtils {
       ),
     };
 
-    mutableLineup.def_net = {
+    (mutableLineup.def_raw_net_pts as any) = {
       ...mutableLineup.off_raw_net,
       value: (
         <text
@@ -769,5 +770,8 @@ export class TableDisplayUtils {
         </text>
       ),
     };
+    if (overwritePpp) {
+      mutableLineup.def_net = mutableLineup.def_raw_net_pts;
+    }
   };
 }

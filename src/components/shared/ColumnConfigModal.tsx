@@ -8,7 +8,8 @@ import _ from "lodash";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Dropdown from "react-bootstrap/Dropdown";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
 // Drag and drop
 import {
@@ -64,6 +65,8 @@ type Props = {
   tableFields: Record<string, GenericTableColProps>;
   extraColSets?: Record<string, ExtraColSet>;
   currentConfig?: TableColumnConfig;
+  /** Original default tableFields when a preset is active - allows adding columns from the default layout */
+  defaultTableFields?: Record<string, GenericTableColProps>;
 };
 
 // Sortable row component - defined outside to prevent recreation on every render
@@ -146,7 +149,12 @@ const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
       </div>
 
       {/* Tooltip/Description */}
-      <div className={styles.descriptionCell}>{entry.colProps.toolTip}</div>
+      <div className={styles.descriptionCell}>
+        {entry.colProps.toolTip}
+        {entry.isFromExtraSet && entry.extraSetName && (
+          <span className="text-muted"> (+ from {entry.extraSetName})</span>
+        )}
+      </div>
 
       {/* Delete button for extra columns */}
       <div
@@ -175,6 +183,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   tableFields,
   extraColSets,
   currentConfig,
+  defaultTableFields,
 }) => {
   // Build the initial column list from tableFields (excluding titles)
   const buildInitialColumns = (): ColumnEntry[] => {
@@ -214,22 +223,43 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       const isEnabled = !disabledKeys.has(colKey);
 
       if (colKey.includes(".")) {
-        // Extra column set
+        // Extra column set or default layout column
         const [setName, actualKey] = colKey.split(".", 2);
-        const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
-        if (colProps) {
-          const isSeparator =
-            colProps.colName === "" && colProps.toolTip === "";
-          if (isSeparator) separatorCount++;
+        
+        // Handle __default__ prefix - columns from default layout when using a preset
+        if (setName === "__default__") {
+          const colProps = defaultTableFields?.[actualKey];
+          if (colProps && !colProps.isTitle) {
+            const isSeparator =
+              colProps.colName === "" && colProps.toolTip === "";
+            if (isSeparator) separatorCount++;
 
-          entries.push({
-            key: colKey,
-            displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
-            colProps,
-            enabled: isEnabled,
-            isFromExtraSet: true,
-            extraSetName: setName,
-          });
+            entries.push({
+              key: colKey,
+              displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
+              colProps,
+              enabled: isEnabled,
+              isFromExtraSet: true,
+              extraSetName: "Default Columns",
+            });
+          }
+        } else {
+          // Regular extra column set
+          const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
+          if (colProps) {
+            const isSeparator =
+              colProps.colName === "" && colProps.toolTip === "";
+            if (isSeparator) separatorCount++;
+
+            entries.push({
+              key: colKey,
+              displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
+              colProps,
+              enabled: isEnabled,
+              isFromExtraSet: true,
+              extraSetName: setName,
+            });
+          }
         }
       } else {
         // Regular tableFields column
@@ -278,7 +308,6 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   }, [tableFields, extraColSets, currentConfig]);
 
   const [columns, setColumns] = useState<ColumnEntry[]>(initialColumns);
-  const [selectedExtraSet, setSelectedExtraSet] = useState<string | null>(null);
 
   // Reset when modal opens with new data
   useEffect(() => {
@@ -343,7 +372,6 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       : 0;
 
     setColumns([
-      ...columns,
       {
         key: fullKey,
         displayKey: isSeparator ? `Separator ${separatorCount}` : colKey,
@@ -352,12 +380,42 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         isFromExtraSet: true,
         extraSetName: setName,
       },
+      ...columns,
+    ]);
+  };
+
+  // Handler for adding columns from the default layout when using a preset
+  const handleAddDefaultColumn = (colKey: string) => {
+    const colProps = defaultTableFields?.[colKey];
+    if (!colProps || colProps.isTitle) return;
+
+    // Use a special prefix to identify default columns added to a preset
+    const fullKey = `__default__.${colKey}`;
+    // Check if already added (either as the original key or with the prefix)
+    if (columns.some((c) => c.key === fullKey || c.key === colKey)) return;
+
+    const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+    const separatorCount = isSeparator
+      ? columns.filter(
+          (c) => c.colProps.colName === "" && c.colProps.toolTip === ""
+        ).length + 1
+      : 0;
+
+    setColumns([
+      {
+        key: fullKey,
+        displayKey: isSeparator ? `Separator ${separatorCount}` : colKey,
+        colProps,
+        enabled: true,
+        isFromExtraSet: true,
+        extraSetName: "Default Columns",
+      },
+      ...columns,
     ]);
   };
 
   const handleReset = () => {
     setColumns(buildInitialColumns());
-    setSelectedExtraSet(null);
   };
 
   const handleSave = () => {
@@ -401,14 +459,50 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       name = extractedText.replace(/\s*\n\s*/g, " | ").trim() || displayKey;
     }
 
-    if (isFromExtraSet && extraSetName) {
-      return `${name} (${extraSetName})`;
+    if (isFromExtraSet) {
+      return `${name} (+)`;
     }
 
     return name;
   };
 
-  const extraSetNames = Object.keys(extraColSets || {});
+  // Get the set of column keys in the base tableFields (excluding titles)
+  const baseTableFieldKeys = useMemo(() => {
+    return new Set(
+      Object.entries(tableFields)
+        .filter(([_, colProps]) => !colProps.isTitle)
+        .map(([key]) => key)
+    );
+  }, [tableFields]);
+
+  // Filter extra col sets to only show those with columns not in the base table
+  const extraSetNames = useMemo(() => {
+    return Object.keys(extraColSets || {}).filter((setName) => {
+      const colSet = extraColSets?.[setName]?.colSet;
+      if (!colSet) return false;
+
+      // Check if any column in this set is NOT in the base table fields
+      return Object.keys(colSet).some(
+        (colKey) => !colSet[colKey].isTitle && !baseTableFieldKeys.has(colKey)
+      );
+    });
+  }, [extraColSets, baseTableFieldKeys]);
+
+  // Helper to get display name for extra set columns
+  const getExtraColDisplayName = (
+    colProps: GenericTableColProps,
+    colKey: string
+  ): string => {
+    const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+    if (isSeparator) return "Separator";
+
+    if (typeof colProps.colName === "string") {
+      return colProps.colName;
+    } else {
+      const extractedText = extractTextFromNode(colProps.colName);
+      return extractedText.replace(/\s*\n\s*/g, " | ").trim() || colKey;
+    }
+  };
 
   return (
     <Modal
@@ -423,106 +517,169 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         <Modal.Title>Configure Columns</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* Column List */}
-        <div className={styles.columnList}>
-          {/* Header row */}
-          <div className={styles.headerRow}>
-            <div className={styles.headerSwitchSpacer}></div>
-            <div className={styles.headerDragSpacer}></div>
-            <div className={styles.headerName}>Name</div>
-            <div className={styles.headerDescription}>Description</div>
-            <div className={styles.headerDeleteSpacer}></div>
-          </div>
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={columns.map((c) => c.key)}
-              strategy={verticalListSortingStrategy}
-            >
-              {columns.map((entry, index) => (
-                <SortableColumnRow
-                  key={entry.key}
-                  entry={entry}
-                  index={index}
-                  onToggleEnabled={handleToggleEnabled}
-                  onRemoveExtraColumn={handleRemoveExtraColumn}
-                  getDisplayName={getColumnDisplayName}
-                />
-              ))}
-            </SortableContext>
-          </DndContext>
-        </div>
-
-        {/* Extra Column Sets */}
-        {extraSetNames.length > 0 && (
-          <div className={styles.extraSetsSection}>
-            <Form.Label className={styles.extraSetsLabel}>
-              Add columns from:
-            </Form.Label>
-            <div className={styles.extraSetsDropdowns}>
-              <Dropdown>
-                <Dropdown.Toggle variant="outline-primary" size="sm">
-                  {selectedExtraSet || "Select column set..."}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  {extraSetNames.map((setName) => (
-                    <Dropdown.Item
-                      key={setName}
-                      onClick={() => setSelectedExtraSet(setName)}
-                    >
-                      {setName}
-                    </Dropdown.Item>
+        <Tabs defaultActiveKey="layout" id="column-config-tabs">
+          {/* Table Layout Tab */}
+          <Tab eventKey="layout" title="Table Layout">
+            <div className={styles.columnList} style={{ marginTop: "12px" }}>
+              {/* Header row */}
+              <div className={styles.headerRow}>
+                <div className={styles.headerSwitchSpacer}></div>
+                <div className={styles.headerDragSpacer}></div>
+                <div className={styles.headerName}>Name</div>
+                <div className={styles.headerDescription}>Description</div>
+                <div className={styles.headerDeleteSpacer}></div>
+              </div>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={columns.map((c) => c.key)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {columns.map((entry, index) => (
+                    <SortableColumnRow
+                      key={entry.key}
+                      entry={entry}
+                      index={index}
+                      onToggleEnabled={handleToggleEnabled}
+                      onRemoveExtraColumn={handleRemoveExtraColumn}
+                      getDisplayName={getColumnDisplayName}
+                    />
                   ))}
-                </Dropdown.Menu>
-              </Dropdown>
+                </SortableContext>
+              </DndContext>
+            </div>
+          </Tab>
 
-              {selectedExtraSet && extraColSets?.[selectedExtraSet]?.colSet && (
-                <Dropdown>
-                  <Dropdown.Toggle variant="outline-secondary" size="sm">
-                    <FontAwesomeIcon icon={faPlus} /> Add column
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu
-                    style={{ maxHeight: "300px", overflowY: "auto" }}
-                  >
-                    {Object.entries(extraColSets[selectedExtraSet].colSet)
-                      .filter(([_, colProps]) => !colProps.isTitle)
-                      .map(([colKey, colProps]) => {
-                        const fullKey = `${selectedExtraSet}.${colKey}`;
-                        const alreadyAdded = columns.some(
-                          (c) => c.key === fullKey
-                        );
-                        const isSeparator =
-                          colProps.colName === "" && colProps.toolTip === "";
-                        const displayName = isSeparator
-                          ? "Separator"
-                          : typeof colProps.colName === "string"
-                          ? colProps.colName
-                          : colKey;
+          {/* Default Layout Tab - shown when a preset is active */}
+          {defaultTableFields && (
+            <Tab eventKey="defaultLayout" title="Default Columns">
+              <div className={styles.columnList} style={{ marginTop: "12px" }}>
+                {/* Header row */}
+                <div className={styles.headerRow}>
+                  <div className={styles.headerAddSpacer}></div>
+                  <div className={styles.headerName}>Name</div>
+                  <div className={styles.headerDescription}>Description</div>
+                </div>
+                {Object.entries(defaultTableFields)
+                  .filter(([_, colProps]) => !colProps.isTitle)
+                  .map(([colKey, colProps]) => {
+                    const fullKey = `__default__.${colKey}`;
+                    const alreadyAdded = columns.some(
+                      (c) => c.key === fullKey || c.key === colKey
+                    );
+                    const isSeparator =
+                      colProps.colName === "" && colProps.toolTip === "";
 
-                        return (
-                          <Dropdown.Item
-                            key={colKey}
+                    return (
+                      <div
+                        key={colKey}
+                        className={`${styles.columnRow} ${alreadyAdded ? styles.columnRowDisabled : ""}`}
+                      >
+                        {/* Add button */}
+                        <div className={styles.addButtonCell}>
+                          <Button
+                            variant={alreadyAdded ? "outline-secondary" : "outline-primary"}
+                            size="sm"
                             disabled={alreadyAdded}
-                            onClick={() =>
-                              handleAddExtraColumn(selectedExtraSet, colKey)
-                            }
+                            onClick={() => handleAddDefaultColumn(colKey)}
+                            style={{ padding: "2px 8px" }}
                           >
-                            {displayName}
+                            <FontAwesomeIcon icon={faPlus} size="sm" />
+                          </Button>
+                        </div>
+
+                        {/* Column name */}
+                        <div
+                          className={`${styles.nameCell} ${isSeparator ? styles.separatorName : ""}`}
+                        >
+                          {getExtraColDisplayName(colProps, colKey)}
+                          {alreadyAdded && (
+                            <small className="text-muted"> (added)</small>
+                          )}
+                        </div>
+
+                        {/* Description */}
+                        <div className={styles.descriptionCell}>
+                          {colProps.toolTip}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </Tab>
+          )}
+
+          {/* Extra Column Set Tabs - only shown if they have columns not in base table */}
+          {extraSetNames.map((setName) => {
+            const extraColSet = extraColSets?.[setName];
+            const colSet = extraColSet?.colSet;
+            if (!colSet) return null;
+
+            return (
+              <Tab eventKey={setName} title={setName} key={setName}>
+                <div
+                  className={styles.columnList}
+                  style={{ marginTop: "12px" }}
+                >
+                  {/* Header row for extra cols */}
+                  <div className={styles.headerRow}>
+                    <div className={styles.headerAddSpacer}></div>
+                    <div className={styles.headerName}>Name</div>
+                    <div className={styles.headerDescription}>Description</div>
+                  </div>
+                  {Object.entries(colSet)
+                    .filter(([_, colProps]) => !colProps.isTitle)
+                    .map(([colKey, colProps]) => {
+                      const fullKey = `${setName}.${colKey}`;
+                      const alreadyAdded = columns.some(
+                        (c) => c.key === fullKey
+                      );
+                      const isSeparator =
+                        colProps.colName === "" && colProps.toolTip === "";
+
+                      return (
+                        <div
+                          key={colKey}
+                          className={`${styles.columnRow} ${alreadyAdded ? styles.columnRowDisabled : ""}`}
+                        >
+                          {/* Add button */}
+                          <div className={styles.addButtonCell}>
+                            <Button
+                              variant={alreadyAdded ? "outline-secondary" : "outline-primary"}
+                              size="sm"
+                              disabled={alreadyAdded}
+                              onClick={() => handleAddExtraColumn(setName, colKey)}
+                              style={{ padding: "2px 8px" }}
+                            >
+                              <FontAwesomeIcon icon={faPlus} size="sm" />
+                            </Button>
+                          </div>
+
+                          {/* Column name */}
+                          <div
+                            className={`${styles.nameCell} ${isSeparator ? styles.separatorName : ""}`}
+                          >
+                            {getExtraColDisplayName(colProps, colKey)}
                             {alreadyAdded && (
                               <small className="text-muted"> (added)</small>
                             )}
-                          </Dropdown.Item>
-                        );
-                      })}
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-            </div>
-          </div>
-        )}
+                          </div>
+
+                          {/* Description */}
+                          <div className={styles.descriptionCell}>
+                            {colProps.toolTip}
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </Tab>
+            );
+          })}
+        </Tabs>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleReset}>

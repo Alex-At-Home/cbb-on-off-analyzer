@@ -409,6 +409,8 @@ export type IntegratedGradeSettings = {
 export type ExtraColSet = {
   /** Whether this can be used as a standalone table preset */
   isPreset?: boolean;
+  /** If it's a preset, whether _also_ to include it as a library of fields */
+  isLibrary?: boolean;
   /** Description of this column set */
   description?: string;
   /** The column definitions */
@@ -462,9 +464,9 @@ const GenericTable: React.FunctionComponent<Props> = ({
     {} as Record<string, boolean>
   );
   const [showColumnConfig, setShowColumnConfig] = useState(false);
-  const [columnConfig, setColumnConfig] = useState<TableColumnConfig | undefined>(
-    initialColumnConfig
-  );
+  const [columnConfig, setColumnConfig] = useState<
+    TableColumnConfig | undefined
+  >(initialColumnConfig);
 
   // Determine base columns (preset or default tableFields)
   const baseTableFields = React.useMemo(() => {
@@ -497,11 +499,20 @@ const GenericTable: React.FunctionComponent<Props> = ({
       if (disabledKeys.has(colKey)) return;
 
       if (colKey.includes(".")) {
-        // Extra column set
+        // Extra column set or default layout column
         const [setName, actualKey] = colKey.split(".", 2);
-        const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
-        if (colProps) {
-          result[colKey] = colProps;
+        if (setName === "__default__") {
+          // Column from default layout (when using a preset)
+          const colProps = tableFieldsIn[actualKey];
+          if (colProps && !colProps.isTitle) {
+            result[actualKey] = colProps;
+          }
+        } else {
+          // Regular extra column set
+          const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
+          if (colProps) {
+            result[actualKey] = colProps;
+          }
         }
       } else {
         // Regular tableFields column
@@ -513,7 +524,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
     });
 
     return result;
-  }, [baseTableFields, extraColSets, columnConfig]);
+  }, [baseTableFields, tableFieldsIn, extraColSets, columnConfig]);
 
   const handleColumnConfigSave = (config: TableColumnConfig) => {
     setColumnConfig(config);
@@ -586,7 +597,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
 
         // Lock mode options
         const lockModeOptions: { mode: LockModes; label: string }[] = [
-          { mode: "none", label: "No locking" },
+          { mode: "none", label: "Default" },
           { mode: "col", label: "Lock by column" },
           { mode: "row", label: "Lock by row" },
         ];
@@ -602,14 +613,21 @@ const GenericTable: React.FunctionComponent<Props> = ({
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => setShowColumnConfig(true)}>
-                Configure...
+                Configure Table...
               </Dropdown.Item>
 
-              <Dropdown.Header style={{ fontSize: "0.75em", fontWeight: "normal" }}>TABLE PRESETS</Dropdown.Header>
+              <Dropdown.Header
+                style={{ fontSize: "0.75em", fontWeight: "normal" }}
+              >
+                TABLE PRESETS
+              </Dropdown.Header>
               <Dropdown.Item onClick={() => onPresetChange?.(undefined)}>
                 Default Layout
                 {!presetOverride && (
-                  <span>&nbsp;&nbsp;<FontAwesomeIcon icon={faCheck} /></span>
+                  <span>
+                    &nbsp;&nbsp;
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
                 )}
               </Dropdown.Item>
               {presetOptions.map((preset) => (
@@ -619,14 +637,21 @@ const GenericTable: React.FunctionComponent<Props> = ({
                 >
                   {preset.label}
                   {presetOverride === preset.key && (
-                    <span>&nbsp;&nbsp;<FontAwesomeIcon icon={faCheck} /></span>
+                    <span>
+                      &nbsp;&nbsp;
+                      <FontAwesomeIcon icon={faCheck} />
+                    </span>
                   )}
                 </Dropdown.Item>
               ))}
 
               {cellTooltipMode && cellTooltipMode !== "missing" && (
                 <>
-                  <Dropdown.Header style={{ fontSize: "0.75em", fontWeight: "normal" }}>TOOLTIP MODE</Dropdown.Header>
+                  <Dropdown.Header
+                    style={{ fontSize: "0.75em", fontWeight: "normal" }}
+                  >
+                    TOOLTIP LOCK MODE
+                  </Dropdown.Header>
                   {lockModeOptions.map((opt) => (
                     <Dropdown.Item
                       key={opt.mode}
@@ -637,7 +662,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
                     >
                       {opt.label}
                       {lockMode === opt.mode && (
-                        <span>&nbsp;&nbsp;<FontAwesomeIcon icon={faCheck} /></span>
+                        <span>
+                          &nbsp;&nbsp;
+                          <FontAwesomeIcon icon={faCheck} />
+                        </span>
                       )}
                     </Dropdown.Item>
                   ))}
@@ -1153,6 +1181,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         tableFields={baseTableFields}
         extraColSets={extraColSets}
         currentConfig={columnConfig}
+        defaultTableFields={presetOverride ? tableFieldsIn : undefined}
       />
     </>
   );
