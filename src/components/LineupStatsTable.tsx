@@ -1450,6 +1450,49 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const optionsDropdown = (
     <GenericTogglingMenu>
       <AnnotationMenuItems />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="Decorate Lineups"
+        truthVal={decorateLineups}
+        onSelect={() =>
+          friendlyChange(() => setDecorateLineups(!decorateLineups), true)
+        }
+      />
+      <GenericTogglingMenuItem
+        text={<span>Adjust for Luck</span>}
+        truthVal={adjustForLuck}
+        onSelect={() =>
+          friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)
+        }
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            : undefined
+        }
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="Configure Luck Adjustments..."
+        truthVal={false}
+        onSelect={() => setShowLuckConfig(true)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="Show Luck Adjustment diagnostics"
+        truthVal={showLuckAdjDiags}
+        onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+      />
+      <GenericTogglingMenuItem
+        text={"Show repeating header every 10 rows"}
+        truthVal={showRepeatingHeader}
+        onSelect={() =>
+          friendlyChange(
+            () => setShowRepeatingHeader(!showRepeatingHeader),
+            true
+          )
+        }
+      />
+      <Dropdown.Divider />
       <GenericTogglingMenuItem
         className="d-none d-md-flex"
         text="'Quick Select' Bar Is Sticky"
@@ -1526,54 +1569,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
               />
             </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} xs={1} className="pl-4">
-            <GenericTogglingMenu>
-              <GenericTogglingMenuItem
-                text="Decorate Lineups"
-                truthVal={decorateLineups}
-                onSelect={() =>
-                  friendlyChange(
-                    () => setDecorateLineups(!decorateLineups),
-                    true
-                  )
-                }
-              />
-              <GenericTogglingMenuItem
-                text={<span>Adjust for Luck</span>}
-                truthVal={adjustForLuck}
-                onSelect={() =>
-                  friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)
-                }
-                helpLink={
-                  showHelp
-                    ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-                    : undefined
-                }
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Configure Luck Adjustments..."
-                truthVal={false}
-                onSelect={() => setShowLuckConfig(true)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Show Luck Adjustment diagnostics"
-                truthVal={showLuckAdjDiags}
-                onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
-              />
-              <GenericTogglingMenuItem
-                text={"Show repeating header every 10 rows"}
-                truthVal={showRepeatingHeader}
-                onSelect={() =>
-                  friendlyChange(
-                    () => setShowRepeatingHeader(!showRepeatingHeader),
-                    true
-                  )
-                }
-              />
-            </GenericTogglingMenu>
           </Form.Group>
         </Form.Row>
         <Form.Row>
