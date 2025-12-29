@@ -165,6 +165,7 @@ export class GradeUtils {
   /* Fields derived in DerivedStatsUtils */
   static readonly teamDerivedFields = [
     "scramble",
+    "trans_per_orb",
     "scramble_per_orb",
     "scramble_ppp",
     "scramble_delta_ppp",
@@ -781,6 +782,7 @@ export class GradeUtils {
     def_trans: true,
     def_scramble: true,
     def_scramble_per_orb: true,
+    def_trans_per_orb: true,
     def_3p_ast: true,
     def_2prim_ast: true,
     def_ast_3p: true,
