@@ -1068,75 +1068,116 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 </li>
               </ul>
               <li>
-                <b>On / Off Groupings: (check this one out!)</b>
+                <b>"WOWY" (On / Off) Groupings: check these out!</b>
               </li>
               <ul>
                 <li>
                   <i>
-                    This is the newest lineup grouping feature ... I find it
-                    really useful for analyzing teams with a very dominant
-                    starting lineup -{" "}
-                    <a
-                      className="card-body-link"
-                      href={UrlRouting.getLineupUrl(
-                        {
-                          year: "2024/25",
-                          gender: "Men",
-                          team: "Maryland",
-                          presetGroup: "Grouped by On/Off Combos",
-                          aggByPos: "On-Off",
-                        },
-                        {}
-                      )}
-                      target="_blank"
-                    >
-                      say 24/25 Maryland
-                    </a>{" "}
-                    (~15mpg), but less useful for more balanced teams like{" "}
-                    <a
-                      className="card-body-link"
-                      href={UrlRouting.getLineupUrl(
-                        {
-                          year: "2024/25",
-                          gender: "Men",
-                          team: "Texas A&M",
-                          presetGroup: "Grouped by On/Off Combos",
-                          aggByPos: "On-Off",
-                        },
-                        {}
-                      )}
-                      target="_blank"
-                    >
-                      say 24/25 Texas A&amp;M
-                    </a>{" "}
-                    (just ~3mpg!). The idea is to show how every possible
-                    deviation from the starting lineup (shown in blue) - aka
-                    substitution patterns - impacts the team's stats.
+                    (WOWY stands for "With Or Without You"! These are the newest
+                    lineup grouping features.)
                   </i>
                 </li>
-                <ul>
-                  <li>
-                    <i>
-                      (if you have an idea for how to make this concept more
-                      useful for teams without a dominant lineup, let me know!)
-                    </i>
-                  </li>
-                </ul>
                 <li>
-                  {buildLink(`On/Off Analysis`, (year, gender, team) =>
+                  {buildLink(`WOWY - manual mode`, (year, gender, team) =>
                     UrlRouting.getLineupUrl(
                       {
                         year,
                         gender,
                         team,
-                        presetGroup: "Grouped by On/Off Combos",
+                        presetGroup: "With-Or-Without-You",
+                        aggByPos: "WOWY",
+                      },
+                      {}
+                    )
+                  )}
+                  : Pick lineups based on who is playing / not-playing
+                  <ul>
+                    <li>
+                      Lets you create one table entry for every lineup
+                      combination you want. It's a bit like playing with the
+                      "advanced splits" mode of the Team Analysis page, but it's
+                      much easier / more interactive (at the expense of giving
+                      less detail - but just click on the lineup combo you're
+                      interested in to see that.)
+                    </li>
+                    <li>
+                      <ExpandableImage
+                        src="./images/landing_page/lineups/lineups_wowy.jpeg"
+                        caption="Build manual lineups groupings:"
+                      />
+                    </li>
+                    <ul>
+                      <li>
+                        (eg the image above shows an example of its use ... I
+                        start with the 2 players in whom I'm interested, then
+                        add sub-sets of the lineup with other plays so I can see
+                        who has what positive/negative impacts on the stats.)
+                      </li>
+                    </ul>
+                    <li>
+                      (If you want lots of combos from the same set of players,
+                      you can use the automatic mode described below.)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  {buildLink(`WOWY - automatic mode`, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        presetGroup: "With-Or-Without-You (automatic)",
                         aggByPos: "On-Off",
                       },
                       {}
                     )
                   )}
-                  : As described above, shows deviations from most common lineup
+                  : Automatically builds on/off combos from selected players (or
+                  by default the top lineup)
                   <ul>
+                    <li>
+                      <i>
+                        I find the default really useful for analyzing teams
+                        with a very dominant starting lineup -{" "}
+                        <a
+                          className="card-body-link"
+                          href={UrlRouting.getLineupUrl(
+                            {
+                              year: "2024/25",
+                              gender: "Men",
+                              team: "Maryland",
+                              presetGroup: "Grouped by On/Off Combos",
+                              aggByPos: "On-Off",
+                            },
+                            {}
+                          )}
+                          target="_blank"
+                        >
+                          say 24/25 Maryland
+                        </a>{" "}
+                        (~15mpg), but less useful for more balanced teams like{" "}
+                        <a
+                          className="card-body-link"
+                          href={UrlRouting.getLineupUrl(
+                            {
+                              year: "2024/25",
+                              gender: "Men",
+                              team: "Texas A&M",
+                              presetGroup: "Grouped by On/Off Combos",
+                              aggByPos: "On-Off",
+                            },
+                            {}
+                          )}
+                          target="_blank"
+                        >
+                          say 24/25 Texas A&amp;M
+                        </a>{" "}
+                        (just ~3mpg!). The idea is to show how every possible
+                        deviation from the starting lineup (shown in blue) - aka
+                        substitution patterns - impacts the team's stats.
+                      </i>
+                    </li>
                     <li>
                       <ExpandableImage
                         src="./images/landing_page/lineups/on_off_lineups_1.jpeg"
@@ -1144,8 +1185,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       />
                     </li>
                     <li>
-                      (or select the lineup/sub-lineup you want from the
-                      "On/Off" selector)
+                      Or select the players (5 or less) you want from the "Build
+                      Combos" selector - the tool will automatically generate
+                      all on/off combinations for them. You can then click the
+                      "Convert entries to manual" link at the bottom if you want
+                      to add/remove other combos.
                     </li>
                   </ul>
                 </li>
@@ -1205,9 +1249,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <ul>
                     <li>
                       <i>
-                        (as with the On/Off Analysis, I'd love ideas on making
-                        the concept work better when there isn't a clear "main
-                        lineup"!)
+                        (as with the Automatic WOWY Analysis, I'd love ideas on
+                        making the concept work better when there isn't a clear
+                        "main lineup"!)
                       </i>
                     </li>
                   </ul>
@@ -1355,31 +1399,35 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       imageList: [
         {
           src: "./images/landing_page/lineups/ungrouped_lineups.jpeg",
-          text: "See the stats for each individual lineup, but note that the possessions get low very quickly [1/7]",
+          text: "See the stats for each individual lineup, but note that the possessions get low very quickly [1/8]",
         },
         {
           src: "./images/landing_page/lineups/grouped_lineups.jpeg",
-          text: "One of many ways of grouping lineups together in sensible ways to get the possession count up [2/7]",
+          text: "One of many ways of grouping lineups together in sensible ways to get the possession count up [2/8]",
+        },
+        {
+          src: "./images/landing_page/lineups/lineups_wowy.jpeg",
+          text: "WOWY: an interactive way of building groupings of lineups with/without players of interest [3/8]",
         },
         {
           src: "./images/landing_page/lineups/on_off_lineups_1.jpeg",
-          text: "On-Off: a very useful grouping technique to analyze subsitution patterns from significant lineups [3/7]",
+          text: "On-Off / WOWY: a very useful grouping technique to analyze subsitution patterns from significant lineups [4/8]",
         },
         {
           src: "./images/landing_page/lineups/on_off_lineups_2.jpeg",
-          text: "Another On-Off view, groups missing players to maximize the possession count  [4/7]",
+          text: "Another On-Off view, groups missing players to maximize the possession count [5/8]",
         },
         {
           src: "./images/landing_page/lineups/lineups_more_details_trigger.jpeg",
-          text: "The lineup view is quite simple but you can click on a lineup/combo to get a much richer view... [5/7]",
+          text: "The lineup view is quite simple but you can click on a lineup/combo to get a much richer view... [6/8]",
         },
         {
           src: "./images/landing_page/lineups/lineups_more_details.jpeg",
-          text: "...A richer view of a lineup stats in the Team Analysis page [6/7]",
+          text: "...A richer view of a lineup stats in the Team Analysis page [7/8]",
         },
         {
           src: "./images/landing_page/lineups/lineups_games_view.jpeg",
-          text: "A fun view showing how the lineup usages varied over time [7/7]",
+          text: "A fun view showing how the lineup usages varied over time [8/8]",
         },
       ],
     },
