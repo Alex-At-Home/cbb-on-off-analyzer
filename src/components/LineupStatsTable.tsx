@@ -1064,7 +1064,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 GenericTableOps.buildTextRow(
                   <span>
-                    WOWY: add entries to the table with the '+' button.{" "}
+                    WOWY: pick players from the On/Off dropdowns, then add
+                    entries to the table with the '+' button.{" "}
                     {_.isEmpty(refilteredLineups) ? undefined : (
                       <a
                         href=""
@@ -1115,8 +1116,26 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : []
+        )
+        .concat(
+          adjustForLuck
+            ? [
+                GenericTableOps.buildTextRow(
+                  <span>
+                    <i>
+                      (Note that lineup-based luck adjustments are slightly
+                      simpler to those on other pages. See{" "}
+                      <a href="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html">
+                        this article
+                      </a>{" "}
+                      for more details)
+                    </i>
+                  </span>,
+                  "small text-center"
+                ),
+              ]
+            : []
         );
-
       return (
         <GenericTable
           showConfigureColumns={FeatureFlags.isActiveWindow(
@@ -1264,8 +1283,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         {
           label: "Luck",
           tooltip: adjustForLuck
-            ? "Remove luck adjustments"
-            : "Adjust statistics for luck",
+            ? "Remove luck adjustments (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)"
+            : "Adjust statistics for luck (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
           toggled: adjustForLuck,
           onClick: () =>
             friendlyChange(() => setAdjustForLuck(!adjustForLuck), true),
@@ -1557,7 +1576,26 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="filter">
-                  {aggregateByPos ? "Raw Lineup Filter" : "Filter"}
+                  {aggregateByPos ? (
+                    <OverlayTrigger
+                      placement="auto"
+                      overlay={
+                        <Tooltip id="rawFilter">
+                          When viewing aggregated lineups, this feature filters
+                          the <i>underlying</i> lineups, not the aggregates.
+                          (You can place names in {"["}
+                          {"]"} to filter the combinations themselves, based on
+                          the "identifying players").
+                        </Tooltip>
+                      }
+                    >
+                      <span>
+                        Raw Lineup Filter<sup>*</sup>
+                      </span>
+                    </OverlayTrigger>
+                  ) : (
+                    "Filter"
+                  )}
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <AsyncFormControl
@@ -1566,7 +1604,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   friendlyChange(() => setFilterStr(t), t != filterStr)
                 }
                 timeout={500}
-                placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+                placeholder={
+                  aggregateByPos
+                    ? "eg Name1=PG;Name2;-Name3;Name4=4+5;[Name5], use || for OR"
+                    : "eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
+                }
               />
             </InputGroup>
           </Form.Group>

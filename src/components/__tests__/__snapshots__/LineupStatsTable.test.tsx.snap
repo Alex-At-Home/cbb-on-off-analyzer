@@ -39,60 +39,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            placeholder="eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
             startingVal=""
             timeout={500}
           />
         </InputGroup>
-      </FormGroup>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
-        className="pl-4"
-        xs={1}
-      >
-        <GenericTogglingMenu>
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Decorate Lineups"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-            onSelect={[Function]}
-            text={
-              <span>
-                Adjust for Luck
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Configure Luck Adjustments..."
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show repeating header every 10 rows"
-            truthVal={true}
-          />
-        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -627,7 +578,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "label": "Luck",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Adjust statistics for luck",
+                "tooltip": "Adjust statistics for luck (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
               },
               Object {
                 "label": "Pts",
@@ -732,6 +683,48 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
       >
         <GenericTogglingMenu>
           <AnnotationMenuItems />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
             onSelect={[Function]}
@@ -762,6 +755,90 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
       >
         <GenericTable
           cellTooltipMode="none"
+          extraColSets={
+            Object {
+              "Extra Fields": Object {
+                "colSet": Object {
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                },
+                "description": "Useful additional fields",
+                "isPreset": false,
+              },
+              "Mobile Friendly": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isPreset": true,
+              },
+            }
+          }
+          onPresetChange={[Function]}
+          showConfigureColumns={false}
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -865,6 +942,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 93.29896907216495,
+                                  }
+
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        362
+                                      </i>
+                                    </text>,
                                   }
 
                   def_title: ""
@@ -971,6 +1095,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_raw_net: Object {
                                     "value": 23.908013471475954,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -1369,6 +1526,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 93.29896907216495,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        362
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -1473,6 +1677,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_raw_net: Object {
                                     "value": 23.908013471475954,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -1875,6 +2112,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 84.03755868544602,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        179
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -1979,6 +2263,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_raw_net: Object {
                                     "value": 23.071446053890483,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -2377,6 +2694,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 84.03755868544602,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        179
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -2481,6 +2845,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_raw_net: Object {
                                     "value": 23.071446053890483,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -2883,6 +3280,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 87.04663212435233,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        19.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        168
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -2987,6 +3431,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_raw_net: Object {
                                     "value": 25.136108992398945,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        18.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        221
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -3385,6 +3862,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 87.04663212435233,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        19.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        168
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -3489,6 +4013,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_raw_net: Object {
                                     "value": 25.136108992398945,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        18.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        221
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -4105,60 +4662,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            placeholder="eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
             startingVal=""
             timeout={500}
           />
         </InputGroup>
-      </FormGroup>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
-        className="pl-4"
-        xs={1}
-      >
-        <GenericTogglingMenu>
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Decorate Lineups"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-            onSelect={[Function]}
-            text={
-              <span>
-                Adjust for Luck
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Configure Luck Adjustments..."
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show repeating header every 10 rows"
-            truthVal={true}
-          />
-        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -4693,7 +5201,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "label": "Luck",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Adjust statistics for luck",
+                "tooltip": "Adjust statistics for luck (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
               },
               Object {
                 "label": "Pts",
@@ -4798,6 +5306,48 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
       >
         <GenericTogglingMenu>
           <AnnotationMenuItems />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
             onSelect={[Function]}
@@ -4828,6 +5378,90 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
       >
         <GenericTable
           cellTooltipMode="none"
+          extraColSets={
+            Object {
+              "Extra Fields": Object {
+                "colSet": Object {
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                },
+                "description": "Useful additional fields",
+                "isPreset": false,
+              },
+              "Mobile Friendly": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isPreset": true,
+              },
+            }
+          }
+          onPresetChange={[Function]}
+          showConfigureColumns={false}
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -4848,6 +5482,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                       "value": 0,
                                                     }
                   
+                                    def_raw_net_pts: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    def_raw_pts: Object {
+                                                      "value": 0,
+                                                    }
+                  
                                     off_luck_diags: Object {
                                                       "value": 0,
                                                     }
@@ -4858,6 +5500,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   
                                     off_raw_net: Object {
                                                       "value": 23.615130713609005,
+                                                    }
+                  
+                                    off_raw_pts: Object {
+                                                      "value": 0,
                                                     }}
 
                   def_2pmidr: Object {
@@ -4958,6 +5604,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 90.01663893510815,
+                                  }
+
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        155
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        17.2
+                                        % transition:
+                                        <br />
+                                        +
+                                        0.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        32.8
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #80c080,0px 0px 15px #80c080,0px 0px 15px #80c080",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        541
+                                      </i>
+                                    </text>,
                                   }
 
                   def_title: ""
@@ -5066,6 +5759,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_raw_net: Object {
                                     "value": 23.708851260970278,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.5
+                                        % transition:
+                                        <br />
+                                        +
+                                        15.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        16.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        696
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: "Weighted Total"},
@@ -5090,6 +5816,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                       "value": 0,
                                                     }
                   
+                                    def_raw_net_pts: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    def_raw_pts: Object {
+                                                      "value": 0,
+                                                    }
+                  
                                     off_luck_diags: Object {
                                                       "value": 0,
                                                     }
@@ -5100,6 +5834,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   
                                     off_raw_net: Object {
                                                       "value": 23.615130713609005,
+                                                    }
+                  
+                                    off_raw_pts: Object {
+                                                      "value": 0,
                                                     }}
 
                   def_2pmidr: Object {
@@ -5200,6 +5938,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 90.01663893510815,
+                                  }
+
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        155
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        17.2
+                                        % transition:
+                                        <br />
+                                        +
+                                        0.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        32.8
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #80c080,0px 0px 15px #80c080,0px 0px 15px #80c080",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        541
+                                      </i>
+                                    </text>,
                                   }
 
                   def_title: ""
@@ -5308,6 +6093,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_raw_net: Object {
                                     "value": 23.708851260970278,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.5
+                                        % transition:
+                                        <br />
+                                        +
+                                        15.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        16.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        696
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: "Weighted Total"},
@@ -5421,6 +6239,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 93.29896907216495,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        362
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -5525,6 +6390,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_raw_net: Object {
                                     "value": 23.908013471475954,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5923,6 +6821,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 93.29896907216495,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        362
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -6027,6 +6972,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_raw_net: Object {
                                     "value": 23.908013471475954,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6429,6 +7407,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 84.03755868544602,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        179
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -6533,6 +7558,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_raw_net: Object {
                                     "value": 23.071446053890483,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6931,6 +7989,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 84.03755868544602,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        179
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -7035,6 +8140,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_raw_net: Object {
                                     "value": 23.071446053890483,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -7651,60 +8789,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            placeholder="eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
             startingVal=""
             timeout={500}
           />
         </InputGroup>
-      </FormGroup>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
-        className="pl-4"
-        xs={1}
-      >
-        <GenericTogglingMenu>
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Decorate Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-            onSelect={[Function]}
-            text={
-              <span>
-                Adjust for Luck
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Configure Luck Adjustments..."
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show repeating header every 10 rows"
-            truthVal={true}
-          />
-        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -8239,7 +9328,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "Luck",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Adjust statistics for luck",
+                "tooltip": "Adjust statistics for luck (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
               },
               Object {
                 "label": "Pts",
@@ -8344,6 +9433,48 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTogglingMenu>
           <AnnotationMenuItems />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
             onSelect={[Function]}
@@ -8374,6 +9505,90 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTable
           cellTooltipMode="none"
+          extraColSets={
+            Object {
+              "Extra Fields": Object {
+                "colSet": Object {
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                },
+                "description": "Useful additional fields",
+                "isPreset": false,
+              },
+              "Mobile Friendly": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isPreset": true,
+              },
+            }
+          }
+          onPresetChange={[Function]}
+          showConfigureColumns={false}
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -8479,7 +9694,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 93.29896907216495,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -8618,7 +9847,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.908013471475954,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -8844,7 +10073,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 93.29896907216495,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -8983,7 +10226,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.908013471475954,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9213,7 +10456,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 84.03755868544602,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9352,7 +10609,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.071446053890483,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9578,7 +10835,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 84.03755868544602,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9717,7 +10988,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.071446053890483,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9947,7 +11218,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.04663212435233,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10086,7 +11371,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 25.136108992398945,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10312,7 +11597,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.04663212435233,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10451,7 +11750,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 25.136108992398945,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10748,7 +12047,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "toolTip": "Total number of possessions for selected lineups",
                 "widthUnits": 2,
               },
-              "raw_ppp": GenericTableColProps {
+              "raw_pts": GenericTableColProps {
                 "className": "",
                 "colName": "Pts",
                 "colorPicker": [Function],
@@ -10895,60 +12194,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            placeholder="eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
             startingVal=""
             timeout={500}
           />
         </InputGroup>
-      </FormGroup>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
-        className="pl-4"
-        xs={1}
-      >
-        <GenericTogglingMenu>
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Decorate Lineups"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-            onSelect={[Function]}
-            text={
-              <span>
-                Adjust for Luck
-              </span>
-            }
-            truthVal={true}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Configure Luck Adjustments..."
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show repeating header every 10 rows"
-            truthVal={true}
-          />
-        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -11483,7 +12733,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "Luck",
                 "onClick": [Function],
                 "toggled": true,
-                "tooltip": "Remove luck adjustments",
+                "tooltip": "Remove luck adjustments (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
               },
               Object {
                 "label": "Pts",
@@ -11588,6 +12838,48 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTogglingMenu>
           <AnnotationMenuItems />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+              </span>
+            }
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
             onSelect={[Function]}
@@ -11618,6 +12910,90 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTable
           cellTooltipMode="none"
+          extraColSets={
+            Object {
+              "Extra Fields": Object {
+                "colSet": Object {
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                },
+                "description": "Useful additional fields",
+                "isPreset": false,
+              },
+              "Mobile Friendly": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isPreset": true,
+              },
+            }
+          }
+          onPresetChange={[Function]}
+          showConfigureColumns={false}
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -11747,6 +13123,57 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 93.29896907216495,
                                     "override": "Adjusted from Def 3P%",
                                     "value": 95.48556680340025,
+                                  }
+
+                  def_raw_net_pts: Object {
+                                    "old_value": 23.908013471475954,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        99.5
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        4.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.2
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 93.29896907216495,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        370.5
+                                      </i>
+                                    </text>,
                                   }
 
                   def_title: ""
@@ -11881,6 +13308,41 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 23.908013471475954,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
                                     "value": 21.721415740240655,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 117.2069825436409,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470.0
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -12102,6 +13564,57 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 95.48556680340025,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "old_value": 23.908013471475954,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        99.5
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        4.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.2
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 93.29896907216495,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        370.5
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -12234,6 +13747,41 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 23.908013471475954,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
                                     "value": 21.721415740240655,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 117.2069825436409,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470.0
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -12494,6 +14042,57 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.15059538569945,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "old_value": 23.071446053890483,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        40.4
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -29.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        72.4
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 84.03755868544602,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #5bad5b,0px 0px 15px #5bad5b,0px 0px 15px #5bad5b",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        185.6
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -12626,6 +14225,41 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 23.071446053890483,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
                                     "value": 19.958409353637055,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 107.1090047393365,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226.0
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -12847,6 +14481,57 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.15059538569945,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "old_value": 23.071446053890483,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        40.4
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -29.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        72.4
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 84.03755868544602,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #5bad5b,0px 0px 15px #5bad5b,0px 0px 15px #5bad5b",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        185.6
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -12979,6 +14664,41 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 23.071446053890483,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
                                     "value": 19.958409353637055,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 107.1090047393365,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226.0
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -13239,6 +14959,57 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 92.55261350228072,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "old_value": 25.136108992398945,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        42.4
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        19.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        3.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 87.04663212435233,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        178.6
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -13371,6 +15142,41 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 25.136108992398945,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
                                     "value": 19.63012761447055,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        18.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 112.18274111675127,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        221.0
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -13592,6 +15398,57 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 92.55261350228072,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "old_value": 25.136108992398945,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        42.4
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        19.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        3.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 87.04663212435233,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        178.6
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -13724,6 +15581,41 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 25.136108992398945,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
                                     "value": 19.63012761447055,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        18.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "old_value": 112.18274111675127,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        221.0
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -14160,60 +16052,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            placeholder="eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
             startingVal=""
             timeout={500}
           />
         </InputGroup>
-      </FormGroup>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
-        className="pl-4"
-        xs={1}
-      >
-        <GenericTogglingMenu>
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Decorate Lineups"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-            onSelect={[Function]}
-            text={
-              <span>
-                Adjust for Luck
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Configure Luck Adjustments..."
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show repeating header every 10 rows"
-            truthVal={true}
-          />
-        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -14748,7 +16591,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "Luck",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Adjust statistics for luck",
+                "tooltip": "Adjust statistics for luck (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
               },
               Object {
                 "label": "Pts",
@@ -14853,6 +16696,48 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTogglingMenu>
           <AnnotationMenuItems />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
             onSelect={[Function]}
@@ -14883,6 +16768,90 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTable
           cellTooltipMode="none"
+          extraColSets={
+            Object {
+              "Extra Fields": Object {
+                "colSet": Object {
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                },
+                "description": "Useful additional fields",
+                "isPreset": false,
+              },
+              "Mobile Friendly": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isPreset": true,
+              },
+            }
+          }
+          onPresetChange={[Function]}
+          showConfigureColumns={false}
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -14986,6 +16955,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 93.29896907216495,
+                                  }
+
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        362
+                                      </i>
+                                    </text>,
                                   }
 
                   def_title: ""
@@ -15092,6 +17108,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_raw_net: Object {
                                     "value": 23.908013471475954,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -15504,6 +17553,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 93.29896907216495,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        362
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -15608,6 +17704,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_raw_net: Object {
                                     "value": 23.908013471475954,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        470
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -16024,6 +18153,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 84.03755868544602,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        179
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -16128,6 +18304,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_raw_net: Object {
                                     "value": 23.071446053890483,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -16540,6 +18749,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 84.03755868544602,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        179
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -16644,6 +18900,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_raw_net: Object {
                                     "value": 23.071446053890483,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        226
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -17060,6 +19349,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.04663212435233,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        19.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        168
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -17164,6 +19500,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_raw_net: Object {
                                     "value": 25.136108992398945,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        18.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        221
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -17576,6 +19945,53 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.04663212435233,
                                   }
 
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        19.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        168
+                                      </i>
+                                    </text>,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -17680,6 +20096,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_raw_net: Object {
                                     "value": 25.136108992398945,
+                                  }
+
+                  off_raw_pts: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        18.4
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        221
+                                      </i>
+                                    </text>,
                                   }
 
                   off_title: <OverlayTrigger
@@ -18310,60 +20759,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            placeholder="eg Name1=PG;Name2;-Name3;Name4=4+5, use || for OR"
             startingVal=""
             timeout={500}
           />
         </InputGroup>
-      </FormGroup>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
-        className="pl-4"
-        xs={1}
-      >
-        <GenericTogglingMenu>
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Decorate Lineups"
-            truthVal={true}
-          />
-          <GenericTogglingMenuItem
-            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-            onSelect={[Function]}
-            text={
-              <span>
-                Adjust for Luck
-              </span>
-            }
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Configure Luck Adjustments..."
-            truthVal={false}
-          />
-          <DropdownDivider
-            role="separator"
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show Luck Adjustment diagnostics"
-            truthVal={false}
-          />
-          <GenericTogglingMenuItem
-            onSelect={[Function]}
-            text="Show repeating header every 10 rows"
-            truthVal={true}
-          />
-        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -18898,7 +21298,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "label": "Luck",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Adjust statistics for luck",
+                "tooltip": "Adjust statistics for luck (note: Lineup luck adjustments are slightly simpler than on other pages, see docs for details)",
               },
               Object {
                 "label": "Pts",
@@ -19003,6 +21403,48 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTogglingMenu>
           <AnnotationMenuItems />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             className="d-none d-md-flex"
             onSelect={[Function]}
@@ -19033,6 +21475,90 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       >
         <GenericTable
           cellTooltipMode="none"
+          extraColSets={
+            Object {
+              "Extra Fields": Object {
+                "colSet": Object {
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                },
+                "description": "Useful additional fields",
+                "isPreset": false,
+              },
+              "Mobile Friendly": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isPreset": true,
+              },
+            }
+          }
+          onPresetChange={[Function]}
+          showConfigureColumns={false}
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -19138,7 +21664,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 93.29896907216495,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -19277,7 +21817,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.908013471475954,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -19720,7 +22260,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 93.29896907216495,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        108
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -19859,7 +22413,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.908013471475954,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20306,7 +22860,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 84.03755868544602,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20445,7 +23013,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.071446053890483,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20888,7 +23456,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 84.03755868544602,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        47
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21027,7 +23609,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 23.071446053890483,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21474,7 +24056,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.04663212435233,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21613,7 +24209,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 25.136108992398945,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -22056,7 +24652,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 87.04663212435233,
                                   }
 
-                  def_raw_ppp: Object {
+                  def_raw_net_pts: Object {
+                                    "value": <text
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        53
+                                      </i>
+                                    </text>,
+                                  }
+
+                  def_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -22195,7 +24805,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 25.136108992398945,
                                   }
 
-                  off_raw_ppp: Object {
+                  off_raw_pts: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>

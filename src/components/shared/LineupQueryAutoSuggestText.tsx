@@ -240,7 +240,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             s,
             {
               renderTo: (
-                <Badge variant="info">
+                <Badge variant="secondary">
                   <div style={{ fontSize: "0.95rem" }}>{s}</div>
                 </Badge>
               ),
@@ -253,7 +253,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             s,
             {
               renderTo: (
-                <Badge variant="secondary">
+                <Badge variant="info">
                   <div style={{ fontSize: "0.85rem" }}>{s}</div>
                 </Badge>
               ),
@@ -267,7 +267,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             {
               renderTo: (
                 <span>
-                  <Badge variant="secondary">
+                  <Badge variant="info">
                     <div style={{ fontSize: "0.85rem" }}>
                       opponent.{g.location}:
                     </div>
@@ -287,7 +287,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             {
               renderTo: (
                 <span>
-                  <Badge variant="secondary">
+                  <Badge variant="info">
                     <div style={{ fontSize: "0.85rem" }}>opponent.team:</div>
                   </Badge>
                   <Badge variant="success">

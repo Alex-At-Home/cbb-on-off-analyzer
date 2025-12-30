@@ -1456,6 +1456,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "hybridMode": true,
             }
           }
+          showConfigureColumns={false}
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -9590,6 +9591,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "hybridMode": true,
             }
           }
+          showConfigureColumns={false}
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -17734,6 +17736,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "hybridMode": true,
             }
           }
+          showConfigureColumns={false}
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -28938,6 +28941,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "hybridMode": true,
             }
           }
+          showConfigureColumns={false}
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -37024,6 +37028,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "hybridMode": true,
             }
           }
+          showConfigureColumns={false}
           tableCopyId="playerLeaderboardTable"
           tableData={Array []}
           tableFields={
@@ -38817,6 +38822,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "hybridMode": true,
             }
           }
+          showConfigureColumns={false}
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [

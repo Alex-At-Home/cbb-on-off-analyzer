@@ -329,23 +329,29 @@ export class LineupTableUtils {
               return (
                 (pveAndFrags.length == 0 ||
                   (_.every(pveAndFrags, (fragment) =>
-                    _.find(
-                      keys,
-                      (key) =>
+                    _.find(keys, (key) => {
+                      const isNegativeAgg = key.id?.[0] == "-"; // eg Player1
+                      const matches =
                         key.code.indexOf(fragment) >= 0 ||
-                        key.id.indexOf(fragment) >= 0
-                    )
+                        (isNegativeAgg ? key.id.substring(1) : key.id).indexOf(
+                          fragment
+                        ) >= 0;
+                      return matches; //(currently we match on the presense of any key, +ve or -ve)
+                    })
                   )
                     ? true
                     : false)) &&
                 (nveAndFrags.length == 0 ||
                   (_.find(nveAndFrags, (fragment) =>
-                    _.find(
-                      keys,
-                      (key) =>
+                    _.find(keys, (key) => {
+                      const isNegativeAgg = key.id?.[0] == "-"; // eg Player1
+                      const matches =
                         key.code.indexOf(fragment) >= 0 ||
-                        key.id.indexOf(fragment) >= 0
-                    )
+                        (isNegativeAgg ? key.id.substring(1) : key.id)
+                          .substring(1)
+                          .indexOf(fragment) >= 0;
+                      return matches;
+                    })
                   )
                     ? false
                     : true))

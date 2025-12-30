@@ -570,7 +570,20 @@ const GenericTable: React.FunctionComponent<Props> = ({
             Copies formatted table to clipboard
           </Tooltip>
         );
-        return (
+        return showConfigureColumns ? (
+          <div className="d-none d-lg-block">
+            <OverlayTrigger placement="top" overlay={tooltip}>
+              <Button
+                className="float-left"
+                id={buttonId}
+                variant="outline-secondary"
+                size="sm"
+              >
+                <FontAwesomeIcon icon={faClipboard} />
+              </Button>
+            </OverlayTrigger>
+          </div>
+        ) : (
           <OverlayTrigger placement="top" overlay={tooltip}>
             <Button
               className="float-left"
@@ -612,6 +625,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
               <FontAwesomeIcon icon={faCog} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
+              {showConfigureColumns ? (
+                <Dropdown.Item id={buttonId} className="d-lg-none">
+                  Copy Table Contents
+                </Dropdown.Item>
+              ) : undefined}
               <Dropdown.Item onClick={() => setShowColumnConfig(true)}>
                 Configure Table...
               </Dropdown.Item>
