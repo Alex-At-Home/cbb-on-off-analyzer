@@ -970,6 +970,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
     onChangeState({
       ...statsExplorerParams,
       year: year,
+      gender,
       confs,
       queryFilters: queryFilters,
       title: title,
@@ -990,6 +991,7 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   }, [
     confs,
     year,
+    gender,
     queryFilters,
     datasetFilterStr,
     highlightFilterStr,
