@@ -279,7 +279,7 @@ const axisPresets = [
   // Some advanced derived style stats:
   [
     "On-Ball Frequency",
-    "100*(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct)",
+    "100*(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
   ],
   [
     "On-Ball Efficiency",
@@ -287,11 +287,28 @@ const axisPresets = [
   ],
   [
     "Off-Ball Frequency",
-    "100*(off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct)",
+    "100*(off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
   ],
   [
     "Off-Ball Efficiency",
-    "(off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp  + off_style_post_kick_pct*off_style_post_kick_ppp + off_style_high_low_pct*off_style_high_low_ppp) / (off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct)",
+    "(off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp  + off_style_post_kick_pct*off_style_post_kick_ppp + off_style_high_low_pct*off_style_high_low_ppp  + off_style_pick_pop_pct*off_style_pick_pop_ppp) / (off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+  ],
+
+  [
+    "Frontcourt-ish Play Frequency",
+    "100*(off_style_post_up_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+  ],
+  [
+    "Frontcourt-ish Play Efficiency",
+    "(off_style_post_up_pct*off_style_post_up_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp + off_style_post_kick_pct*off_style_post_kick_ppp + off_style_high_low_pct*off_style_high_low_ppp + off_style_pick_pop_pct*off_style_pick_pop_ppp)/(off_style_post_up_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+  ],
+  [
+    "Backcourt-ish Play Frequency",
+    "100*(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+  ],
+  [
+    "Backcourt-ish Play Efficiency",
+    "(off_style_rim_attack_pct*off_style_rim_attack_ppp + off_style_dribble_jumper_pct*off_style_dribble_jumper_ppp + off_style_mid_range_pct*off_style_mid_range_ppp + off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct)",
   ],
 
   // Four factors
