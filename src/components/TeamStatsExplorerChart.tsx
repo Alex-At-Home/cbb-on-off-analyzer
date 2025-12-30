@@ -129,7 +129,7 @@ export const overallTeamChartPresets = [
     },
   ],
   [
-    "Offensive Style (Guards-vs-bings//On-vs-Off-ball)",
+    "Offensive Style (Guards-vs-bigs/On-vs-Off-ball)",
     {
       title:
         "Half court play style: backcourt vs frontcourt / on-ball vs off-ball",
