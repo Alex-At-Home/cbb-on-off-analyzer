@@ -1596,7 +1596,6 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         <Form.Row>
           <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
             <ThemedSelect
-              isDisabled={true}
               value={stringToOption(gender)}
               options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
