@@ -114,13 +114,28 @@ export const overallTeamChartPresets = [
     },
   ],
   [
-    "Offensive Style",
+    "Offensive Style (Pace/On-vs-Off-ball)",
     {
       title: "Offensive Style (Pace is part tempo part transition frequency)",
       datasetFilter: "SORT_BY off_adj_ppp",
       xAxis: "Off-Ball Frequency",
       yAxis:
         "0.5*pctile_tempo + 0.5*pctile_off_style_transition_pct //LABEL Pace Stat",
+      dotColor: "Adjusted Off",
+      dotSize: "wab",
+      dotColorMap: "Red/Green Auto",
+      labelStrategy: "None",
+      pointMarkerType: "Team Logo (small)",
+    },
+  ],
+  [
+    "Offensive Style (Guards-vs-bings//On-vs-Off-ball)",
+    {
+      title:
+        "Half court play style: backcourt vs frontcourt / on-ball vs off-ball",
+      datasetFilter: "SORT_BY off_adj_ppp",
+      xAxis: "Off-Ball Frequency",
+      yAxis: "Backcourt-ish Play Frequency",
       dotColor: "Adjusted Off",
       dotSize: "wab",
       dotColorMap: "Red/Green Auto",
