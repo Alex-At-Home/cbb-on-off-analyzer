@@ -189,7 +189,16 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   };
 
   function startingLineupLinks(params: LineupFilterParams): React.ReactNode[] {
-    const tooltip = (
+    const playersToUseFromOnOff = (params.onOffPlayerSel || "").split(";");
+    const playersManuallySpecified =
+      playersToUseFromOnOff.length > 1 && params.aggByPos == "On-Off";
+    const startedComboLineupTooltip = playersManuallySpecified ? (
+      <Tooltip id="showLineups">
+        Show in a new tab a detailed analysis view of the lineup sets comprised
+        of: all off the players specified, exactly one less, exactly two less
+        etc.
+      </Tooltip>
+    ) : (
       <Tooltip id="showLineups">
         Show in a new tab a detailed analysis view of the lineup sets comprised
         of: all 5 players from the most common lineup, exactly 4 of the 5,
@@ -197,21 +206,44 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
         selector for more granular control over the players to use.
       </Tooltip>
     );
-    const playersToUseFromOnOff = (params.onOffPlayerSel || "").split(";");
-    const playersToUse =
-      playersToUseFromOnOff.length > 1
-        ? playersToUseFromOnOff.map((code) => `players.code:"${code}"`)
-        : _.thru(dataEvent.lineupStats?.lineups || [], (maybeLineups) => {
-            if (maybeLineups?.[0]) {
-              return LineupTableUtils.buildCodesAndIds(maybeLineups[0]).map(
-                (codeId) => `"${codeId.id}"`
-              );
-            } else {
-              return [];
+    const playersToUse = playersManuallySpecified
+      ? playersToUseFromOnOff
+      : _.thru(dataEvent.lineupStats?.lineups || [], (maybeLineups) => {
+          if (maybeLineups?.[0]) {
+            return LineupTableUtils.buildCodesAndIds(maybeLineups[0]).map(
+              (codeId) => `"${codeId.id}"`
+            );
+          } else {
+            return [];
+          }
+        });
+
+    const wowyPlayers =
+      params.aggByPos == "WOWY"
+        ? _.map(
+            (params.wowyPlayerSel || "").split("|").filter((str) => str != ""),
+            (maybeOnOffSelStr) => {
+              const onOffFrags = maybeOnOffSelStr.split("^");
+              const onSelSet = onOffFrags[0]
+                .split(";")
+                .filter((str) => str != "");
+              const offSelSet = (onOffFrags[1] || "")
+                .split(";")
+                .filter((str) => str != "");
+              return [onSelSet, offSelSet];
             }
-          });
+          )
+        : [];
+    const wowyTooltop = (
+      <Tooltip id="wowyLink">
+        Show in a new tab a detailed analysis view of each of the lineup combos
+        added to the table. Note this can get slow, if you only care about one
+        of the lineup combos, just click on that instead.
+      </Tooltip>
+    );
+
     return [
-      <OverlayTrigger placement="auto" overlay={tooltip}>
+      <OverlayTrigger placement="auto" overlay={startedComboLineupTooltip}>
         <a
           href="#"
           onClick={(e) => {
@@ -222,7 +254,9 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
               );
             } else {
               const baseLinkParams = getCommonFilterParams(params);
-              const basePlayerStr = `{${playersToUse.join(";")}}`;
+              const basePlayerStr = `${
+                playersManuallySpecified ? `players.code:` : ``
+              }{${playersToUse.join(";")}}`;
               const linkParams = {
                 ...baseLinkParams,
                 onQuery: `${basePlayerStr}=${playersToUse.length}`,
@@ -245,10 +279,61 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
             }
           }}
         >
-          5/4/3/2 "Starter" Analysis
+          {_.range(
+            playersToUse.length,
+            playersToUse.length <= 3 ? 0 : 1,
+            -1
+          ).join("/")}{" "}
+          {playersManuallySpecified ? "Player" : "Starter"} Analysis
         </a>
       </OverlayTrigger>,
-    ];
+    ].concat(
+      wowyPlayers.length > 0
+        ? [
+            <OverlayTrigger placement="auto" overlay={wowyTooltop}>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const baseLinkParams = getCommonFilterParams(params);
+                  const queryStrs = wowyPlayers.map(([on, off]) => {
+                    const positive =
+                      on.length > 0
+                        ? `players.code:{${on.join(";")}}=${on.length}`
+                        : "";
+                    const negative =
+                      off.length > 0
+                        ? `NOT players.code:{${off.join(";")}}~1`
+                        : "";
+                    return `${positive} ${
+                      positive && negative ? "AND" : ""
+                    } ${negative}`;
+                  });
+                  const linkParams = {
+                    ...baseLinkParams,
+                    onQuery: queryStrs[0],
+                    offQuery: queryStrs?.[1],
+                    otherQueries: _.range(0, queryStrs.length - 2).map(
+                      (index) => {
+                        return {
+                          query: queryStrs[index + 2],
+                        };
+                      }
+                    ),
+                    autoOffQuery: false,
+                    showRoster: true,
+                    calcRapm: true,
+                    showExpanded: true,
+                  };
+                  window.open(UrlRouting.getGameUrl(linkParams, {}), "_blank");
+                }}
+              >
+                WOWY Analysis
+              </a>
+            </OverlayTrigger>,
+          ]
+        : []
+    );
   }
 
   // View
