@@ -7661,17 +7661,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -7683,7 +7672,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep3": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -7694,7 +7683,18 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep3": GenericTableColProps {
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -10785,6 +10785,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Base __off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def:baseline",
+                    },
+                    Object {
                       "label": "Base Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss:baseline",
                     },
@@ -11011,6 +11027,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     Object {
                       "label": "Base FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -12392,29 +12424,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -12439,6 +12449,28 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -16886,6 +16918,22 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Base __off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def:baseline",
+                    },
+                    Object {
                       "label": "Base Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss:baseline",
                     },
@@ -17112,6 +17160,22 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     Object {
                       "label": "Base FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -19417,29 +19481,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -19464,6 +19506,28 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -27046,17 +27110,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -27068,7 +27121,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep3": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -27079,7 +27132,18 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep3": GenericTableColProps {
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -31779,6 +31843,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Base __off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def:baseline",
+                    },
+                    Object {
                       "label": "Base Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss:baseline",
                     },
@@ -32005,6 +32085,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     Object {
                       "label": "Base FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast:baseline",
+                    },
+                    Object {
+                      "label": "Base __off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -34556,29 +34652,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -34603,6 +34677,28 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -43541,17 +43637,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -43563,7 +43648,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep3": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -43574,7 +43659,18 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep3": GenericTableColProps {
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -56292,17 +56388,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -56314,7 +56399,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep3": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -56325,7 +56410,18 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep3": GenericTableColProps {
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -65077,17 +65173,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -65099,7 +65184,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep3": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -65110,7 +65195,18 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep3": GenericTableColProps {
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],

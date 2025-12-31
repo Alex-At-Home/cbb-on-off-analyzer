@@ -116,18 +116,18 @@ const buildGradesTable = (
       if (key == "title") {
         return [
           key,
-          expandedView && player
+          !expandedView && player //(single row player)
             ? GenericTableOps.addTitle(
                 "",
                 "",
-                CommonTableDefs.rowSpanCalculator,
+                GenericTableOps.defaultRowSpanCalculator,
                 "",
                 formatter
               )
             : GenericTableOps.addTitle(
                 "",
                 "",
-                GenericTableOps.defaultRowSpanCalculator,
+                CommonTableDefs.rowSpanCalculator,
                 "",
                 formatter
               ),
@@ -680,27 +680,13 @@ export class GradeTableUtils {
       gradeFormat == "pct" ? (
         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
           <small>
-            <b>Off Pctiles</b>
+            <b>Pctiles</b>
           </small>
         </OverlayTrigger>
       ) : (
         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
           <small>
-            <b>Off {maybeEquiv}Ranks</b>
-          </small>
-        </OverlayTrigger>
-      );
-    (teamPercentiles as any).def_title =
-      gradeFormat == "pct" ? (
-        <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-          <small>
-            <b>Def Pctiles</b>
-          </small>
-        </OverlayTrigger>
-      ) : (
-        <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-          <small>
-            <b>Def {maybeEquiv}Ranks</b>
+            <b>{maybeEquiv}Ranks</b>
           </small>
         </OverlayTrigger>
       );

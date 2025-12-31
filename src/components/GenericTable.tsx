@@ -35,6 +35,7 @@ import ReactNode from "react";
 import ColumnConfigModal, {
   TableColumnConfig,
 } from "./shared/ColumnConfigModal";
+import { opacity } from "html2canvas-pro/dist/types/css/property-descriptors/opacity";
 
 // Re-export for consumers
 export type { TableColumnConfig };
@@ -382,6 +383,34 @@ export class GenericTableOps {
   }
   static addColSeparator(width: number = 0.5) {
     return new GenericTableColProps("", "", width);
+  }
+  static addSpecialColSeparator(
+    specialCase: "__off_def__" | "__adj_raw__" | "__off_ast__",
+    width: number = 0.5
+  ) {
+    return new GenericTableColProps(specialCase, "", width);
+  }
+
+  static colSeparatorSpecialCases: Record<string, Record<string, string>> = {
+    __off_def__: {
+      off: "OFF",
+      def: "DEF",
+    },
+    __off_ast__: {
+      off: "",
+      def: "AST",
+    },
+    __adj_raw__: {
+      off: "ADJ",
+      def: "RAW",
+    },
+  };
+  static maybeSpecialCase(colName: string | React.ReactNode) {
+    return (
+      _.isString(colName) &&
+      _.startsWith(colName, "__") &&
+      GenericTableOps.colSeparatorSpecialCases[colName]
+    );
   }
 }
 type LockModes = "col" | "none" | "row" | "missing";
@@ -741,7 +770,9 @@ const GenericTable: React.FunctionComponent<Props> = ({
         return getNodeText(node.props.children);
     };
     const maybeFormatColName = (s: React.ReactNode | string) => {
-      if (isRepeatingHeaderRow && typeof s === "string") {
+      if (GenericTableOps.maybeSpecialCase(s)) {
+        return "";
+      } else if (isRepeatingHeaderRow && typeof s === "string") {
         const maybeRename = (maybeRepeatingHeader?.colRename || {})[s];
         return maybeRename || s;
       } else if (isRepeatingHeaderRow) {
@@ -939,15 +970,39 @@ const GenericTable: React.FunctionComponent<Props> = ({
         gradeColorOverride
       );
       const valBuilder = (inVal: any) => {
-        try {
-          return colProp.formatter(inVal, actualKey);
-        } catch (err: unknown) {
-          //handle formatting errors by making it return blank
-          return "";
+        if (_.isNil(tmpVal)) {
+          const maybeSpecialCase = GenericTableOps.maybeSpecialCase(
+            colProp.colName
+          );
+          if (maybeSpecialCase) {
+            return (
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "1ch",
+                  wordBreak: "break-all",
+                  lineHeight: 1.2,
+                  textAlign: "center",
+                  fontSize: "0.6em",
+                }}
+              >
+                <b>{maybeSpecialCase[row.cellMetaFn(key, tmpVal)] || ""}</b>
+              </span>
+            );
+          } else {
+            // normal separator
+            return "";
+          }
+        } else {
+          try {
+            return colProp.formatter(inVal, actualKey);
+          } catch (err: unknown) {
+            //handle formatting errors by making it return blank
+            return "";
+          }
         }
       };
-      //(the isNil handles separators)
-      const val = _.isNil(tmpVal) ? "" : valBuilder(tmpVal) || "";
+      const val = valBuilder(tmpVal) || "";
 
       const hasTooltip = (cellVal: any) => {
         return cellVal?.override || cellVal?.extraInfo;
@@ -1173,6 +1228,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
       verticalAlign: "middle",
       ...rowStyleOverride,
       color: colorOverride || (resolvedTheme == "dark" ? "#ebebeb" : "#525252"),
+      // Reduce left/right padding if it's a special col separator
+      ...(GenericTableOps.maybeSpecialCase(colProps.colName) && {
+        paddingLeft: "5px",
+        paddingRight: "5px",
+        opacity: "0.5",
+      }),
       // Reduce bottom padding when showing percentile
       ...(hasRank && { paddingBottom: "2px" }),
     };

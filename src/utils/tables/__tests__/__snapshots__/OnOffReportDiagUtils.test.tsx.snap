@@ -874,15 +874,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              OFF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -1294,15 +1310,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              DEF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -1749,15 +1781,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              OFF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -2169,15 +2217,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              DEF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -2628,15 +2692,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              OFF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -3048,15 +3128,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              DEF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -3573,15 +3669,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              OFF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -3993,15 +4105,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              DEF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -4448,15 +4576,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              OFF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -4868,15 +5012,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              DEF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -5327,15 +5487,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              OFF
+            </b>
+          </span>
         </td>
         <td
           className=""
@@ -5747,15 +5923,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               "backgroundColor": undefined,
               "color": "#525252",
               "fontWeight": "normal",
+              "opacity": "0.5",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
               "textAlign": "center",
               "verticalAlign": "middle",
               "width": "1.2%",
             }
           }
         >
-          <div>
-            
-          </div>
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "fontSize": "0.6em",
+                "lineHeight": 1.2,
+                "textAlign": "center",
+                "width": "1ch",
+                "wordBreak": "break-all",
+              }
+            }
+          >
+            <b>
+              DEF
+            </b>
+          </span>
         </td>
         <td
           className=""

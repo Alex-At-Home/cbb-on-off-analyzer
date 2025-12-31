@@ -98,24 +98,23 @@ export class CommonTableDefs {
     "2P% rim": "Rim%",
   };
 
-  static readonly onOffTable = (titleSpansTwoRows: boolean = false) => ({
+  static readonly onOffTable = () => ({
     //accessors vs column metadata
     title: GenericTableOps.addTitle(
       "",
       "",
-      titleSpansTwoRows
-        ? CommonTableDefs.rowSpanCalculator
-        : GenericTableOps.defaultRowSpanCalculator,
+      CommonTableDefs.rowSpanCalculator,
       "",
       GenericTableOps.htmlFormatter
     ),
-    sep0: GenericTableOps.addColSeparator(),
+    sep_adj_raw: GenericTableOps.addSpecialColSeparator("__adj_raw__"),
     net: GenericTableOps.addDataCol(
       "Net Rtg",
       "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
       CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter
     ),
+    sep_off_def: GenericTableOps.addSpecialColSeparator("__off_def__"),
     ppp: GenericTableOps.addPtsCol(
       "P/100",
       "Points per 100 possessions",
@@ -298,7 +297,9 @@ export class CommonTableDefs {
             "small",
             GenericTableOps.htmlFormatter
           ),
-      sep0: GenericTableOps.addColSeparator(),
+      sep_off_def: expandedView
+        ? GenericTableOps.addSpecialColSeparator("__off_def__")
+        : GenericTableOps.addColSeparator(),
       team_poss: GenericTableOps.addDataCol(
         "Poss",
         "Total number of team possessions for selected lineups",
@@ -415,7 +416,9 @@ export class CommonTableDefs {
           : "Free throw rate in selected lineups",
         CbbColors.picker(...CbbColors.p_ftr)
       ),
-      sep2: GenericTableOps.addColSeparator(),
+      sep_off_ast: expandedView
+        ? GenericTableOps.addSpecialColSeparator("__off_ast__")
+        : GenericTableOps.addColSeparator(),
       "3pr": GenericTableOps.addDataCol(
         "3PR",
         `Percentage of 3 pointers taken against all field goals${
@@ -754,13 +757,14 @@ export class CommonTableDefs {
           GenericTableOps.htmlFormatter,
           20
         ),
-        sep0: GenericTableOps.addColSeparator(0.05),
+        sep_adj_net: GenericTableOps.addSpecialColSeparator("__adj_raw__"),
         net: GenericTableOps.addDataCol(
           "Net Rtg",
           "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
           CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
           GenericTableOps.pointsOrHtmlFormatter
         ),
+        sep_off_def: GenericTableOps.addSpecialColSeparator("__off_def__"),
         raw_pts: GenericTableOps.addDataCol(
           "Pts",
           "Points scored/conceded by this lineup",
@@ -897,7 +901,7 @@ export class CommonTableDefs {
       CommonTableDefs.rowSpanCalculator,
       "small"
     ),
-    sep0: GenericTableOps.addColSeparator(),
+    sep_off_def: GenericTableOps.addSpecialColSeparator("__off_def__"),
     ppp: GenericTableOps.addPtsCol(
       "P/100",
       "Points per 100 possessions",

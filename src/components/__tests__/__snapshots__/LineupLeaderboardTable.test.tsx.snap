@@ -451,6 +451,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__adj_raw__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Desc. / Off-Def)",
+                      "value": "desc:diff_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Off-Def)",
+                      "value": "asc:diff_sep_adj_net",
+                    },
+                    Object {
                       "label": "Net Rtg (Desc. / Offensive)",
                       "value": "desc:off_net",
                     },
@@ -473,6 +497,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Net Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_net",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Off-Def)",
+                      "value": "desc:diff_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Off-Def)",
+                      "value": "asc:diff_sep_off_def",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -13633,17 +13681,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toolTip": "Points per 100 possessions",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.05,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -13698,6 +13735,28 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.05,
+              },
+              "sep_adj_net": GenericTableColProps {
+                "className": "",
+                "colName": "__adj_raw__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
               },
               "title": GenericTableColProps {
                 "className": "small",
@@ -14078,6 +14137,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__adj_raw__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Desc. / Off-Def)",
+                      "value": "desc:diff_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Off-Def)",
+                      "value": "asc:diff_sep_adj_net",
+                    },
+                    Object {
                       "label": "Net Rtg (Desc. / Offensive)",
                       "value": "desc:off_net",
                     },
@@ -14100,6 +14183,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Net Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_net",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Off-Def)",
+                      "value": "desc:diff_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Off-Def)",
+                      "value": "asc:diff_sep_off_def",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -33642,17 +33749,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toolTip": "Points per 100 possessions",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.05,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -33707,6 +33803,28 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.05,
+              },
+              "sep_adj_net": GenericTableColProps {
+                "className": "",
+                "colName": "__adj_raw__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
               },
               "title": GenericTableColProps {
                 "className": "small",
@@ -34190,6 +34308,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__adj_raw__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Desc. / Off-Def)",
+                      "value": "desc:diff_sep_adj_net",
+                    },
+                    Object {
+                      "label": "__adj_raw__ (Asc. / Off-Def)",
+                      "value": "asc:diff_sep_adj_net",
+                    },
+                    Object {
                       "label": "Net Rtg (Desc. / Offensive)",
                       "value": "desc:off_net",
                     },
@@ -34212,6 +34354,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Net Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_net",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Off-Def)",
+                      "value": "desc:diff_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Off-Def)",
+                      "value": "asc:diff_sep_off_def",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -47372,17 +47538,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toolTip": "Points per 100 possessions",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.05,
-              },
               "sep1": GenericTableColProps {
                 "className": "",
                 "colName": "",
@@ -47437,6 +47592,28 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.05,
+              },
+              "sep_adj_net": GenericTableColProps {
+                "className": "",
+                "colName": "__adj_raw__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
               },
               "title": GenericTableColProps {
                 "className": "small",

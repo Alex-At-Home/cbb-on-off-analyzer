@@ -449,6 +449,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
                     },
@@ -671,6 +687,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -7997,29 +8029,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -8044,6 +8054,28 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -8584,6 +8616,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
                     },
@@ -8806,6 +8854,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -16132,29 +16196,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -16179,6 +16221,28 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -16723,6 +16787,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
                     },
@@ -16945,6 +17025,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -27347,29 +27443,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -27394,6 +27468,28 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -27934,6 +28030,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
                     },
@@ -28156,6 +28268,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -35462,29 +35590,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -35509,6 +35615,28 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -36021,6 +36149,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
                     },
@@ -36243,6 +36387,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -37228,29 +37388,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -37275,6 +37413,28 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -37815,6 +37975,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "__off_def__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_def",
+                    },
+                    Object {
+                      "label": "__off_def__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_def",
+                    },
+                    Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
                     },
@@ -38037,6 +38213,22 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "FC/50 (Asc. / Defensive)",
                       "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Offensive)",
+                      "value": "desc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Offensive)",
+                      "value": "asc:off_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Desc. / Defensive)",
+                      "value": "desc:def_sep_off_ast",
+                    },
+                    Object {
+                      "label": "__off_ast__ (Asc. / Defensive)",
+                      "value": "asc:def_sep_off_ast",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -45343,29 +45535,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
-              "sep0": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
               "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -45390,6 +45560,28 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               "sep4": GenericTableColProps {
                 "className": "",
                 "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_ast": GenericTableColProps {
+                "className": "",
+                "colName": "__off_ast__",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep_off_def": GenericTableColProps {
+                "className": "",
+                "colName": "__off_def__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,

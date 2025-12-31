@@ -855,7 +855,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           FeatureFlags.tableConfigOptions
         )}
         tableCopyId="teamStatsTable"
-        tableFields={CommonTableDefs.onOffTable(true)}
+        tableFields={CommonTableDefs.onOffTable()}
         tableData={
           tableRows.length == 0 && needToLoadQuery() //(make table big enough to render loading script)
             ? _.range(0, 3).map((__) => GenericTableOps.buildRowSeparator())

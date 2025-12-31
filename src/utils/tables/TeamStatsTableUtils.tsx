@@ -588,10 +588,10 @@ export class TeamStatsTableUtils {
             }
           : {
               off_title: teamStats[queryKey]?.off_title || (
-                <b>{desc} Offense</b>
-              ),
-              def_title: teamStats[queryKey]?.def_title || (
-                <b>{desc} Defense</b>
+                <b>
+                  {desc}
+                  {queryKey == "baseline" ? "" : " lineups"}
+                </b>
               ),
             };
         const retVal: [OnOffBaselineEnum, any] = [
@@ -618,8 +618,7 @@ export class TeamStatsTableUtils {
         const retVal: [string, any] = [
           getModelKey("other", idx),
           {
-            off_title: <b>{attachedQueryInfo} Offense</b>,
-            def_title: <b>{attachedQueryInfo} Defense</b>,
+            off_title: <b>{attachedQueryInfo} lineups</b>,
             ...other,
           },
         ];
