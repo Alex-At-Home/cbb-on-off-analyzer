@@ -2277,7 +2277,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -3527,7 +3527,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -4757,7 +4757,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -6001,7 +6001,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -7275,7 +7275,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -8521,7 +8521,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -9763,7 +9763,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -11019,7 +11019,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -12255,7 +12255,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -13499,7 +13499,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -15981,7 +15981,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -17237,7 +17237,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -18479,7 +18479,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -19727,7 +19727,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -20989,7 +20989,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -22259,7 +22259,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -23513,7 +23513,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -24805,7 +24805,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -26073,7 +26073,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -27335,7 +27335,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -28589,7 +28589,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -29827,7 +29827,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -31071,7 +31071,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -32329,7 +32329,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -33567,7 +33567,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -36134,7 +36134,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -37384,7 +37384,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -38614,7 +38614,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -39858,7 +39858,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -41132,7 +41132,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -42378,7 +42378,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -43620,7 +43620,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -44876,7 +44876,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -46112,7 +46112,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -47356,7 +47356,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }

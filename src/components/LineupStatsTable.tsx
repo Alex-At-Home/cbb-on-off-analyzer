@@ -562,7 +562,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : [],
-          [GenericTableOps.buildRowSeparator()],
+          [GenericTableOps.buildRowSeparator("1px")],
         ]);
       });
       return (
@@ -1056,7 +1056,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   ),
                 ]
               : [],
-            [GenericTableOps.buildRowSeparator()],
+            [GenericTableOps.buildRowSeparator("1px")],
           ]);
         })
         .concat(

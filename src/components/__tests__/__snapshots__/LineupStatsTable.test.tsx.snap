@@ -2056,7 +2056,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -3224,7 +3224,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -4392,7 +4392,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -6242,7 +6242,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -7410,7 +7410,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -8578,7 +8578,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -10518,7 +10518,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -11280,7 +11280,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -12042,7 +12042,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -14125,7 +14125,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -15042,7 +15042,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableRepeatHeaderRow {
                 "className": "small",
@@ -15959,7 +15959,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -18333,7 +18333,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -19529,7 +19529,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -20725,7 +20725,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }
@@ -23099,7 +23099,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -24295,7 +24295,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -25491,7 +25491,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
             ]
           }

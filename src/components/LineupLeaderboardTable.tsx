@@ -608,7 +608,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               ),
             ]
           : [],
-        [GenericTableOps.buildRowSeparator()],
+        [GenericTableOps.buildRowSeparator("1px")],
       ]);
     });
     return (
