@@ -191,8 +191,9 @@ describe("RowNamingModal", () => {
 
       const textAreas = screen.getAllByRole("textbox");
 
-      // Base text should be "Season stats"
+      // Base text should be "Season stats" and phrase should be "Base"
       expect(getInputValue(textAreas[0])).toBe("Season stats");
+      expect(getInputValue(textAreas[1])).toBe("Base");
     });
 
     test("split rows have empty text when no preset phrases", () => {

@@ -69,10 +69,13 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
     // Determine base phrase/text defaults
     // If no manual baseline specified, use "Baseline stats" unless preset filter is "Season stats" (default)
     const isDefaultPreset = presetMode === ParamDefaults.defaultPresetMode;
-    const defaultBasePhrase = presetFilterPhrase || "";
+    // Default phrase is "Base" for default preset, otherwise use the preset filter phrase
+    const defaultBasePhrase = presetFilterPhrase || (isDefaultPreset ? "Base" : "");
     const defaultBaseText = isDefaultPreset ? "Season stats" : "Baseline stats";
 
     // Build defaults for each row
+    // For text: use preset filter phrase if it exists, otherwise use the default text
+    // (Note: "Base" is the default phrase for Season Stats preset, but text should still be "Season stats")
     const defaults = {
       base: {
         phrase: defaultBasePhrase,
@@ -108,9 +111,13 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
 
     // Base: use param phrase if set, else preset phrase
     const effectiveBasePhrase = paramBasePhrase || presetDefaults.base.phrase;
-    const baseText = effectiveBasePhrase
-      ? `Base (${effectiveBasePhrase}) stats`
-      : presetDefaults.base.text;
+    
+    // For text: only use "Base (phrase) stats" format if phrase differs from the default "Base"
+    // This ensures "Season stats" is used when phrase is the default "Base"
+    const isDefaultBasePhrase = effectiveBasePhrase === "Base" || effectiveBasePhrase === "";
+    const baseText = isDefaultBasePhrase
+      ? presetDefaults.base.text
+      : `Base (${effectiveBasePhrase}) stats`;
 
     const defaults = {
       base: {
@@ -211,9 +218,11 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
 
     // Calculate what the default text would be based on current phrase input
     const effectiveBasePhrase = baseState.phrase || defaults.base.phrase;
-    const expectedBaseText = effectiveBasePhrase
-      ? `Base (${effectiveBasePhrase}) stats`
-      : defaults.base.text;
+    // Only use "Base (phrase) stats" format if phrase differs from default "Base"
+    const isDefaultBasePhrase = effectiveBasePhrase === "Base" || effectiveBasePhrase === "";
+    const expectedBaseText = isDefaultBasePhrase
+      ? defaults.base.text
+      : `Base (${effectiveBasePhrase}) stats`;
 
     // Only save non-default values (save "" if it matches default)
     const basePhrase =
@@ -276,10 +285,12 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
     if (index === -1) {
       // Base row
       const effectivePhrase = currentPhrase || getPresetDefaults.base.phrase;
-      if (effectivePhrase) {
-        return `Base (${effectivePhrase}) stats`;
+      // Only use "Base (phrase) stats" format if phrase differs from default "Base"
+      const isDefaultBasePhrase = effectivePhrase === "Base" || effectivePhrase === "";
+      if (isDefaultBasePhrase) {
+        return getPresetDefaults.base.text;
       }
-      return getPresetDefaults.base.text;
+      return `Base (${effectivePhrase}) stats`;
     } else {
       // Split rows
       const presetPhrase = getPresetDefaults.splits[index]?.phrase || "";

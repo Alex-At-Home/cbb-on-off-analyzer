@@ -1616,9 +1616,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
           ) || []
         ).map((options) => options?.[0] || options?.[1]);
 
-        const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
-          params.presetMode || "??"
-        );
+        const maybeFilterPhrase =
+          (params as GameFilterParams).basePhrase ||
+          FilterPresetUtils.getPresetFilterPhrase(params.presetMode || "??");
         //(don't this is built from state instead of params)
         return [
           <a
