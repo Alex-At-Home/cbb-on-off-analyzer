@@ -789,18 +789,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix =
-      gameFilterParams.splitPhrases ||
-      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
+    const maybePrefix = _.zip(
+      gameFilterParams.splitPhrases || [],
+      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
+        []
+    ).map((options) => options?.[0] || options?.[1]);
     switch (type) {
       case "on":
         return maybePrefix?.[0] || "A";
       case "off":
         return maybePrefix?.[1] || "B";
       case "baseline":
-        const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
-          gameFilterParams.presetMode || "??"
-        );
+        const maybeFilterPhrase =
+          gameFilterParams.basePhrase ||
+          FilterPresetUtils.getPresetFilterPhrase(
+            gameFilterParams.presetMode || "??"
+          );
         return maybeFilterPhrase ? `[${maybeFilterPhrase}]` : "Base";
       case "other":
         return (
@@ -817,9 +821,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     otherIndex?: number
   ) => {
-    const maybePrefix =
-      gameFilterParams.splitPhrases ||
-      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
+    const maybePrefix = _.zip(
+      gameFilterParams.splitPhrases || [],
+      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
+        []
+    ).map((options) => options?.[0] || options?.[1]);
     switch (type) {
       case "on":
         return maybePrefix?.[0]
@@ -834,9 +840,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           ? "Off ('B')"
           : "'B' set";
       case "baseline":
-        const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
-          gameFilterParams.presetMode || "??"
-        );
+        const maybeFilterPhrase =
+          gameFilterParams.basePhrase ||
+          FilterPresetUtils.getPresetFilterPhrase(
+            gameFilterParams.presetMode || "??"
+          );
         return maybeFilterPhrase
           ? `'Base' set (${maybeFilterPhrase})`
           : `'Base' set`;

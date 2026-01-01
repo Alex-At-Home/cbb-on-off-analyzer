@@ -1770,8 +1770,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     style="text-align: right; width: 17.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <b>
-                      Baseline
-                      
+                      Season
+                       stats
                     </b>
                   </td>
                   <td
@@ -8140,8 +8140,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     style="text-align: right; width: 17.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <b>
-                      Baseline
-                      
+                      Season
+                       stats
                     </b>
                   </td>
                   <td
@@ -12735,8 +12735,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     style="text-align: right; width: 17.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <b>
-                      Baseline
-                      
+                      Season
+                       stats
                     </b>
                   </td>
                   <td

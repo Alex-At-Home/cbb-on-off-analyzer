@@ -197,9 +197,11 @@ export class TeamStatsTableUtils {
         case "off":
           return maybePrefix?.[1] || "B";
         case "baseline":
-          const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
-            gameFilterParams.presetMode || "??"
-          );
+          const maybeFilterPhrase =
+            gameFilterParams.basePhrase ||
+            FilterPresetUtils.getPresetFilterPhrase(
+              gameFilterParams.presetMode || "??"
+            );
           return maybeFilterPhrase ? `[${maybeFilterPhrase}]` : "Base";
         case "other":
           return (
@@ -238,9 +240,11 @@ export class TeamStatsTableUtils {
             ? "Off ('B')"
             : `'B'${maybeSet}`;
         case "baseline":
-          const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
-            gameFilterParams.presetMode || "??"
-          );
+          const maybeFilterPhrase =
+            gameFilterParams.basePhrase ||
+            FilterPresetUtils.getPresetFilterPhrase(
+              gameFilterParams.presetMode || "??"
+            );
           return maybeFilterPhrase
             ? `'Base'${maybeSet} (${maybeFilterPhrase})`
             : `'Base'${maybeSet}`;
@@ -249,6 +253,27 @@ export class TeamStatsTableUtils {
           return maybePrefix?.[prefixIndex]
             ? `'${maybePrefix[prefixIndex]}'${maybeSet}`
             : `'${String.fromCharCode(67 + (otherIndex || 0))}'${maybeSet}`;
+        default:
+          return "unknown";
+      }
+    };
+
+    const onOffBaseToDisplayText = (
+      type: OnOffBaselineOtherEnum,
+      otherIndex?: number
+    ) => {
+      const maybeDisplayText = gameFilterParams.splitText;
+
+      switch (type) {
+        case "on":
+          return maybeDisplayText?.[0];
+        case "off":
+          return maybeDisplayText?.[1];
+        case "baseline":
+          return gameFilterParams.baseText;
+        case "other":
+          const prefixIndex = 2 + (otherIndex || 0);
+          return maybeDisplayText?.[prefixIndex];
         default:
           return "unknown";
       }
@@ -568,38 +593,55 @@ export class TeamStatsTableUtils {
 
     // Last stage before building the table: inject titles into the stats:
     const maybeBasePhrase = onOffBaseToLongerPhrase("baseline", false);
-    const teamStatsKeys = _.zip(baselineOnOffKeys, [
-      TableDisplayUtils.addQueryInfo(
-        maybeBasePhrase != "'Base'" ? maybeBasePhrase : "Baseline",
-        gameFilterParams,
-        "baseline"
-      ),
-      TableDisplayUtils.addQueryInfo(
-        onOffBaseToLongerPhrase("on", false),
-        gameFilterParams,
-        "on"
-      ),
-      TableDisplayUtils.addQueryInfo(
-        onOffBaseToLongerPhrase("off", false),
-        gameFilterParams,
-        "off"
-      ),
-    ]);
+    const teamStatsKeys = _.zip(
+      baselineOnOffKeys,
+      baselineOnOffKeys.map((key) => {
+        const displayText = onOffBaseToDisplayText(key);
+        return displayText
+          ? TableDisplayUtils.addQueryInfo(displayText, gameFilterParams, key)
+          : undefined;
+      }),
+      [
+        TableDisplayUtils.addQueryInfo(
+          maybeBasePhrase != "'Base'"
+            ? maybeBasePhrase
+            : gameFilterParams.baseQuery || gameFilterParams.queryFilters
+            ? "Baseline"
+            : "Season",
+          gameFilterParams,
+          "baseline"
+        ),
+        TableDisplayUtils.addQueryInfo(
+          onOffBaseToLongerPhrase("on", false),
+          gameFilterParams,
+          "on"
+        ),
+        TableDisplayUtils.addQueryInfo(
+          onOffBaseToLongerPhrase("off", false),
+          gameFilterParams,
+          "off"
+        ),
+      ]
+    );
     const teamStatsByQuery = _.chain(teamStatsKeys)
       .map((keyDesc) => {
         const queryKey = keyDesc[0]!;
-        const desc = keyDesc[1];
+        const displayText = keyDesc[1];
+        const desc = keyDesc[2];
         const maybeTitle = teamStats[queryKey]?.combo_title
           ? {
               off_title: teamStats[queryKey]?.combo_title,
             }
           : {
-              off_title: teamStats[queryKey]?.off_title || (
-                <b>
-                  {desc}
-                  {queryKey == "baseline" ? " stats" : " lineups"}
-                </b>
-              ),
+              off_title:
+                teamStats[queryKey]?.off_title || displayText ? (
+                  <b>{displayText}</b>
+                ) : (
+                  <b>
+                    {desc}
+                    {queryKey == "baseline" ? " stats" : " lineups"}
+                  </b>
+                ),
             };
         const retVal: [OnOffBaselineEnum, any] = [
           queryKey,
@@ -616,6 +658,15 @@ export class TeamStatsTableUtils {
     };
     const teamStatsByOtherQuery = _.chain(teamStats.other || [])
       .map((other, idx) => {
+        const displayText = onOffBaseToDisplayText("other", idx);
+        const attachedQueryDisplayName = displayText
+          ? TableDisplayUtils.addQueryInfo(
+              displayText,
+              gameFilterParams,
+              "other",
+              idx
+            )
+          : undefined;
         const attachedQueryInfo = TableDisplayUtils.addQueryInfo(
           onOffBaseToLongerPhrase("other", false, idx),
           gameFilterParams,
@@ -625,7 +676,11 @@ export class TeamStatsTableUtils {
         const retVal: [string, any] = [
           getModelKey("other", idx),
           {
-            off_title: <b>{attachedQueryInfo} lineups</b>,
+            off_title: attachedQueryDisplayName ? (
+              <b>{attachedQueryDisplayName}</b>
+            ) : (
+              <b>{attachedQueryInfo} lineups</b>
+            ),
             ...other,
           },
         ];
