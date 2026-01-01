@@ -1283,9 +1283,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -1326,9 +1329,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -1369,9 +1375,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -1412,9 +1421,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -1455,9 +1467,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -1865,9 +1880,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -1908,9 +1926,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -1951,9 +1972,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -1994,9 +2018,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -2037,9 +2064,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -2451,9 +2481,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -2494,9 +2527,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -2537,9 +2573,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -2580,9 +2619,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -2623,9 +2665,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -3033,9 +3078,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -3076,9 +3124,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -3119,9 +3170,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -3162,9 +3216,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -3205,9 +3262,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -3619,9 +3679,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -3662,9 +3725,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -3705,9 +3771,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -3748,9 +3817,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -3791,9 +3863,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -4201,9 +4276,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -4244,9 +4322,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -4287,9 +4368,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -4330,9 +4414,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -4373,9 +4460,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -6637,9 +6727,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -6680,9 +6773,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -6723,9 +6819,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -6766,9 +6865,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -6809,9 +6911,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -7219,9 +7324,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -7262,9 +7370,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -7305,9 +7416,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -7348,9 +7462,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -7391,9 +7508,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -7805,9 +7925,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -7848,9 +7971,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -7891,9 +8017,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -7934,9 +8063,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -7977,9 +8109,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -8387,9 +8522,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -8430,9 +8568,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -8473,9 +8614,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -8516,9 +8660,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -8559,9 +8706,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -17532,9 +17682,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -17585,9 +17738,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -17632,9 +17788,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -17675,9 +17834,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -17718,9 +17880,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -18128,9 +18293,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -18181,9 +18349,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -18228,9 +18399,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -18271,9 +18445,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -18314,9 +18491,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -18728,9 +18908,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -18781,9 +18964,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -18828,9 +19014,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -18871,9 +19060,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -18914,9 +19106,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -19324,9 +19519,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -19377,9 +19575,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -19424,9 +19625,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -19467,9 +19671,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -19510,9 +19717,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -19924,9 +20134,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -19977,9 +20190,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -20024,9 +20240,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -20067,9 +20286,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -20110,9 +20332,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -20520,9 +20745,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -20573,9 +20801,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -20620,9 +20851,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -20663,9 +20897,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -20706,9 +20943,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -22298,9 +22538,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -22351,9 +22594,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -22398,9 +22644,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -22441,9 +22690,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -22484,9 +22736,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -22894,9 +23149,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -22947,9 +23205,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -22994,9 +23255,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -23037,9 +23301,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -23080,9 +23347,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -23494,9 +23764,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -23547,9 +23820,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -23594,9 +23870,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -23637,9 +23916,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -23680,9 +23962,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -24090,9 +24375,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -24143,9 +24431,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -24190,9 +24481,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -24233,9 +24527,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -24276,9 +24573,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DaMorsell
                                             </span>
                                           </Badge>
@@ -24690,9 +24990,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -24743,9 +25046,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -24790,9 +25096,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -24833,9 +25142,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -24876,9 +25188,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>
@@ -25286,9 +25601,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 700,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AnCowan
                                             </span>
                                           </Badge>
@@ -25339,9 +25657,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 600,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               AaWiggins
                                             </span>
                                           </Badge>
@@ -25386,9 +25707,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               JaSmith
                                             </span>
                                           </Badge>
@@ -25429,9 +25753,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               ErAyala
                                             </span>
                                           </Badge>
@@ -25472,9 +25799,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                                   "color": undefined,
                                                   "fontSize": "small",
                                                   "fontWeight": 500,
+                                                  "opacity": undefined,
                                                 }
                                               }
                                             >
+                                              
+                                              
                                               DoScott
                                             </span>
                                           </Badge>

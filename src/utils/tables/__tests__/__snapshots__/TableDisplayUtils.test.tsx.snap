@@ -310,9 +310,12 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 100,
+                  "opacity": undefined,
                 }
               }
             >
+              
+              
               p1
             </span>
           </span>
@@ -359,9 +362,12 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 300,
+                  "opacity": undefined,
                 }
               }
             >
+              
+              
               p2
             </span>
           </span>
@@ -408,9 +414,12 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 500,
+                  "opacity": undefined,
                 }
               }
             >
+              
+              
               p3
             </span>
           </span>
@@ -454,9 +463,12 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 600,
+                  "opacity": undefined,
                 }
               }
             >
+              
+              
               p4
             </span>
           </span>
@@ -503,9 +515,12 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 700,
+                  "opacity": undefined,
                 }
               }
             >
+              
+              
               p5
             </span>
           </span>

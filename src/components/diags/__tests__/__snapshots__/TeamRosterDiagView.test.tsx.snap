@@ -109,9 +109,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": 600,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 AnCowan
                               </span>
                             </Badge>
@@ -228,9 +231,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 ErAyala
                               </span>
                             </Badge>
@@ -334,9 +340,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": 600,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 AaWiggins
                               </span>
                             </Badge>
@@ -447,9 +456,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 JaSmith
                               </span>
                             </Badge>
@@ -553,9 +565,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DaMorsell
                               </span>
                             </Badge>
@@ -669,9 +684,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DoScott
                               </span>
                             </Badge>
@@ -777,9 +795,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DoScott
                               </span>
                             </Badge>
@@ -995,9 +1016,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": 600,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 AnCowan
                               </span>
                             </Badge>
@@ -1114,9 +1138,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 ErAyala
                               </span>
                             </Badge>
@@ -1220,9 +1247,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": 600,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 AaWiggins
                               </span>
                             </Badge>
@@ -1333,9 +1363,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 JaSmith
                               </span>
                             </Badge>
@@ -1439,9 +1472,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DaMorsell
                               </span>
                             </Badge>
@@ -1657,9 +1693,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": 600,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 AnCowan
                               </span>
                             </Badge>
@@ -1776,9 +1815,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 ErAyala
                               </span>
                             </Badge>
@@ -1882,9 +1924,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": 600,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 AaWiggins
                               </span>
                             </Badge>
@@ -1995,9 +2040,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 JaSmith
                               </span>
                             </Badge>
@@ -2101,9 +2149,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DaMorsell
                               </span>
                             </Badge>
@@ -2217,9 +2268,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DoScott
                               </span>
                             </Badge>
@@ -2325,9 +2379,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                     "color": undefined,
                                     "fontSize": "small",
                                     "fontWeight": undefined,
+                                    "opacity": undefined,
                                   }
                                 }
                               >
+                                
+                                
                                 DoScott
                               </span>
                             </Badge>

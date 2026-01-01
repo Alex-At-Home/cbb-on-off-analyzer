@@ -23,17 +23,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -57,17 +57,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -89,17 +89,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -121,17 +121,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -153,17 +153,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -208,17 +208,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -240,17 +240,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -274,17 +274,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -306,17 +306,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -338,17 +338,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -393,17 +393,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -427,17 +427,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -459,17 +459,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -491,17 +491,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />
@@ -523,17 +523,17 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
             
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-angle-down fa-w-10 "
+            className="svg-inline--fa fa-angle-down "
             data-icon="angle-down"
             data-prefix="fas"
             focusable="false"
             role="img"
             style={Object {}}
-            viewBox="0 0 320 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
               fill="currentColor"
               style={Object {}}
             />

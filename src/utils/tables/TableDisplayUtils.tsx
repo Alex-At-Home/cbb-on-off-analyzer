@@ -29,6 +29,8 @@ import { CommonFilterParams, GameFilterParams } from "../FilterModels";
 import { QueryUtils } from "../QueryUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { UrlRouting } from "../UrlRouting";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan } from "@fortawesome/free-solid-svg-icons";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
@@ -405,7 +407,7 @@ export class TableDisplayUtils {
               backgroundColor: playerInfo
                 ? singleColorField(playerInfo, colorField)
                 : isOffPlayer
-                ? "#5bc0de"
+                ? "#1a015aff"
                 : "grey",
               // consider this in the future:
               //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
@@ -414,14 +416,17 @@ export class TableDisplayUtils {
             <span
               style={{
                 fontSize: "small",
-                color: isOffPlayer ? "#525252" : undefined,
+                opacity: isOffPlayer ? 0.75 : undefined,
+                color: isOffPlayer ? "lightgrey" : undefined,
                 fontWeight: playerInfo
                   ? fontWeight(playerInfo)
                   : isOffPlayer
-                  ? 200
+                  ? 100
                   : undefined,
               }}
             >
+              {isOffPlayer ? <FontAwesomeIcon icon={faBan} /> : ""}
+              {isOffPlayer ? " " : ""}
               {LineupUtils.namePrettifier(cid.code)}
             </span>
           </Badge>
