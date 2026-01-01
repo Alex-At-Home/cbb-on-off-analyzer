@@ -184,9 +184,13 @@ export class TeamStatsTableUtils {
       type: OnOffBaselineOtherEnum,
       otherIndex?: number
     ) => {
-      const maybePrefix =
-        gameFilterParams.splitPhrases ||
-        FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
+      const maybePrefix = _.zip(
+        gameFilterParams.splitPhrases || [],
+        FilterPresetUtils.getPresetPhrase(
+          gameFilterParams.presetSplit || "??"
+        ) || []
+      ).map((options) => options?.[0] || options?.[1]);
+
       switch (type) {
         case "on":
           return maybePrefix?.[0] || "A";
@@ -214,9 +218,12 @@ export class TeamStatsTableUtils {
       otherIndex?: number
     ) => {
       const maybeSet = includeSet ? ` set` : "";
-      const maybePrefix =
-        gameFilterParams.splitPhrases ||
-        FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
+      const maybePrefix = _.zip(
+        gameFilterParams.splitPhrases || [],
+        FilterPresetUtils.getPresetPhrase(
+          gameFilterParams.presetSplit || "??"
+        ) || []
+      ).map((options) => options?.[0] || options?.[1]);
       switch (type) {
         case "on":
           return maybePrefix?.[0]

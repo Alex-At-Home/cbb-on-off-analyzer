@@ -83,9 +83,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     "Roster Comp.": { ref: lineupComparisonRef },
   };
   const complexNavigationsRefs = (params: GameFilterParams) => {
-    const shortRowPhrases =
-      gameFilterParams.splitPhrases ||
-      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??");
+    const shortRowPhrases = _.zip(
+      gameFilterParams.splitPhrases || [],
+      FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
+        []
+    ).map((options) => options?.[0] || options?.[1]);
     const filterPhrase = FilterPresetUtils.getPresetFilterPhrase(
       gameFilterParams.presetMode || "??"
     );

@@ -72,6 +72,7 @@ import {
 import GameSelectorModal from "./shared/GameSelectorModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import RowNamingModal, { RowNamingConfig } from "./shared/RowNamingModal";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 //@ts-ignore
 import Select, { components } from "react-select";
@@ -121,6 +122,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
     presetMode: startPresetMode,
     presetSplit: startPresetSplit,
     splitPhrases: startSplitPhrases,
+    splitText: startSplitText,
+    basePhrase: startBasePhrase,
+    baseText: startBaseText,
     // Team stats
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
@@ -170,6 +174,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const rebuildFullState = () => {
     return {
       splitPhrases: startSplitPhrases,
+      basePhrase: startBasePhrase,
+      splitText: startSplitText,
+      baseText: startBaseText,
       // Team stats
       autoOffQuery: autoOffQuery, //(TODO: I don't think this is needed)
       teamDiffs: startTeamDiffs,
@@ -372,6 +379,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [showOnGameSelectorModal, setOnShowGameSelectorModal] = useState(false);
   const [showOffGameSelectorModal, setOffShowGameSelectorModal] =
     useState(false);
+  const [showRowNamingModal, setShowRowNamingModal] = useState(false);
   const [showOtherDateRangeModals, setShowOtherDateRangeModals] = useState<
     boolean[]
   >((startOtherQueries || []).map((q) => false));
@@ -1503,6 +1511,65 @@ const GameFilter: React.FunctionComponent<Props> = ({
     }
   };
 
+  // Row Naming Modal helpers
+
+  /** Build the row configuration for the naming modal based on current query state */
+  const buildRowNamingConfig = (): RowNamingConfig => {
+    // In preset mode, use the preset to determine what's visible
+    if (!advancedView) {
+      const [maybeNewParams] = applyPresetConfig(
+        presetMode,
+        presetSplit,
+        false
+      );
+      const hasOnA =
+        !_.isEmpty(maybeNewParams?.onQuery) ||
+        !_.isEmpty(maybeNewParams?.onQueryFilters);
+      const hasOffB =
+        hasOnA &&
+        (maybeNewParams?.autoOffQuery !== false ||
+          !_.isEmpty(maybeNewParams?.offQuery) ||
+          !_.isEmpty(maybeNewParams?.offQueryFilters));
+      const numExtraQueries = (maybeNewParams?.otherQueries || []).length;
+      return {
+        hasBase: true,
+        hasOnA,
+        hasOffB,
+        numExtraQueries,
+      };
+    }
+
+    // In advanced mode, use the current state
+    const hasOnA = !_.isEmpty(onQuery) || !_.isEmpty(onQueryFilters);
+    const hasOffB =
+      hasOnA &&
+      (autoOffQuery || !_.isEmpty(offQuery) || !_.isEmpty(offQueryFilters));
+    const numExtraQueries = otherQueries.length;
+    return {
+      hasBase: true,
+      hasOnA,
+      hasOffB,
+      numExtraQueries,
+    };
+  };
+
+  /** Handle saving row naming configuration */
+  const handleRowNamingSave = (rowNaming: {
+    baseText?: string;
+    basePhrase?: string;
+    splitText?: string[];
+    splitPhrases?: string[];
+  }) => {
+    // Update the params with the new row naming
+    onChangeState({
+      ...startingState,
+      baseText: rowNaming.baseText,
+      basePhrase: rowNaming.basePhrase,
+      splitText: rowNaming.splitText,
+      splitPhrases: rowNaming.splitPhrases,
+    });
+  };
+
   // Visual components:
 
   const queryPlusTooltip = (
@@ -1541,9 +1608,14 @@ const GameFilter: React.FunctionComponent<Props> = ({
       childHandleResponse={handleResponse}
       buildLinks={(params) => {
         const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries(false);
-        const maybePresetPhrase =
-          (params as GameFilterParams).splitPhrases ||
-          FilterPresetUtils.getPresetPhrase(params.presetSplit || "??");
+
+        const maybePresetPhrase = _.zip(
+          (params as GameFilterParams).splitPhrases || [],
+          FilterPresetUtils.getPresetPhrase(
+            (params as GameFilterParams).presetSplit || "??"
+          ) || []
+        ).map((options) => options?.[0] || options?.[1]);
+
         const maybeFilterPhrase = FilterPresetUtils.getPresetFilterPhrase(
           params.presetMode || "??"
         );
@@ -1678,6 +1750,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
       <GlobalKeypressManager.Consumer>
         {(globalKeypressHandler) => (
           <div>
+            <RowNamingModal
+              show={showRowNamingModal}
+              onHide={() => setShowRowNamingModal(false)}
+              onSave={handleRowNamingSave}
+              params={{
+                ...startingState,
+                presetMode,
+                presetSplit,
+              }}
+              rowConfig={buildRowNamingConfig()}
+            />
             <DateRangeModal
               show={showOnDateRangeModal}
               queryType={
@@ -1972,6 +2055,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     }
                   >
                     <GenericTogglingMenuItem
+                      text="Row Names..."
+                      truthVal={false}
+                      onSelect={() => setShowRowNamingModal(true)}
+                    />
+                    <Dropdown.Divider />
+                    <GenericTogglingMenuItem
                       text="Reset to defaults"
                       truthVal={false}
                       onSelect={() => setNewParamsOnSubmit({})}
@@ -2229,6 +2318,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
                           ? addOtherQuery()
                           : removeAllOtherQueries()
                       }
+                    />
+                    <Dropdown.Divider />
+                    <GenericTogglingMenuItem
+                      text="Row Names..."
+                      truthVal={false}
+                      onSelect={() => setShowRowNamingModal(true)}
                     />
                   </GenericTogglingMenu>
                 </Col>

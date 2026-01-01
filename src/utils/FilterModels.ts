@@ -134,7 +134,10 @@ export type GameFilterParams = {
   advancedMode?: boolean;
   presetMode?: string;
   presetSplit?: string;
-  splitPhrases?: string[]; //(if present then use instead of A/etc)
+  splitText?: string[]; //(if present then use instead of A/etc in the rows)
+  baseText?: string;
+  splitPhrases?: string[]; //(if present then use instead of A/etc in smaller places)
+  basePhrase?: string;
   // Base on/off
   onQuery?: string;
   offQuery?: string;
