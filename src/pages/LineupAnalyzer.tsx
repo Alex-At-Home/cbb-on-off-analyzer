@@ -242,6 +242,38 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       </Tooltip>
     );
 
+    const buildCodeToIdLookupMap = () => {
+      const mutAllPlayersToMap: Record<string, string> = _.chain(
+        playersToUseFromOnOff.concat(_.flatten(_.flatten(wowyPlayers)))
+      )
+        .map((p) => [p, ""])
+        .filter((codeId) => Boolean(codeId[0]))
+        .fromPairs()
+        .value();
+
+      const resReport = _.chain(dataEvent.lineupStats?.lineups || [])
+        .map((l) => LineupTableUtils.buildCodesAndIds(l))
+        .transform((acc, v) => {
+          v.forEach((p) => {
+            if (p.code && mutAllPlayersToMap.hasOwnProperty(p.code)) {
+              mutAllPlayersToMap[p.code] = p.id;
+              acc[p.code] = true;
+            }
+          });
+          if (_.size(acc) == _.size(mutAllPlayersToMap)) {
+            // matched all codes
+            return false;
+          }
+        }, {} as Record<string, boolean>)
+        .value();
+
+      if (_.size(resReport) == _.size(mutAllPlayersToMap)) {
+        return mutAllPlayersToMap;
+      } else {
+        return {};
+      }
+    };
+
     return [
       <OverlayTrigger placement="auto" overlay={startedComboLineupTooltip}>
         <a
@@ -253,10 +285,28 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
                 "Need either 3+ players specified in the On/Off selector in On/Off mode, or a non-empty lineup set"
               );
             } else {
+              const codeIdLookup = playersManuallySpecified
+                ? buildCodeToIdLookupMap()
+                : {};
               const baseLinkParams = getCommonFilterParams(params);
+              const playersManuallySpecifiedAndNoLookup =
+                playersManuallySpecified && _.isEmpty(codeIdLookup);
               const basePlayerStr = `${
-                playersManuallySpecified ? `players.code:` : ``
-              }{${playersToUse.join(";")}}`;
+                playersManuallySpecifiedAndNoLookup ? `players.code:` : ``
+              }{${playersToUse
+                .map((p) => {
+                  if (
+                    playersManuallySpecifiedAndNoLookup ||
+                    !playersManuallySpecified
+                  ) {
+                    return p;
+                  } else {
+                    return codeIdLookup[p]
+                      ? `"${codeIdLookup[p]}"`
+                      : `players.code:${p}`;
+                  }
+                })
+                .join(";")}}`;
               const linkParams = {
                 ...baseLinkParams,
                 onQuery: `${basePlayerStr}=${playersToUse.length}`,
@@ -295,19 +345,46 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
+                  const codeIdLookup = buildCodeToIdLookupMap();
                   const baseLinkParams = getCommonFilterParams(params);
                   const queryStrs = wowyPlayers.map(([on, off]) => {
-                    const positive =
-                      on.length > 0
-                        ? `players.code:{${on.join(";")}}=${on.length}`
-                        : "";
-                    const negative =
-                      off.length > 0
-                        ? `NOT players.code:{${off.join(";")}}~1`
-                        : "";
-                    return `${positive} ${
-                      positive && negative ? "AND" : ""
-                    } ${negative}`;
+                    if (_.isEmpty(codeIdLookup)) {
+                      const positive =
+                        on.length > 0
+                          ? `players.code:{${on.join(";")}}=${on.length}`
+                          : "";
+                      const negative =
+                        off.length > 0
+                          ? `NOT players.code:{${off.join(";")}}~1`
+                          : "";
+                      return `${positive} ${
+                        positive && negative ? "AND" : ""
+                      } ${negative}`;
+                    } else {
+                      const positive =
+                        on.length > 0
+                          ? `{${on
+                              .map((p) =>
+                                codeIdLookup[p]
+                                  ? `"${codeIdLookup[p]}"`
+                                  : `players.code:${p}`
+                              )
+                              .join(";")}}=${on.length}`
+                          : "";
+                      const negative =
+                        off.length > 0
+                          ? `NOT {${off
+                              .map((p) =>
+                                codeIdLookup[p]
+                                  ? `"${codeIdLookup[p]}"`
+                                  : `players.code:${p}`
+                              )
+                              .join(";")}}~1`
+                          : "";
+                      return `${positive} ${
+                        positive && negative ? "AND" : ""
+                      } ${negative}`;
+                    }
                   });
                   const linkParams = {
                     ...baseLinkParams,
