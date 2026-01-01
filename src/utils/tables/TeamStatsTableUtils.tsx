@@ -590,7 +590,7 @@ export class TeamStatsTableUtils {
               off_title: teamStats[queryKey]?.off_title || (
                 <b>
                   {desc}
-                  {queryKey == "baseline" ? "" : " lineups"}
+                  {queryKey == "baseline" ? " stats" : " lineups"}
                 </b>
               ),
             };
