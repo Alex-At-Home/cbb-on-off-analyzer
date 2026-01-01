@@ -362,6 +362,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["rapmRegressMode"]
           : [],
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+        // Row display
+        !rawParams.basePhrase ? ["basePhrase"] : [],
+        !rawParams.baseText ? ["baseText"] : [],
+        !rawParams.splitPhrases ? ["splitPhrases"] : [],
+        !rawParams.splitText ? ["splitText"] : [],
       ])
     );
 
@@ -371,6 +376,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "advancedMode",
       "presetMode",
       "presetSplit",
+      "splitPhrases",
+      "splitText",
+      "basePhrase",
+      "baseText",
       // Team info:
       "showExtraInfo",
       "teamPlayTypeConfig",
