@@ -1,9 +1,6 @@
 // React imports:
 import React, { useState, useEffect, useMemo } from "react";
 
-// Lodash:
-import _ from "lodash";
-
 // Bootstrap imports:
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -15,6 +12,8 @@ import Col from "react-bootstrap/Col";
 // Utils
 import { GameFilterParams, ParamDefaults } from "../../utils/FilterModels";
 import { FilterPresetUtils } from "../../utils/FilterPresetUtils";
+import { TableDisplayUtils } from "../../utils/tables/TableDisplayUtils";
+import { OnOffBaselineOtherEnum } from "../../utils/StatModels";
 
 /** Represents which query rows are visible */
 export type RowNamingConfig = {
@@ -55,8 +54,8 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
   params,
   rowConfig,
 }) => {
-  // Calculate defaults based on presets and params
-  const getDefaults = useMemo(() => {
+  // Calculate defaults based on presets only (ignoring params)
+  const getPresetDefaults = useMemo(() => {
     const presetMode = params.presetMode || ParamDefaults.defaultPresetMode;
     const presetSplit = params.presetSplit || ParamDefaults.defaultPresetSplit;
 
@@ -70,7 +69,7 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
     // Determine base phrase/text defaults
     // If no manual baseline specified, use "Baseline stats" unless preset filter is "Season stats" (default)
     const isDefaultPreset = presetMode === ParamDefaults.defaultPresetMode;
-    const defaultBasePhrase = presetFilterPhrase || (isDefaultPreset ? "" : "");
+    const defaultBasePhrase = presetFilterPhrase || "";
     const defaultBaseText = isDefaultPreset ? "Season stats" : "Baseline stats";
 
     // Build defaults for each row
@@ -100,6 +99,41 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
 
     return defaults;
   }, [params.presetMode, params.presetSplit, rowConfig]);
+
+  // Calculate defaults taking into account param phrases (param phrase takes precedence)
+  const getDefaults = useMemo(() => {
+    const presetDefaults = getPresetDefaults;
+    const paramBasePhrase = params.basePhrase || "";
+    const paramSplitPhrases = params.splitPhrases || [];
+
+    // Base: use param phrase if set, else preset phrase
+    const effectiveBasePhrase = paramBasePhrase || presetDefaults.base.phrase;
+    const baseText = effectiveBasePhrase
+      ? `Base (${effectiveBasePhrase}) stats`
+      : presetDefaults.base.text;
+
+    const defaults = {
+      base: {
+        phrase: effectiveBasePhrase,
+        text: baseText,
+      },
+      splits: [] as RowState[],
+    };
+
+    // Splits: param phrase takes precedence over preset phrase
+    for (let i = 0; i < presetDefaults.splits.length; i++) {
+      const paramPhrase = paramSplitPhrases[i] || "";
+      const presetPhrase = presetDefaults.splits[i]?.phrase || "";
+      const effectivePhrase = paramPhrase || presetPhrase;
+
+      defaults.splits.push({
+        phrase: effectivePhrase,
+        text: effectivePhrase ? `${effectivePhrase} lineups` : "",
+      });
+    }
+
+    return defaults;
+  }, [getPresetDefaults, params.basePhrase, params.splitPhrases]);
 
   // Get current values from params (with fallback to defaults)
   const getCurrentValues = (): { base: RowState; splits: RowState[] } => {
@@ -164,30 +198,39 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
   };
 
   const handleClear = () => {
-    // Clear to only preset defaults (assumes params are blank)
-    const defaults = getDefaults;
+    // Clear to only preset defaults (ignoring param phrases)
+    const defaults = getPresetDefaults;
     setBaseState(defaults.base);
     setSplitStates(defaults.splits);
   };
 
   const handleSave = () => {
-    const defaults = getDefaults;
+    // Compare against PRESET-ONLY defaults (not param-augmented)
+    // This ensures values don't get cleared on subsequent saves
+    const defaults = getPresetDefaults;
+
+    // Calculate what the default text would be based on current phrase input
+    const effectiveBasePhrase = baseState.phrase || defaults.base.phrase;
+    const expectedBaseText = effectiveBasePhrase
+      ? `Base (${effectiveBasePhrase}) stats`
+      : defaults.base.text;
 
     // Only save non-default values (save "" if it matches default)
     const basePhrase =
       baseState.phrase === defaults.base.phrase ? "" : baseState.phrase;
     const baseText =
-      baseState.text === defaults.base.text ? "" : baseState.text;
+      baseState.text === expectedBaseText ? "" : baseState.text;
 
     const splitPhrases: string[] = [];
     const splitText: string[] = [];
 
     splitStates.forEach((split, i) => {
       const defaultPhrase = defaults.splits[i]?.phrase || "";
-      const defaultText = defaults.splits[i]?.text || "";
+      const effectivePhrase = split.phrase || defaultPhrase;
+      const expectedText = effectivePhrase ? `${effectivePhrase} lineups` : "";
 
       splitPhrases.push(split.phrase === defaultPhrase ? "" : split.phrase);
-      splitText.push(split.text === defaultText ? "" : split.text);
+      splitText.push(split.text === expectedText ? "" : split.text);
     });
 
     // Only include arrays if they have non-empty values
@@ -203,53 +246,98 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
     onHide();
   };
 
-  // Get row label
-  const getRowLabel = (index: number): string => {
-    if (index === -1) return "Base";
+  // Get row label and query type
+  const getRowInfo = (
+    index: number
+  ): { label: string; queryType: OnOffBaselineOtherEnum; otherIndex?: number } => {
+    if (index === -1) return { label: "Base", queryType: "baseline" };
 
     let splitIndex = 0;
     if (rowConfig.hasOnA) {
-      if (splitIndex === index) return "On ('A')";
+      if (splitIndex === index) return { label: "On ('A')", queryType: "on" };
       splitIndex++;
     }
     if (rowConfig.hasOffB) {
-      if (splitIndex === index) return "Off ('B')";
+      if (splitIndex === index) return { label: "Off ('B')", queryType: "off" };
       splitIndex++;
     }
     // Extra queries: C, D, E, etc.
     const extraIndex = index - splitIndex;
-    return String.fromCharCode(67 + extraIndex); // 'C', 'D', 'E', ...
+    return {
+      label: String.fromCharCode(67 + extraIndex), // 'C', 'D', 'E', ...
+      queryType: "other",
+      otherIndex: extraIndex,
+    };
+  };
+
+  // Calculate the default text that would be used if display text is empty
+  // This uses the CURRENT phrase input value (what user typed), with fallback to preset
+  const getDefaultTextForRow = (index: number, currentPhrase: string): string => {
+    if (index === -1) {
+      // Base row
+      const effectivePhrase = currentPhrase || getPresetDefaults.base.phrase;
+      if (effectivePhrase) {
+        return `Base (${effectivePhrase}) stats`;
+      }
+      return getPresetDefaults.base.text;
+    } else {
+      // Split rows
+      const presetPhrase = getPresetDefaults.splits[index]?.phrase || "";
+      const effectivePhrase = currentPhrase || presetPhrase;
+      if (effectivePhrase) {
+        return `${effectivePhrase} lineups`;
+      }
+      return "";
+    }
   };
 
   // Render a single row
   const renderRow = (
-    label: string,
+    index: number,
     state: RowState,
     onChange: (newState: RowState) => void
-  ) => (
-    <Form.Group as={Row} className="mb-2" key={label}>
-      <Form.Label column xs={2} className="text-end">
-        <strong>{label}</strong>
-      </Form.Label>
-      <Col xs={7}>
-        <Form.Control
-          as="textarea"
-          rows={1}
-          value={state.text}
-          placeholder="Row display text..."
-          onChange={(e) => onChange({ ...state, text: e.target.value })}
-        />
-      </Col>
-      <Col xs={3}>
-        <Form.Control
-          type="text"
-          value={state.phrase}
-          placeholder="Phrase..."
-          onChange={(e) => onChange({ ...state, phrase: e.target.value })}
-        />
-      </Col>
-    </Form.Group>
-  );
+  ) => {
+    const { label, queryType, otherIndex } = getRowInfo(index);
+
+    // Build the placeholder text based on current phrase input value
+    const defaultText = getDefaultTextForRow(index, state.phrase);
+    const placeholderText = defaultText
+      ? `Row display text... [${defaultText}]`
+      : "Row display text...";
+
+    // Wrap the label with query info tooltip
+    const labelWithQueryInfo = TableDisplayUtils.addQueryInfo(
+      <strong>{label}</strong>,
+      params,
+      queryType,
+      otherIndex
+    );
+
+    return (
+      <Form.Group as={Row} className="mb-2" key={label}>
+        <Form.Label column xs={2} className="text-end">
+          {labelWithQueryInfo}
+        </Form.Label>
+        <Col xs={7}>
+          <Form.Control
+            as="textarea"
+            rows={1}
+            value={state.text}
+            placeholder={placeholderText}
+            onChange={(e) => onChange({ ...state, text: e.target.value })}
+          />
+        </Col>
+        <Col xs={3}>
+          <Form.Control
+            type="text"
+            value={state.phrase}
+            placeholder="Phrase..."
+            onChange={(e) => onChange({ ...state, phrase: e.target.value })}
+          />
+        </Col>
+      </Form.Group>
+    );
+  };
 
   return (
     <Modal
@@ -283,11 +371,11 @@ const RowNamingModal: React.FunctionComponent<Props> = ({
           </Form.Group>
 
           {/* Base row */}
-          {renderRow("Base", baseState, setBaseState)}
+          {renderRow(-1, baseState, setBaseState)}
 
           {/* Split rows */}
           {splitStates.map((split, index) =>
-            renderRow(getRowLabel(index), split, (newState) => {
+            renderRow(index, split, (newState) => {
               setSplitStates((prev) => {
                 const updated = [...prev];
                 updated[index] = newState;
