@@ -874,23 +874,31 @@ export class TeamStatsTableUtils {
                 }
               )
             : [],
-          showShotCharts
+          showExtraInfo
             ? [
                 GenericTableOps.buildTextRow(
-                  <ShotChartDiagView
-                    title={displayKey}
-                    off={getShotStats(queryKey, shotStats, otherQueryIndex).off}
-                    def={getShotStats(queryKey, shotStats, otherQueryIndex).def}
-                    gender={gameFilterParams.gender as "Men" | "Women"}
-                    quickSwitchOptions={shotChartQuickSwitchOptions.filter(
-                      (opt) => opt.title != displayKey
-                    )}
-                    chartOpts={shotChartConfig}
-                    onChangeChartOpts={(newOpts) => {
-                      persistNewState.setShotChartConfig(newOpts);
-                    }}
-                  />,
-                  "small"
+                  <span>
+                    <TeamExtraStatsInfoView
+                      name={displayKey}
+                      teamStatSet={getTeamStats(
+                        queryKey,
+                        teamStats,
+                        otherQueryIndex
+                      )}
+                      showGrades={showGrades}
+                      grades={
+                        showGrades
+                          ? {
+                              comboTier: divisionStatsCache.Combo,
+                              highTier: divisionStatsCache.High,
+                              mediumTier: divisionStatsCache.Medium,
+                              lowTier: divisionStatsCache.Low,
+                            }
+                          : undefined
+                      }
+                    />
+                  </span>,
+                  "small pt-2"
                 ),
               ]
             : [],
@@ -1062,31 +1070,23 @@ export class TeamStatsTableUtils {
                 ),
               ]
             : [],
-          showExtraInfo
+          showShotCharts
             ? [
                 GenericTableOps.buildTextRow(
-                  <span>
-                    <TeamExtraStatsInfoView
-                      name={displayKey}
-                      teamStatSet={getTeamStats(
-                        queryKey,
-                        teamStats,
-                        otherQueryIndex
-                      )}
-                      showGrades={showGrades}
-                      grades={
-                        showGrades
-                          ? {
-                              comboTier: divisionStatsCache.Combo,
-                              highTier: divisionStatsCache.High,
-                              mediumTier: divisionStatsCache.Medium,
-                              lowTier: divisionStatsCache.Low,
-                            }
-                          : undefined
-                      }
-                    />
-                  </span>,
-                  "small pt-2"
+                  <ShotChartDiagView
+                    title={displayKey}
+                    off={getShotStats(queryKey, shotStats, otherQueryIndex).off}
+                    def={getShotStats(queryKey, shotStats, otherQueryIndex).def}
+                    gender={gameFilterParams.gender as "Men" | "Women"}
+                    quickSwitchOptions={shotChartQuickSwitchOptions.filter(
+                      (opt) => opt.title != displayKey
+                    )}
+                    chartOpts={shotChartConfig}
+                    onChangeChartOpts={(newOpts) => {
+                      persistNewState.setShotChartConfig(newOpts);
+                    }}
+                  />,
+                  "small"
                 ),
               ]
             : [],

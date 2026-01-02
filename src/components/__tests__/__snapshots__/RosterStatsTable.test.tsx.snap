@@ -251,7 +251,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 <b>
                                   A
                                 </b>
-                                 lineups
+                                 stats
                               </span>
                             </u>
                           </OverlayTrigger>
@@ -540,7 +540,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 <b>
                                   B
                                 </b>
-                                 lineups
+                                 stats
                               </span>
                             </u>
                           </OverlayTrigger>
@@ -811,7 +811,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -1078,7 +1078,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 <b>
                                   A
                                 </b>
-                                 lineups
+                                 stats
                               </span>
                             </u>
                           </OverlayTrigger>
@@ -1349,7 +1349,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -1616,7 +1616,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 <b>
                                   B
                                 </b>
-                                 lineups
+                                 stats
                               </span>
                             </u>
                           </OverlayTrigger>
@@ -1900,7 +1900,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -2156,7 +2156,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -2432,7 +2432,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -2728,7 +2728,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -3026,7 +3026,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -3322,7 +3322,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -3620,7 +3620,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -3916,7 +3916,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -4196,7 +4196,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -4452,7 +4452,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -4728,7 +4728,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -5024,7 +5024,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                     </u>
                                   </OverlayTrigger>
@@ -5337,7 +5337,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -5586,7 +5586,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -6550,7 +6550,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                             <b>
                                               A
                                             </b>
-                                             lineups
+                                             stats
                                           </span>
                                         </u>
                                       </OverlayTrigger>
@@ -6846,7 +6846,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                             <b>
                                               B
                                             </b>
-                                             lineups
+                                             stats
                                           </span>
                                         </u>
                                       </OverlayTrigger>
@@ -7146,7 +7146,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                             <b>
                                               A
                                             </b>
-                                             lineups
+                                             stats
                                           </span>
                                         </u>
                                       </OverlayTrigger>
@@ -7446,7 +7446,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                             <b>
                                               B
                                             </b>
-                                             lineups
+                                             stats
                                           </span>
                                         </u>
                                       </OverlayTrigger>
@@ -12752,7 +12752,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -12958,7 +12958,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -13164,7 +13164,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -13370,7 +13370,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -13576,7 +13576,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -13782,7 +13782,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -14001,7 +14001,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -14214,7 +14214,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -14429,7 +14429,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -14642,7 +14642,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -14857,7 +14857,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -15070,7 +15070,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -15285,7 +15285,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -15498,7 +15498,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -15713,7 +15713,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -15926,7 +15926,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -16141,7 +16141,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -16354,7 +16354,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -16602,7 +16602,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -16808,7 +16808,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -17759,7 +17759,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -17972,7 +17972,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -18185,7 +18185,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -18398,7 +18398,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -18615,7 +18615,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -18828,7 +18828,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -19045,7 +19045,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -19258,7 +19258,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -19864,7 +19864,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -20127,7 +20127,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -20390,7 +20390,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -20653,7 +20653,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -20916,7 +20916,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -21179,7 +21179,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -21455,7 +21455,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -21725,7 +21725,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -21997,7 +21997,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -22267,7 +22267,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -22539,7 +22539,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -22809,7 +22809,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -23081,7 +23081,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -23351,7 +23351,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -23623,7 +23623,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -23893,7 +23893,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -24165,7 +24165,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -24435,7 +24435,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -24740,7 +24740,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -25003,7 +25003,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -25963,7 +25963,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -26271,7 +26271,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -26583,7 +26583,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -26895,7 +26895,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -27409,7 +27409,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -27629,7 +27629,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -27849,7 +27849,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -28069,7 +28069,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -28289,7 +28289,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -28509,7 +28509,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -28742,7 +28742,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -28969,7 +28969,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -29198,7 +29198,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -29425,7 +29425,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -29654,7 +29654,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -29881,7 +29881,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -30110,7 +30110,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -30337,7 +30337,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -30566,7 +30566,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -30793,7 +30793,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -31022,7 +31022,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -31249,7 +31249,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -31511,7 +31511,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -31731,7 +31731,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -32696,7 +32696,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -32923,7 +32923,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -33188,7 +33188,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -33415,7 +33415,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -33684,7 +33684,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -33911,7 +33911,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -34180,7 +34180,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -34407,7 +34407,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -35041,7 +35041,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -35310,7 +35310,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -35579,7 +35579,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -35848,7 +35848,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -36117,7 +36117,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -36386,7 +36386,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -36668,7 +36668,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -36944,7 +36944,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -37222,7 +37222,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -37498,7 +37498,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -37776,7 +37776,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -38052,7 +38052,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -38330,7 +38330,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -38606,7 +38606,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -38884,7 +38884,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -39160,7 +39160,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -39438,7 +39438,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -39714,7 +39714,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -40025,7 +40025,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -40294,7 +40294,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -41260,7 +41260,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -41558,7 +41558,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -41877,7 +41877,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -42175,7 +42175,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -42498,7 +42498,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -42796,7 +42796,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -43119,7 +43119,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -43417,7 +43417,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -43991,7 +43991,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -44268,7 +44268,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -44545,7 +44545,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -44822,7 +44822,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -45111,7 +45111,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -45382,7 +45382,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -45699,7 +45699,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -45983,7 +45983,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -46269,7 +46269,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -46553,7 +46553,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -46839,7 +46839,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -47123,7 +47123,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -47403,7 +47403,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -47681,7 +47681,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -47979,7 +47979,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -48275,7 +48275,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -48561,7 +48561,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -48845,7 +48845,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -49164,7 +49164,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -49453,7 +49453,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -50435,7 +50435,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -50741,7 +50741,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -51078,7 +51078,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -51347,7 +51347,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -51630,7 +51630,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -51952,7 +51952,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -52258,7 +52258,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -52595,7 +52595,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -52864,7 +52864,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -53147,7 +53147,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -53473,7 +53473,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -53779,7 +53779,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -54116,7 +54116,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -54385,7 +54385,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -54668,7 +54668,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -54988,7 +54988,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -55288,7 +55288,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -55619,7 +55619,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -55888,7 +55888,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -56171,7 +56171,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                     <b>
                                                       Base
                                                     </b>
-                                                     lineups
+                                                     stats
                                                   </span>
                                                   
                                                 </span>
@@ -56730,7 +56730,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -56991,7 +56991,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -57264,7 +57264,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -57525,7 +57525,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               A
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -57786,7 +57786,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -58047,7 +58047,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               B
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -58342,7 +58342,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -58622,7 +58622,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -58892,7 +58892,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -59160,7 +59160,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -59430,7 +59430,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -59698,7 +59698,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -59968,7 +59968,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -60236,7 +60236,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       B
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -60506,7 +60506,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -60774,7 +60774,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       Base
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -61044,7 +61044,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -61312,7 +61312,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     <b>
                                       A
                                     </b>
-                                     lineups
+                                     stats
                                   </span>
                                   
                                 </span>
@@ -61627,7 +61627,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -61888,7 +61888,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                             <b>
                               Base
                             </b>
-                             lineups
+                             stats
                           </span>
                           
                         </span>
@@ -62854,7 +62854,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -63144,7 +63144,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -63455,7 +63455,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -63745,7 +63745,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -64060,7 +64060,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                         <b>
                                           A
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -64350,7 +64350,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                                 <b>
                                                   A
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>
@@ -64665,7 +64665,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                         <b>
                                           B
                                         </b>
-                                         lineups
+                                         stats
                                       </span>
                                       
                                     </span>
@@ -64955,7 +64955,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                                 <b>
                                                   B
                                                 </b>
-                                                 lineups
+                                                 stats
                                               </span>
                                               
                                             </span>

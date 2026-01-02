@@ -913,7 +913,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           {TableDisplayUtils.addQueryInfo(
             <span>
               {posIfNotExpanded2}
-              <b>{sub}</b> lineups
+              <b>{sub}</b> stats
             </span>,
             gameFilterParams,
             type,
