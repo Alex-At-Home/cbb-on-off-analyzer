@@ -44,7 +44,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   const optionalHelpLink = () => {
     if (helpLink) {
       return (
-        <span className="float-right pl-2">
+        <span className="pl-2">
           <a target="_blank" href={helpLink}>
             <small>(?)</small>
           </a>
@@ -54,7 +54,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   };
   const optionalExtraElement = () => {
     if (extraElement) {
-      return <span className="float-right">{extraElement}</span>;
+      return <span>{extraElement}</span>;
     }
   };
 
@@ -71,8 +71,11 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   return (
     <Card className="w-100">
       <Card.Body style={cardBodyStyle}>
-        <Card.Title style={titleStyle}>
-          <span>
+        <Card.Title
+          style={titleStyle}
+          className="d-flex flex-wrap align-items-start"
+        >
+          <span className="flex-grow-1">
             <a
               href="#"
               onClick={(e) => {
@@ -86,8 +89,8 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
               ({showTable ? "+" : "-"}) {title}
             </a>
           </span>
-          {optionalHelpLink()}
           {optionalExtraElement()}
+          {optionalHelpLink()}
         </Card.Title>
         {showSummaryIfHidden()}
         <Collapse in={showTable}>
