@@ -262,13 +262,39 @@ export class TeamStatsTableUtils {
       type: OnOffBaselineOtherEnum,
       otherIndex?: number
     ) => {
+      const maybeOnOff = _.thru(
+        gameFilterParams.presetSplit || "??",
+        (splitPreset) => {
+          if (
+            splitPreset.startsWith(FilterPresetUtils.gameFilterOnOffPrefix) &&
+            (type == "on" || type == "off")
+          ) {
+            const onOrOff = _.toUpper(type);
+            const onOffPlayerName = splitPreset.substring(
+              FilterPresetUtils.gameFilterOnOffPrefix.length
+            );
+            const playerNameFrags = onOffPlayerName.split(", ");
+            const shortPlayerName = `${(playerNameFrags?.[1] || "").substring(
+              0,
+              2
+            )}${(playerNameFrags[0] || "").substring(0, 2)}`;
+            return `<div><small class="d-xl-none">${shortPlayerName} ${onOrOff}</small><small class="d-none d-xl-block">${onOffPlayerName} <b>${onOrOff}</b> stats</small></div>`;
+          } else {
+            return undefined;
+          }
+        }
+      );
       const maybeDisplayText = gameFilterParams.splitText;
 
       switch (type) {
         case "on":
-          return TableDisplayUtils.safelyConvertToHtml(maybeDisplayText?.[0]);
+          return TableDisplayUtils.safelyConvertToHtml(
+            maybeDisplayText?.[0] || maybeOnOff
+          );
         case "off":
-          return TableDisplayUtils.safelyConvertToHtml(maybeDisplayText?.[1]);
+          return TableDisplayUtils.safelyConvertToHtml(
+            maybeDisplayText?.[1] || maybeOnOff
+          );
         case "baseline":
           return TableDisplayUtils.safelyConvertToHtml(
             gameFilterParams.baseText
