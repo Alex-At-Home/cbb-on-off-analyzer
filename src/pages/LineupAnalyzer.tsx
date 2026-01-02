@@ -54,6 +54,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -309,6 +310,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
                 .join(";")}}`;
               const linkParams = {
                 ...baseLinkParams,
+                splitPhrases: playersToUse.map(
+                  (p, pIndex) =>
+                    `${playersToUse.length - pIndex}_of_T${playersToUse.length}`
+                ),
                 onQuery: `${basePlayerStr}=${playersToUse.length}`,
                 offQuery: `${basePlayerStr}=${playersToUse.length - 1}`,
                 otherQueries: _.range(0, playersToUse.length <= 3 ? 1 : 2).map(
@@ -388,6 +393,17 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
                   });
                   const linkParams = {
                     ...baseLinkParams,
+                    splitPhrases: wowyPlayers.map(
+                      (val, valIndex) => `LUp_${valIndex + 1}`
+                    ),
+                    splitText: wowyPlayers
+                      .map((val: string[][]) =>
+                        TableDisplayUtils.splitTextBuilder(
+                          val?.[0] || [],
+                          val?.[1] || []
+                        )
+                      )
+                      .concat(wowyPlayers.length == 1 ? [""] : []),
                     onQuery: queryStrs[0],
                     offQuery: queryStrs?.[1],
                     otherQueries: _.range(0, queryStrs.length - 2).map(

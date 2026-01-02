@@ -128,6 +128,33 @@ export class TableDisplayUtils {
     );
   }
 
+  /** Builds a handy lineup text for display row names, which truncates in mobile mode */
+  static splitTextBuilder(
+    includeCodes: string[],
+    excludeCodes: string[]
+  ): string {
+    const codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
+    const codeLimiter = (s: string) => s.substring(0, 8);
+
+    return (
+      `<div>` +
+      `<small class="d-xl-none">` +
+      includeCodes.map((p) => codeTruncator(p)).join(", ") +
+      (_.isEmpty(excludeCodes)
+        ? ""
+        : ` ! ${excludeCodes.map((p) => `${codeTruncator(p)}`).join(", ")}`) +
+      `</small>` +
+      `<small class="d-none d-xl-block">` +
+      includeCodes.map((p) => codeLimiter(p)).join(", ") +
+      (_.isEmpty(excludeCodes)
+        ? ""
+        : ` NOT ${excludeCodes.map((p) => `${codeLimiter(p)}`).join(", ")}`) +
+      `</small>` +
+      `</div>`
+    );
+  }
+
+  /** Builds a Game URL for a single lineup */
   static buildGameUrl(
     params: CommonFilterParams,
     sortedLineup: { code: string; id: string }[],
@@ -142,34 +169,16 @@ export class TableDisplayUtils {
       .concat(extraExcludes.map((p) => p.id.substring(1)));
 
     const isRawLineup = sortedLineup.length == 5 && allExcludes.length == 0;
-    const codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
-    const codeLimiter = (s: string) => s.substring(0, 8);
 
     return UrlRouting.getGameUrl(
       {
         ...params,
         splitPhrases: [isRawLineup ? "Lineup" : "Lineups", ""],
         splitText: [
-          `<div>` +
-            `<small class="d-xl-none">` +
-            includes.map((p) => codeTruncator(p.code)).join(", ") +
-            (_.isEmpty(allExcludes)
-              ? ""
-              : ` ! ${excludes
-                  .concat(extraExcludes)
-                  .map((p) => `${codeTruncator(p.code)}`)
-                  .join(", ")}`) +
-            `</small>` +
-            `<small class="d-none d-xl-block">` +
-            includes.map((p) => codeLimiter(p.code)).join(", ") +
-            (_.isEmpty(allExcludes)
-              ? ""
-              : ` NOT ${excludes
-                  .concat(extraExcludes)
-                  .map((p) => `${codeLimiter(p.code)}`)
-                  .join(", ")}`) +
-            `</small>` +
-            `</div>`,
+          TableDisplayUtils.splitTextBuilder(
+            includes.map((p) => p.code),
+            excludes.concat(extraExcludes).map((p) => p.code)
+          ),
           "",
         ],
         onQuery:
