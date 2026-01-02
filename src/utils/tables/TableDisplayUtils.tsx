@@ -32,8 +32,37 @@ import { UrlRouting } from "../UrlRouting";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
 
+import DOMPurify from "dompurify";
+
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
+  /** If a string starts with < and ends with >, treats as HTML  */
+  static safelyConvertToHtml = (html: string | undefined): React.ReactNode => {
+    const trimmedHtml = _.trim(html || "");
+    if (
+      html &&
+      trimmedHtml?.[0] == "<" &&
+      trimmedHtml?.[trimmedHtml.length - 1] == ">"
+    ) {
+      const clean = DOMPurify.sanitize(html, {
+        ALLOWED_TAGS: [
+          "b",
+          "i",
+          "em",
+          "strong",
+          "u",
+          "br",
+          "span",
+          "sub",
+          "sup",
+        ],
+        ALLOWED_ATTR: ["style", "class"],
+      });
+      return <span dangerouslySetInnerHTML={{ __html: clean }} />;
+    } else {
+      return html;
+    }
+  };
   /** Very simple query/filter summary */
   static addQueryInfo(
     n: React.ReactNode,

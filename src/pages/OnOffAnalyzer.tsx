@@ -376,10 +376,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "advancedMode",
       "presetMode",
       "presetSplit",
-      "splitPhrases",
-      "splitText",
-      "basePhrase",
-      "baseText",
+      //(note we need to treat changes to splitPhrases, basePhrase etc as triggers, or the rows don't get updated)
       // Team info:
       "showExtraInfo",
       "teamPlayTypeConfig",

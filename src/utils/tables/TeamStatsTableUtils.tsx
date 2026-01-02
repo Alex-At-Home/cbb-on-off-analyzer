@@ -266,14 +266,18 @@ export class TeamStatsTableUtils {
 
       switch (type) {
         case "on":
-          return maybeDisplayText?.[0];
+          return TableDisplayUtils.safelyConvertToHtml(maybeDisplayText?.[0]);
         case "off":
-          return maybeDisplayText?.[1];
+          return TableDisplayUtils.safelyConvertToHtml(maybeDisplayText?.[1]);
         case "baseline":
-          return gameFilterParams.baseText;
+          return TableDisplayUtils.safelyConvertToHtml(
+            gameFilterParams.baseText
+          );
         case "other":
           const prefixIndex = 2 + (otherIndex || 0);
-          return maybeDisplayText?.[prefixIndex];
+          return TableDisplayUtils.safelyConvertToHtml(
+            maybeDisplayText?.[prefixIndex]
+          );
         default:
           return "unknown";
       }
@@ -595,6 +599,7 @@ export class TeamStatsTableUtils {
     const maybeBasePhrase = onOffBaseToLongerPhrase("baseline", false);
     const teamStatsKeys = _.zip(
       baselineOnOffKeys,
+      baselineOnOffKeys.map((key) => onOffBaseToDisplayText(key)),
       baselineOnOffKeys.map((key) => {
         const displayText = onOffBaseToDisplayText(key);
         return displayText
@@ -626,8 +631,9 @@ export class TeamStatsTableUtils {
     const teamStatsByQuery = _.chain(teamStatsKeys)
       .map((keyDesc) => {
         const queryKey = keyDesc[0]!;
-        const displayText = keyDesc[1];
-        const desc = keyDesc[2];
+        const rawDisplayText = keyDesc[1];
+        const displayText = keyDesc[2];
+        const desc = keyDesc[3];
         const maybeTitle = teamStats[queryKey]?.combo_title
           ? {
               off_title: teamStats[queryKey]?.combo_title,
@@ -635,7 +641,11 @@ export class TeamStatsTableUtils {
           : {
               off_title:
                 teamStats[queryKey]?.off_title || displayText ? (
-                  <b>{displayText}</b>
+                  _.isString(rawDisplayText) ? (
+                    <b>{displayText}</b>
+                  ) : (
+                    displayText
+                  )
                 ) : (
                   <b>
                     {desc}
@@ -658,10 +668,10 @@ export class TeamStatsTableUtils {
     };
     const teamStatsByOtherQuery = _.chain(teamStats.other || [])
       .map((other, idx) => {
-        const displayText = onOffBaseToDisplayText("other", idx);
-        const attachedQueryDisplayName = displayText
+        const rawDisplayText = onOffBaseToDisplayText("other", idx);
+        const attachedQueryDisplayName = rawDisplayText
           ? TableDisplayUtils.addQueryInfo(
-              displayText,
+              rawDisplayText,
               gameFilterParams,
               "other",
               idx
@@ -677,7 +687,11 @@ export class TeamStatsTableUtils {
           getModelKey("other", idx),
           {
             off_title: attachedQueryDisplayName ? (
-              <b>{attachedQueryDisplayName}</b>
+              _.isString(rawDisplayText) ? (
+                <b>{attachedQueryDisplayName}</b>
+              ) : (
+                attachedQueryDisplayName
+              )
             ) : (
               <b>{attachedQueryInfo} lineups</b>
             ),
