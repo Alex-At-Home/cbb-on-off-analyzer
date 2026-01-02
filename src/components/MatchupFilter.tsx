@@ -81,11 +81,15 @@ type Props = {
 /** Convert from the menu string into team + date */
 export const buildOppoFilter = (
   menuItemStr: string
-): { team: string; dateStr: string } | undefined => {
-  const regexExtractor = /^(?:@|vs)? *(.*) [(]([^)]*).*$/;
+): { team: string; dateStr: string; gamePrefix: string } | undefined => {
+  const regexExtractor = /^((?:@|vs) *)?(.*) [(]([^)]*).*$/;
   const regexResult = regexExtractor.exec(menuItemStr);
-  if (regexResult && regexResult.length >= 3) {
-    return { team: regexResult[1], dateStr: regexResult[2] };
+  if (regexResult && regexResult.length >= 4) {
+    return {
+      team: regexResult[2],
+      dateStr: regexResult[3],
+      gamePrefix: regexResult[1],
+    };
   } else {
     return undefined;
   }
@@ -507,28 +511,50 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     params: MatchupFilterParams,
     team: string,
     subFor?: string
-  ): GameFilterParams => ({
-    team,
-    minRank: "1",
-    maxRank: "400",
-    //TODO: 1) need to figure out how to clear on change, 2) if only one is specified then treats it as "G","A","M","E"
-    //TODO: (compare vs startingState in GameFilter and invalidate if needed)
-    //splitPhrases: ["GAME", ""],
-    gender: params.gender,
-    year: params.year,
-    onQuery: subFor
-      ? (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
-      : params.baseQuery,
-    autoOffQuery: false,
-    offQuery: undefined,
-    baseQuery: "",
-    showRoster: true,
-    calcRapm: true,
-    showTeamPlayTypes: true,
-    rapmRegressMode: "0.8",
-    showExpanded: true,
-    teamShotCharts: true,
-  });
+  ): GameFilterParams => {
+    const opponentFilter = buildOppoFilter(params.oppoTeam || "");
+    return {
+      team,
+      minRank: "1",
+      maxRank: "400",
+      splitPhrases: ["Game", ""], //(the second param is annoyingly necessary to force URL param processing to treat it like an array)
+      splitText: subFor
+        ? [
+            opponentFilter
+              ? `${
+                  !opponentFilter.gamePrefix
+                    ? "@ "
+                    : opponentFilter.gamePrefix == "@ "
+                    ? ""
+                    : opponentFilter.gamePrefix
+                }${subFor} (${opponentFilter.dateStr.substring(5)}) Game`
+              : "",
+            "",
+          ]
+        : [
+            opponentFilter
+              ? `${opponentFilter.gamePrefix || ""}${
+                  opponentFilter.team
+                } (${opponentFilter.dateStr.substring(5)}) Game`
+              : "",
+            "",
+          ],
+      gender: params.gender,
+      year: params.year,
+      onQuery: subFor
+        ? (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+        : params.baseQuery,
+      autoOffQuery: false,
+      offQuery: undefined,
+      baseQuery: "",
+      showRoster: true,
+      calcRapm: true,
+      showTeamPlayTypes: true,
+      rapmRegressMode: "0.8",
+      showExpanded: true,
+      teamShotCharts: true,
+    };
+  };
   const lineupParams = (
     params: MatchupFilterParams,
     team: string,
