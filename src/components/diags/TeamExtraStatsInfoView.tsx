@@ -40,7 +40,7 @@ const playTypeTable = {
   ),
   pct_orbs: GenericTableOps.addPctCol(
     "%ORB",
-    "Scramble: Percentage of Off rebounds resulting in a scramble play type / Transition: Ratio of Transition% to ORB%",
+    "Scramble: Percentage of Off rebounds resulting in a scramble play type / Transition: Ratio of Transition Offense% to ORB% conceded",
     CbbColors.applyThemedBackground
   ),
   ppp: GenericTableOps.addPtsCol(
@@ -478,7 +478,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
               pct_orbs: GenericTableOps.addPctCol(
                 "%ORB",
                 "Percentage of Off rebounds resulting in a scramble play type",
-                CbbColors.applyThemedBackground
+                CbbColors.varPicker(CbbColors.off_pctile_qual)
               ),
             }
         : {

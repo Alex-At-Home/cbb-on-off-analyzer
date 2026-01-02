@@ -782,7 +782,7 @@ export class GradeUtils {
     def_trans: true,
     def_scramble: true,
     def_scramble_per_orb: true,
-    def_trans_per_orb: true,
+    def_trans_per_orb: false, // (this one is actually a quality stat)
     def_3p_ast: true,
     def_2prim_ast: true,
     def_ast_3p: true,
