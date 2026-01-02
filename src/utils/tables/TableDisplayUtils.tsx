@@ -55,6 +55,7 @@ export class TableDisplayUtils {
           "span",
           "sub",
           "sup",
+          "small",
         ],
         ALLOWED_ATTR: ["style", "class"],
       });
@@ -139,9 +140,38 @@ export class TableDisplayUtils {
     const allExcludes = excludes
       .map((p) => p.id)
       .concat(extraExcludes.map((p) => p.id.substring(1)));
+
+    const isRawLineup = sortedLineup.length == 5 && allExcludes.length == 0;
+    const codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
+    const codeLimiter = (s: string) => s.substring(0, 8);
+
     return UrlRouting.getGameUrl(
       {
         ...params,
+        splitPhrases: [isRawLineup ? "Lineup" : "Lineups", ""],
+        splitText: [
+          `<div>` +
+            `<small class="d-xl-none">` +
+            includes.map((p) => codeTruncator(p.code)).join(", ") +
+            (_.isEmpty(allExcludes)
+              ? ""
+              : ` ! ${excludes
+                  .concat(extraExcludes)
+                  .map((p) => `${codeTruncator(p.code)}`)
+                  .join(", ")}`) +
+            `</small>` +
+            `<small class="d-none d-xl-block">` +
+            includes.map((p) => codeLimiter(p.code)).join(", ") +
+            (_.isEmpty(allExcludes)
+              ? ""
+              : ` NOT ${excludes
+                  .concat(extraExcludes)
+                  .map((p) => `${codeLimiter(p.code)}`)
+                  .join(", ")}`) +
+            `</small>` +
+            `</div>`,
+          "",
+        ],
         onQuery:
           `{${includes.map((p) => `"${p.id}"`).join(";")}}=${includes.length}` +
           (_.isEmpty(allExcludes)
