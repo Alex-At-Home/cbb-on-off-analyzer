@@ -93,17 +93,14 @@ export class LineupTableDefs {
         : {}),
       sep_off_def: CommonTableDefs.offDefSeparatorPicker(rowMode),
       raw_pts: GenericTableOps.addDataCol(
-        "Pts",
-        CommonTableDefs.simpleHeader(
-          mixedMode,
-          "Points scored/conceded by this lineup"
-        ),
+        CommonTableDefs.simpleHeader(mixedMode, "Pts"),
+        "Points scored/conceded by this lineup",
         CbbColors.applyThemedBackground,
         GenericTableOps.pointsOrHtmlFormatter
       ),
       ppp: GenericTableOps.addPtsCol(
-        "P/100",
-        CommonTableDefs.simpleHeader(mixedMode, "Points per 100 possessions"),
+        CommonTableDefs.simpleHeader(mixedMode, "P/100"),
+        "Points per 100 possessions",
         CommonTableDefs.picker(...CbbColors.pp100, rowMode, mixedMode)
       ),
       adj_ppp: GenericTableOps.addPtsCol(
@@ -256,7 +253,6 @@ export class LineupTableDefs {
             off_3p: LineupTableDefs.allMixedOffLineupFields.off_3p,
             def_3p: LineupTableDefs.allMixedDefLineupFields.def_3p,
             off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
-            def_poss: LineupTableDefs.allMixedDefLineupFields.def_poss,
           },
           rawPts ? ["off_ppp", "def_ppp"] : ["off_raw_pts", "def_raw_pts"]
         ),
