@@ -7,6 +7,13 @@ grep -E -f color_pattern.txt src/styles/bootstrap.united.css > src/styles/bootst
 grep -E -f color_pattern.txt src/styles/bootstrap.original_superhero.css > src/styles/bootstrap.cutdown_superhero.css
 */
 
+/* Table handling */
+
+.grows-to-fit {
+  width: fit-content;
+  max-width: 100%;
+}
+
 /* Widescreen */
 
 /* Ensure padding between 1400px and 1600px */

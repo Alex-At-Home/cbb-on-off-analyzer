@@ -606,6 +606,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           tableData={tableData}
           cellTooltipMode="none"
           presetOverride={tablePreset}
+          growsToFit={!_.isNil(tablePreset)}
           onPresetChange={setTablePreset}
         />
       );
@@ -1205,6 +1206,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           tableData={tableData}
           cellTooltipMode="none"
           presetOverride={tablePreset}
+          growsToFit={!_.isNil(tablePreset)}
           onPresetChange={setTablePreset}
         />
       );

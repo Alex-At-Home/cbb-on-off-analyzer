@@ -479,6 +479,8 @@ export type ExtraColSet = {
 };
 type Props = {
   responsive?: boolean;
+  /* otherwise table is always 100% */
+  growsToFit?: boolean;
   tableFields: Record<string, GenericTableColProps>;
   tableData: Array<GenericTableRow>;
   tableCopyId?: string;
@@ -502,6 +504,7 @@ type Props = {
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
+  growsToFit,
   tableFields: tableFieldsIn,
   tableData,
   tableCopyId,
@@ -1275,6 +1278,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   return (
     <>
       <Table
+        className={growsToFit ? "grows-to-fit" : undefined}
         bordered={isBordered}
         responsive={isResponsive && lockMode != "row"}
         id={tableId}
