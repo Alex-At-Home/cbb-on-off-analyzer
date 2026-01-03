@@ -225,7 +225,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       if (colKey.includes(".")) {
         // Extra column set or default layout column
         const [setName, actualKey] = colKey.split(".", 2);
-        
+
         // Handle __default__ prefix - columns from default layout when using a preset
         if (setName === "__default__") {
           const colProps = defaultTableFields?.[actualKey];
@@ -236,7 +236,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
             entries.push({
               key: colKey,
-              displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
+              displayKey: isSeparator
+                ? `Separator ${separatorCount}`
+                : actualKey,
               colProps,
               enabled: isEnabled,
               isFromExtraSet: true,
@@ -253,7 +255,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
             entries.push({
               key: colKey,
-              displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
+              displayKey: isSeparator
+                ? `Separator ${separatorCount}`
+                : actualKey,
               colProps,
               enabled: isEnabled,
               isFromExtraSet: true,
@@ -576,12 +580,18 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                     return (
                       <div
                         key={colKey}
-                        className={`${styles.columnRow} ${alreadyAdded ? styles.columnRowDisabled : ""}`}
+                        className={`${styles.columnRow} ${
+                          alreadyAdded ? styles.columnRowDisabled : ""
+                        }`}
                       >
                         {/* Add button */}
                         <div className={styles.addButtonCell}>
                           <Button
-                            variant={alreadyAdded ? "outline-secondary" : "outline-primary"}
+                            variant={
+                              alreadyAdded
+                                ? "outline-secondary"
+                                : "outline-primary"
+                            }
                             size="sm"
                             disabled={alreadyAdded}
                             onClick={() => handleAddDefaultColumn(colKey)}
@@ -593,7 +603,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
                         {/* Column name */}
                         <div
-                          className={`${styles.nameCell} ${isSeparator ? styles.separatorName : ""}`}
+                          className={`${styles.nameCell} ${
+                            isSeparator ? styles.separatorName : ""
+                          }`}
                         >
                           {getExtraColDisplayName(colProps, colKey)}
                           {alreadyAdded && (
@@ -643,15 +655,23 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                       return (
                         <div
                           key={colKey}
-                          className={`${styles.columnRow} ${alreadyAdded ? styles.columnRowDisabled : ""}`}
+                          className={`${styles.columnRow} ${
+                            alreadyAdded ? styles.columnRowDisabled : ""
+                          }`}
                         >
                           {/* Add button */}
                           <div className={styles.addButtonCell}>
                             <Button
-                              variant={alreadyAdded ? "outline-secondary" : "outline-primary"}
+                              variant={
+                                alreadyAdded
+                                  ? "outline-secondary"
+                                  : "outline-primary"
+                              }
                               size="sm"
                               disabled={alreadyAdded}
-                              onClick={() => handleAddExtraColumn(setName, colKey)}
+                              onClick={() =>
+                                handleAddExtraColumn(setName, colKey)
+                              }
                               style={{ padding: "2px 8px" }}
                             >
                               <FontAwesomeIcon icon={faPlus} size="sm" />
@@ -660,7 +680,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
                           {/* Column name */}
                           <div
-                            className={`${styles.nameCell} ${isSeparator ? styles.separatorName : ""}`}
+                            className={`${styles.nameCell} ${
+                              isSeparator ? styles.separatorName : ""
+                            }`}
                           >
                             {getExtraColDisplayName(colProps, colKey)}
                             {alreadyAdded && (

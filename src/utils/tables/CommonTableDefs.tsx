@@ -6,6 +6,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import GenericTable, {
   GenericTableOps,
   GenericTableColProps,
+  ExtraColSet,
 } from "../../components/GenericTable";
 
 // Util imports
@@ -28,6 +29,9 @@ const lineSep = (
   />
 );
 
+/** The 4 standard rows (Dual is 2 rows one off, one def; Mixed On/Off has off and def in the same row) */
+export type OffDefDualMixed = "Off" | "Def" | "Dual" | "Mixed";
+
 /** Holds all the different column definitions for the similar tables used throughout this SPA */
 export class CommonTableDefs {
   // Handy utilities
@@ -35,21 +39,41 @@ export class CommonTableDefs {
   static offPrefixFn = (key: string) => "off_" + key;
   static offCellMetaFn = (key: string, val: any) => "off";
   static defPrefixFn = (key: string) => "def_" + key;
+  /** Fetches the off version of title since that's typically where it's stored in the data object */
+  static defPrefixFnPlusTitle = (key: string) =>
+    key == "title" ? "off_title" : "def_" + key;
   static defCellMetaFn = (key: string, val: any) => "def";
+  static mixedPrefixFn = (key: string) => key;
+  static mixedCellMetaFn = (key: string, val: any) => "";
 
   static picker(
     offScale: (val: number) => string | undefined,
-    defScale: (val: number) => string | undefined
+    defScale: (val: number) => string | undefined,
+    rowMode?: OffDefDualMixed,
+    mixedMode?: "Off" | "Def"
   ) {
     return (val: any, valMeta: string) => {
       const num = _.isNil(val.colorOverride)
         ? (val.value as number)
         : (val.colorOverride as number);
-      return _.isNil(num)
-        ? CbbColors.malformedDataColor //(we'll use this color to indicate malformed data)
-        : "off" == valMeta
-        ? offScale(num)
-        : defScale(num);
+      if (!rowMode || rowMode == "Dual") {
+        return _.isNil(num)
+          ? CbbColors.malformedDataColor //(we'll use this color to indicate malformed data)
+          : "off" == valMeta
+          ? offScale(num)
+          : defScale(num);
+      } else if (rowMode == "Off" || mixedMode == "Off") {
+        return _.isNil(num)
+          ? CbbColors.malformedDataColor //(we'll use this color to indicate malformed data)
+          : offScale(num);
+      } else if (rowMode == "Def" || mixedMode == "Def") {
+        return _.isNil(num)
+          ? CbbColors.malformedDataColor //(we'll use this color to indicate malformed data)
+          : defScale(num);
+      } else {
+        //(shouldn't be possible)
+        return CbbColors.malformedDataColor;
+      }
     };
   }
 
@@ -83,8 +107,58 @@ export class CommonTableDefs {
         return 1;
     }
   }
+  static fixedSizeRowSpanCalculator(cellMeta: string) {
+    return 1;
+  }
 
-  //TODO: add others, find generic descriptions etc
+  // Some handy utils for managing different table configs
+
+  //we end up with cellMeta => "off"/"def" or "off-or-def"
+
+  /** One string for off/def mode, one for dual */
+  static readonly specialMixedHeader = (
+    mixedMode: "Off" | "Def" | undefined,
+    mixedOffOrDef: string,
+    dualOrOffDef: string
+  ) => {
+    return _.isNil(mixedMode)
+      ? dualOrOffDef
+      : `${mixedMode || "Off"} ` + mixedOffOrDef;
+  };
+
+  /** One string for all modes */
+  static readonly simpleHeader = (
+    mixedMode: "Off" | "Def" | undefined,
+    all: string
+  ) => {
+    return _.isNil(mixedMode) ? all : `${mixedMode || "Off"} ` + all;
+  };
+
+  /** Shows either off/def (single row), off+def (dual row) or nothing (mixed) */
+  static readonly offDefSeparatorPicker = (
+    rowMode: OffDefDualMixed,
+    width?: number
+  ) => {
+    if (rowMode == "Dual") {
+      return GenericTableOps.addSpecialColSeparator("__off_def__");
+    } else if (rowMode == "Off") {
+      return GenericTableOps.addSpecialColSeparator("__off__");
+    } else if (rowMode == "Def") {
+      return GenericTableOps.addSpecialColSeparator("__def__");
+    } else {
+      //(Mixed)
+      return GenericTableOps.addColSeparator(width);
+    }
+  };
+
+  static readonly extraColSetPicker = (
+    extraColSets: Record<string, ExtraColSet & { rowMode: OffDefDualMixed }>,
+    rowMode: OffDefDualMixed
+  ) =>
+    _.pickBy(
+      extraColSets,
+      (colSet) => colSet.isPreset || colSet.rowMode == rowMode
+    );
 
   // ON/OFF - TEAM
 
@@ -735,6 +809,8 @@ export class CommonTableDefs {
 
   // LINEUP:
 
+  // (See LineupTableDefs)
+
   /** To build a less wordy set of header text for the repeating headers (team on/off) */
   static repeatingLineupHeaderFields: Record<string, string> = {
     "Net Rtg": "Net",
@@ -745,6 +821,7 @@ export class CommonTableDefs {
     "2P% rim": "Rim%",
   };
 
+  /** TODO: ideally replace this so it uses allLineupTableFields and avoids duplication */
   static readonly lineupTable = (rawPts: boolean) =>
     _.omit(
       {
@@ -859,38 +936,6 @@ export class CommonTableDefs {
       },
       rawPts ? ["ppp"] : ["raw_pts"]
     );
-
-  // Extra lineup table presets:
-
-  static readonly lineupsExtraColSet = (
-    expanded: boolean,
-    rawPts: boolean
-  ) => ({
-    "Extra Fields": {
-      isPreset: false,
-      description: "Useful additional fields",
-      colSet: {
-        raw_pts: GenericTableOps.addDataCol(
-          "Pts",
-          "Points scored/conceded by this lineup",
-          CbbColors.applyThemedBackground,
-          GenericTableOps.pointsOrHtmlFormatter
-        ),
-      },
-    },
-    "Mobile Friendly": {
-      isPreset: true,
-      description: "Mobile friendly view of basic off/def view",
-      colSet: _.pick(CommonTableDefs.lineupTable(rawPts), [
-        "title",
-        "net",
-        "raw_pts",
-        "ppp",
-        "3p",
-        "poss",
-      ]),
-    },
-  });
 
   // ON/OFF REPORT
 

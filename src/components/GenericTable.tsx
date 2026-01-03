@@ -385,13 +385,30 @@ export class GenericTableOps {
     return new GenericTableColProps("", "", width);
   }
   static addSpecialColSeparator(
-    specialCase: "__off_def__" | "__adj_raw__" | "__off_ast__",
+    specialCase:
+      | "__off_def__"
+      | "__adj_raw__"
+      | "__off_ast__"
+      | "__off__"
+      | "__def__"
+      | "__net__"
+      | "__adj__"
+      | "__raw__",
     width: number = 0.5
   ) {
     return new GenericTableColProps(specialCase, "", width);
   }
 
+  /** TODO: make this configurable per table vs embedded here? */
   static colSeparatorSpecialCases: Record<string, Record<string, string>> = {
+    __off__: {
+      off: "OFF",
+      "": "OFF",
+    },
+    __def__: {
+      def: "DEF",
+      "": "DEF",
+    },
     __off_def__: {
       off: "OFF",
       def: "DEF",
@@ -403,6 +420,21 @@ export class GenericTableOps {
     __adj_raw__: {
       off: "ADJ",
       def: "RAW",
+    },
+    __net__: {
+      off: "NET",
+      def: "NET",
+      "": "NET",
+    },
+    __adj__: {
+      off: "ADJ",
+      def: "ADJ",
+      "": "ADJ",
+    },
+    __raw__: {
+      off: "RAW",
+      def: "RAW",
+      "": "RAW",
     },
   };
   static maybeSpecialCase(colName: string | React.ReactNode) {

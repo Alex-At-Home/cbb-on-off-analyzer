@@ -55,7 +55,10 @@ import {
   IndivStatSet,
   LineupStatSet,
 } from "../utils/StatModels";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import {
+  CommonTableDefs,
+  OffDefDualMixed,
+} from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
@@ -72,6 +75,7 @@ import StickyRow from "./shared/StickyRow";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { CbbColors } from "../utils/CbbColors";
+import { LineupTableDefs } from "../utils/tables/LineupTableDefs";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -310,6 +314,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(undefined);
+  const rowMode: OffDefDualMixed =
+    LineupTableDefs.lineupsExtraColSet(showRawPts)[tablePreset || ""]
+      ?.rowMode || "Dual";
 
   useEffect(() => {
     //(this ensures that the filter component is up to date with the union of these fields)
@@ -398,11 +405,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     );
 
     // 3.2] Table building
-
-    const offPrefixFn = (key: string) => "off_" + key;
-    const offCellMetaFn = (key: string, val: any) => "off";
-    const defPrefixFn = (key: string) => "def_" + key;
-    const defCellMetaFn = (key: string, val: any) => "def";
 
     // Build a list of all the opponents:
     const orderedMutableOppoList = LineupUtils.buildOpponentList(
@@ -525,8 +527,33 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildRowSeparator(),
               ]
             : [],
-          [GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn)],
-          [GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn)],
+          rowMode == "Dual" || rowMode == "Off"
+            ? [
+                GenericTableOps.buildDataRow(
+                  stats,
+                  CommonTableDefs.offPrefixFn,
+                  CommonTableDefs.offCellMetaFn
+                ),
+              ]
+            : [],
+          rowMode == "Dual" || rowMode == "Def"
+            ? [
+                GenericTableOps.buildDataRow(
+                  stats,
+                  CommonTableDefs.defPrefixFnPlusTitle,
+                  CommonTableDefs.defCellMetaFn
+                ),
+              ]
+            : [],
+          rowMode == "Mixed"
+            ? [
+                GenericTableOps.buildDataRow(
+                  stats,
+                  CommonTableDefs.mixedPrefixFn,
+                  CommonTableDefs.mixedCellMetaFn
+                ),
+              ]
+            : [],
           showGameInfo
             ? [
                 GenericTableOps.buildTextRow(
@@ -572,7 +599,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           )}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
-          extraColSets={CommonTableDefs.lineupsExtraColSet(true, showRawPts)}
+          extraColSets={CommonTableDefs.extraColSetPicker(
+            LineupTableDefs.lineupsExtraColSet(showRawPts),
+            rowMode
+          )}
           tableData={tableData}
           cellTooltipMode="none"
           presetOverride={tablePreset}
@@ -1041,8 +1071,33 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   GenericTableOps.buildRowSeparator(),
                 ]
               : [],
-            [GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn)],
-            [GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn)],
+            rowMode == "Dual" || rowMode == "Off"
+              ? [
+                  GenericTableOps.buildDataRow(
+                    stats,
+                    CommonTableDefs.offPrefixFn,
+                    CommonTableDefs.offCellMetaFn
+                  ),
+                ]
+              : [],
+            rowMode == "Dual" || rowMode == "Def"
+              ? [
+                  GenericTableOps.buildDataRow(
+                    stats,
+                    CommonTableDefs.defPrefixFnPlusTitle,
+                    CommonTableDefs.defCellMetaFn
+                  ),
+                ]
+              : [],
+            rowMode == "Mixed"
+              ? [
+                  GenericTableOps.buildDataRow(
+                    stats,
+                    CommonTableDefs.mixedPrefixFn,
+                    CommonTableDefs.mixedCellMetaFn
+                  ),
+                ]
+              : [],
             showGameInfo
               ? [
                   GenericTableOps.buildTextRow(
@@ -1143,7 +1198,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           )}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
-          extraColSets={CommonTableDefs.lineupsExtraColSet(true, showRawPts)}
+          extraColSets={CommonTableDefs.extraColSetPicker(
+            LineupTableDefs.lineupsExtraColSet(showRawPts),
+            rowMode
+          )}
           tableData={tableData}
           cellTooltipMode="none"
           presetOverride={tablePreset}
