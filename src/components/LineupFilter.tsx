@@ -89,6 +89,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     showGameInfo: startShowGameInfo,
     // Filters etc
     decorate: startDecorate,
+    lineupFontSize: startLineupFontSize,
     showTotal: startShowTotal,
     maxTableSize: startMaxTableSize,
     minPoss: startMinPoss,
@@ -111,6 +112,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       showGameInfo: startShowGameInfo,
       // Filters etc
       decorate: startDecorate,
+      lineupFontSize: startLineupFontSize,
       showTotal: startShowTotal,
       maxTableSize: startMaxTableSize,
       minPoss: startMinPoss,

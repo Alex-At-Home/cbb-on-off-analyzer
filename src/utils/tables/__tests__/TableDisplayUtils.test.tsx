@@ -87,6 +87,7 @@ describe("TableDisplayUtils", () => {
           positionFromPlayerKey,
           "off_adj_rtg",
           false,
+          "small",
           {}
         )}
       </span>
@@ -104,6 +105,7 @@ describe("TableDisplayUtils", () => {
           positionFromPlayerKey,
           "off_adj_rtg",
           true,
+          "small",
           {}
         )}
       </span>

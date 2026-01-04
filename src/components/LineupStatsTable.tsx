@@ -262,6 +262,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultLineupDecorate
       : startingState.decorate
   );
+  /** font size for decorated lineups */
+  const [lineupFontSize, setLineupFontSize] = useState(
+    _.isNil(startingState.lineupFontSize)
+      ? ParamDefaults.defaultLineupFontSize
+      : startingState.lineupFontSize
+  );
 
   const [aggregateByPos, setAggregateByPos] = useState(
     _.isNil(startingState.aggByPos)
@@ -331,6 +337,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       showGameInfo: showGameInfo,
       // Misc filters
       decorate: decorateLineups,
+      lineupFontSize,
       showTotal: showTotals,
       showOff: showDropped,
       showRawPts,
@@ -344,6 +351,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     onChangeState(newState);
   }, [
     decorateLineups,
+    lineupFontSize,
     showTotals,
     showDropped,
     minPoss,
@@ -488,6 +496,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               positionFromPlayerKey,
               "off_adj_rtg",
               decorateLineups,
+              lineupFontSize,
               getCommonFilterParams(startingState)
             );
           }
@@ -906,6 +915,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             positionFromPlayerKey,
             "off_adj_rtg",
             decorateLineups,
+            lineupFontSize,
             linkParams,
             false,
             maybeOnClickOverride
@@ -1213,6 +1223,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     }
   }, [
     decorateLineups,
+    lineupFontSize,
     showTotals,
     showDropped,
     showRawPts,
@@ -1538,6 +1549,22 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         }
       />
       <GenericTogglingMenuItem
+        text="Larger Lineup Font"
+        truthVal={lineupFontSize != ParamDefaults.defaultLineupFontSize}
+        onSelect={() =>
+          friendlyChange(
+            () =>
+              setLineupFontSize(
+                lineupFontSize == ParamDefaults.defaultLineupFontSize
+                  ? "medium"
+                  : ParamDefaults.defaultLineupFontSize
+              ),
+            true
+          )
+        }
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
         text={<span>Adjust for Luck</span>}
         truthVal={adjustForLuck}
         onSelect={() =>
@@ -1549,18 +1576,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             : undefined
         }
       />
-      <Dropdown.Divider />
       <GenericTogglingMenuItem
         text="Configure Luck Adjustments..."
         truthVal={false}
         onSelect={() => setShowLuckConfig(true)}
       />
-      <Dropdown.Divider />
       <GenericTogglingMenuItem
         text="Show Luck Adjustment diagnostics"
         truthVal={showLuckAdjDiags}
         onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
       />
+      <Dropdown.Divider />
       <GenericTogglingMenuItem
         text={"Show repeating header every 10 rows"}
         truthVal={showRepeatingHeader}

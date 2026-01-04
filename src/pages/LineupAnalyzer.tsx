@@ -132,6 +132,9 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
           rawParams.decorate == ParamDefaults.defaultLineupDecorate
             ? ["decorate"]
             : [],
+          rawParams.lineupFontSize == ParamDefaults.defaultLineupFontSize
+            ? ["lineupFontSize"]
+            : [],
           rawParams.showTotal == ParamDefaults.defaultLineupShowTotal
             ? ["showTotal"]
             : [],

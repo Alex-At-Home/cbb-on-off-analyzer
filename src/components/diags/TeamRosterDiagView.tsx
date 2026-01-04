@@ -18,6 +18,7 @@ import { TableDisplayUtils } from "../../utils/tables/TableDisplayUtils";
 // Component imports
 import GenericTable, { GenericTableOps } from "../GenericTable";
 import { IndivStatSet, PlayerId, IndivPosInfo } from "../../utils/StatModels";
+import { ParamDefaults } from "../../utils/FilterModels";
 
 type Props = {
   /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) ... global stats */
@@ -117,6 +118,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
             positionFromPlayerId,
             "off_adj_rtg",
             true,
+            ParamDefaults.defaultLineupFontSize,
             {},
             true
           );

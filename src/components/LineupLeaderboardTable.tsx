@@ -435,6 +435,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
             positionFromPlayerKey,
             "off_adj_rtg",
             true,
+            ParamDefaults.defaultLineupFontSize,
             {
               team: lineup.team,
               year: lineup.year,

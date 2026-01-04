@@ -209,6 +209,7 @@ export class TableDisplayUtils {
     positionFromPlayerKey: Record<string, { posClass: string }>,
     colorField: string,
     decorateLineup: boolean,
+    lineupFontSize: string,
     params: CommonFilterParams,
     extendedTooltipView: boolean = false,
     onClickOverride?: (sortedLineup: { code: string; id: string }[]) => string
@@ -230,6 +231,7 @@ export class TableDisplayUtils {
             cid,
             perLineupPlayerMap,
             colorField,
+            lineupFontSize,
             pid == max
           );
         }
@@ -390,6 +392,7 @@ export class TableDisplayUtils {
     cid: { code: string; id: string },
     perLineupPlayerMap: Record<string, Record<string, any>>,
     colorField: string,
+    lineupFontSize: string,
     finalPlayer: boolean
   ) {
     const fontWeight = (playerInfo: Record<string, any>) => {
@@ -483,7 +486,7 @@ export class TableDisplayUtils {
           >
             <span
               style={{
-                fontSize: "small",
+                fontSize: lineupFontSize,
                 opacity: isOffPlayer ? 0.75 : undefined,
                 color: isOffPlayer ? "lightgrey" : undefined,
                 fontWeight: playerInfo

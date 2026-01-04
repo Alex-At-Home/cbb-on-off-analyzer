@@ -206,6 +206,7 @@ export type LineupFilterParams = {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
   decorate?: boolean;
+  lineupFontSize?: string;
   showTotal?: boolean;
   showOff?: boolean;
   minPoss?: string;
@@ -510,6 +511,7 @@ export class ParamDefaults {
   static readonly defaultLineupShowTotal = false;
   static readonly defaultLineupShowDropped = false;
   static readonly defaultLineupDecorate = true;
+  static readonly defaultLineupFontSize = "small";
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";
   static readonly defaultLineupSortBy = "desc:off_poss";
