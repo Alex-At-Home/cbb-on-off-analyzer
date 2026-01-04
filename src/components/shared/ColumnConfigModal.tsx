@@ -19,6 +19,7 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   DragEndEvent,
@@ -354,6 +355,12 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8, // 8px movement required before drag starts
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250, // 250ms hold required before drag starts on touch
+        tolerance: 5, // 5px movement tolerance during delay
       },
     }),
     useSensor(KeyboardSensor, {
