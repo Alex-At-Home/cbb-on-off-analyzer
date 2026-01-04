@@ -459,7 +459,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Scramble: Percentage of Off rebounds resulting in a scramble play type / Transition: Ratio of Transition% to ORB%",
+                "toolTip": "Scramble: Percentage of Off rebounds resulting in a scramble play type / Transition: Ratio of Transition Offense% to ORB% conceded",
                 "widthUnits": 2,
               },
               "ppp": GenericTableColProps {
@@ -641,7 +641,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "% of assists for 3P",
+                    "toolTip": "% of assists that are for 3P",
                     "widthUnits": 2,
                   },
                   "ast_3p": GenericTableColProps {
@@ -652,7 +652,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "% of assists for 3P",
+                    "toolTip": "% of 3P that are assisted",
                     "widthUnits": 2,
                   },
                   "ast_mid": GenericTableColProps {
@@ -663,7 +663,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "% of assists for mid-range 2P",
+                    "toolTip": "% of mid-range 2P that are assisted",
                     "widthUnits": 2,
                   },
                   "ast_rim": GenericTableColProps {
@@ -674,7 +674,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "% of assists for 2PAs at the rim",
+                    "toolTip": "% of 2PAs at the rim that are assisted",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -685,7 +685,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "% of assists for mid-range 2P",
+                    "toolTip": "% of assists that are for mid-range 2P",
                     "widthUnits": 2,
                   },
                   "rim_ast": GenericTableColProps {
@@ -696,7 +696,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "% of assists for 2PAs at the rim",
+                    "toolTip": "% of assists that are for 2PAs at the rim",
                     "widthUnits": 2,
                   },
                   "sep1": GenericTableColProps {

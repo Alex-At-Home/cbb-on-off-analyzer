@@ -400,48 +400,75 @@ export class GenericTableOps {
   }
 
   /** TODO: make this configurable per table vs embedded here? */
-  static colSeparatorSpecialCases: Record<string, Record<string, string>> = {
+  static colSeparatorSpecialCases: Record<
+    string,
+    { name: string; keys: Record<string, string> }
+  > = {
     __off__: {
-      off: "OFF",
-      "": "OFF",
+      name: "Offensive stats",
+      keys: {
+        off: "OFF",
+        "": "OFF",
+      },
     },
     __def__: {
-      def: "DEF",
-      "": "DEF",
+      name: "Defensive stats",
+      keys: {
+        def: "DEF",
+        "": "DEF",
+      },
     },
     __off_def__: {
-      off: "OFF",
-      def: "DEF",
+      name: "Top row offense, bottom row defense",
+      keys: {
+        off: "OFF",
+        def: "DEF",
+      },
     },
     __off_ast__: {
-      off: "",
-      def: "AST",
+      name: "Assisted% in bottom row",
+      keys: {
+        off: "",
+        def: "AST",
+      },
     },
     __adj_raw__: {
-      off: "ADJ",
-      def: "RAW",
+      name: "Net: top row adjusted, bottom row raw",
+      keys: {
+        off: "ADJ",
+        def: "RAW",
+      },
     },
     __net__: {
-      off: "NET",
-      def: "NET",
-      "": "NET",
+      name: "Net stats",
+      keys: {
+        off: "NET",
+        def: "NET",
+        "": "NET",
+      },
     },
     __adj__: {
-      off: "ADJ",
-      def: "ADJ",
-      "": "ADJ",
+      name: "Adjusted net stats",
+      keys: {
+        off: "ADJ",
+        def: "ADJ",
+        "": "ADJ",
+      },
     },
     __raw__: {
-      off: "RAW",
-      def: "RAW",
-      "": "RAW",
+      name: "Raw net stats",
+      keys: {
+        off: "RAW",
+        def: "RAW",
+        "": "RAW",
+      },
     },
   };
   static maybeSpecialCase(colName: string | React.ReactNode) {
     return (
       _.isString(colName) &&
       _.startsWith(colName, "__") &&
-      GenericTableOps.colSeparatorSpecialCases[colName]
+      GenericTableOps.colSeparatorSpecialCases[colName].keys
     );
   }
 }
@@ -470,7 +497,7 @@ export type IntegratedGradeSettings = {
 export type ExtraColSet = {
   /** Whether this can be used as a standalone table preset */
   isPreset?: boolean;
-  /** If it's a preset, whether _also_ to include it as a library of fields */
+  /** If it's a preset, whether _also_ to include it as a library of fields (default true) */
   isLibrary?: boolean;
   /** Description of this column set */
   description?: string;
@@ -716,6 +743,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
                 <Dropdown.Item
                   key={preset.key}
                   onClick={() => onPresetChange?.(preset.key)}
+                  title={preset.description}
                 >
                   {preset.label}
                   {presetOverride === preset.key && (
@@ -1296,7 +1324,6 @@ const GenericTable: React.FunctionComponent<Props> = ({
         tableFields={baseTableFields}
         extraColSets={extraColSets}
         currentConfig={columnConfig}
-        defaultTableFields={presetOverride ? tableFieldsIn : undefined}
       />
     </>
   );

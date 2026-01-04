@@ -319,10 +319,20 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   ); //(always start as true)
 
   /** Currently selected table preset */
-  const [tablePreset, setTablePreset] = useState<string | undefined>(undefined);
+  const [tablePreset, setTablePreset] = useState<string | undefined>(
+    startingState.tablePreset
+  );
   const rowMode: OffDefDualMixed =
     LineupTableDefs.lineupsExtraColSet(showRawPts)[tablePreset || ""]
       ?.rowMode || "Dual";
+  /** Extra columns added to table */
+  const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
+    startingState.tableConfigExtraCols || []
+  );
+  /** Disabled table columns */
+  const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
+    string[] | undefined
+  >(startingState.tableConfigDisabledCols);
 
   useEffect(() => {
     //(this ensures that the filter component is up to date with the union of these fields)
@@ -347,6 +357,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       filter: filterStr,
       onOffPlayerSel,
       wowyPlayerSel,
+      tablePreset,
+      tableConfigExtraCols,
+      tableConfigDisabledCols,
     };
     onChangeState(newState);
   }, [
@@ -366,6 +379,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     showRawPts,
     onOffPlayerSel,
     wowyPlayerSel,
+    tablePreset,
+    tableConfigExtraCols,
+    tableConfigDisabledCols,
   ]);
 
   // 3] Utils
@@ -540,7 +556,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 GenericTableOps.buildDataRow(
                   stats,
-                  CommonTableDefs.offPrefixFn,
+                  LineupTableDefs.offPrefixFn,
                   CommonTableDefs.offCellMetaFn
                 ),
               ]
@@ -549,7 +565,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 GenericTableOps.buildDataRow(
                   stats,
-                  CommonTableDefs.defPrefixFnPlusTitle,
+                  LineupTableDefs.defPrefixFn,
                   CommonTableDefs.defCellMetaFn
                 ),
               ]
@@ -603,9 +619,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       });
       return (
         <GenericTable
-          showConfigureColumns={FeatureFlags.isActiveWindow(
-            FeatureFlags.tableConfigOptions
-          )}
+          showConfigureColumns={true}
+          initialColumnConfig={{
+            newCol: tableConfigExtraCols,
+            disabledCols: tableConfigDisabledCols,
+          }}
+          onColumnConfigChange={(config) => {
+            setTableConfigExtraCols(config.newCol);
+            setTableConfigDisabledCols(config.disabledCols);
+          }}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
           extraColSets={CommonTableDefs.extraColSetPicker(
@@ -615,7 +637,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           tableData={tableData}
           cellTooltipMode="none"
           presetOverride={tablePreset}
-          growsToFit={!_.isNil(tablePreset)}
+          growsToFit={true}
           onPresetChange={setTablePreset}
         />
       );
@@ -1086,7 +1108,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               ? [
                   GenericTableOps.buildDataRow(
                     stats,
-                    CommonTableDefs.offPrefixFn,
+                    LineupTableDefs.offPrefixFn,
                     CommonTableDefs.offCellMetaFn
                   ),
                 ]
@@ -1095,7 +1117,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               ? [
                   GenericTableOps.buildDataRow(
                     stats,
-                    CommonTableDefs.defPrefixFnPlusTitle,
+                    LineupTableDefs.defPrefixFn,
                     CommonTableDefs.defCellMetaFn
                   ),
                 ]
@@ -1204,9 +1226,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         );
       return (
         <GenericTable
-          showConfigureColumns={FeatureFlags.isActiveWindow(
-            FeatureFlags.tableConfigOptions
-          )}
+          showConfigureColumns={true}
+          initialColumnConfig={{
+            newCol: tableConfigExtraCols,
+            disabledCols: tableConfigDisabledCols,
+          }}
+          onColumnConfigChange={(config) => {
+            setTableConfigExtraCols(config.newCol);
+            setTableConfigDisabledCols(config.disabledCols);
+          }}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
           extraColSets={CommonTableDefs.extraColSetPicker(
@@ -1216,7 +1244,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           tableData={tableData}
           cellTooltipMode="none"
           presetOverride={tablePreset}
-          growsToFit={!_.isNil(tablePreset)}
+          growsToFit={true}
           onPresetChange={setTablePreset}
         />
       );

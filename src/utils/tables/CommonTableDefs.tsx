@@ -156,9 +156,35 @@ export class CommonTableDefs {
     rowMode: OffDefDualMixed
   ) =>
     _.pickBy(
-      extraColSets,
+      _.mapValues(extraColSets, (colSet) => ({
+        ...colSet,
+        isLibrary: colSet.rowMode == rowMode && (colSet.isLibrary ?? true),
+      })),
       (colSet) => colSet.isPreset || colSet.rowMode == rowMode
     );
+
+  /** Utility to build the right mix of off/def columns based on the row mode */
+  static readonly buildMixedColSet = (
+    cols: Record<string, GenericTableColProps>,
+    rowMode: OffDefDualMixed,
+    mixedMode: "Off" | "Def" | undefined
+  ) => {
+    if (rowMode != "Mixed") {
+      return cols;
+    } else {
+      return _.mapKeys(cols, (colObj, colKey) => {
+        if (mixedMode == "Def") {
+          return colKey.startsWith("off_") || colKey.startsWith("def_")
+            ? colKey
+            : `def_${colKey}`;
+        } else {
+          return colKey.startsWith("off_") || colKey.startsWith("def_")
+            ? colKey
+            : `off_${colKey}`;
+        }
+      }) as Record<string, GenericTableColProps>;
+    }
+  };
 
   // ON/OFF - TEAM
 

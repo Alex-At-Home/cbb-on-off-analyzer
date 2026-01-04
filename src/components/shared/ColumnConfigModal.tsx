@@ -10,6 +10,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 // Drag and drop
 import {
@@ -38,7 +40,11 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { GenericTableColProps, ExtraColSet } from "../GenericTable";
+import {
+  GenericTableColProps,
+  ExtraColSet,
+  GenericTableOps,
+} from "../GenericTable";
 import styles from "./ColumnConfigModal.module.css";
 
 /** Serializable config that can be used to reconstruct column layout */
@@ -65,8 +71,22 @@ type Props = {
   tableFields: Record<string, GenericTableColProps>;
   extraColSets?: Record<string, ExtraColSet>;
   currentConfig?: TableColumnConfig;
-  /** Original default tableFields when a preset is active - allows adding columns from the default layout */
-  defaultTableFields?: Record<string, GenericTableColProps>;
+};
+
+// Helper to check if colProps is a separator (regular or special case)
+// Defined outside component so it can be used by SortableColumnRow
+const isSeparatorColFn = (colProps: GenericTableColProps): boolean => {
+  // Regular separator: empty colName and empty toolTip
+  if (colProps.colName === "" && colProps.toolTip === "") return true;
+  // Special case separator: colName is a key in colSeparatorSpecialCases
+  if (
+    typeof colProps.colName === "string" &&
+    colProps.colName.startsWith("__") &&
+    GenericTableOps.colSeparatorSpecialCases[colProps.colName]
+  ) {
+    return true;
+  }
+  return false;
 };
 
 // Sortable row component - defined outside to prevent recreation on every render
@@ -76,6 +96,7 @@ type SortableColumnRowProps = {
   onToggleEnabled: (index: number) => void;
   onRemoveExtraColumn: (index: number) => void;
   getDisplayName: (entry: ColumnEntry) => string;
+  getDescription: (entry: ColumnEntry) => string;
 };
 
 const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
@@ -84,6 +105,7 @@ const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
   onToggleEnabled,
   onRemoveExtraColumn,
   getDisplayName,
+  getDescription,
 }) => {
   const {
     attributes,
@@ -99,8 +121,7 @@ const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
     transition,
   };
 
-  const isSeparator =
-    entry.colProps.colName === "" && entry.colProps.toolTip === "";
+  const isSeparator = isSeparatorColFn(entry.colProps);
 
   return (
     <div
@@ -127,16 +148,6 @@ const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
         <FontAwesomeIcon icon={faGripVertical} />
       </div>
 
-      {/* Old checkbox - kept for reference
-      <div className={styles.checkboxCell}>
-        <Form.Check
-          type="checkbox"
-          checked={entry.enabled}
-          onChange={() => onToggleEnabled(index)}
-        />
-      </div>
-      */}
-
       {/* Column name - also grabbable */}
       <div
         className={`${styles.nameCell} ${styles.grabbable} ${
@@ -150,7 +161,7 @@ const SortableColumnRow: React.FC<SortableColumnRowProps> = ({
 
       {/* Tooltip/Description */}
       <div className={styles.descriptionCell}>
-        {entry.colProps.toolTip}
+        {getDescription(entry)}
         {entry.isFromExtraSet && entry.extraSetName && (
           <span className="text-muted"> (+ from {entry.extraSetName})</span>
         )}
@@ -183,7 +194,6 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   tableFields,
   extraColSets,
   currentConfig,
-  defaultTableFields,
 }) => {
   // Build the initial column list from tableFields (excluding titles)
   const buildInitialColumns = (): ColumnEntry[] => {
@@ -194,7 +204,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       // Skip title columns
       if (colProps.isTitle) return;
 
-      const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+      const isSeparator = isSeparatorColFn(colProps);
       if (isSeparator) {
         separatorCount++;
       }
@@ -223,54 +233,27 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       const isEnabled = !disabledKeys.has(colKey);
 
       if (colKey.includes(".")) {
-        // Extra column set or default layout column
+        // Extra column set
         const [setName, actualKey] = colKey.split(".", 2);
+        const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
+        if (colProps) {
+          const isSeparator = isSeparatorColFn(colProps);
+          if (isSeparator) separatorCount++;
 
-        // Handle __default__ prefix - columns from default layout when using a preset
-        if (setName === "__default__") {
-          const colProps = defaultTableFields?.[actualKey];
-          if (colProps && !colProps.isTitle) {
-            const isSeparator =
-              colProps.colName === "" && colProps.toolTip === "";
-            if (isSeparator) separatorCount++;
-
-            entries.push({
-              key: colKey,
-              displayKey: isSeparator
-                ? `Separator ${separatorCount}`
-                : actualKey,
-              colProps,
-              enabled: isEnabled,
-              isFromExtraSet: true,
-              extraSetName: "Default Columns",
-            });
-          }
-        } else {
-          // Regular extra column set
-          const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
-          if (colProps) {
-            const isSeparator =
-              colProps.colName === "" && colProps.toolTip === "";
-            if (isSeparator) separatorCount++;
-
-            entries.push({
-              key: colKey,
-              displayKey: isSeparator
-                ? `Separator ${separatorCount}`
-                : actualKey,
-              colProps,
-              enabled: isEnabled,
-              isFromExtraSet: true,
-              extraSetName: setName,
-            });
-          }
+          entries.push({
+            key: colKey,
+            displayKey: isSeparator ? `Separator ${separatorCount}` : actualKey,
+            colProps,
+            enabled: isEnabled,
+            isFromExtraSet: true,
+            extraSetName: setName,
+          });
         }
       } else {
         // Regular tableFields column
         const colProps = tableFields[colKey];
         if (colProps && !colProps.isTitle) {
-          const isSeparator =
-            colProps.colName === "" && colProps.toolTip === "";
+          const isSeparator = isSeparatorColFn(colProps);
           if (isSeparator) separatorCount++;
 
           entries.push({
@@ -289,7 +272,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       if (colProps.isTitle) return;
       if (usedKeys.has(key)) return;
 
-      const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+      const isSeparator = isSeparatorColFn(colProps);
       if (isSeparator) separatorCount++;
 
       entries.push({
@@ -368,11 +351,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     // Check if already added
     if (columns.some((c) => c.key === fullKey)) return;
 
-    const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+    const isSeparator = isSeparatorColFn(colProps);
     const separatorCount = isSeparator
-      ? columns.filter(
-          (c) => c.colProps.colName === "" && c.colProps.toolTip === ""
-        ).length + 1
+      ? columns.filter((c) => isSeparatorColFn(c.colProps)).length + 1
       : 0;
 
     setColumns([
@@ -383,36 +364,6 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         enabled: true,
         isFromExtraSet: true,
         extraSetName: setName,
-      },
-      ...columns,
-    ]);
-  };
-
-  // Handler for adding columns from the default layout when using a preset
-  const handleAddDefaultColumn = (colKey: string) => {
-    const colProps = defaultTableFields?.[colKey];
-    if (!colProps || colProps.isTitle) return;
-
-    // Use a special prefix to identify default columns added to a preset
-    const fullKey = `__default__.${colKey}`;
-    // Check if already added (either as the original key or with the prefix)
-    if (columns.some((c) => c.key === fullKey || c.key === colKey)) return;
-
-    const isSeparator = colProps.colName === "" && colProps.toolTip === "";
-    const separatorCount = isSeparator
-      ? columns.filter(
-          (c) => c.colProps.colName === "" && c.colProps.toolTip === ""
-        ).length + 1
-      : 0;
-
-    setColumns([
-      {
-        key: fullKey,
-        displayKey: isSeparator ? `Separator ${separatorCount}` : colKey,
-        colProps,
-        enabled: true,
-        isFromExtraSet: true,
-        extraSetName: "Default Columns",
       },
       ...columns,
     ]);
@@ -445,11 +396,25 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     return "";
   };
 
-  const getColumnDisplayName = (entry: ColumnEntry): string => {
-    const { colProps, displayKey, isFromExtraSet, extraSetName } = entry;
-    const isSeparator = colProps.colName === "" && colProps.toolTip === "";
+  // Helper to get description for special separator cases
+  const getSpecialSeparatorDescription = (
+    colProps: GenericTableColProps
+  ): string => {
+    if (
+      typeof colProps.colName === "string" &&
+      colProps.colName.startsWith("__") &&
+      GenericTableOps.colSeparatorSpecialCases[colProps.colName]
+    ) {
+      return GenericTableOps.colSeparatorSpecialCases[colProps.colName].name;
+    }
+    return "";
+  };
 
-    if (isSeparator) {
+  const getColumnDisplayName = (entry: ColumnEntry): string => {
+    const { colProps, displayKey, isFromExtraSet } = entry;
+
+    // For separators (regular or special), use displayKey (e.g. "Separator 1")
+    if (isSeparatorColFn(colProps)) {
       return displayKey;
     }
 
@@ -470,6 +435,21 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     return name;
   };
 
+  // Get description for a column entry
+  const getColumnDescription = (entry: ColumnEntry): string => {
+    const { colProps } = entry;
+
+    // For special separators, use the name from colSeparatorSpecialCases
+    const specialDesc = getSpecialSeparatorDescription(colProps);
+    if (specialDesc) return specialDesc;
+
+    // For regular separators, no description
+    if (isSeparatorColFn(colProps)) return "";
+
+    // Normal columns use toolTip
+    return colProps.toolTip || "";
+  };
+
   // Get the set of column keys in the base tableFields (excluding titles)
   const baseTableFieldKeys = useMemo(() => {
     return new Set(
@@ -479,11 +459,15 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     );
   }, [tableFields]);
 
-  // Filter extra col sets to only show those with columns not in the base table
+  // Filter extra col sets to only show those that are libraries with columns not in the base table
   const extraSetNames = useMemo(() => {
     return Object.keys(extraColSets || {}).filter((setName) => {
-      const colSet = extraColSets?.[setName]?.colSet;
+      const extraColSet = extraColSets?.[setName];
+      const colSet = extraColSet?.colSet;
       if (!colSet) return false;
+
+      // Only include if isLibrary is true or undefined (not explicitly false)
+      if (extraColSet?.isLibrary === false) return false;
 
       // Check if any column in this set is NOT in the base table fields
       return Object.keys(colSet).some(
@@ -497,8 +481,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     colProps: GenericTableColProps,
     colKey: string
   ): string => {
-    const isSeparator = colProps.colName === "" && colProps.toolTip === "";
-    if (isSeparator) return "Separator";
+    if (isSeparatorColFn(colProps)) return "Separator";
 
     if (typeof colProps.colName === "string") {
       return colProps.colName;
@@ -506,6 +489,19 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       const extractedText = extractTextFromNode(colProps.colName);
       return extractedText.replace(/\s*\n\s*/g, " | ").trim() || colKey;
     }
+  };
+
+  // Helper to get description for extra set columns
+  const getExtraColDescription = (colProps: GenericTableColProps): string => {
+    // For special separators, use the name from colSeparatorSpecialCases
+    const specialDesc = getSpecialSeparatorDescription(colProps);
+    if (specialDesc) return specialDesc;
+
+    // For regular separators, no description
+    if (isSeparatorColFn(colProps)) return "";
+
+    // Normal columns use toolTip
+    return colProps.toolTip || "";
   };
 
   return (
@@ -550,6 +546,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                       onToggleEnabled={handleToggleEnabled}
                       onRemoveExtraColumn={handleRemoveExtraColumn}
                       getDisplayName={getColumnDisplayName}
+                      getDescription={getColumnDescription}
                     />
                   ))}
                 </SortableContext>
@@ -557,81 +554,29 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
             </div>
           </Tab>
 
-          {/* Default Layout Tab - shown when a preset is active */}
-          {defaultTableFields && (
-            <Tab eventKey="defaultLayout" title="Default Columns">
-              <div className={styles.columnList} style={{ marginTop: "12px" }}>
-                {/* Header row */}
-                <div className={styles.headerRow}>
-                  <div className={styles.headerAddSpacer}></div>
-                  <div className={styles.headerName}>Name</div>
-                  <div className={styles.headerDescription}>Description</div>
-                </div>
-                {Object.entries(defaultTableFields)
-                  .filter(([_, colProps]) => !colProps.isTitle)
-                  .map(([colKey, colProps]) => {
-                    const fullKey = `__default__.${colKey}`;
-                    const alreadyAdded = columns.some(
-                      (c) => c.key === fullKey || c.key === colKey
-                    );
-                    const isSeparator =
-                      colProps.colName === "" && colProps.toolTip === "";
-
-                    return (
-                      <div
-                        key={colKey}
-                        className={`${styles.columnRow} ${
-                          alreadyAdded ? styles.columnRowDisabled : ""
-                        }`}
-                      >
-                        {/* Add button */}
-                        <div className={styles.addButtonCell}>
-                          <Button
-                            variant={
-                              alreadyAdded
-                                ? "outline-secondary"
-                                : "outline-primary"
-                            }
-                            size="sm"
-                            disabled={alreadyAdded}
-                            onClick={() => handleAddDefaultColumn(colKey)}
-                            style={{ padding: "2px 8px" }}
-                          >
-                            <FontAwesomeIcon icon={faPlus} size="sm" />
-                          </Button>
-                        </div>
-
-                        {/* Column name */}
-                        <div
-                          className={`${styles.nameCell} ${
-                            isSeparator ? styles.separatorName : ""
-                          }`}
-                        >
-                          {getExtraColDisplayName(colProps, colKey)}
-                          {alreadyAdded && (
-                            <small className="text-muted"> (added)</small>
-                          )}
-                        </div>
-
-                        {/* Description */}
-                        <div className={styles.descriptionCell}>
-                          {colProps.toolTip}
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
-            </Tab>
-          )}
-
           {/* Extra Column Set Tabs - only shown if they have columns not in base table */}
           {extraSetNames.map((setName) => {
             const extraColSet = extraColSets?.[setName];
             const colSet = extraColSet?.colSet;
             if (!colSet) return null;
 
+            const tabTitle = extraColSet?.description ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id={`tab-tooltip-${setName}`}>
+                    {extraColSet.description}
+                  </Tooltip>
+                }
+              >
+                <span>{setName}</span>
+              </OverlayTrigger>
+            ) : (
+              setName
+            );
+
             return (
-              <Tab eventKey={setName} title={setName} key={setName}>
+              <Tab eventKey={setName} title={tabTitle} key={setName}>
                 <div
                   className={styles.columnList}
                   style={{ marginTop: "12px" }}
@@ -649,8 +594,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                       const alreadyAdded = columns.some(
                         (c) => c.key === fullKey
                       );
-                      const isSeparator =
-                        colProps.colName === "" && colProps.toolTip === "";
+                      const isSeparator = isSeparatorColFn(colProps);
 
                       return (
                         <div
@@ -692,7 +636,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
                           {/* Description */}
                           <div className={styles.descriptionCell}>
-                            {colProps.toolTip}
+                            {getExtraColDescription(colProps)}
                           </div>
                         </div>
                       );

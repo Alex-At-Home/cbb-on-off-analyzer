@@ -165,6 +165,15 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
           rawParams.presetGroup == ParamDefaults.defaultPresetGroup
             ? ["presetGroup"]
             : [],
+          !rawParams.tablePreset ? ["tablePreset"] : [],
+          !rawParams.tableConfigExtraCols ||
+          _.isEmpty(rawParams.tableConfigExtraCols)
+            ? ["tableConfigExtraCols"]
+            : [],
+          !rawParams.tableConfigDisabledCols ||
+          _.isEmpty(rawParams.tableConfigDisabledCols)
+            ? ["tableConfigDisabledCols"]
+            : [],
           !rawParams.advancedMode ? ["advancedMode"] : [],
           rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
         ])

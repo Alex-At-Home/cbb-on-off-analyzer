@@ -160,33 +160,33 @@ const assistDetailsTable = {
   sep1: GenericTableOps.addColSeparator(),
   "3p_ast": GenericTableOps.addPctCol(
     "3P",
-    "% of assists for 3P",
+    "% of assists that are for 3P",
     CommonTableDefs.picker(...CbbColors.fgr)
   ),
   mid_ast: GenericTableOps.addPctCol(
     "Mid",
-    "% of assists for mid-range 2P",
+    "% of assists that are for mid-range 2P",
     CommonTableDefs.picker(...CbbColors.fgr)
   ),
   rim_ast: GenericTableOps.addPctCol(
     "Rim",
-    "% of assists for 2PAs at the rim",
+    "% of assists that are for 2PAs at the rim",
     CommonTableDefs.picker(...CbbColors.fgr)
   ),
   sep2: GenericTableOps.addColSeparator(),
   ast_3p: GenericTableOps.addPctCol(
     "3P",
-    "% of assists for 3P",
+    "% of 3P that are assisted",
     CommonTableDefs.picker(...CbbColors.fgr)
   ),
   ast_mid: GenericTableOps.addPctCol(
     "Mid",
-    "% of assists for mid-range 2P",
+    "% of mid-range 2P that are assisted",
     CommonTableDefs.picker(...CbbColors.fgr)
   ),
   ast_rim: GenericTableOps.addPctCol(
     "Rim",
-    "% of assists for 2PAs at the rim",
+    "% of 2PAs at the rim that are assisted",
     CommonTableDefs.picker(...CbbColors.fgr)
   ),
 };

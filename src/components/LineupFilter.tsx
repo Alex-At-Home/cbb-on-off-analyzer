@@ -81,6 +81,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     advancedMode: startAdvancedMode,
     presetMode: startPresetMode,
     presetGroup: startPresetGroup,
+    tablePreset: startTablePreset,
+    tableConfigExtraCols: startTableConfigExtraCols,
+    tableConfigDisabledCols: startTableConfigDisabledCols,
     // Luck stats:
     luck: startLuck,
     lineupLuck: startLineupLuck,
@@ -104,6 +107,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({
 
   const rebuildFullState = () => {
     return {
+      // UI
+      tablePreset: startTablePreset,
+      tableConfigExtraCols: startTableConfigExtraCols,
+      tableConfigDisabledCols: startTableConfigDisabledCols,
       // Luck stats:
       luck: startLuck,
       lineupLuck: startLineupLuck,

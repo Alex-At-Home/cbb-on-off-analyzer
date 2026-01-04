@@ -203,6 +203,9 @@ export type LineupFilterParams = {
   advancedMode?: boolean;
   presetMode?: string;
   presetGroup?: string;
+  tablePreset?: string;
+  tableConfigExtraCols?: string[];
+  tableConfigDisabledCols?: string[];
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
   decorate?: boolean;

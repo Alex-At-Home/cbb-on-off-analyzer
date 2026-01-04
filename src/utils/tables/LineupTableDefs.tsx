@@ -19,8 +19,30 @@ import { CommonTableDefs, OffDefDualMixed } from "./CommonTableDefs";
 
 /** Holds all the different column definitions for the similar tables used throughout this SPA */
 export class LineupTableDefs {
+  /** "Overrides" of standard utils */
+  static offPrefixFn = (key: string) => {
+    if (key == "net_adj_rtg") {
+      return "off_net";
+    } else if (key == "net_raw_rtg") {
+      return "def_net";
+    } else {
+      return CommonTableDefs.offPrefixFn(key);
+    }
+  };
+  static defPrefixFn = (key: string) => {
+    if (key == "net_adj_rtg") {
+      return "off_net";
+    } else if (key == "net_raw_rtg") {
+      return "def_net";
+    } else if (key == "title") {
+      return "off_title";
+    } else {
+      return CommonTableDefs.defPrefixFn(key);
+    }
+  };
+
   /** All fields in the lineup table */
-  static readonly allCommonLineupTableFields = (
+  static readonly mainLineupTableFields = (
     rowMode: OffDefDualMixed,
     mixedMode?: "Off" | "Def" //(bug if this is undefined when rowMode == "Mixed")
   ): Record<string, GenericTableColProps> => {
@@ -48,28 +70,20 @@ export class LineupTableDefs {
             ),
           }
         : {}),
-      ...(rowMode == "Off"
+      ...(rowMode == "Off" || rowMode == "Def"
         ? {
             //TODO: how can I support def_net meaning adjusted here?
             sep_adj_net: GenericTableOps.addSpecialColSeparator("__net__"),
-            net: GenericTableOps.addDataCol(
-              //TODO: special case, dual only
+            net_adj_rtg: GenericTableOps.addDataCol(
               "Adj Rtg",
               "The margin between the adjusted offensive and defensive efficiencies",
-              CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
+              CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen),
               GenericTableOps.pointsOrHtmlFormatter
             ),
-          }
-        : {}),
-      ...(rowMode == "Def"
-        ? {
-            //TODO: how can I support def_net meaning adjusted here?
-            sep_adj_net: GenericTableOps.addSpecialColSeparator("__net__"),
-            net: GenericTableOps.addDataCol(
-              //TODO: special case, dual only
+            net_raw_rtg: GenericTableOps.addDataCol(
               "Raw Rtg",
               "The margin between the raw offensive and defensive efficiencies",
-              CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
+              CbbColors.applyThemedBackground,
               GenericTableOps.pointsOrHtmlFormatter
             ),
           }
@@ -80,13 +94,13 @@ export class LineupTableDefs {
             off_net: GenericTableOps.addDataCol(
               "Adj Rtg",
               "The margin between the adjusted offensive and defensive efficiencies",
-              CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
+              CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen),
               GenericTableOps.pointsOrHtmlFormatter
             ),
             def_net: GenericTableOps.addDataCol(
               "Net Rtg",
               "The margin between the raw offensive and defensive efficiencies",
-              CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
+              CbbColors.applyThemedBackground,
               GenericTableOps.pointsOrHtmlFormatter
             ),
           }
@@ -187,33 +201,74 @@ export class LineupTableDefs {
         GenericTableOps.defaultColorPicker
       ),
     };
-    if (rowMode != "Mixed") {
-      return cols;
-    } else {
-      return _.mapKeys(cols, (colObj, colKey) => {
-        if (mixedMode == "Def") {
-          return colKey.startsWith("off_") || colKey.startsWith("def_")
-            ? colKey
-            : `def_${colKey}`;
-        } else {
-          return colKey.startsWith("off_") || colKey.startsWith("def_")
-            ? colKey
-            : `off_${colKey}`;
-        }
-      }) as Record<string, GenericTableColProps>;
-    }
+    return CommonTableDefs.buildMixedColSet(cols, rowMode, mixedMode);
+  };
+
+  // Other stats of interest:
+
+  static readonly assistDetailsTable = (
+    rowMode: OffDefDualMixed,
+    mixedMode?: "Off" | "Def" //(bug if this is undefined when rowMode == "Mixed")
+  ): Record<string, GenericTableColProps> => {
+    const cols = {
+      "3p_ast": GenericTableOps.addPctCol(
+        CommonTableDefs.specialMixedHeader(mixedMode, "A-3P", "AST 3P"),
+        "% of assists that are for 3P",
+        CommonTableDefs.picker(...CbbColors.fgr, rowMode, mixedMode)
+      ),
+      mid_ast: GenericTableOps.addPctCol(
+        CommonTableDefs.specialMixedHeader(mixedMode, "A-2M", "AST Mid"),
+        "% of assists that are for mid-range 2P",
+        CommonTableDefs.picker(...CbbColors.fgr, rowMode, mixedMode)
+      ),
+      rim_ast: GenericTableOps.addPctCol(
+        CommonTableDefs.specialMixedHeader(mixedMode, "A-2R", "AST Rim"),
+        "% of assists that are for 2PAs at the rim",
+        CommonTableDefs.picker(...CbbColors.fgr, rowMode, mixedMode)
+      ),
+      sep2: GenericTableOps.addColSeparator(),
+      ast_3p: GenericTableOps.addPctCol(
+        CommonTableDefs.specialMixedHeader(mixedMode, "3P-A", "3P AST%"),
+        "% of 3P that are assisted",
+        CommonTableDefs.picker(...CbbColors.fgr, rowMode, mixedMode)
+      ),
+      ast_mid: GenericTableOps.addPctCol(
+        CommonTableDefs.specialMixedHeader(mixedMode, "2M-A", "Mid AST%"),
+        "% of mid-range 2P that are assisted",
+        CommonTableDefs.picker(...CbbColors.fgr, rowMode, mixedMode)
+      ),
+      ast_rim: GenericTableOps.addPctCol(
+        CommonTableDefs.specialMixedHeader(mixedMode, "2R-A", "Rim AST%"),
+        "% of 2PAs at the rim that are assisted",
+        CommonTableDefs.picker(...CbbColors.fgr, rowMode, mixedMode)
+      ),
+    };
+    return CommonTableDefs.buildMixedColSet(cols, rowMode, mixedMode);
+  };
+
+  /** Handles the app-level table viewing logic */
+  static readonly rawPtsPicker = (
+    rawPts: boolean,
+    inColSet: Record<string, GenericTableColProps>
+  ) => {
+    return _.omit(
+      inColSet,
+      rawPts
+        ? ["off_ppp", "def_ppp", "ppp"]
+        : ["off_raw_pts", "def_raw_pts", "raw_pts"]
+    );
   };
 
   static readonly allDualLineupFields =
-    LineupTableDefs.allCommonLineupTableFields("Dual");
+    LineupTableDefs.mainLineupTableFields("Dual");
   static readonly allOffOnlyLineupFields =
-    LineupTableDefs.allCommonLineupTableFields("Off");
+    LineupTableDefs.mainLineupTableFields("Off");
   static readonly allDefOnlyLineupFields =
-    LineupTableDefs.allCommonLineupTableFields("Def");
+    LineupTableDefs.mainLineupTableFields("Def");
   static readonly allMixedOffLineupFields =
-    LineupTableDefs.allCommonLineupTableFields("Mixed", "Off");
+    LineupTableDefs.mainLineupTableFields("Mixed", "Off");
   static readonly allMixedDefLineupFields =
-    LineupTableDefs.allCommonLineupTableFields("Mixed", "Def");
+    LineupTableDefs.mainLineupTableFields("Mixed", "Def");
 
   // Extra lineup table presets:
 
@@ -222,6 +277,12 @@ export class LineupTableDefs {
     (
       rawPts: boolean
     ): Record<string, ExtraColSet & { rowMode: OffDefDualMixed }> => ({
+      Default: {
+        isPreset: false,
+        rowMode: "Dual",
+        description: "Fields from the default Lineup table layout",
+        colSet: CommonTableDefs.lineupTable(rawPts),
+      },
       "Extra Fields (off/def rows)": {
         isPreset: false,
         rowMode: "Dual",
@@ -233,7 +294,30 @@ export class LineupTableDefs {
             CbbColors.applyThemedBackground,
             GenericTableOps.pointsOrHtmlFormatter
           ),
+          ...LineupTableDefs.assistDetailsTable("Dual"),
           //TODO others: mins, TS, AST%, blk%, stl%, etc
+        },
+      },
+      "Extra Fields (mixed rows)": {
+        isPreset: false,
+        rowMode: "Mixed",
+        description: "Useful additional fields",
+        colSet: {
+          off_raw_pts: GenericTableOps.addDataCol(
+            "Off Pts",
+            "Points scored by this lineup",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter
+          ),
+          def_raw_pts: GenericTableOps.addDataCol(
+            "Def Pts",
+            "Points conceded by this lineup",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter
+          ),
+          ...LineupTableDefs.assistDetailsTable("Mixed", "Off"),
+          ...LineupTableDefs.assistDetailsTable("Mixed", "Def"),
+          //TODO others: mins, TS, blk%, stl%, etc
         },
       },
       "Simple (Desktop)": {
@@ -241,21 +325,18 @@ export class LineupTableDefs {
         rowMode: "Mixed",
         description:
           "A simple single line view of the most important few stats",
-        colSet: _.omit(
-          {
-            off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
-            off_net: LineupTableDefs.allMixedOffLineupFields.off_net,
-            def_net: LineupTableDefs.allMixedDefLineupFields.def_net,
-            off_raw_pts: LineupTableDefs.allMixedOffLineupFields.off_raw_pts,
-            def_raw_pts: LineupTableDefs.allMixedDefLineupFields.def_raw_pts,
-            off_ppp: LineupTableDefs.allMixedOffLineupFields.off_ppp,
-            def_ppp: LineupTableDefs.allMixedDefLineupFields.def_ppp,
-            off_3p: LineupTableDefs.allMixedOffLineupFields.off_3p,
-            def_3p: LineupTableDefs.allMixedDefLineupFields.def_3p,
-            off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
-          },
-          rawPts ? ["off_ppp", "def_ppp"] : ["off_raw_pts", "def_raw_pts"]
-        ),
+        colSet: LineupTableDefs.rawPtsPicker(rawPts, {
+          off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
+          off_net: LineupTableDefs.allMixedOffLineupFields.off_net,
+          def_net: LineupTableDefs.allMixedDefLineupFields.def_net,
+          off_raw_pts: LineupTableDefs.allMixedOffLineupFields.off_raw_pts,
+          def_raw_pts: LineupTableDefs.allMixedDefLineupFields.def_raw_pts,
+          off_ppp: LineupTableDefs.allMixedOffLineupFields.off_ppp,
+          def_ppp: LineupTableDefs.allMixedDefLineupFields.def_ppp,
+          off_3p: LineupTableDefs.allMixedOffLineupFields.off_3p,
+          def_3p: LineupTableDefs.allMixedDefLineupFields.def_3p,
+          off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
+        }),
       },
       "Simple (Mobile)": {
         isPreset: true,
@@ -274,13 +355,19 @@ export class LineupTableDefs {
         isPreset: true,
         rowMode: "Off",
         description: "A single row showing all offensive stats",
-        colSet: CommonTableDefs.lineupTable(rawPts),
+        colSet: LineupTableDefs.rawPtsPicker(
+          rawPts,
+          LineupTableDefs.allOffOnlyLineupFields
+        ),
       },
       "Defense Only": {
         isPreset: true,
         rowMode: "Def",
         description: "A single row showing all defensive stats",
-        colSet: CommonTableDefs.lineupTable(rawPts),
+        colSet: LineupTableDefs.rawPtsPicker(
+          rawPts,
+          LineupTableDefs.allDefOnlyLineupFields
+        ),
       },
       "Empty (dual row)": {
         isPreset: true,
