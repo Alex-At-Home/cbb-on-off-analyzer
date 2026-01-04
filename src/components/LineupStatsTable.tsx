@@ -76,6 +76,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { CbbColors } from "../utils/CbbColors";
 import { LineupTableDefs } from "../utils/tables/LineupTableDefs";
+import { DerivedStatsUtils } from "../utils/stats/DerivedStatsUtils";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -475,6 +476,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           teamSeasonLookup
         ); //(inject assist numbers)
 
+        DerivedStatsUtils.injectExtraDefensiveStats(lineup, lineup);
+
         // Create (off_/def_)raw_net and raw_ppp if needed
         TableDisplayUtils.turnPppIntoRawPts(lineup, showRawPts, adjustForLuck);
 
@@ -628,6 +631,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             setTableConfigExtraCols(config.newCol);
             setTableConfigDisabledCols(config.disabledCols);
           }}
+          onPresetChange={(preset) => {
+            setTablePreset(preset);
+            // Reset overrides:
+            setTableConfigExtraCols([]);
+            setTableConfigDisabledCols(undefined);
+          }}
+          presetOverride={tablePreset}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
           extraColSets={CommonTableDefs.extraColSetPicker(
@@ -636,9 +646,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           )}
           tableData={tableData}
           cellTooltipMode="none"
-          presetOverride={tablePreset}
           growsToFit={true}
-          onPresetChange={setTablePreset}
         />
       );
     } else {
@@ -749,6 +757,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           false,
           teamSeasonLookup
         ); //(inject assist numbers)
+
+        DerivedStatsUtils.injectExtraDefensiveStats(lineup, lineup);
 
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         const sortedCodesAndIds =
@@ -1080,6 +1090,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               false,
               teamSeasonLookup
             ); //(inject assist numbers)
+
+            DerivedStatsUtils.injectExtraDefensiveStats(stats, stats);
           }
           TableDisplayUtils.turnPppIntoRawPts(stats, showRawPts, adjustForLuck);
 
@@ -1235,6 +1247,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             setTableConfigExtraCols(config.newCol);
             setTableConfigDisabledCols(config.disabledCols);
           }}
+          onPresetChange={(preset) => {
+            setTablePreset(preset);
+            // Reset overrides:
+            setTableConfigExtraCols([]);
+            setTableConfigDisabledCols(undefined);
+          }}
+          presetOverride={tablePreset}
           tableCopyId="lineupStatsTable"
           tableFields={CommonTableDefs.lineupTable(showRawPts)}
           extraColSets={CommonTableDefs.extraColSetPicker(
@@ -1243,9 +1262,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           )}
           tableData={tableData}
           cellTooltipMode="none"
-          presetOverride={tablePreset}
           growsToFit={true}
-          onPresetChange={setTablePreset}
         />
       );
     }

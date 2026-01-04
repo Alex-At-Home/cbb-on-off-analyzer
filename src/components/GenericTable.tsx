@@ -499,6 +499,8 @@ export type ExtraColSet = {
   isPreset?: boolean;
   /** If it's a preset, whether _also_ to include it as a library of fields (default true) */
   isLibrary?: boolean;
+  /** Name of this column set */
+  name: string;
   /** Description of this column set */
   description?: string;
   /** The column definitions */
@@ -695,7 +697,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
           .filter(([_, colSet]) => colSet.isPreset)
           .map(([key, colSet]) => ({
             key,
-            label: key,
+            label: colSet.name,
             description: colSet.description,
           }));
 

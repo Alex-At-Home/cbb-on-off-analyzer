@@ -55,6 +55,47 @@ export type TableColumnConfig = {
   disabledCols?: Array<string>;
 };
 
+/**
+ * Builds an optimized TableColumnConfig by comparing current columns to the original tableFields.
+ * If all columns (including disabled) match the original order exactly (no reordering, no extra columns added),
+ * returns newCol: [] to indicate "use defaults". Otherwise returns the full column list.
+ *
+ * @param currentColumns - Array of column keys in current order (all columns, enabled and disabled)
+ * @param disabledColumns - Array of column keys that are disabled
+ * @param originalTableFieldKeys - Array of original tableField keys in order (excluding titles)
+ * @returns Optimized TableColumnConfig
+ */
+export const buildOptimizedConfig = (
+  currentColumns: string[],
+  disabledColumns: string[],
+  originalTableFieldKeys: string[]
+): TableColumnConfig => {
+  // Check if all columns match original order exactly
+  // (same length, same keys, same order, no extra columns from external sets)
+  const matchesOriginal =
+    currentColumns.length === originalTableFieldKeys.length &&
+    currentColumns.every((key, index) => {
+      // Must not be from an extra set (no dots in key)
+      if (key.includes(".")) return false;
+      // Must match original key at same position
+      return key === originalTableFieldKeys[index];
+    });
+
+  if (matchesOriginal) {
+    // No changes to column order/content, just return disabled cols
+    return {
+      newCol: [],
+      ...(disabledColumns.length > 0 ? { disabledCols: disabledColumns } : {}),
+    };
+  } else {
+    // Changes detected, return full configuration
+    return {
+      newCol: currentColumns,
+      ...(disabledColumns.length > 0 ? { disabledCols: disabledColumns } : {}),
+    };
+  }
+};
+
 type ColumnEntry = {
   key: string; // The key in tableFields or "setName.colKey" for extra columns
   displayKey: string; // Display key (e.g., "Separator 1" for separators)
@@ -234,8 +275,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
       if (colKey.includes(".")) {
         // Extra column set
-        const [setName, actualKey] = colKey.split(".", 2);
-        const colProps = extraColSets?.[setName]?.colSet?.[actualKey];
+        const [setKey, actualKey] = colKey.split(".", 2);
+        const extraColSet = extraColSets?.[setKey];
+        const colProps = extraColSet?.colSet?.[actualKey];
         if (colProps) {
           const isSeparator = isSeparatorColFn(colProps);
           if (isSeparator) separatorCount++;
@@ -246,7 +288,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
             colProps,
             enabled: isEnabled,
             isFromExtraSet: true,
-            extraSetName: setName,
+            extraSetName: extraColSet?.name || setKey,
           });
         }
       } else {
@@ -343,11 +385,12 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     setColumns((prevColumns) => prevColumns.filter((_, i) => i !== index));
   }, []);
 
-  const handleAddExtraColumn = (setName: string, colKey: string) => {
-    const colProps = extraColSets?.[setName]?.colSet?.[colKey];
+  const handleAddExtraColumn = (setKey: string, colKey: string) => {
+    const extraColSet = extraColSets?.[setKey];
+    const colProps = extraColSet?.colSet?.[colKey];
     if (!colProps) return;
 
-    const fullKey = `${setName}.${colKey}`;
+    const fullKey = `${setKey}.${colKey}`;
     // Check if already added
     if (columns.some((c) => c.key === fullKey)) return;
 
@@ -363,7 +406,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         colProps,
         enabled: true,
         isFromExtraSet: true,
-        extraSetName: setName,
+        extraSetName: extraColSet?.name || setKey,
       },
       ...columns,
     ]);
@@ -373,12 +416,21 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     setColumns(buildInitialColumns());
   };
 
+  // Get original table field keys in order (excluding titles) for comparison during save
+  const originalTableFieldKeys = useMemo(() => {
+    return Object.entries(tableFields)
+      .filter(([_, colProps]) => !colProps.isTitle)
+      .map(([key]) => key);
+  }, [tableFields]);
+
   const handleSave = () => {
+    const currentColumns = columns.map((c) => c.key);
     const disabledCols = columns.filter((c) => !c.enabled).map((c) => c.key);
-    const config: TableColumnConfig = {
-      newCol: columns.map((c) => c.key), // All columns in order
-      ...(disabledCols.length > 0 ? { disabledCols } : {}), // Only include if there are disabled columns
-    };
+    const config = buildOptimizedConfig(
+      currentColumns,
+      disabledCols,
+      originalTableFieldKeys
+    );
     onSave(config);
     onHide();
   };
@@ -460,9 +512,9 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   }, [tableFields]);
 
   // Filter extra col sets to only show those that are libraries with columns not in the base table
-  const extraSetNames = useMemo(() => {
-    return Object.keys(extraColSets || {}).filter((setName) => {
-      const extraColSet = extraColSets?.[setName];
+  const extraSetKeys = useMemo(() => {
+    return Object.keys(extraColSets || {}).filter((setKey) => {
+      const extraColSet = extraColSets?.[setKey];
       const colSet = extraColSet?.colSet;
       if (!colSet) return false;
 
@@ -555,28 +607,29 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
           </Tab>
 
           {/* Extra Column Set Tabs - only shown if they have columns not in base table */}
-          {extraSetNames.map((setName) => {
-            const extraColSet = extraColSets?.[setName];
+          {extraSetKeys.map((setKey) => {
+            const extraColSet = extraColSets?.[setKey];
             const colSet = extraColSet?.colSet;
             if (!colSet) return null;
 
+            const displayName = extraColSet?.name || setKey;
             const tabTitle = extraColSet?.description ? (
               <OverlayTrigger
                 placement="top"
                 overlay={
-                  <Tooltip id={`tab-tooltip-${setName}`}>
+                  <Tooltip id={`tab-tooltip-${setKey}`}>
                     {extraColSet.description}
                   </Tooltip>
                 }
               >
-                <span>{setName}</span>
+                <span>{displayName}</span>
               </OverlayTrigger>
             ) : (
-              setName
+              displayName
             );
 
             return (
-              <Tab eventKey={setName} title={tabTitle} key={setName}>
+              <Tab eventKey={setKey} title={tabTitle} key={setKey}>
                 <div
                   className={styles.columnList}
                   style={{ marginTop: "12px" }}
@@ -590,7 +643,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                   {Object.entries(colSet)
                     .filter(([_, colProps]) => !colProps.isTitle)
                     .map(([colKey, colProps]) => {
-                      const fullKey = `${setName}.${colKey}`;
+                      const fullKey = `${setKey}.${colKey}`;
                       const alreadyAdded = columns.some(
                         (c) => c.key === fullKey
                       );
@@ -614,7 +667,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                               size="sm"
                               disabled={alreadyAdded}
                               onClick={() =>
-                                handleAddExtraColumn(setName, colKey)
+                                handleAddExtraColumn(setKey, colKey)
                               }
                               style={{ padding: "2px 8px" }}
                             >

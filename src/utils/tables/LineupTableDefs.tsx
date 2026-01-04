@@ -246,6 +246,36 @@ export class LineupTableDefs {
     return CommonTableDefs.buildMixedColSet(cols, rowMode, mixedMode);
   };
 
+  static readonly miscDetailsTable = (
+    rowMode: OffDefDualMixed,
+    mixedMode?: "Off" | "Def" //(bug if this is undefined when rowMode == "Mixed")
+  ): Record<string, GenericTableColProps> => {
+    const cols = {
+      ft: GenericTableOps.addPctCol(
+        CommonTableDefs.simpleHeader(mixedMode, "FT%"),
+        "Free throw %",
+        CommonTableDefs.picker(...CbbColors.ft, rowMode, mixedMode)
+      ),
+      sep2: GenericTableOps.addColSeparator(),
+      stl: GenericTableOps.addPctCol(
+        CommonTableDefs.simpleHeader(mixedMode, "Stl%"),
+        "Steal %",
+        CommonTableDefs.picker(...CbbColors.TO_comp, rowMode, mixedMode)
+      ),
+      to_nonstl: GenericTableOps.addPctCol(
+        CommonTableDefs.simpleHeader(mixedMode, "Non-Stl%"),
+        "Non-Steal TO%",
+        CommonTableDefs.picker(...CbbColors.TO_comp, rowMode, mixedMode)
+      ),
+      blk: GenericTableOps.addPctCol(
+        CommonTableDefs.simpleHeader(mixedMode, "Blk%"),
+        "Block %",
+        CommonTableDefs.picker(...CbbColors.TO_comp, rowMode, mixedMode)
+      ),
+    };
+    return CommonTableDefs.buildMixedColSet(cols, rowMode, mixedMode);
+  };
+
   /** Handles the app-level table viewing logic */
   static readonly rawPtsPicker = (
     rawPts: boolean,
@@ -280,12 +310,14 @@ export class LineupTableDefs {
       Default: {
         isPreset: false,
         rowMode: "Dual",
+        name: "Default",
         description: "Fields from the default Lineup table layout",
         colSet: CommonTableDefs.lineupTable(rawPts),
       },
-      "Extra Fields (off/def rows)": {
+      extraDual: {
         isPreset: false,
         rowMode: "Dual",
+        name: "Extra Fields",
         description: "Useful additional fields",
         colSet: {
           raw_pts: GenericTableOps.addDataCol(
@@ -294,14 +326,16 @@ export class LineupTableDefs {
             CbbColors.applyThemedBackground,
             GenericTableOps.pointsOrHtmlFormatter
           ),
+          ...LineupTableDefs.miscDetailsTable("Dual"),
           ...LineupTableDefs.assistDetailsTable("Dual"),
-          //TODO others: mins, TS, AST%, blk%, stl%, etc
+          //TODO others (here and in other spots): mins, play types, etc
         },
       },
-      "Extra Fields (mixed rows)": {
+      extraMixed: {
         isPreset: false,
         rowMode: "Mixed",
         description: "Useful additional fields",
+        name: "Extra Fields",
         colSet: {
           off_raw_pts: GenericTableOps.addDataCol(
             "Off Pts",
@@ -315,14 +349,48 @@ export class LineupTableDefs {
             CbbColors.applyThemedBackground,
             GenericTableOps.pointsOrHtmlFormatter
           ),
+          ...LineupTableDefs.miscDetailsTable("Mixed", "Off"),
+          ...LineupTableDefs.miscDetailsTable("Mixed", "Def"),
           ...LineupTableDefs.assistDetailsTable("Mixed", "Off"),
           ...LineupTableDefs.assistDetailsTable("Mixed", "Def"),
-          //TODO others: mins, TS, blk%, stl%, etc
         },
       },
-      "Simple (Desktop)": {
+      extraOff: {
+        isPreset: false,
+        rowMode: "Off",
+        description: "Useful additional fields",
+        name: "Extra Fields",
+        colSet: {
+          off_raw_pts: GenericTableOps.addDataCol(
+            "Off Pts",
+            "Points scored by this lineup",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter
+          ),
+          ...LineupTableDefs.miscDetailsTable("Mixed", "Off"),
+          ...LineupTableDefs.assistDetailsTable("Mixed", "Off"),
+        },
+      },
+      extraDef: {
+        isPreset: false,
+        rowMode: "Def",
+        description: "Useful additional fields",
+        name: "Extra Fields",
+        colSet: {
+          def_raw_pts: GenericTableOps.addDataCol(
+            "Def Pts",
+            "Points scored by this lineup",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter
+          ),
+          ...LineupTableDefs.miscDetailsTable("Mixed", "Def"),
+          ...LineupTableDefs.assistDetailsTable("Mixed", "Def"),
+        },
+      },
+      simpleMixed: {
         isPreset: true,
         rowMode: "Mixed",
+        name: "Simple (Desktop)",
         description:
           "A simple single line view of the most important few stats",
         colSet: LineupTableDefs.rawPtsPicker(rawPts, {
@@ -338,9 +406,10 @@ export class LineupTableDefs {
           off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
         }),
       },
-      "Simple (Mobile)": {
+      simpleDual: {
         isPreset: true,
         rowMode: "Dual",
+        name: "Simple (Mobile)",
         description: "Mobile friendly view of basic off/def view",
         colSet: _.pick(CommonTableDefs.lineupTable(rawPts), [
           "title",
@@ -351,51 +420,57 @@ export class LineupTableDefs {
           "poss",
         ]),
       },
-      "Offense Only": {
+      offenseSingleRow: {
         isPreset: true,
         rowMode: "Off",
+        name: "Offense Only",
         description: "A single row showing all offensive stats",
         colSet: LineupTableDefs.rawPtsPicker(
           rawPts,
           LineupTableDefs.allOffOnlyLineupFields
         ),
       },
-      "Defense Only": {
+      defenseSingleRow: {
         isPreset: true,
         rowMode: "Def",
+        name: "Defense Only",
         description: "A single row showing all defensive stats",
         colSet: LineupTableDefs.rawPtsPicker(
           rawPts,
           LineupTableDefs.allDefOnlyLineupFields
         ),
       },
-      "Empty (dual row)": {
+      emptyDual: {
         isPreset: true,
         rowMode: "Dual",
+        name: "Empty Table (dual row)",
         description:
           "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
         colSet: {
           title: LineupTableDefs.allDualLineupFields.title,
         } as Record<string, GenericTableColProps>,
       },
-      "Empty (single row)": {
+      emptySingle: {
         isPreset: true,
         rowMode: "Mixed",
+        name: "Empty Table (single row)",
         description:
           "An empty set of columns - pick whatever you want (mixing offense and defense)",
         colSet: {
           off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
         } as Record<string, GenericTableColProps>,
       },
-      "Offense Only (includes 'Off' prefix)": {
+      offenseOnlyMixed: {
         isPreset: false,
+        name: "Offensive Stats",
         rowMode: "Mixed",
         description: "A collection of offensive stats",
         colSet: LineupTableDefs.allMixedOffLineupFields,
       },
-      "Defense Only (includes 'Def' prefix)": {
+      defenseOnlyMixed: {
         isPreset: false,
         rowMode: "Mixed",
+        name: "Defensive Stats",
         description: "A collection of defensive stats",
         colSet: LineupTableDefs.allMixedDefLineupFields,
       },

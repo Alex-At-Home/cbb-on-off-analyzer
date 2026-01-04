@@ -1091,9 +1091,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "description": "Fields from the default Lineup table layout",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Default",
                 "rowMode": "Dual",
               },
-              "Defense Only": Object {
+              "defenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -1385,9 +1386,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "description": "A single row showing all defensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Defense Only",
                 "rowMode": "Def",
               },
-              "Empty (dual row)": Object {
+              "emptyDual": Object {
                 "colSet": Object {
                   "title": GenericTableColProps {
                     "className": "small",
@@ -1404,9 +1406,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "description": "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
                 "isLibrary": true,
                 "isPreset": true,
+                "name": "Empty Table (dual row)",
                 "rowMode": "Dual",
               },
-              "Empty (single row)": Object {
+              "emptySingle": Object {
                 "colSet": Object {
                   "off_title": GenericTableColProps {
                     "className": "small",
@@ -1423,9 +1426,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "description": "An empty set of columns - pick whatever you want (mixing offense and defense)",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Empty Table (single row)",
                 "rowMode": "Mixed",
               },
-              "Extra Fields (off/def rows)": Object {
+              "extraDual": Object {
                 "colSet": Object {
                   "3p_ast": GenericTableColProps {
                     "className": "",
@@ -1469,6 +1473,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "missingData": undefined,
                     "rowSpan": [Function],
                     "toolTip": "% of 2PAs at the rim that are assisted",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -1515,13 +1541,36 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
                 },
                 "description": "Useful additional fields",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Extra Fields",
                 "rowMode": "Dual",
               },
-              "Offense Only": Object {
+              "offenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -1813,9 +1862,74 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "description": "A single row showing all offensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Offense Only",
                 "rowMode": "Off",
               },
-              "Simple (Desktop)": Object {
+              "simpleDual": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isLibrary": true,
+                "isPreset": true,
+                "name": "Simple (Mobile)",
+                "rowMode": "Dual",
+              },
+              "simpleMixed": Object {
                 "colSet": Object {
                   "def_3p": GenericTableColProps {
                     "className": "",
@@ -1909,70 +2023,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "description": "A simple single line view of the most important few stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Simple (Desktop)",
                 "rowMode": "Mixed",
-              },
-              "Simple (Mobile)": Object {
-                "colSet": Object {
-                  "3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "3 point field goal percentage",
-                    "widthUnits": 2,
-                  },
-                  "net": GenericTableColProps {
-                    "className": "",
-                    "colName": "Net Rtg",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-                    "widthUnits": 2,
-                  },
-                  "poss": GenericTableColProps {
-                    "className": "",
-                    "colName": "Poss",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Total number of possessions for selected lineups",
-                    "widthUnits": 2,
-                  },
-                  "ppp": GenericTableColProps {
-                    "className": "",
-                    "colName": "P/100",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Points per 100 possessions",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "small",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 20,
-                  },
-                },
-                "description": "Mobile friendly view of basic off/def view",
-                "isLibrary": true,
-                "isPreset": true,
-                "rowMode": "Dual",
               },
             }
           }
@@ -2043,6 +2095,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -2138,6 +2194,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -2152,6 +2216,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -2192,6 +2260,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -2275,6 +2347,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -2581,7 +2661,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -2640,6 +2724,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -2735,6 +2823,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -2749,6 +2845,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -2789,6 +2889,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -2872,6 +2976,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -3178,7 +3290,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -3239,6 +3355,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -3336,6 +3456,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -3350,6 +3478,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -3390,6 +3522,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -3473,6 +3609,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -3779,7 +3923,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -3836,6 +3984,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -3933,6 +4085,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -3947,6 +4107,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -3987,6 +4151,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -4070,6 +4238,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -4376,7 +4552,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -4439,6 +4619,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -4534,6 +4718,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -4548,6 +4740,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -4588,6 +4784,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -4671,6 +4871,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -4977,7 +5185,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -5036,6 +5248,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -5131,6 +5347,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -5145,6 +5369,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -5185,6 +5413,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -5268,6 +5500,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5574,7 +5814,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -6962,9 +7206,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "description": "Fields from the default Lineup table layout",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Default",
                 "rowMode": "Dual",
               },
-              "Defense Only": Object {
+              "defenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -7256,9 +7501,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "description": "A single row showing all defensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Defense Only",
                 "rowMode": "Def",
               },
-              "Empty (dual row)": Object {
+              "emptyDual": Object {
                 "colSet": Object {
                   "title": GenericTableColProps {
                     "className": "small",
@@ -7275,9 +7521,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "description": "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
                 "isLibrary": true,
                 "isPreset": true,
+                "name": "Empty Table (dual row)",
                 "rowMode": "Dual",
               },
-              "Empty (single row)": Object {
+              "emptySingle": Object {
                 "colSet": Object {
                   "off_title": GenericTableColProps {
                     "className": "small",
@@ -7294,9 +7541,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "description": "An empty set of columns - pick whatever you want (mixing offense and defense)",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Empty Table (single row)",
                 "rowMode": "Mixed",
               },
-              "Extra Fields (off/def rows)": Object {
+              "extraDual": Object {
                 "colSet": Object {
                   "3p_ast": GenericTableColProps {
                     "className": "",
@@ -7340,6 +7588,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                     "missingData": undefined,
                     "rowSpan": [Function],
                     "toolTip": "% of 2PAs at the rim that are assisted",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -7386,13 +7656,36 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
                 },
                 "description": "Useful additional fields",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Extra Fields",
                 "rowMode": "Dual",
               },
-              "Offense Only": Object {
+              "offenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -7684,9 +7977,74 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "description": "A single row showing all offensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Offense Only",
                 "rowMode": "Off",
               },
-              "Simple (Desktop)": Object {
+              "simpleDual": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isLibrary": true,
+                "isPreset": true,
+                "name": "Simple (Mobile)",
+                "rowMode": "Dual",
+              },
+              "simpleMixed": Object {
                 "colSet": Object {
                   "def_3p": GenericTableColProps {
                     "className": "",
@@ -7780,70 +8138,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "description": "A simple single line view of the most important few stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Simple (Desktop)",
                 "rowMode": "Mixed",
-              },
-              "Simple (Mobile)": Object {
-                "colSet": Object {
-                  "3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "3 point field goal percentage",
-                    "widthUnits": 2,
-                  },
-                  "net": GenericTableColProps {
-                    "className": "",
-                    "colName": "Net Rtg",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-                    "widthUnits": 2,
-                  },
-                  "poss": GenericTableColProps {
-                    "className": "",
-                    "colName": "Poss",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Total number of possessions for selected lineups",
-                    "widthUnits": 2,
-                  },
-                  "ppp": GenericTableColProps {
-                    "className": "",
-                    "colName": "P/100",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Points per 100 possessions",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "small",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 20,
-                  },
-                },
-                "description": "Mobile friendly view of basic off/def view",
-                "isLibrary": true,
-                "isPreset": true,
-                "rowMode": "Dual",
               },
             }
           }
@@ -7869,6 +8165,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                       "value": 0,
                                                     }
                   
+                                    def_blk: Object {
+                                                      "value": 0.11438097396954928,
+                                                    }
+                  
                                     def_luck_diags: Object {
                                                       "value": 0,
                                                     }
@@ -7885,6 +8185,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                       "value": 0,
                                                     }
                   
+                                    def_stk: Object {
+                                                      "value": 0.09794726870163362,
+                                                    }
+                  
+                                    def_stl: Object {
+                                                      "value": 0.08151356343371793,
+                                                    }
+                  
+                                    def_to_nonstl: Object {
+                                                      "value": 0.09460294865485679,
+                                                    }
+                  
+                                    off_blk: Object {
+                                                      "value": 0.07598330625464014,
+                                                    }
+                  
                                     off_luck_diags: Object {
                                                       "value": 0,
                                                     }
@@ -7899,6 +8215,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   
                                     off_raw_pts: Object {
                                                       "value": 0,
+                                                    }
+                  
+                                    off_stk: Object {
+                                                      "value": 0.07235394130961734,
+                                                    }
+                  
+                                    off_stl: Object {
+                                                      "value": 0.06872457636459454,
+                                                    }
+                  
+                                    off_to_nonstl: Object {
+                                                      "value": 0.06544463504859392,
                                                     }}
 
                   def_2pmidr: Object {
@@ -7949,6 +8277,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5178948007221641,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.11419753086419752,
                                   }
 
                   def_ftr: Object {
@@ -8048,6 +8380,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.0978641564470738,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08153078202995008,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -8062,6 +8402,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       %
                                     </span>,
                                     "value": 0.17637271214642264,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.09484193011647254,
                                   }
 
                   off_2pmidr: Object {
@@ -8102,6 +8446,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5309887493977952,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.07553956834532374,
                                   }
 
                   off_ftr: Object {
@@ -8189,7 +8537,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
-                  off_title: "Weighted Total"},
+                  off_stk: Object {
+                                    "value": 0.07208350966285795,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06862745098039216,
+                                  }
+
+                  off_title: "Weighted Total"
+
+                  off_to_nonstl: Object {
+                                    "value": 0.06535947712418301,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -8203,6 +8563,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                       "value": 0,
                                                     }
                   
+                                    def_blk: Object {
+                                                      "value": 0.11438097396954928,
+                                                    }
+                  
                                     def_luck_diags: Object {
                                                       "value": 0,
                                                     }
@@ -8219,6 +8583,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                       "value": 0,
                                                     }
                   
+                                    def_stk: Object {
+                                                      "value": 0.09794726870163362,
+                                                    }
+                  
+                                    def_stl: Object {
+                                                      "value": 0.08151356343371793,
+                                                    }
+                  
+                                    def_to_nonstl: Object {
+                                                      "value": 0.09460294865485679,
+                                                    }
+                  
+                                    off_blk: Object {
+                                                      "value": 0.07598330625464014,
+                                                    }
+                  
                                     off_luck_diags: Object {
                                                       "value": 0,
                                                     }
@@ -8233,6 +8613,18 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   
                                     off_raw_pts: Object {
                                                       "value": 0,
+                                                    }
+                  
+                                    off_stk: Object {
+                                                      "value": 0.07235394130961734,
+                                                    }
+                  
+                                    off_stl: Object {
+                                                      "value": 0.06872457636459454,
+                                                    }
+                  
+                                    off_to_nonstl: Object {
+                                                      "value": 0.06544463504859392,
                                                     }}
 
                   def_2pmidr: Object {
@@ -8283,6 +8675,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5178948007221641,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.11419753086419752,
                                   }
 
                   def_ftr: Object {
@@ -8382,6 +8778,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.0978641564470738,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08153078202995008,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -8396,6 +8800,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       %
                                     </span>,
                                     "value": 0.17637271214642264,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.09484193011647254,
                                   }
 
                   off_2pmidr: Object {
@@ -8436,6 +8844,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5309887493977952,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.07553956834532374,
                                   }
 
                   off_ftr: Object {
@@ -8523,7 +8935,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
-                  off_title: "Weighted Total"},
+                  off_stk: Object {
+                                    "value": 0.07208350966285795,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06862745098039216,
+                                  }
+
+                  off_title: "Weighted Total"
+
+                  off_to_nonstl: Object {
+                                    "value": 0.06535947712418301,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -8584,6 +9008,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
                                   }
 
                   def_ftr: Object {
@@ -8681,6 +9109,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -8695,6 +9131,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -8735,6 +9175,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -8818,6 +9262,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -9124,7 +9576,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -9181,6 +9637,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
                                   }
 
                   def_ftr: Object {
@@ -9278,6 +9738,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -9292,6 +9760,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -9332,6 +9804,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -9415,6 +9891,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -9721,7 +10205,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -9784,6 +10272,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.5,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -9879,6 +10371,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -9893,6 +10393,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -9933,6 +10437,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -10016,6 +10524,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -10322,7 +10838,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -10381,6 +10901,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     "value": 0.5,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -10476,6 +11000,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -10490,6 +11022,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -10530,6 +11066,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -10613,6 +11153,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -10919,7 +11467,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -12307,9 +12859,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "Fields from the default Lineup table layout",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Default",
                 "rowMode": "Dual",
               },
-              "Defense Only": Object {
+              "defenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -12601,9 +13154,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all defensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Defense Only",
                 "rowMode": "Def",
               },
-              "Empty (dual row)": Object {
+              "emptyDual": Object {
                 "colSet": Object {
                   "title": GenericTableColProps {
                     "className": "small",
@@ -12620,9 +13174,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
                 "isLibrary": true,
                 "isPreset": true,
+                "name": "Empty Table (dual row)",
                 "rowMode": "Dual",
               },
-              "Empty (single row)": Object {
+              "emptySingle": Object {
                 "colSet": Object {
                   "off_title": GenericTableColProps {
                     "className": "small",
@@ -12639,9 +13194,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (mixing offense and defense)",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Empty Table (single row)",
                 "rowMode": "Mixed",
               },
-              "Extra Fields (off/def rows)": Object {
+              "extraDual": Object {
                 "colSet": Object {
                   "3p_ast": GenericTableColProps {
                     "className": "",
@@ -12685,6 +13241,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "missingData": undefined,
                     "rowSpan": [Function],
                     "toolTip": "% of 2PAs at the rim that are assisted",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -12731,13 +13309,36 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
                 },
                 "description": "Useful additional fields",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Extra Fields",
                 "rowMode": "Dual",
               },
-              "Offense Only": Object {
+              "offenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -13029,9 +13630,74 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all offensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Offense Only",
                 "rowMode": "Off",
               },
-              "Simple (Desktop)": Object {
+              "simpleDual": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "raw_pts": GenericTableColProps {
+                    "className": "",
+                    "colName": "Pts",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points scored/conceded by this lineup",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isLibrary": true,
+                "isPreset": true,
+                "name": "Simple (Mobile)",
+                "rowMode": "Dual",
+              },
+              "simpleMixed": Object {
                 "colSet": Object {
                   "def_3p": GenericTableColProps {
                     "className": "",
@@ -13125,70 +13791,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A simple single line view of the most important few stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Simple (Desktop)",
                 "rowMode": "Mixed",
-              },
-              "Simple (Mobile)": Object {
-                "colSet": Object {
-                  "3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "3 point field goal percentage",
-                    "widthUnits": 2,
-                  },
-                  "net": GenericTableColProps {
-                    "className": "",
-                    "colName": "Net Rtg",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-                    "widthUnits": 2,
-                  },
-                  "poss": GenericTableColProps {
-                    "className": "",
-                    "colName": "Poss",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Total number of possessions for selected lineups",
-                    "widthUnits": 2,
-                  },
-                  "raw_pts": GenericTableColProps {
-                    "className": "",
-                    "colName": "Pts",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Points scored/conceded by this lineup",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "small",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 20,
-                  },
-                },
-                "description": "Mobile friendly view of basic off/def view",
-                "isLibrary": true,
-                "isPreset": true,
-                "rowMode": "Dual",
               },
             }
           }
@@ -13259,6 +13863,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -13354,6 +13962,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -13368,6 +13984,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -13408,6 +14028,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -13491,6 +14115,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -13579,7 +14211,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -13638,6 +14274,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -13733,6 +14373,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -13747,6 +14395,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -13787,6 +14439,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -13870,6 +14526,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -13958,7 +14622,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -14019,6 +14687,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -14116,6 +14788,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -14130,6 +14810,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -14170,6 +14854,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -14253,6 +14941,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -14341,7 +15037,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -14398,6 +15098,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -14495,6 +15199,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -14509,6 +15221,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -14549,6 +15265,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -14632,6 +15352,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -14720,7 +15448,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -14783,6 +15515,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -14878,6 +15614,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -14892,6 +15636,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -14932,6 +15680,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -15015,6 +15767,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -15103,7 +15863,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -15162,6 +15926,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -15257,6 +16025,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -15271,6 +16047,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -15311,6 +16091,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -15394,6 +16178,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -15482,7 +16274,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -16870,9 +17666,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "Fields from the default Lineup table layout",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Default",
                 "rowMode": "Dual",
               },
-              "Defense Only": Object {
+              "defenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -17164,9 +17961,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all defensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Defense Only",
                 "rowMode": "Def",
               },
-              "Empty (dual row)": Object {
+              "emptyDual": Object {
                 "colSet": Object {
                   "title": GenericTableColProps {
                     "className": "small",
@@ -17183,9 +17981,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
                 "isLibrary": true,
                 "isPreset": true,
+                "name": "Empty Table (dual row)",
                 "rowMode": "Dual",
               },
-              "Empty (single row)": Object {
+              "emptySingle": Object {
                 "colSet": Object {
                   "off_title": GenericTableColProps {
                     "className": "small",
@@ -17202,9 +18001,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (mixing offense and defense)",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Empty Table (single row)",
                 "rowMode": "Mixed",
               },
-              "Extra Fields (off/def rows)": Object {
+              "extraDual": Object {
                 "colSet": Object {
                   "3p_ast": GenericTableColProps {
                     "className": "",
@@ -17248,6 +18048,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "missingData": undefined,
                     "rowSpan": [Function],
                     "toolTip": "% of 2PAs at the rim that are assisted",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -17294,13 +18116,36 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
                 },
                 "description": "Useful additional fields",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Extra Fields",
                 "rowMode": "Dual",
               },
-              "Offense Only": Object {
+              "offenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -17592,9 +18437,74 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all offensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Offense Only",
                 "rowMode": "Off",
               },
-              "Simple (Desktop)": Object {
+              "simpleDual": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isLibrary": true,
+                "isPreset": true,
+                "name": "Simple (Mobile)",
+                "rowMode": "Dual",
+              },
+              "simpleMixed": Object {
                 "colSet": Object {
                   "def_3p": GenericTableColProps {
                     "className": "",
@@ -17688,70 +18598,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A simple single line view of the most important few stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Simple (Desktop)",
                 "rowMode": "Mixed",
-              },
-              "Simple (Mobile)": Object {
-                "colSet": Object {
-                  "3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "3 point field goal percentage",
-                    "widthUnits": 2,
-                  },
-                  "net": GenericTableColProps {
-                    "className": "",
-                    "colName": "Net Rtg",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-                    "widthUnits": 2,
-                  },
-                  "poss": GenericTableColProps {
-                    "className": "",
-                    "colName": "Poss",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Total number of possessions for selected lineups",
-                    "widthUnits": 2,
-                  },
-                  "ppp": GenericTableColProps {
-                    "className": "",
-                    "colName": "P/100",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Points per 100 possessions",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "small",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 20,
-                  },
-                },
-                "description": "Mobile friendly view of basic off/def view",
-                "isLibrary": true,
-                "isPreset": true,
-                "rowMode": "Dual",
               },
             }
           }
@@ -17834,6 +18682,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_efg: Object {
                                     "old_value": 0.4362017804154303,
                                     "override": "Adjusted from Def 3P%",
@@ -17947,6 +18799,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -17961,6 +18821,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -18013,6 +18877,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_efg: Object {
@@ -18116,6 +18984,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
+                                  }
+
                   off_title: <OverlayTrigger
                                     overlay={
                                       <Tooltip
@@ -18202,7 +19078,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -18273,6 +19153,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_efg: Object {
                                     "old_value": 0.4362017804154303,
                                     "override": "Adjusted from Def 3P%",
@@ -18386,6 +19270,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -18400,6 +19292,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -18452,6 +19348,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_efg: Object {
@@ -18555,6 +19455,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
+                                  }
+
                   off_title: <OverlayTrigger
                                     overlay={
                                       <Tooltip
@@ -18641,7 +19549,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -18751,6 +19663,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
+                                  }
+
                   def_efg: Object {
                                     "old_value": 0.42032967032967034,
                                     "override": "Adjusted from Def 3P%",
@@ -18864,6 +19780,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -18878,6 +19802,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -18930,6 +19858,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_efg: Object {
@@ -19033,6 +19965,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
+                                  }
+
                   off_title: <OverlayTrigger
                                     overlay={
                                       <Tooltip
@@ -19119,7 +20059,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -19190,6 +20134,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
+                                  }
+
                   def_efg: Object {
                                     "old_value": 0.42032967032967034,
                                     "override": "Adjusted from Def 3P%",
@@ -19303,6 +20251,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -19317,6 +20273,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -19369,6 +20329,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_efg: Object {
@@ -19472,6 +20436,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
+                                  }
+
                   off_title: <OverlayTrigger
                                     overlay={
                                       <Tooltip
@@ -19558,7 +20530,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -19668,6 +20644,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_efg: Object {
                                     "old_value": 0.38202247191011235,
                                     "override": "Adjusted from Def 3P%",
@@ -19781,6 +20761,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -19795,6 +20783,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -19847,6 +20839,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_efg: Object {
@@ -19950,6 +20946,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
+                                  }
+
                   off_title: <OverlayTrigger
                                     overlay={
                                       <Tooltip
@@ -20036,7 +21040,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -20107,6 +21115,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_efg: Object {
                                     "old_value": 0.38202247191011235,
                                     "override": "Adjusted from Def 3P%",
@@ -20220,6 +21232,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -20234,6 +21254,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -20286,6 +21310,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_efg: Object {
@@ -20389,6 +21417,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
+                                  }
+
                   off_title: <OverlayTrigger
                                     overlay={
                                       <Tooltip
@@ -20475,7 +21511,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </b>
                                       </a>
                                     </span>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -21886,9 +22926,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "Fields from the default Lineup table layout",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Default",
                 "rowMode": "Dual",
               },
-              "Defense Only": Object {
+              "defenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -22180,9 +23221,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all defensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Defense Only",
                 "rowMode": "Def",
               },
-              "Empty (dual row)": Object {
+              "emptyDual": Object {
                 "colSet": Object {
                   "title": GenericTableColProps {
                     "className": "small",
@@ -22199,9 +23241,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
                 "isLibrary": true,
                 "isPreset": true,
+                "name": "Empty Table (dual row)",
                 "rowMode": "Dual",
               },
-              "Empty (single row)": Object {
+              "emptySingle": Object {
                 "colSet": Object {
                   "off_title": GenericTableColProps {
                     "className": "small",
@@ -22218,9 +23261,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (mixing offense and defense)",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Empty Table (single row)",
                 "rowMode": "Mixed",
               },
-              "Extra Fields (off/def rows)": Object {
+              "extraDual": Object {
                 "colSet": Object {
                   "3p_ast": GenericTableColProps {
                     "className": "",
@@ -22264,6 +23308,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "missingData": undefined,
                     "rowSpan": [Function],
                     "toolTip": "% of 2PAs at the rim that are assisted",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -22310,13 +23376,36 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
                 },
                 "description": "Useful additional fields",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Extra Fields",
                 "rowMode": "Dual",
               },
-              "Offense Only": Object {
+              "offenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -22608,9 +23697,74 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all offensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Offense Only",
                 "rowMode": "Off",
               },
-              "Simple (Desktop)": Object {
+              "simpleDual": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isLibrary": true,
+                "isPreset": true,
+                "name": "Simple (Mobile)",
+                "rowMode": "Dual",
+              },
+              "simpleMixed": Object {
                 "colSet": Object {
                   "def_3p": GenericTableColProps {
                     "className": "",
@@ -22704,70 +23858,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A simple single line view of the most important few stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Simple (Desktop)",
                 "rowMode": "Mixed",
-              },
-              "Simple (Mobile)": Object {
-                "colSet": Object {
-                  "3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "3 point field goal percentage",
-                    "widthUnits": 2,
-                  },
-                  "net": GenericTableColProps {
-                    "className": "",
-                    "colName": "Net Rtg",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-                    "widthUnits": 2,
-                  },
-                  "poss": GenericTableColProps {
-                    "className": "",
-                    "colName": "Poss",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Total number of possessions for selected lineups",
-                    "widthUnits": 2,
-                  },
-                  "ppp": GenericTableColProps {
-                    "className": "",
-                    "colName": "P/100",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Points per 100 possessions",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "small",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 20,
-                  },
-                },
-                "description": "Mobile friendly view of basic off/def view",
-                "isLibrary": true,
-                "isPreset": true,
-                "rowMode": "Dual",
               },
             }
           }
@@ -22838,6 +23930,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -22933,6 +24029,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -22947,6 +24051,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -22987,6 +24095,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -23070,6 +24182,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -23390,7 +24510,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -23449,6 +24573,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -23544,6 +24672,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -23558,6 +24694,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -23598,6 +24738,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -23681,6 +24825,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -24001,7 +25153,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -24062,6 +25218,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -24159,6 +25319,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -24173,6 +25341,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -24213,6 +25385,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -24296,6 +25472,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -24616,7 +25800,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -24673,6 +25861,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -24770,6 +25962,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -24784,6 +25984,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -24824,6 +26028,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -24907,6 +26115,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -25227,7 +26443,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -25290,6 +26510,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -25385,6 +26609,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -25399,6 +26631,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -25439,6 +26675,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -25522,6 +26762,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -25842,7 +27090,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -25901,6 +27153,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -25996,6 +27252,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -26010,6 +27274,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -26050,6 +27318,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -26133,6 +27405,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -26453,7 +27733,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -27841,9 +29125,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "Fields from the default Lineup table layout",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Default",
                 "rowMode": "Dual",
               },
-              "Defense Only": Object {
+              "defenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -28135,9 +29420,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all defensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Defense Only",
                 "rowMode": "Def",
               },
-              "Empty (dual row)": Object {
+              "emptyDual": Object {
                 "colSet": Object {
                   "title": GenericTableColProps {
                     "className": "small",
@@ -28154,9 +29440,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
                 "isLibrary": true,
                 "isPreset": true,
+                "name": "Empty Table (dual row)",
                 "rowMode": "Dual",
               },
-              "Empty (single row)": Object {
+              "emptySingle": Object {
                 "colSet": Object {
                   "off_title": GenericTableColProps {
                     "className": "small",
@@ -28173,9 +29460,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "An empty set of columns - pick whatever you want (mixing offense and defense)",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Empty Table (single row)",
                 "rowMode": "Mixed",
               },
-              "Extra Fields (off/def rows)": Object {
+              "extraDual": Object {
                 "colSet": Object {
                   "3p_ast": GenericTableColProps {
                     "className": "",
@@ -28219,6 +29507,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "missingData": undefined,
                     "rowSpan": [Function],
                     "toolTip": "% of 2PAs at the rim that are assisted",
+                    "widthUnits": 2,
+                  },
+                  "blk": GenericTableColProps {
+                    "className": "",
+                    "colName": "Blk%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Block %",
+                    "widthUnits": 2,
+                  },
+                  "ft": GenericTableColProps {
+                    "className": "",
+                    "colName": "FT%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Free throw %",
                     "widthUnits": 2,
                   },
                   "mid_ast": GenericTableColProps {
@@ -28265,13 +29575,36 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
+                  "stl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Steal %",
+                    "widthUnits": 2,
+                  },
+                  "to_nonstl": GenericTableColProps {
+                    "className": "",
+                    "colName": "Non-Stl%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Non-Steal TO%",
+                    "widthUnits": 2,
+                  },
                 },
                 "description": "Useful additional fields",
                 "isLibrary": true,
                 "isPreset": false,
+                "name": "Extra Fields",
                 "rowMode": "Dual",
               },
-              "Offense Only": Object {
+              "offenseSingleRow": Object {
                 "colSet": Object {
                   "2p": GenericTableColProps {
                     "className": "",
@@ -28563,9 +29896,74 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A single row showing all offensive stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Offense Only",
                 "rowMode": "Off",
               },
-              "Simple (Desktop)": Object {
+              "simpleDual": Object {
+                "colSet": Object {
+                  "3p": GenericTableColProps {
+                    "className": "",
+                    "colName": "3P%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "3 point field goal percentage",
+                    "widthUnits": 2,
+                  },
+                  "net": GenericTableColProps {
+                    "className": "",
+                    "colName": "Net Rtg",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "widthUnits": 2,
+                  },
+                  "poss": GenericTableColProps {
+                    "className": "",
+                    "colName": "Poss",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Total number of possessions for selected lineups",
+                    "widthUnits": 2,
+                  },
+                  "ppp": GenericTableColProps {
+                    "className": "",
+                    "colName": "P/100",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Points per 100 possessions",
+                    "widthUnits": 2,
+                  },
+                  "title": GenericTableColProps {
+                    "className": "small",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": true,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 20,
+                  },
+                },
+                "description": "Mobile friendly view of basic off/def view",
+                "isLibrary": true,
+                "isPreset": true,
+                "name": "Simple (Mobile)",
+                "rowMode": "Dual",
+              },
+              "simpleMixed": Object {
                 "colSet": Object {
                   "def_3p": GenericTableColProps {
                     "className": "",
@@ -28659,70 +30057,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "description": "A simple single line view of the most important few stats",
                 "isLibrary": false,
                 "isPreset": true,
+                "name": "Simple (Desktop)",
                 "rowMode": "Mixed",
-              },
-              "Simple (Mobile)": Object {
-                "colSet": Object {
-                  "3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "3 point field goal percentage",
-                    "widthUnits": 2,
-                  },
-                  "net": GenericTableColProps {
-                    "className": "",
-                    "colName": "Net Rtg",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-                    "widthUnits": 2,
-                  },
-                  "poss": GenericTableColProps {
-                    "className": "",
-                    "colName": "Poss",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Total number of possessions for selected lineups",
-                    "widthUnits": 2,
-                  },
-                  "ppp": GenericTableColProps {
-                    "className": "",
-                    "colName": "P/100",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Points per 100 possessions",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "small",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 20,
-                  },
-                },
-                "description": "Mobile friendly view of basic off/def view",
-                "isLibrary": true,
-                "isPreset": true,
-                "rowMode": "Dual",
               },
             }
           }
@@ -28793,6 +30129,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -28888,6 +30228,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -28902,6 +30250,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -28942,6 +30294,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -29025,6 +30381,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -29345,7 +30709,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -29404,6 +30772,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.11764705882352941,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -29499,6 +30871,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09877198302001212,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.07989690721649484,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -29513,6 +30893,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.15206185567010308,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.07216494845360824,
                                   }
 
                   off_2pmidr: Object {
@@ -29553,6 +30937,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.08522727272727272,
                                   }
 
                   off_ftr: Object {
@@ -29636,6 +31024,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         470
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.07378570618907276,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.06234413965087282,
                                   }
 
                   off_title: <OverlayTrigger
@@ -29956,7 +31352,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.059850374064837904,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -30017,6 +31417,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -30114,6 +31518,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -30128,6 +31540,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -30168,6 +31584,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -30251,6 +31671,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -30571,7 +31999,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -30628,6 +32060,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5,
+                                  }
+
+                  def_blk: Object {
+                                    "value": 0.10833333333333334,
                                   }
 
                   def_ftr: Object {
@@ -30725,6 +32161,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.09642018779342723,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.08450704225352113,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -30739,6 +32183,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.22065727699530516,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.13615023474178403,
                                   }
 
                   off_2pmidr: Object {
@@ -30779,6 +32227,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.058823529411764705,
                                   }
 
                   off_ftr: Object {
@@ -30862,6 +32314,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         226
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.06969612489545582,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08056872037914692,
                                   }
 
                   off_title: <OverlayTrigger
@@ -31182,7 +32642,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.07582938388625593,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -31245,6 +32709,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -31340,6 +32808,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -31354,6 +32830,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -31394,6 +32874,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -31477,6 +32961,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -31797,7 +33289,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
@@ -31856,6 +33352,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_blk: Object {
+                                    "value": 0.16037735849056603,
+                                  }
+
                   def_ftr: Object {
                                     "extraInfo": <span>
                                       FT: 
@@ -31951,6 +33451,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     </text>,
                                   }
 
+                  def_stk: Object {
+                                    "value": 0.10868608857170789,
+                                  }
+
+                  def_stl: Object {
+                                    "value": 0.05699481865284974,
+                                  }
+
                   def_title: ""
 
                   def_to: Object {
@@ -31965,6 +33473,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       %
                                     </span>,
                                     "value": 0.17098445595854922,
+                                  }
+
+                  def_to_nonstl: Object {
+                                    "value": 0.11398963730569948,
                                   }
 
                   off_2pmidr: Object {
@@ -32005,6 +33517,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_blk: Object {
+                                    "value": 0.1111111111111111,
                                   }
 
                   off_ftr: Object {
@@ -32088,6 +33604,14 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         221
                                       </i>
                                     </text>,
+                                  }
+
+                  off_stk: Object {
+                                    "value": 0.09870276367738295,
+                                  }
+
+                  off_stl: Object {
+                                    "value": 0.08629441624365482,
                                   }
 
                   off_title: <OverlayTrigger
@@ -32408,7 +33932,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         </span>
                                       </span>
                                     </a>
-                                  </OverlayTrigger>},
+                                  </OverlayTrigger>
+
+                  off_to_nonstl: Object {
+                                    "value": 0.08629441624365482,
+                                  }},
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
