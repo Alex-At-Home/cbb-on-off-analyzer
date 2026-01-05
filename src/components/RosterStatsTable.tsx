@@ -1225,69 +1225,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             }
           }
         }
-        const maybeRapm = _.thru(
-          factorMins ? stat.off_adj_rapm_prod_margin : stat.off_adj_rapm_margin,
-          (rapmMargin) => {
-            if (rapmMargin && calcRapm && expandedView) {
-              const rapmMarginVal = rapmMargin.value ?? 0;
-              const adjMarginShadow = CommonTableDefs.getTextShadow(
-                rapmMargin,
-                CbbColors.diff10_p100_redGreen[0],
-                "20px",
-                4
-              );
-
-              const netGradeEl = _.thru(
-                showGrades && !showStandaloneGrades,
-                (showInlineRapmNetGrade) => {
-                  if (showInlineRapmNetGrade) {
-                    const netRapmField = factorMins
-                      ? "off_adj_rapm_prod_margin"
-                      : "off_adj_rapm_margin";
-                    return GradeTableUtils.buildPlayerNetGrade(
-                      (stat?.grades as Record<string, Statistic>)?.[
-                        netRapmField
-                      ],
-                      GradeTableUtils.getGradeType(showGrades),
-                      true,
-                      true
-                    );
-                  } else {
-                    return undefined;
-                  }
-                }
-              );
-
-              const adjMarginEl = (
-                <OverlayTrigger
-                  placement="auto"
-                  overlay={
-                    <Tooltip
-                      id={`${stat.code}${queryKey}${otherQueryIndex}rapmMargin`}
-                    >
-                      Overall player RAPM impact, in pts/100 above average.
-                    </Tooltip>
-                  }
-                >
-                  <span>
-                    <b>net: </b>
-                    <b style={adjMarginShadow}>
-                      [
-                      {(rapmMarginVal > 0 ? "+" : "") +
-                        rapmMarginVal.toFixed(1)}
-                      ]
-                    </b>
-                    {netGradeEl && <span> {netGradeEl}</span>}
-                  </span>
-                </OverlayTrigger>
-              );
-              return adjMarginEl;
-            } else {
-              return undefined;
-            }
-          }
-        );
-
         const playElToUse = stat.roster?.player_code_id?.ncaa_id ? (
           <OverlayTrigger
             placement="auto"
@@ -1351,6 +1288,70 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           );
           stat.grades = predictedGrades;
         }
+
+        // (need to do this after grade calculation and after RAPM calcs)
+        const maybeRapm = _.thru(
+          factorMins ? stat.off_adj_rapm_prod_margin : stat.off_adj_rapm_margin,
+          (rapmMargin) => {
+            if (rapmMargin && calcRapm && expandedView) {
+              const rapmMarginVal = rapmMargin.value ?? 0;
+              const adjMarginShadow = CommonTableDefs.getTextShadow(
+                rapmMargin,
+                CbbColors.diff10_p100_redGreen[0],
+                "20px",
+                4
+              );
+
+              const netGradeEl = _.thru(
+                showGrades && !showStandaloneGrades,
+                (showInlineRapmNetGrade) => {
+                  if (showInlineRapmNetGrade) {
+                    const netRapmField = factorMins
+                      ? "off_adj_rapm_prod_margin"
+                      : "off_adj_rapm_margin";
+                    return GradeTableUtils.buildPlayerNetGrade(
+                      (stat?.grades as Record<string, Statistic>)?.[
+                        netRapmField
+                      ],
+                      GradeTableUtils.getGradeType(showGrades),
+                      true,
+                      true
+                    );
+                  } else {
+                    return undefined;
+                  }
+                }
+              );
+
+              const adjMarginEl = (
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip
+                      id={`${stat.code}${queryKey}${otherQueryIndex}rapmMargin`}
+                    >
+                      Overall player RAPM impact, in pts/100 above average.
+                    </Tooltip>
+                  }
+                >
+                  <span>
+                    <b>net: </b>
+                    <b style={adjMarginShadow}>
+                      [
+                      {(rapmMarginVal > 0 ? "+" : "") +
+                        rapmMarginVal.toFixed(1)}
+                      ]
+                    </b>
+                    {netGradeEl && <span> {netGradeEl}</span>}
+                  </span>
+                </OverlayTrigger>
+              );
+              return adjMarginEl;
+            } else {
+              return undefined;
+            }
+          }
+        );
 
         // Now we have the position we can build the titles:
         stat.off_title = insertTitle(
