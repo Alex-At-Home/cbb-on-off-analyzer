@@ -642,7 +642,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       <Row>
         <HeaderBar common={gameFilterParams} thisPage={ParamPrefixes.game} />
       </Row>
-      <Row>
+      <Row className="html2pdf__page-break">
         <GenericCollapsibleCard
           minimizeMargin={false}
           screenSize={otherCardSize}
@@ -671,8 +671,15 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         refs={navigationRefs(gameFilterParamsRef.current)}
         showAnnotations={true}
       />
-      <Row ref={teamAnalysisRef}>{teamStatsTable}</Row>
-      <Row ref={indivAnalysisRef}>{rosterStatsTable}</Row>
+      <Row>{teamStatsTable}</Row>
+      <Row
+        style={{
+          breakBefore: "page",
+        }}
+        ref={indivAnalysisRef}
+      >
+        {rosterStatsTable}
+      </Row>
       <Row ref={lineupComparisonRef}>
         <GenericCollapsibleCard
           screenSize={otherCardSize}

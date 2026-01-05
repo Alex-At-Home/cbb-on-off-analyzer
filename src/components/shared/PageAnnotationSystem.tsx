@@ -21,11 +21,14 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
 
   useEffect(() => {
     setIsClient(true);
-    
+
     // Add CSS to ensure dropdown items have proper z-index
-    if (typeof document !== 'undefined' && !document.getElementById('annotation-dropdown-styles')) {
-      const style = document.createElement('style');
-      style.id = 'annotation-dropdown-styles';
+    if (
+      typeof document !== "undefined" &&
+      !document.getElementById("annotation-dropdown-styles")
+    ) {
+      const style = document.createElement("style");
+      style.id = "annotation-dropdown-styles";
       style.textContent = `
         .annotation-dropdown-menu .dropdown-item {
           z-index: 2001 !important;
@@ -40,6 +43,12 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
     if (isCapturing) return;
     setIsCapturing(true);
     await AnnotationUtils.handleAnnotation(captureType, setIsCapturing);
+  };
+
+  const handlePageToPdf = async () => {
+    if (isCapturing) return;
+    setIsCapturing(true);
+    await AnnotationUtils.generatePageToPdf(setIsCapturing);
   };
 
   if (!isClient) {
@@ -68,16 +77,16 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         <FontAwesomeIcon icon={faEdit} size="sm" />
       </Dropdown.Toggle>
 
-      <Dropdown.Menu 
-        style={{ 
+      <Dropdown.Menu
+        style={{
           zIndex: 2000,
-          position: 'fixed' // Break out of stacking context
-        }        }
+          position: "fixed", // Break out of stacking context
+        }}
         popperConfig={{
-          strategy: 'fixed',
+          strategy: "fixed",
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [0, 8],
               },
@@ -88,7 +97,7 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         <Dropdown.Item
           onClick={() => handleAnnotation("visible")}
           disabled={isCapturing}
-          style={{ zIndex: 2001, position: 'relative' }}
+          style={{ zIndex: 2001, position: "relative" }}
         >
           Annotate visible screen
         </Dropdown.Item>
@@ -96,10 +105,22 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
         <Dropdown.Item
           onClick={() => handleAnnotation("fullpage")}
           disabled={isCapturing}
-          style={{ zIndex: 2001, position: 'relative' }}
+          style={{ zIndex: 2001, position: "relative" }}
         >
           Annotate full page (can be slow)
         </Dropdown.Item>
+
+        <Dropdown.Divider />
+
+        <Dropdown.Item
+          onClick={handlePageToPdf}
+          disabled={isCapturing}
+          style={{ zIndex: 2001, position: "relative" }}
+        >
+          Export page as PDF
+        </Dropdown.Item>
+
+        <Dropdown.Divider />
 
         <Dropdown.Item disabled className="text-muted font-italic small">
           Note: doesn't work well in Safari or Mobile

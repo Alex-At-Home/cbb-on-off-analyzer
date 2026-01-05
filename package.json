@@ -64,6 +64,7 @@
     "get-input-selection": "^1.1.4",
     "hosted-git-info": "^2.8.9",
     "html2canvas-pro": "^1.5.13",
+    "html2pdf.js": "^0.12.1",
     "isomorphic-unfetch": "^3.0.0",
     "jquery": "^3.6.0",
     "js-base64": "^2.6.4",

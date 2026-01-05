@@ -576,9 +576,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
     const offNotDef = offDef == "off";
     return GenericTableOps.buildDataRow(
       {
-        [`${offDef}_title`]: `${
-          offNotDef ? "Offensive" : "Defensive"
-        } assist details`,
+        [`${offDef}_title`]: `${offNotDef ? "Offense" : "Defense"}`,
 
         ..._.chain(["3p", "mid", "rim"])
           .flatMap((field) => {
@@ -693,7 +691,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
       <br />
       <Container fluid className="float-left">
         <Row>
-          <Col xs={8} sm={12} lg={8} xl={6}>
+          <Col xs={8} sm={12} lg={8} xl={7}>
             <span>Play type stats:</span>
             <GenericTable
               tableCopyId={`playTypeStats_${nameAsId}`}
@@ -702,7 +700,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
               integratedGrades={integratedGrades}
             />
           </Col>
-          <Col xs={8} sm={12} lg={8} xl={6}>
+          <Col xs={8} sm={12} lg={8} xl={5}>
             <Container fluid>
               <Row>
                 <span>More assist stats:</span>

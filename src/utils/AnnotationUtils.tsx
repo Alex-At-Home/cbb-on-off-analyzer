@@ -1,6 +1,7 @@
 // React imports:
 import React from "react";
 import html2canvas from "html2canvas-pro";
+// Note: html2pdf is dynamically imported to avoid SSR issues
 
 export class AnnotationUtils {
   // Create fullscreen spinner overlay
@@ -93,7 +94,7 @@ export class AnnotationUtils {
         <p style="margin: 0 0 30px 0; color: #666; text-align: center;">
           How would you like to save your annotated image?
         </p>
-        <div style="display: flex; gap: 15px; justify-content: center;">
+        <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
           <button id="save-btn" style="
             padding: 12px 24px;
             background: #007bff;
@@ -103,7 +104,7 @@ export class AnnotationUtils {
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-          ">💾 Save to Downloads</button>
+          ">💾 Save PNG</button>
           <button id="copy-btn" style="
             padding: 12px 24px;
             background: #28a745;
@@ -114,6 +115,8 @@ export class AnnotationUtils {
             font-size: 14px;
             font-weight: 500;
           ">📋 Copy to Clipboard</button>
+        </div>
+        <div style="text-align: center;">
           <button id="cancel-btn" style="
             padding: 12px 24px;
             background: #6c757d;
@@ -179,6 +182,193 @@ export class AnnotationUtils {
       };
       document.addEventListener("keydown", handleEscape);
     });
+  };
+
+  // Generate PDF from image data URL
+  /** Unused and didn't work when tested - keeping for potential future use */
+  static generatePdfFromImage = async (dataUrl: string): Promise<void> => {
+    try {
+      // Dynamic import to avoid SSR issues
+      const html2pdf = await import("html2pdf.js").then(
+        (mod) => mod.default || mod
+      );
+
+      // Create a temporary image element to get dimensions
+      const img = new Image();
+
+      return new Promise((resolve, reject) => {
+        img.onload = async () => {
+          try {
+            // Create a temporary container with the image
+            const container = document.createElement("div");
+            container.style.cssText = `
+              position: absolute;
+              top: -9999px;
+              left: -9999px;
+              background: white;
+              padding: 20px;
+            `;
+
+            // Create image element for PDF
+            const pdfImg = document.createElement("img");
+            pdfImg.src = dataUrl;
+            pdfImg.style.cssText = `
+              max-width: 100%;
+              height: auto;
+              display: block;
+            `;
+
+            container.appendChild(pdfImg);
+            document.body.appendChild(container);
+
+            // Determine page orientation based on image aspect ratio
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            const orientation: "landscape" | "portrait" =
+              aspectRatio > 1 ? "landscape" : "portrait";
+
+            // Configure PDF options with default settings
+            const options = {
+              margin: 0.5,
+              filename: "annotation.pdf",
+              image: { type: "png" as const, quality: 0.95 },
+              html2canvas: {
+                scale: 1,
+                useCORS: true,
+                allowTaint: true,
+              },
+              jsPDF: {
+                unit: "in" as const,
+                format: "letter" as const,
+                orientation: orientation as "portrait" | "landscape",
+              },
+            };
+
+            // Generate PDF
+            html2pdf()
+              .set(options)
+              .from(container)
+              .save()
+              .then(() => {
+                // Cleanup
+                document.body.removeChild(container);
+
+                // Show success feedback
+                const feedback = document.createElement("div");
+                feedback.style.cssText = `
+                  position: fixed;
+                  top: 20px;
+                  right: 20px;
+                  background: #dc3545;
+                  color: white;
+                  padding: 12px 20px;
+                  border-radius: 4px;
+                  z-index: 10001;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
+                feedback.textContent = "📄 PDF saved to downloads!";
+                document.body.appendChild(feedback);
+
+                setTimeout(() => {
+                  if (document.body.contains(feedback)) {
+                    document.body.removeChild(feedback);
+                  }
+                }, 3000);
+
+                resolve();
+              })
+              .catch((error) => {
+                document.body.removeChild(container);
+                reject(error);
+              });
+          } catch (error) {
+            reject(error);
+          }
+        };
+
+        img.onerror = () => {
+          reject(new Error("Failed to load image for PDF generation"));
+        };
+
+        img.src = dataUrl;
+      });
+    } catch (error) {
+      console.error("PDF generation failed:", error);
+      throw error;
+    }
+  };
+
+  // Generate PDF from entire page HTML
+  static generatePageToPdf = async (
+    setIsCapturing?: (capturing: boolean) => void
+  ): Promise<void> => {
+    try {
+      // Show spinner
+      const spinner = AnnotationUtils.showSpinner();
+
+      // Dynamic import to avoid SSR issues
+      const html2pdf = await import("html2pdf.js").then(
+        (mod) => mod.default || mod
+      );
+
+      // Configure PDF options with default settings for HTML page
+      const options = {
+        margin: 0.5,
+        filename: "page.pdf",
+        image: { type: "png" as const, quality: 0.95 },
+        pagebreak: {
+          mode: ["css", "legacy"],
+          avoid: ["tr"],
+        },
+        html2canvas: {
+          scale: 1.0,
+          useCORS: true,
+          allowTaint: true,
+          ignoreElements: (element: Element) => {
+            // Ignore spinner and other overlays
+            return element.id === "annotation-spinner-overlay";
+          },
+        },
+        jsPDF: {
+          unit: "in" as const,
+          format: "letter" as const,
+          orientation: "landscape" as const, // Default to landscape for page content
+        },
+      };
+
+      // Generate PDF from document body
+      await html2pdf().set(options).from(document.body).save();
+
+      // Show success feedback
+      const feedback = document.createElement("div");
+      feedback.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #dc3545;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 4px;
+        z-index: 10001;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      `;
+      feedback.textContent = "📄 Page saved as PDF!";
+      document.body.appendChild(feedback);
+
+      setTimeout(() => {
+        if (document.body.contains(feedback)) {
+          document.body.removeChild(feedback);
+        }
+      }, 3000);
+    } catch (error) {
+      console.error("Page PDF generation failed:", error);
+      alert("Failed to generate PDF from page. Please try again.");
+    } finally {
+      // Hide spinner and reset state
+      AnnotationUtils.hideSpinner();
+      setIsCapturing?.(false);
+    }
   };
 
   // Customize editor buttons after it renders
