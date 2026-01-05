@@ -421,6 +421,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "possAsPct",
       "factorMins",
       "showPosDiag",
+      "rapmPriorMode",
+      "rapmRegressMode",
       "playerShotChartsShowZones",
       "playerShotChartsUseEfg",
     ];
