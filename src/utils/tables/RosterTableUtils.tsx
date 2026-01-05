@@ -90,7 +90,7 @@ export class RosterTableUtils {
     return [
       GenericTableOps.buildSubHeaderRow(
         [
-          ["", 2],
+          ["", 3],
           [
             braceText(
               "The higher 'Usg' (avg 20) the harder it is to keep ORtg high",
