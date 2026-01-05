@@ -239,7 +239,22 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     0 as number
   );
 
-  const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
+  const onGameFilterParamsChangeFromTeamStatsTable = (
+    rawParams: GameFilterParams
+  ) => {
+    onGameFilterParamsChange(rawParams, "TeamStatsTable");
+  };
+
+  const onGameFilterParamsChangeFromRosterStatsTable = (
+    rawParams: GameFilterParams
+  ) => {
+    onGameFilterParamsChange(rawParams, "RosterStatsTable");
+  };
+
+  const onGameFilterParamsChange = (
+    rawParams: GameFilterParams,
+    source?: "RosterStatsTable" | "TeamStatsTable"
+  ) => {
     /** We're going to want to remove the manual options if the year changes */
     const yearTeamGenderChange = (
       rawParams: GameFilterParams,
@@ -370,6 +385,47 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       ])
     );
 
+    // Because of the clunky way params are handled in the filters / tables, need some complex logic
+    // to decide what actually to update:
+
+    const urlUpdateOnlyFieldsFromTeamStats = [
+      // Team info:
+      "teamDiffs",
+      "showExtraInfo",
+      //(_not_ showTeamPlayTypes because it needs to trigger an update to the GameFilter dropdown)
+      "teamPlayTypeConfig",
+      //(not showRoster, updates the query)
+      //(not showGameInfo, updates the query)
+      "showGrades",
+      //(not teamShotCharts, updates the query)
+      "teamShotChartsShowZones",
+      "teamShotChartsUseEfg",
+      "showOnOffLuckDiags",
+    ];
+    const urlUpdateOnlyFieldsFromPlayerStats = [
+      // Player info:
+      "showPlayerGrades",
+      //(_not_ manual because it needs to update team stats table)
+      "showPlayerManual",
+      "showOnBallConfig",
+      "showPlayerOnOffLuckDiags",
+      //(not showPlayerPlayTypes, because it needs to trigger an update to the GameFilter dropdown)
+      "showPlayerPlayTypesPlayType",
+      "showPlayerPlayTypesAdjPpp",
+      "showInfoSubHeader",
+      "filter",
+      "sortBy",
+      "showBase",
+      "showExpanded",
+      "showDiags",
+      "possAsPct",
+      "factorMins",
+      "showPosDiag",
+      "playerShotChartsShowZones",
+      "playerShotChartsUseEfg",
+    ];
+    //(all other luck params are shared)
+
     // These fields don't trigger a data change or a common param change
     // between the various tables
     const urlUpdateOnlyFields = [
@@ -377,29 +433,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "presetMode",
       "presetSplit",
       //(note we need to treat changes to splitPhrases, basePhrase etc as triggers, or the rows don't get updated)
-      // Team info:
-      "showExtraInfo",
-      "teamPlayTypeConfig",
-      "teamShotChartsShowZones",
-      "teamShotChartsUseEfg",
-      "showOnOffLuckDiags",
-      "teamDiffs",
-      "showGrades",
-      // Player info:
-      "showPlayerGrades",
-      "filter",
-      "showDiags",
-      "showBase",
-      "showExpanded",
-      "possAsPct",
-      "factorMins",
-      "showPosDiag",
-      "playerShotChartsShowZones",
-      "playerShotChartsUseEfg",
-      "showInfoSubHeader",
-      "showPlayerPlayTypesPlayType",
-      "showPlayerPlayTypesAdjPpp",
-    ];
+    ]
+      .concat(urlUpdateOnlyFieldsFromTeamStats)
+      .concat(urlUpdateOnlyFieldsFromPlayerStats);
+
     const removeFieldsToIgnore = (obj: any) => {
       const updatedObj = _.omit(obj, urlUpdateOnlyFields);
       return JSON.parse(JSON.stringify(updatedObj));
@@ -408,6 +445,23 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       const updatedObj = _.pick(obj, urlUpdateOnlyFields);
       return JSON.parse(JSON.stringify(updatedObj));
     };
+
+    // Copy current "URL only" data from other table into new params
+    // (since the tables' params are not kept in sync unless a "triggering" change happens)
+    if (source == "TeamStatsTable") {
+      urlUpdateOnlyFieldsFromPlayerStats.forEach((playerParam) => {
+        (params as any)[playerParam] = (gameFilterParamsRef.current as any)?.[
+          playerParam
+        ];
+      });
+    }
+    if (source == "RosterStatsTable") {
+      urlUpdateOnlyFieldsFromTeamStats.forEach((teamParam) => {
+        (params as any)[teamParam] = (gameFilterParamsRef.current as any)?.[
+          teamParam
+        ];
+      });
+    }
 
     const cleanedNewParams = removeFieldsToIgnore(params);
     const cleanedCurrParams = removeFieldsToIgnore(gameFilterParamsRef.current);
@@ -474,7 +528,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       setGameFilterParams(params); //(to ensure the new params are included in links)
 
       // Because changing the params in one table merges that table's params with the last set
-      // when the other table's memo was refreshed, currently we to always refresh the memo on both
+      // when the other table's memo was refreshed, currently we always refresh the memo on both
       // tables whenever any memo changes
       // (note this has to happen _after_ setGameFilterParams to ensure the right properties get set)
       setShouldReloadTableParams((oneUp) => oneUp + 1);
@@ -542,7 +596,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           key={shouldReloadTableParams}
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
-          onChangeState={onGameFilterParamsChange}
+          onChangeState={onGameFilterParamsChangeFromTeamStatsTable}
           navigationRefs={{
             refA: teamAnalysisRefA,
             refB: teamAnalysisRefB,
@@ -568,7 +622,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           key={shouldReloadTableParams}
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
-          onChangeState={onGameFilterParamsChange}
+          onChangeState={onGameFilterParamsChangeFromRosterStatsTable}
         />
       </GenericCollapsibleCard>
     );

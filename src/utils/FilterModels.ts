@@ -126,7 +126,9 @@ export type MatchupFilterParams = {
   playStyleConfigStr?: string; //(chart configuration string)
 };
 
-/** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here */
+/** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here
+ * ALSO need to update OnOffAnalyzer.onGameFilterParamsChange to decide how to handle each param change
+ */
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
