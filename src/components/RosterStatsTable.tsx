@@ -2355,7 +2355,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         <StickyRow
           className="pt-1"
           stickyEnabled={stickyQuickToggle}
-          topOffset="1em"
+          topOffset="25px"
         >
           <Col sm="11">{quickToggleBar}</Col>
           <Form.Group as={Col} sm="1" className="mb-0">
