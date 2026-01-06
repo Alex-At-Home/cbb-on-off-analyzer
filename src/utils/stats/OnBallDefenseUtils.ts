@@ -143,6 +143,11 @@ export class OnBallDefenseUtils {
         // New format as of 23/24 (applies retro to previous years though, unless using already downloaded data)
         //TODO: need to actually pull headers and turn these into maps, this formatting is now too horrible
 
+        // Eg if header present, pick these:
+        //(team, has two fewer columns)
+        //"Rank","Team","GP","Poss","%Time","Pts","PPP","FG Att","FG Made","FG Miss","FG%","eFG%","TO%","%FT","FTA/FGA","%SF","Score%","2 FG Att","2 FG Made","2 FG Miss","2 FG%","3FG Att","3 FG Made","3 FG Miss","3 FG%","3PA/FGA"
+        //"Rank","Jersey #","Player","Team","GP","Poss","%Time","Pts","PPP","FG Att","FG Made","FG Miss","FG%","eFG%","TO%","%FT","FTA/FGA","%SF","Score%","2 FG Att","2 FG Made","2 FG Miss","2 FG%","3FG Att","3 FG Made","3 FG Miss","3 FG%","3PA/FGA","+1","+1%"
+
         const res: OnBallDefenseModel = {
           code: code,
           number: row[1],

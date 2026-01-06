@@ -427,8 +427,8 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
                             Leaderboards {">"} Player Leaderboards {">"} Player
                             Defensive
                           </i>
-                          ; Select Possessions 'Total'; Filter on 'Team'; Export
-                          to CSV
+                          ; <b>Select Possessions 'Total'</b>; Filter on 'Team';
+                          Export to CSV
                         </li>
                         <li>
                           Select{" "}
@@ -436,13 +436,16 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
                             Leaderboards {">"} Team Leaderboards {">"} Team
                             Defensive
                           </i>
-                          ; Select Possessions 'Total'; (Don't have to Filter);
-                          Export to CSV
+                          ; <b>Select Possessions 'Total'</b>; (Don't have to
+                          Filter); Export to CSV
                         </li>
                         <li>
                           <i>
-                            (If you have the Shot Quality package, you need to
-                            deselect those columns from 'Table View', gear icon)
+                            Create a new 'Table View' (far right, gear icon):
+                            start with "All Data" and de-select the "player
+                            metadata" (currently 2 fields; eligibilty/height),
+                            and if you have it, the 'Shot Quality' metrics
+                            (currently 3 fields, including "PPS")
                           </i>
                         </li>
                       </ul>
