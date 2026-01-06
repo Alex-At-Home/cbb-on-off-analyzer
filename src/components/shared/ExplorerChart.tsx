@@ -329,7 +329,7 @@ const ExplorerChart: React.FunctionComponent<ExplorerChartProps> = ({
   };
 
   return (
-    <div>
+    <div className="recharts-container">
       <ResponsiveContainer width={"100%"} height={0.75 * height}>
         <ScatterChart
           onMouseLeave={() =>

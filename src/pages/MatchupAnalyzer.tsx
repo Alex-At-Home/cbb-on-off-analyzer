@@ -346,7 +346,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       >
         <Col
           xs={12}
-          className="w-100 text-center d-flex justify-content-center"
+          className="w-100 text-center d-flex justify-content-center recharts-container"
         >
           <PlayerImpactChart
             startingState={matchupFilterParamsRef.current || {}}
@@ -623,10 +623,40 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         </GenericCollapsibleCard>
       </Row>
       <InternalNavBarInRow refs={navigationRefs} showAnnotations={true} />
-      <Row ref={playerImpactRef}>{chart}</Row>
-      <Row ref={timelineViewRef}>{lineupStintTable}</Row>
-      <Row ref={playTypesRef}>{playStyleChart}</Row>
-      {showShotCharts ? <Row ref={shotChartsRef}>{shotChart}</Row> : undefined}
+      <Row
+        style={{
+          breakBefore: "page",
+        }}
+        ref={playerImpactRef}
+      >
+        {chart}
+      </Row>
+      <Row
+        style={{
+          breakBefore: "page",
+        }}
+        ref={timelineViewRef}
+      >
+        {lineupStintTable}
+      </Row>
+      <Row
+        style={{
+          breakBefore: "page",
+        }}
+        ref={playTypesRef}
+      >
+        {playStyleChart}
+      </Row>
+      {showShotCharts ? (
+        <Row
+          style={{
+            breakBefore: "page",
+          }}
+          ref={shotChartsRef}
+        >
+          {shotChart}
+        </Row>
+      ) : undefined}
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

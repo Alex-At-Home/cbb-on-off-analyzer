@@ -547,7 +547,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       <i>(No Data)</i>
     </Col>
   ) : (
-    <Container>
+    <Container className="recharts-container">
       <Row className="text-left">
         <Col xs={12} md={12} lg={6} className="mb-1">
           <ToggleButtonGroup

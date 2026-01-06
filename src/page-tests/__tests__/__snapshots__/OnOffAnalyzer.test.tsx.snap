@@ -78,6 +78,11 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   />
   <Row
     noGutters={false}
+    style={
+      Object {
+        "breakBefore": "page",
+      }
+    }
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2025/08/team-lineup-stats-table-explanation.html"
@@ -218,6 +223,11 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   </Row>
   <Row
     noGutters={false}
+    style={
+      Object {
+        "breakBefore": "page",
+      }
+    }
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2025/09/individual-stats-table-explanation.html"
@@ -280,6 +290,11 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   </Row>
   <Row
     noGutters={false}
+    style={
+      Object {
+        "breakBefore": "page",
+      }
+    }
   >
     <GenericCollapsibleCard
       minimizeMargin={false}

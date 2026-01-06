@@ -319,7 +319,7 @@ export class AnnotationUtils {
         image: { type: "png" as const, quality: 0.95 },
         pagebreak: {
           mode: ["css", "legacy"],
-          avoid: ["tr"],
+          avoid: ["tr", "svg", ".recharts-container"],
         },
         html2canvas: {
           scale: 1.0,

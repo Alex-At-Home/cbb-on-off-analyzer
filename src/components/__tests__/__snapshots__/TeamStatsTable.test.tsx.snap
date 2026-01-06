@@ -8,7 +8,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
     <div>
       <div
         class="pt-1 sticky-top d-none d-md-flex internal-sticky-overlay form-row"
-        style="position: sticky; top: 1em; z-index: 2;"
+        style="position: sticky; top: 25px; z-index: 2;"
       >
         <div
           class="col-sm-11"
@@ -2380,7 +2380,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
     <div>
       <div
         class="pt-1 sticky-top d-none d-md-flex internal-sticky-overlay form-row"
-        style="position: sticky; top: 1em; z-index: 2;"
+        style="position: sticky; top: 25px; z-index: 2;"
       >
         <div
           class="col-sm-11"
@@ -3519,7 +3519,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             class="row"
                           >
                             <div
-                              class="col-xl-6 col-lg-8 col-sm-12 col-8"
+                              class="col-xl-7 col-lg-8 col-sm-12 col-8"
                             >
                               <span>
                                 Play type stats:
@@ -4426,7 +4426,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               </div>
                             </div>
                             <div
-                              class="col-xl-6 col-lg-8 col-sm-12 col-8"
+                              class="col-xl-5 col-lg-8 col-sm-12 col-8"
                             >
                               <div
                                 class="container-fluid"
@@ -4563,7 +4563,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
                                           >
                                             <div>
-                                              Offensive assist details
+                                              Offense
                                             </div>
                                           </td>
                                           <td
@@ -4651,7 +4651,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
                                           >
                                             <div>
-                                              Defensive assist details
+                                              Defense
                                             </div>
                                           </td>
                                           <td
@@ -6147,7 +6147,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             class="row"
                           >
                             <div
-                              class="col-xl-6 col-lg-8 col-sm-12 col-8"
+                              class="col-xl-7 col-lg-8 col-sm-12 col-8"
                             >
                               <span>
                                 Play type stats:
@@ -7054,7 +7054,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               </div>
                             </div>
                             <div
-                              class="col-xl-6 col-lg-8 col-sm-12 col-8"
+                              class="col-xl-5 col-lg-8 col-sm-12 col-8"
                             >
                               <div
                                 class="container-fluid"
@@ -7191,7 +7191,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
                                           >
                                             <div>
-                                              Offensive assist details
+                                              Offense
                                             </div>
                                           </td>
                                           <td
@@ -7279,7 +7279,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
                                           >
                                             <div>
-                                              Defensive assist details
+                                              Defense
                                             </div>
                                           </td>
                                           <td
@@ -8775,7 +8775,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             class="row"
                           >
                             <div
-                              class="col-xl-6 col-lg-8 col-sm-12 col-8"
+                              class="col-xl-7 col-lg-8 col-sm-12 col-8"
                             >
                               <span>
                                 Play type stats:
@@ -9682,7 +9682,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               </div>
                             </div>
                             <div
-                              class="col-xl-6 col-lg-8 col-sm-12 col-8"
+                              class="col-xl-5 col-lg-8 col-sm-12 col-8"
                             >
                               <div
                                 class="container-fluid"
@@ -9819,7 +9819,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
                                           >
                                             <div>
-                                              Offensive assist details
+                                              Offense
                                             </div>
                                           </td>
                                           <td
@@ -9907,7 +9907,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
                                           >
                                             <div>
-                                              Defensive assist details
+                                              Defense
                                             </div>
                                           </td>
                                           <td
@@ -10563,7 +10563,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
     <div>
       <div
         class="pt-1 sticky-top d-none d-md-flex internal-sticky-overlay form-row"
-        style="position: sticky; top: 1em; z-index: 2;"
+        style="position: sticky; top: 25px; z-index: 2;"
       >
         <div
           class="col-sm-11"

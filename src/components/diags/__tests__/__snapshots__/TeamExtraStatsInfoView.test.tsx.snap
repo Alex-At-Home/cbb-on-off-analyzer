@@ -19,7 +19,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
       <Col
         lg={8}
         sm={12}
-        xl={6}
+        xl={7}
         xs={8}
       >
         <span>
@@ -535,7 +535,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
       <Col
         lg={8}
         sm={12}
-        xl={6}
+        xl={5}
         xs={8}
       >
         <Container
@@ -594,7 +594,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                       "off_rim_ast": Object {
                         "value": 0.43765281173594134,
                       },
-                      "off_title": "Offensive assist details",
+                      "off_title": "Offense",
                     },
                     "kind": "data-row",
                     "prefixFn": [Function],
@@ -622,7 +622,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                       "def_rim_ast": Object {
                         "value": 0.3775,
                       },
-                      "def_title": "Defensive assist details",
+                      "def_title": "Defense",
                       "grades": undefined,
                     },
                     "kind": "data-row",

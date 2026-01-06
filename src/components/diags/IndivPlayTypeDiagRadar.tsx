@@ -465,7 +465,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     cellKeyPrefix: string = "cell-"
   ) =>
     pctile ? (
-      <Row>
+      <Row className="recharts-container">
         <Col xs={12}>
           {rowTitle ? (
             <div style={{ fontWeight: "bold", marginBottom: 4 }}>

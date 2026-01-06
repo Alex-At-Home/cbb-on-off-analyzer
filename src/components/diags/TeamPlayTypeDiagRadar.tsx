@@ -947,7 +947,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     cellKeyPrefix: string = "cell-"
   ) => {
     return pctile ? (
-      <Row>
+      <Row className="recharts-container">
         <Col xs={11}>
           {rowTitle ? (
             <div style={{ fontWeight: "bold", marginBottom: 4 }}>

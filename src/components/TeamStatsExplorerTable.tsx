@@ -1145,7 +1145,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         truthVal={!hideGlobalGradeSettings}
         onSelect={() => setHideGlobalGradeSettings(!hideGlobalGradeSettings)}
       />
-      <Dropdown.Divider />
       <AnnotationMenuItems />
       <GenericTogglingMenuItem
         text={
