@@ -331,7 +331,7 @@ export class AnnotationUtils {
         },
         jsPDF: {
           unit: "in" as const,
-          format: "letter" as const,
+          format: "legal" as const,
           orientation: "landscape" as const, // Default to landscape for page content
         },
       };
