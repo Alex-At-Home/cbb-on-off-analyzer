@@ -300,6 +300,7 @@ export class AnnotationUtils {
 
   // Generate PDF from entire page HTML
   static generatePageToPdf = async (
+    portrait: boolean,
     setIsCapturing?: (capturing: boolean) => void
   ): Promise<void> => {
     try {
@@ -329,11 +330,17 @@ export class AnnotationUtils {
             return element.id === "annotation-spinner-overlay";
           },
         },
-        jsPDF: {
-          unit: "in" as const,
-          format: "legal" as const,
-          orientation: "landscape" as const, // Default to landscape for page content
-        },
+        jsPDF: portrait
+          ? {
+              unit: "in" as const,
+              format: "a3" as const,
+              orientation: "portrait" as const, // Default to landscape for page content
+            }
+          : {
+              unit: "in" as const,
+              format: "legal" as const,
+              orientation: "landscape" as const, // Default to landscape for page content
+            },
       };
 
       // Generate PDF from document body

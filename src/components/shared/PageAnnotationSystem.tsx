@@ -45,10 +45,10 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
     await AnnotationUtils.handleAnnotation(captureType, setIsCapturing);
   };
 
-  const handlePageToPdf = async () => {
+  const handlePageToPdf = async (portrait: boolean) => {
     if (isCapturing) return;
     setIsCapturing(true);
-    await AnnotationUtils.generatePageToPdf(setIsCapturing);
+    await AnnotationUtils.generatePageToPdf(portrait, setIsCapturing);
   };
 
   if (!isClient) {
@@ -110,14 +110,20 @@ const PageAnnotationSystem: React.FunctionComponent<Props> = ({
           Annotate full page (can be slow)
         </Dropdown.Item>
 
-        <Dropdown.Divider />
-
         <Dropdown.Item
-          onClick={handlePageToPdf}
+          onClick={(e: any) => handlePageToPdf(true)}
           disabled={isCapturing}
           style={{ zIndex: 2001, position: "relative" }}
         >
-          Export page as PDF
+          Export page as PDF (portrait)
+        </Dropdown.Item>
+
+        <Dropdown.Item
+          onClick={(e: any) => handlePageToPdf(false)}
+          disabled={isCapturing}
+          style={{ zIndex: 2001, position: "relative" }}
+        >
+          Export page as PDF (landscape)
         </Dropdown.Item>
 
         <Dropdown.Divider />
