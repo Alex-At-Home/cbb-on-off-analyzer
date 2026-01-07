@@ -480,79 +480,91 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             setShowPlayTypes(!showPlayTypes);
           },
         },
-        {
-          label: ":",
-          tooltip: "",
-          toggled: true,
-          onClick: () => {},
-          isLabelOnly: true,
-        },
-        {
-          label: "Off",
-          tooltip: showPlayTypes
-            ? playStyleConfig.includes("off")
-              ? "Hide offensive play style breakdowns"
-              : "Show offensive play style breakdowns"
-            : "(Select Style to enable)",
-          toggled: showPlayTypes && playStyleConfig.includes("off"),
-          onClick: () => {
-            if (showPlayTypes) {
-              const newVal = _.thru(playStyleConfig, (curr) => {
-                if (curr.includes("off")) return curr.replace("off", "");
-                else return "off" + curr;
-              });
-              setPlayStyleConfig(newVal);
-            }
+      ]
+        .concat(
+          FeatureFlags.isActiveWindow(FeatureFlags.defensiveStatsInTeamPage)
+            ? [
+                {
+                  label: ":",
+                  tooltip: "",
+                  toggled: true,
+                  onClick: () => {},
+                  isLabelOnly: true,
+                },
+                {
+                  label: "Off",
+                  tooltip: showPlayTypes
+                    ? playStyleConfig.includes("off")
+                      ? "Hide offensive play style breakdowns"
+                      : "Show offensive play style breakdowns"
+                    : "(Select Style to enable)",
+                  toggled: showPlayTypes && playStyleConfig.includes("off"),
+                  onClick: () => {
+                    if (showPlayTypes) {
+                      const newVal = _.thru(playStyleConfig, (curr) => {
+                        if (curr.includes("off")) return curr.replace("off", "");
+                        else return "off" + curr;
+                      });
+                      setPlayStyleConfig(newVal);
+                    }
+                  },
+                },
+                {
+                  label: "Def",
+                  tooltip: showPlayTypes
+                    ? playStyleConfig.includes("def")
+                      ? "Hide defensive play style breakdowns"
+                      : "Show defensive play style breakdowns"
+                    : "(Select Style to enable)",
+                  toggled: showPlayTypes && playStyleConfig.includes("def"),
+                  onClick: () => {
+                    if (showPlayTypes) {
+                      const supportCheck =
+                        TeamStatsTableUtils.isDefensiveStyleSupported(
+                          gameFilterParams
+                        );
+                      if (!supportCheck.supported) {
+                        setShowDefensiveUnsupportedModal(true);
+                      } else {
+                        const newVal = _.thru(playStyleConfig, (curr) => {
+                          if (curr.includes("def"))
+                            return curr.replace("def", "");
+                          else return curr + "def";
+                        });
+                        setPlayStyleConfig(newVal);
+                      }
+                    }
+                  },
+                },
+                {
+                  label: "|",
+                  tooltip: "",
+                  toggled: true,
+                  onClick: () => {},
+                  isLabelOnly: true,
+                },
+              ]
+            : []
+        )
+        .concat([
+          {
+            label: "Roster",
+            tooltip: showRoster
+              ? "Hide roster/positional information"
+              : "Show roster/positional information",
+            toggled: showRoster,
+            onClick: () => setShowRoster(!showRoster),
           },
-        },
-        {
-          label: "Def",
-          tooltip: showPlayTypes
-            ? playStyleConfig.includes("def")
-              ? "Hide defensive play style breakdowns"
-              : "Show defensive play style breakdowns"
-            : "(Select Style to enable)",
-          toggled: showPlayTypes && playStyleConfig.includes("def"),
-          onClick: () => {
-            if (showPlayTypes) {
-              const supportCheck =
-                TeamStatsTableUtils.isDefensiveStyleSupported(gameFilterParams);
-              if (!supportCheck.supported) {
-                setShowDefensiveUnsupportedModal(true);
-              } else {
-                const newVal = _.thru(playStyleConfig, (curr) => {
-                  if (curr.includes("def")) return curr.replace("def", "");
-                  else return curr + "def";
-                });
-                setPlayStyleConfig(newVal);
-              }
-            }
+          {
+            label: "Games",
+            tooltip: showGameInfo
+              ? "Hide per-game graphs"
+              : "Show per-game graphs",
+            toggled: showGameInfo,
+            onClick: () => setShowGameInfo(!showGameInfo),
           },
-        },
-        {
-          label: "|",
-          tooltip: "",
-          toggled: true,
-          onClick: () => {},
-          isLabelOnly: true,
-        },
-        {
-          label: "Roster",
-          tooltip: showRoster
-            ? "Hide roster/positional information"
-            : "Show roster/positional information",
-          toggled: showRoster,
-          onClick: () => setShowRoster(!showRoster),
-        },
-        {
-          label: "Games",
-          tooltip: showGameInfo
-            ? "Hide per-game graphs"
-            : "Show per-game graphs",
-          toggled: showGameInfo,
-          onClick: () => setShowGameInfo(!showGameInfo),
-        },
-      ].concat(
+        ])
+        .concat(
         gameFilterParams.year ||
           DateUtils.mostRecentYearWithData >=
             DateUtils.firstYearWithShotChartData
