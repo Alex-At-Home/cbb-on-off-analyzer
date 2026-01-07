@@ -20,6 +20,7 @@ enrichedPlayers/*
 enrichedPlayersDebug/*
 *.diff
 
+*.tsbuildinfo
 .vercel
 .metals
 .scala-build

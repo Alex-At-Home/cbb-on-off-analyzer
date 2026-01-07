@@ -15,6 +15,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
@@ -174,6 +176,20 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       : gameFilterParams.teamPlayTypeConfig
   );
 
+  const [playStyleConfig, setPlayStyleConfig] = useState<string>(() => {
+    const startConfig = _.isNil(gameFilterParams.teamPlayStyleConfig)
+      ? ParamDefaults.defaultTeamPlayStyleConfig
+      : gameFilterParams.teamPlayStyleConfig;
+    // If defensive stats aren't supported for this query, strip "def" from config
+    if (
+      startConfig.includes("def") &&
+      !TeamStatsTableUtils.isDefensiveStyleSupported(gameFilterParams).supported
+    ) {
+      return startConfig.replace("def", "");
+    }
+    return startConfig;
+  });
+
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
     UserChartOpts | undefined
@@ -188,6 +204,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
 
   /** Whether we are showing the luck config modal */
   const [showLuckConfig, setShowLuckConfig] = useState(false);
+
+  /** Whether we are showing the defensive unsupported modal */
+  const [showDefensiveUnsupportedModal, setShowDefensiveUnsupportedModal] =
+    useState(false);
 
   /** Whether to make the quick toggle bar stick (default: on) */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
@@ -259,6 +279,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       teamShotChartsUseEfg: shotChartConfig?.useEfg,
       stickyQuickToggle,
       teamPlayTypeConfig: playTypeConfigStr,
+      teamPlayStyleConfig: playStyleConfig,
     };
     onChangeState(newState);
   }, [
@@ -275,6 +296,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     shotChartConfig,
     stickyQuickToggle,
     playTypeConfigStr,
+    playStyleConfig,
   ]);
 
   const tableInfo = TeamStatsTableUtils.buildRows(
@@ -287,6 +309,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     // Page control
     {
       showPlayTypes,
+      playTypeConfig: {
+        off: playStyleConfig.includes("off"),
+        def: playStyleConfig.includes("def"),
+      },
       showRoster,
       adjustForLuck,
       showDiffs,
@@ -361,6 +387,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       shotChartConfig, //(do need to re-render on this since is applied to on/off/baseline shot charts)
       stickyQuickToggle,
       playTypeConfigStr,
+      playStyleConfig,
     ]
   );
 
@@ -433,12 +460,81 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           onClick: () => setShowExtraInfo(!showExtraInfo),
         },
         {
+          label: "|",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
           label: "Style",
           tooltip: showPlayTypes
             ? "Hide play style breakdowns"
             : "Show play style breakdowns",
           toggled: showPlayTypes,
-          onClick: () => setShowPlayTypes(!showPlayTypes),
+          onClick: () => {
+            if (!showPlayTypes) {
+              // Turning on: default to "off" only
+              setPlayStyleConfig("off");
+            }
+            setShowPlayTypes(!showPlayTypes);
+          },
+        },
+        {
+          label: ":",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
+          label: "Off",
+          tooltip: showPlayTypes
+            ? playStyleConfig.includes("off")
+              ? "Hide offensive play style breakdowns"
+              : "Show offensive play style breakdowns"
+            : "(Select Style to enable)",
+          toggled: showPlayTypes && playStyleConfig.includes("off"),
+          onClick: () => {
+            if (showPlayTypes) {
+              const newVal = _.thru(playStyleConfig, (curr) => {
+                if (curr.includes("off")) return curr.replace("off", "");
+                else return "off" + curr;
+              });
+              setPlayStyleConfig(newVal);
+            }
+          },
+        },
+        {
+          label: "Def",
+          tooltip: showPlayTypes
+            ? playStyleConfig.includes("def")
+              ? "Hide defensive play style breakdowns"
+              : "Show defensive play style breakdowns"
+            : "(Select Style to enable)",
+          toggled: showPlayTypes && playStyleConfig.includes("def"),
+          onClick: () => {
+            if (showPlayTypes) {
+              const supportCheck =
+                TeamStatsTableUtils.isDefensiveStyleSupported(gameFilterParams);
+              if (!supportCheck.supported) {
+                setShowDefensiveUnsupportedModal(true);
+              } else {
+                const newVal = _.thru(playStyleConfig, (curr) => {
+                  if (curr.includes("def")) return curr.replace("def", "");
+                  else return curr + "def";
+                });
+                setPlayStyleConfig(newVal);
+              }
+            }
+          },
+        },
+        {
+          label: "|",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
         },
         {
           label: "Roster",
@@ -539,6 +635,37 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           luck={luckConfig}
           showHelp={showHelp}
         />
+        <Modal
+          show={showDefensiveUnsupportedModal}
+          onHide={() => setShowDefensiveUnsupportedModal(false)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Defensive Style Not Supported</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              Defensive style charts are only supported for certain query types:
+            </p>
+            <ul>
+              <li>Season Stats (no splits)</li>
+              <li>Date-based splits (Last 30 days, Split by Month)</li>
+              <li>SoS-based splits (T100ish vs Weaker, Split by SoS band)</li>
+              <li>Misc splits (Home vs Away, Wins vs Losses, First vs Second halves)</li>
+            </ul>
+            <p>
+              <strong>Not supported:</strong> Advanced mode, Lineup splits (Top 5/6/7 players), 
+              or On/Off player splits.
+            </p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowDefensiveUnsupportedModal(false)}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <StickyRow
           className="pt-1"
           stickyEnabled={

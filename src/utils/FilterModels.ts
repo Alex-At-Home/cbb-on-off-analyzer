@@ -153,6 +153,7 @@ export type GameFilterParams = {
   showExtraInfo?: boolean;
   showTeamPlayTypes?: boolean;
   teamPlayTypeConfig?: string;
+  teamPlayStyleConfig?: string; //"off", "def", or "offdef"
   showRoster?: boolean;
   showGameInfo?: boolean;
   showGrades?: string;
@@ -497,6 +498,7 @@ export class ParamDefaults {
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultTeamShowPlayTypes = false;
   static readonly defaultTeamPlayTypeConfig = "||||||||||"; //(5 params, all blank)
+  static readonly defaultTeamPlayStyleConfig = "off"; //(default to offensive only)
   static readonly defaultTeamShowPlayTypesPlayType = "P%le";
   static readonly defaultTeamShowRoster = false;
   static readonly defaultTeamShowGameInfo = false;

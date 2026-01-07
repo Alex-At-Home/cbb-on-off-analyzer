@@ -306,6 +306,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.teamPlayTypeConfig == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["teamPlayTypeConfig"]
           : [],
+        rawParams.teamPlayStyleConfig == ParamDefaults.defaultTeamPlayStyleConfig
+          ? ["teamPlayStyleConfig"]
+          : [],
         rawParams.showExtraInfo == false ? ["showExtraInfo"] : [],
         rawParams.showRoster == ParamDefaults.defaultTeamShowRoster
           ? ["showRoster"]
@@ -515,6 +518,13 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       }
       if (
         params.playerShotCharts != gameFilterParamsRef.current?.playerShotCharts
+      ) {
+        setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+      }
+      // Force reload when adding defensive stats (requires expensive query)
+      if (
+        params.teamPlayStyleConfig?.includes("def") &&
+        !gameFilterParamsRef.current?.teamPlayStyleConfig?.includes("def")
       ) {
         setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }

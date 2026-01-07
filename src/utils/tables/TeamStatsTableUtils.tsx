@@ -16,7 +16,7 @@ import {
 import { LineupStatsModel } from "../../components/LineupStatsTable";
 import { RosterStatsModel } from "../../components/RosterStatsTable";
 import { TeamStatsModel } from "../../components/TeamStatsTable";
-import { GameFilterParams, LuckParams } from "../FilterModels";
+import { GameFilterParams, LuckParams, ParamDefaults } from "../FilterModels";
 import { efficiencyAverages } from "../public-data/efficiencyAverages";
 import {
   GameInfoStatSet,
@@ -1286,5 +1286,39 @@ export class TeamStatsTableUtils {
           : [],
       ]),
     };
+  }
+
+  /** Checks if defensive style stats are supported for the given query params */
+  static isDefensiveStyleSupported(gameFilterParams: GameFilterParams): {
+    supported: boolean;
+    reason?: string;
+  } {
+    // Defensive stats NOT supported when:
+    // 1. Advanced mode is enabled
+    // 2. Preset split is a "Lineup Split" (Top 5/6/7 players) or "On/Off Split"
+
+    if (gameFilterParams.advancedMode) {
+      return { supported: false, reason: "Advanced query mode" };
+    }
+
+    const presetSplit =
+      gameFilterParams.presetSplit || ParamDefaults.defaultPresetSplit;
+
+    // Lineup splits
+    const lineupSplits = [
+      "Top 5 players vs Substitution Patterns",
+      "Top 6 players vs Substitution Patterns",
+      "Top 7 players vs Substitution Patterns",
+    ];
+    if (lineupSplits.includes(presetSplit)) {
+      return { supported: false, reason: `"${presetSplit}" preset` };
+    }
+
+    // On/Off splits
+    if (presetSplit.startsWith(FilterPresetUtils.gameFilterOnOffPrefix)) {
+      return { supported: false, reason: "On/Off player splits" };
+    }
+
+    return { supported: true };
   }
 }

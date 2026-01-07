@@ -2066,15 +2066,19 @@ export class PlayTypeUtils {
       .value();
   }
 
-  /** Convert from getTeamDefense response to the team defense that we process */
+  /** Convert from getTeamDefense response to the team defense that we process
+   * @param jsonResp The response from the defensive stats query
+   * @param bucket The tri_filter bucket to parse (e.g., "baseline", "on", "off", "other_0")
+   */
   static parseTeamDefenseResponse(
-    jsonResp: any[]
+    jsonResp: any[],
+    bucket: string = "baseline"
   ): Record<
     string,
     { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
   > {
     const teamsStatsByTeam: Record<string, TeamStatSet> = _.chain(
-      jsonResp?.[0]?.aggregations?.tri_filter?.buckets?.baseline?.opponents
+      jsonResp?.[0]?.aggregations?.tri_filter?.buckets?.[bucket]?.opponents
         ?.buckets || []
     )
       .groupBy((t) => t["key"])
@@ -2091,7 +2095,7 @@ export class PlayTypeUtils {
       .value();
 
     const playerStatsByTeam: Record<string, Array<IndivStatSet>> = _.chain(
-      jsonResp?.[1]?.aggregations?.tri_filter?.buckets?.baseline?.opponents
+      jsonResp?.[1]?.aggregations?.tri_filter?.buckets?.[bucket]?.opponents
         ?.buckets || []
     )
       .groupBy((t) => t["key"])

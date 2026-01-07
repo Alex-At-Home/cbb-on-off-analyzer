@@ -81,6 +81,8 @@ import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { RequestUtils } from "../utils/RequestUtils";
 import ThemedSelect from "./shared/ThemedSelect";
+import { TeamStatsTableUtils } from "../utils/tables/TeamStatsTableUtils";
+import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 
 type Props = {
   onStats: (
@@ -129,6 +131,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
     teamPlayTypeConfig: startTeamPlayTypeConfig,
+    teamPlayStyleConfig: startTeamPlayStyleConfig,
     showRoster: startShowRoster,
     showGameInfo: startShowGameInfo,
     showGrades: startShowGrades,
@@ -182,6 +185,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       teamDiffs: startTeamDiffs,
       showTeamPlayTypes: startShowTeamPlayTypes,
       teamPlayTypeConfig: startTeamPlayTypeConfig,
+      teamPlayStyleConfig: startTeamPlayStyleConfig,
       showRoster: startShowRoster,
       showGameInfo: startShowGameInfo,
       showGrades: startShowGrades,
@@ -933,6 +937,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
       visualSettingsToUse.showRoster ||
       visualSettingsToUse.showGameInfo;
 
+    const alsoPullDefensiveStats =
+      visualSettingsToUse.teamPlayStyleConfig?.includes("def") &&
+      TeamStatsTableUtils.isDefensiveStyleSupported(primaryRequest).supported;
+
     // Lineups (eg for RAPM) calculations:
     //TODO: should tidy this up so can just make get lineups back from on/off query
     //      but for now we'll just hack a workaround
@@ -1068,6 +1076,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 ]
               : [];
           })
+        )
+        .concat(
+          alsoPullDefensiveStats
+            ? [
+                {
+                  tag: "defensiveStats",
+                  context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
+                  paramsObj: primaryRequest,
+                },
+              ]
+            : []
         ),
     ];
   }
@@ -1133,19 +1152,53 @@ const GameFilter: React.FunctionComponent<Props> = ({
         .value();
     };
 
+    // Process defensive stats if present - parse each bucket separately
+    const defensiveStatsResponses = jsonResps?.["defensiveStats"]?.responses;
+    const buildDefStyle = (bucket: string) => {
+      if (!defensiveStatsResponses) return undefined;
+      const parsed = PlayTypeUtils.parseTeamDefenseResponse(
+        defensiveStatsResponses,
+        bucket
+      );
+      if (_.isEmpty(parsed)) return undefined;
+      return PlayTypeUtils.buildTeamDefenseBreakdown(
+        parsed,
+        {} // Empty global player cache - uses game stats instead of season averages
+      );
+    };
+
+    // Helper to inject def_style into team stats
+    const injectDefStyle = (
+      teamStats: any,
+      defStyle: ReturnType<typeof buildDefStyle>
+    ) => {
+      if (defStyle && teamStats) {
+        teamStats.def_style = defStyle;
+      }
+      return teamStats;
+    };
+
     onStats(
       {
-        on:
+        on: injectDefStyle(
           teamJson?.aggregations?.tri_filter?.buckets?.on ||
-          StatModels.emptyTeam(),
-        off:
+            StatModels.emptyTeam(),
+          buildDefStyle("on")
+        ),
+        off: injectDefStyle(
           teamJson?.aggregations?.tri_filter?.buckets?.off ||
-          StatModels.emptyTeam(),
-        other: _.take(otherTeamStats, numOthers),
+            StatModels.emptyTeam(),
+          buildDefStyle("off")
+        ),
+        other: _.take(otherTeamStats, numOthers).map((s, i) =>
+          injectDefStyle(s, buildDefStyle(`other_${i}`))
+        ),
         onOffMode: autoOffQuery,
-        baseline:
+        baseline: injectDefStyle(
           teamJson?.aggregations?.tri_filter?.buckets?.baseline ||
-          StatModels.emptyTeam(),
+            StatModels.emptyTeam(),
+          buildDefStyle("baseline")
+        ),
         global: globalTeam,
         error_code: wasError
           ? teamJson?.status || jsonStatuses?.[0] || "Unknown"
