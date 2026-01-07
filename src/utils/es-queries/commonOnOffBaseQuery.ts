@@ -6,7 +6,8 @@ import { buildQueryFiltersBoolArray } from "./commonTeamQuery";
 
 export const commonOnOffBaseQuery = function (
   params: GameFilterParams,
-  lastDate: number
+  lastDate: number,
+  opponentMode: boolean = false
 ) {
   const baselineQuery = QueryUtils.basicOrAdvancedQuery(params.baseQuery, "*");
 
@@ -51,7 +52,8 @@ export const commonOnOffBaseQuery = function (
               params.onQueryFilters,
               params.gender,
               params.year,
-              lastDate
+              lastDate,
+              opponentMode
             ).map((clause) => {
               return {
                 bool: {
@@ -73,7 +75,8 @@ export const commonOnOffBaseQuery = function (
               queryFilterStr,
               params.gender,
               params.year,
-              lastDate
+              lastDate,
+              opponentMode
             ),
           ] as any[]),
           must_not: [],

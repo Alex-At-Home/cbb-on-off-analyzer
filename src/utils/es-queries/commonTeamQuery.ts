@@ -38,12 +38,22 @@ const garbageTimeFilter = [
   },
 ];
 
-const homeOrAwayFilter = (homeOrAway: "Home" | "Away" | "Not-Home") => {
+const homeOrAwayFilter = (
+  homeOrAway: "Home" | "Away" | "Not-Home" | "Not-Away"
+) => {
   return homeOrAway == "Not-Home"
     ? [
         {
           query_string: {
             query: `location_type.keyword:(Away OR Neutral)`,
+          },
+        },
+      ]
+    : homeOrAway == "Not-Away"
+    ? [
+        {
+          query_string: {
+            query: `location_type.keyword:(Home OR Neutral)`,
           },
         },
       ]
@@ -132,7 +142,8 @@ export const buildQueryFiltersBoolArray = (
   queryFiltersStr: string | undefined,
   genderStr: string | undefined,
   yearStr: string | undefined,
-  lastDate: number
+  lastDate: number,
+  opponentMode: boolean = false
 ) => {
   const queryFilters = QueryUtils.parseFilter(
     queryFiltersStr || "",
@@ -144,6 +155,23 @@ export const buildQueryFiltersBoolArray = (
   const genderYear = `${genderStr || ""}_${yearStr || ""}`;
   const avgEff = efficiencyAverages[genderYear] || efficiencyAverages.fallback!;
   const deltaEff = genderStr == "Women" ? 6 : 4.5;
+
+  const homeAwayOpponentModeConverter = (
+    homeOrAway: "Home" | "Away" | "Not-Home"
+  ) => {
+    if (opponentMode) {
+      if (homeOrAway == "Home") {
+        return "Away";
+      } else if (homeOrAway == "Away") {
+        return "Home";
+      } else {
+        // "Not-Home"
+        return "Not-Away";
+      }
+    } else {
+      return homeOrAway;
+    }
+  };
 
   return _.flatten([
     QueryUtils.filterHas(queryFilters, "Conf")
@@ -159,7 +187,7 @@ export const buildQueryFiltersBoolArray = (
       ["Home", "Away", "Not-Home"],
       (homeOrAway: "Home" | "Away" | "Not-Home") => {
         return QueryUtils.filterHas(queryFilters, homeOrAway)
-          ? homeOrAwayFilter(homeOrAway)
+          ? homeOrAwayFilter(homeAwayOpponentModeConverter(homeOrAway))
           : [];
       }
     ),
@@ -211,9 +239,10 @@ export const buildQueryFiltersBoolArray = (
             query_string: {
               //(no "opponentMode" if we're using queryFilters)
               query: `${gameSelector
-                .map(
-                  (g) =>
-                    `(date:(${g.date}) AND opponent.team.keyword:"${g.opponent}")`
+                .map((g) =>
+                  opponentMode
+                    ? `(date:(${g.date}))` //(already querying for team)
+                    : `(date:(${g.date}) AND opponent.team.keyword:"${g.opponent}")`
                 )
                 .join(" OR ")}`,
             },
@@ -263,7 +292,8 @@ export const commonTeamQuery = function (
           params.queryFilters,
           params.gender,
           params.year,
-          lastDate
+          lastDate,
+          opponentMode
         ),
       ] as Array<Record<string, any>>),
     },
