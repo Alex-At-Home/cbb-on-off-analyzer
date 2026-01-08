@@ -225,7 +225,9 @@ export class DateUtils {
 
   /** Get the previous season */
   static readonly getPrevYear = (y: string) => {
-    if (y == "2025/26") {
+    if (y == "2026/27") {
+      return "2025/26";
+    } else if (y == "2025/26") {
       return "2024/25";
     } else if (y == "2024/25") {
       return "2023/24";
@@ -247,7 +249,9 @@ export class DateUtils {
   };
   /** Get the next season */
   static readonly getNextYear = (y: string) => {
-    if (y == "2024/25") {
+    if (y == "2025/26") {
+      return "2026/27";
+    } else if (y == "2024/25") {
       return "2025/26";
     } else if (y == "2023/24") {
       return "2024/25";
@@ -277,8 +281,10 @@ export class DateUtils {
 
   /** Get the offseason of the current season */
   static readonly getOffseasonOfYear = (y: string) => {
-    if (y == "2025/26") {
+    if (y == "2026/27") {
       //TODO: can calculate programmatically
+      return "2027";
+    } else if (y == "2025/26") {
       return "2026";
     } else if (y == "2024/25") {
       return "2025";
