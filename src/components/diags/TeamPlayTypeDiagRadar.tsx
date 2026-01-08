@@ -555,8 +555,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         _.forEach(extraTopLevelPlayTypeStyles, (val, key) => {
           const toAdjust =
             extraTopLevelPlayTypeStylesPctile?.[key as TopLevelPlayType];
-          const pctle = toAdjust.possPct?.value || 0;
           if (toAdjust) {
+            const pctle = toAdjust.possPct?.value || 0;
             toAdjust.possPct = val.possPct;
             if (toAdjust.possPct) {
               toAdjust.possPct.old_value = pctle;
