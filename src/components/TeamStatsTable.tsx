@@ -423,6 +423,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showLuckAdjDiags,
       showHelp,
       playStyleConfigStr: playTypeConfigStr,
+      allPlayerStatsCache: allPlayerStatsCache.cache,
     },
     {
       setShowGrades: (showGrades: string) => setShowGrades(showGrades),

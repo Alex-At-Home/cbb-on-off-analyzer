@@ -810,49 +810,62 @@ export class TeamStatsTableUtils {
       )
       .filter((opt) => (opt.off?.doc_count || 0) > 0);
 
-    const teamPlayTypeQuickSwitchOptions = [
-      {
-        title: onOffBaseToLongerPhrase("baseline"),
-        players: rosterStats["baseline"] || [],
-        rosterStatsByCode: globalRosterStatsByCode,
-        teamStats: teamStatsByQuery["baseline"],
-        showGrades: showGrades,
-        avgEfficiency,
-        showHelp,
-      },
-      {
-        title: onOffBaseToLongerPhrase("on"),
-        players: rosterStats["on"] || [],
-        rosterStatsByCode: globalRosterStatsByCode,
-        teamStats: teamStatsByQuery["on"],
-        showGrades: showGrades,
-        avgEfficiency,
-        showHelp,
-      },
-      {
-        title: onOffBaseToLongerPhrase("off"),
-        players: rosterStats["off"] || [],
-        rosterStatsByCode: globalRosterStatsByCode,
-        teamStats: teamStatsByQuery["off"],
-        showGrades: showGrades,
-        avgEfficiency,
-        showHelp,
-      },
-    ]
-      .concat(
-        (teamStats.other || []).map((__, idx) => {
-          return {
-            title: onOffBaseToLongerPhrase("other", false, idx),
-            players: getRosterStats("other", rosterStats, idx),
-            rosterStatsByCode: globalRosterStatsByCode,
-            teamStats: getTeamStats("other", teamStats, idx),
-            showGrades: showGrades,
-            avgEfficiency,
-            showHelp,
-          };
-        })
-      )
-      .filter((opt) => (opt.teamStats.doc_count || 0) > 0);
+    const teamPlayTypeQuickSwitchOptions = (def: boolean = false) =>
+      [
+        {
+          title: onOffBaseToLongerPhrase("baseline"),
+          players: rosterStats["baseline"] || [],
+          rosterStatsByCode: globalRosterStatsByCode,
+          teamStats: teamStatsByQuery["baseline"],
+          showGrades: showGrades,
+          defensiveOverride: def
+            ? teamStatsByQuery["baseline"]?.def_style
+            : undefined,
+          avgEfficiency,
+          showHelp,
+        },
+        {
+          title: onOffBaseToLongerPhrase("on"),
+          players: rosterStats["on"] || [],
+          rosterStatsByCode: globalRosterStatsByCode,
+          teamStats: teamStatsByQuery["on"],
+          showGrades: showGrades,
+          defensiveOverride: def
+            ? teamStatsByQuery["on"]?.def_style
+            : undefined,
+          avgEfficiency,
+          showHelp,
+        },
+        {
+          title: onOffBaseToLongerPhrase("off"),
+          players: rosterStats["off"] || [],
+          rosterStatsByCode: globalRosterStatsByCode,
+          teamStats: teamStatsByQuery["off"],
+          showGrades: showGrades,
+          defensiveOverride: def
+            ? teamStatsByQuery["off"]?.def_style
+            : undefined,
+          avgEfficiency,
+          showHelp,
+        },
+      ]
+        .concat(
+          (teamStats.other || []).map((__, idx) => {
+            return {
+              title: onOffBaseToLongerPhrase("other", false, idx),
+              players: getRosterStats("other", rosterStats, idx),
+              rosterStatsByCode: globalRosterStatsByCode,
+              teamStats: getTeamStats("other", teamStats, idx),
+              showGrades: showGrades,
+              defensiveOverride: def
+                ? getTeamStats("other", teamStats, idx)?.def_style
+                : undefined,
+              avgEfficiency,
+              showHelp,
+            };
+          })
+        )
+        .filter((opt) => (opt.teamStats.doc_count || 0) > 0);
 
     /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
     const buildTableEntries = (
@@ -965,8 +978,9 @@ export class TeamStatsTableUtils {
                   _.isNil(
                     // If ".style" is present then use the pre-calcd values
                     //TODO: this is a bit of a hack, plus also needs to handle defence
-                    teamStatsByCombinedQuery(queryKey, otherQueryIndex).style
+                    teamStatsByCombinedQuery(queryKey, otherQueryIndex).style //(note def_style _may_ be present)
                   ) ? (
+                    // Team Analysis page
                     <TeamPlayTypeTabbedView
                       title={displayKey}
                       players={getRosterStats(
@@ -979,10 +993,24 @@ export class TeamStatsTableUtils {
                         queryKey,
                         otherQueryIndex
                       )}
+                      defense={
+                        playTypeConfig?.def
+                          ? teamStatsByCombinedQuery(queryKey, otherQueryIndex)
+                              .def_style
+                          : undefined
+                      }
+                      playTypeConfig={playTypeConfig}
                       avgEfficiency={avgEfficiency}
-                      quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
+                      quickSwitchOptions={teamPlayTypeQuickSwitchOptions().filter(
                         (opt) => opt.title != displayKey
                       )}
+                      defensiveQuickSwitchOptions={
+                        playTypeConfig?.def
+                          ? teamPlayTypeQuickSwitchOptions(true).filter(
+                              (opt) => opt.title != displayKey
+                            )
+                          : undefined
+                      }
                       showGrades={showGrades}
                       grades={divisionStatsCache}
                       showHelp={showHelp}
@@ -990,6 +1018,7 @@ export class TeamStatsTableUtils {
                       updateConfig={persistNewState.setPlayStyleConfigStr}
                     />
                   ) : (
+                    // Leaderboard mode
                     (!playTypeConfig || playTypeConfig.off
                       ? [
                           <TeamPlayTypeDiagRadar
@@ -1016,8 +1045,9 @@ export class TeamStatsTableUtils {
                                 queryKey,
                                 otherQueryIndex
                               ).def_style
-                                ? undefined
+                                ? undefined //(leaderboard mode, def_style is its own graph)
                                 : [
+                                    //(TODO: I don't think is ever used, and in fact can't work because defensiveOverride will be null by construction)
                                     {
                                       title: "Defense",
                                       players: getRosterStats(

@@ -9,6 +9,7 @@ import {
   TeamStatSet,
 } from "../../utils/StatModels";
 import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
+import { TopLevelPlayAnalysis } from "../../utils/stats/PlayTypeUtils";
 
 // Props for TeamPlayTypeDiagView
 export type TeamPlayTypeDiagViewProps = {
@@ -50,6 +51,9 @@ export type TeamPlayTypeTabbedViewProps = {
   teamStats: TeamStatSet;
   avgEfficiency: number;
   quickSwitchOptions?: any[];
+  playTypeConfig?: { off: boolean; def: boolean };
+  defense?: TopLevelPlayAnalysis;
+  defensiveQuickSwitchOptions?: any[];
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
@@ -76,7 +80,17 @@ const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (
         <TeamPlayTypeDiagView {...props} tableType="usage" />
       </Tab>
       <Tab eventKey="breakdown" title="Play Types">
-        <TeamPlayTypeDiagRadar {...props} quickSwitchOverride={undefined} />
+        {!props.playTypeConfig || props?.playTypeConfig.off ? (
+          <TeamPlayTypeDiagRadar {...props} quickSwitchOverride={undefined} />
+        ) : undefined}
+        {props.defense && props.playTypeConfig?.def ? (
+          <TeamPlayTypeDiagRadar
+            {...props}
+            defensiveOverride={props.defense}
+            quickSwitchOptions={props.defensiveQuickSwitchOptions}
+            quickSwitchOverride={undefined}
+          />
+        ) : undefined}
       </Tab>
     </Tabs>
   );

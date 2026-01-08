@@ -600,7 +600,6 @@ export class PlayTypeUtils {
       },
       {} as TopLevelPlayAnalysis
     );
-
     return combinedBreakdown;
   };
 

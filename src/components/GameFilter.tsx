@@ -1161,8 +1161,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
         defensiveStatsResponses,
         bucket
       );
-      /**/
-      console.log(`bucket: [${bucket}]`, parsed);
       if (_.isEmpty(parsed)) return undefined;
       return parsed;
     };
