@@ -337,7 +337,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       fetchPlayers.then((players) => {
         setAllPlayerStatsCache(
           _.groupBy(
-            (players[0]?.players || []) as Array<IndivStatSet>,
+            _.flatMap(
+              players,
+              (pp) => pp?.players || []
+            ) as Array<IndivStatSet>,
             (p) => p.team
           )
         );
