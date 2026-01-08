@@ -38,6 +38,7 @@ import {
   OffLuckAdjustmentDiags,
 } from "../stats/LuckUtils";
 import { OverrideUtils } from "../stats/OverrideUtils";
+import { PlayTypeUtils } from "../stats/PlayTypeUtils";
 import { CommonTableDefs } from "./CommonTableDefs";
 import { GradeTableUtils, DivisionStatsCache } from "./GradeTableUtils";
 import { LineupTableUtils } from "./LineupTableUtils";
@@ -80,6 +81,8 @@ export type TeamStatsReadOnlyState = {
   showLuckAdjDiags: boolean;
   showHelp: boolean;
   playStyleConfigStr?: string;
+  /** Player stats cache for defensive style analysis, keyed by team */
+  allPlayerStatsCache?: Record<string, IndivStatSet[]>;
 };
 
 export type TeamStatsChangeState = {
@@ -165,6 +168,7 @@ export class TeamStatsTableUtils {
       showLuckAdjDiags,
       showHelp,
       playStyleConfigStr,
+      allPlayerStatsCache,
     } = readOnlyState;
 
     // Some handy strings
@@ -737,6 +741,30 @@ export class TeamStatsTableUtils {
         : teamStatsByQuery[queryKey];
     };
 
+    // Build def_style from def_stats upfront for all team stats
+    // (buildTeamDefenseBreakdown is expensive, so do it once per stat set)
+    const injectDefStyleIfNeeded = (stats: TeamStatSet | undefined) => {
+      const statsAny = stats as any;
+      if (
+        statsAny &&
+        !statsAny.def_style &&
+        statsAny.def_stats &&
+        !_.isEmpty(statsAny.def_stats)
+      ) {
+        statsAny.def_style = PlayTypeUtils.buildTeamDefenseBreakdown(
+          statsAny.def_stats,
+          allPlayerStatsCache || {}
+        );
+      }
+    };
+    // Inject def_style into all team stats that have def_stats
+    if (playTypeConfig?.def) {
+      injectDefStyleIfNeeded(teamStatsByQuery.baseline);
+      injectDefStyleIfNeeded(teamStatsByQuery.on);
+      injectDefStyleIfNeeded(teamStatsByQuery.off);
+      _.values(teamStatsByOtherQuery).forEach(injectDefStyleIfNeeded);
+    }
+
     /** If true, then repeat the table headers */
     const showingSomeDiags =
       showExtraInfo ||
@@ -847,6 +875,9 @@ export class TeamStatsTableUtils {
       });
       const hasData =
         (getTeamStats(queryKey, teamStats, otherQueryIndex).doc_count || 0) > 0;
+
+      //TODO: currently we check for .style to decide if we're in "leaderboard mode"
+      // or splits mode
 
       const showExtraHeader =
         queryKey == "off"

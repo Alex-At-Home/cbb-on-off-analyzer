@@ -1153,51 +1153,51 @@ const GameFilter: React.FunctionComponent<Props> = ({
     };
 
     // Process defensive stats if present - parse each bucket separately
+    // Store raw parsed data as def_stats; buildTableEntries will convert to def_style
     const defensiveStatsResponses = jsonResps?.["defensiveStats"]?.responses;
-    const buildDefStyle = (bucket: string) => {
+    const parseDefStats = (bucket: string) => {
       if (!defensiveStatsResponses) return undefined;
       const parsed = PlayTypeUtils.parseTeamDefenseResponse(
         defensiveStatsResponses,
         bucket
       );
+      /**/
+      console.log(`bucket: [${bucket}]`, parsed);
       if (_.isEmpty(parsed)) return undefined;
-      return PlayTypeUtils.buildTeamDefenseBreakdown(
-        parsed,
-        {} // Empty global player cache - uses game stats instead of season averages
-      );
+      return parsed;
     };
 
-    // Helper to inject def_style into team stats
-    const injectDefStyle = (
+    // Helper to inject def_stats into team stats
+    const injectDefStats = (
       teamStats: any,
-      defStyle: ReturnType<typeof buildDefStyle>
+      defStats: ReturnType<typeof parseDefStats>
     ) => {
-      if (defStyle && teamStats) {
-        teamStats.def_style = defStyle;
+      if (defStats && teamStats) {
+        teamStats.def_stats = defStats;
       }
       return teamStats;
     };
 
     onStats(
       {
-        on: injectDefStyle(
+        on: injectDefStats(
           teamJson?.aggregations?.tri_filter?.buckets?.on ||
             StatModels.emptyTeam(),
-          buildDefStyle("on")
+          parseDefStats("on")
         ),
-        off: injectDefStyle(
+        off: injectDefStats(
           teamJson?.aggregations?.tri_filter?.buckets?.off ||
             StatModels.emptyTeam(),
-          buildDefStyle("off")
+          parseDefStats("off")
         ),
         other: _.take(otherTeamStats, numOthers).map((s, i) =>
-          injectDefStyle(s, buildDefStyle(`other_${i}`))
+          injectDefStats(s, parseDefStats(`other_${i}`))
         ),
         onOffMode: autoOffQuery,
-        baseline: injectDefStyle(
+        baseline: injectDefStats(
           teamJson?.aggregations?.tri_filter?.buckets?.baseline ||
             StatModels.emptyTeam(),
-          buildDefStyle("baseline")
+          parseDefStats("baseline")
         ),
         global: globalTeam,
         error_code: wasError

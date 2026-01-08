@@ -33,7 +33,12 @@ import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import StickyRow from "./shared/StickyRow";
 
 // Util imports
-import { ShotStatsModel, StatModels, TeamStatSet } from "../utils/StatModels";
+import {
+  IndivStatSet,
+  ShotStatsModel,
+  StatModels,
+  TeamStatSet,
+} from "../utils/StatModels";
 import {
   GameFilterParams,
   ParamDefaults,
@@ -53,6 +58,7 @@ import {
 import { DateUtils } from "../utils/DateUtils";
 import { UserChartOpts } from "./diags/ShotChartDiagView";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 
 export type TeamStatsModel = {
   on: TeamStatSet;
@@ -259,6 +265,98 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     }
   }, [gameFilterParams, showGrades, showPlayTypes]);
 
+  // Player stats cache for defensive style analysis
+  const [allPlayerStatsCache, setAllPlayerStatsCache] = useState<{
+    cacheYear: string;
+    cacheGender: string;
+    cache: Record<string, IndivStatSet[]>;
+  }>({
+    cacheYear: gameFilterParams.year || ParamDefaults.defaultYear,
+    cacheGender: gameFilterParams.gender || ParamDefaults.defaultGender,
+    cache: {},
+  });
+
+  // Fetch player stats for opponents when defensive style is enabled
+  useEffect(() => {
+    const currentYear = gameFilterParams.year || ParamDefaults.defaultYear;
+    const currentGender =
+      gameFilterParams.gender || ParamDefaults.defaultGender;
+
+    // Clear cache if year/gender changed
+    if (
+      allPlayerStatsCache.cacheYear !== currentYear ||
+      allPlayerStatsCache.cacheGender !== currentGender
+    ) {
+      setAllPlayerStatsCache({
+        cacheGender: currentGender,
+        cacheYear: currentYear,
+        cache: {},
+      });
+    }
+
+    const showingDefStyle =
+      showPlayTypes &&
+      playStyleConfig.includes("def") &&
+      FeatureFlags.isActiveWindow(FeatureFlags.defensiveStatsInTeamPage);
+
+    const allDefStats = [teamStats.baseline?.def_stats].filter(Boolean);
+    const opponentTeams = showingDefStyle
+      ? _.uniq(allDefStats.flatMap((ds) => _.keys(ds)))
+      : [];
+
+    if (showingDefStyle && opponentTeams.length > 0) {
+      // Only fetch if we don't have all the teams we need
+      const missingTeams = opponentTeams.filter(
+        (team) => !allPlayerStatsCache.cache[team]
+      );
+      if (missingTeams.length > 0) {
+        // Create a set of opponent teams for efficient lookup
+        const opponentTeamsSet = new Set(opponentTeams);
+
+        const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
+          "all",
+          currentGender,
+          currentYear,
+          "All",
+          [],
+          []
+        );
+        fetchPlayers.then((players) => {
+          // Filter players to only those on opponent teams, then group
+          const filteredPlayers = _.flatMap(
+            players,
+            (pp) => (pp.players || []) as Array<IndivStatSet>
+          ).filter(
+            (p) =>
+              opponentTeamsSet.has(p.team || "") &&
+              !allPlayerStatsCache.cache[p.team || ""]
+          );
+          const filteredCache = _.groupBy(filteredPlayers, (p) => p.team);
+          setAllPlayerStatsCache((curr) => {
+            console.log(
+              `(Defensive style info [${curr.cacheYear}][${
+                curr.cacheGender
+              }]: Added [${_.keys(filteredCache)}] to [${_.keys(
+                curr.cache
+              )}], opponents=[${opponentTeams}])`
+            );
+            _.forEach(curr.cache, (val, key) => (filteredCache[key] = val));
+            return {
+              ...curr,
+              cache: filteredCache,
+            };
+          });
+        });
+      }
+    }
+  }, [
+    showPlayTypes,
+    playStyleConfig,
+    teamStats,
+    gameFilterParams.year,
+    gameFilterParams.gender,
+  ]);
+
   // Generic page builder plumbing
 
   useEffect(() => {
@@ -388,6 +486,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       stickyQuickToggle,
       playTypeConfigStr,
       playStyleConfig,
+      allPlayerStatsCache,
     ]
   );
 
@@ -502,7 +601,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                   onClick: () => {
                     if (showPlayTypes) {
                       const newVal = _.thru(playStyleConfig, (curr) => {
-                        if (curr.includes("off")) return curr.replace("off", "");
+                        if (curr.includes("off"))
+                          return curr.replace("off", "");
                         else return "off" + curr;
                       });
                       setPlayStyleConfig(newVal);
@@ -565,21 +665,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           },
         ])
         .concat(
-        gameFilterParams.year ||
-          DateUtils.mostRecentYearWithData >=
-            DateUtils.firstYearWithShotChartData
-          ? [
-              {
-                label: "Shots",
-                tooltip: showShotCharts
-                  ? "Hide shot chart"
-                  : "Show shot charts",
-                toggled: showShotCharts,
-                onClick: () => setShowShotCharts(!showShotCharts),
-              },
-            ]
-          : []
-      )}
+          gameFilterParams.year ||
+            DateUtils.mostRecentYearWithData >=
+              DateUtils.firstYearWithShotChartData
+            ? [
+                {
+                  label: "Shots",
+                  tooltip: showShotCharts
+                    ? "Hide shot chart"
+                    : "Show shot charts",
+                  toggled: showShotCharts,
+                  onClick: () => setShowShotCharts(!showShotCharts),
+                },
+              ]
+            : []
+        )}
     />
   );
 
@@ -662,11 +762,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               <li>Season Stats (no splits)</li>
               <li>Date-based splits (Last 30 days, Split by Month)</li>
               <li>SoS-based splits (T100ish vs Weaker, Split by SoS band)</li>
-              <li>Misc splits (Home vs Away, Wins vs Losses, First vs Second halves)</li>
+              <li>
+                Misc splits (Home vs Away, Wins vs Losses, First vs Second
+                halves)
+              </li>
             </ul>
             <p>
-              <strong>Not supported:</strong> Advanced mode, Lineup splits (Top 5/6/7 players), 
-              or On/Off player splits.
+              <strong>Not supported:</strong> Advanced mode, Lineup splits (Top
+              5/6/7 players), or On/Off player splits.
             </p>
           </Modal.Body>
           <Modal.Footer>

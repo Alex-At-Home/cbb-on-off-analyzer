@@ -34,7 +34,11 @@ export const teamDefensePlayerStatsQuery = function (
     size: 0,
     aggregations: {
       tri_filter: {
-        filters: commonOnOffBaseQuery(params, lastDate),
+        filters: commonOnOffBaseQuery(
+          params,
+          lastDate,
+          !seasonVsGameAverageDebugMode
+        ),
         aggregations: {
           opponents: {
             terms: {
