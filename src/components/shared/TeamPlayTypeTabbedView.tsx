@@ -86,6 +86,7 @@ const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (
         {props.defense && props.playTypeConfig?.def ? (
           <TeamPlayTypeDiagRadar
             {...props}
+            title={`(Defense) ${props.title}`}
             defensiveOverride={props.defense}
             quickSwitchOptions={props.defensiveQuickSwitchOptions}
             quickSwitchOverride={undefined}

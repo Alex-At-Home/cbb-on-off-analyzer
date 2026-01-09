@@ -1068,7 +1068,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             label: "Style",
             tooltip: showPlayStyles
               ? "Hide play style breakdowns"
-              : `Show play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
+              : `Show offensive and defensive play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
             toggled: showPlayStyles,
             onClick: () =>
               friendlyChange(() => setShowPlayStyles(!showPlayStyles), true),
@@ -1086,10 +1086,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               ? playStyleConfig.includes("off")
                 ? "Hide offensive play style breakdowns"
                 : `Show offensive play style breakdowns`
-              : "(Select Style to enable)",
+              : "Show offensive play style breakdowns",
             toggled: showPlayStyles && playStyleConfig.includes("off"),
             onClick: () => {
-              if (showPlayStyles) {
+              if (!showPlayStyles) {
+                friendlyChange(() => {
+                  setShowPlayStyles(true);
+                  setPlayStyleConfig("off");
+                }, true);
+              } else {
                 const newVal = _.thru(playStyleConfig, (curr) => {
                   if (curr.includes("off")) return curr.replace("off", "");
                   else return "off" + curr;
@@ -1107,10 +1112,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               ? playStyleConfig.includes("def")
                 ? "Hide defensive play style breakdowns"
                 : `Show defensive play style breakdowns`
-              : "(Select Style to enable)",
+              : "Show defensive play style breakdowns",
             toggled: showPlayStyles && playStyleConfig.includes("def"),
             onClick: () => {
-              if (showPlayStyles) {
+              if (!showPlayStyles) {
+                friendlyChange(() => {
+                  setShowPlayStyles(true);
+                  setPlayStyleConfig("def");
+                }, true);
+              } else {
                 const newVal = _.thru(playStyleConfig, (curr) => {
                   if (curr.includes("def")) return curr.replace("def", "");
                   else return curr + "def";

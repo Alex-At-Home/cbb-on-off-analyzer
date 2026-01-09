@@ -570,7 +570,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           label: "Style",
           tooltip: showPlayTypes
             ? "Hide play style breakdowns"
-            : "Show play style breakdowns",
+            : `Show offensive play style breakdowns`,
           toggled: showPlayTypes,
           onClick: () => {
             if (!showPlayTypes) {
@@ -597,15 +597,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                     ? playStyleConfig.includes("off")
                       ? "Hide offensive play style breakdowns"
                       : "Show offensive play style breakdowns"
-                    : "(Select Style to enable)",
+                    : "Show offensive play style breakdowns",
                   toggled: showPlayTypes && playStyleConfig.includes("off"),
                   onClick: () => {
-                    if (showPlayTypes) {
+                    if (!showPlayTypes) {
+                      setShowPlayTypes(true);
+                      setPlayStyleConfig("off");
+                    } else {
                       const newVal = _.thru(playStyleConfig, (curr) => {
                         if (curr.includes("off"))
                           return curr.replace("off", "");
                         else return "off" + curr;
                       });
+                      if (!newVal) {
+                        setShowPlayTypes(false);
+                      }
                       setPlayStyleConfig(newVal);
                     }
                   },
@@ -615,11 +621,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                   tooltip: showPlayTypes
                     ? playStyleConfig.includes("def")
                       ? "Hide defensive play style breakdowns"
-                      : "Show defensive play style breakdowns"
-                    : "(Select Style to enable)",
+                      : "Show defensive play style breakdowns (can be slow)"
+                    : "Show defensive play style breakdowns (can be slow)",
                   toggled: showPlayTypes && playStyleConfig.includes("def"),
                   onClick: () => {
-                    if (showPlayTypes) {
+                    if (!showPlayTypes) {
+                      setShowPlayTypes(true);
+                      setPlayStyleConfig("def");
+                    } else {
                       const supportCheck =
                         TeamStatsTableUtils.isDefensiveStyleSupported(
                           gameFilterParams
@@ -632,6 +641,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                             return curr.replace("def", "");
                           else return curr + "def";
                         });
+                        if (!newVal) {
+                          setShowPlayTypes(false);
+                        }
                         setPlayStyleConfig(newVal);
                       }
                     }

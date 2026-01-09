@@ -58,6 +58,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
                       class="btn btn-outline-secondary btn-sm"
@@ -66,6 +72,40 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       Style
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    :
+                  </small>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Off
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Def
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -190,6 +230,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
                       class="btn btn-outline-secondary btn-sm"
@@ -198,6 +244,40 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       Style
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    :
+                  </small>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Off
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Def
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -2430,6 +2510,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
                       class="btn btn-outline-secondary btn-sm"
@@ -2438,6 +2524,40 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       Style
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    :
+                  </small>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Off
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Def
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -2562,6 +2682,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
                       class="btn btn-outline-secondary btn-sm"
@@ -2570,6 +2696,40 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       Style
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    :
+                  </small>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Off
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Def
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -10613,6 +10773,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
                       class="btn btn-outline-secondary btn-sm"
@@ -10621,6 +10787,40 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       Style
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    :
+                  </small>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Off
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Def
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -10745,6 +10945,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
                       class="btn btn-outline-secondary btn-sm"
@@ -10753,6 +10959,40 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       Style
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    :
+                  </small>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Off
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <div>
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      type="button"
+                    >
+                      Def
+                    </button>
+                  </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
