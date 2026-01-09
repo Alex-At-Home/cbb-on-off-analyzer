@@ -294,10 +294,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       });
     }
 
-    const showingDefStyle =
-      showPlayTypes &&
-      playStyleConfig.includes("def") &&
-      FeatureFlags.isActiveWindow(FeatureFlags.defensiveStatsInTeamPage);
+    const showingDefStyle = showPlayTypes && playStyleConfig.includes("def");
 
     const allDefStats = [teamStats.baseline?.def_stats].filter(Boolean);
     const opponentTeams = showingDefStyle
@@ -581,84 +578,78 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           },
         },
       ]
-        .concat(
-          FeatureFlags.isActiveWindow(FeatureFlags.defensiveStatsInTeamPage)
-            ? [
-                {
-                  label: ":",
-                  tooltip: "",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-                {
-                  label: "Off",
-                  tooltip: showPlayTypes
-                    ? playStyleConfig.includes("off")
-                      ? "Hide offensive play style breakdowns"
-                      : "Show offensive play style breakdowns"
-                    : "Show offensive play style breakdowns",
-                  toggled: showPlayTypes && playStyleConfig.includes("off"),
-                  onClick: () => {
-                    if (!showPlayTypes) {
-                      setShowPlayTypes(true);
-                      setPlayStyleConfig("off");
-                    } else {
-                      const newVal = _.thru(playStyleConfig, (curr) => {
-                        if (curr.includes("off"))
-                          return curr.replace("off", "");
-                        else return "off" + curr;
-                      });
-                      if (!newVal) {
-                        setShowPlayTypes(false);
-                      }
-                      setPlayStyleConfig(newVal);
-                    }
-                  },
-                },
-                {
-                  label: "Def",
-                  tooltip: showPlayTypes
-                    ? playStyleConfig.includes("def")
-                      ? "Hide defensive play style breakdowns"
-                      : "Show defensive play style breakdowns (can be slow)"
-                    : "Show defensive play style breakdowns (can be slow)",
-                  toggled: showPlayTypes && playStyleConfig.includes("def"),
-                  onClick: () => {
-                    if (!showPlayTypes) {
-                      setShowPlayTypes(true);
-                      setPlayStyleConfig("def");
-                    } else {
-                      const supportCheck =
-                        TeamStatsTableUtils.isDefensiveStyleSupported(
-                          gameFilterParams
-                        );
-                      if (!supportCheck.supported) {
-                        setShowDefensiveUnsupportedModal(true);
-                      } else {
-                        const newVal = _.thru(playStyleConfig, (curr) => {
-                          if (curr.includes("def"))
-                            return curr.replace("def", "");
-                          else return curr + "def";
-                        });
-                        if (!newVal) {
-                          setShowPlayTypes(false);
-                        }
-                        setPlayStyleConfig(newVal);
-                      }
-                    }
-                  },
-                },
-                {
-                  label: "|",
-                  tooltip: "",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-              ]
-            : []
-        )
+        .concat([
+          {
+            label: ":",
+            tooltip: "",
+            toggled: true,
+            onClick: () => {},
+            isLabelOnly: true,
+          },
+          {
+            label: "Off",
+            tooltip: showPlayTypes
+              ? playStyleConfig.includes("off")
+                ? "Hide offensive play style breakdowns"
+                : "Show offensive play style breakdowns"
+              : "Show offensive play style breakdowns",
+            toggled: showPlayTypes && playStyleConfig.includes("off"),
+            onClick: () => {
+              if (!showPlayTypes) {
+                setShowPlayTypes(true);
+                setPlayStyleConfig("off");
+              } else {
+                const newVal = _.thru(playStyleConfig, (curr) => {
+                  if (curr.includes("off")) return curr.replace("off", "");
+                  else return "off" + curr;
+                });
+                if (!newVal) {
+                  setShowPlayTypes(false);
+                }
+                setPlayStyleConfig(newVal);
+              }
+            },
+          },
+          {
+            label: "Def",
+            tooltip: showPlayTypes
+              ? playStyleConfig.includes("def")
+                ? "Hide defensive play style breakdowns"
+                : "Show defensive play style breakdowns (can be slow)"
+              : "Show defensive play style breakdowns (can be slow)",
+            toggled: showPlayTypes && playStyleConfig.includes("def"),
+            onClick: () => {
+              if (!showPlayTypes) {
+                setShowPlayTypes(true);
+                setPlayStyleConfig("def");
+              } else {
+                const supportCheck =
+                  TeamStatsTableUtils.isDefensiveStyleSupported(
+                    gameFilterParams
+                  );
+                if (!supportCheck.supported) {
+                  setShowDefensiveUnsupportedModal(true);
+                } else {
+                  const newVal = _.thru(playStyleConfig, (curr) => {
+                    if (curr.includes("def")) return curr.replace("def", "");
+                    else return curr + "def";
+                  });
+                  if (!newVal) {
+                    setShowPlayTypes(false);
+                  }
+                  setPlayStyleConfig(newVal);
+                }
+              }
+            },
+          },
+          {
+            label: "|",
+            tooltip: "",
+            toggled: true,
+            onClick: () => {},
+            isLabelOnly: true,
+          },
+        ])
         .concat([
           {
             label: "Roster",
