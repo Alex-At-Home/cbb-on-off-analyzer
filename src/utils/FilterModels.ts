@@ -307,6 +307,57 @@ export type OffseasonLeaderboardParams = {
   queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)
 
+export interface SimilarityConfig {
+  // Slider weights (existing, but rename class -> playerInfo)
+  playStyleWeight: number;
+  scoringEfficiencyWeight: number; 
+  defenseWeight: number;
+  playerInfoWeight: number; // renamed from classWeight
+  
+  // Play Style section
+  includeTransition: boolean;
+  assistWeighting: 'none' | 'less' | 'default' | 'more';
+  turnoverWeighting: 'none' | 'less' | 'default' | 'more';
+  offensiveReboundWeighting: 'none' | 'less' | 'default' | 'more';
+  freeThrowWeighting: 'none' | 'less' | 'default' | 'more';
+  
+  // Scoring Efficiency section  
+  scoringMode: 'sos-adjusted' | 'raw' | 'relative';
+  offensiveGravityBonus: 'none' | 'less' | 'default' | 'more';
+  
+  // Defense section
+  defensiveSkill: 'sos-adjusted' | 'raw' | 'relative' | 'none';
+  defensiveReboundWeighting: 'none' | 'less' | 'default' | 'more';
+  stocksWeighting: 'none' | 'less' | 'default' | 'more';
+  foulsWeighting: 'none' | 'less' | 'default' | 'more';
+  
+  // Player Info section
+  classWeighting: 'none' | 'less' | 'default' | 'more';
+  heightWeighting: 'none' | 'less' | 'default' | 'more';
+  minutesWeighting: 'none' | 'less' | 'default' | 'more';
+}
+
+export const DefaultSimilarityConfig: SimilarityConfig = {
+  playStyleWeight: 0.5,
+  scoringEfficiencyWeight: 0.5,
+  defenseWeight: 0.5,
+  playerInfoWeight: 0.5,
+  includeTransition: false,
+  assistWeighting: 'default',
+  turnoverWeighting: 'default',
+  offensiveReboundWeighting: 'default',
+  freeThrowWeighting: 'default',
+  scoringMode: 'sos-adjusted',
+  offensiveGravityBonus: 'default',
+  defensiveSkill: 'sos-adjusted',
+  defensiveReboundWeighting: 'default',
+  stocksWeighting: 'default',
+  foulsWeighting: 'default',
+  classWeighting: 'default',
+  heightWeighting: 'default',
+  minutesWeighting: 'default'
+};
+
 export type PlayerCareerParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
@@ -339,6 +390,7 @@ export type PlayerCareerParams = {
   showPlayerPlayTypesPlayType?: string;
   // Equivalent for similarity table
   similarityParams?: PlayerCareerParams;
+  similarityConfig?: SimilarityConfig;
   queryVector?: string; //(only used for API interface)
 };
 

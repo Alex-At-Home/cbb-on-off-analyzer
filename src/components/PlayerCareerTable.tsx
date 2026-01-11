@@ -21,6 +21,8 @@ import {
   ParamDefaults,
   ParamPrefixes,
   PlayerCareerParams,
+  SimilarityConfig,
+  DefaultSimilarityConfig,
 } from "../utils/FilterModels";
 import { useTheme } from "next-themes";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
@@ -65,6 +67,8 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import SimilarityConfigModal from "./shared/SimilarityConfigModal";
+import SimilarityWeights from "./shared/SimilarityWeights";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -114,37 +118,25 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
 
   // Similarity controls state
-  const [playStyleWeight, setPlayStyleWeight] = useState<number>(0.5);
-  const [scoringEfficiencyWeight, setScoringEfficiencyWeight] =
-    useState<number>(0.5);
-  const [defenseWeight, setDefenseWeight] = useState<number>(0.5);
-  const [classWeight, setClassWeight] = useState<number>(0.5);
+  const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(() => {
+    // Ensure we always have valid default values
+    const baseConfig = { ...DefaultSimilarityConfig };
+    if (playerCareerParams.similarityConfig) {
+      // Merge with any existing config, but ensure all numeric values are valid
+      return {
+        ...baseConfig,
+        ...playerCareerParams.similarityConfig,
+        playStyleWeight: playerCareerParams.similarityConfig.playStyleWeight ?? baseConfig.playStyleWeight,
+        scoringEfficiencyWeight: playerCareerParams.similarityConfig.scoringEfficiencyWeight ?? baseConfig.scoringEfficiencyWeight,
+        defenseWeight: playerCareerParams.similarityConfig.defenseWeight ?? baseConfig.defenseWeight,
+        playerInfoWeight: playerCareerParams.similarityConfig.playerInfoWeight ?? baseConfig.playerInfoWeight,
+      };
+    }
+    return baseConfig;
+  });
   const [showSimilaritySettings, setShowSimilaritySettings] =
     useState<boolean>(false);
-
-  // Temporary state for smooth slider updates
-  const [tmpPlayStyleWeight, setTmpPlayStyleWeight] = useState<
-    number | undefined
-  >(undefined);
-  const [tmpScoringEfficiencyWeight, setTmpScoringEfficiencyWeight] = useState<
-    number | undefined
-  >(undefined);
-  const [tmpDefenseWeight, setTmpDefenseWeight] = useState<number | undefined>(
-    undefined
-  );
-  const [tmpClassWeight, setTmpClassWeight] = useState<number | undefined>(
-    undefined
-  );
-
-  // Mouse handling for sliders (similar to TeamLeaderboardTable)
-  const onMouseDown = () => {
-    // Start dragging - placeholder for potential future logic
-  };
-
-  const onMouseUp = (callback: () => void) => {
-    // End dragging and execute callback
-    callback();
-  };
+  const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
@@ -290,6 +282,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           : yearsToShowArr.join(","),
       stickyQuickToggle,
       showInfoSubHeader,
+      similarityConfig,
     });
   }, [
     showGrades,
@@ -307,6 +300,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     yearsToShow,
     stickyQuickToggle,
     showInfoSubHeader,
+    similarityConfig,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -1172,281 +1166,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   // Similarity controls component (separate variable but will be used in table)
   const similarityControlsComponent = (
-    <div className="similarity-controls mt-2 mb-2">
-      <Row>
-        <Col xs={6} md={3}>
-          <Form>
-            <Form.Group controlId="playStyleRange">
-              <Form.Label>
-                <OverlayTrigger
-                  placement="auto"
-                  overlay={
-                    <Tooltip id="play-style-tooltip">
-                      How much to weight the scoring breakdown of the player (do
-                      they drive? post-up? cut? find cutters and rollers? etc)
-                    </Tooltip>
-                  }
-                >
-                  <small>
-                    <b>Play Style</b> [
-                    {_.isNil(tmpPlayStyleWeight) ? (
-                      <b>{(playStyleWeight * 100).toFixed(0)}</b>
-                    ) : (
-                      <i>{(tmpPlayStyleWeight * 100).toFixed(0)}</i>
-                    )}
-                    %]
-                  </small>
-                </OverlayTrigger>
-              </Form.Label>
-              <Form.Control
-                type="range"
-                custom
-                value={
-                  _.isNil(tmpPlayStyleWeight)
-                    ? playStyleWeight
-                    : tmpPlayStyleWeight
-                }
-                onChange={(ev: any) => {
-                  const newVal = parseFloat(ev.target.value);
-                  if (_.isNil(tmpPlayStyleWeight)) onMouseDown();
-                  setTmpPlayStyleWeight(newVal);
-                }}
-                onClick={(ev: any) =>
-                  onMouseUp(() => {
-                    const newVal = parseFloat(ev.target.value);
-                    setPlayStyleWeight(newVal);
-                    setTmpPlayStyleWeight(undefined);
-                  })
-                }
-                onTouchEnd={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpPlayStyleWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setPlayStyleWeight(newVal);
-                      setTmpPlayStyleWeight(undefined);
-                    }
-                  })
-                }
-                onMouseUp={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpPlayStyleWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setPlayStyleWeight(newVal);
-                      setTmpPlayStyleWeight(undefined);
-                    }
-                  })
-                }
-                min={0}
-                max={1}
-                step={0.05}
-              />
-            </Form.Group>
-          </Form>
-        </Col>
-        <Col xs={6} md={3}>
-          <Form>
-            <Form.Group controlId="scoringEfficiencyRange">
-              <Form.Label>
-                <OverlayTrigger
-                  placement="auto"
-                  overlay={
-                    <Tooltip id="scoring-efficiency-tooltip">
-                      How good is the player at actually scoring in the various
-                      play types covered by "Play Style"?
-                    </Tooltip>
-                  }
-                >
-                  <small>
-                    <b>Scoring Efficiency</b> [
-                    {_.isNil(tmpScoringEfficiencyWeight) ? (
-                      <b>{(scoringEfficiencyWeight * 100).toFixed(0)}</b>
-                    ) : (
-                      <i>{(tmpScoringEfficiencyWeight * 100).toFixed(0)}</i>
-                    )}
-                    %]
-                  </small>
-                </OverlayTrigger>
-              </Form.Label>
-              <Form.Control
-                type="range"
-                custom
-                value={
-                  _.isNil(tmpScoringEfficiencyWeight)
-                    ? scoringEfficiencyWeight
-                    : tmpScoringEfficiencyWeight
-                }
-                onChange={(ev: any) => {
-                  const newVal = parseFloat(ev.target.value);
-                  if (_.isNil(tmpScoringEfficiencyWeight)) onMouseDown();
-                  setTmpScoringEfficiencyWeight(newVal);
-                }}
-                onClick={(ev: any) =>
-                  onMouseUp(() => {
-                    const newVal = parseFloat(ev.target.value);
-                    setScoringEfficiencyWeight(newVal);
-                    setTmpScoringEfficiencyWeight(undefined);
-                  })
-                }
-                onTouchEnd={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpScoringEfficiencyWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setScoringEfficiencyWeight(newVal);
-                      setTmpScoringEfficiencyWeight(undefined);
-                    }
-                  })
-                }
-                onMouseUp={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpScoringEfficiencyWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setScoringEfficiencyWeight(newVal);
-                      setTmpScoringEfficiencyWeight(undefined);
-                    }
-                  })
-                }
-                min={0}
-                max={1}
-                step={0.05}
-              />
-            </Form.Group>
-          </Form>
-        </Col>
-        <Col xs={6} md={3}>
-          <Form>
-            <Form.Group controlId="defenseRange">
-              <Form.Label>
-                <OverlayTrigger
-                  placement="auto"
-                  overlay={
-                    <Tooltip id="defense-tooltip">
-                      How well (within the framework of their team's defense)
-                      does the player defend, and in what measurable ways
-                      (steals, fouls, blocks, rebounds)
-                    </Tooltip>
-                  }
-                >
-                  <small>
-                    <b>Defense</b> [
-                    {_.isNil(tmpDefenseWeight) ? (
-                      <b>{(defenseWeight * 100).toFixed(0)}</b>
-                    ) : (
-                      <i>{(tmpDefenseWeight * 100).toFixed(0)}</i>
-                    )}
-                    %]
-                  </small>
-                </OverlayTrigger>
-              </Form.Label>
-              <Form.Control
-                type="range"
-                custom
-                value={
-                  _.isNil(tmpDefenseWeight) ? defenseWeight : tmpDefenseWeight
-                }
-                onChange={(ev: any) => {
-                  const newVal = parseFloat(ev.target.value);
-                  if (_.isNil(tmpDefenseWeight)) onMouseDown();
-                  setTmpDefenseWeight(newVal);
-                }}
-                onClick={(ev: any) =>
-                  onMouseUp(() => {
-                    const newVal = parseFloat(ev.target.value);
-                    setDefenseWeight(newVal);
-                    setTmpDefenseWeight(undefined);
-                  })
-                }
-                onTouchEnd={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpDefenseWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setDefenseWeight(newVal);
-                      setTmpDefenseWeight(undefined);
-                    }
-                  })
-                }
-                onMouseUp={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpDefenseWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setDefenseWeight(newVal);
-                      setTmpDefenseWeight(undefined);
-                    }
-                  })
-                }
-                min={0}
-                max={1}
-                step={0.05}
-              />
-            </Form.Group>
-          </Form>
-        </Col>
-        <Col xs={6} md={3}>
-          <Form>
-            <Form.Group controlId="classRange">
-              <Form.Label>
-                <OverlayTrigger
-                  placement="auto"
-                  overlay={
-                    <Tooltip id="class-tooltip">
-                      Add a bonus for players in the same or nearby class (Fr,
-                      Soph, Jr, Sr)
-                    </Tooltip>
-                  }
-                >
-                  <small>
-                    <b>Class</b> [
-                    {_.isNil(tmpClassWeight) ? (
-                      <b>{(classWeight * 100).toFixed(0)}</b>
-                    ) : (
-                      <i>{(tmpClassWeight * 100).toFixed(0)}</i>
-                    )}
-                    %]
-                  </small>
-                </OverlayTrigger>
-              </Form.Label>
-              <Form.Control
-                type="range"
-                custom
-                value={_.isNil(tmpClassWeight) ? classWeight : tmpClassWeight}
-                onChange={(ev: any) => {
-                  const newVal = parseFloat(ev.target.value);
-                  if (_.isNil(tmpClassWeight)) onMouseDown();
-                  setTmpClassWeight(newVal);
-                }}
-                onClick={(ev: any) =>
-                  onMouseUp(() => {
-                    const newVal = parseFloat(ev.target.value);
-                    setClassWeight(newVal);
-                    setTmpClassWeight(undefined);
-                  })
-                }
-                onTouchEnd={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpClassWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setClassWeight(newVal);
-                      setTmpClassWeight(undefined);
-                    }
-                  })
-                }
-                onMouseUp={(ev: any) =>
-                  onMouseUp(() => {
-                    if (!_.isNil(tmpClassWeight)) {
-                      const newVal = parseFloat(ev.target.value);
-                      setClassWeight(newVal);
-                      setTmpClassWeight(undefined);
-                    }
-                  })
-                }
-                min={0}
-                max={1}
-                step={0.05}
-              />
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
-    </div>
+    <SimilarityWeights
+      config={similarityConfig}
+      onConfigChange={setSimilarityConfig}
+      onOpenAdvanced={() => setShowConfigModal(true)}
+    />
   );
 
   // Convert to table row
@@ -1815,6 +1539,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         </StickyRow>
         <Row>{table}</Row>
       </LoadingOverlay>
+      
+      {/* Similarity Configuration Modal */}
+      <SimilarityConfigModal
+        show={showConfigModal}
+        onHide={() => setShowConfigModal(false)}
+        config={similarityConfig}
+        onConfigChange={setSimilarityConfig}
+      />
     </Container>
   );
 };

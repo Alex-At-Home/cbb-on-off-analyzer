@@ -22,6 +22,7 @@ import {
   ParamPrefixes,
   ParamDefaults,
   PlayerCareerParams,
+  DefaultSimilarityConfig,
 } from "../utils/FilterModels";
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
@@ -99,8 +100,18 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
   const playerCareerParamsRef = useRef<PlayerCareerParams>();
   playerCareerParamsRef.current = playerCareerParams;
 
+  const removeSimilarityDefaultsFromConfig = (config: PlayerCareerParams['similarityConfig']) => {
+    if (!config) return undefined;
+    
+    const cleanedConfig = _.pickBy(config, (value, key) => 
+      value !== DefaultSimilarityConfig[key as keyof typeof DefaultSimilarityConfig]
+    );
+    
+    return _.isEmpty(cleanedConfig) ? undefined : (cleanedConfig as PlayerCareerParams['similarityConfig']);
+  };
+
   const removeDefaultsFromParams = (rawParams: PlayerCareerParams) => {
-    return _.omit(
+    const cleanedRawParams = _.omit(
       rawParams,
       _.flatten([
         // omit all defaults
@@ -160,6 +171,12 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           : [],
       ])
     );
+    
+    // Clean similarityConfig by removing default values
+    const cleanedParams = { ...cleanedRawParams };
+    cleanedParams.similarityConfig = removeSimilarityDefaultsFromConfig(rawParams.similarityConfig);
+    
+    return cleanedParams;
   };
 
   const onPlayerCareerParamsChange = (
@@ -170,7 +187,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     const params = similarityMode
       ? removeDefaultsFromParams({
           ...(playerCareerParamsRef.current || {}),
-          similarityParams: newParams,
+          similarityConfig: newParams.similarityConfig,
         })
       : newParams;
 
@@ -264,10 +281,10 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       <PlayerCareerTable
         playerSeasons={dataEvent}
         playerCareerParams={{
-          ...(playerCareerParamsRef?.current?.similarityParams || {}),
           gender:
-            playerCareerParamsRef.current?.gender ||
+            playerCareerParams?.gender ||
             ParamDefaults.defaultGender,
+          similarityConfig: playerCareerParams?.similarityConfig,
         }}
         onPlayerCareerParamsChange={(params: PlayerCareerParams) =>
           onPlayerCareerParamsChange(params, true)
@@ -275,7 +292,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         playerSimilarityMode={true}
       />
     );
-  }, [dataEvent]);
+  }, [dataEvent, playerCareerParams.similarityConfig]);
 
   const playerFinder = (
     <PlayerFinderTextBox

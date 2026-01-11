@@ -8,6 +8,7 @@ import {
   CommonFilterParams,
   ParamDefaults,
   GameFilterParams,
+  DefaultSimilarityConfig,
 } from "./FilterModels";
 
 import { format as dateFormat, parse as dateParse, addYears } from "date-fns";
@@ -114,6 +115,7 @@ export class QueryUtils {
     const manualTmp = {} as any; //(start as map of arrays, will convert to array of maps later)
     const otherQueriesTmp = {} as any;
     const similarityParamsTmp = {} as any;
+    const similarityConfigTmp = {} as any;
     _.forEach(parsed, (value: any, key: string) => {
       if (_.startsWith(key, "luck.")) {
         luck[key.substring(5)] = value;
@@ -123,6 +125,9 @@ export class QueryUtils {
         delete parsed[key];
       } else if (_.startsWith(key, "similarityParams.")) {
         similarityParamsTmp[key.substring(17)] = value;
+        delete parsed[key];
+      } else if (_.startsWith(key, "similarityConfig.")) {
+        similarityConfigTmp[key.substring(17)] = value;
         delete parsed[key];
       } else if (_.startsWith(key, "otherQueries.")) {
         const otherQueryArr = key.substring(13).split(".");
@@ -152,6 +157,10 @@ export class QueryUtils {
     }
     if (!_.isEmpty(similarityParamsTmp)) {
       parsed.similarityParams = similarityParamsTmp;
+    }
+    if (!_.isEmpty(similarityConfigTmp)) {
+      // Merge with defaults to ensure all fields are present
+      parsed.similarityConfig = { ...DefaultSimilarityConfig, ...similarityConfigTmp };
     }
 
     // (Extra annoyance: handle bwc in change of onOffLuck becoming a boolean)
@@ -190,6 +199,25 @@ export class QueryUtils {
         _.forEach(queryObj, (value: any, key: string) => {
           objCopy[`otherQueries.${index}.${key}`] = value;
         });
+      });
+    }
+    // Handle similarityParams
+    if (objCopy.similarityParams) {
+      const similarityParams = objCopy.similarityParams as any;
+      delete objCopy.similarityParams;
+      _.forEach(similarityParams, (value: any, key: string) => {
+        objCopy["similarityParams." + key] = value;
+      });
+    }
+    // Handle similarityConfig - only include non-default values
+    if (objCopy.similarityConfig) {
+      const similarityConfig = objCopy.similarityConfig as any;
+      delete objCopy.similarityConfig;
+      _.forEach(similarityConfig, (value: any, key: string) => {
+        // Only include in URL if value differs from default
+        if (value !== DefaultSimilarityConfig[key as keyof typeof DefaultSimilarityConfig]) {
+          objCopy["similarityConfig." + key] = value;
+        }
       });
     }
     // Handle baseQuery/lineupQuery

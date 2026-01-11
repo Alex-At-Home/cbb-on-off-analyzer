@@ -94,8 +94,9 @@ export class UrlRouting {
   /** The URL to use to view the "Player Leaderboard" page */
   static getPlayerCareer(params: PlayerCareerParams) {
     return `/PlayerCareer?${UrlRouting.getUrl({
-      [UrlRouting.noPrefix]: _.omit(params, ["similarityParams"]),
+      [UrlRouting.noPrefix]: _.omit(params, ["similarityParams", "similarityConfig"]),
       similarityParams: params.similarityParams,
+      similarityConfig: params.similarityConfig,
     })}`;
   }
   /** The URL to use to view the "Team Editor" page */
