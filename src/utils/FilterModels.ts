@@ -321,9 +321,11 @@ export interface SimilarityConfig {
   offensiveReboundWeighting: 'none' | 'less' | 'default' | 'more';
   freeThrowWeighting: 'none' | 'less' | 'default' | 'more';
   
-  // Scoring Efficiency section  
+  // Scoring Efficiency section
   scoringMode: 'sos-adjusted' | 'raw' | 'relative';
   offensiveGravityBonus: 'none' | 'less' | 'default' | 'more';
+  fgBonus: 'none' | 'less' | 'default' | 'more';
+  usageBonus: 'none' | 'less' | 'default' | 'more';
   
   // Defense section
   defensiveSkill: 'sos-adjusted' | 'raw' | 'relative' | 'none';
@@ -349,6 +351,8 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   freeThrowWeighting: 'default',
   scoringMode: 'sos-adjusted',
   offensiveGravityBonus: 'default',
+  fgBonus: 'default',
+  usageBonus: 'default',
   defensiveSkill: 'sos-adjusted',
   defensiveReboundWeighting: 'default',
   stocksWeighting: 'default',

@@ -153,7 +153,8 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         <Row className="mb-4">
           <Col xs={12}>
             <h5 className="mb-3">Scoring Efficiency</h5>
-            <Row>
+            {/* Top row: Scoring Mode and FG Bonus */}
+            <Row className="mb-3">
               <Col xs={6}>
                 <Form.Group>
                   <Form.Label>
@@ -175,12 +176,51 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
               <Col xs={6}>
                 <Form.Group>
                   <Form.Label>
+                    <small><b>FG bonus</b></small>
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={config.fgBonus}
+                    onChange={(e) => handleConfigChange('fgBonus', e.target.value)}
+                  >
+                    {weightingOptions.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
+            {/* Bottom row: Offensive Gravity Bonus and Usage Bonus */}
+            <Row>
+              <Col xs={6}>
+                <Form.Group>
+                  <Form.Label>
                     <small><b>Offensive gravity bonus</b></small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.offensiveGravityBonus}
                     onChange={(e) => handleConfigChange('offensiveGravityBonus', e.target.value)}
+                  >
+                    {weightingOptions.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+              <Col xs={6}>
+                <Form.Group>
+                  <Form.Label>
+                    <small><b>Usage bonus</b></small>
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={config.usageBonus}
+                    onChange={(e) => handleConfigChange('usageBonus', e.target.value)}
                   >
                     {weightingOptions.map(option => (
                       <option key={option.value} value={option.value}>
