@@ -310,33 +310,33 @@ export type OffseasonLeaderboardParams = {
 export interface SimilarityConfig {
   // Slider weights (existing, but rename class -> playerInfo)
   playStyleWeight: number;
-  scoringEfficiencyWeight: number; 
+  scoringEfficiencyWeight: number;
   defenseWeight: number;
   playerInfoWeight: number; // renamed from classWeight
-  
+
   // Play Style section
   includeTransition: boolean;
-  assistWeighting: 'none' | 'less' | 'default' | 'more';
-  turnoverWeighting: 'none' | 'less' | 'default' | 'more';
-  offensiveReboundWeighting: 'none' | 'less' | 'default' | 'more';
-  freeThrowWeighting: 'none' | 'less' | 'default' | 'more';
-  
+  assistWeighting: "none" | "less" | "default" | "more";
+  turnoverWeighting: "none" | "less" | "default" | "more";
+  offensiveReboundWeighting: "none" | "less" | "default" | "more";
+  freeThrowWeighting: "none" | "less" | "default" | "more";
+
   // Scoring Efficiency section
-  scoringMode: 'sos-adjusted' | 'raw' | 'relative';
-  offensiveGravityBonus: 'none' | 'less' | 'default' | 'more';
-  fgBonus: 'none' | 'less' | 'default' | 'more';
-  usageBonus: 'none' | 'less' | 'default' | 'more';
-  
+  scoringMode: "sos-adjusted" | "raw" | "relative";
+  offensiveGravityBonus: "none" | "less" | "default" | "more";
+  fgBonus: "none" | "less" | "default" | "more";
+  usageBonus: "none" | "less" | "default" | "more";
+
   // Defense section
-  defensiveSkill: 'sos-adjusted' | 'raw' | 'relative' | 'none';
-  defensiveReboundWeighting: 'none' | 'less' | 'default' | 'more';
-  stocksWeighting: 'none' | 'less' | 'default' | 'more';
-  foulsWeighting: 'none' | 'less' | 'default' | 'more';
-  
+  defensiveSkill: "sos-adjusted" | "raw" | "relative" | "none";
+  defensiveReboundWeighting: "none" | "less" | "default" | "more";
+  stocksWeighting: "none" | "less" | "default" | "more";
+  foulsWeighting: "none" | "less" | "default" | "more";
+
   // Player Info section
-  classWeighting: 'none' | 'less' | 'default' | 'more';
-  heightWeighting: 'none' | 'less' | 'default' | 'more';
-  minutesWeighting: 'none' | 'less' | 'default' | 'more';
+  classWeighting: "none" | "less" | "default" | "more";
+  heightWeighting: "none" | "less" | "default" | "more";
+  minutesWeighting: "none" | "less" | "default" | "more";
 }
 
 export const DefaultSimilarityConfig: SimilarityConfig = {
@@ -345,21 +345,21 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   defenseWeight: 0.5,
   playerInfoWeight: 0.5,
   includeTransition: false,
-  assistWeighting: 'default',
-  turnoverWeighting: 'default',
-  offensiveReboundWeighting: 'default',
-  freeThrowWeighting: 'default',
-  scoringMode: 'sos-adjusted',
-  offensiveGravityBonus: 'default',
-  fgBonus: 'default',
-  usageBonus: 'default',
-  defensiveSkill: 'sos-adjusted',
-  defensiveReboundWeighting: 'default',
-  stocksWeighting: 'default',
-  foulsWeighting: 'default',
-  classWeighting: 'default',
-  heightWeighting: 'default',
-  minutesWeighting: 'default'
+  assistWeighting: "default",
+  turnoverWeighting: "default",
+  offensiveReboundWeighting: "default",
+  freeThrowWeighting: "default",
+  scoringMode: "sos-adjusted",
+  offensiveGravityBonus: "default",
+  fgBonus: "default",
+  usageBonus: "default",
+  defensiveSkill: "sos-adjusted",
+  defensiveReboundWeighting: "default",
+  stocksWeighting: "default",
+  foulsWeighting: "default",
+  classWeighting: "default",
+  heightWeighting: "default",
+  minutesWeighting: "default",
 };
 
 export type PlayerCareerParams = {
@@ -396,6 +396,7 @@ export type PlayerCareerParams = {
   similarityParams?: PlayerCareerParams;
   similarityConfig?: SimilarityConfig;
   queryVector?: string; //(only used for API interface)
+  size?: number; //(only used for API interface)
 };
 
 export type PlayerLeaderboardParams = {

@@ -118,22 +118,32 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
 
   // Similarity controls state
-  const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(() => {
-    // Ensure we always have valid default values
-    const baseConfig = { ...DefaultSimilarityConfig };
-    if (playerCareerParams.similarityConfig) {
-      // Merge with any existing config, but ensure all numeric values are valid
-      return {
-        ...baseConfig,
-        ...playerCareerParams.similarityConfig,
-        playStyleWeight: playerCareerParams.similarityConfig.playStyleWeight ?? baseConfig.playStyleWeight,
-        scoringEfficiencyWeight: playerCareerParams.similarityConfig.scoringEfficiencyWeight ?? baseConfig.scoringEfficiencyWeight,
-        defenseWeight: playerCareerParams.similarityConfig.defenseWeight ?? baseConfig.defenseWeight,
-        playerInfoWeight: playerCareerParams.similarityConfig.playerInfoWeight ?? baseConfig.playerInfoWeight,
-      };
+  const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(
+    () => {
+      // Ensure we always have valid default values
+      const baseConfig = { ...DefaultSimilarityConfig };
+      if (playerCareerParams.similarityConfig) {
+        // Merge with any existing config, but ensure all numeric values are valid
+        return {
+          ...baseConfig,
+          ...playerCareerParams.similarityConfig,
+          playStyleWeight:
+            playerCareerParams.similarityConfig.playStyleWeight ??
+            baseConfig.playStyleWeight,
+          scoringEfficiencyWeight:
+            playerCareerParams.similarityConfig.scoringEfficiencyWeight ??
+            baseConfig.scoringEfficiencyWeight,
+          defenseWeight:
+            playerCareerParams.similarityConfig.defenseWeight ??
+            baseConfig.defenseWeight,
+          playerInfoWeight:
+            playerCareerParams.similarityConfig.playerInfoWeight ??
+            baseConfig.playerInfoWeight,
+        };
+      }
+      return baseConfig;
     }
-    return baseConfig;
-  });
+  );
   const [showSimilaritySettings, setShowSimilaritySettings] =
     useState<boolean>(false);
   const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
@@ -1114,12 +1124,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
 
         setRetrievingPlayers(true);
+
+        // Step 1: Get candidates using existing API (but request more)
         const allPromises = Promise.all(
           RequestUtils.requestHandlingLogic(
             {
               gender,
+              size: PlayerSimilarityUtils.firstPassPlayersRetrieved,
               queryVector:
-                PlayerSimilarityUtils.buildPlayerSimilarityVector(
+                PlayerSimilarityUtils.buildSimplePlayerSimilarityVector(
                   currPlayerSelected
                 ).join(","),
             },
@@ -1139,8 +1152,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           )
         );
         allPromises
-          .then((jsons) => {
-            const playerJsons = (jsons?.[0]?.responses?.[0]?.hits?.hits || [])
+          .then(async (jsons) => {
+            const candidatePlayers = (
+              jsons?.[0]?.responses?.[0]?.hits?.hits || []
+            )
               .map((p: any) => {
                 const source = p._source || {};
                 source._id = p._id;
@@ -1153,7 +1168,29 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   _.endsWith(p._id, "_all")
               );
 
-            setSimilarPlayers(playerJsons);
+            try {
+              // Step 2: Apply new z-score based similarity calculation
+              const similarityResults =
+                await PlayerSimilarityUtils.findSimilarPlayers(
+                  currPlayerSelected,
+                  similarityConfig,
+                  candidatePlayers
+                );
+
+              // Convert results to match expected format
+              const formattedResults = similarityResults.map(
+                (result) => result.player
+              );
+
+              setSimilarPlayers(formattedResults);
+            } catch (error) {
+              if (isDebug) {
+                console.log(`New similarity calculation failed:`, error);
+              }
+              // Fallback to original candidate list (first 10)
+              setSimilarPlayers(candidatePlayers.slice(0, 10));
+            }
+
             setRetrievingPlayers(false);
           })
           .catch((__) => {
@@ -1539,7 +1576,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         </StickyRow>
         <Row>{table}</Row>
       </LoadingOverlay>
-      
+
       {/* Similarity Configuration Modal */}
       <SimilarityConfigModal
         show={showConfigModal}

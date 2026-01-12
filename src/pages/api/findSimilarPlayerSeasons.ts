@@ -15,11 +15,14 @@ function marshallRequest(
   lookup: Record<string, any>,
   avgEfficiency: number
 ) {
+  // Allow configurable size, default to 10 for backward compatibility
+  const size = parseInt(params.size) || 10;
+  
   const body =
     [
       JSON.stringify({ index: `hoopexp_${genderPrefix}players_*` }),
       JSON.stringify({
-        size: 10,
+        size: size,
         ...playerSimilarityQuery(
           (params.queryVector || "").split(",").map((n: any) => parseFloat(n))
         ),
