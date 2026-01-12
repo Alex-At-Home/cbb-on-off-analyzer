@@ -57,6 +57,12 @@ export class PlayerSimilarityUtils {
   // Improve simple vector (don't include transition), add role based query (others?)
   // (delete buildPlayerSimilarityVector and all the tests - it's not used any more?)
   // need a 2-part query so we return minimal data for the 500 players
+  // move the top-level logic out of PlayerCareerTable into here
+  // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
+  // Doesn't seem to be saving the config for the source player (eg season)
+
+  // More complex:
+  // should I be weighting fields by "IDF"-type stat, eg for a guard the z-score will be tiny for post-ups
 
   ///////////////////////////////////////
 
@@ -109,22 +115,18 @@ export class PlayerSimilarityUtils {
 
   // STEP 2: RESCORING
 
-  /** Build unweighted similarity vector for z-score calculation */
-  static readonly buildUnweightedPlayerSimilarityVector = (
-    player: IndivCareerStatSet,
+  /** Build unweighted similarity vector from flat docvalue_fields format */
+  static readonly buildUnweightedPlayerSimilarityVectorFromFlat = (
+    flatFields: Record<string, any[]>,
     config: SimilarityConfig = DefaultSimilarityConfig
   ): number[] => {
     const vector: number[] = [];
 
-    // Vector structure (all unweighted raw values):
-    // - Play styles (possPctUsg values)
-    // - Additional play style stats (assist/TO/ORB/FT) if not 'none'
-    // - Scoring efficiency per style (WITHOUT rate weighting)
-    // - FG stats (percentage only, WITHOUT rate weighting) if not 'none'
-    // - Gravity bonus if not 'none'
-    // - Usage bonus if not 'none'
-    // - Defense stats if respective weights not 'none'
-    // - Player info if respective weights not 'none'
+    // Helper to get value from flat fields
+    const getValue = (key: string): number => {
+      const values = flatFields[key];
+      return Array.isArray(values) && values.length > 0 ? values[0] : 0;
+    };
 
     // PLAY STYLE SECTION
     for (const pt of PlayerSimilarityUtils.allStyles) {
@@ -132,75 +134,57 @@ export class PlayerSimilarityUtils {
         vector.push(0);
         continue;
       }
-
-      const raw = player.style?.[pt]?.possPctUsg?.value ?? 0;
-      vector.push(raw);
+      vector.push(getValue(`style.${pt}.possPctUsg.value`));
     }
 
     // Additional play style stats (if weights are not 'none')
-    const additionalPlayStyleStats = [
-      { value: player.off_assist?.value ?? 0, weight: config.assistWeighting },
-      { value: player.off_to?.value ?? 0, weight: config.turnoverWeighting },
-      {
-        value: player.off_orb?.value ?? 0,
-        weight: config.offensiveReboundWeighting,
-      },
-      { value: player.off_ftr?.value ?? 0, weight: config.freeThrowWeighting },
+    const additionalStats = [
+      { key: "off_assist.value", weight: config.assistWeighting },
+      { key: "off_to.value", weight: config.turnoverWeighting },
+      { key: "off_orb.value", weight: config.offensiveReboundWeighting },
+      { key: "off_ftr.value", weight: config.freeThrowWeighting },
     ];
 
-    for (const stat of additionalPlayStyleStats) {
+    for (const stat of additionalStats) {
       if (stat.weight !== "none") {
-        vector.push(stat.value);
+        vector.push(getValue(stat.key));
       }
     }
 
-    // SCORING EFFICIENCY SECTION (raw values without rate weighting)
+    // SCORING EFFICIENCY SECTION
     for (const pt of PlayerSimilarityUtils.allStyles) {
       let raw = 0;
-
       switch (config.scoringMode) {
         case "sos-adjusted":
-          raw = player.style?.[pt]?.adj_pts?.value ?? 0;
+          raw = getValue(`style.${pt}.adj_pts.value`);
           break;
         case "raw":
-          raw = player.style?.[pt]?.pts?.value ?? 0;
+          raw = getValue(`style.${pt}.pts.value`);
           break;
         case "relative":
-          // For relative mode, we'll calculate the ratio after we have all players
-          // For now, store raw pts - will be converted in post-processing
-          //TODO: this is wrong, relative is supposed to be shot making / total ppp
-          raw = player.style?.[pt]?.pts?.value ?? 0;
+          raw = getValue(`style.${pt}.pts.value`);
           break;
       }
-
       vector.push(raw);
     }
 
-    // FG BONUS SECTION (percentages only, no rate weighting yet)
+    // FG BONUS SECTION
     if (config.fgBonus !== "none") {
-      const fgStats = [
-        player.off_3p?.value ?? 0,
-        player.off_2pmid?.value ?? 0,
-        player.off_2prim?.value ?? 0,
-      ];
-
-      for (const fgPct of fgStats) {
-        vector.push(fgPct);
-      }
+      vector.push(getValue("off_3p.value"));
+      vector.push(getValue("off_2pmid.value"));
+      vector.push(getValue("off_2prim.value"));
     }
 
     // OFFENSIVE GRAVITY BONUS
     if (config.offensiveGravityBonus !== "none") {
-      const offAdjRapm = (player.off_adj_rapm as Statistic)?.value ?? 0;
-      const offAdjRtg = player.off_adj_rtg?.value ?? 0;
-      const gravityBonus = offAdjRapm - offAdjRtg;
-      vector.push(gravityBonus);
+      const offAdjRapm = getValue("off_adj_rapm.value");
+      const offAdjRtg = getValue("off_adj_rtg.value");
+      vector.push(offAdjRapm - offAdjRtg);
     }
 
     // USAGE BONUS
     if (config.usageBonus !== "none") {
-      const usage = player.off_usage?.value ?? 0;
-      vector.push(usage);
+      vector.push(getValue("off_usage.value"));
     }
 
     // DEFENSE SECTION
@@ -208,14 +192,14 @@ export class PlayerSimilarityUtils {
       let defensiveSkill = 0;
       switch (config.defensiveSkill) {
         case "sos-adjusted":
-          defensiveSkill = (player.def_adj_rapm as Statistic)?.value ?? 0;
+          defensiveSkill = getValue("def_adj_rapm.value");
           break;
         case "raw":
-          defensiveSkill = -(player.def_rtg?.value ?? 1.0) + 1.0;
+          defensiveSkill = -getValue("def_rtg.value") + 1.0;
           break;
         case "relative":
-          const defRapm = (player.def_adj_rapm as Statistic)?.value ?? 0;
-          const onDefPpp = player.on?.def_adj_ppp?.value ?? 1.0;
+          const defRapm = getValue("def_adj_rapm.value");
+          const onDefPpp = getValue("on.def_adj_ppp.value");
           defensiveSkill = defRapm - 0.2 * (onDefPpp - 1.0);
           break;
       }
@@ -223,41 +207,103 @@ export class PlayerSimilarityUtils {
     }
 
     if (config.stocksWeighting !== "none") {
-      const steals = player.def_stl?.value ?? 0;
-      const blocks = player.def_blk?.value ?? 0;
-      const stocks = (steals + blocks) * 50; // per 50 possessions
-      vector.push(stocks);
+      const steals = getValue("def_stl.value");
+      const blocks = getValue("def_blk.value");
+      vector.push((steals + blocks) * 50);
     }
 
     if (config.foulsWeighting !== "none") {
-      const fouls = (player.def_foul?.value ?? 0) * 50;
-      vector.push(fouls);
+      vector.push(getValue("def_foul.value") * 50);
     }
 
     if (config.defensiveReboundWeighting !== "none") {
-      const drb = player.def_orb?.value ?? 0; // note: def_orb is actually DRB
-      vector.push(drb);
+      vector.push(getValue("def_orb.value"));
     }
 
     // PLAYER INFO SECTION
     if (config.classWeighting !== "none") {
-      const playerClass = PlayerSimilarityUtils.parsePlayerClass(
-        player.roster?.year_class
-      );
-      vector.push(playerClass);
+      const yearClassValue = flatFields["roster.year_class.keyword"]?.[0];
+      const yearClass =
+        typeof yearClassValue === "string" ? yearClassValue : "";
+      vector.push(PlayerSimilarityUtils.parsePlayerClass(yearClass));
     }
 
     if (config.heightWeighting !== "none") {
-      const height = PlayerSimilarityUtils.parseHeight(player.roster?.height);
-      vector.push(height);
+      const heightValue = flatFields["roster.height.keyword"]?.[0];
+      const height = typeof heightValue === "string" ? heightValue : "";
+      vector.push(PlayerSimilarityUtils.parseHeight(height));
     }
 
     if (config.minutesWeighting !== "none") {
-      const minutes = player.off_team_poss_pct?.value ?? 0;
-      vector.push(minutes);
+      vector.push(getValue("off_team_poss_pct.value"));
     }
 
     return vector;
+  };
+
+  /** Convert nested player object to flat docvalue_fields format */
+  static readonly playerToFlatFields = (
+    player: IndivCareerStatSet
+  ): Record<string, any[]> => {
+    const fields: Record<string, any[]> = {};
+
+    // Helper to set field value
+    const setField = (key: string, value: any) => {
+      if (value !== undefined && value !== null) {
+        // For nested stat objects, extract the value
+        if (typeof value === "object" && value.value !== undefined) {
+          fields[key] = [value.value];
+        } else if (typeof value === "number") {
+          fields[key] = [value];
+        } else if (typeof value === "string") {
+          fields[key] = [value];
+        }
+      }
+    };
+
+    // Play style fields
+    for (const pt of PlayerSimilarityUtils.allStyles) {
+      const style = player.style?.[pt];
+      if (style) {
+        setField(`style.${pt}.possPctUsg.value`, style.possPctUsg);
+        setField(`style.${pt}.possPct.value`, style.possPct);
+        setField(`style.${pt}.adj_pts.value`, style.adj_pts);
+        setField(`style.${pt}.pts.value`, style.pts);
+      }
+    }
+
+    // Additional stats
+    setField("off_assist.value", player.off_assist);
+    setField("off_to.value", player.off_to);
+    setField("off_orb.value", player.off_orb);
+    setField("off_ftr.value", player.off_ftr);
+    setField("off_3p.value", player.off_3p);
+    setField("off_3pr.value", player.off_3pr);
+    setField("off_2pmid.value", player.off_2pmid);
+    setField("off_2pmidr.value", player.off_2pmidr);
+    setField("off_2prim.value", player.off_2prim);
+    setField("off_2primr.value", player.off_2primr);
+    setField("off_adj_rapm.value", player.off_adj_rapm);
+    setField("off_adj_rtg.value", player.off_adj_rtg);
+    setField("off_usage.value", player.off_usage);
+    setField("off_team_poss_pct.value", player.off_team_poss_pct);
+    setField("def_adj_rapm.value", player.def_adj_rapm);
+    setField("def_rtg.value", player.def_rtg);
+    setField("def_stl.value", player.def_stl);
+    setField("def_blk.value", player.def_blk);
+    setField("def_foul.value", player.def_foul);
+    setField("def_orb.value", player.def_orb);
+    setField("on.def_adj_ppp.value", player.on?.def_adj_ppp);
+
+    // Player info (use .keyword suffix for text fields)
+    if (player.roster?.year_class) {
+      fields["roster.year_class.keyword"] = [player.roster.year_class];
+    }
+    if (player.roster?.height) {
+      fields["roster.height.keyword"] = [player.roster.height];
+    }
+
+    return fields;
   };
 
   /** Convert raw scoring values to relative mode if needed */
@@ -773,14 +819,15 @@ export class PlayerSimilarityUtils {
       return [];
     }
 
-    // Step 2: Build unweighted vectors for all players (including source)
+    // Step 2: Build unweighted vectors for all players (including source) using flat format
     const allPlayers = [sourcePlayer, ...candidates];
-    const allVectors = allPlayers.map((player) =>
-      PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVector(
-        player,
+    const allVectors = allPlayers.map((player) => {
+      const flatFields = PlayerSimilarityUtils.playerToFlatFields(player);
+      return PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+        flatFields,
         config
-      )
-    );
+      );
+    });
 
     // Handle case where vectors have different lengths (shouldn't happen but be safe)
     const minLength = Math.min(...allVectors.map((v) => v.length));

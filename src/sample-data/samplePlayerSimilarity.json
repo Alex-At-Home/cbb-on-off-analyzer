@@ -1,0 +1,729 @@
+{
+   "took": 199,
+   "responses": [
+      {
+         "took": 198,
+         "timed_out": false,
+         "_shards": {
+            "total": 8,
+            "successful": 8,
+            "skipped": 0,
+            "failed": 0
+         },
+         "hits": {
+            "total": {
+               "value": 10000,
+               "relation": "gte"
+            },
+            "max_score": 1,
+            "hits": [
+               {
+                  "_index": "hoopexp_men_players_2025_lping",
+                  "_id": "5187600_Men_2025_all",
+                  "_score": 1,
+                  "fields": {
+                     "style.Post-Up.possPct.value": [
+                        0.0099
+                     ],
+                     "style.PnR Passer.adj_pts.value": [
+                        1.2324
+                     ],
+                     "style.Transition.adj_pts.value": [
+                        1.4786
+                     ],
+                     "def_adj_rapm.value": [
+                        -3.7308
+                     ],
+                     "off_adj_rtg.value": [
+                        6.445
+                     ],
+                     "style.Dribble Jumper.possPctUsg.value": [
+                        0.0112
+                     ],
+                     "def_orb.value": [
+                        0.1219
+                     ],
+                     "style.Post & Kick.possPct.value": [
+                        0
+                     ],
+                     "style.Perimeter Sniper.possPct.value": [
+                        0.1249
+                     ],
+                     "style.Dribble Jumper.pts.value": [
+                        1.0679
+                     ],
+                     "style.Transition.possPctUsg.value": [
+                        0.0586
+                     ],
+                     "style.Big Cut & Roll.possPct.value": [
+                        0
+                     ],
+                     "off_assist.value": [
+                        0.3074
+                     ],
+                     "style.Rim Attack.pts.value": [
+                        0.9636
+                     ],
+                     "style.Dribble Jumper.adj_pts.value": [
+                        1.0847
+                     ],
+                     "def_rtg.value": [
+                        94.5244
+                     ],
+                     "off_2pmidr.value": [
+                        0.1955
+                     ],
+                     "style.Rim Attack.possPct.value": [
+                        0.2545
+                     ],
+                     "off_adj_rapm.value": [
+                        6.1265
+                     ],
+                     "style.Put-Back.pts.value": [
+                        1.785
+                     ],
+                     "roster.height.keyword": [
+                        "6-0"
+                     ],
+                     "off_3pr.value": [
+                        0.3743
+                     ],
+                     "style.Perimeter Sniper.pts.value": [
+                        1.1737
+                     ],
+                     "style.Mid-Range.possPctUsg.value": [
+                        0.0144
+                     ],
+                     "off_2primr.value": [
+                        0.4302
+                     ],
+                     "style.Rim Attack.possPctUsg.value": [
+                        0.0906
+                     ],
+                     "style.Pick & Pop.possPct.value": [
+                        0
+                     ],
+                     "style.Put-Back.possPct.value": [
+                        0.0343
+                     ],
+                     "style.PnR Passer.possPct.value": [
+                        0.1194
+                     ],
+                     "style.Post-Up.pts.value": [
+                        1.2788
+                     ],
+                     "off_2pmid.value": [
+                        0.3714
+                     ],
+                     "style.Attack & Kick.possPctUsg.value": [
+                        0.0531
+                     ],
+                     "style.Mid-Range.possPct.value": [
+                        0.0405
+                     ],
+                     "style.Backdoor Cut.pts.value": [
+                        1.4899
+                     ],
+                     "style.Hits Cutter.possPct.value": [
+                        0.0481
+                     ],
+                     "off_usage.value": [
+                        0.2562
+                     ],
+                     "style.PnR Passer.pts.value": [
+                        1.2134
+                     ],
+                     "style.High-Low.possPct.value": [
+                        0
+                     ],
+                     "off_3p.value": [
+                        0.3881
+                     ],
+                     "off_team_poss_pct.value": [
+                        0.7415
+                     ],
+                     "style.Perimeter Sniper.adj_pts.value": [
+                        1.1921
+                     ],
+                     "on.def_adj_ppp.value": [
+                        94.8646
+                     ],
+                     "style.Attack & Kick.possPct.value": [
+                        0.1492
+                     ],
+                     "style.Post-Up.possPctUsg.value": [
+                        0.0035
+                     ],
+                     "style.Put-Back.possPctUsg.value": [
+                        0.0122
+                     ],
+                     "style.Pick & Pop.adj_pts.value": [
+                        0
+                     ],
+                     "style.Hits Cutter.adj_pts.value": [
+                        1.3505
+                     ],
+                     "style.Mid-Range.adj_pts.value": [
+                        0.7074
+                     ],
+                     "style.PnR Passer.possPctUsg.value": [
+                        0.0425
+                     ],
+                     "style.Put-Back.adj_pts.value": [
+                        1.813
+                     ],
+                     "style.Backdoor Cut.possPctUsg.value": [
+                        0.0083
+                     ],
+                     "style.Hits Cutter.pts.value": [
+                        1.3297
+                     ],
+                     "style.Backdoor Cut.possPct.value": [
+                        0.0232
+                     ],
+                     "style.High-Low.adj_pts.value": [
+                        0
+                     ],
+                     "off_to.value": [
+                        0.1344
+                     ],
+                     "style.Perimeter Sniper.possPctUsg.value": [
+                        0.0445
+                     ],
+                     "style.Transition.possPct.value": [
+                        0.1646
+                     ],
+                     "style.Post-Up.adj_pts.value": [
+                        1.2989
+                     ],
+                     "off_ftr.value": [
+                        0.4302
+                     ],
+                     "style.Pick & Pop.pts.value": [
+                        0
+                     ],
+                     "style.Mid-Range.pts.value": [
+                        0.6965
+                     ],
+                     "style.High-Low.pts.value": [
+                        0
+                     ],
+                     "off_orb.value": [
+                        0.0101
+                     ],
+                     "style.Attack & Kick.pts.value": [
+                        1.1654
+                     ],
+                     "style.Post & Kick.pts.value": [
+                        0
+                     ],
+                     "style.Transition.pts.value": [
+                        1.4558
+                     ],
+                     "style.Hits Cutter.possPctUsg.value": [
+                        0.0171
+                     ],
+                     "roster.year_class.keyword": [
+                        "So"
+                     ],
+                     "style.Attack & Kick.adj_pts.value": [
+                        1.1836
+                     ],
+                     "style.Backdoor Cut.adj_pts.value": [
+                        1.5132
+                     ],
+                     "style.Rim Attack.adj_pts.value": [
+                        0.9787
+                     ],
+                     "style.Big Cut & Roll.adj_pts.value": [
+                        0
+                     ],
+                     "style.Big Cut & Roll.pts.value": [
+                        0
+                     ],
+                     "off_2prim.value": [
+                        0.6883
+                     ],
+                     "style.Dribble Jumper.possPct.value": [
+                        0.0313
+                     ],
+                     "style.Post & Kick.adj_pts.value": [
+                        0
+                     ]
+                  }
+               },
+               {
+                  "_index": "hoopexp_men_players_2018_lping",
+                  "_id": "3907811_Men_2018_all",
+                  "_score": 0.992087,
+                  "fields": {
+                     "style.Post-Up.possPct.value": [
+                        0.0184
+                     ],
+                     "style.PnR Passer.adj_pts.value": [
+                        1.1057
+                     ],
+                     "style.Transition.adj_pts.value": [
+                        1.0611
+                     ],
+                     "def_adj_rapm.value": [
+                        0.484
+                     ],
+                     "off_adj_rtg.value": [
+                        -0.0284
+                     ],
+                     "style.Dribble Jumper.possPctUsg.value": [
+                        0.0061
+                     ],
+                     "def_orb.value": [
+                        0.0963
+                     ],
+                     "style.Post & Kick.possPct.value": [
+                        0
+                     ],
+                     "style.Perimeter Sniper.possPct.value": [
+                        0.1138
+                     ],
+                     "style.Dribble Jumper.pts.value": [
+                        0.8711
+                     ],
+                     "style.Transition.possPctUsg.value": [
+                        0.0476
+                     ],
+                     "style.Big Cut & Roll.possPct.value": [
+                        0
+                     ],
+                     "off_assist.value": [
+                        0.2991
+                     ],
+                     "style.Rim Attack.pts.value": [
+                        0.7242
+                     ],
+                     "style.Dribble Jumper.adj_pts.value": [
+                        0.8938
+                     ],
+                     "def_rtg.value": [
+                        105.5026
+                     ],
+                     "off_2pmidr.value": [
+                        0.209
+                     ],
+                     "style.Rim Attack.possPct.value": [
+                        0.2863
+                     ],
+                     "off_adj_rapm.value": [
+                        0.3314
+                     ],
+                     "style.Put-Back.pts.value": [
+                        1.6667
+                     ],
+                     "roster.height.keyword": [
+                        "6-1"
+                     ],
+                     "off_3pr.value": [
+                        0.377
+                     ],
+                     "style.Perimeter Sniper.pts.value": [
+                        0.9697
+                     ],
+                     "style.Mid-Range.possPctUsg.value": [
+                        0.0202
+                     ],
+                     "off_2primr.value": [
+                        0.4139
+                     ],
+                     "style.Rim Attack.possPctUsg.value": [
+                        0.1015
+                     ],
+                     "style.Pick & Pop.possPct.value": [
+                        0
+                     ],
+                     "style.Put-Back.possPct.value": [
+                        0.015
+                     ],
+                     "style.PnR Passer.possPct.value": [
+                        0.1277
+                     ],
+                     "style.Post-Up.pts.value": [
+                        0.7165
+                     ],
+                     "off_2pmid.value": [
+                        0.1961
+                     ],
+                     "style.Attack & Kick.possPctUsg.value": [
+                        0.0535
+                     ],
+                     "style.Mid-Range.possPct.value": [
+                        0.0571
+                     ],
+                     "style.Backdoor Cut.pts.value": [
+                        1.2772
+                     ],
+                     "style.Hits Cutter.possPct.value": [
+                        0.06
+                     ],
+                     "off_usage.value": [
+                        0.2416
+                     ],
+                     "style.PnR Passer.pts.value": [
+                        1.0777
+                     ],
+                     "style.High-Low.possPct.value": [
+                        0
+                     ],
+                     "off_3p.value": [
+                        0.337
+                     ],
+                     "off_team_poss_pct.value": [
+                        0.6783
+                     ],
+                     "style.Perimeter Sniper.adj_pts.value": [
+                        0.9949
+                     ],
+                     "on.def_adj_ppp.value": [
+                        101.3198
+                     ],
+                     "style.Attack & Kick.possPct.value": [
+                        0.1508
+                     ],
+                     "style.Post-Up.possPctUsg.value": [
+                        0.0065
+                     ],
+                     "style.Put-Back.possPctUsg.value": [
+                        0.0053
+                     ],
+                     "style.Pick & Pop.adj_pts.value": [
+                        0
+                     ],
+                     "style.Hits Cutter.adj_pts.value": [
+                        1.1781
+                     ],
+                     "style.Mid-Range.adj_pts.value": [
+                        0.5063
+                     ],
+                     "style.PnR Passer.possPctUsg.value": [
+                        0.0453
+                     ],
+                     "style.Put-Back.adj_pts.value": [
+                        1.71
+                     ],
+                     "style.Backdoor Cut.possPctUsg.value": [
+                        0.0069
+                     ],
+                     "style.Hits Cutter.pts.value": [
+                        1.1483
+                     ],
+                     "style.Backdoor Cut.possPct.value": [
+                        0.0194
+                     ],
+                     "style.High-Low.adj_pts.value": [
+                        0
+                     ],
+                     "off_to.value": [
+                        0.2185
+                     ],
+                     "style.Perimeter Sniper.possPctUsg.value": [
+                        0.0403
+                     ],
+                     "style.Transition.possPct.value": [
+                        0.1342
+                     ],
+                     "style.Post-Up.adj_pts.value": [
+                        0.7351
+                     ],
+                     "off_ftr.value": [
+                        0.5369
+                     ],
+                     "style.Pick & Pop.pts.value": [
+                        0
+                     ],
+                     "style.Mid-Range.pts.value": [
+                        0.4934
+                     ],
+                     "style.High-Low.pts.value": [
+                        0
+                     ],
+                     "off_orb.value": [
+                        0.0083
+                     ],
+                     "style.Attack & Kick.pts.value": [
+                        0.9964
+                     ],
+                     "style.Post & Kick.pts.value": [
+                        0
+                     ],
+                     "style.Transition.pts.value": [
+                        1.0343
+                     ],
+                     "style.Hits Cutter.possPctUsg.value": [
+                        0.0213
+                     ],
+                     "roster.year_class.keyword": [
+                        "Sr"
+                     ],
+                     "style.Attack & Kick.adj_pts.value": [
+                        1.0223
+                     ],
+                     "style.Backdoor Cut.adj_pts.value": [
+                        1.3104
+                     ],
+                     "style.Rim Attack.adj_pts.value": [
+                        0.743
+                     ],
+                     "style.Big Cut & Roll.adj_pts.value": [
+                        0
+                     ],
+                     "style.Big Cut & Roll.pts.value": [
+                        0
+                     ],
+                     "off_2prim.value": [
+                        0.5149
+                     ],
+                     "style.Dribble Jumper.possPct.value": [
+                        0.0173
+                     ],
+                     "style.Post & Kick.adj_pts.value": [
+                        0
+                     ]
+                  }
+               },
+               {
+                  "_index": "hoopexp_men_players_2020_lping",
+                  "_id": "4592753_Men_2020_all",
+                  "_score": 0.99206555,
+                  "fields": {
+                     "style.Post-Up.possPct.value": [
+                        0.0046
+                     ],
+                     "style.PnR Passer.adj_pts.value": [
+                        0.9131
+                     ],
+                     "style.Transition.adj_pts.value": [
+                        0.9317
+                     ],
+                     "def_adj_rapm.value": [
+                        3.0231
+                     ],
+                     "off_adj_rtg.value": [
+                        -1.638
+                     ],
+                     "style.Dribble Jumper.possPctUsg.value": [
+                        0.0073
+                     ],
+                     "def_orb.value": [
+                        0.0976
+                     ],
+                     "style.Post & Kick.possPct.value": [
+                        0
+                     ],
+                     "style.Perimeter Sniper.possPct.value": [
+                        0.1388
+                     ],
+                     "style.Dribble Jumper.pts.value": [
+                        0.6957
+                     ],
+                     "style.Transition.possPctUsg.value": [
+                        0.0385
+                     ],
+                     "style.Big Cut & Roll.possPct.value": [
+                        0
+                     ],
+                     "off_assist.value": [
+                        0.189
+                     ],
+                     "style.Rim Attack.pts.value": [
+                        0.794
+                     ],
+                     "style.Dribble Jumper.adj_pts.value": [
+                        0.6717
+                     ],
+                     "def_rtg.value": [
+                        103.7019
+                     ],
+                     "off_2pmidr.value": [
+                        0.2549
+                     ],
+                     "style.Rim Attack.possPct.value": [
+                        0.3052
+                     ],
+                     "off_adj_rapm.value": [
+                        -2.0251
+                     ],
+                     "style.Put-Back.pts.value": [
+                        1.1111
+                     ],
+                     "roster.height.keyword": [
+                        "6-2"
+                     ],
+                     "off_3pr.value": [
+                        0.3595
+                     ],
+                     "style.Perimeter Sniper.pts.value": [
+                        0.7997
+                     ],
+                     "style.Mid-Range.possPctUsg.value": [
+                        0.0142
+                     ],
+                     "off_2primr.value": [
+                        0.3856
+                     ],
+                     "style.Rim Attack.possPctUsg.value": [
+                        0.0862
+                     ],
+                     "style.Pick & Pop.possPct.value": [
+                        0
+                     ],
+                     "style.Put-Back.possPct.value": [
+                        0.0269
+                     ],
+                     "style.PnR Passer.possPct.value": [
+                        0.1149
+                     ],
+                     "style.Post-Up.pts.value": [
+                        1.2648
+                     ],
+                     "off_2pmid.value": [
+                        0.3846
+                     ],
+                     "style.Attack & Kick.possPctUsg.value": [
+                        0.037
+                     ],
+                     "style.Mid-Range.possPct.value": [
+                        0.0503
+                     ],
+                     "style.Backdoor Cut.pts.value": [
+                        1.3936
+                     ],
+                     "style.Hits Cutter.possPct.value": [
+                        0.049
+                     ],
+                     "off_usage.value": [
+                        0.2164
+                     ],
+                     "style.PnR Passer.pts.value": [
+                        0.9457
+                     ],
+                     "style.High-Low.possPct.value": [
+                        0
+                     ],
+                     "off_3p.value": [
+                        0.2545
+                     ],
+                     "off_team_poss_pct.value": [
+                        0.7328
+                     ],
+                     "style.Perimeter Sniper.adj_pts.value": [
+                        0.7721
+                     ],
+                     "on.def_adj_ppp.value": [
+                        110.8579
+                     ],
+                     "style.Attack & Kick.possPct.value": [
+                        0.1309
+                     ],
+                     "style.Post-Up.possPctUsg.value": [
+                        0.0013
+                     ],
+                     "style.Put-Back.possPctUsg.value": [
+                        0.0076
+                     ],
+                     "style.Pick & Pop.adj_pts.value": [
+                        0
+                     ],
+                     "style.Hits Cutter.adj_pts.value": [
+                        1.0377
+                     ],
+                     "style.Mid-Range.adj_pts.value": [
+                        0.805
+                     ],
+                     "style.PnR Passer.possPctUsg.value": [
+                        0.0325
+                     ],
+                     "style.Put-Back.adj_pts.value": [
+                        1.0728
+                     ],
+                     "style.Backdoor Cut.possPctUsg.value": [
+                        0.005
+                     ],
+                     "style.Hits Cutter.pts.value": [
+                        1.0747
+                     ],
+                     "style.Backdoor Cut.possPct.value": [
+                        0.0176
+                     ],
+                     "style.High-Low.adj_pts.value": [
+                        0
+                     ],
+                     "off_to.value": [
+                        0.28
+                     ],
+                     "style.Perimeter Sniper.possPctUsg.value": [
+                        0.0392
+                     ],
+                     "style.Transition.possPct.value": [
+                        0.1361
+                     ],
+                     "style.Post-Up.adj_pts.value": [
+                        1.2212
+                     ],
+                     "off_ftr.value": [
+                        0.3791
+                     ],
+                     "style.Pick & Pop.pts.value": [
+                        0
+                     ],
+                     "style.Mid-Range.pts.value": [
+                        0.8338
+                     ],
+                     "style.High-Low.pts.value": [
+                        0
+                     ],
+                     "off_orb.value": [
+                        0.0276
+                     ],
+                     "style.Attack & Kick.pts.value": [
+                        1.0344
+                     ],
+                     "style.Post & Kick.pts.value": [
+                        0
+                     ],
+                     "style.Transition.pts.value": [
+                        0.9649
+                     ],
+                     "style.Hits Cutter.possPctUsg.value": [
+                        0.0138
+                     ],
+                     "roster.year_class.keyword": [
+                        "So"
+                     ],
+                     "style.Attack & Kick.adj_pts.value": [
+                        0.9987
+                     ],
+                     "style.Backdoor Cut.adj_pts.value": [
+                        1.3456
+                     ],
+                     "style.Rim Attack.adj_pts.value": [
+                        0.7666
+                     ],
+                     "style.Big Cut & Roll.adj_pts.value": [
+                        0
+                     ],
+                     "style.Big Cut & Roll.pts.value": [
+                        0
+                     ],
+                     "off_2prim.value": [
+                        0.5763
+                     ],
+                     "style.Dribble Jumper.possPct.value": [
+                        0.0257
+                     ],
+                     "style.Post & Kick.adj_pts.value": [
+                        0
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+}

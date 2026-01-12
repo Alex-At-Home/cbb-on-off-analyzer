@@ -93,9 +93,10 @@ describe("PlayerSimilarityUtils", () => {
       });
     });
 
-    describe("buildUnweightedPlayerSimilarityVector", () => {
+    describe("buildUnweightedPlayerSimilarityVectorFromFlat", () => {
       it("should build unweighted vector with default config", () => {
-        const vector = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVector(samplePlayerCareer);
+        const flatFields = PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+        const vector = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(flatFields);
         
         expect(vector).toBeInstanceOf(Array);
         expect(vector.length).toBeGreaterThan(15); // Should have more elements than just play styles
@@ -104,8 +105,9 @@ describe("PlayerSimilarityUtils", () => {
 
       it("should exclude elements when weights are 'none'", () => {
         const config = { ...DefaultSimilarityConfig, fgBonus: 'none' as const, usageBonus: 'none' as const };
-        const vectorDefault = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVector(samplePlayerCareer);
-        const vectorExcluded = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVector(samplePlayerCareer, config);
+        const flatFields = PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+        const vectorDefault = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(flatFields);
+        const vectorExcluded = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(flatFields, config);
         
         // Vector with exclusions should be shorter
         expect(vectorExcluded.length).toBeLessThan(vectorDefault.length);
@@ -115,8 +117,9 @@ describe("PlayerSimilarityUtils", () => {
         const configWithTransition = { ...DefaultSimilarityConfig, includeTransition: true };
         const configNoTransition = { ...DefaultSimilarityConfig, includeTransition: false };
         
-        const vectorWith = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVector(samplePlayerCareer, configWithTransition);
-        const vectorWithout = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVector(samplePlayerCareer, configNoTransition);
+        const flatFields = PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+        const vectorWith = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(flatFields, configWithTransition);
+        const vectorWithout = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(flatFields, configNoTransition);
         
         // Transition should be at index 14 (last play style)
         expect(vectorWithout[14]).toBe(0);
@@ -318,6 +321,72 @@ describe("PlayerSimilarityUtils", () => {
           // Check total similarity
           expect(typeof result.diagnostics.totalSimilarity).toBe('number');
           expect(Number.isFinite(result.diagnostics.totalSimilarity)).toBe(true);
+        }
+      });
+    });
+
+    describe("Flat Format Functions", () => {
+      it("should build vector from flat docvalue_fields format", () => {
+        // Create sample flat fields (simulating Elasticsearch docvalue_fields response)
+        const flatFields = {
+          "style.Rim Attack.possPctUsg.value": [0.0906],
+          "style.Rim Attack.possPct.value": [0.2545],
+          "style.Rim Attack.adj_pts.value": [0.9787],
+          "style.Rim Attack.pts.value": [0.9636],
+          "off_assist.value": [0.3074],
+          "off_to.value": [0.1344],
+          "off_orb.value": [0.0101],
+          "off_ftr.value": [0.4302],
+          "off_usage.value": [0.2562],
+          "roster.year_class.keyword": ["So"],
+          "roster.height.keyword": ["6-0"]
+        };
+
+        const vector = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+          flatFields,
+          DefaultSimilarityConfig
+        );
+
+        expect(Array.isArray(vector)).toBe(true);
+        expect(vector.length).toBeGreaterThan(0);
+        expect(vector.every((val: number) => typeof val === 'number')).toBe(true);
+      });
+
+      it("should convert nested player to flat fields format", () => {
+        const flatFields = PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+        
+        expect(typeof flatFields).toBe('object');
+        expect(Object.keys(flatFields).length).toBeGreaterThan(0);
+        
+        // Check that style fields are present
+        const styleKeys = Object.keys(flatFields).filter(key => key.startsWith('style.'));
+        expect(styleKeys.length).toBeGreaterThan(0);
+        
+        // Check that values are arrays
+        Object.values(flatFields).forEach(value => {
+          expect(Array.isArray(value)).toBe(true);
+          expect(value.length).toBeGreaterThan(0);
+        });
+      });
+
+      it("should work consistently with round-trip conversion", () => {        
+        // Convert to flat format and back
+        const flatFields = PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+        const vector1 = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+          flatFields,
+          DefaultSimilarityConfig
+        );
+        
+        // Do it again to ensure consistency
+        const vector2 = PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+          flatFields,
+          DefaultSimilarityConfig
+        );
+        
+        // Vectors should be identical
+        expect(vector2.length).toBe(vector1.length);
+        for (let i = 0; i < vector1.length; i++) {
+          expect(vector2[i]).toBe(vector1[i]);
         }
       });
     });

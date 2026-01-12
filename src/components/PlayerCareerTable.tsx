@@ -59,7 +59,10 @@ import { RequestUtils } from "../utils/RequestUtils";
 import fetchBuilder from "fetch-retry-ts";
 import fetch from "isomorphic-unfetch";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
-import { PlayerSimilarityUtils, SimilarityDiagnostics } from "../utils/stats/PlayerSimilarityUtils";
+import {
+  PlayerSimilarityUtils,
+  SimilarityDiagnostics,
+} from "../utils/stats/PlayerSimilarityUtils";
 import { PlayerSimilarityTableUtils } from "./shared/PlayerSimilarityTableUtils";
 //@ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
@@ -117,9 +120,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     []
   );
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
-  const [similarityDiagnostics, setSimilarityDiagnostics] = useState<SimilarityDiagnostics[]>(
-    []
-  );
+  const [similarityDiagnostics, setSimilarityDiagnostics] = useState<
+    SimilarityDiagnostics[]
+  >([]);
 
   // Similarity controls state
   const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(
@@ -1129,7 +1132,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
         setRetrievingPlayers(true);
 
-        // Step 1: Get candidates using existing API (but request more)
+        // Step 1: Get lean candidate data using optimized similarity API
         const allPromises = Promise.all(
           RequestUtils.requestHandlingLogic(
             {
@@ -1155,38 +1158,141 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             isDebug
           )
         );
+
         allPromises
           .then(async (jsons) => {
-            const candidatePlayers = (
-              jsons?.[0]?.responses?.[0]?.hits?.hits || []
-            )
-              .map((p: any) => {
-                const source = p._source || {};
-                source._id = p._id;
-                return source;
+            // Parse lean candidate data from docvalue_fields (keep in flat format)
+            const candidateHits = jsons?.[0]?.responses?.[0]?.hits?.hits || [];
+            const flatCandidates = candidateHits
+              .filter((hit: any) => {
+                return (
+                  hit._id !== currPlayerSelected._id &&
+                  _.endsWith(hit._id, "_all")
+                );
               })
-              .filter(
-                (p: any) =>
-                  !_.isEmpty(p) &&
-                  p._id != currPlayerSelected._id &&
-                  _.endsWith(p._id, "_all")
-              );
+              .map((hit: any) => ({
+                _id: hit._id,
+                fields: hit.fields || {},
+              }));
+
+            if (flatCandidates.length === 0) {
+              setSimilarPlayers([]);
+              setSimilarityDiagnostics([]);
+              setRetrievingPlayers(false);
+              return;
+            }
 
             try {
-              // Step 2: Apply new z-score based similarity calculation with diagnostics
-              const similarityResults =
+              // Step 2: Apply z-score based similarity calculation using flat format
+              const sourceVector =
+                PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+                  // Create flat fields from source player
+                  PlayerSimilarityUtils.playerToFlatFields(currPlayerSelected),
+                  similarityConfig
+                );
+
+              // Calculate vectors for all candidates in flat format
+              const candidateVectors = flatCandidates.map((candidate: any) =>
+                PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+                  candidate.fields,
+                  similarityConfig
+                )
+              );
+
+              // Run similarity calculation
+              const allVectors = [sourceVector, ...candidateVectors];
+              const normalizedVectors =
+                PlayerSimilarityUtils.convertToRelativeScoring(
+                  allVectors,
+                  similarityConfig
+                );
+              const zScoreStats =
+                PlayerSimilarityUtils.calculateZScores(normalizedVectors);
+
+              // Calculate rate weights for source player (using converted nested format)
+              const rateWeights = PlayerSimilarityUtils.calculateRateWeights(
+                currPlayerSelected,
+                similarityConfig
+              );
+
+              // Score each candidate
+              const candidateResults = [];
+              for (let i = 1; i < normalizedVectors.length; i++) {
+                const similarity =
+                  PlayerSimilarityUtils.calculatePlayerSimilarityScore(
+                    normalizedVectors[0],
+                    normalizedVectors[i],
+                    zScoreStats,
+                    rateWeights,
+                    similarityConfig
+                  );
+                candidateResults.push({
+                  _id: flatCandidates[i - 1]._id,
+                  similarity,
+                });
+              }
+
+              // Get IDs of top 10 most similar players
+              const top10Ids = candidateResults
+                .sort((a, b) => a.similarity - b.similarity)
+                .slice(0, 10)
+                .map((result) => result._id);
+
+              if (top10Ids.length === 0) {
+                setSimilarPlayers([]);
+                setSimilarityDiagnostics([]);
+                setRetrievingPlayers(false);
+                return;
+              }
+
+              // Step 3: Fetch full documents for top 10 players
+              const fullDocsPromise = Promise.all(
+                RequestUtils.requestHandlingLogic(
+                  {
+                    gender,
+                    ids: top10Ids.join(","),
+                  } as any,
+                  ParamPrefixes.multiPlayerCareer,
+                  [],
+                  (url: string, force: boolean) => {
+                    return fetchWithRetry(url).then(
+                      (response: fetch.IsomorphicResponse) => {
+                        return response
+                          .json()
+                          .then((json: any) => [json, response.ok, response]);
+                      }
+                    );
+                  },
+                  Number.NaN,
+                  isDebug
+                )
+              );
+
+              const fullDocsResponse = await fullDocsPromise;
+              const fullPlayers = (
+                fullDocsResponse?.[0]?.responses?.[0]?.hits?.hits || []
+              )
+                .map((p: any) => {
+                  const source = p._source || {};
+                  source._id = p._id;
+                  return source;
+                })
+                .filter((p: any) => !_.isEmpty(p));
+
+              // Step 4: Re-score with full data to get diagnostics and proper ordering
+              const finalResults =
                 await PlayerSimilarityUtils.findSimilarPlayers(
                   currPlayerSelected,
                   similarityConfig,
-                  candidatePlayers,
-                  true // Include diagnostics
+                  fullPlayers,
+                  true // Include diagnostics for display
                 );
 
-              // Convert results to match expected format and store diagnostics
-              const formattedResults = similarityResults.map(
+              // Set results
+              const formattedResults = finalResults.map(
                 (result) => result.player
               );
-              const diagnostics = similarityResults
+              const diagnostics = finalResults
                 .map((result) => result.diagnostics)
                 .filter((d): d is SimilarityDiagnostics => d !== undefined);
 
@@ -1194,17 +1300,22 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               setSimilarityDiagnostics(diagnostics);
             } catch (error) {
               if (isDebug) {
-                console.log(`New similarity calculation failed:`, error);
+                console.log(`Similarity calculation failed:`, error);
               }
-              // Fallback to original candidate list (first 10)
-              setSimilarPlayers(candidatePlayers.slice(0, 10));
+              // Fallback to empty list - we can't easily convert flat format to full format
+              setSimilarPlayers([]);
+              setSimilarityDiagnostics([]);
             }
 
             setRetrievingPlayers(false);
           })
-          .catch((__) => {
+          .catch((error) => {
+            if (isDebug) {
+              console.log(`API call failed:`, error);
+            }
             setRetrievingPlayers(false);
             setSimilarPlayers([]);
+            setSimilarityDiagnostics([]);
           });
       }
     }
@@ -1286,7 +1397,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             _.flatMap(similarPlayers, (p, i) => {
               const players = playerRowBuilder(p, p.year || "????", i == 0);
               const extraSimilarityRows =
-                playerSimilarityMode && !_.isEmpty(players) && similarityDiagnostics[i]
+                playerSimilarityMode &&
+                !_.isEmpty(players) &&
+                similarityDiagnostics[i]
                   ? [
                       GenericTableOps.buildTextRow(
                         PlayerSimilarityTableUtils.buildDiagnosticContent(

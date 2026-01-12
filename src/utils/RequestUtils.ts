@@ -245,6 +245,8 @@ export class RequestUtils {
         return `/api/calculatePlayerShotStats?${paramStr}`;
       case ParamPrefixes.playerCareer:
         return `/api/findPlayerSeasons?${paramStr}`;
+      case ParamPrefixes.multiPlayerCareer:
+        return `/api/fetchPlayersByIds?${paramStr}`;
       case ParamPrefixes.similarPlayers:
         return `/api/findSimilarPlayerSeasons?${paramStr}`;
       case ParamPrefixes.gameInfo:
