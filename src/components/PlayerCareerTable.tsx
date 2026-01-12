@@ -59,7 +59,8 @@ import { RequestUtils } from "../utils/RequestUtils";
 import fetchBuilder from "fetch-retry-ts";
 import fetch from "isomorphic-unfetch";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
-import { PlayerSimilarityUtils } from "../utils/stats/PlayerSimilarityUtils";
+import { PlayerSimilarityUtils, SimilarityDiagnostics } from "../utils/stats/PlayerSimilarityUtils";
+import { PlayerSimilarityTableUtils } from "./shared/PlayerSimilarityTableUtils";
 //@ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import StickyRow from "./shared/StickyRow";
@@ -116,6 +117,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     []
   );
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
+  const [similarityDiagnostics, setSimilarityDiagnostics] = useState<SimilarityDiagnostics[]>(
+    []
+  );
 
   // Similarity controls state
   const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(
@@ -1169,20 +1173,25 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               );
 
             try {
-              // Step 2: Apply new z-score based similarity calculation
+              // Step 2: Apply new z-score based similarity calculation with diagnostics
               const similarityResults =
                 await PlayerSimilarityUtils.findSimilarPlayers(
                   currPlayerSelected,
                   similarityConfig,
-                  candidatePlayers
+                  candidatePlayers,
+                  true // Include diagnostics
                 );
 
-              // Convert results to match expected format
+              // Convert results to match expected format and store diagnostics
               const formattedResults = similarityResults.map(
                 (result) => result.player
               );
+              const diagnostics = similarityResults
+                .map((result) => result.diagnostics)
+                .filter((d): d is SimilarityDiagnostics => d !== undefined);
 
               setSimilarPlayers(formattedResults);
+              setSimilarityDiagnostics(diagnostics);
             } catch (error) {
               if (isDebug) {
                 console.log(`New similarity calculation failed:`, error);
@@ -1277,11 +1286,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             _.flatMap(similarPlayers, (p, i) => {
               const players = playerRowBuilder(p, p.year || "????", i == 0);
               const extraSimilarityRows =
-                playerSimilarityMode && !_.isEmpty(players)
+                playerSimilarityMode && !_.isEmpty(players) && similarityDiagnostics[i]
                   ? [
                       GenericTableOps.buildTextRow(
-                        "TODO components here",
-                        "text-center small"
+                        PlayerSimilarityTableUtils.buildDiagnosticContent(
+                          similarityDiagnostics[i],
+                          similarityConfig
+                        ),
+                        "p-0"
                       ),
                       GenericTableOps.buildRowSeparator("1px"),
                     ]

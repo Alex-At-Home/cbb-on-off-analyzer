@@ -275,6 +275,51 @@ describe("PlayerSimilarityUtils", () => {
           expect(results[i].similarity).toBeGreaterThanOrEqual(results[i-1].similarity);
         }
       });
+
+      it("should provide diagnostic information when requested", async () => {
+        const mockCandidates = [createMockPlayer("Test Player")];
+        
+        const results = await PlayerSimilarityUtils.findSimilarPlayers(
+          samplePlayerCareer,
+          DefaultSimilarityConfig,
+          mockCandidates,
+          true // Include diagnostics
+        );
+
+        expect(results).toHaveLength(1);
+        const result = results[0];
+        
+        // Should include diagnostics
+        expect(result.diagnostics).toBeDefined();
+        
+        if (result.diagnostics) {
+          // Check component scores structure
+          expect(result.diagnostics.componentScores).toBeDefined();
+          expect(result.diagnostics.componentScores.playStyle).toBeDefined();
+          expect(result.diagnostics.componentScores.scoringEfficiency).toBeDefined();
+          expect(result.diagnostics.componentScores.defense).toBeDefined();
+          expect(result.diagnostics.componentScores.playerInfo).toBeDefined();
+          
+          // Check that each component has the expected structure
+          Object.values(result.diagnostics.componentScores).forEach(component => {
+            expect(typeof component.weightedZScoreSum).toBe('number');
+            expect(typeof component.totalWeight).toBe('number');
+            expect(Array.isArray(component.statBreakdown)).toBe(true);
+            
+            // Check stat breakdown structure
+            component.statBreakdown.forEach(stat => {
+              expect(typeof stat.name).toBe('string');
+              expect(typeof stat.zScore).toBe('number');
+              expect(typeof stat.weight).toBe('number');
+              expect(typeof stat.weightedAbsoluteZScore).toBe('number');
+            });
+          });
+          
+          // Check total similarity
+          expect(typeof result.diagnostics.totalSimilarity).toBe('number');
+          expect(Number.isFinite(result.diagnostics.totalSimilarity)).toBe(true);
+        }
+      });
     });
   });
 });
