@@ -1275,7 +1275,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           .concat(experimentButtonRow ? [experimentButtonRow] : [])
           .concat(
             _.flatMap(similarPlayers, (p, i) => {
-              return playerRowBuilder(p, p.year || "????", i == 0);
+              const players = playerRowBuilder(p, p.year || "????", i == 0);
+              const extraSimilarityRows =
+                playerSimilarityMode && !_.isEmpty(players)
+                  ? [
+                      GenericTableOps.buildTextRow(
+                        "TODO components here",
+                        "text-center small"
+                      ),
+                      GenericTableOps.buildRowSeparator("1px"),
+                    ]
+                  : [];
+              return players.concat(extraSimilarityRows);
             })
           )
           .value();
