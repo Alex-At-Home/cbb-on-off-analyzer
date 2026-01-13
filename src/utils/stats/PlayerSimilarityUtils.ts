@@ -11,6 +11,7 @@ export interface SimilarityDiagnostics {
     playerInfo: ComponentScore;
   };
   totalSimilarity: number;
+  zScoreStats: { means: number[]; stdDevs: number[] };
 }
 
 export interface ComponentScore {
@@ -24,6 +25,7 @@ export interface StatBreakdown {
   zScore: number;
   weight: number;
   weightedAbsoluteZScore: number;
+  globalStdDev: number; // Global standard deviation for this stat
 }
 
 /** A repo of useful constants and methods for use in determining player similarity */
@@ -94,6 +96,15 @@ export class PlayerSimilarityUtils {
     PlayerSimilarityUtils.medFreqStyles
   );
   static readonly medFreqStylesWeight = 1.5;
+
+  /** Scoring has fewer elements in the vector but is important so we'll emphasis it more */
+  static readonly styledScoringWeight = 4.0;
+
+  /** Scoring has fewer elements in the vector but is important so we'll emphasis it more */
+  static readonly fgWeight = 4.0;
+
+  /** Style has a bunch of elements so we reduce it a bit */
+  static readonly styleFrequencyWeight = 0.66;
 
   // STEP 1: SIMPLE QUERY VECTOR
 
@@ -399,10 +410,12 @@ export class PlayerSimilarityUtils {
       (sum, rate) => sum + Math.sqrt(rate),
       0
     );
-    const styleRateWeights = styleRates.map((rate) =>
-      styleSqrtSum > 0
-        ? Math.sqrt(rate) / styleSqrtSum
-        : 1.0 / styleRates.length
+    const styleRateWeights = styleRates.map(
+      (rate) =>
+        PlayerSimilarityUtils.styledScoringWeight *
+        (styleSqrtSum > 0
+          ? Math.sqrt(rate) / styleSqrtSum
+          : 1.0 / styleRates.length)
     );
 
     // FG rate weights (for FG bonus section)
@@ -414,165 +427,19 @@ export class PlayerSimilarityUtils {
         player.off_2primr?.value ?? 0,
       ];
       const fgSqrtSum = fgRates.reduce((sum, rate) => sum + Math.sqrt(rate), 0);
-      fgRateWeights = fgRates.map((rate) =>
-        fgSqrtSum > 0 ? Math.sqrt(rate) / fgSqrtSum : 1.0 / fgRates.length
+      fgRateWeights = fgRates.map(
+        (rate) =>
+          PlayerSimilarityUtils.fgWeight *
+          (fgSqrtSum > 0 ? Math.sqrt(rate) / fgSqrtSum : 1.0 / fgRates.length)
       );
     }
 
     return { styleRateWeights, fgRateWeights };
   };
 
-  /** Calculate similarity score between source player and candidate using z-scores */
-  static readonly calculatePlayerSimilarityScore = (
-    sourceVector: number[],
-    candidateVector: number[],
-    zScoreStats: { means: number[]; stdDevs: number[] },
-    rateWeights: { styleRateWeights: number[]; fgRateWeights: number[] },
-    config: SimilarityConfig
-  ): number => {
-    if (sourceVector.length !== candidateVector.length) {
-      throw new Error("Vector length mismatch");
-    }
-
-    let totalScore = 0;
-    let totalWeight = 0;
-    let vectorIndex = 0;
-
-    // Helper to process vector section with weights
-    const processSection = (
-      length: number,
-      componentWeight: number,
-      dropdownWeight: number = 1.0,
-      sectionRateWeights?: number[]
-    ) => {
-      for (let i = 0; i < length; i++) {
-        const diff = sourceVector[vectorIndex] - candidateVector[vectorIndex];
-        const zScore =
-          zScoreStats.stdDevs[vectorIndex] > 0
-            ? diff / zScoreStats.stdDevs[vectorIndex]
-            : 0;
-
-        // Bound z-score to [-3, 3]
-        const boundedZScore = Math.max(-3, Math.min(3, zScore));
-
-        // Calculate weight
-        let weight = componentWeight * dropdownWeight;
-        if (sectionRateWeights && i < sectionRateWeights.length) {
-          weight *= sectionRateWeights[i];
-        }
-
-        // Squared difference in z-score space
-        const scoreDiff = boundedZScore * boundedZScore;
-
-        totalScore += scoreDiff * weight;
-        totalWeight += weight;
-        vectorIndex++;
-      }
-    };
-
-    // PLAY STYLE SECTION
-    processSection(
-      PlayerSimilarityUtils.allStyles.length,
-      config.playStyleWeight
-    );
-
-    // Additional play style stats
-    const additionalStats = [
-      { weight: config.assistWeighting },
-      { weight: config.turnoverWeighting },
-      { weight: config.offensiveReboundWeighting },
-      { weight: config.freeThrowWeighting },
-    ];
-
-    for (const stat of additionalStats) {
-      if (stat.weight !== "none") {
-        processSection(
-          1,
-          config.playStyleWeight,
-          PlayerSimilarityUtils.dropdownWeights[stat.weight]
-        );
-      }
-    }
-
-    // SCORING EFFICIENCY SECTION (with rate weights)
-    processSection(
-      PlayerSimilarityUtils.allStyles.length,
-      config.scoringEfficiencyWeight,
-      1.0,
-      rateWeights.styleRateWeights
-    );
-
-    // FG BONUS SECTION
-    if (config.fgBonus !== "none") {
-      processSection(
-        3,
-        config.scoringEfficiencyWeight,
-        PlayerSimilarityUtils.dropdownWeights[config.fgBonus],
-        rateWeights.fgRateWeights
-      );
-    }
-
-    // GRAVITY AND USAGE BONUSES
-    if (config.offensiveGravityBonus !== "none") {
-      processSection(
-        1,
-        config.scoringEfficiencyWeight,
-        PlayerSimilarityUtils.dropdownWeights[config.offensiveGravityBonus]
-      );
-    }
-
-    if (config.usageBonus !== "none") {
-      processSection(
-        1,
-        config.scoringEfficiencyWeight,
-        PlayerSimilarityUtils.dropdownWeights[config.usageBonus]
-      );
-    }
-
-    // DEFENSE SECTION
-    const defenseStats = [
-      { weight: config.defensiveSkill, dropdown: "default" as const },
-      { weight: config.stocksWeighting, dropdown: config.stocksWeighting },
-      { weight: config.foulsWeighting, dropdown: config.foulsWeighting },
-      {
-        weight: config.defensiveReboundWeighting,
-        dropdown: config.defensiveReboundWeighting,
-      },
-    ];
-
-    for (const stat of defenseStats) {
-      if (stat.weight !== "none") {
-        processSection(
-          1,
-          config.defenseWeight,
-          PlayerSimilarityUtils.dropdownWeights[stat.dropdown]
-        );
-      }
-    }
-
-    // PLAYER INFO SECTION
-    const playerInfoStats = [
-      { weight: config.classWeighting },
-      { weight: config.heightWeighting },
-      { weight: config.minutesWeighting },
-    ];
-
-    for (const stat of playerInfoStats) {
-      if (stat.weight !== "none") {
-        processSection(
-          1,
-          config.playerInfoWeight,
-          PlayerSimilarityUtils.dropdownWeights[stat.weight]
-        );
-      }
-    }
-
-    // Return inverse similarity (lower is more similar)
-    return totalWeight > 0 ? totalScore / totalWeight : Infinity;
-  };
 
   /** Calculate similarity score with diagnostic information */
-  static readonly calculatePlayerSimilarityScoreWithDiagnostics = (
+  static readonly calculatePlayerSimilarityScore = (
     sourceVector: number[],
     candidateVector: number[],
     zScoreStats: { means: number[]; stdDevs: number[] },
@@ -595,6 +462,7 @@ export class PlayerSimilarityUtils {
         playerInfo: { weightedZScoreSum: 0, totalWeight: 0, statBreakdown: [] },
       },
       totalSimilarity: 0,
+      zScoreStats: zScoreStats,
     };
 
     let totalScore = 0;
@@ -646,6 +514,7 @@ export class PlayerSimilarityUtils {
             zScore: boundedZScore,
             weight: weight,
             weightedAbsoluteZScore: Math.abs(boundedZScore) * weight,
+            globalStdDev: zScoreStats.stdDevs[vectorIndex], // Current vector index
           });
         }
 
@@ -658,7 +527,8 @@ export class PlayerSimilarityUtils {
       PlayerSimilarityUtils.allStyles.length,
       config.playStyleWeight,
       "playStyle",
-      PlayerSimilarityUtils.allStyles
+      PlayerSimilarityUtils.allStyles,
+      PlayerSimilarityUtils.styleFrequencyWeight
     );
 
     // Additional play style stats
@@ -797,13 +667,12 @@ export class PlayerSimilarityUtils {
   static readonly findSimilarPlayers = async (
     sourcePlayer: IndivCareerStatSet,
     config: SimilarityConfig = DefaultSimilarityConfig,
-    candidatePlayers?: IndivCareerStatSet[], // Optional for testing, will fetch if not provided
-    includeDiagnostics: boolean = false
+    candidatePlayers?: IndivCareerStatSet[] // Optional for testing, will fetch if not provided
   ): Promise<
     Array<{
       player: IndivCareerStatSet;
       similarity: number;
-      diagnostics?: SimilarityDiagnostics;
+      diagnostics: SimilarityDiagnostics;
     }>
   > => {
     // Step 1: Get candidate players (top 500 using simple similarity)
@@ -855,41 +724,25 @@ export class PlayerSimilarityUtils {
     const candidateResults: Array<{
       player: IndivCareerStatSet;
       similarity: number;
-      diagnostics?: SimilarityDiagnostics;
+      diagnostics: SimilarityDiagnostics;
     }> = [];
 
     for (let i = 1; i < normalizedVectors.length; i++) {
       const candidateVector = normalizedVectors[i];
 
-      if (includeDiagnostics) {
-        const diagnostics =
-          PlayerSimilarityUtils.calculatePlayerSimilarityScoreWithDiagnostics(
-            sourceVector,
-            candidateVector,
-            zScoreStats,
-            rateWeights,
-            config
-          );
+      const diagnostics = PlayerSimilarityUtils.calculatePlayerSimilarityScore(
+        sourceVector,
+        candidateVector,
+        zScoreStats,
+        rateWeights,
+        config
+      );
 
-        candidateResults.push({
-          player: candidates[i - 1],
-          similarity: diagnostics.totalSimilarity,
-          diagnostics,
-        });
-      } else {
-        const similarity = PlayerSimilarityUtils.calculatePlayerSimilarityScore(
-          sourceVector,
-          candidateVector,
-          zScoreStats,
-          rateWeights,
-          config
-        );
-
-        candidateResults.push({
-          player: candidates[i - 1],
-          similarity,
-        });
-      }
+      candidateResults.push({
+        player: candidates[i - 1],
+        similarity: diagnostics.totalSimilarity,
+        diagnostics,
+      });
     }
 
     // Step 6: Sort by similarity (lower is more similar) and return top 10

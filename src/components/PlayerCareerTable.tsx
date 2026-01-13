@@ -821,9 +821,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       >
         <span>
           <b>net: </b>
-          <b style={adjMarginShadow}>
-            [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
-          </b>
+        <b style={adjMarginShadow}>
+          [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
+        </b>
           {_.thru(
             showGrades && !showStandaloneGrades,
             (showInlineRapmNetGrade) => {
@@ -1218,7 +1218,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               // Score each candidate
               const candidateResults = [];
               for (let i = 1; i < normalizedVectors.length; i++) {
-                const similarity =
+                const diagnostics =
                   PlayerSimilarityUtils.calculatePlayerSimilarityScore(
                     normalizedVectors[0],
                     normalizedVectors[i],
@@ -1228,7 +1228,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   );
                 candidateResults.push({
                   _id: flatCandidates[i - 1]._id,
-                  similarity,
+                  similarity: diagnostics.totalSimilarity,
                 });
               }
 
@@ -1272,11 +1272,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               const fullPlayers = (
                 fullDocsResponse?.[0]?.responses?.[0]?.hits?.hits || []
               )
-                .map((p: any) => {
-                  const source = p._source || {};
-                  source._id = p._id;
-                  return source;
-                })
+              .map((p: any) => {
+                const source = p._source || {};
+                source._id = p._id;
+                return source;
+              })
                 .filter((p: any) => !_.isEmpty(p));
 
               // Step 4: Re-score with full data to get diagnostics and proper ordering
@@ -1284,17 +1284,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 await PlayerSimilarityUtils.findSimilarPlayers(
                   currPlayerSelected,
                   similarityConfig,
-                  fullPlayers,
-                  true // Include diagnostics for display
+                  fullPlayers
                 );
 
               // Set results
               const formattedResults = finalResults.map(
                 (result) => result.player
               );
-              const diagnostics = finalResults
-                .map((result) => result.diagnostics)
-                .filter((d): d is SimilarityDiagnostics => d !== undefined);
+              const diagnostics = finalResults.map((result) => result.diagnostics);
 
               setSimilarPlayers(formattedResults);
               setSimilarityDiagnostics(diagnostics);
@@ -1358,13 +1355,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         const experimentLink = showSimilaritySettings
           ? "hide settings"
           : "experiment";
-        const similarityRow = GenericTableOps.buildTextRow(
-          <span>
-            <i>
-              Similar Players: (
-              <a href="#" onClick={() => setSimilarPlayers([])}>
-                clear
-              </a>
+      const similarityRow = GenericTableOps.buildTextRow(
+        <span>
+          <i>
+            Similar Players: (
+            <a href="#" onClick={() => setSimilarPlayers([])}>
+              clear
+            </a>
               ) | (
               <a
                 href="#"
@@ -1374,27 +1371,27 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               >
                 {experimentLink}
               </a>
-              )
-            </i>
-          </span>,
-          "text-center"
-        );
+            )
+          </i>
+        </span>,
+        "text-center"
+      );
 
         const experimentButtonRow = showSimilaritySettings
           ? GenericTableOps.buildTextRow(
-              <Button onClick={() => requestSimilarPlayers()}>
-                Find Similar Players
-              </Button>,
-              "text-center"
+        <Button onClick={() => requestSimilarPlayers()}>
+          Find Similar Players
+        </Button>,
+        "text-center"
             )
           : null;
 
-        return tableDataPhase1Chain
+      return tableDataPhase1Chain
           .concat([similarityRow])
           .concat(showSimilaritySettings ? [similarityControlsRow] : [])
           .concat(experimentButtonRow ? [experimentButtonRow] : [])
-          .concat(
-            _.flatMap(similarPlayers, (p, i) => {
+        .concat(
+          _.flatMap(similarPlayers, (p, i) => {
               const players = playerRowBuilder(p, p.year || "????", i == 0);
               const extraSimilarityRows =
                 playerSimilarityMode &&
@@ -1412,9 +1409,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     ]
                   : [];
               return players.concat(extraSimilarityRows);
-            })
-          )
-          .value();
+          })
+        )
+        .value();
       }
     } else {
       return tableDataPhase1Chain.value();

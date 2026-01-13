@@ -5,6 +5,9 @@ import { SimilarityConfig } from "../../utils/FilterModels";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 
+// Global debug flag to show z-scores in component names
+const debugShowZScores = false;
+
 interface Props {
   diagnostics: SimilarityDiagnostics;
   config: SimilarityConfig;
@@ -92,14 +95,21 @@ export class PlayerSimilarityTableUtils {
           {/* Summary row */}
           <div className="d-flex flex-wrap justify-content-center align-items-center p-2 small">
             {componentData.map((component, index) => (
-              <React.Fragment key={component.name}>
+              <React.Fragment key={component.cleanName}>
                 <div className="d-flex align-items-center">
-                  <strong>{component.name}:</strong>
+                  <strong>
+                    {component.name}:
+                    {debugShowZScores && (
+                      <span className="text-muted font-weight-normal ml-1">
+                        ({component.avgZScore.toFixed(3)})
+                      </span>
+                    )}
+                  </strong>
                   <span className="ml-1">
                     <OverlayTrigger
                       placement="top"
                       overlay={
-                        <Tooltip id={`tooltip-${component.name.toLowerCase()}-breakdown`}>
+                        <Tooltip id={`tooltip-${component.cleanName}-breakdown`}>
                           {PlayerSimilarityTableUtils.buildSimpleStatBreakdownTooltip(component.breakdown)}
                         </Tooltip>
                       }
@@ -116,15 +126,15 @@ export class PlayerSimilarityTableUtils {
                       </span>
                     </OverlayTrigger>
                   </span>
-                  <span className="ml-1">
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id={`tooltip-${component.name.toLowerCase()}-weight`}>
-                          Base relative weight, before applying slider bonus/penalty
-                        </Tooltip>
-                      }
-                    >
+                <span className="ml-1">
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id={`tooltip-${component.cleanName}-weight`}>
+                        Base relative weight, before applying slider bonus/penalty
+                      </Tooltip>
+                    }
+                  >
                       <span className="text-muted">
                         (x{component.displayWeight}%)
                       </span>
@@ -153,8 +163,15 @@ export class PlayerSimilarityTableUtils {
             <div className="px-2 pb-2">
               <div className="row small">
                 {componentData.map((component) => (
-                  <div key={component.name} className="col-3">
-                    <div className="font-weight-bold mb-1">{component.name}</div>
+                  <div key={component.cleanName} className="col-3">
+                    <div className="font-weight-bold mb-1">
+                      {component.name}
+                      {debugShowZScores && (
+                        <span className="text-muted font-weight-normal ml-1">
+                          ({component.avgZScore.toFixed(3)})
+                        </span>
+                      )}
+                    </div>
                     <ul className="list-unstyled mb-0" style={{ fontSize: '0.8rem' }}>
                       {component.breakdown
                         .sort((a, b) => Math.abs(b.zScore) - Math.abs(a.zScore))
@@ -164,7 +181,14 @@ export class PlayerSimilarityTableUtils {
                           
                           return (
                             <li key={stat.name} className="d-flex justify-content-between">
-                              <span>{stat.name}:</span>
+                              <span>
+                                {stat.name}:
+                                {debugShowZScores && stat.globalStdDev !== undefined && (
+                                  <span className="text-muted ml-1">
+                                    ({stat.globalStdDev.toFixed(3)})
+                                  </span>
+                                )}
+                              </span>
                               <span>
                                 <span
                                   style={{
@@ -205,14 +229,17 @@ export class PlayerSimilarityTableUtils {
     config: SimilarityConfig
   ) => {
     const components = [
-      { name: 'Style', key: 'playStyle' as const, weight: config.playStyleWeight },
-      { name: 'Scoring', key: 'scoringEfficiency' as const, weight: config.scoringEfficiencyWeight },
-      { name: 'Defense', key: 'defense' as const, weight: config.defenseWeight },
-      { name: 'Info', key: 'playerInfo' as const, weight: config.playerInfoWeight },
+      { name: 'Style', key: 'playStyle' as const, weight: config.playStyleWeight, cleanName: 'style' },
+      { name: 'Scoring', key: 'scoringEfficiency' as const, weight: config.scoringEfficiencyWeight, cleanName: 'scoring' },
+      { name: 'Defense', key: 'defense' as const, weight: config.defenseWeight, cleanName: 'defense' },
+      { name: 'Info', key: 'playerInfo' as const, weight: config.playerInfoWeight, cleanName: 'info' },
     ];
 
-    // Calculate total config weight for relative percentages
-    const totalConfigWeight = components.reduce((sum, comp) => sum + comp.weight, 0);
+    // Calculate total actual weight (sum of all per-element weights across components)
+    const totalActualWeight = components.reduce((sum, comp) => {
+      const componentScore = diagnostics.componentScores[comp.key];
+      return sum + componentScore.totalWeight;
+    }, 0);
 
     return components.map(component => {
       const componentScore = diagnostics.componentScores[component.key];
@@ -223,16 +250,21 @@ export class PlayerSimilarityTableUtils {
         : 0;
       const normalizedScore = Math.max(0, Math.min(100, (3 - avgZScore) / 3 * 100));
       
-      // Calculate relative weight percentage
-      const relativeWeight = totalConfigWeight > 0 
-        ? (component.weight / totalConfigWeight) * 100 
-        : 25; // Equal weights if no config
+      // Calculate relative weight percentage based on actual per-element weights
+      const relativeWeight = totalActualWeight > 0 
+        ? (componentScore.totalWeight / totalActualWeight) * 100 
+        : 25; // Equal weights if no data
+
+      // Keep name clean for display logic
+      const displayName = component.name;
 
       return {
-        name: component.name,
+        name: displayName,
+        cleanName: component.cleanName, // For tooltip IDs
         displayScore: Math.round(normalizedScore),
         normalizedScore: normalizedScore / 100, // For color calculation (0-1 range)
         displayWeight: Math.round(relativeWeight),
+        avgZScore: Math.abs(avgZScore), // For debug display
         breakdown: componentScore.statBreakdown,
       };
     });

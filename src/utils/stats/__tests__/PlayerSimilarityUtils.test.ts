@@ -10,7 +10,7 @@ const createMockPlayer = (playerName: string = "Test Player"): IndivCareerStatSe
     height: "6-4",
     year_class: "Jr",
   },
-  style: {
+      style: {
     "Rim Attack": { possPctUsg: { value: 0.15 }, possPct: { value: 0.08 }, pts: { value: 1.2 }, adj_pts: { value: 1.1 } },
     "Attack & Kick": { possPctUsg: { value: 0.10 }, possPct: { value: 0.05 }, pts: { value: 0.9 }, adj_pts: { value: 0.95 } },
     "Perimeter Sniper": { possPctUsg: { value: 0.12 }, possPct: { value: 0.06 }, pts: { value: 1.1 }, adj_pts: { value: 1.05 } },
@@ -26,9 +26,9 @@ const createMockPlayer = (playerName: string = "Test Player"): IndivCareerStatSe
     "High-Low": { possPctUsg: { value: 0.01 }, possPct: { value: 0.01 }, pts: { value: 1.3 }, adj_pts: { value: 1.28 } },
     "Put-Back": { possPctUsg: { value: 0.02 }, possPct: { value: 0.01 }, pts: { value: 1.5 }, adj_pts: { value: 1.45 } },
     "Transition": { possPctUsg: { value: 0.13 }, possPct: { value: 0.07 }, pts: { value: 1.2 }, adj_pts: { value: 1.18 } },
-  },
-  off_3p: { value: 0.35 },
-  off_2pmid: { value: 0.42 },
+      },
+      off_3p: { value: 0.35 },
+      off_2pmid: { value: 0.42 },
   off_2prim: { value: 0.68 },
   off_3pr: { value: 0.30 },
   off_2pmidr: { value: 0.15 },
@@ -165,12 +165,12 @@ describe("PlayerSimilarityUtils", () => {
         expect(styleRateWeights.length).toBe(15);
         expect(fgRateWeights.length).toBe(3);
         
-        // All weights should sum to 1 (approximately)
+        // Style weights should sum to styledScoringWeight (4.0), FG weights sum to fgWeight (4.0)
         const styleSum = styleRateWeights.reduce((sum: number, w: number) => sum + w, 0);
         const fgSum = fgRateWeights.reduce((sum: number, w: number) => sum + w, 0);
         
-        expect(styleSum).toBeCloseTo(1, 5);
-        expect(fgSum).toBeCloseTo(1, 5);
+        expect(styleSum).toBeCloseTo(PlayerSimilarityUtils.styledScoringWeight, 5);
+        expect(fgSum).toBeCloseTo(PlayerSimilarityUtils.fgWeight, 5);
       });
 
       it("should handle fgBonus = none", () => {
@@ -181,54 +181,6 @@ describe("PlayerSimilarityUtils", () => {
       });
     });
 
-    describe("calculatePlayerSimilarityScore", () => {
-      it("should calculate similarity score between players", () => {
-        const sourceVector = [1, 2, 3, 4, 5];
-        const candidateVector = [1.1, 2.1, 3.1, 4.1, 5.1];
-        const zScoreStats = {
-          means: [1, 2, 3, 4, 5],
-          stdDevs: [0.1, 0.1, 0.1, 0.1, 0.1]
-        };
-        const rateWeights = {
-          styleRateWeights: [0.2, 0.2, 0.2, 0.2, 0.2],
-          fgRateWeights: []
-        };
-        
-        const score = PlayerSimilarityUtils.calculatePlayerSimilarityScore(
-          sourceVector,
-          candidateVector,
-          zScoreStats,
-          rateWeights,
-          DefaultSimilarityConfig
-        );
-        
-        expect(typeof score).toBe('number');
-        expect(score).toBeGreaterThan(0);
-        expect(Number.isFinite(score)).toBe(true);
-      });
-
-      it("should handle identical players", () => {
-        const identicalVector = [1, 2, 3, 4, 5];
-        const zScoreStats = {
-          means: [1, 2, 3, 4, 5],
-          stdDevs: [0.1, 0.1, 0.1, 0.1, 0.1]
-        };
-        const rateWeights = {
-          styleRateWeights: [0.2, 0.2, 0.2, 0.2, 0.2],
-          fgRateWeights: []
-        };
-        
-        const score = PlayerSimilarityUtils.calculatePlayerSimilarityScore(
-          identicalVector,
-          identicalVector,
-          zScoreStats,
-          rateWeights,
-          DefaultSimilarityConfig
-        );
-        
-        expect(score).toBe(0); // Identical players should have 0 difference
-      });
-    });
 
     describe("findSimilarPlayers", () => {
       it("should find similar players from candidate list", async () => {
@@ -252,6 +204,7 @@ describe("PlayerSimilarityUtils", () => {
         results.forEach(result => {
           expect(result).toHaveProperty('player');
           expect(result).toHaveProperty('similarity');
+          expect(result).toHaveProperty('diagnostics');
           expect(typeof result.similarity).toBe('number');
         });
       });
@@ -279,49 +232,52 @@ describe("PlayerSimilarityUtils", () => {
         }
       });
 
-      it("should provide diagnostic information when requested", async () => {
+      it("should provide diagnostic information", async () => {
         const mockCandidates = [createMockPlayer("Test Player")];
         
         const results = await PlayerSimilarityUtils.findSimilarPlayers(
           samplePlayerCareer,
           DefaultSimilarityConfig,
-          mockCandidates,
-          true // Include diagnostics
+          mockCandidates
         );
 
         expect(results).toHaveLength(1);
         const result = results[0];
         
-        // Should include diagnostics
+        // Should always include diagnostics
         expect(result.diagnostics).toBeDefined();
         
-        if (result.diagnostics) {
-          // Check component scores structure
-          expect(result.diagnostics.componentScores).toBeDefined();
-          expect(result.diagnostics.componentScores.playStyle).toBeDefined();
-          expect(result.diagnostics.componentScores.scoringEfficiency).toBeDefined();
-          expect(result.diagnostics.componentScores.defense).toBeDefined();
-          expect(result.diagnostics.componentScores.playerInfo).toBeDefined();
+        // Check component scores structure
+        expect(result.diagnostics.componentScores).toBeDefined();
+        expect(result.diagnostics.componentScores.playStyle).toBeDefined();
+        expect(result.diagnostics.componentScores.scoringEfficiency).toBeDefined();
+        expect(result.diagnostics.componentScores.defense).toBeDefined();
+        expect(result.diagnostics.componentScores.playerInfo).toBeDefined();
+        
+        // Check that each component has the expected structure
+        Object.values(result.diagnostics.componentScores).forEach(component => {
+          expect(typeof component.weightedZScoreSum).toBe('number');
+          expect(typeof component.totalWeight).toBe('number');
+          expect(Array.isArray(component.statBreakdown)).toBe(true);
           
-          // Check that each component has the expected structure
-          Object.values(result.diagnostics.componentScores).forEach(component => {
-            expect(typeof component.weightedZScoreSum).toBe('number');
-            expect(typeof component.totalWeight).toBe('number');
-            expect(Array.isArray(component.statBreakdown)).toBe(true);
-            
-            // Check stat breakdown structure
-            component.statBreakdown.forEach(stat => {
-              expect(typeof stat.name).toBe('string');
-              expect(typeof stat.zScore).toBe('number');
-              expect(typeof stat.weight).toBe('number');
-              expect(typeof stat.weightedAbsoluteZScore).toBe('number');
-            });
+          // Check stat breakdown structure
+          component.statBreakdown.forEach(stat => {
+            expect(typeof stat.name).toBe('string');
+            expect(typeof stat.zScore).toBe('number');
+            expect(typeof stat.weight).toBe('number');
+            expect(typeof stat.weightedAbsoluteZScore).toBe('number');
+            expect(typeof stat.globalStdDev).toBe('number');
           });
-          
-          // Check total similarity
-          expect(typeof result.diagnostics.totalSimilarity).toBe('number');
-          expect(Number.isFinite(result.diagnostics.totalSimilarity)).toBe(true);
-        }
+        });
+        
+        // Check total similarity
+        expect(typeof result.diagnostics.totalSimilarity).toBe('number');
+        expect(Number.isFinite(result.diagnostics.totalSimilarity)).toBe(true);
+        
+        // Check z-score statistics
+        expect(result.diagnostics.zScoreStats).toBeDefined();
+        expect(Array.isArray(result.diagnostics.zScoreStats.means)).toBe(true);
+        expect(Array.isArray(result.diagnostics.zScoreStats.stdDevs)).toBe(true);
       });
     });
 
