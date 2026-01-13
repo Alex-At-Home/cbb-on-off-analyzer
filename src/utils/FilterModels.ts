@@ -352,7 +352,7 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   offensiveReboundWeighting: "default",
   freeThrowWeighting: "default",
   scoringMode: "sos-adjusted",
-  offensiveGravityBonus: "default",
+  offensiveGravityBonus: "less",
   fgBonus: "default",
   usageBonus: "default",
   defensiveSkill: "sos-adjusted",
@@ -361,7 +361,7 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   foulsWeighting: "default",
   classWeighting: "default",
   heightWeighting: "default",
-  minutesWeighting: "default",
+  minutesWeighting: "none",
 };
 
 export type PlayerCareerParams = {

@@ -50,22 +50,16 @@ export class PlayerSimilarityUtils {
   //  weight as the square root of the rate divided by the sum of the square roots
 
   //TODO:
-  // create and show "component scores"
   // add pins and "x"s
   // "show next season for pinned teams"
   // different "config option weights"
-  // (tidy up layout of config)
   // (clear similarity pins/view when player changes)
-  // Improve simple vector (don't include transition), add role based query (others?)
-  // (delete buildPlayerSimilarityVector and all the tests - it's not used any more?)
-  // need a 2-part query so we return minimal data for the 500 players
+  // Role based query (others?)
   // move the top-level logic out of PlayerCareerTable into here
   // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
   // Doesn't seem to be saving the config for the source player (eg season)
-  // NOTE: `npm run build` always fails with EPERM error on .env file - known issue
-
-  // More complex:
-  // should I be weighting fields by "IDF"-type stat, eg for a guard the z-score will be tiny for post-ups
+  // Defense and class diffs seem wrong
+  // Should also have a FT% element (weighted by FTR, and maybe down)
 
   ///////////////////////////////////////
 
@@ -436,7 +430,6 @@ export class PlayerSimilarityUtils {
 
     return { styleRateWeights, fgRateWeights };
   };
-
 
   /** Calculate similarity score with diagnostic information */
   static readonly calculatePlayerSimilarityScore = (

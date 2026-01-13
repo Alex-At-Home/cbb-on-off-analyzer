@@ -153,9 +153,8 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         <Row className="mb-4">
           <Col xs={12}>
             <h5 className="mb-3">Scoring Efficiency</h5>
-            {/* Top row: Scoring Mode and FG Bonus */}
-            <Row className="mb-3">
-              <Col xs={6}>
+            <Row>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
                     <small><b>Scoring mode</b></small>
@@ -173,7 +172,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                   </Form.Control>
                 </Form.Group>
               </Col>
-              <Col xs={6}>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
                     <small><b>FG bonus</b></small>
@@ -191,13 +190,10 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                   </Form.Control>
                 </Form.Group>
               </Col>
-            </Row>
-            {/* Bottom row: Offensive Gravity Bonus and Usage Bonus */}
-            <Row>
-              <Col xs={6}>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
-                    <small><b>Offensive gravity bonus</b></small>
+                    <small><b>Gravity bonus</b></small>
                   </Form.Label>
                   <Form.Control
                     as="select"
@@ -212,7 +208,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                   </Form.Control>
                 </Form.Group>
               </Col>
-              <Col xs={6}>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
                     <small><b>Usage bonus</b></small>
@@ -320,7 +316,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
           <Col xs={12}>
             <h5 className="mb-3">Player Info</h5>
             <Row>
-              <Col xs={6}>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
                     <small><b>Class weighting</b></small>
@@ -338,7 +334,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                   </Form.Control>
                 </Form.Group>
               </Col>
-              <Col xs={6}>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
                     <small><b>Height weighting</b></small>
@@ -356,7 +352,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                   </Form.Control>
                 </Form.Group>
               </Col>
-              <Col xs={6}>
+              <Col xs={6} md={3}>
                 <Form.Group>
                   <Form.Label>
                     <small><b>Minutes weighting</b></small>
