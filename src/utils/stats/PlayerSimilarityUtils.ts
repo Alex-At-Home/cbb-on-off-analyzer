@@ -60,6 +60,7 @@ export class PlayerSimilarityUtils {
   // move the top-level logic out of PlayerCareerTable into here
   // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
   // Doesn't seem to be saving the config for the source player (eg season)
+  // NOTE: `npm run build` always fails with EPERM error on .env file - known issue
 
   // More complex:
   // should I be weighting fields by "IDF"-type stat, eg for a guard the z-score will be tiny for post-ups
