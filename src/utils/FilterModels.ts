@@ -359,8 +359,8 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   defensiveReboundWeighting: "default",
   stocksWeighting: "default",
   foulsWeighting: "default",
-  classWeighting: "default",
-  heightWeighting: "default",
+  classWeighting: "none",
+  heightWeighting: "less",
   minutesWeighting: "none",
 };
 

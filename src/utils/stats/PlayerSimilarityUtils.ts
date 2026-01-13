@@ -50,16 +50,16 @@ export class PlayerSimilarityUtils {
   //  weight as the square root of the rate divided by the sum of the square roots
 
   //TODO:
-  // add pins and "x"s
-  // "show next season for pinned teams"
-  // different "config option weights"
-  // (clear similarity pins/view when player changes)
   // Role based query (others?)
-  // move the top-level logic out of PlayerCareerTable into here
+  // "show next season" (id format: 5187600_Men_2025_all)
+  // (clear similarity pins/view when player changes)
   // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
   // Doesn't seem to be saving the config for the source player (eg season)
-  // Defense and class diffs seem wrong
-  // Should also have a FT% element (weighted by FTR, and maybe down)
+  // Not so urgent:
+  // add pins and "x"s
+  // move the top-level logic out of PlayerCareerTable into here
+  // Should also have a FT% element (weighted by FTR, and maybe down)?
+  // Should also (option SoS-adjusted) ORtg bonus?
 
   ///////////////////////////////////////
 
@@ -213,13 +213,13 @@ export class PlayerSimilarityUtils {
     }
 
     if (config.stocksWeighting !== "none") {
-      const steals = getValue("def_stl.value");
-      const blocks = getValue("def_blk.value");
+      const steals = getValue("def_to.value");
+      const blocks = getValue("def_2prim.value");
       vector.push((steals + blocks) * 50);
     }
 
     if (config.foulsWeighting !== "none") {
-      vector.push(getValue("def_foul.value") * 50);
+      vector.push(getValue("def_ftr.value") * 50);
     }
 
     if (config.defensiveReboundWeighting !== "none") {
@@ -295,9 +295,9 @@ export class PlayerSimilarityUtils {
     setField("off_team_poss_pct.value", player.off_team_poss_pct);
     setField("def_adj_rapm.value", player.def_adj_rapm);
     setField("def_rtg.value", player.def_rtg);
-    setField("def_stl.value", player.def_stl);
-    setField("def_blk.value", player.def_blk);
-    setField("def_foul.value", player.def_foul);
+    setField("def_to.value", player.def_to); //(stl)
+    setField("def_2prim.value", player.def_2prim); //(blk)
+    setField("def_ftr.value", player.def_ftr); //(fc/50)
     setField("def_orb.value", player.def_orb);
     setField("on.def_adj_ppp.value", player.on?.def_adj_ppp);
 

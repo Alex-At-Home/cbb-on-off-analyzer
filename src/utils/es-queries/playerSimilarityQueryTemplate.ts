@@ -5,7 +5,7 @@ export const playerSimilarityQuery = function (inputQueryVector: number[]) {
   // Any changes to similarity calculation fields require updating this list.
   const similarityFields = [
     // Play style fields for all styles (_id is always returned automatically)
-    ...PlayerSimilarityUtils.allStyles.flatMap(style => [
+    ...PlayerSimilarityUtils.allStyles.flatMap((style) => [
       `style.${style}.possPctUsg.value`,
       `style.${style}.possPct.value`,
       `style.${style}.adj_pts.value`,
@@ -13,32 +13,32 @@ export const playerSimilarityQuery = function (inputQueryVector: number[]) {
     ]),
     // Additional play style stats
     "off_assist.value",
-    "off_to.value", 
+    "off_to.value",
     "off_orb.value",
     "off_ftr.value",
     // FG percentage stats
     "off_3p.value",
     "off_3pr.value",
-    "off_2pmid.value", 
+    "off_2pmid.value",
     "off_2pmidr.value",
     "off_2prim.value",
     "off_2primr.value",
     // Offensive advanced stats
     "off_adj_rapm.value",
-    "off_adj_rtg.value", 
+    "off_adj_rtg.value",
     "off_usage.value",
     "off_team_poss_pct.value",
     // Defensive stats
     "def_adj_rapm.value",
     "def_rtg.value",
-    "def_stl.value",
-    "def_blk.value", 
-    "def_foul.value",
+    "def_to.value", //(stl)
+    "def_2prim.value", //(blk)
+    "def_ftr.value", //(fc/50)
     "def_orb.value",
     "on.def_adj_ppp.value",
     // Player info
     "roster.year_class.keyword",
-    "roster.height.keyword"
+    "roster.height.keyword",
   ];
 
   return {
