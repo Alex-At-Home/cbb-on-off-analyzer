@@ -63,6 +63,24 @@ export class PlayerSimilarityUtils {
 
   ///////////////////////////////////////
 
+  // Speed up query performance by not running on players highly unlikely to match
+
+  /** (if we switched to vector search we wouldn't need this any more?) */
+  static readonly queryByPosition: Record<string, string[]> = {
+    PG: ["PG", "s-PG", "CG", "G?"],
+    "s-PG": ["PG", "s-PG", "CG", "G?"],
+    CG: ["PG", "s-PG", "CG", "WG", "G?"],
+    WG: ["CG", "WG", "WF", "G?", "F/C?"],
+    WF: ["WG", "WF", "S-PF", "PF/C", "G?", "F/C?"],
+    "S-PF": ["WF", "S-PF", "PF/C", "C", "F/C?"],
+    "PF/C": ["WF", "S-PF", "PF/C", "C", "F/C?"],
+    C: ["S-PF", "PF/C", "C", "F/C?"],
+    "G?": ["PG", "s-PG", "CG", "WG", "WF", "G?", "F/C?"],
+    "F/C?": ["WG", "WF", "S-PF", "PF/C", "C", "G?", "F/C?"],
+  };
+
+  ///////////////////////////////////////
+
   static readonly allStyles = PlayTypeUtils.topLevelIndivPlayTypes;
 
   static readonly lowFreqStyles: TopLevelIndivPlayType[] = [

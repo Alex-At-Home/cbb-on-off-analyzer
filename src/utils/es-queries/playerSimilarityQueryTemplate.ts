@@ -1,6 +1,9 @@
 import { PlayerSimilarityUtils } from "../stats/PlayerSimilarityUtils";
 
-export const playerSimilarityQuery = function (inputQueryVector: number[]) {
+export const playerSimilarityQuery = function (
+  inputQueryVector: number[],
+  queryPos?: string
+) {
   // IMPORTANT: This field list must be kept in sync with buildUnweightedPlayerSimilarityVector!
   // Any changes to similarity calculation fields require updating this list.
   const similarityFields = [
@@ -41,16 +44,47 @@ export const playerSimilarityQuery = function (inputQueryVector: number[]) {
     "roster.height.keyword",
   ];
 
+  /**/
+  if (queryPos && PlayerSimilarityUtils.queryByPosition[queryPos])
+    console.log(
+      JSON.stringify({
+        terms: {
+          posClass: PlayerSimilarityUtils.queryByPosition[queryPos] || [],
+        },
+      })
+    );
+
+  const queryByPos = queryPos
+    ? PlayerSimilarityUtils.queryByPosition[queryPos]
+    : undefined;
+
+  const baseQuery = {
+    term: {
+      sample_name: {
+        value: `all`,
+      },
+    },
+  };
+
+  const query = queryByPos
+    ? {
+        bool: {
+          must: [
+            {
+              terms: {
+                "posClass.keyword": queryByPos || [],
+              },
+            },
+            baseQuery,
+          ],
+        },
+      }
+    : baseQuery;
+
   return {
     query: {
       script_score: {
-        query: {
-          term: {
-            sample_name: {
-              value: `all`,
-            },
-          },
-        },
+        query: query,
         script: {
           source: `
             double dot = 0.0;

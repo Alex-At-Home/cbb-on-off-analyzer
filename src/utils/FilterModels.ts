@@ -399,6 +399,7 @@ export type PlayerCareerParams = {
   similarityConfig?: SimilarityConfig;
   queryVector?: string; //(only used for API interface)
   size?: number; //(only used for API interface)
+  queryPos?: string; //(only used for API interface)
 };
 
 export type PlayerLeaderboardParams = {
