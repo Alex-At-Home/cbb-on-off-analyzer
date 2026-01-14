@@ -13,7 +13,10 @@ import {
 } from "react-bootstrap";
 
 // Utils:
-import { SimilarityConfig, DefaultSimilarityConfig } from "../../utils/FilterModels";
+import {
+  SimilarityConfig,
+  DefaultSimilarityConfig,
+} from "../../utils/FilterModels";
 
 interface Props {
   show: boolean;
@@ -54,35 +57,33 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
   const handleClose = () => {
     // Only update if the query actually changed
     if (internalQuery !== config.advancedQuery) {
-      handleConfigChange('advancedQuery', internalQuery);
+      handleConfigChange("advancedQuery", internalQuery);
     }
     onHide();
   };
 
   const weightingOptions = [
-    { value: 'none', label: 'None' },
-    { value: 'less', label: 'Less' },
-    { value: 'default', label: 'Default' },
-    { value: 'more', label: 'More' },
+    { value: "none", label: "None" },
+    { value: "less", label: "Less" },
+    { value: "default", label: "Default" },
+    { value: "more", label: "More" },
   ];
 
   const scoringModeOptions = [
-    { value: 'sos-adjusted', label: 'SoS-adjusted' },
-    { value: 'raw', label: 'Raw' },
-    { value: 'relative', label: 'Relative' },
+    { value: "sos-adjusted", label: "SoS-adjusted" },
+    { value: "raw", label: "Raw" },
+    { value: "relative", label: "Relative" },
   ];
 
   const defensiveSkillOptions = [
-    { value: 'sos-adjusted', label: 'SoS-adjusted' },
-    { value: 'raw', label: 'Raw' },
-    { value: 'relative', label: 'Relative' },
-    { value: 'none', label: 'None' },
+    { value: "sos-adjusted", label: "SoS-adjusted" },
+    { value: "raw", label: "Raw" },
+    { value: "relative", label: "Relative" },
+    { value: "none", label: "None" },
   ];
 
   const closeTooltip = (
-    <Tooltip id="close-tooltip">
-      (note: preserves any changes made)
-    </Tooltip>
+    <Tooltip id="close-tooltip">(note: preserves any changes made)</Tooltip>
   );
 
   return (
@@ -90,32 +91,38 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
       <Modal.Header closeButton>
         <Modal.Title>Advanced Similarity Configuration</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="py-3">
         {/* Play Style Section */}
-        <Row className="mb-4">
+        <Row className="mb-2">
           <Col xs={12}>
-            <h5 className="mb-3">Play Style</h5>
+            <h5 className="mb-2">Play Style</h5>
             <Row>
-              <Col xs={12} className="mb-3">
+              <Col xs={12} className="mb-2">
                 <Form.Check
                   type="switch"
                   id="includeTransition"
                   label="Include transition"
                   checked={config.includeTransition}
-                  onChange={(e) => handleConfigChange('includeTransition', e.target.checked)}
+                  onChange={(e) =>
+                    handleConfigChange("includeTransition", e.target.checked)
+                  }
                 />
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Assist weighting</b></small>
+                    <small>
+                      <b>Assist weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.assistWeighting}
-                    onChange={(e) => handleConfigChange('assistWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("assistWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -124,16 +131,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>TO weighting</b></small>
+                    <small>
+                      <b>TO weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.turnoverWeighting}
-                    onChange={(e) => handleConfigChange('turnoverWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("turnoverWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -142,16 +153,23 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>ORB weighting</b></small>
+                    <small>
+                      <b>ORB weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.offensiveReboundWeighting}
-                    onChange={(e) => handleConfigChange('offensiveReboundWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "offensiveReboundWeighting",
+                        e.target.value
+                      )
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -160,16 +178,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>FT weighting</b></small>
+                    <small>
+                      <b>FT weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.freeThrowWeighting}
-                    onChange={(e) => handleConfigChange('freeThrowWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("freeThrowWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -182,21 +204,25 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         </Row>
 
         {/* Scoring Efficiency Section */}
-        <Row className="mb-4">
+        <Row className="mb-2">
           <Col xs={12}>
-            <h5 className="mb-3">Scoring Efficiency</h5>
+            <h5 className="mb-2">Scoring Efficiency</h5>
             <Row>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Scoring mode</b></small>
+                    <small>
+                      <b>Scoring mode</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.scoringMode}
-                    onChange={(e) => handleConfigChange('scoringMode', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("scoringMode", e.target.value)
+                    }
                   >
-                    {scoringModeOptions.map(option => (
+                    {scoringModeOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -205,16 +231,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>FG bonus</b></small>
+                    <small>
+                      <b>FG bonus</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.fgBonus}
-                    onChange={(e) => handleConfigChange('fgBonus', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("fgBonus", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -223,16 +253,23 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Gravity bonus</b></small>
+                    <small>
+                      <b>Gravity bonus</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.offensiveGravityBonus}
-                    onChange={(e) => handleConfigChange('offensiveGravityBonus', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "offensiveGravityBonus",
+                        e.target.value
+                      )
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -241,16 +278,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Usage bonus</b></small>
+                    <small>
+                      <b>Usage bonus</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.usageBonus}
-                    onChange={(e) => handleConfigChange('usageBonus', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("usageBonus", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -263,21 +304,25 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         </Row>
 
         {/* Defense Section */}
-        <Row className="mb-4">
+        <Row className="mb-2">
           <Col xs={12}>
-            <h5 className="mb-3">Defense</h5>
+            <h5 className="mb-2">Defense</h5>
             <Row>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Defensive skill</b></small>
+                    <small>
+                      <b>Defensive skill</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.defensiveSkill}
-                    onChange={(e) => handleConfigChange('defensiveSkill', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("defensiveSkill", e.target.value)
+                    }
                   >
-                    {defensiveSkillOptions.map(option => (
+                    {defensiveSkillOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -286,16 +331,23 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>DRB weighting</b></small>
+                    <small>
+                      <b>DRB weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.defensiveReboundWeighting}
-                    onChange={(e) => handleConfigChange('defensiveReboundWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "defensiveReboundWeighting",
+                        e.target.value
+                      )
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -304,16 +356,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Stocks weighting</b></small>
+                    <small>
+                      <b>Stocks weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.stocksWeighting}
-                    onChange={(e) => handleConfigChange('stocksWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("stocksWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -322,16 +378,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Fouls weighting</b></small>
+                    <small>
+                      <b>Fouls weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.foulsWeighting}
-                    onChange={(e) => handleConfigChange('foulsWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("foulsWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -344,21 +404,25 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         </Row>
 
         {/* Player Info Section */}
-        <Row className="mb-4">
+        <Row className="mb-2">
           <Col xs={12}>
-            <h5 className="mb-3">Player Info</h5>
+            <h5 className="mb-2">Player Info</h5>
             <Row>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Class weighting</b></small>
+                    <small>
+                      <b>Class weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.classWeighting}
-                    onChange={(e) => handleConfigChange('classWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("classWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -367,16 +431,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Height weighting</b></small>
+                    <small>
+                      <b>Height weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.heightWeighting}
-                    onChange={(e) => handleConfigChange('heightWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("heightWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -385,16 +453,20 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Minutes weighting</b></small>
+                    <small>
+                      <b>Minutes weighting</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.minutesWeighting}
-                    onChange={(e) => handleConfigChange('minutesWeighting', e.target.value)}
+                    onChange={(e) =>
+                      handleConfigChange("minutesWeighting", e.target.value)
+                    }
                   >
-                    {weightingOptions.map(option => (
+                    {weightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -407,19 +479,26 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         </Row>
 
         {/* Advanced Query Options Section */}
-        <Row className="mb-4">
+        <Row className="mb-0">
           <Col xs={12}>
-            <h5 className="mb-3">Advanced Query Options</h5>
+            <h5 className="mb-2">Advanced Query Options</h5>
             <Row>
               <Col xs={6} md={3}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Players count</b></small>
+                    <small>
+                      <b>Players count</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     as="select"
                     value={config.comparisonPlayersCount}
-                    onChange={(e) => handleConfigChange('comparisonPlayersCount', parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleConfigChange(
+                        "comparisonPlayersCount",
+                        parseInt(e.target.value)
+                      )
+                    }
                   >
                     <option value={10}>10</option>
                     <option value={20}>20</option>
@@ -428,13 +507,15 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 </Form.Group>
               </Col>
               <Col xs={12} md={9}>
-                <Form.Group>
+                <Form.Group className="mb-0">
                   <Form.Label>
-                    <small><b>Advanced query</b></small>
+                    <small>
+                      <b>Advanced query</b>
+                    </small>
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Advanced Use Only!"
+                    placeholder="Here Be Dragons! Read the docs first."
                     value={internalQuery}
                     onChange={(e) => setInternalQuery(e.target.value)}
                   />
@@ -444,7 +525,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
           </Col>
         </Row>
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className="py-2">
         <Button variant="danger" onClick={handleReset}>
           Reset to Defaults
         </Button>
