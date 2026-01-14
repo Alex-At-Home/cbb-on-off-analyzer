@@ -50,16 +50,14 @@ export class PlayerSimilarityUtils {
   //  weight as the square root of the rate divided by the sum of the square roots
 
   //TODO:
-  // Role based query (others?)
   // "show next season" (id format: 5187600_Men_2025_all)
   // (clear similarity pins/view when player changes)
   // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
-  // Doesn't seem to be saving the config for the source player (eg season)
   // Not so urgent:
   // add pins and "x"s
   // move the top-level logic out of PlayerCareerTable into here
-  // Should also have a FT% element (weighted by FTR, and maybe down)?
-  // Should also (option SoS-adjusted) ORtg bonus?
+  // Maybe also have a FT% element (weighted by FTR, and maybe down)?
+  // Maybe also (option SoS-adjusted) ORtg bonus?
 
   ///////////////////////////////////////
 
@@ -233,7 +231,8 @@ export class PlayerSimilarityUtils {
     if (config.stocksWeighting !== "none") {
       const steals = getValue("def_to.value");
       const blocks = getValue("def_2prim.value");
-      vector.push((steals + blocks) * 50);
+      vector.push(steals);
+      vector.push(blocks);
     }
 
     if (config.foulsWeighting !== "none") {
@@ -615,7 +614,12 @@ export class PlayerSimilarityUtils {
       {
         weight: config.stocksWeighting,
         dropdown: config.stocksWeighting,
-        name: "Stocks",
+        name: "Steals",
+      },
+      {
+        weight: config.stocksWeighting,
+        dropdown: config.stocksWeighting,
+        name: "Blocks",
       },
       {
         weight: config.foulsWeighting,
@@ -759,7 +763,7 @@ export class PlayerSimilarityUtils {
     // Step 6: Sort by similarity (lower is more similar) and return top 10
     return candidateResults
       .sort((a, b) => a.similarity - b.similarity)
-      .slice(0, 10);
+      .slice(0, config.comparisonPlayersCount);
   };
 
   // Dropdown weight multipliers for none/less/default/more

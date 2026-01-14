@@ -25,7 +25,8 @@ function marshallRequest(
         size: size,
         ...playerSimilarityQuery(
           (params.queryVector || "").split(",").map((n: any) => parseFloat(n)),
-          params.queryPos
+          params.queryPos,
+          params.extraSimilarityQuery
         ),
       }),
     ].join("\n") + "\n";

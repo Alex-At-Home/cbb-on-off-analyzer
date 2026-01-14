@@ -344,7 +344,6 @@ export class PlayerSimilarityTableUtils {
       <div
         style={{
           maxWidth: "280px",
-          backgroundColor: "#2c3e50",
           color: "white",
           padding: "8px",
         }}
@@ -361,25 +360,29 @@ export class PlayerSimilarityTableUtils {
             >
               Good Matches:
             </div>
-            {good.map((stat) => {
-              const percentage = PlayerSimilarityTableUtils.zScoreToPercentage(
-                stat.zScore
-              );
-              return (
-                <div key={stat.name} className="d-flex justify-content-between">
-                  <span>{stat.name}:</span>
-                  <span
-                    style={{
-                      color: PlayerSimilarityTableUtils.getZScoreColor(
-                        stat.zScore
-                      ),
-                    }}
+            {good
+              .filter((stat) => stat.weight >= 0.01)
+              .map((stat) => {
+                const percentage =
+                  PlayerSimilarityTableUtils.zScoreToPercentage(stat.zScore);
+                return (
+                  <div
+                    key={stat.name}
+                    className="d-flex justify-content-between"
                   >
-                    {Math.round(percentage)}%
-                  </span>
-                </div>
-              );
-            })}
+                    <span>{stat.name}:</span>
+                    <span
+                      style={{
+                        color: PlayerSimilarityTableUtils.getZScoreColor(
+                          stat.zScore
+                        ),
+                      }}
+                    >
+                      {Math.round(percentage)}%
+                    </span>
+                  </div>
+                );
+              })}
           </div>
         )}
 

@@ -1,5 +1,5 @@
 // React imports:
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Bootstrap imports:
 import {
@@ -7,11 +7,13 @@ import {
   Col,
   Form,
   Modal,
+  OverlayTrigger,
   Row,
+  Tooltip,
 } from "react-bootstrap";
 
 // Utils:
-import { SimilarityConfig } from "../../utils/FilterModels";
+import { SimilarityConfig, DefaultSimilarityConfig } from "../../utils/FilterModels";
 
 interface Props {
   show: boolean;
@@ -31,6 +33,30 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
       ...config,
       [field]: value,
     });
+  };
+
+  const handleReset = () => {
+    onConfigChange(DefaultSimilarityConfig);
+    setInternalQuery(DefaultSimilarityConfig.advancedQuery); // Reset internal query too
+  };
+
+  // Local state for advanced query to avoid updating config on every keystroke
+  const [internalQuery, setInternalQuery] = useState(config.advancedQuery);
+
+  // Initialize internal query when modal opens
+  useEffect(() => {
+    if (show) {
+      setInternalQuery(config.advancedQuery);
+    }
+  }, [show, config.advancedQuery]);
+
+  // Update config when modal closes
+  const handleClose = () => {
+    // Only update if the query actually changed
+    if (internalQuery !== config.advancedQuery) {
+      handleConfigChange('advancedQuery', internalQuery);
+    }
+    onHide();
   };
 
   const weightingOptions = [
@@ -53,8 +79,14 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
     { value: 'none', label: 'None' },
   ];
 
+  const closeTooltip = (
+    <Tooltip id="close-tooltip">
+      (note: preserves any changes made)
+    </Tooltip>
+  );
+
   return (
-    <Modal show={show} onHide={onHide} size="lg">
+    <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
         <Modal.Title>Advanced Similarity Configuration</Modal.Title>
       </Modal.Header>
@@ -373,11 +405,56 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
             </Row>
           </Col>
         </Row>
+
+        {/* Advanced Query Options Section */}
+        <Row className="mb-4">
+          <Col xs={12}>
+            <h5 className="mb-3">Advanced Query Options</h5>
+            <Row>
+              <Col xs={6} md={3}>
+                <Form.Group>
+                  <Form.Label>
+                    <small><b>Players count</b></small>
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={config.comparisonPlayersCount}
+                    onChange={(e) => handleConfigChange('comparisonPlayersCount', parseInt(e.target.value))}
+                  >
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={40}>40</option>
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+              <Col xs={12} md={9}>
+                <Form.Group>
+                  <Form.Label>
+                    <small><b>Advanced query</b></small>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Advanced Use Only!"
+                    value={internalQuery}
+                    onChange={(e) => setInternalQuery(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
-          Close
+        <Button variant="danger" onClick={handleReset}>
+          Reset to Defaults
         </Button>
+        <div className="ml-auto">
+          <OverlayTrigger placement="top" overlay={closeTooltip}>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </OverlayTrigger>
+        </div>
       </Modal.Footer>
     </Modal>
   );

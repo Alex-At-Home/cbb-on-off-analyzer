@@ -2,7 +2,8 @@ import { PlayerSimilarityUtils } from "../stats/PlayerSimilarityUtils";
 
 export const playerSimilarityQuery = function (
   inputQueryVector: number[],
-  queryPos?: string
+  queryPos?: string,
+  extraSimilarityQuery?: string
 ) {
   // IMPORTANT: This field list must be kept in sync with buildUnweightedPlayerSimilarityVector!
   // Any changes to similarity calculation fields require updating this list.
@@ -44,16 +45,6 @@ export const playerSimilarityQuery = function (
     "roster.height.keyword",
   ];
 
-  /**/
-  if (queryPos && PlayerSimilarityUtils.queryByPosition[queryPos])
-    console.log(
-      JSON.stringify({
-        terms: {
-          posClass: PlayerSimilarityUtils.queryByPosition[queryPos] || [],
-        },
-      })
-    );
-
   const queryByPos = queryPos
     ? PlayerSimilarityUtils.queryByPosition[queryPos]
     : undefined;
@@ -66,20 +57,34 @@ export const playerSimilarityQuery = function (
     },
   };
 
-  const query = queryByPos
-    ? {
-        bool: {
-          must: [
-            {
-              terms: {
-                "posClass.keyword": queryByPos || [],
-              },
+  const extraQuery1: any[] =
+    queryByPos && !(extraSimilarityQuery || "").includes("posClass")
+      ? [
+          {
+            terms: {
+              "posClass.keyword": queryByPos || [],
             },
-            baseQuery,
-          ],
+          },
+        ]
+      : [];
+  const extraQuery2: any[] = extraSimilarityQuery
+    ? [
+        {
+          query_string: { query: extraSimilarityQuery },
         },
-      }
-    : baseQuery;
+      ]
+    : [];
+
+  const extraQueries: any[] = extraQuery1.concat(extraQuery2);
+
+  const query =
+    extraQueries.length > 0
+      ? {
+          bool: {
+            must: extraQueries.concat([baseQuery]),
+          },
+        }
+      : baseQuery;
 
   return {
     query: {

@@ -232,6 +232,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         .filter((p) => !_.isEmpty(p))
     )
   );
+
   /** The NCAA id corresponding to yearsToShow */
   const [currNcaaId, setCurrNcaaId] = useState<string | undefined>(
     playerCareerParams.ncaaId
@@ -1143,6 +1144,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   currPlayerSelected
                 ).join(","),
               queryPos: currPlayerSelected.posClass,
+              extraSimilarityQuery: similarityConfig.advancedQuery,
             },
             ParamPrefixes.similarPlayers,
             [],
@@ -1233,25 +1235,25 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 });
               }
 
-              // Get IDs of top 10 most similar players
-              const top10Ids = candidateResults
+              // Get IDs of top N most similar players (configurable)
+              const topNIds = candidateResults
                 .sort((a, b) => a.similarity - b.similarity)
-                .slice(0, 10)
+                .slice(0, similarityConfig.comparisonPlayersCount)
                 .map((result) => result._id);
 
-              if (top10Ids.length === 0) {
+              if (topNIds.length === 0) {
                 setSimilarPlayers([]);
                 setSimilarityDiagnostics([]);
                 setRetrievingPlayers(false);
                 return;
               }
 
-              // Step 3: Fetch full documents for top 10 players
+              // Step 3: Fetch full documents for top N players
               const fullDocsPromise = Promise.all(
                 RequestUtils.requestHandlingLogic(
                   {
                     gender,
-                    ids: top10Ids.join(","),
+                    ids: topNIds.join(","),
                   } as any,
                   ParamPrefixes.multiPlayerCareer,
                   [],

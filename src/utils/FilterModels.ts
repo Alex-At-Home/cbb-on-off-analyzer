@@ -339,6 +339,10 @@ export interface SimilarityConfig {
   classWeighting: "none" | "less" | "default" | "more";
   heightWeighting: "none" | "less" | "default" | "more";
   minutesWeighting: "none" | "less" | "default" | "more";
+
+  // Comparison Players section
+  comparisonPlayersCount: number;
+  advancedQuery: string;
 }
 
 export const DefaultSimilarityConfig: SimilarityConfig = {
@@ -362,6 +366,8 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   classWeighting: "none",
   heightWeighting: "less",
   minutesWeighting: "none",
+  comparisonPlayersCount: 10,
+  advancedQuery: "",
 };
 
 export type PlayerCareerParams = {
@@ -400,6 +406,7 @@ export type PlayerCareerParams = {
   queryVector?: string; //(only used for API interface)
   size?: number; //(only used for API interface)
   queryPos?: string; //(only used for API interface)
+  extraSimilarityQuery?: string;
 };
 
 export type PlayerLeaderboardParams = {
