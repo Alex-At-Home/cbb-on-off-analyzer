@@ -1760,7 +1760,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     onClick: () => {
                       const newShowNextYear = !showNextYear;
                       setShowNextYear(newShowNextYear);
-                      requestSimilarPlayers(newShowNextYear);
+                      if (similarPlayers.length > 0) {
+                        //(if we have an active request, rerender it with the changes)
+                        requestSimilarPlayers(newShowNextYear);
+                      }
                     },
                   },
                 ]
