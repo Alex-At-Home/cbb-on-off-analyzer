@@ -1154,7 +1154,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           quickSwitchTimer,
           setQuickSwitchTimer,
           quickSwitchExtra,
-          ["extra"]
+          ["extra"],
+          resolvedTheme
         )}
         <Container className="mt-2">
           <Row className="text-center">

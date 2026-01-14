@@ -288,7 +288,8 @@ export class PlayTypeDiagUtils {
       newQuickSwitchTimer: NodeJS.Timer | undefined
     ) => void,
     quickSwitchExtra?: "extra" | "diff" | undefined,
-    quickSwitchExtraOptions?: ("extra" | "diff")[]
+    quickSwitchExtraOptions?: ("extra" | "diff")[],
+    theme?: string | undefined
   ) => {
     const timeTooltip = (
       <Tooltip id="timerTooltip">
@@ -372,7 +373,20 @@ export class PlayTypeDiagUtils {
       (opt) => opt.title
     ).map((t, index) => {
       return (
-        <span key={`quickSwitch-${index}`} style={{ whiteSpace: "nowrap" }}>
+        <span
+          key={`quickSwitch-${index}`}
+          style={{
+            ...(t == quickSwitch
+              ? CommonTableDefs.getTextShadow(
+                  { value: 0 },
+                  (val: number) => "#772953",
+                  "15px",
+                  theme == "dark" ? 3 : 1
+                )
+              : {}),
+            whiteSpace: "nowrap",
+          }}
+        >
           [
           <a
             href="#"

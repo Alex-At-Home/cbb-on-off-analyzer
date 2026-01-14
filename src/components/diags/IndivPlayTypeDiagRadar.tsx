@@ -821,7 +821,8 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 quickSwitchTimer,
                 setQuickSwitchTimer,
                 quickSwitchExtra,
-                ["extra"]
+                ["extra"],
+                resolvedTheme
               )
             : undefined
         }

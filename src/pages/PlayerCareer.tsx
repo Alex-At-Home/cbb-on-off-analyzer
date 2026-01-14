@@ -127,6 +127,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.conf ? ["conf"] : [],
         !rawParams.yearsToShow ? ["yearsToShow"] : [],
         !rawParams.showNextYear ? ["showNextYear"] : [],
+        !rawParams.showExpanded ? ["showExpanded"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]
@@ -363,7 +364,10 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           title={`Yearly Stats${currPlayer ? `: [${currPlayer}]` : ""}`}
           extraElement={playerFinder}
           helpLink={maybeShowPlayerDocs()}
-          startClosed={playerCareerParams.hidePlayerOverview ?? ParamDefaults.defaultHidePlayerOverview}
+          startClosed={
+            playerCareerParams.hidePlayerOverview ??
+            ParamDefaults.defaultHidePlayerOverview
+          }
           onShowHide={(nowShown: boolean) => {
             onPlayerCareerParamsChange({
               ...playerCareerParams,

@@ -31,6 +31,8 @@ import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 import HexMap from "../shared/HexMap";
 import { ParamDefaults } from "../../utils/FilterModels";
 import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
+import { useTheme } from "next-themes";
+import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 
 ///////////////////// UI element + control
 
@@ -48,7 +50,8 @@ const buildQuickSwitchOptions = (
     fromTimer: boolean
   ) => void,
   quickSwitchTimer: NodeJS.Timer | undefined,
-  setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void
+  setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void,
+  theme: string | undefined
 ) => {
   const quickSwitchTimerLogic = (newQuickSwitch: string | undefined) => {
     if (quickSwitchTimer) {
@@ -132,7 +135,20 @@ const buildQuickSwitchOptions = (
     (opt) => opt.title
   ).map((t, index) => {
     return (
-      <span key={`quickSwitch-${index}`} style={{ whiteSpace: "nowrap" }}>
+      <span
+        key={`quickSwitch-${index}`}
+        style={{
+          ...(t == quickSwitch
+            ? CommonTableDefs.getTextShadow(
+                { value: 0 },
+                (val: number) => "#772953",
+                "15px",
+                theme == "dark" ? 3 : 1
+              )
+            : {}),
+          whiteSpace: "nowrap",
+        }}
+      >
         [
         <a
           href="#"
@@ -257,6 +273,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   offDefOverrides,
   invertLeftRight,
 }) => {
+  const { resolvedTheme } = useTheme();
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
     chartOpts?.quickSwitch
   );
@@ -268,9 +285,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultShotChartShowZones
       : chartOpts.buildZones
   );
-  const [useEfg, setUseEfg] = useState<boolean>(
-    chartOpts?.useEfg ?? false
-  );
+  const [useEfg, setUseEfg] = useState<boolean>(chartOpts?.useEfg ?? false);
 
   useEffect(() => {
     if (chartOpts) {
@@ -315,18 +330,18 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
     if (quickSwitchExtra == "extra" && hasDefensiveData) {
       const selOffDefOverrides = (quickSwitch
         ? _.find(
-          quickSwitchOptions || [],
-          (opt) => opt.title == quickSwitchBase
-        )?.offDefOverrides
+            quickSwitchOptions || [],
+            (opt) => opt.title == quickSwitchBase
+          )?.offDefOverrides
         : offDefOverrides) ||
         offDefOverrides || [false, true];
 
       const selLabelOverrides =
         (quickSwitch
           ? _.find(
-            quickSwitchOptions || [],
-            (opt) => opt.title == quickSwitchBase
-          )?.labelOverrides
+              quickSwitchOptions || [],
+              (opt) => opt.title == quickSwitchBase
+            )?.labelOverrides
           : labelOverrides) ||
         labelOverrides ||
         [];
@@ -336,17 +351,17 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         selectedDef:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.off
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
             : off) || off,
         extraRowOff: def,
         extraRowDef:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.def
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.def
             : def) || def,
         selLabelOverrides: [
           labelOverrides?.[0] || "Offense:",
@@ -373,9 +388,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         selectedDef:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.off
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
             : off) || off,
 
         selOffDefOverrides: [false, false],
@@ -391,16 +406,16 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         extraRowOff:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.off
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
             : off) || off,
         extraRowDef:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.def
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.def
             : def) || def,
         selOffDefOverrides: offDefOverrides,
         selLabelOverrides: (labelOverrides || ["Offense:", "Defense:"]).map(
@@ -412,30 +427,30 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         selectedOff:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.off
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.off
             : off) || off,
         selectedDef:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.def
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.def
             : def) || def,
         selOffDefOverrides:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.offDefOverrides
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.offDefOverrides
             : offDefOverrides) || offDefOverrides,
         selLabelOverrides:
           (quickSwitch
             ? _.find(
-              quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
-            )?.labelOverrides
+                quickSwitchOptions || [],
+                (opt) => opt.title == quickSwitchBase
+              )?.labelOverrides
             : labelOverrides) || labelOverrides,
       };
     }
@@ -496,7 +511,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                 }
               },
               quickSwitchTimer,
-              setQuickSwitchTimer
+              setQuickSwitchTimer,
+              resolvedTheme
             )}
           </Col>
         </Row>
@@ -647,10 +663,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         <Col xs={12} className="small text-center pt-1">
           {buildZones ? (
             <p>
-              Each circle shows the {useEfg ? "eFG%" : "FG%"} {useEfg ? "(FG% where 3pt shots count more)" : ""},
-              colored by their efficiency relative to D1 average in that zone.
-              The color of the zone is the shot frequency relative to the D1
-              average.
+              Each circle shows the {useEfg ? "eFG%" : "FG%"}{" "}
+              {useEfg ? "(FG% where 3pt shots count more)" : ""}, colored by
+              their efficiency relative to D1 average in that zone. The color of
+              the zone is the shot frequency relative to the D1 average.
             </p>
           ) : (
             <p>
@@ -713,7 +729,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                 },
                 {
                   label: "eFG%",
-                  tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
+                  tooltip:
+                    "Show effective field goal percentage (3-pointers weighted 1.5x)",
                   toggled: useEfg,
                   onClick: () => {
                     onChangeChartOpts?.({
