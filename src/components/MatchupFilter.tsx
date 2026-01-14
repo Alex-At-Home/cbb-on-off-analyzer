@@ -187,7 +187,9 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       commonParams.year >= DateUtils.firstYearWithShotChartData;
 
     const baseQueryA = `opponent.team:"${oppoQueryInfo.team}" AND date:(${oppoQueryInfo.dateStr})`;
-    const baseQueryB = `opponent.team:"${team}" AND date:(${oppoQueryInfo.dateStr})`;
+    const baseQueryB = `opponent.team:"${commonParams.team || ""}" AND date:(${
+      oppoQueryInfo.dateStr
+    })`;
 
     const primaryRequestA: MatchupFilterParams = {
       ...commonParams,
@@ -494,8 +496,6 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
   // Visual components:
 
   /** Let the user know that he might need to change */
-
-  const team: string = "";
 
   /** For use in selects */
   function stringToOption(s: string) {
