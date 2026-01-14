@@ -408,6 +408,7 @@ export type PlayerCareerParams = {
   queryPos?: string; //(only used for API interface)
   extraSimilarityQuery?: string;
   showNextYear?: boolean; //(if true, fetch next year data for similar players)
+  hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
 };
 
 export type PlayerLeaderboardParams = {
@@ -657,6 +658,7 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
   // Player Career
   static readonly defaultShowNextYear = false;
+  static readonly defaultHidePlayerOverview = false;
 }
 
 export type FilterParamsType =

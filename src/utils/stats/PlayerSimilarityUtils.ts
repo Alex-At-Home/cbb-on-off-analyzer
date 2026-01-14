@@ -49,13 +49,8 @@ export class PlayerSimilarityUtils {
   // (the way we'll do the FG/ppp rate-weightings is: for each item in the style ppp OR the 2p-rim/2p-mid/3p we calc its
   //  weight as the square root of the rate divided by the sum of the square roots
 
-  //TODO:
-  // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
-  // Improve table layout
-  // Save collapsing card status in page
-
   // IMPROVEMENTS:
-  // Add custom weights
+  // Add custom weights (make advanced section collapsible at the same time)
   // add pins and "x"s
   // move the top-level logic out of PlayerCareerTable into here (also looks like there's some duplicate logic findPlayerSeasons)
   // Maybe also have a FT% element (weighted by FTR, and maybe down)?

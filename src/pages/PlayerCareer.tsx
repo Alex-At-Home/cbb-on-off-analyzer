@@ -161,6 +161,9 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
+        rawParams.hidePlayerOverview == ParamDefaults.defaultHidePlayerOverview
+          ? ["hidePlayerOverview"]
+          : [],
 
         !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
 
@@ -360,6 +363,13 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           title={`Yearly Stats${currPlayer ? `: [${currPlayer}]` : ""}`}
           extraElement={playerFinder}
           helpLink={maybeShowPlayerDocs()}
+          startClosed={playerCareerParams.hidePlayerOverview ?? ParamDefaults.defaultHidePlayerOverview}
+          onShowHide={(nowShown: boolean) => {
+            onPlayerCareerParamsChange({
+              ...playerCareerParams,
+              hidePlayerOverview: !nowShown,
+            });
+          }}
         >
           {table}
         </GenericCollapsibleCard>
