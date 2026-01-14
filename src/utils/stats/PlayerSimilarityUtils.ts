@@ -50,14 +50,16 @@ export class PlayerSimilarityUtils {
   //  weight as the square root of the rate divided by the sum of the square roots
 
   //TODO:
-  // "show next season" (id format: 5187600_Men_2025_all)
-  // (clear similarity pins/view when player changes)
   // Fix the layout of the quick-toggles (doesn't wrap properly and messes up table width)
-  // Not so urgent:
+  // Improve table layout
+  // Save collapsing card status in page
+
+  // IMPROVEMENTS:
+  // Add custom weights
   // add pins and "x"s
-  // move the top-level logic out of PlayerCareerTable into here
+  // move the top-level logic out of PlayerCareerTable into here (also looks like there's some duplicate logic findPlayerSeasons)
   // Maybe also have a FT% element (weighted by FTR, and maybe down)?
-  // Maybe also (option SoS-adjusted) ORtg bonus?
+  // Maybe also (option SoS-adjusted) ORtg bonus? (or an offensive / defensive caliber that pins to RAPM?)
 
   ///////////////////////////////////////
 
@@ -384,7 +386,8 @@ export class PlayerSimilarityUtils {
 
   /** Calculate z-scores for each index across all player vectors */
   static readonly calculateZScores = (
-    vectors: number[][]
+    vectors: number[][],
+    adjustStyleZScores: boolean = false
   ): { means: number[]; stdDevs: number[] } => {
     if (vectors.length === 0) return { means: [], stdDevs: [] };
 
@@ -402,7 +405,28 @@ export class PlayerSimilarityUtils {
       const stdDev = Math.sqrt(variance);
 
       means.push(mean);
-      stdDevs.push(stdDev > 0 ? stdDev : 1.0); // Avoid division by zero
+      stdDevs.push(stdDev);
+    }
+
+    // Special case for style:
+    if (adjustStyleZScores) {
+      const styleStdDevs = stdDevs.slice(
+        0,
+        PlayerSimilarityUtils.allStyles.length
+      );
+      const groupStyleSumVars = _.sumBy(styleStdDevs, (p) => p * p);
+      const groupStyleNum = _.sumBy(styleStdDevs, (stdDev) =>
+        stdDev > 0 ? 1 : 0
+      );
+      const groupStyleStdDev = Math.sqrt(
+        groupStyleSumVars / (groupStyleNum || 1)
+      );
+
+      for (var i = 0; i < PlayerSimilarityUtils.allStyles.length; ++i) {
+        if (stdDevs[i] > 0) {
+          stdDevs[i] = 0.5 * stdDevs[i] + 0.5 * groupStyleStdDev;
+        }
+      }
     }
 
     return { means, stdDevs };
@@ -486,7 +510,8 @@ export class PlayerSimilarityUtils {
       componentName: keyof SimilarityDiagnostics["componentScores"],
       statNames: string[],
       dropdownWeight: number = 1.0,
-      sectionRateWeights?: number[]
+      sectionRateWeights?: number[],
+      stdDevConfig?: { minStdDev?: number }
     ) => {
       const component = diagnostics.componentScores[componentName];
 
@@ -494,7 +519,11 @@ export class PlayerSimilarityUtils {
         const diff = sourceVector[vectorIndex] - candidateVector[vectorIndex];
         const zScore =
           zScoreStats.stdDevs[vectorIndex] > 0
-            ? diff / zScoreStats.stdDevs[vectorIndex]
+            ? diff /
+              Math.max(
+                zScoreStats.stdDevs[vectorIndex],
+                stdDevConfig?.minStdDev ?? 0
+              )
             : 0;
 
         // Bound z-score to [-3, 3]
@@ -533,6 +562,8 @@ export class PlayerSimilarityUtils {
     };
 
     // PLAY STYLE SECTION
+
+    // Mutate style std-dev so it's part per component, part across styles
     processSection(
       PlayerSimilarityUtils.allStyles.length,
       config.playStyleWeight,
@@ -543,10 +574,10 @@ export class PlayerSimilarityUtils {
 
     // Additional play style stats
     const additionalStats = [
-      { weight: config.assistWeighting, name: "Assists" },
+      { weight: config.assistWeighting, name: "Assists", minStdDev: 0.03 },
       { weight: config.turnoverWeighting, name: "Turnovers" },
       { weight: config.offensiveReboundWeighting, name: "Off Rebounds" },
-      { weight: config.freeThrowWeighting, name: "Free Throws" },
+      { weight: config.freeThrowWeighting, name: "Free Throw Rate" },
     ];
 
     for (const stat of additionalStats) {
@@ -556,7 +587,9 @@ export class PlayerSimilarityUtils {
           config.playStyleWeight,
           "playStyle",
           [stat.name],
-          PlayerSimilarityUtils.dropdownWeights[stat.weight]
+          PlayerSimilarityUtils.dropdownWeights[stat.weight],
+          undefined,
+          { minStdDev: stat.minStdDev }
         );
       }
     }
@@ -615,11 +648,13 @@ export class PlayerSimilarityUtils {
         weight: config.stocksWeighting,
         dropdown: config.stocksWeighting,
         name: "Steals",
+        minStdDev: 0.01,
       },
       {
         weight: config.stocksWeighting,
         dropdown: config.stocksWeighting,
         name: "Blocks",
+        minStdDev: 0.01,
       },
       {
         weight: config.foulsWeighting,
@@ -630,6 +665,7 @@ export class PlayerSimilarityUtils {
         weight: config.defensiveReboundWeighting,
         dropdown: config.defensiveReboundWeighting,
         name: "Def Rebounds",
+        minStdDev: 0.03,
       },
     ];
 
@@ -640,7 +676,9 @@ export class PlayerSimilarityUtils {
           config.defenseWeight,
           "defense",
           [stat.name],
-          PlayerSimilarityUtils.dropdownWeights[stat.dropdown]
+          PlayerSimilarityUtils.dropdownWeights[stat.dropdown],
+          undefined,
+          { minStdDev: stat.minStdDev }
         );
       }
     }
@@ -682,7 +720,7 @@ export class PlayerSimilarityUtils {
   static readonly findSimilarPlayers = async (
     sourcePlayer: IndivCareerStatSet,
     config: SimilarityConfig = DefaultSimilarityConfig,
-    candidatePlayers?: IndivCareerStatSet[] // Optional for testing, will fetch if not provided
+    candidatePlayers: IndivCareerStatSet[] // Optional for testing, will fetch if not provided
   ): Promise<
     Array<{
       player: IndivCareerStatSet;
@@ -691,18 +729,10 @@ export class PlayerSimilarityUtils {
     }>
   > => {
     // Step 1: Get candidate players (top 500 using simple similarity)
-    let candidates: IndivCareerStatSet[];
-    if (candidatePlayers) {
-      candidates = candidatePlayers.slice(
-        0,
-        PlayerSimilarityUtils.firstPassPlayersRetrieved
-      );
-    } else {
-      // TODO: This will need to be wired up to actual API call
-      // For now, return empty array - this will be implemented when wiring to UI
-      console.warn("findSimilarPlayers: API integration not yet implemented");
-      return [];
-    }
+    let candidates: IndivCareerStatSet[] = candidatePlayers.slice(
+      0,
+      PlayerSimilarityUtils.firstPassPlayersRetrieved
+    );
 
     // Step 2: Build unweighted vectors for all players (including source) using flat format
     const allPlayers = [sourcePlayer, ...candidates];
@@ -725,8 +755,10 @@ export class PlayerSimilarityUtils {
     );
 
     // Step 3: Calculate z-scores across all players
-    const zScoreStats =
-      PlayerSimilarityUtils.calculateZScores(normalizedVectors);
+    const zScoreStats = PlayerSimilarityUtils.calculateZScores(
+      normalizedVectors,
+      true
+    );
 
     // Step 4: Calculate rate weights for source player
     const rateWeights = PlayerSimilarityUtils.calculateRateWeights(

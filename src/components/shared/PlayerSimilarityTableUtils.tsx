@@ -47,12 +47,25 @@ export class PlayerSimilarityTableUtils {
     return Math.max(0, Math.min(100, ((3 - absZScore) / 3) * 100));
   };
 
+  private static getColorScheme(theme: string | undefined) {
+    if (theme == "dark") {
+      return CbbColors.getRedToGreen().domain([0, 1]);
+    } else {
+      return CbbColors.getRedToGreenViaGrey().domain([0, 1]);
+    }
+  }
+
   /** Get color for z-score based on similarity percentage */
-  private static getZScoreColor = (zScore: number): string => {
+  private static getZScoreColor = (
+    zScore: number,
+    theme: string | undefined
+  ): string => {
     const percentage =
       PlayerSimilarityTableUtils.zScoreToPercentage(zScore) / 100;
     // Use 0=red (poor match), 1=green (good match)
-    return CbbColors.getRedToGreen().domain([0, 1])(percentage).toString();
+    return PlayerSimilarityTableUtils.getColorScheme(theme)(
+      percentage
+    ).toString();
   };
 
   /** Group stats by style categories */
@@ -98,7 +111,8 @@ export class PlayerSimilarityTableUtils {
   /** Build diagnostic content for use within a table row */
   static readonly buildDiagnosticContent = (
     diagnostics: SimilarityDiagnostics,
-    config: SimilarityConfig
+    config: SimilarityConfig,
+    theme: string | undefined
   ): React.ReactElement => {
     const DiagnosticContent = () => {
       const [showDetails, setShowDetails] = useState(false);
@@ -203,7 +217,9 @@ export class PlayerSimilarityTableUtils {
                     >
                       {component.breakdown
                         .sort((a, b) => Math.abs(b.zScore) - Math.abs(a.zScore))
-                        .filter((stat) => stat.weight > 0.01)
+                        .filter(
+                          (stat) => stat.weight > 0.01 && stat.globalStdDev > 0
+                        )
                         .map((stat) => {
                           const percentage =
                             PlayerSimilarityTableUtils.zScoreToPercentage(
@@ -211,7 +227,8 @@ export class PlayerSimilarityTableUtils {
                             );
                           const color =
                             PlayerSimilarityTableUtils.getZScoreColor(
-                              stat.zScore
+                              stat.zScore,
+                              theme
                             );
 
                           return (
@@ -354,7 +371,10 @@ export class PlayerSimilarityTableUtils {
           <div className="mb-2">
             <div
               style={{
-                color: CbbColors.getRedToGreen().domain([0, 1])(1).toString(),
+                color:
+                  PlayerSimilarityTableUtils.getColorScheme("dark")(
+                    1
+                  ).toString(),
               }}
               className="font-weight-bold"
             >
@@ -374,7 +394,8 @@ export class PlayerSimilarityTableUtils {
                     <span
                       style={{
                         color: PlayerSimilarityTableUtils.getZScoreColor(
-                          stat.zScore
+                          stat.zScore,
+                          "dark"
                         ),
                       }}
                     >
@@ -390,7 +411,10 @@ export class PlayerSimilarityTableUtils {
           <div>
             <div
               style={{
-                color: CbbColors.getRedToGreen().domain([0, 1])(0).toString(),
+                color:
+                  PlayerSimilarityTableUtils.getColorScheme("dark")(
+                    0
+                  ).toString(),
               }}
               className="font-weight-bold"
             >
@@ -406,7 +430,8 @@ export class PlayerSimilarityTableUtils {
                   <span
                     style={{
                       color: PlayerSimilarityTableUtils.getZScoreColor(
-                        stat.zScore
+                        stat.zScore,
+                        "dark"
                       ),
                     }}
                   >

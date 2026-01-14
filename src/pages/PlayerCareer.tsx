@@ -126,6 +126,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.t100 ? ["t100"] : [],
         !rawParams.conf ? ["conf"] : [],
         !rawParams.yearsToShow ? ["yearsToShow"] : [],
+        !rawParams.showNextYear ? ["showNextYear"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]
@@ -196,7 +197,11 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     const params = similarityMode
       ? removeDefaultsFromParams({
           ...(playerCareerParamsRef.current || {}),
-          similarityParams: _.omit(newParams, ["similarityParams", "gender"]),
+          similarityParams: _.omit(newParams, [
+            "similarityParams",
+            "similarityConfig",
+            "gender",
+          ]),
           similarityConfig: newParams.similarityConfig,
         })
       : newParams;

@@ -243,6 +243,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     playerCareerParams.showInfoSubHeader || false
   );
 
+  /** Whether to show next year data for similar players */
+  const [showNextYear, setShowNextYear] = useState(
+    playerCareerParams.showNextYear ?? ParamDefaults.defaultShowNextYear
+  );
+
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
     true as boolean
   ); //(always defaults to on)
@@ -300,6 +305,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           : yearsToShowArr.join(","),
       stickyQuickToggle,
       showInfoSubHeader,
+      showNextYear,
       similarityConfig,
     });
   }, [
@@ -318,6 +324,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     yearsToShow,
     stickyQuickToggle,
     showInfoSubHeader,
+    showNextYear,
     similarityConfig,
   ]);
 
@@ -458,6 +465,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         })
         .value()?.[0]
     : undefined;
+
+  /** If changing player to show clear selection */
+  if (playerSimilarityMode)
+    useEffect(() => {
+      const anyOverlap = _.find(playerSeasons, (info) =>
+        yearsToShow.has(info.year || "")
+      );
+      if (!anyOverlap) {
+        setYearsToShow(new Set());
+      }
+
+      setSimilarPlayers([]);
+      setSimilarityDiagnostics([]);
+    }, [yearsToShow, showConf, showT100, playerSeasons]);
 
   type DataType = "Conf Stats" | "vs T100";
 
@@ -1125,7 +1146,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ]);
     });
 
-  const requestSimilarPlayers = () => {
+  const requestSimilarPlayers = (showNextYearOverride?: boolean) => {
     {
       //TODO: make similarity query index
       if (currPlayerSelected) {
@@ -1209,8 +1230,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   allVectors,
                   similarityConfig
                 );
-              const zScoreStats =
-                PlayerSimilarityUtils.calculateZScores(normalizedVectors);
+              const zScoreStats = PlayerSimilarityUtils.calculateZScores(
+                normalizedVectors,
+                true
+              );
 
               // Calculate rate weights for source player (using converted nested format)
               const rateWeights = PlayerSimilarityUtils.calculateRateWeights(
@@ -1248,12 +1271,31 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 return;
               }
 
-              // Step 3: Fetch full documents for top N players
+              // Add next year IDs if showNextYear is enabled
+              let idsToFetch = [...topNIds];
+              if (showNextYearOverride ?? showNextYear) {
+                const currentSeasonYear = parseInt(
+                  DateUtils.inSeasonYear.split("/")[0]
+                );
+                topNIds.forEach((id) => {
+                  const parts = id.split("_");
+                  if (parts.length >= 3) {
+                    const year = parseInt(parts[2]);
+                    const nextYear = year + 1;
+                    if (nextYear <= currentSeasonYear) {
+                      const nextYearId = `${parts[0]}_${parts[1]}_${nextYear}_${parts[3]}`;
+                      idsToFetch.push(nextYearId);
+                    }
+                  }
+                });
+              }
+
+              // Step 3: Fetch full documents for top N players (and next year if enabled)
               const fullDocsPromise = Promise.all(
                 RequestUtils.requestHandlingLogic(
                   {
                     gender,
-                    ids: topNIds.join(","),
+                    ids: idsToFetch.join(","),
                   } as any,
                   ParamPrefixes.multiPlayerCareer,
                   [],
@@ -1272,7 +1314,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               );
 
               const fullDocsResponse = await fullDocsPromise;
-              const fullPlayers = (
+              const allFetchedPlayers = (
                 fullDocsResponse?.[0]?.responses?.[0]?.hits?.hits || []
               )
                 .map((p: any) => {
@@ -1281,6 +1323,32 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   return source;
                 })
                 .filter((p: any) => !_.isEmpty(p));
+
+              // Separate current year players from next year players
+              const fullPlayers: any[] = [];
+              const nextYearPlayersMap = new Map<string, any>(); // playerId -> nextYearPlayer
+
+              allFetchedPlayers.forEach((player: any) => {
+                const playerId = player._id.split("_")[0]; // Extract base player ID
+                if (topNIds.includes(player._id)) {
+                  // This is an original player
+                  fullPlayers.push(player);
+                } else {
+                  // This is a next year player, store it mapped to its owner
+                  nextYearPlayersMap.set(playerId, player);
+                }
+              });
+
+              // Match next year players to their owners
+              if (showNextYearOverride ?? showNextYear) {
+                fullPlayers.forEach((player: any) => {
+                  const playerId = player._id.split("_")[0];
+                  const nextYearPlayer = nextYearPlayersMap.get(playerId);
+                  if (nextYearPlayer) {
+                    player.nextYear = nextYearPlayer;
+                  }
+                });
+              }
 
               // Step 4: Re-score with full data to get diagnostics and proper ordering
               const finalResults =
@@ -1367,7 +1435,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               <a href="#" onClick={() => setSimilarPlayers([])}>
                 clear
               </a>
-              ) | (
+              ) (
               <a
                 href="#"
                 onClick={() =>
@@ -1398,6 +1466,16 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           .concat(
             _.flatMap(similarPlayers, (p, i) => {
               const players = playerRowBuilder(p, p.year || "????", i == 0);
+
+              // Add next year player row if available
+              const nextYearRows = p.nextYear
+                ? playerRowBuilder(
+                    p.nextYear as IndivCareerStatSet,
+                    (p.nextYear as any).year || "????",
+                    false
+                  )
+                : [];
+
               const extraSimilarityRows =
                 playerSimilarityMode &&
                 !_.isEmpty(players) &&
@@ -1406,14 +1484,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       GenericTableOps.buildTextRow(
                         PlayerSimilarityTableUtils.buildDiagnosticContent(
                           similarityDiagnostics[i],
-                          similarityConfig
+                          similarityConfig,
+                          resolvedTheme
                         ),
                         "p-0"
                       ),
                       GenericTableOps.buildRowSeparator("1px"),
                     ]
                   : [];
-              return players.concat(extraSimilarityRows);
+              return players.concat(nextYearRows).concat(extraSimilarityRows);
             })
           )
           .value();
@@ -1521,7 +1600,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 _.isEmpty(similarPlayers)
                   ? ""
                   : " (disabled until similar players cleared)",
-              disabled: !_.isEmpty(similarPlayers), //(locked until you clear players)
               toggled:
                 (playerSimilarityMode
                   ? _.isEmpty(yearsToShow) && yIndex == 0 //(player similarity mode, default to first year)
@@ -1545,128 +1623,150 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               },
             } as ToggleButtonItem)
         )
-        .concat([
-          {
-            label: " | ",
-            isLabelOnly: true,
-            toggled: false,
-            onClick: () => null,
-          },
-          {
-            label: "All",
-            tooltip:
-              "Show data for the player's stats vs all opposition" +
-              _.isEmpty(similarPlayers)
-                ? ""
-                : " (disabled until similar players cleared)",
-            toggled: showAll,
-            disabled:
-              (!playerSimilarityMode && !showConf && !showT100) ||
-              !_.isEmpty(similarPlayers),
-            onClick: () => {
-              if (playerSimilarityMode) {
-                //(currently - can only view one season/sample at a time)
-                setShowAll(true);
-                setShowConf(false);
-                setShowT100(false);
-              } else {
-                if (showConf || showT100) {
-                  setShowAll(!showAll);
-                }
-              }
+        .concat(
+          [
+            {
+              label: " | ",
+              isLabelOnly: true,
+              toggled: false,
+              onClick: () => null,
             },
-          },
-          {
-            label: "Conf",
-            tooltip:
-              "Show data for the player's stats vs Conference opposition" +
-              _.isEmpty(similarPlayers)
-                ? ""
-                : " (disabled until similar players cleared)",
-            toggled: showConf,
-            disabled: !_.isEmpty(similarPlayers),
-            onClick: () => {
-              if (playerSimilarityMode) {
-                //(currently - can only view one season/sample at a time)
-                setShowAll(false);
-                setShowConf(true);
-                setShowT100(false);
-              } else {
-                if (!showAll && !showT100 && showConf) {
-                  //revert back to showAll
+            {
+              label: "All",
+              tooltip:
+                "Show data for the player's stats vs all opposition" +
+                _.isEmpty(similarPlayers)
+                  ? ""
+                  : " (disabled until similar players cleared)",
+              toggled: showAll,
+              disabled: !playerSimilarityMode && !showConf && !showT100,
+              onClick: () => {
+                if (playerSimilarityMode) {
+                  //(currently - can only view one season/sample at a time)
                   setShowAll(true);
+                  setShowConf(false);
+                  setShowT100(false);
+                } else {
+                  if (showConf || showT100) {
+                    setShowAll(!showAll);
+                  }
                 }
-                setShowConf(!showConf);
-              }
+              },
             },
-          },
-          {
-            label: "T100",
-            tooltip:
-              "Show data for the player's stats vs T100" +
-              _.isEmpty(similarPlayers)
-                ? ""
-                : " (disabled until similar players cleared)",
-            toggled: showT100,
-            disabled: !_.isEmpty(similarPlayers),
-            onClick: () => {
-              if (playerSimilarityMode) {
-                //(currently - can only view one season/sample at a time)
-                setShowAll(false);
-                setShowConf(false);
-                setShowT100(true);
-              } else {
-                if (!showAll && !showConf && showT100) {
-                  //revert back to showAll
-                  setShowAll(true);
+            {
+              label: "Conf",
+              tooltip:
+                "Show data for the player's stats vs Conference opposition" +
+                _.isEmpty(similarPlayers)
+                  ? ""
+                  : " (disabled until similar players cleared)",
+              toggled: showConf,
+              onClick: () => {
+                if (playerSimilarityMode) {
+                  //(currently - can only view one season/sample at a time)
+                  setShowAll(false);
+                  setShowConf(true);
+                  setShowT100(false);
+                } else {
+                  if (!showAll && !showT100 && showConf) {
+                    //revert back to showAll
+                    setShowAll(true);
+                  }
+                  setShowConf(!showConf);
                 }
-                setShowT100(!showT100);
-              }
+              },
             },
-          },
-          {
-            label: " | ",
-            isLabelOnly: true,
-            toggled: true,
-            onClick: () => null,
-          },
-          {
-            label: "Shots",
-            tooltip: `Show simple shot zones (${DateUtils.firstYearWithShotChartData}+ only)`,
-            toggled: showShotCharts,
-            onClick: () => setShowShotCharts(!showShotCharts),
-          },
-          {
-            label: "Style",
-            tooltip: showPlayerPlayTypes
-              ? "Hide play style breakdowns"
-              : "Show play style breakdowns",
-            toggled: showPlayerPlayTypes,
-            onClick: () => setShowPlayerPlayTypes(!showPlayerPlayTypes),
-          },
-          {
-            label: " | ",
-            isLabelOnly: true,
-            toggled: true,
-            onClick: () => null,
-          },
-          {
-            label: "Poss%",
-            tooltip: possAsPct
-              ? "Show possessions as count"
-              : "Show possessions as percentage",
-            toggled: possAsPct,
-            onClick: () => setPossAsPct(!possAsPct),
-          },
-          {
-            label: "+ Info",
-            tooltip: showInfoSubHeader
-              ? "Hide extra info sub-header"
-              : "Show extra info sub-header",
-            toggled: showInfoSubHeader,
-            onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
-          },
-        ])}
+            {
+              label: "T100",
+              tooltip:
+                "Show data for the player's stats vs T100" +
+                _.isEmpty(similarPlayers)
+                  ? ""
+                  : " (disabled until similar players cleared)",
+              toggled: showT100,
+              onClick: () => {
+                if (playerSimilarityMode) {
+                  //(currently - can only view one season/sample at a time)
+                  setShowAll(false);
+                  setShowConf(false);
+                  setShowT100(true);
+                } else {
+                  if (!showAll && !showConf && showT100) {
+                    //revert back to showAll
+                    setShowAll(true);
+                  }
+                  setShowT100(!showT100);
+                }
+              },
+            },
+            {
+              label: " | ",
+              isLabelOnly: true,
+              toggled: true,
+              onClick: () => null,
+            },
+            {
+              label: "Shots",
+              tooltip: `Show simple shot zones (${DateUtils.firstYearWithShotChartData}+ only)`,
+              toggled: showShotCharts,
+              onClick: () => setShowShotCharts(!showShotCharts),
+            },
+            {
+              label: "Style",
+              tooltip: showPlayerPlayTypes
+                ? "Hide play style breakdowns"
+                : "Show play style breakdowns",
+              toggled: showPlayerPlayTypes,
+              onClick: () => setShowPlayerPlayTypes(!showPlayerPlayTypes),
+            },
+            {
+              label: " | ",
+              isLabelOnly: true,
+              toggled: true,
+              onClick: () => null,
+            },
+            {
+              label: "Poss%",
+              tooltip: possAsPct
+                ? "Show possessions as count"
+                : "Show possessions as percentage",
+              toggled: possAsPct,
+              onClick: () => setPossAsPct(!possAsPct),
+            },
+            {
+              label: "+ Info",
+              tooltip: showInfoSubHeader
+                ? "Hide extra info sub-header"
+                : "Show extra info sub-header",
+              toggled: showInfoSubHeader,
+              onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
+            },
+          ].concat(
+            playerSimilarityMode
+              ? [
+                  {
+                    label: " | ",
+                    isLabelOnly: true,
+                    toggled: true,
+                    onClick: () => null,
+                  },
+                  {
+                    label: "Year+1",
+                    tooltip: showNextYear
+                      ? "Hide next year data for similar players"
+                      : "Show next year data for similar players",
+                    toggled: showNextYear,
+                    disabled: !playerSimilarityMode, // Only available in similarity mode
+                    onClick: () => {
+                      const newShowNextYear = !showNextYear;
+                      setShowNextYear(newShowNextYear);
+                      requestSimilarPlayers(newShowNextYear);
+                    },
+                  },
+                ]
+              : []
+          )
+        )}
     />
   );
 

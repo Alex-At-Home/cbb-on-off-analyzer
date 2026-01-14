@@ -122,6 +122,7 @@ export class CbbColors {
 
   public static readonly getRedToGreen = () =>
     chroma.scale(["red", "#ffFFff", "green"]);
+  public static readonly getRedToGreenViaGrey = () => CbbColors.redBlackGreen;
   public static readonly getBlueToOrange = () =>
     chroma.scale(["lightblue", "#ffFFff", "orange"]);
 

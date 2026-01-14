@@ -407,6 +407,7 @@ export type PlayerCareerParams = {
   size?: number; //(only used for API interface)
   queryPos?: string; //(only used for API interface)
   extraSimilarityQuery?: string;
+  showNextYear?: boolean; //(if true, fetch next year data for similar players)
 };
 
 export type PlayerLeaderboardParams = {
@@ -654,6 +655,8 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
   static readonly defaultMatchupAnalysisIconType = "logo";
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
+  // Player Career
+  static readonly defaultShowNextYear = false;
 }
 
 export type FilterParamsType =
