@@ -469,9 +469,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   /** If changing player to show clear selection */
   if (playerSimilarityMode)
     useEffect(() => {
-      const anyOverlap = _.find(playerSeasons, (info) =>
-        yearsToShow.has(info.year || "")
-      );
+      const anyOverlap =
+        _.isEmpty(setYearsToShow) ||
+        _.find(playerSeasons, (info) => yearsToShow.has(info.year || ""));
       if (!anyOverlap) {
         setYearsToShow(new Set());
       }

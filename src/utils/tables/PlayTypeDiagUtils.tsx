@@ -462,8 +462,10 @@ export class PlayTypeDiagUtils {
       );
     });
     return (
-      <div>
-        <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
+      <div
+        style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline" }}
+      >
+        <span style={{ whiteSpace: "nowrap" }}>
           <b>Analysis: [{quickSwitchExtra ? title : quickSwitch || title}]</b>
         </span>
         {_.isEmpty(quickSwitchOptions) ? null : (
