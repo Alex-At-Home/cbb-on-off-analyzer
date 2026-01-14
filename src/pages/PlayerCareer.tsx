@@ -41,7 +41,6 @@ import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import PlayerCareerTable from "../components/PlayerCareerTable";
 import { IndivCareerStatSet } from "../utils/StatModels";
 import PlayerFinderTextBox from "../components/shared/PlayerFinderTextBox";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -385,11 +384,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           title={`Similar Players${currPlayer ? ` to: [${currPlayer}]` : ""}`}
           helpLink={maybeShowPlayerDocs()}
         >
-          {FeatureFlags.isActiveWindow(FeatureFlags.playerSimilarityScoring) ? (
-            similarityTable
-          ) : (
-            <span>Coming Soon!</span>
-          )}
+          {similarityTable}
         </GenericCollapsibleCard>
       </Row>
       <Footer

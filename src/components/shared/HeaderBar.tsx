@@ -358,6 +358,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       Search for a player and view their career stats
     </Tooltip>
   );
+  const similarPlayerFinderTooltip = (
+    <Tooltip id="similarPlayerFinderTooltip">
+      Search for a player and explore comparisons
+    </Tooltip>
+  );
   const lastGameTooltip = (
     <Tooltip id="lastGameTooltip">
       Go back to the most recently submitted On/Off Analysis page
@@ -659,7 +664,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             {buildNavItem(
               "Player Career View",
               playerCareerTooltip,
-              UrlRouting.getPlayerCareer({}),
+              UrlRouting.getPlayerCareer({
+                showExpanded: true,
+              }),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
@@ -675,6 +682,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               }}
             />
           </div>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Similar Player Finder",
+              similarPlayerFinderTooltip,
+              UrlRouting.getPlayerCareer({
+                hidePlayerOverview: true,
+              }),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
