@@ -435,9 +435,16 @@ export class PlayerSimilarityUtils {
     config: SimilarityConfig
   ): { styleRateWeights: number[]; fgRateWeights: number[] } => {
     // Style rate weights (for scoring efficiency section)
-    const styleRates = PlayerSimilarityUtils.allStyles.map(
-      (pt) => player.style?.[pt]?.possPct?.value ?? 0
-    );
+    const styleRates = PlayerSimilarityUtils.allStyles.map((pt) => {
+      const baseRate = player.style?.[pt]?.possPct?.value ?? 0;
+      if (pt == "Attack & Kick" || pt == "Post & Kick") {
+        return baseRate * 0.1; //(3P, very random what happens after the pass)
+      } else if (pt == "Hits Cutter" || pt == "PnR Passer") {
+        return baseRate * 0.5; //(2P, still some level of randomness what happens after the pass)
+      } else {
+        return baseRate;
+      }
+    });
     const styleSqrtSum = styleRates.reduce(
       (sum, rate) => sum + Math.sqrt(rate),
       0
@@ -560,7 +567,6 @@ export class PlayerSimilarityUtils {
 
     // PLAY STYLE SECTION
 
-    // Mutate style std-dev so it's part per component, part across styles
     processSection(
       PlayerSimilarityUtils.allStyles.length,
       config.playStyleWeight,
