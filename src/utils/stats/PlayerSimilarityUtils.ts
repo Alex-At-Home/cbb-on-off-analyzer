@@ -52,7 +52,9 @@ export class PlayerSimilarityUtils {
   // IMPROVEMENTS:
   // Add custom weights (make advanced section collapsible at the same time)
   // add pins and "x"s
-  // move the top-level logic out of PlayerCareerTable into here (also looks like there's some duplicate logic findPlayerSeasons)
+  // Scoring: probably shouldn't include efficiency of 3P assist plays (and maybe weight down 2P assist plays?)
+  // Style: Should merge stylistic-mid-range with pure mid-rate
+  // ideas I'm not sure about
   // Maybe also have a FT% element (weighted by FTR, and maybe down)?
   // Maybe also (option SoS-adjusted) ORtg bonus? (or an offensive / defensive caliber that pins to RAPM?)
 
@@ -711,37 +713,23 @@ export class PlayerSimilarityUtils {
     return diagnostics;
   };
 
-  /** Main framework function implementing the new similarity approach */
-  static readonly findSimilarPlayers = async (
+  /** Shared logic for both the original scoring on the large set and the rescoring on the small set */
+  static playerSimilarityLogic<T>(
     sourcePlayer: IndivCareerStatSet,
-    config: SimilarityConfig = DefaultSimilarityConfig,
-    candidatePlayers: IndivCareerStatSet[] // Optional for testing, will fetch if not provided
-  ): Promise<
-    Array<{
-      player: IndivCareerStatSet;
-      similarity: number;
-      diagnostics: SimilarityDiagnostics;
-    }>
-  > => {
-    // Step 1: Get candidate players (top 500 using simple similarity)
-    let candidates: IndivCareerStatSet[] = candidatePlayers.slice(
-      0,
-      PlayerSimilarityUtils.firstPassPlayersRetrieved
-    );
-
-    // Step 2: Build unweighted vectors for all players (including source) using flat format
-    const allPlayers = [sourcePlayer, ...candidates];
-    const allVectors = allPlayers.map((player) => {
-      const flatFields = PlayerSimilarityUtils.playerToFlatFields(player);
-      return PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-        flatFields,
+    config: SimilarityConfig,
+    candidatePlayers: number[][],
+    objBuilder: (idx: number) => T
+  ): Array<{ obj: T; similarity: number; diagnostics: SimilarityDiagnostics }> {
+    const sourceVector =
+      PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+        // Create flat fields from source player
+        PlayerSimilarityUtils.playerToFlatFields(sourcePlayer),
         config
       );
-    });
 
-    // Handle case where vectors have different lengths (shouldn't happen but be safe)
-    const minLength = Math.min(...allVectors.map((v) => v.length));
-    let normalizedVectors = allVectors.map((v) => v.slice(0, minLength));
+    const allVectors = [sourceVector].concat(candidatePlayers);
+
+    let normalizedVectors = allVectors;
 
     // Step 2.5: Convert to relative scoring if needed
     normalizedVectors = PlayerSimilarityUtils.convertToRelativeScoring(
@@ -762,9 +750,8 @@ export class PlayerSimilarityUtils {
     );
 
     // Step 5: Score each candidate against source player
-    const sourceVector = normalizedVectors[0];
     const candidateResults: Array<{
-      player: IndivCareerStatSet;
+      obj: T;
       similarity: number;
       diagnostics: SimilarityDiagnostics;
     }> = [];
@@ -781,7 +768,7 @@ export class PlayerSimilarityUtils {
       );
 
       candidateResults.push({
-        player: candidates[i - 1],
+        obj: objBuilder(i - 1),
         similarity: diagnostics.totalSimilarity,
         diagnostics,
       });
@@ -791,6 +778,31 @@ export class PlayerSimilarityUtils {
     return candidateResults
       .sort((a, b) => a.similarity - b.similarity)
       .slice(0, config.comparisonPlayersCount);
+  }
+
+  /** Main framework function implementing the new similarity approach */
+  static readonly findSimilarPlayers = (
+    sourcePlayer: IndivCareerStatSet,
+    config: SimilarityConfig = DefaultSimilarityConfig,
+    candidatePlayers: IndivCareerStatSet[] // Optional for testing, will fetch if not provided
+  ): Array<{
+    obj: IndivCareerStatSet;
+    similarity: number;
+    diagnostics: SimilarityDiagnostics;
+  }> => {
+    const candidateVectors = candidatePlayers.map((player) => {
+      const flatFields = PlayerSimilarityUtils.playerToFlatFields(player);
+      return PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+        flatFields,
+        config
+      );
+    });
+    return PlayerSimilarityUtils.playerSimilarityLogic(
+      sourcePlayer,
+      config,
+      candidateVectors,
+      (idx: number) => candidatePlayers[idx]
+    );
   };
 
   // Dropdown weight multipliers for none/less/default/more
