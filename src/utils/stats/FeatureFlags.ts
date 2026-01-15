@@ -33,7 +33,4 @@ export class FeatureFlags {
 
   /** Adding top-level half court stats */
   static readonly tableConfigOptions = true;
-
-  /** Defensive style charts in TeamStatsTable (On/Off analyzer) */
-  static readonly defensiveStatsInTeamPage = true;
 }

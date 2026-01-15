@@ -52,9 +52,17 @@ export class PlayerSimilarityUtils {
   // IMPROVEMENTS:
   // Add custom weights (make advanced section collapsible at the same time)
   // add pins and "x"s
+  // Add manual player
+  // ^WIP, UI is in but not working yet .. added some TODOs plus need to support the Y+1
   // Scoring: probably shouldn't include efficiency of 3P assist plays (and maybe weight down 2P assist plays?)
-  // Style: Should merge stylistic-mid-range with pure mid-rate
-  // ideas I'm not sure about
+  // ^ I added a suppressor but they are still a bit high, I'm not sure why
+  // + ... need to weight up the more important play styles (based on source player positional group?!)
+  // Add a filter for the comps (plus a "pinned only" filter)
+
+  // IDEAS I'm not sure about
+  // Style: Should merge stylistic-mid-range with pure mid-rate?
+  // (idea: have a slider that weights up the "basic" fields)
+  // (idea: should the sliders be exponential multipliers, eg x5 instead of 100%)
   // Maybe also have a FT% element (weighted by FTR, and maybe down)?
   // Maybe also (option SoS-adjusted) ORtg bonus? (or an offensive / defensive caliber that pins to RAPM?)
 

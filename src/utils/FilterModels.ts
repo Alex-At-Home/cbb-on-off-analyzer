@@ -409,6 +409,7 @@ export type PlayerCareerParams = {
   extraSimilarityQuery?: string;
   showNextYear?: boolean; //(if true, fetch next year data for similar players)
   hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
+  pinnedIds?: string; //(comma-separated list of pinned player IDs)
 };
 
 export type PlayerLeaderboardParams = {

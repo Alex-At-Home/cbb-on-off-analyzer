@@ -40,6 +40,8 @@ import {
   Row,
   Tooltip,
 } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -73,6 +75,7 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import SimilarityConfigModal from "./shared/SimilarityConfigModal";
 import SimilarityWeights from "./shared/SimilarityWeights";
 import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
+import PlayerFinderTextBox from "./shared/PlayerFinderTextBox";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 
 const fetchRetryOptions = {
@@ -124,6 +127,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [similarityDiagnostics, setSimilarityDiagnostics] = useState<
     SimilarityDiagnostics[]
   >([]);
+
+  // Pinned players state
+  const [pinnedPlayers, setPinnedPlayers] = useState<IndivCareerStatSet[]>([]);
 
   // Similarity controls state
   const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(
@@ -309,6 +315,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       showInfoSubHeader,
       showNextYear,
       similarityConfig,
+      pinnedIds: pinnedPlayers
+        .map((p) => p._id as string)
+        .filter((id) => Boolean(id))
+        .join(","),
     });
   }, [
     showGrades,
@@ -328,6 +338,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showInfoSubHeader,
     showNextYear,
     similarityConfig,
+    pinnedPlayers,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -486,6 +497,66 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       setComparisonPlayer(undefined);
       setSimilarityDiagnostics([]);
     }, [yearsToShow, showConf, showT100, playerSeasons]);
+
+  /** Fetch pinned players on startup */
+  if (playerSimilarityMode)
+    useEffect(() => {
+      if (
+        playerCareerParams.pinnedIds &&
+        pinnedPlayers.length === 0 &&
+        playerCareerParams.pinnedIds.trim() !== ""
+      ) {
+        const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
+        const idsToFetch = playerCareerParams.pinnedIds
+          .split(",")
+          .filter((id) => id.trim());
+
+        const currentJsonEpoch =
+          dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
+
+        if (idsToFetch.length > 0) {
+          const allPromises = Promise.all(
+            RequestUtils.requestHandlingLogic(
+              {
+                gender,
+                ids: idsToFetch.join(","),
+              } as any,
+              ParamPrefixes.multiPlayerCareer,
+              [],
+              (url: string, force: boolean) => {
+                return fetchWithRetry(url).then(
+                  (response: fetch.IsomorphicResponse) => {
+                    return response
+                      .json()
+                      .then((json: any) => [json, response.ok, response]);
+                  }
+                );
+              },
+              Number.NaN, //(bypass cache)
+              isDebug
+            )
+          );
+
+          allPromises
+            .then((jsons) => {
+              const fetchedPlayers = (
+                jsons?.[0]?.responses?.[0]?.hits?.hits || []
+              )
+                .map((p: any) => {
+                  const source = p._source || {};
+                  source._id = p._id;
+                  return source;
+                })
+                .filter((p: any) => !_.isEmpty(p));
+
+              setPinnedPlayers(fetchedPlayers);
+            })
+            .catch((error) => {
+              console.log(`Failed to fetch pinned players:`, error);
+            });
+        }
+      }
+    }, []);
 
   type DataType = "Conf Stats" | "vs T100";
 
@@ -1266,6 +1337,49 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ]);
     });
 
+  // Add function to remove pinned player
+  const removePinnedPlayer = (playerId: string) => {
+    const updatedPinned = pinnedPlayers.filter((p) => p._id !== playerId);
+    setPinnedPlayers(updatedPinned);
+  };
+
+  // Add function to add pinned player
+  const addPinnedPlayer = (ncaaId: string, gender: string) => {
+    const currentJsonEpoch =
+      dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
+
+    const allPromises = Promise.all(
+      RequestUtils.requestHandlingLogic(
+        { gender, ncaaId },
+        ParamPrefixes.playerCareer,
+        [],
+        (url: string, force: boolean) => {
+          return fetchWithRetry(url).then(
+            (response: fetch.IsomorphicResponse) => {
+              return response
+                .json()
+                .then((json: any) => [json, response.ok, response]);
+            }
+          );
+        },
+        currentJsonEpoch,
+        isDebug
+      )
+    );
+    allPromises.then((jsons) => {
+      const playerJsons = (jsons?.[0]?.responses?.[0]?.hits?.hits || [])
+        .map((p: any) => {
+          const source = p._source || {};
+          source._id = p._id;
+          return source;
+        })
+        .filter((p: any) => !_.isEmpty(p) && _.endsWith(p._id, "_all"));
+
+      // The key should be the same everywhere so we'll pick the first one
+      setPinnedPlayers(playerJsons);
+    });
+  };
+
   const requestSimilarPlayers = (showNextYearOverride?: boolean) => {
     {
       //TODO: make similarity query index
@@ -1274,6 +1388,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
         setRetrievingPlayers(true);
         setComparisonPlayer(undefined);
+
+        const currentJsonEpoch =
+          dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
 
         // Step 1: Get lean candidate data using optimized similarity API
         const allPromises = Promise.all(
@@ -1299,7 +1416,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 }
               );
             },
-            Number.NaN,
+            Number.NaN, //(bypass cache)
             isDebug
           )
         );
@@ -1383,7 +1500,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       }
                     );
                   },
-                  Number.NaN,
+                  Number.NaN, //(bypass cache)
                   isDebug
                 )
               );
@@ -1426,10 +1543,17 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               }
 
               // Step 4: Re-score with full data to get diagnostics and proper ordering
+              // Add pinned players to the candidate list before re-scoring
+              const allCandidates = [...fullPlayers, ...pinnedPlayers];
               const finalResults = PlayerSimilarityUtils.findSimilarPlayers(
                 currPlayerSelected,
-                similarityConfig,
-                fullPlayers
+                {
+                  ...similarityConfig,
+                  comparisonPlayersCount:
+                    similarityConfig.comparisonPlayersCount +
+                    pinnedPlayers.length,
+                },
+                allCandidates
               );
 
               // Set results
@@ -1484,15 +1608,77 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       if (!hasPlayers) {
         // Case 1 & 2: No similar players - show button with controls below
         const buttonRow = GenericTableOps.buildTextRow(
-          <Button onClick={() => requestSimilarPlayers()}>
-            Find Similar Players
-          </Button>,
+          <Row className="align-items-center">
+            <Col lg={4} className="d-none d-lg-block">
+              {/* Left space for future filter */}
+            </Col>
+            <Col xs={12} lg={4} className="text-center mb-2 mb-lg-0">
+              <Button onClick={() => requestSimilarPlayers()}>
+                Find Similar Players
+              </Button>
+            </Col>
+            {FeatureFlags.isActiveWindow(
+              FeatureFlags.playerSimilarityScoring
+            ) ? (
+              <Col
+                xs={12}
+                lg={4}
+                className="d-flex align-items-center justify-content-lg-end justify-content-center"
+              >
+                <small className="text-muted mr-2">Add Player:</small>
+                <PlayerFinderTextBox
+                  onSelectPlayer={addPinnedPlayer}
+                  currGender={
+                    playerCareerParams.gender || ParamDefaults.defaultGender
+                  }
+                  playerCurrSelected={false}
+                />
+              </Col>
+            ) : undefined}
+          </Row>,
           "text-center"
         );
 
         return tableDataPhase1Chain
           .concat([buttonRow])
           .concat([similarityControlsRow])
+          .concat(
+            // If no similar players, ie user has not yet requested them, then show pinned players
+            _.flatMap(pinnedPlayers, (p, i) => {
+              const players = playerRowBuilder(p, p.year || "????", i == 0);
+
+              // Add remove button for pinned players
+              //TODO: fix this
+              const removeButtonRow = GenericTableOps.buildTextRow(
+                <div className="text-center">
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="remove-pin-tooltip">
+                        Remove pinned player
+                      </Tooltip>
+                    }
+                  >
+                    <a
+                      href="#"
+                      onClick={(e: any) => {
+                        e.preventDefault();
+                        removePinnedPlayer((p._id as any) || "");
+                      }}
+                      className="text-danger"
+                    >
+                      <FontAwesomeIcon icon={faMinusSquare} />
+                    </a>
+                  </OverlayTrigger>
+                </div>,
+                "p-1"
+              );
+
+              return players
+                .concat([removeButtonRow])
+                .concat([GenericTableOps.buildRowSeparator("1px")]);
+            })
+          )
           .value();
       } else {
         // Case 3 & 4: Has similar players - show header with experiment/hide settings link
@@ -1500,41 +1686,99 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           ? "hide settings"
           : "experiment";
         const similarityRow = GenericTableOps.buildTextRow(
-          <span>
-            <i>
-              Similar Players: (
-              <a
-                href="#"
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  setSimilarPlayers([]);
-                  setSimilarityDiagnostics([]);
-                  setComparisonPlayer(undefined);
-                }}
+          <Row className="align-items-center">
+            <Col lg={4} className="d-none d-lg-block">
+              {/* Left space for future filter */}
+            </Col>
+            <Col
+              xs={12}
+              lg={4}
+              className={`text-center ${
+                showSimilaritySettings ? "" : "mb-2 mb-lg-0"
+              }`}
+            >
+              <i>
+                Similar Players: (
+                <a
+                  href="#"
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    setSimilarPlayers([]);
+                    setSimilarityDiagnostics([]);
+                    setComparisonPlayer(undefined);
+                  }}
+                >
+                  clear
+                </a>
+                ) (
+                <a
+                  href="#"
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    setShowSimilaritySettings(!showSimilaritySettings);
+                  }}
+                >
+                  {experimentLink}
+                </a>
+                )
+              </i>
+            </Col>
+            {FeatureFlags.isActiveWindow(
+              FeatureFlags.playerSimilarityScoring
+            ) && !showSimilaritySettings ? (
+              <Col
+                xs={12}
+                lg={4}
+                className="d-flex align-items-center justify-content-lg-end justify-content-center"
               >
-                clear
-              </a>
-              ) (
-              <a
-                href="#"
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  setShowSimilaritySettings(!showSimilaritySettings);
-                }}
-              >
-                {experimentLink}
-              </a>
-              )
-            </i>
-          </span>,
+                <small className="text-muted mr-2">Add Player:</small>
+                <PlayerFinderTextBox
+                  onSelectPlayer={addPinnedPlayer}
+                  currGender={
+                    playerCareerParams.gender || ParamDefaults.defaultGender
+                  }
+                  playerCurrSelected={false}
+                />
+              </Col>
+            ) : (
+              <Col lg={4} className="d-none d-lg-block">
+                {/* Right spacer when no Add Player */}
+              </Col>
+            )}
+          </Row>,
           "text-center"
         );
 
         const experimentButtonRow = showSimilaritySettings
           ? GenericTableOps.buildTextRow(
-              <Button onClick={() => requestSimilarPlayers()}>
-                Find Similar Players
-              </Button>,
+              <Row className="align-items-center">
+                <Col lg={4} className="d-none d-lg-block">
+                  {/* Left space for future filter */}
+                </Col>
+                <Col xs={12} lg={4} className="text-center mb-2 mb-lg-0">
+                  <Button onClick={() => requestSimilarPlayers()}>
+                    Find Similar Players
+                  </Button>
+                </Col>
+                {FeatureFlags.isActiveWindow(
+                  FeatureFlags.playerSimilarityScoring
+                ) ? (
+                  <Col
+                    xs={12}
+                    lg={4}
+                    className="d-flex align-items-center justify-content-lg-end justify-content-center"
+                  >
+                    <small className="text-muted mr-2">Add Player:</small>
+                    <PlayerFinderTextBox
+                      onSelectPlayer={addPinnedPlayer}
+                      currGender={
+                        playerCareerParams.gender || ParamDefaults.defaultGender
+                      }
+                      playerCurrSelected={false}
+                    />
+                  </Col>
+                ) : undefined}
+              </Row>,
               "text-center"
             )
           : null;
