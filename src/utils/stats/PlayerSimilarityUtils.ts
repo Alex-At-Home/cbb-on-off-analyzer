@@ -591,7 +591,8 @@ export class PlayerSimilarityUtils {
       config.playStyleWeight,
       "playStyle",
       PlayerSimilarityUtils.allStyles,
-      PlayerSimilarityUtils.styleFrequencyWeight
+      PlayerSimilarityUtils.styleFrequencyWeight *
+        PlayerSimilarityUtils.dropdownWeights[config.playTypeWeights]
     );
 
     // Additional play style stats
@@ -631,7 +632,7 @@ export class PlayerSimilarityUtils {
       config.scoringEfficiencyWeight,
       "scoringEfficiency",
       PlayerSimilarityUtils.allStyles.map((style) => `${style} Scoring`),
-      1.0,
+      PlayerSimilarityUtils.dropdownWeights[config.playTypeWeights],
       rateWeights.styleRateWeights
     );
 
