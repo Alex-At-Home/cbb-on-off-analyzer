@@ -63,7 +63,6 @@ import {
   PlayerSimilarityUtils,
   SimilarityDiagnostics,
 } from "../utils/stats/PlayerSimilarityUtils";
-import { PlayerSimilarityTableUtils } from "./shared/PlayerSimilarityTableUtils";
 //@ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import StickyRow from "./shared/StickyRow";
@@ -73,6 +72,7 @@ import { GradeUtils } from "../utils/stats/GradeUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import SimilarityConfigModal from "./shared/SimilarityConfigModal";
 import SimilarityWeights from "./shared/SimilarityWeights";
+import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 
 const fetchRetryOptions = {
@@ -783,28 +783,28 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         }));
       } else {
         selectedYearsDataTypeChain
-          .filter(([year, dataType, playerSeason]) => {
-            return year != playerYear || dataType != titleSuffix;
-          })
-          .map(([year, dataType, playerSeason]) => {
-            const infix = !dataType
-              ? "All"
-              : dataType == "Conf Stats"
-              ? "Conf"
-              : "T100";
+      .filter(([year, dataType, playerSeason]) => {
+        return year != playerYear || dataType != titleSuffix;
+      })
+      .map(([year, dataType, playerSeason]) => {
+        const infix = !dataType
+          ? "All"
+          : dataType == "Conf Stats"
+          ? "Conf"
+          : "T100";
 
-            // Inject like this so we don't need to recalculate every time
-            if (!playerSeason.off_shots && playerSeason.shotInfo) {
+        // Inject like this so we don't need to recalculate every time
+        if (!playerSeason.off_shots && playerSeason.shotInfo) {
               (playerSeason as any).off_shots =
                 ShotChartUtils.decompressHexData(playerSeason.shotInfo as any);
-            }
+        }
 
-            return {
-              title: `${year} (${infix})`,
-              gender: playerCareerParams.gender || ParamDefaults.defaultGender,
-              off: playerSeason.off_shots as any,
-              def: {},
-            };
+        return {
+          title: `${year} (${infix})`,
+          gender: playerCareerParams.gender || ParamDefaults.defaultGender,
+          off: playerSeason.off_shots as any,
+          def: {},
+        };
           });
       }
     });
@@ -877,9 +877,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       >
         <span>
           <b>net: </b>
-          <b style={adjMarginShadow}>
-            [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
-          </b>
+        <b style={adjMarginShadow}>
+          [{(adjMargin > 0 ? "+" : "") + adjMargin.toFixed(1)}]
+        </b>
           {_.thru(
             showGrades && !showStandaloneGrades,
             (showInlineRapmNetGrade) => {
@@ -1048,35 +1048,35 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           similarityDiagnostics[maybeActiveCompIndex]
             ? [
                 GenericTableOps.buildTextRow(
-                  PlayerSimilarityTableUtils.buildDiagnosticContent(
-                    similarityDiagnostics[maybeActiveCompIndex],
-                    similarityConfig,
-                    resolvedTheme
-                  ),
+                  <SimilarityDiagnosticView
+                    diagnostics={similarityDiagnostics[maybeActiveCompIndex]}
+                    config={similarityConfig}
+                    theme={resolvedTheme}
+                  />,
                   "p-0"
                 ),
               ]
             : [],
         ])
       : _.flatten([
-          !topYear && showEveryYear
-            ? [
-                GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                  "small"
-                ),
-              ]
-            : [],
-          [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
+      !topYear && showEveryYear
+        ? [
+            GenericTableOps.buildHeaderRepeatRow(
+              CommonTableDefs.repeatingOnOffIndivHeaderFields,
+              "small"
+            ),
+          ]
+        : [],
+      [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
           expandedView
             ? [
-                GenericTableOps.buildDataRow(
-                  player,
-                  defPrefixFn,
-                  defCellMetaFn,
-                  undefined,
-                  rosterInfoSpanCalculator
-                ),
+        GenericTableOps.buildDataRow(
+          player,
+          defPrefixFn,
+          defCellMetaFn,
+          undefined,
+          rosterInfoSpanCalculator
+        ),
               ]
             : [],
           comparisonPlayer &&
@@ -1092,49 +1092,49 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               )
             : [],
           showStandaloneGrades
-            ? GradeTableUtils.buildPlayerGradeTableRows({
-                isFullSelection: !titleSuffix,
-                selectionTitle: `Grades`,
-                config: showGrades,
-                setConfig: (newConfig: string) => setShowGrades(newConfig),
-                playerStats: {
-                  comboTier: divisionStatsCacheByYear.Combo,
-                  highTier: divisionStatsCacheByYear.High,
-                  mediumTier: divisionStatsCacheByYear.Medium,
-                  lowTier: divisionStatsCacheByYear.Low,
-                },
-                playerPosStats: positionalStatsCache[player.year || "??"] || {},
-                player,
+        ? GradeTableUtils.buildPlayerGradeTableRows({
+            isFullSelection: !titleSuffix,
+            selectionTitle: `Grades`,
+            config: showGrades,
+            setConfig: (newConfig: string) => setShowGrades(newConfig),
+            playerStats: {
+              comboTier: divisionStatsCacheByYear.Combo,
+              highTier: divisionStatsCacheByYear.High,
+              mediumTier: divisionStatsCacheByYear.Medium,
+              lowTier: divisionStatsCacheByYear.Low,
+            },
+            playerPosStats: positionalStatsCache[player.year || "??"] || {},
+            player,
                 expandedView,
-                possAsPct,
-                factorMins,
-                includeRapm: true,
-                leaderboardMode: true,
-              })
-            : [],
-          showShotCharts &&
-          fullYear >= DateUtils.firstYearWithShotChartData &&
-          player.shotInfo
-            ? [
-                (player.shotInfo as any).data
-                  ? GenericTableOps.buildTextRow(
-                      <ShotChartDiagView
-                        title={player.key}
-                        off={
-                          (player.off_shots ||
-                            ShotChartUtils.decompressHexData(
-                              player.shotInfo as any
-                            )) as any
-                        }
-                        def={{}}
-                        gender={
-                          (playerCareerParams.gender ||
-                            ParamDefaults.defaultGender) as "Men" | "Women"
-                        }
-                        quickSwitchOptions={shotChartQuickSwitchOptions as any}
-                        chartOpts={shotChartConfig}
-                        onChangeChartOpts={(newOpts: any) => {
-                          setShotChartConfig(newOpts);
+            possAsPct,
+            factorMins,
+            includeRapm: true,
+            leaderboardMode: true,
+          })
+        : [],
+      showShotCharts &&
+      fullYear >= DateUtils.firstYearWithShotChartData &&
+      player.shotInfo
+        ? [
+            (player.shotInfo as any).data
+              ? GenericTableOps.buildTextRow(
+                  <ShotChartDiagView
+                    title={player.key}
+                    off={
+                      (player.off_shots ||
+                        ShotChartUtils.decompressHexData(
+                          player.shotInfo as any
+                        )) as any
+                    }
+                    def={{}}
+                    gender={
+                      (playerCareerParams.gender ||
+                        ParamDefaults.defaultGender) as "Men" | "Women"
+                    }
+                    quickSwitchOptions={shotChartQuickSwitchOptions as any}
+                    chartOpts={shotChartConfig}
+                    onChangeChartOpts={(newOpts: any) => {
+                      setShotChartConfig(newOpts);
 
                           //TODO quick switch is more complex
                           // but in similarity mode, we'll treat the currently selected player as a special case
@@ -1147,44 +1147,44 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                               )
                             );
                           }
-                        }}
-                      />,
-                      "small"
-                    )
-                  : GenericTableOps.buildTextRow(
-                      <ShotZoneChartDiagView
-                        gender={
-                          (playerCareerParams.gender ||
-                            ParamDefaults.defaultGender) as "Men" | "Women"
-                        }
-                        off={player.shotInfo as any}
-                        chartOpts={shotChartConfig}
-                        onChangeChartOpts={(newOpts: any) => {
-                          setShotChartConfig(newOpts);
-                        }}
-                      />,
-                      "small"
-                    ),
-              ]
-            : [],
-          showPlayerPlayTypes && player.off_style
-            ? [
-                GenericTableOps.buildTextRow(
-                  <IndivPlayTypeDiagRadar
-                    title={player.key}
-                    player={player}
-                    rosterStatsByCode={{}}
-                    teamStats={{} as TeamStatSet}
-                    avgEfficiency={
-                      efficiencyAverages[
-                        `${playerCareerParams.gender}_${player.year}`
-                      ] || efficiencyAverages.fallback
+                    }}
+                  />,
+                  "small"
+                )
+              : GenericTableOps.buildTextRow(
+                  <ShotZoneChartDiagView
+                    gender={
+                      (playerCareerParams.gender ||
+                        ParamDefaults.defaultGender) as "Men" | "Women"
                     }
-                    onChangeChartOpts={(opts: PlayerStyleOpts) => {
-                      setShowPlayerPlayTypesPlayType(opts.playType);
-                      setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                    off={player.shotInfo as any}
+                    chartOpts={shotChartConfig}
+                    onChangeChartOpts={(newOpts: any) => {
+                      setShotChartConfig(newOpts);
+                    }}
+                  />,
+                  "small"
+                ),
+          ]
+        : [],
+      showPlayerPlayTypes && player.off_style
+        ? [
+            GenericTableOps.buildTextRow(
+              <IndivPlayTypeDiagRadar
+                title={player.key}
+                player={player}
+                rosterStatsByCode={{}}
+                teamStats={{} as TeamStatSet}
+                avgEfficiency={
+                  efficiencyAverages[
+                    `${playerCareerParams.gender}_${player.year}`
+                  ] || efficiencyAverages.fallback
+                }
+                onChangeChartOpts={(opts: PlayerStyleOpts) => {
+                  setShowPlayerPlayTypesPlayType(opts.playType);
+                  setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
 
-                      //TODO quick switch is more complex
+                  //TODO quick switch is more complex
                       // but in similarity mode, we'll treat the currently selected player as a special case
                       if (isPlayerCompSource) {
                         setComparisonPlayer(
@@ -1195,26 +1195,26 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           )
                         );
                       }
-                    }}
-                    userOpts={{
-                      playType: showPlayerPlayTypesPlayType,
-                      rawPpp: !showPlayerPlayTypesAdjPpp,
+                }}
+                userOpts={{
+                  playType: showPlayerPlayTypesPlayType,
+                  rawPpp: !showPlayerPlayTypesAdjPpp,
                       quickSwitch: comparisonPlayer?.key
                         ? `${comparisonPlayer.key}${PlayTypeDiagUtils.quickSwichDelim}extra`
                         : undefined,
-                    }}
-                    quickSwitchOptions={playStyleQuickSwitchOptions}
-                    showGrades={showGrades}
-                    grades={divisionStatsCache[player.year || "??"]}
-                    showHelp={showHelp}
-                    compressedPlayTypeStats={player.off_style as any}
-                    navigationLinkOverride={navigationOverride(fullYear)}
-                  />,
-                  "small"
-                ),
-              ]
-            : [],
-        ]);
+                }}
+                quickSwitchOptions={playStyleQuickSwitchOptions}
+                showGrades={showGrades}
+                grades={divisionStatsCache[player.year || "??"]}
+                showHelp={showHelp}
+                compressedPlayTypeStats={player.off_style as any}
+                navigationLinkOverride={navigationOverride(fullYear)}
+              />,
+              "small"
+            ),
+          ]
+        : [],
+    ]);
   };
 
   const tableDataPhase1Chain = selectedYearsChain
@@ -1438,11 +1438,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               const allFetchedPlayers = (
                 fullDocsResponse?.[0]?.responses?.[0]?.hits?.hits || []
               )
-                .map((p: any) => {
-                  const source = p._source || {};
-                  source._id = p._id;
-                  return source;
-                })
+              .map((p: any) => {
+                const source = p._source || {};
+                source._id = p._id;
+                return source;
+              })
                 .filter((p: any) => !_.isEmpty(p));
 
               // Separate current year players from next year players
@@ -1548,10 +1548,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         const experimentLink = showSimilaritySettings
           ? "hide settings"
           : "experiment";
-        const similarityRow = GenericTableOps.buildTextRow(
-          <span>
-            <i>
-              Similar Players: (
+      const similarityRow = GenericTableOps.buildTextRow(
+        <span>
+          <i>
+            Similar Players: (
               <a
                 href="#"
                 onClick={(e: any) => {
@@ -1561,8 +1561,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   setComparisonPlayer(undefined);
                 }}
               >
-                clear
-              </a>
+              clear
+            </a>
               ) (
               <a
                 href="#"
@@ -1573,27 +1573,27 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               >
                 {experimentLink}
               </a>
-              )
-            </i>
-          </span>,
-          "text-center"
-        );
+            )
+          </i>
+        </span>,
+        "text-center"
+      );
 
         const experimentButtonRow = showSimilaritySettings
           ? GenericTableOps.buildTextRow(
-              <Button onClick={() => requestSimilarPlayers()}>
-                Find Similar Players
-              </Button>,
-              "text-center"
+        <Button onClick={() => requestSimilarPlayers()}>
+          Find Similar Players
+        </Button>,
+        "text-center"
             )
           : null;
 
-        return tableDataPhase1Chain
+      return tableDataPhase1Chain
           .concat([similarityRow])
           .concat(showSimilaritySettings ? [similarityControlsRow] : [])
           .concat(experimentButtonRow ? [experimentButtonRow] : [])
-          .concat(
-            _.flatMap(similarPlayers, (p, i) => {
+        .concat(
+          _.flatMap(similarPlayers, (p, i) => {
               const players = playerRowBuilder(p, p.year || "????", i == 0);
 
               // Add next year player row if available
@@ -1611,20 +1611,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 similarityDiagnostics[i]
                   ? [
                       GenericTableOps.buildTextRow(
-                        PlayerSimilarityTableUtils.buildDiagnosticContent(
-                          similarityDiagnostics[i],
-                          similarityConfig,
-                          resolvedTheme
-                        ),
+                        <SimilarityDiagnosticView
+                          diagnostics={similarityDiagnostics[i]}
+                          config={similarityConfig}
+                          theme={resolvedTheme}
+                        />,
                         "p-0"
                       ),
                       GenericTableOps.buildRowSeparator("1px"),
                     ]
                   : [];
               return players.concat(nextYearRows).concat(extraSimilarityRows);
-            })
-          )
-          .value();
+          })
+        )
+        .value();
       }
     } else {
       return tableDataPhase1Chain.value();
@@ -1754,130 +1754,130 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         )
         .concat(
           [
-            {
-              label: " | ",
-              isLabelOnly: true,
-              toggled: false,
-              onClick: () => null,
-            },
-            {
-              label: "All",
-              tooltip:
-                "Show data for the player's stats vs all opposition" +
-                _.isEmpty(similarPlayers)
-                  ? ""
-                  : " (disabled until similar players cleared)",
-              toggled: showAll,
+          {
+            label: " | ",
+            isLabelOnly: true,
+            toggled: false,
+            onClick: () => null,
+          },
+          {
+            label: "All",
+            tooltip:
+              "Show data for the player's stats vs all opposition" +
+              _.isEmpty(similarPlayers)
+                ? ""
+                : " (disabled until similar players cleared)",
+            toggled: showAll,
               disabled: !playerSimilarityMode && !showConf && !showT100,
-              onClick: () => {
-                if (playerSimilarityMode) {
-                  //(currently - can only view one season/sample at a time)
+            onClick: () => {
+              if (playerSimilarityMode) {
+                //(currently - can only view one season/sample at a time)
+                setShowAll(true);
+                setShowConf(false);
+                setShowT100(false);
+              } else {
+                if (showConf || showT100) {
+                  setShowAll(!showAll);
+                }
+              }
+            },
+          },
+          {
+            label: "Conf",
+            tooltip:
+              "Show data for the player's stats vs Conference opposition" +
+              _.isEmpty(similarPlayers)
+                ? ""
+                : " (disabled until similar players cleared)",
+            toggled: showConf,
+            onClick: () => {
+              if (playerSimilarityMode) {
+                //(currently - can only view one season/sample at a time)
+                setShowAll(false);
+                setShowConf(true);
+                setShowT100(false);
+              } else {
+                if (!showAll && !showT100 && showConf) {
+                  //revert back to showAll
                   setShowAll(true);
-                  setShowConf(false);
-                  setShowT100(false);
-                } else {
-                  if (showConf || showT100) {
-                    setShowAll(!showAll);
-                  }
                 }
-              },
+                setShowConf(!showConf);
+              }
             },
-            {
-              label: "Conf",
-              tooltip:
-                "Show data for the player's stats vs Conference opposition" +
-                _.isEmpty(similarPlayers)
-                  ? ""
-                  : " (disabled until similar players cleared)",
-              toggled: showConf,
-              onClick: () => {
-                if (playerSimilarityMode) {
-                  //(currently - can only view one season/sample at a time)
-                  setShowAll(false);
-                  setShowConf(true);
-                  setShowT100(false);
-                } else {
-                  if (!showAll && !showT100 && showConf) {
-                    //revert back to showAll
-                    setShowAll(true);
-                  }
-                  setShowConf(!showConf);
+          },
+          {
+            label: "T100",
+            tooltip:
+              "Show data for the player's stats vs T100" +
+              _.isEmpty(similarPlayers)
+                ? ""
+                : " (disabled until similar players cleared)",
+            toggled: showT100,
+            onClick: () => {
+              if (playerSimilarityMode) {
+                //(currently - can only view one season/sample at a time)
+                setShowAll(false);
+                setShowConf(false);
+                setShowT100(true);
+              } else {
+                if (!showAll && !showConf && showT100) {
+                  //revert back to showAll
+                  setShowAll(true);
                 }
-              },
+                setShowT100(!showT100);
+              }
             },
-            {
-              label: "T100",
-              tooltip:
-                "Show data for the player's stats vs T100" +
-                _.isEmpty(similarPlayers)
-                  ? ""
-                  : " (disabled until similar players cleared)",
-              toggled: showT100,
-              onClick: () => {
-                if (playerSimilarityMode) {
-                  //(currently - can only view one season/sample at a time)
-                  setShowAll(false);
-                  setShowConf(false);
-                  setShowT100(true);
-                } else {
-                  if (!showAll && !showConf && showT100) {
-                    //revert back to showAll
-                    setShowAll(true);
-                  }
-                  setShowT100(!showT100);
-                }
-              },
-            },
-            {
-              label: " | ",
-              isLabelOnly: true,
-              toggled: true,
-              onClick: () => null,
-            },
-            {
+          },
+          {
+            label: " | ",
+            isLabelOnly: true,
+            toggled: true,
+            onClick: () => null,
+          },
+          {
               label: "Expanded",
               tooltip: expandedView
                 ? "Show single row of player stats"
                 : "Show expanded player stats",
               toggled: expandedView,
               onClick: () => setExpandedView(!expandedView),
-            },
-            {
-              label: "Shots",
-              tooltip: `Show simple shot zones (${DateUtils.firstYearWithShotChartData}+ only)`,
-              toggled: showShotCharts,
-              onClick: () => setShowShotCharts(!showShotCharts),
-            },
-            {
-              label: "Style",
-              tooltip: showPlayerPlayTypes
-                ? "Hide play style breakdowns"
-                : "Show play style breakdowns",
-              toggled: showPlayerPlayTypes,
-              onClick: () => setShowPlayerPlayTypes(!showPlayerPlayTypes),
-            },
-            {
-              label: " | ",
-              isLabelOnly: true,
-              toggled: true,
-              onClick: () => null,
-            },
-            {
-              label: "Poss%",
-              tooltip: possAsPct
-                ? "Show possessions as count"
-                : "Show possessions as percentage",
-              toggled: possAsPct,
-              onClick: () => setPossAsPct(!possAsPct),
-            },
-            {
-              label: "+ Info",
-              tooltip: showInfoSubHeader
-                ? "Hide extra info sub-header"
-                : "Show extra info sub-header",
-              toggled: showInfoSubHeader,
-              onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
-            },
+          },
+          {
+            label: "Shots",
+            tooltip: `Show simple shot zones (${DateUtils.firstYearWithShotChartData}+ only)`,
+            toggled: showShotCharts,
+            onClick: () => setShowShotCharts(!showShotCharts),
+          },
+          {
+            label: "Style",
+            tooltip: showPlayerPlayTypes
+              ? "Hide play style breakdowns"
+              : "Show play style breakdowns",
+            toggled: showPlayerPlayTypes,
+            onClick: () => setShowPlayerPlayTypes(!showPlayerPlayTypes),
+          },
+          {
+            label: " | ",
+            isLabelOnly: true,
+            toggled: true,
+            onClick: () => null,
+          },
+          {
+            label: "Poss%",
+            tooltip: possAsPct
+              ? "Show possessions as count"
+              : "Show possessions as percentage",
+            toggled: possAsPct,
+            onClick: () => setPossAsPct(!possAsPct),
+          },
+          {
+            label: "+ Info",
+            tooltip: showInfoSubHeader
+              ? "Hide extra info sub-header"
+              : "Show extra info sub-header",
+            toggled: showInfoSubHeader,
+            onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
+          },
           ].concat(
             playerSimilarityMode
               ? [
