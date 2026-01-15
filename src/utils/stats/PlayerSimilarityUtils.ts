@@ -523,6 +523,10 @@ export class PlayerSimilarityUtils {
     let totalWeight = 0;
     let vectorIndex = 0;
 
+    const styleWeightOverrides = PlayerSimilarityUtils.parseCustomWeights(
+      config.customWeights
+    );
+
     // Helper to process vector section with weights and track diagnostics
     const processSection = (
       length: number,
@@ -552,7 +556,10 @@ export class PlayerSimilarityUtils {
         );
 
         // Calculate weight
-        let weight = componentWeight * dropdownWeight;
+        let weight =
+          componentWeight *
+          dropdownWeight *
+          (styleWeightOverrides[statNames[i]] ?? 1);
         if (sectionRateWeights && i < sectionRateWeights.length) {
           weight *= sectionRateWeights[i];
         }
