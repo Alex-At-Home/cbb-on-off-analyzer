@@ -381,7 +381,7 @@ export class PlayerSimilarityTableUtils {
               Good Matches:
             </div>
             {good
-              .filter((stat) => stat.weight >= 0.01)
+              .filter((stat) => stat.weight >= 0.01 && stat.globalStdDev > 0)
               .map((stat) => {
                 const percentage =
                   PlayerSimilarityTableUtils.zScoreToPercentage(stat.zScore);

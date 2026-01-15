@@ -181,7 +181,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                 <Form.Group className="mb-0">
                   <Form.Label>
                     <small>
-                      <b>FT weighting</b>
+                      <b>FTR weighting</b>
                     </small>
                   </Form.Label>
                   <Form.Control
