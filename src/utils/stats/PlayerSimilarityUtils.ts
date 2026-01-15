@@ -556,12 +556,14 @@ export class PlayerSimilarityUtils {
         );
 
         // Calculate weight
-        let weight =
-          componentWeight *
-          dropdownWeight *
-          (styleWeightOverrides[statNames[i]] ?? 1);
+        let weight = componentWeight * dropdownWeight;
+
         if (sectionRateWeights && i < sectionRateWeights.length) {
           weight *= sectionRateWeights[i];
+        }
+        // Override a weight if desired:
+        if (!_.isNil(styleWeightOverrides[statNames[i]])) {
+          weight = styleWeightOverrides[statNames[i]];
         }
 
         // Squared difference in z-score space
