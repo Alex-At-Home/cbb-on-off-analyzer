@@ -2,6 +2,9 @@ import { IndivCareerStatSet, Statistic } from "../StatModels";
 import { PlayTypeUtils, TopLevelIndivPlayType } from "./PlayTypeUtils";
 import { SimilarityConfig, DefaultSimilarityConfig } from "../FilterModels";
 
+// Lodash:
+import _ from "lodash";
+
 /** Diagnostic information for similarity calculation */
 export interface SimilarityDiagnostics {
   componentScores: {
@@ -819,12 +822,47 @@ export class PlayerSimilarityUtils {
     );
   };
 
-  // Dropdown weight multipliers for none/less/default/more
+  // Dropdown weight multipliers for none/less/default/more/max
   static readonly dropdownWeights = {
     none: 0.0,
     less: 0.5,
     default: 1.0,
     more: 2.0,
+    max: 5.0,
+  };
+
+  /** Parse custom weights string into a Record<string, number>
+   * Format: "Weight Name 1: 2.0, Weight Name 2: 3.0"
+   * Returns a map of weight name to multiplier value
+   */
+  static readonly parseCustomWeights = (
+    customWeights: string
+  ): Record<string, number> => {
+    const result: Record<string, number> = {};
+
+    if (!customWeights.trim()) {
+      return result;
+    }
+
+    // Split by commas to get individual weight pairs
+    const pairs = customWeights.split(",");
+
+    for (const pair of pairs) {
+      const colonIndex = pair.indexOf(":");
+      if (colonIndex === -1) continue; // Skip invalid pairs
+
+      const key = pair.substring(0, colonIndex).trim();
+      const valueStr = pair.substring(colonIndex + 1).trim();
+
+      if (key && valueStr) {
+        const value = parseFloat(valueStr);
+        if (!isNaN(value)) {
+          result[key] = value;
+        }
+      }
+    }
+
+    return result;
   };
 
   /** Helper function to parse height string to inches */

@@ -153,7 +153,7 @@ describe("PlayerSimilarityUtils", () => {
         // Single vector
         const { means, stdDevs } = PlayerSimilarityUtils.calculateZScores([[1, 2, 3]]);
         expect(means).toEqual([1, 2, 3]);
-        expect(stdDevs).toEqual([1.0, 1.0, 1.0]); // Should avoid division by zero
+        expect(stdDevs).toEqual([0.0, 0.0, 0.0]); // Single data point has no standard deviation
       });
     });
 
@@ -202,7 +202,7 @@ describe("PlayerSimilarityUtils", () => {
         expect(results.length).toBeLessThanOrEqual(candidates.length);
         
         results.forEach(result => {
-          expect(result).toHaveProperty('player');
+          expect(result).toHaveProperty('obj');
           expect(result).toHaveProperty('similarity');
           expect(result).toHaveProperty('diagnostics');
           expect(typeof result.similarity).toBe('number');
@@ -344,6 +344,70 @@ describe("PlayerSimilarityUtils", () => {
         for (let i = 0; i < vector1.length; i++) {
           expect(vector2[i]).toBe(vector1[i]);
         }
+      });
+    });
+  });
+
+  describe("parseCustomWeights", () => {
+    it("should parse empty string correctly", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("");
+      expect(result).toEqual({});
+    });
+
+    it("should parse whitespace-only string correctly", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("   ");
+      expect(result).toEqual({});
+    });
+
+    it("should parse single weight correctly", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("Attack & Kick: 2.0");
+      expect(result).toEqual({ "Attack & Kick": 2.0 });
+    });
+
+    it("should parse multiple weights correctly", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("Attack & Kick: 2.0, Rim Attack: 3.0");
+      expect(result).toEqual({ 
+        "Attack & Kick": 2.0,
+        "Rim Attack": 3.0 
+      });
+    });
+
+    it("should handle whitespace around values", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("Attack & Kick:  2.0 , Rim Attack :3.0");
+      expect(result).toEqual({ 
+        "Attack & Kick": 2.0,
+        "Rim Attack": 3.0 
+      });
+    });
+
+    it("should handle decimal values", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("Test: 1.5, Another: 0.75");
+      expect(result).toEqual({ 
+        "Test": 1.5,
+        "Another": 0.75 
+      });
+    });
+
+    it("should skip invalid pairs without colons", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("Valid: 2.0, Invalid, Another: 3.0");
+      expect(result).toEqual({ 
+        "Valid": 2.0,
+        "Another": 3.0 
+      });
+    });
+
+    it("should skip pairs with invalid numbers", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights("Valid: 2.0, Invalid: abc, Another: 3.0");
+      expect(result).toEqual({ 
+        "Valid": 2.0,
+        "Another": 3.0 
+      });
+    });
+
+    it("should handle empty keys or values", () => {
+      const result = PlayerSimilarityUtils.parseCustomWeights(": 2.0, Valid: 3.0, Empty:");
+      expect(result).toEqual({ 
+        "Valid": 3.0
       });
     });
   });

@@ -41,23 +41,36 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
   const handleReset = () => {
     onConfigChange(DefaultSimilarityConfig);
     setInternalQuery(DefaultSimilarityConfig.advancedQuery); // Reset internal query too
+    setInternalCustomWeights(DefaultSimilarityConfig.customWeights); // Reset internal custom weights too
   };
 
   // Local state for advanced query to avoid updating config on every keystroke
   const [internalQuery, setInternalQuery] = useState(config.advancedQuery);
 
-  // Initialize internal query when modal opens
+  // Local state for custom weights to avoid updating config on every keystroke
+  const [internalCustomWeights, setInternalCustomWeights] = useState(
+    config.customWeights
+  );
+
+  // State for collapsible Advanced Query Options (default collapsed)
+  const [advancedOptionsExpanded, setAdvancedOptionsExpanded] = useState(false);
+
+  // Initialize internal values when modal opens
   useEffect(() => {
     if (show) {
       setInternalQuery(config.advancedQuery);
+      setInternalCustomWeights(config.customWeights);
     }
-  }, [show, config.advancedQuery]);
+  }, [show, config.advancedQuery, config.customWeights]);
 
   // Update config when modal closes
   const handleClose = () => {
-    // Only update if the query actually changed
+    // Only update if values actually changed
     if (internalQuery !== config.advancedQuery) {
       handleConfigChange("advancedQuery", internalQuery);
+    }
+    if (internalCustomWeights !== config.customWeights) {
+      handleConfigChange("customWeights", internalCustomWeights);
     }
     onHide();
   };
@@ -67,6 +80,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
     { value: "less", label: "Less" },
     { value: "default", label: "Default" },
     { value: "more", label: "More" },
+    { value: "max", label: "Max" },
   ];
 
   const scoringModeOptions = [
@@ -479,49 +493,105 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         </Row>
 
         {/* Advanced Query Options Section */}
-        <Row className="mb-0">
+        <Row className="mb-0 pt-3">
           <Col xs={12}>
-            <h5 className="mb-2">Advanced Query Options</h5>
-            <Row>
-              <Col xs={6} md={3}>
-                <Form.Group className="mb-0">
-                  <Form.Label>
-                    <small>
-                      <b>Players count</b>
-                    </small>
-                  </Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={config.comparisonPlayersCount}
-                    onChange={(e) =>
-                      handleConfigChange(
-                        "comparisonPlayersCount",
-                        parseInt(e.target.value)
-                      )
-                    }
-                  >
-                    <option value={10}>10</option>
-                    <option value={20}>20</option>
-                    <option value={40}>40</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-              <Col xs={12} md={9}>
-                <Form.Group className="mb-0">
-                  <Form.Label>
-                    <small>
-                      <b>Advanced query</b>
-                    </small>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Here Be Dragons! Read the docs first."
-                    value={internalQuery}
-                    onChange={(e) => setInternalQuery(e.target.value)}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
+            <h5
+              className="mb-2 d-flex align-items-center"
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                setAdvancedOptionsExpanded(!advancedOptionsExpanded)
+              }
+            >
+              <span className="mr-2">
+                {advancedOptionsExpanded ? "−" : "+"}
+              </span>
+              Advanced Query Options
+            </h5>
+            {advancedOptionsExpanded && (
+              <>
+                <Row>
+                  <Col xs={6} md={3}>
+                    <Form.Group className="mb-0">
+                      <Form.Label>
+                        <small>
+                          <b>Players count</b>
+                        </small>
+                      </Form.Label>
+                      <Form.Control
+                        as="select"
+                        value={config.comparisonPlayersCount}
+                        onChange={(e) =>
+                          handleConfigChange(
+                            "comparisonPlayersCount",
+                            parseInt(e.target.value)
+                          )
+                        }
+                      >
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                        <option value={40}>40</option>
+                      </Form.Control>
+                    </Form.Group>
+                  </Col>
+                  <Col xs={12} md={9}>
+                    <Form.Group className="mb-0">
+                      <Form.Label>
+                        <small>
+                          <b>Advanced query</b>
+                        </small>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Here Be Dragons! Read the docs first."
+                        value={internalQuery}
+                        onChange={(e) => setInternalQuery(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col xs={6} md={3}>
+                    <Form.Group className="mb-0">
+                      <Form.Label>
+                        <small>
+                          <b>Play Type Weights</b>
+                        </small>
+                      </Form.Label>
+                      <Form.Control
+                        as="select"
+                        value={config.playTypeWeights}
+                        onChange={(e) =>
+                          handleConfigChange("playTypeWeights", e.target.value)
+                        }
+                      >
+                        {weightingOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form.Group>
+                  </Col>
+                  <Col xs={12} md={9}>
+                    <Form.Group className="mb-0">
+                      <Form.Label>
+                        <small>
+                          <b>Custom Weights</b>
+                        </small>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Attack & Kick: 2.0, Rim Attack: 3.0"
+                        value={internalCustomWeights}
+                        onChange={(e) =>
+                          setInternalCustomWeights(e.target.value)
+                        }
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </>
+            )}
           </Col>
         </Row>
       </Modal.Body>

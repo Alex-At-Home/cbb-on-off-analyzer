@@ -309,6 +309,9 @@ export type OffseasonLeaderboardParams = {
   queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)
 
+// Similarity configuration types
+export type WeightingOption = "none" | "less" | "default" | "more" | "max";
+
 export interface SimilarityConfig {
   // Slider weights (existing, but rename class -> playerInfo)
   playStyleWeight: number;
@@ -318,27 +321,31 @@ export interface SimilarityConfig {
 
   // Play Style section
   includeTransition: boolean;
-  assistWeighting: "none" | "less" | "default" | "more";
-  turnoverWeighting: "none" | "less" | "default" | "more";
-  offensiveReboundWeighting: "none" | "less" | "default" | "more";
-  freeThrowWeighting: "none" | "less" | "default" | "more";
+  assistWeighting: WeightingOption;
+  turnoverWeighting: WeightingOption;
+  offensiveReboundWeighting: WeightingOption;
+  freeThrowWeighting: WeightingOption;
 
   // Scoring Efficiency section
   scoringMode: "sos-adjusted" | "raw" | "relative";
-  offensiveGravityBonus: "none" | "less" | "default" | "more";
-  fgBonus: "none" | "less" | "default" | "more";
-  usageBonus: "none" | "less" | "default" | "more";
+  offensiveGravityBonus: WeightingOption;
+  fgBonus: WeightingOption;
+  usageBonus: WeightingOption;
 
   // Defense section
   defensiveSkill: "sos-adjusted" | "raw" | "relative" | "none";
-  defensiveReboundWeighting: "none" | "less" | "default" | "more";
-  stocksWeighting: "none" | "less" | "default" | "more";
-  foulsWeighting: "none" | "less" | "default" | "more";
+  defensiveReboundWeighting: WeightingOption;
+  stocksWeighting: WeightingOption;
+  foulsWeighting: WeightingOption;
 
   // Player Info section
-  classWeighting: "none" | "less" | "default" | "more";
-  heightWeighting: "none" | "less" | "default" | "more";
-  minutesWeighting: "none" | "less" | "default" | "more";
+  classWeighting: WeightingOption;
+  heightWeighting: WeightingOption;
+  minutesWeighting: WeightingOption;
+  
+  // New fields
+  playTypeWeights: WeightingOption;
+  customWeights: string;
 
   // Comparison Players section
   comparisonPlayersCount: number;
@@ -366,6 +373,8 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   classWeighting: "none",
   heightWeighting: "less",
   minutesWeighting: "none",
+  playTypeWeights: "default",
+  customWeights: "",
   comparisonPlayersCount: 10,
   advancedQuery: "",
 };
