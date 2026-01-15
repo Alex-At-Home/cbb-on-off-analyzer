@@ -17,12 +17,14 @@ import { ParamDefaults } from "../../utils/FilterModels";
 type Props = {
   currGender?: string;
   playerCurrSelected: boolean;
+  placeholderText?: string;
   onSelectPlayer: (ncaaId: string, gender: string) => void;
 };
 
 const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
   currGender,
   playerCurrSelected,
+  placeholderText,
   onSelectPlayer,
 }) => {
   const connector = new ApiProxyConnector({
@@ -63,9 +65,11 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
           <SearchBox
             className="mb-2"
             inputProps={{
-              placeholder: playerCurrSelected
-                ? "Find another player..."
-                : "Search for players...",
+              placeholder:
+                placeholderText ||
+                (playerCurrSelected
+                  ? "Find another player..."
+                  : "Search for players..."),
             }}
             autocompleteMinimumCharacters={3}
             autocompleteView={({ autocompletedResults, getItemProps }) => {

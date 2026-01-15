@@ -223,6 +223,43 @@ export class DateUtils {
       ? undefined
       : dataLastUpdated[genderYear]! - 20 * 24 * 3600;
 
+  /** Some datasets only have the start year - use this method to get the format used in most lookup tables */
+  static readonly getLongFormYear = (y: string) => {
+    if (y == "2025") {
+      return "2025/26";
+    } else if (y == "2024") {
+      return "2024/25";
+    } else if (y == "2023") {
+      return "2023/24";
+    } else if (y == "2022") {
+      return "2022/23";
+    } else if (y == "2021") {
+      return "2021/22";
+    } else if (y == "2020") {
+      return "2020/21";
+    } else if (y == "2019") {
+      return "2019/20";
+    } else if (y == "2018") {
+      return "2018/9";
+    } else if (y == "2018") {
+      return "2018/9";
+    } else if (y == "2017") {
+      return "2017/8";
+    } else if (y == "2016") {
+      return "2016/7";
+    } else if (y == "2015") {
+      return "2015/5";
+    } else if (y == "2014") {
+      return "2014/5";
+    } else if (y == "2013") {
+      return "2013/4";
+    } else if (y == "2012") {
+      return "2012/3";
+    } else {
+      return y; //(it's probably already in long-form format)
+    }
+  };
+
   /** Get the previous season */
   static readonly getPrevYear = (y: string) => {
     if (y == "2026/27") {

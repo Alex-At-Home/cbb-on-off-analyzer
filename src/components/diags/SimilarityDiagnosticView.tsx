@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import {
-  SimilarityDiagnostics,
-} from "../../utils/stats/PlayerSimilarityUtils";
+import { SimilarityDiagnostics } from "../../utils/stats/PlayerSimilarityUtils";
 import { SimilarityConfig } from "../../utils/FilterModels";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
-import { PlayerSimilarityTableUtils, debugShowZScores } from "../shared/PlayerSimilarityTableUtils";
+import {
+  PlayerSimilarityTableUtils,
+  debugShowZScores,
+} from "../shared/PlayerSimilarityTableUtils";
 
 interface Props {
   diagnostics: SimilarityDiagnostics;
@@ -20,16 +21,56 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
   theme,
 }) => {
   const [showDetails, setShowDetails] = useState(false);
-  
-  const componentData = PlayerSimilarityTableUtils.calculateComponentDisplayData(
-    diagnostics,
-    config
-  );
 
+  const componentData =
+    PlayerSimilarityTableUtils.calculateComponentDisplayData(
+      diagnostics,
+      config
+    );
+
+  // Calculate total similarity percentage (lower totalSimilarity = higher similarity %)
+  const totalSimilarityPercentage = _.sumBy(
+    componentData,
+    (c) => c.displayScore * c.displayWeight * 0.01
+  );
   return (
     <div className="border-top">
       {/* Summary row */}
       <div className="d-flex flex-wrap justify-content-center align-items-center p-2 small">
+        {/* Total Similarity */}
+        <div className="d-flex align-items-center">
+          <strong>
+            Similarity:
+            {debugShowZScores && (
+              <span className="text-muted font-weight-normal ml-1">
+                ({diagnostics.totalSimilarity.toFixed(3)})
+              </span>
+            )}
+          </strong>
+          <span className="ml-1">
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip id="tooltip-total-similarity">
+                  Overall similarity score combining all components
+                </Tooltip>
+              }
+            >
+              <span
+                style={CommonTableDefs.getTextShadow(
+                  { value: totalSimilarityPercentage / 100 },
+                  CbbColors.off_pctile_qual,
+                  "20px",
+                  4
+                )}
+              >
+                {Math.round(totalSimilarityPercentage)}%
+              </span>
+            </OverlayTrigger>
+          </span>
+        </div>
+        <span className="mx-2 text-muted">-</span>
+
         {componentData.map((component, index) => (
           <React.Fragment key={component.cleanName}>
             <div className="d-flex align-items-center">
@@ -113,18 +154,29 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
                     </span>
                   )}
                 </div>
-                <ul className="list-unstyled mb-0" style={{ fontSize: "0.8rem" }}>
+                <ul
+                  className="list-unstyled mb-0"
+                  style={{ fontSize: "0.8rem" }}
+                >
                   {component.breakdown
                     .sort((a, b) => Math.abs(b.zScore) - Math.abs(a.zScore))
-                    .filter((stat) => stat.weight > 0.01 && stat.globalStdDev > 0)
+                    .filter(
+                      (stat) => stat.weight > 0.01 && stat.globalStdDev > 0
+                    )
                     .map((stat) => {
-                      const percentage = PlayerSimilarityTableUtils.zScoreToPercentage(
-                        stat.zScore
-                      );
+                      const percentage =
+                        PlayerSimilarityTableUtils.zScoreToPercentage(
+                          stat.zScore
+                        );
                       const color = PlayerSimilarityTableUtils.getZScoreColor(
                         stat.zScore,
                         theme
                       );
+
+                      // Handy debug example:
+                      // if (stat.name == "Transition Scoring") {
+                      //   console.log(`??? `, stat);
+                      // }
 
                       return (
                         <li

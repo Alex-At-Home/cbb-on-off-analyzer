@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  PlayerSimilarityUtils,
   SimilarityDiagnostics,
   StatBreakdown,
 } from "../../utils/stats/PlayerSimilarityUtils";
@@ -38,7 +39,15 @@ export class PlayerSimilarityTableUtils {
   /** Convert z-score to similarity percentage (0 z-score = 100%, higher abs values = lower %) */
   static zScoreToPercentage = (zScore: number): number => {
     const absZScore = Math.abs(zScore);
-    return Math.max(0, Math.min(100, ((3 - absZScore) / 3) * 100));
+    return Math.max(
+      0,
+      Math.min(
+        100,
+        ((PlayerSimilarityUtils.zScoreBound - absZScore) /
+          PlayerSimilarityUtils.zScoreBound) *
+          100
+      )
+    );
   };
 
   static getColorScheme(theme: string | undefined) {
@@ -102,7 +111,6 @@ export class PlayerSimilarityTableUtils {
     return { good, bad };
   };
 
-
   /** Calculate display data for each component */
   static calculateComponentDisplayData = (
     diagnostics: SimilarityDiagnostics,
@@ -144,14 +152,19 @@ export class PlayerSimilarityTableUtils {
     return components.map((component) => {
       const componentScore = diagnostics.componentScores[component.key];
 
-      // Calculate normalized score (0-100% where 100% = 0 z-score, 0% = 3 z-score)
+      // Calculate normalized score (0-100% where 100% = 0 z-score, 0% = 2.5 z-score)
       const avgZScore =
         componentScore.totalWeight > 0
           ? componentScore.weightedZScoreSum / componentScore.totalWeight
           : 0;
       const normalizedScore = Math.max(
         0,
-        Math.min(100, ((3 - avgZScore) / 3) * 100)
+        Math.min(
+          100,
+          ((PlayerSimilarityUtils.zScoreBound - avgZScore) /
+            PlayerSimilarityUtils.zScoreBound) *
+            100
+        )
       );
 
       // Calculate relative weight percentage based on actual per-element weights

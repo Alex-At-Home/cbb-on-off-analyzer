@@ -757,7 +757,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             teamStats: {} as TeamStatSet,
             avgEfficiency:
               efficiencyAverages[
-                `${playerCareerParams.gender}_${currPlayerSelected.year || ""}`
+                `${playerCareerParams.gender}_${DateUtils.getLongFormYear(
+                  currPlayerSelected.year || ""
+                )}`
               ] || efficiencyAverages.fallback,
             showGrades,
             grades: divisionStatsCache[currPlayerSelected.year || "??"],
@@ -777,7 +779,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           teamStats: {} as TeamStatSet,
           avgEfficiency:
             efficiencyAverages[
-              `${playerCareerParams.gender}_${player.year || ""}`
+              `${playerCareerParams.gender}_${DateUtils.getLongFormYear(
+                player.year || ""
+              )}`
             ] || efficiencyAverages.fallback,
           showGrades,
           grades: divisionStatsCache[player.year || "??"],
@@ -813,8 +817,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               rosterStatsByCode: {},
               teamStats: {} as TeamStatSet,
               avgEfficiency:
-                efficiencyAverages[`${playerCareerParams.gender}_${year}`] ||
-                efficiencyAverages.fallback,
+                efficiencyAverages[
+                  `${playerCareerParams.gender}_${DateUtils.getLongFormYear(
+                    year
+                  )}`
+                ] || efficiencyAverages.fallback,
               showGrades,
               grades: divisionStatsCache[year || "??"],
               showHelp,
@@ -1248,7 +1255,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     teamStats={{} as TeamStatSet}
                     avgEfficiency={
                       efficiencyAverages[
-                        `${playerCareerParams.gender}_${player.year}`
+                        `${
+                          playerCareerParams.gender
+                        }_${DateUtils.getLongFormYear(player.year || "")}`
                       ] || efficiencyAverages.fallback
                     }
                     onChangeChartOpts={(opts: PlayerStyleOpts) => {
@@ -1455,13 +1464,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 )
               );
 
-              const topNIds =
+              const { diags, zScores } =
                 PlayerSimilarityUtils.playerSimilarityLogic<string>(
                   currPlayerSelected,
                   similarityConfig,
                   candidateVectors,
                   (idx: number) => flatCandidates[idx]._id
-                ).map((sortedRes) => sortedRes.obj);
+                );
+              const topNIds = diags.map((sortedRes) => sortedRes.obj);
 
               // Add next year IDs if showNextYear is enabled
               let idsToFetch = [...topNIds];
@@ -1553,7 +1563,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     similarityConfig.comparisonPlayersCount +
                     pinnedPlayers.length,
                 },
-                allCandidates
+                allCandidates,
+                zScores
               );
 
               // Set results
@@ -1625,8 +1636,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 lg={4}
                 className="d-flex align-items-center justify-content-lg-end justify-content-center"
               >
-                <small className="text-muted mr-2">Add Player:</small>
                 <PlayerFinderTextBox
+                  placeholderText="Manually add comp..."
                   onSelectPlayer={addPinnedPlayer}
                   currGender={
                     playerCareerParams.gender || ParamDefaults.defaultGender
@@ -1731,8 +1742,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 lg={4}
                 className="d-flex align-items-center justify-content-lg-end justify-content-center"
               >
-                <small className="text-muted mr-2">Add Player:</small>
                 <PlayerFinderTextBox
+                  placeholderText="Manually add comp..."
                   onSelectPlayer={addPinnedPlayer}
                   currGender={
                     playerCareerParams.gender || ParamDefaults.defaultGender
@@ -1768,8 +1779,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     lg={4}
                     className="d-flex align-items-center justify-content-lg-end justify-content-center"
                   >
-                    <small className="text-muted mr-2">Add Player:</small>
                     <PlayerFinderTextBox
+                      placeholderText="Manually add comp..."
                       onSelectPlayer={addPinnedPlayer}
                       currGender={
                         playerCareerParams.gender || ParamDefaults.defaultGender

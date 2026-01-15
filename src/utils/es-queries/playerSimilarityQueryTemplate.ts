@@ -27,6 +27,7 @@ export const playerSimilarityQuery = function (
     "off_2pmidr.value",
     "off_2prim.value",
     "off_2primr.value",
+    "off_ft.value",
     // Offensive advanced stats
     "off_adj_rapm.value",
     "off_adj_rtg.value",
