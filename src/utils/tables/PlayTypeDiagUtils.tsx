@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -17,13 +17,11 @@ import {
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faArrowAltCircleDown,
-  faWindowRestore,
-  faWindowClose,
-} from "@fortawesome/free-regular-svg-icons";
+import QuickSwitchBar, {
+  quickSwitchDelim,
+  QuickSwitchMode,
+  QuickSwitchSource,
+} from "../../components/shared/QuickSwitchBar";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { CSVLink, CSVDownload } from "react-csv";
@@ -272,7 +270,8 @@ export class PlayTypeDiagUtils {
     };
   };
 
-  static readonly quickSwichDelim = ":|:";
+  /** @deprecated Use quickSwitchDelim from QuickSwitchBar instead */
+  static readonly quickSwichDelim = quickSwitchDelim;
 
   /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
   static buildQuickSwitchOptions = (
@@ -291,204 +290,37 @@ export class PlayTypeDiagUtils {
     quickSwitchExtraOptions?: ("extra" | "diff")[],
     theme?: string | undefined
   ) => {
-    const timeTooltip = (
-      <Tooltip id="timerTooltip">
-        Sets off a 4s timer switching between the default breakdown and this one
-      </Tooltip>
-    );
-    const rightArrowTooltip = (
-      <Tooltip id="rightArrowTooltip">
-        Shows a top/bottom comparison between the two data sets
-      </Tooltip>
-    );
-    const cancelRightArrowTooltip = (
-      <Tooltip id="rightArrowTooltip">Hides the top/bottom comparison</Tooltip>
-    );
-    const rightOrDownArrowBuilder = (
-      t: string | undefined,
-      singleRow: boolean
+    // Build modes array based on quickSwitchExtraOptions
+    const modes: QuickSwitchMode[] = ["link", "timer"];
+    if (_.includes(quickSwitchExtraOptions || [], "extra")) {
+      modes.push("extra_down");
+    }
+    if (_.includes(quickSwitchExtraOptions || [], "diff")) {
+      modes.push("diff");
+    }
+
+    // Adapter to convert new updateQuickSwitch signature to old one
+    const handleQuickSwitchUpdate = (
+      newQuickSwitch: string | undefined,
+      newTitle: string | undefined,
+      source: QuickSwitchSource,
+      fromTimer: boolean
     ) => {
-      if (quickSwitchExtra == "extra" && t == quickSwitch) {
-        return (
-          <OverlayTrigger placement="auto" overlay={cancelRightArrowTooltip}>
-            <FontAwesomeIcon icon={faWindowClose} />
-          </OverlayTrigger>
-        );
-      } else {
-        return (
-          <OverlayTrigger placement="auto" overlay={rightArrowTooltip}>
-            <FontAwesomeIcon icon={faArrowAltCircleDown} />
-          </OverlayTrigger>
-        );
-      }
+      updateQuickSwitch(newQuickSwitch, fromTimer);
     };
-    const diffViewTooltip = (
-      <Tooltip id="diffViewTooltip">
-        Shows a differential view of the two data sets
-      </Tooltip>
-    );
-    const cancelDiffViewTooltip = (
-      <Tooltip id="diffViewTooltip">
-        Cancels the differential view of the two data sets
-      </Tooltip>
-    );
-    const diffViewBuilder = (t: string | undefined, singleRow: boolean) => {
-      if (quickSwitchExtra == "diff" && t == quickSwitch) {
-        return (
-          <OverlayTrigger placement="auto" overlay={cancelDiffViewTooltip}>
-            <FontAwesomeIcon icon={faWindowClose} />
-          </OverlayTrigger>
-        );
-      } else {
-        return (
-          <OverlayTrigger placement="auto" overlay={diffViewTooltip}>
-            <FontAwesomeIcon icon={faWindowRestore} />
-          </OverlayTrigger>
-        );
-      }
-    };
-    const quickSwitchTimerLogic = (newQuickSwitch: string | undefined) => {
-      if (quickSwitchTimer) {
-        clearInterval(quickSwitchTimer);
-      }
-      if (quickSwitch) {
-        updateQuickSwitch(undefined, false);
-      } else {
-        updateQuickSwitch(newQuickSwitch, false);
-      }
-      if (newQuickSwitch) {
-        setQuickSwitchTimer(
-          setInterval(() => {
-            updateQuickSwitch(newQuickSwitch, true);
-          }, 4000)
-        );
-      } else {
-        setQuickSwitchTimer(undefined);
-      }
-    };
-    const quickSwitchBuilder = _.map(
-      quickSwitchTimer
-        ? [{ title: `Cancel 4s timer` }]
-        : quickSwitchOptions || [],
-      (opt) => opt.title
-    ).map((t, index) => {
-      return (
-        <span
-          key={`quickSwitch-${index}`}
-          style={{
-            ...(t == quickSwitch
-              ? CommonTableDefs.getTextShadow(
-                  { value: 0 },
-                  (val: number) => "#772953",
-                  "15px",
-                  theme == "dark" ? 3 : 1
-                )
-              : {}),
-            whiteSpace: "nowrap",
-          }}
-        >
-          [
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              if (!quickSwitchTimer) {
-                updateQuickSwitch(
-                  quickSwitch == t ? undefined : t, //(ie toggle)
-                  false
-                );
-              } else {
-                quickSwitchTimerLogic(undefined);
-              }
-            }}
-          >
-            {t}
-          </a>
-          {quickSwitchTimer ? undefined : (
-            <span>
-              &nbsp;
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  quickSwitchTimerLogic(t);
-                }}
-              >
-                <OverlayTrigger placement="auto" overlay={timeTooltip}>
-                  <FontAwesomeIcon icon={faClock} />
-                </OverlayTrigger>
-                &nbsp;
-              </a>
-            </span>
-          )}
-          {quickSwitchTimer ? undefined : (
-            <Fragment>
-              {!_.includes(quickSwitchExtraOptions || [], "extra") ? null : (
-                <span>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (quickSwitchExtra === "extra" && t === quickSwitch) {
-                        updateQuickSwitch(undefined, false);
-                      } else {
-                        updateQuickSwitch(
-                          quickSwitch ==
-                            `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`
-                            ? undefined
-                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}extra`,
-                          false
-                        );
-                      }
-                    }}
-                  >
-                    {rightOrDownArrowBuilder(t, true)}&nbsp;
-                  </a>
-                </span>
-              )}
-              {!_.includes(quickSwitchExtraOptions || [], "diff") ? null : (
-                <span>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (quickSwitchExtra === "diff" && t === quickSwitch) {
-                        updateQuickSwitch(undefined, false);
-                      } else {
-                        updateQuickSwitch(
-                          quickSwitch ==
-                            `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`
-                            ? undefined
-                            : `${t}${PlayTypeDiagUtils.quickSwichDelim}diff`,
-                          false
-                        );
-                      }
-                    }}
-                  >
-                    {diffViewBuilder(t, true)}&nbsp;
-                  </a>
-                </span>
-              )}
-            </Fragment>
-          )}
-          ]&nbsp;
-        </span>
-      );
-    });
+
     return (
-      <div
-        style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline" }}
-      >
-        <span style={{ whiteSpace: "nowrap" }}>
-          <b>Analysis: [{quickSwitchExtra ? title : quickSwitch || title}]</b>
-        </span>
-        {_.isEmpty(quickSwitchOptions) ? null : (
-          <span style={{ whiteSpace: "nowrap" }}>
-            &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
-          </span>
-        )}
-        {_.isEmpty(quickSwitchOptions) ? null : quickSwitchBuilder}
-      </div>
+      <QuickSwitchBar
+        title={title}
+        quickSwitch={quickSwitch}
+        quickSwitchExtra={quickSwitchExtra}
+        quickSwitchOptions={quickSwitchOptions}
+        updateQuickSwitch={handleQuickSwitchUpdate}
+        quickSwitchTimer={quickSwitchTimer}
+        setQuickSwitchTimer={setQuickSwitchTimer}
+        modes={modes}
+        theme={theme}
+      />
     );
   };
 

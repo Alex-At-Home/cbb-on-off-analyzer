@@ -50,6 +50,7 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
+import { quickSwitchDelim } from "../shared/QuickSwitchBar";
 import { useTheme } from "next-themes";
 import { ParamDefaults } from "../../utils/FilterModels";
 
@@ -146,12 +147,11 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
-  const quickSwichDelim = ":|:";
   const quickSwitchBase = quickSwitch
-    ? quickSwitch.split(quickSwichDelim)[0]
+    ? quickSwitch.split(quickSwitchDelim)[0]
     : undefined;
   const quickSwitchExtra: "extra" | "diff" | undefined = (
-    quickSwitch ? quickSwitch.split(quickSwichDelim)[1] : undefined
+    quickSwitch ? quickSwitch.split(quickSwitchDelim)[1] : undefined
   ) as "extra" | "diff" | undefined;
 
   // --- MAIN/BASE/EXTRA CHART DATA LOGIC ---

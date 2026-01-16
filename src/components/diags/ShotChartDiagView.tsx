@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 
 import _ from "lodash";
 
@@ -12,16 +12,10 @@ import { ShotChartAvgs_Women_2024 } from "../../utils/internal-data/ShotChartAvg
 import { ShotChartZones_Men_2024 } from "../../utils/internal-data/ShotChartZones_Men_2024";
 import { ShotChartZones_Women_2024 } from "../../utils/internal-data/ShotChartZones_Women_2024";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faArrowAltCircleRight,
-  faWindowClose,
-  faWindowRestore,
-} from "@fortawesome/free-regular-svg-icons";
-
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import QuickSwitchBar, {
+  quickSwitchDelim,
+  QuickSwitchSource,
+} from "../shared/QuickSwitchBar";
 
 const HEX_HEIGHT = 400;
 const HEX_WIDTH = 520;
@@ -32,18 +26,14 @@ import HexMap from "../shared/HexMap";
 import { ParamDefaults } from "../../utils/FilterModels";
 import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 import { useTheme } from "next-themes";
-import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 
 ///////////////////// UI element + control
-
-const quickSwichDelim = ":|:";
 
 /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
 const buildQuickSwitchOptions = (
   title: string,
-  hasDefensiveData: boolean,
   quickSwitch: string | undefined,
-  quickSwitchExtra: string | undefined,
+  quickSwitchExtra: "extra" | "diff" | undefined,
   quickSwitchOptions: { title?: string }[] | undefined,
   updateQuickSwitch: (
     newSetting: string | undefined,
@@ -53,192 +43,29 @@ const buildQuickSwitchOptions = (
   setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void,
   theme: string | undefined
 ) => {
-  const quickSwitchTimerLogic = (newQuickSwitch: string | undefined) => {
-    if (quickSwitchTimer) {
-      clearInterval(quickSwitchTimer);
-    }
-    if (quickSwitch) {
-      updateQuickSwitch(undefined, false);
-    } else {
-      updateQuickSwitch(newQuickSwitch, false);
-    }
-    if (newQuickSwitch) {
-      setQuickSwitchTimer(
-        setInterval(() => {
-          updateQuickSwitch(newQuickSwitch, true);
-        }, 4000)
-      );
-    } else {
-      setQuickSwitchTimer(undefined);
-    }
-  };
-  const timeTooltip = (
-    <Tooltip id="timerTooltip">
-      Sets off a 4s timer switching between the default breakdown and this one
-    </Tooltip>
-  );
-  const rightArrowTooltip = (
-    <Tooltip id="rightArrowTooltip">
-      Shows a side-by-side comparison between the two data sets
-    </Tooltip>
-  );
-  const cancelRightArrowTooltip = (
-    <Tooltip id="rightArrowTooltip">Hides the side-by-side comparison</Tooltip>
-  );
-  const rightOrDownArrowBuilder = (
-    t: string | undefined,
-    singleRow: boolean
+  // Adapter to convert new updateQuickSwitch signature to old one
+  const handleQuickSwitchUpdate = (
+    newQuickSwitch: string | undefined,
+    newTitle: string | undefined,
+    source: QuickSwitchSource,
+    fromTimer: boolean
   ) => {
-    if (quickSwitchExtra == "extra" && t == quickSwitch) {
-      return (
-        <OverlayTrigger placement="auto" overlay={cancelRightArrowTooltip}>
-          <FontAwesomeIcon icon={faWindowClose} />
-        </OverlayTrigger>
-      );
-    } else {
-      return (
-        <OverlayTrigger placement="auto" overlay={rightArrowTooltip}>
-          <FontAwesomeIcon icon={faArrowAltCircleRight} />
-        </OverlayTrigger>
-      );
-    }
+    updateQuickSwitch(newQuickSwitch, fromTimer);
   };
-  const diffViewTooltip = (
-    <Tooltip id="diffViewTooltip">
-      Shows a differential view of the two data sets
-    </Tooltip>
-  );
-  const cancelDiffViewTooltip = (
-    <Tooltip id="diffViewTooltip">
-      Cancels the differential view of the two data sets
-    </Tooltip>
-  );
-  const diffViewBuilder = (t: string | undefined, singleRow: boolean) => {
-    if (quickSwitchExtra == "diff" && t == quickSwitch) {
-      return (
-        <OverlayTrigger placement="auto" overlay={cancelDiffViewTooltip}>
-          <FontAwesomeIcon icon={faWindowClose} />
-        </OverlayTrigger>
-      );
-    } else {
-      return (
-        <OverlayTrigger placement="auto" overlay={diffViewTooltip}>
-          <FontAwesomeIcon icon={faWindowRestore} />
-        </OverlayTrigger>
-      );
-    }
-  };
-  const quickSwitchBuilder = _.map(
-    quickSwitchTimer
-      ? [{ title: `Cancel 4s timer` }]
-      : quickSwitchOptions || [],
-    (opt) => opt.title
-  ).map((t, index) => {
-    return (
-      <span
-        key={`quickSwitch-${index}`}
-        style={{
-          ...(t == quickSwitch
-            ? CommonTableDefs.getTextShadow(
-                { value: 0 },
-                (val: number) => "#772953",
-                "15px",
-                theme == "dark" ? 3 : 1
-              )
-            : {}),
-          whiteSpace: "nowrap",
-        }}
-      >
-        [
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            if (!quickSwitchTimer) {
-              updateQuickSwitch(
-                quickSwitch == t && !quickSwitchExtra ? undefined : t,
-                false
-              ); //(ie toggle)
-            } else {
-              quickSwitchTimerLogic(undefined);
-            }
-          }}
-        >
-          {t}
-        </a>
-        {quickSwitchTimer ? undefined : (
-          <span>
-            &nbsp;
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                quickSwitchTimerLogic(t);
-              }}
-            >
-              <OverlayTrigger placement="auto" overlay={timeTooltip}>
-                <FontAwesomeIcon icon={faClock} />
-              </OverlayTrigger>
-              &nbsp;
-            </a>
-          </span>
-        )}
-        {quickSwitchTimer ? undefined : (
-          <Fragment>
-            <span>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  updateQuickSwitch(
-                    quickSwitch == t && quickSwitchExtra == "extra"
-                      ? undefined
-                      : `${t}${quickSwichDelim}extra`,
-                    false
-                  ); //(ie toggle)
-                }}
-              >
-                {rightOrDownArrowBuilder(t, !hasDefensiveData)}
-                &nbsp;
-              </a>
-            </span>
-            <span>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  updateQuickSwitch(
-                    quickSwitch == t && quickSwitchExtra == "diff"
-                      ? undefined
-                      : `${t}${quickSwichDelim}diff`,
-                    false
-                  ); //(ie toggle)
-                }}
-              >
-                {diffViewBuilder(t, !hasDefensiveData)}
-                &nbsp;
-              </a>
-            </span>
-          </Fragment>
-        )}
-        ]&nbsp;
-      </span>
-    );
-  });
 
-  const quickswitchOverride = quickSwitchExtra ? undefined : quickSwitch;
   return (
-    <div>
-      <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
-        <b>Shot Chart Analysis: [{quickswitchOverride || title}]</b>
-      </span>
-      {_.isEmpty(quickSwitchOptions) ? null : (
-        <span style={{ whiteSpace: "nowrap" }}>
-          &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
-        </span>
-      )}
-      {_.isEmpty(quickSwitchOptions) ? null : quickSwitchBuilder}
-    </div>
+    <QuickSwitchBar
+      title={title}
+      titlePrefix="Shot Chart Analysis:"
+      quickSwitch={quickSwitch}
+      quickSwitchExtra={quickSwitchExtra}
+      quickSwitchOptions={quickSwitchOptions}
+      updateQuickSwitch={handleQuickSwitchUpdate}
+      quickSwitchTimer={quickSwitchTimer}
+      setQuickSwitchTimer={setQuickSwitchTimer}
+      modes={["link", "timer", "extra_right", "diff"]}
+      theme={theme}
+    />
   );
 };
 
@@ -309,10 +136,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   //   ShotChartUtils.buildAverageZones(diffDataSet || {}, "Women");
 
   const quickSwitchBase = quickSwitch
-    ? quickSwitch.split(quickSwichDelim)[0]
+    ? quickSwitch.split(quickSwitchDelim)[0]
     : undefined;
   const quickSwitchExtra: "extra" | "diff" | undefined = (
-    quickSwitch ? quickSwitch.split(quickSwichDelim)[1] : undefined
+    quickSwitch ? quickSwitch.split(quickSwitchDelim)[1] : undefined
   ) as "extra" | "diff" | undefined;
 
   const hasDefensiveData = (def?.doc_count || 0) > 0;
@@ -491,7 +318,6 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           <Col xs={12}>
             {buildQuickSwitchOptions(
               title,
-              hasDefensiveData,
               quickSwitchBase,
               quickSwitchExtra,
               quickSwitchOptions?.filter(

@@ -77,6 +77,7 @@ import SimilarityWeights from "./shared/SimilarityWeights";
 import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
 import PlayerFinderTextBox from "./shared/PlayerFinderTextBox";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
+import { quickSwitchDelim } from "./shared/QuickSwitchBar";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -1228,7 +1229,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             setComparisonPlayer(
                               similarPlayers.find(
                                 (p) =>
-                                  `${p.key}${PlayTypeDiagUtils.quickSwichDelim}extra` ==
+                                  `${p.key}${quickSwitchDelim}extra` ==
                                   newOpts.quickSwitch
                               )
                             );
@@ -1279,7 +1280,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         setComparisonPlayer(
                           similarPlayers.find(
                             (p) =>
-                              `${p.key}${PlayTypeDiagUtils.quickSwichDelim}extra` ==
+                              `${p.key}${quickSwitchDelim}extra` ==
                               opts.quickSwitch
                           )
                         );
@@ -1289,7 +1290,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       playType: showPlayerPlayTypesPlayType,
                       rawPpp: !showPlayerPlayTypesAdjPpp,
                       quickSwitch: comparisonPlayer?.key
-                        ? `${comparisonPlayer.key}${PlayTypeDiagUtils.quickSwichDelim}extra`
+                        ? `${comparisonPlayer.key}${quickSwitchDelim}extra`
                         : undefined,
                     }}
                     quickSwitchOptions={playStyleQuickSwitchOptions}

@@ -51,6 +51,7 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
+import { quickSwitchDelim } from "../shared/QuickSwitchBar";
 import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 import AsyncFormControl from "../shared/AsyncFormControl";
@@ -145,7 +146,7 @@ const radarConfigToStr = (
     _.thru(config.quickSwitch, (newQuickSwitch) => {
       if (
         newQuickSwitch &&
-        newQuickSwitch.includes(PlayTypeDiagUtils.quickSwichDelim)
+        newQuickSwitch.includes(quickSwitchDelim)
       ) {
         return newQuickSwitch; //(don't store temp switches between graphs)
       } else return "";
@@ -311,11 +312,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     NodeJS.Timer | undefined
   >(undefined);
   const quickSwitchBase = quickSwitch
-    ? quickSwitch.split(PlayTypeDiagUtils.quickSwichDelim)[0]
+    ? quickSwitch.split(quickSwitchDelim)[0]
     : undefined;
   const quickSwitchExtra: "extra" | "diff" | undefined = (
     quickSwitch
-      ? quickSwitch.split(PlayTypeDiagUtils.quickSwichDelim)[1]
+      ? quickSwitch.split(quickSwitchDelim)[1]
       : undefined
   ) as "extra" | "diff" | undefined;
 

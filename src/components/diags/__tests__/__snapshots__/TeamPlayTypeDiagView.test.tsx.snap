@@ -2,22 +2,19 @@
 
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!details, help) 1`] = `
 <span>
-  <div>
-    <span
-      style={
-        Object {
-          "display": "inline-block",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      <b>
-        Analysis: [
-        Title
-        ]
-      </b>
-    </span>
-  </div>
+  <QuickSwitchBar
+    cancelExtraTooltip="Hides the top/bottom comparison"
+    extraTooltip="Shows a top/bottom comparison between the two data sets"
+    modes={
+      Array [
+        "link",
+        "timer",
+      ]
+    }
+    setQuickSwitchTimer={[Function]}
+    title="Title"
+    updateQuickSwitch={[Function]}
+  />
   <Container
     className="mt-2"
     fluid={false}
@@ -239,22 +236,19 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
 
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!help) 1`] = `
 <span>
-  <div>
-    <span
-      style={
-        Object {
-          "display": "inline-block",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      <b>
-        Analysis: [
-        Title
-        ]
-      </b>
-    </span>
-  </div>
+  <QuickSwitchBar
+    cancelExtraTooltip="Hides the top/bottom comparison"
+    extraTooltip="Shows a top/bottom comparison between the two data sets"
+    modes={
+      Array [
+        "link",
+        "timer",
+      ]
+    }
+    setQuickSwitchTimer={[Function]}
+    title="Title"
+    updateQuickSwitch={[Function]}
+  />
   <Container
     className="mt-2"
     fluid={false}
