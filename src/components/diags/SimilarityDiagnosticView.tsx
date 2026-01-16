@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { SimilarityDiagnostics } from "../../utils/stats/PlayerSimilarityUtils";
+import {
+  PlayerSimilarityUtils,
+  SimilarityDiagnostics,
+} from "../../utils/stats/PlayerSimilarityUtils";
 import { SimilarityConfig } from "../../utils/FilterModels";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
@@ -29,10 +32,16 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
     );
 
   // Calculate total similarity percentage (lower totalSimilarity = higher similarity %)
-  const totalSimilarityPercentage = _.sumBy(
-    componentData,
-    (c) => c.displayScore * c.displayWeight * 0.01
+  const totalSimilarityPercentage = Math.max(
+    0,
+    Math.min(
+      100,
+      ((PlayerSimilarityUtils.zScoreBound - diagnostics.totalSimilarity) /
+        PlayerSimilarityUtils.zScoreBound) *
+        100
+    )
   );
+
   return (
     <div className="border-top">
       {/* Summary row */}

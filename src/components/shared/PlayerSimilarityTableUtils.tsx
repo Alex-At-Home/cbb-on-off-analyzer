@@ -155,7 +155,9 @@ export class PlayerSimilarityTableUtils {
       // Calculate normalized score (0-100% where 100% = 0 z-score, 0% = 2.5 z-score)
       const avgZScore =
         componentScore.totalWeight > 0
-          ? componentScore.weightedZScoreSum / componentScore.totalWeight
+          ? Math.sqrt(
+              componentScore.weightedZScoreSum / componentScore.totalWeight
+            )
           : 0;
       const normalizedScore = Math.max(
         0,

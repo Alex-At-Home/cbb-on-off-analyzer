@@ -127,8 +127,9 @@ export class PlayerSimilarityUtils {
   /** Scoring has fewer elements in the vector but is important so we'll emphasis it more */
   static readonly fgWeight = 5.0;
 
-  /** Style has a bunch of elements so we reduce it a bit */
+  /** The total weight across all styles */
   static readonly styleFrequencyWeight = 0.66;
+  //TODO make this 6 once I have  set of style specific weights summing to 1
 
   // STEP 1: SIMPLE QUERY VECTOR
 
@@ -575,7 +576,7 @@ export class PlayerSimilarityUtils {
         totalWeight += weight;
 
         // Update component diagnostics
-        component.weightedZScoreSum += Math.abs(boundedZScore) * weight;
+        component.weightedZScoreSum += scoreDiff * weight;
         component.totalWeight += weight;
 
         // Add to stat breakdown if we have a name
@@ -584,7 +585,7 @@ export class PlayerSimilarityUtils {
             name: statNames[i],
             zScore: boundedZScore,
             weight: weight,
-            weightedAbsoluteZScore: Math.abs(boundedZScore) * weight,
+            weightedAbsoluteZScore: scoreDiff * weight,
             globalStdDev: effStdDev,
           });
         }
@@ -595,13 +596,28 @@ export class PlayerSimilarityUtils {
 
     // PLAY STYLE SECTION
 
+    // Adjust the weights
+    // IMPORTANT: relies on the styles being first
+    //TODO: try harmonic weights of 2 players
+    // const styleStdDevs = _.take(
+    //   zScoreStats.stdDevs,
+    //   PlayerSimilarityUtils.allStyles.length
+    // );
+    // const totalStyleStdDevWeight = _.sumBy(styleStdDevs, (p) =>
+    //   Math.pow(p, 0.7)
+    // );
+    // const styleStdDevWeights = styleStdDevs.map(
+    //   (p) => Math.pow(p, 0.7) / totalStyleStdDevWeight
+    // );
+
     processSection(
       PlayerSimilarityUtils.allStyles.length,
       config.playStyleWeight,
       "playStyle",
       PlayerSimilarityUtils.allStyles,
       PlayerSimilarityUtils.styleFrequencyWeight *
-        PlayerSimilarityUtils.dropdownWeights[config.playTypeWeights]
+        PlayerSimilarityUtils.dropdownWeights[config.playTypeWeights],
+      undefined
     );
 
     // Additional play style stats
@@ -742,7 +758,7 @@ export class PlayerSimilarityUtils {
 
     // Calculate final similarity score (note I think this is nonsense, sum(diff^2)/weight, but doesn't seem to be used anywhere)
     diagnostics.totalSimilarity =
-      totalWeight > 0 ? totalScore / totalWeight : Infinity;
+      totalWeight > 0 ? Math.sqrt(totalScore / totalWeight) : Infinity;
 
     return diagnostics;
   };
