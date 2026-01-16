@@ -59,11 +59,18 @@ export class PlayerSimilarityUtils {
   // Add manual player
   // ^WIP, UI is in but not working yet .. added some TODOs plus need to support the Y+1
   // Add a filter for the comps (plus a "pinned only" filter)
-  // Always calc all z-scores, then save, then don't redo expensive query unless player has changed
+  // Cache "top 500" players so don't need to rerun expensive
   // SoS-adjust FG% somehow (mainly rim?)
+  // Add tooltips to all the dropdowns
+  // Class - "has to match" / "upper/under-match" / (existing)
+  // Player - similar opposition?
+  // Calculate rate weights per player and average
+  // (Diff mode - list players outside of style, also have option ("Diff" mode, default enabled) to only show style/shots for source player)
+  // (Grade config bar - replace super ugly x with icon)
 
   // IDEAS I'm not sure about
-  // Transition: 3 options: absolute / relative / none (default none)
+  // SoS: apply to FG%s
+  // Transition: 3 options: absolute / relative / none (default none? or relative? bit worried relative just won't work)
   // Move usage to style (done but need to change layout)
   // Style: Should merge stylistic-mid-range with pure mid-rate?
   // (idea: have a slider that weights up the "basic" fields)

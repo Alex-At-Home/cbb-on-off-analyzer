@@ -255,6 +255,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     playerCareerParams.showNextYear ?? ParamDefaults.defaultShowNextYear
   );
 
+  /** Whether to enable diff mode (focus UI on comparing source player vs comps) */
+  const [diffMode, setDiffMode] = useState(
+    playerCareerParams.diffMode ?? ParamDefaults.defaultDiffMode
+  );
+
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
     true as boolean
   ); //(always defaults to on)
@@ -314,6 +319,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       stickyQuickToggle,
       showInfoSubHeader,
       showNextYear,
+      diffMode,
       similarityConfig,
       pinnedIds: pinnedPlayers
         .map((p) => p._id as string)
@@ -337,6 +343,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     stickyQuickToggle,
     showInfoSubHeader,
     showNextYear,
+    diffMode,
     similarityConfig,
     pinnedPlayers,
   ]);
@@ -1192,7 +1199,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             : [],
           showShotCharts &&
           fullYear >= DateUtils.firstYearWithShotChartData &&
-          player.shotInfo
+          player.shotInfo &&
+          (!isSimilarPlayer || !diffMode)
             ? [
                 (player.shotInfo as any).data
                   ? GenericTableOps.buildTextRow(
@@ -1245,7 +1253,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     ),
               ]
             : [],
-          showPlayerPlayTypes && player.off_style
+          showPlayerPlayTypes && player.off_style &&
+          (!isSimilarPlayer || !diffMode)
             ? [
                 GenericTableOps.buildTextRow(
                   <IndivPlayTypeDiagRadar
@@ -2092,6 +2101,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     isLabelOnly: true,
                     toggled: true,
                     onClick: () => null,
+                  },
+                  {
+                    label: "Diff",
+                    tooltip: "Diff mode: focuses the UI on comparing the source player vs their comps",
+                    toggled: diffMode,
+                    onClick: () => {
+                      setDiffMode(!diffMode);
+                    },
                   },
                   {
                     label: "Year+1",

@@ -419,6 +419,7 @@ export type PlayerCareerParams = {
   showNextYear?: boolean; //(if true, fetch next year data for similar players)
   hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
   pinnedIds?: string; //(comma-separated list of pinned player IDs)
+  diffMode?: boolean; //(if true, focus UI on comparing source player vs comps)
 };
 
 export type PlayerLeaderboardParams = {
@@ -669,6 +670,8 @@ export class ParamDefaults {
   // Player Career
   static readonly defaultShowNextYear = false;
   static readonly defaultHidePlayerOverview = false;
+  static readonly defaultPinnedIds = "";
+  static readonly defaultDiffMode = true;
 }
 
 export type FilterParamsType =

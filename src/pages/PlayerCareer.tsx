@@ -165,6 +165,9 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         rawParams.hidePlayerOverview == ParamDefaults.defaultHidePlayerOverview
           ? ["hidePlayerOverview"]
           : [],
+        rawParams.diffMode == ParamDefaults.defaultDiffMode
+          ? ["diffMode"]
+          : [],
 
         !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
 
