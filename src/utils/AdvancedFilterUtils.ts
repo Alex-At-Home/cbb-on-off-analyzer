@@ -108,7 +108,6 @@ export class AdvancedFilterUtils {
     "off_twoprim",
     "off_ft",
     "off_threep_ast",
-    "off_twop_ast",
     "off_twopmid_ast",
     "off_twoprim_ast",
     "def_threep",
@@ -117,7 +116,6 @@ export class AdvancedFilterUtils {
     "def_twoprim",
     "def_ft",
     "def_threep_ast",
-    "def_twop_ast",
     "def_twopmid_ast",
     "def_twoprim_ast",
 
@@ -129,7 +127,6 @@ export class AdvancedFilterUtils {
     //"off_scramble_per_orb",
     "off_scramble_efg",
     "off_scramble_twop",
-    "off_scramble_twop_ast",
     "off_scramble_threep",
     "off_scramble_threep_ast",
     "off_scramble_twoprim",
@@ -148,7 +145,6 @@ export class AdvancedFilterUtils {
     //"def_scramble_per_orb",
     "def_scramble_efg",
     "def_scramble_twop",
-    "def_scramble_twop_ast",
     "def_scramble_threep",
     "def_scramble_threep_ast",
     "def_scramble_twoprim",
@@ -169,7 +165,6 @@ export class AdvancedFilterUtils {
     //"off_trans_delta_ppp",
     "off_trans_efg",
     "off_trans_twop",
-    "off_trans_twop_ast",
     "off_trans_threep",
     "off_trans_threep_ast",
     "off_trans_twoprim",
@@ -187,7 +182,6 @@ export class AdvancedFilterUtils {
     //"def_trans_delta_ppp",
     "def_trans_efg",
     "def_trans_twop",
-    "def_trans_twop_ast",
     "def_trans_threep",
     "def_trans_threep_ast",
     "def_trans_twoprim",
@@ -266,7 +260,6 @@ export class AdvancedFilterUtils {
     "off_twoprim",
     "off_ft",
     "off_threep_ast",
-    "off_twop_ast",
     "off_twopmid_ast",
     "off_twoprim_ast",
     "def_threep",
@@ -275,7 +268,6 @@ export class AdvancedFilterUtils {
     "def_twoprim",
     "def_ft",
     "def_threep_ast",
-    "def_twop_ast",
     "def_twopmid_ast",
     "def_twoprim_ast",
 
@@ -296,7 +288,6 @@ export class AdvancedFilterUtils {
     "off_scramble_per_orb",
     "off_scramble_efg",
     "off_scramble_twop",
-    "off_scramble_twop_ast",
     "off_scramble_threep",
     "off_scramble_threep_ast",
     "off_scramble_twoprim",
@@ -315,7 +306,6 @@ export class AdvancedFilterUtils {
     "def_scramble_per_orb",
     "def_scramble_efg",
     "def_scramble_twop",
-    "def_scramble_twop_ast",
     "def_scramble_threep",
     "def_scramble_threep_ast",
     "def_scramble_twoprim",
@@ -335,7 +325,6 @@ export class AdvancedFilterUtils {
     "off_trans_delta_ppp",
     "off_trans_efg",
     "off_trans_twop",
-    "off_trans_twop_ast",
     "off_trans_threep",
     "off_trans_threep_ast",
     "off_trans_twoprim",
@@ -353,7 +342,6 @@ export class AdvancedFilterUtils {
     "def_trans_delta_ppp",
     "def_trans_efg",
     "def_trans_twop",
-    "def_trans_twop_ast",
     "def_trans_threep",
     "def_trans_threep_ast",
     "def_trans_twoprim",
@@ -422,7 +410,6 @@ export class AdvancedFilterUtils {
   static teamFieldHasRank(field: string): boolean {
     const missingRank =
       _.endsWith(field, "_ast_mid") ||
-      _.endsWith(field, "_twop_ast") ||
       _.endsWith(field, "_twopmid_ast") ||
       _.endsWith(field, "_scramble_efg") ||
       _.endsWith(field, "_scramble_threep_ast") ||
@@ -647,13 +634,11 @@ export class AdvancedFilterUtils {
       "off_twoprim",
       "off_ft",
       "off_threep_ast",
-      "off_twop_ast",
       "off_twopmid_ast",
       "off_twoprim_ast",
 
       // Scramble:
       "off_scramble_twop",
-      "off_scramble_twop_ast",
       "off_scramble_threep",
       "off_scramble_threep_ast",
       "off_scramble_twoprim",
@@ -669,7 +654,6 @@ export class AdvancedFilterUtils {
 
       // Transition:
       "off_trans_twop",
-      "off_trans_twop_ast",
       "off_trans_threep",
       "off_trans_threep_ast",
       "off_trans_twoprim",

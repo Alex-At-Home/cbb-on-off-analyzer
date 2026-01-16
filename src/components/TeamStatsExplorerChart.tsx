@@ -473,8 +473,6 @@ const axisPresets = [
   ["Oppo Trans Rim Ast'd%", "100*def_trans_twoprim_ast"],
   ["Trans Mid Ast'd%", "100*off_trans_twopmid_ast"],
   ["Oppo Trans Mid Ast'd%", "100*def_trans_twopmid_ast"],
-  ["Trans 2P Ast'd%", "100*off_trans_twop_ast"],
-  ["Oppo Trans 2P Ast'd%", "100*def_trans_twop_ast"],
 
   // Play Types - Scramble
   ["Scramble Freq", "100*off_scramble_pct"],
@@ -523,8 +521,6 @@ const axisPresets = [
   ["Oppo Scramble Rim Ast'd%", "100*def_scramble_twoprim_ast"],
   ["Scramble Mid Ast'd%", "100*off_scramble_twopmid_ast"],
   ["Oppo Scramble Mid Ast'd%", "100*def_scramble_twopmid_ast"],
-  ["Scramble 2P Ast'd%", "100*off_scramble_twop_ast"],
-  ["Oppo Scramble 2P Ast'd%", "100*def_scramble_twop_ast"],
 
   // Advanced Play Styles - Rim Attack
   ["Rim Attack Freq", "100*off_style_rim_attack_pct"],
