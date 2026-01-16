@@ -420,6 +420,7 @@ export type PlayerCareerParams = {
   hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
   pinnedIds?: string; //(comma-separated list of pinned player IDs)
   diffMode?: boolean; //(if true, focus UI on comparing source player vs comps)
+  diffQuickSwitch?: string; //(selected player for comparison in diff mode)
 };
 
 export type PlayerLeaderboardParams = {
@@ -672,6 +673,7 @@ export class ParamDefaults {
   static readonly defaultHidePlayerOverview = false;
   static readonly defaultPinnedIds = "";
   static readonly defaultDiffMode = true;
+  static readonly defaultDiffQuickSwitch = "";
 }
 
 export type FilterParamsType =

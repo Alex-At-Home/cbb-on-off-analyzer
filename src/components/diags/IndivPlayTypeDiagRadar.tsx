@@ -50,7 +50,11 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
-import { quickSwitchDelim } from "../shared/QuickSwitchBar";
+import QuickSwitchBar, {
+  quickSwitchDelim,
+  QuickSwitchMode,
+  QuickSwitchSource,
+} from "../shared/QuickSwitchBar";
 import { useTheme } from "next-themes";
 import { ParamDefaults } from "../../utils/FilterModels";
 
@@ -76,6 +80,9 @@ export type Props = {
   defensiveOverride?: TopLevelPlayAnalysis;
   compressedPlayTypeStats?: [number, number, number, number][];
   navigationLinkOverride?: React.ReactElement;
+  dynamicQuickSwitch?: boolean; //(only use if there's just one play style chart visible)
+  quickSwitchModesOverride?: QuickSwitchMode[];
+  quickSwitchAtBottom?: boolean;
 };
 const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -93,6 +100,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   userOpts,
   compressedPlayTypeStats,
   navigationLinkOverride,
+  dynamicQuickSwitch,
+  quickSwitchModesOverride,
+  quickSwitchAtBottom,
 }) => {
   const { resolvedTheme } = useTheme();
   const highlightColor = resolvedTheme == "dark" ? "#ffFFff" : "#000000";
@@ -139,7 +149,10 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         | "P%"
         | "T%"
     );
-    // Quick switch isn't currently changeable dynamically so leave that alone
+    // Quick switch by default isn't safely dynamically changeable (lots of charts), but if it _is_:
+    if (dynamicQuickSwitch) {
+      setQuickSwitch(userOpts?.quickSwitch);
+    }
   }, [userOpts]);
 
   // Internal user config state
@@ -797,35 +810,40 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         commonNumTicksToUse * Math.ceil(tmpMax / commonNumTicksToUse);
     }
 
+    const maybeQuickSwitchBar = //(Note this isn't used in the team views (we inherit the one in TeamPlayTypeDiagView), only the game views)
+      title ? (
+        <QuickSwitchBar
+          title={title}
+          quickSwitch={quickSwitchBase}
+          quickSwitchExtra={quickSwitchExtra}
+          quickSwitchOptions={quickSwitchOptions}
+          updateQuickSwitch={(
+            newQuickSwitch: string | undefined,
+            newTitle: string | undefined,
+            source: QuickSwitchSource,
+            fromTimer: boolean
+          ) => {
+            if (fromTimer) {
+              setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+            } else {
+              onChangeChartOpts?.({
+                rawPpp: !adjustForSos,
+                playType: possFreqType,
+                quickSwitch: newQuickSwitch,
+              });
+              setQuickSwitch(newQuickSwitch);
+            }
+          }}
+          quickSwitchTimer={quickSwitchTimer}
+          setQuickSwitchTimer={setQuickSwitchTimer}
+          modes={quickSwitchModesOverride || ["link", "timer", "extra_down"]}
+          theme={resolvedTheme}
+        />
+      ) : undefined;
+
     return (
       <span>
-        {
-          //(Note this isn't used in the team views (we inherit the one in TeamPlayTypeDiagView), only the game views)
-          title
-            ? PlayTypeDiagUtils.buildQuickSwitchOptions(
-                title,
-                quickSwitchBase,
-                quickSwitchOptions,
-                (newSetting, fromTimer) => {
-                  if (fromTimer) {
-                    setQuickSwitch((curr) => (curr ? undefined : newSetting));
-                  } else {
-                    onChangeChartOpts?.({
-                      rawPpp: !adjustForSos,
-                      playType: possFreqType,
-                      quickSwitch: newSetting,
-                    });
-                    setQuickSwitch(newSetting);
-                  }
-                },
-                quickSwitchTimer,
-                setQuickSwitchTimer,
-                quickSwitchExtra,
-                ["extra"],
-                resolvedTheme
-              )
-            : undefined
-        }
+        {!quickSwitchAtBottom ? maybeQuickSwitchBar : undefined}
         <Container>
           <Row className="text-center">
             <Col xs={6} lg={2}>
@@ -902,6 +920,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             </Row>
           ) : undefined}
         </Container>
+        {quickSwitchAtBottom ? maybeQuickSwitchBar : undefined}
       </span>
     );
   }, [

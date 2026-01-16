@@ -168,6 +168,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         rawParams.diffMode == ParamDefaults.defaultDiffMode
           ? ["diffMode"]
           : [],
+        !rawParams.diffQuickSwitch ? ["diffQuickSwitch"] : [],
 
         !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
 

@@ -14,6 +14,7 @@ import { ShotChartZones_Women_2024 } from "../../utils/internal-data/ShotChartZo
 
 import QuickSwitchBar, {
   quickSwitchDelim,
+  QuickSwitchMode,
   QuickSwitchSource,
 } from "../shared/QuickSwitchBar";
 
@@ -28,46 +29,6 @@ import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 import { useTheme } from "next-themes";
 
 ///////////////////// UI element + control
-
-/** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
-const buildQuickSwitchOptions = (
-  title: string,
-  quickSwitch: string | undefined,
-  quickSwitchExtra: "extra" | "diff" | undefined,
-  quickSwitchOptions: { title?: string }[] | undefined,
-  updateQuickSwitch: (
-    newSetting: string | undefined,
-    fromTimer: boolean
-  ) => void,
-  quickSwitchTimer: NodeJS.Timer | undefined,
-  setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void,
-  theme: string | undefined
-) => {
-  // Adapter to convert new updateQuickSwitch signature to old one
-  const handleQuickSwitchUpdate = (
-    newQuickSwitch: string | undefined,
-    newTitle: string | undefined,
-    source: QuickSwitchSource,
-    fromTimer: boolean
-  ) => {
-    updateQuickSwitch(newQuickSwitch, fromTimer);
-  };
-
-  return (
-    <QuickSwitchBar
-      title={title}
-      titlePrefix="Shot Chart Analysis:"
-      quickSwitch={quickSwitch}
-      quickSwitchExtra={quickSwitchExtra}
-      quickSwitchOptions={quickSwitchOptions}
-      updateQuickSwitch={handleQuickSwitchUpdate}
-      quickSwitchTimer={quickSwitchTimer}
-      setQuickSwitchTimer={setQuickSwitchTimer}
-      modes={["link", "timer", "extra_right", "diff"]}
-      theme={theme}
-    />
-  );
-};
 
 export type UserChartOpts = {
   buildZones?: boolean;
@@ -86,6 +47,9 @@ type Props = {
   labelOverrides?: [string, string];
   offDefOverrides?: [boolean, boolean];
   invertLeftRight?: boolean;
+  dynamicQuickSwitch?: boolean; //(only use if there's just one play style chart visible)
+  quickSwitchModesOverride?: QuickSwitchMode[];
+  quickSwitchAtBottom?: boolean;
 };
 
 const ShotChartDiagView: React.FunctionComponent<Props> = ({
@@ -99,6 +63,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   labelOverrides,
   offDefOverrides,
   invertLeftRight,
+  dynamicQuickSwitch,
+  quickSwitchModesOverride,
+  quickSwitchAtBottom,
 }) => {
   const { resolvedTheme } = useTheme();
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
@@ -122,6 +89,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           : chartOpts.buildZones
       );
       setUseEfg(chartOpts?.useEfg ?? false);
+    }
+    // Quick switch by default isn't safely dynamically changeable (lots of charts), but if it _is_:
+    if (dynamicQuickSwitch) {
+      setQuickSwitch(chartOpts?.quickSwitch);
     }
   }, [chartOpts]); //(handle external changes to zone and useEfg)
 
@@ -311,38 +282,46 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const leftIndex = invertLeftRight ? 1 : 0;
   const rightIndex = invertLeftRight ? 0 : 1;
 
+  const maybeQuickSwitchBar = title ? (
+    <Row className="pt-2 pb-2">
+      <Col xs={12}>
+        <QuickSwitchBar
+          title={title}
+          titlePrefix="Shot Chart Analysis:"
+          quickSwitch={quickSwitchBase}
+          quickSwitchExtra={quickSwitchExtra}
+          quickSwitchOptions={quickSwitchOptions}
+          updateQuickSwitch={(
+            newQuickSwitch: string | undefined,
+            newTitle: string | undefined,
+            source: QuickSwitchSource,
+            fromTimer: boolean
+          ) => {
+            if (fromTimer) {
+              setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+            } else {
+              onChangeChartOpts?.({
+                buildZones: buildZones,
+                quickSwitch: newQuickSwitch,
+                useEfg: useEfg,
+              });
+              setQuickSwitch(newQuickSwitch);
+            }
+          }}
+          quickSwitchTimer={quickSwitchTimer}
+          setQuickSwitchTimer={setQuickSwitchTimer}
+          modes={
+            quickSwitchModesOverride || ["link", "timer", "extra_right", "diff"]
+          }
+          theme={resolvedTheme}
+        />
+      </Col>
+    </Row>
+  ) : undefined;
+
   return off?.doc_count || def?.doc_count ? (
     <Container>
-      {title ? (
-        <Row className="pt-2 pb-2">
-          <Col xs={12}>
-            {buildQuickSwitchOptions(
-              title,
-              quickSwitchBase,
-              quickSwitchExtra,
-              quickSwitchOptions?.filter(
-                //(remove any options that don't have data)
-                (opt) => opt.off?.doc_count || opt.def?.doc_count
-              ),
-              (newSetting, fromTimer) => {
-                if (fromTimer) {
-                  setQuickSwitch((curr) => (curr ? undefined : newSetting));
-                } else {
-                  onChangeChartOpts?.({
-                    buildZones: buildZones,
-                    quickSwitch: newSetting,
-                    useEfg: useEfg,
-                  });
-                  setQuickSwitch(newSetting);
-                }
-              },
-              quickSwitchTimer,
-              setQuickSwitchTimer,
-              resolvedTheme
-            )}
-          </Col>
-        </Row>
-      ) : undefined}
+      {!quickSwitchAtBottom ? maybeQuickSwitchBar : undefined}
       <Row>
         <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
           <Container>
@@ -572,6 +551,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           </Col>
         </Row>
       ) : undefined}
+      {quickSwitchAtBottom ? maybeQuickSwitchBar : undefined}
     </Container>
   ) : (
     <span>Loading Data...</span>

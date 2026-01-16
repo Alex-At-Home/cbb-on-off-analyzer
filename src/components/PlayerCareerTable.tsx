@@ -77,7 +77,7 @@ import SimilarityWeights from "./shared/SimilarityWeights";
 import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
 import PlayerFinderTextBox from "./shared/PlayerFinderTextBox";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
-import { quickSwitchDelim } from "./shared/QuickSwitchBar";
+import QuickSwitchBar, { quickSwitchDelim } from "./shared/QuickSwitchBar";
 
 const fetchRetryOptions = {
   retries: 5,
@@ -272,6 +272,31 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       : playerCareerParams.stickyQuickToggle
   );
 
+  const [comparisonPlayer, setComparisonPlayer] = useState<
+    IndivCareerStatSet | undefined
+  >(undefined);
+
+  /** Selected player for comparison in diff mode - TODO probably can simplify by removing this and using comparisonPlayer.key? */
+  const [diffQuickSwitch, setDiffQuickSwitch] = useState(
+    playerCareerParams.diffQuickSwitch ?? ParamDefaults.defaultDiffQuickSwitch
+  );
+
+  /** If changing player to show clear selection */
+  if (playerSimilarityMode)
+    useEffect(() => {
+      const anyOverlap =
+        _.isEmpty(setYearsToShow) ||
+        _.find(playerSeasons, (info) => yearsToShow.has(info.year || ""));
+      if (!anyOverlap) {
+        setYearsToShow(new Set());
+      }
+
+      setSimilarPlayers([]);
+      setComparisonPlayer(undefined);
+      setDiffQuickSwitch("");
+      setSimilarityDiagnostics([]);
+    }, [yearsToShow, showConf, showT100, playerSeasons]);
+
   // 2] Data Model
 
   const playerSeasonInfo = _.chain(playerSeasons)
@@ -321,6 +346,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       showInfoSubHeader,
       showNextYear,
       diffMode,
+      diffQuickSwitch,
       similarityConfig,
       pinnedIds: pinnedPlayers
         .map((p) => p._id as string)
@@ -345,6 +371,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showInfoSubHeader,
     showNextYear,
     diffMode,
+    diffQuickSwitch,
     similarityConfig,
     pinnedPlayers,
   ]);
@@ -486,25 +513,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         })
         .value()?.[0]
     : undefined;
-
-  const [comparisonPlayer, setComparisonPlayer] = useState<
-    IndivCareerStatSet | undefined
-  >(undefined);
-
-  /** If changing player to show clear selection */
-  if (playerSimilarityMode)
-    useEffect(() => {
-      const anyOverlap =
-        _.isEmpty(setYearsToShow) ||
-        _.find(playerSeasons, (info) => yearsToShow.has(info.year || ""));
-      if (!anyOverlap) {
-        setYearsToShow(new Set());
-      }
-
-      setSimilarPlayers([]);
-      setComparisonPlayer(undefined);
-      setSimilarityDiagnostics([]);
-    }, [yearsToShow, showConf, showT100, playerSeasons]);
 
   /** Fetch pinned players on startup */
   if (playerSimilarityMode)
@@ -868,7 +876,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           off: player.off_shots as any,
         }));
       } else {
-        selectedYearsDataTypeChain
+        return selectedYearsDataTypeChain
           .filter(([year, dataType, playerSeason]) => {
             return year != playerYear || dataType != titleSuffix;
           })
@@ -1165,9 +1173,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : [],
-          comparisonPlayer &&
-          isPlayerCompSource &&
-          (showPlayerPlayTypes || showShotCharts) //(TODO: currently this is the controller so need visible)
+          comparisonPlayer && isPlayerCompSource
             ? playerRowBuilder(
                 comparisonPlayer,
                 comparisonPlayer.year || "????",
@@ -1176,6 +1182,37 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 undefined,
                 true
               )
+            : [],
+          diffMode && isPlayerCompSource && !_.isEmpty(similarPlayers)
+            ? [
+                GenericTableOps.buildTextRow(
+                  <QuickSwitchBar
+                    title={diffQuickSwitch || "Select Player"}
+                    titlePrefix="Compare With:"
+                    quickSwitch={diffQuickSwitch}
+                    quickSwitchExtra="extra"
+                    quickSwitchOptions={similarPlayers.map((p) => ({
+                      title: p.key,
+                    }))}
+                    updateQuickSwitch={(
+                      quickSwitch: string | undefined,
+                      newTitle: string | undefined,
+                      source: any,
+                      fromTimer: boolean
+                    ) => {
+                      setDiffQuickSwitch(newTitle || "");
+                      setComparisonPlayer(
+                        similarPlayers.find((p) => p.key == newTitle)
+                      );
+                    }}
+                    quickSwitchTimer={undefined}
+                    setQuickSwitchTimer={() => {}}
+                    modes={["extra_down"]}
+                    theme={resolvedTheme}
+                  />,
+                  "text-center small"
+                ),
+              ]
             : [],
           showStandaloneGrades
             ? GradeTableUtils.buildPlayerGradeTableRows({
@@ -1219,22 +1256,34 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             ParamDefaults.defaultGender) as "Men" | "Women"
                         }
                         quickSwitchOptions={shotChartQuickSwitchOptions as any}
-                        chartOpts={shotChartConfig}
+                        chartOpts={{
+                          ...shotChartConfig,
+                          quickSwitch: comparisonPlayer?.key
+                            ? `${comparisonPlayer.key}${quickSwitchDelim}extra`
+                            : undefined,
+                        }}
                         onChangeChartOpts={(newOpts: any) => {
                           setShotChartConfig(newOpts);
 
                           //TODO quick switch is more complex
                           // but in similarity mode, we'll treat the currently selected player as a special case
-                          if (isPlayerCompSource) {
-                            setComparisonPlayer(
-                              similarPlayers.find(
-                                (p) =>
-                                  `${p.key}${quickSwitchDelim}extra` ==
-                                  newOpts.quickSwitch
-                              )
+                          if (isPlayerCompSource && diffMode) {
+                            const newPlayer = similarPlayers.find(
+                              (p) =>
+                                `${p.key}${quickSwitchDelim}extra` ==
+                                newOpts.quickSwitch
                             );
+                            setComparisonPlayer(newPlayer);
+                            setDiffQuickSwitch(newPlayer?.key || "");
                           }
                         }}
+                        dynamicQuickSwitch={diffMode && isPlayerCompSource}
+                        quickSwitchModesOverride={
+                          diffMode && isPlayerCompSource && diffQuickSwitch
+                            ? ["extra_right"]
+                            : undefined
+                        }
+                        quickSwitchAtBottom={diffMode && isPlayerCompSource}
                       />,
                       "small"
                     )
@@ -1254,7 +1303,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     ),
               ]
             : [],
-          showPlayerPlayTypes && player.off_style &&
+          showPlayerPlayTypes &&
+          player.off_style &&
           (!isSimilarPlayer || !diffMode)
             ? [
                 GenericTableOps.buildTextRow(
@@ -1276,14 +1326,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
                       //TODO quick switch is more complex
                       // but in similarity mode, we'll treat the currently selected player as a special case
-                      if (isPlayerCompSource) {
-                        setComparisonPlayer(
-                          similarPlayers.find(
-                            (p) =>
-                              `${p.key}${quickSwitchDelim}extra` ==
-                              opts.quickSwitch
-                          )
+                      if (isPlayerCompSource && diffMode) {
+                        const newPlayer = similarPlayers.find(
+                          (p) =>
+                            `${p.key}${quickSwitchDelim}extra` ==
+                            opts.quickSwitch
                         );
+                        setComparisonPlayer(newPlayer);
+                        setDiffQuickSwitch(newPlayer?.key || "");
                       }
                     }}
                     userOpts={{
@@ -1299,6 +1349,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     showHelp={showHelp}
                     compressedPlayTypeStats={player.off_style as any}
                     navigationLinkOverride={navigationOverride(fullYear)}
+                    dynamicQuickSwitch={diffMode && isPlayerCompSource}
+                    quickSwitchModesOverride={
+                      diffMode && isPlayerCompSource && diffQuickSwitch
+                        ? ["extra_down"]
+                        : undefined
+                    }
+                    quickSwitchAtBottom={diffMode && isPlayerCompSource}
                   />,
                   "small"
                 ),
@@ -1353,6 +1410,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           ? []
           : [GenericTableOps.buildRowSeparator("1px")],
         t100Rows,
+        // Create QuickSwitchBar for diff mode,
       ]);
     });
 
@@ -1407,6 +1465,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
         setRetrievingPlayers(true);
         setComparisonPlayer(undefined);
+        setDiffQuickSwitch("");
 
         const currentJsonEpoch =
           dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
@@ -1727,6 +1786,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     setSimilarPlayers([]);
                     setSimilarityDiagnostics([]);
                     setComparisonPlayer(undefined);
+                    setDiffQuickSwitch("");
                   }}
                 >
                   clear
@@ -2105,7 +2165,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   },
                   {
                     label: "Diff",
-                    tooltip: "Diff mode: focuses the UI on comparing the source player vs their comps",
+                    tooltip:
+                      "Diff mode: focuses the UI on comparing the source player vs their comps",
                     toggled: diffMode,
                     onClick: () => {
                       setDiffMode(!diffMode);

@@ -24,7 +24,12 @@ import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 export const quickSwitchDelim = ":|:";
 
 /** The supported modes that can be shown for each quick switch option */
-export type QuickSwitchMode = "link" | "timer" | "diff" | "extra_down" | "extra_right";
+export type QuickSwitchMode =
+  | "link"
+  | "timer"
+  | "diff"
+  | "extra_down"
+  | "extra_right";
 
 /** Source of the quick switch update - link means the title was clicked, others correspond to icon clicks */
 export type QuickSwitchSource = "link" | "timer" | "diff" | "extra";
@@ -123,7 +128,9 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
     } else {
       return (
         <OverlayTrigger placement="auto" overlay={rightArrowTooltip}>
-          <FontAwesomeIcon icon={hasExtraRight ? faArrowAltCircleRight : faArrowAltCircleDown} />
+          <FontAwesomeIcon
+            icon={hasExtraRight ? faArrowAltCircleRight : faArrowAltCircleDown}
+          />
         </OverlayTrigger>
       );
     }
@@ -153,12 +160,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
     if (quickSwitch) {
       updateQuickSwitch(undefined, undefined, "timer", false);
     } else {
-      updateQuickSwitch(
-        newQuickSwitch,
-        newQuickSwitch,
-        "timer",
-        false
-      );
+      updateQuickSwitch(newQuickSwitch, newQuickSwitch, "timer", false);
     }
     if (newQuickSwitch) {
       setQuickSwitchTimer(
@@ -179,7 +181,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
     (opt) => opt.title
   ).map((t, index) => {
     const isSelected = t === quickSwitch;
-    
+
     return (
       <span
         key={`quickSwitch-${index}`}
@@ -202,7 +204,8 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
             onClick={(e) => {
               e.preventDefault();
               if (!quickSwitchTimer) {
-                const newValue = isSelected && !quickSwitchExtra ? undefined : t;
+                const newValue =
+                  isSelected && !quickSwitchExtra ? undefined : t;
                 updateQuickSwitch(newValue, t, "link", false);
               } else {
                 quickSwitchTimerLogic(undefined);
@@ -214,11 +217,11 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
         ) : (
           <span>{t}</span>
         )}
+        {hasTimer || hasExtra || hasDiff ? " " : ""}
         {quickSwitchTimer ? undefined : (
           <Fragment>
             {hasTimer && (
               <span>
-                &nbsp;
                 <a
                   href="#"
                   onClick={(e) => {
@@ -285,13 +288,15 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
   });
 
   // Determine the displayed title
-  const displayedTitle = quickSwitchExtra ? title : (quickSwitch || title);
+  const displayedTitle = quickSwitchExtra ? title : quickSwitch || title;
   const fullTitlePrefix = titlePrefix || "Analysis:";
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline" }}>
       <span style={{ whiteSpace: "nowrap" }}>
-        <b>{fullTitlePrefix} [{displayedTitle}]</b>
+        <b>
+          {fullTitlePrefix} [{displayedTitle}]
+        </b>
       </span>
       {_.isEmpty(quickSwitchOptions) ? null : (
         <span style={{ whiteSpace: "nowrap" }}>
@@ -304,4 +309,3 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
 };
 
 export default QuickSwitchBar;
-

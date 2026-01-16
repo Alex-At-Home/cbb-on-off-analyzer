@@ -273,7 +273,11 @@ export class PlayTypeDiagUtils {
   /** @deprecated Use quickSwitchDelim from QuickSwitchBar instead */
   static readonly quickSwichDelim = quickSwitchDelim;
 
-  /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
+  /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views
+   *
+   * TODO: now only used in TeamPlayTypeRadarDiag - replace with component next time you have a chance
+   * (but don't forget to use quickSwitchBase in place of quickSwitch!)
+   */
   static buildQuickSwitchOptions = (
     title: string,
     quickSwitch: string | undefined,
