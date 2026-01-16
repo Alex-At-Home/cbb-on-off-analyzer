@@ -55,11 +55,9 @@ export class PlayerSimilarityUtils {
   //  weight as the square root of the rate divided by the sum of the square roots
 
   // IMPROVEMENTS:
-  // Add custom weights (make advanced section collapsible at the same time)
   // add pins and "x"s
   // Add manual player
   // ^WIP, UI is in but not working yet .. added some TODOs plus need to support the Y+1
-  // + ... need to weight up the more important play styles (based on source player positional group?!)
   // Add a filter for the comps (plus a "pinned only" filter)
   // Always calc all z-scores, then save, then don't redo expensive query unless player has changed
   // SoS-adjust FG% somehow (mainly rim?)
@@ -128,8 +126,7 @@ export class PlayerSimilarityUtils {
   static readonly fgWeight = 5.0;
 
   /** The total weight across all styles */
-  static readonly styleFrequencyWeight = 0.66;
-  //TODO make this 6 once I have  set of style specific weights summing to 1
+  static readonly styleFrequencyWeight = 6;
 
   // STEP 1: SIMPLE QUERY VECTOR
 
@@ -596,19 +593,21 @@ export class PlayerSimilarityUtils {
 
     // PLAY STYLE SECTION
 
-    // Adjust the weights
+    // Adjust the weights so styles that occur more often get a bonus
     // IMPORTANT: relies on the styles being first
-    //TODO: try harmonic weights of 2 players
-    // const styleStdDevs = _.take(
-    //   zScoreStats.stdDevs,
-    //   PlayerSimilarityUtils.allStyles.length
-    // );
-    // const totalStyleStdDevWeight = _.sumBy(styleStdDevs, (p) =>
-    //   Math.pow(p, 0.7)
-    // );
-    // const styleStdDevWeights = styleStdDevs.map(
-    //   (p) => Math.pow(p, 0.7) / totalStyleStdDevWeight
-    // );
+
+    const styleRateWeightsSource = _.take(
+      sourceVector,
+      PlayerSimilarityUtils.allStyles.length
+    );
+    const rawStyleRateWeights = _.map(styleRateWeightsSource, (p, idx) =>
+      Math.sqrt(Math.abs(p) + Math.abs(candidateVector[idx]))
+    );
+    const totalStyleRateWeights = rawStyleRateWeights.reduce((a, b) => a + b);
+    const styleRateWeights = _.map(
+      rawStyleRateWeights,
+      (p) => p / totalStyleRateWeights
+    );
 
     processSection(
       PlayerSimilarityUtils.allStyles.length,
@@ -617,7 +616,7 @@ export class PlayerSimilarityUtils {
       PlayerSimilarityUtils.allStyles,
       PlayerSimilarityUtils.styleFrequencyWeight *
         PlayerSimilarityUtils.dropdownWeights[config.playTypeWeights],
-      undefined
+      styleRateWeights
     );
 
     // Additional play style stats
