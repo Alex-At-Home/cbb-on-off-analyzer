@@ -1268,49 +1268,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           ? "prod"
           : "rtg";
 
-        const marginRank =
-          sortBy == `desc:diff_adj_${rtg}` ? (
-            <b>
-              <big>#{player[`adj_${rtg}_margin_rank`]}</big>
-            </b>
-          ) : (
-            `#${player[`adj_${rtg}_margin_rank`]}`
-          );
-        const offRank =
-          sortBy == `desc:off_adj_${rtg}` ? (
-            <b>
-              <big>#{player[`off_adj_${rtg}_rank`]}</big>
-            </b>
-          ) : (
-            `#${player[`off_adj_${rtg}_rank`]}`
-          );
-        const defRank =
-          sortBy == `asc:def_adj_${rtg}` ? (
-            <b>
-              <big>#{player[`def_adj_${rtg}_rank`]}</big>
-            </b>
-          ) : (
-            `#${player[`def_adj_${rtg}_rank`]}`
-          );
-        return ((year == DateUtils.AllYears ||
-          year.startsWith(DateUtils.MultiYearPrefix)) &&
-          !fullDataSetSeasons.has(player.year)) ||
-          _.isUndefined(player.off_adj_rtg_rank) ? (
+        return (
           <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
-            <span>
-              {generalRank}
-              <small>(no ranking)</small>
-            </span>
-          </OverlayTrigger>
-        ) : (
-          <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
-            <span>
-              {generalRank}
-              <small>
-                {player.tier ? <b>{player.tier.substring(0, 1)}</b> : ""}
-                {marginRank} ({offRank} / {defRank})
-              </small>
-            </span>
+            <span>{generalRank}</span>
           </OverlayTrigger>
         );
       };

@@ -592,30 +592,18 @@ export class AdvancedFilterUtils {
       "adj_prod_margin",
       "adj_rapm_margin",
       "adj_rapm_prod_margin",
-      "adj_rtg_margin_rank",
-      "adj_prod_margin_rank",
-      "adj_rapm_margin_rank",
-      "adj_rapm_prod_margin_rank",
 
       "off_rtg",
       "off_adj_rtg",
       "off_adj_prod",
       "off_adj_rapm",
       "off_adj_rapm_prod",
-      "off_adj_rtg_rank",
-      "off_adj_prod_rank",
-      "off_adj_rapm_rank",
-      "off_adj_rapm_prod_rank",
 
       "def_rtg",
       "def_adj_rtg",
       "def_adj_prod",
       "def_adj_rapm",
       "def_adj_prod_rapm",
-      "def_adj_rtg_rank",
-      "def_adj_prod_rank",
-      "def_adj_rapm_rank",
-      "def_adj_rapm_prod_rank",
 
       // Shot creation
       "off_usage",
@@ -842,9 +830,8 @@ export class AdvancedFilterUtils {
       .replace(
         /(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g,
         "$1$.margins.off_$2?.value"
-      ) //adj for players (team_stats above) .. note no "_rank"
-      .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.margins.prev_off_$1?.value") //adj for players (prev year only) .. note no "_rank"
-      .replace(/((?:off|def)_[a-z_]+_rank)[?][.]value/g, "$1") //(off|def_..._rank is just a number not a Statistic)
+      ) //adj for players (team_stats above)
+      .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.margins.prev_off_$1?.value") //adj for players (prev year only)
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
       .replace(/player_(name|code)/g, '$.player_$1.replace(/"/g, "\'")')
@@ -1250,11 +1237,6 @@ export class AdvancedFilterUtils {
             (p.off_adj_rapm_pred?.value || 0) -
             (p.def_adj_rapm_pred?.value || 0),
         },
-        // Already have these but makes the query formatting simpler
-        [`${prefix}adj_rapm_margin_rank`]: p.adj_rapm_margin_rank,
-        [`${prefix}adj_rtg_margin_rank`]: p.adj_rtg_margin_rank,
-        [`${prefix}adj_rapm_prod_margin_rank`]: p.adj_rapm_prod_margin_rank,
-        [`${prefix}adj_prod_margin_rank`]: p.adj_prod_margin_rank,
       };
     };
 

@@ -57,6 +57,8 @@ export class GradeUtils {
     def_adj_rapm_prod: undefined,
     off_adj_rapm_margin: undefined,
     off_adj_rapm_prod_margin: undefined,
+    off_adj_rtg_margin: undefined,
+    off_adj_prod_margin: undefined,
     off_usage: undefined,
     // Assists, TOs, steals, blocks, fouls
     off_assist: undefined,
@@ -73,13 +75,14 @@ export class GradeUtils {
     off_2p: ["total_off_2p_attempts", 60],
     off_2pmid: ["total_off_2pmid_attempts", 45], //(less frequent so have a slightly lower threshold)
     off_2prim: ["total_off_2prim_attempts", 60],
+    off_ft: ["off_team_poss_pct", 0.6],
     // Shooting style
     off_3pr: undefined,
     off_2pmidr: undefined,
     off_2primr: undefined,
     off_3p_ast: ["total_off_3p_attempts", 60], //(assisted %s)
     off_2prim_ast: ["total_off_2prim_attempts", 60],
-    off_ftr: ["off_team_poss_pct", 0.6], //TODO: handle FT%
+    off_ftr: ["off_team_poss_pct", 0.6],
     // Other stylistic grades: assist breakdowns, transition, scramble etc
     //TODO
   };
@@ -90,6 +93,7 @@ export class GradeUtils {
     "off_2p",
     "off_2prim",
     "off_2pmid",
+    "off_ft",
     "off_3p_ast",
     "off_2prim_ast",
     "off_ftr",

@@ -243,7 +243,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //   "Coppin St.",
 // ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -462,6 +462,10 @@ export async function main() {
             any
           ]) => {
             const requestParams = QueryUtils.stringify(requestModel);
+            const playerRequestParams = QueryUtils.stringify({
+              ...requestModel,
+              getGames: true,
+            });
             const teamRequestParms = teamRequestModel
               ? QueryUtils.stringify({ ...teamRequestModel, getGames: true })
               : QueryUtils.stringify({ ...requestModel, getGames: true });
@@ -495,7 +499,7 @@ export async function main() {
                 ),
                 calculateOnOffPlayerStats(
                   {
-                    url: `https://hoop-explorer.com/?${requestParams}`,
+                    url: `https://hoop-explorer.com/?${playerRequestParams}`,
                   } as unknown as NextApiRequest,
                   playerResponse as unknown as NextApiResponse
                 ),
@@ -1365,6 +1369,7 @@ export async function main() {
                             ) &&
                             !_.endsWith(t2[0], "_target") &&
                             !_.endsWith(t2[0], "_source") &&
+                            t2[0] != "game_info" &&
                             t2[0] != "player_array" &&
                             t2[0] != "role" &&
                             t2[0] != "roster")
@@ -1373,6 +1378,7 @@ export async function main() {
                       .value() as PureStatSet),
                     ...posInfo,
                     posConfidences: maybeConvertPosInfo(posInfo.posConfidences),
+                    gp: _.size((player as any).game_info?.buckets || []),
                   } as IndivStatSet;
                 });
 
@@ -1936,32 +1942,11 @@ export function completePlayerLeaderboard(
       sortedByPoss.splice(0, topTableSize),
       sortedByPoss.splice(topTableSize),
     ];
-
-    ["rtg", "prod", "rapm", "rapm_prod"].forEach((subKey) => {
-      _.sortBy(
-        topByPoss,
-        (player) =>
-          (player[`def_adj_${subKey}`]?.value || 0) -
-          (player[`off_adj_${subKey}`]?.value || 0)
-      ).map((player, index) => {
-        player[`adj_${subKey}_margin_rank`] = index + 1;
-      });
-      _.sortBy(
-        topByPoss,
-        (player) => player[`def_adj_${subKey}`]?.value || 0
-      ).forEach((player, index) => {
-        player[`def_adj_${subKey}_rank`] = index + 1;
-      });
-      _.sortBy(
-        topByPoss,
-        (player) => -1 * (player[`off_adj_${subKey}`]?.value || 0)
-      ).forEach((player, index) => {
-        player[`off_adj_${subKey}_rank`] = index + 1;
-      });
-    });
     const sortedLeaderboard = _.sortBy(
       topByPoss,
-      (player) => player.adj_rapm_margin_rank
+      (player) =>
+        (player[`def_adj_rapm`]?.value || 0) -
+        (player[`off_adj_rapm`]?.value || 0)
     );
     return [
       sortedLeaderboard,
