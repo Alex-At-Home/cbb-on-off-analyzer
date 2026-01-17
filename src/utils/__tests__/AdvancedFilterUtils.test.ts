@@ -46,13 +46,13 @@ describe("AdvancedFilterUtils", () => {
   });
   test("singleYearfixObjectFormat should format adj player object correctly", () => {
     const input = "adj_rtg";
-    const expectedOutput = "$.adj_rtg";
+    const expectedOutput = "$.margins.off_adj_rtg?.value";
     const result = AdvancedFilterUtils.singleYearfixObjectFormat(input);
     expect(result).toEqual(expectedOutput);
   });
   test("singleYearfixObjectFormat should format adj player object correctly (prev)", () => {
     const input = "prev_adj_rtg";
-    const expectedOutput = "$.prev_adj_rtg";
+    const expectedOutput = "$.margins.prev_off_adj_rtg?.value";
     const result = AdvancedFilterUtils.singleYearfixObjectFormat(input);
     expect(result).toEqual(expectedOutput);
   });

@@ -673,9 +673,9 @@ export class AdvancedFilterUtils {
       "off_reb",
       "def_reb", //(last 2: nicer version of rebounding stats)
 
-      // These need to be created by substitution:
+      // These need to be created by substitution ... see also rank/pctile renaming logic:
       "def_stl",
-      "def_blk", // (these don't exist: def_stl is def_2prim, def_blk is def_to)
+      "def_blk", // (these don't exist: def_blk is def_2prim, def_stl is def_to)
       "def_fc", //(doesn't exist: def_ftr)
 
       // Transfers only, predicted:
@@ -691,9 +691,29 @@ export class AdvancedFilterUtils {
     .concat(AdvancedFilterUtils.playerLeaderboardPlayStyles)
     .concat(
       ["rank_", "pctile_"].flatMap((prefix) =>
-        _.keys(GradeUtils.playerFields).map((field) => `${prefix}${field}`)
+        _.keys(GradeUtils.playerFields).map((field) => {
+          // Some special cases for fields we are renaming:
+          if (field == "def_ftr") {
+            return `${prefix}def_fc`;
+          } else if (field == "def_2prim") {
+            return `${prefix}def_blk`;
+          } else if (field == "def_to") {
+            return `${prefix}def_stl`;
+          } else if (field.endsWith("_margin") && field.startsWith("off_")) {
+            return `${prefix}${field.substring(4)}`; //(eg off_adj_rapm_margin -> adj_rapm_margin)
+          } else {
+            return `${prefix}${field}`;
+          }
+        })
       )
     )
+    .concat([
+      // another special case, we do duplicate rebounding with nicer names (but keep the old ones)
+      "rank_off_reb",
+      "rank_def_reb",
+      "pctile_off_reb",
+      "pctile_def_reb",
+    ])
     .concat(
       ["rank_", "pctile_"].flatMap((prefix) =>
         AdvancedFilterUtils.playerLeaderboardPlayStyles.map(
@@ -819,8 +839,11 @@ export class AdvancedFilterUtils {
           ).substring(4)}`; //(replace $.p. with team stats prefix)
         }
       )
-      .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2") //adj for players (team_stats above) .. note no rank
-      .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.prev_$1") //adj for players (prev year only) .. note no rank
+      .replace(
+        /(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g,
+        "$1$.margins.off_$2?.value"
+      ) //adj for players (team_stats above) .. note no "_rank"
+      .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.margins.prev_off_$1?.value") //adj for players (prev year only) .. note no "_rank"
       .replace(/((?:off|def)_[a-z_]+_rank)[?][.]value/g, "$1") //(off|def_..._rank is just a number not a Statistic)
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
@@ -953,6 +976,8 @@ export class AdvancedFilterUtils {
         .replace(/pctile_[$][.]p[.]team_stats[.]/g, "$.pctile_team_stats.")
         .replace(/rank_[$][.]p[.]/g, "$.rank.")
         .replace(/pctile_[$][.]p[.]/g, "$.pctile.")
+        .replace(/rank_adj_([a-z_]+)/g, "$.rank.off_adj_$1?.value") //(these are just margins at this point, the other adj_ fields have already been mapped above)
+        .replace(/pctile_adj_([a-z_]+)/g, "$.pctile.off_adj_$1?.value")
         // For play styles in player leaderboards - decompress style so sits in top level (so needs to be below the "rank_[$][.]p[.]" cases)
         .replace(/rank_[$][.]/g, "$.rank.")
         .replace(/pctile_[$][.]/g, "$.pctile.")
@@ -1204,23 +1229,32 @@ export class AdvancedFilterUtils {
 
     const buildAdjStats = (p: any, prefix: string) => {
       return {
-        [`${prefix}adj_rapm_margin`]:
-          (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
-        [`${prefix}adj_rtg_margin`]:
-          (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
-        [`${prefix}adj_rapm_prod_margin`]:
-          (p.off_adj_rapm?.value || 0) * (p.off_team_poss_pct?.value || 0) -
-          (p.def_adj_rapm?.value || 0) * (p.def_team_poss_pct?.value || 0),
-        [`${prefix}adj_prod_margin`]:
-          (p.off_adj_rtg?.value || 0) * (p.off_team_poss_pct?.value || 0) -
-          (p.def_adj_rtg?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        [`${prefix}adj_rapm_margin`]: {
+          value: (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
+        },
+        [`${prefix}adj_rtg_margin`]: {
+          value: (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
+        },
+        [`${prefix}adj_rapm_prod_margin`]: {
+          value:
+            (p.off_adj_rapm?.value || 0) * (p.off_team_poss_pct?.value || 0) -
+            (p.def_adj_rapm?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        },
+        [`${prefix}adj_prod_margin`]: {
+          value:
+            (p.off_adj_rtg?.value || 0) * (p.off_team_poss_pct?.value || 0) -
+            (p.def_adj_rtg?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        },
+        [`${prefix}adj_rapm_margin_pred`]: {
+          value:
+            (p.off_adj_rapm_pred?.value || 0) -
+            (p.def_adj_rapm_pred?.value || 0),
+        },
         // Already have these but makes the query formatting simpler
         [`${prefix}adj_rapm_margin_rank`]: p.adj_rapm_margin_rank,
         [`${prefix}adj_rtg_margin_rank`]: p.adj_rtg_margin_rank,
         [`${prefix}adj_rapm_prod_margin_rank`]: p.adj_rapm_prod_margin_rank,
         [`${prefix}adj_prod_margin_rank`]: p.adj_prod_margin_rank,
-        [`${prefix}adj_rapm_margin_pred`]:
-          (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
       };
     };
 
@@ -1232,6 +1266,10 @@ export class AdvancedFilterUtils {
         ? teamDivStats(p.year)
         : undefined;
       const decompStyle = PlayTypeUtils.decompressIndivPlayType(p.style);
+      const margins = {
+        ...buildAdjStats(p, "off_"),
+        ...(p.prevYear ? buildAdjStats(p.prevYear, "prev_off_") : {}),
+      };
       const retVal = {
         p: p,
         style: decompStyle,
@@ -1247,20 +1285,18 @@ export class AdvancedFilterUtils {
             )
           : undefined,
         // These need to be derived
-        ...buildAdjStats(p, ""),
-        ...(p.prevYear ? buildAdjStats(p.prevYear, "prev_") : {}),
-
+        margins,
         // Percentile and rank, including team stats:
         //TODO: need to handle prevYear
         pctile: AdvancedFilterUtils.buildPlayerGrades(
-          { p: p, style: decompStyle },
+          { p: p, style: decompStyle, margins },
           divStatsForYear,
           pctileFields,
           stylePctileFields,
           false
         ),
         rank: AdvancedFilterUtils.buildPlayerGrades(
-          { p: p, style: decompStyle },
+          { p: p, style: decompStyle, margins },
           divStatsForYear,
           rankFields,
           styleRankFields,
@@ -1702,8 +1738,11 @@ export class AdvancedFilterUtils {
           AdvancedFilterUtils.tidyPlayerClauses(
             preField.substring(_.startsWith(prefix, "rank") ? 5 : 7),
             false
-          )
-            .replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+          ) //(both rank and margins get mapped to the same arg, and then in buildGrades, we split them back based on ending _margin)
+            .replace(
+              /[$][.](?:p|margins)[.](?:off_|def_)([a-zA-Z_0-9]+).*/,
+              "$1"
+            )
             .replace(
               /[$][.]p[.]team_stats[.](?:off_|def_)([a-zA-Z_0-9]+).*/,
               "$1"
@@ -1899,19 +1938,32 @@ export class AdvancedFilterUtils {
 
   /** Builds the rank / style grades for Linq expressions */
   private static buildPlayerGrades = (
-    playerObj: { p: any; style: any },
+    playerObj: { p: any; style: any; margins: any },
     divStatsForYear: DivisionStatistics | undefined,
     statGrades: string[],
     styleGrades: string[],
     convertToRank: boolean = false
   ) => {
+    const [marginGrades, offDefGrades] = _.partition(
+      statGrades,
+      (p) => _.endsWith(p, "_margin") || _.endsWith(p, "_margin_pred")
+    );
     return divStatsForYear
       ? _.merge(
           _.mapValues(
             GradeUtils.buildTeamPercentiles(
               divStatsForYear,
               playerObj.p,
-              statGrades,
+              offDefGrades,
+              convertToRank
+            ),
+            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
+          ),
+          _.mapValues(
+            GradeUtils.buildTeamPercentiles(
+              divStatsForYear,
+              playerObj.margins,
+              marginGrades,
               convertToRank
             ),
             (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
