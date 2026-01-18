@@ -38,6 +38,9 @@ import { GoodBadOkTriple } from "../stats/TeamEditorUtils";
 import { truncate } from "fs/promises";
 import { TeamEditorTableUtils } from "./TeamEditorTableUtils";
 import { de } from "date-fns/locale";
+// Font Awesome imports
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose } from "@fortawesome/free-regular-svg-icons";
 
 export type StatsCaches = {
   comboTier?: DivisionStatistics;
@@ -563,8 +566,7 @@ export class GradeTableUtils {
     );
     const hideGradeSettings = (
       <OverlayTrigger placement="auto" overlay={hideTooltipTier}>
-        <span>
-          [
+        <span className="align-middle">
           <a
             href="#"
             onClick={(event) => {
@@ -572,9 +574,8 @@ export class GradeTableUtils {
               globalSettings?.onHide();
             }}
           >
-            x
+            <FontAwesomeIcon icon={faWindowClose}></FontAwesomeIcon>
           </a>
-          ]
         </span>
       </OverlayTrigger>
     );
@@ -1123,8 +1124,7 @@ export class GradeTableUtils {
     );
     const hideGradeSettings = (
       <OverlayTrigger placement="auto" overlay={hideTooltipTier}>
-        <span>
-          [
+        <span className="align-middle">
           <a
             href="#"
             onClick={(event) => {
@@ -1132,9 +1132,8 @@ export class GradeTableUtils {
               globalSettings?.onHide();
             }}
           >
-            x
+            <FontAwesomeIcon icon={faWindowClose}></FontAwesomeIcon>
           </a>
-          ]
         </span>
       </OverlayTrigger>
     );
