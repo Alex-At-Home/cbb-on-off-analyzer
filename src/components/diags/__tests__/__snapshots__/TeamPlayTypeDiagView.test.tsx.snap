@@ -3,8 +3,6 @@
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!details, help) 1`] = `
 <span>
   <QuickSwitchBar
-    cancelExtraTooltip="Hides the top/bottom comparison"
-    extraTooltip="Shows a top/bottom comparison between the two data sets"
     modes={
       Array [
         "link",
@@ -237,8 +235,6 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!help) 1`] = `
 <span>
   <QuickSwitchBar
-    cancelExtraTooltip="Hides the top/bottom comparison"
-    extraTooltip="Shows a top/bottom comparison between the two data sets"
     modes={
       Array [
         "link",
