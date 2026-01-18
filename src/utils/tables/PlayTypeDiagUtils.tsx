@@ -273,61 +273,6 @@ export class PlayTypeDiagUtils {
   /** @deprecated Use quickSwitchDelim from QuickSwitchBar instead */
   static readonly quickSwichDelim = quickSwitchDelim;
 
-  /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views
-   *
-   * TODO: now only used in TeamPlayTypeRadarDiag - replace with component next time you have a chance
-   * (but don't forget to use quickSwitchBase in place of quickSwitch!)
-   */
-  static buildQuickSwitchOptions = (
-    title: string,
-    quickSwitch: string | undefined,
-    quickSwitchOptions: { title?: string }[] | undefined,
-    updateQuickSwitch: (
-      newSetting: string | undefined,
-      fromTimer: boolean
-    ) => void,
-    quickSwitchTimer: NodeJS.Timer | undefined,
-    setQuickSwitchTimer: (
-      newQuickSwitchTimer: NodeJS.Timer | undefined
-    ) => void,
-    quickSwitchExtra?: "extra" | "diff" | undefined,
-    quickSwitchExtraOptions?: ("extra" | "diff")[],
-    theme?: string | undefined
-  ) => {
-    // Build modes array based on quickSwitchExtraOptions
-    const modes: QuickSwitchMode[] = ["link", "timer"];
-    if (_.includes(quickSwitchExtraOptions || [], "extra")) {
-      modes.push("extra_down");
-    }
-    if (_.includes(quickSwitchExtraOptions || [], "diff")) {
-      modes.push("diff");
-    }
-
-    // Adapter to convert new updateQuickSwitch signature to old one
-    const handleQuickSwitchUpdate = (
-      newQuickSwitch: string | undefined,
-      newTitle: string | undefined,
-      source: QuickSwitchSource,
-      fromTimer: boolean
-    ) => {
-      updateQuickSwitch(newQuickSwitch, fromTimer);
-    };
-
-    return (
-      <QuickSwitchBar
-        title={title}
-        quickSwitch={quickSwitch}
-        quickSwitchExtra={quickSwitchExtra}
-        quickSwitchOptions={quickSwitchOptions}
-        updateQuickSwitch={handleQuickSwitchUpdate}
-        quickSwitchTimer={quickSwitchTimer}
-        setQuickSwitchTimer={setQuickSwitchTimer}
-        modes={modes}
-        theme={theme}
-      />
-    );
-  };
-
   /** Encapsulates the logic to build a play style table from either single game or season  */
   static buildTeamStyleBreakdown = (
     title: string,

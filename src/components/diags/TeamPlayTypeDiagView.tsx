@@ -31,6 +31,8 @@ import {
   TeamStatSet,
 } from "../../utils/StatModels";
 import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
+import QuickSwitchBar, { QuickSwitchSource } from "../shared/QuickSwitchBar";
+import { useTheme } from "next-themes";
 
 type Props = {
   title: string;
@@ -56,6 +58,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   grades,
   showHelp,
 }) => {
+  const { resolvedTheme } = useTheme();
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
@@ -278,22 +281,30 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
     return (
       <span>
         {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
-        {title
-          ? PlayTypeDiagUtils.buildQuickSwitchOptions(
-              title,
-              quickSwitch,
-              quickSwitchOptions,
-              (newSetting, fromTimer) => {
-                if (fromTimer) {
-                  setQuickSwitch((curr) => (curr ? undefined : newSetting));
-                } else {
-                  setQuickSwitch(newSetting);
-                }
-              },
-              quickSwitchTimer,
-              setQuickSwitchTimer
-            )
-          : undefined}
+        {title ? (
+          <QuickSwitchBar
+            title={title}
+            quickSwitch={quickSwitch}
+            quickSwitchExtra={undefined}
+            quickSwitchOptions={quickSwitchOptions}
+            updateQuickSwitch={(
+              newQuickSwitch: string | undefined,
+              newTitle: string | undefined,
+              source: QuickSwitchSource,
+              fromTimer: boolean
+            ) => {
+              if (fromTimer) {
+                setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+              } else {
+                setQuickSwitch(newQuickSwitch);
+              }
+            }}
+            quickSwitchTimer={quickSwitchTimer}
+            setQuickSwitchTimer={setQuickSwitchTimer}
+            modes={["link", "timer"]}
+            theme={resolvedTheme}
+          />
+        ) : undefined}
         <Container className="mt-2">
           <Col xs={10}>
             <GenericTable
