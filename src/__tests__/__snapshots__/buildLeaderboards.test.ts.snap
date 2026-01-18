@@ -5,10 +5,6 @@ Array [
   Array [
     Object {
       "_id": "AnCowan_Men_2020_all",
-      "adj_prod_margin_rank": 1,
-      "adj_rapm_margin_rank": 1,
-      "adj_rapm_prod_margin_rank": 1,
-      "adj_rtg_margin_rank": 1,
       "code": "AnCowan",
       "conf": "Big Ten Conference",
       "def_2prim": Object {
@@ -22,15 +18,11 @@ Array [
         "override": "Luck adjusted",
         "value": -1.408706030244338,
       },
-      "def_adj_prod_rank": 2,
-      "def_adj_rapm_prod_rank": 1,
-      "def_adj_rapm_rank": 1,
       "def_adj_rtg": Object {
         "old_value": -1.7386839964035603,
         "override": "Luck adjusted",
         "value": -1.6377191334851773,
       },
-      "def_adj_rtg_rank": 2,
       "def_ftr": Object {
         "value": 0.024636871508379884,
       },
@@ -55,6 +47,7 @@ Array [
       "duration_mins": Object {
         "value": 900,
       },
+      "gp": 0,
       "key": "Cowan, Anthony",
       "off_2p": Object {
         "value": 0.45604395604395603,
@@ -95,13 +88,9 @@ Array [
       "off_adj_prod": Object {
         "value": 3.973522304645766,
       },
-      "off_adj_prod_rank": 1,
-      "off_adj_rapm_prod_rank": 1,
-      "off_adj_rapm_rank": 1,
       "off_adj_rtg": Object {
         "value": 4.579914443257079,
       },
-      "off_adj_rtg_rank": 1,
       "off_assist": Object {
         "value": 0.2916666666666667,
       },
@@ -336,10 +325,6 @@ Array [
     },
     Object {
       "_id": "4397183_Men_2020_all",
-      "adj_prod_margin_rank": 2,
-      "adj_rapm_margin_rank": 2,
-      "adj_rapm_prod_margin_rank": 2,
-      "adj_rtg_margin_rank": 2,
       "code": "AaWiggins",
       "conf": "Big Ten Conference",
       "def_2prim": Object {
@@ -353,15 +338,11 @@ Array [
         "override": "Luck adjusted",
         "value": -1.93392724437384,
       },
-      "def_adj_prod_rank": 1,
-      "def_adj_rapm_prod_rank": 2,
-      "def_adj_rapm_rank": 2,
       "def_adj_rtg": Object {
         "old_value": -3.0159212535750046,
         "override": "Luck adjusted",
         "value": -2.7010084533838667,
       },
-      "def_adj_rtg_rank": 1,
       "def_ftr": Object {
         "value": 0.022550335570469794,
       },
@@ -386,6 +367,7 @@ Array [
       "duration_mins": Object {
         "value": 800,
       },
+      "gp": 0,
       "key": "Wiggins, Aaron",
       "off_2p": Object {
         "value": 0.45112781954887216,
@@ -426,13 +408,9 @@ Array [
       "off_adj_prod": Object {
         "value": -0.5033100013198395,
       },
-      "off_adj_prod_rank": 2,
-      "off_adj_rapm_prod_rank": 2,
-      "off_adj_rapm_rank": 2,
       "off_adj_rtg": Object {
         "value": -0.697381502829424,
       },
-      "off_adj_rtg_rank": 2,
       "off_assist": Object {
         "value": 0.10185185185185185,
       },
@@ -682,10 +660,6 @@ Array [
   Array [
     Object {
       "_id": "AnCowan_Men_2020_all",
-      "adj_prod_margin_rank": 1,
-      "adj_rapm_margin_rank": 1,
-      "adj_rapm_prod_margin_rank": 1,
-      "adj_rtg_margin_rank": 1,
       "code": "AnCowan",
       "conf": "Big Ten Conference",
       "def_2prim": Object {
@@ -699,15 +673,11 @@ Array [
         "override": "Luck adjusted",
         "value": -1.408706030244338,
       },
-      "def_adj_prod_rank": 1,
-      "def_adj_rapm_prod_rank": 1,
-      "def_adj_rapm_rank": 1,
       "def_adj_rtg": Object {
         "old_value": -1.7386839964035603,
         "override": "Luck adjusted",
         "value": -1.6377191334851773,
       },
-      "def_adj_rtg_rank": 1,
       "def_ftr": Object {
         "value": 0.024636871508379884,
       },
@@ -732,6 +702,7 @@ Array [
       "duration_mins": Object {
         "value": 900,
       },
+      "gp": 0,
       "key": "Cowan, Anthony",
       "off_2p": Object {
         "value": 0.45604395604395603,
@@ -772,13 +743,9 @@ Array [
       "off_adj_prod": Object {
         "value": 3.973522304645766,
       },
-      "off_adj_prod_rank": 1,
-      "off_adj_rapm_prod_rank": 1,
-      "off_adj_rapm_rank": 1,
       "off_adj_rtg": Object {
         "value": 4.579914443257079,
       },
-      "off_adj_rtg_rank": 1,
       "off_assist": Object {
         "value": 0.2916666666666667,
       },
@@ -24184,6 +24151,9 @@ Object {
     "off_efg": Array [
       0.465,
     ],
+    "off_ft": Array [
+      0.7166666666666667,
+    ],
     "off_ftr": Array [
       0.2,
     ],
@@ -24922,6 +24892,18 @@ Object {
       },
       "lutMult": undefined,
       "min": 0.465,
+      "size": 1,
+    },
+    "off_ft": Object {
+      "isPct": true,
+      "lut": Object {
+        "72": Array [
+          0,
+          0.7166666666666667,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.7166666666666667,
       "size": 1,
     },
     "off_ftr": Object {
