@@ -243,7 +243,7 @@ const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
 //   "Coppin St.",
 // ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -1518,6 +1518,8 @@ export async function main() {
                       (k) => [`off_${k}`, `def_${k}`]
                     );
                     const derivedRapmFieldsToGrade = [
+                      "off_adj_rtg_margin",
+                      "off_adj_prod_margin",
                       "off_adj_rapm_margin",
                       "off_adj_rapm_prod_margin",
                     ];
@@ -1577,6 +1579,16 @@ export async function main() {
                       const otherRapmValues = {
                         off_team_poss_pct: {
                           value: player.off_team_poss_pct?.value || 0,
+                        },
+                        off_adj_rtg_margin: {
+                          value:
+                            (player.off_adj_rtg?.value || 0) -
+                            (player.def_adj_rtg?.value || 0),
+                        },
+                        off_adj_prod_margin: {
+                          value:
+                            (player.off_adj_prod?.value || 0) -
+                            (player.def_adj_prod?.value || 0),
                         },
                         off_adj_rapm_margin: {
                           value:
