@@ -152,6 +152,8 @@ export type GameFilterParams = {
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
   // Team view
   teamDiffs?: boolean;
+  diffsHideDatasets?: string; //"on" | "off" | "base" | "extra0" | "extra1" etc - which dataset to show (default "" = all)
+  diffsCompare?: string; //(same format - which dataset to compare against, with quickSwitchDelim for mode)
   showExtraInfo?: boolean;
   showTeamPlayTypes?: boolean;
   teamPlayTypeConfig?: string;

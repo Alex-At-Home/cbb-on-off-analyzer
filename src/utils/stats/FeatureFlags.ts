@@ -33,4 +33,7 @@ export class FeatureFlags {
 
   /** Adding top-level half court stats */
   static readonly tableConfigOptions = true;
+
+  /** For WIP on team stats diff mode (OnOffAnalyzer) */
+  static readonly teamStatsDiff = true;
 }

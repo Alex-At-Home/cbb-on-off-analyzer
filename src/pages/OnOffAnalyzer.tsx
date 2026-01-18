@@ -300,6 +300,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["showOnOffLuckDiags"]
           : [],
         rawParams.teamDiffs == false ? ["teamDiffs"] : [],
+        !rawParams.diffsHideDatasets ? ["diffsHideDatasets"] : [],
+        !rawParams.diffsCompare ? ["diffsCompare"] : [],
         rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes
           ? ["showTeamPlayTypes"]
           : [],
@@ -394,6 +396,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const urlUpdateOnlyFieldsFromTeamStats = [
       // Team info:
       "teamDiffs",
+      "diffsHideDatasets",
+      "diffsCompare",
       "showExtraInfo",
       //(_not_ showTeamPlayTypes because it needs to trigger an update to the GameFilter dropdown)
       "teamPlayTypeConfig",
