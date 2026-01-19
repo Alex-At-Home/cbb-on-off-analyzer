@@ -129,6 +129,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     baseText: startBaseText,
     // Team stats
     teamDiffs: startTeamDiffs,
+    diffsHideDatasets: startDiffsHideDatasets,
+    diffsCompare: startDiffsCompare,
     showTeamPlayTypes: startShowTeamPlayTypes,
     teamPlayTypeConfig: startTeamPlayTypeConfig,
     teamPlayStyleConfig: startTeamPlayStyleConfig,
@@ -183,6 +185,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
       // Team stats
       autoOffQuery: autoOffQuery, //(TODO: I don't think this is needed)
       teamDiffs: startTeamDiffs,
+      diffsHideDatasets: startDiffsHideDatasets,
+      diffsCompare: startDiffsCompare,
       showTeamPlayTypes: startShowTeamPlayTypes,
       teamPlayTypeConfig: startTeamPlayTypeConfig,
       teamPlayStyleConfig: startTeamPlayStyleConfig,

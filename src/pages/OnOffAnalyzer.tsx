@@ -94,18 +94,42 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const onOffMode = params.autoOffQuery && !_.isEmpty(params.otherQueries);
     const onKey = shortRowPhrases?.[0] || (onOffMode ? "On" : "A");
     const offKey = shortRowPhrases?.[1] || (onOffMode ? "Off" : "B");
+
+    // Check if a dataset is hidden based on diffsHideDatasets
+    const isDatasetHidden = (datasetKey: string): boolean => {
+      const diffsHideDatasets = params.diffsHideDatasets;
+      if (
+        !params.teamDiffs ||
+        !diffsHideDatasets ||
+        !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
+      ) {
+        return false; // No filtering, dataset is visible
+      }
+      // Parse multi mode
+      const isMultiMode = diffsHideDatasets.startsWith("multi:");
+      const enabledKeys: string[] = isMultiMode
+        ? diffsHideDatasets.slice("multi:".length).split(",").filter(Boolean)
+        : [diffsHideDatasets];
+      return !enabledKeys.includes(datasetKey);
+    };
+
     return {
       Top: { ref: topRef },
       Teams: { ref: teamAnalysisRef },
       ": [ ": { isLabel: true },
-      [onKey]: { ref: teamAnalysisRefA, offset: 125 },
+      [onKey]: {
+        ref: teamAnalysisRefA,
+        offset: 125,
+        skip: isDatasetHidden("on"),
+      },
       [offKey]: {
         ref: teamAnalysisRefB,
         offset: 75,
         skip:
-          _.isEmpty(params.offQuery) &&
-          !params.autoOffQuery &&
-          _.isEmpty(params.offQueryFilters),
+          isDatasetHidden("off") ||
+          (_.isEmpty(params.offQuery) &&
+            !params.autoOffQuery &&
+            _.isEmpty(params.offQueryFilters)),
       },
       ..._.chain(params.otherQueries || [])
         .map((_, idx) => [
@@ -113,6 +137,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           {
             ref: teamAnalysisOtherRefs[idx]!,
             offset: 75,
+            skip: isDatasetHidden(`extra${idx}`),
           },
         ])
         .fromPairs()
@@ -123,6 +148,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       [filterPhrase ? `Base (${filterPhrase})` : "Base"]: {
         ref: teamAnalysisRefBase,
         offset: 75,
+        skip: isDatasetHidden("base"),
       },
       " ] | ": { isLabel: true },
       Players: { ref: indivAnalysisRef },

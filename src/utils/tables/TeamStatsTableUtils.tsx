@@ -66,6 +66,12 @@ export type TeamStatsBreakdown = {
   teamDiagRows: GenericTableRow[];
 };
 
+/** State for diff mode (phase 1: dataset visibility; phase 2: comparison) */
+export type DiffState = {
+  /** Which datasets are enabled/visible (empty = all visible) */
+  enabledDatasets: string[];
+};
+
 export type TeamStatsReadOnlyState = {
   showPlayTypes: boolean;
   playTypeConfig?: { off: boolean; def: boolean };
@@ -83,6 +89,8 @@ export type TeamStatsReadOnlyState = {
   playStyleConfigStr?: string;
   /** Player stats cache for defensive style analysis, keyed by team */
   allPlayerStatsCache?: Record<string, IndivStatSet[]>;
+  /** Diff mode state (phase 1) */
+  diffState?: DiffState;
 };
 
 export type TeamStatsChangeState = {
@@ -169,7 +177,16 @@ export class TeamStatsTableUtils {
       showHelp,
       playStyleConfigStr,
       allPlayerStatsCache,
+      diffState,
     } = readOnlyState;
+
+    // Helper to check if a dataset is enabled based on diffState
+    const isDatasetEnabled = (key: string): boolean => {
+      if (!diffState || diffState.enabledDatasets.length === 0) {
+        return true; // No filtering, all datasets enabled
+      }
+      return diffState.enabledDatasets.includes(key);
+    };
 
     // Some handy strings
     const offPrefixFn = (key: string) => "off_" + key;
@@ -774,9 +791,48 @@ export class TeamStatsTableUtils {
       showPlayTypes ||
       showShotCharts ||
       (showLuckAdjDiags && adjustForLuck);
-    const showingOn = teamStats.on?.doc_count ? true : false;
-    const showingOnOrOff =
-      showingOn || (teamStats.off?.doc_count ? true : false);
+    // Consider diffState when determining which datasets are visible for header logic
+    // Helper to check if a dataset has data and is enabled
+    const isDatasetVisibleWithData = (key: string): boolean => {
+      const hasData = (() => {
+        if (key === "on") return (teamStats.on?.doc_count || 0) > 0;
+        if (key === "off") return (teamStats.off?.doc_count || 0) > 0;
+        if (key === "base") return (teamStats.baseline?.doc_count || 0) > 0;
+        if (key.startsWith("extra")) {
+          const idx = parseInt(key.slice("extra".length), 10);
+          return (teamStats.other?.[idx]?.doc_count || 0) > 0;
+        }
+        return false;
+      })();
+      return hasData && isDatasetEnabled(key);
+    };
+
+    // Build list of all dataset keys in display order: on, off, extra0, extra1, ..., base
+    const allDatasetKeysInOrder: string[] = [
+      "on",
+      "off",
+      ...(teamStats.other || []).map((_, idx) => `extra${idx}`),
+      "base",
+    ];
+
+    // Helper to check if any preceding dataset is visible (for showExtraHeader logic)
+    const hasPrecedingVisibleDataset = (
+      queryKey: OnOffBaselineOtherEnum,
+      otherIndex?: number
+    ): boolean => {
+      const currentKey =
+        queryKey === "baseline"
+          ? "base"
+          : queryKey === "other"
+            ? `extra${otherIndex || 0}`
+            : queryKey;
+      const currentIdx = allDatasetKeysInOrder.indexOf(currentKey);
+      if (currentIdx <= 0) return false; // "on" is first, no preceding datasets
+      // Check if any dataset before this one is visible
+      return allDatasetKeysInOrder
+        .slice(0, currentIdx)
+        .some(isDatasetVisibleWithData);
+    };
 
     const shotChartQuickSwitchOptions = [
       {
@@ -892,14 +948,10 @@ export class TeamStatsTableUtils {
       //TODO: currently we check for .style to decide if we're in "leaderboard mode"
       // or splits mode
 
+      // Show extra header if diags are showing AND any preceding dataset is visible
       const showExtraHeader =
-        queryKey == "off"
-          ? showingSomeDiags && showingOn
-          : queryKey == "baseline"
-          ? showingSomeDiags && showingOnOrOff
-          : queryKey == "other"
-          ? showingSomeDiags
-          : false;
+        showingSomeDiags &&
+        hasPrecedingVisibleDataset(queryKey, otherQueryIndex);
 
       if (hasData) {
         const teamStatsRows = _.flatten([

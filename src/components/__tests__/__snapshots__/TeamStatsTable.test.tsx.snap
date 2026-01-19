@@ -30,9 +30,15 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Luck
+                      Diffs...
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -41,7 +47,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Diffs
+                      Luck
                     </button>
                   </div>
                     
@@ -202,9 +208,15 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Luck
+                      Diffs...
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -213,7 +225,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Diffs
+                      Luck
                     </button>
                   </div>
                     
@@ -2479,21 +2491,27 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <span>
                   <div>
                     <button
-                      class="btn btn-dark btn-sm"
+                      class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Luck
+                      Diffs...
                     </button>
                   </div>
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
-                      class="btn btn-outline-secondary btn-sm"
+                      class="btn btn-dark btn-sm"
                       type="button"
                     >
-                      Diffs
+                      Luck
                     </button>
                   </div>
                     
@@ -2651,21 +2669,27 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <span>
                   <div>
                     <button
-                      class="btn btn-dark btn-sm"
+                      class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Luck
+                      Diffs...
                     </button>
                   </div>
                     
                 </span>
                 <span>
+                  <small>
+                    |
+                  </small>
+                    
+                </span>
+                <span>
                   <div>
                     <button
-                      class="btn btn-outline-secondary btn-sm"
+                      class="btn btn-dark btn-sm"
                       type="button"
                     >
-                      Diffs
+                      Luck
                     </button>
                   </div>
                     
@@ -10745,9 +10769,15 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Luck
+                      Diffs...
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -10756,7 +10786,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Diffs
+                      Luck
                     </button>
                   </div>
                     
@@ -10917,9 +10947,15 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Luck
+                      Diffs...
                     </button>
                   </div>
+                    
+                </span>
+                <span>
+                  <small>
+                    |
+                  </small>
                     
                 </span>
                 <span>
@@ -10928,7 +10964,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       class="btn btn-outline-secondary btn-sm"
                       type="button"
                     >
-                      Diffs
+                      Luck
                     </button>
                   </div>
                     

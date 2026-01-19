@@ -146,7 +146,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   );
 
   const [showDiffs, setShowDiffs] = useState(
-    (gameFilterParams.otherQueries?.length || 0) == 0
+    (gameFilterParams.otherQueries?.length || 0) == 0 ||
+      FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
       ? _.isNil(gameFilterParams.teamDiffs)
         ? false
         : gameFilterParams.teamDiffs
@@ -414,6 +415,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     playStyleConfig,
   ]);
 
+  // Early computation of diff mode state (needed before tableInfo)
+  // Check if diff mode UI should be shown (feature flag + showDiffs enabled)
+  const showDiffModeUI =
+    showDiffs && FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff);
+
+  // Multi mode: diffsHideDatasets starts with "multi:" followed by comma-separated keys
+  const isMultiMode = diffsHideDatasets.startsWith("multi:");
+  const selectedDatasetKeys: string[] = isMultiMode
+    ? diffsHideDatasets.slice("multi:".length).split(",").filter(Boolean)
+    : diffsHideDatasets
+    ? [diffsHideDatasets]
+    : [];
+  // For backwards compatibility, use first key as "the" selected key for single mode
+  const selectedDatasetKey = selectedDatasetKeys[0] || "";
+
   const tableInfo = TeamStatsTableUtils.buildRows(
     gameFilterParams,
     teamStats,
@@ -441,6 +457,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showHelp,
       playStyleConfigStr: playTypeConfigStr,
       allPlayerStatsCache: allPlayerStatsCache.cache,
+      diffState:
+        showDiffModeUI && selectedDatasetKeys.length > 0
+          ? { enabledDatasets: selectedDatasetKeys }
+          : undefined,
     },
     {
       setShowGrades: (showGrades: string) => setShowGrades(showGrades),
@@ -474,10 +494,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // Helper to check if a dataset should be shown based on diffsHideDatasets
   const shouldShowDataset = (key: string) => {
     // If no selection or feature flag not active, show all
-    if (!showDiffs ||  !diffsHideDatasets || !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)) {
+    if (
+      !showDiffs ||
+      !diffsHideDatasets ||
+      !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
+    ) {
       return true;
     }
-    return key === diffsHideDatasets;
+    // In multi mode, check if key is in the list; in single mode, check exact match
+    return selectedDatasetKeys.includes(key);
   };
 
   const tableData = React.useMemo(
@@ -540,22 +565,22 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // Build short form names for datasets using preset phrase logic (like GameFilter)
   const maybePresetPhrase = _.zip(
     gameFilterParams.splitPhrases || [],
-    FilterPresetUtils.getPresetPhrase(
-      gameFilterParams.presetSplit || "??"
-    ) || []
+    FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
+      []
   ).map((options) => options?.[0] || options?.[1]);
 
   const maybeFilterPhrase =
     gameFilterParams.basePhrase ||
-    FilterPresetUtils.getPresetFilterPhrase(gameFilterParams.presetMode || "??");
+    FilterPresetUtils.getPresetFilterPhrase(
+      gameFilterParams.presetMode || "??"
+    );
 
-  // Available datasets with their short names
-  const availableDatasets: { key: string; shortName: string; hasData: boolean }[] = [
-    {
-      key: "base",
-      shortName: maybeFilterPhrase || "Base",
-      hasData: (teamStats.baseline?.doc_count || 0) > 0,
-    },
+  // Available datasets with their short names (base goes at the end)
+  const availableDatasets: {
+    key: string;
+    shortName: string;
+    hasData: boolean;
+  }[] = [
     {
       key: "on",
       shortName: maybePresetPhrase?.[0] || "A",
@@ -571,10 +596,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       shortName: maybePresetPhrase?.[2 + idx] || String.fromCharCode(67 + idx), // C, D, E, ...
       hasData: (other?.doc_count || 0) > 0,
     })),
+    {
+      key: "base",
+      shortName: maybeFilterPhrase || "Base",
+      hasData: (teamStats.baseline?.doc_count || 0) > 0,
+    },
   ].filter((d) => d.hasData);
-
-  // Current selected dataset (default to empty = show all)
-  const selectedDatasetKey = diffsHideDatasets || "";
 
   // Parse diffsCompare to get the quickSwitch state
   const diffsCompareBase = diffsCompare
@@ -584,39 +611,73 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     ? (diffsCompare.split(quickSwitchDelim)[1] as "extra" | "diff" | undefined)
     : undefined;
 
-  // Dataset options for QuickSwitchBar (exclude currently selected)
+  // Dataset options for QuickSwitchBar (exclude currently selected - in multi mode, exclude the first/top selected)
   const comparisonDatasetOptions = availableDatasets
     .filter((d) => d.key !== selectedDatasetKey)
     .map((d) => ({ title: d.shortName }));
-
-  // Check if diff mode UI should be shown (feature flag + showDiffs enabled)
-  const showDiffModeUI =
-    showDiffs && FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff);
 
   // Dataset selector toggle bar
   const datasetSelectorBar = showDiffModeUI ? (
     <ToggleButtonGroup
       labelOverride="Selected dataset:"
-      items={availableDatasets.map((dataset) => ({
-        label: dataset.shortName,
-        tooltip: `Focus on ${dataset.shortName} dataset`,
-        toggled: dataset.key === selectedDatasetKey,
-        onClick: () => {
-          if (dataset.key === selectedDatasetKey) {
-            // Clicking already-selected clears selection (show all)
-            setDiffsHideDatasets("");
-          } else {
-            setDiffsHideDatasets(dataset.key);
-          }
-          // Clear comparison if it matches the new selection
-          const selectedShortName = availableDatasets.find(
-            (d) => d.key === dataset.key
-          )?.shortName;
-          if (diffsCompareBase === selectedShortName) {
-            setDiffsCompare("");
-          }
+      items={[
+        ...availableDatasets.map((dataset) => ({
+          label: dataset.shortName,
+          tooltip: `Focus on ${dataset.shortName} dataset`,
+          toggled: selectedDatasetKeys.includes(dataset.key),
+          onClick: () => {
+            if (isMultiMode) {
+              // Multi mode: toggle individual datasets
+              const newKeys = selectedDatasetKeys.includes(dataset.key)
+                ? selectedDatasetKeys.filter((k) => k !== dataset.key)
+                : [...selectedDatasetKeys, dataset.key];
+              setDiffsHideDatasets(
+                newKeys.length > 0 ? `multi:${newKeys.join(",")}` : ""
+              );
+            } else {
+              // Single mode: clicking already-selected clears selection (show all)
+              if (dataset.key === selectedDatasetKey) {
+                setDiffsHideDatasets("");
+              } else {
+                setDiffsHideDatasets(dataset.key);
+              }
+            }
+            // Clear comparison if it matches the new selection
+            const selectedShortName = availableDatasets.find(
+              (d) => d.key === dataset.key
+            )?.shortName;
+            if (diffsCompareBase === selectedShortName) {
+              setDiffsCompare("");
+            }
+          },
+        })),
+        {
+          label: "|",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
         },
-      }))}
+        {
+          label: "Multi",
+          tooltip:
+            "Allows multiple datasets to be viewed (the comparison mode only applies to the top dataset)",
+          toggled: isMultiMode,
+          onClick: () => {
+            if (isMultiMode) {
+              // Turning off multi mode: keep only the first selected key
+              setDiffsHideDatasets(selectedDatasetKeys[0] || "");
+            } else {
+              // Turning on multi mode: convert current selection to multi format
+              setDiffsHideDatasets(
+                selectedDatasetKey
+                  ? `multi:${selectedDatasetKey}`
+                  : `multi:${availableDatasets[0]?.key || ""}`
+              );
+            }
+          },
+        },
+      ]}
     />
   ) : null;
 
@@ -687,19 +748,28 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     <ToggleButtonGroup
       items={[
         {
+          label: "Diffs...",
+          disabled:
+            (gameFilterParams.otherQueries?.length || 0) > 0 &&
+            !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff),
+          tooltip: "Show hide diffs between A/B/Baseline stats",
+          toggled: showDiffs,
+          onClick: () => setShowDiffs(!showDiffs),
+        },
+        {
+          label: "|",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
           label: "Luck",
           tooltip: adjustForLuck
             ? "Remove luck adjustments"
             : "Adjust statistics for luck",
           toggled: adjustForLuck,
           onClick: () => setAdjustForLuck(!adjustForLuck),
-        },
-        {
-          label: "Diffs",
-          disabled: (gameFilterParams.otherQueries?.length || 0) > 0,
-          tooltip: "Show hide diffs between A/B/Baseline stats",
-          toggled: showDiffs,
-          onClick: () => setShowDiffs(!showDiffs),
         },
         {
           label: "Extra",
@@ -959,22 +1029,25 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               <div>{topLevelGradeControls}</div>
             </Col>
           ) : undefined}
+          <>
+            {/* Diff mode controls - dataset selector and comparison QuickSwitchBar */}
+            {showDiffModeUI ? (
+              <StickyRow
+                stickyEnabled={stickyQuickToggle && tableData.length > 2}
+                className="pt-1 pb-1"
+                topOffset="3em"
+              >
+                <Col xs={12} className="pt-1 pb-1">
+                  {datasetSelectorBar}
+                </Col>
+                <Col xs={12} className="pt-1 pb-1">
+                  <small>{comparisonQuickSwitchBar}</small>
+                </Col>
+              </StickyRow>
+            ) : null}
+          </>
         </StickyRow>
-        {/* Diff mode controls - dataset selector and comparison QuickSwitchBar */}
-        {showDiffModeUI ? (
-          <StickyRow
-            stickyEnabled={stickyQuickToggle && tableData.length > 2}
-            className="pt-1 pb-1"
-            topOffset="3em"
-          >
-            <Col xs={12} className="pt-1 pb-1">
-              {datasetSelectorBar}
-            </Col>
-            <Col xs={12} className="pt-1 pb-1">
-              {comparisonQuickSwitchBar}
-            </Col>
-          </StickyRow>
-        ) : null}
+
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
