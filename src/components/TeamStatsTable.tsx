@@ -57,6 +57,10 @@ import {
 } from "../utils/tables/TeamStatsTableUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { UserChartOpts } from "./diags/ShotChartDiagView";
+import {
+  configStrToTeamRadarConfig,
+  teamRadarConfigToStr,
+} from "./diags/TeamPlayTypeDiagRadar";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import QuickSwitchBar, {
@@ -472,12 +476,19 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   ].filter((d) => d.hasData);
 
   // Parse diffsCompare to get the quickSwitch state
-  const diffsCompareBase = diffsCompare
+  // Validate that the comparison dataset actually exists in availableDatasets
+  const diffsCompareBaseParsed = diffsCompare
     ? diffsCompare.split(quickSwitchDelim)[0]
     : undefined;
-  const diffsCompareExtra: "extra" | "diff" | undefined = diffsCompare
-    ? (diffsCompare.split(quickSwitchDelim)[1] as "extra" | "diff" | undefined)
-    : undefined;
+  const diffsCompareBase =
+    diffsCompareBaseParsed &&
+    availableDatasets.some((d) => d.key === diffsCompareBaseParsed)
+      ? diffsCompareBaseParsed
+      : undefined;
+  const diffsCompareExtra: "extra" | "diff" | undefined =
+    diffsCompareBase && diffsCompare
+      ? (diffsCompare.split(quickSwitchDelim)[1] as "extra" | "diff" | undefined)
+      : undefined;
 
   const tableInfo = TeamStatsTableUtils.buildRows(
     gameFilterParams,
@@ -716,7 +727,24 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             );
           }
         } else {
+          // Clear diffsCompare and also clear quickSwitch in chart configs
           setDiffsCompare("");
+          // Clear shot chart quickSwitch
+          if (shotChartConfig?.quickSwitch) {
+            setShotChartConfig({ ...shotChartConfig, quickSwitch: undefined });
+          }
+          // Clear play type config quickSwitch
+          if (playTypeConfigStr) {
+            const config = configStrToTeamRadarConfig(playTypeConfigStr, false);
+            if (config.quickSwitch) {
+              setPlayTypeConfigStr(
+                teamRadarConfigToStr(
+                  { ...config, quickSwitch: undefined },
+                  false
+                )
+              );
+            }
+          }
         }
       }}
       quickSwitchTimer={undefined}
