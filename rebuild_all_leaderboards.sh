@@ -2,6 +2,13 @@
 # Use ENRICH=--enrich-rosters to update the rosters with positional info
 # Use EXTRA=--extra-data to run in NBA analysis mode (writes to ./enrichedPlayers) (or --debug)
 # Use GENDER_FILTER="men" || GENDER_FILTER="women" if you want only one gender
+
+# Need this to process on-ball defense data
+source ../cbb-explorer/.scripts.env
+if [ -z "$PBP_OUT_DIR" ]; then
+   echo "Need PBP_OUT_DIR from [../cbb-explorer/.scripts.env]"
+   exit -1
+fi
 if [ -z "$YEARS" ]; then
    echo "Specify YEARS=all|old|new|YYYY/YY, currently [$YEARS]"
    exit -1
