@@ -53,6 +53,7 @@ import {
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import QuickSwitchBar, {
   quickSwitchDelim,
+  QuickSwitchMode,
   QuickSwitchSource,
 } from "../shared/QuickSwitchBar";
 import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -122,8 +123,8 @@ type TeamPlayTypeDiagRadarConfig = {
   possFreqType: "P%le" | "P%";
   //(can add extra params but never change the above)
 };
-const quickSwitchTitleDelim = ":_:";
-const radarConfigToStr = (
+export const quickSwitchTitleDelim = ":_:";
+export const teamRadarConfigToStr = (
   config: TeamPlayTypeDiagRadarConfig,
   startWithRaw: boolean
 ): string => {
@@ -159,7 +160,7 @@ const radarConfigToStr = (
 
   return configStr;
 };
-const configStrToConfig = (
+export const configStrToTeamRadarConfig = (
   configStr: string | undefined,
   startWithRaw: boolean
 ): TeamPlayTypeDiagRadarConfig => {
@@ -208,7 +209,6 @@ export type Props = {
   grades?: DivisionStatsCache;
   showHelp: boolean;
   playCountToUse?: number;
-  quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
   startWithRaw?: boolean;
   configStr?: string;
@@ -221,6 +221,10 @@ export type Props = {
     jsonMode?: boolean;
     singleGameMode?: boolean;
   };
+  /** For diff mode: allows chart's quickSwitch to be dynamically updated from configStr */
+  dynamicQuickSwitch?: boolean;
+  /** For diff mode: override the default quickSwitch modes */
+  quickSwitchModesOverride?: QuickSwitchMode[];
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -234,12 +238,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   showHelp,
   playCountToUse,
   defensiveOverride: defensiveOverrideIn,
-  quickSwitchOverride,
   startWithRaw,
   configStr,
   updateConfig: updateConfigIn,
   navigationLinkOverride,
   exportOptions,
+  dynamicQuickSwitch,
+  quickSwitchModesOverride,
 }) => {
   // At some point calculate medians for display purposes
   // if (grades && grades.Combo) {
@@ -258,12 +263,12 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   /** Translate from hacky string */
   const [incomingConfig, setIncomingConfig] =
     useState<TeamPlayTypeDiagRadarConfig>(
-      configStrToConfig(configStr, startWithRaw || false)
+      configStrToTeamRadarConfig(configStr, startWithRaw || false)
     );
   const updateConfig = (newConfig: TeamPlayTypeDiagRadarConfig) => {
     setIncomingConfig(newConfig);
     if (updateConfigIn)
-      updateConfigIn(radarConfigToStr(newConfig, startWithRaw || false));
+      updateConfigIn(teamRadarConfigToStr(newConfig, startWithRaw || false));
   };
 
   const [adjustForSos, setAdjustForSos] = useState<boolean>(
@@ -299,7 +304,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   );
   /** Support configStr getting changed externally */
   useEffect(() => {
-    const newConfig = configStrToConfig(configStr, startWithRaw || false);
+    const newConfig = configStrToTeamRadarConfig(
+      configStr,
+      startWithRaw || false
+    );
     setIncomingConfig(newConfig);
     setAdjustForSos(newConfig.adjustForSos);
     setPossFreqType(
@@ -311,6 +319,30 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
+
+  // Handle dynamic quickSwitch updates from external source (diff mode)
+  // When configStr changes externally, update the quickSwitch state
+  useEffect(() => {
+    if (dynamicQuickSwitch && configStr) {
+      const newConfig = configStrToTeamRadarConfig(
+        configStr,
+        startWithRaw || false
+      );
+      const quickSwitchFromConfig = _.thru(
+        newConfig.quickSwitch,
+        (quickSwitchIn) => {
+          const frags = (quickSwitchIn || "").split(quickSwitchTitleDelim);
+          if (frags[0] == "" || frags[0] == title) {
+            return frags[1];
+          } else {
+            return undefined; //(ignore quick switch for the wrong title)
+          }
+        }
+      );
+      setQuickSwitch(quickSwitchFromConfig);
+    }
+  }, [dynamicQuickSwitch, configStr, title, startWithRaw]);
+
   const quickSwitchBase = quickSwitch
     ? quickSwitch.split(quickSwitchDelim)[0]
     : undefined;
@@ -1146,7 +1178,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               if (fromTimer) {
                 setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
               } else {
-                //TODO call onChangeChartOpts
                 setQuickSwitch((__) => {
                   const newCurr = newQuickSwitch;
                   updateConfig({
@@ -1159,7 +1190,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             }}
             quickSwitchTimer={quickSwitchTimer}
             setQuickSwitchTimer={setQuickSwitchTimer}
-            modes={["link", "timer", "extra_down"]}
+            modes={quickSwitchModesOverride || ["link", "timer", "extra_down"]}
             theme={resolvedTheme}
           />
         }

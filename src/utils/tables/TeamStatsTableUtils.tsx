@@ -4,7 +4,11 @@ import _ from "lodash";
 import GameInfoDiagView from "../../components/diags/GameInfoDiagView";
 import LuckAdjDiagView from "../../components/diags/LuckAdjDiagView";
 import TeamExtraStatsInfoView from "../../components/diags/TeamExtraStatsInfoView";
-import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
+import TeamPlayTypeDiagRadar, {
+  configStrToTeamRadarConfig,
+  teamRadarConfigToStr,
+  quickSwitchTitleDelim,
+} from "../../components/diags/TeamPlayTypeDiagRadar";
 import TeamRosterDiagView from "../../components/diags/TeamRosterDiagView";
 import ShotChartDiagView, {
   UserChartOpts,
@@ -45,6 +49,7 @@ import { LineupTableUtils } from "./LineupTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { TableDisplayUtils } from "./TableDisplayUtils";
 import TeamPlayTypeTabbedView from "../../components/shared/TeamPlayTypeTabbedView";
+import { quickSwitchDelim } from "../../components/shared/QuickSwitchBar";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { UrlRouting } from "../UrlRouting";
 import { FilterPresetUtils } from "../FilterPresetUtils";
@@ -70,6 +75,10 @@ export type TeamStatsBreakdown = {
 export type DiffState = {
   /** Which datasets are enabled/visible (empty = all visible) */
   enabledDatasets: string[];
+  /** Which dataset to compare against (e.g., "on", "off", "base", "extra0") */
+  compareDataset?: string;
+  /** Comparison mode: "extra" shows side-by-side, "diff" shows differences */
+  compareMode?: "extra" | "diff";
 };
 
 export type TeamStatsReadOnlyState = {
@@ -97,6 +106,25 @@ export type TeamStatsChangeState = {
   setShowGrades: (showGradesCfg: string) => void;
   setShotChartConfig: (opts: UserChartOpts) => void;
   setPlayStyleConfigStr: (configStr: string) => void;
+  /** Callback to update diffsCompare (for chart integration) */
+  setDiffsCompare?: (compare: string) => void;
+};
+
+/** Build a playStyleConfigStr with quickSwitch set from diffsCompare */
+const buildPlayStyleConfigWithQuickSwitch = (
+  baseConfigStr: string | undefined,
+  chartTitle: string,
+  comparisonTitle: string
+): string => {
+  const baseConfig = configStrToTeamRadarConfig(baseConfigStr, false);
+  const quickSwitchValue = `${comparisonTitle}${quickSwitchDelim}extra`;
+  return teamRadarConfigToStr(
+    {
+      ...baseConfig,
+      quickSwitch: chartTitle + quickSwitchTitleDelim + quickSwitchValue,
+    },
+    false
+  );
 };
 
 /** Get the right roster stats for on/off/etc  */
@@ -186,6 +214,34 @@ export class TeamStatsTableUtils {
         return true; // No filtering, all datasets enabled
       }
       return diffState.enabledDatasets.includes(key);
+    };
+
+    // Helper to check if this is the first enabled dataset (comparison shown here)
+    const isFirstEnabledDataset = (key: string): boolean => {
+      if (!diffState || diffState.enabledDatasets.length === 0) {
+        return key === "on"; // Default: "on" is first
+      }
+      return diffState.enabledDatasets[0] === key;
+    };
+
+    // Get comparison dataset info from diffState
+    const compareDataset = diffState?.compareDataset;
+    const compareMode = diffState?.compareMode || "extra";
+
+    // Helper to convert dataset key to queryKey format
+    const datasetKeyToQueryKey = (
+      key: string
+    ):
+      | { queryKey: OnOffBaselineOtherEnum; otherIndex?: number }
+      | undefined => {
+      if (key === "on") return { queryKey: "on" };
+      if (key === "off") return { queryKey: "off" };
+      if (key === "base") return { queryKey: "baseline" };
+      if (key.startsWith("extra")) {
+        const idx = parseInt(key.slice("extra".length), 10);
+        return { queryKey: "other", otherIndex: idx };
+      }
+      return undefined;
     };
 
     // Some handy strings
@@ -824,8 +880,8 @@ export class TeamStatsTableUtils {
         queryKey === "baseline"
           ? "base"
           : queryKey === "other"
-            ? `extra${otherIndex || 0}`
-            : queryKey;
+          ? `extra${otherIndex || 0}`
+          : queryKey;
       const currentIdx = allDatasetKeysInOrder.indexOf(currentKey);
       if (currentIdx <= 0) return false; // "on" is first, no preceding datasets
       // Check if any dataset before this one is visible
@@ -837,18 +893,21 @@ export class TeamStatsTableUtils {
     const shotChartQuickSwitchOptions = [
       {
         title: onOffBaseToLongerPhrase("baseline"),
+        sourceKey: "base",
         off: shotStats.baseline.off,
         def: shotStats.baseline.def,
         gender: gameFilterParams.gender as "Men" | "Women",
       },
       {
         title: onOffBaseToLongerPhrase("on"),
+        sourceKey: "on",
         off: shotStats.on.off,
         def: shotStats.on.def,
         gender: gameFilterParams.gender as "Men" | "Women",
       },
       {
         title: onOffBaseToLongerPhrase("off"),
+        sourceKey: "off",
         off: shotStats.off.off,
         def: shotStats.off.def,
         gender: gameFilterParams.gender as "Men" | "Women",
@@ -857,7 +916,8 @@ export class TeamStatsTableUtils {
       .concat(
         (shotStats.other || []).map((opt, idx) => {
           return {
-            title: `'${String.fromCharCode(67 + idx)}'`,
+            title: onOffBaseToLongerPhrase("other", true, idx),
+            sourceKey: `extra${idx}`,
             off: opt.off,
             def: opt.def,
             gender: gameFilterParams.gender as "Men" | "Women",
@@ -870,6 +930,7 @@ export class TeamStatsTableUtils {
       [
         {
           title: onOffBaseToLongerPhrase("baseline"),
+          sourceKey: "base",
           players: rosterStats["baseline"] || [],
           rosterStatsByCode: globalRosterStatsByCode,
           teamStats: teamStatsByQuery["baseline"],
@@ -882,6 +943,7 @@ export class TeamStatsTableUtils {
         },
         {
           title: onOffBaseToLongerPhrase("on"),
+          sourceKey: "on",
           players: rosterStats["on"] || [],
           rosterStatsByCode: globalRosterStatsByCode,
           teamStats: teamStatsByQuery["on"],
@@ -894,6 +956,7 @@ export class TeamStatsTableUtils {
         },
         {
           title: onOffBaseToLongerPhrase("off"),
+          sourceKey: "off",
           players: rosterStats["off"] || [],
           rosterStatsByCode: globalRosterStatsByCode,
           teamStats: teamStatsByQuery["off"],
@@ -908,7 +971,8 @@ export class TeamStatsTableUtils {
         .concat(
           (teamStats.other || []).map((__, idx) => {
             return {
-              title: onOffBaseToLongerPhrase("other", false, idx),
+              title: onOffBaseToLongerPhrase("other", true, idx),
+              sourceKey: `extra${idx}`,
               players: getRosterStats("other", rosterStats, idx),
               rosterStatsByCode: globalRosterStatsByCode,
               teamStats: getTeamStats("other", teamStats, idx),
@@ -954,6 +1018,103 @@ export class TeamStatsTableUtils {
         hasPrecedingVisibleDataset(queryKey, otherQueryIndex);
 
       if (hasData) {
+        // Determine the current dataset key for comparison logic
+        const currentDatasetKey =
+          queryKey === "baseline"
+            ? "base"
+            : queryKey === "other"
+            ? `extra${otherQueryIndex || 0}`
+            : queryKey;
+
+        // Check if we should show comparison rows (only for first enabled dataset)
+        const showComparisonRows =
+          compareDataset &&
+          isFirstEnabledDataset(currentDatasetKey) &&
+          compareDataset !== currentDatasetKey;
+
+        // Get comparison dataset stats if needed
+        const compQueryInfo = showComparisonRows
+          ? datasetKeyToQueryKey(compareDataset)
+          : undefined;
+        const compStats =
+          compQueryInfo &&
+          getTeamStats(
+            compQueryInfo.queryKey,
+            teamStats,
+            compQueryInfo.otherIndex
+          );
+        const compDisplayKey = compQueryInfo
+          ? onOffBaseToLongerPhrase(
+              compQueryInfo.queryKey,
+              true,
+              compQueryInfo.otherIndex
+            )
+          : "";
+
+        // Build comparison data (diff or extra mode)
+        const buildComparisonRows = (): GenericTableRow[] => {
+          if (!showComparisonRows || !compStats || !compQueryInfo) return [];
+
+          if (compareMode === "diff") {
+            // Diff mode: show differences
+            const diffStats = LineupUtils.getStatsDiff(
+              getTeamStats(queryKey, teamStats, otherQueryIndex),
+              compStats,
+              `${onOffBaseToShortPhrase(
+                queryKey,
+                otherQueryIndex
+              )} - ${onOffBaseToShortPhrase(
+                compQueryInfo.queryKey,
+                compQueryInfo.otherIndex
+              )} diffs`
+            );
+            if (diffStats) {
+              TableDisplayUtils.injectPlayTypeInfo(
+                diffStats,
+                false,
+                false,
+                teamSeasonLookup
+              );
+            }
+            return diffStats
+              ? [
+                  GenericTableOps.buildDataRow(
+                    diffStats,
+                    offPrefixFn,
+                    offCellMetaFn,
+                    CommonTableDefs.onOffReportReplacement
+                  ),
+                  GenericTableOps.buildDataRow(
+                    diffStats,
+                    defPrefixFn,
+                    defCellMetaFn,
+                    CommonTableDefs.onOffReportReplacement
+                  ),
+                ]
+              : [];
+          } else {
+            // Extra mode: show comparison dataset rows side-by-side
+            return [
+              GenericTableOps.buildDataRow(
+                teamStatsByCombinedQuery(
+                  compQueryInfo.queryKey,
+                  compQueryInfo.otherIndex
+                ),
+                offPrefixFn,
+                offCellMetaFn
+              ),
+              GenericTableOps.buildDataRow(
+                teamStatsByCombinedQuery(
+                  compQueryInfo.queryKey,
+                  compQueryInfo.otherIndex
+                ),
+                defPrefixFn,
+                defCellMetaFn
+              ),
+            ];
+          }
+        };
+
         const teamStatsRows = _.flatten([
           showExtraHeader
             ? [
@@ -977,6 +1138,8 @@ export class TeamStatsTableUtils {
               defCellMetaFn
             ),
           ],
+          // Add comparison rows after source off/def rows
+          buildComparisonRows(),
           showStandaloneGrades
             ? GradeTableUtils.buildTeamGradeTableRows(
                 onOffBaseToShortPhrase(queryKey, otherQueryIndex),
@@ -1007,6 +1170,31 @@ export class TeamStatsTableUtils {
                         teamStats,
                         otherQueryIndex
                       )}
+                      showGrades={showGrades}
+                      grades={
+                        showGrades
+                          ? {
+                              comboTier: divisionStatsCache.Combo,
+                              highTier: divisionStatsCache.High,
+                              mediumTier: divisionStatsCache.Medium,
+                              lowTier: divisionStatsCache.Low,
+                            }
+                          : undefined
+                      }
+                    />
+                  </span>,
+                  "small pt-2"
+                ),
+              ]
+            : [],
+          // Comparison Extra Info (shown after source Extra)
+          showExtraInfo && showComparisonRows && compQueryInfo && compStats
+            ? [
+                GenericTableOps.buildTextRow(
+                  <span>
+                    <TeamExtraStatsInfoView
+                      name={compDisplayKey}
+                      teamStatSet={compStats}
                       showGrades={showGrades}
                       grades={
                         showGrades
@@ -1066,8 +1254,71 @@ export class TeamStatsTableUtils {
                       showGrades={showGrades}
                       grades={divisionStatsCache}
                       showHelp={showHelp}
-                      configStr={playStyleConfigStr}
-                      updateConfig={persistNewState.setPlayStyleConfigStr}
+                      configStr={
+                        // Build configStr with quickSwitch from diffsCompare when in diff mode
+                        isFirstEnabledDataset(currentDatasetKey) &&
+                        diffState?.compareDataset
+                          ? buildPlayStyleConfigWithQuickSwitch(
+                              playStyleConfigStr,
+                              displayKey,
+                              onOffBaseToLongerPhrase(
+                                compQueryInfo?.queryKey || "baseline",
+                                true,
+                                compQueryInfo?.otherIndex
+                              )
+                            )
+                          : playStyleConfigStr
+                      }
+                      updateConfig={(newConfigStr) => {
+                        persistNewState.setPlayStyleConfigStr(newConfigStr);
+                        // Update diffsCompare when quickSwitch changes
+                        if (
+                          isFirstEnabledDataset(currentDatasetKey) &&
+                          persistNewState.setDiffsCompare
+                        ) {
+                          const newConfig = configStrToTeamRadarConfig(
+                            newConfigStr,
+                            false
+                          );
+                          if (
+                            newConfig.quickSwitch &&
+                            newConfig.quickSwitch.includes(quickSwitchDelim)
+                          ) {
+                            // Parse title and quickSwitch: format is "title:_:actual_quick_switch"
+                            const titleAndQuickSwitch =
+                              newConfig.quickSwitch.split(
+                                quickSwitchTitleDelim
+                              );
+                            const actualQuickSwitch = titleAndQuickSwitch[1];
+                            if (actualQuickSwitch) {
+                              // Parse the title from quickSwitch to find sourceKey
+                              const [title, mode] =
+                                actualQuickSwitch.split(quickSwitchDelim);
+                              const matchingOpt =
+                                teamPlayTypeQuickSwitchOptions().find(
+                                  (opt) => opt.title === title
+                                );
+                              if (matchingOpt?.sourceKey) {
+                                persistNewState.setDiffsCompare(
+                                  `${matchingOpt.sourceKey}${quickSwitchDelim}extra`
+                                );
+                              }
+                            }
+                          } else if (!newConfig.quickSwitch) {
+                            persistNewState.setDiffsCompare("");
+                          }
+                        }
+                      }}
+                      // Diff mode integration (style charts always use "extra" mode)
+                      dynamicQuickSwitch={isFirstEnabledDataset(
+                        currentDatasetKey
+                      )}
+                      quickSwitchModesOverride={
+                        isFirstEnabledDataset(currentDatasetKey) &&
+                        diffState?.compareDataset
+                          ? ["extra_down"]
+                          : undefined
+                      }
                     />
                   ) : (
                     // Leaderboard mode
@@ -1121,11 +1372,9 @@ export class TeamStatsTableUtils {
                                       showGrades: showGrades,
                                       avgEfficiency,
                                       showHelp,
-                                      quickSwitchOverride: undefined,
                                     },
                                   ]
                             }
-                            quickSwitchOverride={undefined}
                             navigationLinkOverride={
                               //(note this is ignore unless in TeamStatsExplorer mode because !_.isEmpty(players))
                               <OverlayTrigger
@@ -1199,7 +1448,6 @@ export class TeamStatsTableUtils {
                                 persistNewState.setPlayStyleConfigStr
                               }
                               showHelp={showHelp}
-                              quickSwitchOverride={undefined}
                             />,
                           ]
                         : []
@@ -1220,16 +1468,78 @@ export class TeamStatsTableUtils {
                     quickSwitchOptions={shotChartQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey
                     )}
-                    chartOpts={shotChartConfig}
+                    chartOpts={{
+                      ...shotChartConfig,
+                      // Wire quickSwitch to diffsCompare when this is the first enabled dataset
+                      quickSwitch:
+                        isFirstEnabledDataset(currentDatasetKey) &&
+                        diffState?.compareDataset
+                          ? `${onOffBaseToLongerPhrase(
+                              compQueryInfo?.queryKey || "baseline",
+                              true,
+                              compQueryInfo?.otherIndex
+                            )}${quickSwitchDelim}${compareMode}`
+                          : shotChartConfig?.quickSwitch,
+                    }}
                     onChangeChartOpts={(newOpts) => {
                       persistNewState.setShotChartConfig(newOpts);
+                      // Update diffsCompare when quickSwitch changes
+                      if (
+                        isFirstEnabledDataset(currentDatasetKey) &&
+                        persistNewState.setDiffsCompare
+                      ) {
+                        if (newOpts.quickSwitch) {
+                          // Parse out the title and mode from quickSwitch (format: "title:|:mode")
+                          const [title, mode] =
+                            newOpts.quickSwitch.split(quickSwitchDelim);
+                          // Find the option by title to get the sourceKey
+                          const matchingOpt = shotChartQuickSwitchOptions.find(
+                            (opt) => opt.title === title
+                          );
+                          if (matchingOpt?.sourceKey) {
+                            persistNewState.setDiffsCompare(
+                              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`
+                            );
+                          }
+                        } else {
+                          persistNewState.setDiffsCompare("");
+                        }
+                      }
                     }}
+                    dynamicQuickSwitch={isFirstEnabledDataset(
+                      currentDatasetKey
+                    )}
+                    quickSwitchModesOverride={
+                      isFirstEnabledDataset(currentDatasetKey) &&
+                      diffState?.compareDataset
+                        ? ["extra_right", "diff"]
+                        : undefined
+                    }
                   />,
                   "small"
                 ),
               ]
             : [],
         ]);
+
+        // Get comparison query index for roster/games data
+        const compQueryIndex = compQueryInfo
+          ? _.thru(compQueryInfo.queryKey, (k) => {
+              switch (k) {
+                case "baseline":
+                  return 0;
+                case "on":
+                  return 1;
+                case "off":
+                  return 2;
+                case "other":
+                  return 3 + (compQueryInfo.otherIndex || 0);
+              }
+            })
+          : undefined;
+        const compCompositeQueryKey = compQueryInfo
+          ? getModelKey(compQueryInfo.queryKey, compQueryInfo.otherIndex || 0)
+          : undefined;
 
         const teamRosterRows = _.flatten([
           showRoster
@@ -1264,6 +1574,42 @@ export class TeamStatsTableUtils {
                 ),
               ]
             : [],
+          // Comparison Roster (shown after source Roster)
+          showRoster &&
+          showComparisonRows &&
+          compQueryIndex !== undefined &&
+          compCompositeQueryKey
+            ? [
+                GenericTableOps.buildTextRow(
+                  <span>
+                    <TeamRosterDiagView
+                      positionInfoGlobal={LineupTableUtils.getPositionalInfo(
+                        lineupStats[compQueryIndex]?.lineups || [],
+                        positionFromPlayerIdGlobal,
+                        teamSeasonLookup
+                      )}
+                      positionInfoSample={
+                        compStats &&
+                        compStats.doc_count < teamStats.global.doc_count
+                          ? LineupTableUtils.getPositionalInfo(
+                              lineupStats[compQueryIndex]?.lineups || [],
+                              positionFromPlayerId[compCompositeQueryKey],
+                              teamSeasonLookup
+                            )
+                          : undefined
+                      }
+                      rosterStatsByPlayerId={
+                        playerInfoByIdBy0AB[compQueryIndex] || {}
+                      }
+                      positionFromPlayerId={positionFromPlayerIdGlobal}
+                      teamSeasonLookup={teamSeasonLookup}
+                      showHelp={showHelp}
+                    />
+                  </span>,
+                  "small pt-2"
+                ),
+              ]
+            : [],
         ]);
 
         const teamDiagRows = _.flatten([
@@ -1284,6 +1630,32 @@ export class TeamStatsTableUtils {
                     }
                     orderedOppoList={_.clone(
                       orderedMutableOppoList[compositeQueryKey]
+                    )}
+                    params={{}}
+                    maxOffPoss={-1}
+                  />,
+                  "small pt-2"
+                ),
+              ]
+            : [],
+          // Comparison Games (shown after source Games)
+          showGameInfo && showComparisonRows && compCompositeQueryKey
+            ? [
+                GenericTableOps.buildTextRow(
+                  <GameInfoDiagView
+                    oppoList={
+                      LineupUtils.isGameInfoStatSet(
+                        totalLineupsByQueryKey[compCompositeQueryKey]?.game_info
+                      )
+                        ? LineupUtils.getGameInfo(
+                            totalLineupsByQueryKey[compCompositeQueryKey]
+                              ?.game_info || {}
+                          )
+                        : (totalLineupsByQueryKey[compCompositeQueryKey]
+                            ?.game_info as GameInfoStatSet[]) || []
+                    }
+                    orderedOppoList={_.clone(
+                      orderedMutableOppoList[compCompositeQueryKey] || {}
                     )}
                     params={{}}
                     maxOffPoss={-1}

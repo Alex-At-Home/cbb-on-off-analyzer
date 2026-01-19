@@ -10,6 +10,7 @@ import {
 } from "../../utils/StatModels";
 import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
 import { TopLevelPlayAnalysis } from "../../utils/stats/PlayTypeUtils";
+import { QuickSwitchMode } from "./QuickSwitchBar";
 
 // Props for TeamPlayTypeDiagView
 export type TeamPlayTypeDiagViewProps = {
@@ -35,7 +36,6 @@ export type TeamPlayTypeDiagRadarProps = {
   grades?: DivisionStatsCache;
   showHelp: boolean;
   playCountToUse?: number;
-  quickSwitchOverride: string | undefined;
   defensiveOverride?: any;
   startWithRaw?: boolean;
   configStr?: string;
@@ -60,6 +60,10 @@ export type TeamPlayTypeTabbedViewProps = {
   configStr?: string;
   updateConfig?: (configStr: string) => void;
   navigationLinkOverride?: React.ReactElement;
+  /** For diff mode: allows chart's quickSwitch to be dynamically updated */
+  dynamicQuickSwitch?: boolean;
+  /** For diff mode: override the default quickSwitch modes */
+  quickSwitchModesOverride?: QuickSwitchMode[];
 };
 
 const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (
@@ -81,7 +85,11 @@ const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (
       </Tab>
       <Tab eventKey="breakdown" title="Play Types">
         {!props.playTypeConfig || props?.playTypeConfig.off ? (
-          <TeamPlayTypeDiagRadar {...props} quickSwitchOverride={undefined} />
+          <TeamPlayTypeDiagRadar
+            {...props}
+            dynamicQuickSwitch={props.dynamicQuickSwitch}
+            quickSwitchModesOverride={props.quickSwitchModesOverride}
+          />
         ) : undefined}
         {props.defense && props.playTypeConfig?.def ? (
           <TeamPlayTypeDiagRadar
@@ -89,7 +97,6 @@ const TeamPlayTypeTabbedView: React.FC<TeamPlayTypeTabbedViewProps> = (
             title={`(Defense) ${props.title}`}
             defensiveOverride={props.defense}
             quickSwitchOptions={props.defensiveQuickSwitchOptions}
-            quickSwitchOverride={undefined}
           />
         ) : undefined}
       </Tab>

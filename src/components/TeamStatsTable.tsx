@@ -430,6 +430,55 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // For backwards compatibility, use first key as "the" selected key for single mode
   const selectedDatasetKey = selectedDatasetKeys[0] || "";
 
+  // Build short form names for datasets using preset phrase logic (like GameFilter)
+  const maybePresetPhrase = _.zip(
+    gameFilterParams.splitPhrases || [],
+    FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
+      []
+  ).map((options) => options?.[0] || options?.[1]);
+
+  const maybeFilterPhrase =
+    gameFilterParams.basePhrase ||
+    FilterPresetUtils.getPresetFilterPhrase(
+      gameFilterParams.presetMode || "??"
+    );
+
+  // Available datasets with their short names (base goes at the end)
+  const availableDatasets: {
+    key: string;
+    shortName: string;
+    hasData: boolean;
+  }[] = [
+    {
+      key: "on",
+      shortName: maybePresetPhrase?.[0] || "A",
+      hasData: (teamStats.on?.doc_count || 0) > 0,
+    },
+    {
+      key: "off",
+      shortName: maybePresetPhrase?.[1] || "B",
+      hasData: (teamStats.off?.doc_count || 0) > 0,
+    },
+    ...(teamStats.other || []).map((other, idx) => ({
+      key: `extra${idx}`,
+      shortName: maybePresetPhrase?.[2 + idx] || String.fromCharCode(67 + idx), // C, D, E, ...
+      hasData: (other?.doc_count || 0) > 0,
+    })),
+    {
+      key: "base",
+      shortName: maybeFilterPhrase || "Base",
+      hasData: (teamStats.baseline?.doc_count || 0) > 0,
+    },
+  ].filter((d) => d.hasData);
+
+  // Parse diffsCompare to get the quickSwitch state
+  const diffsCompareBase = diffsCompare
+    ? diffsCompare.split(quickSwitchDelim)[0]
+    : undefined;
+  const diffsCompareExtra: "extra" | "diff" | undefined = diffsCompare
+    ? (diffsCompare.split(quickSwitchDelim)[1] as "extra" | "diff" | undefined)
+    : undefined;
+
   const tableInfo = TeamStatsTableUtils.buildRows(
     gameFilterParams,
     teamStats,
@@ -457,16 +506,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showHelp,
       playStyleConfigStr: playTypeConfigStr,
       allPlayerStatsCache: allPlayerStatsCache.cache,
-      diffState:
-        showDiffModeUI && selectedDatasetKeys.length > 0
-          ? { enabledDatasets: selectedDatasetKeys }
-          : undefined,
+      diffState: showDiffModeUI
+        ? {
+            enabledDatasets: selectedDatasetKeys,
+            // diffsCompareBase is now the dataset key directly (on/off/base/extra0/etc)
+            compareDataset: diffsCompareBase || undefined,
+            compareMode: diffsCompareExtra,
+          }
+        : undefined,
     },
     {
       setShowGrades: (showGrades: string) => setShowGrades(showGrades),
       setShotChartConfig: (config: UserChartOpts) => setShotChartConfig(config),
       setPlayStyleConfigStr: (configStr: string) =>
         setPlayTypeConfigStr(configStr),
+      setDiffsCompare: (compare: string) => setDiffsCompare(compare),
     },
 
     luckConfig,
@@ -522,11 +576,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         shouldShowDataset("base")
           ? buildRows(tableInfo.baseline, navigationRefs.refBase, false)
           : [],
-        // Diffs if showing (only when not filtering to single dataset):
-        showDiffs && !diffsHideDatasets
+        // Legacy diffs section: show only when showDiffs is on, no dataset filtering,
+        // AND no comparison is active (new diff mode replaces legacy diffs when diffsCompare is set)
+        showDiffs && !diffsHideDatasets && !diffsCompare
           ? [GenericTableOps.buildRowSeparator()]
           : [],
-        showDiffs && !diffsHideDatasets
+        showDiffs && !diffsHideDatasets && !diffsCompare
           ? _.map(tableInfo.diffs, (row, idx) => {
               if (idx == 0) row.navigationRef = navigationRefs.refDiffs;
               return row;
@@ -540,6 +595,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showLuckAdjDiags,
       showDiffs,
       diffsHideDatasets,
+      diffsCompare,
       showExtraInfo,
       showPlayTypes,
       showRoster,
@@ -561,60 +617,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     return (teamStats.baseline.doc_count || 0) == 0;
   }
 
-  // 3.5] Diff mode dataset computation
-  // Build short form names for datasets using preset phrase logic (like GameFilter)
-  const maybePresetPhrase = _.zip(
-    gameFilterParams.splitPhrases || [],
-    FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
-      []
-  ).map((options) => options?.[0] || options?.[1]);
-
-  const maybeFilterPhrase =
-    gameFilterParams.basePhrase ||
-    FilterPresetUtils.getPresetFilterPhrase(
-      gameFilterParams.presetMode || "??"
-    );
-
-  // Available datasets with their short names (base goes at the end)
-  const availableDatasets: {
-    key: string;
-    shortName: string;
-    hasData: boolean;
-  }[] = [
-    {
-      key: "on",
-      shortName: maybePresetPhrase?.[0] || "A",
-      hasData: (teamStats.on?.doc_count || 0) > 0,
-    },
-    {
-      key: "off",
-      shortName: maybePresetPhrase?.[1] || "B",
-      hasData: (teamStats.off?.doc_count || 0) > 0,
-    },
-    ...(teamStats.other || []).map((other, idx) => ({
-      key: `extra${idx}`,
-      shortName: maybePresetPhrase?.[2 + idx] || String.fromCharCode(67 + idx), // C, D, E, ...
-      hasData: (other?.doc_count || 0) > 0,
-    })),
-    {
-      key: "base",
-      shortName: maybeFilterPhrase || "Base",
-      hasData: (teamStats.baseline?.doc_count || 0) > 0,
-    },
-  ].filter((d) => d.hasData);
-
-  // Parse diffsCompare to get the quickSwitch state
-  const diffsCompareBase = diffsCompare
-    ? diffsCompare.split(quickSwitchDelim)[0]
-    : undefined;
-  const diffsCompareExtra: "extra" | "diff" | undefined = diffsCompare
-    ? (diffsCompare.split(quickSwitchDelim)[1] as "extra" | "diff" | undefined)
-    : undefined;
-
   // Dataset options for QuickSwitchBar (exclude currently selected - in multi mode, exclude the first/top selected)
+  // Include sourceKey so we can convert from shortName title to key format for diffsCompare
   const comparisonDatasetOptions = availableDatasets
     .filter((d) => d.key !== selectedDatasetKey)
-    .map((d) => ({ title: d.shortName }));
+    .map((d) => ({ title: d.shortName, sourceKey: d.key }));
 
   // Dataset selector toggle bar
   const datasetSelectorBar = showDiffModeUI ? (
@@ -643,10 +650,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               }
             }
             // Clear comparison if it matches the new selection
-            const selectedShortName = availableDatasets.find(
-              (d) => d.key === dataset.key
-            )?.shortName;
-            if (diffsCompareBase === selectedShortName) {
+            // diffsCompareBase is now the key, so compare directly with dataset.key
+            if (diffsCompareBase === dataset.key) {
               setDiffsCompare("");
             }
           },
@@ -681,12 +686,16 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     />
   ) : null;
 
+  // Helper to get shortName from key for display in QuickSwitchBar
+  const keyToShortName = (key: string | undefined) =>
+    key ? availableDatasets.find((d) => d.key === key)?.shortName : undefined;
+
   // QuickSwitchBar for comparison selection
   const comparisonQuickSwitchBar = showDiffModeUI ? (
     <QuickSwitchBar
-      title={diffsCompareBase || "Select Comparison"}
+      title={keyToShortName(diffsCompareBase) || "Select Comparison"}
       titlePrefix="Compare With:"
-      quickSwitch={diffsCompareBase}
+      quickSwitch={keyToShortName(diffsCompareBase)}
       quickSwitchExtra={diffsCompareExtra}
       quickSwitchOptions={comparisonDatasetOptions}
       updateQuickSwitch={(
@@ -696,7 +705,17 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         fromTimer: boolean
       ) => {
         if (quickSwitch) {
-          setDiffsCompare(quickSwitch);
+          // Parse the title and mode from quickSwitch (format: "shortName:|:mode")
+          const [title, mode] = quickSwitch.split(quickSwitchDelim);
+          // Find the option by title (shortName) to get the sourceKey
+          const matchingOpt = comparisonDatasetOptions.find(
+            (opt) => opt.title === title
+          );
+          if (matchingOpt?.sourceKey) {
+            setDiffsCompare(
+              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`
+            );
+          }
         } else {
           setDiffsCompare("");
         }
