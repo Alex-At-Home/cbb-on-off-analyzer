@@ -576,12 +576,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         shouldShowDataset("base")
           ? buildRows(tableInfo.baseline, navigationRefs.refBase, false)
           : [],
-        // Legacy diffs section: show only when showDiffs is on, no dataset filtering,
-        // AND no comparison is active (new diff mode replaces legacy diffs when diffsCompare is set)
-        showDiffs && !diffsHideDatasets && !diffsCompare
+        // Legacy diffs section: show when showDiffs is on AND Feature flag is OFF
+        showDiffs && !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
           ? [GenericTableOps.buildRowSeparator()]
           : [],
-        showDiffs && !diffsHideDatasets && !diffsCompare
+        showDiffs && !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
           ? _.map(tableInfo.diffs, (row, idx) => {
               if (idx == 0) row.navigationRef = navigationRefs.refDiffs;
               return row;
