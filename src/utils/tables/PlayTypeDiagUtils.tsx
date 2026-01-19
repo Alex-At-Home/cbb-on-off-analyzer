@@ -312,7 +312,6 @@ export class PlayTypeDiagUtils {
             avgEfficiency,
             showGrades: "rank:Combo",
             showHelp,
-            quickSwitchOverride: undefined,
             possCountToUse: teamStats.baseline.off_poss?.value,
           },
         ]
@@ -339,7 +338,6 @@ export class PlayTypeDiagUtils {
           showHelp={showHelp}
           quickSwitchOptions={options}
           playCountToUse={playCountToUse}
-          quickSwitchOverride={undefined}
           defensiveOverride={defensiveOverride}
           startWithRaw={singleGameMode}
           exportOptions={exportOptions}

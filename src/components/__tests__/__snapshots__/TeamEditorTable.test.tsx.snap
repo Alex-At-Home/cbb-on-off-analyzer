@@ -15750,6 +15750,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.0575,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9695,
                                             "value": -3.2567,
                                           }
 
@@ -15757,6 +15758,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3104,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9843,
                                             "value": -2.461,
                                           }
 
@@ -15775,8 +15777,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9764,
                                             "old_value": 4.1352,
+                                            "pctile": 0.9366,
                                             "value": 4.1352,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9454,
+                                            "value": 3.1771,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -15790,6 +15799,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3315,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.909,
                                             "value": -2.471,
                                           }
 
@@ -15797,6 +15807,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.877,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9577,
                                             "value": -1.9892,
                                           }
 
@@ -15815,8 +15826,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9705,
                                             "old_value": 4.5664,
+                                            "pctile": 0.9543,
                                             "value": 4.5664,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9646,
+                                            "value": 3.7612,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -15830,6 +15848,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8928,
                                             "value": -2.3036,
                                           }
 
@@ -15837,6 +15856,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9548,
                                             "value": -1.9609,
                                           }
 
@@ -15855,8 +15875,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.944,
                                             "old_value": 3.6445,
+                                            "pctile": 0.913,
                                             "value": 3.6445,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9469,
+                                            "value": 3.2046,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -15870,6 +15897,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3155,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7704,
                                             "value": -1.4213,
                                           }
 
@@ -15877,6 +15905,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.8411,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7748,
                                             "value": -0.9088,
                                           }
 
@@ -15895,8 +15924,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9086,
                                             "old_value": 3.7316,
+                                            "pctile": 0.9159,
                                             "value": 3.7316,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8968,
+                                            "value": 2.4146,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -15910,6 +15946,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.825,
                                             "value": -1.7398,
                                           }
 
@@ -15917,6 +15954,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9031,
                                             "value": -1.5273,
                                           }
 
@@ -15935,8 +15973,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8953,
                                             "old_value": 3.0615,
+                                            "pctile": 0.8717,
                                             "value": 3.0615,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9263,
+                                            "value": 2.7984,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -15950,6 +15995,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3915,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.589,
                                             "value": -0.5967,
                                           }
 
@@ -15957,6 +16003,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3233,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6288,
                                             "value": -0.4927,
                                           }
 
@@ -15975,8 +16022,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8614,
                                             "old_value": 3.6429,
+                                            "pctile": 0.9086,
                                             "value": 3.6429,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9395,
+                                            "value": 3.0668,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -15990,6 +16044,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8353,
                                             "value": -1.8313,
                                           }
 
@@ -15997,6 +16052,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8677,
                                             "value": -1.3104,
                                           }
 
@@ -16015,8 +16071,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8289,
                                             "old_value": 1.8545,
+                                            "pctile": 0.7419,
                                             "value": 1.8545,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.7699,
+                                            "value": 1.4075,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16030,6 +16093,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7262,
                                             "value": -1.2314,
                                           }
 
@@ -16037,6 +16101,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7822,
                                             "value": -0.9339,
                                           }
 
@@ -16055,8 +16120,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7979,
                                             "old_value": 2.1558,
+                                            "pctile": 0.7802,
                                             "value": 2.1558,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8127,
+                                            "value": 1.6969,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16070,6 +16142,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.0693,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.881,
                                             "value": -2.2074,
                                           }
 
@@ -16077,6 +16150,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4796,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9105,
                                             "value": -1.5784,
                                           }
 
@@ -16095,8 +16169,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7552,
                                             "old_value": 0.6789,
+                                            "pctile": 0.5708,
                                             "value": 0.6789,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.5959,
+                                            "value": 0.5099,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16110,6 +16191,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9784,
                                             "value": -3.5468,
                                           }
 
@@ -16117,6 +16199,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9489,
                                             "value": -1.9159,
                                           }
 
@@ -16135,8 +16218,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7198,
                                             "old_value": -1.0865,
+                                            "pctile": 0.2891,
                                             "value": -1.0865,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2979,
+                                            "value": -0.5521,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16150,6 +16240,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6111,
                                             "value": -0.6975,
                                           }
 
@@ -16157,6 +16248,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.5831,
                                             "value": -0.3469,
                                           }
 
@@ -16175,8 +16267,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.559,
                                             "old_value": 0.1146,
+                                            "pctile": 0.469,
                                             "value": 0.1146,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.4676,
+                                            "value": 0.0645,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16190,6 +16289,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.5185,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3545,
                                             "value": 0.4476,
                                           }
 
@@ -16197,6 +16297,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.2641,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3707,
                                             "value": 0.2279,
                                           }
 
@@ -16215,8 +16316,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.5383,
                                             "old_value": 1.0889,
+                                            "pctile": 0.6401,
                                             "value": 1.0889,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6165,
+                                            "value": 0.5757,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16230,6 +16338,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2011,
                                             "value": 1.3544,
                                           }
 
@@ -16237,6 +16346,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2734,
                                             "value": 0.5684,
                                           }
 
@@ -16255,8 +16365,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4853,
                                             "old_value": 1.4534,
+                                            "pctile": 0.6976,
                                             "value": 1.4534,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6313,
+                                            "value": 0.6362,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -16270,6 +16387,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8122,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8604,
                                             "value": -2.0139,
                                           }
 
@@ -16277,6 +16395,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.6292,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7055,
                                             "value": -0.6993,
                                           }
 
@@ -16295,8 +16414,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4366,
                                             "old_value": -2.3001,
+                                            "pctile": 0.1254,
                                             "value": -2.3001,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2404,
+                                            "value": -0.7785,
                                           }},
                   ],
                   "syntheticData": true,
@@ -21869,6 +21995,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.0575,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9695,
                                             "value": -3.2567,
                                           }
 
@@ -21876,6 +22003,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3104,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9843,
                                             "value": -2.461,
                                           }
 
@@ -21894,8 +22022,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9764,
                                             "old_value": 4.1352,
+                                            "pctile": 0.9366,
                                             "value": 4.1352,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9454,
+                                            "value": 3.1771,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -21909,6 +22044,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3315,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.909,
                                             "value": -2.471,
                                           }
 
@@ -21916,6 +22052,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.877,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9577,
                                             "value": -1.9892,
                                           }
 
@@ -21934,8 +22071,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9705,
                                             "old_value": 4.5664,
+                                            "pctile": 0.9543,
                                             "value": 4.5664,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9646,
+                                            "value": 3.7612,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -21949,6 +22093,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8928,
                                             "value": -2.3036,
                                           }
 
@@ -21956,6 +22101,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9548,
                                             "value": -1.9609,
                                           }
 
@@ -21974,8 +22120,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.944,
                                             "old_value": 3.6445,
+                                            "pctile": 0.913,
                                             "value": 3.6445,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9469,
+                                            "value": 3.2046,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -21989,6 +22142,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3155,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7704,
                                             "value": -1.4213,
                                           }
 
@@ -21996,6 +22150,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.8411,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7748,
                                             "value": -0.9088,
                                           }
 
@@ -22014,8 +22169,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9086,
                                             "old_value": 3.7316,
+                                            "pctile": 0.9159,
                                             "value": 3.7316,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8968,
+                                            "value": 2.4146,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22029,6 +22191,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.825,
                                             "value": -1.7398,
                                           }
 
@@ -22036,6 +22199,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9031,
                                             "value": -1.5273,
                                           }
 
@@ -22054,8 +22218,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8953,
                                             "old_value": 3.0615,
+                                            "pctile": 0.8717,
                                             "value": 3.0615,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9263,
+                                            "value": 2.7984,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22069,6 +22240,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3915,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.589,
                                             "value": -0.5967,
                                           }
 
@@ -22076,6 +22248,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3233,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6288,
                                             "value": -0.4927,
                                           }
 
@@ -22094,8 +22267,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8614,
                                             "old_value": 3.6429,
+                                            "pctile": 0.9086,
                                             "value": 3.6429,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9395,
+                                            "value": 3.0668,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22109,6 +22289,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8353,
                                             "value": -1.8313,
                                           }
 
@@ -22116,6 +22297,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8677,
                                             "value": -1.3104,
                                           }
 
@@ -22134,8 +22316,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8289,
                                             "old_value": 1.8545,
+                                            "pctile": 0.7419,
                                             "value": 1.8545,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.7699,
+                                            "value": 1.4075,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22149,6 +22338,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7262,
                                             "value": -1.2314,
                                           }
 
@@ -22156,6 +22346,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7822,
                                             "value": -0.9339,
                                           }
 
@@ -22174,8 +22365,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7979,
                                             "old_value": 2.1558,
+                                            "pctile": 0.7802,
                                             "value": 2.1558,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8127,
+                                            "value": 1.6969,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22189,6 +22387,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.0693,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.881,
                                             "value": -2.2074,
                                           }
 
@@ -22196,6 +22395,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4796,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9105,
                                             "value": -1.5784,
                                           }
 
@@ -22214,8 +22414,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7552,
                                             "old_value": 0.6789,
+                                            "pctile": 0.5708,
                                             "value": 0.6789,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.5959,
+                                            "value": 0.5099,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22229,6 +22436,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9784,
                                             "value": -3.5468,
                                           }
 
@@ -22236,6 +22444,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9489,
                                             "value": -1.9159,
                                           }
 
@@ -22254,8 +22463,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7198,
                                             "old_value": -1.0865,
+                                            "pctile": 0.2891,
                                             "value": -1.0865,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2979,
+                                            "value": -0.5521,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22269,6 +22485,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6111,
                                             "value": -0.6975,
                                           }
 
@@ -22276,6 +22493,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.5831,
                                             "value": -0.3469,
                                           }
 
@@ -22294,8 +22512,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.559,
                                             "old_value": 0.1146,
+                                            "pctile": 0.469,
                                             "value": 0.1146,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.4676,
+                                            "value": 0.0645,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22309,6 +22534,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.5185,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3545,
                                             "value": 0.4476,
                                           }
 
@@ -22316,6 +22542,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.2641,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3707,
                                             "value": 0.2279,
                                           }
 
@@ -22334,8 +22561,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.5383,
                                             "old_value": 1.0889,
+                                            "pctile": 0.6401,
                                             "value": 1.0889,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6165,
+                                            "value": 0.5757,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22349,6 +22583,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2011,
                                             "value": 1.3544,
                                           }
 
@@ -22356,6 +22591,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2734,
                                             "value": 0.5684,
                                           }
 
@@ -22374,8 +22610,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4853,
                                             "old_value": 1.4534,
+                                            "pctile": 0.6976,
                                             "value": 1.4534,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6313,
+                                            "value": 0.6362,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -22389,6 +22632,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8122,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8604,
                                             "value": -2.0139,
                                           }
 
@@ -22396,6 +22640,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.6292,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7055,
                                             "value": -0.6993,
                                           }
 
@@ -22414,8 +22659,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4366,
                                             "old_value": -2.3001,
+                                            "pctile": 0.1254,
                                             "value": -2.3001,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2404,
+                                            "value": -0.7785,
                                           }},
                   ],
                   "syntheticData": true,
@@ -27835,6 +28087,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.0575,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9695,
                                             "value": -3.2567,
                                           }
 
@@ -27842,6 +28095,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3104,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9843,
                                             "value": -2.461,
                                           }
 
@@ -27860,8 +28114,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9764,
                                             "old_value": 4.1352,
+                                            "pctile": 0.9366,
                                             "value": 4.1352,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9454,
+                                            "value": 3.1771,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -27875,6 +28136,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3315,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.909,
                                             "value": -2.471,
                                           }
 
@@ -27882,6 +28144,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.877,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9577,
                                             "value": -1.9892,
                                           }
 
@@ -27900,8 +28163,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9705,
                                             "old_value": 4.5664,
+                                            "pctile": 0.9543,
                                             "value": 4.5664,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9646,
+                                            "value": 3.7612,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -27915,6 +28185,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8928,
                                             "value": -2.3036,
                                           }
 
@@ -27922,6 +28193,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9548,
                                             "value": -1.9609,
                                           }
 
@@ -27940,8 +28212,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.944,
                                             "old_value": 3.6445,
+                                            "pctile": 0.913,
                                             "value": 3.6445,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9469,
+                                            "value": 3.2046,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -27955,6 +28234,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3155,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7704,
                                             "value": -1.4213,
                                           }
 
@@ -27962,6 +28242,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.8411,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7748,
                                             "value": -0.9088,
                                           }
 
@@ -27980,8 +28261,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9086,
                                             "old_value": 3.7316,
+                                            "pctile": 0.9159,
                                             "value": 3.7316,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8968,
+                                            "value": 2.4146,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -27995,6 +28283,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.825,
                                             "value": -1.7398,
                                           }
 
@@ -28002,6 +28291,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9031,
                                             "value": -1.5273,
                                           }
 
@@ -28020,8 +28310,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8953,
                                             "old_value": 3.0615,
+                                            "pctile": 0.8717,
                                             "value": 3.0615,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9263,
+                                            "value": 2.7984,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28035,6 +28332,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3915,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.589,
                                             "value": -0.5967,
                                           }
 
@@ -28042,6 +28340,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3233,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6288,
                                             "value": -0.4927,
                                           }
 
@@ -28060,8 +28359,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8614,
                                             "old_value": 3.6429,
+                                            "pctile": 0.9086,
                                             "value": 3.6429,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9395,
+                                            "value": 3.0668,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28075,6 +28381,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8353,
                                             "value": -1.8313,
                                           }
 
@@ -28082,6 +28389,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8677,
                                             "value": -1.3104,
                                           }
 
@@ -28100,8 +28408,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8289,
                                             "old_value": 1.8545,
+                                            "pctile": 0.7419,
                                             "value": 1.8545,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.7699,
+                                            "value": 1.4075,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28115,6 +28430,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7262,
                                             "value": -1.2314,
                                           }
 
@@ -28122,6 +28438,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7822,
                                             "value": -0.9339,
                                           }
 
@@ -28140,8 +28457,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7979,
                                             "old_value": 2.1558,
+                                            "pctile": 0.7802,
                                             "value": 2.1558,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8127,
+                                            "value": 1.6969,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28155,6 +28479,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.0693,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.881,
                                             "value": -2.2074,
                                           }
 
@@ -28162,6 +28487,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4796,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9105,
                                             "value": -1.5784,
                                           }
 
@@ -28180,8 +28506,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7552,
                                             "old_value": 0.6789,
+                                            "pctile": 0.5708,
                                             "value": 0.6789,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.5959,
+                                            "value": 0.5099,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28195,6 +28528,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9784,
                                             "value": -3.5468,
                                           }
 
@@ -28202,6 +28536,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9489,
                                             "value": -1.9159,
                                           }
 
@@ -28220,8 +28555,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7198,
                                             "old_value": -1.0865,
+                                            "pctile": 0.2891,
                                             "value": -1.0865,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2979,
+                                            "value": -0.5521,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28235,6 +28577,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6111,
                                             "value": -0.6975,
                                           }
 
@@ -28242,6 +28585,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.5831,
                                             "value": -0.3469,
                                           }
 
@@ -28260,8 +28604,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.559,
                                             "old_value": 0.1146,
+                                            "pctile": 0.469,
                                             "value": 0.1146,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.4676,
+                                            "value": 0.0645,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28275,6 +28626,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.5185,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3545,
                                             "value": 0.4476,
                                           }
 
@@ -28282,6 +28634,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.2641,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3707,
                                             "value": 0.2279,
                                           }
 
@@ -28300,8 +28653,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.5383,
                                             "old_value": 1.0889,
+                                            "pctile": 0.6401,
                                             "value": 1.0889,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6165,
+                                            "value": 0.5757,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28315,6 +28675,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2011,
                                             "value": 1.3544,
                                           }
 
@@ -28322,6 +28683,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2734,
                                             "value": 0.5684,
                                           }
 
@@ -28340,8 +28702,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4853,
                                             "old_value": 1.4534,
+                                            "pctile": 0.6976,
                                             "value": 1.4534,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6313,
+                                            "value": 0.6362,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -28355,6 +28724,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8122,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8604,
                                             "value": -2.0139,
                                           }
 
@@ -28362,6 +28732,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.6292,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7055,
                                             "value": -0.6993,
                                           }
 
@@ -28380,8 +28751,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4366,
                                             "old_value": -2.3001,
+                                            "pctile": 0.1254,
                                             "value": -2.3001,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2404,
+                                            "value": -0.7785,
                                           }},
                   ],
                   "syntheticData": true,
@@ -33385,6 +33763,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.0575,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9695,
                                             "value": -3.2567,
                                           }
 
@@ -33392,6 +33771,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3104,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9843,
                                             "value": -2.461,
                                           }
 
@@ -33410,8 +33790,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9764,
                                             "old_value": 4.1352,
+                                            "pctile": 0.9366,
                                             "value": 4.1352,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9454,
+                                            "value": 3.1771,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33425,6 +33812,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.3315,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.909,
                                             "value": -2.471,
                                           }
 
@@ -33432,6 +33820,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.877,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9577,
                                             "value": -1.9892,
                                           }
 
@@ -33450,8 +33839,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9705,
                                             "old_value": 4.5664,
+                                            "pctile": 0.9543,
                                             "value": 4.5664,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9646,
+                                            "value": 3.7612,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33465,6 +33861,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.1773,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8928,
                                             "value": -2.3036,
                                           }
 
@@ -33472,6 +33869,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8534,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9548,
                                             "value": -1.9609,
                                           }
 
@@ -33490,8 +33888,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.944,
                                             "old_value": 3.6445,
+                                            "pctile": 0.913,
                                             "value": 3.6445,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9469,
+                                            "value": 3.2046,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33505,6 +33910,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3155,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7704,
                                             "value": -1.4213,
                                           }
 
@@ -33512,6 +33918,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.8411,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7748,
                                             "value": -0.9088,
                                           }
 
@@ -33530,8 +33937,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.9086,
                                             "old_value": 3.7316,
+                                            "pctile": 0.9159,
                                             "value": 3.7316,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8968,
+                                            "value": 2.4146,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33545,6 +33959,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4862,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.825,
                                             "value": -1.7398,
                                           }
 
@@ -33552,6 +33967,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.3047,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9031,
                                             "value": -1.5273,
                                           }
 
@@ -33570,8 +33986,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8953,
                                             "old_value": 3.0615,
+                                            "pctile": 0.8717,
                                             "value": 3.0615,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9263,
+                                            "value": 2.7984,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33585,6 +34008,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3915,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.589,
                                             "value": -0.5967,
                                           }
 
@@ -33592,6 +34016,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.3233,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6288,
                                             "value": -0.4927,
                                           }
 
@@ -33610,8 +34035,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8614,
                                             "old_value": 3.6429,
+                                            "pctile": 0.9086,
                                             "value": 3.6429,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.9395,
+                                            "value": 3.0668,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33625,6 +34057,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.7828,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8353,
                                             "value": -1.8313,
                                           }
 
@@ -33632,6 +34065,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.2757,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8677,
                                             "value": -1.3104,
                                           }
 
@@ -33650,8 +34084,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.8289,
                                             "old_value": 1.8545,
+                                            "pctile": 0.7419,
                                             "value": 1.8545,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.7699,
+                                            "value": 1.4075,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33665,6 +34106,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.7559,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7262,
                                             "value": -1.2314,
                                           }
 
@@ -33672,6 +34114,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5733,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7822,
                                             "value": -0.9339,
                                           }
 
@@ -33690,8 +34133,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7979,
                                             "old_value": 2.1558,
+                                            "pctile": 0.7802,
                                             "value": 2.1558,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.8127,
+                                            "value": 1.6969,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33705,6 +34155,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -2.0693,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.881,
                                             "value": -2.2074,
                                           }
 
@@ -33712,6 +34163,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.4796,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9105,
                                             "value": -1.5784,
                                           }
 
@@ -33730,8 +34182,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7552,
                                             "old_value": 0.6789,
+                                            "pctile": 0.5708,
                                             "value": 0.6789,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.5959,
+                                            "value": 0.5099,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33745,6 +34204,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -3.5218,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9784,
                                             "value": -3.5468,
                                           }
 
@@ -33752,6 +34212,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.9024,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.9489,
                                             "value": -1.9159,
                                           }
 
@@ -33770,8 +34231,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.7198,
                                             "old_value": -1.0865,
+                                            "pctile": 0.2891,
                                             "value": -1.0865,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2979,
+                                            "value": -0.5521,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33785,6 +34253,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.5227,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.6111,
                                             "value": -0.6975,
                                           }
 
@@ -33792,6 +34261,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.2599,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.5831,
                                             "value": -0.3469,
                                           }
 
@@ -33810,8 +34280,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.559,
                                             "old_value": 0.1146,
+                                            "pctile": 0.469,
                                             "value": 0.1146,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.4676,
+                                            "value": 0.0645,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33825,6 +34302,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.5185,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3545,
                                             "value": 0.4476,
                                           }
 
@@ -33832,6 +34310,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.2641,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.3707,
                                             "value": 0.2279,
                                           }
 
@@ -33850,8 +34329,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.5383,
                                             "old_value": 1.0889,
+                                            "pctile": 0.6401,
                                             "value": 1.0889,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6165,
+                                            "value": 0.5757,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33865,6 +34351,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 1.4928,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2011,
                                             "value": 1.3544,
                                           }
 
@@ -33872,6 +34359,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": 0.6264,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.2734,
                                             "value": 0.5684,
                                           }
 
@@ -33890,8 +34378,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4853,
                                             "old_value": 1.4534,
+                                            "pctile": 0.6976,
                                             "value": 1.4534,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.6313,
+                                            "value": 0.6362,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33905,6 +34400,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -1.8122,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.8604,
                                             "value": -2.0139,
                                           }
 
@@ -33912,6 +34408,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "extraInfo": "PREPROCESSING_WARNING",
                                             "old_value": -0.6292,
                                             "override": "Adjusted from Def 3P%",
+                                            "pctile": 0.7055,
                                             "value": -0.6993,
                                           }
 
@@ -33930,8 +34427,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                           }
 
                       off_adj_rapm: Object {
+                                            "diff_pctile": 0.4366,
                                             "old_value": -2.3001,
+                                            "pctile": 0.1254,
                                             "value": -2.3001,
+                                          }
+
+                      off_adj_rapm_prod: Object {
+                                            "pctile": 0.2404,
+                                            "value": -0.7785,
                                           }},
                   ],
                   "syntheticData": true,
