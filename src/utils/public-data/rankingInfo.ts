@@ -276,33 +276,32 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
 const apPollMen_2025_26: () => Record<string, number> = () =>
   _.chain(
     `
-RANK	SCHOOL (1ST VOTES)	RECORD	POINTS	PREVIOUS		
-RANK	SCHOOL (1ST VOTES)	RECORD	POINTS	PREVIOUS		
-1	Arizona (60)	16-0	1524	1		
-2	Iowa State (1)	16-0	1448	3		
-3	UConn	16-1	1358	4		
-4	Michigan	14-1	1300	2		
-5	Purdue	15-1	1253	5		
-6	Duke	15-1	1237	6		
-7	Houston	15-1	1130	7		
-8	Nebraska	16-0	1056	10		
-9	Gonzaga	17-1	1050	8		
-10	Vanderbilt	16-0	1035	11		
-11	BYU	15-1	1013	9		
-12	Michigan State	14-2	865	12		
-13	Illinois	13-3	778	16		
-14	North Carolina	14-2	659	17		
-15	Texas Tech	12-4	609	14		
-16	Virginia	14-2	515	23		
-17	Arkansas	12-4	492	15		
-18	Alabama	11-5	470	13		
-19	Florida	11-5	349	NR		
-20	Louisville	12-4	336	20		
-21	Georgia	14-2	227	18		
-22	Clemson	14-3	218	NR		
-23	Utah State	14-1	161	NR		
-24	Tennessee	11-5	140	21		
-25	Seton Hall	14-2	136	NR
+RANK	SCHOOL (1ST VOTES)	RECORD	POINTS	PREVIOUS
+1	Arizona (61)	18-0	1525	1
+2	UConn	18-1	1419	3
+3	Michigan	16-1	1377	4
+4	Purdue	17-1	1318	5
+5	Duke	17-1	1296	6
+6	Houston	17-1	1217	7
+7	Nebraska	18-0	1207	8
+8	Gonzaga	19-1	1103	9
+9	Iowa State	16-2	1001	2
+10	Michigan State	16-2	998	12
+11	Illinois	15-3	893	13
+12	Texas Tech	14-4	805	15
+13	BYU	16-2	791	11
+14	Virginia	16-2	713	16
+15	Vanderbilt	16-2	656	10
+16	Florida	13-5	651	19
+17	Alabama	13-5	571	18
+18	Clemson	16-3	449	22
+19	Kansas	13-5	305	NR
+20	Arkansas	13-5	298	17
+21	Georgia	15-3	263	21
+22	North Carolina	14-4	220	14
+23	Louisville	13-5	195	20
+24	Saint Louis	17-1	187	NR
+25	Miami (OH)	19-0	99	NR
 `
   )
     .split("\n")
@@ -317,7 +316,7 @@ RANK	SCHOOL (1ST VOTES)	RECORD	POINTS	PREVIOUS
     })
     .fromPairs()
     .assign({
-      __week__: 10,
+      __week__: 11,
     })
     .value();
 
