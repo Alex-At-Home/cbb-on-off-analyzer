@@ -43,6 +43,8 @@ export type QuickSwitchBarProps = {
   title: string;
   /** Optional prefix for the title (e.g., "Shot Chart Analysis:") */
   titlePrefix?: string;
+  //(replaces " | quick-toggles:" if specified)
+  toggleText?: string;
   /** The currently selected quick switch value (not including the delimiter/extra mode) */
   quickSwitch: string | undefined;
   /** The extra mode currently active ("extra" or "diff") */
@@ -69,6 +71,7 @@ export type QuickSwitchBarProps = {
 const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
   title,
   titlePrefix,
+  toggleText,
   quickSwitch,
   quickSwitchExtra,
   quickSwitchOptions,
@@ -295,10 +298,12 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline" }}>
       <span style={{ whiteSpace: "nowrap" }}>
         <b>
-          {fullTitlePrefix} [{displayedTitle}]
+          {fullTitlePrefix} {displayedTitle ? `[${displayedTitle}]` : ""}
         </b>
       </span>
-      {_.isEmpty(quickSwitchOptions) ? null : (
+      {_.isEmpty(quickSwitchOptions) ? null : !_.isUndefined(toggleText) ? (
+        <span style={{ whiteSpace: "nowrap" }}>{toggleText}</span>
+      ) : (
         <span style={{ whiteSpace: "nowrap" }}>
           &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
         </span>

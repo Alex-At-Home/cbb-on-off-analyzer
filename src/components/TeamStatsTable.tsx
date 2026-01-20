@@ -487,7 +487,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       : undefined;
   const diffsCompareExtra: "extra" | "diff" | undefined =
     diffsCompareBase && diffsCompare
-      ? (diffsCompare.split(quickSwitchDelim)[1] as "extra" | "diff" | undefined)
+      ? (diffsCompare.split(quickSwitchDelim)[1] as
+          | "extra"
+          | "diff"
+          | undefined)
       : undefined;
 
   const tableInfo = TeamStatsTableUtils.buildRows(
@@ -570,23 +573,52 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     return selectedDatasetKeys.includes(key);
   };
 
+  // Helper to get rows for a dataset key
+  const getRowsForDataset = (key: string, isLast: boolean) => {
+    if (!shouldShowDataset(key)) return [];
+    if (key === "on") {
+      return buildRows(tableInfo.on, navigationRefs.refA, !isLast);
+    } else if (key === "off") {
+      return buildRows(tableInfo.off, navigationRefs.refB, !isLast);
+    } else if (key === "base") {
+      return buildRows(tableInfo.baseline, navigationRefs.refBase, !isLast);
+    } else if (key.startsWith("extra")) {
+      const idx = parseInt(key.slice("extra".length), 10);
+      const other = tableInfo.other?.[idx];
+      return other
+        ? buildRows(other, navigationRefs.otherRefs[idx]!, !isLast)
+        : [];
+    }
+    return [];
+  };
+
+  // Default dataset order
+  const defaultDatasetOrder = [
+    "on",
+    "off",
+    ...(tableInfo.other || []).map((_, idx) => `extra${idx}`),
+    "base",
+  ];
+
   const tableData = React.useMemo(
-    () =>
-      _.flatten([
-        shouldShowDataset("on")
-          ? buildRows(tableInfo.on, navigationRefs.refA, true)
-          : [],
-        shouldShowDataset("off")
-          ? buildRows(tableInfo.off, navigationRefs.refB, true)
-          : [],
-        (tableInfo.other || []).flatMap((other, idx) =>
-          other && shouldShowDataset(`extra${idx}`)
-            ? buildRows(other, navigationRefs.otherRefs[idx]!, true)
-            : []
-        ),
-        shouldShowDataset("base")
-          ? buildRows(tableInfo.baseline, navigationRefs.refBase, false)
-          : [],
+    () => {
+      // In multi-mode, use the order from selectedDatasetKeys
+      // Otherwise use the default order
+      const datasetOrder =
+        isMultiMode && selectedDatasetKeys.length > 0
+          ? selectedDatasetKeys
+          : defaultDatasetOrder;
+
+      const visibleDatasets = datasetOrder.filter((key) =>
+        shouldShowDataset(key)
+      );
+
+      return _.flatten([
+        // Build rows in the specified order
+        ...visibleDatasets.map((key, idx) => {
+          const isLast = idx === visibleDatasets.length - 1;
+          return getRowsForDataset(key, isLast);
+        }),
         // Legacy diffs section: show when showDiffs is on AND Feature flag is OFF
         showDiffs && !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
           ? [GenericTableOps.buildRowSeparator()]
@@ -597,7 +629,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               return row;
             })
           : [],
-      ]),
+      ]);
+    },
     [
       dataEvent,
       luckConfig,
@@ -638,11 +671,23 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     <ToggleButtonGroup
       labelOverride="Selected dataset:"
       items={[
-        ...availableDatasets.map((dataset) => ({
-          label: dataset.shortName,
-          tooltip: `Focus on ${dataset.shortName} dataset`,
-          toggled: selectedDatasetKeys.includes(dataset.key),
-          onClick: () => {
+        ...availableDatasets.map((dataset) => {
+          // In multi-mode, show order number as superscript
+          const orderIndex = isMultiMode
+            ? selectedDatasetKeys.indexOf(dataset.key)
+            : -1;
+          const orderSuffix =
+            orderIndex >= 0 ? <sup>{orderIndex + 1}</sup> : null;
+          return {
+            label: (
+              <>
+                {dataset.shortName}
+                {orderSuffix}
+              </>
+            ),
+            tooltip: `Focus on ${dataset.shortName} dataset`,
+            toggled: selectedDatasetKeys.includes(dataset.key),
+            onClick: () => {
             if (isMultiMode) {
               // Multi mode: toggle individual datasets
               const newKeys = selectedDatasetKeys.includes(dataset.key)
@@ -665,7 +710,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               setDiffsCompare("");
             }
           },
-        })),
+        };
+        }),
         {
           label: "|",
           tooltip: "",
@@ -703,8 +749,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // QuickSwitchBar for comparison selection
   const comparisonQuickSwitchBar = showDiffModeUI ? (
     <QuickSwitchBar
-      title={keyToShortName(diffsCompareBase) || "Select Comparison"}
-      titlePrefix="Compare With:"
+      title={keyToShortName(diffsCompareBase) || ""}
+      titlePrefix={
+        isMultiMode && selectedDatasetKeys.length > 1
+          ? `Compare [${keyToShortName(selectedDatasetKey) || "(none)"}] vs`
+          : "Compare"
+      }
+      toggleText=": "
       quickSwitch={keyToShortName(diffsCompareBase)}
       quickSwitchExtra={diffsCompareExtra}
       quickSwitchOptions={comparisonDatasetOptions}
@@ -1083,11 +1134,20 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                 className="pt-1 pb-1"
                 topOffset="3em"
               >
-                <Col xs={12} className="pt-1 pb-1">
-                  {datasetSelectorBar}
-                </Col>
-                <Col xs={12} className="pt-1 pb-1">
-                  <small>{comparisonQuickSwitchBar}</small>
+                <Col xs={12}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      alignItems: "center",
+                      gap: "0.5em 2em",
+                    }}
+                  >
+                    <div>{datasetSelectorBar}</div>
+                    <div>
+                      <small>{comparisonQuickSwitchBar}</small>
+                    </div>
+                  </div>
                 </Col>
               </StickyRow>
             ) : null}
