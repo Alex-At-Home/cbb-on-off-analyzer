@@ -47,7 +47,6 @@ import { ClientRequestCache } from "../utils/ClientRequestCache";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 import { sk } from "date-fns/locale";
 import { screen } from "@testing-library/react";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
@@ -98,11 +97,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     // Check if a dataset is hidden based on diffsHideDatasets
     const isDatasetHidden = (datasetKey: string): boolean => {
       const diffsHideDatasets = params.diffsHideDatasets;
-      if (
-        !params.teamDiffs ||
-        !diffsHideDatasets ||
-        !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
-      ) {
+      if (!params.teamDiffs || !diffsHideDatasets) {
         return false; // No filtering, dataset is visible
       }
       // Parse multi mode

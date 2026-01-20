@@ -150,15 +150,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   );
 
   const [showDiffs, setShowDiffs] = useState(
-    (gameFilterParams.otherQueries?.length || 0) == 0 ||
-      FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
-      ? _.isNil(gameFilterParams.teamDiffs)
-        ? false
-        : gameFilterParams.teamDiffs
-      : false
+    _.isNil(gameFilterParams.teamDiffs) ? false : gameFilterParams.teamDiffs
   );
 
-  // Diff mode state (only used when FeatureFlags.teamStatsDiff is enabled):
+  // Diff mode state:
   const [diffsHideDatasets, setDiffsHideDatasets] = useState(
     gameFilterParams.diffsHideDatasets || ""
   );
@@ -420,9 +415,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   ]);
 
   // Early computation of diff mode state (needed before tableInfo)
-  // Check if diff mode UI should be shown (feature flag + showDiffs enabled)
-  const showDiffModeUI =
-    showDiffs && FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff);
+  const showDiffModeUI = showDiffs;
 
   // Multi mode: diffsHideDatasets starts with "multi:" followed by comma-separated keys
   const isMultiMode = diffsHideDatasets.startsWith("multi:");
@@ -562,11 +555,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // Helper to check if a dataset should be shown based on diffsHideDatasets
   const shouldShowDataset = (key: string) => {
     // If no selection or feature flag not active, show all
-    if (
-      !showDiffs ||
-      !diffsHideDatasets ||
-      !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
-    ) {
+    if (!showDiffs || !diffsHideDatasets) {
       return true;
     }
     // In multi mode, check if key is in the list; in single mode, check exact match
@@ -619,16 +608,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           const isLast = idx === visibleDatasets.length - 1;
           return getRowsForDataset(key, isLast);
         }),
-        // Legacy diffs section: show when showDiffs is on AND Feature flag is OFF
-        showDiffs && !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
-          ? [GenericTableOps.buildRowSeparator()]
-          : [],
-        showDiffs && !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff)
-          ? _.map(tableInfo.diffs, (row, idx) => {
-              if (idx == 0) row.navigationRef = navigationRefs.refDiffs;
-              return row;
-            })
-          : [],
       ]);
     },
     [
@@ -846,9 +825,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       items={[
         {
           label: "Diffs...",
-          disabled:
-            (gameFilterParams.otherQueries?.length || 0) > 0 &&
-            !FeatureFlags.isActiveWindow(FeatureFlags.teamStatsDiff),
           tooltip: "Show hide diffs between A/B/Baseline stats",
           toggled: showDiffs,
           onClick: () => setShowDiffs(!showDiffs),
