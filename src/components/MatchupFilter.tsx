@@ -518,6 +518,9 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       minRank: "1",
       maxRank: "400",
       splitPhrases: ["Game", ""], //(the second param is annoyingly necessary to force URL param processing to treat it like an array)
+      teamDiffs: true,
+      diffsHideDatasets: "on",
+      sortBy: "desc:off_team_poss_pct%:on",
       splitText: subFor
         ? [
             opponentFilter
