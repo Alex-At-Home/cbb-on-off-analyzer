@@ -916,14 +916,14 @@ export class TeamStatsTableUtils {
             gender: gameFilterParams.gender as "Men" | "Women",
           };
         })
-      ).concat(      {
+      )
+      .concat({
         title: onOffBaseToLongerPhrase("baseline"),
         sourceKey: "base",
         off: shotStats.baseline.off,
         def: shotStats.baseline.def,
         gender: gameFilterParams.gender as "Men" | "Women",
-      },
-)
+      })
       .filter((opt) => (opt.off?.doc_count || 0) > 0);
 
     const teamPlayTypeQuickSwitchOptions = (def: boolean = false) =>
@@ -971,7 +971,8 @@ export class TeamStatsTableUtils {
               showHelp,
             };
           })
-        ).concat(        {
+        )
+        .concat({
           title: onOffBaseToLongerPhrase("baseline"),
           sourceKey: "base",
           players: rosterStats["baseline"] || [],
@@ -983,8 +984,7 @@ export class TeamStatsTableUtils {
             : undefined,
           avgEfficiency,
           showHelp,
-        },
-)
+        })
         .filter((opt) => (opt.teamStats.doc_count || 0) > 0);
 
     /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
@@ -1488,7 +1488,10 @@ export class TeamStatsTableUtils {
                         isFirstEnabledDataset(currentDatasetKey) &&
                         persistNewState.setDiffsCompare
                       ) {
-                        if (newOpts.quickSwitch) {
+                        if (
+                          newOpts.quickSwitch &&
+                          newOpts.quickSwitch.includes(quickSwitchDelim)
+                        ) {
                           // Parse out the title and mode from quickSwitch (format: "title:|:mode")
                           const [title, mode] =
                             newOpts.quickSwitch.split(quickSwitchDelim);
@@ -1498,7 +1501,9 @@ export class TeamStatsTableUtils {
                           );
                           if (matchingOpt?.sourceKey) {
                             persistNewState.setDiffsCompare(
-                              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`
+                              `${matchingOpt.sourceKey}${quickSwitchDelim}${
+                                mode || "extra"
+                              }`
                             );
                           }
                         } else {
