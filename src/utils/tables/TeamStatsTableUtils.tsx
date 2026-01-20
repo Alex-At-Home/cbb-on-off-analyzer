@@ -892,13 +892,6 @@ export class TeamStatsTableUtils {
 
     const shotChartQuickSwitchOptions = [
       {
-        title: onOffBaseToLongerPhrase("baseline"),
-        sourceKey: "base",
-        off: shotStats.baseline.off,
-        def: shotStats.baseline.def,
-        gender: gameFilterParams.gender as "Men" | "Women",
-      },
-      {
         title: onOffBaseToLongerPhrase("on"),
         sourceKey: "on",
         off: shotStats.on.off,
@@ -923,24 +916,18 @@ export class TeamStatsTableUtils {
             gender: gameFilterParams.gender as "Men" | "Women",
           };
         })
-      )
+      ).concat(      {
+        title: onOffBaseToLongerPhrase("baseline"),
+        sourceKey: "base",
+        off: shotStats.baseline.off,
+        def: shotStats.baseline.def,
+        gender: gameFilterParams.gender as "Men" | "Women",
+      },
+)
       .filter((opt) => (opt.off?.doc_count || 0) > 0);
 
     const teamPlayTypeQuickSwitchOptions = (def: boolean = false) =>
       [
-        {
-          title: onOffBaseToLongerPhrase("baseline"),
-          sourceKey: "base",
-          players: rosterStats["baseline"] || [],
-          rosterStatsByCode: globalRosterStatsByCode,
-          teamStats: teamStatsByQuery["baseline"],
-          showGrades: showGrades,
-          defensiveOverride: def
-            ? teamStatsByQuery["baseline"]?.def_style
-            : undefined,
-          avgEfficiency,
-          showHelp,
-        },
         {
           title: onOffBaseToLongerPhrase("on"),
           sourceKey: "on",
@@ -984,7 +971,20 @@ export class TeamStatsTableUtils {
               showHelp,
             };
           })
-        )
+        ).concat(        {
+          title: onOffBaseToLongerPhrase("baseline"),
+          sourceKey: "base",
+          players: rosterStats["baseline"] || [],
+          rosterStatsByCode: globalRosterStatsByCode,
+          teamStats: teamStatsByQuery["baseline"],
+          showGrades: showGrades,
+          defensiveOverride: def
+            ? teamStatsByQuery["baseline"]?.def_style
+            : undefined,
+          avgEfficiency,
+          showHelp,
+        },
+)
         .filter((opt) => (opt.teamStats.doc_count || 0) > 0);
 
     /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
