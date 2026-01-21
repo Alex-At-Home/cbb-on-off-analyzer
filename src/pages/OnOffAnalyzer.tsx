@@ -323,13 +323,18 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.teamDiffs == false ? ["teamDiffs"] : [],
         !rawParams.diffsHideDatasets ? ["diffsHideDatasets"] : [],
         !rawParams.diffsCompare ? ["diffsCompare"] : [],
+        rawParams.playerDiffs == false ? ["playerDiffs"] : [],
+        !rawParams.playerDiffsHideDatasets ? ["playerDiffsHideDatasets"] : [],
+        !rawParams.playerDiffsCompare ? ["playerDiffsCompare"] : [],
+        !rawParams.diffLock ? ["diffLock"] : [],
         rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes
           ? ["showTeamPlayTypes"]
           : [],
         rawParams.teamPlayTypeConfig == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["teamPlayTypeConfig"]
           : [],
-        rawParams.teamPlayStyleConfig == ParamDefaults.defaultTeamPlayStyleConfig
+        rawParams.teamPlayStyleConfig ==
+        ParamDefaults.defaultTeamPlayStyleConfig
           ? ["teamPlayStyleConfig"]
           : [],
         rawParams.showExtraInfo == false ? ["showExtraInfo"] : [],
@@ -416,9 +421,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
     const urlUpdateOnlyFieldsFromTeamStats = [
       // Team info:
-      "teamDiffs",
-      "diffsHideDatasets",
-      "diffsCompare",
       "showExtraInfo",
       //(_not_ showTeamPlayTypes because it needs to trigger an update to the GameFilter dropdown)
       "teamPlayTypeConfig",
@@ -429,7 +431,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "teamShotChartsShowZones",
       "teamShotChartsUseEfg",
       "showOnOffLuckDiags",
-    ];
+    ].concat(
+      params.diffLock
+        ? []
+        : [
+            //(if diffLock is enabled then these need to trigger a change)
+            "teamDiffs",
+            "diffsHideDatasets",
+            "diffsCompare",
+          ]
+    );
     const urlUpdateOnlyFieldsFromPlayerStats = [
       // Player info:
       "showPlayerGrades",
@@ -453,7 +464,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "rapmRegressMode",
       "playerShotChartsShowZones",
       "playerShotChartsUseEfg",
-    ];
+    ].concat(
+      params.diffLock
+        ? []
+        : [
+            //(if diffLock is enabled then these need to trigger a change)
+            "playerDiffs",
+            "playerDiffsHideDatasets",
+            "playerDiffsCompare",
+          ]
+    );
     //(all other luck params are shared)
 
     // These fields don't trigger a data change or a common param change

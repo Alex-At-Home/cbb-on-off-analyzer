@@ -160,6 +160,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const [diffsCompare, setDiffsCompare] = useState(
     gameFilterParams.diffsCompare || ""
   );
+  const [diffLock, setDiffLock] = useState(
+    _.isNil(gameFilterParams.diffLock) ? false : gameFilterParams.diffLock
+  );
 
   const [showExtraInfo, setShowExtraInfo] = useState(
     _.isNil(gameFilterParams.showExtraInfo)
@@ -379,6 +382,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       teamDiffs: showDiffs,
       diffsHideDatasets,
       diffsCompare,
+      diffLock,
+      // If diffLock is enabled, sync player diff settings
+      ...(diffLock
+        ? {
+            playerDiffs: showDiffs,
+            playerDiffsHideDatasets: diffsHideDatasets,
+            playerDiffsCompare: diffsCompare,
+          }
+        : {}),
       showTeamPlayTypes: showPlayTypes,
       showExtraInfo: showExtraInfo,
       luck: luckConfig,
@@ -402,6 +414,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     showDiffs,
     diffsHideDatasets,
     diffsCompare,
+    diffLock,
     showExtraInfo,
     showPlayTypes,
     showRoster,
@@ -589,49 +602,46 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     "base",
   ];
 
-  const tableData = React.useMemo(
-    () => {
-      // In multi-mode, use the order from selectedDatasetKeys
-      // Otherwise use the default order
-      const datasetOrder =
-        isMultiMode && selectedDatasetKeys.length > 0
-          ? selectedDatasetKeys
-          : defaultDatasetOrder;
+  const tableData = React.useMemo(() => {
+    // In multi-mode, use the order from selectedDatasetKeys
+    // Otherwise use the default order
+    const datasetOrder =
+      isMultiMode && selectedDatasetKeys.length > 0
+        ? selectedDatasetKeys
+        : defaultDatasetOrder;
 
-      const visibleDatasets = datasetOrder.filter((key) =>
-        shouldShowDataset(key)
-      );
+    const visibleDatasets = datasetOrder.filter((key) =>
+      shouldShowDataset(key)
+    );
 
-      return _.flatten([
-        // Build rows in the specified order
-        ...visibleDatasets.map((key, idx) => {
-          const isLast = idx === visibleDatasets.length - 1;
-          return getRowsForDataset(key, isLast);
-        }),
-      ]);
-    },
-    [
-      dataEvent,
-      luckConfig,
-      adjustForLuck,
-      showLuckAdjDiags,
-      showDiffs,
-      diffsHideDatasets,
-      diffsCompare,
-      showExtraInfo,
-      showPlayTypes,
-      showRoster,
-      showGameInfo,
-      divisionStatsCache,
-      showGrades,
-      showShotCharts,
-      shotChartConfig, //(do need to re-render on this since is applied to on/off/baseline shot charts)
-      stickyQuickToggle,
-      playTypeConfigStr,
-      playStyleConfig,
-      allPlayerStatsCache,
-    ]
-  );
+    return _.flatten([
+      // Build rows in the specified order
+      ...visibleDatasets.map((key, idx) => {
+        const isLast = idx === visibleDatasets.length - 1;
+        return getRowsForDataset(key, isLast);
+      }),
+    ]);
+  }, [
+    dataEvent,
+    luckConfig,
+    adjustForLuck,
+    showLuckAdjDiags,
+    showDiffs,
+    diffsHideDatasets,
+    diffsCompare,
+    showExtraInfo,
+    showPlayTypes,
+    showRoster,
+    showGameInfo,
+    divisionStatsCache,
+    showGrades,
+    showShotCharts,
+    shotChartConfig, //(do need to re-render on this since is applied to on/off/baseline shot charts)
+    stickyQuickToggle,
+    playTypeConfigStr,
+    playStyleConfig,
+    allPlayerStatsCache,
+  ]);
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
@@ -667,29 +677,29 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             tooltip: `Focus on ${dataset.shortName} dataset`,
             toggled: selectedDatasetKeys.includes(dataset.key),
             onClick: () => {
-            if (isMultiMode) {
-              // Multi mode: toggle individual datasets
-              const newKeys = selectedDatasetKeys.includes(dataset.key)
-                ? selectedDatasetKeys.filter((k) => k !== dataset.key)
-                : [...selectedDatasetKeys, dataset.key];
-              setDiffsHideDatasets(
-                newKeys.length > 0 ? `multi:${newKeys.join(",")}` : ""
-              );
-            } else {
-              // Single mode: clicking already-selected clears selection (show all)
-              if (dataset.key === selectedDatasetKey) {
-                setDiffsHideDatasets("");
+              if (isMultiMode) {
+                // Multi mode: toggle individual datasets
+                const newKeys = selectedDatasetKeys.includes(dataset.key)
+                  ? selectedDatasetKeys.filter((k) => k !== dataset.key)
+                  : [...selectedDatasetKeys, dataset.key];
+                setDiffsHideDatasets(
+                  newKeys.length > 0 ? `multi:${newKeys.join(",")}` : ""
+                );
               } else {
-                setDiffsHideDatasets(dataset.key);
+                // Single mode: clicking already-selected clears selection (show all)
+                if (dataset.key === selectedDatasetKey) {
+                  setDiffsHideDatasets("");
+                } else {
+                  setDiffsHideDatasets(dataset.key);
+                }
               }
-            }
-            // Clear comparison if it matches the new selection
-            // diffsCompareBase is now the key, so compare directly with dataset.key
-            if (diffsCompareBase === dataset.key) {
-              setDiffsCompare("");
-            }
-          },
-        };
+              // Clear comparison if it matches the new selection
+              // diffsCompareBase is now the key, so compare directly with dataset.key
+              if (diffsCompareBase === dataset.key) {
+                setDiffsCompare("");
+              }
+            },
+          };
         }),
         {
           label: "|",
@@ -989,6 +999,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         text="Show grade controls"
         truthVal={!hideGlobalGradeSettings}
         onSelect={() => setHideGlobalGradeSettings(!hideGlobalGradeSettings)}
+      />
+      <GenericTogglingMenuItem
+        text="Sync Team/Player Diffs"
+        truthVal={diffLock}
+        onSelect={() => setDiffLock(!diffLock)}
       />
       <Dropdown.Divider />
       <GenericTogglingMenuItem

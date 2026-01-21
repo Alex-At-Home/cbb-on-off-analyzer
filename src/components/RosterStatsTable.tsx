@@ -42,6 +42,10 @@ import OnBallDefenseModal from "./shared/OnBallDefenseModal";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from "./shared/AsyncFormControl";
 import StickyRow from "./shared/StickyRow";
+import QuickSwitchBar, {
+  quickSwitchDelim,
+  QuickSwitchSource,
+} from "./shared/QuickSwitchBar";
 
 // Util imports
 import {
@@ -291,6 +295,21 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       : gameFilterParams.stickyQuickToggle
   );
 
+  // Diff mode state:
+  const [showDiffs, setShowDiffs] = useState(
+    _.isNil(gameFilterParams.playerDiffs) ? false : gameFilterParams.playerDiffs
+  );
+
+  const [diffsHideDatasets, setDiffsHideDatasets] = useState(
+    gameFilterParams.playerDiffsHideDatasets || ""
+  );
+  const [diffsCompare, setDiffsCompare] = useState(
+    gameFilterParams.playerDiffsCompare || ""
+  );
+  const [diffLock, setDiffLock] = useState(
+    _.isNil(gameFilterParams.diffLock) ? false : gameFilterParams.diffLock
+  );
+
   /** Which players to filter */
   const [filterStr, setFilterStr] = useState(
     _.isNil(gameFilterParams.filter)
@@ -459,6 +478,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       showOnBallConfig: showOnBallConfig,
       showInfoSubHeader: showInfoSubHeader,
       stickyQuickToggle,
+      // Diff mode:
+      playerDiffs: showDiffs,
+      playerDiffsHideDatasets: diffsHideDatasets,
+      playerDiffsCompare: diffsCompare,
+      diffLock,
+      // If diffLock is enabled, sync team diff settings
+      ...(diffLock
+        ? {
+            teamDiffs: showDiffs,
+            diffsHideDatasets: diffsHideDatasets,
+            diffsCompare: diffsCompare,
+          }
+        : {}),
     };
     onChangeState(newState);
   }, [
@@ -487,6 +519,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     stickyQuickToggle,
     showShotCharts,
     shotChartConfig,
+    showDiffs,
+    diffsHideDatasets,
+    diffsCompare,
+    diffLock,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache
@@ -775,7 +811,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** Show baseline unless both on and off are present (or in "other" mode) */
   const skipBaseline =
-    !alwaysShowBaseline &&
+    !(alwaysShowBaseline || diffsHideDatasets?.includes("base")) &&
     ((rosterStats?.on?.length && rosterStats?.off?.length) ||
       !_.isEmpty(rosterStats?.other));
 
@@ -1404,6 +1440,97 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const rosterInfoSpanCalculator = (key: string) =>
     key == "efg" ? 2 : key == "assist" ? 0 : 1;
 
+  // Diff mode logic - compute available datasets and selection state
+  const showDiffModeUI = showDiffs;
+
+  // Multi mode: diffsHideDatasets starts with "multi:" followed by comma-separated keys
+  const isMultiMode = diffsHideDatasets.startsWith("multi:");
+  const selectedDatasetKeys: string[] = isMultiMode
+    ? diffsHideDatasets.slice("multi:".length).split(",").filter(Boolean)
+    : diffsHideDatasets
+    ? [diffsHideDatasets]
+    : [];
+  const selectedDatasetKey = selectedDatasetKeys[0] || ""; // For single mode or top dataset in multi
+
+  // Build the list of available datasets for the diff mode UI
+  const availableDatasets: {
+    key: string;
+    shortName: string;
+    hasData: boolean;
+  }[] = [
+    {
+      key: "on",
+      shortName: onOffBaseToShortPhrase("on"),
+      hasData: (rosterStats.on?.length || 0) > 0,
+    },
+    {
+      key: "off",
+      shortName: onOffBaseToShortPhrase("off"),
+      hasData: (rosterStats.off?.length || 0) > 0,
+    },
+    ...(rosterStats.other || []).map((other, idx) => ({
+      key: `extra${idx}`,
+      shortName: onOffBaseToShortPhrase("other", idx),
+      hasData: (other?.length || 0) > 0,
+    })),
+    {
+      key: "base",
+      shortName: onOffBaseToShortPhrase("baseline"),
+      hasData: (rosterStats.baseline?.length || 0) > 0,
+    },
+  ].filter((d) => d.hasData);
+
+  // Validate that the comparison dataset actually exists in availableDatasets
+  const diffsCompareBaseParsed = diffsCompare
+    ? diffsCompare.split(quickSwitchDelim)[0]
+    : undefined;
+  const diffsCompareBase =
+    diffsCompareBaseParsed &&
+    availableDatasets.find((d) => d.key === diffsCompareBaseParsed)
+      ? diffsCompareBaseParsed
+      : undefined;
+  const diffsCompareExtra: "extra" | "diff" | undefined =
+    diffsCompareBase && diffsCompare
+      ? (diffsCompare.split(quickSwitchDelim)[1] as
+          | "extra"
+          | "diff"
+          | undefined)
+      : undefined;
+
+  // Helper to map key to short name
+  const keyToShortName = (key: string | undefined) =>
+    availableDatasets.find((d) => d.key === key)?.shortName;
+
+  // Determine if a dataset should be shown based on diffsHideDatasets
+  const shouldShowDataset = (key: string): boolean => {
+    if (!showDiffs || !diffsHideDatasets) {
+      return true;
+    }
+    return selectedDatasetKeys.includes(key);
+  };
+
+  // Map dataset key (e.g., "on", "extra0") to the query key format
+  const datasetKeyToQueryKey = (
+    key: string
+  ): { queryKey: OnOffBaselineOtherEnum; otherIndex: number } | undefined => {
+    if (key === "on") return { queryKey: "on", otherIndex: 0 };
+    if (key === "off") return { queryKey: "off", otherIndex: 0 };
+    if (key === "base") return { queryKey: "baseline", otherIndex: 0 };
+    if (key.startsWith("extra")) {
+      const idx = parseInt(key.slice("extra".length), 10);
+      return { queryKey: "other", otherIndex: idx };
+    }
+    return undefined;
+  };
+
+  // Build quick switch options for comparison selector
+  const comparisonDatasetOptions = availableDatasets
+    .filter((d) => !selectedDatasetKeys.includes(d.key))
+    .map((d) => ({
+      title: d.shortName,
+      sourceKey: d.key,
+    }));
+
   var currentRowCount = 0;
   const tableData = _.chain(filteredPlayers)
     .sortBy([
@@ -1783,43 +1910,80 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ]);
       };
 
+      // In multi mode, respect the order from selectedDatasetKeys
+      const getRowsForDataset = (
+        key: string,
+        queryKey: OnOffBaselineOtherEnum,
+        otherIdx: number,
+        displayKey: string,
+        isFirst: boolean,
+        isTenth: boolean
+      ) => {
+        return shouldShowDataset(key)
+          ? buildRowSet(p, queryKey, displayKey, otherIdx, isFirst, isTenth)
+          : [];
+      };
+
+      const datasetRows =
+        isMultiMode && selectedDatasetKeys.length > 0
+          ? selectedDatasetKeys.flatMap((key) => {
+              const mapping = datasetKeyToQueryKey(key);
+              if (!mapping) return [];
+              const { queryKey, otherIndex } = mapping;
+              const displayKey =
+                queryKey === "baseline"
+                  ? "Baseline"
+                  : onOffBaseToLongerPhrase(queryKey, otherIndex);
+              return getRowsForDataset(
+                key,
+                queryKey,
+                otherIndex,
+                displayKey,
+                false,
+                false
+              );
+            })
+          : _.flatten([
+              getRowsForDataset(
+                "on",
+                "on",
+                0,
+                onOffBaseToLongerPhrase("on"),
+                firstRowIsOn,
+                tenthRowIsOn
+              ),
+              getRowsForDataset(
+                "off",
+                "off",
+                0,
+                onOffBaseToLongerPhrase("off"),
+                firstRowIsOff,
+                tenthRowIsOff
+              ),
+              ...(rosterStats?.other || []).map((_, otherIdx) => {
+                return getRowsForDataset(
+                  `extra${otherIdx}`,
+                  "other",
+                  otherIdx,
+                  onOffBaseToLongerPhrase("other", otherIdx),
+                  false,
+                  false
+                );
+              }),
+              skipBaseline
+                ? []
+                : getRowsForDataset(
+                    "base",
+                    "baseline",
+                    0,
+                    "Baseline",
+                    firstRowIsBaseline,
+                    tenthRowIsBaseline
+                  ),
+            ]);
+
       return _.flatten([
-        buildRowSet(
-          p,
-          "on",
-          onOffBaseToLongerPhrase("on"),
-          0,
-          firstRowIsOn,
-          tenthRowIsOn
-        ),
-        buildRowSet(
-          p,
-          "off",
-          onOffBaseToLongerPhrase("off"),
-          0,
-          firstRowIsOff,
-          tenthRowIsOff
-        ),
-        ...(rosterStats?.other || []).map((_, otherIdx) => {
-          return buildRowSet(
-            p,
-            "other",
-            onOffBaseToLongerPhrase("other", otherIdx),
-            otherIdx,
-            false,
-            false
-          );
-        }),
-        skipBaseline
-          ? []
-          : buildRowSet(
-              p,
-              "baseline",
-              "Baseline",
-              0,
-              firstRowIsBaseline,
-              tenthRowIsBaseline
-            ),
+        datasetRows,
         [GenericTableOps.buildRowSeparator("1px")],
       ]);
     })
@@ -2030,6 +2194,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     <ToggleButtonGroup
       items={[
         {
+          label: "Diffs...",
+          tooltip: "Show/hide diff mode controls for comparing datasets",
+          toggled: showDiffs,
+          onClick: () => setShowDiffs(!showDiffs),
+        },
+        {
+          label: "|",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
           label: "Expanded",
           tooltip: expandedView
             ? "Show single row of player stats"
@@ -2111,6 +2288,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         )
         .concat([
           {
+            label: "|",
+            tooltip: "",
+            toggled: true,
+            onClick: () => {},
+            isLabelOnly: true,
+          },
+          {
             label: "+ Info",
             tooltip: showInfoSubHeader
               ? "Hide extra info sub-header"
@@ -2121,6 +2305,110 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         ])}
     />
   );
+
+  // Diff mode UI components
+  const datasetSelectorBar = showDiffModeUI ? (
+    <ToggleButtonGroup
+      labelOverride="Selected dataset:"
+      items={[
+        ...availableDatasets.map((dataset) => ({
+          label: (
+            <>
+              {dataset.shortName}
+              {isMultiMode && selectedDatasetKeys.includes(dataset.key) ? (
+                <sup>{selectedDatasetKeys.indexOf(dataset.key) + 1}</sup>
+              ) : undefined}
+            </>
+          ),
+          tooltip: `Focus on ${dataset.shortName} dataset`,
+          toggled: selectedDatasetKeys.includes(dataset.key),
+          onClick: () => {
+            if (isMultiMode) {
+              const newKeys = selectedDatasetKeys.includes(dataset.key)
+                ? selectedDatasetKeys.filter((k) => k !== dataset.key)
+                : [...selectedDatasetKeys, dataset.key];
+              setDiffsHideDatasets(
+                newKeys.length > 0 ? `multi:${newKeys.join(",")}` : ""
+              );
+            } else {
+              if (dataset.key === selectedDatasetKey) {
+                setDiffsHideDatasets("");
+              } else {
+                setDiffsHideDatasets(dataset.key);
+              }
+            }
+            // Clear comparison if it matches the selected dataset
+            if (diffsCompareBase === dataset.key) {
+              setDiffsCompare("");
+            }
+          },
+        })),
+        {
+          label: "|",
+          tooltip: "",
+          toggled: true,
+          onClick: () => {},
+          isLabelOnly: true,
+        },
+        {
+          label: "Multi",
+          tooltip:
+            "Allows multiple datasets to be viewed (the comparison mode only applies to the top dataset)",
+          toggled: isMultiMode,
+          onClick: () => {
+            if (isMultiMode) {
+              setDiffsHideDatasets(selectedDatasetKeys[0] || "");
+            } else {
+              setDiffsHideDatasets(
+                selectedDatasetKey
+                  ? `multi:${selectedDatasetKey}`
+                  : `multi:${availableDatasets[0]?.key || ""}`
+              );
+            }
+          },
+        },
+      ]}
+    />
+  ) : null;
+
+  const comparisonQuickSwitchBar = showDiffModeUI ? (
+    <QuickSwitchBar
+      title={keyToShortName(diffsCompareBase) || ""}
+      titlePrefix={
+        isMultiMode && selectedDatasetKeys.length > 1
+          ? `Compare [${keyToShortName(selectedDatasetKey) || "(none)"}] vs`
+          : "Compare"
+      }
+      toggleText=": "
+      quickSwitch={keyToShortName(diffsCompareBase)}
+      quickSwitchExtra={diffsCompareExtra}
+      quickSwitchOptions={comparisonDatasetOptions}
+      updateQuickSwitch={(
+        quickSwitch: string | undefined,
+        newTitle: string | undefined,
+        source: QuickSwitchSource,
+        fromTimer: boolean
+      ) => {
+        if (quickSwitch) {
+          const [title, mode] = quickSwitch.split(quickSwitchDelim);
+          const matchingOpt = comparisonDatasetOptions.find(
+            (opt) => opt.title === title
+          );
+          if (matchingOpt?.sourceKey) {
+            setDiffsCompare(
+              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`
+            );
+          }
+        } else {
+          setDiffsCompare("");
+        }
+      }}
+      quickSwitchTimer={undefined}
+      setQuickSwitchTimer={() => {}}
+      modes={["extra_down", "diff"]}
+      theme={resolvedTheme}
+    />
+  ) : null;
 
   const optionsDropdown = (
     <GenericTogglingMenu>
@@ -2134,6 +2422,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         text="Always show baseline statistics"
         truthVal={alwaysShowBaseline}
         onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
+      />
+      <GenericTogglingMenuItem
+        text="Sync Team/Player Diffs"
+        truthVal={diffLock}
+        onSelect={() => setDiffLock(!diffLock)}
       />
       <Dropdown.Divider />
       <GenericTogglingMenuItem
@@ -2368,6 +2661,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             </Col>
           ) : undefined}
         </StickyRow>
+        {/* Diff mode controls - dataset selector and comparison QuickSwitchBar */}
+        {showDiffModeUI ? (
+          <StickyRow
+            stickyEnabled={stickyQuickToggle}
+            className="pt-1 pb-1"
+            topOffset="3em"
+          >
+            <Col
+              xs={12}
+              className="pt-1 pb-1 d-flex flex-wrap align-items-center"
+            >
+              {datasetSelectorBar}
+              <span className="px-2 py-1 d-none d-sm-block" /> {/* Padding */}
+              <small>{comparisonQuickSwitchBar}</small>
+            </Col>
+          </StickyRow>
+        ) : null}
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable

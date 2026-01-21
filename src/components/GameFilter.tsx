@@ -131,6 +131,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
     teamDiffs: startTeamDiffs,
     diffsHideDatasets: startDiffsHideDatasets,
     diffsCompare: startDiffsCompare,
+    // Player stats (diff mode)
+    playerDiffs: startPlayerDiffs,
+    playerDiffsHideDatasets: startPlayerDiffsHideDatasets,
+    playerDiffsCompare: startPlayerDiffsCompare,
+    // Shared diff mode
+    diffLock: startDiffLock,
     showTeamPlayTypes: startShowTeamPlayTypes,
     teamPlayTypeConfig: startTeamPlayTypeConfig,
     teamPlayStyleConfig: startTeamPlayStyleConfig,
@@ -187,6 +193,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
       teamDiffs: startTeamDiffs,
       diffsHideDatasets: startDiffsHideDatasets,
       diffsCompare: startDiffsCompare,
+      // Player stats (diff mode)
+      playerDiffs: startPlayerDiffs,
+      playerDiffsHideDatasets: startPlayerDiffsHideDatasets,
+      playerDiffsCompare: startPlayerDiffsCompare,
+      // Shared diff mode
+      diffLock: startDiffLock,
       showTeamPlayTypes: startShowTeamPlayTypes,
       teamPlayTypeConfig: startTeamPlayTypeConfig,
       teamPlayStyleConfig: startTeamPlayStyleConfig,

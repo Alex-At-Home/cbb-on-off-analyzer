@@ -154,6 +154,12 @@ export type GameFilterParams = {
   teamDiffs?: boolean;
   diffsHideDatasets?: string; //"on" | "off" | "base" | "extra0" | "extra1" etc - which dataset to show (default "" = all)
   diffsCompare?: string; //(same format - which dataset to compare against, with quickSwitchDelim for mode)
+  // Player view (diff mode)
+  playerDiffs?: boolean;
+  playerDiffsHideDatasets?: string; //(same format as diffsHideDatasets)
+  playerDiffsCompare?: string; //(same format as diffsCompare)
+  // Shared diff mode
+  diffLock?: boolean; //(if true, team and player diff mode stay in sync)
   showExtraInfo?: boolean;
   showTeamPlayTypes?: boolean;
   teamPlayTypeConfig?: string;
@@ -344,7 +350,7 @@ export interface SimilarityConfig {
   classWeighting: WeightingOption;
   heightWeighting: WeightingOption;
   minutesWeighting: WeightingOption;
-  
+
   // New fields
   playTypeWeights: WeightingOption;
   customWeights: string;
