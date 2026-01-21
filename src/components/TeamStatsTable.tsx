@@ -428,7 +428,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   ]);
 
   // Early computation of diff mode state (needed before tableInfo)
-  const showDiffModeUI = showDiffs;
+  // hasSplits: there must be at least one non-baseline dataset with data
+  const hasSplits =
+    (teamStats.on?.doc_count || 0) > 0 ||
+    (teamStats.off?.doc_count || 0) > 0 ||
+    (teamStats.other || []).some((o) => (o?.doc_count || 0) > 0);
+  const showDiffModeUI = showDiffs && hasSplits;
 
   // Multi mode: diffsHideDatasets starts with "multi:" followed by comma-separated keys
   const isMultiMode = diffsHideDatasets.startsWith("multi:");
@@ -836,7 +841,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         {
           label: "Diffs...",
           tooltip: "Show hide diffs between A/B/Baseline stats",
-          toggled: showDiffs,
+          toggled: showDiffs && hasSplits,
+          disabled: !hasSplits,
           onClick: () => setShowDiffs(!showDiffs),
         },
         {

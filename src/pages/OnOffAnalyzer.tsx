@@ -137,9 +137,6 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         ])
         .fromPairs()
         .value(),
-      Diffs: params.teamDiffs
-        ? { ref: teamAnalysisRefDiffs, offset: 75 }
-        : { skip: true },
       [filterPhrase ? `Base (${filterPhrase})` : "Base"]: {
         ref: teamAnalysisRefBase,
         offset: 75,

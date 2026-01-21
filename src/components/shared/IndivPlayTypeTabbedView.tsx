@@ -11,6 +11,7 @@ import {
   TeamStatSet,
 } from "../../utils/StatModels";
 import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
+import { QuickSwitchMode } from "./QuickSwitchBar";
 
 // Props for IndivPlayTypeDiagView
 export type IndivPlayTypeDiagViewProps = {
@@ -35,6 +36,8 @@ export type IndivPlayTypeDiagRadarProps = {
   showHelp: boolean;
   playCountToUse?: number;
   navigationLinkOverride?: React.ReactElement;
+  dynamicQuickSwitch?: boolean;
+  quickSwitchModesOverride?: QuickSwitchMode[];
 };
 
 // Union type for the tabbed view
@@ -45,6 +48,7 @@ const IndivPlayTypeTabbedView: React.FC<IndivPlayTypeTabbedViewProps> = (
   props
 ) => {
   const [activeKey, setActiveKey] = useState<string>("breakdown");
+  const { dynamicQuickSwitch, quickSwitchModesOverride, ...restProps } = props;
   return (
     <Tabs
       activeKey={activeKey}
@@ -53,10 +57,14 @@ const IndivPlayTypeTabbedView: React.FC<IndivPlayTypeTabbedViewProps> = (
       className="mb-1"
     >
       <Tab eventKey="scoring" title="Scoring">
-        <PlayerPlayTypeDiagView {...props} />
+        <PlayerPlayTypeDiagView {...restProps} />
       </Tab>
       <Tab eventKey="breakdown" title="Play Types">
-        <IndivPlayTypeDiagRadar {...props} />
+        <IndivPlayTypeDiagRadar
+          {...restProps}
+          dynamicQuickSwitch={dynamicQuickSwitch}
+          quickSwitchModesOverride={quickSwitchModesOverride}
+        />
       </Tab>
     </Tabs>
   );

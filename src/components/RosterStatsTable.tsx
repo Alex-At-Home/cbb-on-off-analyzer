@@ -887,7 +887,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       case "other":
         const prefixIndex = 2 + (otherIndex || 0);
         return maybePrefix?.[prefixIndex]
-          ? `'${maybePrefix[1]}' set`
+          ? `'${maybePrefix[prefixIndex]}' set`
           : `'${String.fromCharCode(67 + (otherIndex || 0))}' set`;
       default:
         return "unknown";
@@ -1441,7 +1441,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     key == "efg" ? 2 : key == "assist" ? 0 : 1;
 
   // Diff mode logic - compute available datasets and selection state
-  const showDiffModeUI = showDiffs;
+  // hasSplits: there must be at least one non-baseline dataset with data
+  const hasSplits =
+    (rosterStats.on?.length || 0) > 0 ||
+    (rosterStats.off?.length || 0) > 0 ||
+    (rosterStats.other || []).some((o) => (o?.length || 0) > 0);
+  const showDiffModeUI = showDiffs && hasSplits;
 
   // Multi mode: diffsHideDatasets starts with "multi:" followed by comma-separated keys
   const isMultiMode = diffsHideDatasets.startsWith("multi:");
@@ -1456,26 +1461,31 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const availableDatasets: {
     key: string;
     shortName: string;
+    longerName: string;
     hasData: boolean;
   }[] = [
     {
       key: "on",
       shortName: onOffBaseToShortPhrase("on"),
+      longerName: onOffBaseToLongerPhrase("on"),
       hasData: (rosterStats.on?.length || 0) > 0,
     },
     {
       key: "off",
       shortName: onOffBaseToShortPhrase("off"),
+      longerName: onOffBaseToLongerPhrase("off"),
       hasData: (rosterStats.off?.length || 0) > 0,
     },
     ...(rosterStats.other || []).map((other, idx) => ({
       key: `extra${idx}`,
       shortName: onOffBaseToShortPhrase("other", idx),
+      longerName: onOffBaseToLongerPhrase("other", idx),
       hasData: (other?.length || 0) > 0,
     })),
     {
       key: "base",
       shortName: onOffBaseToShortPhrase("baseline"),
+      longerName: onOffBaseToLongerPhrase("baseline"),
       hasData: (rosterStats.baseline?.length || 0) > 0,
     },
   ].filter((d) => d.hasData);
@@ -1500,6 +1510,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   // Helper to map key to short name
   const keyToShortName = (key: string | undefined) =>
     availableDatasets.find((d) => d.key === key)?.shortName;
+  // Helper to map key to longer name
+  const keyToLongerName = (key: string | undefined) =>
+    availableDatasets.find((d) => d.key === key)?.longerName;
 
   // Determine if a dataset should be shown based on diffsHideDatasets
   const shouldShowDataset = (key: string): boolean => {
@@ -1521,6 +1534,26 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       return { queryKey: "other", otherIndex: idx };
     }
     return undefined;
+  };
+
+  // Map queryKey/otherIndex back to dataset key format
+  const queryKeyToDatasetKey = (
+    queryKey: OnOffBaselineOtherEnum,
+    otherIndex: number
+  ): string => {
+    if (queryKey === "on") return "on";
+    if (queryKey === "off") return "off";
+    if (queryKey === "baseline") return "base";
+    if (queryKey === "other") return `extra${otherIndex}`;
+    return "";
+  };
+
+  // Check if this is the first enabled dataset (for diff mode sync)
+  const isFirstEnabledDataset = (currentKey: string): boolean => {
+    if (!showDiffModeUI || selectedDatasetKeys.length === 0) {
+      return false;
+    }
+    return selectedDatasetKeys[0] === currentKey;
   };
 
   // Build quick switch options for comparison selector
@@ -1589,18 +1622,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ) =>
         [
           {
-            title: onOffBaseToLongerPhrase("baseline"),
-            key: "baseline",
-            off:
-              getPlayerShotChartStats("baseline", dataEvent.playerShotStats, 0)[
-                player?.key || "???"
-              ] || {},
-            def: {},
-            gender: gameFilterParams.gender as "Men" | "Women",
-          },
-          {
             title: onOffBaseToLongerPhrase("on"),
             key: "on",
+            sourceKey: "on",
             off:
               getPlayerShotChartStats("on", dataEvent.playerShotStats, 0)[
                 player?.key || "???"
@@ -1611,6 +1635,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           {
             title: onOffBaseToLongerPhrase("off"),
             key: "off",
+            sourceKey: "off",
             off:
               getPlayerShotChartStats("off", dataEvent.playerShotStats, 0)[
                 player?.key || "???"
@@ -1624,6 +1649,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               return {
                 title: onOffBaseToLongerPhrase("other", idx),
                 key: `other${idx}`,
+                sourceKey: `extra${idx}`,
                 off:
                   getPlayerShotChartStats(
                     "other",
@@ -1635,6 +1661,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               };
             })
           )
+          .concat({
+            title: onOffBaseToLongerPhrase("baseline"),
+            key: "baseline",
+            sourceKey: "base",
+            off:
+              getPlayerShotChartStats("baseline", dataEvent.playerShotStats, 0)[
+                player?.key || "???"
+              ] || {},
+            def: {},
+            gender: gameFilterParams.gender as "Men" | "Women",
+          })
           .filter((opt) => (opt.off?.doc_count || 0) > 0)
           .filter(
             (opt) =>
@@ -1646,16 +1683,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
       const indivPlayTypeQuickSwitchOptions = [
         {
-          title: onOffBaseToLongerPhrase("baseline"),
-          player: getPlayerStats("baseline", p, 0)!,
-          rosterStatsByCode: rosterStatsByCode.global,
-          teamStats: getTeamStats("baseline", teamStats, 0),
-          showGrades: showGrades,
-          avgEfficiency,
-          showHelp,
-        },
-        {
           title: onOffBaseToLongerPhrase("on"),
+          sourceKey: "on",
           player: getPlayerStats("on", p, 0)!,
           rosterStatsByCode: rosterStatsByCode.global,
           teamStats: getTeamStats("on", teamStats, 0),
@@ -1665,6 +1694,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         },
         {
           title: onOffBaseToLongerPhrase("off"),
+          sourceKey: "off",
           player: getPlayerStats("off", p, 0)!,
           rosterStatsByCode: rosterStatsByCode.global,
           teamStats: getTeamStats("off", teamStats, 0),
@@ -1677,6 +1707,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           (teamStats.other || []).map((__, idx) => {
             return {
               title: onOffBaseToLongerPhrase("other", idx),
+              sourceKey: `extra${idx}`,
               player: getPlayerStats("other", p, idx)!,
               rosterStatsByCode: rosterStatsByCode.global,
               teamStats: getTeamStats("other", teamStats, idx),
@@ -1686,6 +1717,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             };
           })
         )
+        .concat([
+          {
+            title: onOffBaseToLongerPhrase("baseline"),
+            sourceKey: "base",
+            player: getPlayerStats("baseline", p, 0)!,
+            rosterStatsByCode: rosterStatsByCode.global,
+            teamStats: getTeamStats("baseline", teamStats, 0),
+            showGrades: showGrades,
+            avgEfficiency,
+            showHelp,
+          },
+        ])
         .filter((opt) => opt.player && (opt.teamStats.doc_count || 0) > 0);
 
       const buildRowSet = (
@@ -1737,6 +1780,53 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     ),
                   ]
                 : [],
+
+              // Comparison rows for diff mode (show player from diffsCompare dataset)
+              // Must be immediately after the main off/def rows
+              ...(() => {
+                const currentDatasetKey = queryKeyToDatasetKey(
+                  queryKey,
+                  otherQueryIndex
+                );
+                // Only add comparison rows if:
+                // 1. diffsCompareBase is set
+                // 2. The current dataset is the first enabled one (to show comparison once per player)
+                // 3. The comparison dataset exists
+                if (
+                  !diffsCompareBase ||
+                  !isFirstEnabledDataset(currentDatasetKey)
+                ) {
+                  return [];
+                }
+                const compMapping = datasetKeyToQueryKey(diffsCompareBase);
+                if (!compMapping) return [];
+                const compPlayer = getPlayerStats(
+                  compMapping.queryKey,
+                  p,
+                  compMapping.otherIndex
+                );
+                if (!compPlayer?.off_title) return [];
+
+                // Build comparison rows (same as main rows but with comp player)
+                return [
+                  GenericTableOps.buildDataRow(
+                    compPlayer,
+                    offPrefixFn,
+                    offCellMetaFn
+                  ),
+                  ...(expandedView
+                    ? [
+                        GenericTableOps.buildDataRow(
+                          compPlayer,
+                          defPrefixFn,
+                          defCellMetaFn,
+                          undefined,
+                          rosterInfoSpanCalculator
+                        ),
+                      ]
+                    : []),
+                ];
+              })(),
 
               showStandaloneGrades && player
                 ? GradeTableUtils.buildPlayerGradeTableRows({
@@ -1813,64 +1903,117 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               showPlayTypes && player
                 ? [
                     GenericTableOps.buildTextRow(
-                      <IndivPlayTypeTabbedView
-                        title={onOffBaseToLongerPhrase(
+                      (() => {
+                        const currentDatasetKey = queryKeyToDatasetKey(
                           queryKey,
                           otherQueryIndex
-                        )}
-                        player={player}
-                        rosterStatsByCode={rosterStatsByCode.global}
-                        teamStats={getTeamStats(
-                          queryKey,
-                          teamStats,
-                          otherQueryIndex
-                        )}
-                        avgEfficiency={avgEfficiency}
-                        showGrades={showGrades}
-                        grades={divisionStatsCache}
-                        showHelp={showHelp}
-                        quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
-                          (opt) =>
-                            opt.title != onOffBaseToLongerPhrase(queryKey)
-                        )}
-                        onChangeChartOpts={(opts: PlayerStyleOpts) => {
-                          setShowPlayTypesPlayType(opts.playType);
-                          setShowPlayTypesAdjPpp(!(opts.rawPpp ?? false));
-                          //TODO quick switch is more complex
-                        }}
-                        userOpts={{
-                          playType: showPlayTypesPlayType,
-                          rawPpp: !showPlayTypesAdjPpp,
-                        }}
-                        navigationLinkOverride={
-                          <OverlayTrigger
-                            placement="auto"
-                            overlay={
-                              <Tooltip id={`${player.code}styleTeamView`}>
-                                Open the Team view with the play style chart
-                                showing this player's actions in a team context
-                              </Tooltip>
+                        );
+                        const isFirstEnabled =
+                          isFirstEnabledDataset(currentDatasetKey);
+                        // Build quickSwitch prop for diff mode sync
+                        const quickSwitchFromDiffs =
+                          isFirstEnabled && diffsCompareBase
+                            ? `${keyToLongerName(
+                                diffsCompareBase
+                              )}${quickSwitchDelim}extra`
+                            : undefined;
+
+                        return (
+                          <IndivPlayTypeTabbedView
+                            title={onOffBaseToLongerPhrase(
+                              queryKey,
+                              otherQueryIndex
+                            )}
+                            player={player}
+                            rosterStatsByCode={rosterStatsByCode.global}
+                            teamStats={getTeamStats(
+                              queryKey,
+                              teamStats,
+                              otherQueryIndex
+                            )}
+                            avgEfficiency={avgEfficiency}
+                            showGrades={showGrades}
+                            grades={divisionStatsCache}
+                            showHelp={showHelp}
+                            quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
+                              (opt) =>
+                                (opt as any).sourceKey !==
+                                queryKeyToDatasetKey(queryKey, otherQueryIndex)
+                            )}
+                            onChangeChartOpts={(opts: PlayerStyleOpts) => {
+                              setShowPlayTypesPlayType(opts.playType);
+                              setShowPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                              // Sync quickSwitch with diffsCompare
+                              if (isFirstEnabled) {
+                                if (
+                                  opts.quickSwitch &&
+                                  opts.quickSwitch.includes(quickSwitchDelim)
+                                ) {
+                                  const [title, mode] =
+                                    opts.quickSwitch.split(quickSwitchDelim);
+
+                                  const matchingOpt =
+                                    indivPlayTypeQuickSwitchOptions.find(
+                                      (opt) => opt.title === title
+                                    );
+                                  if ((matchingOpt as any)?.sourceKey) {
+                                    setDiffsCompare(
+                                      `${
+                                        (matchingOpt as any).sourceKey
+                                      }${quickSwitchDelim}extra`
+                                    );
+                                  }
+                                } else {
+                                  setDiffsCompare("");
+                                }
+                              }
+                            }}
+                            userOpts={{
+                              playType: showPlayTypesPlayType,
+                              rawPpp: !showPlayTypesAdjPpp,
+                              quickSwitch: quickSwitchFromDiffs,
+                            }}
+                            dynamicQuickSwitch={isFirstEnabled}
+                            quickSwitchModesOverride={
+                              isFirstEnabled && diffsCompareBase
+                                ? ["extra_down"]
+                                : undefined
                             }
-                          >
-                            <a
-                              target="_blank"
-                              href={UrlRouting.getGameUrl(
-                                {
-                                  ...getCommonFilterParams(gameFilterParams),
-                                  onQuery: gameFilterParams.onQuery,
-                                  offQuery: gameFilterParams.offQuery,
-                                  autoOffQuery: gameFilterParams.autoOffQuery,
-                                  showTeamPlayTypes: true,
-                                  teamPlayTypeConfig: `||${player.code}||all||multi||`,
-                                },
-                                {}
-                              )}
-                            >
-                              Team View<sup>*</sup>
-                            </a>
-                          </OverlayTrigger>
-                        }
-                      />,
+                            navigationLinkOverride={
+                              <OverlayTrigger
+                                placement="auto"
+                                overlay={
+                                  <Tooltip id={`${player.code}styleTeamView`}>
+                                    Open the Team view with the play style chart
+                                    showing this player's actions in a team
+                                    context
+                                  </Tooltip>
+                                }
+                              >
+                                <a
+                                  target="_blank"
+                                  href={UrlRouting.getGameUrl(
+                                    {
+                                      ...getCommonFilterParams(
+                                        gameFilterParams
+                                      ),
+                                      onQuery: gameFilterParams.onQuery,
+                                      offQuery: gameFilterParams.offQuery,
+                                      autoOffQuery:
+                                        gameFilterParams.autoOffQuery,
+                                      showTeamPlayTypes: true,
+                                      teamPlayTypeConfig: `||${player.code}||all||multi||`,
+                                    },
+                                    {}
+                                  )}
+                                >
+                                  Team View<sup>*</sup>
+                                </a>
+                              </OverlayTrigger>
+                            }
+                          />
+                        );
+                      })(),
                       "small"
                     ),
                   ]
@@ -1879,30 +2022,80 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               showShotCharts
                 ? [
                     GenericTableOps.buildTextRow(
-                      <ShotChartDiagView
-                        title={onOffBaseToLongerPhrase(
+                      (() => {
+                        const currentDatasetKey = queryKeyToDatasetKey(
                           queryKey,
                           otherQueryIndex
-                        )}
-                        off={
-                          getPlayerShotChartStats(
+                        );
+                        const isFirstEnabled =
+                          isFirstEnabledDataset(currentDatasetKey);
+                        const theseQuickSwitchOpts =
+                          shotChartQuickSwitchOptions(
+                            player,
                             queryKey,
-                            dataEvent.playerShotStats,
                             otherQueryIndex
-                          )[player?.key || "???"] || {}
-                        }
-                        def={{}}
-                        gender={gameFilterParams.gender as "Men" | "Women"}
-                        quickSwitchOptions={shotChartQuickSwitchOptions(
-                          player,
-                          queryKey,
-                          otherQueryIndex
-                        )}
-                        chartOpts={shotChartConfig}
-                        onChangeChartOpts={(newOpts: any) => {
-                          setShotChartConfig(newOpts);
-                        }}
-                      />,
+                          );
+                        // Build quickSwitch prop for diff mode sync
+                        const quickSwitchFromDiffs =
+                          isFirstEnabled && diffsCompareBase
+                            ? `${keyToLongerName(
+                                diffsCompareBase
+                              )}${quickSwitchDelim}extra`
+                            : undefined;
+                        return (
+                          <ShotChartDiagView
+                            title={onOffBaseToLongerPhrase(
+                              queryKey,
+                              otherQueryIndex
+                            )}
+                            off={
+                              getPlayerShotChartStats(
+                                queryKey,
+                                dataEvent.playerShotStats,
+                                otherQueryIndex
+                              )[player?.key || "???"] || {}
+                            }
+                            def={{}}
+                            gender={gameFilterParams.gender as "Men" | "Women"}
+                            quickSwitchOptions={theseQuickSwitchOpts}
+                            chartOpts={{
+                              ...shotChartConfig,
+                              quickSwitch: quickSwitchFromDiffs,
+                            }}
+                            onChangeChartOpts={(newOpts: any) => {
+                              setShotChartConfig(newOpts);
+                              // Sync quickSwitch with diffsCompare
+                              if (isFirstEnabled) {
+                                if (
+                                  newOpts.quickSwitch &&
+                                  newOpts.quickSwitch.includes(quickSwitchDelim)
+                                ) {
+                                  const [title, mode] =
+                                    newOpts.quickSwitch.split(quickSwitchDelim);
+                                  const matchingOpt = theseQuickSwitchOpts.find(
+                                    (opt) => opt.title === title
+                                  );
+                                  if ((matchingOpt as any)?.sourceKey) {
+                                    setDiffsCompare(
+                                      `${
+                                        (matchingOpt as any).sourceKey
+                                      }${quickSwitchDelim}${mode || "extra"}`
+                                    );
+                                  }
+                                } else {
+                                  setDiffsCompare("");
+                                }
+                              }
+                            }}
+                            dynamicQuickSwitch={isFirstEnabled}
+                            quickSwitchModesOverride={
+                              isFirstEnabled && diffsCompareBase
+                                ? ["extra_right", "diff"]
+                                : undefined
+                            }
+                          />
+                        );
+                      })(),
                       "small"
                     ),
                   ]
@@ -2196,7 +2389,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         {
           label: "Diffs...",
           tooltip: "Show/hide diff mode controls for comparing datasets",
-          toggled: showDiffs,
+          toggled: showDiffs && hasSplits,
+          disabled: !hasSplits,
           onClick: () => setShowDiffs(!showDiffs),
         },
         {
@@ -2660,24 +2854,34 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               <div>{topLevelGradeControls}</div>
             </Col>
           ) : undefined}
+          <>
+            {/* Diff mode controls - dataset selector and comparison QuickSwitchBar */}
+            {showDiffModeUI ? (
+              <StickyRow
+                stickyEnabled={stickyQuickToggle && tableData.length > 2}
+                className="pt-1 pb-1"
+                topOffset="3em"
+              >
+                <Col xs={12}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      alignItems: "center",
+                      gap: "0.5em 2em",
+                    }}
+                  >
+                    <div>{datasetSelectorBar}</div>
+                    <div>
+                      <small>{comparisonQuickSwitchBar}</small>
+                    </div>
+                  </div>
+                </Col>
+              </StickyRow>
+            ) : null}
+          </>{" "}
         </StickyRow>
-        {/* Diff mode controls - dataset selector and comparison QuickSwitchBar */}
-        {showDiffModeUI ? (
-          <StickyRow
-            stickyEnabled={stickyQuickToggle}
-            className="pt-1 pb-1"
-            topOffset="3em"
-          >
-            <Col
-              xs={12}
-              className="pt-1 pb-1 d-flex flex-wrap align-items-center"
-            >
-              {datasetSelectorBar}
-              <span className="px-2 py-1 d-none d-sm-block" /> {/* Padding */}
-              <small>{comparisonQuickSwitchBar}</small>
-            </Col>
-          </StickyRow>
-        ) : null}
+
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
