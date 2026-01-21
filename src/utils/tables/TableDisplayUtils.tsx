@@ -183,6 +183,8 @@ export class TableDisplayUtils {
         ],
         teamDiffs: true,
         diffsHideDatasets: "on",
+        playerDiffs: true,
+        playerDiffsHideDatasets: "on",
         sortBy: "desc:off_team_poss_pct%:on",
         onQuery:
           `{${includes.map((p) => `"${p.id}"`).join(";")}}=${includes.length}` +

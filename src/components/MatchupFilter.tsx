@@ -520,6 +520,8 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       splitPhrases: ["Game", ""], //(the second param is annoyingly necessary to force URL param processing to treat it like an array)
       teamDiffs: true,
       diffsHideDatasets: "on",
+      playerDiffs: true,
+      playerDiffsHideDatasets: "on",
       sortBy: "desc:off_team_poss_pct%:on",
       splitText: subFor
         ? [
