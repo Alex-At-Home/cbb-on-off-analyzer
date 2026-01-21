@@ -2041,7 +2041,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                             ? `${keyToLongerName(
                                 diffsCompareBase
                               )}${quickSwitchDelim}extra`
-                            : undefined;
+                            : shotChartConfig?.quickSwitch;
                         return (
                           <ShotChartDiagView
                             title={onOffBaseToLongerPhrase(
@@ -2567,12 +2567,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const comparisonQuickSwitchBar = showDiffModeUI ? (
     <QuickSwitchBar
-      title={keyToShortName(diffsCompareBase) || ""}
-      titlePrefix={
-        isMultiMode && selectedDatasetKeys.length > 1
-          ? `Compare [${keyToShortName(selectedDatasetKey) || "(none)"}] vs`
-          : "Compare"
-      }
+      title={""}
+      titlePrefix={"Compare"}
       toggleText=": "
       quickSwitch={keyToShortName(diffsCompareBase)}
       quickSwitchExtra={diffsCompareExtra}

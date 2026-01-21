@@ -194,7 +194,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
                 { value: 0 },
                 (val: number) => "#772953",
                 "15px",
-                theme === "dark" ? 3 : 1
+                theme === "dark" ? 4 : 1
               )
             : {}),
           whiteSpace: "nowrap",
@@ -215,8 +215,20 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
               }
             }}
           >
-            {t}
+            {isSelected ? (
+              <b>
+                <u>{t}</u>
+              </b>
+            ) : (
+              t
+            )}
           </a>
+        ) : isSelected ? (
+          <span>
+            <b>
+              <u>{t}</u>
+            </b>
+          </span>
         ) : (
           <span>{t}</span>
         )}
