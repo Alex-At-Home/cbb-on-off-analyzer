@@ -278,7 +278,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
 <span>
   <div>
     <a
-      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=p1%2Cp2%2Cp3%2Cp4%2Cp5&offQuery=&onQuery=%7B%22player1%22%3B%22player2%22%3B%22player3%22%3B%22player4%22%3B%22player5%22%7D%3D5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&splitPhrases=Lineup&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3Ep%2C%20p%2C%20p%2C%20p%2C%20p%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3Ep1%2C%20p2%2C%20p3%2C%20p4%2C%20p5%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamShotCharts=true&"
+      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=p1%2Cp2%2Cp3%2Cp4%2Cp5&offQuery=&onQuery=%7B%22player1%22%3B%22player2%22%3B%22player3%22%3B%22player4%22%3B%22player5%22%7D%3D5&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineup&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3Ep%2C%20p%2C%20p%2C%20p%2C%20p%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3Ep1%2C%20p2%2C%20p3%2C%20p4%2C%20p5%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
       onClick={[Function]}
       style={
         Object {

@@ -31,6 +31,10 @@ export type GradeProps = {
   lowTier?: DivisionStatistics;
 };
 
+//TODO: READ BEFORE DEBUGGING LEADERBOARD ISSUES
+// For leaderboard derived calcs, the grades are wrong because of rounding on the intermediate
+// values .. for such cases we need a getPercentiles mode where it picks the closest version
+
 /** Utility functions for calculating percentile/grade related statistics */
 export class GradeUtils {
   /** For players, only use their stats for grades if they've played 40% of possessions (same for display, but will allow override) */
@@ -204,6 +208,14 @@ export class GradeUtils {
     // Not in dataset but used here in extra dialog, so include for convenience (ignored if not present anyway)
     "3p_opp",
   ];
+
+  /** Fix floating point precision issues (max 8 decimal places) */
+  static readonly roundToMaxGradePrecision = (v: number) =>
+    Math.round(v * 1e8) / 1e8;
+
+  /** If the incoming grade is from a saved file it only has 4 decimal places */
+  static readonly roundToSavedGradePrecision = (v: number) =>
+    Math.round(v * 1e4) / 1e4;
 
   /** Add a team's stats to the divison stats collection  */
   static buildAndInjectTeamDivisionStats = (
@@ -486,17 +498,22 @@ export class GradeUtils {
     });
   };
 
-  /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
+  /** Convert an unsorted list of samples into an LUT for Team Divison Stats
+   * specify precision if not going via
+   */
   static buildAndInjectTeamDivisionStatsLUT = (
-    mutableUnsortedDivisionStats: DivisionStatistics
+    mutableUnsortedDivisionStats: DivisionStatistics,
+    precision?: "native"
   ) => {
-    return GradeUtils.buildAndInjectDivisionStatsLUT(
+    const retVal = GradeUtils.buildAndInjectDivisionStatsLUT(
       mutableUnsortedDivisionStats,
       false
     );
+    if (precision) retVal.precision = precision;
+    return retVal;
   };
 
-  /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
+  /** Convert an unsorted list of samples into an LUT for Player Divison Stats */
   static buildAndInjectPlayerDivisionStatsLUT = (
     mutableUnsortedDivisionStats: DivisionStatistics
   ) => {
@@ -563,11 +580,15 @@ export class GradeUtils {
     mutableUnsortedDivisionStats.tier_lut = _.transform(
       tier_samples,
       (acc, sample_set, field) => {
-        const last_val = sample_set[sample_set.length - 1];
+        const first_val = GradeUtils.roundToMaxGradePrecision(sample_set[0]);
+        const last_val = GradeUtils.roundToMaxGradePrecision(
+          sample_set[sample_set.length - 1]
+        );
         const maybeMultiplier = GradeUtils.unusualMultiplier(field, player);
         acc[field] = _.transform(
           sample_set,
-          (lutObj, val) => {
+          (lutObj, unroundedVal) => {
+            const val = GradeUtils.roundToMaxGradePrecision(unroundedVal);
             const lutMult = lutObj.lutMult || (lutObj.isPct ? 100 : 1);
             const lutKey = (lutMult * val).toFixed(0);
             const currLutVal = lutObj.lut[lutKey];
@@ -584,11 +605,11 @@ export class GradeUtils {
             lutMult: maybeMultiplier,
             isPct: maybeMultiplier //(don't fill in if using a non-standard multiplier)
               ? undefined
-              : sample_set[0] >= -1 &&
-                sample_set[0] <= 1 &&
+              : first_val >= -1 &&
+                first_val <= 1 &&
                 last_val >= -1 &&
                 last_val <= 1,
-            min: sample_set[0],
+            min: first_val,
             size: 0, //(will mutate this to size during the loop)
             lut: {} as Record<string, Array<number>>,
           }
@@ -688,17 +709,23 @@ export class GradeUtils {
     val: number,
     buildLutMissCache: boolean = false
   ): Statistic | undefined {
+    // Round to avoid floating point precision issues (e.g., 32.4742 vs 32.474199999999996)
+    const roundedVal =
+      divStats.precision == "native"
+        ? GradeUtils.roundToMaxGradePrecision(val)
+        : GradeUtils.roundToSavedGradePrecision(val);
+
     const divStatsField = divStats.tier_lut[field];
     const compressionFactor = divStats.compression_factor || 1.0;
     if (divStatsField) {
       const lutMult = divStatsField.lutMult || (divStatsField.isPct ? 100 : 1);
-      const lookupKey = (lutMult * val).toFixed(0);
+      const lookupKey = (lutMult * roundedVal).toFixed(0);
       const lutArray = divStatsField.lut[lookupKey];
 
       const adjDivStatsFieldSize = compressionFactor * divStatsField.size;
       const minPctile = 1.0 / divStatsField.size;
 
-      if (!lutArray && val <= divStatsField.min + 0.001) {
+      if (!lutArray && roundedVal <= divStatsField.min + 0.001) {
         return { value: minPctile, samples: adjDivStatsFieldSize } as Statistic; //1st percentile
       } else if (!lutArray) {
         const spacesBetween =
@@ -711,7 +738,7 @@ export class GradeUtils {
           divStatsField.spaces_between = spacesBetween;
         }
         if (spacesBetween) {
-          const spaceBetween = treeFind("gt", val, spacesBetween); //smallest entry which is bigger than val
+          const spaceBetween = treeFind("gt", roundedVal, spacesBetween); //smallest entry which is bigger than roundedVal
           return _.isUndefined(spaceBetween)
             ? ({ value: 1.0, samples: adjDivStatsFieldSize } as Statistic) //100% percentile
             : { value: spaceBetween.value, samples: adjDivStatsFieldSize };
@@ -722,7 +749,7 @@ export class GradeUtils {
           const closestLutArray = _.find(
             divStatsField.lut,
             (arr, unusedKey) => {
-              return arr.length > 1 && arr[1]! > val;
+              return arr.length > 1 && arr[1]! > roundedVal;
             }
           );
           if (closestLutArray) {
@@ -739,7 +766,7 @@ export class GradeUtils {
         //lutArray
         const offsetIndex = GradeUtils.binaryChop(
           lutArray,
-          val,
+          roundedVal,
           1,
           lutArray.length - 1
         ); //(minPctile is lowest)

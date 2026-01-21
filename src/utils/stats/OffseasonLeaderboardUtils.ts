@@ -624,7 +624,10 @@ export class OffseasonLeaderboardUtils {
           .value()
       : undefined;
 
-    GradeUtils.buildAndInjectTeamDivisionStatsLUT(derivedDivisionStats);
+    GradeUtils.buildAndInjectTeamDivisionStatsLUT(
+      derivedDivisionStats,
+      "native" //(going to be used directly, not via a file which truncates)
+    );
 
     return {
       derivedDivisionStats,

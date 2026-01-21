@@ -18688,6 +18688,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           22.08183985067347,
                         ],
                       },
+                      "precision": "native",
                       "tier_lut": Object {
                         "def_adj_ppp": Object {
                           "isPct": false,
@@ -18800,19 +18801,19 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "105": Array [
                               105,
-                              105.19879195733465,
+                              105.19879196,
                             ],
                             "95": Array [
                               0,
-                              94.62219277428653,
+                              94.62219277,
                             ],
                             "96": Array [
                               1,
-                              96.37161809415122,
+                              96.37161809,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 94.62219277428653,
+                          "min": 94.62219277,
                           "size": 106,
                         },
                         "off_adj_ppp": Object {
@@ -18820,7 +18821,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "102": Array [
                               0,
-                              102.36238925074285,
+                              102.36238925,
                             ],
                             "104": Array [
                               1,
@@ -18930,15 +18931,15 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "111": Array [
                               104,
-                              111.45822605853334,
+                              111.45822606,
                             ],
                             "117": Array [
                               105,
-                              116.70403262495999,
+                              116.70403262,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 102.36238925074285,
+                          "min": 102.36238925,
                           "size": 106,
                         },
                         "off_net": Object {
@@ -18946,7 +18947,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "-3": Array [
                               0,
-                              -2.8364027065917887,
+                              -2.83640271,
                             ],
                             "0": Array [
                               1,
@@ -19056,15 +19057,15 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "15": Array [
                               104,
-                              15.086607964382123,
+                              15.08660796,
                             ],
                             "22": Array [
                               105,
-                              22.08183985067347,
+                              22.08183985,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": -2.8364027065917887,
+                          "min": -2.83640271,
                           "size": 106,
                         },
                         "off_raw_net": undefined,

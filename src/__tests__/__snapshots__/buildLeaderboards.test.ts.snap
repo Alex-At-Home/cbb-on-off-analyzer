@@ -24179,11 +24179,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.30700571132025767,
+          0.30700571,
         ],
       },
       "lutMult": undefined,
-      "min": 0.30700571132025767,
+      "min": 0.30700571,
       "size": 1,
     },
     "Attack & Kick|Pct": Object {
@@ -24191,11 +24191,11 @@ Object {
       "lut": Object {
         "11": Array [
           0,
-          0.10704851052421052,
+          0.10704851,
         ],
       },
       "lutMult": undefined,
-      "min": 0.10704851052421052,
+      "min": 0.10704851,
       "size": 1,
     },
     "Attack & Kick|Ppp": Object {
@@ -24203,11 +24203,11 @@ Object {
       "lut": Object {
         "29": Array [
           0,
-          0.2901890186078255,
+          0.29018902,
         ],
       },
       "lutMult": undefined,
-      "min": 0.2901890186078255,
+      "min": 0.29018902,
       "size": 1,
     },
     "Attack & Kick|UsgPct": Object {
@@ -24215,11 +24215,11 @@ Object {
       "lut": Object {
         "3": Array [
           0,
-          0.0284792469393864,
+          0.02847925,
         ],
       },
       "lutMult": undefined,
-      "min": 0.0284792469393864,
+      "min": 0.02847925,
       "size": 1,
     },
     "Backdoor Cut|AdjPpp": Object {
@@ -24227,11 +24227,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          1.35907138548711,
+          1.35907139,
         ],
       },
       "lutMult": undefined,
-      "min": 1.35907138548711,
+      "min": 1.35907139,
       "size": 1,
     },
     "Backdoor Cut|Pct": Object {
@@ -24239,11 +24239,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.023051563289105532,
+          0.02305156,
         ],
       },
       "lutMult": undefined,
-      "min": 0.023051563289105532,
+      "min": 0.02305156,
       "size": 1,
     },
     "Backdoor Cut|Ppp": Object {
@@ -24251,11 +24251,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          1.2846262366795866,
+          1.28462624,
         ],
       },
       "lutMult": undefined,
-      "min": 1.2846262366795866,
+      "min": 1.28462624,
       "size": 1,
     },
     "Backdoor Cut|UsgPct": Object {
@@ -24263,11 +24263,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          0.009654585007128364,
+          0.00965459,
         ],
       },
       "lutMult": undefined,
-      "min": 0.009654585007128364,
+      "min": 0.00965459,
       "size": 1,
     },
     "Dribble Jumper|AdjPpp": Object {
@@ -24275,11 +24275,11 @@ Object {
       "lut": Object {
         "86": Array [
           0,
-          0.8643597670877363,
+          0.86435977,
         ],
       },
       "lutMult": undefined,
-      "min": 0.8643597670877363,
+      "min": 0.86435977,
       "size": 1,
     },
     "Dribble Jumper|Pct": Object {
@@ -24287,11 +24287,11 @@ Object {
       "lut": Object {
         "4": Array [
           0,
-          0.04380319947001168,
+          0.0438032,
         ],
       },
       "lutMult": undefined,
-      "min": 0.04380319947001168,
+      "min": 0.0438032,
       "size": 1,
     },
     "Dribble Jumper|Ppp": Object {
@@ -24299,11 +24299,11 @@ Object {
       "lut": Object {
         "82": Array [
           0,
-          0.8170131801672709,
+          0.81701318,
         ],
       },
       "lutMult": undefined,
-      "min": 0.8170131801672709,
+      "min": 0.81701318,
       "size": 1,
     },
     "Dribble Jumper|UsgPct": Object {
@@ -24311,11 +24311,11 @@ Object {
       "lut": Object {
         "3": Array [
           0,
-          0.029441613401834748,
+          0.02944161,
         ],
       },
       "lutMult": undefined,
-      "min": 0.029441613401834748,
+      "min": 0.02944161,
       "size": 1,
     },
     "Hits Cutter|AdjPpp": Object {
@@ -24323,11 +24323,11 @@ Object {
       "lut": Object {
         "16": Array [
           0,
-          0.1567022892166701,
+          0.15670229,
         ],
       },
       "lutMult": undefined,
-      "min": 0.1567022892166701,
+      "min": 0.15670229,
       "size": 1,
     },
     "Hits Cutter|Pct": Object {
@@ -24335,11 +24335,11 @@ Object {
       "lut": Object {
         "7": Array [
           0,
-          0.0742260903389524,
+          0.07422609,
         ],
       },
       "lutMult": undefined,
-      "min": 0.0742260903389524,
+      "min": 0.07422609,
       "size": 1,
     },
     "Hits Cutter|Ppp": Object {
@@ -24347,11 +24347,11 @@ Object {
       "lut": Object {
         "15": Array [
           0,
-          0.14811868914695528,
+          0.14811869,
         ],
       },
       "lutMult": undefined,
-      "min": 0.14811868914695528,
+      "min": 0.14811869,
       "size": 1,
     },
     "Hits Cutter|UsgPct": Object {
@@ -24359,11 +24359,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.019747151508755827,
+          0.01974715,
         ],
       },
       "lutMult": undefined,
-      "min": 0.019747151508755827,
+      "min": 0.01974715,
       "size": 1,
     },
     "Mid-Range|AdjPpp": Object {
@@ -24371,11 +24371,11 @@ Object {
       "lut": Object {
         "33": Array [
           0,
-          0.32625904347358253,
+          0.32625904,
         ],
       },
       "lutMult": undefined,
-      "min": 0.32625904347358253,
+      "min": 0.32625904,
       "size": 1,
     },
     "Mid-Range|Pct": Object {
@@ -24383,11 +24383,11 @@ Object {
       "lut": Object {
         "5": Array [
           0,
-          0.054257916235614996,
+          0.05425792,
         ],
       },
       "lutMult": undefined,
-      "min": 0.054257916235614996,
+      "min": 0.05425792,
       "size": 1,
     },
     "Mid-Range|Ppp": Object {
@@ -24395,11 +24395,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.30838772096576167,
+          0.30838772,
         ],
       },
       "lutMult": undefined,
-      "min": 0.30838772096576167,
+      "min": 0.30838772,
       "size": 1,
     },
     "Mid-Range|UsgPct": Object {
@@ -24407,11 +24407,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.0195795515665207,
+          0.01957955,
         ],
       },
       "lutMult": undefined,
-      "min": 0.0195795515665207,
+      "min": 0.01957955,
       "size": 1,
     },
     "Perimeter Sniper|AdjPpp": Object {
@@ -24419,11 +24419,11 @@ Object {
       "lut": Object {
         "98": Array [
           0,
-          0.9822872624343785,
+          0.98228726,
         ],
       },
       "lutMult": undefined,
-      "min": 0.9822872624343785,
+      "min": 0.98228726,
       "size": 1,
     },
     "Perimeter Sniper|Pct": Object {
@@ -24431,11 +24431,11 @@ Object {
       "lut": Object {
         "6": Array [
           0,
-          0.05643485513269927,
+          0.05643486,
         ],
       },
       "lutMult": undefined,
-      "min": 0.05643485513269927,
+      "min": 0.05643486,
       "size": 1,
     },
     "Perimeter Sniper|Ppp": Object {
@@ -24443,11 +24443,11 @@ Object {
       "lut": Object {
         "93": Array [
           0,
-          0.9300920839845185,
+          0.93009208,
         ],
       },
       "lutMult": undefined,
-      "min": 0.9300920839845185,
+      "min": 0.93009208,
       "size": 1,
     },
     "Perimeter Sniper|UsgPct": Object {
@@ -24455,11 +24455,11 @@ Object {
       "lut": Object {
         "4": Array [
           0,
-          0.03793177684070753,
+          0.03793178,
         ],
       },
       "lutMult": undefined,
-      "min": 0.03793177684070753,
+      "min": 0.03793178,
       "size": 1,
     },
     "PnR Passer|AdjPpp": Object {
@@ -24467,11 +24467,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          2.309139653882643,
+          2.30913965,
         ],
       },
       "lutMult": undefined,
-      "min": 2.309139653882643,
+      "min": 2.30913965,
       "size": 1,
     },
     "PnR Passer|Pct": Object {
@@ -24479,11 +24479,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.017538113667907078,
+          0.01753811,
         ],
       },
       "lutMult": undefined,
-      "min": 0.017538113667907078,
+      "min": 0.01753811,
       "size": 1,
     },
     "PnR Passer|Ppp": Object {
@@ -24491,11 +24491,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          2.18265310800556,
+          2.18265311,
         ],
       },
       "lutMult": undefined,
-      "min": 2.18265310800556,
+      "min": 2.18265311,
       "size": 1,
     },
     "PnR Passer|UsgPct": Object {
@@ -24503,11 +24503,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          0.011787959981358332,
+          0.01178796,
         ],
       },
       "lutMult": undefined,
-      "min": 0.011787959981358332,
+      "min": 0.01178796,
       "size": 1,
     },
     "Put-Back|AdjPpp": Object {
@@ -24515,11 +24515,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          1.015067756952344,
+          1.01506776,
         ],
       },
       "lutMult": undefined,
-      "min": 1.015067756952344,
+      "min": 1.01506776,
       "size": 1,
     },
     "Put-Back|Pct": Object {
@@ -24527,11 +24527,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.020841125522053295,
+          0.02084113,
         ],
       },
       "lutMult": undefined,
-      "min": 0.020841125522053295,
+      "min": 0.02084113,
       "size": 1,
     },
     "Put-Back|Ppp": Object {
@@ -24539,11 +24539,11 @@ Object {
       "lut": Object {
         "96": Array [
           0,
-          0.9611307420494698,
+          0.96113074,
         ],
       },
       "lutMult": undefined,
-      "min": 0.9611307420494698,
+      "min": 0.96113074,
       "size": 1,
     },
     "Put-Back|UsgPct": Object {
@@ -24551,11 +24551,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          0.014008026078083217,
+          0.01400803,
         ],
       },
       "lutMult": undefined,
-      "min": 0.014008026078083217,
+      "min": 0.01400803,
       "size": 1,
     },
     "Rim Attack|AdjPpp": Object {
@@ -24563,11 +24563,11 @@ Object {
       "lut": Object {
         "74": Array [
           0,
-          0.7363582985137546,
+          0.7363583,
         ],
       },
       "lutMult": undefined,
-      "min": 0.7363582985137546,
+      "min": 0.7363583,
       "size": 1,
     },
     "Rim Attack|Pct": Object {
@@ -24575,11 +24575,11 @@ Object {
       "lut": Object {
         "12": Array [
           0,
-          0.12080277227977634,
+          0.12080277,
         ],
       },
       "lutMult": undefined,
-      "min": 0.12080277227977634,
+      "min": 0.12080277,
       "size": 1,
     },
     "Rim Attack|Ppp": Object {
@@ -24587,11 +24587,11 @@ Object {
       "lut": Object {
         "70": Array [
           0,
-          0.6972308922408587,
+          0.69723089,
         ],
       },
       "lutMult": undefined,
-      "min": 0.6972308922408587,
+      "min": 0.69723089,
       "size": 1,
     },
     "Rim Attack|UsgPct": Object {
@@ -24599,11 +24599,11 @@ Object {
       "lut": Object {
         "4": Array [
           0,
-          0.04196108665906756,
+          0.04196109,
         ],
       },
       "lutMult": undefined,
-      "min": 0.04196108665906756,
+      "min": 0.04196109,
       "size": 1,
     },
     "Transition|AdjPpp": Object {
@@ -24611,11 +24611,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          1.1449069971416383,
+          1.144907,
         ],
       },
       "lutMult": undefined,
-      "min": 1.1449069971416383,
+      "min": 1.144907,
       "size": 1,
     },
     "Transition|Pct": Object {
@@ -24623,11 +24623,11 @@ Object {
       "lut": Object {
         "8": Array [
           0,
-          0.0809611062998956,
+          0.08096111,
         ],
       },
       "lutMult": undefined,
-      "min": 0.0809611062998956,
+      "min": 0.08096111,
       "size": 1,
     },
     "Transition|Ppp": Object {
@@ -24635,11 +24635,11 @@ Object {
       "lut": Object {
         "1": Array [
           0,
-          1.084070796460177,
+          1.0840708,
         ],
       },
       "lutMult": undefined,
-      "min": 1.084070796460177,
+      "min": 1.0840708,
       "size": 1,
     },
     "Transition|UsgPct": Object {
@@ -24647,11 +24647,11 @@ Object {
       "lut": Object {
         "5": Array [
           0,
-          0.05125568907982692,
+          0.05125569,
         ],
       },
       "lutMult": undefined,
-      "min": 0.05125568907982692,
+      "min": 0.05125569,
       "size": 1,
     },
     "def_2prim": Object {
@@ -24659,11 +24659,11 @@ Object {
       "lut": Object {
         "5": Array [
           0,
-          0.005065856129685917,
+          0.00506586,
         ],
       },
       "lutMult": 1000,
-      "min": 0.005065856129685917,
+      "min": 0.00506586,
       "size": 1,
     },
     "def_adj_prod": Object {
@@ -24671,11 +24671,11 @@ Object {
       "lut": Object {
         "-19": Array [
           0,
-          -1.93392724437384,
+          -1.93392724,
         ],
       },
       "lutMult": 10,
-      "min": -1.93392724437384,
+      "min": -1.93392724,
       "size": 1,
     },
     "def_adj_rtg": Object {
@@ -24683,11 +24683,11 @@ Object {
       "lut": Object {
         "-27": Array [
           0,
-          -2.7010084533838667,
+          -2.70100845,
         ],
       },
       "lutMult": 10,
-      "min": -2.7010084533838667,
+      "min": -2.70100845,
       "size": 1,
     },
     "def_ftr": Object {
@@ -24695,11 +24695,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.022550335570469794,
+          0.02255034,
         ],
       },
       "lutMult": undefined,
-      "min": 0.022550335570469794,
+      "min": 0.02255034,
       "size": 1,
     },
     "def_orb": Object {
@@ -24719,11 +24719,11 @@ Object {
       "lut": Object {
         "94": Array [
           0,
-          93.54860666651514,
+          93.54860667,
         ],
       },
       "lutMult": undefined,
-      "min": 93.54860666651514,
+      "min": 93.54860667,
       "size": 1,
     },
     "def_to": Object {
@@ -24731,11 +24731,11 @@ Object {
       "lut": Object {
         "17": Array [
           0,
-          0.01675977653631285,
+          0.01675978,
         ],
       },
       "lutMult": 1000,
-      "min": 0.01675977653631285,
+      "min": 0.01675978,
       "size": 1,
     },
     "off_2p": Object {
@@ -24743,11 +24743,11 @@ Object {
       "lut": Object {
         "45": Array [
           0,
-          0.45112781954887216,
+          0.45112782,
         ],
       },
       "lutMult": undefined,
-      "min": 0.45112781954887216,
+      "min": 0.45112782,
       "size": 1,
     },
     "off_2pmid": Object {
@@ -24755,11 +24755,11 @@ Object {
       "lut": Object {
         "24": Array [
           0,
-          0.24324324324324326,
+          0.24324324,
         ],
       },
       "lutMult": undefined,
-      "min": 0.24324324324324326,
+      "min": 0.24324324,
       "size": 1,
     },
     "off_2pmidr": Object {
@@ -24767,11 +24767,11 @@ Object {
       "lut": Object {
         "18": Array [
           0,
-          0.18258426966292135,
+          0.18258427,
         ],
       },
       "lutMult": undefined,
-      "min": 0.18258426966292135,
+      "min": 0.18258427,
       "size": 1,
     },
     "off_2prim": Object {
@@ -24779,11 +24779,11 @@ Object {
       "lut": Object {
         "56": Array [
           0,
-          0.5555555555555556,
+          0.55555556,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5555555555555556,
+      "min": 0.55555556,
       "size": 1,
     },
     "off_2prim_ast": Object {
@@ -24791,11 +24791,11 @@ Object {
       "lut": Object {
         "26": Array [
           0,
-          0.26153846153846155,
+          0.26153846,
         ],
       },
       "lutMult": undefined,
-      "min": 0.26153846153846155,
+      "min": 0.26153846,
       "size": 1,
     },
     "off_2primr": Object {
@@ -24803,11 +24803,11 @@ Object {
       "lut": Object {
         "20": Array [
           0,
-          0.19666666666666666,
+          0.19666667,
         ],
       },
       "lutMult": undefined,
-      "min": 0.19666666666666666,
+      "min": 0.19666667,
       "size": 1,
     },
     "off_3p": Object {
@@ -24815,11 +24815,11 @@ Object {
       "lut": Object {
         "32": Array [
           0,
-          0.31736526946107785,
+          0.31736527,
         ],
       },
       "lutMult": undefined,
-      "min": 0.31736526946107785,
+      "min": 0.31736527,
       "size": 1,
     },
     "off_3p_ast": Object {
@@ -24839,11 +24839,11 @@ Object {
       "lut": Object {
         "49": Array [
           0,
-          0.4887640449438202,
+          0.48876404,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4887640449438202,
+      "min": 0.48876404,
       "size": 1,
     },
     "off_adj_prod": Object {
@@ -24851,11 +24851,11 @@ Object {
       "lut": Object {
         "-5": Array [
           0,
-          -0.5033100013198395,
+          -0.50331,
         ],
       },
       "lutMult": 10,
-      "min": -0.5033100013198395,
+      "min": -0.50331,
       "size": 1,
     },
     "off_adj_rtg": Object {
@@ -24863,11 +24863,11 @@ Object {
       "lut": Object {
         "-7": Array [
           0,
-          -0.697381502829424,
+          -0.6973815,
         ],
       },
       "lutMult": 10,
-      "min": -0.697381502829424,
+      "min": -0.6973815,
       "size": 1,
     },
     "off_assist": Object {
@@ -24875,11 +24875,11 @@ Object {
       "lut": Object {
         "10": Array [
           0,
-          0.10185185185185185,
+          0.10185185,
         ],
       },
       "lutMult": undefined,
-      "min": 0.10185185185185185,
+      "min": 0.10185185,
       "size": 1,
     },
     "off_efg": Object {
@@ -24899,11 +24899,11 @@ Object {
       "lut": Object {
         "72": Array [
           0,
-          0.7166666666666667,
+          0.71666667,
         ],
       },
       "lutMult": undefined,
-      "min": 0.7166666666666667,
+      "min": 0.71666667,
       "size": 1,
     },
     "off_ftr": Object {
@@ -24923,11 +24923,11 @@ Object {
       "lut": Object {
         "2": Array [
           0,
-          0.017276422764227643,
+          0.01727642,
         ],
       },
       "lutMult": undefined,
-      "min": 0.017276422764227643,
+      "min": 0.01727642,
       "size": 1,
     },
     "off_rtg": Object {
@@ -24935,11 +24935,11 @@ Object {
       "lut": Object {
         "90": Array [
           0,
-          89.9518234710886,
+          89.95182347,
         ],
       },
       "lutMult": undefined,
-      "min": 89.9518234710886,
+      "min": 89.95182347,
       "size": 1,
     },
     "off_team_poss_pct": Object {
@@ -24947,11 +24947,11 @@ Object {
       "lut": Object {
         "72": Array [
           0,
-          0.7217140105922003,
+          0.72171401,
         ],
       },
       "lutMult": undefined,
-      "min": 0.7217140105922003,
+      "min": 0.72171401,
       "size": 1,
     },
     "off_to": Object {
@@ -24959,11 +24959,11 @@ Object {
       "lut": Object {
         "15": Array [
           0,
-          0.1528291588331615,
+          0.15282916,
         ],
       },
       "lutMult": undefined,
-      "min": 0.1528291588331615,
+      "min": 0.15282916,
       "size": 1,
     },
     "off_usage": Object {
@@ -24971,11 +24971,11 @@ Object {
       "lut": Object {
         "228": Array [
           0,
-          0.22812810965108538,
+          0.22812811,
         ],
       },
       "lutMult": 1000,
-      "min": 0.22812810965108538,
+      "min": 0.22812811,
       "size": 1,
     },
   },
@@ -30712,7 +30712,7 @@ Object {
         ],
         "94": Array [
           79,
-          0.9422765121337446,
+          0.94227651,
         ],
       },
       "lutMult": undefined,
@@ -30806,7 +30806,7 @@ Object {
         ],
         "7": Array [
           79,
-          0.06620765300541775,
+          0.06620765,
         ],
       },
       "lutMult": undefined,
@@ -30900,7 +30900,7 @@ Object {
         ],
         "89": Array [
           79,
-          0.8939795439790547,
+          0.89397954,
         ],
       },
       "lutMult": undefined,
@@ -30994,7 +30994,7 @@ Object {
         ],
         "1": Array [
           79,
-          1.273993205630428,
+          1.27399321,
         ],
       },
       "lutMult": undefined,
@@ -31088,7 +31088,7 @@ Object {
         ],
         "2": Array [
           79,
-          0.021802601761675214,
+          0.0218026,
         ],
       },
       "lutMult": undefined,
@@ -31182,7 +31182,7 @@ Object {
         ],
         "1": Array [
           79,
-          1.2086938922236954,
+          1.20869389,
         ],
       },
       "lutMult": undefined,
@@ -31549,7 +31549,7 @@ Object {
         ],
         "87": Array [
           79,
-          0.8671339890804208,
+          0.86713399,
         ],
       },
       "lutMult": undefined,
@@ -31643,7 +31643,7 @@ Object {
         ],
         "3": Array [
           79,
-          0.029843833437357872,
+          0.02984383,
         ],
       },
       "lutMult": undefined,
@@ -31737,7 +31737,7 @@ Object {
         ],
         "82": Array [
           79,
-          0.8226884976379663,
+          0.8226885,
         ],
       },
       "lutMult": undefined,
@@ -32104,7 +32104,7 @@ Object {
         ],
         "50": Array [
           79,
-          0.5029644911031745,
+          0.50296449,
         ],
       },
       "lutMult": undefined,
@@ -32198,7 +32198,7 @@ Object {
         ],
         "2": Array [
           79,
-          0.02332497277125127,
+          0.02332497,
         ],
       },
       "lutMult": undefined,
@@ -32292,7 +32292,7 @@ Object {
         ],
         "48": Array [
           79,
-          0.47718473357240204,
+          0.47718473,
         ],
       },
       "lutMult": undefined,
@@ -32659,7 +32659,7 @@ Object {
         ],
         "93": Array [
           79,
-          0.9280832724559129,
+          0.92808327,
         ],
       },
       "lutMult": undefined,
@@ -32753,7 +32753,7 @@ Object {
         ],
         "2": Array [
           79,
-          0.016803383012563747,
+          0.01680338,
         ],
       },
       "lutMult": undefined,
@@ -32847,7 +32847,7 @@ Object {
         ],
         "88": Array [
           79,
-          0.8805137876205087,
+          0.88051379,
         ],
       },
       "lutMult": undefined,
@@ -33214,7 +33214,7 @@ Object {
         ],
         "95": Array [
           79,
-          0.9515720949219998,
+          0.95157209,
         ],
       },
       "lutMult": undefined,
@@ -33308,7 +33308,7 @@ Object {
         ],
         "3": Array [
           79,
-          0.03399453714028501,
+          0.03399454,
         ],
       },
       "lutMult": undefined,
@@ -33402,7 +33402,7 @@ Object {
         ],
         "90": Array [
           79,
-          0.9027986758952754,
+          0.90279868,
         ],
       },
       "lutMult": undefined,
@@ -33496,7 +33496,7 @@ Object {
         ],
         "88": Array [
           79,
-          0.8849023962402142,
+          0.8849024,
         ],
       },
       "lutMult": undefined,
@@ -33590,7 +33590,7 @@ Object {
         ],
         "10": Array [
           79,
-          0.10118626016821336,
+          0.10118626,
         ],
       },
       "lutMult": undefined,
@@ -33684,7 +33684,7 @@ Object {
         ],
         "84": Array [
           79,
-          0.839546174047597,
+          0.83954617,
         ],
       },
       "lutMult": undefined,
@@ -33778,7 +33778,7 @@ Object {
         ],
         "99": Array [
           79,
-          0.9947602444595814,
+          0.99476024,
         ],
       },
       "lutMult": undefined,
@@ -33872,7 +33872,7 @@ Object {
         ],
         "11": Array [
           79,
-          0.10752831173082629,
+          0.10752831,
         ],
       },
       "lutMult": undefined,
@@ -33966,7 +33966,7 @@ Object {
         ],
         "94": Array [
           79,
-          0.9437731899914374,
+          0.94377319,
         ],
       },
       "lutMult": undefined,
@@ -33978,11 +33978,11 @@ Object {
       "lut": Object {
         "44": Array [
           0,
-          0.44483671668137686,
+          0.44483672,
         ],
       },
       "lutMult": undefined,
-      "min": 0.44483671668137686,
+      "min": 0.44483672,
       "size": 1,
     },
     "def_2pmid": Object {
@@ -33990,11 +33990,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.30671506352087113,
+          0.30671506,
         ],
       },
       "lutMult": undefined,
-      "min": 0.30671506352087113,
+      "min": 0.30671506,
       "size": 1,
     },
     "def_2pmidr": Object {
@@ -34002,11 +34002,11 @@ Object {
       "lut": Object {
         "30": Array [
           0,
-          0.3009284543965046,
+          0.30092845,
         ],
       },
       "lutMult": undefined,
-      "min": 0.3009284543965046,
+      "min": 0.30092845,
       "size": 1,
     },
     "def_2prim": Object {
@@ -34014,11 +34014,11 @@ Object {
       "lut": Object {
         "58": Array [
           0,
-          0.5756013745704467,
+          0.57560137,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5756013745704467,
+      "min": 0.57560137,
       "size": 1,
     },
     "def_2prim_ast": Object {
@@ -34026,11 +34026,11 @@ Object {
       "lut": Object {
         "45": Array [
           0,
-          0.4507462686567164,
+          0.45074627,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4507462686567164,
+      "min": 0.45074627,
       "size": 1,
     },
     "def_2primr": Object {
@@ -34038,11 +34038,11 @@ Object {
       "lut": Object {
         "32": Array [
           0,
-          0.3178590933915893,
+          0.31785909,
         ],
       },
       "lutMult": undefined,
-      "min": 0.3178590933915893,
+      "min": 0.31785909,
       "size": 1,
     },
     "def_3p": Object {
@@ -34050,11 +34050,11 @@ Object {
       "lut": Object {
         "33": Array [
           0,
-          0.32521489971346706,
+          0.3252149,
         ],
       },
       "lutMult": undefined,
-      "min": 0.32521489971346706,
+      "min": 0.3252149,
       "size": 1,
     },
     "def_3p_ast": Object {
@@ -34062,11 +34062,11 @@ Object {
       "lut": Object {
         "85": Array [
           0,
-          0.8546255506607929,
+          0.85462555,
         ],
       },
       "lutMult": undefined,
-      "min": 0.8546255506607929,
+      "min": 0.85462555,
       "size": 1,
     },
     "def_3p_opp": Object {
@@ -34074,11 +34074,11 @@ Object {
       "lut": Object {
         "33": Array [
           0,
-          32.98939828080229,
+          32.98939828,
         ],
       },
       "lutMult": undefined,
-      "min": 32.98939828080229,
+      "min": 32.98939828,
       "size": 1,
     },
     "def_3pr": Object {
@@ -34086,11 +34086,11 @@ Object {
       "lut": Object {
         "38": Array [
           0,
-          0.3812124522119061,
+          0.38121245,
         ],
       },
       "lutMult": undefined,
-      "min": 0.3812124522119061,
+      "min": 0.38121245,
       "size": 1,
     },
     "def_adj_opp": Object {
@@ -34098,11 +34098,11 @@ Object {
       "lut": Object {
         "97": Array [
           0,
-          96.96167549350024,
+          96.96167549,
         ],
       },
       "lutMult": undefined,
-      "min": 96.96167549350024,
+      "min": 96.96167549,
       "size": 1,
     },
     "def_adj_ppp": Object {
@@ -34110,11 +34110,11 @@ Object {
       "lut": Object {
         "92": Array [
           0,
-          91.58495122584529,
+          91.58495123,
         ],
       },
       "lutMult": undefined,
-      "min": 91.58495122584529,
+      "min": 91.58495123,
       "size": 1,
     },
     "def_assist": Object {
@@ -34122,11 +34122,11 @@ Object {
       "lut": Object {
         "55": Array [
           0,
-          0.5471956224350205,
+          0.54719562,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5471956224350205,
+      "min": 0.54719562,
       "size": 1,
     },
     "def_ast_3p": Object {
@@ -34240,7 +34240,7 @@ Object {
         ],
         "12": Array [
           79,
-          0.11827007943512798,
+          0.11827008,
         ],
       },
       "lutMult": undefined,
@@ -34252,11 +34252,11 @@ Object {
       "lut": Object {
         "46": Array [
           0,
-          0.4612233752048061,
+          0.46122338,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4612233752048061,
+      "min": 0.46122338,
       "size": 1,
     },
     "def_ft": Object {
@@ -34264,11 +34264,11 @@ Object {
       "lut": Object {
         "70": Array [
           0,
-          0.6981981981981982,
+          0.6981982,
         ],
       },
       "lutMult": undefined,
-      "min": 0.6981981981981982,
+      "min": 0.6981982,
       "size": 1,
     },
     "def_ftr": Object {
@@ -34276,11 +34276,11 @@ Object {
       "lut": Object {
         "24": Array [
           0,
-          0.24249044238121245,
+          0.24249044,
         ],
       },
       "lutMult": undefined,
-      "min": 0.24249044238121245,
+      "min": 0.24249044,
       "size": 1,
     },
     "def_half": Object {
@@ -34370,7 +34370,7 @@ Object {
         ],
         "75": Array [
           79,
-          0.7545500494232297,
+          0.75455005,
         ],
       },
       "lutMult": undefined,
@@ -34382,11 +34382,11 @@ Object {
       "lut": Object {
         "43": Array [
           0,
-          0.42577675489067895,
+          0.42577675,
         ],
       },
       "lutMult": undefined,
-      "min": 0.42577675489067895,
+      "min": 0.42577675,
       "size": 1,
     },
     "def_half_3p": Object {
@@ -34406,11 +34406,11 @@ Object {
       "lut": Object {
         "38": Array [
           0,
-          0.38499646142958244,
+          0.38499646,
         ],
       },
       "lutMult": undefined,
-      "min": 0.38499646142958244,
+      "min": 0.38499646,
       "size": 1,
     },
     "def_half_delta_ppp": Object {
@@ -34418,7 +34418,7 @@ Object {
       "lut": Object {
         "-4": Array [
           0,
-          -4.097871890660414,
+          -4.09787189,
         ],
         "0": Array [
           1,
@@ -34504,7 +34504,7 @@ Object {
         ],
       },
       "lutMult": undefined,
-      "min": -4.097871890660414,
+      "min": -4.09787189,
       "size": 80,
     },
     "def_half_ftr": Object {
@@ -34512,11 +34512,11 @@ Object {
       "lut": Object {
         "19": Array [
           0,
-          0.18683651804670912,
+          0.18683652,
         ],
       },
       "lutMult": undefined,
-      "min": 0.18683651804670912,
+      "min": 0.18683652,
       "size": 1,
     },
     "def_half_ppp": Object {
@@ -34606,7 +34606,7 @@ Object {
         ],
         "92": Array [
           79,
-          91.9617148464852,
+          91.96171485,
         ],
       },
       "lutMult": undefined,
@@ -34618,11 +34618,11 @@ Object {
       "lut": Object {
         "17": Array [
           0,
-          0.16621888902307919,
+          0.16621889,
         ],
       },
       "lutMult": undefined,
-      "min": 0.16621888902307919,
+      "min": 0.16621889,
       "size": 1,
     },
     "def_net": Object {
@@ -34630,11 +34630,11 @@ Object {
       "lut": Object {
         "11": Array [
           0,
-          11.114221640321887,
+          11.11422164,
         ],
       },
       "lutMult": undefined,
-      "min": 11.114221640321887,
+      "min": 11.11422164,
       "size": 1,
     },
     "def_orb": Object {
@@ -34642,11 +34642,11 @@ Object {
       "lut": Object {
         "26": Array [
           0,
-          0.26252158894645944,
+          0.26252159,
         ],
       },
       "lutMult": undefined,
-      "min": 0.26252158894645944,
+      "min": 0.26252159,
       "size": 1,
     },
     "def_ppp": Object {
@@ -34654,11 +34654,11 @@ Object {
       "lut": Object {
         "96": Array [
           0,
-          96.05958673714561,
+          96.05958674,
         ],
       },
       "lutMult": undefined,
-      "min": 96.05958673714561,
+      "min": 96.05958674,
       "size": 1,
     },
     "def_scramble": Object {
@@ -34748,7 +34748,7 @@ Object {
         ],
         "9": Array [
           79,
-          0.08527071563674632,
+          0.08527072,
         ],
       },
       "lutMult": undefined,
@@ -34760,11 +34760,11 @@ Object {
       "lut": Object {
         "48": Array [
           0,
-          0.4766355140186916,
+          0.47663551,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4766355140186916,
+      "min": 0.47663551,
       "size": 1,
     },
     "def_scramble_3p": Object {
@@ -34772,11 +34772,11 @@ Object {
       "lut": Object {
         "43": Array [
           0,
-          0.42857142857142855,
+          0.42857143,
         ],
       },
       "lutMult": undefined,
-      "min": 0.42857142857142855,
+      "min": 0.42857143,
       "size": 1,
     },
     "def_scramble_3pr": Object {
@@ -34784,11 +34784,11 @@ Object {
       "lut": Object {
         "25": Array [
           0,
-          0.24647887323943662,
+          0.24647887,
         ],
       },
       "lutMult": undefined,
-      "min": 0.24647887323943662,
+      "min": 0.24647887,
       "size": 1,
     },
     "def_scramble_delta_ppp": Object {
@@ -34878,7 +34878,7 @@ Object {
         ],
         "8": Array [
           79,
-          8.196096883864556,
+          8.19609688,
         ],
       },
       "lutMult": undefined,
@@ -34890,11 +34890,11 @@ Object {
       "lut": Object {
         "45": Array [
           0,
-          0.4507042253521127,
+          0.45070423,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4507042253521127,
+      "min": 0.45070423,
       "size": 1,
     },
     "def_scramble_per_orb": Object {
@@ -34984,7 +34984,7 @@ Object {
         ],
         "58": Array [
           79,
-          0.583711708026543,
+          0.58371171,
         ],
       },
       "lutMult": undefined,
@@ -35078,7 +35078,7 @@ Object {
         ],
         "104": Array [
           79,
-          104.25568362101016,
+          104.25568362,
         ],
       },
       "lutMult": undefined,
@@ -35090,11 +35090,11 @@ Object {
       "lut": Object {
         "14": Array [
           0,
-          0.14088605894731104,
+          0.14088606,
         ],
       },
       "lutMult": undefined,
-      "min": 0.14088605894731104,
+      "min": 0.14088606,
       "size": 1,
     },
     "def_stk": Object {
@@ -35184,7 +35184,7 @@ Object {
         ],
         "9": Array [
           79,
-          0.09325325211544962,
+          0.09325325,
         ],
       },
       "lutMult": undefined,
@@ -35278,7 +35278,7 @@ Object {
         ],
         "7": Array [
           79,
-          0.06823642479577126,
+          0.06823642,
         ],
       },
       "lutMult": undefined,
@@ -35290,11 +35290,11 @@ Object {
       "lut": Object {
         "17": Array [
           0,
-          0.17443536761172512,
+          0.17443537,
         ],
       },
       "lutMult": undefined,
-      "min": 0.17443536761172512,
+      "min": 0.17443537,
       "size": 1,
     },
     "def_to_nonstl": Object {
@@ -35384,7 +35384,7 @@ Object {
         ],
         "11": Array [
           79,
-          0.10619894281595386,
+          0.10619894,
         ],
       },
       "lutMult": undefined,
@@ -35478,7 +35478,7 @@ Object {
         ],
         "20": Array [
           79,
-          0.19610764055742433,
+          0.19610764,
         ],
       },
       "lutMult": undefined,
@@ -35490,11 +35490,11 @@ Object {
       "lut": Object {
         "53": Array [
           0,
-          0.5286624203821656,
+          0.52866242,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5286624203821656,
+      "min": 0.52866242,
       "size": 1,
     },
     "def_trans_3p": Object {
@@ -35502,11 +35502,11 @@ Object {
       "lut": Object {
         "35": Array [
           0,
-          0.35294117647058826,
+          0.35294118,
         ],
       },
       "lutMult": undefined,
-      "min": 0.35294117647058826,
+      "min": 0.35294118,
       "size": 1,
     },
     "def_trans_3pr": Object {
@@ -35514,11 +35514,11 @@ Object {
       "lut": Object {
         "43": Array [
           0,
-          0.4311594202898551,
+          0.43115942,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4311594202898551,
+      "min": 0.43115942,
       "size": 1,
     },
     "def_trans_delta_ppp": Object {
@@ -35526,7 +35526,7 @@ Object {
       "lut": Object {
         "-5": Array [
           0,
-          -5.395533808941735,
+          -5.39553381,
         ],
         "0": Array [
           1,
@@ -35612,7 +35612,7 @@ Object {
         ],
       },
       "lutMult": undefined,
-      "min": -5.395533808941735,
+      "min": -5.39553381,
       "size": 80,
     },
     "def_trans_ftr": Object {
@@ -35620,11 +35620,11 @@ Object {
       "lut": Object {
         "42": Array [
           0,
-          0.42028985507246375,
+          0.42028986,
         ],
       },
       "lutMult": undefined,
-      "min": 0.42028985507246375,
+      "min": 0.42028986,
       "size": 1,
     },
     "def_trans_per_orb": Object {
@@ -35714,7 +35714,7 @@ Object {
         ],
         "63": Array [
           79,
-          0.6282187453959897,
+          0.62821875,
         ],
       },
       "lutMult": undefined,
@@ -35808,7 +35808,7 @@ Object {
         ],
         "91": Array [
           79,
-          90.66405292820387,
+          90.66405293,
         ],
       },
       "lutMult": undefined,
@@ -35820,11 +35820,11 @@ Object {
       "lut": Object {
         "19": Array [
           0,
-          0.18867924528301885,
+          0.18867925,
         ],
       },
       "lutMult": undefined,
-      "min": 0.18867924528301885,
+      "min": 0.18867925,
       "size": 1,
     },
     "off_2p": Object {
@@ -35832,11 +35832,11 @@ Object {
       "lut": Object {
         "50": Array [
           0,
-          0.5014866204162537,
+          0.50148662,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5014866204162537,
+      "min": 0.50148662,
       "size": 1,
     },
     "off_2pmid": Object {
@@ -35844,11 +35844,11 @@ Object {
       "lut": Object {
         "29": Array [
           0,
-          0.28895184135977336,
+          0.28895184,
         ],
       },
       "lutMult": undefined,
-      "min": 0.28895184135977336,
+      "min": 0.28895184,
       "size": 1,
     },
     "off_2pmidr": Object {
@@ -35856,11 +35856,11 @@ Object {
       "lut": Object {
         "20": Array [
           0,
-          0.19898534385569336,
+          0.19898534,
         ],
       },
       "lutMult": undefined,
-      "min": 0.19898534385569336,
+      "min": 0.19898534,
       "size": 1,
     },
     "off_2prim": Object {
@@ -35868,11 +35868,11 @@ Object {
       "lut": Object {
         "62": Array [
           0,
-          0.6158536585365854,
+          0.61585366,
         ],
       },
       "lutMult": undefined,
-      "min": 0.6158536585365854,
+      "min": 0.61585366,
       "size": 1,
     },
     "off_2prim_ast": Object {
@@ -35880,11 +35880,11 @@ Object {
       "lut": Object {
         "44": Array [
           0,
-          0.4430693069306931,
+          0.44306931,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4430693069306931,
+      "min": 0.44306931,
       "size": 1,
     },
     "off_2primr": Object {
@@ -35892,11 +35892,11 @@ Object {
       "lut": Object {
         "37": Array [
           0,
-          0.3697857948139797,
+          0.36978579,
         ],
       },
       "lutMult": undefined,
-      "min": 0.3697857948139797,
+      "min": 0.36978579,
       "size": 1,
     },
     "off_3p": Object {
@@ -35904,11 +35904,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.3111111111111111,
+          0.31111111,
         ],
       },
       "lutMult": undefined,
-      "min": 0.3111111111111111,
+      "min": 0.31111111,
       "size": 1,
     },
     "off_3p_ast": Object {
@@ -35916,11 +35916,11 @@ Object {
       "lut": Object {
         "85": Array [
           0,
-          0.8487394957983193,
+          0.8487395,
         ],
       },
       "lutMult": undefined,
-      "min": 0.8487394957983193,
+      "min": 0.8487395,
       "size": 1,
     },
     "off_3pr": Object {
@@ -35928,11 +35928,11 @@ Object {
       "lut": Object {
         "43": Array [
           0,
-          0.43122886133032695,
+          0.43122886,
         ],
       },
       "lutMult": undefined,
-      "min": 0.43122886133032695,
+      "min": 0.43122886,
       "size": 1,
     },
     "off_adj_opp": Object {
@@ -35940,11 +35940,11 @@ Object {
       "lut": Object {
         "108": Array [
           0,
-          107.58303700144161,
+          107.583037,
         ],
       },
       "lutMult": undefined,
-      "min": 107.58303700144161,
+      "min": 107.583037,
       "size": 1,
     },
     "off_adj_ppp": Object {
@@ -35952,11 +35952,11 @@ Object {
       "lut": Object {
         "113": Array [
           0,
-          113.24062028551026,
+          113.24062029,
         ],
       },
       "lutMult": undefined,
-      "min": 113.24062028551026,
+      "min": 113.24062029,
       "size": 1,
     },
     "off_assist": Object {
@@ -35964,11 +35964,11 @@ Object {
       "lut": Object {
         "55": Array [
           0,
-          0.5497311827956989,
+          0.54973118,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5497311827956989,
+      "min": 0.54973118,
       "size": 1,
     },
     "off_ast_3p": Object {
@@ -35976,11 +35976,11 @@ Object {
       "lut": Object {
         "49": Array [
           0,
-          0.4938875305623472,
+          0.49388753,
         ],
       },
       "lutMult": undefined,
-      "min": 0.4938875305623472,
+      "min": 0.49388753,
       "size": 1,
     },
     "off_ast_rim": Object {
@@ -35988,11 +35988,11 @@ Object {
       "lut": Object {
         "44": Array [
           0,
-          0.43765281173594134,
+          0.43765281,
         ],
       },
       "lutMult": undefined,
-      "min": 0.43765281173594134,
+      "min": 0.43765281,
       "size": 1,
     },
     "off_blk": Object {
@@ -36082,7 +36082,7 @@ Object {
         ],
         "11": Array [
           79,
-          0.10901883052527254,
+          0.10901883,
         ],
       },
       "lutMult": undefined,
@@ -36094,11 +36094,11 @@ Object {
       "lut": Object {
         "49": Array [
           0,
-          0.48647125140924463,
+          0.48647125,
         ],
       },
       "lutMult": undefined,
-      "min": 0.48647125140924463,
+      "min": 0.48647125,
       "size": 1,
     },
     "off_ft": Object {
@@ -36106,11 +36106,11 @@ Object {
       "lut": Object {
         "75": Array [
           0,
-          0.7473841554559043,
+          0.74738416,
         ],
       },
       "lutMult": undefined,
-      "min": 0.7473841554559043,
+      "min": 0.74738416,
       "size": 1,
     },
     "off_ftr": Object {
@@ -36118,11 +36118,11 @@ Object {
       "lut": Object {
         "38": Array [
           0,
-          0.37711386696730553,
+          0.37711387,
         ],
       },
       "lutMult": undefined,
-      "min": 0.37711386696730553,
+      "min": 0.37711387,
       "size": 1,
     },
     "off_half": Object {
@@ -36212,7 +36212,7 @@ Object {
         ],
         "70": Array [
           79,
-          0.6963835534084439,
+          0.69638355,
         ],
       },
       "lutMult": undefined,
@@ -36224,11 +36224,11 @@ Object {
       "lut": Object {
         "44": Array [
           0,
-          0.44155844155844154,
+          0.44155844,
         ],
       },
       "lutMult": undefined,
-      "min": 0.44155844155844154,
+      "min": 0.44155844,
       "size": 1,
     },
     "off_half_3p": Object {
@@ -36236,11 +36236,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.3132530120481928,
+          0.31325301,
         ],
       },
       "lutMult": undefined,
-      "min": 0.3132530120481928,
+      "min": 0.31325301,
       "size": 1,
     },
     "off_half_3pr": Object {
@@ -36248,11 +36248,11 @@ Object {
       "lut": Object {
         "46": Array [
           0,
-          0.45604395604395603,
+          0.45604396,
         ],
       },
       "lutMult": undefined,
-      "min": 0.45604395604395603,
+      "min": 0.45604396,
       "size": 1,
     },
     "off_half_delta_ppp": Object {
@@ -36260,7 +36260,7 @@ Object {
       "lut": Object {
         "-8": Array [
           0,
-          -8.168606042987534,
+          -8.16860604,
         ],
         "0": Array [
           1,
@@ -36346,7 +36346,7 @@ Object {
         ],
       },
       "lutMult": undefined,
-      "min": -8.168606042987534,
+      "min": -8.16860604,
       "size": 80,
     },
     "off_half_ftr": Object {
@@ -36354,11 +36354,11 @@ Object {
       "lut": Object {
         "29": Array [
           0,
-          0.2904238618524333,
+          0.29042386,
         ],
       },
       "lutMult": undefined,
-      "min": 0.2904238618524333,
+      "min": 0.29042386,
       "size": 1,
     },
     "off_half_ppp": Object {
@@ -36448,7 +36448,7 @@ Object {
         ],
         "99": Array [
           79,
-          99.00520233447996,
+          99.00520233,
         ],
       },
       "lutMult": undefined,
@@ -36460,11 +36460,11 @@ Object {
       "lut": Object {
         "17": Array [
           0,
-          0.16731326092838095,
+          0.16731326,
         ],
       },
       "lutMult": undefined,
-      "min": 0.16731326092838095,
+      "min": 0.16731326,
       "size": 1,
     },
     "off_net": Object {
@@ -36472,11 +36472,11 @@ Object {
       "lut": Object {
         "22": Array [
           0,
-          21.655669059664973,
+          21.65566906,
         ],
       },
       "lutMult": undefined,
-      "min": 21.655669059664973,
+      "min": 21.65566906,
       "size": 1,
     },
     "off_orb": Object {
@@ -36484,11 +36484,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.31216457960644006,
+          0.31216458,
         ],
       },
       "lutMult": undefined,
-      "min": 0.31216457960644006,
+      "min": 0.31216458,
       "size": 1,
     },
     "off_ppp": Object {
@@ -36496,11 +36496,11 @@ Object {
       "lut": Object {
         "107": Array [
           0,
-          107.1738083774675,
+          107.17380838,
         ],
       },
       "lutMult": undefined,
-      "min": 107.1738083774675,
+      "min": 107.17380838,
       "size": 1,
     },
     "off_scramble": Object {
@@ -36590,7 +36590,7 @@ Object {
         ],
         "11": Array [
           79,
-          0.10780838866433026,
+          0.10780839,
         ],
       },
       "lutMult": undefined,
@@ -36602,11 +36602,11 @@ Object {
       "lut": Object {
         "58": Array [
           0,
-          0.5755395683453237,
+          0.57553957,
         ],
       },
       "lutMult": undefined,
-      "min": 0.5755395683453237,
+      "min": 0.57553957,
       "size": 1,
     },
     "off_scramble_3p": Object {
@@ -36614,11 +36614,11 @@ Object {
       "lut": Object {
         "29": Array [
           0,
-          0.28888888888888886,
+          0.28888889,
         ],
       },
       "lutMult": undefined,
-      "min": 0.28888888888888886,
+      "min": 0.28888889,
       "size": 1,
     },
     "off_scramble_3pr": Object {
@@ -36626,11 +36626,11 @@ Object {
       "lut": Object {
         "24": Array [
           0,
-          0.24456521739130435,
+          0.24456522,
         ],
       },
       "lutMult": undefined,
-      "min": 0.24456521739130435,
+      "min": 0.24456522,
       "size": 1,
     },
     "off_scramble_delta_ppp": Object {
@@ -36720,7 +36720,7 @@ Object {
         ],
         "8": Array [
           79,
-          8.046930109156818,
+          8.04693011,
         ],
       },
       "lutMult": undefined,
@@ -36732,11 +36732,11 @@ Object {
       "lut": Object {
         "47": Array [
           0,
-          0.47282608695652173,
+          0.47282609,
         ],
       },
       "lutMult": undefined,
-      "min": 0.47282608695652173,
+      "min": 0.47282609,
       "size": 1,
     },
     "off_scramble_per_orb": Object {
@@ -36826,7 +36826,7 @@ Object {
         ],
         "64": Array [
           79,
-          0.6415989205037649,
+          0.64159892,
         ],
       },
       "lutMult": undefined,
@@ -36920,7 +36920,7 @@ Object {
         ],
         "115": Array [
           79,
-          115.22073848662431,
+          115.22073849,
         ],
       },
       "lutMult": undefined,
@@ -36932,11 +36932,11 @@ Object {
       "lut": Object {
         "12": Array [
           0,
-          0.12057984260228126,
+          0.12057984,
         ],
       },
       "lutMult": undefined,
-      "min": 0.12057984260228126,
+      "min": 0.12057984,
       "size": 1,
     },
     "off_stk": Object {
@@ -37026,7 +37026,7 @@ Object {
         ],
         "10": Array [
           79,
-          0.09543382546966564,
+          0.09543383,
         ],
       },
       "lutMult": undefined,
@@ -37120,7 +37120,7 @@ Object {
         ],
         "8": Array [
           79,
-          0.08184882041405873,
+          0.08184882,
         ],
       },
       "lutMult": undefined,
@@ -37132,11 +37132,11 @@ Object {
       "lut": Object {
         "17": Array [
           0,
-          0.16947520462205104,
+          0.1694752,
         ],
       },
       "lutMult": undefined,
-      "min": 0.16947520462205104,
+      "min": 0.1694752,
       "size": 1,
     },
     "off_to_nonstl": Object {
@@ -37226,7 +37226,7 @@ Object {
         ],
         "9": Array [
           79,
-          0.08762638420799229,
+          0.08762638,
         ],
       },
       "lutMult": undefined,
@@ -37320,7 +37320,7 @@ Object {
         ],
         "24": Array [
           79,
-          0.24058738565238325,
+          0.24058739,
         ],
       },
       "lutMult": undefined,
@@ -37332,11 +37332,11 @@ Object {
       "lut": Object {
         "68": Array [
           0,
-          0.6779661016949152,
+          0.6779661,
         ],
       },
       "lutMult": undefined,
-      "min": 0.6779661016949152,
+      "min": 0.6779661,
       "size": 1,
     },
     "off_trans_3p": Object {
@@ -37344,11 +37344,11 @@ Object {
       "lut": Object {
         "31": Array [
           0,
-          0.30935251798561153,
+          0.30935252,
         ],
       },
       "lutMult": undefined,
-      "min": 0.30935251798561153,
+      "min": 0.30935252,
       "size": 1,
     },
     "off_trans_3pr": Object {
@@ -37356,11 +37356,11 @@ Object {
       "lut": Object {
         "44": Array [
           0,
-          0.439873417721519,
+          0.43987342,
         ],
       },
       "lutMult": undefined,
-      "min": 0.439873417721519,
+      "min": 0.43987342,
       "size": 1,
     },
     "off_trans_delta_ppp": Object {
@@ -37450,7 +37450,7 @@ Object {
         ],
         "9": Array [
           79,
-          0.0905502377016063,
+          0.09055024,
         ],
       },
       "lutMult": undefined,
@@ -37462,11 +37462,11 @@ Object {
       "lut": Object {
         "67": Array [
           0,
-          0.6708860759493671,
+          0.67088608,
         ],
       },
       "lutMult": undefined,
-      "min": 0.6708860759493671,
+      "min": 0.67088608,
       "size": 1,
     },
     "off_trans_per_orb": Object {
@@ -37556,7 +37556,7 @@ Object {
         ],
         "92": Array [
           79,
-          0.9164480019258545,
+          0.916448,
         ],
       },
       "lutMult": undefined,
@@ -37650,7 +37650,7 @@ Object {
         ],
         "107": Array [
           79,
-          107.2643586151691,
+          107.26435862,
         ],
       },
       "lutMult": undefined,
@@ -37662,11 +37662,11 @@ Object {
       "lut": Object {
         "17": Array [
           0,
-          0.16609965979587754,
+          0.16609966,
         ],
       },
       "lutMult": undefined,
-      "min": 0.16609965979587754,
+      "min": 0.16609966,
       "size": 1,
     },
     "tempo": Object {

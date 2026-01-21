@@ -100,6 +100,7 @@ export type TeamStatsReadOnlyState = {
   allPlayerStatsCache?: Record<string, IndivStatSet[]>;
   /** Diff mode state (phase 1) */
   diffState?: DiffState;
+  leaderboardMode?: boolean; //(set to true if being viewed via leaderboard vs via team analysis)
 };
 
 export type TeamStatsChangeState = {
@@ -206,6 +207,7 @@ export class TeamStatsTableUtils {
       playStyleConfigStr,
       allPlayerStatsCache,
       diffState,
+      leaderboardMode,
     } = readOnlyState;
 
     // Helper to check if a dataset is enabled based on diffState
@@ -557,9 +559,11 @@ export class TeamStatsTableUtils {
             : undefined;
 
           // Extra mutable set, build net margin column:
-          LineupUtils.buildEfficiencyMargins(
-            getTeamStats(k, teamStats, otherQueryIndex)
-          );
+          if (!leaderboardMode) {
+            LineupUtils.buildEfficiencyMargins(
+              getTeamStats(k, teamStats, otherQueryIndex)
+            );
+          }
 
           // Mutate stats object to inject luck
           LuckUtils.injectLuck(

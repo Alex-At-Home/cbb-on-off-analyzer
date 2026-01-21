@@ -6074,6 +6074,20 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": false,
@@ -6125,6 +6139,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -6156,6 +6177,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -6262,6 +6288,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -7892,6 +7919,24 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               <div>
                 <button
                   class="btn btn-outline-secondary btn-sm"
+                  disabled=""
+                  type="button"
+                >
+                  Diffs...
+                </button>
+              </div>
+                
+            </span>
+            <span>
+              <small>
+                |
+              </small>
+                
+            </span>
+            <span>
+              <div>
+                <button
+                  class="btn btn-outline-secondary btn-sm"
                   type="button"
                 >
                   Expanded
@@ -7980,6 +8025,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 
             </span>
             <span>
+              <small>
+                |
+              </small>
+                
+            </span>
+            <span>
               <div>
                 <button
                   class="btn btn-outline-secondary btn-sm"
@@ -8025,6 +8076,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             </div>
           </div>
         </div>
+         
       </div>
       <div
         class="pt-1 d-md-none form-row"
@@ -8041,6 +8093,24 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               <div>
                 <button
                   class="btn btn-outline-secondary btn-sm"
+                  disabled=""
+                  type="button"
+                >
+                  Diffs...
+                </button>
+              </div>
+                
+            </span>
+            <span>
+              <small>
+                |
+              </small>
+                
+            </span>
+            <span>
+              <div>
+                <button
+                  class="btn btn-outline-secondary btn-sm"
                   type="button"
                 >
                   Expanded
@@ -8129,6 +8199,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 
             </span>
             <span>
+              <small>
+                |
+              </small>
+                
+            </span>
+            <span>
               <div>
                 <button
                   class="btn btn-outline-secondary btn-sm"
@@ -8174,6 +8250,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             </div>
           </div>
         </div>
+         
       </div>
       <div
         class="mt-2 row"
@@ -11211,6 +11288,20 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           items={
             Array [
               Object {
+                "disabled": true,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": true,
@@ -11262,6 +11353,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -11293,6 +11391,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -11399,6 +11502,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -17344,6 +17448,20 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": true,
@@ -17395,6 +17513,13 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -17426,6 +17551,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -17532,6 +17662,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -25493,6 +25624,20 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": false,
@@ -25544,6 +25689,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -25575,6 +25727,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -25681,6 +25838,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -32269,6 +32427,20 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": true,
@@ -32320,6 +32492,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -32351,6 +32530,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -32457,6 +32641,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -40784,6 +40969,20 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": false,
@@ -40835,6 +41034,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -40866,6 +41072,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -40972,6 +41183,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -49945,6 +50157,20 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": false,
@@ -50004,6 +50230,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -50035,6 +50268,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -50141,6 +50379,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"
@@ -50806,6 +51045,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "kind": "text-row",
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
+                  dynamicQuickSwitch={false}
                   grades={Object {}}
                   navigationLinkOverride={
                     <OverlayTrigger
@@ -51680,6 +51920,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   userOpts={
                     Object {
                       "playType": "P%le",
+                      "quickSwitch": undefined,
                       "rawPpp": false,
                     }
                   }
@@ -52323,6 +52564,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "kind": "text-row",
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
+                  dynamicQuickSwitch={false}
                   grades={Object {}}
                   navigationLinkOverride={
                     <OverlayTrigger
@@ -53197,6 +53439,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   userOpts={
                     Object {
                       "playType": "P%le",
+                      "quickSwitch": undefined,
                       "rawPpp": false,
                     }
                   }
@@ -53844,6 +54087,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "kind": "text-row",
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
+                  dynamicQuickSwitch={false}
                   grades={Object {}}
                   navigationLinkOverride={
                     <OverlayTrigger
@@ -54718,6 +54962,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   userOpts={
                     Object {
                       "playType": "P%le",
+                      "quickSwitch": undefined,
                       "rawPpp": false,
                     }
                   }
@@ -55353,6 +55598,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "kind": "text-row",
                 "text": <IndivPlayTypeTabbedView
                   avgEfficiency={100}
+                  dynamicQuickSwitch={false}
                   grades={Object {}}
                   navigationLinkOverride={
                     <OverlayTrigger
@@ -56221,6 +56467,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   userOpts={
                     Object {
                       "playType": "P%le",
+                      "quickSwitch": undefined,
                       "rawPpp": false,
                     }
                   }
@@ -62376,6 +62623,20 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           items={
             Array [
               Object {
+                "disabled": false,
+                "label": "Diffs...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show/hide diff mode controls for comparing datasets",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "Expanded",
                 "onClick": [Function],
                 "toggled": false,
@@ -62435,6 +62696,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "tooltip": "Show shot charts",
               },
               Object {
+                "isLabelOnly": true,
+                "label": "|",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "",
+              },
+              Object {
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -62466,6 +62734,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Always show baseline statistics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Sync Team/Player Diffs"
             truthVal={false}
           />
           <DropdownDivider
@@ -62572,6 +62845,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
         </GenericTogglingMenu>
       </FormGroup>
+       
     </StickyRow>
     <Row
       className="mt-2"

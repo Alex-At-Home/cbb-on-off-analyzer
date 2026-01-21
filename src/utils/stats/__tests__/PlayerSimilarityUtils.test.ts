@@ -298,7 +298,7 @@ describe("PlayerSimilarityUtils", () => {
           );
 
         expect(styleRateWeights.length).toBe(15);
-        expect(fgRateWeights.length).toBe(3);
+        expect(fgRateWeights.length).toBe(4);
 
         // Style weights should sum to styledScoringWeight (4.0), FG weights sum to fgWeight (4.0)
         const styleSum = styleRateWeights.reduce(

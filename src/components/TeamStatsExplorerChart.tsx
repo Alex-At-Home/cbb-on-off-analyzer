@@ -1269,11 +1269,28 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
 
         // this is a bit horrible but this field gets overwritten by some React node for visual
         // purposes, so we re-create it here every time for sorting / filtering / clipboard
-        team.off_raw_net = {
-          value: (team.off_ppp?.value || 100) - (team.def_ppp?.value || 100),
-        };
+        // TODO: add a table formatter so can represent def_net as a number and avoid this grovelling
+        if (!team.raw_net && _.isNumber(team.def_net?.value)) {
+          team.raw_net = {
+            //(first time through, create raw_net from def_net)
+            ...team.def_net,
+          };
+        }
+        if (team.raw_net) {
+          // subsequent times, re-create from raw_net
+          team.off_raw_net = {
+            ...team.raw_net,
+          };
+        } else {
+          //(fallback should never happen)
+          team.off_raw_net = {
+            value: (team.off_ppp?.value || 100) - (team.def_ppp?.value || 100),
+          };
+        }
+        //(SECRET_QUERY mode doesn't include this so calculate)
+        // (in other cases we _shouldn't_ because you lose precision from the truncation that occurs in the
+        // JSON ser/storage/deser ... if you find you have to then follow same pattern as above for raw_net)        // JSON ser/storage/deser)
         if (!team.off_net) {
-          //(SECRET_QUERY mode doesn't include this so calculate)
           team.off_net = {
             value:
               (team.off_adj_ppp?.value || 100) -

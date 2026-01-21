@@ -19,6 +19,8 @@ export type DivisionStatisticsElement = {
 };
 
 export type DivisionStatistics = {
+  /** Info about how the fields have been truncated, default is 4dp */
+  precision?: "native";
   /** The number of teams in the tier (includes teams in multiple tiers) */
   tier_sample_size: number;
   /** The number of teams in the tier (only teams in their "natural" tier) */
