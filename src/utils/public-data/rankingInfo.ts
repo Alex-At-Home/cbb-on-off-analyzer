@@ -276,7 +276,6 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
 const apPollMen_2025_26: () => Record<string, number> = () =>
   _.chain(
     `
-RANK	SCHOOL (1ST VOTES)	RECORD	POINTS	PREVIOUS
 1	Arizona (61)	18-0	1525	1
 2	UConn	18-1	1419	3
 3	Michigan	16-1	1377	4
@@ -507,31 +506,31 @@ const apPollWomen_2024_25: () => Record<string, number> = () =>
 const apPollWomen_2025_26: () => Record<string, number> = () =>
   _.chain(
     `
-1	UConn (32)	17-0	800	1			
-2	South Carolina	17-1	748	3			
-3	UCLA	15-1	734	4			
-4	Texas	18-1	710	2			
-5	Vanderbilt	17-0	671	7			
-6	LSU	16-2	598	12			
-7	Kentucky	16-2	583	6			
-8	Michigan	14-2	574	9			
-9	Louisville	16-3	550	10			
-10	TCU	16-1	497	13			
-11	Iowa	14-2	406	14			
-12	Maryland	16-2	403	8			
-13	Oklahoma	14-3	401	5			
-14	Ohio State	15-2	391	19			
-15	Michigan State	16-1	383	15			
-16	Ole Miss	16-3	365	18			
-17	Texas Tech	18-0	323	17			
-18	Baylor	15-3	289	16			
-19	Iowa State	14-3	205	11			
-20	Tennessee	12-3	197	20			
-21	Alabama	16-1	141	NR			
-22	Princeton	14-1	116	24			
-23	Notre Dame	12-4	65	NR			
-24	Nebraska	14-3	48	25			
-25	Illinois	14-3	43	NR
+1	UConn (30)	18-0	750	1
+2	South Carolina	19-1	715	2
+3	UCLA	17-1	692	3
+4	Texas	19-2	645	4
+5	Vanderbilt	18-0	638	5
+6	LSU	17-2	596	6
+7	Michigan	15-2	556	8
+8	Louisville	18-3	537	10
+9	TCU	18-1	503	9
+10	Iowa	16-2	463	11
+11	Kentucky	17-3	430	7
+12	Ohio State	16-2	428	14
+13	Michigan State	17-2	358	15
+14	Baylor	17-3	346	18
+15	Maryland	17-3	345	12
+16	Oklahoma	14-4	297	13
+17	Tennessee	13-3	279	20
+18	Ole Miss	16-4	231	16
+19	Texas Tech	19-1	219	17
+20	Princeton	15-1	176	22
+21	Duke	13-6	122	NR
+22	West Virginia	15-4	59	NR
+23	Alabama	17-3	49	21
+24	Nebraska	14-4	48	24
+25	Washington	14-4	43	NR
 `
   )
     .split("\n")
@@ -546,7 +545,7 @@ const apPollWomen_2025_26: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 10,
+      __week__: 11,
     })
     .value();
 
