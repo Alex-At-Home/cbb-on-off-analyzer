@@ -573,7 +573,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // Helper to check if a dataset should be shown based on diffsHideDatasets
   const shouldShowDataset = (key: string) => {
     // If no selection or feature flag not active, show all
-    if (!showDiffs || !diffsHideDatasets) {
+    if (!showDiffModeUI || !diffsHideDatasets) {
       return true;
     }
     // In multi mode, check if key is in the list; in single mode, check exact match

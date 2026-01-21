@@ -1516,7 +1516,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // Determine if a dataset should be shown based on diffsHideDatasets
   const shouldShowDataset = (key: string): boolean => {
-    if (!showDiffs || !diffsHideDatasets) {
+    if (!showDiffModeUI || !diffsHideDatasets) {
       return true;
     }
     return selectedDatasetKeys.includes(key);

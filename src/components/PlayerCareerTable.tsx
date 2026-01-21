@@ -2164,7 +2164,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     onClick: () => null,
                   },
                   {
-                    label: "Diff",
+                    label: "Diffs",
                     tooltip:
                       "Diff mode: focuses the UI on comparing the source player vs their comps",
                     toggled: diffMode,
