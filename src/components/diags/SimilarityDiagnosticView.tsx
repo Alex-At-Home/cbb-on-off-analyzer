@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
-import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
+import { faThumbtack, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import {
   PlayerSimilarityUtils,
   SimilarityDiagnostics,
@@ -24,6 +24,8 @@ interface Props {
   isPinned: boolean;
   onPinPlayer: () => void;
   onUnpinPlayer: () => void;
+  onHidePlayer: () => void;
+  isPinnedPlayersOnlyView?: boolean; // true when showing pinned players only (no similar players)
 }
 
 const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
@@ -35,6 +37,8 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
   isPinned,
   onPinPlayer,
   onUnpinPlayer,
+  onHidePlayer,
+  isPinnedPlayersOnlyView = false,
 }) => {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -61,7 +65,31 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
       <div className="d-flex justify-content-between align-items-center p-2 small">
         {/* Left-aligned icons */}
         <div className="d-flex align-items-center" style={{ width: "60px" }}>
+          {isPinned && !isPinnedPlayersOnlyView && (
+            // Pinned player in similar players view - show unpin (thumbs down) icon
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip id={`unpin-${playerId}`}>
+                  Unpin [<b>{playerName}</b>] (keeps showing in similar players)
+                </Tooltip>
+              }
+            >
+              <a
+                href="#"
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onUnpinPlayer(); // This will toggle the pin state
+                }}
+                className="mr-2"
+                style={{ fontSize: "1em" }}
+              >
+                <FontAwesomeIcon icon={faThumbsDown} />
+              </a>
+            </OverlayTrigger>
+          )}
           {!isPinned && (
+            // Unpinned player - show pin icon
             <OverlayTrigger
               placement="top"
               overlay={
@@ -87,10 +115,16 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
           <OverlayTrigger
             placement="top"
             overlay={
-              <Tooltip id={`remove-${playerId}`}>
-                {isPinned ? (
+              <Tooltip id={`hide-${playerId}`}>
+                {isPinned && isPinnedPlayersOnlyView ? (
                   <span>
-                    Unpin [<b>{playerName}</b>]
+                    Remove [<b>{playerName}</b>] from pinned players
+                  </span>
+                ) : isPinned ? (
+                  <span>
+                    Hide [<b>{playerName}</b>] (unpins and hides from view,
+                    players can be unhidden by clicking on their names at the
+                    bottom of the page)
                   </span>
                 ) : (
                   <span>
@@ -105,7 +139,7 @@ const SimilarityDiagnosticView: React.FunctionComponent<Props> = ({
               href="#"
               onClick={(e: any) => {
                 e.preventDefault();
-                onUnpinPlayer();
+                onHidePlayer();
               }}
               className="mr-1"
               style={{ fontSize: "1em" }}
