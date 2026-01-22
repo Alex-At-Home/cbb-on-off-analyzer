@@ -25,6 +25,7 @@ interface Props {
   onHide: () => void;
   config: SimilarityConfig;
   onConfigChange: (config: SimilarityConfig) => void;
+  onApply?: () => void;
 }
 
 const SimilarityConfigModal: React.FunctionComponent<Props> = ({
@@ -32,6 +33,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
   onHide,
   config,
   onConfigChange,
+  onApply,
 }) => {
   const handleConfigChange = (field: keyof SimilarityConfig, value: any) => {
     onConfigChange({
@@ -75,6 +77,18 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
       handleConfigChange("customWeights", internalCustomWeights);
     }
     onHide();
+  };
+
+  // Update config when modal closes
+  const handleApply = () => {
+    // Only update if values actually changed
+    if (internalQuery !== config.advancedQuery) {
+      handleConfigChange("advancedQuery", internalQuery);
+    }
+    if (internalCustomWeights !== config.customWeights) {
+      handleConfigChange("customWeights", internalCustomWeights);
+    }
+    if (onApply) onApply();
   };
 
   const weightingOptions = [
@@ -642,7 +656,12 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
         <Button variant="danger" onClick={handleReset}>
           Reset to Defaults
         </Button>
-        <div className="ml-auto">
+        <div className="ml-auto d-flex">
+          {onApply && (
+            <Button variant="primary" onClick={handleApply} className="mr-2">
+              Apply
+            </Button>
+          )}
           <OverlayTrigger placement="top" overlay={closeTooltip}>
             <Button variant="secondary" onClick={handleClose}>
               Close
