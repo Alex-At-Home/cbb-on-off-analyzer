@@ -1470,6 +1470,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         const currentJsonEpoch =
           dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
 
+        // Build additional query filters based on config
+        const similarityFilters = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+          currPlayerSelected,
+          similarityConfig
+        );
+        
+        // Combine user's advanced query with auto-generated filters
+        const combinedQuery = [
+          similarityConfig.advancedQuery,
+          similarityFilters.query
+        ].filter(q => q && q.trim()).map(p => `(${p})`).join(" AND ");
+
         // Step 1: Get lean candidate data using optimized similarity API
         const allPromises = Promise.all(
           RequestUtils.requestHandlingLogic(
@@ -1481,7 +1493,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   currPlayerSelected
                 ).join(","),
               queryPos: currPlayerSelected.posClass,
-              extraSimilarityQuery: similarityConfig.advancedQuery,
+              extraSimilarityQuery: combinedQuery,
+              ...(similarityFilters.runtimeMappingNames ? { runtimeMappingNames: similarityFilters.runtimeMappingNames } : {}),
             },
             ParamPrefixes.similarPlayers,
             [],

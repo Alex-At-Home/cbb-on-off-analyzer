@@ -16,6 +16,8 @@ import {
 import {
   SimilarityConfig,
   DefaultSimilarityConfig,
+  ClassWeightingOption,
+  LevelOfPlayOption,
 } from "../../utils/FilterModels";
 
 interface Props {
@@ -94,6 +96,25 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
     { value: "raw", label: "Raw" },
     { value: "relative", label: "Relative" },
     { value: "none", label: "None" },
+  ];
+
+  const classWeightingOptions = [
+    { value: "same_class", label: "Same Class" },
+    { value: "fr_only", label: "Fr Only" },
+    { value: "under", label: "Under" },
+    { value: "upper", label: "Upper" },
+    { value: "none", label: "None" },
+    { value: "less", label: "Less" },
+    { value: "default", label: "Default" },
+    { value: "more", label: "More" },
+    { value: "max", label: "Max" },
+  ];
+
+  const levelOfPlayOptions = [
+    { value: "any", label: "Any" },
+    { value: "same_tier", label: "Same Tier" },
+    { value: "same_conf", label: "Same Conf" },
+    { value: "similar_sos", label: "Similar SoS" },
   ];
 
   const closeTooltip = (
@@ -436,7 +457,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                       handleConfigChange("classWeighting", e.target.value)
                     }
                   >
-                    {weightingOptions.map((option) => (
+                    {classWeightingOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>
@@ -481,6 +502,28 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                     }
                   >
                     {weightingOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+              <Col xs={6} md={3}>
+                <Form.Group className="mb-0">
+                  <Form.Label>
+                    <small>
+                      <b>Level of play</b>
+                    </small>
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={config.levelOfPlay}
+                    onChange={(e) =>
+                      handleConfigChange("levelOfPlay", e.target.value)
+                    }
+                  >
+                    {levelOfPlayOptions.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
                       </option>

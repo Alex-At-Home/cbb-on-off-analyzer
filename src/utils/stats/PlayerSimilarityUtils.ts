@@ -1,6 +1,7 @@
 import { IndivCareerStatSet, Statistic } from "../StatModels";
 import { PlayTypeUtils, TopLevelIndivPlayType } from "./PlayTypeUtils";
 import { SimilarityConfig, DefaultSimilarityConfig } from "../FilterModels";
+import { ConferenceStrength } from "../public-data/ConferenceInfo";
 
 // Lodash:
 import _ from "lodash";
@@ -745,12 +746,30 @@ export class PlayerSimilarityUtils {
 
     for (const stat of playerInfoStats) {
       if (stat.weight !== "none") {
+        // Handle class-specific weighting options
+        let actualWeight: number;
+        if (
+          stat.name === "Class" &&
+          ["same_class", "fr_only", "under", "upper"].includes(
+            stat.weight as string
+          )
+        ) {
+          // Class-specific options use "default" weight as per user requirements
+          actualWeight = PlayerSimilarityUtils.dropdownWeights["default"];
+        } else {
+          // Standard weighting options
+          actualWeight =
+            PlayerSimilarityUtils.dropdownWeights[
+              stat.weight as keyof typeof PlayerSimilarityUtils.dropdownWeights
+            ];
+        }
+
         processSection(
           1,
           config.playerInfoWeight,
           "playerInfo",
           [stat.name],
-          PlayerSimilarityUtils.dropdownWeights[stat.weight]
+          actualWeight
         );
       }
     }
@@ -946,5 +965,99 @@ export class PlayerSimilarityUtils {
     };
 
     return classMap[yearClass] ?? 2.5;
+  }
+
+  /**
+   * Builds additional query filters based on similarity configuration
+   */
+  static buildSimilarityQueryFilters(
+    sourcePlayer: IndivCareerStatSet,
+    config: SimilarityConfig
+  ): { query: string; runtimeMappingNames?: string } {
+    const queryTerms: string[] = [];
+    const runtimeMappingNames: string[] = [];
+
+    // Class weighting filters
+    if (
+      config.classWeighting !== "none" &&
+      config.classWeighting !== "less" &&
+      config.classWeighting !== "default" &&
+      config.classWeighting !== "more" &&
+      config.classWeighting !== "max"
+    ) {
+      const sourceClass = sourcePlayer.roster?.year_class || "??";
+
+      switch (config.classWeighting) {
+        case "same_class":
+          queryTerms.push(`roster.year_class.keyword:"${sourceClass}"`);
+          break;
+        case "fr_only":
+          queryTerms.push(`roster.year_class.keyword:"Fr"`);
+          break;
+        case "under":
+          queryTerms.push(`roster.year_class.keyword:("Fr" OR "So")`);
+          break;
+        case "upper":
+          queryTerms.push(`roster.year_class.keyword:("Jr" OR "Sr")`);
+          break;
+      }
+    }
+
+    // Level of play filters
+    switch (config.levelOfPlay) {
+      case "same_conf":
+        const sourceConf = sourcePlayer.conf || "??";
+        queryTerms.push(`conf.keyword:"${sourceConf}"`);
+        break;
+
+      case "same_tier":
+        const sourceConference = sourcePlayer.conf || "??";
+        const sourceStrength = ConferenceStrength[sourceConference];
+
+        if (sourceStrength !== undefined) {
+          // Find conferences within 4 strength points
+          const nearbyConferences = Object.entries(ConferenceStrength)
+            .filter(
+              ([, strength]) => Math.abs(strength - sourceStrength) <= 4.0
+            )
+            .map(([conf]) => `"${conf}"`)
+            .join(" OR ");
+
+          if (nearbyConferences) {
+            queryTerms.push(`conf.keyword:(${nearbyConferences})`);
+          }
+        }
+        break;
+
+      case "similar_sos":
+        // Calculate source player's SoS (off_adj_opp - def_adj_opp)
+        const sourceOffAdjOpp =
+          (sourcePlayer.off_adj_opp as Statistic)?.value || 0;
+        const sourceDefAdjOpp =
+          (sourcePlayer.def_adj_opp as Statistic)?.value || 0;
+        const sourceSoS = sourceOffAdjOpp - sourceDefAdjOpp;
+
+        // Request the oppo_sos runtime mapping
+        runtimeMappingNames.push("oppo_sos");
+
+        // Add range query for SoS ±3.5
+        const sosMin = sourceSoS - 3.5;
+        const sosMax = sourceSoS + 3.5;
+        queryTerms.push(`oppo_sos:[${sosMin} TO ${sosMax}]`);
+        break;
+
+      case "any":
+      default:
+        // No additional filtering
+        break;
+    }
+
+    return {
+      query: queryTerms.length > 0 ? queryTerms.join(" AND ") : "",
+      runtimeMappingNames:
+        runtimeMappingNames.length > 0
+          ? runtimeMappingNames.join(",")
+          : undefined,
+    };
   }
 }

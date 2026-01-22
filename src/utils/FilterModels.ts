@@ -319,6 +319,8 @@ export type OffseasonLeaderboardParams = {
 
 // Similarity configuration types
 export type WeightingOption = "none" | "less" | "default" | "more" | "max";
+export type ClassWeightingOption = "same_class" | "fr_only" | "under" | "upper" | WeightingOption;
+export type LevelOfPlayOption = "any" | "same_tier" | "same_conf" | "similar_sos";
 
 export interface SimilarityConfig {
   // Slider weights (existing, but rename class -> playerInfo)
@@ -347,9 +349,10 @@ export interface SimilarityConfig {
   foulsWeighting: WeightingOption;
 
   // Player Info section
-  classWeighting: WeightingOption;
+  classWeighting: ClassWeightingOption;
   heightWeighting: WeightingOption;
   minutesWeighting: WeightingOption;
+  levelOfPlay: LevelOfPlayOption;
 
   // New fields
   playTypeWeights: WeightingOption;
@@ -381,6 +384,7 @@ export const DefaultSimilarityConfig: SimilarityConfig = {
   classWeighting: "none",
   heightWeighting: "less",
   minutesWeighting: "none",
+  levelOfPlay: "same_tier",
   playTypeWeights: "default",
   customWeights: "",
   comparisonPlayersCount: 10,

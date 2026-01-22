@@ -42,6 +42,42 @@ export const ConferenceToNickname: Record<string, string> = {
   "West Coast Conference": "WCC",
 };
 
+/** Conference strength mapping for similarity filtering */
+export const ConferenceStrength: Record<string, number> = {
+  "Big 12 Conference": 16.66,
+  "Big East Conference": 15.84,
+  "Big Ten Conference": 14.87,
+  "Southeastern Conference": 14.23,
+  "Atlantic Coast Conference": 13.02,
+  "Pac 12 Conference": 11.26,
+  "Mountain West Conference": 10.13,
+  "Atlantic 10 Conference": 5.1,
+  "American Athletic Conference": 3.79,
+  "Missouri Valley Conference": 3.31,
+  "West Coast Conference": 0.68,
+  "Southern Conference": -0.47,
+  "Ivy League": -0.65,
+  "Western Athletic Conference": -0.67,
+  "Conference USA": -1.7,
+  "Big West Conference": -2.67,
+  "Sun Belt Conference": -2.85,
+  "Big South Conference": -3.86,
+  "Colonial Athletic Association": -4.04,
+  "Horizon League": -4.38,
+  "America East Conference": -4.94,
+  "Big Sky Conference": -5.75,
+  "Summit League": -5.89,
+  "Mid American Conference": -6.52,
+  "Metro Atlantic Athletic Conference": -6.73,
+  "ASUN Conference": -7.1,
+  "Ohio Valley Conference": -11.14,
+  "Southland Conference": -11.45,
+  "Mid-Eastern Athletic Conference": -12.37,
+  "Patriot League": -12.43,
+  "Southwestern Athletic Conference": -13.06,
+  "Northeast Conference": -13.43,
+};
+
 /** Maps index_template values to conference nicknames */
 export const IndexTemplateToNickname: Record<string, string> = {
   acc: "ACC",
