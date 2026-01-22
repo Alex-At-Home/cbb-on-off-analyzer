@@ -84,12 +84,8 @@ import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import QuickSwitchBar, { quickSwitchDelim } from "./shared/QuickSwitchBar";
 
 //TODO: things to finish off:
-// 1] dedup all the various similarity/pinned/unpinned objects
-// 2] refresh page when needed
-// 3] cache vector unless settings change
 // 4] add pinned players to comp list when no similar players
 // 5] add a "close and re-run" find button
-// 6] improve mobile view
 // 7] (experiment with L3/L4 norms for scoring)
 
 const fetchRetryOptions = {
@@ -141,6 +137,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [similarityDiagnostics, setSimilarityDiagnostics] = useState<
     SimilarityDiagnostics[]
   >([]);
+
+  // Similarity query cache
+  const [vectorCache, setVectorCache] = useState<{
+    query: string;
+    candidateVectors: any[];
+    candidateIds: string[];
+  } | null>(null);
 
   // Pinned players state
   const [pinnedPlayers, setPinnedPlayers] = useState<IndivCareerStatSet[]>([]);
@@ -317,6 +320,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       setComparisonPlayer(undefined);
       setDiffQuickSwitch("");
       setSimilarityDiagnostics([]);
+      setVectorCache(null); // Clear cache when player/year changes
     }, [yearsToShow, showConf, showT100, playerSeasons]);
 
   const isInitialRender = useRef(true);
@@ -1609,64 +1613,66 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           .map((p) => `(${p})`)
           .join(" AND ");
 
+        const canUseVectorCache =
+          vectorCache && vectorCache.query === combinedQuery;
+
         // Step 1: Get lean candidate data using optimized similarity API
-        const allPromises = Promise.all(
-          RequestUtils.requestHandlingLogic(
-            {
-              gender,
-              size: PlayerSimilarityUtils.firstPassPlayersRetrieved,
-              queryVector:
-                PlayerSimilarityUtils.buildSimplePlayerSimilarityVector(
-                  currPlayerSelected
-                ).join(","),
-              queryPos: currPlayerSelected.posClass,
-              extraSimilarityQuery: combinedQuery,
-              ...(similarityFilters.runtimeMappingNames
-                ? { runtimeMappingNames: similarityFilters.runtimeMappingNames }
-                : {}),
-            },
-            ParamPrefixes.similarPlayers,
-            [],
-            (url: string, force: boolean) => {
-              return fetchWithRetry(url).then(
-                (response: fetch.IsomorphicResponse) => {
-                  return response
-                    .json()
-                    .then((json: any) => [json, response.ok, response]);
-                }
-              );
-            },
-            Number.NaN, //(bypass cache)
-            isDebug
-          )
-        );
+        const allPromises = canUseVectorCache
+          ? Promise.resolve(vectorCache)
+          : Promise.all(
+              RequestUtils.requestHandlingLogic(
+                {
+                  gender,
+                  size: PlayerSimilarityUtils.firstPassPlayersRetrieved,
+                  queryVector:
+                    PlayerSimilarityUtils.buildSimplePlayerSimilarityVector(
+                      currPlayerSelected
+                    ).join(","),
+                  queryPos: currPlayerSelected.posClass,
+                  extraSimilarityQuery: combinedQuery,
+                  ...(similarityFilters.runtimeMappingNames
+                    ? {
+                        runtimeMappingNames:
+                          similarityFilters.runtimeMappingNames,
+                      }
+                    : {}),
+                },
+                ParamPrefixes.similarPlayers,
+                [],
+                (url: string, force: boolean) => {
+                  return fetchWithRetry(url).then(
+                    (response: fetch.IsomorphicResponse) => {
+                      return response
+                        .json()
+                        .then((json: any) => [json, response.ok, response]);
+                    }
+                  );
+                },
+                Number.NaN, //(bypass cache)
+                isDebug
+              )
+            ).then(async (jsons) => {
+              // Parse lean candidate data from docvalue_fields (keep in flat format)
+              const candidateHits =
+                jsons?.[0]?.responses?.[0]?.hits?.hits || [];
+              const flatCandidates = candidateHits
+                .filter((hit: any) => {
+                  return (
+                    hit._id !== currPlayerSelected._id &&
+                    _.endsWith(hit._id, "_all")
+                  );
+                })
+                .map((hit: any) => ({
+                  _id: hit._id,
+                  fields: hit.fields || {},
+                }));
 
-        allPromises
-          .then(async (jsons) => {
-            // Parse lean candidate data from docvalue_fields (keep in flat format)
-            const candidateHits = jsons?.[0]?.responses?.[0]?.hits?.hits || [];
-            const flatCandidates = candidateHits
-              .filter((hit: any) => {
-                return (
-                  hit._id !== currPlayerSelected._id &&
-                  _.endsWith(hit._id, "_all")
-                );
-              })
-              .map((hit: any) => ({
-                _id: hit._id,
-                fields: hit.fields || {},
-              }));
-
-            if (flatCandidates.length === 0) {
-              setSimilarPlayers([]);
-              setSimilarityDiagnostics([]);
-              setRetrievingPlayers(false);
-              return;
-            }
-
-            try {
-              // Step 2: Apply z-score based similarity calculation using flat format
-
+              if (flatCandidates.length === 0) {
+                setSimilarPlayers([]);
+                setSimilarityDiagnostics([]);
+                setRetrievingPlayers(false);
+                return;
+              }
               // Calculate vectors for all candidates in flat format
               const candidateVectors = flatCandidates.map((candidate: any) =>
                 PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
@@ -1674,14 +1680,38 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   similarityConfig
                 )
               );
+              const candidateIds = flatCandidates.map(
+                (c: any) => c._id as string
+              );
+              // Store in cache for future use
+              setVectorCache({
+                query: combinedQuery,
+                candidateVectors,
+                candidateIds,
+              });
+
+              return {
+                candidateVectors,
+                candidateIds,
+              };
+            });
+        allPromises
+          .then(async (queryResult) => {
+            const { candidateVectors, candidateIds } = queryResult || {
+              candidateVectors: [],
+              candidateIds: [],
+            };
+            try {
+              // Step 2: Apply z-score based similarity calculation using flat format
 
               const { diags, zScores } =
                 PlayerSimilarityUtils.playerSimilarityLogic<string>(
                   currPlayerSelected,
                   similarityConfig,
                   candidateVectors,
-                  (idx: number) => flatCandidates[idx]._id
+                  (idx: number) => candidateIds[idx]
                 );
+
               const topNIds = diags.map((sortedRes) => sortedRes.obj);
 
               // Add next year IDs if showNextYear is enabled
