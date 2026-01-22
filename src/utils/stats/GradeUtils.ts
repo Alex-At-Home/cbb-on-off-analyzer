@@ -674,6 +674,61 @@ export class GradeUtils {
     }
   }
 
+  /** Like binaryChop but returns the index of the nearest LUT entry by absolute distance.
+   *  Useful for avoiding edge cases where tiny floating point differences cause rank jumps.
+   */
+  static binaryChopClosest(
+    array: Array<number>,
+    val: number,
+    index1: number,
+    index2: number
+  ): number {
+    const offset = array[0]!;
+
+    if (index1 == index2) {
+      // Only one option
+      return offset + index1 - 1;
+    }
+
+    // Use binary search to find where val would be inserted
+    let lo = index1;
+    let hi = index2;
+
+    while (lo < hi) {
+      const mid = Math.floor((lo + hi) / 2);
+      if (array[mid]! < val) {
+        lo = mid + 1;
+      } else {
+        hi = mid;
+      }
+    }
+
+    // Now lo is the index of the smallest element >= val (or index2+1 if val > all elements)
+    // We need to compare val with array[lo] and array[lo-1] to find the closest
+
+    if (lo <= index1) {
+      // val is <= the smallest element in range
+      return offset + index1 - 1;
+    } else if (lo > index2) {
+      // val is > the largest element in range
+      return offset + index2 - 1;
+    } else {
+      // val is between array[lo-1] and array[lo]
+      const lowerVal = array[lo - 1]!;
+      const upperVal = array[lo]!;
+      const diffLower = Math.abs(val - lowerVal);
+      const diffUpper = Math.abs(val - upperVal);
+
+      if (diffLower <= diffUpper) {
+        // Closer to lower (or equidistant - pick lower rank)
+        return offset + (lo - 1) - 1;
+      } else {
+        // Closer to upper
+        return offset + lo - 1;
+      }
+    }
+  }
+
   /** Builds a LUT for if the initial lookup misses */
   static buildSpacesBetween(
     divStats: DivisionStatistics,
@@ -707,7 +762,8 @@ export class GradeUtils {
     divStats: DivisionStatistics,
     field: string,
     val: number,
-    buildLutMissCache: boolean = false
+    buildLutMissCache: boolean = false,
+    matchMode: "strict" | "closest" = "strict"
   ): Statistic | undefined {
     // Round to avoid floating point precision issues (e.g., 32.4742 vs 32.474199999999996)
     const roundedVal =
@@ -764,12 +820,20 @@ export class GradeUtils {
         }
       } else {
         //lutArray
-        const offsetIndex = GradeUtils.binaryChop(
-          lutArray,
-          roundedVal,
-          1,
-          lutArray.length - 1
-        ); //(minPctile is lowest)
+        const offsetIndex =
+          matchMode === "closest"
+            ? GradeUtils.binaryChopClosest(
+                lutArray,
+                roundedVal,
+                1,
+                lutArray.length - 1
+              )
+            : GradeUtils.binaryChop(
+                lutArray,
+                roundedVal,
+                1,
+                lutArray.length - 1
+              ); //(minPctile is lowest)
         return {
           value: Math.max(minPctile, (offsetIndex + 1) * minPctile),
           samples: adjDivStatsFieldSize,

@@ -298,4 +298,145 @@ describe("GradeUtils", () => {
     // Test that ranks go from 1 to arraySize
     expect(ranks).toEqual(expectedRanks);
   });
+
+  test("GradeUtils.binaryChopClosest", () => {
+    const test1 = [129, 0, 10, 20, 30, 40, 50]; //(eg 0-10 is 129, 40-50 is 133)
+
+    // Exact matches should return same as binaryChop
+    expect(GradeUtils.binaryChopClosest(test1, 10, 1, 6)).toEqual(130);
+    expect(GradeUtils.binaryChopClosest(test1, 20, 1, 6)).toEqual(131);
+    expect(GradeUtils.binaryChopClosest(test1, 30, 1, 6)).toEqual(132);
+
+    // Value closer to lower entry
+    expect(GradeUtils.binaryChopClosest(test1, 11, 1, 6)).toEqual(130); // 11 is closer to 10 than 20
+    expect(GradeUtils.binaryChopClosest(test1, 14, 1, 6)).toEqual(130); // 14 is closer to 10 than 20
+
+    // Value closer to upper entry
+    expect(GradeUtils.binaryChopClosest(test1, 16, 1, 6)).toEqual(131); // 16 is closer to 20 than 10
+    expect(GradeUtils.binaryChopClosest(test1, 19, 1, 6)).toEqual(131); // 19 is closer to 20 than 10
+
+    // Equidistant - should pick lower rank
+    expect(GradeUtils.binaryChopClosest(test1, 15, 1, 6)).toEqual(130); // 15 is equidistant from 10 and 20
+    expect(GradeUtils.binaryChopClosest(test1, 25, 1, 6)).toEqual(131); // 25 is equidistant from 20 and 30
+
+    // Value below min in range
+    expect(GradeUtils.binaryChopClosest(test1, -5, 1, 6)).toEqual(129);
+
+    // Value above max in range
+    expect(GradeUtils.binaryChopClosest(test1, 55, 1, 6)).toEqual(134);
+
+    // Single element range
+    expect(GradeUtils.binaryChopClosest(test1, 300, 3, 3)).toEqual(131);
+  });
+
+  test("GradeUtils.getPercentile - closest match mode", () => {
+    // Use a simple LUT for testing
+    const testLut = {
+      test_field: {
+        isPct: false,
+        size: 10,
+        min: 1.0,
+        lut: {
+          "1": [0, 1.0, 1.5],
+          "2": [2, 2.0, 2.5],
+          "3": [4, 3.0, 3.5],
+          "4": [6, 4.0, 4.5],
+          "5": [8, 5.0, 5.5],
+        },
+      },
+    };
+    const testDivStats: DivisionStatistics = {
+      tier_sample_size: 10,
+      tier_samples: {},
+      tier_lut: testLut,
+      dedup_sample_size: 10,
+      dedup_samples: {},
+    };
+
+    // Test exact matches - both modes should give same result
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.0, false, "strict")
+      )
+    ).toEqual({ rank: 3, samples: 10 });
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.0, false, "closest")
+      )
+    ).toEqual({ rank: 3, samples: 10 });
+
+    // Test value between entries - strict mode picks next higher rank
+    // Value 2.1 is between 2.0 (rank 3) and 2.5 (rank 4), closer to 2.0
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.1, false, "strict")
+      )
+    ).toEqual({ rank: 4, samples: 10 }); // strict: picks next higher
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.1, false, "closest")
+      )
+    ).toEqual({ rank: 3, samples: 10 }); // closest: 2.1 is closer to 2.0
+
+    // Value 2.4 is between 2.0 (rank 3) and 2.5 (rank 4), closer to 2.5
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.4, false, "strict")
+      )
+    ).toEqual({ rank: 4, samples: 10 }); // strict: picks next higher
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.4, false, "closest")
+      )
+    ).toEqual({ rank: 4, samples: 10 }); // closest: 2.4 is closer to 2.5
+
+    // Test equidistant - should pick lower rank
+    // Value 2.25 is equidistant from 2.0 and 2.5
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.25, false, "closest")
+      )
+    ).toEqual({ rank: 3, samples: 10 }); // closest: equidistant, picks lower
+
+    // Test small perturbations that would cause issues in strict mode
+    // Note: Using 0.0001 since the code rounds to 4 decimal places (smaller perturbations get rounded away)
+    // Value just above 2.0 - strict would jump to rank 4, closest stays at 3
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.0001, false, "strict")
+      )
+    ).toEqual({ rank: 4, samples: 10 });
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 2.0001, false, "closest")
+      )
+    ).toEqual({ rank: 3, samples: 10 });
+
+    // Value just below 2.0 - both should give rank 3
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 1.9999, false, "strict")
+      )
+    ).toEqual({ rank: 3, samples: 10 });
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 1.9999, false, "closest")
+      )
+    ).toEqual({ rank: 3, samples: 10 });
+
+    // Test edge cases - below min
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 0.5, false, "closest")
+      )
+    ).toEqual({ rank: 1, samples: 10 });
+
+    // Test edge cases - above max (should hit the spacesBetween/fallback path, not closest mode)
+    // Value 100 is way above max, should return 100% percentile
+    expect(
+      convertToRank(
+        GradeUtils.getPercentile(testDivStats, "test_field", 100, false, "closest")
+      )
+    ).toEqual({ rank: 10, samples: 10 });
+  });
 });
