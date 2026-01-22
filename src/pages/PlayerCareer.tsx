@@ -128,6 +128,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.showNextYear ? ["showNextYear"] : [],
         !rawParams.showExpanded ? ["showExpanded"] : [],
         !rawParams.pinnedIds ? ["pinnedIds"] : [],
+        !rawParams.unpinnedIds ? ["unpinnedIds"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]

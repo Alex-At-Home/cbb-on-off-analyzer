@@ -431,6 +431,7 @@ export type PlayerCareerParams = {
   showNextYear?: boolean; //(if true, fetch next year data for similar players)
   hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
   pinnedIds?: string; //(comma-separated list of pinned player IDs)
+  unpinnedIds?: string; //(comma-separated list of unpinned player IDs)
   diffMode?: boolean; //(if true, focus UI on comparing source player vs comps)
   diffQuickSwitch?: string; //(selected player for comparison in diff mode)
 };
@@ -684,6 +685,7 @@ export class ParamDefaults {
   static readonly defaultShowNextYear = false;
   static readonly defaultHidePlayerOverview = false;
   static readonly defaultPinnedIds = "";
+  static readonly defaultUnpinnedIds = "";
   static readonly defaultDiffMode = true;
   static readonly defaultDiffQuickSwitch = "";
 }

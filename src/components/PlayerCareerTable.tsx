@@ -41,7 +41,11 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
+import {
+  faMinusSquare,
+  faCheckCircle,
+} from "@fortawesome/free-regular-svg-icons";
+import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -78,6 +82,15 @@ import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
 import PlayerFinderTextBox from "./shared/PlayerFinderTextBox";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import QuickSwitchBar, { quickSwitchDelim } from "./shared/QuickSwitchBar";
+
+//TODO: things to finish off:
+// 1] dedup all the various similarity/pinned/unpinned objects
+// 2] refresh page when needed
+// 3] cache vector unless settings change
+// 4] add pinned players to comp list when no similar players
+// 5] add a "close and re-run" find button
+// 6] improve mobile view
+// 7] (experiment with L3/L4 norms for scoring)
 
 const fetchRetryOptions = {
   retries: 5,
@@ -131,6 +144,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   // Pinned players state
   const [pinnedPlayers, setPinnedPlayers] = useState<IndivCareerStatSet[]>([]);
+  // Unpinned players state
+  const [unpinnedPlayerIds, setUnpinnedPlayerIds] = useState<Set<string>>(
+    () => {
+      const unpinnedIds =
+        playerCareerParams.unpinnedIds?.split(",").filter((id) => id.trim()) ||
+        [];
+      return new Set(unpinnedIds);
+    }
+  );
 
   // Similarity controls state
   const [similarityConfig, setSimilarityConfig] = useState<SimilarityConfig>(
@@ -295,6 +317,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       setComparisonPlayer(undefined);
       setDiffQuickSwitch("");
       setSimilarityDiagnostics([]);
+      setUnpinnedPlayerIds(new Set());
     }, [yearsToShow, showConf, showT100, playerSeasons]);
 
   // 2] Data Model
@@ -352,6 +375,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         .map((p) => p._id as string)
         .filter((id) => Boolean(id))
         .join(","),
+      unpinnedIds: Array.from(unpinnedPlayerIds).join(","),
     });
   }, [
     showGrades,
@@ -374,6 +398,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     diffQuickSwitch,
     similarityConfig,
     pinnedPlayers,
+    unpinnedPlayerIds,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -1057,6 +1082,58 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       <div className="multi_line_title_content">
         <div className="multi_line_title_row">
           <span className="multi_line_title_row_left_aligned_snippet">
+            {/* Pin/Unpin icons for similar/pinned players */}
+            {(isSimilarPlayer ||
+              pinnedPlayers.some((p) => p._id === player._id)) &&
+              playerSimilarityMode && (
+                <>
+                  {!pinnedPlayers.some((p) => p._id === player._id) && (
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id={`pin-${player._id}`}>
+                          Pin this player
+                        </Tooltip>
+                      }
+                    >
+                      <a
+                        href="#"
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          pinPlayer(player);
+                        }}
+                        className="mr-1"
+                        style={{ fontSize: "0.8em" }}
+                      >
+                        <FontAwesomeIcon icon={faThumbtack} />
+                      </a>
+                    </OverlayTrigger>
+                  )}
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id={`remove-${player._id}`}>
+                        {pinnedPlayers.some((p) => p._id === player._id)
+                          ? "Unpin"
+                          : "Hide"}{" "}
+                        this player
+                      </Tooltip>
+                    }
+                  >
+                    <a
+                      href="#"
+                      onClick={(e: any) => {
+                        e.preventDefault();
+                        unpinPlayer(player._id as string);
+                      }}
+                      className="mr-1"
+                      style={{ fontSize: "0.8em" }}
+                    >
+                      <FontAwesomeIcon icon={faMinusSquare} />
+                    </a>
+                  </OverlayTrigger>
+                </>
+              )}
             {player.year}+<b>{shortTitle}</b>
           </span>
           &nbsp;
@@ -1084,6 +1161,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             <b>{player.key}</b>
           )}
         </div>
+        {expandedView ? undefined : (
+          <div className="multi_line_title_row d-lg-none">
+            {shortPlayerMeta}
+          </div>
+        )}
         <div className="multi_line_title_row">
           <span className="multi_line_title_row_left_aligned_snippet">
             <span>
@@ -1117,7 +1199,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               &nbsp;(<span>{confNickname}</span>)&nbsp;
             </span>
           </span>{" "}
-          {expandedView ? adjMarginEl : shortPlayerMeta}
+          {expandedView ? (
+            adjMarginEl
+          ) : (
+            <div className="d-none d-lg-block">{shortPlayerMeta}</div>
+          )}
         </div>
       </div>
     );
@@ -1466,6 +1552,38 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     });
   };
 
+  // Helper functions for pinning/unpinning players
+  const pinPlayer = (player: IndivCareerStatSet) => {
+    setPinnedPlayers((prev) => [...prev, player]);
+    // Remove from unpinned if it was there
+    setUnpinnedPlayerIds((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(player._id as string);
+      return newSet;
+    });
+  };
+
+  const unpinPlayer = (playerId: string) => {
+    // Check if it's in pinned players
+    const isPinned = pinnedPlayers.some((p) => p._id === playerId);
+
+    if (isPinned) {
+      // Remove from pinned players
+      removePinnedPlayer(playerId);
+    } else {
+      // Add to unpinned players
+      setUnpinnedPlayerIds((prev) => new Set([...Array.from(prev), playerId]));
+    }
+  };
+
+  const unmutePlayer = (playerId: string) => {
+    setUnpinnedPlayerIds((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(playerId);
+      return newSet;
+    });
+  };
+
   const requestSimilarPlayers = (showNextYearOverride?: boolean) => {
     {
       //TODO: make similarity query index
@@ -1475,6 +1593,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         setRetrievingPlayers(true);
         setComparisonPlayer(undefined);
         setDiffQuickSwitch("");
+        setUnpinnedPlayerIds(new Set());
 
         const currentJsonEpoch =
           dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
@@ -1755,36 +1874,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             _.flatMap(pinnedPlayers, (p, i) => {
               const players = playerRowBuilder(p, p.year || "????", i == 0);
 
-              // Add remove button for pinned players
-              //TODO: fix this
-              const removeButtonRow = GenericTableOps.buildTextRow(
-                <div className="text-center">
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={
-                      <Tooltip id="remove-pin-tooltip">
-                        Remove pinned player
-                      </Tooltip>
-                    }
-                  >
-                    <a
-                      href="#"
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        removePinnedPlayer((p._id as any) || "");
-                      }}
-                      className="text-danger"
-                    >
-                      <FontAwesomeIcon icon={faMinusSquare} />
-                    </a>
-                  </OverlayTrigger>
-                </div>,
-                "p-1"
-              );
-
-              return players
-                .concat([removeButtonRow])
-                .concat([GenericTableOps.buildRowSeparator("1px")]);
+              return players.concat([GenericTableOps.buildRowSeparator("1px")]);
             })
           )
           .value();
@@ -1815,6 +1905,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     setSimilarityDiagnostics([]);
                     setComparisonPlayer(undefined);
                     setDiffQuickSwitch("");
+                    setUnpinnedPlayerIds(new Set());
                   }}
                 >
                   clear
@@ -1897,36 +1988,82 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           .concat(showSimilaritySettings ? [similarityControlsRow] : [])
           .concat(experimentButtonRow ? [experimentButtonRow] : [])
           .concat(
-            _.flatMap(similarPlayers, (p, i) => {
-              const players = playerRowBuilder(p, p.year || "????", i == 0);
+            _.flatMap(
+              similarPlayers.filter(
+                (p) => !Array.from(unpinnedPlayerIds).includes(p._id as string)
+              ),
+              (p, i) => {
+                const players = playerRowBuilder(p, p.year || "????", i == 0);
 
-              // Add next year player row if available
-              const nextYearRows = p.nextYear
-                ? playerRowBuilder(
-                    p.nextYear as IndivCareerStatSet,
-                    (p.nextYear as any).year || "????",
-                    false
-                  )
-                : [];
-
-              const extraSimilarityRows =
-                playerSimilarityMode &&
-                !_.isEmpty(players) &&
-                similarityDiagnostics[i]
-                  ? [
-                      GenericTableOps.buildTextRow(
-                        <SimilarityDiagnosticView
-                          diagnostics={similarityDiagnostics[i]}
-                          config={similarityConfig}
-                          theme={resolvedTheme}
-                        />,
-                        "p-0"
-                      ),
-                      GenericTableOps.buildRowSeparator("1px"),
-                    ]
+                // Add next year player row if available
+                const nextYearRows = p.nextYear
+                  ? playerRowBuilder(
+                      p.nextYear as IndivCareerStatSet,
+                      (p.nextYear as any).year || "????",
+                      false
+                    )
                   : [];
-              return players.concat(nextYearRows).concat(extraSimilarityRows);
-            })
+
+                const extraSimilarityRows =
+                  playerSimilarityMode &&
+                  !_.isEmpty(players) &&
+                  similarityDiagnostics[i]
+                    ? [
+                        GenericTableOps.buildTextRow(
+                          <SimilarityDiagnosticView
+                            diagnostics={similarityDiagnostics[i]}
+                            config={similarityConfig}
+                            theme={resolvedTheme}
+                          />,
+                          "p-0"
+                        ),
+                        GenericTableOps.buildRowSeparator("1px"),
+                      ]
+                    : [];
+                return players.concat(nextYearRows).concat(extraSimilarityRows);
+              }
+            )
+          )
+          .concat(
+            // Add muted players row if there are any unpinned players
+            unpinnedPlayerIds.size > 0
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <div className="text-center text-muted">
+                      <small>
+                        Muted players (click to unmute):{" "}
+                        {Array.from(unpinnedPlayerIds)
+                          .map((playerId, index) => {
+                            const mutedPlayer = similarPlayers.find(
+                              (p) => p._id === playerId
+                            );
+                            if (!mutedPlayer) return null;
+
+                            return (
+                              <span key={playerId}>
+                                {index > 0 && ", "}
+                                <a
+                                  href="#"
+                                  onClick={(e: any) => {
+                                    e.preventDefault();
+                                    unmutePlayer(playerId);
+                                  }}
+                                  className="text-muted"
+                                >
+                                  {`${mutedPlayer.key} (${
+                                    mutedPlayer.roster?.year_class || "??"
+                                  })`}
+                                </a>
+                              </span>
+                            );
+                          })
+                          .filter(Boolean)}
+                      </small>
+                    </div>,
+                    "small"
+                  ),
+                ]
+              : []
           )
           .value();
       }

@@ -13,7 +13,7 @@ const createMockPlayer = (
       height: "6-4",
       year_class: "Jr",
     },
-    style: {
+      style: {
       "Rim Attack": {
         possPctUsg: { value: 0.15 },
         possPct: { value: 0.08 },
@@ -65,13 +65,13 @@ const createMockPlayer = (
       "Big Cut & Roll": {
         possPctUsg: { value: 0.04 },
         possPct: { value: 0.02 },
-        pts: { value: 1.2 },
+          pts: { value: 1.2 },
         adj_pts: { value: 1.15 },
-      },
-      "Post-Up": {
+        },
+        "Post-Up": {
         possPctUsg: { value: 0.09 },
         possPct: { value: 0.05 },
-        pts: { value: 0.9 },
+          pts: { value: 0.9 },
         adj_pts: { value: 0.92 },
       },
       "Post & Kick": {
@@ -104,9 +104,9 @@ const createMockPlayer = (
         pts: { value: 1.2 },
         adj_pts: { value: 1.18 },
       },
-    },
-    off_3p: { value: 0.35 },
-    off_2pmid: { value: 0.42 },
+      },
+      off_3p: { value: 0.35 },
+      off_2pmid: { value: 0.42 },
     off_2prim: { value: 0.68 },
     off_3pr: { value: 0.3 },
     off_2pmidr: { value: 0.15 },
@@ -215,9 +215,9 @@ describe("PlayerSimilarityUtils", () => {
         const vectorExcluded =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
             flatFields,
-            config
-          );
-
+          config
+        );
+        
         // Vector with exclusions should be shorter
         expect(vectorExcluded.length).toBeLessThan(vectorDefault.length);
       });
@@ -294,9 +294,9 @@ describe("PlayerSimilarityUtils", () => {
         const { styleRateWeights, fgRateWeights } =
           PlayerSimilarityUtils.calculateRateWeights(
             samplePlayerCareer,
-            config
-          );
-
+          config
+        );
+        
         expect(styleRateWeights.length).toBe(15);
         expect(fgRateWeights.length).toBe(4);
 
@@ -323,7 +323,7 @@ describe("PlayerSimilarityUtils", () => {
           samplePlayerCareer,
           config
         );
-
+        
         expect(fgRateWeights).toEqual([]);
       });
     });
@@ -585,6 +585,108 @@ describe("PlayerSimilarityUtils", () => {
       expect(result).toEqual({
         Valid: 3.0,
       });
+    });
+  });
+
+  describe("buildSimilarityQueryFilters", () => {
+    const mockPlayer = createMockPlayer("Test Player");
+
+    it("should return empty query for default config", () => {
+      const config = { ...DefaultSimilarityConfig };
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, config);
+      
+      expect(result.query).toBe("");
+      expect(result.runtimeMappingNames).toBeUndefined();
+    });
+
+    it("should generate class weighting filters", () => {
+      // Test "same_class"
+      const configSameClass = { ...DefaultSimilarityConfig, classWeighting: "same_class" as any };
+      let result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configSameClass);
+      expect(result.query).toBe(`roster.year_class.keyword:"Jr"`);
+      expect(result.runtimeMappingNames).toBeUndefined();
+
+      // Test "fr_only"
+      const configFrOnly = { ...DefaultSimilarityConfig, classWeighting: "fr_only" as any };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configFrOnly);
+      expect(result.query).toBe(`roster.year_class.keyword:"Fr"`);
+
+      // Test "under"
+      const configUnder = { ...DefaultSimilarityConfig, classWeighting: "under" as any };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configUnder);
+      expect(result.query).toBe(`roster.year_class.keyword:("Fr" OR "So")`);
+
+      // Test "upper"
+      const configUpper = { ...DefaultSimilarityConfig, classWeighting: "upper" as any };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configUpper);
+      expect(result.query).toBe(`roster.year_class.keyword:("Jr" OR "Sr")`);
+    });
+
+    it("should generate level of play filters", () => {
+      const playerWithConf = { ...mockPlayer, conf: "Big Ten Conference" };
+
+      // Test "same_conf"
+      const configSameConf = { ...DefaultSimilarityConfig, levelOfPlay: "same_conf" as any };
+      let result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configSameConf);
+      expect(result.query).toBe(`conf.keyword:"Big Ten Conference"`);
+      expect(result.runtimeMappingNames).toBeUndefined();
+
+      // Test "same_tier"
+      const configSameTier = { ...DefaultSimilarityConfig, levelOfPlay: "same_tier" as any };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configSameTier);
+      expect(result.query).toContain("conf.keyword:");
+      expect(result.query).toContain("Big Ten Conference");
+      expect(result.runtimeMappingNames).toBeUndefined();
+
+      // Test "similar_sos"
+      const configSimilarSos = { ...DefaultSimilarityConfig, levelOfPlay: "similar_sos" as any };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configSimilarSos);
+      expect(result.query).toContain("oppo_sos:");
+      expect(result.runtimeMappingNames).toBe("oppo_sos");
+
+      // Test "any"
+      const configAny = { ...DefaultSimilarityConfig, levelOfPlay: "any" as any };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configAny);
+      expect(result.query).toBe("");
+      expect(result.runtimeMappingNames).toBeUndefined();
+    });
+
+    it("should combine multiple filters with AND", () => {
+      const playerWithConf = { ...mockPlayer, conf: "Big Ten Conference" };
+      const config = {
+        ...DefaultSimilarityConfig,
+        classWeighting: "same_class" as any,
+        levelOfPlay: "same_conf" as any,
+      };
+
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, config);
+      expect(result.query).toBe(`roster.year_class.keyword:"Jr" AND conf.keyword:"Big Ten Conference"`);
+      expect(result.runtimeMappingNames).toBeUndefined();
+    });
+
+    it("should handle missing conference data gracefully", () => {
+      const playerNoConf = { ...mockPlayer, conf: undefined };
+
+      // Test "same_tier" with no conference
+      const config = { ...DefaultSimilarityConfig, levelOfPlay: "same_tier" as any };
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerNoConf as any, config);
+      expect(result.query).toBe("");
+      expect(result.runtimeMappingNames).toBeUndefined();
+    });
+
+    it("should calculate SoS range correctly", () => {
+      const playerWithSos = {
+        ...mockPlayer,
+        off_adj_opp: { value: 100 },
+        def_adj_opp: { value: 95 },
+      };
+
+      const config = { ...DefaultSimilarityConfig, levelOfPlay: "similar_sos" as any };
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithSos as any, config);
+      
+      // SoS = 100 - 95 = 5, range should be 1.5 to 8.5
+      expect(result.query).toBe("oppo_sos:[1.5 TO 8.5]");
+      expect(result.runtimeMappingNames).toBe("oppo_sos");
     });
   });
 });
