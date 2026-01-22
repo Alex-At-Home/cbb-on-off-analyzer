@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode, useRef } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -317,9 +317,21 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       setComparisonPlayer(undefined);
       setDiffQuickSwitch("");
       setSimilarityDiagnostics([]);
-      //TODO: don't do this on startup
-      setUnpinnedPlayerIds(new Set());
     }, [yearsToShow, showConf, showT100, playerSeasons]);
+
+  const isInitialRender = useRef(true);
+
+  /** If changing player to show clear selection - unpinned */
+  if (playerSimilarityMode)
+    useEffect(() => {
+      // Only clear unpinned players after the initial render
+      if (!isInitialRender.current) {
+        setUnpinnedPlayerIds(new Set());
+      }
+
+      // Mark that we're past the initial render
+      isInitialRender.current = false;
+    }, [yearsToShow, showConf, showT100, currNcaaId]);
 
   // 2] Data Model
 
