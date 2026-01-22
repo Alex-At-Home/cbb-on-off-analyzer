@@ -789,7 +789,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         ];
       } else if (playerSimilarityMode) {
         return similarPlayers.map((player) => ({
-          title: `${player.key}`,
+          title: `${player.key} (${player.roster?.year_class || "??"})`,
           player: player,
           rosterStatsByCode: {},
           teamStats: {} as TeamStatSet,
@@ -871,7 +871,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         ];
       } else if (playerSimilarityMode) {
         return similarPlayers.map((player) => ({
-          title: `${player.key}`,
+          title: `${player.key} (${player.roster?.year_class || "??"})`,
           gender: player.gender || ParamDefaults.defaultGender,
           off: player.off_shots as any,
         }));
@@ -1124,6 +1124,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     // Finally build rows
 
+    /* For comparison players in quick toggles */
+    const playerTitle = (p: IndivCareerStatSet) =>
+      `${p.key} (${p.roster?.year_class || "??"})`;
+
     return playerDiffMode
       ? _.flatten([
           [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
@@ -1192,7 +1196,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     quickSwitch={diffQuickSwitch}
                     quickSwitchExtra="extra"
                     quickSwitchOptions={similarPlayers.map((p) => ({
-                      title: p.key,
+                      title: `${playerTitle(p)}`,
                     }))}
                     updateQuickSwitch={(
                       quickSwitch: string | undefined,
@@ -1202,7 +1206,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     ) => {
                       setDiffQuickSwitch(newTitle || "");
                       setComparisonPlayer(
-                        similarPlayers.find((p) => p.key == newTitle)
+                        similarPlayers.find((p) => playerTitle(p) == newTitle)
                       );
                     }}
                     quickSwitchTimer={undefined}
@@ -1259,7 +1263,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         chartOpts={{
                           ...shotChartConfig,
                           quickSwitch: comparisonPlayer?.key
-                            ? `${comparisonPlayer.key}${quickSwitchDelim}extra`
+                            ? `${playerTitle(
+                                comparisonPlayer
+                              )}${quickSwitchDelim}extra`
                             : undefined,
                         }}
                         onChangeChartOpts={(newOpts: any) => {
@@ -1270,8 +1276,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           if (isPlayerCompSource && diffMode) {
                             const newPlayer = similarPlayers.find(
                               (p) =>
-                                `${p.key}${quickSwitchDelim}extra` ==
-                                newOpts.quickSwitch
+                                p &&
+                                `${playerTitle(p)}${quickSwitchDelim}extra` ==
+                                  newOpts.quickSwitch
                             );
                             setComparisonPlayer(newPlayer);
                             setDiffQuickSwitch(newPlayer?.key || "");
@@ -1329,7 +1336,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       if (isPlayerCompSource && diffMode) {
                         const newPlayer = similarPlayers.find(
                           (p) =>
-                            `${p.key}${quickSwitchDelim}extra` ==
+                            `${playerTitle(p)}${quickSwitchDelim}extra` ==
                             opts.quickSwitch
                         );
                         setComparisonPlayer(newPlayer);
@@ -1340,7 +1347,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       playType: showPlayerPlayTypesPlayType,
                       rawPpp: !showPlayerPlayTypesAdjPpp,
                       quickSwitch: comparisonPlayer?.key
-                        ? `${comparisonPlayer.key}${quickSwitchDelim}extra`
+                        ? `${playerTitle(
+                            comparisonPlayer
+                          )}${quickSwitchDelim}extra`
                         : undefined,
                     }}
                     quickSwitchOptions={playStyleQuickSwitchOptions}
@@ -1471,16 +1480,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
 
         // Build additional query filters based on config
-        const similarityFilters = PlayerSimilarityUtils.buildSimilarityQueryFilters(
-          currPlayerSelected,
-          similarityConfig
-        );
-        
+        const similarityFilters =
+          PlayerSimilarityUtils.buildSimilarityQueryFilters(
+            currPlayerSelected,
+            similarityConfig
+          );
+
         // Combine user's advanced query with auto-generated filters
         const combinedQuery = [
           similarityConfig.advancedQuery,
-          similarityFilters.query
-        ].filter(q => q && q.trim()).map(p => `(${p})`).join(" AND ");
+          similarityFilters.query,
+        ]
+          .filter((q) => q && q.trim())
+          .map((p) => `(${p})`)
+          .join(" AND ");
 
         // Step 1: Get lean candidate data using optimized similarity API
         const allPromises = Promise.all(
@@ -1494,7 +1507,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ).join(","),
               queryPos: currPlayerSelected.posClass,
               extraSimilarityQuery: combinedQuery,
-              ...(similarityFilters.runtimeMappingNames ? { runtimeMappingNames: similarityFilters.runtimeMappingNames } : {}),
+              ...(similarityFilters.runtimeMappingNames
+                ? { runtimeMappingNames: similarityFilters.runtimeMappingNames }
+                : {}),
             },
             ParamPrefixes.similarPlayers,
             [],
