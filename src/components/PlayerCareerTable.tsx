@@ -41,11 +41,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMinusSquare,
-  faCheckCircle,
-} from "@fortawesome/free-regular-svg-icons";
-import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
+import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -143,10 +139,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     query: string;
     candidateVectors: any[];
     candidateIds: string[];
+    zScores: { means: number[]; stdDevs: number[] };
   } | null>(null);
 
   // Pinned players state
   const [pinnedPlayers, setPinnedPlayers] = useState<IndivCareerStatSet[]>([]);
+  const [pinnedPlayerDiags, setPinnedPlayerDiags] = useState<
+    Record<string, SimilarityDiagnostics>
+  >({});
   // Unpinned players state
   const [unpinnedPlayerIds, setUnpinnedPlayerIds] = useState<Set<string>>(
     () => {
@@ -804,6 +804,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ? _.findIndex(similarPlayers, (p) => p._id == comparisonPlayer._id)
       : -1;
 
+    const similarOrPinnedPlayers = _.isEmpty(similarPlayers)
+      ? pinnedPlayers
+      : similarPlayers;
+
     const playStyleQuickSwitchOptions = _.thru(isSimilarPlayer, () => {
       if (isSimilarPlayer) {
         // (just allow comparison vs currPlayerSelected)
@@ -830,7 +834,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
         ];
       } else if (playerSimilarityMode) {
-        return similarPlayers.map((player) => ({
+        return similarOrPinnedPlayers.map((player) => ({
           title: `${player.key} (${player.roster?.year_class || "??"})`,
           player: player,
           rosterStatsByCode: {},
@@ -912,7 +916,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
         ];
       } else if (playerSimilarityMode) {
-        return similarPlayers.map((player) => ({
+        return similarOrPinnedPlayers.map((player) => ({
           title: `${player.key} (${player.roster?.year_class || "??"})`,
           gender: player.gender || ParamDefaults.defaultGender,
           off: player.off_shots as any,
@@ -1101,9 +1105,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           <span className="multi_line_title_row_left_aligned_snippet">
             {/* Pin/Unpin icons for similar/pinned players */}
             {playerSimilarityMode &&
-              pinnedPlayers.some(
-                (p) => p._id === player._id
-              ) /**/ /* TODO check if has similarity bar */ && (
+              pinnedPlayers.some((p) => p._id === player._id) &&
+              !pinnedPlayerDiags[player._id as string] && (
                 <OverlayTrigger
                   placement="top"
                   overlay={
@@ -1233,7 +1236,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     playerId={player._id as string}
                     playerName={player.key}
                     isPinned={pinnedPlayers.some((p) => p._id === player._id)}
-                    onPinPlayer={() => pinPlayer(player)}
+                    onPinPlayer={() =>
+                      pinPlayer(
+                        player,
+                        similarityDiagnostics[maybeActiveCompIndex]
+                      )
+                    }
                     onUnpinPlayer={() => unpinPlayer(player._id as string)}
                   />,
                   "p-0"
@@ -1272,7 +1280,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 true
               )
             : [],
-          diffMode && isPlayerCompSource && !_.isEmpty(similarPlayers)
+          diffMode && isPlayerCompSource && !_.isEmpty(similarOrPinnedPlayers)
             ? [
                 GenericTableOps.buildTextRow(
                   <QuickSwitchBar
@@ -1280,7 +1288,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     titlePrefix="Compare With:"
                     quickSwitch={diffQuickSwitch}
                     quickSwitchExtra="extra"
-                    quickSwitchOptions={similarPlayers.map((p) => ({
+                    quickSwitchOptions={similarOrPinnedPlayers.map((p) => ({
                       title: `${playerTitle(p)}`,
                     }))}
                     updateQuickSwitch={(
@@ -1291,7 +1299,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     ) => {
                       setDiffQuickSwitch(newTitle || "");
                       setComparisonPlayer(
-                        similarPlayers.find((p) => playerTitle(p) == newTitle)
+                        similarOrPinnedPlayers.find(
+                          (p) => playerTitle(p) == newTitle
+                        )
                       );
                     }}
                     quickSwitchTimer={undefined}
@@ -1359,7 +1369,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           //TODO quick switch is more complex
                           // but in similarity mode, we'll treat the currently selected player as a special case
                           if (isPlayerCompSource && diffMode) {
-                            const newPlayer = similarPlayers.find(
+                            const newPlayer = similarOrPinnedPlayers.find(
                               (p) =>
                                 p &&
                                 `${playerTitle(p)}${quickSwitchDelim}extra` ==
@@ -1419,7 +1429,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       //TODO quick switch is more complex
                       // but in similarity mode, we'll treat the currently selected player as a special case
                       if (isPlayerCompSource && diffMode) {
-                        const newPlayer = similarPlayers.find(
+                        const newPlayer = similarOrPinnedPlayers.find(
                           (p) =>
                             `${playerTitle(p)}${quickSwitchDelim}extra` ==
                             opts.quickSwitch
@@ -1511,6 +1521,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // Add function to remove pinned player
   const removePinnedPlayer = (playerId: string) => {
     setPinnedPlayers((curr) => curr.filter((p) => p._id !== playerId));
+    setPinnedPlayerDiags((curr) => _.omit(curr, [playerId]));
   };
 
   // Add function to add pinned player
@@ -1549,12 +1560,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       setPinnedPlayers((curr) =>
         _.uniqBy(curr.concat(playerJsons), (p) => p._id)
       );
+      requestSimilarPlayers(false, playerJsons);
     });
   };
 
   // Helper functions for pinning/unpinning players
-  const pinPlayer = (player: IndivCareerStatSet) => {
+  const pinPlayer = (
+    player: IndivCareerStatSet,
+    diag: SimilarityDiagnostics
+  ) => {
     setPinnedPlayers((prev) => _.uniqBy([...prev, player], (p) => p._id));
+    setPinnedPlayerDiags((prev) => ({
+      ...prev,
+      [player._id as string]: diag,
+    }));
     // Remove from unpinned if it was there
     setUnpinnedPlayerIds((prev) => {
       const newSet = new Set(prev);
@@ -1584,9 +1603,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     });
   };
 
-  const requestSimilarPlayers = (showNextYearOverride?: boolean) => {
+  const requestSimilarPlayers = (
+    showNextYearOverride?: boolean,
+    pinnedPlayerOnlyMode?: IndivCareerStatSet[]
+  ) => {
     {
-      //TODO: make similarity query index
       if (currPlayerSelected) {
         const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
 
@@ -1618,7 +1639,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
         // Step 1: Get lean candidate data using optimized similarity API
         const allPromises = canUseVectorCache
-          ? Promise.resolve(vectorCache)
+          ? Promise.resolve({
+              candidateVectors: vectorCache.candidateVectors,
+              candidateIds: vectorCache.candidateIds,
+              zScores: vectorCache.zScores,
+              maybeDiags: undefined,
+            })
           : Promise.all(
               RequestUtils.requestHandlingLogic(
                 {
@@ -1683,26 +1709,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               const candidateIds = flatCandidates.map(
                 (c: any) => c._id as string
               );
-              // Store in cache for future use
-              setVectorCache({
-                query: combinedQuery,
-                candidateVectors,
-                candidateIds,
-              });
-
-              return {
-                candidateVectors,
-                candidateIds,
-              };
-            });
-        allPromises
-          .then(async (queryResult) => {
-            const { candidateVectors, candidateIds } = queryResult || {
-              candidateVectors: [],
-              candidateIds: [],
-            };
-            try {
-              // Step 2: Apply z-score based similarity calculation using flat format
 
               const { diags, zScores } =
                 PlayerSimilarityUtils.playerSimilarityLogic<string>(
@@ -1712,113 +1718,193 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   (idx: number) => candidateIds[idx]
                 );
 
-              const topNIds = diags.map((sortedRes) => sortedRes.obj);
-
-              // Add next year IDs if showNextYear is enabled
-              let idsToFetch = [...topNIds];
-              if (showNextYearOverride ?? showNextYear) {
-                const currentSeasonYear = parseInt(
-                  DateUtils.inSeasonYear.split("/")[0]
-                );
-                topNIds.forEach((id) => {
-                  const parts = id.split("_");
-                  if (parts.length >= 3) {
-                    const year = parseInt(parts[2]);
-                    const nextYear = year + 1;
-                    if (nextYear <= currentSeasonYear) {
-                      const nextYearId = `${parts[0]}_${parts[1]}_${nextYear}_${parts[3]}`;
-                      idsToFetch.push(nextYearId);
-                    }
-                  }
-                });
-              }
-
-              // Step 3: Fetch full documents for top N players (and next year if enabled)
-              const fullDocsPromise = Promise.all(
-                RequestUtils.requestHandlingLogic(
-                  {
-                    gender,
-                    ids: idsToFetch.join(","),
-                  } as any,
-                  ParamPrefixes.multiPlayerCareer,
-                  [],
-                  (url: string, force: boolean) => {
-                    return fetchWithRetry(url).then(
-                      (response: fetch.IsomorphicResponse) => {
-                        return response
-                          .json()
-                          .then((json: any) => [json, response.ok, response]);
-                      }
-                    );
-                  },
-                  Number.NaN, //(bypass cache)
-                  isDebug
-                )
-              );
-
-              const fullDocsResponse = await fullDocsPromise;
-              const allFetchedPlayers = (
-                fullDocsResponse?.[0]?.responses?.[0]?.hits?.hits || []
-              )
-                .map((p: any) => {
-                  const source = p._source || {};
-                  source._id = p._id;
-                  return source;
-                })
-                .filter((p: any) => !_.isEmpty(p));
-
-              // Separate current year players from next year players
-              const fullPlayers: any[] = [];
-              const nextYearPlayersMap = new Map<string, any>(); // playerId -> nextYearPlayer
-
-              allFetchedPlayers.forEach((player: any) => {
-                const playerId = player._id.split("_")[0]; // Extract base player ID
-                if (topNIds.includes(player._id)) {
-                  // This is an original player
-                  fullPlayers.push(player);
-                } else {
-                  // This is a next year player, store it mapped to its owner
-                  nextYearPlayersMap.set(playerId, player);
-                }
+              // Store in cache for future use
+              setVectorCache({
+                query: combinedQuery,
+                candidateVectors,
+                candidateIds,
+                zScores,
               });
 
-              // Match next year players to their owners
-              if (showNextYearOverride ?? showNextYear) {
-                fullPlayers.forEach((player: any) => {
-                  const playerId = player._id.split("_")[0];
-                  const nextYearPlayer = nextYearPlayersMap.get(playerId);
-                  if (nextYearPlayer) {
-                    player.nextYear = nextYearPlayer;
+              return {
+                candidateVectors,
+                candidateIds,
+                zScores,
+                maybeDiags: diags,
+              };
+            });
+        allPromises
+          .then(async (queryResult) => {
+            const {
+              candidateVectors,
+              candidateIds,
+              zScores: zScoresIn,
+              maybeDiags,
+            } = queryResult || {
+              candidateVectors: [],
+              candidateIds: [],
+              zScores: { means: [], stdDevs: [] },
+              maybeDiags: undefined,
+            };
+            try {
+              // Step 2: Apply z-score based similarity calculation using flat format
+
+              const { diags, zScores } = maybeDiags
+                ? { diags: maybeDiags, zScores: zScoresIn }
+                : PlayerSimilarityUtils.playerSimilarityLogic<string>(
+                    currPlayerSelected,
+                    similarityConfig,
+                    candidateVectors,
+                    (idx: number) => candidateIds[idx]
+                  );
+
+              if (pinnedPlayerOnlyMode) {
+                // Bypass all the following logic we just want to generate scores
+
+                const finalResults = PlayerSimilarityUtils.findSimilarPlayers(
+                  currPlayerSelected,
+                  {
+                    ...similarityConfig,
+                    comparisonPlayersCount: pinnedPlayerOnlyMode.length,
+                  },
+                  pinnedPlayerOnlyMode,
+                  zScores
+                );
+                setPinnedPlayerDiags((curr) => ({
+                  ...curr,
+                  ..._.chain(finalResults)
+                    .map(({ obj, diagnostics }) => [
+                      obj._id as string,
+                      diagnostics,
+                    ])
+                    .fromPairs()
+                    .value(),
+                }));
+              } else {
+                const topNIds = diags.map((sortedRes) => sortedRes.obj);
+
+                // Add next year IDs if showNextYear is enabled
+                let idsToFetch = [...topNIds];
+                if (showNextYearOverride ?? showNextYear) {
+                  const currentSeasonYear = parseInt(
+                    DateUtils.inSeasonYear.split("/")[0]
+                  );
+                  topNIds.forEach((id) => {
+                    const parts = id.split("_");
+                    if (parts.length >= 3) {
+                      const year = parseInt(parts[2]);
+                      const nextYear = year + 1;
+                      if (nextYear <= currentSeasonYear) {
+                        const nextYearId = `${parts[0]}_${parts[1]}_${nextYear}_${parts[3]}`;
+                        idsToFetch.push(nextYearId);
+                      }
+                    }
+                  });
+                }
+
+                // Step 3: Fetch full documents for top N players (and next year if enabled)
+                const fullDocsPromise = Promise.all(
+                  RequestUtils.requestHandlingLogic(
+                    {
+                      gender,
+                      ids: idsToFetch.join(","),
+                    } as any,
+                    ParamPrefixes.multiPlayerCareer,
+                    [],
+                    (url: string, force: boolean) => {
+                      return fetchWithRetry(url).then(
+                        (response: fetch.IsomorphicResponse) => {
+                          return response
+                            .json()
+                            .then((json: any) => [json, response.ok, response]);
+                        }
+                      );
+                    },
+                    Number.NaN, //(bypass cache)
+                    isDebug
+                  )
+                );
+
+                const fullDocsResponse = await fullDocsPromise;
+                const allFetchedPlayers = (
+                  fullDocsResponse?.[0]?.responses?.[0]?.hits?.hits || []
+                )
+                  .map((p: any) => {
+                    const source = p._source || {};
+                    source._id = p._id;
+                    return source;
+                  })
+                  .filter((p: any) => !_.isEmpty(p));
+
+                // Separate current year players from next year players
+                const fullPlayers: any[] = [];
+                const nextYearPlayersMap = new Map<string, any>(); // playerId -> nextYearPlayer
+
+                allFetchedPlayers.forEach((player: any) => {
+                  const playerId = player._id.split("_")[0]; // Extract base player ID
+                  if (topNIds.includes(player._id)) {
+                    // This is an original player
+                    fullPlayers.push(player);
+                  } else {
+                    // This is a next year player, store it mapped to its owner
+                    nextYearPlayersMap.set(playerId, player);
                   }
                 });
+
+                // Match next year players to their owners
+                if (showNextYearOverride ?? showNextYear) {
+                  fullPlayers.forEach((player: any) => {
+                    const playerId = player._id.split("_")[0];
+                    const nextYearPlayer = nextYearPlayersMap.get(playerId);
+                    if (nextYearPlayer) {
+                      player.nextYear = nextYearPlayer;
+                    }
+                  });
+                }
+
+                // Step 4: Re-score with full data to get diagnostics and proper ordering
+                // Add pinned players to the candidate list before re-scoring
+                const allCandidates = _.uniqBy(
+                  [...fullPlayers, ...pinnedPlayers],
+                  (p) => p._id
+                );
+                const pinnedIdSet = new Set(
+                  pinnedPlayers.map((p) => p._id as string)
+                );
+                const finalResults = PlayerSimilarityUtils.findSimilarPlayers(
+                  currPlayerSelected,
+                  {
+                    ...similarityConfig,
+                    comparisonPlayersCount:
+                      similarityConfig.comparisonPlayersCount +
+                      pinnedPlayers.length,
+                  },
+                  allCandidates,
+                  zScores
+                );
+
+                // Set results
+                const formattedResults = finalResults.map(
+                  (result) => result.obj
+                );
+                const diagnostics = finalResults.map(
+                  (result) => result.diagnostics
+                );
+                const pinnedIdDiags: Record<string, SimilarityDiagnostics> =
+                  _.chain(formattedResults)
+                    .flatMap((p, idx) =>
+                      pinnedIdSet.has(p._id as string)
+                        ? [{ _id: p._id as string, idx }]
+                        : []
+                    )
+                    .map(({ _id, idx }) => [_id, diagnostics[idx]])
+                    .fromPairs()
+                    .value();
+                setPinnedPlayerDiags(pinnedIdDiags);
+
+                setSimilarPlayers(formattedResults);
+                setSimilarityDiagnostics(diagnostics);
               }
-
-              // Step 4: Re-score with full data to get diagnostics and proper ordering
-              // Add pinned players to the candidate list before re-scoring
-              const allCandidates = _.uniqBy(
-                [...fullPlayers, ...pinnedPlayers],
-                (p) => p._id
-              );
-              const finalResults = PlayerSimilarityUtils.findSimilarPlayers(
-                currPlayerSelected,
-                {
-                  ...similarityConfig,
-                  comparisonPlayersCount:
-                    similarityConfig.comparisonPlayersCount +
-                    pinnedPlayers.length,
-                },
-                allCandidates,
-                zScores
-              );
-
-              // Set results
-              const formattedResults = finalResults.map((result) => result.obj);
-              const diagnostics = finalResults.map(
-                (result) => result.diagnostics
-              );
-
-              setSimilarPlayers(formattedResults);
-              setSimilarityDiagnostics(diagnostics);
             } catch (error) {
               if (isDebug) {
                 console.log(`Similarity calculation failed:`, error);
@@ -1872,24 +1958,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 Find Similar Players
               </Button>
             </Col>
-            {FeatureFlags.isActiveWindow(
-              FeatureFlags.playerSimilarityScoring
-            ) ? (
-              <Col
-                xs={12}
-                lg={4}
-                className="d-flex align-items-center justify-content-lg-end justify-content-center"
-              >
-                <PlayerFinderTextBox
-                  placeholderText="Manually add comp..."
-                  onSelectPlayer={addPinnedPlayer}
-                  currGender={
-                    playerCareerParams.gender || ParamDefaults.defaultGender
-                  }
-                  playerCurrSelected={false}
-                />
-              </Col>
-            ) : undefined}
+            <Col
+              xs={12}
+              lg={4}
+              className="d-flex align-items-center justify-content-lg-end justify-content-center"
+            >
+              <PlayerFinderTextBox
+                placeholderText="Manually add comp..."
+                onSelectPlayer={addPinnedPlayer}
+                currGender={
+                  playerCareerParams.gender || ParamDefaults.defaultGender
+                }
+                playerCurrSelected={false}
+              />
+            </Col>
           </Row>,
           "text-center"
         );
@@ -1897,13 +1979,70 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         return tableDataPhase1Chain
           .concat([buttonRow])
           .concat([similarityControlsRow])
+          .concat([
+            GenericTableOps.buildTextRow(
+              <>
+                <span>
+                  PINNED PLAYERS ONLY:{" "}
+                  <i className="text-muted">
+                    (press "Find Similar Players" above to see more)
+                  </i>
+                </span>
+                {_.isEmpty(pinnedPlayerDiags) ? (
+                  <>
+                    <br />
+                    <span>
+                      (To show similarity scores: add a player, find similar
+                      players, or{" "}
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          requestSimilarPlayers(false, pinnedPlayers);
+                        }}
+                      >
+                        click here
+                      </a>
+                      )
+                    </span>
+                  </>
+                ) : undefined}
+              </>,
+              "text-center"
+            ),
+          ])
           .concat(
             // If no similar players, ie user has not yet requested them, then show pinned players
-            _.flatMap(pinnedPlayers, (p, i) => {
-              const players = playerRowBuilder(p, p.year || "????", i == 0);
-
-              return players.concat([GenericTableOps.buildRowSeparator("1px")]);
-            })
+            _.chain(pinnedPlayers)
+              .map((p) => ({ p, diags: pinnedPlayerDiags[p._id as string] }))
+              .sortBy(({ p, diags }, i) =>
+                diags ? diags.totalSimilarity : -10000000
+              )
+              .flatMap(({ p, diags }, i) => {
+                const players = playerRowBuilder(p, p.year || "????", i == 0);
+                return players
+                  .concat(
+                    diags
+                      ? [
+                          GenericTableOps.buildTextRow(
+                            <SimilarityDiagnosticView
+                              diagnostics={diags}
+                              config={similarityConfig}
+                              theme={resolvedTheme}
+                              playerId={p._id as string}
+                              playerName={p.key}
+                              isPinned={true}
+                              onPinPlayer={() => pinPlayer(p, diags)}
+                              onUnpinPlayer={() => unpinPlayer(p._id as string)}
+                            />,
+                            "p-0"
+                          ),
+                        ]
+                      : []
+                  )
+                  .concat([GenericTableOps.buildRowSeparator("1px")]);
+              })
+              .value()
           )
           .value();
       } else {
@@ -1951,9 +2090,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 )
               </i>
             </Col>
-            {FeatureFlags.isActiveWindow(
-              FeatureFlags.playerSimilarityScoring
-            ) && !showSimilaritySettings ? (
+            {!showSimilaritySettings ? (
               <Col
                 xs={12}
                 lg={4}
@@ -1988,24 +2125,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     Find Similar Players
                   </Button>
                 </Col>
-                {FeatureFlags.isActiveWindow(
-                  FeatureFlags.playerSimilarityScoring
-                ) ? (
-                  <Col
-                    xs={12}
-                    lg={4}
-                    className="d-flex align-items-center justify-content-lg-end justify-content-center"
-                  >
-                    <PlayerFinderTextBox
-                      placeholderText="Manually add comp..."
-                      onSelectPlayer={addPinnedPlayer}
-                      currGender={
-                        playerCareerParams.gender || ParamDefaults.defaultGender
-                      }
-                      playerCurrSelected={false}
-                    />
-                  </Col>
-                ) : undefined}
+                <Col
+                  xs={12}
+                  lg={4}
+                  className="d-flex align-items-center justify-content-lg-end justify-content-center"
+                >
+                  <PlayerFinderTextBox
+                    placeholderText="Manually add comp..."
+                    onSelectPlayer={addPinnedPlayer}
+                    currGender={
+                      playerCareerParams.gender || ParamDefaults.defaultGender
+                    }
+                    playerCurrSelected={false}
+                  />
+                </Col>
               </Row>,
               "text-center"
             )
@@ -2047,7 +2180,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             isPinned={pinnedPlayers.some(
                               (player) => player._id === p._id
                             )}
-                            onPinPlayer={() => pinPlayer(p)}
+                            onPinPlayer={() =>
+                              pinPlayer(p, similarityDiagnostics[i])
+                            }
                             onUnpinPlayer={() => unpinPlayer(p._id as string)}
                           />,
                           "p-0"
@@ -2396,6 +2531,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   const optionsDropdown = (
     <GenericTogglingMenu size="sm">
+      {playerSimilarityMode ? (
+        <GenericTogglingMenuItem
+          text="Show Similarity Config..."
+          truthVal={showConfigModal}
+          onSelect={() => setShowConfigModal(!showConfigModal)}
+        />
+      ) : undefined}
       <GenericTogglingMenuItem
         text="Show grade controls"
         truthVal={!hideGlobalGradeSettings}
