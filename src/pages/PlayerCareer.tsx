@@ -148,12 +148,12 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           ? ["showPlayerPlayTypesAdjPpp"]
           : [],
         rawParams.showPlayerPlayTypesPlayType ==
-        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+          ParamDefaults.defaultPlayerShowPlayTypesPlayType
           ? ["showPlayerPlayTypesPlayType"]
           : [],
         !rawParams.playerShotCharts ? ["playerShotCharts"] : [],
         rawParams.playerShotChartsShowZones ==
-        ParamDefaults.defaultShotChartShowZones
+          ParamDefaults.defaultShotChartShowZones
           ? ["playerShotChartsShowZones"]
           : [],
         !rawParams.playerShotChartsUseEfg ? ["playerShotChartsUseEfg"] : [],
@@ -170,20 +170,22 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           ? ["diffMode"]
           : [],
         !rawParams.diffQuickSwitch ? ["diffQuickSwitch"] : [],
+        rawParams.filterStr == ParamDefaults.defaultFilterStr ? ["filterStr"] : [],
+        rawParams.showPinnedOnly == ParamDefaults.defaultShowPinnedOnly ? ["showPinnedOnly"] : [],
 
         !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
 
         //not used but maybe later:
         !rawParams.filter ? ["filter"] : [],
         rawParams.sortBy ==
-        ParamDefaults.defaultPlayerLboardSortBy(
-          _.isNil(rawParams.useRapm)
-            ? ParamDefaults.defaultPlayerLboardUseRapm
-            : rawParams.useRapm,
-          _.isNil(rawParams.factorMins)
-            ? ParamDefaults.defaultPlayerLboardFactorMins
-            : rawParams.factorMins
-        )
+          ParamDefaults.defaultPlayerLboardSortBy(
+            _.isNil(rawParams.useRapm)
+              ? ParamDefaults.defaultPlayerLboardUseRapm
+              : rawParams.useRapm,
+            _.isNil(rawParams.factorMins)
+              ? ParamDefaults.defaultPlayerLboardFactorMins
+              : rawParams.factorMins
+          )
           ? ["sortBy"]
           : [],
       ])
@@ -205,14 +207,14 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     const newParams = removeDefaultsFromParams(rawParams);
     const params = similarityMode
       ? removeDefaultsFromParams({
-          ...(playerCareerParamsRef.current || {}),
-          similarityParams: _.omit(newParams, [
-            "similarityParams",
-            "similarityConfig",
-            "gender",
-          ]),
-          similarityConfig: newParams.similarityConfig,
-        })
+        ...(playerCareerParamsRef.current || {}),
+        similarityParams: _.omit(newParams, [
+          "similarityParams",
+          "similarityConfig",
+          "gender",
+        ]),
+        similarityConfig: newParams.similarityConfig,
+      })
       : newParams;
 
     if (!_.isEqual(params, playerCareerParamsRef.current)) {
@@ -336,9 +338,8 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     />
   );
 
-  const thumbnailUrl = `${
-    server != "localhost" ? `https://${server}` : "http://localhost:3000"
-  }/thumbnails/player_leaderboard_thumbnail.png`;
+  const thumbnailUrl = `${server != "localhost" ? `https://${server}` : "http://localhost:3000"
+    }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className="medium_screen">
       <SiteModeDropdown />

@@ -434,6 +434,8 @@ export type PlayerCareerParams = {
   unpinnedIds?: string; //(comma-separated list of unpinned player IDs)
   diffMode?: boolean; //(if true, focus UI on comparing source player vs comps)
   diffQuickSwitch?: string; //(selected player for comparison in diff mode)
+  filterStr?: string; //(filter string for similar/pinned players)
+  showPinnedOnly?: boolean; //(if true, show only pinned players)
 };
 
 export type PlayerLeaderboardParams = {
@@ -642,8 +644,8 @@ export class ParamDefaults {
         ? "desc:diff_adj_rapm_prod"
         : "desc:diff_adj_rapm"
       : factorMins
-      ? "desc:off_adj_prod"
-      : "desc:off_adj_rtg";
+        ? "desc:off_adj_prod"
+        : "desc:off_adj_rtg";
   }
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
@@ -688,6 +690,8 @@ export class ParamDefaults {
   static readonly defaultUnpinnedIds = "";
   static readonly defaultDiffMode = true;
   static readonly defaultDiffQuickSwitch = "";
+  static readonly defaultFilterStr = "";
+  static readonly defaultShowPinnedOnly = false;
 }
 
 export type FilterParamsType =

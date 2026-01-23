@@ -161,8 +161,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
 
   // Filter state
-  const [filterStr, setFilterStr] = useState<string>("");
-  const [showPinnedOnly, setShowPinnedOnly] = useState<boolean>(false);
+  const [filterStr, setFilterStr] = useState<string>(
+    playerCareerParams.filterStr || ParamDefaults.defaultFilterStr
+  );
+  const [showPinnedOnly, setShowPinnedOnly] = useState<boolean>(
+    playerCareerParams.showPinnedOnly || ParamDefaults.defaultShowPinnedOnly
+  );
 
   const [comparisonPlayer, setComparisonPlayer] = useState<
     IndivCareerStatSet | undefined
@@ -537,6 +541,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         .filter((id) => Boolean(id))
         .join(","),
       unpinnedIds: Array.from(unpinnedPlayerIds).join(","),
+      filterStr,
+      showPinnedOnly,
     });
   }, [
     showGrades,
@@ -560,6 +566,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     similarityConfig,
     pinnedPlayers,
     unpinnedPlayerIds,
+    filterStr,
+    showPinnedOnly,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -2227,9 +2235,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           : "experiment";
         const similarityRow = GenericTableOps.buildTextRow(
           <Row className="align-items-center">
-            <Col lg={4} className="d-none d-lg-block">
-              {/* Left space for future filter */}
-            </Col>
+            {!showSimilaritySettings ? (
+              <Col lg={4} className="pr-2">
+                {filterComponent}
+              </Col>
+            ) : (
+              <Col lg={4} />
+            )}
             <Col
               xs={12}
               lg={4}
