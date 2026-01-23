@@ -952,9 +952,17 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       currPlayerSelected &&
       player._id == currPlayerSelected?._id;
 
+    const isCompPlayer = comparisonPlayer && comparisonPlayer._id == player._id;
+
     const maybeActiveCompIndex = comparisonPlayer
       ? _.findIndex(similarPlayers, (p) => p._id == comparisonPlayer._id)
       : -1;
+
+    const maybeCompDiag =
+      (maybeActiveCompIndex >= 0 &&
+        similarityDiagnostics[maybeActiveCompIndex]) ||
+      (isCompPlayer && pinnedPlayerDiags[player._id as string]) ||
+      undefined;
 
     const similarOrPinnedPlayers = (
       showPinnedOnly
@@ -1383,24 +1391,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : [],
-          maybeActiveCompIndex >= 0 &&
-          similarityDiagnostics[maybeActiveCompIndex]
+          maybeCompDiag
             ? [
                 GenericTableOps.buildTextRow(
                   <SimilarityDiagnosticView
-                    diagnostics={similarityDiagnostics[maybeActiveCompIndex]}
+                    diagnostics={maybeCompDiag}
                     config={similarityConfig}
                     theme={resolvedTheme}
                     playerId={player._id as string}
                     playerName={player.key}
                     isPinned={pinnedPlayers.some((p) => p._id === player._id)}
                     isPinnedPlayersOnlyView={false}
-                    onPinPlayer={() =>
-                      pinPlayer(
-                        player,
-                        similarityDiagnostics[maybeActiveCompIndex]
-                      )
-                    }
+                    onPinPlayer={() => pinPlayer(player, maybeCompDiag)}
                     onUnpinPlayer={() => unpinPlayer(player._id as string)}
                     onHidePlayer={() => hidePlayer(player._id as string)}
                   />,
@@ -1724,7 +1726,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         );
         if (_.isEmpty(similarPlayers)) {
           // Special cutdown request similar players mode before we have a full dashboard
-          requestSimilarPlayers(false, playerJsons);
+          requestSimilarPlayers(false, true, playerJsons);
         } else {
           // Just wait for pinned players and re-request
           setTimeout(
