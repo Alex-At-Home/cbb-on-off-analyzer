@@ -59,6 +59,15 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
   // State for collapsible Advanced Query Options (default collapsed)
   const [advancedOptionsExpanded, setAdvancedOptionsExpanded] = useState(false);
 
+  const [applyOnRender, setApplyOnRender] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (applyOnRender) {
+      setApplyOnRender(false);
+      if (onApply) onApply();
+    }
+  }, [applyOnRender]);
+
   // Initialize internal values when modal opens
   useEffect(() => {
     if (show) {
@@ -88,7 +97,8 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
     if (internalCustomWeights !== config.customWeights) {
       handleConfigChange("customWeights", internalCustomWeights);
     }
-    if (onApply) onApply();
+    onHide();
+    if (onApply) setApplyOnRender(true);
   };
 
   const weightingOptions = [
