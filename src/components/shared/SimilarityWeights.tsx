@@ -15,6 +15,7 @@ import {
   faMinusSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { SimilarityConfig } from "../../utils/FilterModels";
+import { PlayerSimilarityUtils } from "../../utils/stats/PlayerSimilarityUtils";
 
 interface Props {
   config: SimilarityConfig;
@@ -62,6 +63,7 @@ const SimilarityWeights: React.FunctionComponent<Props> = ({
     callback();
   };
 
+  const simpleSummary = PlayerSimilarityUtils.simpleSummaryText(config);
   return (
     <div className="similarity-controls mt-2 mb-2">
       <Row className="mb-2">
@@ -69,7 +71,10 @@ const SimilarityWeights: React.FunctionComponent<Props> = ({
           xs={12}
           className="d-flex align-items-center justify-content-between"
         >
-          <h6 className="mb-0">Similarity Weights</h6>
+          <h6 className="mb-0">Similarity Weights</h6>{" "}
+          <div className="text-muted">
+            {simpleSummary ? `(${simpleSummary})` : ""}
+          </div>
           <div className="d-flex align-items-center">
             <Button
               variant="outline-secondary"
