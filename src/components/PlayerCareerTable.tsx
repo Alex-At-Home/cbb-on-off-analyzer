@@ -36,12 +36,14 @@ import {
   Col,
   Container,
   Form,
+  InputGroup,
   OverlayTrigger,
   Row,
   Tooltip,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
+import { faFilter, faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -76,6 +78,7 @@ import SimilarityConfigModal from "./shared/SimilarityConfigModal";
 import SimilarityWeights from "./shared/SimilarityWeights";
 import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
 import PlayerFinderTextBox from "./shared/PlayerFinderTextBox";
+import AsyncFormControl from "./shared/AsyncFormControl";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import QuickSwitchBar, { quickSwitchDelim } from "./shared/QuickSwitchBar";
 
@@ -155,6 +158,151 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         [];
       return new Set(unpinnedIds);
     }
+  );
+
+  // Filter state
+  const [filterStr, setFilterStr] = useState<string>("");
+  const [showPinnedOnly, setShowPinnedOnly] = useState<boolean>(false);
+
+  const [comparisonPlayer, setComparisonPlayer] = useState<
+    IndivCareerStatSet | undefined
+  >(undefined);
+
+  const caseInsensitiveSearch = filterStr == filterStr.toLowerCase();
+  const filterFragmentSeparator =
+    filterStr.substring(0, 64).indexOf(";") >= 0 ? ";" : ",";
+  const filterFragments = filterStr
+    .split(filterFragmentSeparator)
+    .map((fragment) => _.trim(fragment))
+    .filter((fragment) => (fragment ? true : false));
+  const filterFragmentsPve = filterFragments.filter(
+    (fragment) => fragment[0] != "-"
+  );
+  const filterFragmentsNve = filterFragments
+    .filter((fragment) => fragment[0] == "-")
+    .map((fragment) => fragment.substring(1));
+
+  /** Used in table building below but also to display example in tooltip */
+  const buildFilterStringTest = (player: IndivCareerStatSet) => {
+    const names = (player.key || "").split(" ");
+    const firstName = names ? names[names.length - 1] : ""; //(allows eg MiMitchell+Makhi)
+    const usefulFormatBuilder = (s: string) => {
+      return `${player.roster?.year_class || ""}_${s || ""}:${
+        player.team || ""
+      }_${player.year || ""}`;
+    };
+    return (
+      `${player.key || ""}:${usefulFormatBuilder(
+        `${player.code || ""}+${firstName}`
+      )} ${usefulFormatBuilder(player.code || "")}` +
+      (player.roster?.ncaa_id
+        ? ` ${player.code || ""}_${player.roster?.ncaa_id || ""}`
+        : "")
+    );
+  };
+
+  // Filter function for players
+  const filterPlayer = (player: IndivCareerStatSet) => {
+    if (!filterStr.trim()) return true;
+
+    const strToTestCase = buildFilterStringTest(player);
+    const strToTest = caseInsensitiveSearch
+      ? strToTestCase.toLowerCase()
+      : strToTestCase;
+
+    const isMatch =
+      //(transferred and either doesn't have a destination, or we don't care)
+      (filterFragmentsPve.length == 0 ||
+        (_.find(
+          filterFragmentsPve,
+          (fragment) => strToTest.indexOf(fragment) >= 0
+        )
+          ? true
+          : false)) &&
+      (filterFragmentsNve.length == 0 ||
+        (_.find(
+          filterFragmentsNve,
+          (fragment) => strToTest.indexOf(fragment) >= 0
+        )
+          ? false
+          : true));
+
+    return isMatch;
+  };
+
+  // Just needed for help text!
+  const similarOrPinnedList = _.chain(
+    showPinnedOnly
+      ? pinnedPlayers
+      : _.isEmpty(similarPlayers)
+      ? pinnedPlayers
+      : similarPlayers
+  );
+  const firstSimilarOrPinnedPlayer =
+    comparisonPlayer ||
+    similarOrPinnedList
+      .filter((p) => !unpinnedPlayerIds.has(p._id as string))
+      .filter(filterPlayer)
+      .head()
+      .value() ||
+    similarOrPinnedList.head().value();
+
+  // Filter UI components
+  const filterTooltip = (
+    <Tooltip id="similarity-filter-tooltip">
+      Simple text match for each of the ";"-separated list against a line of
+      text with the player, team and year in various formats, in a format like{" "}
+      <br />
+      {firstSimilarOrPinnedPlayer ? (
+        <span>{buildFilterStringTest(firstSimilarOrPinnedPlayer)}</span>
+      ) : (
+        "Honor, Nick Sr_NiHonor+Nick:Clemson_2021/22 Sr_NiHonor:Clemson_2021/22"
+      )}
+    </Tooltip>
+  );
+
+  const filterIconText = (
+    <OverlayTrigger placement="auto" overlay={filterTooltip}>
+      <div>
+        <FontAwesomeIcon icon={faFilter} />
+        <sup>*</sup>
+      </div>
+    </OverlayTrigger>
+  );
+
+  const pinnedOnlyTooltip = (
+    <Tooltip id="pinned-only-tooltip">
+      When enabled, only shows pinned players. Useful for comparing specific
+      players without similar player suggestions.
+    </Tooltip>
+  );
+
+  // Filter UI component
+  const filterComponent = (
+    <InputGroup size="sm">
+      <InputGroup.Prepend>
+        <InputGroup.Text>{filterIconText}</InputGroup.Text>
+      </InputGroup.Prepend>
+      <AsyncFormControl
+        startingVal={filterStr}
+        onChange={(t: string) => {
+          setFilterStr(t);
+        }}
+        timeout={300}
+        placeholder="See 'Filter' icon tooltip for details"
+      />
+      <InputGroup.Append>
+        <OverlayTrigger placement="top" overlay={pinnedOnlyTooltip}>
+          <Button
+            variant={showPinnedOnly ? "primary" : "outline-primary"}
+            size="sm"
+            onClick={() => setShowPinnedOnly(!showPinnedOnly)}
+          >
+            <FontAwesomeIcon icon={faThumbtack} />
+          </Button>
+        </OverlayTrigger>
+      </InputGroup.Append>
+    </InputGroup>
   );
 
   // Similarity controls state
@@ -296,10 +444,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ? true
       : playerCareerParams.stickyQuickToggle
   );
-
-  const [comparisonPlayer, setComparisonPlayer] = useState<
-    IndivCareerStatSet | undefined
-  >(undefined);
 
   /** Selected player for comparison in diff mode - TODO probably can simplify by removing this and using comparisonPlayer.key? */
   const [diffQuickSwitch, setDiffQuickSwitch] = useState(
@@ -805,8 +949,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       : -1;
 
     const similarOrPinnedPlayers = (
-      _.isEmpty(similarPlayers) ? pinnedPlayers : similarPlayers
-    ).filter((p) => !unpinnedPlayerIds.has(p._id as string));
+      showPinnedOnly
+        ? pinnedPlayers
+        : _.isEmpty(similarPlayers)
+        ? pinnedPlayers
+        : similarPlayers
+    )
+      .filter((p) => !unpinnedPlayerIds.has(p._id as string))
+      .filter(filterPlayer);
 
     const playStyleQuickSwitchOptions = _.thru(isSimilarPlayer, () => {
       if (isSimilarPlayer) {
@@ -1970,8 +2120,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         // Case 1 & 2: No similar players - show button with controls below
         const buttonRow = GenericTableOps.buildTextRow(
           <Row className="align-items-center">
-            <Col lg={4} className="d-none d-lg-block">
-              {/* Left space for future filter */}
+            <Col lg={4} className="pr-2">
+              {filterComponent}
             </Col>
             <Col xs={12} lg={4} className="text-center mb-2 mb-lg-0">
               <Button onClick={() => requestSimilarPlayers()}>
@@ -2036,6 +2186,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           .concat(
             // If no similar players, ie user has not yet requested them, then show pinned players
             _.chain(pinnedPlayers)
+              .filter(filterPlayer)
               .map((p) => ({ p, diags: pinnedPlayerDiags[p._id as string] }))
               .sortBy(({ p, diags }, i) =>
                 diags ? diags.totalSimilarity : -10000000
@@ -2141,8 +2292,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         const experimentButtonRow = showSimilaritySettings
           ? GenericTableOps.buildTextRow(
               <Row className="align-items-center">
-                <Col lg={4} className="d-none d-lg-block">
-                  {/* Left space for future filter */}
+                <Col lg={4} className="pr-2">
+                  {filterComponent}
                 </Col>
                 <Col xs={12} lg={4} className="text-center mb-2 mb-lg-0">
                   <Button onClick={() => requestSimilarPlayers()}>
@@ -2174,9 +2325,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           .concat(experimentButtonRow ? [experimentButtonRow] : [])
           .concat(
             _.flatMap(
-              similarPlayers.filter(
-                (p) => !Array.from(unpinnedPlayerIds).includes(p._id as string)
-              ),
+              similarPlayers
+                .filter(
+                  (p) =>
+                    !Array.from(unpinnedPlayerIds).includes(p._id as string)
+                )
+                .filter(filterPlayer)
+                .filter(
+                  (p) => !showPinnedOnly || pinnedPlayerDiags[p._id as string]
+                ),
               (p, i) => {
                 const players = playerRowBuilder(p, p.year || "????", i == 0);
 
@@ -2201,8 +2358,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             theme={resolvedTheme}
                             playerId={p._id as string}
                             playerName={p.key}
-                            isPinned={pinnedPlayers.some(
-                              (player) => player._id === p._id
+                            isPinned={Boolean(
+                              pinnedPlayerDiags[p._id as string]
                             )}
                             isPinnedPlayersOnlyView={false}
                             onPinPlayer={() =>
