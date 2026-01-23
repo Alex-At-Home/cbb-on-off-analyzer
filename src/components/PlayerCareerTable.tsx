@@ -1861,6 +1861,21 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           similarityConfig
         );
 
+      // Build style grades to help make decision
+
+      const possPctUsgDivisonStats =
+        divisionStatsCache[currPlayerSelected.year || "??"]?.Combo;
+      const possPctUsgGrades =
+        currPlayerSelected.style && possPctUsgDivisonStats
+          ? GradeUtils.getIndivPlayStyleStats(
+              currPlayerSelected.style,
+              possPctUsgDivisonStats,
+              undefined,
+              true,
+              true
+            )
+          : undefined;
+
       // Combine user's advanced query with auto-generated filters
       const combinedQuery = [
         similarityConfig.advancedQuery,
@@ -1935,11 +1950,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               return;
             }
             // Calculate vectors for all candidates in flat format
-            const candidateVectors = flatCandidates.map((candidate: any) =>
-              PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-                candidate.fields,
-                similarityConfig
-              )
+            const candidateVectors = flatCandidates.map(
+              (candidate: any) =>
+                PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+                  candidate.fields,
+                  similarityConfig
+                ).vector
             );
             const candidateIds = flatCandidates.map(
               (c: any) => c._id as string
@@ -1950,7 +1966,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 currPlayerSelected,
                 similarityConfig,
                 candidateVectors,
-                (idx: number) => candidateIds[idx]
+                (idx: number) => candidateIds[idx],
+                undefined,
+                possPctUsgGrades
               );
 
             // Store in cache for future use
@@ -1990,7 +2008,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   currPlayerSelected,
                   similarityConfig,
                   candidateVectors,
-                  (idx: number) => candidateIds[idx]
+                  (idx: number) => candidateIds[idx],
+                  undefined,
+                  possPctUsgGrades
                 );
 
             if (pinnedPlayersOnlyMode && updatedPinnedPlayers) {
@@ -2003,7 +2023,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   comparisonPlayersCount: updatedPinnedPlayers.length,
                 },
                 updatedPinnedPlayers,
-                zScores
+                zScores,
+                possPctUsgGrades
               );
               setPinnedPlayerDiags((curr) => ({
                 ...curr,
@@ -2116,7 +2137,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     pinnedPlayersToUse.length,
                 },
                 allCandidates,
-                zScores
+                zScores,
+                possPctUsgGrades
               );
 
               // Set results

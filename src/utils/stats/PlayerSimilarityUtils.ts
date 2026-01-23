@@ -1,5 +1,9 @@
 import { IndivCareerStatSet, Statistic } from "../StatModels";
-import { PlayTypeUtils, TopLevelIndivPlayType } from "./PlayTypeUtils";
+import {
+  PlayTypeUtils,
+  TopLevelIndivPlayAnalysis,
+  TopLevelIndivPlayType,
+} from "./PlayTypeUtils";
 import { SimilarityConfig, DefaultSimilarityConfig } from "../FilterModels";
 import { ConferenceStrength } from "../public-data/ConferenceInfo";
 
@@ -197,29 +201,35 @@ export class PlayerSimilarityUtils {
 
   // STEP 2: RESCORING
 
-  /** Build unweighted similarity vector from flat docvalue_fields format */
+  /** Build unweighted similarity vector from flat docvalue_fields format
+   * (Note the order defined here needs to by synced in many other places if changed)
+   */
   static readonly buildUnweightedPlayerSimilarityVectorFromFlat = (
     flatFields: Record<string, any[]>,
     config: SimilarityConfig = DefaultSimilarityConfig,
     isSourcePlayer?: boolean
-  ): number[] => {
+  ): { vector: number[]; fieldMapping: Record<string, number> } => {
     const vector: number[] = [];
+    const mutableFieldLookup: Record<string, number> = {};
 
     // Helper to get value from flat fields
     const getValue = (key: string): number => {
       const values = flatFields[key];
       return Array.isArray(values) && values.length > 0 ? values[0] : 0;
     };
+    const appendToVec = (key: string, maybeTrans?: (n: number) => number) => {
+      if (isSourcePlayer) mutableFieldLookup[key] = vector.length;
+      const val = getValue(key);
+      vector.push(maybeTrans ? maybeTrans(val) : val);
+    };
 
     //TODO: always add fields to vector, just weight them to 0 later
+    // (see transition as an example)
 
     // PLAY STYLE SECTION
     for (const pt of PlayerSimilarityUtils.allStyles) {
-      if (pt === "Transition" && !config.includeTransition) {
-        vector.push(0);
-        continue;
-      }
-      vector.push(getValue(`style.${pt}.possPctUsg.value`));
+      const field = `style.${pt}.possPctUsg.value`;
+      appendToVec(field);
     }
 
     // Additional play style stats (if weights are not 'none')
@@ -227,83 +237,78 @@ export class PlayerSimilarityUtils {
       { key: "off_assist.value", weight: config.assistWeighting },
       { key: "off_to.value", weight: config.turnoverWeighting },
       { key: "off_orb.value", weight: config.offensiveReboundWeighting },
-      { key: "off_ftr.value", weight: config.freeThrowWeighting },
+      { key: "off_ftr.value", weight: config.freeThrowWeighting }, //(this is included twice, but not a big deal)
     ];
 
     for (const stat of additionalStats) {
       if (stat.weight !== "none") {
-        vector.push(getValue(stat.key));
+        appendToVec(stat.key);
       }
     }
     // USAGE BONUS
     if (config.usageBonus !== "none") {
-      vector.push(getValue("off_usage.value"));
+      appendToVec("off_usage.value");
     }
 
     // SCORING EFFICIENCY SECTION
     for (const pt of PlayerSimilarityUtils.allStyles) {
-      let raw = 0;
       switch (config.scoringMode) {
         case "sos-adjusted":
-          raw = getValue(`style.${pt}.adj_pts.value`);
+          appendToVec(`style.${pt}.adj_pts.value`);
           break;
         case "raw":
-          raw = getValue(`style.${pt}.pts.value`);
+          appendToVec(`style.${pt}.pts.value`);
           break;
         case "relative":
-          raw = getValue(`style.${pt}.pts.value`);
+          appendToVec(`style.${pt}.pts.value`);
           break;
       }
-      vector.push(raw);
     }
 
     // FG BONUS SECTION
     if (config.fgBonus !== "none") {
-      vector.push(getValue("off_3p.value"));
-      vector.push(getValue("off_2pmid.value"));
-      vector.push(getValue("off_2prim.value"));
-      vector.push(getValue("off_ft.value"));
+      appendToVec("off_3p.value");
+      appendToVec("off_2pmid.value");
+      appendToVec("off_2prim.value");
+      appendToVec("off_ft.value");
     }
 
     // OFFENSIVE GRAVITY BONUS
     if (config.offensiveGravityBonus !== "none") {
       const offAdjRapm = getValue("off_adj_rapm.value");
       const offAdjRtg = getValue("off_adj_rtg.value");
-      vector.push(offAdjRapm - offAdjRtg);
+      vector.push(offAdjRapm - offAdjRtg); //(no field, so no appendToVec)
     }
 
     // DEFENSE SECTION
     if (config.defensiveSkill !== "none") {
-      let defensiveSkill = 0;
       switch (config.defensiveSkill) {
         case "sos-adjusted":
-          defensiveSkill = getValue("def_adj_rapm.value");
+          appendToVec("def_adj_rapm.value");
           break;
         case "raw":
-          defensiveSkill = -getValue("def_rtg.value") + 1.0;
+          appendToVec("def_rtg.value", (n) => -n + 1.0);
           break;
         case "relative":
           const defRapm = getValue("def_adj_rapm.value");
           const onDefPpp = getValue("on.def_adj_ppp.value");
-          defensiveSkill = defRapm - 0.2 * (onDefPpp - 1.0);
+          const relativeDefensiveSkill = defRapm - 0.2 * (onDefPpp - 1.0);
+          vector.push(relativeDefensiveSkill); //(no direct field)
           break;
       }
-      vector.push(defensiveSkill);
     }
 
     if (config.stocksWeighting !== "none") {
-      const steals = getValue("def_to.value");
-      const blocks = getValue("def_2prim.value");
-      vector.push(steals);
-      vector.push(blocks);
+      appendToVec("def_to.value");
+      appendToVec("def_2prim.value");
     }
 
     if (config.foulsWeighting !== "none") {
-      vector.push(getValue("def_ftr.value") * 50);
+      appendToVec("def_ftr.value", (n) => n * 50);
     }
 
     if (config.defensiveReboundWeighting !== "none") {
-      vector.push(getValue("def_orb.value"));
+      appendToVec("def_orb.value");
     }
 
     // PLAYER INFO SECTION
@@ -321,17 +326,44 @@ export class PlayerSimilarityUtils {
     }
 
     if (config.minutesWeighting !== "none") {
-      vector.push(getValue("off_team_poss_pct.value"));
+      appendToVec("off_team_poss_pct.value");
     }
 
-    return vector;
+    // We finally append some rate stats we don't use in scorig but do use to get some fields we want:
+    appendToVec("off_3pr.value");
+    appendToVec("off_2pmidr.value");
+    appendToVec("off_2primr.value");
+    appendToVec("off_ftr.value", (n) => n * 0.5); //(pair of FTs == one shot, note this field is included twice)
+
+    return { vector, fieldMapping: mutableFieldLookup };
   };
 
+  static readonly gradeBonusMultiplier = (x: number): number => {
+    if (x <= 0.75) {
+      return 1.0;
+    } else if (x <= 0.8) {
+      // Linear from 1.0 to 1.25 over 0.75 to 0.8
+      return 1.0 + 5 * (x - 0.75);
+    } else if (x <= 0.85) {
+      // Linear from 1.25 to 1.5 over 0.8 to 0.85
+      return 1.25 + 5 * (x - 0.8);
+    } else if (x <= 0.95) {
+      // Linear from 1.5 to 2.0 over 0.85 to 0.95
+      return 1.5 + 5 * (x - 0.85);
+    } else if (x <= 0.98) {
+      // Linear from 2.0 to 3.0 over 0.95 to 0.98
+      return 2.0 + (100 / 3) * (x - 0.95);
+    } else {
+      return 3.0;
+    }
+  };
   /** Convert nested player object to flat docvalue_fields format */
   static readonly playerToFlatFields = (
-    player: IndivCareerStatSet
-  ): Record<string, any[]> => {
+    player: IndivCareerStatSet,
+    grades?: TopLevelIndivPlayAnalysis
+  ): { flat: Record<string, any[]>; gradeBonus: Record<string, number> } => {
     const fields: Record<string, any[]> = {};
+    const gradeBonus: Record<string, number> = {};
 
     // Helper to set field value
     const setField = (key: string, value: any) => {
@@ -355,6 +387,17 @@ export class PlayerSimilarityUtils {
         setField(`style.${pt}.possPct.value`, style.possPct);
         setField(`style.${pt}.adj_pts.value`, style.adj_pts);
         setField(`style.${pt}.pts.value`, style.pts);
+      }
+      if (grades) {
+        const styleGrade = grades[pt]?.possPct;
+        if (styleGrade) {
+          const bonus = PlayerSimilarityUtils.gradeBonusMultiplier(
+            styleGrade.value || 0
+          );
+          if (bonus > 1.0) {
+            gradeBonus[`style.${pt}.possPctUsg.value`] = bonus;
+          }
+        }
       }
     }
 
@@ -390,7 +433,7 @@ export class PlayerSimilarityUtils {
       fields["roster.height.keyword"] = [player.roster.height];
     }
 
-    return fields;
+    return { flat: fields, gradeBonus };
   };
 
   /** Convert raw scoring values to relative mode if needed */
@@ -494,14 +537,105 @@ export class PlayerSimilarityUtils {
     return { means, stdDevs };
   };
 
-  /** Calculate rate weights using square root approach */
+  /** A version of calculateRateWeights that uses both source and comp player's rates to give a better weighting  */
+  static readonly calculateRelativeRateWeights = (
+    playerVector: number[],
+    candidateVector: number[],
+    fieldMapping: Record<string, number>,
+    config: SimilarityConfig
+  ): {
+    styleScoreWeights: number[];
+    styleRateWeights: number[];
+    fgRateWeights: number[];
+  } => {
+    // 1] Adjust the weights so styles that occur more often get a bonus
+    // IMPORTANT: (all these rely on the order from buildUnweightedPlayerSimilarityVectorFromFlat)
+
+    const transitionExclusionIdx = config.includeTransition
+      ? -1
+      : fieldMapping[`style.Transition.possPctUsg.value`];
+    const styleRateWeightsSource = _.take(
+      playerVector,
+      PlayerSimilarityUtils.allStyles.length
+    );
+    const rawStyleRateWeights = _.map(styleRateWeightsSource, (p, idx) =>
+      idx == transitionExclusionIdx
+        ? 0
+        : Math.sqrt(Math.abs(p) + Math.abs(candidateVector[idx]))
+    );
+    const totalStyleRateWeights = rawStyleRateWeights.reduce((a, b) => a + b);
+    const styleScoreWeights = _.map(
+      rawStyleRateWeights,
+      (p) => p / totalStyleRateWeights
+    );
+
+    // 2] Style rate weights (for scoring efficiency section)
+    const attackAndKickIdx =
+      fieldMapping[`style.Attack & Kick.possPctUsg.value`] || 0;
+    const postAndKickIdx =
+      fieldMapping[`style.Post & Kick.possPctUsg.value`] || 0;
+    const hitsCutterIdx =
+      fieldMapping[`style.Hits Cutter.possPctUsg.value`] || 0;
+    const pnrPasserIdx = fieldMapping[`style.PnR Passer.possPctUsg.value`] || 0;
+
+    const styleRates = _.range(0, PlayerSimilarityUtils.allStyles.length).map(
+      (styleIdx) => {
+        const baseRate =
+          0.5 * playerVector[styleIdx] + 0.5 * candidateVector[styleIdx];
+        if (styleIdx == attackAndKickIdx || styleIdx == postAndKickIdx) {
+          return baseRate * 0.1; //(3P, very random what happens after the pass)
+        } else if (styleIdx == hitsCutterIdx || styleIdx == pnrPasserIdx) {
+          return baseRate * 0.5; //(2P, still some level of randomness what happens after the pass)
+        } else {
+          return baseRate;
+        }
+      }
+    );
+    const rateMuter = (n: number) => n; //(tried various fns here but linear ended up working best)
+    const styleSum = styleRates.reduce((sum, rate) => sum + rateMuter(rate), 0);
+    const styleRateWeights = styleRates.map(
+      (rate) =>
+        PlayerSimilarityUtils.styledScoringWeight *
+        (styleSum > 0 ? rateMuter(rate) / styleSum : 1.0 / styleRates.length)
+    );
+
+    // 3] Find the scoring efficiency section indices
+
+    const fgRates = _.thru(config.fgBonus !== "none", (calcFgBonus) => {
+      if (calcFgBonus) {
+        const startingIndex = fieldMapping["off_3pr.value"] || 0;
+        if (startingIndex > 0) {
+          return _.range(0, 4).map((idx) => {
+            return (
+              0.5 * playerVector[startingIndex + idx] +
+              0.5 * candidateVector[startingIndex + idx]
+            );
+          });
+        } else {
+          return [];
+        }
+      } else {
+        return [];
+      }
+    });
+    const fgSum = fgRates.reduce((sum, rate) => sum + rateMuter(rate), 0);
+    const fgRateWeights = fgRates.map(
+      (rate) =>
+        PlayerSimilarityUtils.fgWeight *
+        (fgSum > 0 ? rateMuter(rate) / fgSum : 1.0 / fgRates.length)
+    );
+
+    return { styleScoreWeights, styleRateWeights, fgRateWeights };
+  };
+
+  /** Calculate rate weights */
   static readonly calculateRateWeights = (
     player: IndivCareerStatSet,
     config: SimilarityConfig
   ): { styleRateWeights: number[]; fgRateWeights: number[] } => {
     // Style rate weights (for scoring efficiency section)
     const styleRates = PlayerSimilarityUtils.allStyles.map((pt) => {
-      const baseRate = player.style?.[pt]?.possPct?.value ?? 0;
+      const baseRate = player.style?.[pt]?.possPctUsg?.value ?? 0;
       if (pt == "Attack & Kick" || pt == "Post & Kick") {
         return baseRate * 0.1; //(3P, very random what happens after the pass)
       } else if (pt == "Hits Cutter" || pt == "PnR Passer") {
@@ -510,7 +644,7 @@ export class PlayerSimilarityUtils {
         return baseRate;
       }
     });
-    const rateMuter = (n: number) => n;
+    const rateMuter = (n: number) => n; //(tried various fns here but linear ended up working best)
     const styleSum = styleRates.reduce((sum, rate) => sum + rateMuter(rate), 0);
     const styleRateWeights = styleRates.map(
       (rate) =>
@@ -527,6 +661,7 @@ export class PlayerSimilarityUtils {
         player.off_2primr?.value ?? 0,
         0.5 * (player.off_ftr?.value ?? 0),
       ];
+
       const fgSum = fgRates.reduce((sum, rate) => sum + rateMuter(rate), 0);
       fgRateWeights = fgRates.map(
         (rate) =>
@@ -543,11 +678,17 @@ export class PlayerSimilarityUtils {
     sourceVector: number[],
     candidateVector: number[],
     zScoreStats: { means: number[]; stdDevs: number[] },
-    rateWeights: { styleRateWeights: number[]; fgRateWeights: number[] },
-    config: SimilarityConfig
+    legacyRateWeights: { styleRateWeights: number[]; fgRateWeights: number[] },
+    fieldMapping: Record<string, number>,
+    config: SimilarityConfig,
+    gradeBonus: number[]
   ): SimilarityDiagnostics => {
     if (sourceVector.length !== candidateVector.length) {
-      throw new Error("Vector length mismatch");
+      //DEBUG
+      //console.log(`Vector length mismatch`, sourceVector, candidateVector);
+      throw new Error(
+        `Vector length mismatch [${sourceVector.length}] [${candidateVector.length}]`
+      );
     }
 
     const diagnostics: SimilarityDiagnostics = {
@@ -572,6 +713,16 @@ export class PlayerSimilarityUtils {
     const styleWeightOverrides = PlayerSimilarityUtils.parseCustomWeights(
       config.customWeights
     );
+
+    const rateWeights = PlayerSimilarityUtils.calculateRelativeRateWeights(
+      sourceVector,
+      candidateVector,
+      fieldMapping,
+      config
+    );
+    // (DEBUGGING, for comparison)
+    // rateWeights.styleRateWeights = legacyRateWeights.styleRateWeights;
+    // rateWeights.fgRateWeights = legacyRateWeights.fgRateWeights;
 
     // Helper to process vector section with weights and track diagnostics
     const processSection = (
@@ -602,7 +753,7 @@ export class PlayerSimilarityUtils {
         );
 
         // Calculate weight
-        let weight = componentWeight * dropdownWeight;
+        let weight = componentWeight * dropdownWeight * gradeBonus[vectorIndex];
 
         if (sectionRateWeights && i < sectionRateWeights.length) {
           weight *= sectionRateWeights[i];
@@ -641,22 +792,6 @@ export class PlayerSimilarityUtils {
 
     // PLAY STYLE SECTION
 
-    // Adjust the weights so styles that occur more often get a bonus
-    // IMPORTANT: relies on the styles being first
-
-    const styleRateWeightsSource = _.take(
-      sourceVector,
-      PlayerSimilarityUtils.allStyles.length
-    );
-    const rawStyleRateWeights = _.map(styleRateWeightsSource, (p, idx) =>
-      Math.sqrt(Math.abs(p) + Math.abs(candidateVector[idx]))
-    );
-    const totalStyleRateWeights = rawStyleRateWeights.reduce((a, b) => a + b);
-    const styleRateWeights = _.map(
-      rawStyleRateWeights,
-      (p) => p / totalStyleRateWeights
-    );
-
     processSection(
       PlayerSimilarityUtils.allStyles.length,
       config.playStyleWeight,
@@ -664,7 +799,7 @@ export class PlayerSimilarityUtils {
       PlayerSimilarityUtils.allStyles,
       PlayerSimilarityUtils.styleFrequencyWeight *
         PlayerSimilarityUtils.dropdownWeights[config.playTypeWeights],
-      styleRateWeights
+      rateWeights.styleScoreWeights
     );
 
     // Additional play style stats
@@ -811,6 +946,8 @@ export class PlayerSimilarityUtils {
           [stat.name],
           actualWeight
         );
+
+        //(there's some rate stats at the end which we will ignore, we only wanted wanted them for rates)
       }
     }
 
@@ -834,7 +971,8 @@ export class PlayerSimilarityUtils {
     config: SimilarityConfig,
     candidatePlayers: number[][],
     objBuilder: (idx: number) => T,
-    zScoresIn?: { means: number[]; stdDevs: number[] }
+    zScoresIn?: { means: number[]; stdDevs: number[] },
+    styleGrades?: TopLevelIndivPlayAnalysis
   ): {
     diags: Array<{
       obj: T;
@@ -843,13 +981,23 @@ export class PlayerSimilarityUtils {
     }>;
     zScores: { means: number[]; stdDevs: number[] };
   } {
-    const sourceVector =
+    const { flat: flatSourcePlayer, gradeBonus } =
+      PlayerSimilarityUtils.playerToFlatFields(sourcePlayer, styleGrades);
+    const { vector: sourceVector, fieldMapping: sourceFieldMapping } =
       PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
         // Create flat fields from source player
-        PlayerSimilarityUtils.playerToFlatFields(sourcePlayer),
+        flatSourcePlayer,
         config,
         true
       );
+
+    const indexBasedGradeBonusMap = _.mapKeys(
+      gradeBonus,
+      (v, k) => sourceFieldMapping[k] ?? -1
+    );
+    const indexBasedGradeBonus = sourceVector.map((__, idx) =>
+      indexBasedGradeBonusMap[idx] >= 0 ? indexBasedGradeBonusMap[idx] : 1
+    );
 
     const allVectors = [sourceVector].concat(candidatePlayers);
 
@@ -866,7 +1014,7 @@ export class PlayerSimilarityUtils {
       ? zScoresIn
       : PlayerSimilarityUtils.calculateZScores(normalizedVectors, true);
 
-    // Step 4: Calculate rate weights for source player
+    // Step 4: Calculate rate weights for source player (these aren't used any more)
     const rateWeights = PlayerSimilarityUtils.calculateRateWeights(
       sourcePlayer,
       config
@@ -886,8 +1034,10 @@ export class PlayerSimilarityUtils {
         sourceVector,
         candidateVector,
         zScoreStats,
-        rateWeights,
-        config
+        rateWeights, //(now unused)
+        sourceFieldMapping, //(use this to calc averaged player/comp weights)
+        config,
+        indexBasedGradeBonus
       );
 
       candidateResults.push({
@@ -911,25 +1061,27 @@ export class PlayerSimilarityUtils {
     sourcePlayer: IndivCareerStatSet,
     config: SimilarityConfig = DefaultSimilarityConfig,
     candidatePlayers: IndivCareerStatSet[], // Optional for testing, will fetch if not provided
-    zScoresIn?: { means: number[]; stdDevs: number[] }
+    zScoresIn?: { means: number[]; stdDevs: number[] },
+    styleGrades?: TopLevelIndivPlayAnalysis
   ): Array<{
     obj: IndivCareerStatSet;
     similarity: number;
     diagnostics: SimilarityDiagnostics;
   }> => {
     const candidateVectors = candidatePlayers.map((player) => {
-      const flatFields = PlayerSimilarityUtils.playerToFlatFields(player);
+      const flatFields = PlayerSimilarityUtils.playerToFlatFields(player).flat;
       return PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
         flatFields,
         config
-      );
+      ).vector;
     });
     return PlayerSimilarityUtils.playerSimilarityLogic(
       sourcePlayer,
       config,
       candidateVectors,
       (idx: number) => candidatePlayers[idx],
-      zScoresIn
+      zScoresIn,
+      styleGrades
     ).diags;
   };
 

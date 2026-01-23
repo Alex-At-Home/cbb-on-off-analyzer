@@ -13,7 +13,7 @@ const createMockPlayer = (
       height: "6-4",
       year_class: "Jr",
     },
-      style: {
+    style: {
       "Rim Attack": {
         possPctUsg: { value: 0.15 },
         possPct: { value: 0.08 },
@@ -65,13 +65,13 @@ const createMockPlayer = (
       "Big Cut & Roll": {
         possPctUsg: { value: 0.04 },
         possPct: { value: 0.02 },
-          pts: { value: 1.2 },
+        pts: { value: 1.2 },
         adj_pts: { value: 1.15 },
-        },
-        "Post-Up": {
+      },
+      "Post-Up": {
         possPctUsg: { value: 0.09 },
         possPct: { value: 0.05 },
-          pts: { value: 0.9 },
+        pts: { value: 0.9 },
         adj_pts: { value: 0.92 },
       },
       "Post & Kick": {
@@ -104,9 +104,9 @@ const createMockPlayer = (
         pts: { value: 1.2 },
         adj_pts: { value: 1.18 },
       },
-      },
-      off_3p: { value: 0.35 },
-      off_2pmid: { value: 0.42 },
+    },
+    off_3p: { value: 0.35 },
+    off_2pmid: { value: 0.42 },
     off_2prim: { value: 0.68 },
     off_3pr: { value: 0.3 },
     off_2pmidr: { value: 0.15 },
@@ -188,9 +188,9 @@ describe("PlayerSimilarityUtils", () => {
       it("should build unweighted vector with default config", () => {
         const flatFields =
           PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
-        const vector =
+        const { vector } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields
+            flatFields.flat
           );
 
         expect(vector).toBeInstanceOf(Array);
@@ -208,46 +208,115 @@ describe("PlayerSimilarityUtils", () => {
         };
         const flatFields =
           PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
-        const vectorDefault =
+        const { vector: vectorDefault } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields
+            flatFields.flat
           );
-        const vectorExcluded =
+        const { vector: vectorExcluded } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields,
-          config
-        );
-        
+            flatFields.flat,
+            config
+          );
+
         // Vector with exclusions should be shorter
         expect(vectorExcluded.length).toBeLessThan(vectorDefault.length);
       });
 
-      it("should handle transition exclusion", () => {
-        const configWithTransition = {
-          ...DefaultSimilarityConfig,
-          includeTransition: true,
-        };
-        const configNoTransition = {
-          ...DefaultSimilarityConfig,
-          includeTransition: false,
-        };
-
+      it("should calculate fieldMapping correctly for default config", () => {
         const flatFields =
           PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
-        const vectorWith =
+
+        // Test with isSourcePlayer=true to get field mapping
+        const { vector, fieldMapping } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields,
-            configWithTransition
-          );
-        const vectorWithout =
-          PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields,
-            configNoTransition
+            flatFields.flat,
+            DefaultSimilarityConfig,
+            true // isSourcePlayer=true to populate fieldMapping
           );
 
-        // Transition should be at index 14 (last play style)
-        expect(vectorWithout[14]).toBe(0);
-        expect(vectorWith[14]).toBeGreaterThanOrEqual(0);
+        // Field mapping should be defined when isSourcePlayer=true
+        expect(fieldMapping).toBeDefined();
+        expect(typeof fieldMapping).toBe("object");
+
+        // Should have entries for each field added to the vector
+        const fieldKeys = Object.keys(fieldMapping);
+        expect(fieldKeys.length).toBeGreaterThan(0);
+
+        // All mapping values should be valid indices in the vector
+        Object.values(fieldMapping).forEach((index: number) => {
+          expect(typeof index).toBe("number");
+          expect(index).toBeGreaterThanOrEqual(0);
+          expect(index).toBeLessThan(vector.length);
+        });
+
+        // Should include play style fields (both usage and scoring efficiency)
+        const styleFields = fieldKeys.filter((key) => key.startsWith("style."));
+        expect(styleFields.length).toBe(30); // 15 for usage + 15 for scoring efficiency
+
+        // Play style usage fields should have indices 0-14 (first in vector)
+        const styleUsageFields = fieldKeys.filter((key) =>
+          key.includes(".possPctUsg.value")
+        );
+        expect(styleUsageFields.length).toBe(15);
+        styleUsageFields.forEach((styleField) => {
+          const index = fieldMapping[styleField];
+          expect(index).toBeGreaterThanOrEqual(0);
+          expect(index).toBeLessThanOrEqual(14);
+        });
+
+        // Play style scoring efficiency fields should come later in the vector
+        const styleScoringFields = fieldKeys.filter(
+          (key) => key.includes(".adj_pts.value") || key.includes(".pts.value")
+        );
+        expect(styleScoringFields.length).toBe(15);
+
+        // Should include other expected field types (only those added via appendToVec with non-'none' weights)
+        const assistField = fieldKeys.find((key) => key.includes("off_assist"));
+        const toField = fieldKeys.find((key) => key.includes("off_to"));
+        const orbField = fieldKeys.find((key) => key.includes("off_orb"));
+        const ftrField = fieldKeys.find((key) => key.includes("off_ftr"));
+        const usageField = fieldKeys.find((key) => key.includes("off_usage"));
+
+        expect(assistField).toBeDefined(); // assistWeighting: "default"
+        expect(toField).toBeDefined(); // turnoverWeighting: "default"
+        expect(orbField).toBeDefined(); // offensiveReboundWeighting: "default"
+        expect(ftrField).toBeDefined(); // freeThrowWeighting: "default"
+        expect(usageField).toBeDefined(); // usageBonus: "default"
+
+        // Field names should be unique (no duplicate field mappings)
+        // Note: some fields like off_ftr.value may be used multiple times in the vector
+        // but should only appear once in the fieldMapping
+        const fieldNames = Object.keys(fieldMapping);
+        const uniqueFieldNames = Array.from(new Set(fieldNames));
+        expect(uniqueFieldNames.length).toBe(fieldNames.length);
+
+        // All indices should be valid (within vector bounds)
+        const indices = Object.values(fieldMapping);
+        indices.forEach((index) => {
+          expect(index).toBeGreaterThanOrEqual(0);
+          expect(index).toBeLessThan(vector.length);
+        });
+      });
+
+      it("should not populate fieldMapping when isSourcePlayer=false", () => {
+        const flatFields =
+          PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+
+        // Test with isSourcePlayer=false (default)
+        const { vector, fieldMapping } =
+          PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+            flatFields.flat,
+            DefaultSimilarityConfig,
+            false // isSourcePlayer=false
+          );
+
+        // Vector should still be built
+        expect(vector).toBeDefined();
+        expect(vector.length).toBeGreaterThan(0);
+
+        // Field mapping should be empty when isSourcePlayer=false
+        expect(fieldMapping).toBeDefined();
+        expect(Object.keys(fieldMapping).length).toBe(0);
       });
     });
 
@@ -294,9 +363,9 @@ describe("PlayerSimilarityUtils", () => {
         const { styleRateWeights, fgRateWeights } =
           PlayerSimilarityUtils.calculateRateWeights(
             samplePlayerCareer,
-          config
-        );
-        
+            config
+          );
+
         expect(styleRateWeights.length).toBe(15);
         expect(fgRateWeights.length).toBe(4);
 
@@ -323,7 +392,122 @@ describe("PlayerSimilarityUtils", () => {
           samplePlayerCareer,
           config
         );
-        
+
+        expect(fgRateWeights).toEqual([]);
+      });
+    });
+
+    describe("calculateRelativeRateWeights", () => {
+      it("should match calculateRateWeights when using same vector for both player and candidate", () => {
+        const config = {
+          ...DefaultSimilarityConfig,
+          fgBonus: "default" as const,
+        };
+
+        // Get the original rate weights from calculateRateWeights
+        const originalWeights = PlayerSimilarityUtils.calculateRateWeights(
+          samplePlayerCareer,
+          config
+        );
+
+        // Convert player to flat fields and build vector
+        const flatFields =
+          PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer).flat;
+        const { vector, fieldMapping } =
+          PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+            flatFields,
+            config,
+            true // isSourcePlayer = true to get fieldMapping
+          );
+
+        // Get relative rate weights using same vector for both parameters
+        const relativeWeights =
+          PlayerSimilarityUtils.calculateRelativeRateWeights(
+            vector,
+            vector, // Same vector as candidate
+            fieldMapping,
+            config
+          );
+
+        // Style rate weights should match exactly
+        expect(relativeWeights.styleRateWeights.length).toBe(
+          originalWeights.styleRateWeights.length
+        );
+
+        try {
+          relativeWeights.styleRateWeights.forEach((weight, index) => {
+            expect(weight).toBeCloseTo(
+              originalWeights.styleRateWeights[index],
+              5
+            );
+          });
+        } catch (error) {
+          console.log("\n=== STYLE RATE WEIGHTS COMPARISON FAILED ===");
+          console.log("Player:", JSON.stringify(samplePlayerCareer));
+          console.log("Flat Player:", JSON.stringify(flatFields));
+          console.log("Player Vector:", JSON.stringify(vector));
+          console.log(
+            "Original styleRateWeights:",
+            originalWeights.styleRateWeights
+          );
+          console.log(
+            "Relative styleRateWeights:",
+            relativeWeights.styleRateWeights
+          );
+          console.log(
+            "Differences:",
+            relativeWeights.styleRateWeights.map(
+              (weight, index) =>
+                weight - originalWeights.styleRateWeights[index]
+            )
+          );
+          throw error;
+        }
+
+        // FG rate weights should match exactly
+        expect(relativeWeights.fgRateWeights.length).toBe(
+          originalWeights.fgRateWeights.length
+        );
+
+        try {
+          relativeWeights.fgRateWeights.forEach((weight, index) => {
+            expect(weight).toBeCloseTo(originalWeights.fgRateWeights[index], 5);
+          });
+        } catch (error) {
+          console.log("\n=== FG RATE WEIGHTS COMPARISON FAILED ===");
+          console.log("Original fgRateWeights:", originalWeights.fgRateWeights);
+          console.log("Relative fgRateWeights:", relativeWeights.fgRateWeights);
+          console.log(
+            "Differences:",
+            relativeWeights.fgRateWeights.map(
+              (weight, index) => weight - originalWeights.fgRateWeights[index]
+            )
+          );
+          throw error;
+        }
+      });
+
+      it("should handle fgBonus = none", () => {
+        const config = { ...DefaultSimilarityConfig, fgBonus: "none" as const };
+
+        // Convert player to flat fields and build vector
+        const flatFields =
+          PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+        const { vector, fieldMapping } =
+          PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
+            flatFields.flat,
+            config,
+            true
+          );
+
+        const { fgRateWeights } =
+          PlayerSimilarityUtils.calculateRelativeRateWeights(
+            vector,
+            vector,
+            fieldMapping,
+            config
+          );
+
         expect(fgRateWeights).toEqual([]);
       });
     });
@@ -452,7 +636,7 @@ describe("PlayerSimilarityUtils", () => {
           "roster.height.keyword": ["6-0"],
         };
 
-        const vector =
+        const { vector } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
             flatFields,
             DefaultSimilarityConfig
@@ -467,7 +651,7 @@ describe("PlayerSimilarityUtils", () => {
 
       it("should convert nested player to flat fields format", () => {
         const flatFields =
-          PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
+          PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer).flat;
 
         expect(typeof flatFields).toBe("object");
         expect(Object.keys(flatFields).length).toBeGreaterThan(0);
@@ -489,16 +673,16 @@ describe("PlayerSimilarityUtils", () => {
         // Convert to flat format and back
         const flatFields =
           PlayerSimilarityUtils.playerToFlatFields(samplePlayerCareer);
-        const vector1 =
+        const { vector: vector1 } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields,
+            flatFields.flat,
             DefaultSimilarityConfig
           );
 
         // Do it again to ensure consistency
-        const vector2 =
+        const { vector: vector2 } =
           PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
-            flatFields,
+            flatFields.flat,
             DefaultSimilarityConfig
           );
 
@@ -593,32 +777,59 @@ describe("PlayerSimilarityUtils", () => {
 
     it("should return empty query for default config", () => {
       const config = { ...DefaultSimilarityConfig };
-      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, config);
-      
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        mockPlayer as any,
+        config
+      );
+
       expect(result.query).toBe("");
       expect(result.runtimeMappingNames).toBeUndefined();
     });
 
     it("should generate class weighting filters", () => {
       // Test "same_class"
-      const configSameClass = { ...DefaultSimilarityConfig, classWeighting: "same_class" as any };
-      let result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configSameClass);
+      const configSameClass = {
+        ...DefaultSimilarityConfig,
+        classWeighting: "same_class" as any,
+      };
+      let result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        mockPlayer as any,
+        configSameClass
+      );
       expect(result.query).toBe(`roster.year_class.keyword:"Jr"`);
       expect(result.runtimeMappingNames).toBeUndefined();
 
       // Test "fr_only"
-      const configFrOnly = { ...DefaultSimilarityConfig, classWeighting: "fr_only" as any };
-      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configFrOnly);
+      const configFrOnly = {
+        ...DefaultSimilarityConfig,
+        classWeighting: "fr_only" as any,
+      };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        mockPlayer as any,
+        configFrOnly
+      );
       expect(result.query).toBe(`roster.year_class.keyword:"Fr"`);
 
       // Test "under"
-      const configUnder = { ...DefaultSimilarityConfig, classWeighting: "under" as any };
-      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configUnder);
+      const configUnder = {
+        ...DefaultSimilarityConfig,
+        classWeighting: "under" as any,
+      };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        mockPlayer as any,
+        configUnder
+      );
       expect(result.query).toBe(`roster.year_class.keyword:("Fr" OR "So")`);
 
       // Test "upper"
-      const configUpper = { ...DefaultSimilarityConfig, classWeighting: "upper" as any };
-      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(mockPlayer as any, configUpper);
+      const configUpper = {
+        ...DefaultSimilarityConfig,
+        classWeighting: "upper" as any,
+      };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        mockPlayer as any,
+        configUpper
+      );
       expect(result.query).toBe(`roster.year_class.keyword:("Jr" OR "Sr")`);
     });
 
@@ -626,27 +837,51 @@ describe("PlayerSimilarityUtils", () => {
       const playerWithConf = { ...mockPlayer, conf: "Big Ten Conference" };
 
       // Test "same_conf"
-      const configSameConf = { ...DefaultSimilarityConfig, levelOfPlay: "same_conf" as any };
-      let result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configSameConf);
+      const configSameConf = {
+        ...DefaultSimilarityConfig,
+        levelOfPlay: "same_conf" as any,
+      };
+      let result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerWithConf as any,
+        configSameConf
+      );
       expect(result.query).toBe(`conf.keyword:"Big Ten Conference"`);
       expect(result.runtimeMappingNames).toBeUndefined();
 
       // Test "same_tier"
-      const configSameTier = { ...DefaultSimilarityConfig, levelOfPlay: "same_tier" as any };
-      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configSameTier);
+      const configSameTier = {
+        ...DefaultSimilarityConfig,
+        levelOfPlay: "same_tier" as any,
+      };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerWithConf as any,
+        configSameTier
+      );
       expect(result.query).toContain("conf.keyword:");
       expect(result.query).toContain("Big Ten Conference");
       expect(result.runtimeMappingNames).toBeUndefined();
 
       // Test "similar_sos"
-      const configSimilarSos = { ...DefaultSimilarityConfig, levelOfPlay: "similar_sos" as any };
-      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configSimilarSos);
+      const configSimilarSos = {
+        ...DefaultSimilarityConfig,
+        levelOfPlay: "similar_sos" as any,
+      };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerWithConf as any,
+        configSimilarSos
+      );
       expect(result.query).toContain("oppo_sos:");
       expect(result.runtimeMappingNames).toBe("oppo_sos");
 
       // Test "any"
-      const configAny = { ...DefaultSimilarityConfig, levelOfPlay: "any" as any };
-      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, configAny);
+      const configAny = {
+        ...DefaultSimilarityConfig,
+        levelOfPlay: "any" as any,
+      };
+      result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerWithConf as any,
+        configAny
+      );
       expect(result.query).toBe("");
       expect(result.runtimeMappingNames).toBeUndefined();
     });
@@ -659,8 +894,13 @@ describe("PlayerSimilarityUtils", () => {
         levelOfPlay: "same_conf" as any,
       };
 
-      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithConf as any, config);
-      expect(result.query).toBe(`roster.year_class.keyword:"Jr" AND conf.keyword:"Big Ten Conference"`);
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerWithConf as any,
+        config
+      );
+      expect(result.query).toBe(
+        `roster.year_class.keyword:"Jr" AND conf.keyword:"Big Ten Conference"`
+      );
       expect(result.runtimeMappingNames).toBeUndefined();
     });
 
@@ -668,8 +908,14 @@ describe("PlayerSimilarityUtils", () => {
       const playerNoConf = { ...mockPlayer, conf: undefined };
 
       // Test "same_tier" with no conference
-      const config = { ...DefaultSimilarityConfig, levelOfPlay: "same_tier" as any };
-      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerNoConf as any, config);
+      const config = {
+        ...DefaultSimilarityConfig,
+        levelOfPlay: "same_tier" as any,
+      };
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerNoConf as any,
+        config
+      );
       expect(result.query).toBe("");
       expect(result.runtimeMappingNames).toBeUndefined();
     });
@@ -681,9 +927,15 @@ describe("PlayerSimilarityUtils", () => {
         def_adj_opp: { value: 95 },
       };
 
-      const config = { ...DefaultSimilarityConfig, levelOfPlay: "similar_sos" as any };
-      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(playerWithSos as any, config);
-      
+      const config = {
+        ...DefaultSimilarityConfig,
+        levelOfPlay: "similar_sos" as any,
+      };
+      const result = PlayerSimilarityUtils.buildSimilarityQueryFilters(
+        playerWithSos as any,
+        config
+      );
+
       // SoS = 100 - 95 = 5, range should be 1.5 to 8.5
       expect(result.query).toBe("oppo_sos:[1.5 TO 8.5]");
       expect(result.runtimeMappingNames).toBe("oppo_sos");
