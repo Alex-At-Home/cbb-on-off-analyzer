@@ -817,6 +817,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showStandaloneGrades || showPlayerPlayTypes || showShotCharts;
   const showEveryYear = multipleRowsPerYear || extraCharts;
 
+  /* For comparison players in quick toggles */
+  const playerTitle = (p: IndivCareerStatSet) =>
+    `${p.key} (${p.roster?.year_class || "??"})`;
+
   const playerRowBuilder = (
     player: IndivCareerStatSet,
     playerYear: string,
@@ -1017,7 +1021,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         ];
       } else if (playerSimilarityMode) {
         return similarOrPinnedPlayers.map((player) => ({
-          title: `${player.key} (${player.roster?.year_class || "??"})`,
+          title: `${playerTitle(player)}`,
           player: player,
           rosterStatsByCode: {},
           teamStats: {} as TeamStatSet,
@@ -1099,7 +1103,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         ];
       } else if (playerSimilarityMode) {
         return similarOrPinnedPlayers.map((player) => ({
-          title: `${player.key} (${player.roster?.year_class || "??"})`,
+          title: `${playerTitle(player)}`,
           gender: player.gender || ParamDefaults.defaultGender,
           off: player.off_shots as any,
         }));
@@ -1389,10 +1393,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     // Finally build rows
 
-    /* For comparison players in quick toggles */
-    const playerTitle = (p: IndivCareerStatSet) =>
-      `${p.key} (${p.roster?.year_class || "??"})`;
-
     return playerDiffMode
       ? _.flatten([
           [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
@@ -1554,7 +1554,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                                   newOpts.quickSwitch
                             );
                             setComparisonPlayer(newPlayer);
-                            setDiffQuickSwitch(newPlayer?.key || "");
+                            setDiffQuickSwitch(
+                              newPlayer ? playerTitle(newPlayer) : ""
+                            );
                           }
                         }}
                         dynamicQuickSwitch={diffMode && isPlayerCompSource}
@@ -1613,7 +1615,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             opts.quickSwitch
                         );
                         setComparisonPlayer(newPlayer);
-                        setDiffQuickSwitch(newPlayer?.key || "");
+                        setDiffQuickSwitch(
+                          newPlayer ? playerTitle(newPlayer) : ""
+                        );
                       }
                     }}
                     userOpts={{
@@ -2461,9 +2465,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                                     unmutePlayer(playerId);
                                   }}
                                 >
-                                  {`${mutedPlayer.key} (${
-                                    mutedPlayer.roster?.year_class || "??"
-                                  })`}
+                                  {`${playerTitle(mutedPlayer)}`}
                                 </a>
                               </span>
                             );
