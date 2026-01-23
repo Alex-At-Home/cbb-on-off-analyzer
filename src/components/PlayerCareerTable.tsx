@@ -817,9 +817,30 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showStandaloneGrades || showPlayerPlayTypes || showShotCharts;
   const showEveryYear = multipleRowsPerYear || extraCharts;
 
-  /* For comparison players in quick toggles */
-  const playerTitle = (p: IndivCareerStatSet) =>
-    `${p.key} (${p.roster?.year_class || "??"})`;
+  /** Ugh covid year messes up using player/class as a unique-ish key */
+  const multiYearClassPlayers = _.chain(similarPlayers.concat(pinnedPlayers))
+    .transform((acc, v) => {
+      const _id = v._id as string;
+      const title = `${v.key} (${v.roster?.year_class || "??"}`; //(deliberately missing ) see below
+      if (acc[title]) {
+        acc[title].push(_id);
+      } else {
+        acc[title] = [_id];
+      }
+    }, {} as Record<string, string[]>)
+    .mapValues((v) => _.uniq(v).length > 1)
+    .pickBy((v, key) => v)
+    .value();
+
+  /* For comparison players in quick toggles - note tightly coupled to multiYearClassPlayers */
+  const playerTitle = (p: IndivCareerStatSet) => {
+    const title = `${p.key} (${p.roster?.year_class || "??"}`; //(deliberately missing ) see below
+    if (multiYearClassPlayers[title]) {
+      return title + `, ${(p.year || "????").substring(2)})`;
+    } else {
+      return title + ")";
+    }
+  };
 
   const playerRowBuilder = (
     player: IndivCareerStatSet,
