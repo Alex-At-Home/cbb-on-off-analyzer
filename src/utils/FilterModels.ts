@@ -437,6 +437,7 @@ export type PlayerCareerParams = {
   filterStr?: string; //(filter string for similar/pinned players)
   showPinnedOnly?: boolean; //(if true, show only pinned players)
   showSimilaritySliders?: boolean; //(if true, show similarity weight sliders)
+  separatePlayerSeasons?: boolean; //(if true, add one player/season; if false, add all player's seasons)
 };
 
 export type PlayerLeaderboardParams = {
@@ -694,6 +695,7 @@ export class ParamDefaults {
   static readonly defaultFilterStr = "";
   static readonly defaultShowPinnedOnly = false;
   static readonly defaultShowSimilaritySliders = true;
+  static readonly defaultSeparatePlayerSeasons = true;
 }
 
 export type FilterParamsType =

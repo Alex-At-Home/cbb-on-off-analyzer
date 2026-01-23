@@ -18,7 +18,12 @@ type Props = {
   currGender?: string;
   playerCurrSelected: boolean;
   placeholderText?: string;
-  onSelectPlayer: (ncaaId: string, gender: string) => void;
+  onSelectPlayer: (
+    ncaaId: string,
+    gender: string,
+    singleSeasonId?: string
+  ) => void;
+  separatePlayerSeasons?: boolean; //(otherwise combines a player's team/seasons)
 };
 
 const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
@@ -26,6 +31,7 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
   playerCurrSelected,
   placeholderText,
   onSelectPlayer,
+  separatePlayerSeasons,
 }) => {
   const connector = new ApiProxyConnector({
     basePath: "/api",
@@ -42,6 +48,11 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
               team: {},
               year: {},
               "roster.ncaa_id": {},
+              ...(separatePlayerSeasons
+                ? {
+                    "roster.year_class": {},
+                  }
+                : {}),
             },
             // override the default query
             search_fields: {
@@ -85,8 +96,11 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                   (!playerCurrSelected && !currGender) ||
                   gender == (currGender || ParamDefaults.defaultGender)
                 ) {
-                  const id = r.roster?.raw?.ncaa_id;
+                  const id = separatePlayerSeasons
+                    ? r.id?.raw
+                    : r.roster?.raw?.ncaa_id;
                   if (!id) return;
+                  if (separatePlayerSeasons && !_.endsWith(id, "_all")) return;
                   grouped[id] = grouped[id] || [];
                   grouped[id].push(r);
                 }
@@ -121,6 +135,12 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                       const yearStr =
                         minYear == maxYear ? minYear : `${minYear}-${maxYear}`;
 
+                      const maybeClass =
+                        separatePlayerSeasons &&
+                        group[0]?.roster?.raw?.year_class
+                          ? `${group[0]?.roster?.raw?.year_class}; `
+                          : "";
+
                       return (
                         <div
                           {...getItemProps({
@@ -140,11 +160,13 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                               : "Men";
                             onSelectPlayer(
                               result.roster?.raw?.ncaa_id || "",
-                              gender
+                              gender,
+                              separatePlayerSeasons ? result.id?.raw : undefined
                             );
                           }}
                         >
-                          {result.key?.raw} ({teams.join("; ")}) [{yearStr}]
+                          {result.key?.raw} ({maybeClass}
+                          {teams.join("; ")}) [{yearStr}]
                         </div>
                       );
                     })

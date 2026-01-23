@@ -173,6 +173,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         rawParams.filterStr == ParamDefaults.defaultFilterStr ? ["filterStr"] : [],
         rawParams.showPinnedOnly == ParamDefaults.defaultShowPinnedOnly ? ["showPinnedOnly"] : [],
         rawParams.showSimilaritySliders == ParamDefaults.defaultShowSimilaritySliders ? ["showSimilaritySliders"] : [],
+        rawParams.separatePlayerSeasons == ParamDefaults.defaultSeparatePlayerSeasons ? ["separatePlayerSeasons"] : [],
 
         !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
 

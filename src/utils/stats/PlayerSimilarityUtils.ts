@@ -81,6 +81,46 @@ export class PlayerSimilarityUtils {
 
   ///////////////////////////////////////
 
+  static readonly simpleSummaryText = (config: SimilarityConfig): string => {
+    const keyElements = ([] as string[])
+      .concat(!config.includeTransition ? ["Ignore transition"] : [])
+      .concat(_.trim(config.customWeights) ? ["Custom weights"] : [])
+      .concat(_.trim(config.advancedQuery) ? ["Advanced query"] : [])
+      .concat(
+        _.thru(config.levelOfPlay, (level) => {
+          switch (level) {
+            case "same_tier":
+              return ["Similar level"];
+            case "same_conf":
+              return ["Same conf"];
+            case "similar_sos":
+              return ["Similar SoS"];
+            default:
+              return [];
+          }
+        })
+      )
+      .concat(
+        _.thru(config.classWeighting, (classMatch) => {
+          switch (classMatch) {
+            case "same_class":
+              return ["Same class"];
+            case "fr_only":
+              return ["Fr only"];
+            case "under":
+              return ["Fr/So only"];
+            case "upper":
+              return ["Jr/Sr only"];
+            default:
+              return [];
+          }
+        })
+      );
+    return keyElements.join("; ");
+  };
+
+  ///////////////////////////////////////
+
   // Speed up query performance by not running on players highly unlikely to match
 
   /** (if we switched to vector search we wouldn't need this any more?) */

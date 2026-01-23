@@ -42,7 +42,11 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
+import {
+  faMinusSquare,
+  faCalendar,
+  faCalendarTimes,
+} from "@fortawesome/free-regular-svg-icons";
 import { faFilter, faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import {
   DivisionStatsCache,
@@ -170,6 +174,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showSimilaritySliders, setShowSimilaritySliders] = useState<boolean>(
     playerCareerParams.showSimilaritySliders ??
       ParamDefaults.defaultShowSimilaritySliders
+  );
+  const [separatePlayerSeasons, setSeparatePlayerSeasons] = useState<boolean>(
+    playerCareerParams.separatePlayerSeasons ??
+      ParamDefaults.defaultSeparatePlayerSeasons
   );
 
   const [comparisonPlayer, setComparisonPlayer] = useState<
@@ -548,6 +556,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       filterStr,
       showPinnedOnly,
       showSimilaritySliders,
+      separatePlayerSeasons,
     });
   }, [
     showGrades,
@@ -574,6 +583,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     filterStr,
     showPinnedOnly,
     showSimilaritySliders,
+    separatePlayerSeasons,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -1693,7 +1703,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   };
 
   // Add function to add pinned player
-  const addPinnedPlayer = (ncaaId: string, gender: string) => {
+  const addPinnedPlayer = (
+    ncaaId: string,
+    gender: string,
+    maybeSingleSeason?: string
+  ) => {
     const currentJsonEpoch =
       dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
 
@@ -1722,7 +1736,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           source._id = p._id;
           return source;
         })
-        .filter((p: any) => !_.isEmpty(p) && _.endsWith(p._id, "_all"));
+        .filter(
+          (p: any) =>
+            !_.isEmpty(p) &&
+            _.endsWith(p._id, "_all") &&
+            (!maybeSingleSeason || maybeSingleSeason == p._id)
+        );
 
       // The key should be the same everywhere so we'll pick the first one
       setPinnedPlayers((curr) => {
@@ -1732,7 +1751,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         );
         if (_.isEmpty(similarPlayers)) {
           // Special cutdown request similar players mode before we have a full dashboard
-          requestSimilarPlayers(false, true, playerJsons);
+          setTimeout(
+            () => requestSimilarPlayers(false, true, newPinnedPlayers),
+            0
+          );
         } else {
           // Just wait for pinned players and re-request
           setTimeout(
@@ -2130,6 +2152,42 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     "text-center"
   );
 
+  const playerFinderElement = (
+    <div className="d-flex align-items-center">
+      <OverlayTrigger
+        placement="top"
+        overlay={
+          <Tooltip id="separate-seasons-tooltip-3">
+            Switch between adding one player/season or all a player's seasons
+            (currently:{" "}
+            {separatePlayerSeasons
+              ? "one player/season"
+              : "all a player's seasons"}
+            )
+          </Tooltip>
+        }
+      >
+        <Button
+          variant="outline-secondary"
+          size="sm"
+          onClick={() => setSeparatePlayerSeasons(!separatePlayerSeasons)}
+          className="p-1 mr-1 mb-2"
+        >
+          <FontAwesomeIcon
+            icon={separatePlayerSeasons ? faCalendar : faCalendarTimes}
+          />
+        </Button>
+      </OverlayTrigger>
+      <PlayerFinderTextBox
+        placeholderText="Manually add comp..."
+        onSelectPlayer={addPinnedPlayer}
+        currGender={playerCareerParams.gender || ParamDefaults.defaultGender}
+        playerCurrSelected={false}
+        separatePlayerSeasons={separatePlayerSeasons}
+      />
+    </div>
+  );
+
   const tableData = _.thru(playerSimilarityMode, (__) => {
     if (playerSimilarityMode) {
       const hasPlayers = !_.isEmpty(similarPlayers);
@@ -2151,14 +2209,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               lg={4}
               className="d-flex align-items-center justify-content-lg-end justify-content-center"
             >
-              <PlayerFinderTextBox
-                placeholderText="Manually add comp..."
-                onSelectPlayer={addPinnedPlayer}
-                currGender={
-                  playerCareerParams.gender || ParamDefaults.defaultGender
-                }
-                playerCurrSelected={false}
-              />
+              {playerFinderElement}
             </Col>
           </Row>,
           "text-center"
@@ -2293,14 +2344,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 lg={4}
                 className="d-flex align-items-center justify-content-lg-end justify-content-center"
               >
-                <PlayerFinderTextBox
-                  placeholderText="Manually add comp..."
-                  onSelectPlayer={addPinnedPlayer}
-                  currGender={
-                    playerCareerParams.gender || ParamDefaults.defaultGender
-                  }
-                  playerCurrSelected={false}
-                />
+                {playerFinderElement}
               </Col>
             ) : (
               <Col lg={4} className="d-none d-lg-block">
@@ -2327,14 +2371,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   lg={4}
                   className="d-flex align-items-center justify-content-lg-end justify-content-center"
                 >
-                  <PlayerFinderTextBox
-                    placeholderText="Manually add comp..."
-                    onSelectPlayer={addPinnedPlayer}
-                    currGender={
-                      playerCareerParams.gender || ParamDefaults.defaultGender
-                    }
-                    playerCurrSelected={false}
-                  />
+                  {playerFinderElement}
                 </Col>
               </Row>,
               "text-center"
