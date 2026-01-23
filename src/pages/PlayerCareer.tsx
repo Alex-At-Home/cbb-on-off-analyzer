@@ -172,6 +172,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.diffQuickSwitch ? ["diffQuickSwitch"] : [],
         rawParams.filterStr == ParamDefaults.defaultFilterStr ? ["filterStr"] : [],
         rawParams.showPinnedOnly == ParamDefaults.defaultShowPinnedOnly ? ["showPinnedOnly"] : [],
+        rawParams.showSimilaritySliders == ParamDefaults.defaultShowSimilaritySliders ? ["showSimilaritySliders"] : [],
 
         !_.isEmpty(rawParams.similarityParams) ? [] : ["similarityParams"],
 

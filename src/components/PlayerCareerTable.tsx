@@ -167,6 +167,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showPinnedOnly, setShowPinnedOnly] = useState<boolean>(
     playerCareerParams.showPinnedOnly || ParamDefaults.defaultShowPinnedOnly
   );
+  const [showSimilaritySliders, setShowSimilaritySliders] = useState<boolean>(
+    playerCareerParams.showSimilaritySliders ??
+      ParamDefaults.defaultShowSimilaritySliders
+  );
 
   const [comparisonPlayer, setComparisonPlayer] = useState<
     IndivCareerStatSet | undefined
@@ -543,6 +547,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       unpinnedIds: Array.from(unpinnedPlayerIds).join(","),
       filterStr,
       showPinnedOnly,
+      showSimilaritySliders,
     });
   }, [
     showGrades,
@@ -568,6 +573,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     unpinnedPlayerIds,
     filterStr,
     showPinnedOnly,
+    showSimilaritySliders,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -2113,6 +2119,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       config={similarityConfig}
       onConfigChange={setSimilarityConfig}
       onOpenAdvanced={() => setShowConfigModal(true)}
+      showSliders={showSimilaritySliders}
+      onToggleSliders={setShowSimilaritySliders}
     />
   );
 

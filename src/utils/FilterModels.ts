@@ -436,6 +436,7 @@ export type PlayerCareerParams = {
   diffQuickSwitch?: string; //(selected player for comparison in diff mode)
   filterStr?: string; //(filter string for similar/pinned players)
   showPinnedOnly?: boolean; //(if true, show only pinned players)
+  showSimilaritySliders?: boolean; //(if true, show similarity weight sliders)
 };
 
 export type PlayerLeaderboardParams = {
@@ -692,6 +693,7 @@ export class ParamDefaults {
   static readonly defaultDiffQuickSwitch = "";
   static readonly defaultFilterStr = "";
   static readonly defaultShowPinnedOnly = false;
+  static readonly defaultShowSimilaritySliders = true;
 }
 
 export type FilterParamsType =
