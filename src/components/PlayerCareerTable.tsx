@@ -2269,12 +2269,45 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             GenericTableOps.buildTextRow(
               <>
                 {!_.isEmpty(pinnedPlayers) ? (
-                  <span>
-                    PINNED PLAYERS ONLY:{" "}
-                    <i className="text-muted">
-                      (press "Find Similar Players" above to see more)
-                    </i>
-                  </span>
+                  <div className="d-flex justify-content-center align-items-center position-relative w-100">
+                    {/* Center-aligned content */}
+                    <div>
+                      <span>
+                        PINNED PLAYERS ONLY:{" "}
+                        <i className="text-muted">
+                          (press "Find Similar Players" above to see more)
+                        </i>
+                      </span>
+                    </div>
+
+                    {/* Left-aligned "Remove all" link */}
+                    <div className="position-absolute" style={{ left: 0 }}>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id="remove-all-pinned-tooltip">
+                            Remove all pinned players
+                          </Tooltip>
+                        }
+                      >
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setPinnedPlayers([]);
+                            setPinnedPlayerDiags({});
+                          }}
+                          className="text-muted"
+                        >
+                          <FontAwesomeIcon
+                            icon={faMinusSquare}
+                            className="mr-1"
+                          />
+                          all
+                        </a>
+                      </OverlayTrigger>
+                    </div>
+                  </div>
                 ) : undefined}
                 {_.isEmpty(pinnedPlayerDiags) && !_.isEmpty(pinnedPlayers) ? (
                   <>
