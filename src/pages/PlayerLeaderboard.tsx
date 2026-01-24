@@ -141,6 +141,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.advancedFilter ? ["advancedFilter"] : [],
         !rawParams.conf ? ["conf"] : [],
         !rawParams.posClasses ? ["posClasses"] : [],
+        !rawParams.showExpanded ? ["showExpanded"] : [],
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]
