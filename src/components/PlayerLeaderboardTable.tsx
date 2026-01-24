@@ -428,11 +428,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** This is a WIP experiment for a nicer single row view
    * TODO: unify with expandedView
    */
-  const [showExpanded, setShowExpanded] = useState(
-    _.isNil(startingState.showExpanded)
-      ? !FeatureFlags.isActiveWindow(FeatureFlags.expandedPlayerLeaderboard)
-      : startingState.showExpanded
-  );
+  const [showExpanded, setShowExpanded] = useState(false);
+  //   _.isNil(startingState.showExpanded)
+  //     ? !FeatureFlags.isActiveWindow(FeatureFlags.expandedPlayerLeaderboard)
+  //     : startingState.showExpanded
+  // );
 
   // Geo filtering
   const [geoBoundsChecker, setGeoBoundsChecker] = useState<
