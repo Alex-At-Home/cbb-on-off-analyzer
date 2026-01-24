@@ -956,6 +956,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
+          showConfigureColumns={true}
           tableCopyId="lineupLeaderboardTable"
           tableData={
             Array [
@@ -14920,6 +14929,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
+          showConfigureColumns={true}
           tableCopyId="lineupLeaderboardTable"
           tableData={
             Array [
@@ -35471,6 +35489,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
+          showConfigureColumns={true}
           tableCopyId="lineupLeaderboardTable"
           tableData={
             Array [

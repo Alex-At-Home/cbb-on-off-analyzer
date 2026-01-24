@@ -1480,6 +1480,15 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
         >
           <GenericTable
             cellTooltipMode="none"
+            initialColumnConfig={
+              Object {
+                "disabledCols": undefined,
+                "newCol": Array [],
+              }
+            }
+            onColumnConfigChange={[Function]}
+            onPresetChange={[Function]}
+            showConfigureColumns={true}
             tableCopyId="teamReportStatsTable"
             tableData={
               Array [
@@ -12464,6 +12473,15 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTable
             cellTooltipMode="none"
+            initialColumnConfig={
+              Object {
+                "disabledCols": undefined,
+                "newCol": Array [],
+              }
+            }
+            onColumnConfigChange={[Function]}
+            onPresetChange={[Function]}
+            showConfigureColumns={true}
             tableCopyId="teamReportStatsTable"
             tableData={
               Array [
@@ -28032,6 +28050,15 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTable
             cellTooltipMode="none"
+            initialColumnConfig={
+              Object {
+                "disabledCols": undefined,
+                "newCol": Array [],
+              }
+            }
+            onColumnConfigChange={[Function]}
+            onPresetChange={[Function]}
+            showConfigureColumns={true}
             tableCopyId="teamReportStatsTable"
             tableData={
               Array [
@@ -42460,6 +42487,15 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTable
             cellTooltipMode="none"
+            initialColumnConfig={
+              Object {
+                "disabledCols": undefined,
+                "newCol": Array [],
+              }
+            }
+            onColumnConfigChange={[Function]}
+            onPresetChange={[Function]}
+            showConfigureColumns={true}
             tableCopyId="teamReportStatsTable"
             tableData={
               Array [
@@ -62198,6 +62234,15 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTable
             cellTooltipMode="none"
+            initialColumnConfig={
+              Object {
+                "disabledCols": undefined,
+                "newCol": Array [],
+              }
+            }
+            onColumnConfigChange={[Function]}
+            onPresetChange={[Function]}
+            showConfigureColumns={true}
             tableCopyId="teamReportStatsTable"
             tableData={
               Array [
@@ -66555,6 +66600,15 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         >
           <GenericTable
             cellTooltipMode="none"
+            initialColumnConfig={
+              Object {
+                "disabledCols": undefined,
+                "newCol": Array [],
+              }
+            }
+            onColumnConfigChange={[Function]}
+            onPresetChange={[Function]}
+            showConfigureColumns={true}
             tableCopyId="teamReportStatsTable"
             tableData={
               Array [

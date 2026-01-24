@@ -5736,11 +5736,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
                     },
                     Object {
@@ -5756,11 +5756,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -5780,11 +5780,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -6036,11 +6036,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -6304,6 +6304,12 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -6330,6 +6336,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -10845,10 +10853,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage:baseline",
-                    },
-                    Object {
                       "label": "Base Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
@@ -10861,22 +10865,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "Base __off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def:baseline",
-                    },
                     Object {
                       "label": "Base Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss:baseline",
@@ -10918,16 +10906,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
-                    },
-                    Object {
-                      "label": "Base Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage:baseline",
                     },
                     Object {
                       "label": "Base Adj+ Rtg (Asc. / Offensive)",
@@ -10938,11 +10922,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -10962,11 +10946,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -10986,11 +10970,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Off-Def)",
+                      "label": "Base RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Off-Def)",
+                      "label": "Base RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm:baseline",
                     },
                     Object {
@@ -11010,11 +10994,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_adj_rapm_prod:baseline",
                     },
                     Object {
-                      "label": "Base RAPM Prod (Desc. / Off-Def)",
+                      "label": "Base RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod:baseline",
                     },
                     Object {
-                      "label": "Base RAPM Prod (Asc. / Off-Def)",
+                      "label": "Base RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod:baseline",
                     },
                     Object {
@@ -11050,22 +11034,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_assist:baseline",
                     },
                     Object {
-                      "label": "Base TO% (Desc. / Offensive)",
-                      "value": "desc:off_to:baseline",
-                    },
-                    Object {
-                      "label": "Base TO% (Asc. / Offensive)",
-                      "value": "asc:off_to:baseline",
-                    },
-                    Object {
-                      "label": "Base Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to:baseline",
-                    },
-                    Object {
-                      "label": "Base Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to:baseline",
-                    },
-                    Object {
                       "label": "Base RB% (Desc. / Offensive)",
                       "value": "desc:off_orb:baseline",
                     },
@@ -11088,38 +11056,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     Object {
                       "label": "Base DR% (Asc. / Defensive)",
                       "value": "asc:off_drb:baseline",
-                    },
-                    Object {
-                      "label": "Base FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -11218,22 +11154,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_2pmid:baseline",
                     },
                     Object {
-                      "label": "Base 2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base 2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim:baseline",
-                    },
-                    Object {
                       "label": "Base SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp:baseline",
                     },
@@ -11250,11 +11170,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -11518,6 +11438,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -11544,6 +11470,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -17005,10 +16933,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage:baseline",
-                    },
-                    Object {
                       "label": "Base Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
@@ -17021,22 +16945,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "Base __off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def:baseline",
-                    },
                     Object {
                       "label": "Base Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss:baseline",
@@ -17078,16 +16986,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
-                    },
-                    Object {
-                      "label": "Base Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage:baseline",
                     },
                     Object {
                       "label": "Base Adj+ Rtg (Asc. / Offensive)",
@@ -17098,11 +17002,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -17122,11 +17026,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -17146,11 +17050,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Off-Def)",
+                      "label": "Base RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Off-Def)",
+                      "label": "Base RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm:baseline",
                     },
                     Object {
@@ -17170,11 +17074,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_adj_rapm_prod:baseline",
                     },
                     Object {
-                      "label": "Base RAPM Prod (Desc. / Off-Def)",
+                      "label": "Base RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod:baseline",
                     },
                     Object {
-                      "label": "Base RAPM Prod (Asc. / Off-Def)",
+                      "label": "Base RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod:baseline",
                     },
                     Object {
@@ -17210,22 +17114,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_assist:baseline",
                     },
                     Object {
-                      "label": "Base TO% (Desc. / Offensive)",
-                      "value": "desc:off_to:baseline",
-                    },
-                    Object {
-                      "label": "Base TO% (Asc. / Offensive)",
-                      "value": "asc:off_to:baseline",
-                    },
-                    Object {
-                      "label": "Base Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to:baseline",
-                    },
-                    Object {
-                      "label": "Base Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to:baseline",
-                    },
-                    Object {
                       "label": "Base RB% (Desc. / Offensive)",
                       "value": "desc:off_orb:baseline",
                     },
@@ -17248,38 +17136,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     Object {
                       "label": "Base DR% (Asc. / Defensive)",
                       "value": "asc:off_drb:baseline",
-                    },
-                    Object {
-                      "label": "Base FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -17378,22 +17234,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_2pmid:baseline",
                     },
                     Object {
-                      "label": "Base 2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base 2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim:baseline",
-                    },
-                    Object {
                       "label": "Base SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp:baseline",
                     },
@@ -17410,11 +17250,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -17678,6 +17518,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -17704,6 +17550,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -25286,11 +25134,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
                     },
                     Object {
@@ -25306,11 +25154,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -25330,11 +25178,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -25586,11 +25434,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -25854,6 +25702,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -25880,6 +25734,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -31984,10 +31840,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage:baseline",
-                    },
-                    Object {
                       "label": "Base Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
@@ -32000,22 +31852,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "Base __off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def:baseline",
-                    },
                     Object {
                       "label": "Base Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss:baseline",
@@ -32057,16 +31893,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
-                    },
-                    Object {
-                      "label": "Base Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage:baseline",
                     },
                     Object {
                       "label": "Base Adj+ Rtg (Asc. / Offensive)",
@@ -32077,11 +31909,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -32101,11 +31933,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -32125,11 +31957,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Off-Def)",
+                      "label": "Base RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Off-Def)",
+                      "label": "Base RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm:baseline",
                     },
                     Object {
@@ -32149,11 +31981,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_adj_rapm_prod:baseline",
                     },
                     Object {
-                      "label": "Base RAPM Prod (Desc. / Off-Def)",
+                      "label": "Base RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod:baseline",
                     },
                     Object {
-                      "label": "Base RAPM Prod (Asc. / Off-Def)",
+                      "label": "Base RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod:baseline",
                     },
                     Object {
@@ -32189,22 +32021,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_assist:baseline",
                     },
                     Object {
-                      "label": "Base TO% (Desc. / Offensive)",
-                      "value": "desc:off_to:baseline",
-                    },
-                    Object {
-                      "label": "Base TO% (Asc. / Offensive)",
-                      "value": "asc:off_to:baseline",
-                    },
-                    Object {
-                      "label": "Base Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to:baseline",
-                    },
-                    Object {
-                      "label": "Base Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to:baseline",
-                    },
-                    Object {
                       "label": "Base RB% (Desc. / Offensive)",
                       "value": "desc:off_orb:baseline",
                     },
@@ -32227,38 +32043,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     Object {
                       "label": "Base DR% (Asc. / Defensive)",
                       "value": "asc:off_drb:baseline",
-                    },
-                    Object {
-                      "label": "Base FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast:baseline",
-                    },
-                    Object {
-                      "label": "Base __off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -32357,22 +32141,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_2pmid:baseline",
                     },
                     Object {
-                      "label": "Base 2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base 2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim:baseline",
-                    },
-                    Object {
-                      "label": "Base Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim:baseline",
-                    },
-                    Object {
                       "label": "Base SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp:baseline",
                     },
@@ -32389,11 +32157,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -32657,6 +32425,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -32683,6 +32457,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -40631,11 +40407,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
                     },
                     Object {
@@ -40651,11 +40427,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -40675,11 +40451,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -40931,11 +40707,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -41199,6 +40975,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -41225,6 +41007,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -49819,11 +49603,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
                     },
                     Object {
@@ -49839,11 +49623,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -49863,11 +49647,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -50119,11 +49903,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -50395,6 +50179,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -50421,6 +50211,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
@@ -62285,11 +62077,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:def_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Desc. / Off-Def)",
+                      "label": "Base Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Box Rtg (Asc. / Off-Def)",
+                      "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
                     },
                     Object {
@@ -62305,11 +62097,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Base Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
@@ -62329,11 +62121,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Base Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
@@ -62585,11 +62377,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:def_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Desc. / Off-Def)",
+                      "label": "Base SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp:baseline",
                     },
                     Object {
-                      "label": "Base SoS (Asc. / Off-Def)",
+                      "label": "Base SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp:baseline",
                     },
                   ],
@@ -62861,6 +62653,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
       >
         <GenericTable
           cellTooltipMode="none"
+          initialColumnConfig={
+            Object {
+              "disabledCols": undefined,
+              "newCol": Array [],
+            }
+          }
           integratedGrades={
             Object {
               "colorChooser": Array [
@@ -62887,6 +62685,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               "hybridMode": true,
             }
           }
+          onColumnConfigChange={[Function]}
+          onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
           tableData={
