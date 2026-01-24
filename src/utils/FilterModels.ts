@@ -449,6 +449,10 @@ export type PlayerCareerParams = {
   showPinnedOnly?: boolean; //(if true, show only pinned players)
   showSimilaritySliders?: boolean; //(if true, show similarity weight sliders)
   separatePlayerSeasons?: boolean; //(if true, add one player/season; if false, add all player's seasons)
+  // Table configuration:
+  tablePreset?: string;
+  tableConfigExtraCols?: string[];
+  tableConfigDisabledCols?: string[];
 };
 
 export type PlayerLeaderboardParams = {
