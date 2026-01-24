@@ -266,6 +266,10 @@ export type LineupLeaderboardParams = {
   // Query pre-sets
   confOnly?: boolean;
   t100?: boolean;
+  // Table configuration
+  tablePreset?: string;
+  tableConfigExtraCols?: string[];
+  tableConfigDisabledCols?: string[];
 };
 
 export type TeamEditorParams = {

@@ -119,8 +119,17 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           : [],
 
         rawParams.showLineupLuckDiags ==
-        ParamDefaults.defaultLineupLboardLuckDiagMode
+          ParamDefaults.defaultLineupLboardLuckDiagMode
           ? ["showLineupLuckDiags"]
+          : [],
+
+        // Table configuration
+        !rawParams.tablePreset ? ["tablePreset"] : [],
+        _.isEmpty(rawParams.tableConfigExtraCols)
+          ? ["tableConfigExtraCols"]
+          : [],
+        _.isEmpty(rawParams.tableConfigDisabledCols)
+          ? ["tableConfigDisabledCols"]
           : [],
       ])
     );
@@ -144,8 +153,8 @@ const LineupLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     const dataSubEventKey = paramObj.t100
       ? "t100"
       : paramObj.confOnly
-      ? "conf"
-      : "all";
+        ? "conf"
+        : "all";
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = paramObj.year || ParamDefaults.defaultLeaderboardYear;
