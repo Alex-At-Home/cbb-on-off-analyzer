@@ -222,9 +222,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     _.isNil(gameFilterParams.teamShotChartsShowZones)
       ? undefined
       : {
-        buildZones: gameFilterParams.teamShotChartsShowZones,
-        useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
-      }
+          buildZones: gameFilterParams.teamShotChartsShowZones,
+          useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
+        }
   );
 
   /** Whether we are showing the luck config modal */
@@ -363,7 +363,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           const filteredCache = _.groupBy(filteredPlayers, (p) => p.team);
           setAllPlayerStatsCache((curr) => {
             console.log(
-              `(Defensive style info [${curr.cacheYear}][${curr.cacheGender
+              `(Defensive style info [${curr.cacheYear}][${
+                curr.cacheGender
               }]: Added [${_.keys(filteredCache)}] to [${_.keys(
                 curr.cache
               )}], opponents=[${opponentTeams}])`
@@ -398,10 +399,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       // If diffLock is enabled, sync player diff settings
       ...(diffLock
         ? {
-          playerDiffs: showDiffs,
-          playerDiffsHideDatasets: diffsHideDatasets,
-          playerDiffsCompare: diffsCompare,
-        }
+            playerDiffs: showDiffs,
+            playerDiffsHideDatasets: diffsHideDatasets,
+            playerDiffsCompare: diffsCompare,
+          }
         : {}),
       showTeamPlayTypes: showPlayTypes,
       showExtraInfo: showExtraInfo,
@@ -458,8 +459,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const selectedDatasetKeys: string[] = isMultiMode
     ? diffsHideDatasets.slice("multi:".length).split(",").filter(Boolean)
     : diffsHideDatasets
-      ? [diffsHideDatasets]
-      : [];
+    ? [diffsHideDatasets]
+    : [];
   // For backwards compatibility, use first key as "the" selected key for single mode
   const selectedDatasetKey = selectedDatasetKeys[0] || "";
 
@@ -467,7 +468,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const maybePresetPhrase = _.zip(
     gameFilterParams.splitPhrases || [],
     FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
-    []
+      []
   ).map((options) => options?.[0] || options?.[1]);
 
   const maybeFilterPhrase =
@@ -511,15 +512,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     : undefined;
   const diffsCompareBase =
     diffsCompareBaseParsed &&
-      availableDatasets.some((d) => d.key === diffsCompareBaseParsed)
+    availableDatasets.some((d) => d.key === diffsCompareBaseParsed)
       ? diffsCompareBaseParsed
       : undefined;
   const diffsCompareExtra: "extra" | "diff" | undefined =
     diffsCompareBase && diffsCompare
       ? (diffsCompare.split(quickSwitchDelim)[1] as
-        | "extra"
-        | "diff"
-        | undefined)
+          | "extra"
+          | "diff"
+          | undefined)
       : undefined;
 
   const tableInfo = TeamStatsTableUtils.buildRows(
@@ -551,11 +552,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       allPlayerStatsCache: allPlayerStatsCache.cache,
       diffState: showDiffModeUI
         ? {
-          enabledDatasets: selectedDatasetKeys,
-          // diffsCompareBase is now the dataset key directly (on/off/base/extra0/etc)
-          compareDataset: diffsCompareBase || undefined,
-          compareMode: diffsCompareExtra,
-        }
+            enabledDatasets: selectedDatasetKeys,
+            // diffsCompareBase is now the dataset key directly (on/off/base/extra0/etc)
+            compareDataset: diffsCompareBase || undefined,
+            compareMode: diffsCompareExtra,
+          }
         : undefined,
     },
     {
@@ -580,11 +581,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     }
     return stats
       ? _.flatten([
-        stats.teamStatsRows,
-        stats.teamRosterRows,
-        stats.teamDiagRows,
-        withSeparator ? [GenericTableOps.buildRowSeparator()] : [],
-      ])
+          stats.teamStatsRows,
+          stats.teamRosterRows,
+          stats.teamDiagRows,
+          withSeparator ? [GenericTableOps.buildRowSeparator()] : [],
+        ])
       : [];
   };
 
@@ -728,7 +729,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           label: "|",
           tooltip: "",
           toggled: true,
-          onClick: () => { },
+          onClick: () => {},
           isLabelOnly: true,
         },
         {
@@ -807,7 +808,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         }
       }}
       quickSwitchTimer={undefined}
-      setQuickSwitchTimer={() => { }}
+      setQuickSwitchTimer={() => {}}
       modes={["extra_down", "diff"]}
       theme={resolvedTheme}
     />
@@ -863,7 +864,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           label: "|",
           tooltip: "",
           toggled: true,
-          onClick: () => { },
+          onClick: () => {},
           isLabelOnly: true,
         },
         {
@@ -886,7 +887,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           label: "|",
           tooltip: "",
           toggled: true,
-          onClick: () => { },
+          onClick: () => {},
           isLabelOnly: true,
         },
         {
@@ -909,7 +910,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             label: ":",
             tooltip: "",
             toggled: true,
-            onClick: () => { },
+            onClick: () => {},
             isLabelOnly: true,
           },
           {
@@ -972,7 +973,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             label: "|",
             tooltip: "",
             toggled: true,
-            onClick: () => { },
+            onClick: () => {},
             isLabelOnly: true,
           },
         ])
@@ -997,17 +998,17 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         .concat(
           gameFilterParams.year ||
             DateUtils.mostRecentYearWithData >=
-            DateUtils.firstYearWithShotChartData
+              DateUtils.firstYearWithShotChartData
             ? [
-              {
-                label: "Shots",
-                tooltip: showShotCharts
-                  ? "Hide shot chart"
-                  : "Show shot charts",
-                toggled: showShotCharts,
-                onClick: () => setShowShotCharts(!showShotCharts),
-              },
-            ]
+                {
+                  label: "Shots",
+                  tooltip: showShotCharts
+                    ? "Hide shot chart"
+                    : "Show shot charts",
+                  toggled: showShotCharts,
+                  onClick: () => setShowShotCharts(!showShotCharts),
+                },
+              ]
             : []
         )}
     />
@@ -1060,7 +1061,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         disabled={true}
         text="Sticky 'Quick Select' Bar Disabled"
         truthVal={false}
-        onSelect={() => { }}
+        onSelect={() => {}}
       />
     </GenericTogglingMenu>
   );
@@ -1168,9 +1169,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
-              showConfigureColumns={FeatureFlags.isActiveWindow(
-                FeatureFlags.tableConfigOptions
-              )}
+              showConfigureColumns={true}
               initialColumnConfig={{
                 newCol: tableConfigExtraCols,
                 disabledCols: tableConfigDisabledCols,
@@ -1193,21 +1192,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               integratedGrades={
                 showGrades && !showStandaloneGrades
                   ? {
-                    hybridMode:
-                      GradeTableUtils.showingHybridOrStandaloneGrades(
-                        showGrades
-                      ),
-                    exactRanks: true,
-                    colorChooser: CbbColors.integratedColorsDefault,
-                    customKeyMappings: {
-                      def_net: "off_raw_net",
-                    },
-                    alwaysShow: {
-                      off_net: true,
-                      off_adj_ppp: true,
-                      def_adj_ppp: true,
-                    },
-                  }
+                      hybridMode:
+                        GradeTableUtils.showingHybridOrStandaloneGrades(
+                          showGrades
+                        ),
+                      exactRanks: true,
+                      colorChooser: CbbColors.integratedColorsDefault,
+                      customKeyMappings: {
+                        def_net: "off_raw_net",
+                      },
+                      alwaysShow: {
+                        off_net: true,
+                        off_adj_ppp: true,
+                        def_adj_ppp: true,
+                      },
+                    }
                   : undefined
               }
             />

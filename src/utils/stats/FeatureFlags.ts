@@ -27,13 +27,4 @@ export class FeatureFlags {
 
   /** For work in progress on improving the player UX */
   static readonly friendlierInterface = true;
-
-  /** For WIP on the similar scoring */
-  static readonly playerSimilarityScoring = true;
-
-  /** Adding top-level half court stats */
-  static readonly tableConfigOptions = true;
-
-  /** For WIP on team stats diff mode (OnOffAnalyzer) */
-  static readonly teamStatsDiff = true;
 }

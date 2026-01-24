@@ -221,7 +221,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
   const repOnOffDiagModeNumLineups = parseInt(repOnOffDiagModeInfo[0]);
   const repOnOffDiagModeLineupSortDir = parseInt(
     repOnOffDiagModeInfo?.[1] ||
-    ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[1]
+      ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[1]
   );
   const repOnOffDiagModeLineupSortField =
     repOnOffDiagModeInfo?.[2] ||
@@ -591,7 +591,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
 
         const replacementMargin = incReplacementOnOff
           ? player.replacement?.off_adj_ppp?.value -
-          player.replacement?.def_adj_ppp?.value
+            player.replacement?.def_adj_ppp?.value
           : 0.0;
         const repSuffix = (
           <span>
@@ -601,16 +601,16 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
 
         const statsReplacement = incReplacementOnOff
           ? {
-            off_title: (
-              <span>
-                <b>{player.replacement?.key}</b>
-                <br />
-                {repSuffix}
-              </span>
-            ),
-            def_title: "",
-            ...player?.replacement,
-          }
+              off_title: (
+                <span>
+                  <b>{player.replacement?.key}</b>
+                  <br />
+                  {repSuffix}
+                </span>
+              ),
+              def_title: "",
+              ...player?.replacement,
+            }
           : {};
 
         const rapmMargin = incRapm
@@ -623,16 +623,16 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
         );
         const statsRapm = incRapm
           ? {
-            off_title: (
-              <span>
-                <b>{player.rapm?.key}</b>
-                <br />
-                {rapmSuffix}
-              </span>
-            ),
-            def_title: "",
-            ...player?.rapm,
-          }
+              off_title: (
+                <span>
+                  <b>{player.rapm?.key}</b>
+                  <br />
+                  {rapmSuffix}
+                </span>
+              ),
+              def_title: "",
+              ...player?.rapm,
+            }
           : {};
 
         const repOnOffDiagsEnabled =
@@ -644,136 +644,136 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
         return _.flatten([
           showOnOff
             ? [
-              GenericTableOps.buildDataRow(
-                statsOn,
-                CommonTableDefs.offPrefixFn,
-                CommonTableDefs.offCellMetaFn,
-                CommonTableDefs.onOffReportWithFormattedTitle
-              ),
-              GenericTableOps.buildDataRow(
-                statsOn,
-                CommonTableDefs.defPrefixFn,
-                CommonTableDefs.defCellMetaFn
-              ),
-              GenericTableOps.buildDataRow(
-                statsOff,
-                CommonTableDefs.offPrefixFn,
-                CommonTableDefs.offCellMetaFn,
-                CommonTableDefs.onOffReportWithFormattedTitle
-              ),
-              GenericTableOps.buildDataRow(
-                statsOff,
-                CommonTableDefs.defPrefixFn,
-                CommonTableDefs.defCellMetaFn
-              ),
-            ]
+                GenericTableOps.buildDataRow(
+                  statsOn,
+                  CommonTableDefs.offPrefixFn,
+                  CommonTableDefs.offCellMetaFn,
+                  CommonTableDefs.onOffReportWithFormattedTitle
+                ),
+                GenericTableOps.buildDataRow(
+                  statsOn,
+                  CommonTableDefs.defPrefixFn,
+                  CommonTableDefs.defCellMetaFn
+                ),
+                GenericTableOps.buildDataRow(
+                  statsOff,
+                  CommonTableDefs.offPrefixFn,
+                  CommonTableDefs.offCellMetaFn,
+                  CommonTableDefs.onOffReportWithFormattedTitle
+                ),
+                GenericTableOps.buildDataRow(
+                  statsOff,
+                  CommonTableDefs.defPrefixFn,
+                  CommonTableDefs.defCellMetaFn
+                ),
+              ]
             : [],
           incReplacementOnOff && player?.replacement?.key
             ? [
-              GenericTableOps.buildDataRow(
-                statsReplacement,
-                CommonTableDefs.offPrefixFn,
-                CommonTableDefs.offCellMetaFn,
-                CommonTableDefs.onOffReportReplacement
-              ),
-              GenericTableOps.buildDataRow(
-                statsReplacement,
-                CommonTableDefs.defPrefixFn,
-                CommonTableDefs.defCellMetaFn,
-                CommonTableDefs.onOffReportReplacement
-              ),
-            ]
+                GenericTableOps.buildDataRow(
+                  statsReplacement,
+                  CommonTableDefs.offPrefixFn,
+                  CommonTableDefs.offCellMetaFn,
+                  CommonTableDefs.onOffReportReplacement
+                ),
+                GenericTableOps.buildDataRow(
+                  statsReplacement,
+                  CommonTableDefs.defPrefixFn,
+                  CommonTableDefs.defCellMetaFn,
+                  CommonTableDefs.onOffReportReplacement
+                ),
+              ]
             : [],
           repOnOffDiagsEnabled && player?.replacement?.key
             ? [
-              GenericTableOps.buildTextRow(
-                <RepOnOffDiagView
-                  diagInfo={repOnOffDiagInfo || []}
-                  player={player}
-                  playerMap={teamReport?.playerMap || {}}
-                  commonParams={commonParams}
-                  expandedMode={tableDataInputs.length == 1}
-                  onExpand={(playerId: string) => {
-                    setFilterStr(playerId);
-                    setOverrideFilterStr(playerId);
-                  }}
-                  showHelp={showHelp}
-                />,
-                "small"
-              ),
-            ]
+                GenericTableOps.buildTextRow(
+                  <RepOnOffDiagView
+                    diagInfo={repOnOffDiagInfo || []}
+                    player={player}
+                    playerMap={teamReport?.playerMap || {}}
+                    commonParams={commonParams}
+                    expandedMode={tableDataInputs.length == 1}
+                    onExpand={(playerId: string) => {
+                      setFilterStr(playerId);
+                      setOverrideFilterStr(playerId);
+                    }}
+                    showHelp={showHelp}
+                  />,
+                  "small"
+                ),
+              ]
             : [],
           incRapm && player?.rapm?.key
             ? [
-              GenericTableOps.buildDataRow(
-                statsRapm,
-                CommonTableDefs.offPrefixFn,
-                CommonTableDefs.offCellMetaFn,
-                CommonTableDefs.onOffReportReplacement
-              ),
-              GenericTableOps.buildDataRow(
-                statsRapm,
-                CommonTableDefs.defPrefixFn,
-                CommonTableDefs.defCellMetaFn,
-                CommonTableDefs.onOffReportReplacement
-              ),
-            ]
+                GenericTableOps.buildDataRow(
+                  statsRapm,
+                  CommonTableDefs.offPrefixFn,
+                  CommonTableDefs.offCellMetaFn,
+                  CommonTableDefs.onOffReportReplacement
+                ),
+                GenericTableOps.buildDataRow(
+                  statsRapm,
+                  CommonTableDefs.defPrefixFn,
+                  CommonTableDefs.defCellMetaFn,
+                  CommonTableDefs.onOffReportReplacement
+                ),
+              ]
             : [],
           incRapm && rapmDiagMode != "" && rapmInfo && player?.rapm?.key
             ? [
-              GenericTableOps.buildTextRow(
-                <RapmPlayerDiagView
-                  rapmInfo={rapmInfo}
-                  player={player}
-                  globalRef={globalRapmDiagRef}
-                />,
-                "small"
-              ),
-            ]
+                GenericTableOps.buildTextRow(
+                  <RapmPlayerDiagView
+                    rapmInfo={rapmInfo}
+                    player={player}
+                    globalRef={globalRapmDiagRef}
+                  />,
+                  "small"
+                ),
+              ]
             : [],
           showLineupCompositions
             ? [
-              GenericTableOps.buildTextRow(
-                OnOffReportDiagUtils.buildLineupInfo(
-                  player,
-                  playerLineupPowerSet,
-                  powerType
+                GenericTableOps.buildTextRow(
+                  OnOffReportDiagUtils.buildLineupInfo(
+                    player,
+                    playerLineupPowerSet,
+                    powerType
+                  ),
+                  "small"
                 ),
-                "small"
-              ),
-            ]
+              ]
             : [],
           [GenericTableOps.buildRowSeparator()],
           repOnOffDiagsEnabled && tableDataInputs.length == 1
             ? OnOffReportDiagUtils.getRepOnOffDiags(
-              player,
-              teamReport?.playerMap || {},
-              repOnOffDiagInfo || [],
-              commonParams,
-              [
-                repOnOffDiagModeNumLineups,
-                repOnOffDiagModeLineupSortField,
-                repOnOffDiagModeLineupSortDir,
-              ],
-              (field: string, dir: number) => {
-                if (
-                  field ==
-                  ParamDefaults
-                    .defaultTeamReportRepOnOffDiagModeIfEnabled[2] &&
-                  dir.toString() ==
-                  ParamDefaults
-                    .defaultTeamReportRepOnOffDiagModeIfEnabled[1]
-                ) {
-                  //(if defaults then don't pollute the URL!)
-                  setRepOnOffDiagMode(repOnOffDiagModeNumLineups.toString());
-                } else {
-                  setRepOnOffDiagMode(
-                    [repOnOffDiagModeNumLineups, dir, field].join(":")
-                  );
-                }
-              },
-              showHelp
-            )
+                player,
+                teamReport?.playerMap || {},
+                repOnOffDiagInfo || [],
+                commonParams,
+                [
+                  repOnOffDiagModeNumLineups,
+                  repOnOffDiagModeLineupSortField,
+                  repOnOffDiagModeLineupSortDir,
+                ],
+                (field: string, dir: number) => {
+                  if (
+                    field ==
+                      ParamDefaults
+                        .defaultTeamReportRepOnOffDiagModeIfEnabled[2] &&
+                    dir.toString() ==
+                      ParamDefaults
+                        .defaultTeamReportRepOnOffDiagModeIfEnabled[1]
+                  ) {
+                    //(if defaults then don't pollute the URL!)
+                    setRepOnOffDiagMode(repOnOffDiagModeNumLineups.toString());
+                  } else {
+                    setRepOnOffDiagMode(
+                      [repOnOffDiagModeNumLineups, dir, field].join(":")
+                    );
+                  }
+                },
+                showHelp
+              )
             : [],
         ]);
       })
@@ -807,15 +807,15 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
   const table = testMode
     ? tableBuilder()
     : React.useMemo(tableBuilder, [
-      teamReport,
-      playersWithAdjEff,
-      sortBy,
-      filterStr,
-      showOnOff,
-      showLineupCompositions,
-      repOnOffDiagMode,
-      rapmDiagMode,
-    ]);
+        teamReport,
+        playersWithAdjEff,
+        sortBy,
+        filterStr,
+        showOnOff,
+        showLineupCompositions,
+        repOnOffDiagMode,
+        rapmDiagMode,
+      ]);
 
   // 3.2] Sorting utils
 
@@ -891,30 +891,30 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
   const mostUsefulSubset = _.flatMap([
     showOnOff || showLineupCompositions
       ? [
-        "desc:off_poss:on",
-        "desc:off_poss:off",
-        "desc:diff_adj_ppp:delta",
-        "desc:diff_adj_ppp:on",
-        "desc:diff_adj_ppp:off",
-        "desc:off_adj_ppp:delta",
-        "asc:def_adj_ppp:delta",
-      ]
+          "desc:off_poss:on",
+          "desc:off_poss:off",
+          "desc:diff_adj_ppp:delta",
+          "desc:diff_adj_ppp:on",
+          "desc:diff_adj_ppp:off",
+          "desc:off_adj_ppp:delta",
+          "asc:def_adj_ppp:delta",
+        ]
       : [],
     incReplacementOnOff
       ? [
-        "desc:off_poss:rep",
-        "desc:diff_adj_ppp:rep",
-        "desc:off_adj_ppp:rep",
-        "asc:def_adj_ppp:rep",
-      ]
+          "desc:off_poss:rep",
+          "desc:diff_adj_ppp:rep",
+          "desc:off_adj_ppp:rep",
+          "asc:def_adj_ppp:rep",
+        ]
       : [],
     incRapm
       ? [
-        "desc:off_poss:rapm",
-        "desc:diff_adj_ppp:rapm",
-        "desc:off_adj_ppp:rapm",
-        "asc:def_adj_ppp:rapm",
-      ]
+          "desc:off_poss:rapm",
+          "desc:diff_adj_ppp:rapm",
+          "desc:off_adj_ppp:rapm",
+          "asc:def_adj_ppp:rapm",
+        ]
       : [],
   ]);
   /** The two sub-headers for the dropdown */
@@ -1082,7 +1082,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
         disabled={true}
         text="Sticky 'Quick Select' Bar Disabled"
         truthVal={false}
-        onSelect={() => { }}
+        onSelect={() => {}}
       />
     </GenericTogglingMenu>
   );
