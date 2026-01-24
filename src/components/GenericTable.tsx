@@ -9,6 +9,7 @@ import _ from "lodash";
 
 import styles from "./GenericTable.module.css";
 import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
+import MobileFriendlyOverlayTrigger from "./shared/MobileFriendlyOverlayTrigger";
 
 // Themes
 import chroma from "chroma-js";
@@ -862,13 +863,24 @@ const GenericTable: React.FunctionComponent<Props> = ({
       const isClickable =
         !!onHeaderClick && !colProp.isTitle && colProp.widthUnits > 0;
       const headerContent = maybeFormatColName(colProp.colName);
-      const header = (
-        <th
-          key={"" + index}
-          style={style}
-          className={maybeRepeatingHeader?.className}
-        >
-          {isClickable ? (
+      const hasTooltip = colProp.toolTip !== "";
+
+      // Build the header content with appropriate tooltip/click behavior
+      const renderHeaderContent = () => {
+        if (isClickable && hasTooltip) {
+          // Mobile-friendly: first tap shows tooltip, second tap triggers click
+          return (
+            <MobileFriendlyOverlayTrigger
+              placement="top"
+              overlay={tooltip}
+              onClickWhenVisible={(ev) => onHeaderClick(colKey, ev)}
+            >
+              <span className={styles.clickableHeader}>{headerContent}</span>
+            </MobileFriendlyOverlayTrigger>
+          );
+        } else if (isClickable) {
+          // Clickable but no tooltip - direct click handler
+          return (
             <span
               className={styles.clickableHeader}
               onClick={(ev) => onHeaderClick(colKey, ev)}
@@ -882,20 +894,31 @@ const GenericTable: React.FunctionComponent<Props> = ({
             >
               {headerContent}
             </span>
-          ) : (
-            headerContent
-          )}
+          );
+        } else if (hasTooltip) {
+          // Tooltip but not clickable - standard overlay trigger
+          return (
+            <OverlayTrigger placement="top" overlay={tooltip}>
+              <span>{headerContent}</span>
+            </OverlayTrigger>
+          );
+        } else {
+          // No tooltip, not clickable
+          return headerContent;
+        }
+      };
+
+      return (
+        <th
+          key={"" + index}
+          style={style}
+          className={maybeRepeatingHeader?.className}
+        >
+          {renderHeaderContent()}
           {insertCopyButton(index == 0)}
           {insertConfigureDropdown(index == 0)}
           {index == 0 ? insertTooltipLockMode() : null}
         </th>
-      );
-      return colProp.toolTip == "" ? (
-        header
-      ) : (
-        <OverlayTrigger placement="top" overlay={tooltip} key={"" + index}>
-          {header}
-        </OverlayTrigger>
       );
     });
   }
