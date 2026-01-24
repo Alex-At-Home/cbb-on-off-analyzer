@@ -124,7 +124,7 @@ const TeamReportPage: NextPage<{}> = () => {
           ? ["showComps"]
           : [],
         rawParams.repOnOffDiagMode ==
-        ParamDefaults.defaultTeamReportRepOnOffDiagMode
+          ParamDefaults.defaultTeamReportRepOnOffDiagMode
           ? ["repOnOffDiagMode"]
           : [],
         rawParams.rapmDiagMode == ParamDefaults.defaultTeamReportRapmDiagMode
@@ -134,7 +134,7 @@ const TeamReportPage: NextPage<{}> = () => {
           ? ["rapmPriorMode"]
           : [],
         rawParams.rapmRegressMode ==
-        ParamDefaults.defaultTeamReportRapmRegressMode
+          ParamDefaults.defaultTeamReportRapmRegressMode
           ? ["rapmRegressMode"]
           : [],
         rawParams.regressDiffs == ParamDefaults.defaultTeamReportRegressDiffs
@@ -145,6 +145,14 @@ const TeamReportPage: NextPage<{}> = () => {
           : [],
         !rawParams.teamLuck ? ["teamLuck"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
+        // Table configuration:
+        !rawParams.tablePreset ? ["tablePreset"] : [],
+        _.isEmpty(rawParams.tableConfigExtraCols)
+          ? ["tableConfigExtraCols"]
+          : [],
+        _.isNil(rawParams.tableConfigDisabledCols)
+          ? ["tableConfigDisabledCols"]
+          : [],
       ])
     );
 

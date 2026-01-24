@@ -74,6 +74,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({
     rapmDiagMode: startingRapmDiagMode,
     rapmPriorMode: startingRapmPriorMode,
     rapmRegressMode: startingRapmRegressMode,
+    // Table configuration:
+    tablePreset: startTablePreset,
+    tableConfigExtraCols: startTableConfigExtraCols,
+    tableConfigDisabledCols: startTableConfigDisabledCols,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -118,6 +122,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({
           rapmDiagMode: startingRapmDiagMode,
           rapmPriorMode: startingRapmPriorMode,
           rapmRegressMode: startingRapmRegressMode,
+          // Table configuration:
+          tablePreset: startTablePreset,
+          tableConfigExtraCols: startTableConfigExtraCols,
+          tableConfigDisabledCols: startTableConfigDisabledCols,
         })
       : {
           ...commonParams,

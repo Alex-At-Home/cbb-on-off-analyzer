@@ -163,7 +163,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   );
   const [playStyleConfig, setPlayStyleConfig] = useState(
     startingState.playStyleConfig ||
-      ParamDefaults.defaultTeamExplorerPlayStyleConfig
+    ParamDefaults.defaultTeamExplorerPlayStyleConfig
   );
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState(
     startingState.playStyleConfigStr || ParamDefaults.defaultTeamPlayTypeConfig
@@ -175,6 +175,19 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       ? true
       : startingState.stickyQuickToggle
   );
+
+  /** Currently selected table preset */
+  const [tablePreset, setTablePreset] = useState<string | undefined>(
+    startingState.tablePreset
+  );
+  /** Extra columns added to table */
+  const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
+    startingState.tableConfigExtraCols || []
+  );
+  /** Disabled table columns */
+  const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
+    string[] | undefined
+  >(startingState.tableConfigDisabledCols);
 
   // Basic filter:
   const manualFilterSelected =
@@ -248,41 +261,41 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const teamList =
     year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
       ? _.chain(
-          _.flatMap(AvailableTeams.byName, (teams, teamName) => {
-            return [teamName].concat(
-              // Just do "ADD_SEASON" and let user fill it in
-              `${teamName}:ADD_SEASON`
-              // Not doing: add every year, more intuitive but doesn't scale
-              // teams
-              //   .filter((t) => t.year && t.gender == gender)
-              //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
-            );
-          })
-        )
-          .flatMap((team) => {
-            const teamFrags = team.split(`:`);
-            // Add aliases in:
-            return [team].concat(
-              (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
-                teamFrags[1] ? `${s}:${teamFrags[1]}` : s
-              )
-            );
-          })
-          .uniq()
-          .value()
+        _.flatMap(AvailableTeams.byName, (teams, teamName) => {
+          return [teamName].concat(
+            // Just do "ADD_SEASON" and let user fill it in
+            `${teamName}:ADD_SEASON`
+            // Not doing: add every year, more intuitive but doesn't scale
+            // teams
+            //   .filter((t) => t.year && t.gender == gender)
+            //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
+          );
+        })
+      )
+        .flatMap((team) => {
+          const teamFrags = team.split(`:`);
+          // Add aliases in:
+          return [team].concat(
+            (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
+              teamFrags[1] ? `${s}:${teamFrags[1]}` : s
+            )
+          );
+        })
+        .uniq()
+        .value()
       : _.chain(
-          _.flatMap(AvailableTeams.byName, (teams, __) => {
-            const maybeTeam = teams.find(
-              (t) => t.year == year && t.gender == gender
-            );
-            return maybeTeam ? [maybeTeam.team] : [];
-          })
-        )
-          .flatMap((team) => {
-            // Add aliases in:
-            return [team].concat(AvailableTeams.teamAliases[team] || []);
-          })
-          .value();
+        _.flatMap(AvailableTeams.byName, (teams, __) => {
+          const maybeTeam = teams.find(
+            (t) => t.year == year && t.gender == gender
+          );
+          return maybeTeam ? [maybeTeam.team] : [];
+        })
+      )
+        .flatMap((team) => {
+          // Add aliases in:
+          return [team].concat(AvailableTeams.teamAliases[team] || []);
+        })
+        .value();
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
@@ -384,6 +397,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       showAdvancedFilter,
       secretQuery,
       stickyQuickToggle,
+      tablePreset,
+      tableConfigExtraCols,
+      tableConfigDisabledCols,
     });
   }, [
     confs,
@@ -403,6 +419,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     showAdvancedFilter,
     secretQuery,
     stickyQuickToggle,
+    tablePreset,
+    tableConfigExtraCols,
+    tableConfigDisabledCols,
   ]);
 
   /** Set this to be true on expensive operations */
@@ -497,17 +516,17 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     return manualFilterInUse
       ? year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
         ? !_.isNil(
-            queryFiltersAsMap[t.team] ||
-              queryFiltersAsMap[`${t.team}:${t.year}`] ||
-              queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`]
-          )
+          queryFiltersAsMap[t.team] ||
+          queryFiltersAsMap[`${t.team}:${t.year}`] ||
+          queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`]
+        )
         : !_.isNil(queryFiltersAsMap[t.team])
       : confs == "" ||
-          confs.indexOf(t.conf) >= 0 ||
-          (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
-            ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
-          (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
-            ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
+      confs.indexOf(t.conf) >= 0 ||
+      (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
+        ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
+      (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
+        ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
   };
   /** Builds a list of JSON objects with basic filtering, subsequent phases render */
   const phase1Processing = (teams: any[], applyConfFilter: boolean = true) => {
@@ -597,10 +616,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       .filter((team) => {
         return applyConfFilter
           ? confFilter({
-              team: team.team_name,
-              conf: team.conf_nick || "???",
-              year: team.year || "????",
-            })
+            team: team.team_name,
+            conf: team.conf_nick || "???",
+            year: team.year || "????",
+          })
           : true;
       })
       .sortBy((team) => {
@@ -614,7 +633,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               queryFiltersAsMap[team.team_name] ||
               queryFiltersAsMap[`${team.team_name}:${team.year}`] ||
               queryFiltersAsMap[
-                `${team.team_name}:${(team.year || "").substring(0, 4)}`
+              `${team.team_name}:${(team.year || "").substring(0, 4)}`
               ] ||
               1000
             );
@@ -639,16 +658,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       const [teamsPhase2, tmpAvancedFilterError] =
         advancedFilterStr.length > 0 && filtered
           ? AdvancedFilterUtils.applyTeamExplorerFilter(
-              phase1,
-              advancedFilterStr,
-              (year: string) =>
-                GradeTableUtils.pickDivisonStats(
-                  divisionStatsCache,
-                  year,
-                  gender,
-                  showGrades
-                )
-            )
+            phase1,
+            advancedFilterStr,
+            (year: string) =>
+              GradeTableUtils.pickDivisonStats(
+                divisionStatsCache,
+                year,
+                gender,
+                showGrades
+              )
+          )
           : [phase1, undefined];
 
       return teamsPhase2;
@@ -658,12 +677,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       finalData,
       showGrades
         ? (year: string) =>
-            GradeTableUtils.pickDivisonStats(
-              divisionStatsCache,
-              year,
-              gender,
-              showGrades
-            )
+          GradeTableUtils.pickDivisonStats(
+            divisionStatsCache,
+            year,
+            gender,
+            showGrades
+          )
         : undefined
     );
 
@@ -679,16 +698,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     const [teamsPhase2, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
         ? AdvancedFilterUtils.applyTeamExplorerFilter(
-            teamsPhase1,
-            advancedFilterStr,
-            (year: string) =>
-              GradeTableUtils.pickDivisonStats(
-                divisionStatsCache,
-                year,
-                gender,
-                showGrades
-              )
-          )
+          teamsPhase1,
+          advancedFilterStr,
+          (year: string) =>
+            GradeTableUtils.pickDivisonStats(
+              divisionStatsCache,
+              year,
+              gender,
+              showGrades
+            )
+        )
         : [teamsPhase1, undefined];
 
     if (advancedFilterStr.length > 0)
@@ -761,7 +780,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                   <b>
                     {team.team_name}
                     {year == DateUtils.AllYears ||
-                    year.startsWith(DateUtils.MultiYearPrefix)
+                      year.startsWith(DateUtils.MultiYearPrefix)
                       ? ` '${yearSuffix}`
                       : ""}
                   </b>
@@ -827,7 +846,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           },
           {
             setShowGrades: (showGrades: string) => setShowGrades(showGrades),
-            setShotChartConfig: (config: any) => {},
+            setShotChartConfig: (config: any) => { },
             setPlayStyleConfigStr: (config: string) => {
               //(if there's lots of teams then hide updates behind a spinner)
               if (Math.min(parseInt(maxTableSize), teamsPhase2.length) > 10) {
@@ -849,17 +868,17 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           (showExtraInfo || showPlayStyles) && ii < MAX_EXTRA_INFO_IN_ROWS
             ? 1
             : showGrades
-            ? 5
-            : 10;
+              ? 5
+              : 10;
 
         return [
           ...(ii > 0 && ii % repeatingHeader == 0
             ? [
-                GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingOnOffHeaderFields,
-                  "small"
-                ),
-              ]
+              GenericTableOps.buildHeaderRepeatRow(
+                CommonTableDefs.repeatingOnOffHeaderFields,
+                "small"
+              ),
+            ]
             : []),
           ...(rows.baseline?.teamStatsRows || []),
           GenericTableOps.buildRowSeparator(),
@@ -872,6 +891,21 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         showConfigureColumns={FeatureFlags.isActiveWindow(
           FeatureFlags.tableConfigOptions
         )}
+        initialColumnConfig={{
+          newCol: tableConfigExtraCols,
+          disabledCols: tableConfigDisabledCols,
+        }}
+        onColumnConfigChange={(config) => {
+          setTableConfigExtraCols(config.newCol);
+          setTableConfigDisabledCols(config.disabledCols);
+        }}
+        onPresetChange={(preset) => {
+          setTablePreset(preset);
+          // Reset overrides:
+          setTableConfigExtraCols([]);
+          setTableConfigDisabledCols(undefined);
+        }}
+        presetOverride={tablePreset}
         tableCopyId="teamStatsTable"
         tableFields={CommonTableDefs.onOffTable()}
         tableData={
@@ -883,19 +917,19 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         integratedGrades={
           showGrades && !showStandaloneGrades
             ? {
-                hybridMode:
-                  GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
-                exactRanks: true,
-                colorChooser: CbbColors.integratedColorsDefault,
-                customKeyMappings: {
-                  def_net: "off_raw_net",
-                },
-                alwaysShow: {
-                  off_net: true,
-                  off_adj_ppp: true,
-                  def_adj_ppp: true,
-                },
-              }
+              hybridMode:
+                GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+              exactRanks: true,
+              colorChooser: CbbColors.integratedColorsDefault,
+              customKeyMappings: {
+                def_net: "off_raw_net",
+              },
+              alwaysShow: {
+                off_net: true,
+                off_adj_ppp: true,
+                def_adj_ppp: true,
+              },
+            }
             : undefined
         }
       />
@@ -1079,7 +1113,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             label: "|",
             tooltip: "",
             toggled: true,
-            onClick: () => {},
+            onClick: () => { },
             isLabelOnly: true,
           },
           {
@@ -1095,7 +1129,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             label: ":",
             tooltip: "",
             toggled: true,
-            onClick: () => {},
+            onClick: () => { },
             isLabelOnly: true,
           },
           {
@@ -1153,14 +1187,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         ],
         showHelp
           ? [
-              //TODO: what to show here?
-              // {
-              //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
-              //   tooltip: "Open a page that explains some of the elements of this table",
-              //   toggled: false,
-              //   onClick: () => {}
-              // }
-            ]
+            //TODO: what to show here?
+            // {
+            //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
+            //   tooltip: "Open a page that explains some of the elements of this table",
+            //   toggled: false,
+            //   onClick: () => {}
+            // }
+          ]
           : [],
       ])}
     />
@@ -1266,7 +1300,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         disabled={true}
         text="Sticky 'Quick Select' Bar Disabled"
         truthVal={false}
-        onSelect={() => {}}
+        onSelect={() => { }}
       />
     </GenericTogglingMenu>
   );
@@ -1444,9 +1478,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
               value={advancedFilterStr.concat(
                 secretQuery
-                  ? `${
-                      _.endsWith(advancedFilterStr, " ") ? "" : " "
-                    }SECRET_QUERY ` + secretQuery
+                  ? `${_.endsWith(advancedFilterStr, " ") ? "" : " "
+                  }SECRET_QUERY ` + secretQuery
                   : ""
               )}
               error={advancedFilterError}

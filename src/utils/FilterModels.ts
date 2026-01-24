@@ -206,6 +206,13 @@ export type GameFilterParams = {
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
   playerShotChartsUseEfg?: boolean;
+  // Table configuration:
+  teamTablePreset?: string;
+  teamTableConfigExtraCols?: string[];
+  teamTableConfigDisabledCols?: string[];
+  playerTablePreset?: string;
+  playerTableConfigExtraCols?: string[];
+  playerTableConfigDisabledCols?: string[];
 };
 
 /** Params for lineup filtering */
@@ -303,6 +310,10 @@ export type TeamStatsExplorerParams = {
   maxTableSize?: string;
   secretQuery?: string; //(allows table view of all teams)
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
+  // Table configuration:
+  tablePreset?: string;
+  tableConfigExtraCols?: string[];
+  tableConfigDisabledCols?: string[];
 };
 
 export type OffseasonLeaderboardParams = {
@@ -479,6 +490,10 @@ export type PlayerLeaderboardParams = {
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
   showPlayerPlayTypesPlayType?: string;
+  // Table configuration:
+  tablePreset?: string;
+  tableConfigExtraCols?: string[];
+  tableConfigDisabledCols?: string[];
 };
 
 export type ChartControlParams = {
@@ -564,6 +579,10 @@ export type TeamReportFilterParams = {
   teamLuck?: boolean;
   //(there's no luck diags here because we're applying at the lineup level)
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
+  // Table configuration:
+  tablePreset?: string;
+  tableConfigExtraCols?: string[];
+  tableConfigDisabledCols?: string[];
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */

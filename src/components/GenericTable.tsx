@@ -530,6 +530,10 @@ type Props = {
   presetOverride?: string;
   /** Callback when preset selection changes */
   onPresetChange?: (presetKey: string | undefined) => void;
+  /** The key of the column (/col+row combo) that is being sorted */
+  sortField?: string;
+  /** If this callback is enabled, the table headers become clickable (ev is the click event) */
+  onHeaderClick?: (headerKey: string, ev: any) => void;
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
@@ -548,6 +552,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
   showConfigureColumns = false,
   presetOverride,
   onPresetChange,
+  sortField,
+  onHeaderClick,
 }) => {
   const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
@@ -1143,7 +1149,14 @@ const GenericTable: React.FunctionComponent<Props> = ({
           rowSpan={rowSpan}
           colSpan={colSpan}
           key={"" + index}
-          style={style}
+          style={{
+            ...style,
+            ...(actualKey == sortField
+              ? {
+                  fontWeight: "bold",
+                }
+              : {}),
+          }}
         >
           {cellTooltip != null ? (
             lockMode == "row" || lockMode == "col" ? (
