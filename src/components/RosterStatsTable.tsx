@@ -2236,7 +2236,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const sortOptions: Array<any> = _.flatten(
     _.toPairs(allTableFields)
-      .filter((keycol) => keycol[1].colName && keycol[1].colName != "")
+      .filter(
+        (keycol) =>
+          keycol[1].colName &&
+          keycol[1].colName != "" &&
+          !_.startsWith(keycol[1].colName, "__")
+      )
       .map((keycol) => {
         return _.flatMap(
           [
@@ -2286,7 +2291,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               case "def":
                 return "Defensive";
               case "diff":
-                return "Off-Def";
+                return "Net";
             }
           };
           const labelOverride =
@@ -2901,6 +2906,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
+              sortField={_.thru(sortBy, (sortField) => {
+                if (_.startsWith(sortField, "desc:off_team_poss")) {
+                  return undefined;
+                } else {
+                  const sortFieldDecomp = sortField.split(":");
+                  return sortFieldDecomp[1];
+                }
+              })}
               showConfigureColumns={true}
               initialColumnConfig={{
                 newCol: tableConfigExtraCols,

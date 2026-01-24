@@ -1153,7 +1153,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             ...style,
             ...(actualKey == sortField
               ? {
-                  fontWeight: "bold",
+                  fontWeight: 550,
                 }
               : {}),
           }}
