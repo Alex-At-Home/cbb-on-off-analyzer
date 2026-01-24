@@ -1,3 +1,11 @@
 .infoBadge::after {
   content: "*"
 }
+
+.clickableHeader {
+  cursor: pointer;
+}
+
+.clickableHeader:hover {
+  text-decoration: underline;
+}

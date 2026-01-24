@@ -854,18 +854,37 @@ const GenericTable: React.FunctionComponent<Props> = ({
         return s;
       }
     };
-    return Object.values(tableFields).map((colProp, index) => {
+    return Object.entries(tableFields).map(([colKey, colProp], index) => {
       const style = getColStyle(colProp);
       const tooltip = (
         <Tooltip id={`${toolTipId}-${index}`}>{colProp.toolTip}</Tooltip>
       );
+      const isClickable =
+        !!onHeaderClick && !colProp.isTitle && colProp.widthUnits > 0;
+      const headerContent = maybeFormatColName(colProp.colName);
       const header = (
         <th
           key={"" + index}
           style={style}
           className={maybeRepeatingHeader?.className}
         >
-          {maybeFormatColName(colProp.colName)}
+          {isClickable ? (
+            <span
+              className={styles.clickableHeader}
+              onClick={(ev) => onHeaderClick(colKey, ev)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter" || ev.key === " ") {
+                  onHeaderClick(colKey, ev);
+                }
+              }}
+            >
+              {headerContent}
+            </span>
+          ) : (
+            headerContent
+          )}
           {insertCopyButton(index == 0)}
           {insertConfigureDropdown(index == 0)}
           {index == 0 ? insertTooltipLockMode() : null}
