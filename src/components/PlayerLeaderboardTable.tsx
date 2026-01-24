@@ -418,6 +418,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
   const [incLowVol, setIncLowVol] = useState(startingState.incLowVol || false);
 
+  /** Splits out offensive and defensive metrics into separate rows */
+  const [expandedView, setExpandedView] = useState(
+    _.isNil(startingState.showExpanded)
+      ? ParamDefaults.defaultPlayerShowExpanded
+      : startingState.showExpanded
+  );
+
+  /** This is a WIP experiment for a nicer single row view
+   * TODO: unify with expandedView
+   */
   const [showExpanded, setShowExpanded] = useState(
     _.isNil(startingState.showExpanded)
       ? !FeatureFlags.isActiveWindow(FeatureFlags.expandedPlayerLeaderboard)
@@ -598,6 +608,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       t100: isT100,
       incLowVol,
       confOnly: isConfOnly,
+      showExpanded: expandedView,
       // Player filters/settings:
       posClasses: posClasses,
       possAsPct: possAsPct,
@@ -632,6 +643,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     advancedFilterStr,
     isT100,
     isConfOnly,
+    expandedView,
     incLowVol,
     possAsPct,
     factorMins,
@@ -1317,6 +1329,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
       const shouldUsePlayerCareerPage = player.roster?.ncaa_id;
 
+      const maybeCollapsedMultiYearSuffix = isMultiYr
+        ? ``
+        : ` '${player.year?.substring(2, 4) || "??"}`;
+
       const playerEl = teamEditorMode ? (
         <OverlayTrigger placement="auto" overlay={playerTeamEditorTooltip}>
           <a
@@ -1363,9 +1379,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           >
             {firstRowForPlayer
               ? player.key
-              : `${_.split(player.key, ",")[0]}${
-                  isMultiYr ? `` : ` '${player.year?.substring(2, 4) || "??"}`
-                }`}
+              : `${
+                  _.split(player.key, ",")[0]
+                }${maybeCollapsedMultiYearSuffix}`}
           </a>
         </OverlayTrigger>
       );
@@ -1385,7 +1401,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         queryFilters: isConfOnly ? "Conf" : undefined,
         factorMins: factorMins,
         possAsPct: possAsPct,
-        showExpanded: true,
+        showExpanded: expandedView,
         calcRapm: true,
         showTeamPlayTypes: !isT100 && !isConfOnly,
         showGrades: "rank:Combo",
@@ -1411,7 +1427,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         queryFilters: isConfOnly ? "Conf" : undefined,
         factorMins: factorMins,
         possAsPct: possAsPct,
-        showExpanded: true,
+        showExpanded: expandedView,
         showDiag: true,
         showPosDiag: true,
         filter: player.code || player.key,
@@ -1457,6 +1473,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         CbbColors.diff10_p100_redGreen[0],
         "20px",
         4
+      );
+      const shortPlayerMeta = (
+        <span>
+          <i>
+            <small>{player.roster?.height || ""}</small>{" "}
+            <small>{player.roster?.year_class || ""}</small>{" "}
+            <OverlayTrigger
+              placement="auto"
+              overlay={TableDisplayUtils.buildPositionTooltip(
+                player.posClass || "??",
+                "season",
+                true
+              )}
+            >
+              <small>{player.posClass || "??"}</small>
+            </OverlayTrigger>
+          </i>
+        </span>
       );
 
       const netGradeEl = _.thru(
@@ -1748,7 +1782,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         <div className="multi_line_title_content">
           <div className="multi_line_title_row">
             <span
-              className="multi_line_title_row_left_aligned_snippet"
+              className="multi_line_title_row_left_aligned_snippet d-none d-xl-block small muted"
               style={{ whiteSpace: "nowrap" }}
             >
               {rankings}
@@ -1765,7 +1799,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 {teamEl}&nbsp;(<span>{confNickname}</span>){txfeEl}
               </span>
             </span>{" "}
-            <span>{adjMarginStr}</span>
+            <span>{expandedView ? adjMarginStr : shortPlayerMeta}</span>
           </div>
         </div>
       );
@@ -1819,15 +1853,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 ]
               : [],
             [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
-            [
-              GenericTableOps.buildDataRow(
-                player,
-                defPrefixFn,
-                defCellMetaFn,
-                undefined,
-                rosterInfoSpanCalculator
-              ),
-            ],
+            expandedView
+              ? [
+                  GenericTableOps.buildDataRow(
+                    player,
+                    defPrefixFn,
+                    defCellMetaFn,
+                    undefined,
+                    rosterInfoSpanCalculator
+                  ),
+                ]
+              : [],
             predictionLine
               ? [GenericTableOps.buildTextRow(predictionLine, "")]
               : [],
@@ -1851,7 +1887,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   playerPosStats:
                     positionalStatsCache[player.year || year] || {},
                   player,
-                  expandedView: true,
+                  expandedView,
                   possAsPct,
                   factorMins,
                   includeRapm: true,
@@ -1983,7 +2019,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     const maybeSubheaderRow = showInfoSubHeader
       ? RosterTableUtils.buildInformationalSubheader(
           true,
-          true,
+          expandedView,
           resolvedTheme == "dark"
         )
       : [];
@@ -1998,7 +2034,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           tableFields={
             showExpanded
               ? CommonTableDefs.onOffIndividualTable(
-                  true,
+                  expandedView,
                   possAsPct,
                   factorMins,
                   true
@@ -2616,6 +2652,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             <ToggleButtonGroup
               items={(
                 [
+                  {
+                    label: "Expanded",
+                    tooltip: expandedView
+                      ? "Show single row of player stats"
+                      : "Show expanded player stats",
+                    toggled: expandedView,
+                    onClick: () =>
+                      friendlyChange(
+                        () => setExpandedView(!expandedView),
+                        true
+                      ),
+                  },
                   {
                     label: "Luck",
                     tooltip: "Statistics always adjusted for luck",
