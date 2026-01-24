@@ -428,7 +428,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** This is a WIP experiment for a nicer single row view
    * TODO: unify with expandedView
    */
-  const [showExpanded, setShowExpanded] = useState(false);
+  const [showExpanded, setShowExpanded] = useState(true);
   //   _.isNil(startingState.showExpanded)
   //     ? !FeatureFlags.isActiveWindow(FeatureFlags.expandedPlayerLeaderboard)
   //     : startingState.showExpanded
