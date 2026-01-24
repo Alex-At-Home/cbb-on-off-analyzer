@@ -2918,10 +2918,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               onHeaderClick={
                 !expandedView &&
                 !gameFilterParams.advancedMode &&
-                !gameFilterParams.presetSplit //(for now just a simple subset )
+                !gameFilterParams.presetSplit //(for now just a simple subset of the required scenarios)
                   ? (headerKey, ev) => {
                       // Vaguely working test: cycles through asc/desc/default
                       // TODO: in practice need to save the last manual setting and jump back to that?
+                      // TODO: unify this logic + RosterStatsTable into a util
                       if (sortBy == `desc:off_${headerKey}:baseline`) {
                         setSortBy(`asc:off_${headerKey}:baseline`);
                       } else if (sortBy == `asc:off_${headerKey}:baseline`) {

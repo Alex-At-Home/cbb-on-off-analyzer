@@ -2046,6 +2046,55 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     return {
       table: (
         <GenericTable
+          sortField={_.thru(sortBy, (sortFieldDecompStr) => {
+            const sortFieldDecomp = sortFieldDecompStr.split(":");
+            const sortField = sortFieldDecomp[1];
+            if (sortField == "diff_adj_rapm") {
+              return "off_adj_rapm_margin";
+            } else if (sortField == "diff_adj_rapm_prod") {
+              return "off_adj_rapm_prod_margin";
+            } else {
+              return sortField;
+            }
+          })}
+          onHeaderClick={
+            !expandedView && !advancedFilterStr?.includes("SORT_BY") //(for now just a simple subset of the required scenarios)
+              ? (headerKey, ev) => {
+                  // Vaguely working test: cycles through asc/desc/default
+                  // TODO: in practice need to save the last manual setting and jump back to that?
+                  // TODO: unify this logic + RosterStatsTable into a util
+                  const isMarginField = headerKey.includes("margin");
+                  const stateSetter = (newSortBy: string) => {
+                    friendlyChange(
+                      () => setSortBy(newSortBy),
+                      sortBy != newSortBy
+                    );
+                  };
+                  const fieldSetter = (
+                    fieldToUse: string,
+                    prefix: "off" | "diff"
+                  ) => {
+                    if (sortBy == `desc:${prefix}_${fieldToUse}`) {
+                      stateSetter(`asc:${prefix}_${fieldToUse}`);
+                    } else if (sortBy == `asc:${prefix}_${fieldToUse}`) {
+                      stateSetter(
+                        ParamDefaults.defaultPlayerLboardSortBy(
+                          useRapm,
+                          factorMins
+                        )
+                      );
+                    } else {
+                      stateSetter(`desc:${prefix}_${fieldToUse}`);
+                    }
+                  };
+                  if (headerKey.includes("margin")) {
+                    fieldSetter(headerKey.replace("_margin", ""), "diff");
+                  } else {
+                    fieldSetter(headerKey, "off");
+                  }
+                }
+              : undefined
+          }
           showConfigureColumns={true}
           initialColumnConfig={{
             newCol: tableConfigExtraCols,
