@@ -648,7 +648,7 @@ const SimilarityConfigModal: React.FunctionComponent<Props> = ({
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        placeholder="Attack & Kick: 2.0, Rim Attack: 3.0"
+                        placeholder="Attack & Kick: *2.0, Post-Up Scoring: 3.0"
                         value={internalCustomWeights}
                         onChange={(e) =>
                           setInternalCustomWeights(e.target.value)

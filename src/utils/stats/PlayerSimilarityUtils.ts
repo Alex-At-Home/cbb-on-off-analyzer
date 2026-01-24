@@ -752,15 +752,26 @@ export class PlayerSimilarityUtils {
           Math.min(PlayerSimilarityUtils.zScoreBound, zScore)
         );
 
+        const maybeCustomWeight: number | undefined =
+          styleWeightOverrides[statNames[i]];
+        const customMult =
+          !_.isNil(maybeCustomWeight) && maybeCustomWeight < 0
+            ? -maybeCustomWeight
+            : 1.0;
+
         // Calculate weight
-        let weight = componentWeight * dropdownWeight * gradeBonus[vectorIndex];
+        let weight =
+          componentWeight *
+          dropdownWeight *
+          gradeBonus[vectorIndex] *
+          customMult;
 
         if (sectionRateWeights && i < sectionRateWeights.length) {
           weight *= sectionRateWeights[i];
         }
         // Override a weight if desired:
-        if (!_.isNil(styleWeightOverrides[statNames[i]])) {
-          weight = styleWeightOverrides[statNames[i]];
+        if (!_.isNil(maybeCustomWeight) && maybeCustomWeight >= 0) {
+          weight = maybeCustomWeight;
         }
 
         // Squared difference in z-score space
@@ -1118,13 +1129,20 @@ export class PlayerSimilarityUtils {
       const valueStr = pair.substring(colonIndex + 1).trim();
 
       if (key && valueStr) {
-        const value = parseFloat(valueStr);
-        if (!isNaN(value)) {
-          result[key] = value;
+        if (valueStr[0] == "*" || valueStr[0] == "x") {
+          // "*3.0" to mult instead of overwrite
+          const value = parseFloat(valueStr.substring(1));
+          if (!isNaN(value)) {
+            result[key] = -value; //(store as -ve means = instead of =)
+          }
+        } else {
+          const value = parseFloat(valueStr);
+          if (!isNaN(value)) {
+            result[key] = value;
+          }
         }
       }
     }
-
     return result;
   };
 
