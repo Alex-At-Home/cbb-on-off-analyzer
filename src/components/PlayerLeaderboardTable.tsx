@@ -1849,7 +1849,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     CommonTableDefs.repeatingOnOffIndivHeaderFields,
                     "small"
                   ),
-                  GenericTableOps.buildRowSeparator(),
+                  GenericTableOps.buildRowSeparator("1px"),
                 ]
               : [],
             [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
