@@ -815,6 +815,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
         showLineupCompositions,
         repOnOffDiagMode,
         rapmDiagMode,
+        tablePreset,
       ]);
 
   // 3.2] Sorting utils

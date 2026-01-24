@@ -332,10 +332,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
 
     const confSet = confs
       ? new Set(
-        _.flatMap((confs || "").split(","), (c) =>
-          c == "P6" ? Power6Conferences : [NicknameToConference[c] || c]
+          _.flatMap((confs || "").split(","), (c) =>
+            c == "P6" ? Power6Conferences : [NicknameToConference[c] || c]
+          )
         )
-      )
       : undefined;
 
     const dataEventLineups = (dataEvent?.lineups ||
@@ -451,21 +451,21 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       const lineupTitleKey = "" + lineupIndex;
       const subTitle = sortedCodesAndIds
         ? TableDisplayUtils.buildDecoratedLineup(
-          lineupTitleKey,
-          sortedCodesAndIds,
-          perLineupBaselinePlayerMap,
-          positionFromPlayerKey,
-          "off_adj_rtg",
-          true,
-          ParamDefaults.defaultLineupFontSize,
-          {
-            team: lineup.team,
-            year: lineup.year,
-            gender,
-            queryFilters: isConfOnly ? "Conf" : undefined,
-            maxRank: isT100 ? "100" : "400",
-          }
-        )
+            lineupTitleKey,
+            sortedCodesAndIds,
+            perLineupBaselinePlayerMap,
+            positionFromPlayerKey,
+            "off_adj_rtg",
+            true,
+            ParamDefaults.defaultLineupFontSize,
+            {
+              team: lineup.team,
+              year: lineup.year,
+              gender,
+              queryFilters: isConfOnly ? "Conf" : undefined,
+              maxRank: isT100 ? "100" : "400",
+            }
+          )
         : "Weighted Total";
 
       const adjMargin =
@@ -600,36 +600,36 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       return _.flatten([
         isUsingLuckAndShowingDiags && showRepeatingHeader && lineupIndex > 0
           ? [
-            GenericTableOps.buildHeaderRepeatRow(
-              CommonTableDefs.repeatingLineupHeaderFields,
-              "small"
-            ),
-          ]
+              GenericTableOps.buildHeaderRepeatRow(
+                CommonTableDefs.repeatingLineupHeaderFields,
+                "small"
+              ),
+            ]
           : [],
         showRepeatingHeaderThisLine
           ? [
-            GenericTableOps.buildHeaderRepeatRow(
-              CommonTableDefs.repeatingLineupHeaderFields,
-              "small"
-            ),
-            GenericTableOps.buildRowSeparator(),
-          ]
+              GenericTableOps.buildHeaderRepeatRow(
+                CommonTableDefs.repeatingLineupHeaderFields,
+                "small"
+              ),
+              GenericTableOps.buildRowSeparator(),
+            ]
           : [],
         [GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn)],
         [GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn)],
         showLuckAdjDiags && lineup.off_luck_diags && lineup.def_luck_diags
           ? [
-            GenericTableOps.buildTextRow(
-              <LuckAdjDiagView
-                name="lineup"
-                offLuck={lineup.off_luck_diags}
-                defLuck={lineup.def_luck_diags}
-                baseline={"season"}
-                showHelp={showHelp}
-              />,
-              "small pt-2"
-            ),
-          ]
+              GenericTableOps.buildTextRow(
+                <LuckAdjDiagView
+                  name="lineup"
+                  offLuck={lineup.off_luck_diags}
+                  defLuck={lineup.def_luck_diags}
+                  baseline={"season"}
+                  showHelp={showHelp}
+                />,
+                "small pt-2"
+              ),
+            ]
           : [],
         [GenericTableOps.buildRowSeparator("1px")],
       ]);
@@ -669,8 +669,6 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     showRepeatingHeader,
     dataEvent,
     tablePreset,
-    tableConfigExtraCols,
-    tableConfigDisabledCols,
   ]);
 
   // 3.2] Sorting utils
@@ -802,10 +800,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     return confs == ""
       ? { label: `All Teams in ${tier} Tier` }
       : confs
-        .split(",")
-        .map((conf: string) =>
-          stringToOption(NicknameToConference[conf] || conf)
-        );
+          .split(",")
+          .map((conf: string) =>
+            stringToOption(NicknameToConference[conf] || conf)
+          );
   }
 
   /** Slightly hacky code to render the conference nick names */
@@ -868,9 +866,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
 
   const confsWithTeams = dataEvent?.confMap
     ? _.toPairs(dataEvent?.confMap || {}).map((kv) => {
-      const teams = kv[1] || [];
-      return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
-    })
+        const teams = kv[1] || [];
+        return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
+      })
     : dataEvent?.confs || [];
 
   return (
@@ -902,8 +900,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
           <Col xs={11} sm={11} md={6} lg={6}>
             <ConferenceSelector
-              emptyLabel={`All Teams in ${tier} Tier${tier == "All" ? "s" : ""
-                }`}
+              emptyLabel={`All Teams in ${tier} Tier${
+                tier == "All" ? "s" : ""
+              }`}
               confStr={confs}
               tier={tier}
               confMap={dataEvent?.confMap}
@@ -946,7 +945,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               <GenericTogglingMenuItem
                 text={<i className="text-secondary">Adjust for Luck</i>}
                 truthVal={true}
-                onSelect={() => { }}
+                onSelect={() => {}}
                 helpLink={
                   showHelp
                     ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -966,7 +965,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 //TODO: add filtered download
               }
               {year != "All" &&
-                year >= DateUtils.firstYearWithImprovedLineupLboards ? (
+              year >= DateUtils.firstYearWithImprovedLineupLboards ? (
                 <>
                   <GenericTogglingMenuItem
                     text={
@@ -1091,7 +1090,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                     label: "Luck",
                     tooltip: "Statistics always adjusted for luck",
                     toggled: true,
-                    onClick: () => { },
+                    onClick: () => {},
                   },
                   {
                     label: "T100",
@@ -1118,21 +1117,21 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 .concat(
                   showHelp
                     ? [
-                      {
-                        label: (
-                          <a
-                            href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
-                            target="_blank"
-                          >
-                            ?
-                          </a>
-                        ),
-                        tooltip:
-                          "Open a page that explains some of the elements of this table",
-                        toggled: false,
-                        onClick: () => { },
-                      },
-                    ]
+                        {
+                          label: (
+                            <a
+                              href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
+                              target="_blank"
+                            >
+                              ?
+                            </a>
+                          ),
+                          tooltip:
+                            "Open a page that explains some of the elements of this table",
+                          toggled: false,
+                          onClick: () => {},
+                        },
+                      ]
                     : []
                 )
                 .concat([
@@ -1141,7 +1140,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                     tooltip:
                       "Filter lineups based on their positional attributes",
                     toggled: true,
-                    onClick: () => { },
+                    onClick: () => {},
                     isLabelOnly: true,
                   },
                   {

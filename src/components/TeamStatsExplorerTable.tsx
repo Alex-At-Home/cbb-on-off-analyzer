@@ -947,6 +947,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     showPlayStyles,
     playStyleConfig,
     playStyleConfigStr,
+    tablePreset,
   ]);
 
   // 3] View

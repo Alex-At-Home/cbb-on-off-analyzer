@@ -2187,6 +2187,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     showPlayerShots,
     shotChartsUseEfg,
     resolvedTheme,
+    tablePreset,
   ]);
 
   // 3.2] Sorting utils

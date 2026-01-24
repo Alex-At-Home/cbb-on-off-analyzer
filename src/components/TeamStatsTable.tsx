@@ -665,6 +665,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     playTypeConfigStr,
     playStyleConfig,
     allPlayerStatsCache,
+    tablePreset,
   ]);
 
   // 3] Utils
