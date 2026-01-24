@@ -857,11 +857,19 @@ const GenericTable: React.FunctionComponent<Props> = ({
     };
     return Object.entries(tableFields).map(([colKey, colProp], index) => {
       const style = getColStyle(colProp);
-      const tooltip = (
-        <Tooltip id={`${toolTipId}-${index}`}>{colProp.toolTip}</Tooltip>
-      );
       const isClickable =
         !!onHeaderClick && !colProp.isTitle && colProp.widthUnits > 0;
+      const tooltip = (
+        <Tooltip id={`${toolTipId}-${index}`}>
+          {colProp.toolTip}
+          {isClickable ? (
+            <>
+              <br />
+              Click to cycle through available sort options
+            </>
+          ) : undefined}
+        </Tooltip>
+      );
       const headerContent = maybeFormatColName(colProp.colName);
       const hasTooltip = colProp.toolTip !== "";
 

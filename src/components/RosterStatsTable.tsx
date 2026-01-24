@@ -2915,6 +2915,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   return sortFieldDecomp[1];
                 }
               })}
+              onHeaderClick={
+                !expandedView &&
+                !gameFilterParams.advancedMode &&
+                !gameFilterParams.presetSplit //(for now just a simple subset )
+                  ? (headerKey, ev) => {
+                      // Vaguely working test: cycles through asc/desc/default
+                      // TODO: in practice need to save the last manual setting and jump back to that?
+                      if (sortBy == `desc:off_${headerKey}:baseline`) {
+                        setSortBy(`asc:off_${headerKey}:baseline`);
+                      } else if (sortBy == `asc:off_${headerKey}:baseline`) {
+                        setSortBy(ParamDefaults.defaultPlayerSortBy);
+                      } else {
+                        setSortBy(`desc:off_${headerKey}:baseline`);
+                      }
+                    }
+                  : undefined
+              }
               showConfigureColumns={true}
               initialColumnConfig={{
                 newCol: tableConfigExtraCols,

@@ -54,14 +54,13 @@ const MobileFriendlyOverlayTrigger: React.FC<
       !isSimulatedHover &&
       onClickWhenVisible
     ) {
-      // Genuine hover-then-click (desktop) or second tap (mobile)
+      // Genuine hover-then-click (desktop) - trigger action, keep tooltip visible
+      // (mouseLeave will hide it when user moves away)
       onClickWhenVisible(ev);
-      setShow(false);
-      showFromHoverRef.current = false;
     } else if (show && !showFromHoverRef.current && onClickWhenVisible) {
       // Second tap on mobile (tooltip was shown via previous tap, not hover)
+      // Trigger action, keep tooltip visible (user can tap elsewhere to dismiss)
       onClickWhenVisible(ev);
-      setShow(false);
     } else {
       // First tap - just show the tooltip
       setShow(true);
@@ -72,9 +71,8 @@ const MobileFriendlyOverlayTrigger: React.FC<
   const handleKeyDown = (ev: React.KeyboardEvent) => {
     if (ev.key === "Enter" || ev.key === " ") {
       if (show && onClickWhenVisible) {
+        // Trigger action, keep tooltip visible
         onClickWhenVisible(ev);
-        setShow(false);
-        showFromHoverRef.current = false;
       } else {
         setShow(true);
         showFromHoverRef.current = false;
