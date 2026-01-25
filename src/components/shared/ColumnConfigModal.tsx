@@ -238,9 +238,13 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   currentConfig,
 }) => {
   // Build the initial column list from tableFields (excluding titles)
-  const buildInitialColumns = (): ColumnEntry[] => {
+  const buildInitialColumns = (
+    disabledCols: string[] | undefined
+  ): ColumnEntry[] => {
     let separatorCount = 0;
     const entries: ColumnEntry[] = [];
+
+    const disabledSet = new Set(disabledCols || []);
 
     Object.entries(tableFields).forEach(([key, colProps]) => {
       // Skip title columns
@@ -255,11 +259,10 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
         key,
         displayKey: isSeparator ? `Separator ${separatorCount}` : key,
         colProps,
-        enabled: true,
+        enabled: !disabledSet.has(key),
         isFromExtraSet: false,
       });
     });
-
     return entries;
   };
 
@@ -334,7 +337,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     if (currentConfig && currentConfig.newCol.length > 0) {
       return buildColumnsFromConfig(currentConfig);
     }
-    return buildInitialColumns();
+    return buildInitialColumns(currentConfig?.disabledCols);
   }, [tableFields, extraColSets, currentConfig]);
 
   const [columns, setColumns] = useState<ColumnEntry[]>(initialColumns);
@@ -345,7 +348,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       if (currentConfig && currentConfig.newCol.length > 0) {
         setColumns(buildColumnsFromConfig(currentConfig));
       } else {
-        setColumns(buildInitialColumns());
+        setColumns(buildInitialColumns(currentConfig?.disabledCols));
       }
     }
   }, [show, tableFields, extraColSets, currentConfig]);
@@ -420,7 +423,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   };
 
   const handleReset = () => {
-    setColumns(buildInitialColumns());
+    setColumns(buildInitialColumns([]));
   };
 
   // Get original table field keys in order (excluding titles) for comparison during save

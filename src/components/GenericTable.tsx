@@ -578,7 +578,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
 
   // Build tableFields from config or use the base tableFields
   const tableFields = React.useMemo(() => {
-    if (!columnConfig || columnConfig.newCol.length === 0) {
+    if (
+      !columnConfig ||
+      (_.isEmpty(columnConfig.newCol) && _.isEmpty(columnConfig.disabledCols))
+    ) {
       return baseTableFields;
     }
 
@@ -593,8 +596,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
       }
     });
 
+    const tableColsToUse = _.isEmpty(columnConfig.newCol)
+      ? _.keys(baseTableFields)
+      : columnConfig.newCol;
+
     // Then add enabled columns from config in order
-    columnConfig.newCol.forEach((colKey) => {
+    tableColsToUse.forEach((colKey) => {
       // Skip disabled columns
       if (disabledKeys.has(colKey)) return;
 
@@ -627,8 +634,19 @@ const GenericTable: React.FunctionComponent<Props> = ({
   }, [baseTableFields, tableFieldsIn, extraColSets, columnConfig]);
 
   const handleColumnConfigSave = (config: TableColumnConfig) => {
-    setColumnConfig(config);
-    onColumnConfigChange?.(config);
+    const newConfig = {
+      ...config,
+      disabledCols: _.thru(config.disabledCols, (__) => {
+        if (_.size(config.disabledCols) == 1) {
+          //(size 1 arrays are not handled)
+          return (config.disabledCols || []).concat(["__dummy__"]);
+        } else {
+          return config.disabledCols;
+        }
+      }),
+    };
+    setColumnConfig(newConfig);
+    onColumnConfigChange?.(newConfig);
   };
 
   const tableId: string =
