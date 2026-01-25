@@ -1292,7 +1292,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
   const sortOptions: Array<any> = _.flatten(
     _.toPairs(CommonTableDefs.lineupTable(false))
-      .filter((keycol) => keycol[1].colName && keycol[1].colName != "")
+      .filter(
+        (keycol) =>
+          keycol[1].colName &&
+          keycol[1].colName != "" &&
+          _.isString(keycol[1].colName) &&
+          !_.startsWith(keycol[1].colName, "__")
+      )
       .map((keycol) => {
         return [
           ["desc", "off"],
@@ -1786,6 +1792,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               </InputGroup.Prepend>
               <ThemedSelect
                 className="w-75"
+                styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(sortBy)}
                 options={groupedOptions}
                 onChange={(option: any) => {

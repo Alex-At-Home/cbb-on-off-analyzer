@@ -94,7 +94,13 @@ type Props = {
 
 const sortOptions: Array<any> = _.flatten(
   _.toPairs(CommonTableDefs.lineupTable(false))
-    .filter((keycol) => keycol[1].colName && keycol[1].colName != "")
+    .filter(
+      (keycol) =>
+        keycol[1].colName &&
+        keycol[1].colName != "" &&
+        _.isString(keycol[1].colName) &&
+        !_.startsWith(keycol[1].colName, "__")
+    )
     .map((keycol) => {
       return [
         ["desc", "off"],
