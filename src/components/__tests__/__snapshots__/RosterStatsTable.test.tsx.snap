@@ -10898,6 +10898,10 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
+                      "label": "Base Usage (Desc. / Offensive)",
+                      "value": "desc:off_usage:baseline",
+                    },
+                    Object {
                       "label": "Base Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
@@ -10957,6 +10961,10 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     Object {
                       "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
+                    },
+                    Object {
+                      "label": "Base Usage (Asc. / Offensive)",
+                      "value": "asc:off_usage:baseline",
                     },
                     Object {
                       "label": "Base Adj+ Rtg (Asc. / Offensive)",
@@ -11063,6 +11071,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:off_assist:baseline",
                     },
                     Object {
+                      "label": "Base TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "Base TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "Base Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to:baseline",
+                    },
+                    Object {
+                      "label": "Base Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to:baseline",
+                    },
+                    Object {
                       "label": "Base RB% (Desc. / Offensive)",
                       "value": "desc:off_orb:baseline",
                     },
@@ -11085,6 +11109,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     Object {
                       "label": "Base DR% (Asc. / Defensive)",
                       "value": "asc:off_drb:baseline",
+                    },
+                    Object {
+                      "label": "Base FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FC/50 (Desc. / Defensive)",
+                      "value": "desc:def_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FC/50 (Asc. / Defensive)",
+                      "value": "asc:def_ftr:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -11157,6 +11197,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     Object {
                       "label": "Base 2P% mid (Asc. / Defensive)",
                       "value": "asc:def_2pmid:baseline",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base Blk% (Desc. / Defensive)",
+                      "value": "desc:def_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base Blk% (Asc. / Defensive)",
+                      "value": "asc:def_2prim:baseline",
                     },
                     Object {
                       "label": "Base SoS (Desc. / Offensive)",
@@ -16938,6 +16994,10 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
+                      "label": "Base Usage (Desc. / Offensive)",
+                      "value": "desc:off_usage:baseline",
+                    },
+                    Object {
                       "label": "Base Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
@@ -16997,6 +17057,10 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     Object {
                       "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
+                    },
+                    Object {
+                      "label": "Base Usage (Asc. / Offensive)",
+                      "value": "asc:off_usage:baseline",
                     },
                     Object {
                       "label": "Base Adj+ Rtg (Asc. / Offensive)",
@@ -17103,6 +17167,22 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:off_assist:baseline",
                     },
                     Object {
+                      "label": "Base TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "Base TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "Base Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to:baseline",
+                    },
+                    Object {
+                      "label": "Base Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to:baseline",
+                    },
+                    Object {
                       "label": "Base RB% (Desc. / Offensive)",
                       "value": "desc:off_orb:baseline",
                     },
@@ -17125,6 +17205,22 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     Object {
                       "label": "Base DR% (Asc. / Defensive)",
                       "value": "asc:off_drb:baseline",
+                    },
+                    Object {
+                      "label": "Base FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FC/50 (Desc. / Defensive)",
+                      "value": "desc:def_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FC/50 (Asc. / Defensive)",
+                      "value": "asc:def_ftr:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -17197,6 +17293,22 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     Object {
                       "label": "Base 2P% mid (Asc. / Defensive)",
                       "value": "asc:def_2pmid:baseline",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base Blk% (Desc. / Defensive)",
+                      "value": "desc:def_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base Blk% (Asc. / Defensive)",
+                      "value": "asc:def_2prim:baseline",
                     },
                     Object {
                       "label": "Base SoS (Desc. / Offensive)",
@@ -31766,6 +31878,10 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
+                      "label": "Base Usage (Desc. / Offensive)",
+                      "value": "desc:off_usage:baseline",
+                    },
+                    Object {
                       "label": "Base Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
@@ -31825,6 +31941,10 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     Object {
                       "label": "Base Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg:baseline",
+                    },
+                    Object {
+                      "label": "Base Usage (Asc. / Offensive)",
+                      "value": "asc:off_usage:baseline",
                     },
                     Object {
                       "label": "Base Adj+ Rtg (Asc. / Offensive)",
@@ -31931,6 +32051,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:off_assist:baseline",
                     },
                     Object {
+                      "label": "Base TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "Base TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "Base Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to:baseline",
+                    },
+                    Object {
+                      "label": "Base Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to:baseline",
+                    },
+                    Object {
                       "label": "Base RB% (Desc. / Offensive)",
                       "value": "desc:off_orb:baseline",
                     },
@@ -31953,6 +32089,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     Object {
                       "label": "Base DR% (Asc. / Defensive)",
                       "value": "asc:off_drb:baseline",
+                    },
+                    Object {
+                      "label": "Base FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FC/50 (Desc. / Defensive)",
+                      "value": "desc:def_ftr:baseline",
+                    },
+                    Object {
+                      "label": "Base FC/50 (Asc. / Defensive)",
+                      "value": "asc:def_ftr:baseline",
                     },
                     Object {
                       "label": "Base 3PR (Desc. / Offensive)",
@@ -32025,6 +32177,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     Object {
                       "label": "Base 2P% mid (Asc. / Defensive)",
                       "value": "asc:def_2pmid:baseline",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base Blk% (Desc. / Defensive)",
+                      "value": "desc:def_2prim:baseline",
+                    },
+                    Object {
+                      "label": "Base Blk% (Asc. / Defensive)",
+                      "value": "asc:def_2prim:baseline",
                     },
                     Object {
                       "label": "Base SoS (Desc. / Offensive)",

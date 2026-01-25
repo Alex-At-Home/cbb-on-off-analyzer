@@ -87,6 +87,9 @@ import IndivPlayTypeDiagRadar, {
 } from "./diags/IndivPlayTypeDiagRadar";
 import { useTheme } from "next-themes";
 import ThemedSelect from "./shared/ThemedSelect";
+import TableSortPopupMenu, {
+  TableSortPopupMenuState,
+} from "./shared/TableSortPopupMenu";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -125,8 +128,8 @@ const sortOptions: Array<any> = _.flatten(
       (keycol) =>
         keycol[1].colName &&
         keycol[1].colName != "" &&
-        _.isString(keycol[1].colName) &&
-        !_.startsWith(keycol[1].colName, "__")
+        (!_.isString(keycol[1].colName) ||
+          !_.startsWith(keycol[1].colName, "__"))
     )
     .map((keycol) => {
       return [
@@ -156,11 +159,14 @@ const sortOptions: Array<any> = _.flatten(
             keycol[0] == "assist" ||
             keycol[0] == "3pr" ||
             keycol[0] == "2pmidr" ||
-            keycol[0] == "2primr")
+            keycol[0] == "2primr" ||
+            keycol[0] == "3p" ||
+            keycol[0] == "2p" ||
+            keycol[0] == "2pmid")
         ) {
           // a few defensive stats don't make sense
           //TODO: fix the stats like def_3pr==off_assist_3p
-          //TODO def_ftr==def_fc, def_to==def_stl and def_rim==def_blk
+          //(others, like def_ftr==FC/50 are handled below)
           return [];
         }
         const ascOrDesc = (s: string) => {
@@ -429,6 +435,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     startingState.sortBy ||
       ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins)
   );
+  const [sortMenuState, setSortMenuState] = useState<
+    TableSortPopupMenuState | undefined
+  >(undefined);
+  const handleSortMenuClick = (value: string) => {
+    setSortMenuState(undefined);
+    const newVal =
+      value || ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins);
+    friendlyChange(() => setSortBy(newVal), newVal != sortBy);
+  };
+
   const [filterStr, setFilterStr] = useState(
     PlayerLeaderboardTracking[startingState.filter || ""] ||
       startingState.filter ||
@@ -2078,39 +2094,31 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             }
           })}
           onHeaderClick={
-            !expandedView && !advancedFilterStr?.includes("SORT_BY") //(for now just a simple subset of the required scenarios)
+            !advancedFilterStr?.includes("SORT_BY")
               ? (headerKey, ev) => {
-                  // Vaguely working test: cycles through asc/desc/default
-                  // TODO: in practice need to save the last manual setting and jump back to that?
-                  // TODO: unify this logic + RosterStatsTable into a util
-                  const isMarginField = headerKey.includes("margin");
-                  const stateSetter = (newSortBy: string) => {
-                    friendlyChange(
-                      () => setSortBy(newSortBy),
-                      sortBy != newSortBy
+                  const matchingOptions: { value: string; label: string }[] =
+                    sortOptions.filter(
+                      (opt: { value: string; label: string }) => {
+                        const field = opt.value.split(":")[1];
+                        const rawFieldIndex = field.indexOf("_");
+                        const rawField =
+                          rawFieldIndex > 0
+                            ? field.substring(rawFieldIndex + 1)
+                            : field;
+                        return rawField == headerKey;
+                      }
                     );
-                  };
-                  const fieldSetter = (
-                    fieldToUse: string,
-                    prefix: "off" | "diff"
-                  ) => {
-                    if (sortBy == `desc:${prefix}_${fieldToUse}`) {
-                      stateSetter(`asc:${prefix}_${fieldToUse}`);
-                    } else if (sortBy == `asc:${prefix}_${fieldToUse}`) {
-                      stateSetter(
-                        ParamDefaults.defaultPlayerLboardSortBy(
-                          useRapm,
-                          factorMins
-                        )
-                      );
-                    } else {
-                      stateSetter(`desc:${prefix}_${fieldToUse}`);
-                    }
-                  };
-                  if (headerKey.includes("margin")) {
-                    fieldSetter(headerKey.replace("_margin", ""), "diff");
-                  } else {
-                    fieldSetter(headerKey, "off");
+
+                  if (matchingOptions.length > 1) {
+                    // Multiple options - show popup
+                    setSortMenuState({
+                      columnKey: headerKey,
+                      options: matchingOptions.concat([
+                        { label: "Clear", value: "" },
+                      ]),
+                      anchorEl: ev.currentTarget as HTMLElement,
+                      currentSortValue: sortBy,
+                    });
                   }
                 }
               : undefined
@@ -2591,6 +2599,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </Form.Group>
         )}
         {maybeMap}
+        <TableSortPopupMenu
+          state={sortMenuState}
+          onClick={handleSortMenuClick}
+          onClose={() => setSortMenuState(undefined)}
+        />
         <Form.Row>
           <Form.Group as={Col} sm="7">
             <InputGroup>

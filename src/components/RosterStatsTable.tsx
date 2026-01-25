@@ -102,6 +102,9 @@ import { useTheme } from "next-themes";
 import ThemedSelect from "./shared/ThemedSelect";
 import { PlayerStyleOpts } from "./diags/IndivPlayTypeDiagRadar";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import TableSortPopupMenu, {
+  TableSortPopupMenuState,
+} from "./shared/TableSortPopupMenu";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -372,6 +375,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultPlayerSortBy
       : gameFilterParams.sortBy
   );
+  const [sortMenuState, setSortMenuState] = useState<
+    TableSortPopupMenuState | undefined
+  >(undefined);
+  const handleSortMenuClick = (value: string) => {
+    setSortMenuState(undefined);
+    const newVal = value || ParamDefaults.defaultPlayerSortBy;
+    setSortBy(newVal);
+  };
 
   // Luck
 
@@ -2240,8 +2251,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         (keycol) =>
           keycol[1].colName &&
           keycol[1].colName != "" &&
-          _.isString(keycol[1].colName) &&
-          !_.startsWith(keycol[1].colName, "__")
+          (!_.isString(keycol[1].colName) ||
+            !_.startsWith(keycol[1].colName, "__"))
       )
       .map((keycol) => {
         return _.flatMap(
@@ -2284,11 +2295,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               keycol[0] == "assist" ||
               keycol[0] == "3pr" ||
               keycol[0] == "2pmidr" ||
-              keycol[0] == "2primr")
+              keycol[0] == "2primr" ||
+              keycol[0] == "3p" ||
+              keycol[0] == "2p" ||
+              keycol[0] == "2pmid")
           ) {
             // a few defensive stats don't make sense
             //TODO: fix the stats like def_3pr==off_assist_3p
-            //TODO def_ftr==def_fc, def_to==def_stl and def_rim==def_blk
+            //(others, like def_ftr==FC/50 are handled below)
             return [];
           }
           const ascOrDesc = (s: string) => {
@@ -2786,6 +2800,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             : "Press 'Submit' to view results"
         }
       >
+        <TableSortPopupMenu
+          state={sortMenuState}
+          onClick={handleSortMenuClick}
+          onClose={() => setSortMenuState(undefined)}
+        />
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           filteredPlayers={
@@ -2930,19 +2949,33 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 }
               })}
               onHeaderClick={
-                !expandedView &&
-                !gameFilterParams.advancedMode &&
-                !gameFilterParams.presetSplit //(for now just a simple subset of the required scenarios)
+                !gameFilterParams.advancedMode && !gameFilterParams.presetSplit //(for now just a simple subset of the required scenarios)
                   ? (headerKey, ev) => {
-                      // Vaguely working test: cycles through asc/desc/default
-                      // TODO: in practice need to save the last manual setting and jump back to that?
-                      // TODO: unify this logic + RosterStatsTable into a util
-                      if (sortBy == `desc:off_${headerKey}:baseline`) {
-                        setSortBy(`asc:off_${headerKey}:baseline`);
-                      } else if (sortBy == `asc:off_${headerKey}:baseline`) {
-                        setSortBy(ParamDefaults.defaultPlayerSortBy);
-                      } else {
-                        setSortBy(`desc:off_${headerKey}:baseline`);
+                      const matchingOptions: {
+                        value: string;
+                        label: string;
+                      }[] = sortOptions.filter(
+                        (opt: { value: string; label: string }) => {
+                          const field = opt.value.split(":")[1];
+                          const rawFieldIndex = field.indexOf("_");
+                          const rawField =
+                            rawFieldIndex > 0
+                              ? field.substring(rawFieldIndex + 1)
+                              : field;
+                          return rawField == headerKey;
+                        }
+                      );
+
+                      if (matchingOptions.length > 1) {
+                        // Multiple options - show popup
+                        setSortMenuState({
+                          columnKey: headerKey,
+                          options: matchingOptions.concat([
+                            { label: "Clear", value: "" },
+                          ]),
+                          anchorEl: ev.currentTarget as HTMLElement,
+                          currentSortValue: sortBy,
+                        });
                       }
                     }
                   : undefined

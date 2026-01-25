@@ -1296,8 +1296,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         (keycol) =>
           keycol[1].colName &&
           keycol[1].colName != "" &&
-          _.isString(keycol[1].colName) &&
-          !_.startsWith(keycol[1].colName, "__")
+          (!_.isString(keycol[1].colName) ||
+            !_.startsWith(keycol[1].colName, "__"))
       )
       .map((keycol) => {
         return [
