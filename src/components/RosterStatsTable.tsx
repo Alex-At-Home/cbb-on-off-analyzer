@@ -2949,38 +2949,34 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   return sortFieldDecomp[1];
                 }
               })}
-              onHeaderClick={
-                !gameFilterParams.advancedMode && !gameFilterParams.presetSplit //(for now just a simple subset of the required scenarios)
-                  ? (headerKey, ev) => {
-                      const matchingOptions: {
-                        value: string;
-                        label: string;
-                      }[] = sortOptions.filter(
-                        (opt: { value: string; label: string }) => {
-                          const field = opt.value.split(":")[1];
-                          const rawFieldIndex = field.indexOf("_");
-                          const rawField =
-                            rawFieldIndex > 0
-                              ? field.substring(rawFieldIndex + 1)
-                              : field;
-                          return rawField == headerKey;
-                        }
-                      );
+              onHeaderClick={(headerKey, ev) => {
+                const matchingOptions: {
+                  value: string;
+                  label: string;
+                }[] = sortOptions.filter(
+                  (opt: { value: string; label: string }) => {
+                    const field = opt.value.split(":")[1];
+                    const rawFieldIndex = field.indexOf("_");
+                    const rawField =
+                      rawFieldIndex > 0
+                        ? field.substring(rawFieldIndex + 1)
+                        : field;
+                    return rawField == headerKey;
+                  }
+                );
 
-                      if (matchingOptions.length > 1) {
-                        // Multiple options - show popup
-                        setSortMenuState({
-                          columnKey: headerKey,
-                          options: matchingOptions.concat([
-                            { label: "Clear", value: "" },
-                          ]),
-                          anchorEl: ev.currentTarget as HTMLElement,
-                          currentSortValue: sortBy,
-                        });
-                      }
-                    }
-                  : undefined
-              }
+                if (matchingOptions.length > 1) {
+                  // Multiple options - show popup
+                  setSortMenuState({
+                    columnKey: headerKey,
+                    options: matchingOptions.concat([
+                      { label: "Clear", value: "" },
+                    ]),
+                    anchorEl: ev.currentTarget as HTMLElement,
+                    currentSortValue: sortBy,
+                  });
+                }
+              }}
               showConfigureColumns={true}
               initialColumnConfig={{
                 newCol: tableConfigExtraCols,
