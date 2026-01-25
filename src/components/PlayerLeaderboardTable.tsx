@@ -1552,7 +1552,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               overlay={TableDisplayUtils.buildPositionTooltip(
                 player.posClass || "??",
                 "season",
-                true
+                true,
+                posBreakdown
               )}
             >
               <small>{player.posClass || "??"}</small>
@@ -1861,13 +1862,25 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               {maybeYrStr}
             </b>
           </div>
+          {expandedView ? undefined : (
+            <div
+              className="multi_line_title_row d-xl-none"
+              style={{ justifyContent: "flex-end" }}
+            >
+              {shortPlayerMeta}
+            </div>
+          )}
           <div className="multi_line_title_row">
             <span className="multi_line_title_row_left_aligned_snippet">
               <span>
                 {teamEl}&nbsp;(<span>{confNickname}</span>){txfeEl}
               </span>
             </span>{" "}
-            <span>{expandedView ? adjMarginStr : shortPlayerMeta}</span>
+            {expandedView ? (
+              <span>{adjMarginStr}</span>
+            ) : (
+              <span className="d-none d-xl-block">{shortPlayerMeta}</span>
+            )}
           </div>
         </div>
       );

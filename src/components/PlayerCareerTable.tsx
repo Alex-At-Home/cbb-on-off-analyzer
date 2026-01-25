@@ -1289,7 +1289,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             overlay={TableDisplayUtils.buildPositionTooltip(
               player.posClass || "??",
               "season",
-              true
+              true,
+              posBreakdown
             )}
           >
             <small>{player.posClass || "??"}</small>
@@ -1362,7 +1363,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   </a>
                 </OverlayTrigger>
               )}
-            {player.year}+<b>{shortTitle}</b>
+            <div className="d-xl-none">'{player.year?.substring(2)}+</div>
+            <div className="d-none d-xl-block">{player.year}+</div>
+            <b>{shortTitle}</b>
           </span>
           &nbsp;
           {isSimilarPlayer ? (
@@ -1390,7 +1393,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           )}
         </div>
         {expandedView ? undefined : (
-          <div className="multi_line_title_row d-lg-none">
+          <div
+            className="multi_line_title_row d-xl-none"
+            style={{ justifyContent: "flex-end" }}
+          >
             {shortPlayerMeta}
           </div>
         )}
@@ -1430,7 +1436,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           {expandedView ? (
             adjMarginEl
           ) : (
-            <div className="d-none d-lg-block">{shortPlayerMeta}</div>
+            <div className="d-none d-xl-block">{shortPlayerMeta}</div>
           )}
         </div>
       </div>
