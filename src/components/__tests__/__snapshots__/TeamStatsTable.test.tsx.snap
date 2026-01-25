@@ -444,155 +444,189 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Net Rtg
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Net Rtg
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      P/100
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Adj P/100
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        P/100
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Adj P/100
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      eFG%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      TO%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      OR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      FTR
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        eFG%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        OR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        FTR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      A%
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        A%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 0.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3PR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2PR mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2PR rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2PR mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2PR rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P% mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P% rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P% mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P% rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Poss
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      SoS
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        SoS
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -2908,155 +2942,189 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Net Rtg
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Net Rtg
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      P/100
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Adj P/100
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        P/100
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Adj P/100
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      eFG%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      TO%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      OR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      FTR
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        eFG%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        OR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        FTR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      A%
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        A%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 0.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3PR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2PR mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2PR rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2PR mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2PR rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P% mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P% rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P% mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P% rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Poss
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      SoS
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        SoS
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -3750,81 +3818,99 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          %
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          %ORB
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          P/100
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
                                           <span>
-                                            Δ/100
+                                            %
                                           </span>
-                                        </th>
-                                      </div>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            %ORB
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            P/100
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            <span>
+                                              Δ/100
+                                            </span>
+                                          </span>
+                                        </div>
+                                      </th>
                                       <th
                                         style="text-align: center; width: 1.8%; font-weight: bold;"
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          TO%
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          FTR
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          3PR
-                                        </th>
-                                      </div>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            TO%
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            FTR
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            3PR
+                                          </span>
+                                        </div>
+                                      </th>
                                       <th
                                         style="text-align: center; width: 1.8%; font-weight: bold;"
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          3P%
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          2P%
-                                        </th>
-                                      </div>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            3P%
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            2P%
+                                          </span>
+                                        </div>
+                                      </th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -4663,53 +4749,65 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              3P
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Mid
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Rim
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Mid
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Rim
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.4%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              3P
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Mid
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Rim
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Mid
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Rim
+                                              </span>
+                                            </div>
+                                          </th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -4967,63 +5065,75 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              FT%
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                FT%
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Stl%
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Non-Stl%
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Blk%
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Stl%
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Non-Stl%
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Blk%
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              3P% SoS
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P% SoS
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Pace
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Pace
+                                              </span>
+                                            </div>
+                                          </th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -5289,41 +5399,51 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                     </button>
                                   </div>
                                 </th>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    PG
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    SG
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    SF
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    PF
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    C
-                                  </th>
-                                </div>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      PG
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      SG
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      SF
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      PF
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      C
+                                    </span>
+                                  </div>
+                                </th>
                               </tr>
                             </thead>
                             <tbody />
@@ -5515,178 +5635,212 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Net
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Net
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      P/100
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Adj
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        P/100
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Adj
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      eFG%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      TO%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      OR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      FTR
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        eFG%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        OR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        FTR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      A%
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        A%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 0.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3PR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      MidR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      RimR
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        MidR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        RimR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Mid%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Rim%
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Mid%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Rim%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Poss
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      SoS
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        SoS
+                      </span>
+                    </div>
+                  </th>
                 </tr>
                 <tr>
                   <td
@@ -6378,81 +6532,99 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          %
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          %ORB
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          P/100
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
                                           <span>
-                                            Δ/100
+                                            %
                                           </span>
-                                        </th>
-                                      </div>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            %ORB
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            P/100
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            <span>
+                                              Δ/100
+                                            </span>
+                                          </span>
+                                        </div>
+                                      </th>
                                       <th
                                         style="text-align: center; width: 1.8%; font-weight: bold;"
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          TO%
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          FTR
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          3PR
-                                        </th>
-                                      </div>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            TO%
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            FTR
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            3PR
+                                          </span>
+                                        </div>
+                                      </th>
                                       <th
                                         style="text-align: center; width: 1.8%; font-weight: bold;"
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          3P%
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          2P%
-                                        </th>
-                                      </div>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            3P%
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            2P%
+                                          </span>
+                                        </div>
+                                      </th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -7291,53 +7463,65 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              3P
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Mid
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Rim
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Mid
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Rim
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.4%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              3P
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Mid
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Rim
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Mid
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Rim
+                                              </span>
+                                            </div>
+                                          </th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -7595,63 +7779,75 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              FT%
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                FT%
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Stl%
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Non-Stl%
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Blk%
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Stl%
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Non-Stl%
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Blk%
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              3P% SoS
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P% SoS
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Pace
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Pace
+                                              </span>
+                                            </div>
+                                          </th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -7917,41 +8113,51 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                     </button>
                                   </div>
                                 </th>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    PG
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    SG
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    SF
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    PF
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    C
-                                  </th>
-                                </div>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      PG
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      SG
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      SF
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      PF
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      C
+                                    </span>
+                                  </div>
+                                </th>
                               </tr>
                             </thead>
                             <tbody />
@@ -8143,178 +8349,212 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Net
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Net
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      P/100
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Adj
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        P/100
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Adj
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      eFG%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      TO%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      OR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      FTR
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        eFG%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        OR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        FTR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      A%
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        A%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 0.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3PR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      MidR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      RimR
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        MidR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        RimR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Mid%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Rim%
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Mid%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Rim%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     class="small"
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Poss
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      class="small"
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      SoS
-                    </th>
-                  </div>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    class="small"
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        SoS
+                      </span>
+                    </div>
+                  </th>
                 </tr>
                 <tr>
                   <td
@@ -9006,81 +9246,99 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          %
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          %ORB
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          P/100
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
                                           <span>
-                                            Δ/100
+                                            %
                                           </span>
-                                        </th>
-                                      </div>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            %ORB
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            P/100
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            <span>
+                                              Δ/100
+                                            </span>
+                                          </span>
+                                        </div>
+                                      </th>
                                       <th
                                         style="text-align: center; width: 1.8%; font-weight: bold;"
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          TO%
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          FTR
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          3PR
-                                        </th>
-                                      </div>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            TO%
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            FTR
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            3PR
+                                          </span>
+                                        </div>
+                                      </th>
                                       <th
                                         style="text-align: center; width: 1.8%; font-weight: bold;"
                                       >
                                         
                                       </th>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          3P%
-                                        </th>
-                                      </div>
-                                      <div>
-                                        <th
-                                          style="text-align: center; width: 7.3%; font-weight: bold;"
-                                        >
-                                          2P%
-                                        </th>
-                                      </div>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            3P%
+                                          </span>
+                                        </div>
+                                      </th>
+                                      <th
+                                        style="text-align: center; width: 7.3%; font-weight: bold;"
+                                      >
+                                        <div>
+                                          <span>
+                                            2P%
+                                          </span>
+                                        </div>
+                                      </th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -9919,53 +10177,65 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              3P
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Mid
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Rim
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Mid
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Rim
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.4%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              3P
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Mid
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.5%; font-weight: bold;"
-                                            >
-                                              Rim
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Mid
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.5%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Rim
+                                              </span>
+                                            </div>
+                                          </th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -10223,63 +10493,75 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              FT%
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                FT%
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Stl%
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Non-Stl%
-                                            </th>
-                                          </div>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Blk%
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Stl%
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Non-Stl%
+                                              </span>
+                                            </div>
+                                          </th>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Blk%
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              3P% SoS
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                3P% SoS
+                                              </span>
+                                            </div>
+                                          </th>
                                           <th
                                             style="text-align: center; width: 2.3%; font-weight: bold;"
                                           >
                                             
                                           </th>
-                                          <div>
-                                            <th
-                                              style="text-align: center; width: 9.1%; font-weight: bold;"
-                                            >
-                                              Pace
-                                            </th>
-                                          </div>
+                                          <th
+                                            style="text-align: center; width: 9.1%; font-weight: bold;"
+                                          >
+                                            <div>
+                                              <span>
+                                                Pace
+                                              </span>
+                                            </div>
+                                          </th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -10545,41 +10827,51 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                     </button>
                                   </div>
                                 </th>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    PG
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    SG
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    SF
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    PF
-                                  </th>
-                                </div>
-                                <div>
-                                  <th
-                                    style="text-align: center; width: 20.0%; font-weight: bold;"
-                                  >
-                                    C
-                                  </th>
-                                </div>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      PG
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      SG
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      SF
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      PF
+                                    </span>
+                                  </div>
+                                </th>
+                                <th
+                                  style="text-align: center; width: 20.0%; font-weight: bold;"
+                                >
+                                  <div>
+                                    <span>
+                                      C
+                                    </span>
+                                  </div>
+                                </th>
                               </tr>
                             </thead>
                             <tbody />
@@ -11183,155 +11475,189 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Net Rtg
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Net Rtg
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      P/100
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Adj P/100
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        P/100
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Adj P/100
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      eFG%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      TO%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      OR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      FTR
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        eFG%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        OR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        FTR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      A%
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        A%
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 0.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3PR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2PR mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2PR rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2PR mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2PR rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      3P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P% mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      2P% rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P% mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P% rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      Poss
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.4%; font-weight: bold;"
-                    >
-                      SoS
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.4%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        SoS
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>

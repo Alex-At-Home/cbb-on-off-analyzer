@@ -5828,28 +5828,12 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base TO% (Desc. / Offensive)",
@@ -5916,14 +5900,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -5932,28 +5908,12 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -6337,6 +6297,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
@@ -8339,142 +8300,226 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
-                    
+                    <span
+                      class="clickableHeader"
+                      role="button"
+                      tabindex="0"
+                    />
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      Poss%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      Box Rtg
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      Usg
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      Adj+ Rtg
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        Poss%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        Box Rtg
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        Usg
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        Adj+ Rtg
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
-                    
+                    <span
+                      class="clickableHeader"
+                      role="button"
+                      tabindex="0"
+                    />
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      eFG%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      A%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      TO%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      OR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      DR%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      FTR
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        eFG%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        A%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        OR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        DR%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        FTR
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
-                    
+                    <span
+                      class="clickableHeader"
+                      role="button"
+                      tabindex="0"
+                    />
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      3PR
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      2PR mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      2PR rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        2PR mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        2PR rim
+                      </span>
+                    </div>
+                  </th>
                   <th
                     style="text-align: center; width: 1.1%; font-weight: bold;"
                   >
-                    
+                    <span
+                      class="clickableHeader"
+                      role="button"
+                      tabindex="0"
+                    />
                   </th>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      3P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      2P%
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      2P% mid
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style="text-align: center; width: 4.5%; font-weight: bold;"
-                    >
-                      2P% rim
-                    </th>
-                  </div>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        2P% mid
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 4.5%; font-weight: bold;"
+                  >
+                    <div>
+                      <span
+                        class="clickableHeader"
+                      >
+                        2P% rim
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -11010,28 +11055,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base RB% (Desc. / Offensive)",
@@ -11066,14 +11095,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -11082,28 +11103,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -17090,28 +17095,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base RB% (Desc. / Offensive)",
@@ -17146,14 +17135,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -17162,28 +17143,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -25226,28 +25191,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base TO% (Desc. / Offensive)",
@@ -25314,14 +25263,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -25330,28 +25271,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -25735,6 +25660,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
@@ -31997,28 +31923,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base RB% (Desc. / Offensive)",
@@ -32053,14 +31963,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -32069,28 +31971,12 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -40499,28 +40385,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base TO% (Desc. / Offensive)",
@@ -40587,14 +40457,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -40603,28 +40465,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -41008,6 +40854,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
@@ -49695,28 +49542,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base TO% (Desc. / Offensive)",
@@ -49783,14 +49614,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -49799,28 +49622,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -50212,6 +50019,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"
@@ -62169,28 +61977,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:off_efg:baseline",
                     },
                     Object {
-                      "label": "Base eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg:baseline",
-                    },
-                    Object {
-                      "label": "Base eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg:baseline",
-                    },
-                    Object {
                       "label": "Base A% (Desc. / Offensive)",
                       "value": "desc:off_assist:baseline",
                     },
                     Object {
                       "label": "Base A% (Asc. / Offensive)",
                       "value": "asc:off_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:baseline",
-                    },
-                    Object {
-                      "label": "Base A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:baseline",
                     },
                     Object {
                       "label": "Base TO% (Desc. / Offensive)",
@@ -62257,14 +62049,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:off_3pr:baseline",
                     },
                     Object {
-                      "label": "Base 3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr:baseline",
-                    },
-                    Object {
-                      "label": "Base 3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR mid (Desc. / Offensive)",
                       "value": "desc:off_2pmidr:baseline",
                     },
@@ -62273,28 +62057,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:off_2pmidr:baseline",
                     },
                     Object {
-                      "label": "Base 2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr:baseline",
-                    },
-                    Object {
                       "label": "Base 2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr:baseline",
                     },
                     Object {
                       "label": "Base 2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr:baseline",
-                    },
-                    Object {
-                      "label": "Base 2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr:baseline",
                     },
                     Object {
                       "label": "Base 3P% (Desc. / Offensive)",
@@ -62686,6 +62454,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="rosterStatsTable"

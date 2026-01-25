@@ -2277,6 +2277,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             // only do diff for a few:
             return [];
           }
+          if (
+            combo[1] == "def" &&
+            (keycol[0] == "usage" ||
+              keycol[0] == "efg" ||
+              keycol[0] == "assist" ||
+              keycol[0] == "3pr" ||
+              keycol[0] == "2pmidr" ||
+              keycol[0] == "2primr")
+          ) {
+            // a few defensive stats don't make sense
+            //TODO: fix the stats like def_3pr==off_assist_3p
+            //TODO def_ftr==def_fc, def_to==def_stl and def_rim==def_blk
+            return [];
+          }
           const ascOrDesc = (s: string) => {
             switch (s) {
               case "asc":

@@ -479,32 +479,36 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         >
           
         </th>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            P/100
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              P/100
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            Adj P/100
-          </th>
-        </div>
+          }
+        >
+          <div>
+            <span>
+              Adj P/100
+            </span>
+          </div>
+        </th>
         <th
           style={
             Object {
@@ -516,58 +520,66 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         >
           
         </th>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            eFG%
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              eFG%
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            TO%
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              TO%
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            OR%
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              OR%
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            FTR
-          </th>
-        </div>
+          }
+        >
+          <div>
+            <span>
+              FTR
+            </span>
+          </div>
+        </th>
         <th
           style={
             Object {
@@ -579,19 +591,21 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         >
           
         </th>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            A%
-          </th>
-        </div>
+          }
+        >
+          <div>
+            <span>
+              A%
+            </span>
+          </div>
+        </th>
         <th
           style={
             Object {
@@ -603,45 +617,51 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         >
           
         </th>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            3PR
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              3PR
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            2PR mid
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              2PR mid
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            2PR rim
-          </th>
-        </div>
+          }
+        >
+          <div>
+            <span>
+              2PR rim
+            </span>
+          </div>
+        </th>
         <th
           style={
             Object {
@@ -653,58 +673,66 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         >
           
         </th>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            3P%
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              3P%
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            2P%
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              2P%
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            2P% mid
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              2P% mid
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            2P% rim
-          </th>
-        </div>
+          }
+        >
+          <div>
+            <span>
+              2P% rim
+            </span>
+          </div>
+        </th>
         <th
           style={
             Object {
@@ -716,32 +744,36 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         >
           
         </th>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            Poss
-          </th>
-        </div>
-        <div>
-          <th
-            style={
-              Object {
-                "fontWeight": "bold",
-                "textAlign": "center",
-                "width": "4.7%",
-              }
+          }
+        >
+          <div>
+            <span>
+              Poss
+            </span>
+          </div>
+        </th>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
             }
-          >
-            SoS
-          </th>
-        </div>
+          }
+        >
+          <div>
+            <span>
+              SoS
+            </span>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>

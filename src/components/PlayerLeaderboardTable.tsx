@@ -149,6 +149,20 @@ const sortOptions: Array<any> = _.flatten(
           // only do diff for a few:
           return [];
         }
+        if (
+          combo[1] == "def" &&
+          (keycol[0] == "usage" ||
+            keycol[0] == "efg" ||
+            keycol[0] == "assist" ||
+            keycol[0] == "3pr" ||
+            keycol[0] == "2pmidr" ||
+            keycol[0] == "2primr")
+        ) {
+          // a few defensive stats don't make sense
+          //TODO: fix the stats like def_3pr==off_assist_3p
+          //TODO def_ftr==def_fc, def_to==def_stl and def_rim==def_blk
+          return [];
+        }
         const ascOrDesc = (s: string) => {
           switch (s) {
             case "asc":
@@ -164,7 +178,7 @@ const sortOptions: Array<any> = _.flatten(
             case "def":
               return "Defensive";
             case "diff":
-              return "Off-Def";
+              return "Net";
           }
         };
         const labelOverride =
@@ -2360,7 +2374,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const linqEnableText = showHelp ? (
     <OverlayTrigger placement="auto" overlay={linqEnableTooltip}>
       <span>
-        Linq
+        Advanced Filter
         <sup>
           <a target="_blank" href="https://hoop-explorer.blogspot.com/2022/03/">
             ?

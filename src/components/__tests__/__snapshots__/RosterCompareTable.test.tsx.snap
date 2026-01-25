@@ -76,32 +76,36 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style={
-                        Object {
-                          "fontWeight": "bold",
-                          "textAlign": "center",
-                          "width": "16.0%",
-                        }
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "16.0%",
                       }
-                    >
-                      %
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style={
-                        Object {
-                          "fontWeight": "bold",
-                          "textAlign": "center",
-                          "width": "16.0%",
-                        }
+                    }
+                  >
+                    <div>
+                      <span>
+                        %
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "16.0%",
                       }
-                    >
-                      Poss
-                    </th>
-                  </div>
+                    }
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -963,32 +967,36 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style={
-                        Object {
-                          "fontWeight": "bold",
-                          "textAlign": "center",
-                          "width": "16.0%",
-                        }
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "16.0%",
                       }
-                    >
-                      %
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style={
-                        Object {
-                          "fontWeight": "bold",
-                          "textAlign": "center",
-                          "width": "16.0%",
-                        }
+                    }
+                  >
+                    <div>
+                      <span>
+                        %
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "16.0%",
                       }
-                    >
-                      Poss
-                    </th>
-                  </div>
+                    }
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -1850,32 +1858,36 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   >
                     
                   </th>
-                  <div>
-                    <th
-                      style={
-                        Object {
-                          "fontWeight": "bold",
-                          "textAlign": "center",
-                          "width": "16.0%",
-                        }
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "16.0%",
                       }
-                    >
-                      %
-                    </th>
-                  </div>
-                  <div>
-                    <th
-                      style={
-                        Object {
-                          "fontWeight": "bold",
-                          "textAlign": "center",
-                          "width": "16.0%",
-                        }
+                    }
+                  >
+                    <div>
+                      <span>
+                        %
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "16.0%",
                       }
-                    >
-                      Poss
-                    </th>
-                  </div>
+                    }
+                  >
+                    <div>
+                      <span>
+                        Poss
+                      </span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>

@@ -398,11 +398,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
-                      "label": "RAPM (Desc. / Off-Def)",
+                      "label": "RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm",
                     },
                     Object {
@@ -426,22 +426,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "__off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def",
-                    },
                     Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
@@ -491,20 +475,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg",
-                    },
-                    Object {
-                      "label": "Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage",
-                    },
-                    Object {
-                      "label": "Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage",
                     },
                     Object {
                       "label": "Adj+ Rtg (Asc. / Offensive)",
@@ -515,7 +491,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg",
                     },
                     Object {
@@ -535,11 +511,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod",
                     },
                     Object {
@@ -551,7 +527,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Asc. / Off-Def)",
+                      "label": "RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm",
                     },
                     Object {
@@ -571,11 +547,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "label": "RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "label": "RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -587,44 +563,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg",
-                    },
-                    Object {
-                      "label": "eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg",
-                    },
-                    Object {
                       "label": "A% (Desc. / Offensive)",
                       "value": "desc:off_assist",
                     },
                     Object {
                       "label": "A% (Asc. / Offensive)",
                       "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "TO% (Desc. / Offensive)",
-                      "value": "desc:off_to",
-                    },
-                    Object {
-                      "label": "TO% (Asc. / Offensive)",
-                      "value": "asc:off_to",
-                    },
-                    Object {
-                      "label": "Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to",
-                    },
-                    Object {
-                      "label": "Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to",
                     },
                     Object {
                       "label": "RB% (Desc. / Offensive)",
@@ -651,52 +595,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_drb",
                     },
                     Object {
-                      "label": "FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr",
-                    },
-                    Object {
-                      "label": "FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast",
-                    },
-                    Object {
                       "label": "3PR (Desc. / Offensive)",
                       "value": "desc:off_3pr",
                     },
                     Object {
                       "label": "3PR (Asc. / Offensive)",
                       "value": "asc:off_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr",
                     },
                     Object {
                       "label": "2PR mid (Desc. / Offensive)",
@@ -707,28 +611,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr",
-                    },
-                    Object {
-                      "label": "2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr",
-                    },
-                    Object {
                       "label": "2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr",
                     },
                     Object {
                       "label": "2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr",
                     },
                     Object {
                       "label": "3P% (Desc. / Offensive)",
@@ -779,22 +667,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim",
-                    },
-                    Object {
-                      "label": "2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim",
-                    },
-                    Object {
                       "label": "SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp",
                     },
@@ -811,11 +683,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                     Object {
@@ -837,7 +709,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             value={
               Object {
-                "label": "RAPM (Desc. / Off-Def)",
+                "label": "RAPM (Desc. / Net)",
                 "value": "desc:diff_adj_rapm",
               }
             }
@@ -872,7 +744,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               placement="auto"
             >
               <span>
-                Linq
+                Advanced Filter
                 <sup>
                   <a
                     href="https://hoop-explorer.blogspot.com/2022/03/"
@@ -1358,8 +1230,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
+          sortField="off_adj_rapm_margin"
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -5205,11 +5079,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "label": "RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -5233,22 +5107,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "__off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def",
-                    },
                     Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
@@ -5298,20 +5156,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg",
-                    },
-                    Object {
-                      "label": "Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage",
-                    },
-                    Object {
-                      "label": "Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage",
                     },
                     Object {
                       "label": "Adj+ Rtg (Desc. / Offensive)",
@@ -5330,11 +5180,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg",
                     },
                     Object {
@@ -5346,7 +5196,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod",
                     },
                     Object {
@@ -5366,11 +5216,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Desc. / Off-Def)",
+                      "label": "RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Asc. / Off-Def)",
+                      "label": "RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm",
                     },
                     Object {
@@ -5382,7 +5232,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "label": "RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -5394,44 +5244,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg",
-                    },
-                    Object {
-                      "label": "eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg",
-                    },
-                    Object {
                       "label": "A% (Desc. / Offensive)",
                       "value": "desc:off_assist",
                     },
                     Object {
                       "label": "A% (Asc. / Offensive)",
                       "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "TO% (Desc. / Offensive)",
-                      "value": "desc:off_to",
-                    },
-                    Object {
-                      "label": "TO% (Asc. / Offensive)",
-                      "value": "asc:off_to",
-                    },
-                    Object {
-                      "label": "Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to",
-                    },
-                    Object {
-                      "label": "Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to",
                     },
                     Object {
                       "label": "RB% (Desc. / Offensive)",
@@ -5458,52 +5276,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_drb",
                     },
                     Object {
-                      "label": "FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr",
-                    },
-                    Object {
-                      "label": "FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast",
-                    },
-                    Object {
                       "label": "3PR (Desc. / Offensive)",
                       "value": "desc:off_3pr",
                     },
                     Object {
                       "label": "3PR (Asc. / Offensive)",
                       "value": "asc:off_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr",
                     },
                     Object {
                       "label": "2PR mid (Desc. / Offensive)",
@@ -5514,28 +5292,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr",
-                    },
-                    Object {
-                      "label": "2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr",
-                    },
-                    Object {
                       "label": "2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr",
                     },
                     Object {
                       "label": "2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr",
                     },
                     Object {
                       "label": "3P% (Desc. / Offensive)",
@@ -5586,22 +5348,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim",
-                    },
-                    Object {
-                      "label": "2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim",
-                    },
-                    Object {
                       "label": "SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp",
                     },
@@ -5618,11 +5364,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                     Object {
@@ -5644,7 +5390,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             value={
               Object {
-                "label": "RAPM Prod (Desc. / Off-Def)",
+                "label": "RAPM Prod (Desc. / Net)",
                 "value": "desc:diff_adj_rapm_prod",
               }
             }
@@ -5679,7 +5425,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               placement="auto"
             >
               <span>
-                Linq
+                Advanced Filter
                 <sup>
                   <a
                     href="https://hoop-explorer.blogspot.com/2022/03/"
@@ -6165,8 +5911,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
+          sortField="off_adj_rapm_prod_margin"
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -10012,11 +9760,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
-                      "label": "RAPM (Desc. / Off-Def)",
+                      "label": "RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm",
                     },
                     Object {
@@ -10044,22 +9792,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "__off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def",
-                    },
                     Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
@@ -10109,20 +9841,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg",
-                    },
-                    Object {
-                      "label": "Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage",
-                    },
-                    Object {
-                      "label": "Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage",
                     },
                     Object {
                       "label": "Adj+ Rtg (Asc. / Offensive)",
@@ -10133,7 +9857,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg",
                     },
                     Object {
@@ -10153,11 +9877,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod",
                     },
                     Object {
@@ -10169,7 +9893,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Asc. / Off-Def)",
+                      "label": "RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm",
                     },
                     Object {
@@ -10189,11 +9913,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "label": "RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "label": "RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -10205,44 +9929,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg",
-                    },
-                    Object {
-                      "label": "eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg",
-                    },
-                    Object {
                       "label": "A% (Desc. / Offensive)",
                       "value": "desc:off_assist",
                     },
                     Object {
                       "label": "A% (Asc. / Offensive)",
                       "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "TO% (Desc. / Offensive)",
-                      "value": "desc:off_to",
-                    },
-                    Object {
-                      "label": "TO% (Asc. / Offensive)",
-                      "value": "asc:off_to",
-                    },
-                    Object {
-                      "label": "Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to",
-                    },
-                    Object {
-                      "label": "Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to",
                     },
                     Object {
                       "label": "RB% (Desc. / Offensive)",
@@ -10269,52 +9961,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_drb",
                     },
                     Object {
-                      "label": "FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr",
-                    },
-                    Object {
-                      "label": "FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast",
-                    },
-                    Object {
                       "label": "3PR (Desc. / Offensive)",
                       "value": "desc:off_3pr",
                     },
                     Object {
                       "label": "3PR (Asc. / Offensive)",
                       "value": "asc:off_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr",
                     },
                     Object {
                       "label": "2PR mid (Desc. / Offensive)",
@@ -10325,28 +9977,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr",
-                    },
-                    Object {
-                      "label": "2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr",
-                    },
-                    Object {
                       "label": "2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr",
                     },
                     Object {
                       "label": "2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr",
                     },
                     Object {
                       "label": "3P% (Desc. / Offensive)",
@@ -10397,22 +10033,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim",
-                    },
-                    Object {
-                      "label": "2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim",
-                    },
-                    Object {
                       "label": "SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp",
                     },
@@ -10429,11 +10049,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                     Object {
@@ -10490,7 +10110,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               placement="auto"
             >
               <span>
-                Linq
+                Advanced Filter
                 <sup>
                   <a
                     href="https://hoop-explorer.blogspot.com/2022/03/"
@@ -10982,8 +10602,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
+          sortField="off_adj_rtg"
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -16390,11 +16012,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "label": "RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -16418,22 +16040,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "__off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def",
-                    },
                     Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
@@ -16483,20 +16089,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg",
-                    },
-                    Object {
-                      "label": "Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage",
-                    },
-                    Object {
-                      "label": "Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage",
                     },
                     Object {
                       "label": "Adj+ Rtg (Desc. / Offensive)",
@@ -16515,11 +16113,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg",
                     },
                     Object {
@@ -16531,7 +16129,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod",
                     },
                     Object {
@@ -16551,11 +16149,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Desc. / Off-Def)",
+                      "label": "RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Asc. / Off-Def)",
+                      "label": "RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm",
                     },
                     Object {
@@ -16567,7 +16165,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "label": "RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -16579,44 +16177,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg",
-                    },
-                    Object {
-                      "label": "eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg",
-                    },
-                    Object {
                       "label": "A% (Desc. / Offensive)",
                       "value": "desc:off_assist",
                     },
                     Object {
                       "label": "A% (Asc. / Offensive)",
                       "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "TO% (Desc. / Offensive)",
-                      "value": "desc:off_to",
-                    },
-                    Object {
-                      "label": "TO% (Asc. / Offensive)",
-                      "value": "asc:off_to",
-                    },
-                    Object {
-                      "label": "Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to",
-                    },
-                    Object {
-                      "label": "Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to",
                     },
                     Object {
                       "label": "RB% (Desc. / Offensive)",
@@ -16643,52 +16209,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_drb",
                     },
                     Object {
-                      "label": "FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr",
-                    },
-                    Object {
-                      "label": "FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast",
-                    },
-                    Object {
                       "label": "3PR (Desc. / Offensive)",
                       "value": "desc:off_3pr",
                     },
                     Object {
                       "label": "3PR (Asc. / Offensive)",
                       "value": "asc:off_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr",
                     },
                     Object {
                       "label": "2PR mid (Desc. / Offensive)",
@@ -16699,28 +16225,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr",
-                    },
-                    Object {
-                      "label": "2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr",
-                    },
-                    Object {
                       "label": "2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr",
                     },
                     Object {
                       "label": "2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr",
                     },
                     Object {
                       "label": "3P% (Desc. / Offensive)",
@@ -16771,22 +16281,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim",
-                    },
-                    Object {
-                      "label": "2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim",
-                    },
-                    Object {
                       "label": "SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp",
                     },
@@ -16803,11 +16297,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                     Object {
@@ -16864,7 +16358,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               placement="auto"
             >
               <span>
-                Linq
+                Advanced Filter
                 <sup>
                   <a
                     href="https://hoop-explorer.blogspot.com/2022/03/"
@@ -17350,8 +16844,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
+          sortField="off_adj_prod"
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -21169,11 +20665,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
-                      "label": "RAPM (Desc. / Off-Def)",
+                      "label": "RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm",
                     },
                     Object {
@@ -21197,22 +20693,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "__off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def",
-                    },
                     Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
@@ -21262,20 +20742,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg",
-                    },
-                    Object {
-                      "label": "Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage",
-                    },
-                    Object {
-                      "label": "Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage",
                     },
                     Object {
                       "label": "Adj+ Rtg (Asc. / Offensive)",
@@ -21286,7 +20758,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg",
                     },
                     Object {
@@ -21306,11 +20778,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod",
                     },
                     Object {
@@ -21322,7 +20794,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Asc. / Off-Def)",
+                      "label": "RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm",
                     },
                     Object {
@@ -21342,11 +20814,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "label": "RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "label": "RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -21358,44 +20830,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg",
-                    },
-                    Object {
-                      "label": "eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg",
-                    },
-                    Object {
                       "label": "A% (Desc. / Offensive)",
                       "value": "desc:off_assist",
                     },
                     Object {
                       "label": "A% (Asc. / Offensive)",
                       "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "TO% (Desc. / Offensive)",
-                      "value": "desc:off_to",
-                    },
-                    Object {
-                      "label": "TO% (Asc. / Offensive)",
-                      "value": "asc:off_to",
-                    },
-                    Object {
-                      "label": "Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to",
-                    },
-                    Object {
-                      "label": "Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to",
                     },
                     Object {
                       "label": "RB% (Desc. / Offensive)",
@@ -21422,52 +20862,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_drb",
                     },
                     Object {
-                      "label": "FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr",
-                    },
-                    Object {
-                      "label": "FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast",
-                    },
-                    Object {
                       "label": "3PR (Desc. / Offensive)",
                       "value": "desc:off_3pr",
                     },
                     Object {
                       "label": "3PR (Asc. / Offensive)",
                       "value": "asc:off_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr",
                     },
                     Object {
                       "label": "2PR mid (Desc. / Offensive)",
@@ -21478,28 +20878,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr",
-                    },
-                    Object {
-                      "label": "2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr",
-                    },
-                    Object {
                       "label": "2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr",
                     },
                     Object {
                       "label": "2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr",
                     },
                     Object {
                       "label": "3P% (Desc. / Offensive)",
@@ -21550,22 +20934,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim",
-                    },
-                    Object {
-                      "label": "2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim",
-                    },
-                    Object {
                       "label": "SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp",
                     },
@@ -21582,11 +20950,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                     Object {
@@ -21643,7 +21011,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               placement="auto"
             >
               <span>
-                Linq
+                Advanced Filter
                 <sup>
                   <a
                     href="https://hoop-explorer.blogspot.com/2022/03/"
@@ -22129,8 +21497,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
+          sortField="off_adj_rtg"
           tableCopyId="playerLeaderboardTable"
           tableData={Array []}
           tableFields={
@@ -22795,11 +22165,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "label": "Adj+ Rtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
-                      "label": "RAPM (Desc. / Off-Def)",
+                      "label": "RAPM (Desc. / Net)",
                       "value": "desc:diff_adj_rapm",
                     },
                     Object {
@@ -22823,22 +22193,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
-                    Object {
-                      "label": "__off_def__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_def",
-                    },
-                    Object {
-                      "label": "__off_def__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_def",
-                    },
                     Object {
                       "label": "Poss (Desc. / Offensive)",
                       "value": "desc:off_team_poss",
@@ -22888,20 +22242,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Net)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Net)",
                       "value": "asc:diff_rtg",
-                    },
-                    Object {
-                      "label": "Usage (Desc. / Offensive)",
-                      "value": "desc:off_usage",
-                    },
-                    Object {
-                      "label": "Usage (Asc. / Offensive)",
-                      "value": "asc:off_usage",
                     },
                     Object {
                       "label": "Adj+ Rtg (Asc. / Offensive)",
@@ -22912,7 +22258,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rtg",
                     },
                     Object {
-                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "label": "Adj+ Rtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg",
                     },
                     Object {
@@ -22932,11 +22278,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "label": "Adj+ Prod (Desc. / Net)",
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
-                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "label": "Adj+ Prod (Asc. / Net)",
                       "value": "asc:diff_adj_prod",
                     },
                     Object {
@@ -22948,7 +22294,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:def_adj_rapm",
                     },
                     Object {
-                      "label": "RAPM (Asc. / Off-Def)",
+                      "label": "RAPM (Asc. / Net)",
                       "value": "asc:diff_adj_rapm",
                     },
                     Object {
@@ -22968,11 +22314,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "label": "RAPM Prod (Desc. / Net)",
                       "value": "desc:diff_adj_rapm_prod",
                     },
                     Object {
-                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "label": "RAPM Prod (Asc. / Net)",
                       "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
@@ -22984,44 +22330,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Defensive)",
-                      "value": "desc:def_efg",
-                    },
-                    Object {
-                      "label": "eFG% (Asc. / Defensive)",
-                      "value": "asc:def_efg",
-                    },
-                    Object {
                       "label": "A% (Desc. / Offensive)",
                       "value": "desc:off_assist",
                     },
                     Object {
                       "label": "A% (Asc. / Offensive)",
                       "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "TO% (Desc. / Offensive)",
-                      "value": "desc:off_to",
-                    },
-                    Object {
-                      "label": "TO% (Asc. / Offensive)",
-                      "value": "asc:off_to",
-                    },
-                    Object {
-                      "label": "Stl% (Desc. / Defensive)",
-                      "value": "desc:def_to",
-                    },
-                    Object {
-                      "label": "Stl% (Asc. / Defensive)",
-                      "value": "asc:def_to",
                     },
                     Object {
                       "label": "RB% (Desc. / Offensive)",
@@ -23048,52 +22362,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_drb",
                     },
                     Object {
-                      "label": "FTR (Desc. / Offensive)",
-                      "value": "desc:off_ftr",
-                    },
-                    Object {
-                      "label": "FTR (Asc. / Offensive)",
-                      "value": "asc:off_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Desc. / Defensive)",
-                      "value": "desc:def_ftr",
-                    },
-                    Object {
-                      "label": "FC/50 (Asc. / Defensive)",
-                      "value": "asc:def_ftr",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Offensive)",
-                      "value": "desc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Offensive)",
-                      "value": "asc:off_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Desc. / Defensive)",
-                      "value": "desc:def_sep_off_ast",
-                    },
-                    Object {
-                      "label": "__off_ast__ (Asc. / Defensive)",
-                      "value": "asc:def_sep_off_ast",
-                    },
-                    Object {
                       "label": "3PR (Desc. / Offensive)",
                       "value": "desc:off_3pr",
                     },
                     Object {
                       "label": "3PR (Asc. / Offensive)",
                       "value": "asc:off_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Desc. / Defensive)",
-                      "value": "desc:def_3pr",
-                    },
-                    Object {
-                      "label": "3PR (Asc. / Defensive)",
-                      "value": "asc:def_3pr",
                     },
                     Object {
                       "label": "2PR mid (Desc. / Offensive)",
@@ -23104,28 +22378,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:off_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Defensive)",
-                      "value": "desc:def_2pmidr",
-                    },
-                    Object {
-                      "label": "2PR mid (Asc. / Defensive)",
-                      "value": "asc:def_2pmidr",
-                    },
-                    Object {
                       "label": "2PR rim (Desc. / Offensive)",
                       "value": "desc:off_2primr",
                     },
                     Object {
                       "label": "2PR rim (Asc. / Offensive)",
                       "value": "asc:off_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Desc. / Defensive)",
-                      "value": "desc:def_2primr",
-                    },
-                    Object {
-                      "label": "2PR rim (Asc. / Defensive)",
-                      "value": "asc:def_2primr",
                     },
                     Object {
                       "label": "3P% (Desc. / Offensive)",
@@ -23176,22 +22434,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Offensive)",
-                      "value": "desc:off_2prim",
-                    },
-                    Object {
-                      "label": "2P% rim (Asc. / Offensive)",
-                      "value": "asc:off_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Desc. / Defensive)",
-                      "value": "desc:def_2prim",
-                    },
-                    Object {
-                      "label": "Blk% (Asc. / Defensive)",
-                      "value": "asc:def_2prim",
-                    },
-                    Object {
                       "label": "SoS (Desc. / Offensive)",
                       "value": "desc:off_adj_opp",
                     },
@@ -23208,11 +22450,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                     Object {
@@ -23269,7 +22511,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               placement="auto"
             >
               <span>
-                Linq
+                Advanced Filter
                 <sup>
                   <a
                     href="https://hoop-explorer.blogspot.com/2022/03/"
@@ -23755,8 +22997,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
+          sortField="off_adj_rtg"
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
