@@ -310,6 +310,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
     string[] | undefined
   >(gameFilterParams.playerTableConfigDisabledCols);
+  const anyTableOverride = Boolean(
+    tablePreset ||
+      !_.isEmpty(tableConfigExtraCols) ||
+      !_.isEmpty(tableConfigDisabledCols)
+  ); //(only works because there is no memo over the table)
 
   // Diff mode state:
   const [showDiffs, setShowDiffs] = useState(
@@ -2545,6 +2550,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           },
           {
             label: "+ Info",
+            disabled: anyTableOverride,
             tooltip: showInfoSubHeader
               ? "Hide extra info sub-header"
               : "Show extra info sub-header (not currently saved like other options)",
@@ -2778,13 +2784,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   );
 
   /** The sub-header builder - Can show some handy context in between the header and data rows: */
-  const maybeSubheaderRow = showInfoSubHeader
-    ? RosterTableUtils.buildInformationalSubheader(
-        calcRapm,
-        expandedView,
-        resolvedTheme == "dark"
-      )
-    : [];
+  const maybeSubheaderRow =
+    showInfoSubHeader && !anyTableOverride
+      ? RosterTableUtils.buildInformationalSubheader(
+          calcRapm,
+          expandedView,
+          resolvedTheme == "dark"
+        )
+      : [];
 
   const formatGroupLabel = (data: any) => (
     <div>

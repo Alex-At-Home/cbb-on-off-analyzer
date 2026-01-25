@@ -373,6 +373,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
     string[] | undefined
   >(startingState.tableConfigDisabledCols);
+  const anyTableOverride = Boolean(
+    tablePreset ||
+      !_.isEmpty(tableConfigExtraCols) ||
+      !_.isEmpty(tableConfigDisabledCols)
+  );
+  useEffect(() => {
+    //(because of the memo, need to explicitly disable it .. since don't want every
+    // change to the table config to trigger a table rebuild)
+    if (anyTableOverride && showInfoSubHeader) {
+      setShowInfoSubHeader(false);
+    }
+  }, [anyTableOverride]);
 
   /** Show the number of possessions as a % of total team count */
   const [factorMins, setFactorMins] = useState(
@@ -2072,13 +2084,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     );
 
     /** The sub-header builder - Can show some handy context in between the header and data rows: */
-    const maybeSubheaderRow = showInfoSubHeader
-      ? RosterTableUtils.buildInformationalSubheader(
-          true,
-          expandedView,
-          resolvedTheme == "dark"
-        )
-      : [];
+    const maybeSubheaderRow =
+      showInfoSubHeader && !anyTableOverride
+        ? RosterTableUtils.buildInformationalSubheader(
+            true,
+            expandedView,
+            resolvedTheme == "dark"
+          )
+        : [];
 
     return {
       table: (
@@ -2774,6 +2787,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     tooltip: expandedView
                       ? "Show single row of player stats"
                       : "Show expanded player stats",
+                    disabled: false,
                     toggled: expandedView,
                     onClick: () =>
                       friendlyChange(
@@ -2910,6 +2924,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     },
                     {
                       label: "+ Info",
+                      disabled: anyTableOverride,
                       tooltip: showInfoSubHeader
                         ? "Hide extra info sub-header"
                         : "Show extra info sub-header",
@@ -3067,11 +3082,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 }}
               />
               <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text={"Show extra info sub-header"}
-                truthVal={showInfoSubHeader}
-                onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
-              />
               <GenericTogglingMenuItem
                 text={"Show repeating header every 10 rows"}
                 truthVal={showRepeatingHeader}
