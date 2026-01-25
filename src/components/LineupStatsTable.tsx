@@ -77,6 +77,9 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { CbbColors } from "../utils/CbbColors";
 import { LineupTableDefs } from "../utils/tables/LineupTableDefs";
 import { DerivedStatsUtils } from "../utils/stats/DerivedStatsUtils";
+import TableSortPopupMenu, {
+  TableSortPopupMenuState,
+} from "./shared/TableSortPopupMenu";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -224,6 +227,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const [sortBy, setSortBy] = useState(
     startingState.sortBy || ParamDefaults.defaultLineupSortBy
   );
+  const [sortMenuState, setSortMenuState] = useState<
+    TableSortPopupMenuState | undefined
+  >(undefined);
+  const handleSortMenuClick = (value: string) => {
+    setSortMenuState(undefined);
+    const newVal = value || ParamDefaults.defaultLineupSortBy;
+    friendlyChange(() => {
+      setSortBy(newVal);
+    }, newVal != sortBy);
+  };
+
   const [filterStr, setFilterStr] = useState(
     startingState.filter || ParamDefaults.defaultLineupFilter
   );
@@ -622,6 +636,47 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       });
       return (
         <GenericTable
+          sortField={_.thru(sortBy, (sortField) => {
+            if (sortField == ParamDefaults.defaultLineupSortBy) {
+              return undefined;
+            } else {
+              const sortFieldDecomp = sortField.split(":");
+              if (sortFieldDecomp[1] == "diff_adj_ppp") {
+                return "off_net";
+              } else {
+                return sortFieldDecomp[1];
+              }
+            }
+          })}
+          onHeaderClick={(headerKeyIn, ev) => {
+            const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
+            const matchingOptions: {
+              value: string;
+              label: string;
+            }[] = sortOptions.filter(
+              (opt: { value: string; label: string }) => {
+                const field = opt.value.split(":")[1];
+                const rawFieldIndex = field.indexOf("_");
+                const rawField =
+                  rawFieldIndex > 0
+                    ? field.substring(rawFieldIndex + 1)
+                    : field;
+                return rawField == headerKey;
+              }
+            );
+
+            if (matchingOptions.length > 1) {
+              // Multiple options - show popup
+              setSortMenuState({
+                columnKey: headerKey,
+                options: matchingOptions.concat([
+                  { label: "Clear", value: "" },
+                ]),
+                anchorEl: ev.currentTarget as HTMLElement,
+                currentSortValue: sortBy,
+              });
+            }
+          }}
           showConfigureColumns={true}
           initialColumnConfig={{
             newCol: tableConfigExtraCols,
@@ -1238,6 +1293,47 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         );
       return (
         <GenericTable
+          sortField={_.thru(sortBy, (sortField) => {
+            if (sortField == ParamDefaults.defaultLineupSortBy) {
+              return undefined;
+            } else {
+              const sortFieldDecomp = sortField.split(":");
+              if (sortFieldDecomp[1] == "diff_adj_ppp") {
+                return "off_net";
+              } else {
+                return sortFieldDecomp[1];
+              }
+            }
+          })}
+          onHeaderClick={(headerKeyIn, ev) => {
+            const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
+            const matchingOptions: {
+              value: string;
+              label: string;
+            }[] = sortOptions.filter(
+              (opt: { value: string; label: string }) => {
+                const field = opt.value.split(":")[1];
+                const rawFieldIndex = field.indexOf("_");
+                const rawField =
+                  rawFieldIndex > 0
+                    ? field.substring(rawFieldIndex + 1)
+                    : field;
+                return rawField == headerKey;
+              }
+            );
+
+            if (matchingOptions.length > 1) {
+              // Multiple options - show popup
+              setSortMenuState({
+                columnKey: headerKey,
+                options: matchingOptions.concat([
+                  { label: "Clear", value: "" },
+                ]),
+                anchorEl: ev.currentTarget as HTMLElement,
+                currentSortValue: sortBy,
+              });
+            }
+          }}
           showConfigureColumns={true}
           initialColumnConfig={{
             newCol: tableConfigExtraCols,
@@ -1307,7 +1403,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           ["asc", "def"],
           ["desc", "diff"],
           ["asc", "diff"],
-        ].map((combo) => {
+        ].flatMap((combo) => {
+          if (combo[1] != "off" && keycol[0] == "net") {
+            //(def net is raw net but respresented weirdly so can't do anything)
+            return [];
+          }
+
           const ascOrDesc = (s: string) => {
             switch (s) {
               case "asc":
@@ -1323,15 +1424,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               case "def":
                 return "Defensive";
               case "diff":
-                return "Off-Def";
+                return "Net";
             }
           };
-          return {
-            label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(
-              combo[1]
-            )})`,
-            value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-          };
+          return [
+            {
+              label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(
+                combo[1]
+              )})`,
+              value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
+            },
+          ];
         });
       })
   );
@@ -1707,6 +1810,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           onSave={(l: LuckParams) => setLuckConfig(l)}
           luck={luckConfig}
           showHelp={showHelp}
+        />
+        <TableSortPopupMenu
+          state={sortMenuState}
+          onClick={handleSortMenuClick}
+          onClose={() => setSortMenuState(undefined)}
         />
         <Form.Row>
           <Form.Group as={Col} xs={10}>

@@ -19,6 +19,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
       show={false}
       showHelp={true}
     />
+    <TableSortPopupMenu
+      onClick={[Function]}
+      onClose={[Function]}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -130,7 +134,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "desc:off_poss",
                     },
                     Object {
-                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "label": "Adj P/100 (Desc. / Net)",
                       "value": "desc:diff_adj_ppp",
                     },
                     Object {
@@ -155,22 +159,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Desc. / Defensive)",
-                      "value": "desc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Defensive)",
-                      "value": "asc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Desc. / Off-Def)",
-                      "value": "desc:diff_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Off-Def)",
-                      "value": "asc:diff_net",
-                    },
-                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -187,11 +175,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_ppp",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Off-Def)",
+                      "label": "P/100 (Desc. / Net)",
                       "value": "desc:diff_ppp",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Off-Def)",
+                      "label": "P/100 (Asc. / Net)",
                       "value": "asc:diff_ppp",
                     },
                     Object {
@@ -203,7 +191,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "desc:def_adj_ppp",
                     },
                     Object {
-                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "label": "Adj P/100 (Asc. / Net)",
                       "value": "asc:diff_adj_ppp",
                     },
                     Object {
@@ -223,11 +211,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Off-Def)",
+                      "label": "eFG% (Desc. / Net)",
                       "value": "desc:diff_efg",
                     },
                     Object {
-                      "label": "eFG% (Asc. / Off-Def)",
+                      "label": "eFG% (Asc. / Net)",
                       "value": "asc:diff_efg",
                     },
                     Object {
@@ -247,11 +235,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_to",
                     },
                     Object {
-                      "label": "TO% (Desc. / Off-Def)",
+                      "label": "TO% (Desc. / Net)",
                       "value": "desc:diff_to",
                     },
                     Object {
-                      "label": "TO% (Asc. / Off-Def)",
+                      "label": "TO% (Asc. / Net)",
                       "value": "asc:diff_to",
                     },
                     Object {
@@ -271,11 +259,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "OR% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Net)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "OR% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Net)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -295,11 +283,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_ftr",
                     },
                     Object {
-                      "label": "FTR (Desc. / Off-Def)",
+                      "label": "FTR (Desc. / Net)",
                       "value": "desc:diff_ftr",
                     },
                     Object {
-                      "label": "FTR (Asc. / Off-Def)",
+                      "label": "FTR (Asc. / Net)",
                       "value": "asc:diff_ftr",
                     },
                     Object {
@@ -319,11 +307,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_assist",
                     },
                     Object {
-                      "label": "A% (Desc. / Off-Def)",
+                      "label": "A% (Desc. / Net)",
                       "value": "desc:diff_assist",
                     },
                     Object {
-                      "label": "A% (Asc. / Off-Def)",
+                      "label": "A% (Asc. / Net)",
                       "value": "asc:diff_assist",
                     },
                     Object {
@@ -343,11 +331,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_3pr",
                     },
                     Object {
-                      "label": "3PR (Desc. / Off-Def)",
+                      "label": "3PR (Desc. / Net)",
                       "value": "desc:diff_3pr",
                     },
                     Object {
-                      "label": "3PR (Asc. / Off-Def)",
+                      "label": "3PR (Asc. / Net)",
                       "value": "asc:diff_3pr",
                     },
                     Object {
@@ -367,11 +355,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Off-Def)",
+                      "label": "2PR mid (Desc. / Net)",
                       "value": "desc:diff_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Asc. / Off-Def)",
+                      "label": "2PR mid (Asc. / Net)",
                       "value": "asc:diff_2pmidr",
                     },
                     Object {
@@ -391,11 +379,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Desc. / Off-Def)",
+                      "label": "2PR rim (Desc. / Net)",
                       "value": "desc:diff_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Asc. / Off-Def)",
+                      "label": "2PR rim (Asc. / Net)",
                       "value": "asc:diff_2primr",
                     },
                     Object {
@@ -415,11 +403,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_3p",
                     },
                     Object {
-                      "label": "3P% (Desc. / Off-Def)",
+                      "label": "3P% (Desc. / Net)",
                       "value": "desc:diff_3p",
                     },
                     Object {
-                      "label": "3P% (Asc. / Off-Def)",
+                      "label": "3P% (Asc. / Net)",
                       "value": "asc:diff_3p",
                     },
                     Object {
@@ -439,11 +427,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_2p",
                     },
                     Object {
-                      "label": "2P% (Desc. / Off-Def)",
+                      "label": "2P% (Desc. / Net)",
                       "value": "desc:diff_2p",
                     },
                     Object {
-                      "label": "2P% (Asc. / Off-Def)",
+                      "label": "2P% (Asc. / Net)",
                       "value": "asc:diff_2p",
                     },
                     Object {
@@ -463,11 +451,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Desc. / Off-Def)",
+                      "label": "2P% mid (Desc. / Net)",
                       "value": "desc:diff_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Asc. / Off-Def)",
+                      "label": "2P% mid (Asc. / Net)",
                       "value": "asc:diff_2pmid",
                     },
                     Object {
@@ -487,11 +475,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Off-Def)",
+                      "label": "2P% rim (Desc. / Net)",
                       "value": "desc:diff_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Asc. / Off-Def)",
+                      "label": "2P% rim (Asc. / Net)",
                       "value": "asc:diff_2prim",
                     },
                     Object {
@@ -507,11 +495,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_poss",
                     },
                     Object {
-                      "label": "Poss (Desc. / Off-Def)",
+                      "label": "Poss (Desc. / Net)",
                       "value": "desc:diff_poss",
                     },
                     Object {
-                      "label": "Poss (Asc. / Off-Def)",
+                      "label": "Poss (Asc. / Net)",
                       "value": "asc:diff_poss",
                     },
                     Object {
@@ -531,11 +519,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                   ],
@@ -2037,6 +2025,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="lineupStatsTable"
@@ -6135,6 +6124,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
       show={false}
       showHelp={true}
     />
+    <TableSortPopupMenu
+      onClick={[Function]}
+      onClose={[Function]}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -6246,7 +6239,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "desc:off_poss",
                     },
                     Object {
-                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "label": "Adj P/100 (Desc. / Net)",
                       "value": "desc:diff_adj_ppp",
                     },
                     Object {
@@ -6271,22 +6264,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Desc. / Defensive)",
-                      "value": "desc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Defensive)",
-                      "value": "asc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Desc. / Off-Def)",
-                      "value": "desc:diff_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Off-Def)",
-                      "value": "asc:diff_net",
-                    },
-                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -6303,11 +6280,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_ppp",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Off-Def)",
+                      "label": "P/100 (Desc. / Net)",
                       "value": "desc:diff_ppp",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Off-Def)",
+                      "label": "P/100 (Asc. / Net)",
                       "value": "asc:diff_ppp",
                     },
                     Object {
@@ -6319,7 +6296,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "desc:def_adj_ppp",
                     },
                     Object {
-                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "label": "Adj P/100 (Asc. / Net)",
                       "value": "asc:diff_adj_ppp",
                     },
                     Object {
@@ -6339,11 +6316,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Off-Def)",
+                      "label": "eFG% (Desc. / Net)",
                       "value": "desc:diff_efg",
                     },
                     Object {
-                      "label": "eFG% (Asc. / Off-Def)",
+                      "label": "eFG% (Asc. / Net)",
                       "value": "asc:diff_efg",
                     },
                     Object {
@@ -6363,11 +6340,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_to",
                     },
                     Object {
-                      "label": "TO% (Desc. / Off-Def)",
+                      "label": "TO% (Desc. / Net)",
                       "value": "desc:diff_to",
                     },
                     Object {
-                      "label": "TO% (Asc. / Off-Def)",
+                      "label": "TO% (Asc. / Net)",
                       "value": "asc:diff_to",
                     },
                     Object {
@@ -6387,11 +6364,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "OR% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Net)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "OR% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Net)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -6411,11 +6388,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_ftr",
                     },
                     Object {
-                      "label": "FTR (Desc. / Off-Def)",
+                      "label": "FTR (Desc. / Net)",
                       "value": "desc:diff_ftr",
                     },
                     Object {
-                      "label": "FTR (Asc. / Off-Def)",
+                      "label": "FTR (Asc. / Net)",
                       "value": "asc:diff_ftr",
                     },
                     Object {
@@ -6435,11 +6412,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_assist",
                     },
                     Object {
-                      "label": "A% (Desc. / Off-Def)",
+                      "label": "A% (Desc. / Net)",
                       "value": "desc:diff_assist",
                     },
                     Object {
-                      "label": "A% (Asc. / Off-Def)",
+                      "label": "A% (Asc. / Net)",
                       "value": "asc:diff_assist",
                     },
                     Object {
@@ -6459,11 +6436,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_3pr",
                     },
                     Object {
-                      "label": "3PR (Desc. / Off-Def)",
+                      "label": "3PR (Desc. / Net)",
                       "value": "desc:diff_3pr",
                     },
                     Object {
-                      "label": "3PR (Asc. / Off-Def)",
+                      "label": "3PR (Asc. / Net)",
                       "value": "asc:diff_3pr",
                     },
                     Object {
@@ -6483,11 +6460,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Off-Def)",
+                      "label": "2PR mid (Desc. / Net)",
                       "value": "desc:diff_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Asc. / Off-Def)",
+                      "label": "2PR mid (Asc. / Net)",
                       "value": "asc:diff_2pmidr",
                     },
                     Object {
@@ -6507,11 +6484,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Desc. / Off-Def)",
+                      "label": "2PR rim (Desc. / Net)",
                       "value": "desc:diff_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Asc. / Off-Def)",
+                      "label": "2PR rim (Asc. / Net)",
                       "value": "asc:diff_2primr",
                     },
                     Object {
@@ -6531,11 +6508,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_3p",
                     },
                     Object {
-                      "label": "3P% (Desc. / Off-Def)",
+                      "label": "3P% (Desc. / Net)",
                       "value": "desc:diff_3p",
                     },
                     Object {
-                      "label": "3P% (Asc. / Off-Def)",
+                      "label": "3P% (Asc. / Net)",
                       "value": "asc:diff_3p",
                     },
                     Object {
@@ -6555,11 +6532,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_2p",
                     },
                     Object {
-                      "label": "2P% (Desc. / Off-Def)",
+                      "label": "2P% (Desc. / Net)",
                       "value": "desc:diff_2p",
                     },
                     Object {
-                      "label": "2P% (Asc. / Off-Def)",
+                      "label": "2P% (Asc. / Net)",
                       "value": "asc:diff_2p",
                     },
                     Object {
@@ -6579,11 +6556,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Desc. / Off-Def)",
+                      "label": "2P% mid (Desc. / Net)",
                       "value": "desc:diff_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Asc. / Off-Def)",
+                      "label": "2P% mid (Asc. / Net)",
                       "value": "asc:diff_2pmid",
                     },
                     Object {
@@ -6603,11 +6580,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Off-Def)",
+                      "label": "2P% rim (Desc. / Net)",
                       "value": "desc:diff_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Asc. / Off-Def)",
+                      "label": "2P% rim (Asc. / Net)",
                       "value": "asc:diff_2prim",
                     },
                     Object {
@@ -6623,11 +6600,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_poss",
                     },
                     Object {
-                      "label": "Poss (Desc. / Off-Def)",
+                      "label": "Poss (Desc. / Net)",
                       "value": "desc:diff_poss",
                     },
                     Object {
-                      "label": "Poss (Asc. / Off-Def)",
+                      "label": "Poss (Asc. / Net)",
                       "value": "asc:diff_poss",
                     },
                     Object {
@@ -6647,11 +6624,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                   ],
@@ -8153,6 +8130,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="lineupStatsTable"
@@ -11789,6 +11767,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       show={false}
       showHelp={true}
     />
+    <TableSortPopupMenu
+      onClick={[Function]}
+      onClose={[Function]}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -11900,7 +11882,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:off_poss",
                     },
                     Object {
-                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "label": "Adj P/100 (Desc. / Net)",
                       "value": "desc:diff_adj_ppp",
                     },
                     Object {
@@ -11925,22 +11907,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Desc. / Defensive)",
-                      "value": "desc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Defensive)",
-                      "value": "asc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Desc. / Off-Def)",
-                      "value": "desc:diff_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Off-Def)",
-                      "value": "asc:diff_net",
-                    },
-                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -11957,11 +11923,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ppp",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Off-Def)",
+                      "label": "P/100 (Desc. / Net)",
                       "value": "desc:diff_ppp",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Off-Def)",
+                      "label": "P/100 (Asc. / Net)",
                       "value": "asc:diff_ppp",
                     },
                     Object {
@@ -11973,7 +11939,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:def_adj_ppp",
                     },
                     Object {
-                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "label": "Adj P/100 (Asc. / Net)",
                       "value": "asc:diff_adj_ppp",
                     },
                     Object {
@@ -11993,11 +11959,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Off-Def)",
+                      "label": "eFG% (Desc. / Net)",
                       "value": "desc:diff_efg",
                     },
                     Object {
-                      "label": "eFG% (Asc. / Off-Def)",
+                      "label": "eFG% (Asc. / Net)",
                       "value": "asc:diff_efg",
                     },
                     Object {
@@ -12017,11 +11983,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_to",
                     },
                     Object {
-                      "label": "TO% (Desc. / Off-Def)",
+                      "label": "TO% (Desc. / Net)",
                       "value": "desc:diff_to",
                     },
                     Object {
-                      "label": "TO% (Asc. / Off-Def)",
+                      "label": "TO% (Asc. / Net)",
                       "value": "asc:diff_to",
                     },
                     Object {
@@ -12041,11 +12007,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "OR% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Net)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "OR% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Net)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -12065,11 +12031,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ftr",
                     },
                     Object {
-                      "label": "FTR (Desc. / Off-Def)",
+                      "label": "FTR (Desc. / Net)",
                       "value": "desc:diff_ftr",
                     },
                     Object {
-                      "label": "FTR (Asc. / Off-Def)",
+                      "label": "FTR (Asc. / Net)",
                       "value": "asc:diff_ftr",
                     },
                     Object {
@@ -12089,11 +12055,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_assist",
                     },
                     Object {
-                      "label": "A% (Desc. / Off-Def)",
+                      "label": "A% (Desc. / Net)",
                       "value": "desc:diff_assist",
                     },
                     Object {
-                      "label": "A% (Asc. / Off-Def)",
+                      "label": "A% (Asc. / Net)",
                       "value": "asc:diff_assist",
                     },
                     Object {
@@ -12113,11 +12079,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3pr",
                     },
                     Object {
-                      "label": "3PR (Desc. / Off-Def)",
+                      "label": "3PR (Desc. / Net)",
                       "value": "desc:diff_3pr",
                     },
                     Object {
-                      "label": "3PR (Asc. / Off-Def)",
+                      "label": "3PR (Asc. / Net)",
                       "value": "asc:diff_3pr",
                     },
                     Object {
@@ -12137,11 +12103,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Off-Def)",
+                      "label": "2PR mid (Desc. / Net)",
                       "value": "desc:diff_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Asc. / Off-Def)",
+                      "label": "2PR mid (Asc. / Net)",
                       "value": "asc:diff_2pmidr",
                     },
                     Object {
@@ -12161,11 +12127,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Desc. / Off-Def)",
+                      "label": "2PR rim (Desc. / Net)",
                       "value": "desc:diff_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Asc. / Off-Def)",
+                      "label": "2PR rim (Asc. / Net)",
                       "value": "asc:diff_2primr",
                     },
                     Object {
@@ -12185,11 +12151,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3p",
                     },
                     Object {
-                      "label": "3P% (Desc. / Off-Def)",
+                      "label": "3P% (Desc. / Net)",
                       "value": "desc:diff_3p",
                     },
                     Object {
-                      "label": "3P% (Asc. / Off-Def)",
+                      "label": "3P% (Asc. / Net)",
                       "value": "asc:diff_3p",
                     },
                     Object {
@@ -12209,11 +12175,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2p",
                     },
                     Object {
-                      "label": "2P% (Desc. / Off-Def)",
+                      "label": "2P% (Desc. / Net)",
                       "value": "desc:diff_2p",
                     },
                     Object {
-                      "label": "2P% (Asc. / Off-Def)",
+                      "label": "2P% (Asc. / Net)",
                       "value": "asc:diff_2p",
                     },
                     Object {
@@ -12233,11 +12199,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Desc. / Off-Def)",
+                      "label": "2P% mid (Desc. / Net)",
                       "value": "desc:diff_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Asc. / Off-Def)",
+                      "label": "2P% mid (Asc. / Net)",
                       "value": "asc:diff_2pmid",
                     },
                     Object {
@@ -12257,11 +12223,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Off-Def)",
+                      "label": "2P% rim (Desc. / Net)",
                       "value": "desc:diff_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Asc. / Off-Def)",
+                      "label": "2P% rim (Asc. / Net)",
                       "value": "asc:diff_2prim",
                     },
                     Object {
@@ -12277,11 +12243,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_poss",
                     },
                     Object {
-                      "label": "Poss (Desc. / Off-Def)",
+                      "label": "Poss (Desc. / Net)",
                       "value": "desc:diff_poss",
                     },
                     Object {
-                      "label": "Poss (Asc. / Off-Def)",
+                      "label": "Poss (Asc. / Net)",
                       "value": "asc:diff_poss",
                     },
                     Object {
@@ -12301,11 +12267,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                   ],
@@ -13807,6 +13773,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="lineupStatsTable"
@@ -16597,6 +16564,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       show={false}
       showHelp={true}
     />
+    <TableSortPopupMenu
+      onClick={[Function]}
+      onClose={[Function]}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -16708,7 +16679,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:off_poss",
                     },
                     Object {
-                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "label": "Adj P/100 (Desc. / Net)",
                       "value": "desc:diff_adj_ppp",
                     },
                     Object {
@@ -16733,22 +16704,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Desc. / Defensive)",
-                      "value": "desc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Defensive)",
-                      "value": "asc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Desc. / Off-Def)",
-                      "value": "desc:diff_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Off-Def)",
-                      "value": "asc:diff_net",
-                    },
-                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -16765,11 +16720,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ppp",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Off-Def)",
+                      "label": "P/100 (Desc. / Net)",
                       "value": "desc:diff_ppp",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Off-Def)",
+                      "label": "P/100 (Asc. / Net)",
                       "value": "asc:diff_ppp",
                     },
                     Object {
@@ -16781,7 +16736,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:def_adj_ppp",
                     },
                     Object {
-                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "label": "Adj P/100 (Asc. / Net)",
                       "value": "asc:diff_adj_ppp",
                     },
                     Object {
@@ -16801,11 +16756,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Off-Def)",
+                      "label": "eFG% (Desc. / Net)",
                       "value": "desc:diff_efg",
                     },
                     Object {
-                      "label": "eFG% (Asc. / Off-Def)",
+                      "label": "eFG% (Asc. / Net)",
                       "value": "asc:diff_efg",
                     },
                     Object {
@@ -16825,11 +16780,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_to",
                     },
                     Object {
-                      "label": "TO% (Desc. / Off-Def)",
+                      "label": "TO% (Desc. / Net)",
                       "value": "desc:diff_to",
                     },
                     Object {
-                      "label": "TO% (Asc. / Off-Def)",
+                      "label": "TO% (Asc. / Net)",
                       "value": "asc:diff_to",
                     },
                     Object {
@@ -16849,11 +16804,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "OR% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Net)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "OR% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Net)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -16873,11 +16828,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ftr",
                     },
                     Object {
-                      "label": "FTR (Desc. / Off-Def)",
+                      "label": "FTR (Desc. / Net)",
                       "value": "desc:diff_ftr",
                     },
                     Object {
-                      "label": "FTR (Asc. / Off-Def)",
+                      "label": "FTR (Asc. / Net)",
                       "value": "asc:diff_ftr",
                     },
                     Object {
@@ -16897,11 +16852,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_assist",
                     },
                     Object {
-                      "label": "A% (Desc. / Off-Def)",
+                      "label": "A% (Desc. / Net)",
                       "value": "desc:diff_assist",
                     },
                     Object {
-                      "label": "A% (Asc. / Off-Def)",
+                      "label": "A% (Asc. / Net)",
                       "value": "asc:diff_assist",
                     },
                     Object {
@@ -16921,11 +16876,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3pr",
                     },
                     Object {
-                      "label": "3PR (Desc. / Off-Def)",
+                      "label": "3PR (Desc. / Net)",
                       "value": "desc:diff_3pr",
                     },
                     Object {
-                      "label": "3PR (Asc. / Off-Def)",
+                      "label": "3PR (Asc. / Net)",
                       "value": "asc:diff_3pr",
                     },
                     Object {
@@ -16945,11 +16900,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Off-Def)",
+                      "label": "2PR mid (Desc. / Net)",
                       "value": "desc:diff_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Asc. / Off-Def)",
+                      "label": "2PR mid (Asc. / Net)",
                       "value": "asc:diff_2pmidr",
                     },
                     Object {
@@ -16969,11 +16924,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Desc. / Off-Def)",
+                      "label": "2PR rim (Desc. / Net)",
                       "value": "desc:diff_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Asc. / Off-Def)",
+                      "label": "2PR rim (Asc. / Net)",
                       "value": "asc:diff_2primr",
                     },
                     Object {
@@ -16993,11 +16948,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3p",
                     },
                     Object {
-                      "label": "3P% (Desc. / Off-Def)",
+                      "label": "3P% (Desc. / Net)",
                       "value": "desc:diff_3p",
                     },
                     Object {
-                      "label": "3P% (Asc. / Off-Def)",
+                      "label": "3P% (Asc. / Net)",
                       "value": "asc:diff_3p",
                     },
                     Object {
@@ -17017,11 +16972,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2p",
                     },
                     Object {
-                      "label": "2P% (Desc. / Off-Def)",
+                      "label": "2P% (Desc. / Net)",
                       "value": "desc:diff_2p",
                     },
                     Object {
-                      "label": "2P% (Asc. / Off-Def)",
+                      "label": "2P% (Asc. / Net)",
                       "value": "asc:diff_2p",
                     },
                     Object {
@@ -17041,11 +16996,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Desc. / Off-Def)",
+                      "label": "2P% mid (Desc. / Net)",
                       "value": "desc:diff_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Asc. / Off-Def)",
+                      "label": "2P% mid (Asc. / Net)",
                       "value": "asc:diff_2pmid",
                     },
                     Object {
@@ -17065,11 +17020,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Off-Def)",
+                      "label": "2P% rim (Desc. / Net)",
                       "value": "desc:diff_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Asc. / Off-Def)",
+                      "label": "2P% rim (Asc. / Net)",
                       "value": "asc:diff_2prim",
                     },
                     Object {
@@ -17085,11 +17040,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_poss",
                     },
                     Object {
-                      "label": "Poss (Desc. / Off-Def)",
+                      "label": "Poss (Desc. / Net)",
                       "value": "desc:diff_poss",
                     },
                     Object {
-                      "label": "Poss (Asc. / Off-Def)",
+                      "label": "Poss (Asc. / Net)",
                       "value": "asc:diff_poss",
                     },
                     Object {
@@ -17109,11 +17064,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                   ],
@@ -18615,6 +18570,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="lineupStatsTable"
@@ -21858,6 +21814,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       show={false}
       showHelp={true}
     />
+    <TableSortPopupMenu
+      onClick={[Function]}
+      onClose={[Function]}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -21969,7 +21929,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:off_poss",
                     },
                     Object {
-                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "label": "Adj P/100 (Desc. / Net)",
                       "value": "desc:diff_adj_ppp",
                     },
                     Object {
@@ -21994,22 +21954,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Desc. / Defensive)",
-                      "value": "desc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Defensive)",
-                      "value": "asc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Desc. / Off-Def)",
-                      "value": "desc:diff_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Off-Def)",
-                      "value": "asc:diff_net",
-                    },
-                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -22026,11 +21970,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ppp",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Off-Def)",
+                      "label": "P/100 (Desc. / Net)",
                       "value": "desc:diff_ppp",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Off-Def)",
+                      "label": "P/100 (Asc. / Net)",
                       "value": "asc:diff_ppp",
                     },
                     Object {
@@ -22042,7 +21986,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:def_adj_ppp",
                     },
                     Object {
-                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "label": "Adj P/100 (Asc. / Net)",
                       "value": "asc:diff_adj_ppp",
                     },
                     Object {
@@ -22062,11 +22006,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Off-Def)",
+                      "label": "eFG% (Desc. / Net)",
                       "value": "desc:diff_efg",
                     },
                     Object {
-                      "label": "eFG% (Asc. / Off-Def)",
+                      "label": "eFG% (Asc. / Net)",
                       "value": "asc:diff_efg",
                     },
                     Object {
@@ -22086,11 +22030,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_to",
                     },
                     Object {
-                      "label": "TO% (Desc. / Off-Def)",
+                      "label": "TO% (Desc. / Net)",
                       "value": "desc:diff_to",
                     },
                     Object {
-                      "label": "TO% (Asc. / Off-Def)",
+                      "label": "TO% (Asc. / Net)",
                       "value": "asc:diff_to",
                     },
                     Object {
@@ -22110,11 +22054,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "OR% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Net)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "OR% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Net)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -22134,11 +22078,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ftr",
                     },
                     Object {
-                      "label": "FTR (Desc. / Off-Def)",
+                      "label": "FTR (Desc. / Net)",
                       "value": "desc:diff_ftr",
                     },
                     Object {
-                      "label": "FTR (Asc. / Off-Def)",
+                      "label": "FTR (Asc. / Net)",
                       "value": "asc:diff_ftr",
                     },
                     Object {
@@ -22158,11 +22102,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_assist",
                     },
                     Object {
-                      "label": "A% (Desc. / Off-Def)",
+                      "label": "A% (Desc. / Net)",
                       "value": "desc:diff_assist",
                     },
                     Object {
-                      "label": "A% (Asc. / Off-Def)",
+                      "label": "A% (Asc. / Net)",
                       "value": "asc:diff_assist",
                     },
                     Object {
@@ -22182,11 +22126,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3pr",
                     },
                     Object {
-                      "label": "3PR (Desc. / Off-Def)",
+                      "label": "3PR (Desc. / Net)",
                       "value": "desc:diff_3pr",
                     },
                     Object {
-                      "label": "3PR (Asc. / Off-Def)",
+                      "label": "3PR (Asc. / Net)",
                       "value": "asc:diff_3pr",
                     },
                     Object {
@@ -22206,11 +22150,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Off-Def)",
+                      "label": "2PR mid (Desc. / Net)",
                       "value": "desc:diff_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Asc. / Off-Def)",
+                      "label": "2PR mid (Asc. / Net)",
                       "value": "asc:diff_2pmidr",
                     },
                     Object {
@@ -22230,11 +22174,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Desc. / Off-Def)",
+                      "label": "2PR rim (Desc. / Net)",
                       "value": "desc:diff_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Asc. / Off-Def)",
+                      "label": "2PR rim (Asc. / Net)",
                       "value": "asc:diff_2primr",
                     },
                     Object {
@@ -22254,11 +22198,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3p",
                     },
                     Object {
-                      "label": "3P% (Desc. / Off-Def)",
+                      "label": "3P% (Desc. / Net)",
                       "value": "desc:diff_3p",
                     },
                     Object {
-                      "label": "3P% (Asc. / Off-Def)",
+                      "label": "3P% (Asc. / Net)",
                       "value": "asc:diff_3p",
                     },
                     Object {
@@ -22278,11 +22222,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2p",
                     },
                     Object {
-                      "label": "2P% (Desc. / Off-Def)",
+                      "label": "2P% (Desc. / Net)",
                       "value": "desc:diff_2p",
                     },
                     Object {
-                      "label": "2P% (Asc. / Off-Def)",
+                      "label": "2P% (Asc. / Net)",
                       "value": "asc:diff_2p",
                     },
                     Object {
@@ -22302,11 +22246,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Desc. / Off-Def)",
+                      "label": "2P% mid (Desc. / Net)",
                       "value": "desc:diff_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Asc. / Off-Def)",
+                      "label": "2P% mid (Asc. / Net)",
                       "value": "asc:diff_2pmid",
                     },
                     Object {
@@ -22326,11 +22270,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Off-Def)",
+                      "label": "2P% rim (Desc. / Net)",
                       "value": "desc:diff_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Asc. / Off-Def)",
+                      "label": "2P% rim (Asc. / Net)",
                       "value": "asc:diff_2prim",
                     },
                     Object {
@@ -22346,11 +22290,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_poss",
                     },
                     Object {
-                      "label": "Poss (Desc. / Off-Def)",
+                      "label": "Poss (Desc. / Net)",
                       "value": "desc:diff_poss",
                     },
                     Object {
-                      "label": "Poss (Asc. / Off-Def)",
+                      "label": "Poss (Asc. / Net)",
                       "value": "asc:diff_poss",
                     },
                     Object {
@@ -22370,11 +22314,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                   ],
@@ -23876,6 +23820,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="lineupStatsTable"
@@ -28058,6 +28003,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       show={false}
       showHelp={true}
     />
+    <TableSortPopupMenu
+      onClick={[Function]}
+      onClose={[Function]}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -28169,7 +28118,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:off_poss",
                     },
                     Object {
-                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "label": "Adj P/100 (Desc. / Net)",
                       "value": "desc:diff_adj_ppp",
                     },
                     Object {
@@ -28194,22 +28143,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Desc. / Defensive)",
-                      "value": "desc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Defensive)",
-                      "value": "asc:def_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Desc. / Off-Def)",
-                      "value": "desc:diff_net",
-                    },
-                    Object {
-                      "label": "Net Rtg (Asc. / Off-Def)",
-                      "value": "asc:diff_net",
-                    },
-                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -28226,11 +28159,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ppp",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Off-Def)",
+                      "label": "P/100 (Desc. / Net)",
                       "value": "desc:diff_ppp",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Off-Def)",
+                      "label": "P/100 (Asc. / Net)",
                       "value": "asc:diff_ppp",
                     },
                     Object {
@@ -28242,7 +28175,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "desc:def_adj_ppp",
                     },
                     Object {
-                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "label": "Adj P/100 (Asc. / Net)",
                       "value": "asc:diff_adj_ppp",
                     },
                     Object {
@@ -28262,11 +28195,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_efg",
                     },
                     Object {
-                      "label": "eFG% (Desc. / Off-Def)",
+                      "label": "eFG% (Desc. / Net)",
                       "value": "desc:diff_efg",
                     },
                     Object {
-                      "label": "eFG% (Asc. / Off-Def)",
+                      "label": "eFG% (Asc. / Net)",
                       "value": "asc:diff_efg",
                     },
                     Object {
@@ -28286,11 +28219,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_to",
                     },
                     Object {
-                      "label": "TO% (Desc. / Off-Def)",
+                      "label": "TO% (Desc. / Net)",
                       "value": "desc:diff_to",
                     },
                     Object {
-                      "label": "TO% (Asc. / Off-Def)",
+                      "label": "TO% (Asc. / Net)",
                       "value": "asc:diff_to",
                     },
                     Object {
@@ -28310,11 +28243,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "OR% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Net)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "OR% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Net)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -28334,11 +28267,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_ftr",
                     },
                     Object {
-                      "label": "FTR (Desc. / Off-Def)",
+                      "label": "FTR (Desc. / Net)",
                       "value": "desc:diff_ftr",
                     },
                     Object {
-                      "label": "FTR (Asc. / Off-Def)",
+                      "label": "FTR (Asc. / Net)",
                       "value": "asc:diff_ftr",
                     },
                     Object {
@@ -28358,11 +28291,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_assist",
                     },
                     Object {
-                      "label": "A% (Desc. / Off-Def)",
+                      "label": "A% (Desc. / Net)",
                       "value": "desc:diff_assist",
                     },
                     Object {
-                      "label": "A% (Asc. / Off-Def)",
+                      "label": "A% (Asc. / Net)",
                       "value": "asc:diff_assist",
                     },
                     Object {
@@ -28382,11 +28315,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3pr",
                     },
                     Object {
-                      "label": "3PR (Desc. / Off-Def)",
+                      "label": "3PR (Desc. / Net)",
                       "value": "desc:diff_3pr",
                     },
                     Object {
-                      "label": "3PR (Asc. / Off-Def)",
+                      "label": "3PR (Asc. / Net)",
                       "value": "asc:diff_3pr",
                     },
                     Object {
@@ -28406,11 +28339,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Desc. / Off-Def)",
+                      "label": "2PR mid (Desc. / Net)",
                       "value": "desc:diff_2pmidr",
                     },
                     Object {
-                      "label": "2PR mid (Asc. / Off-Def)",
+                      "label": "2PR mid (Asc. / Net)",
                       "value": "asc:diff_2pmidr",
                     },
                     Object {
@@ -28430,11 +28363,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Desc. / Off-Def)",
+                      "label": "2PR rim (Desc. / Net)",
                       "value": "desc:diff_2primr",
                     },
                     Object {
-                      "label": "2PR rim (Asc. / Off-Def)",
+                      "label": "2PR rim (Asc. / Net)",
                       "value": "asc:diff_2primr",
                     },
                     Object {
@@ -28454,11 +28387,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_3p",
                     },
                     Object {
-                      "label": "3P% (Desc. / Off-Def)",
+                      "label": "3P% (Desc. / Net)",
                       "value": "desc:diff_3p",
                     },
                     Object {
-                      "label": "3P% (Asc. / Off-Def)",
+                      "label": "3P% (Asc. / Net)",
                       "value": "asc:diff_3p",
                     },
                     Object {
@@ -28478,11 +28411,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2p",
                     },
                     Object {
-                      "label": "2P% (Desc. / Off-Def)",
+                      "label": "2P% (Desc. / Net)",
                       "value": "desc:diff_2p",
                     },
                     Object {
-                      "label": "2P% (Asc. / Off-Def)",
+                      "label": "2P% (Asc. / Net)",
                       "value": "asc:diff_2p",
                     },
                     Object {
@@ -28502,11 +28435,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Desc. / Off-Def)",
+                      "label": "2P% mid (Desc. / Net)",
                       "value": "desc:diff_2pmid",
                     },
                     Object {
-                      "label": "2P% mid (Asc. / Off-Def)",
+                      "label": "2P% mid (Asc. / Net)",
                       "value": "asc:diff_2pmid",
                     },
                     Object {
@@ -28526,11 +28459,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Desc. / Off-Def)",
+                      "label": "2P% rim (Desc. / Net)",
                       "value": "desc:diff_2prim",
                     },
                     Object {
-                      "label": "2P% rim (Asc. / Off-Def)",
+                      "label": "2P% rim (Asc. / Net)",
                       "value": "asc:diff_2prim",
                     },
                     Object {
@@ -28546,11 +28479,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_poss",
                     },
                     Object {
-                      "label": "Poss (Desc. / Off-Def)",
+                      "label": "Poss (Desc. / Net)",
                       "value": "desc:diff_poss",
                     },
                     Object {
-                      "label": "Poss (Asc. / Off-Def)",
+                      "label": "Poss (Asc. / Net)",
                       "value": "asc:diff_poss",
                     },
                     Object {
@@ -28570,11 +28503,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:def_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Desc. / Off-Def)",
+                      "label": "SoS (Desc. / Net)",
                       "value": "desc:diff_adj_opp",
                     },
                     Object {
-                      "label": "SoS (Asc. / Off-Def)",
+                      "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
                   ],
@@ -30076,6 +30009,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             }
           }
           onColumnConfigChange={[Function]}
+          onHeaderClick={[Function]}
           onPresetChange={[Function]}
           showConfigureColumns={true}
           tableCopyId="lineupStatsTable"

@@ -76,6 +76,9 @@ import { line } from "d3";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import ThemedSelect from "./shared/ThemedSelect";
 import YearSelector from "./shared/YearSelector";
+import TableSortPopupMenu, {
+  TableSortPopupMenuState,
+} from "./shared/TableSortPopupMenu";
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>;
@@ -109,7 +112,12 @@ const sortOptions: Array<any> = _.flatten(
         ["asc", "def"],
         ["desc", "diff"],
         ["asc", "diff"],
-      ].map((combo) => {
+      ].flatMap((combo) => {
+        if (combo[1] != "off" && keycol[0] == "net") {
+          //(def net is raw net but respresented weirdly so can't do anything)
+          return [];
+        }
+
         const ascOrDesc = (s: string) => {
           switch (s) {
             case "asc":
@@ -125,15 +133,17 @@ const sortOptions: Array<any> = _.flatten(
             case "def":
               return "Defensive";
             case "diff":
-              return "Off-Def";
+              return "Net";
           }
         };
-        return {
-          label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(
-            combo[1]
-          )})`,
-          value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-        };
+        return [
+          {
+            label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(
+              combo[1]
+            )})`,
+            value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
+          },
+        ];
       });
     })
 );
@@ -217,6 +227,17 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
   const [sortBy, setSortBy] = useState(
     startingState.sortBy || ParamDefaults.defaultLineupLboardSortBy
   );
+  const [sortMenuState, setSortMenuState] = useState<
+    TableSortPopupMenuState | undefined
+  >(undefined);
+  const handleSortMenuClick = (value: string) => {
+    setSortMenuState(undefined);
+    const newVal = value || ParamDefaults.defaultLineupLboardSortBy;
+    friendlyChange(() => {
+      setSortBy(newVal);
+    }, newVal != sortBy);
+  };
+
   const [filterStr, setFilterStr] = useState(
     startingState.filter || ParamDefaults.defaultLineupLboardFilter
   );
@@ -642,6 +663,37 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     });
     return (
       <GenericTable
+        sortField={_.thru(sortBy, (sortField) => {
+          const sortFieldDecomp = sortField.split(":");
+          if (sortFieldDecomp[1] == "diff_adj_ppp") {
+            return "off_net";
+          } else {
+            return sortFieldDecomp[1];
+          }
+        })}
+        onHeaderClick={(headerKeyIn, ev) => {
+          const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
+          const matchingOptions: {
+            value: string;
+            label: string;
+          }[] = sortOptions.filter((opt: { value: string; label: string }) => {
+            const field = opt.value.split(":")[1];
+            const rawFieldIndex = field.indexOf("_");
+            const rawField =
+              rawFieldIndex > 0 ? field.substring(rawFieldIndex + 1) : field;
+            return rawField == headerKey;
+          });
+
+          if (matchingOptions.length > 1) {
+            // Multiple options - show popup
+            setSortMenuState({
+              columnKey: headerKey,
+              options: matchingOptions.concat([{ label: "Clear", value: "" }]),
+              anchorEl: ev.currentTarget as HTMLElement,
+              currentSortValue: sortBy,
+            });
+          }
+        }}
         showConfigureColumns={true}
         initialColumnConfig={{
           newCol: tableConfigExtraCols,
@@ -884,6 +936,11 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
         spinner
         text={"Loading Lineup Leaderboard..."}
       >
+        <TableSortPopupMenu
+          state={sortMenuState}
+          onClick={handleSortMenuClick}
+          onClose={() => setSortMenuState(undefined)}
+        />
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
             <ThemedSelect

@@ -129,6 +129,9 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       .omit(
         _.flatten([
           // omit all defaults
+          rawParams.sortBy == ParamDefaults.defaultLineupSortBy
+            ? ["sortBy"]
+            : [],
           rawParams.decorate == ParamDefaults.defaultLineupDecorate
             ? ["decorate"]
             : [],
