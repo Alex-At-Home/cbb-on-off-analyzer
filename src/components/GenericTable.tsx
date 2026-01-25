@@ -883,7 +883,8 @@ const GenericTable: React.FunctionComponent<Props> = ({
           {isClickable ? (
             <>
               <br />
-              Click to cycle through available sort options
+              <br />
+              Click to choose from available sort options
             </>
           ) : undefined}
         </Tooltip>
