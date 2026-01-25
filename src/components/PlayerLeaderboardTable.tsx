@@ -133,12 +133,12 @@ const sortOptions: Array<any> = _.flatten(
     )
     .map((keycol) => {
       return [
+        ["desc", "diff"],
         ["desc", "off"],
+        ["asc", "def"],
+        ["asc", "diff"],
         ["asc", "off"],
         ["desc", "def"],
-        ["asc", "def"],
-        ["desc", "diff"],
-        ["asc", "diff"],
       ].flatMap((combo) => {
         if (
           combo[1] == "diff" &&
@@ -155,6 +155,7 @@ const sortOptions: Array<any> = _.flatten(
         if (
           combo[1] == "def" &&
           (keycol[0] == "usage" ||
+            keycol[0].endsWith("_margin") ||
             keycol[0] == "efg" ||
             keycol[0] == "assist" ||
             keycol[0] == "3pr" ||
@@ -2095,7 +2096,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           })}
           onHeaderClick={
             !advancedFilterStr?.includes("SORT_BY")
-              ? (headerKey, ev) => {
+              ? (headerKeyIn, ev) => {
+                  const headerKey = headerKeyIn.replace("_margin", "");
                   const matchingOptions: { value: string; label: string }[] =
                     sortOptions.filter(
                       (opt: { value: string; label: string }) => {

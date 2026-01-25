@@ -355,10 +355,51 @@ export class CommonTableDefs {
     off_2prim: (o: string) => `2P% rim (${o} / Offensive)`,
     def_2prim: (o: string) => `Blk% (${o} / Defensive)`,
     diff_2prim: (o: string) => undefined,
+    //(Margins:)
+    off_adj_rapm_margin: (o: string) => `RAPM (${o} / Net)`,
+    off_adj_rapm_prod_margin: (o: string) => `RAPM Prod (${o} / Net)`,
     //(also nothing to be done about def OR% because it's both RB and OR)
     off_drb: (o: string) => `DR% (${o} / Defensive)`,
     def_drb: (o: string) => undefined,
   } as Record<string, (o: string) => string | undefined>;
+
+  /** Handles switching between single row fields and dual row fields
+   * (has to be done whenever switching, super hacky, need to come up with an alternative at some point)
+   */
+  static sortByTransforms = (sortField: string, isExpanded: boolean) => {
+    //TODO: RAPM/prod, ORB/DEB
+    const comps = sortField.split(":");
+    if (isExpanded) {
+      switch (comps[1]) {
+        case "off_adj_rapm_margin":
+          comps[1] = "diff_adj_rapm";
+          break;
+        case "off_adj_rapm_prod_margin":
+          comps[1] = "diff_adj_rapm_prod";
+          break;
+        case "off_drb":
+          comps[1] = "def_orb";
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (comps[1]) {
+        case "diff_adj_rapm":
+          comps[1] = "off_adj_rapm_margin";
+          break;
+        case "diff_adj_rapm_prod":
+          comps[1] = "off_adj_rapm_prod_margin";
+          break;
+        case "def_orb":
+          comps[1] = "off_drb";
+          break;
+        default:
+          break;
+      }
+    }
+    return comps.join(":");
+  };
 
   /** To build a less wordy set of header text for the repeating headers (roster view) */
   static repeatingOnOffIndivHeaderFields: Record<string, string> = {

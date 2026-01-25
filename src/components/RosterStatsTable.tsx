@@ -274,8 +274,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   /** When switching between rating and prod, also switch common sort bys over */
   const toggleFactorMins = () => {
     const newSortBy = factorMins
-      ? sortBy.replace("_prod", "_rtg")
-      : sortBy.replace("_rtg", "_prod");
+      ? sortBy.replace("_rapm_prod", "_rapm").replace("_prod", "_rtg")
+      : sortBy.replace("_rapm", "_rapm_prod").replace("_rtg", "_prod");
     if (newSortBy != sortBy) {
       setSortBy(newSortBy);
     }
@@ -606,8 +606,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // 2] Data Model
 
-  const allTableFields =
-    CommonTableDefs.onOffIndividualTableAllFields(expandedView);
   const tableFields = CommonTableDefs.onOffIndividualTable(
     expandedView,
     possAsPct,
@@ -802,12 +800,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const sorter = (sortStr: string) => {
     // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
     const sortComps = sortStr.split(":"); //asc/desc
-    const dir = sortComps[0] == "desc" ? -1 : 1;
-    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
-    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
-    const field = (player: IndivStatSet) => {
-      return player?.[sortComps[1]]?.value || 0; //(off or def)
-    };
     const onOrOff = (playerSet: OnOffPlayerStatSet) => {
       switch (sortComps[2]) {
         case "on":
@@ -821,10 +813,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       }
     };
     return (playerSet: OnOffPlayerStatSet) => {
-      const playerFields = onOrOff(playerSet).map(
-        (player) => field(player) || 0
-      );
-      return dir * playerFields[0];
+      return onOrOff(playerSet).map((player) =>
+        LineupTableUtils.sorter(sortStr)(player)
+      )[0];
     };
   };
 
@@ -2245,6 +2236,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // 3.1] Sorting utils
 
+  const allTableFields =
+    CommonTableDefs.onOffIndividualTableAllFields(expandedView);
   const sortOptions: Array<any> = _.flatten(
     _.toPairs(allTableFields)
       .filter(
@@ -2258,12 +2251,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         return _.flatMap(
           [
             //TODO: inject some defensive fields in here
+            ["desc", "diff"],
             ["desc", "off"],
+            ["asc", "def"],
+            ["asc", "diff"],
             ["asc", "off"],
             ["desc", "def"],
-            ["asc", "def"],
-            ["desc", "diff"],
-            ["asc", "diff"],
           ],
           (sort_offDef) => {
             const onOffCombos = _.flatMap([
@@ -2291,8 +2284,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           if (
             combo[1] == "def" &&
             (keycol[0] == "usage" ||
+              keycol[0].endsWith("_margin") ||
               keycol[0] == "efg" ||
               keycol[0] == "assist" ||
+              (keycol[0] == "orb" && !expandedView) ||
               keycol[0] == "3pr" ||
               keycol[0] == "2pmidr" ||
               keycol[0] == "2primr" ||
@@ -2460,7 +2455,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             ? "Show single row of player stats"
             : "Show expanded player stats",
           toggled: expandedView,
-          onClick: () => setExpandedView(!expandedView),
+          onClick: () => {
+            const newExpandedView = !expandedView;
+            setExpandedView(newExpandedView);
+            setSortBy(
+              CommonTableDefs.sortByTransforms(sortBy, newExpandedView)
+            );
+          },
         },
         {
           label: "Poss%",

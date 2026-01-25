@@ -236,7 +236,12 @@ export class LineupTableUtils {
             (stat?.year || ParamDefaults.defaultLeaderboardYear).substring(0, 4)
           );
         default:
-          return stat[sortComps[1]]?.value; //(off or def)
+          if (sortComps[1] == "off_drb") {
+            //(annoying special case)
+            return stat["def_orb"]?.value;
+          } else {
+            return stat[sortComps[1]]?.value; //(off or def)
+          }
       }
     };
     return (stat: any) => {
