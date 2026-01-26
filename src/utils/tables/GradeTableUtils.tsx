@@ -182,9 +182,12 @@ const teamBuilderInfo = {
 /** Controls the formatting of the team and player grade tables */
 const playerBuilderInfo = {
   custom: {
+    // AST%
     "3pr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq),
     "2pmidr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq),
     "2primr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq),
+    // FT:
+    "3p": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
   },
   freq_pct: new Set(["usage", "assist"]),
 };
@@ -1353,6 +1356,20 @@ export class GradeTableUtils {
         </i>
       )
         .thru((n) => maybeWithExtraInfo(n, "off_2prim_ast"))
+        .thru((n) => maybeSmall(n))
+        .value();
+    }
+    if (playerPercentiles.off_ft) {
+      const shadow = CommonTableDefs.getTextShadow(
+        playerPercentiles.off_ft,
+        CbbColors.pctile_qual[0]
+      );
+      (playerPercentiles as any).def_3p = _.chain(
+        <i style={shadow}>
+          {GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_ft)}
+        </i>
+      )
+        .thru((n) => maybeWithExtraInfo(n, "off_ft"))
         .thru((n) => maybeSmall(n))
         .value();
     }

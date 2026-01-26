@@ -394,7 +394,8 @@ export class GenericTableOps {
       | "__def__"
       | "__net__"
       | "__adj__"
-      | "__raw__",
+      | "__raw__"
+      | "__ft__",
     width: number = 0.5
   ) {
     return new GenericTableColProps(specialCase, "", width);
@@ -462,6 +463,14 @@ export class GenericTableOps {
         off: "RAW",
         def: "RAW",
         "": "RAW",
+      },
+    },
+    __ft__: {
+      name: "FT% lower row",
+      keys: {
+        off: "",
+        def: "FT%",
+        "": "",
       },
     },
   };

@@ -44,6 +44,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -329,6 +342,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       >
                         <i>
                           18
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
                           %
                         </i>
                       </small>
@@ -622,6 +648,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -867,6 +906,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       >
                         <i>
                           38
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
                           %
                         </i>
                       </small>
@@ -1160,6 +1212,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -1405,6 +1470,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -1711,6 +1789,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -1963,6 +2054,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -2221,6 +2325,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -2517,6 +2634,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -2819,6 +2949,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -3111,6 +3254,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -3413,6 +3569,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -3705,6 +3874,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -4007,6 +4189,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -4259,6 +4454,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -4517,6 +4725,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -4813,6 +5034,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -5148,6 +5382,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -5393,6 +5640,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -6062,6 +6322,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -6247,6 +6508,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -6287,6 +6549,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -6583,6 +6858,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   >
                                     <i>
                                       18
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
                                       %
                                     </i>
                                   </small>
@@ -6887,6 +7175,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -7183,6 +7484,19 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   >
                                     <i>
                                       0
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
                                       %
                                     </i>
                                   </small>
@@ -7626,7 +7940,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -8713,9 +9027,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <div />
+                    <span
+                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    >
+                      <b />
+                    </span>
                   </td>
                   <td
                     class=""
@@ -9062,9 +9380,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     class=""
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <div />
+                    <span
+                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    >
+                      <b />
+                    </span>
                   </td>
                   <td
                     class=""
@@ -9227,6 +9549,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -9416,6 +9751,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -9622,6 +9970,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -9814,6 +10175,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -10016,6 +10390,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -10208,6 +10595,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -10443,6 +10843,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -10628,6 +11041,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -11277,6 +11703,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -11462,6 +11889,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -11502,6 +11930,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                   >
                                     <i>
                                       26
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      81
                                       %
                                     </i>
                                   </small>
@@ -11698,6 +12139,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                   >
                                     <i>
                                       26
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      81
                                       %
                                     </i>
                                   </small>
@@ -11902,6 +12356,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      72
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -12094,6 +12561,19 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                   >
                                     <i>
                                       45
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      72
                                       %
                                     </i>
                                   </small>
@@ -12342,13 +12822,28 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               },
               "3p": GenericTableColProps {
                 "className": "",
-                "colName": "3P%",
+                "colName": <div>
+                  3P%
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   FT%
+                </div>,
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "3 point field goal percentage",
+                "toolTip": "3 point field goal percentage / FT% in lower row",
                 "widthUnits": 2,
               },
               "3pr": GenericTableColProps {
@@ -12467,7 +12962,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -12632,6 +13127,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       >
                         <i>
                           28
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
                           %
                         </i>
                       </small>
@@ -12842,6 +13350,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -13044,6 +13565,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -13254,6 +13788,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -13460,6 +14007,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -13662,6 +14222,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -13885,6 +14458,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -14094,6 +14680,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -14313,6 +14912,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -14522,6 +15134,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -14741,6 +15366,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -14950,6 +15588,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -15169,6 +15820,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -15378,6 +16042,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -15597,6 +16274,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -15806,6 +16496,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -16025,6 +16728,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -16234,6 +16950,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -16486,6 +17215,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -16688,6 +17430,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -17354,6 +18109,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -17539,6 +18295,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -17579,6 +18336,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -17796,6 +18566,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -18005,6 +18788,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                   >
                                     <i>
                                       18
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
                                       %
                                     </i>
                                   </small>
@@ -18218,6 +19014,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                   >
                                     <i>
                                       18
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
                                       %
                                     </i>
                                   </small>
@@ -18439,6 +19248,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -18648,6 +19470,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                   >
                                     <i>
                                       38
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
                                       %
                                     </i>
                                   </small>
@@ -18865,6 +19700,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                   >
                                     <i>
                                       0
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
                                       %
                                     </i>
                                   </small>
@@ -19078,6 +19926,19 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                   >
                                     <i>
                                       0
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
                                       %
                                     </i>
                                   </small>
@@ -19343,13 +20204,28 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               },
               "3p": GenericTableColProps {
                 "className": "",
-                "colName": "3P%",
+                "colName": <div>
+                  3P%
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   FT%
+                </div>,
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "3 point field goal percentage",
+                "toolTip": "3 point field goal percentage / FT% in lower row",
                 "widthUnits": 2,
               },
               "3pr": GenericTableColProps {
@@ -19468,7 +20344,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -19633,6 +20509,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       >
                         <i>
                           28
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
                           %
                         </i>
                       </small>
@@ -19900,6 +20789,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -20159,6 +21061,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -20426,6 +21341,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -20689,6 +21617,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -20948,6 +21889,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -21228,6 +22182,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -21494,6 +22461,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -21770,6 +22750,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -22036,6 +23029,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -22312,6 +23318,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -22578,6 +23597,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -22854,6 +23886,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -23120,6 +24165,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -23396,6 +24454,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -23662,6 +24733,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -23938,6 +25022,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -24204,6 +25301,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -24513,6 +25623,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -24772,6 +25895,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -25455,6 +26591,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -25640,6 +26777,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -25680,6 +26818,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -25988,6 +27139,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                   >
                                     <i>
                                       18
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
                                       %
                                     </i>
                                   </small>
@@ -26304,6 +27468,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -26612,6 +27789,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                   >
                                     <i>
                                       0
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
                                       %
                                     </i>
                                   </small>
@@ -27049,7 +28239,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -27173,6 +28363,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       >
                         <i>
                           28
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
                           %
                         </i>
                       </small>
@@ -27397,6 +28600,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -27613,6 +28829,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -27837,6 +29066,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -28057,6 +29299,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -28273,6 +29528,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -28510,6 +29778,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -28733,6 +30014,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -28966,6 +30260,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -29189,6 +30496,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -29422,6 +30742,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -29645,6 +30978,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -29878,6 +31224,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -30101,6 +31460,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -30334,6 +31706,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -30557,6 +31942,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -30790,6 +32188,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -31013,6 +32424,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -31279,6 +32703,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -31495,6 +32932,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -32175,6 +33625,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -32360,6 +33811,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -32400,6 +33852,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -32627,6 +34092,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -32896,6 +34374,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -33119,6 +34610,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                   >
                                     <i>
                                       18
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
                                       %
                                     </i>
                                   </small>
@@ -33392,6 +34896,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -33615,6 +35132,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                   >
                                     <i>
                                       38
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
                                       %
                                     </i>
                                   </small>
@@ -33888,6 +35418,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -34111,6 +35654,19 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                                   >
                                     <i>
                                       0
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
                                       %
                                     </i>
                                   </small>
@@ -34410,13 +35966,28 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               "3p": GenericTableColProps {
                 "className": "",
-                "colName": "3P%",
+                "colName": <div>
+                  3P%
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   FT%
+                </div>,
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "3 point field goal percentage",
+                "toolTip": "3 point field goal percentage / FT% in lower row",
                 "widthUnits": 2,
               },
               "3pr": GenericTableColProps {
@@ -34535,7 +36106,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -34700,6 +36271,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       >
                         <i>
                           28
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
                           %
                         </i>
                       </small>
@@ -34973,6 +36557,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -35238,6 +36835,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -35511,6 +37121,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -35780,6 +37403,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -36045,6 +37681,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -36331,6 +37980,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -36603,6 +38265,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -36885,6 +38560,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -37157,6 +38845,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -37439,6 +39140,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -37711,6 +39425,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -37993,6 +39720,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -38265,6 +40005,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -38547,6 +40300,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -38819,6 +40585,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -39101,6 +40880,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -39373,6 +41165,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -39688,6 +41493,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -39953,6 +41771,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -40642,6 +42473,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -40827,6 +42659,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -40867,6 +42700,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -41165,6 +43011,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           >
                                             <i>
                                               28
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              79
                                               %
                                             </i>
                                           </small>
@@ -41488,6 +43347,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -41782,6 +43654,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           >
                                             <i>
                                               18
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              88
                                               %
                                             </i>
                                           </small>
@@ -42109,6 +43994,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -42403,6 +44301,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           >
                                             <i>
                                               38
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              73
                                               %
                                             </i>
                                           </small>
@@ -42730,6 +44641,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -43024,6 +44948,19 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           >
                                             <i>
                                               0
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              100
                                               %
                                             </i>
                                           </small>
@@ -43472,7 +45409,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -43596,6 +45533,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       >
                         <i>
                           28
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
                           %
                         </i>
                       </small>
@@ -43877,6 +45827,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -44150,6 +46113,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -44431,6 +46407,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -44704,6 +46693,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -44993,6 +46995,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -45308,6 +47323,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -45588,6 +47616,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -45878,6 +47919,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -46158,6 +48212,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -46448,6 +48515,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -46728,6 +48808,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -47018,6 +49111,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -47292,6 +49398,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -47572,6 +49691,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -47868,6 +50000,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -48170,6 +50315,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -48450,6 +50608,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -48773,6 +50944,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -49046,6 +51230,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -49763,6 +51960,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -49948,6 +52146,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -49988,6 +52187,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -50294,6 +52506,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           >
                                             <i>
                                               28
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              79
                                               %
                                             </i>
                                           </small>
@@ -50636,6 +52861,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </i>
                                           </small>
 
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              79
+                                              %
+                                            </i>
+                                          </small>
+
                       def_3pr: <small
                                             style={
                                               Object {
@@ -50917,6 +53155,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </i>
                                               </small>
 
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  72
+                                                  %
+                                                </i>
+                                              </small>
+
                         def_3pr: <small
                                                 style={
                                                   Object {
@@ -51184,6 +53435,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                               >
                                                 <i>
                                                   26
+                                                  %
+                                                </i>
+                                              </small>
+
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  81
                                                   %
                                                 </i>
                                               </small>
@@ -51511,6 +53775,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -51813,6 +54090,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           >
                                             <i>
                                               18
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              88
                                               %
                                             </i>
                                           </small>
@@ -52155,6 +54445,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </i>
                                           </small>
 
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              88
+                                              %
+                                            </i>
+                                          </small>
+
                       def_3pr: <small
                                             style={
                                               Object {
@@ -52436,6 +54739,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </i>
                                               </small>
 
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  72
+                                                  %
+                                                </i>
+                                              </small>
+
                         def_3pr: <small
                                                 style={
                                                   Object {
@@ -52703,6 +55019,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                               >
                                                 <i>
                                                   26
+                                                  %
+                                                </i>
+                                              </small>
+
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  81
                                                   %
                                                 </i>
                                               </small>
@@ -53034,6 +55363,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -53336,6 +55678,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           >
                                             <i>
                                               38
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              73
                                               %
                                             </i>
                                           </small>
@@ -53678,6 +56033,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </i>
                                           </small>
 
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              73
+                                              %
+                                            </i>
+                                          </small>
+
                       def_3pr: <small
                                             style={
                                               Object {
@@ -53959,6 +56327,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </i>
                                               </small>
 
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  72
+                                                  %
+                                                </i>
+                                              </small>
+
                         def_3pr: <small
                                                 style={
                                                   Object {
@@ -54226,6 +56607,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                               >
                                                 <i>
                                                   26
+                                                  %
+                                                </i>
+                                              </small>
+
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  81
                                                   %
                                                 </i>
                                               </small>
@@ -54557,6 +56951,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -54853,6 +57260,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           >
                                             <i>
                                               0
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              100
                                               %
                                             </i>
                                           </small>
@@ -55189,6 +57609,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </i>
                                           </small>
 
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              100
+                                              %
+                                            </i>
+                                          </small>
+
                       def_3pr: <small
                                             style={
                                               Object {
@@ -55464,6 +57897,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </i>
                                               </small>
 
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  72
+                                                  %
+                                                </i>
+                                              </small>
+
                         def_3pr: <small
                                                 style={
                                                   Object {
@@ -55731,6 +58177,19 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                               >
                                                 <i>
                                                   26
+                                                  %
+                                                </i>
+                                              </small>
+
+                        def_3p: <small
+                                                style={
+                                                  Object {
+                                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                                  }
+                                                }
+                                              >
+                                                <i>
+                                                  81
                                                   %
                                                 </i>
                                               </small>
@@ -56183,7 +58642,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -56307,6 +58766,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       >
                         <i>
                           28
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                          }
+                        }
+                      >
+                        <i>
+                          79
                           %
                         </i>
                       </small>
@@ -56572,6 +59044,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          88
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -56829,6 +59314,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       >
                         <i>
                           26
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
                           %
                         </i>
                       </small>
@@ -57106,6 +59604,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                          }
+                        }
+                      >
+                        <i>
+                          73
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -57367,6 +59878,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -57624,6 +60148,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       >
                         <i>
                           0
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                          }
+                        }
+                      >
+                        <i>
+                          100
                           %
                         </i>
                       </small>
@@ -57911,6 +60448,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -58187,6 +60737,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                               >
                                 <i>
                                   26
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                                  }
+                                }
+                              >
+                                <i>
+                                  81
                                   %
                                 </i>
                               </small>
@@ -58473,6 +61036,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -58737,6 +61313,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                               >
                                 <i>
                                   18
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  88
                                   %
                                 </i>
                               </small>
@@ -59011,6 +61600,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -59275,6 +61877,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                               >
                                 <i>
                                   28
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                  }
+                                }
+                              >
+                                <i>
+                                  79
                                   %
                                 </i>
                               </small>
@@ -59549,6 +62164,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -59813,6 +62441,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                               >
                                 <i>
                                   0
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                  }
+                                }
+                              >
+                                <i>
+                                  100
                                   %
                                 </i>
                               </small>
@@ -60087,6 +62728,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -60351,6 +63005,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                               >
                                 <i>
                                   45
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                                  }
+                                }
+                              >
+                                <i>
+                                  72
                                   %
                                 </i>
                               </small>
@@ -60625,6 +63292,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </i>
                               </small>
 
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
+                                  %
+                                </i>
+                              </small>
+
                 def_3pr: <small
                                 style={
                                   Object {
@@ -60889,6 +63569,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                               >
                                 <i>
                                   38
+                                  %
+                                </i>
+                              </small>
+
+                def_3p: <small
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                  }
+                                }
+                              >
+                                <i>
+                                  73
                                   %
                                 </i>
                               </small>
@@ -61196,6 +63889,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </i>
                       </small>
 
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142",
+                          }
+                        }
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </small>
+
             def_3pr: <small
                         style={
                           Object {
@@ -61465,6 +64171,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       >
                         <i>
                           45
+                          %
+                        </i>
+                      </small>
+
+            def_3p: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3",
+                          }
+                        }
+                      >
+                        <i>
+                          72
                           %
                         </i>
                       </small>
@@ -62154,6 +64873,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "tooltip": "",
               },
               Object {
+                "disabled": false,
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
@@ -62339,6 +65059,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               ],
               "customKeyMappings": Object {
                 "def_2primr": "off_2prim_ast",
+                "def_3p": "off_ft",
                 "def_3pr": "off_3p_ast",
               },
               "hybridMode": true,
@@ -62379,6 +65100,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                   >
                                     <i>
                                       28
+                                      %
+                                    </i>
+                                  </small>
+
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      79
                                       %
                                     </i>
                                   </small>
@@ -62669,6 +65403,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                           >
                                             <i>
                                               28
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              79
                                               %
                                             </i>
                                           </small>
@@ -62984,6 +65731,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      88
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -63270,6 +66030,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                           >
                                             <i>
                                               18
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              88
                                               %
                                             </i>
                                           </small>
@@ -63589,6 +66362,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      73
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -63875,6 +66661,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                           >
                                             <i>
                                               38
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4,0px 0px 15px #d4e9d4",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              73
                                               %
                                             </i>
                                           </small>
@@ -64194,6 +66993,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </i>
                                   </small>
 
+                  def_3p: <small
+                                    style={
+                                      Object {
+                                        "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                      }
+                                    }
+                                  >
+                                    <i>
+                                      100
+                                      %
+                                    </i>
+                                  </small>
+
                   def_3pr: <small
                                     style={
                                       Object {
@@ -64480,6 +67292,19 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                           >
                                             <i>
                                               0
+                                              %
+                                            </i>
+                                          </small>
+
+                      def_3p: <small
+                                            style={
+                                              Object {
+                                                "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
+                                              }
+                                            }
+                                          >
+                                            <i>
+                                              100
                                               %
                                             </i>
                                           </small>
@@ -64920,7 +67745,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               },
               "sep3": GenericTableColProps {
                 "className": "",
-                "colName": "",
+                "colName": "__ft__",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,

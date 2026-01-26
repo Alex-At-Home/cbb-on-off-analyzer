@@ -520,15 +520,16 @@ export class TableDisplayUtils {
     playerView: boolean,
     teamSeasonLookup?: string
   ) {
+    const buildInfoRow = (
+      stat: Statistic,
+      colorOverride: (val: number) => string = CbbColors.fgr_offDef
+    ) => (
+      <small style={CommonTableDefs.getTextShadow(stat, colorOverride)}>
+        <i>{(100 * (stat?.value || 0)).toFixed(0)}%</i>
+      </small>
+    );
     if (playerView) {
       // Put assist %s as the row underneath shot types:
-      const buildInfoRow = (stat: Statistic) => (
-        <small
-          style={CommonTableDefs.getTextShadow(stat, CbbColors.fgr_offDef)}
-        >
-          <i>{(100 * (stat?.value || 0)).toFixed(0)}%</i>
-        </small>
-      );
       (statSet as IndivStatSet).def_2primr = buildInfoRow(
         statSet.off_2prim_ast
       );
@@ -610,6 +611,12 @@ export class TableDisplayUtils {
     if (statSet.off_ftr) {
       statSet.off_ftr.extraInfo = (
         <span>FT: {(100 * (statSet.off_ft?.value || 0)).toFixed(1)}%</span>
+      );
+    }
+    if (playerView) {
+      (statSet as IndivStatSet).def_3p = buildInfoRow(
+        statSet.off_ft,
+        CbbColors.off_FT
       );
     }
 

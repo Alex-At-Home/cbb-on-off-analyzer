@@ -3013,6 +3013,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         ),
                       colorChooser: CbbColors.integratedColorsDefault,
                       customKeyMappings: {
+                        def_3p: "off_ft",
                         def_3pr: "off_3p_ast",
                         def_2primr: "off_2prim_ast",
                       },

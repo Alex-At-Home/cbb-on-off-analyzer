@@ -352,6 +352,8 @@ export class CommonTableDefs {
     off_ftr: (o: string) => `FTR (${o} / Offensive)`,
     def_ftr: (o: string) => `FC/50 (${o} / Defensive)`,
     diff_ftr: (o: string) => undefined,
+    off_3p: (o: string) => `3P% (${o} / Offensive)`,
+    def_3p: (o: string) => `FT% (${o} / Offensive)`,
     off_2prim: (o: string) => `2P% rim (${o} / Offensive)`,
     def_2prim: (o: string) => `Blk% (${o} / Defensive)`,
     diff_2prim: (o: string) => undefined,
@@ -584,11 +586,14 @@ export class CommonTableDefs {
         CbbColors.offOnlyPicker(...CbbColors.fgr),
         GenericTableOps.percentOrHtmlFormatter
       ),
-      sep3: GenericTableOps.addColSeparator(),
-      "3p": GenericTableOps.addPctCol(
-        "3P%",
-        "3 point field goal percentage",
-        CbbColors.picker(...CbbColors.fg3P)
+      sep3: GenericTableOps.addSpecialColSeparator("__ft__"),
+      "3p": GenericTableOps.addDataCol(
+        expandedView ? <div>3P%{lineSep} FT%</div> : "3P%",
+        expandedView
+          ? "3 point field goal percentage / FT% in lower row"
+          : "3 point field goal percentage",
+        CbbColors.offOnlyPicker(...CbbColors.fg3P),
+        GenericTableOps.percentOrHtmlFormatter
       ),
       "2p": GenericTableOps.addPctCol(
         "2P%",
@@ -647,7 +652,7 @@ export class CommonTableDefs {
     ) as Record<string, GenericTableColProps>;
   };
 
-  /** Single row player leaderboard table with On/Off styling */
+  /** Single row player leaderboard table with On/Off styling - TODO not currently in use, an experiment for very long columns */
   static readonly singleRowPlayerLeaderboardOnOffStyle = (
     factorMins: boolean,
     useRapm: boolean,
