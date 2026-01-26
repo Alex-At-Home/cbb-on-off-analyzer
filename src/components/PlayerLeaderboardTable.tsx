@@ -158,9 +158,6 @@ const sortOptions: Array<any> = _.flatten(
             keycol[0].endsWith("_margin") ||
             keycol[0] == "efg" ||
             keycol[0] == "assist" ||
-            keycol[0] == "3pr" ||
-            keycol[0] == "2pmidr" ||
-            keycol[0] == "2primr" ||
             keycol[0] == "2p" ||
             keycol[0] == "2pmid")
         ) {

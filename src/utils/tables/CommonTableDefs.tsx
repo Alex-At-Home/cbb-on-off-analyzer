@@ -354,6 +354,10 @@ export class CommonTableDefs {
     off_2prim: (o: string) => `2P% rim (${o} / Offensive)`,
     def_2prim: (o: string) => `Blk% (${o} / Defensive)`,
     diff_2prim: (o: string) => undefined,
+    //Assisted%
+    def_3pr: (o: string) => `3P Assisted% (${o} / Offensive)`,
+    def_2pmidr: (o: string) => `2P Mid Assisted% (${o} / Offensive)`,
+    def_2primr: (o: string) => `2P Mid Assisted% (${o} / Offensive)`,
     //(Margins:)
     off_adj_rapm_margin: (o: string) => `RAPM (${o} / Net)`,
     off_adj_rapm_prod_margin: (o: string) => `RAPM Prod (${o} / Net)`,
@@ -565,7 +569,7 @@ export class CommonTableDefs {
           expandedView ? " (assisted% below)" : ""
         }`,
         CbbColors.offOnlyPicker(...CbbColors.fgr),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef)
       ),
       "2pmidr": GenericTableOps.addDataCol(
         "2PR mid",
@@ -573,7 +577,7 @@ export class CommonTableDefs {
           expandedView ? " (assisted% below)" : ""
         }`,
         CbbColors.offOnlyPicker(...CbbColors.fgr),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef)
       ),
       "2primr": GenericTableOps.addDataCol(
         "2PR rim",
@@ -581,7 +585,7 @@ export class CommonTableDefs {
           expandedView ? " (assisted% below)" : ""
         }`,
         CbbColors.offOnlyPicker(...CbbColors.fgr),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef)
       ),
       sep3: GenericTableOps.addSpecialColSeparator("__ft__"),
       "3p": GenericTableOps.addDataCol(

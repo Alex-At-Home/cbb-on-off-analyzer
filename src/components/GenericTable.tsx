@@ -226,9 +226,14 @@ export class GenericTableOps {
       } else {
         //def_ ... add a shadow on top of whatever background (typically default)
         return (
-          <small style={GenericTableOps.getTextShadow(val, colorOverride)}>
+          <div
+            style={{
+              ...GenericTableOps.getTextShadow(val, colorOverride),
+              fontSize: "0.875em", //(use this instead of small so as to inherit the fontWeight from the parent)
+            }}
+          >
             <i>{(100 * (val?.value || 0)).toFixed(0)}%</i>
-          </small>
+          </div>
         );
       }
     };

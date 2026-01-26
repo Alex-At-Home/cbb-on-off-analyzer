@@ -1327,6 +1327,10 @@ export class GradeTableUtils {
       }
     };
 
+    //TODO: the actual values for these now use the integrated dualRowPercentFormatter
+    // so should switch these across also .. the main difference is the maybeSmall
+    // (plus need to dig out the annoyingly hidden place where i define these rows)
+
     if (playerPercentiles.off_3p_ast) {
       const shadow = CommonTableDefs.getTextShadow(
         playerPercentiles.off_3p_ast,
