@@ -614,10 +614,7 @@ export class TableDisplayUtils {
       );
     }
     if (playerView) {
-      (statSet as IndivStatSet).def_3p = buildInfoRow(
-        statSet.off_ft,
-        CbbColors.off_FT
-      );
+      statSet.def_3p = statSet.off_ft;
     }
 
     const buildText = (stat: Statistic) => {

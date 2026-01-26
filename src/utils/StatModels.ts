@@ -152,8 +152,6 @@ export type IndivMetadata = {
   def_2pmidr?: React.ReactNode;
   /** Gets abused to display assist% */
   def_3pr?: React.ReactNode;
-  /** Gets abused to display FT% */
-  def_3p?: React.ReactNode;
 
   /** Gets abused to display positional information in the table */
   def_usage?: React.ReactNode;

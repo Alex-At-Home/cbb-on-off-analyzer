@@ -2296,7 +2296,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               keycol[0] == "3pr" ||
               keycol[0] == "2pmidr" ||
               keycol[0] == "2primr" ||
-              keycol[0] == "3p" ||
               keycol[0] == "2p" ||
               keycol[0] == "2pmid")
           ) {

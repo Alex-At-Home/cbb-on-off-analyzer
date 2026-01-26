@@ -311,12 +311,9 @@ export class CommonTableDefs {
     radius: string = "15px",
     strength = 3
   ) => {
-    const shadow = _.range(0, strength)
-      .map((__) => `0px 0px ${radius} ${colorMapper(stat?.value || 0) || ""}`)
-      .join(",");
-    return {
-      textShadow: shadow,
-    };
+    //(move this but just to avoid initially changing the code everywhere)
+    //(TODO: change the code everywhere to use GenericTableOps!)
+    return GenericTableOps.getTextShadow(stat, colorMapper, radius, strength);
   };
 
   /** Map of fields to descriptions, TODO: start usng this in the tables below */
@@ -593,7 +590,7 @@ export class CommonTableDefs {
           ? "3 point field goal percentage / FT% in lower row"
           : "3 point field goal percentage",
         CbbColors.offOnlyPicker(...CbbColors.fg3P),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.dualRowPercentFormatter(CbbColors.off_FT)
       ),
       "2p": GenericTableOps.addPctCol(
         "2P%",

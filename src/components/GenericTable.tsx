@@ -151,6 +151,21 @@ export type GenericTableRow =
   | GenericTableSubHeaderRow
   | GenericTableRepeatHeaderRow;
 export class GenericTableOps {
+  /** Utility to put a faint colored backing to text */
+  static readonly getTextShadow = (
+    stat: { value?: number },
+    colorMapper: (val: number) => string | undefined,
+    radius: string = "15px",
+    strength = 3
+  ) => {
+    const shadow = _.range(0, strength)
+      .map((__) => `0px 0px ${radius} ${colorMapper(stat?.value || 0) || ""}`)
+      .join(",");
+    return {
+      textShadow: shadow,
+    };
+  };
+
   static readonly defaultFormatter = (val: any) => "" + val;
   static readonly offHighlightFormatter = (
     formatter: (val: any) => string | React.ReactNode
@@ -200,6 +215,23 @@ export class GenericTableOps {
     } else {
       return GenericTableOps.percentFormatter(val);
     }
+  };
+  /** Top row is %, bottom row is also % but has a shadow instead of a full background */
+  static readonly dualRowPercentFormatter = (
+    colorOverride: (val: number) => string
+  ) => {
+    return (val: any, key?: string) => {
+      if (!key || key.startsWith("off_")) {
+        return GenericTableOps.percentFormatter(val);
+      } else {
+        //def_ ... add a shadow on top of whatever background (typically default)
+        return (
+          <small style={GenericTableOps.getTextShadow(val, colorOverride)}>
+            <i>{(100 * (val?.value || 0)).toFixed(0)}%</i>
+          </small>
+        );
+      }
+    };
   };
   static readonly gradeOrHtmlFormatter = (val: any) => {
     if (React.isValidElement(val)) {
