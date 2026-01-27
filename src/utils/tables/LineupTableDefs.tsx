@@ -16,6 +16,7 @@ import { TableDisplayUtils } from "./TableDisplayUtils"; // Import needed for to
 // Lodash:
 import _ from "lodash";
 import { CommonTableDefs, OffDefDualMixed } from "./CommonTableDefs";
+import { TableSortPopupMenuState } from "../../components/shared/TableSortPopupMenu";
 
 /** Holds all the different column definitions for the similar tables used throughout this SPA */
 export class LineupTableDefs {
@@ -41,6 +42,64 @@ export class LineupTableDefs {
       return CommonTableDefs.defPrefixFn(key);
     }
   };
+
+  ////////////////////////////////////////////
+
+  // Sort utils
+
+  static readonly sortField = (
+    sortField: string,
+    defaultSortConfig: string
+  ) => {
+    if (sortField == defaultSortConfig) {
+      return undefined;
+    } else {
+      const sortFieldDecomp = sortField.split(":");
+      if (sortFieldDecomp[1] == "diff_adj_ppp") {
+        return "off_net";
+      } else {
+        return sortFieldDecomp[1];
+      }
+    }
+  };
+
+  static readonly buildSortCallback = (
+    rowMode: OffDefDualMixed,
+    sortBy: string,
+    sortOptions: { label: string; value: string }[],
+    setSortMenuState: (newState: TableSortPopupMenuState) => void
+  ) => {
+    return (headerKeyIn: string, ev: any) => {
+      const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
+
+      const matchingOptions: {
+        value: string;
+        label: string;
+      }[] = sortOptions.filter((opt: { value: string; label: string }) => {
+        const field = opt.value.split(":")[1];
+        const rawFieldIndex = field.indexOf("_");
+        const rawField =
+          rawFieldIndex > 0 && rowMode != "Mixed"
+            ? field.substring(rawFieldIndex + 1)
+            : field;
+        return rawField == headerKey;
+      });
+
+      if (matchingOptions.length > 1) {
+        // Multiple options - show popup
+        setSortMenuState({
+          columnKey: headerKey,
+          options: matchingOptions.concat([{ label: "Clear", value: "" }]),
+          anchorEl: ev.currentTarget as HTMLElement,
+          currentSortValue: sortBy,
+        });
+      }
+    };
+  };
+
+  ////////////////////////////////////////////
+
+  // Table Defs:
 
   /** To build a less wordy set of header text for the repeating headers (team on/off) */
   static repeatingLineupHeaderFields: Record<string, string> = {

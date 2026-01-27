@@ -393,6 +393,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                       "value": "asc:off_net",
                     },
                     Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -7315,8 +7339,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "2P% rim": "Rim%",
                   "2PR mid": "MidR",
                   "2PR rim": "RimR",
-                  "Adj P/100": "Adj",
+                  "Adj P/100": "A/100",
+                  "Adj Rtg": "Adj",
                   "Net Rtg": "Net",
+                  "Raw Rtg": "Raw",
                 },
                 "kind": "text-row",
               },
@@ -14308,6 +14334,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                       "value": "asc:off_net",
                     },
                     Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -21258,8 +21308,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "2P% rim": "Rim%",
                   "2PR mid": "MidR",
                   "2PR rim": "RimR",
-                  "Adj P/100": "Adj",
+                  "Adj P/100": "A/100",
+                  "Adj Rtg": "Adj",
                   "Net Rtg": "Net",
+                  "Raw Rtg": "Raw",
                 },
                 "kind": "text-row",
               },
@@ -27754,8 +27806,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "2P% rim": "Rim%",
                   "2PR mid": "MidR",
                   "2PR rim": "RimR",
-                  "Adj P/100": "Adj",
+                  "Adj P/100": "A/100",
+                  "Adj Rtg": "Adj",
                   "Net Rtg": "Net",
+                  "Raw Rtg": "Raw",
                 },
                 "kind": "text-row",
               },
@@ -34810,6 +34864,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                       "value": "asc:off_net",
                     },
                     Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -41732,8 +41810,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "2P% rim": "Rim%",
                   "2PR mid": "MidR",
                   "2PR rim": "RimR",
-                  "Adj P/100": "Adj",
+                  "Adj P/100": "A/100",
+                  "Adj Rtg": "Adj",
                   "Net Rtg": "Net",
+                  "Raw Rtg": "Raw",
                 },
                 "kind": "text-row",
               },

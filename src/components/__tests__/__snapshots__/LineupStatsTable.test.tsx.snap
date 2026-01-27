@@ -526,6 +526,270 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Offensive)",
+                      "value": "desc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Offensive)",
+                      "value": "asc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Defensive)",
+                      "value": "desc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Defensive)",
+                      "value": "asc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Net)",
+                      "value": "desc:diff_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Net)",
+                      "value": "asc:diff_ft",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Offensive)",
+                      "value": "desc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Offensive)",
+                      "value": "asc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Net)",
+                      "value": "desc:diff_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Net)",
+                      "value": "asc:diff_stl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Offensive)",
+                      "value": "desc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Offensive)",
+                      "value": "asc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Net)",
+                      "value": "desc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Net)",
+                      "value": "asc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Offensive)",
+                      "value": "desc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Offensive)",
+                      "value": "asc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Net)",
+                      "value": "desc:diff_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Net)",
+                      "value": "asc:diff_blk",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Offensive)",
+                      "value": "desc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Offensive)",
+                      "value": "asc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Defensive)",
+                      "value": "desc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Defensive)",
+                      "value": "asc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Net)",
+                      "value": "desc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Net)",
+                      "value": "asc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Offensive)",
+                      "value": "desc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Offensive)",
+                      "value": "asc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Defensive)",
+                      "value": "desc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Defensive)",
+                      "value": "asc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Net)",
+                      "value": "desc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Net)",
+                      "value": "asc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Offensive)",
+                      "value": "desc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Offensive)",
+                      "value": "asc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Defensive)",
+                      "value": "desc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Defensive)",
+                      "value": "asc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Net)",
+                      "value": "desc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Net)",
+                      "value": "asc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_rim",
+                    },
                   ],
                 },
               ]
@@ -6631,6 +6895,270 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                       "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Offensive)",
+                      "value": "desc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Offensive)",
+                      "value": "asc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Defensive)",
+                      "value": "desc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Defensive)",
+                      "value": "asc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Net)",
+                      "value": "desc:diff_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Net)",
+                      "value": "asc:diff_ft",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Offensive)",
+                      "value": "desc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Offensive)",
+                      "value": "asc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Net)",
+                      "value": "desc:diff_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Net)",
+                      "value": "asc:diff_stl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Offensive)",
+                      "value": "desc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Offensive)",
+                      "value": "asc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Net)",
+                      "value": "desc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Net)",
+                      "value": "asc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Offensive)",
+                      "value": "desc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Offensive)",
+                      "value": "asc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Net)",
+                      "value": "desc:diff_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Net)",
+                      "value": "asc:diff_blk",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Offensive)",
+                      "value": "desc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Offensive)",
+                      "value": "asc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Defensive)",
+                      "value": "desc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Defensive)",
+                      "value": "asc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Net)",
+                      "value": "desc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Net)",
+                      "value": "asc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Offensive)",
+                      "value": "desc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Offensive)",
+                      "value": "asc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Defensive)",
+                      "value": "desc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Defensive)",
+                      "value": "asc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Net)",
+                      "value": "desc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Net)",
+                      "value": "asc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Offensive)",
+                      "value": "desc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Offensive)",
+                      "value": "asc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Defensive)",
+                      "value": "desc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Defensive)",
+                      "value": "asc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Net)",
+                      "value": "desc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Net)",
+                      "value": "asc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_rim",
+                    },
                   ],
                 },
               ]
@@ -11907,28 +12435,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:off_net",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Offensive)",
-                      "value": "desc:off_ppp",
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Offensive)",
-                      "value": "asc:off_ppp",
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Defensive)",
-                      "value": "desc:def_ppp",
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Defensive)",
-                      "value": "asc:def_ppp",
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
                     },
                     Object {
-                      "label": "P/100 (Desc. / Net)",
-                      "value": "desc:diff_ppp",
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
                     },
                     Object {
-                      "label": "P/100 (Asc. / Net)",
-                      "value": "asc:diff_ppp",
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
                     },
                     Object {
                       "label": "Adj P/100 (Asc. / Offensive)",
@@ -12273,6 +12801,246 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     Object {
                       "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Offensive)",
+                      "value": "desc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Offensive)",
+                      "value": "asc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Defensive)",
+                      "value": "desc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Defensive)",
+                      "value": "asc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Net)",
+                      "value": "desc:diff_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Net)",
+                      "value": "asc:diff_ft",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Offensive)",
+                      "value": "desc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Offensive)",
+                      "value": "asc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Net)",
+                      "value": "desc:diff_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Net)",
+                      "value": "asc:diff_stl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Offensive)",
+                      "value": "desc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Offensive)",
+                      "value": "asc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Net)",
+                      "value": "desc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Net)",
+                      "value": "asc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Offensive)",
+                      "value": "desc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Offensive)",
+                      "value": "asc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Net)",
+                      "value": "desc:diff_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Net)",
+                      "value": "asc:diff_blk",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Offensive)",
+                      "value": "desc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Offensive)",
+                      "value": "asc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Defensive)",
+                      "value": "desc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Defensive)",
+                      "value": "asc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Net)",
+                      "value": "desc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Net)",
+                      "value": "asc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Offensive)",
+                      "value": "desc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Offensive)",
+                      "value": "asc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Defensive)",
+                      "value": "desc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Defensive)",
+                      "value": "asc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Net)",
+                      "value": "desc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Net)",
+                      "value": "asc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Offensive)",
+                      "value": "desc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Offensive)",
+                      "value": "asc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Defensive)",
+                      "value": "desc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Defensive)",
+                      "value": "asc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Net)",
+                      "value": "desc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Net)",
+                      "value": "asc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_rim",
                     },
                   ],
                 },
@@ -17071,6 +17839,270 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Offensive)",
+                      "value": "desc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Offensive)",
+                      "value": "asc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Defensive)",
+                      "value": "desc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Defensive)",
+                      "value": "asc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Net)",
+                      "value": "desc:diff_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Net)",
+                      "value": "asc:diff_ft",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Offensive)",
+                      "value": "desc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Offensive)",
+                      "value": "asc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Net)",
+                      "value": "desc:diff_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Net)",
+                      "value": "asc:diff_stl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Offensive)",
+                      "value": "desc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Offensive)",
+                      "value": "asc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Net)",
+                      "value": "desc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Net)",
+                      "value": "asc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Offensive)",
+                      "value": "desc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Offensive)",
+                      "value": "asc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Net)",
+                      "value": "desc:diff_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Net)",
+                      "value": "asc:diff_blk",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Offensive)",
+                      "value": "desc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Offensive)",
+                      "value": "asc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Defensive)",
+                      "value": "desc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Defensive)",
+                      "value": "asc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Net)",
+                      "value": "desc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Net)",
+                      "value": "asc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Offensive)",
+                      "value": "desc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Offensive)",
+                      "value": "asc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Defensive)",
+                      "value": "desc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Defensive)",
+                      "value": "asc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Net)",
+                      "value": "desc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Net)",
+                      "value": "asc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Offensive)",
+                      "value": "desc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Offensive)",
+                      "value": "asc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Defensive)",
+                      "value": "desc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Defensive)",
+                      "value": "asc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Net)",
+                      "value": "desc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Net)",
+                      "value": "asc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_rim",
+                    },
                   ],
                 },
               ]
@@ -19552,8 +20584,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "2P% rim": "Rim%",
                   "2PR mid": "MidR",
                   "2PR rim": "RimR",
-                  "Adj P/100": "Adj",
+                  "Adj P/100": "A/100",
+                  "Adj Rtg": "Adj",
                   "Net Rtg": "Net",
+                  "Raw Rtg": "Raw",
                 },
                 "kind": "text-row",
               },
@@ -20533,8 +21567,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "2P% rim": "Rim%",
                   "2PR mid": "MidR",
                   "2PR rim": "RimR",
-                  "Adj P/100": "Adj",
+                  "Adj P/100": "A/100",
+                  "Adj Rtg": "Adj",
                   "Net Rtg": "Net",
+                  "Raw Rtg": "Raw",
                 },
                 "kind": "text-row",
               },
@@ -22320,6 +23356,270 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     Object {
                       "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Offensive)",
+                      "value": "desc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Offensive)",
+                      "value": "asc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Defensive)",
+                      "value": "desc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Defensive)",
+                      "value": "asc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Net)",
+                      "value": "desc:diff_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Net)",
+                      "value": "asc:diff_ft",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Offensive)",
+                      "value": "desc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Offensive)",
+                      "value": "asc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Net)",
+                      "value": "desc:diff_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Net)",
+                      "value": "asc:diff_stl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Offensive)",
+                      "value": "desc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Offensive)",
+                      "value": "asc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Net)",
+                      "value": "desc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Net)",
+                      "value": "asc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Offensive)",
+                      "value": "desc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Offensive)",
+                      "value": "asc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Net)",
+                      "value": "desc:diff_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Net)",
+                      "value": "asc:diff_blk",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Offensive)",
+                      "value": "desc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Offensive)",
+                      "value": "asc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Defensive)",
+                      "value": "desc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Defensive)",
+                      "value": "asc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Net)",
+                      "value": "desc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Net)",
+                      "value": "asc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Offensive)",
+                      "value": "desc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Offensive)",
+                      "value": "asc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Defensive)",
+                      "value": "desc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Defensive)",
+                      "value": "asc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Net)",
+                      "value": "desc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Net)",
+                      "value": "asc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Offensive)",
+                      "value": "desc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Offensive)",
+                      "value": "asc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Defensive)",
+                      "value": "desc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Defensive)",
+                      "value": "asc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Net)",
+                      "value": "desc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Net)",
+                      "value": "asc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_rim",
                     },
                   ],
                 },
@@ -28509,6 +29809,270 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     Object {
                       "label": "SoS (Asc. / Net)",
                       "value": "asc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Offensive)",
+                      "value": "desc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Offensive)",
+                      "value": "asc:off_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Defensive)",
+                      "value": "desc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Defensive)",
+                      "value": "asc:def_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Desc. / Net)",
+                      "value": "desc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "Pts (Asc. / Net)",
+                      "value": "asc:diff_raw_pts",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Offensive)",
+                      "value": "desc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Offensive)",
+                      "value": "asc:off_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Defensive)",
+                      "value": "desc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Defensive)",
+                      "value": "asc:def_ft",
+                    },
+                    Object {
+                      "label": "FT% (Desc. / Net)",
+                      "value": "desc:diff_ft",
+                    },
+                    Object {
+                      "label": "FT% (Asc. / Net)",
+                      "value": "asc:diff_ft",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Offensive)",
+                      "value": "desc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Offensive)",
+                      "value": "asc:off_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Net)",
+                      "value": "desc:diff_stl",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Net)",
+                      "value": "asc:diff_stl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Offensive)",
+                      "value": "desc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Offensive)",
+                      "value": "asc:off_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Desc. / Net)",
+                      "value": "desc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Non-Stl% (Asc. / Net)",
+                      "value": "asc:diff_to_nonstl",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Offensive)",
+                      "value": "desc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Offensive)",
+                      "value": "asc:off_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Net)",
+                      "value": "desc:diff_blk",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Net)",
+                      "value": "asc:diff_blk",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Offensive)",
+                      "value": "desc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Offensive)",
+                      "value": "asc:off_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Defensive)",
+                      "value": "desc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Defensive)",
+                      "value": "asc:def_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Desc. / Net)",
+                      "value": "desc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST 3P (Asc. / Net)",
+                      "value": "asc:diff_3p_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Offensive)",
+                      "value": "desc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Offensive)",
+                      "value": "asc:off_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Defensive)",
+                      "value": "desc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Defensive)",
+                      "value": "asc:def_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Desc. / Net)",
+                      "value": "desc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Mid (Asc. / Net)",
+                      "value": "asc:diff_mid_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Offensive)",
+                      "value": "desc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Offensive)",
+                      "value": "asc:off_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Defensive)",
+                      "value": "desc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Defensive)",
+                      "value": "asc:def_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Desc. / Net)",
+                      "value": "desc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "AST Rim (Asc. / Net)",
+                      "value": "asc:diff_rim_ast",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "3P AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_3p",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Mid AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_mid",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Offensive)",
+                      "value": "desc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Offensive)",
+                      "value": "asc:off_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Defensive)",
+                      "value": "desc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Defensive)",
+                      "value": "asc:def_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Desc. / Net)",
+                      "value": "desc:diff_ast_rim",
+                    },
+                    Object {
+                      "label": "Rim AST% (Asc. / Net)",
+                      "value": "asc:diff_ast_rim",
                     },
                   ],
                 },

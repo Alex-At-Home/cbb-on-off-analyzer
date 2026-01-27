@@ -423,9 +423,131 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     luckConfig.base
   );
 
-  // 3.1] Build individual info
+  // 3.1] Sorting utils
 
-  // 3.1.1] Positional info from the season stats
+  const sortOptions: Array<any> = React.useMemo(() => {
+    return _.flatten(
+      _.chain(
+        CommonTableDefs.extraColSetPicker(
+          LineupTableDefs.lineupsExtraColSet(showRawPts),
+          rowMode,
+          true
+        )
+      )
+        .values()
+        .flatMap((v) => _.toPairs(v.colSet))
+        .uniqBy((kv) => kv[0])
+        .filter((keycol) =>
+          Boolean(
+            keycol[1].colName &&
+              keycol[1].colName != "" &&
+              (!_.isString(keycol[1].colName) ||
+                !_.startsWith(keycol[1].colName, "__"))
+          )
+        )
+        .map((keycol) => {
+          return rowMode == "Mixed"
+            ? ["desc", "asc"].flatMap((combo) => {
+                if (keycol[0] == "def_net") {
+                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
+                  // using the new built-in way of supporting "shadow" fields)
+                  return [];
+                }
+
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                  }
+                };
+                return [
+                  {
+                    label: `${keycol[1].colName} (${ascOrDesc(combo)})`,
+                    value: `${combo}:${keycol[0]}`,
+                  },
+                ];
+              })
+            : [
+                ["desc", "off"],
+                ["asc", "off"],
+                ["desc", "def"],
+                ["asc", "def"],
+                ["desc", "diff"],
+                ["asc", "diff"],
+              ].flatMap((combo) => {
+                if (combo[1] != "off" && keycol[0] == "net") {
+                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
+                  // using the new built-in way of supporting "shadow" fields)
+                  return [];
+                }
+
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                  }
+                };
+                const offOrDef = (s: string) => {
+                  switch (s) {
+                    case "off":
+                      return "Offensive";
+                    case "def":
+                      return "Defensive";
+                    case "diff":
+                      return "Net";
+                  }
+                };
+                return [
+                  {
+                    label: `${keycol[1].colName} (${ascOrDesc(
+                      combo[0]
+                    )} / ${offOrDef(combo[1])})`,
+                    value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
+                  },
+                ];
+              });
+        })
+        .value()
+    );
+  }, [showRawPts, rowMode]);
+
+  const sortOptionsByValue = _.fromPairs(
+    sortOptions.map((opt) => [opt.value, opt])
+  );
+  /** Put these options at the front */
+  const mostUsefulSubset = [
+    "desc:off_poss",
+    "desc:diff_adj_ppp",
+    "desc:off_adj_ppp",
+    "asc:def_adj_ppp",
+  ];
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue)
+        .pick(mostUsefulSubset)
+        .values()
+        .value(),
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue)
+        .omit(mostUsefulSubset)
+        .values()
+        .value(),
+    },
+  ];
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
+  );
 
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
   const table = React.useMemo(() => {
@@ -438,12 +560,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       setLoadingOverride(false); //(rendering)
     }
 
+    // 3.2] Build individual info
+
+    // 3.2.1] Positional info from the season stats
+
     const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(
       rosterStats.global,
       teamSeasonLookup
     );
 
-    // 3.2] Table building
+    // 3.3] Table building
 
     // Build a list of all the opponents:
     const orderedMutableOppoList = LineupUtils.buildOpponentList(
@@ -637,48 +763,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       const colSet = LineupTableDefs.lineupsExtraColSet(showRawPts);
       return (
         <GenericTable
-          sortField={_.thru(sortBy, (sortField) => {
-            if (sortField == ParamDefaults.defaultLineupSortBy) {
-              return undefined;
-            } else {
-              const sortFieldDecomp = sortField.split(":");
-              if (sortFieldDecomp[1] == "diff_adj_ppp") {
-                return "off_net";
-              } else {
-                return sortFieldDecomp[1];
-              }
-            }
-          })}
-          onHeaderClick={(headerKeyIn, ev) => {
-            const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
-
-            const matchingOptions: {
-              value: string;
-              label: string;
-            }[] = sortOptions.filter(
-              (opt: { value: string; label: string }) => {
-                const field = opt.value.split(":")[1];
-                const rawFieldIndex = field.indexOf("_");
-                const rawField =
-                  rawFieldIndex > 0 && rowMode != "Mixed"
-                    ? field.substring(rawFieldIndex + 1)
-                    : field;
-                return rawField == headerKey;
-              }
-            );
-
-            if (matchingOptions.length > 1) {
-              // Multiple options - show popup
-              setSortMenuState({
-                columnKey: headerKey,
-                options: matchingOptions.concat([
-                  { label: "Clear", value: "" },
-                ]),
-                anchorEl: ev.currentTarget as HTMLElement,
-                currentSortValue: sortBy,
-              });
-            }
-          }}
+          sortField={LineupTableDefs.sortField(
+            sortBy,
+            ParamDefaults.defaultLineupSortBy
+          )}
+          onHeaderClick={LineupTableDefs.buildSortCallback(
+            rowMode,
+            sortBy,
+            sortOptions,
+            setSortMenuState
+          )}
           showConfigureColumns={true}
           initialColumnConfig={{
             newCol: tableConfigExtraCols,
@@ -1293,47 +1387,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       const colSet = LineupTableDefs.lineupsExtraColSet(showRawPts);
       return (
         <GenericTable
-          sortField={_.thru(sortBy, (sortField) => {
-            if (sortField == ParamDefaults.defaultLineupSortBy) {
-              return undefined;
-            } else {
-              const sortFieldDecomp = sortField.split(":");
-              if (sortFieldDecomp[1] == "diff_adj_ppp") {
-                return "off_net";
-              } else {
-                return sortFieldDecomp[1];
-              }
-            }
-          })}
-          onHeaderClick={(headerKeyIn, ev) => {
-            const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
-            const matchingOptions: {
-              value: string;
-              label: string;
-            }[] = sortOptions.filter(
-              (opt: { value: string; label: string }) => {
-                const field = opt.value.split(":")[1];
-                const rawFieldIndex = field.indexOf("_");
-                const rawField =
-                  rawFieldIndex > 0 && rowMode != "Mixed"
-                    ? field.substring(rawFieldIndex + 1)
-                    : field;
-                return rawField == headerKey;
-              }
-            );
-
-            if (matchingOptions.length > 1) {
-              // Multiple options - show popup
-              setSortMenuState({
-                columnKey: headerKey,
-                options: matchingOptions.concat([
-                  { label: "Clear", value: "" },
-                ]),
-                anchorEl: ev.currentTarget as HTMLElement,
-                currentSortValue: sortBy,
-              });
-            }
-          }}
+          sortField={LineupTableDefs.sortField(
+            sortBy,
+            ParamDefaults.defaultLineupSortBy
+          )}
+          onHeaderClick={LineupTableDefs.buildSortCallback(
+            rowMode,
+            sortBy,
+            sortOptions,
+            setSortMenuState
+          )}
           showConfigureColumns={true}
           initialColumnConfig={{
             newCol: tableConfigExtraCols,
@@ -1380,132 +1443,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     dataEvent,
     tablePreset,
   ]);
-
-  // 3.2] Sorting utils
-
-  const sortOptions: Array<any> = React.useMemo(() => {
-    return _.flatten(
-      _.chain(
-        CommonTableDefs.extraColSetPicker(
-          LineupTableDefs.lineupsExtraColSet(showRawPts),
-          rowMode,
-          true
-        )
-      )
-        .values()
-        .flatMap((v) => _.toPairs(v.colSet))
-        .uniqBy((kv) => kv[0])
-        .filter((keycol) =>
-          Boolean(
-            keycol[1].colName &&
-              keycol[1].colName != "" &&
-              (!_.isString(keycol[1].colName) ||
-                !_.startsWith(keycol[1].colName, "__"))
-          )
-        )
-        .map((keycol) => {
-          return rowMode == "Mixed"
-            ? ["desc", "asc"].flatMap((combo) => {
-                if (keycol[0] == "def_net") {
-                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
-                  // using the new built-in way of supporting "shadow" fields)
-                  return [];
-                }
-
-                const ascOrDesc = (s: string) => {
-                  switch (s) {
-                    case "asc":
-                      return "Asc.";
-                    case "desc":
-                      return "Desc.";
-                  }
-                };
-                return [
-                  {
-                    label: `${keycol[1].colName} (${ascOrDesc(combo)})`,
-                    value: `${combo}:${keycol[0]}`,
-                  },
-                ];
-              })
-            : [
-                ["desc", "off"],
-                ["asc", "off"],
-                ["desc", "def"],
-                ["asc", "def"],
-                ["desc", "diff"],
-                ["asc", "diff"],
-              ].flatMap((combo) => {
-                if (combo[1] != "off" && keycol[0] == "net") {
-                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
-                  // using the new built-in way of supporting "shadow" fields)
-                  return [];
-                }
-
-                const ascOrDesc = (s: string) => {
-                  switch (s) {
-                    case "asc":
-                      return "Asc.";
-                    case "desc":
-                      return "Desc.";
-                  }
-                };
-                const offOrDef = (s: string) => {
-                  switch (s) {
-                    case "off":
-                      return "Offensive";
-                    case "def":
-                      return "Defensive";
-                    case "diff":
-                      return "Net";
-                  }
-                };
-                return [
-                  {
-                    label: `${keycol[1].colName} (${ascOrDesc(
-                      combo[0]
-                    )} / ${offOrDef(combo[1])})`,
-                    value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-                  },
-                ];
-              });
-        })
-        .value()
-    );
-  }, [showRawPts, rowMode]);
-
-  const sortOptionsByValue = _.fromPairs(
-    sortOptions.map((opt) => [opt.value, opt])
-  );
-  /** Put these options at the front */
-  const mostUsefulSubset = [
-    "desc:off_poss",
-    "desc:diff_adj_ppp",
-    "desc:off_adj_ppp",
-    "asc:def_adj_ppp",
-  ];
-  /** The two sub-headers for the dropdown */
-  const groupedOptions = [
-    {
-      label: "Most useful",
-      options: _.chain(sortOptionsByValue)
-        .pick(mostUsefulSubset)
-        .values()
-        .value(),
-    },
-    {
-      label: "Other",
-      options: _.chain(sortOptionsByValue)
-        .omit(mostUsefulSubset)
-        .values()
-        .value(),
-    },
-  ];
-  /** The sub-header builder */
-  const formatGroupLabel = (data: any) => (
-    <div>
-      <span>{data.label}</span>
-    </div>
-  );
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
