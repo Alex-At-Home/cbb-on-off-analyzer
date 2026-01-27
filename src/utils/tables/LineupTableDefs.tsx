@@ -172,11 +172,8 @@ export class LineupTableDefs {
         CommonTableDefs.picker(...CbbColors.fg3P, rowMode, mixedMode)
       ),
       "2p": GenericTableOps.addPctCol(
-        "2P%",
-        CommonTableDefs.simpleHeader(
-          mixedMode,
-          "2 point field goal percentage"
-        ),
+        CommonTableDefs.simpleHeader(mixedMode, "2P%"),
+        "2 point field goal percentage",
         CommonTableDefs.picker(...CbbColors.fg2P, rowMode, mixedMode)
       ),
       "2pmid": GenericTableOps.addPctCol(
@@ -361,14 +358,14 @@ export class LineupTableDefs {
         description: "Useful additional fields",
         name: "Extra Fields",
         colSet: {
-          off_raw_pts: GenericTableOps.addDataCol(
+          raw_pts: GenericTableOps.addDataCol(
             "Off Pts",
             "Points scored by this lineup",
             CbbColors.applyThemedBackground,
             GenericTableOps.pointsOrHtmlFormatter
           ),
-          ...LineupTableDefs.miscDetailsTable("Mixed", "Off"),
-          ...LineupTableDefs.assistDetailsTable("Mixed", "Off"),
+          ...LineupTableDefs.miscDetailsTable("Off"),
+          ...LineupTableDefs.assistDetailsTable("Off"),
         },
       },
       extraDef: {
@@ -377,14 +374,14 @@ export class LineupTableDefs {
         description: "Useful additional fields",
         name: "Extra Fields",
         colSet: {
-          def_raw_pts: GenericTableOps.addDataCol(
+          raw_pts: GenericTableOps.addDataCol(
             "Def Pts",
             "Points scored by this lineup",
             CbbColors.applyThemedBackground,
             GenericTableOps.pointsOrHtmlFormatter
           ),
-          ...LineupTableDefs.miscDetailsTable("Mixed", "Def"),
-          ...LineupTableDefs.assistDetailsTable("Mixed", "Def"),
+          ...LineupTableDefs.miscDetailsTable("Def"),
+          ...LineupTableDefs.assistDetailsTable("Def"),
         },
       },
       simpleMixed: {

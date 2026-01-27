@@ -566,7 +566,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   CommonTableDefs.repeatingLineupHeaderFields,
                   "small"
                 ),
-                GenericTableOps.buildRowSeparator(),
+                GenericTableOps.buildRowSeparator("1px"),
               ]
             : [],
           rowMode == "Dual" || rowMode == "Off"
@@ -650,6 +650,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           })}
           onHeaderClick={(headerKeyIn, ev) => {
             const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
+
             const matchingOptions: {
               value: string;
               label: string;
@@ -658,7 +659,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 const field = opt.value.split(":")[1];
                 const rawFieldIndex = field.indexOf("_");
                 const rawField =
-                  rawFieldIndex > 0
+                  rawFieldIndex > 0 && rowMode != "Mixed"
                     ? field.substring(rawFieldIndex + 1)
                     : field;
                 return rawField == headerKey;
@@ -1168,7 +1169,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                     CommonTableDefs.repeatingLineupHeaderFields,
                     "small"
                   ),
-                  GenericTableOps.buildRowSeparator(),
+                  GenericTableOps.buildRowSeparator("1px"),
                 ]
               : [],
             rowMode == "Dual" || rowMode == "Off"
@@ -1315,7 +1316,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 const field = opt.value.split(":")[1];
                 const rawFieldIndex = field.indexOf("_");
                 const rawField =
-                  rawFieldIndex > 0
+                  rawFieldIndex > 0 && rowMode != "Mixed"
                     ? field.substring(rawFieldIndex + 1)
                     : field;
                 return rawField == headerKey;
@@ -1386,58 +1387,96 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
   // 3.2] Sorting utils
 
-  const sortOptions: Array<any> = _.flatten(
-    _.toPairs(CommonTableDefs.lineupTable(false))
-      .filter(
-        (keycol) =>
-          keycol[1].colName &&
-          keycol[1].colName != "" &&
-          (!_.isString(keycol[1].colName) ||
-            !_.startsWith(keycol[1].colName, "__"))
+  const sortOptions: Array<any> = React.useMemo(() => {
+    return _.flatten(
+      _.chain(
+        CommonTableDefs.extraColSetPicker(
+          LineupTableDefs.lineupsExtraColSet(showRawPts),
+          rowMode,
+          true
+        )
       )
-      .map((keycol) => {
-        return [
-          ["desc", "off"],
-          ["asc", "off"],
-          ["desc", "def"],
-          ["asc", "def"],
-          ["desc", "diff"],
-          ["asc", "diff"],
-        ].flatMap((combo) => {
-          if (combo[1] != "off" && keycol[0] == "net") {
-            //(def net is raw net but respresented weirdly so can't do anything)
-            return [];
-          }
+        .values()
+        .flatMap((v) => _.toPairs(v.colSet))
+        .uniqBy((kv) => kv[0])
+        .filter((keycol) =>
+          Boolean(
+            keycol[1].colName &&
+              keycol[1].colName != "" &&
+              (!_.isString(keycol[1].colName) ||
+                !_.startsWith(keycol[1].colName, "__"))
+          )
+        )
+        .map((keycol) => {
+          return rowMode == "Mixed"
+            ? ["desc", "asc"].flatMap((combo) => {
+                if (keycol[0] == "def_net") {
+                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
+                  // using the new built-in way of supporting "shadow" fields)
+                  return [];
+                }
 
-          const ascOrDesc = (s: string) => {
-            switch (s) {
-              case "asc":
-                return "Asc.";
-              case "desc":
-                return "Desc.";
-            }
-          };
-          const offOrDef = (s: string) => {
-            switch (s) {
-              case "off":
-                return "Offensive";
-              case "def":
-                return "Defensive";
-              case "diff":
-                return "Net";
-            }
-          };
-          return [
-            {
-              label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(
-                combo[1]
-              )})`,
-              value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-            },
-          ];
-        });
-      })
-  );
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                  }
+                };
+                return [
+                  {
+                    label: `${keycol[1].colName} (${ascOrDesc(combo)})`,
+                    value: `${combo}:${keycol[0]}`,
+                  },
+                ];
+              })
+            : [
+                ["desc", "off"],
+                ["asc", "off"],
+                ["desc", "def"],
+                ["asc", "def"],
+                ["desc", "diff"],
+                ["asc", "diff"],
+              ].flatMap((combo) => {
+                if (combo[1] != "off" && keycol[0] == "net") {
+                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
+                  // using the new built-in way of supporting "shadow" fields)
+                  return [];
+                }
+
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                  }
+                };
+                const offOrDef = (s: string) => {
+                  switch (s) {
+                    case "off":
+                      return "Offensive";
+                    case "def":
+                      return "Defensive";
+                    case "diff":
+                      return "Net";
+                  }
+                };
+                return [
+                  {
+                    label: `${keycol[1].colName} (${ascOrDesc(
+                      combo[0]
+                    )} / ${offOrDef(combo[1])})`,
+                    value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
+                  },
+                ];
+              });
+        })
+        .value()
+    );
+  }, [showRawPts, rowMode]);
+
   const sortOptionsByValue = _.fromPairs(
     sortOptions.map((opt) => [opt.value, opt])
   );

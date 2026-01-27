@@ -151,16 +151,21 @@ export class CommonTableDefs {
     }
   };
 
+  /** Picks the available col-sets
+   * strictMode: if true won't include non-row-mode-matching presets
+   * eg use to get sortable fields
+   */
   static readonly extraColSetPicker = (
     extraColSets: Record<string, ExtraColSet & { rowMode: OffDefDualMixed }>,
-    rowMode: OffDefDualMixed
+    rowMode: OffDefDualMixed,
+    strictMode: boolean = false
   ) =>
     _.pickBy(
       _.mapValues(extraColSets, (colSet) => ({
         ...colSet,
         isLibrary: colSet.rowMode == rowMode && (colSet.isLibrary ?? true),
       })),
-      (colSet) => colSet.isPreset || colSet.rowMode == rowMode
+      (colSet) => (colSet.isPreset && !strictMode) || colSet.rowMode == rowMode
     );
 
   /** Utility to build the right mix of off/def columns based on the row mode */
