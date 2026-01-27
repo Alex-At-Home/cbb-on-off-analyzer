@@ -555,7 +555,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           lineupIndex > 0
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingLineupHeaderFields,
+                  LineupTableDefs.repeatingLineupHeaderFields,
                   "small"
                 ),
               ]
@@ -563,7 +563,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           showRepeatingHeaderThisLine
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingLineupHeaderFields,
+                  LineupTableDefs.repeatingLineupHeaderFields,
                   "small"
                 ),
                 GenericTableOps.buildRowSeparator("1px"),
@@ -634,6 +634,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           [GenericTableOps.buildRowSeparator("1px")],
         ]);
       });
+      const colSet = LineupTableDefs.lineupsExtraColSet(showRawPts);
       return (
         <GenericTable
           sortField={_.thru(sortBy, (sortField) => {
@@ -695,11 +696,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           }}
           presetOverride={tablePreset}
           tableCopyId="lineupStatsTable"
-          tableFields={CommonTableDefs.lineupTable(showRawPts)}
-          extraColSets={CommonTableDefs.extraColSetPicker(
-            LineupTableDefs.lineupsExtraColSet(showRawPts),
-            rowMode
-          )}
+          tableFields={colSet.Default.colSet}
+          extraColSets={CommonTableDefs.extraColSetPicker(colSet, rowMode)}
           tableData={tableData}
           cellTooltipMode="none"
           growsToFit={true}
@@ -1158,7 +1156,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             showGameInfo && showRepeatingHeader
               ? [
                   GenericTableOps.buildHeaderRepeatRow(
-                    CommonTableDefs.repeatingLineupHeaderFields,
+                    LineupTableDefs.repeatingLineupHeaderFields,
                     "small"
                   ),
                 ]
@@ -1166,7 +1164,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             showRepeatingHeaderThisLine
               ? [
                   GenericTableOps.buildHeaderRepeatRow(
-                    CommonTableDefs.repeatingLineupHeaderFields,
+                    LineupTableDefs.repeatingLineupHeaderFields,
                     "small"
                   ),
                   GenericTableOps.buildRowSeparator("1px"),
@@ -1292,6 +1290,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               ]
             : []
         );
+      const colSet = LineupTableDefs.lineupsExtraColSet(showRawPts);
       return (
         <GenericTable
           sortField={_.thru(sortBy, (sortField) => {
@@ -1352,11 +1351,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           }}
           presetOverride={tablePreset}
           tableCopyId="lineupStatsTable"
-          tableFields={CommonTableDefs.lineupTable(showRawPts)}
-          extraColSets={CommonTableDefs.extraColSetPicker(
-            LineupTableDefs.lineupsExtraColSet(showRawPts),
-            rowMode
-          )}
+          tableFields={colSet.Default.colSet}
+          extraColSets={CommonTableDefs.extraColSetPicker(colSet, rowMode)}
           tableData={tableData}
           cellTooltipMode="none"
           growsToFit={true}

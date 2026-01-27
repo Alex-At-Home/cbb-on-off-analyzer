@@ -29,6 +29,7 @@ export class LineupTableDefs {
       return CommonTableDefs.offPrefixFn(key);
     }
   };
+  /** "Overrides" of standard utils */
   static defPrefixFn = (key: string) => {
     if (key == "net_adj_rtg") {
       return "off_net";
@@ -39,6 +40,18 @@ export class LineupTableDefs {
     } else {
       return CommonTableDefs.defPrefixFn(key);
     }
+  };
+
+  /** To build a less wordy set of header text for the repeating headers (team on/off) */
+  static repeatingLineupHeaderFields: Record<string, string> = {
+    "Net Rtg": "Net",
+    "Adj Rtg": "Adj",
+    "Raw Rtg": "Raw",
+    "Adj P/100": "A/100",
+    "2PR mid": "MidR",
+    "2PR rim": "RimR",
+    "2P% mid": "Mid%",
+    "2P% rim": "Rim%",
   };
 
   /** All fields in the lineup table */
@@ -286,192 +299,198 @@ export class LineupTableDefs {
     );
   };
 
-  static readonly allDualLineupFields =
+  private static readonly allDualLineupFields =
     LineupTableDefs.mainLineupTableFields("Dual");
-  static readonly allOffOnlyLineupFields =
+  private static readonly allOffOnlyLineupFields =
     LineupTableDefs.mainLineupTableFields("Off");
-  static readonly allDefOnlyLineupFields =
+  private static readonly allDefOnlyLineupFields =
     LineupTableDefs.mainLineupTableFields("Def");
-  static readonly allMixedOffLineupFields =
+  private static readonly allMixedOffLineupFields =
     LineupTableDefs.mainLineupTableFields("Mixed", "Off");
-  static readonly allMixedDefLineupFields =
+  private static readonly allMixedDefLineupFields =
     LineupTableDefs.mainLineupTableFields("Mixed", "Def");
 
   // Extra lineup table presets:
 
-  //TODO: memoize this?
   static readonly lineupsExtraColSet = _.memoize(
     (
       rawPts: boolean
-    ): Record<string, ExtraColSet & { rowMode: OffDefDualMixed }> => ({
-      Default: {
-        isPreset: false,
-        rowMode: "Dual",
-        name: "Default",
-        description: "Fields from the default Lineup table layout",
-        colSet: CommonTableDefs.lineupTable(rawPts),
-      },
-      extraDual: {
-        isPreset: false,
-        rowMode: "Dual",
-        name: "Extra Fields",
-        description: "Useful additional fields",
-        colSet: {
-          raw_pts: GenericTableOps.addDataCol(
-            "Pts",
-            "Points scored/conceded by this lineup",
-            CbbColors.applyThemedBackground,
-            GenericTableOps.pointsOrHtmlFormatter
-          ),
-          ...LineupTableDefs.miscDetailsTable("Dual"),
-          ...LineupTableDefs.assistDetailsTable("Dual"),
-          //TODO others (here and in other spots): mins, play types, etc
+    ): Record<string, ExtraColSet & { rowMode: OffDefDualMixed }> => {
+      const defaultColSet = LineupTableDefs.rawPtsPicker(
+        rawPts,
+        LineupTableDefs.allDualLineupFields
+      );
+
+      return {
+        Default: {
+          isPreset: false,
+          rowMode: "Dual",
+          name: "Default",
+          description: "Fields from the default Lineup table layout",
+          colSet: defaultColSet,
         },
-      },
-      extraMixed: {
-        isPreset: false,
-        rowMode: "Mixed",
-        description: "Useful additional fields",
-        name: "Extra Fields",
-        colSet: {
-          off_raw_pts: GenericTableOps.addDataCol(
-            "Off Pts",
-            "Points scored by this lineup",
-            CbbColors.applyThemedBackground,
-            GenericTableOps.pointsOrHtmlFormatter
-          ),
-          def_raw_pts: GenericTableOps.addDataCol(
-            "Def Pts",
-            "Points conceded by this lineup",
-            CbbColors.applyThemedBackground,
-            GenericTableOps.pointsOrHtmlFormatter
-          ),
-          ...LineupTableDefs.miscDetailsTable("Mixed", "Off"),
-          ...LineupTableDefs.miscDetailsTable("Mixed", "Def"),
-          ...LineupTableDefs.assistDetailsTable("Mixed", "Off"),
-          ...LineupTableDefs.assistDetailsTable("Mixed", "Def"),
+        extraDual: {
+          isPreset: false,
+          rowMode: "Dual",
+          name: "Extra Fields",
+          description: "Useful additional fields",
+          colSet: {
+            raw_pts: GenericTableOps.addDataCol(
+              "Pts",
+              "Points scored/conceded by this lineup",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.pointsOrHtmlFormatter
+            ),
+            ...LineupTableDefs.miscDetailsTable("Dual"),
+            ...LineupTableDefs.assistDetailsTable("Dual"),
+            //TODO others (here and in other spots): mins, play types, etc
+          },
         },
-      },
-      extraOff: {
-        isPreset: false,
-        rowMode: "Off",
-        description: "Useful additional fields",
-        name: "Extra Fields",
-        colSet: {
-          raw_pts: GenericTableOps.addDataCol(
-            "Off Pts",
-            "Points scored by this lineup",
-            CbbColors.applyThemedBackground,
-            GenericTableOps.pointsOrHtmlFormatter
-          ),
-          ...LineupTableDefs.miscDetailsTable("Off"),
-          ...LineupTableDefs.assistDetailsTable("Off"),
+        extraMixed: {
+          isPreset: false,
+          rowMode: "Mixed",
+          description: "Useful additional fields",
+          name: "Extra Fields",
+          colSet: {
+            off_raw_pts: GenericTableOps.addDataCol(
+              "Off Pts",
+              "Points scored by this lineup",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.pointsOrHtmlFormatter
+            ),
+            def_raw_pts: GenericTableOps.addDataCol(
+              "Def Pts",
+              "Points conceded by this lineup",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.pointsOrHtmlFormatter
+            ),
+            ...LineupTableDefs.miscDetailsTable("Mixed", "Off"),
+            ...LineupTableDefs.miscDetailsTable("Mixed", "Def"),
+            ...LineupTableDefs.assistDetailsTable("Mixed", "Off"),
+            ...LineupTableDefs.assistDetailsTable("Mixed", "Def"),
+          },
         },
-      },
-      extraDef: {
-        isPreset: false,
-        rowMode: "Def",
-        description: "Useful additional fields",
-        name: "Extra Fields",
-        colSet: {
-          raw_pts: GenericTableOps.addDataCol(
-            "Def Pts",
-            "Points scored by this lineup",
-            CbbColors.applyThemedBackground,
-            GenericTableOps.pointsOrHtmlFormatter
-          ),
-          ...LineupTableDefs.miscDetailsTable("Def"),
-          ...LineupTableDefs.assistDetailsTable("Def"),
+        extraOff: {
+          isPreset: false,
+          rowMode: "Off",
+          description: "Useful additional fields",
+          name: "Extra Fields",
+          colSet: {
+            raw_pts: GenericTableOps.addDataCol(
+              "Off Pts",
+              "Points scored by this lineup",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.pointsOrHtmlFormatter
+            ),
+            ...LineupTableDefs.miscDetailsTable("Off"),
+            ...LineupTableDefs.assistDetailsTable("Off"),
+          },
         },
-      },
-      simpleMixed: {
-        isPreset: true,
-        rowMode: "Mixed",
-        name: "Simple (Desktop)",
-        description:
-          "A simple single line view of the most important few stats",
-        colSet: LineupTableDefs.rawPtsPicker(rawPts, {
-          off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
-          sep1: GenericTableOps.addColSeparator(),
-          off_net: LineupTableDefs.allMixedOffLineupFields.off_net,
-          def_net: LineupTableDefs.allMixedDefLineupFields.def_net,
-          off_adj_ppp: LineupTableDefs.allMixedOffLineupFields.off_adj_ppp,
-          def_adj_ppp: LineupTableDefs.allMixedDefLineupFields.def_adj_ppp,
-          sep2: GenericTableOps.addColSeparator(),
-          off_3p: LineupTableDefs.allMixedOffLineupFields.off_3p,
-          def_3p: LineupTableDefs.allMixedDefLineupFields.def_3p,
-          off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
-        }),
-      },
-      simpleDual: {
-        isPreset: true,
-        rowMode: "Dual",
-        name: "Simple (Mobile)",
-        description: "Mobile friendly view of basic off/def view",
-        colSet: _.pick(CommonTableDefs.lineupTable(rawPts), [
-          "title",
-          "sep_adj_net",
-          "net",
-          "sep_off_def",
-          "adj_ppp",
-          "3p",
-          "poss",
-        ]),
-      },
-      offenseSingleRow: {
-        isPreset: true,
-        rowMode: "Off",
-        name: "Offense Only",
-        description: "A single row showing all offensive stats",
-        colSet: LineupTableDefs.rawPtsPicker(
-          rawPts,
-          LineupTableDefs.allOffOnlyLineupFields
-        ),
-      },
-      defenseSingleRow: {
-        isPreset: true,
-        rowMode: "Def",
-        name: "Defense Only",
-        description: "A single row showing all defensive stats",
-        colSet: LineupTableDefs.rawPtsPicker(
-          rawPts,
-          LineupTableDefs.allDefOnlyLineupFields
-        ),
-      },
-      emptyDual: {
-        isPreset: true,
-        rowMode: "Dual",
-        name: "Empty Table (dual row)",
-        description:
-          "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
-        colSet: {
-          title: LineupTableDefs.allDualLineupFields.title,
-        } as Record<string, GenericTableColProps>,
-      },
-      emptySingle: {
-        isPreset: true,
-        rowMode: "Mixed",
-        name: "Empty Table (single row)",
-        description:
-          "An empty set of columns - pick whatever you want (mixing offense and defense)",
-        colSet: {
-          off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
-        } as Record<string, GenericTableColProps>,
-      },
-      offenseOnlyMixed: {
-        isPreset: false,
-        name: "Offensive Stats",
-        rowMode: "Mixed",
-        description: "A collection of offensive stats",
-        colSet: LineupTableDefs.allMixedOffLineupFields,
-      },
-      defenseOnlyMixed: {
-        isPreset: false,
-        rowMode: "Mixed",
-        name: "Defensive Stats",
-        description: "A collection of defensive stats",
-        colSet: LineupTableDefs.allMixedDefLineupFields,
-      },
-    })
+        extraDef: {
+          isPreset: false,
+          rowMode: "Def",
+          description: "Useful additional fields",
+          name: "Extra Fields",
+          colSet: {
+            raw_pts: GenericTableOps.addDataCol(
+              "Def Pts",
+              "Points scored by this lineup",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.pointsOrHtmlFormatter
+            ),
+            ...LineupTableDefs.miscDetailsTable("Def"),
+            ...LineupTableDefs.assistDetailsTable("Def"),
+          },
+        },
+        simpleMixed: {
+          isPreset: true,
+          rowMode: "Mixed",
+          name: "Simple (Desktop)",
+          description:
+            "A simple single line view of the most important few stats",
+          colSet: LineupTableDefs.rawPtsPicker(rawPts, {
+            off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
+            sep1: GenericTableOps.addColSeparator(),
+            off_net: LineupTableDefs.allMixedOffLineupFields.off_net,
+            def_net: LineupTableDefs.allMixedDefLineupFields.def_net,
+            off_adj_ppp: LineupTableDefs.allMixedOffLineupFields.off_adj_ppp,
+            def_adj_ppp: LineupTableDefs.allMixedDefLineupFields.def_adj_ppp,
+            sep2: GenericTableOps.addColSeparator(),
+            off_3p: LineupTableDefs.allMixedOffLineupFields.off_3p,
+            def_3p: LineupTableDefs.allMixedDefLineupFields.def_3p,
+            off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
+          }),
+        },
+        simpleDual: {
+          isPreset: true,
+          rowMode: "Dual",
+          name: "Simple (Mobile)",
+          description: "Mobile friendly view of basic off/def view",
+          colSet: _.pick(defaultColSet, [
+            "title",
+            "sep_adj_net",
+            "net",
+            "sep_off_def",
+            "adj_ppp",
+            "3p",
+            "poss",
+          ]),
+        },
+        offenseSingleRow: {
+          isPreset: true,
+          rowMode: "Off",
+          name: "Offense Only",
+          description: "A single row showing all offensive stats",
+          colSet: LineupTableDefs.rawPtsPicker(
+            rawPts,
+            LineupTableDefs.allOffOnlyLineupFields
+          ),
+        },
+        defenseSingleRow: {
+          isPreset: true,
+          rowMode: "Def",
+          name: "Defense Only",
+          description: "A single row showing all defensive stats",
+          colSet: LineupTableDefs.rawPtsPicker(
+            rawPts,
+            LineupTableDefs.allDefOnlyLineupFields
+          ),
+        },
+        emptyDual: {
+          isPreset: true,
+          rowMode: "Dual",
+          name: "Empty Table (dual row)",
+          description:
+            "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
+          colSet: {
+            title: LineupTableDefs.allDualLineupFields.title,
+          } as Record<string, GenericTableColProps>,
+        },
+        emptySingle: {
+          isPreset: true,
+          rowMode: "Mixed",
+          name: "Empty Table (single row)",
+          description:
+            "An empty set of columns - pick whatever you want (mixing offense and defense)",
+          colSet: {
+            off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
+          } as Record<string, GenericTableColProps>,
+        },
+        offenseOnlyMixed: {
+          isPreset: false,
+          name: "Offensive Stats",
+          rowMode: "Mixed",
+          description: "A collection of offensive stats",
+          colSet: LineupTableDefs.allMixedOffLineupFields,
+        },
+        defenseOnlyMixed: {
+          isPreset: false,
+          rowMode: "Mixed",
+          name: "Defensive Stats",
+          description: "A collection of defensive stats",
+          colSet: LineupTableDefs.allMixedDefLineupFields,
+        },
+      };
+    }
   );
 }

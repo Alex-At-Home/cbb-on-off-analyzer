@@ -79,6 +79,7 @@ import YearSelector from "./shared/YearSelector";
 import TableSortPopupMenu, {
   TableSortPopupMenuState,
 } from "./shared/TableSortPopupMenu";
+import { LineupTableDefs } from "../utils/tables/LineupTableDefs";
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>;
@@ -96,7 +97,7 @@ type Props = {
 // Some static methods
 
 const sortOptions: Array<any> = _.flatten(
-  _.toPairs(CommonTableDefs.lineupTable(false))
+  _.toPairs(LineupTableDefs.mainLineupTableFields("Dual"))
     .filter(
       (keycol) =>
         keycol[1].colName &&
@@ -628,7 +629,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
         isUsingLuckAndShowingDiags && showRepeatingHeader && lineupIndex > 0
           ? [
               GenericTableOps.buildHeaderRepeatRow(
-                CommonTableDefs.repeatingLineupHeaderFields,
+                LineupTableDefs.repeatingLineupHeaderFields,
                 "small"
               ),
             ]
@@ -636,7 +637,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
         showRepeatingHeaderThisLine
           ? [
               GenericTableOps.buildHeaderRepeatRow(
-                CommonTableDefs.repeatingLineupHeaderFields,
+                LineupTableDefs.repeatingLineupHeaderFields,
                 "small"
               ),
               GenericTableOps.buildRowSeparator(),
@@ -661,6 +662,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
         [GenericTableOps.buildRowSeparator("1px")],
       ]);
     });
+    const colSet = LineupTableDefs.lineupsExtraColSet(false);
     return (
       <GenericTable
         sortField={_.thru(sortBy, (sortField) => {
@@ -711,7 +713,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
         }}
         presetOverride={tablePreset}
         tableCopyId="lineupLeaderboardTable"
-        tableFields={CommonTableDefs.lineupTable(false)}
+        tableFields={colSet.Default.colSet}
         tableData={tableData}
         cellTooltipMode="none"
       />

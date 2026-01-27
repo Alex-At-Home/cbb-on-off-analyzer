@@ -216,6 +216,22 @@ export class GenericTableOps {
       return GenericTableOps.percentFormatter(val);
     }
   };
+  static readonly shadowPercentFormatter = (
+    colorOverride: (val: number) => string
+  ) => {
+    return (val: any) => {
+      return (
+        <div
+          style={{
+            ...GenericTableOps.getTextShadow(val, colorOverride),
+            fontSize: "0.875em", //(use this instead of small so as to inherit the fontWeight from the parent)
+          }}
+        >
+          <i>{(100 * (val?.value || 0)).toFixed(0)}%</i>
+        </div>
+      );
+    };
+  };
   /** Top row is %, bottom row is also % but has a shadow instead of a full background */
   static readonly dualRowPercentFormatter = (
     colorOverride: (val: number) => string
@@ -224,17 +240,7 @@ export class GenericTableOps {
       if (!key || key.startsWith("off_")) {
         return GenericTableOps.percentFormatter(val);
       } else {
-        //def_ ... add a shadow on top of whatever background (typically default)
-        return (
-          <div
-            style={{
-              ...GenericTableOps.getTextShadow(val, colorOverride),
-              fontSize: "0.875em", //(use this instead of small so as to inherit the fontWeight from the parent)
-            }}
-          >
-            <i>{(100 * (val?.value || 0)).toFixed(0)}%</i>
-          </div>
-        );
+        return GenericTableOps.shadowPercentFormatter(colorOverride)(val);
       }
     };
   };
@@ -273,6 +279,35 @@ export class GenericTableOps {
   };
   static readonly pointsFormatter = (val: any) =>
     (val.value as number).toFixed(1);
+  static readonly shadowPointsFormatter = (
+    colorOverride: (val: number) => string
+  ) => {
+    return (val: any) => {
+      return (
+        <div
+          style={{
+            ...GenericTableOps.getTextShadow(val, colorOverride),
+            fontSize: "0.875em", //(use this instead of small so as to inherit the fontWeight from the parent)
+          }}
+        >
+          <i>{(val?.value || 0).toFixed(1)}</i>
+        </div>
+      );
+    };
+  };
+  /** Top row is %, bottom row is also % but has a shadow instead of a full background */
+  static readonly dualRowPointsFormatter = (
+    colorOverride: (val: number) => string
+  ) => {
+    return (val: any, key?: string) => {
+      if (!key || key.startsWith("off_")) {
+        return GenericTableOps.pointsFormatter(val);
+      } else {
+        return GenericTableOps.shadowPointsFormatter(colorOverride)(val);
+      }
+    };
+  };
+
   static readonly pointsFormatter2dp = (val: any) =>
     (val.value as number).toFixed(2);
   static readonly pointsOrHtmlFormatter = (val: any) => {
