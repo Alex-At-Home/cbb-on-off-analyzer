@@ -217,7 +217,10 @@ export class CommonTableDefs {
       "Net Rtg",
       "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
       CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
-      GenericTableOps.pointsOrHtmlFormatter
+      GenericTableOps.dualRowPointsFormatter(
+        CbbColors.off_diff35_p100_redGreen,
+        false
+      )
     ),
     sep_off_def: GenericTableOps.addSpecialColSeparator("__off_def__"),
     ppp: GenericTableOps.addPtsCol(

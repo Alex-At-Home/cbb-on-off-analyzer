@@ -951,13 +951,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     rowspan="1"
                     style="text-align: center; width: 4.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <small
-                      style="text-shadow: 0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1;"
+                    <div
+                      style="text-shadow: 0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1; font-size: 0.875em;"
                     >
                       <i>
                         12.9
                       </i>
-                    </small>
+                    </div>
                   </td>
                   <td
                     class=""
@@ -1580,13 +1580,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     rowspan="1"
                     style="text-align: center; width: 4.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <small
-                      style="text-shadow: 0px 0px 15px #dbeddb,0px 0px 15px #dbeddb,0px 0px 15px #dbeddb;"
+                    <div
+                      style="text-shadow: 0px 0px 15px #dbeddb,0px 0px 15px #dbeddb,0px 0px 15px #dbeddb; font-size: 0.875em;"
                     >
                       <i>
                         5.0
                       </i>
-                    </small>
+                    </div>
                   </td>
                   <td
                     class=""
@@ -2209,13 +2209,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     rowspan="1"
                     style="text-align: center; width: 4.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <small
-                      style="text-shadow: 0px 0px 15px #aed7ae,0px 0px 15px #aed7ae,0px 0px 15px #aed7ae;"
+                    <div
+                      style="text-shadow: 0px 0px 15px #aed7ae,0px 0px 15px #aed7ae,0px 0px 15px #aed7ae; font-size: 0.875em;"
                     >
                       <i>
                         11.1
                       </i>
-                    </small>
+                    </div>
                   </td>
                   <td
                     class=""
@@ -3461,13 +3461,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <div>
                       <u>
-                        <small
-                          style="text-shadow: 0px 0px 15px #a9d4a9,0px 0px 15px #a9d4a9,0px 0px 15px #a9d4a9;"
+                        <div
+                          style="text-shadow: 0px 0px 15px #a9d4a9,0px 0px 15px #a9d4a9,0px 0px 15px #a9d4a9; font-size: 0.875em;"
                         >
                           <i>
                             11.9
                           </i>
-                        </small>
+                        </div>
                       </u>
                     </div>
                   </td>
@@ -5160,7 +5160,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             class=""
                                             colspan="1"
                                             rowspan="1"
-                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(250, 253, 250); vertical-align: middle; color: black;"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(167, 211, 167); vertical-align: middle; color: black;"
                                           >
                                             <div>
                                               75.2
@@ -5262,7 +5262,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             class=""
                                             colspan="1"
                                             rowspan="1"
-                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(102, 179, 102); vertical-align: middle; color: black;"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(238, 246, 238); vertical-align: middle; color: black;"
                                           >
                                             <div>
                                               69.0
@@ -6175,13 +6175,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <div>
                       <u>
-                        <small
-                          style="text-shadow: 0px 0px 15px #cae4ca,0px 0px 15px #cae4ca,0px 0px 15px #cae4ca;"
+                        <div
+                          style="text-shadow: 0px 0px 15px #cae4ca,0px 0px 15px #cae4ca,0px 0px 15px #cae4ca; font-size: 0.875em;"
                         >
                           <i>
                             7.3
                           </i>
-                        </small>
+                        </div>
                       </u>
                     </div>
                   </td>
@@ -7874,7 +7874,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             class=""
                                             colspan="1"
                                             rowspan="1"
-                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 211, 211); vertical-align: middle; color: black;"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(199, 227, 199); vertical-align: middle; color: black;"
                                           >
                                             <div>
                                               73.3
@@ -7976,7 +7976,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             class=""
                                             colspan="1"
                                             rowspan="1"
-                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(197, 226, 197); vertical-align: middle; color: black;"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 209, 209); vertical-align: middle; color: black;"
                                           >
                                             <div>
                                               72.7
@@ -8889,13 +8889,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   >
                     <div>
                       <u>
-                        <small
-                          style="text-shadow: 0px 0px 15px #b0d8b0,0px 0px 15px #b0d8b0,0px 0px 15px #b0d8b0;"
+                        <div
+                          style="text-shadow: 0px 0px 15px #b0d8b0,0px 0px 15px #b0d8b0,0px 0px 15px #b0d8b0; font-size: 0.875em;"
                         >
                           <i>
                             10.8
                           </i>
-                        </small>
+                        </div>
                       </u>
                     </div>
                   </td>
@@ -10588,7 +10588,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             class=""
                                             colspan="1"
                                             rowspan="1"
-                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(255, 248, 248); vertical-align: middle; color: black;"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(174, 215, 174); vertical-align: middle; color: black;"
                                           >
                                             <div>
                                               74.7
@@ -10690,7 +10690,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                             class=""
                                             colspan="1"
                                             rowspan="1"
-                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(123, 189, 123); vertical-align: middle; color: black;"
+                                            style="text-align: center; width: 9.1%; font-weight: normal; background-color: rgb(252, 253, 252); vertical-align: middle; color: black;"
                                           >
                                             <div>
                                               69.8
@@ -12062,13 +12062,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     rowspan="1"
                     style="text-align: center; width: 4.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-bottom: 2px;"
                   >
-                    <small
-                      style="text-shadow: 0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1;"
+                    <div
+                      style="text-shadow: 0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1; font-size: 0.875em;"
                     >
                       <i>
                         12.9
                       </i>
-                    </small>
+                    </div>
                     <div
                       style="text-align: center; font-size: 0.8em; margin-top: 0px;"
                     >
@@ -12931,13 +12931,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     rowspan="1"
                     style="text-align: center; width: 4.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <small
-                      style="text-shadow: 0px 0px 15px #dbeddb,0px 0px 15px #dbeddb,0px 0px 15px #dbeddb;"
+                    <div
+                      style="text-shadow: 0px 0px 15px #dbeddb,0px 0px 15px #dbeddb,0px 0px 15px #dbeddb; font-size: 0.875em;"
                     >
                       <i>
                         5.0
                       </i>
-                    </small>
+                    </div>
                   </td>
                   <td
                     class=""
@@ -13742,13 +13742,13 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   >
                     <div>
                       <u>
-                        <small
-                          style="text-shadow: 0px 0px 15px #94ca94,0px 0px 15px #94ca94,0px 0px 15px #94ca94;"
+                        <div
+                          style="text-shadow: 0px 0px 15px #94ca94,0px 0px 15px #94ca94,0px 0px 15px #94ca94; font-size: 0.875em;"
                         >
                           <i>
                             14.7
                           </i>
-                        </small>
+                        </div>
                       </u>
                     </div>
                     <div
