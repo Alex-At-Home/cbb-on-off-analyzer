@@ -54,6 +54,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { UrlRouting } from "../UrlRouting";
 import { FilterPresetUtils } from "../FilterPresetUtils";
 import { GradeUtils } from "../stats/GradeUtils";
+import { TeamTableDefs } from "./TeamTableDefs";
 
 // Data model
 
@@ -1123,7 +1124,7 @@ export class TeamStatsTableUtils {
           showExtraHeader
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingOnOffHeaderFields,
+                  TeamTableDefs.repeatingOnOffHeaderFields,
                   "small"
                 ),
               ]

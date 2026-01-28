@@ -42,12 +42,7 @@ import Statistics from "statistics.js";
 
 // Table building
 // Util imports
-import {
-  TeamEditorParams,
-  OffseasonLeaderboardParams,
-  TeamStatsExplorerParams,
-  ParamDefaults,
-} from "../utils/FilterModels";
+import { TeamStatsExplorerParams, ParamDefaults } from "../utils/FilterModels";
 
 import {
   Statistic,
@@ -58,24 +53,10 @@ import {
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { UrlRouting } from "../utils/UrlRouting";
-import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
-import TeamEditorTable, { TeamEditorStatsModel } from "./TeamEditorTable";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { DateUtils } from "../utils/DateUtils";
 import { InputGroup } from "react-bootstrap";
 
 // Library imports:
-import fetch from "isomorphic-unfetch";
-import { RequestUtils } from "../utils/RequestUtils";
-import {
-  EvalResults,
-  EvalRule,
-  EvalStatInfo,
-  EvalStatSubResults,
-  OffseasonLeaderboardUtils,
-  OffseasonTeamInfo,
-  PredictedVsActualRankings,
-} from "../utils/stats/OffseasonLeaderboardUtils";
 import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
@@ -97,6 +78,7 @@ import YearSelector from "./shared/YearSelector";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { CbbColors } from "../utils/CbbColors";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { TeamTableDefs } from "../utils/tables/TeamTableDefs";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -875,7 +857,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           ...(ii > 0 && ii % repeatingHeader == 0
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingOnOffHeaderFields,
+                  TeamTableDefs.repeatingOnOffHeaderFields,
                   "small"
                 ),
               ]
@@ -905,7 +887,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         }}
         presetOverride={tablePreset}
         tableCopyId="teamStatsTable"
-        tableFields={CommonTableDefs.onOffTable()}
+        tableFields={TeamTableDefs.onOffTable()}
         tableData={
           tableRows.length == 0 && needToLoadQuery() //(make table big enough to render loading script)
             ? _.range(0, 3).map((__) => GenericTableOps.buildRowSeparator())

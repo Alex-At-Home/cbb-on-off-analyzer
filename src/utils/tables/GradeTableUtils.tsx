@@ -41,6 +41,7 @@ import { de } from "date-fns/locale";
 // Font Awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose } from "@fortawesome/free-regular-svg-icons";
+import { TeamTableDefs } from "./TeamTableDefs";
 
 export type StatsCaches = {
   comboTier?: DivisionStatistics;
@@ -733,7 +734,7 @@ export class GradeTableUtils {
     const defPrefixFn = (key: string) => "def_" + key;
     const defCellMetaFn = (key: string, val: any) => "def";
     const tableConfig = buildGradesTable(
-      CommonTableDefs.onOffTable(),
+      TeamTableDefs.onOffTable(),
       teamBuilderInfo,
       false
     );

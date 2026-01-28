@@ -44,7 +44,6 @@ import {
   ParamDefaults,
   LuckParams,
 } from "../utils/FilterModels";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { CbbColors } from "../utils/CbbColors";
 
 import {
@@ -69,6 +68,7 @@ import QuickSwitchBar, {
 } from "./shared/QuickSwitchBar";
 import { useTheme } from "next-themes";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
+import { TeamTableDefs } from "../utils/tables/TeamTableDefs";
 
 export type TeamStatsModel = {
   on: TeamStatSet;
@@ -1187,7 +1187,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               }}
               presetOverride={tablePreset}
               tableCopyId="teamStatsTable"
-              tableFields={CommonTableDefs.onOffTable()}
+              tableFields={TeamTableDefs.onOffTable()}
               tableData={tableData}
               cellTooltipMode="none"
               integratedGrades={
